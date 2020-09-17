@@ -73,9 +73,7 @@ const Costs = {
     }),
     play: () => ({
         canPay: (context) => {
-            if (context.source.getKeywordValue('alpha') > 0 && !context.game.firstThingThisTurn()) {
-                return false;
-            } else if (
+            if (
                 context.game.cardsUsed
                     .concat(context.game.cardsPlayed)
                     .filter((card) => card.name === context.source.name).length >= 6
@@ -170,7 +168,14 @@ const Costs = {
         canPay: (context) => context.player.amber >= amount,
         payEvent: (context) =>
             context.game.actions.loseAmber({ amount: amount }).getEvent(context.player, context)
+    }),
+    spendMainAction: () => ({
+        canPay: (context) => context.player.actions.main,
+        payEvent: (context) =>
+            context.game.actions.spendMainAction().getEvent(context.player, context)
     })
+    //todo: add loseSideAction
+    //todo: add loseDice
 };
 
 module.exports = Costs;

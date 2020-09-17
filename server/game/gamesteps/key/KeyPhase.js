@@ -8,6 +8,10 @@ class KeyPhase extends Phase {
     }
 
     forgeKey() {
+        this.game.actions
+            .gainAmber({ amount: 1 })
+            .resolve(this.game.activePlayer, this.game.getFrameworkContext(this.game.activePlayer));
+
         if (this.game.activePlayer.canForgeKey()) {
             this.game.actions
                 .forgeKey()

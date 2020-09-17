@@ -1,8 +1,9 @@
+const Costs = require('../costs');
 const BasePlayAction = require('./BasePlayAction');
 
 class PlayCreatureAction extends BasePlayAction {
     constructor(card) {
-        super(card);
+        super(card, [Costs.play()]);
         this.title = 'Play this creature';
     }
 

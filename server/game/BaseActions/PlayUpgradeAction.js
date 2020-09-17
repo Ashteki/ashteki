@@ -2,10 +2,11 @@ const BasePlayAction = require('./BasePlayAction');
 const AttachAction = require('../GameActions/AttachAction');
 const LastingEffectCardAction = require('../GameActions/LastingEffectCardAction');
 const Effects = require('../effects');
+const Costs = require('../costs');
 
 class PlayUpgradeAction extends BasePlayAction {
     constructor(card) {
-        super(card, {
+        super(card, [Costs.play()], {
             activePromptTitle: 'Choose a creature to attach this upgrade to',
             cardType: 'creature',
             gameAction: new AttachAction((context) => ({ upgrade: context.source }))

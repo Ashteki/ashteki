@@ -49,7 +49,8 @@ class Deck {
     prepare(player) {
         var result = {
             houses: [],
-            cards: []
+            cards: [],
+            dice: []
         };
 
         result.houses = this.data.houses;
@@ -63,7 +64,25 @@ class Deck {
             }
         });
 
+        result.dice = this.getDice();
+
         return result;
+    }
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    getDice() {
+        let magic = ['ceremonial', 'charm', 'divine', 'illusion', 'natural', 'sympathy', 'time'];
+        let levels = ['power', 'class', 'class', 'class', 'basic', 'basic'];
+        let output = [];
+        for (var i = 0; i < 10; i++) {
+            var m = this.getRandomInt(7);
+            var l = this.getRandomInt(6);
+            output.push({ id: i + 1, magic: magic[m], level: levels[l] });
+        }
+        return output;
     }
 
     eachRepeatedCard(cards, func) {

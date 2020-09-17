@@ -15,8 +15,7 @@ class PlayerBoard extends React.Component {
         }, {});
 
         let rows = [];
-        let locations = groupedCards['artifact'] || [];
-        let characters = groupedCards['creature'] || [];
+        let creatures = groupedCards['creature'] || [];
         let other = [];
 
         for (let key of Object.keys(groupedCards).filter(
@@ -30,11 +29,9 @@ class PlayerBoard extends React.Component {
                 rows.push(other);
             }
 
-            rows.push(locations);
-            rows.push(characters);
+            rows.push(creatures);
         } else {
-            rows.push(characters);
-            rows.push(locations);
+            rows.push(creatures);
             if (other.length > 0) {
                 rows.push(other);
             }

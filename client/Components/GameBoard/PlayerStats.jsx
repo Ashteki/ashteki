@@ -21,12 +21,22 @@ import Plus from '../../assets/img/Plus.png';
 
 import './PlayerStats.scss';
 
+const toggleImages = {};
+
+for (const actionType of ['main', 'side']) {
+    toggleImages[actionType] = {
+        active: require(`../../assets/img/forgedkey${actionType}.png`),
+        spent: require(`../../assets/img/unforgedkey${actionType}.png`)
+    };
+}
+
 export class PlayerStats extends React.Component {
     constructor(props) {
         super(props);
 
         this.sendUpdate = this.sendUpdate.bind(this);
         this.setActiveHouse = this.setActiveHouse.bind(this);
+        this.toggleAction = this.toggleAction.bind(this);
     }
 
     sendUpdate(type, direction) {
@@ -45,6 +55,12 @@ export class PlayerStats extends React.Component {
         }
 
         return this.props.stats[stat] || 0;
+    }
+
+    toggleAction(actionType) {
+        if (this.props.showControls) {
+            this.props.sendGameMessage('modifyAction', actionType, this.props.actions[actionType]);
+        }
     }
 
     getHouse(house) {
@@ -125,6 +141,27 @@ export class PlayerStats extends React.Component {
         }
     }
 
+    renderActions() {
+        let t = this.props.t;
+
+        let actionTypes = ['main', 'side'];
+        return actionTypes.map((actionType) => {
+            return (
+                <div className='state' key={`action ${actionType}`}>
+                    <img
+                        src={
+                            this.props.actions[actionType]
+                                ? toggleImages[actionType].active
+                                : toggleImages[actionType].spent
+                        }
+                        onClick={this.toggleAction.bind(this, actionType)}
+                        title={t(`${actionType} Action`)}
+                    />
+                </div>
+            );
+        });
+    }
+
     render() {
         let t = this.props.t;
         let playerAvatar = (
@@ -148,7 +185,7 @@ export class PlayerStats extends React.Component {
         return (
             <div className={statsClass}>
                 {playerAvatar}
-
+                {this.renderActions()}
                 {this.getButton('amber', t('Amber'))}
                 {this.getButton('chains', t('Chains'))}
                 {this.getKeyCost()}
@@ -251,12 +288,14 @@ PlayerStats.propTypes = {
     onSettingsClick: PropTypes.func,
     playerName: PropTypes.string,
     sendGameMessage: PropTypes.func,
+    keys: PropTypes.object,
     showControls: PropTypes.bool,
     showManualMode: PropTypes.bool,
     showMessages: PropTypes.bool,
     stats: PropTypes.object,
     t: PropTypes.func,
-    user: PropTypes.object
+    user: PropTypes.object,
+    actions: PropTypes.array
 };
 
 export default withTranslation()(PlayerStats);

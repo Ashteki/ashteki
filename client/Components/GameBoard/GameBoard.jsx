@@ -17,6 +17,7 @@ import TimeLimitClock from './TimeLimitClock';
 import * as actions from '../../redux/actions';
 
 import './GameBoard.scss';
+import PlayerPBRow from './PlayerPBRow';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -35,7 +36,8 @@ const placeholderPlayer = {
     houses: [],
     title: null,
     user: null,
-    deckData: {}
+    deckData: {},
+    dice: []
 };
 
 export class GameBoard extends React.Component {
@@ -170,6 +172,7 @@ export class GameBoard extends React.Component {
     defaultPlayerInfo(source) {
         let player = Object.assign({}, placeholderPlayer, source);
         player.cardPiles = Object.assign({}, placeholderPlayer.cardPiles, player.cardPiles);
+        player.dice = Object.assign([], placeholderPlayer.dice, player.dice);
         return player;
     }
 
@@ -188,7 +191,10 @@ export class GameBoard extends React.Component {
 
     renderBoard(thisPlayer, otherPlayer) {
         let spectating = !this.props.currentGame.players[this.props.user.username];
-
+        let thisSpells = thisPlayer.cardPiles.cardsInPlay.filter((card) => card.type == 'artifact');
+        let otherSpells = otherPlayer.cardPiles.cardsInPlay.filter(
+            (card) => card.type == 'artifact'
+        );
         return [
             <div key='board-middle' className='board-middle'>
                 <div className='player-home-row'>
@@ -214,9 +220,35 @@ export class GameBoard extends React.Component {
                         player={2}
                         purgedPile={otherPlayer.cardPiles.purged}
                         side='top'
+                        dice={otherPlayer.dice}
                         spectating={spectating}
                         title={otherPlayer.title}
                         username={this.props.user.username}
+                    />
+                </div>
+                <div className='player-home-row'>
+                    <PlayerPBRow
+                        player={2}
+                        cardBackUrl={this.props.player2CardBack}
+                        faction={otherPlayer.faction}
+                        hand={otherPlayer.cardPiles.hand}
+                        isMe={false}
+                        hideDecklist={this.props.currentGame.hideDecklists}
+                        language={this.props.i18n.language}
+                        deckData={otherPlayer.deckData}
+                        deckCards={otherPlayer.deckCards}
+                        drawDeck={otherPlayer.cardPiles.deck}
+                        numDeckCards={otherPlayer.numDeckCards}
+                        discard={otherPlayer.cardPiles.discard}
+                        onCardClick={this.onCardClick}
+                        onMouseOver={this.onMouseOver}
+                        onMouseOut={this.onMouseOut}
+                        spectating={spectating}
+                        title={otherPlayer.title}
+                        side='top'
+                        username={this.props.user.username}
+                        cardSize={this.props.user.settings.cardSize}
+                        spells={otherSpells}
                     />
                 </div>
                 <div className='board-inner'>
@@ -252,13 +284,40 @@ export class GameBoard extends React.Component {
                 </div>
                 {this.getTimer()}
                 <div className='player-home-row our-side'>
+                    <PlayerPBRow
+                        isMe={!spectating}
+                        player={1}
+                        hideDecklist={this.props.currentGame.hideDecklists && spectating}
+                        cardBackUrl={this.props.player1CardBack}
+                        language={this.props.i18n.language}
+                        deckData={thisPlayer.deckData}
+                        deckCards={thisPlayer.deckCards}
+                        drawDeck={thisPlayer.cardPiles.deck}
+                        onCardClick={this.onCardClick}
+                        onMouseOver={this.onMouseOver}
+                        onMouseOut={this.onMouseOut}
+                        numDeckCards={thisPlayer.numDeckCards}
+                        onDrawPopupChange={this.handleDrawPopupChange}
+                        onShuffleClick={this.onShuffleClick}
+                        onDragDrop={this.onDragDrop}
+                        discard={thisPlayer.cardPiles.discard}
+                        showDeck={thisPlayer.showDeck}
+                        spectating={spectating}
+                        title={thisPlayer.title}
+                        onMenuItemClick={this.onMenuItemClick}
+                        cardSize={this.props.user.settings.cardSize}
+                        manualMode={this.props.currentGame.manualMode}
+                        side='bottom'
+                        spells={thisSpells}
+                    />
+                </div>
+                <div className='player-home-row our-side'>
                     <PlayerRow
                         archives={thisPlayer.cardPiles.archives}
                         cardBackUrl={this.props.player1CardBack}
                         cardSize={this.props.user.settings.cardSize}
                         deckData={thisPlayer.deckData}
                         discard={thisPlayer.cardPiles.discard}
-                        drawDeck={thisPlayer.cardPiles.deck}
                         faction={thisPlayer.faction}
                         gameFormat={this.props.currentGame.gameFormat}
                         hand={thisPlayer.cardPiles.hand}
@@ -267,6 +326,7 @@ export class GameBoard extends React.Component {
                         isMe={!spectating}
                         keys={thisPlayer.stats.keys}
                         language={this.props.i18n.language}
+                        dice={thisPlayer.dice}
                         manualMode={this.props.currentGame.manualMode}
                         numDeckCards={thisPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
@@ -359,6 +419,7 @@ export class GameBoard extends React.Component {
                         activeHouse={otherPlayer.activeHouse}
                         user={otherPlayer.user}
                         activePlayer={otherPlayer.activePlayer}
+                        actions={otherPlayer.actions}
                     />
                 </div>
                 <div className='main-window'>
@@ -420,6 +481,7 @@ export class GameBoard extends React.Component {
                         showMessages
                         stats={thisPlayer.stats}
                         user={thisPlayer.user}
+                        actions={thisPlayer.actions}
                     />
                 </div>
             </div>

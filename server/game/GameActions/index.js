@@ -65,5 +65,6 @@ module.exports = {
     TransferAmberAction: require('./TransferAmberAction'),
     UnforgeAction: require('./UnforgeAction'),
     UseAction: require('./UseAction'),
-    WardAction: require('./WardAction')
+    WardAction: require('./WardAction'),
+    SpendMainAction: require('./SpendMainAction')
 };

@@ -12,6 +12,7 @@ services:
             - './server:/usr/src/app/server'
             - './public:/usr/src/app/public'
             - './less:/usr/src/app/less'
+            - './config:/usr/src/app/config'
         links:
             - postgres
         depends_on:

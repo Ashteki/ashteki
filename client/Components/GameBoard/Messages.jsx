@@ -17,6 +17,15 @@ for (const colour of ['red', 'blue', 'yellow']) {
     };
 }
 
+const toggleImages = {};
+
+for (const actionType of ['main', 'side']) {
+    toggleImages[actionType] = {
+        active: require(`../../assets/img/forgedkey${actionType}.png`),
+        spent: require(`../../assets/img/unforgedkey${actionType}.png`)
+    };
+}
+
 import './Messages.scss';
 
 const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
@@ -32,7 +41,11 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             className: 'icon-forgedKey',
             imageSrc: keyImages['yellow'].unforged
         },
-        unforgedkeyred: { className: 'icon-forgedKey', imageSrc: keyImages['red'].unforged }
+        unforgedkeyred: { className: 'icon-forgedKey', imageSrc: keyImages['red'].unforged },
+        spendActionMain: { className: 'icon-forgedKey', imageSrc: toggleImages['main'].spent },
+        unspendActionMain: { className: 'icon-forgedKey', imageSrc: toggleImages['main'].active },
+        spendActionSide: { className: 'icon-forgedKey', imageSrc: toggleImages['side'].spent },
+        unspendActionSide: { className: 'icon-forgedKey', imageSrc: toggleImages['side'].active }
     };
 
     const owner = useSelector(

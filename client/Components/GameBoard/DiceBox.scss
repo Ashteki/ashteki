@@ -1,0 +1,19 @@
+
+// .dice.large {
+//     // width: 300px;
+    
+// }
+// .alt{
+//     // background:#eeeeee;
+// }
+
+// .dice .group{
+//     // padding: 5px;
+//     // min-height: 46px;
+// }
+
+.dice{
+    display:grid;
+    grid-template-columns: auto auto auto auto auto;
+    margin-top: 20px;
+}

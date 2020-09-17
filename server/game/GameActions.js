@@ -107,7 +107,9 @@ const Actions = {
     conditional: (propertyFactory) => new GameActions.ConditionalAction(propertyFactory),
     jointAction: (gameActions) => new GameActions.JointGameAction(gameActions), // takes an array of gameActions, not a propertyFactory
     sequential: (gameActions) => new GameActions.SequentialAction(gameActions), // takes an array of gameActions, not a propertyFactory
-    sequentialForEach: (propertyFactory) => new GameActions.SequentialForEachAction(propertyFactory)
+    sequentialForEach: (propertyFactory) =>
+        new GameActions.SequentialForEachAction(propertyFactory),
+    spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory)
 };
 
 module.exports = Actions;

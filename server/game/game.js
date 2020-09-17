@@ -462,6 +462,19 @@ class Game extends EventEmitter {
         }
     }
 
+    modifyAction(playerName, actionType, unspent) {
+        let player = this.getPlayerByName(playerName);
+        if (!player) {
+            return;
+        }
+
+        if (unspent) {
+            this.chatCommands.spendAction(player, ['modify-action', actionType]);
+        } else {
+            this.chatCommands.unSpendAction(player, ['modify-action', actionType]);
+        }
+    }
+
     /**
      * This function is called by the client every time a player enters a chat message
      * @param {String} playerName

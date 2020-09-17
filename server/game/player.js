@@ -39,6 +39,8 @@ class Player extends GameObject {
         this.optionSettings = user.settings.optionSettings;
 
         this.promptState = new PlayerPromptState(this);
+
+        this.dice = [];
     }
 
     get name() {
@@ -211,6 +213,7 @@ class Player extends GameObject {
         this.houses = preparedDeck.houses;
         this.deck = preparedDeck.cards;
         this.allCards = preparedDeck.cards;
+        this.dice = preparedDeck.dice;
     }
 
     /**
@@ -223,6 +226,7 @@ class Player extends GameObject {
         this.turn = 1;
         this.readyToStart = false;
         this.opponent = this.game.getOtherPlayer(this);
+        this.actions = { main: true, side: true };
     }
 
     addPlayableLocation(type, player, location) {
@@ -237,6 +241,7 @@ class Player extends GameObject {
 
     beginRound() {
         this.keysForgedThisRound = [];
+        this.actions = { main: true, side: true };
     }
 
     endRound() {
@@ -512,6 +517,10 @@ class Player extends GameObject {
         this.chains = Math.max(this.chains + amount, 0);
     }
 
+    spendMainAction() {
+        this.actions.main = false;
+    }
+
     isHaunted() {
         return this.discard.length >= 10;
     }
@@ -780,7 +789,9 @@ class Player extends GameObject {
                 avatar: this.user.avatar
             },
             deckData: this.deckData,
-            wins: this.wins
+            wins: this.wins,
+            dice: this.dice,
+            actions: this.actions
         };
 
         if (isActivePlayer) {

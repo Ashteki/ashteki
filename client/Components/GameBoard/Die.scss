@@ -1,0 +1,58 @@
+
+@mixin dice-colors($text, $background){
+    color: $text;
+    background: $background;
+    border-color: $text;
+}
+.exhausted {
+    background: #DDDDDD;
+    color: #666;
+}
+
+.ceremonial {
+    @include dice-colors(#ee3342, #111821);
+}
+
+.charm {
+    @include dice-colors(#f7e442, #f34f98);
+}
+
+.illusion {
+    @include dice-colors(#8bc7ea, #490d67);
+}
+
+.natural {
+    @include dice-colors(#cedb00, #004a98);
+}
+
+.divine {
+    @include dice-colors(#b58a2b, #f2f2f2);
+}
+
+.sympathy {
+    @include dice-colors(#e3c2af, #119981);
+}
+
+.time {
+    @include dice-colors(#dfdfdf, #9a2e36);
+}
+
+
+.dice .die{
+    border-radius: 3px;
+    margin: 5px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    display:inline-block;
+}
+
+
+.dice.large .die {
+    font-size: 1.3rem;
+    // line-height: 2.25rem;
+    border-radius: 5px;
+    height: 36px;
+    width: 36px;
+    margin: 5px;
+}
