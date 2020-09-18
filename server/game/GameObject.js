@@ -86,10 +86,6 @@ class GameObject {
         return [];
     }
 
-    hasHouse() {
-        return false;
-    }
-
     hasToken() {
         return false;
     }

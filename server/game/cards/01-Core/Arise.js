@@ -18,8 +18,7 @@ class Arise extends Card {
                     target: context.player.discard.filter(
                         (card) => card.type === 'creature' && card.hasHouse(context.house)
                     )
-                })),
-                ability.actions.gainChains()
+                }))
             ]
         });
     }

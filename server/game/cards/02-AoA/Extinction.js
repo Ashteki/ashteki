@@ -15,7 +15,7 @@ class Extinction extends Card {
                 }))
             },
             effect: 'destroy {0} and each creature that shares a trait with it',
-            gameAction: ability.actions.gainChains()
+            gameAction: ability.actions.gainAmber()
         });
     }
 }

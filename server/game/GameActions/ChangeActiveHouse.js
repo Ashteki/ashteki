@@ -1,3 +1,4 @@
+// @ts-nocheck
 const GameAction = require('./GameAction');
 
 class AddEventToWindowAction extends GameAction {
@@ -16,11 +17,11 @@ class AddEventToWindowAction extends GameAction {
         return !!this.house;
     }
 
-    getEventArray(context) {
+    getEventArray() {
         return [
-            super.createEvent('unnamedEvent', { house: this.house }, () => {
-                context.player.activeHouse = this.house;
-            })
+            // super.createEvent('unnamedEvent', { house: this.house }, () => {
+            //     context.player.activeHouse = this.house;
+            // })
         ];
     }
 }

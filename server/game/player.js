@@ -27,7 +27,6 @@ class Player extends GameObject {
         this.deckData = {};
         this.takenMulligan = false;
 
-        this.chains = 0;
         this.keysForgedThisRound = [];
 
         this.clock = ClockSelector.for(this, clockdetails);
@@ -410,10 +409,10 @@ class Player extends GameObject {
         } else if (['discard', 'purged'].includes(targetLocation)) {
             // new cards go on the top of the discard pile
             targetPile.unshift(card);
-        } else if (targetLocation === 'play area' && options.deployIndex !== undefined) {
-            targetPile.splice(options.deployIndex + 1, 0, card);
-        } else if (targetLocation === 'play area' && options.left) {
-            targetPile.unshift(card);
+            // } else if (targetLocation === 'play area' && options.deployIndex !== undefined) {
+            //     targetPile.splice(options.deployIndex + 1, 0, card);
+            // } else if (targetLocation === 'play area' && options.left) {
+            //     targetPile.unshift(card);
         } else if (targetPile) {
             targetPile.push(card);
         }
@@ -513,10 +512,6 @@ class Player extends GameObject {
         this.amber = Math.max(this.amber + amount, 0);
     }
 
-    modifyChains(amount) {
-        this.chains = Math.max(this.chains + amount, 0);
-    }
-
     spendMainAction() {
         this.actions.main = false;
     }
@@ -526,7 +521,7 @@ class Player extends GameObject {
     }
 
     get maxHandSize() {
-        return 6 + this.sumEffects('modifyHandSize');
+        return 5 + this.sumEffects('modifyHandSize');
     }
 
     getAvailableHouses() {
@@ -744,7 +739,6 @@ class Player extends GameObject {
     getStats() {
         return {
             amber: this.amber,
-            chains: this.chains,
             keys: this.keys,
             houses: this.houses,
             keyCost: this.getCurrentKeyCost()
@@ -760,7 +754,6 @@ class Player extends GameObject {
         let isActivePlayer = activePlayer === this;
         let promptState = isActivePlayer ? this.promptState.getState() : {};
         let state = {
-            activeHouse: this.activeHouse,
             cardPiles: {
                 archives: this.getSummaryForCardList(this.archives, activePlayer),
                 cardsInPlay: this.getSummaryForCardList(this.cardsInPlay, activePlayer),

@@ -161,12 +161,6 @@ class HowToPlay extends React.Component {
                     </p>
                     <ul>
                         <li>
-                            /active-house x -{' '}
-                            <Trans i18nKey='howtoplay.cmd.activehouse'>
-                                Change your active house to x
-                            </Trans>
-                        </li>
-                        <li>
                             /cancel-prompt -{' '}
                             <Trans i18nKey='howtoplay.cmd.cancelprompt'>
                                 Clear the current prompt and resume the game flow. Use with caution

@@ -89,7 +89,6 @@ const Actions = {
     untilEndOfMyNextTurn: (propertyFactory) =>
         new GameActions.LastingEffectAction(propertyFactory, 3),
     gainAmber: (propertyFactory) => new GameActions.ModifyAmberAction(propertyFactory), // amount = 1
-    gainChains: (propertyFactory) => new GameActions.ModifyChainsActions(propertyFactory), // amount = 1
     lastingEffect: (propertyFactory) => new GameActions.LastingEffectAction(propertyFactory),
     loseAmber: (propertyFactory) => new GameActions.LoseAmberAction(propertyFactory),
     rearrangeCards: (propertFactory) => new GameActions.RearrangeCardsAction(propertFactory),

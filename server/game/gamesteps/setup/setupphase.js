@@ -1,23 +1,21 @@
 const _ = require('underscore');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
-const MulliganPrompt = require('./mulliganprompt.js');
-const AdaptiveDeckSelectionPrompt = require('./AdaptiveDeckSelectionPrompt');
 const FirstPlayerSelection = require('./FirstPlayerSelection');
 const GameStartPrompt = require('./GameStartPrompt');
-const Effects = require('../../effects.js');
 
 class SetupPhase extends Phase {
     constructor(game) {
         super(game, 'setup');
         this.initialise([
-            new AdaptiveDeckSelectionPrompt(game),
-            new FirstPlayerSelection(game),
+            new FirstPlayerSelection(game), // remove this - determine 1st from initial dice roll
             new SimpleStep(game, () => this.setupBegin()),
-            new GameStartPrompt(game),
+            // choose first five
             new SimpleStep(game, () => this.drawStartingHands()),
-            new SimpleStep(game, () => this.firstPlayerEffects()),
-            new MulliganPrompt(game),
+            // roll dice
+
+            // determine first player here
+            new GameStartPrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
     }
@@ -35,12 +33,7 @@ class SetupPhase extends Phase {
                 label: player.deckData.name
             };
             if (this.game.gameFormat !== 'sealed' && !this.game.hideDeckLists) {
-                this.game.addMessage(
-                    '{0} brings {1}{2} to The Crucible',
-                    player,
-                    link,
-                    player.chains > 0 ? ` with ${player.chains} chains` : ''
-                );
+                this.game.addMessage('{0} brings {1}{2} to The Crucible', player, link);
             }
         }
     }
@@ -51,20 +44,20 @@ class SetupPhase extends Phase {
         }
     }
 
-    firstPlayerEffects() {
-        this.game.actions
-            .draw({ amount: 1 })
-            .resolve(this.game.activePlayer, this.game.getFrameworkContext());
-        this.game.actions
-            .forRemainderOfTurn({
-                condition: () =>
-                    !!this.game.cardsUsed.length ||
-                    !!this.game.cardsPlayed.length ||
-                    !!this.game.cardsDiscarded.length,
-                effect: Effects.noActiveHouseForPlay()
-            })
-            .resolve(this.game.activePlayer, this.game.getFrameworkContext());
-    }
+    // firstPlayerEffects() {
+    //     this.game.actions
+    //         .draw({ amount: 1 })
+    //         .resolve(this.game.activePlayer, this.game.getFrameworkContext());
+    //     this.game.actions
+    //         .forRemainderOfTurn({
+    //             condition: () =>
+    //                 !!this.game.cardsUsed.length ||
+    //                 !!this.game.cardsPlayed.length ||
+    //                 !!this.game.cardsDiscarded.length,
+    //             effect: Effects.noActiveHouseForPlay()
+    //         })
+    //         .resolve(this.game.activePlayer, this.game.getFrameworkContext());
+    // }
 
     drawStartingHands() {
         _.each(this.game.getPlayers(), (player) => {

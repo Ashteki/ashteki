@@ -8,8 +8,7 @@ class Ballcano extends Card {
                 ability.actions.dealDamage((context) => ({
                     amount: 4,
                     target: context.game.creaturesInPlay
-                })),
-                ability.actions.gainChains({ amount: 2 })
+                }))
             ]
         });
     }

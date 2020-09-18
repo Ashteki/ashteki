@@ -9,7 +9,6 @@ class ChatCommands {
     constructor(game) {
         this.game = game;
         this.commands = {
-            '/active-house': this.activeHouse,
             '/add-card': this.addCard,
             '/cancel-prompt': this.cancelPrompt,
             '/disconnectme': this.disconnectMe,
@@ -156,33 +155,6 @@ class ChatCommands {
         // if (forgedKeyIndex !== -1) {
         //     player.keysForgedThisRound.splice(forgedKeyIndex, 1);
         // }
-    }
-
-    activeHouse(player, args) {
-        let house = args[1];
-        if (!house) {
-            return;
-        } else if (!player.activeHouse) {
-            this.game.addMessage(
-                '{0} attempted to change their active house with /active-house, but they cannot have an active house currently',
-                player,
-                house
-            );
-        } else if (!this.houses.includes(house.toLowerCase())) {
-            this.game.addMessage(
-                '{0} attempted to change their active house with /active-house, but {1} is not a valid house',
-                player,
-                house
-            );
-        } else {
-            this.game.addAlert(
-                'danger',
-                '{0} manually changed their active house to {1}',
-                player,
-                house
-            );
-            player.activeHouse = house.toLowerCase();
-        }
     }
 
     startClocks(player) {

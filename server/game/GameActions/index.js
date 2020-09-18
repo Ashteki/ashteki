@@ -27,7 +27,6 @@ module.exports = {
     LastingEffectCardAction: require('./LastingEffectCardAction'),
     LoseAmberAction: require('./LoseAmberAction'),
     ModifyAmberAction: require('./ModifyAmberAction'),
-    ModifyChainsActions: require('./ModifyChainsAction'),
     MoveCardAction: require('./MoveCardAction'),
     MoveOnBattlelineAction: require('./MoveOnBattlelineAction'),
     MoveToBottomAction: require('./MoveToBottomAction'),

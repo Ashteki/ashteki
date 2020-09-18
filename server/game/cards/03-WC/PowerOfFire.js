@@ -28,8 +28,7 @@ class PowerOfFire extends Card {
                     ability.actions.loseAmber((context) => ({
                         target: context.player,
                         amount: Math.floor(context.preThenEvents[0].clone.modifiedPower / 2)
-                    })),
-                    ability.actions.gainChains()
+                    }))
                 ]
             }
         });

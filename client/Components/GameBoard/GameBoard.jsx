@@ -224,6 +224,7 @@ export class GameBoard extends React.Component {
                         spectating={spectating}
                         title={otherPlayer.title}
                         username={this.props.user.username}
+                        cardSize='normal' //{this.props.user.settings.cardSize}
                     />
                 </div>
                 <div className='player-home-row'>
@@ -342,6 +343,7 @@ export class GameBoard extends React.Component {
                         side='bottom'
                         spectating={spectating}
                         title={thisPlayer.title}
+                        cardSize='normal' //{this.props.user.settings.cardSize}
                     />
                 </div>
             </div>
@@ -415,8 +417,6 @@ export class GameBoard extends React.Component {
                 <div className='stats-top'>
                     <PlayerStats
                         stats={otherPlayer.stats}
-                        houses={otherPlayer.houses}
-                        activeHouse={otherPlayer.activeHouse}
                         user={otherPlayer.user}
                         activePlayer={otherPlayer.activePlayer}
                         actions={otherPlayer.actions}
@@ -465,9 +465,7 @@ export class GameBoard extends React.Component {
                 <div>
                     <PlayerStats
                         {...boundActionCreators}
-                        activeHouse={thisPlayer.activeHouse}
                         activePlayer={thisPlayer.activePlayer}
-                        houses={thisPlayer.houses}
                         manualModeEnabled={manualMode}
                         matchRecord={this.getMatchRecord(thisPlayer, otherPlayer)}
                         muteSpectators={this.props.currentGame.muteSpectators}

@@ -16,8 +16,7 @@ class AxiomOfGrisk extends Card {
                 ])
             },
             effect: 'ward {0}, destroy all creatures without amber and give {1} 2 chains',
-            effectArgs: (context) => context.player,
-            gameAction: ability.actions.gainChains({ amount: 2 })
+            effectArgs: (context) => context.player
         });
     }
 }

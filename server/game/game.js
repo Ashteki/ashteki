@@ -12,7 +12,6 @@ const AnonymousSpectator = require('./anonymousspectator');
 const GamePipeline = require('./gamepipeline');
 const SetupPhase = require('./gamesteps/setup/setupphase');
 const KeyPhase = require('./gamesteps/key/KeyPhase');
-const HousePhase = require('./gamesteps/house/HousePhase');
 const MainPhase = require('./gamesteps/main/MainPhase');
 const ReadyPhase = require('./gamesteps/ReadyPhase');
 const DrawPhase = require('./gamesteps/draw/drawphase');
@@ -37,7 +36,7 @@ class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
 
-        this.adaptive = { chains: 0, selection: [], biddingWinner: '' };
+        this.adaptive = { selection: [], biddingWinner: '' };
         this.allowSpectators = details.allowSpectators;
         this.cancelPromptUsed = false;
         this.challonge = details.challonge;
@@ -440,15 +439,6 @@ class Game extends EventEmitter {
         }
     }
 
-    changeActiveHouse(playerName, house) {
-        let player = this.getPlayerByName(playerName);
-        if (!player) {
-            return;
-        }
-
-        this.chatCommands.activeHouse(player, ['active-house', house]);
-    }
-
     modifyKey(playerName, color, forged) {
         let player = this.getPlayerByName(playerName);
         if (!player) {
@@ -732,9 +722,8 @@ class Game extends EventEmitter {
         this.raiseEvent('onBeginRound');
         this.activePlayer.beginRound();
         this.queueStep(new KeyPhase(this));
-        this.queueStep(new HousePhase(this));
         this.queueStep(new MainPhase(this));
-        this.queueStep(new ReadyPhase(this));
+        this.queueStep(new ReadyPhase(this)); // use this to resolve PB guard status etc
         this.queueStep(new DrawPhase(this));
         this.queueStep(new SimpleStep(this, () => this.raiseEndRoundEvent()));
         this.queueStep(new SimpleStep(this, () => this.beginRound()));
@@ -1088,8 +1077,6 @@ class Game extends EventEmitter {
         for (let card of this.cardsInPlay) {
             card.endRound();
         }
-
-        this.activePlayer.activeHouse = null;
 
         if (this.activePlayer.opponent) {
             this.activePlayer = this.activePlayer.opponent;

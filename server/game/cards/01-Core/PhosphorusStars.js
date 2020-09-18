@@ -8,7 +8,7 @@ class PhosphorusStars extends Card {
                 ability.actions.stun((context) => ({
                     target: context.game.creaturesInPlay.filter((card) => !card.hasHouse('mars'))
                 })),
-                ability.actions.gainChains({ amount: 2 })
+                ability.actions.gainAmber({ amount: 2 })
             ]
         });
     }

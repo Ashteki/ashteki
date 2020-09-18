@@ -6,10 +6,7 @@ class KillzordMk9001 extends Card {
             effect: [
                 ability.effects.modifyPower(2),
                 ability.effects.modifyArmor(2),
-                ability.effects.addKeyword({ skirmish: 1 }),
-                ability.effects.gainAbility('fight', {
-                    gameAction: ability.actions.gainChains({ amount: 1 })
-                })
+                ability.effects.addKeyword({ skirmish: 1 })
             ]
         });
     }

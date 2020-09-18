@@ -7,8 +7,7 @@ class SaveThePack extends Card {
             gameAction: [
                 ability.actions.destroy((context) => ({
                     target: context.game.creaturesInPlay.filter((card) => card.hasToken('damage'))
-                })),
-                ability.actions.gainChains()
+                }))
             ]
         });
     }

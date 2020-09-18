@@ -457,23 +457,6 @@ class Card extends EffectSource {
         return combinedHouses;
     }
 
-    hasHouse(house) {
-        if (!house) {
-            return false;
-        }
-
-        house = house.toLowerCase();
-        if (this.anyEffect('changeHouse')) {
-            return this.getEffects('changeHouse').includes(house);
-        }
-
-        let copyEffect = this.mostRecentEffect('copyCard');
-        return (
-            (copyEffect ? copyEffect.printedHouse : this.printedHouse) === house ||
-            this.getEffects('addHouse').includes(house)
-        );
-    }
-
     applyAnyLocationPersistentEffects() {
         _.each(this.persistentEffects, (effect) => {
             if (effect.location === 'any') {
@@ -1012,7 +995,6 @@ class Card extends EffectSource {
             image: this.image,
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
-                this.game.activePlayer.activeHouse &&
                 isController &&
                 this.getLegalActions(activePlayer, false).length > 0
             ),

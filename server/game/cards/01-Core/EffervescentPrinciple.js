@@ -13,8 +13,7 @@ class EffervescentPrinciple extends Card {
                 ability.actions.loseAmber((context) => ({
                     target: context.player,
                     amount: Math.floor(context.player.amber / 2)
-                })),
-                ability.actions.gainChains()
+                }))
             ]
         });
     }
