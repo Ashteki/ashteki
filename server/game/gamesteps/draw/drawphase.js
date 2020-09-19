@@ -7,9 +7,10 @@ class DrawPhase extends Phase {
         this.initialise([new SimpleStep(game, () => this.drawCards())]);
     }
 
+    // refill hand - cause damage in draw phase if unable to draw
     drawCards() {
         this.game.actions
-            .draw({ refill: true })
+            .draw({ refill: true, damageIfEmpty: true })
             .resolve(this.game.activePlayer, this.game.getFrameworkContext());
     }
 }

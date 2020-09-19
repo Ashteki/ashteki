@@ -14,7 +14,7 @@ const SetupPhase = require('./gamesteps/setup/setupphase');
 const KeyPhase = require('./gamesteps/key/KeyPhase');
 const MainPhase = require('./gamesteps/main/MainPhase');
 const ReadyPhase = require('./gamesteps/ReadyPhase');
-const DrawPhase = require('./gamesteps/draw/drawphase');
+// const DrawPhase = require('./gamesteps/draw/drawphase');
 const SimpleStep = require('./gamesteps/simplestep');
 const MenuPrompt = require('./gamesteps/menuprompt');
 const HandlerMenuPrompt = require('./gamesteps/handlermenuprompt');
@@ -31,6 +31,7 @@ const MenuCommands = require('./MenuCommands');
 const TimeLimit = require('./TimeLimit');
 const PlainTextGameChatFormatter = require('./PlainTextGameChatFormatter');
 const CardVisibility = require('./CardVisibility');
+const PreparePhase = require('./gamesteps/main/PreparePhase');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -721,10 +722,10 @@ class Game extends EventEmitter {
     beginRound() {
         this.raiseEvent('onBeginRound');
         this.activePlayer.beginRound();
+        this.queueStep(new PreparePhase(this));
         this.queueStep(new KeyPhase(this));
         this.queueStep(new MainPhase(this));
         this.queueStep(new ReadyPhase(this)); // use this to resolve PB guard status etc
-        this.queueStep(new DrawPhase(this));
         this.queueStep(new SimpleStep(this, () => this.raiseEndRoundEvent()));
         this.queueStep(new SimpleStep(this, () => this.beginRound()));
     }

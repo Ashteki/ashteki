@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const RollDicePhase = require('../main/rollDicePhase.js');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
 const FirstPlayerSelection = require('./FirstPlayerSelection');
@@ -13,11 +14,19 @@ class SetupPhase extends Phase {
             // choose first five
             new SimpleStep(game, () => this.drawStartingHands()),
             // roll dice
-
+            new SimpleStep(game, () => this.doFirstRoll(game)),
             // determine first player here
             new GameStartPrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
+    }
+    doFirstRoll(game) {
+        // use an action not a phase
+        new RollDicePhase(game, { allPlayers: true }),
+            new SimpleStep(game, () => this.assignFirstPlayer());
+    }
+    assignFirstPlayer() {
+        // throw new Error('Method not implemented.');
     }
 
     startPhase() {
