@@ -11,9 +11,8 @@ const Spectator = require('./spectator');
 const AnonymousSpectator = require('./anonymousspectator');
 const GamePipeline = require('./gamepipeline');
 const SetupPhase = require('./gamesteps/setup/setupphase');
-const KeyPhase = require('./gamesteps/key/KeyPhase');
-const MainPhase = require('./gamesteps/main/MainPhase');
-const ReadyPhase = require('./gamesteps/ReadyPhase');
+// const MainPhase = require('./gamesteps/main/MainPhase');
+const RecoveryPhase = require('./gamesteps/main/RecoveryPhase');
 // const DrawPhase = require('./gamesteps/draw/drawphase');
 const SimpleStep = require('./gamesteps/simplestep');
 const MenuPrompt = require('./gamesteps/menuprompt');
@@ -32,6 +31,7 @@ const TimeLimit = require('./TimeLimit');
 const PlainTextGameChatFormatter = require('./PlainTextGameChatFormatter');
 const CardVisibility = require('./CardVisibility');
 const PreparePhase = require('./gamesteps/main/PreparePhase');
+const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -670,6 +670,7 @@ class Game extends EventEmitter {
         this.playStarted = true;
         this.startedAt = new Date();
         this.round = 1;
+        this.turn = 1;
 
         this.continue();
     }
@@ -723,9 +724,13 @@ class Game extends EventEmitter {
         this.raiseEvent('onBeginRound');
         this.activePlayer.beginRound();
         this.queueStep(new PreparePhase(this));
-        this.queueStep(new KeyPhase(this));
-        this.queueStep(new MainPhase(this));
-        this.queueStep(new ReadyPhase(this)); // use this to resolve PB guard status etc
+
+        // player turns phase...
+        this.queueStep(new PlayerTurnsPhase(this));
+        // this.queueStep(new MainPhase(this)); // turns in the main phase..?
+
+        this.queueStep(new RecoveryPhase(this)); // use this to resolve PB guard status etc
+
         this.queueStep(new SimpleStep(this, () => this.raiseEndRoundEvent()));
         this.queueStep(new SimpleStep(this, () => this.beginRound()));
     }
@@ -1064,16 +1069,52 @@ class Game extends EventEmitter {
         });
     }
 
-    endRound() {
-        if (this.activePlayer.canForgeKey()) {
-            this.addAlert('success', '{0} declares Check!', this.activePlayer);
+    raiseEndTurnEvent() {
+        this.raiseEvent('onTurnEnded', {}, () => {
+            this.endTurn();
+        });
+    }
+
+    endTurn() {
+        this.activePlayer.endTurn();
+        this.cardsUsed = [];
+        this.cardsPlayed = [];
+        this.cardsDiscarded = [];
+        this.effectsUsed = [];
+
+        for (let card of this.cardsInPlay) {
+            card.endTurn();
         }
 
+        if (this.activePlayer.opponent) {
+            this.activePlayer = this.activePlayer.opponent;
+        }
+
+        let playerResources = this.getPlayers()
+            .map((player) => `${player.name}: ${player.amber} amber (${this.playerKeys(player)})`)
+            .join(' ');
+
+        this.addAlert('endofturn', `End of round ${this.turn}`);
+
+        if (
+            !this.activePlayer.opponent ||
+            this.activePlayer.turn === this.activePlayer.opponent.turn
+        ) {
+            this.turn++;
+        }
+
+        this.addMessage(playerResources);
+        this.addAlert('startofturn', `Turn ${this.turn} - {0}`, this.activePlayer);
+        this.checkForTimeExpired();
+    }
+
+    endRound() {
         this.activePlayer.endRound();
         this.cardsUsed = [];
         this.cardsPlayed = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
+        this.turn = 1;
 
         for (let card of this.cardsInPlay) {
             card.endRound();
@@ -1087,7 +1128,7 @@ class Game extends EventEmitter {
             .map((player) => `${player.name}: ${player.amber} amber (${this.playerKeys(player)})`)
             .join(' ');
 
-        this.addAlert('endofround', `End of turn ${this.round}`);
+        this.addAlert('endofround', `End of round ${this.round}`);
 
         if (
             !this.activePlayer.opponent ||

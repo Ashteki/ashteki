@@ -65,6 +65,7 @@ class Card extends EffectSource {
 
         this.printedPower = cardData.power;
         this.printedArmor = cardData.armor;
+        this.printedRecover = 1;
         this.armorUsed = 0;
         this.exhausted = false;
         this.stunned = false;
@@ -486,6 +487,10 @@ class Card extends EffectSource {
         this.elusiveUsed = false;
     }
 
+    endTurn() {
+        // this.doSomething ?
+    }
+
     updateAbilityEvents(from, to) {
         _.each(this.getReactions(true), (reaction) => {
             if (reaction.location.includes(to) && !reaction.location.includes(from)) {
@@ -694,6 +699,19 @@ class Card extends EffectSource {
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedArmor = copyEffect ? copyEffect.printedArmor : this.printedArmor;
         return printedArmor + this.sumEffects('modifyArmor');
+    }
+
+    get recover() {
+        return this.getRecover();
+    }
+
+    getRecover(printed = false) {
+        if (printed) {
+            // might need this?
+            return this.printedRecover;
+        }
+        // shot in the dark for recovery adjustment in card definitions...
+        return this.printedRecover + this.sumEffects('modifyRecover');
     }
 
     get amber() {

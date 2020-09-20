@@ -14,17 +14,24 @@ class SetupPhase extends Phase {
             // choose first five
             new SimpleStep(game, () => this.drawStartingHands()),
             // roll dice
-            new SimpleStep(game, () => this.doFirstRoll(game)),
+            new SimpleStep(game, () => this.doFirstRoll()),
             // determine first player here
             new GameStartPrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
     }
-    doFirstRoll(game) {
-        // use an action not a phase
-        new RollDicePhase(game, { allPlayers: true }),
-            new SimpleStep(game, () => this.assignFirstPlayer());
+    doFirstRoll() {
+        // use an action not a phase?
+        // reroll dice
+        // check for
+        this.rollDice();
+        new SimpleStep(this.game, () => this.assignFirstPlayer());
     }
+
+    rollDice() {
+        new RollDicePhase(this.game, { allPlayers: true });
+    }
+
     assignFirstPlayer() {
         // throw new Error('Method not implemented.');
     }

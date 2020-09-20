@@ -240,8 +240,13 @@ class Player extends GameObject {
 
     beginRound() {
         this.keysForgedThisRound = [];
+    }
+
+    beginTurn() {
         this.actions = { main: true, side: true };
     }
+
+    endTurn() {}
 
     endRound() {
         for (let card of this.cardsInPlay) {
