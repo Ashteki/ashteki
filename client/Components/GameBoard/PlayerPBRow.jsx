@@ -108,7 +108,7 @@ class PlayerRow extends React.Component {
             size: this.props.cardSize
         };
 
-        let hand = (
+        let spellboard = (
             <SquishableCardPanel
                 cards={this.props.spells}
                 className='panel hand'
@@ -167,8 +167,7 @@ class PlayerRow extends React.Component {
                 {this.renderDroppablePile('discard', discard)}
                 {this.renderDroppablePile('deck', drawDeck)}
                 {identity}
-                {this.renderDroppablePile('hand', hand)}
-                {/* // change to spells */}
+                {this.renderDroppablePile('spellboard', spellboard)}
             </div>
         );
     }
