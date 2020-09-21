@@ -5,6 +5,7 @@ const Deck = require('./deck');
 const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
+const Dice = require('./dice');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -40,6 +41,7 @@ class Player extends GameObject {
         this.promptState = new PlayerPromptState(this);
 
         this.dice = [];
+        this.diceCounts = [];
     }
 
     get name() {
@@ -212,7 +214,7 @@ class Player extends GameObject {
         this.houses = preparedDeck.houses;
         this.deck = preparedDeck.cards;
         this.allCards = preparedDeck.cards;
-        this.dice = preparedDeck.dice;
+        this.diceCounts = preparedDeck.diceCounts;
     }
 
     /**
@@ -226,6 +228,10 @@ class Player extends GameObject {
         this.readyToStart = false;
         this.opponent = this.game.getOtherPlayer(this);
         this.actions = { main: true, side: true };
+    }
+
+    rerollAllDice() {
+        this.dice = Dice.rollDice(this.diceCounts);
     }
 
     addPlayableLocation(type, player, location) {
@@ -789,6 +795,7 @@ class Player extends GameObject {
             deckData: this.deckData,
             wins: this.wins,
             dice: this.dice,
+            diceCounts: this.diceCounts,
             actions: this.actions
         };
 

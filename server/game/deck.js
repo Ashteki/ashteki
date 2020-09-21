@@ -3,7 +3,6 @@ const _ = require('underscore');
 const cards = require('./cards');
 const Card = require('./Card.js');
 const logger = require('../log.js');
-const Dice = require('./dice.js');
 
 class Deck {
     constructor(data) {
@@ -51,7 +50,7 @@ class Deck {
         var result = {
             houses: [],
             cards: [],
-            dice: []
+            diceCounts: []
         };
 
         result.houses = this.data.houses;
@@ -65,7 +64,16 @@ class Deck {
             }
         });
 
-        result.dice = Dice.getDice();
+        result.diceCounts = [
+            {
+                magic: 'natural',
+                count: 5
+            },
+            {
+                magic: 'illusion',
+                count: 5
+            }
+        ];
 
         return result;
     }

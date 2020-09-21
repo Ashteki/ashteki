@@ -3,16 +3,18 @@ class Dice {
         return Math.floor(Math.random() * Math.floor(max));
     }
 
-    static getDice() {
-        let magic = ['ceremonial', 'charm', 'divine', 'illusion', 'natural', 'sympathy', 'time'];
+    static rollDice(diceCounts) {
+        let dice = [];
+        diceCounts.forEach((dc) => {
+            for (let i = 0; i < dc.count; i++) {
+                dice.push(dc.magic);
+            }
+        });
+
         let levels = ['power', 'class', 'class', 'class', 'basic', 'basic'];
-        let output = [];
-        for (var i = 0; i < 10; i++) {
-            var m = this.getRandomInt(7);
-            var l = this.getRandomInt(6);
-            output.push({ id: i + 1, magic: magic[m], level: levels[l] });
-        }
-        return output;
+        return dice.map((dt, i) => {
+            return { id: i + 1, magic: dt, level: levels[this.getRandomInt(6)] };
+        });
     }
 }
 

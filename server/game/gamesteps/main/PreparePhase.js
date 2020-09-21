@@ -1,16 +1,21 @@
 const DrawPhase = require('../draw/drawphase.js');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
-const RollDicePhase = require('./rollDicePhase.js');
 
 class PreparePhase extends Phase {
     constructor(game) {
         super(game, 'prepare');
         this.initialise([
-            new RollDicePhase(game, { allPlayers: true }),
-            new SimpleStep(game, () => this.discardCards()), // actionwindow?
+            new SimpleStep(game, () => this.rollDice()),
+            new SimpleStep(game, () => this.discardCards()), // actionwindow? prompt?
             new DrawPhase(game)
         ]);
+    }
+
+    rollDice() {
+        for (let player of this.game.getPlayers()) {
+            player.rerollAllDice();
+        }
     }
 
     discardCards() {

@@ -6,17 +6,13 @@ import './DiceBox.scss';
 class DiceBox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            dice: []
-        };
-        this.state.dice = props.dice;
     }
 
     getDice() {
         return (
-            this.state.dice
+            this.props.dice
                 // .filter(aDie => aDie.level === level)
-                .sort((a, b) => (a.magic + a.level > b.magic + b.level ? 1 : -1))
+                .sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1))
                 .map((thisDie) => <Die key={thisDie.id} die={thisDie} onClick={this.onDieClick} />)
         );
     }

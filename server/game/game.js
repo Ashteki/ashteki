@@ -725,11 +725,9 @@ class Game extends EventEmitter {
         this.activePlayer.beginRound();
         this.queueStep(new PreparePhase(this));
 
-        // player turns phase...
         this.queueStep(new PlayerTurnsPhase(this));
-        // this.queueStep(new MainPhase(this)); // turns in the main phase..?
 
-        this.queueStep(new RecoveryPhase(this)); // use this to resolve PB guard status etc
+        this.queueStep(new RecoveryPhase(this));
 
         this.queueStep(new SimpleStep(this, () => this.raiseEndRoundEvent()));
         this.queueStep(new SimpleStep(this, () => this.beginRound()));
