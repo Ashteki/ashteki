@@ -15,7 +15,7 @@ import IdentityDefault from '../../assets/img/idbacks/identity.jpg';
 
 import './PlayerRow.scss';
 
-class PlayerRow extends React.Component {
+class PlayerPBRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = { deckListUrl: IdentityDefault };
@@ -173,8 +173,8 @@ class PlayerRow extends React.Component {
     }
 }
 
-PlayerRow.displayName = 'PlayerRow';
-PlayerRow.propTypes = {
+PlayerPBRow.displayName = 'PlayerPBRow';
+PlayerPBRow.propTypes = {
     cardBackUrl: PropTypes.string,
     cardSize: PropTypes.string,
     cards: PropTypes.object,
@@ -223,4 +223,4 @@ function mapDispatchToProps(dispatch) {
     return boundActions;
 }
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps, null)(PlayerRow));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps, null)(PlayerPBRow));
