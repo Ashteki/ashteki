@@ -1,4 +1,7 @@
 class Dice {
+    static countBasic(dice) {
+        return dice.filter((d) => d.level === 'basic').length;
+    }
     static getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     }

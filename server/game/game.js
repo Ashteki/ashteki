@@ -32,6 +32,7 @@ const PlainTextGameChatFormatter = require('./PlainTextGameChatFormatter');
 const CardVisibility = require('./CardVisibility');
 const PreparePhase = require('./gamesteps/main/PreparePhase');
 const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
+const Dice = require('./dice');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -675,6 +676,40 @@ class Game extends EventEmitter {
         this.continue();
     }
 
+    determineFirstPlayer() {
+        if (!this.activePlayer) {
+            let players = this.getPlayers();
+            let i = 0;
+            while (
+                Dice.countBasic(players[0].dice) == Dice.countBasic(players[1].dice) &&
+                i < 100
+            ) {
+                this.reRollPlayerDice();
+                i++;
+            }
+            const basicCountPlayer0 = Dice.countBasic(players[0].dice);
+            const basicCountPlayer1 = Dice.countBasic(players[1].dice);
+            this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCountPlayer0);
+            this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCountPlayer1);
+            this.activePlayer = basicCountPlayer0 > basicCountPlayer1 ? players[0] : players[1];
+            this.firstPlayer = this.activePlayer;
+            this.addAlert(
+                'info',
+                '{0} rolled the most basics and will go first',
+                this.activePlayer
+            );
+        } else {
+            this.activePlayer = this.round % 2 > 0 ? this.firstPlayer : this.firstPlayer.opponent;
+            this.addMessage('{0} goes first this round', this.activePlayer.name);
+        }
+    }
+
+    reRollPlayerDice() {
+        for (let player of this.getPlayers()) {
+            player.rerollAllDice();
+        }
+    }
+
     reInitialisePlayers(swap) {
         let players = this.getPlayers();
 
@@ -1126,15 +1161,9 @@ class Game extends EventEmitter {
 
         this.addAlert('endofround', `End of round ${this.round}`);
 
-        if (
-            !this.activePlayer.opponent ||
-            this.activePlayer.turn === this.activePlayer.opponent.turn
-        ) {
-            this.round++;
-        }
-
+        this.round++;
         this.addMessage(playerResources);
-        this.addAlert('startofround', `Turn ${this.round} - {0}`, this.activePlayer);
+        this.addAlert('startofround', `Round ${this.round}`);
         this.checkForTimeExpired();
     }
 

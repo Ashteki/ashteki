@@ -22,7 +22,8 @@ class Phase extends BaseStepWithPipeline {
 
         this.game.raiseEvent('onPhaseStarted', { phase: this.name }, () => {
             this.game.currentPhase = this.name;
-            if (this.name !== 'setup') {
+            //todo: change this to a property on the phase
+            if (this.name !== 'setup' && this.name !== 'prepare') {
                 this.game.addAlert(
                     'endofround',
                     '{0} phase - {1}',

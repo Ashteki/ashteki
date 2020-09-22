@@ -1,15 +1,12 @@
 const _ = require('underscore');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
-const FirstPlayerSelection = require('./FirstPlayerSelection');
 const GameStartPrompt = require('./GameStartPrompt');
 
 class SetupPhase extends Phase {
     constructor(game) {
         super(game, 'setup');
         this.initialise([
-            new FirstPlayerSelection(game), // remove this - determine 1st from initial dice roll
-
             new SimpleStep(game, () => this.setupBegin()),
             // choose first five
             new SimpleStep(game, () => this.drawStartingHands()),

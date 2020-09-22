@@ -11,7 +11,7 @@ class DrawPhase extends Phase {
     drawCards() {
         this.game.actions
             .draw({ refill: true, damageIfEmpty: true })
-            .resolve(this.game.activePlayer, this.game.getFrameworkContext());
+            .resolve(this.game.getPlayers(), this.game.getFrameworkContext());
     }
 }
 

@@ -7,15 +7,18 @@ class PreparePhase extends Phase {
         super(game, 'prepare');
         this.initialise([
             new SimpleStep(game, () => this.rollDice()),
+            new SimpleStep(game, () => this.determineFirstPlayer()),
             new SimpleStep(game, () => this.discardCards()), // actionwindow? prompt?
             new DrawPhase(game)
         ]);
     }
 
+    determineFirstPlayer() {
+        this.game.determineFirstPlayer();
+    }
+
     rollDice() {
-        for (let player of this.game.getPlayers()) {
-            player.rerollAllDice();
-        }
+        this.game.reRollPlayerDice();
     }
 
     discardCards() {
