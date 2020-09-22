@@ -152,9 +152,9 @@ class PutIntoPlayAction extends CardGameAction {
                 card.updateEffectContexts();
             }
 
-            if (!this.ready && !card.anyEffect('entersPlayReady')) {
-                card.exhaust();
-            }
+            // if (!this.ready && !card.anyEffect('entersPlayReady')) {
+            //     card.exhaust();
+            // }
 
             if (card.anyEffect('entersPlayStunned')) {
                 card.stun();
