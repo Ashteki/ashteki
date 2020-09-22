@@ -722,7 +722,7 @@ class Game extends EventEmitter {
      */
     beginRound() {
         this.raiseEvent('onBeginRound');
-        this.activePlayer.beginRound();
+        this.getPlayers().forEach((player) => player.beginRound());
         this.queueStep(new PreparePhase(this));
 
         this.queueStep(new PlayerTurnsPhase(this));
@@ -1107,7 +1107,7 @@ class Game extends EventEmitter {
     }
 
     endRound() {
-        this.activePlayer.endRound();
+        this.getPlayers().forEach((player) => player.endRound());
         this.cardsUsed = [];
         this.cardsPlayed = [];
         this.cardsDiscarded = [];
@@ -1118,9 +1118,7 @@ class Game extends EventEmitter {
             card.endRound();
         }
 
-        if (this.activePlayer.opponent) {
-            this.activePlayer = this.activePlayer.opponent;
-        }
+        //todo: set active player to alternate
 
         let playerResources = this.getPlayers()
             .map((player) => `${player.name}: ${player.amber} amber (${this.playerKeys(player)})`)

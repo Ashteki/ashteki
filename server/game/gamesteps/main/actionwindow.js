@@ -49,9 +49,10 @@ class ActionWindow extends UiPrompt {
     }
 
     checkForPhaseEnding() {
+        // a card could set this as a posthandler (see keyteki BookOfLeQ)
         if (this.game.endPhaseRightNow) {
             this.game.endPhaseRightNow = false;
-            this.complete();
+            this.endActionWindow();
             return;
         }
 
@@ -62,7 +63,7 @@ class ActionWindow extends UiPrompt {
                 this.game.activePlayer,
                 omegaCard
             );
-            this.complete();
+            this.endActionWindow();
         }
     }
 
@@ -103,14 +104,18 @@ class ActionWindow extends UiPrompt {
                     source: 'End Turn',
                     activePromptTitle: 'Are you sure you want to end your turn?',
                     choices: ['Yes', 'No'],
-                    handlers: [() => this.complete(), () => true]
+                    handlers: [() => this.endActionWindow(), () => true]
                 });
             } else {
-                this.complete();
+                this.endActionWindow();
             }
 
             return true;
         }
+    }
+
+    endActionWindow() {
+        this.complete();
     }
 }
 

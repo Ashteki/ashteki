@@ -14,9 +14,16 @@ class PlayerTurnsPhase extends Phase {
 
         this.queueStep(new ActionWindow(this.game));
 
-        this.queueStep(new SimpleStep(this, () => this.game.raiseEndTurnEvent()));
-        //todo: if ! both players pass main action carry on. otherwise end round
-        this.queueStep(new SimpleStep(this, () => this.beginTurn()));
+        this.queueStep(new SimpleStep(this.game, () => this.game.raiseEndTurnEvent()));
+        this.queueStep(new SimpleStep(this.game, () => this.queueNextTurn()));
+    }
+
+    queueNextTurn() {
+        if (this.game.activePlayer.passedMain && this.game.activePlayer.opponent.passedMain) {
+            this.game.addAlert('info', 'Both players passed their main action.');
+        } else {
+            this.queueStep(new SimpleStep(this.game, () => this.beginTurn()));
+        }
     }
 }
 
