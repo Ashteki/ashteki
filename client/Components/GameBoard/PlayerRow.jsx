@@ -9,12 +9,12 @@ import { buildArchon, buildDeckList } from '../../archonMaker';
 import IdentityDefault from '../../assets/img/idbacks/identity.jpg';
 import { setCardBack } from '../../redux/actions';
 import DiceBox from './DiceBox';
-
+import spellback from '../../assets/img/cardback-spell.png';
+import conjback from '../../assets/img/cardback-conjuration.png';
 import './PlayerRow.scss';
 
 const PlayerRow = ({
     archives,
-    cardBackUrl,
     cardSize,
     deckData,
     isMe,
@@ -33,7 +33,7 @@ const PlayerRow = ({
     dice
 }) => {
     const { t } = useTranslation();
-    const [setDeckListUrl] = useState(IdentityDefault);
+    const setDeckListUrl = useState(IdentityDefault);
     const cards = useSelector((state) => state.cards.cards);
     const deckDataCopy = { ...deckData };
 
@@ -105,7 +105,7 @@ const PlayerRow = ({
             cards={sortedHand}
             className='panel hand'
             groupVisibleCards
-            cardBackUrl={cardBackUrl}
+            cardBackUrl={spellback}
             username={username}
             manualMode={manualMode}
             maxCards={5}
@@ -126,7 +126,7 @@ const PlayerRow = ({
             source='archives'
             cards={archives}
             hiddenTopCard={hasArchivedCards && !isMe}
-            cardBackUrl={cardBackUrl}
+            cardBackUrl={conjback}
             {...cardPileProps}
         />
     );

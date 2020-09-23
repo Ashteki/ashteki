@@ -12,6 +12,7 @@ import Droppable from './Droppable';
 import { buildArchon, buildDeckList } from '../../archonMaker';
 import * as actions from '../../redux/actions';
 import IdentityDefault from '../../assets/img/idbacks/identity.jpg';
+import spellback from '../../assets/img/cardback-spell.png';
 
 import './PlayerRow.scss';
 
@@ -113,7 +114,7 @@ class PlayerPBRow extends React.Component {
                 cards={this.props.spells}
                 className='panel hand'
                 groupVisibleCards
-                cardBackUrl={this.props.cardBackUrl}
+                cardBackUrl={spellback}
                 username={this.props.username}
                 manualMode={this.props.manualMode}
                 maxCards={6}
@@ -137,7 +138,7 @@ class PlayerPBRow extends React.Component {
                 onShuffleClick={this.props.onShuffleClick}
                 showDeck={this.props.showDeck}
                 spectating={this.props.spectating}
-                cardBackUrl={this.props.cardBackUrl}
+                cardBackUrl={spellback}
                 {...cardPileProps}
             />
         );
