@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import CardPile from './CardPile';
 import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
-import { buildArchon, buildDeckList } from '../../archonMaker';
-import IdentityDefault from '../../assets/img/idbacks/identity.jpg';
-import { setCardBack } from '../../redux/actions';
 import DiceBox from './DiceBox';
 import spellback from '../../assets/img/cardback-spell.png';
 import conjback from '../../assets/img/cardback-conjuration.png';
@@ -16,50 +12,17 @@ import './PlayerRow.scss';
 const PlayerRow = ({
     archives,
     cardSize,
-    deckData,
     isMe,
-    gameFormat,
     hand,
-    hideDeckLists,
-    language,
     manualMode,
     onCardClick,
     onDragDrop,
     onMouseOut,
     onMouseOver,
-    player,
     side,
-    username,
     dice
 }) => {
     const { t } = useTranslation();
-    const setDeckListUrl = useState(IdentityDefault);
-    const cards = useSelector((state) => state.cards.cards);
-    const deckDataCopy = { ...deckData };
-
-    useEffect(() => {
-        let noDeckLists = false;
-
-        if ((gameFormat === 'sealed' && !isMe) || hideDeckLists) {
-            deckDataCopy.name = '';
-            noDeckLists = true;
-        }
-
-        buildArchon(deckData).then((cardBackUrl) => {
-            setCardBack(player, cardBackUrl);
-        });
-        if (noDeckLists) {
-            setDeckListUrl(IdentityDefault);
-        } else {
-            buildDeckList(deckDataCopy, language, t, cards)
-                .then((deckListUrl) => {
-                    setDeckListUrl(deckListUrl);
-                })
-                .catch(() => {
-                    setDeckListUrl(IdentityDefault);
-                });
-        }
-    }, [cards, deckData, gameFormat, hideDeckLists, isMe, language, player, t]);
 
     const renderDroppablePile = (source, child) => {
         return isMe ? (
@@ -106,7 +69,6 @@ const PlayerRow = ({
             className='panel hand'
             groupVisibleCards
             cardBackUrl={spellback}
-            username={username}
             manualMode={manualMode}
             maxCards={5}
             onCardClick={onCardClick}

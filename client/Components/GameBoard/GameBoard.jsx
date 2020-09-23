@@ -200,56 +200,37 @@ export class GameBoard extends React.Component {
                 <div className='player-home-row'>
                     <PlayerRow
                         archives={otherPlayer.cardPiles.archives}
-                        cardBackUrl={this.props.player2CardBack}
                         cardSize={this.props.user.settings.cardSize}
-                        deckData={otherPlayer.deckData}
-                        discard={otherPlayer.cardPiles.discard}
-                        drawDeck={otherPlayer.cardPiles.deck}
-                        faction={otherPlayer.faction}
-                        gameFormat={this.props.currentGame.gameFormat}
-                        hand={otherPlayer.cardPiles.hand}
-                        hideDeckLists={this.props.currentGame.hideDeckLists}
-                        houses={otherPlayer.houses}
                         isMe={false}
-                        keys={otherPlayer.stats.keys}
+                        hand={otherPlayer.cardPiles.hand}
                         language={this.props.i18n.language}
-                        numDeckCards={otherPlayer.numDeckCards}
+                        manualMode={this.props.currentGame.manualMode}
                         onCardClick={this.onCardClick}
                         onMouseOut={this.onMouseOut}
                         onMouseOver={this.onMouseOver}
-                        player={2}
-                        purgedPile={otherPlayer.cardPiles.purged}
                         side='top'
                         dice={otherPlayer.dice}
-                        spectating={spectating}
-                        title={otherPlayer.title}
-                        username={this.props.user.username}
-                        cardSize='normal' //{this.props.user.settings.cardSize}
                     />
                 </div>
                 <div className='player-home-row'>
                     <PlayerPBRow
-                        player={2}
-                        cardBackUrl={this.props.player2CardBack}
-                        faction={otherPlayer.faction}
-                        hand={otherPlayer.cardPiles.hand}
-                        isMe={false}
-                        hideDecklist={this.props.currentGame.hideDecklists}
-                        language={this.props.i18n.language}
+                        cardSize={this.props.user.settings.cardSize}
                         deckData={otherPlayer.deckData}
-                        deckCards={otherPlayer.deckCards}
-                        drawDeck={otherPlayer.cardPiles.deck}
-                        numDeckCards={otherPlayer.numDeckCards}
                         discard={otherPlayer.cardPiles.discard}
+                        drawDeck={otherPlayer.cardPiles.deck}
+                        gameFormat={this.props.currentGame.gameFormat}
+                        hideDecklists={this.props.currentGame.hideDecklists}
+                        isMe={false}
+                        language={this.props.i18n.language}
+                        manualMode={this.props.currentGame.manualMode}
+                        numDeckCards={otherPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
-                        spectating={spectating}
-                        title={otherPlayer.title}
+                        player={2}
                         side='top'
-                        username={this.props.user.username}
-                        cardSize={this.props.user.settings.cardSize}
                         spells={otherSpells}
+                        spectating={spectating}
                     />
                 </div>
                 <div className='board-inner'>
@@ -286,64 +267,41 @@ export class GameBoard extends React.Component {
                 {this.getTimer()}
                 <div className='player-home-row our-side'>
                     <PlayerPBRow
-                        isMe={!spectating}
-                        player={1}
-                        hideDecklist={this.props.currentGame.hideDecklists && spectating}
-                        cardBackUrl={this.props.player1CardBack}
-                        language={this.props.i18n.language}
+                        cardSize={this.props.user.settings.cardSize}
                         deckData={thisPlayer.deckData}
-                        deckCards={thisPlayer.deckCards}
+                        discard={thisPlayer.cardPiles.discard}
                         drawDeck={thisPlayer.cardPiles.deck}
+                        gameFormat={this.props.currentGame.gameFormat}
+                        hideDecklists={this.props.currentGame.hideDecklists && spectating}
+                        isMe={!spectating}
+                        language={this.props.i18n.language}
+                        numDeckCards={thisPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
-                        numDeckCards={thisPlayer.numDeckCards}
+                        onMenuItemClick={this.onMenuItemClick}
+                        player={1}
+                        side='bottom'
+                        spells={thisSpells}
+                        spectating={spectating}
                         onDrawPopupChange={this.handleDrawPopupChange}
                         onShuffleClick={this.onShuffleClick}
                         onDragDrop={this.onDragDrop}
-                        discard={thisPlayer.cardPiles.discard}
-                        showDeck={thisPlayer.showDeck}
-                        spectating={spectating}
-                        title={thisPlayer.title}
-                        onMenuItemClick={this.onMenuItemClick}
-                        cardSize={this.props.user.settings.cardSize}
-                        manualMode={this.props.currentGame.manualMode}
-                        side='bottom'
-                        spells={thisSpells}
                     />
                 </div>
                 <div className='player-home-row our-side'>
                     <PlayerRow
                         archives={thisPlayer.cardPiles.archives}
-                        cardBackUrl={this.props.player1CardBack}
                         cardSize={this.props.user.settings.cardSize}
-                        deckData={thisPlayer.deckData}
-                        discard={thisPlayer.cardPiles.discard}
-                        faction={thisPlayer.faction}
-                        gameFormat={this.props.currentGame.gameFormat}
-                        hand={thisPlayer.cardPiles.hand}
-                        hideDeckLists={this.props.currentGame.hideDeckLists && spectating}
-                        houses={thisPlayer.houses}
                         isMe={!spectating}
-                        keys={thisPlayer.stats.keys}
-                        language={this.props.i18n.language}
-                        dice={thisPlayer.dice}
+                        hand={thisPlayer.cardPiles.hand}
                         manualMode={this.props.currentGame.manualMode}
-                        numDeckCards={thisPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onDragDrop={this.onDragDrop}
-                        onDrawPopupChange={this.handleDrawPopupChange}
-                        onMenuItemClick={this.onMenuItemClick}
                         onMouseOut={this.onMouseOut}
                         onMouseOver={this.onMouseOver}
-                        onShuffleClick={this.onShuffleClick}
-                        player={1}
-                        purgedPile={thisPlayer.cardPiles.purged}
-                        showDeck={thisPlayer.showDeck}
                         side='bottom'
-                        spectating={spectating}
-                        title={thisPlayer.title}
-                        cardSize='normal' //{this.props.user.settings.cardSize}
+                        dice={thisPlayer.dice}
                     />
                 </div>
             </div>
