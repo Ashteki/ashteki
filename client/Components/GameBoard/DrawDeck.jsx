@@ -29,7 +29,7 @@ const DrawDeck = (props) => {
             {...props}
             className='draw'
             disablePopup={!hasCards && (spectating || !isMe)}
-            hiddenTopCard
+            hiddenTopCard={true}
             onPopupChange={(event) =>
                 onPopupChange && !event.visible && onPopupChange({ visible: false })
             }

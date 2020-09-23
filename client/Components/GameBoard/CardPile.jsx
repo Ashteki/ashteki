@@ -63,7 +63,7 @@ const CardPile = ({
     let cardOrientation =
         orientation === 'horizontal' && topCard && topCard.facedown ? 'exhausted' : orientation;
 
-    if (hiddenTopCard && !topCard) {
+    if (hiddenTopCard && topCard) {
         topCard = { facedown: true };
     }
 
