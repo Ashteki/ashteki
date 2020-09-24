@@ -969,6 +969,8 @@ class Game extends EventEmitter {
 
         this.addAlert('info', '{0} has left the game', player);
 
+        this.jsonForUsers[player.name] = undefined;
+
         if (this.isSpectator(player) || !this.started) {
             delete this.playersAndSpectators[playerName];
         } else {

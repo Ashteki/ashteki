@@ -6,6 +6,7 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
+const Die = require('./Die');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -231,7 +232,9 @@ class Player extends GameObject {
     }
 
     rerollAllDice() {
-        this.dice = Dice.rollDice(this.diceCounts);
+        let p = this;
+        const diceData = Dice.rollDice(this.diceCounts);
+        this.dice = diceData.map((d) => new Die(p, d));
     }
 
     addPlayableLocation(type, player, location) {
@@ -499,6 +502,12 @@ class Player extends GameObject {
     getSummaryForCardList(list, activePlayer, hideWhenFaceup) {
         return list.map((card) => {
             return card.getSummary(activePlayer, hideWhenFaceup);
+        });
+    }
+
+    getSummaryForDiceList(list, activePlayer, hideWhenFaceup) {
+        return list.map((die) => {
+            return die.getSummary(activePlayer, hideWhenFaceup);
         });
     }
 
@@ -797,7 +806,7 @@ class Player extends GameObject {
             },
             deckData: this.deckData,
             wins: this.wins,
-            dice: this.dice,
+            dice: this.getSummaryForDiceList(this.dice, activePlayer),
             diceCounts: this.diceCounts,
             actions: this.actions
         };

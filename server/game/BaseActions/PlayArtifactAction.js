@@ -1,7 +1,7 @@
 const Costs = require('../costs');
 const BasePlayAction = require('./BasePlayAction');
 
-class PlayAction extends BasePlayAction {
+class PlayArtifactAction extends BasePlayAction {
     constructor(card) {
         super(card, [Costs.play(), Costs.spendMainAction()]);
         this.title = 'Play this artifact';
@@ -14,4 +14,4 @@ class PlayAction extends BasePlayAction {
     }
 }
 
-module.exports = PlayAction;
+module.exports = PlayArtifactAction;
