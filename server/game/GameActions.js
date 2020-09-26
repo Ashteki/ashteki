@@ -110,6 +110,7 @@ const Actions = {
     sequentialForEach: (propertyFactory) =>
         new GameActions.SequentialForEachAction(propertyFactory),
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
+    spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory)
 };
 

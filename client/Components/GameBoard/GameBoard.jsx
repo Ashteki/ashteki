@@ -307,6 +307,7 @@ export class GameBoard extends React.Component {
                         onMouseOut={this.onMouseOut}
                         onMouseOver={this.onMouseOver}
                         onDieClick={this.onDieClick}
+                        onMenuItemClick={this.onMenuItemClick}
                         side='bottom'
                         dice={thisPlayer.dice}
                     />

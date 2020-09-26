@@ -1,4 +1,3 @@
-const ExhaustDieAbility = require('./BaseActions/ExhaustDieAbility');
 const EffectSource = require('./EffectSource');
 
 // const GameObject = require('./GameObject');
@@ -19,10 +18,24 @@ class Die extends EffectSource {
             keywordReactions: [],
             keywordPersistentEffects: []
         };
+
+        this.menu = [
+            { command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' },
+            { command: 'raise', text: 'Raise', menu: 'main' },
+            { command: 'lower', text: 'Lower', menu: 'main' }
+        ];
     }
 
     get type() {
         return 'die';
+    }
+
+    getType() {
+        return this.type;
+    }
+
+    get name() {
+        return `${this.magic} ${this.level} die`;
     }
 
     getSummary(activePlayer) {
@@ -38,11 +51,25 @@ class Die extends EffectSource {
                 activePlayer === this.game.activePlayer &&
                 isOwner &&
                 this.getLegalActions(activePlayer).length > 0
-            )
+            ),
+            menu: this.getMenu()
         };
 
         // return Object.assign(state, selectionState);
         return state;
+    }
+
+    getMenu() {
+        var menu = [];
+
+        if (!this.menu.length || !this.game.manualMode) {
+            return undefined;
+        }
+
+        // menu.push({ command: 'click', text: 'Select Die', menu: 'main' });
+        menu = menu.concat(this.menu);
+
+        return menu;
     }
 
     use(player) {
@@ -95,7 +122,8 @@ class Die extends EffectSource {
 
     getActions() {
         let actions = [];
-        actions.push(new ExhaustDieAbility(this));
+        // todo: add power dice abilities here? dependent upon magic type
+        // actions.push(new ExhaustDieAbility(this));
 
         return actions.concat([], this.actions.slice());
     }
@@ -114,6 +142,18 @@ class Die extends EffectSource {
 
     exhaust() {
         this.exhausted = true;
+    }
+
+    ready() {
+        this.exhausted = false;
+    }
+
+    raise() {
+        this.level = this.level == 'basic' ? 'class' : 'power';
+    }
+
+    lower() {
+        this.level = this.level == 'power' ? 'class' : 'basic';
     }
 }
 

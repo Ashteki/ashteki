@@ -76,6 +76,29 @@ class MenuCommands {
                 break;
         }
     }
+
+    static dieMenuClick(menuItem, game, player, die) {
+        switch (menuItem.command) {
+            case 'exhaust':
+                if (die.exhausted) {
+                    game.addAlert('danger', '{0} readies {1}', player, die.name);
+                    die.ready();
+                } else {
+                    game.addAlert('danger', '{0} exhausts {1}', player, die.name);
+                    die.exhaust();
+                }
+
+                break;
+            case 'raise':
+                game.addAlert('danger', '{0} raises {1}', player, die.name);
+                die.raise();
+                break;
+            case 'lower':
+                game.addAlert('danger', '{0} lowers {1}', player, die.name);
+                die.lower();
+                break;
+        }
+    }
 }
 
 module.exports = MenuCommands;

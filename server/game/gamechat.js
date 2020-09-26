@@ -3,6 +3,7 @@ const uuid = require('uuid');
 const Card = require('./Card.js');
 const Spectator = require('./spectator.js');
 const Player = require('./player.js');
+const Die = require('./Die.js');
 
 class GameChat {
     constructor(game) {
@@ -103,6 +104,12 @@ class GameChat {
                             name: arg.user.username,
                             argType: 'nonAvatarPlayer',
                             role: arg.user.role
+                        });
+                    } else if (arg instanceof Die) {
+                        returnedFraments.push({
+                            name: arg.name,
+                            type: arg.getType,
+                            argType: 'die'
                         });
                     } else {
                         returnedFraments.push(arg);

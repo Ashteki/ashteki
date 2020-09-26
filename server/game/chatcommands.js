@@ -126,14 +126,8 @@ class ChatCommands {
         const actionType = args[1]
             ? args[1]
             : Object.keys(player.actions).filter((action) => !player.actions[action])[0];
-        this.game.addAlert(
-            'danger',
-            '{0} sets their {1} action to spent',
-            player,
-            `spendAction${actionType}`
-        );
+        this.game.addAlert('danger', '{0} sets their {1} action to spent', player, `${actionType}`);
         player.actions[actionType] = false;
-        // player.keysForgedThisRound.push(actionType);
     }
 
     unSpendAction(player, args) {

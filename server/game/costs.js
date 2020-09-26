@@ -57,6 +57,11 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.spendMainAction().getEvent(context.player, context)
     }),
+    sideAction: () => ({
+        canPay: (context) => context.player.actions.side,
+        payEvent: (context) =>
+            context.game.actions.spendSideAction().getEvent(context.player, context)
+    }),
     die: (props) => ({
         canPay: (context) => {
             // diceCounts.reduce((result, diceCount) => {

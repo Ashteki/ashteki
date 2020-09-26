@@ -67,5 +67,6 @@ module.exports = {
     UseAction: require('./UseAction'),
     WardAction: require('./WardAction'),
     SpendMainAction: require('./SpendMainAction'),
+    SpendSideAction: require('./SpendSideAction'),
     ExhaustDieAction: require('./ExhaustDieAction')
 };

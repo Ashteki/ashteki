@@ -19,6 +19,7 @@ const PlayerRow = ({
     onDragDrop,
     onMouseOut,
     onMouseOver,
+    onMenuItemClick,
     side,
     dice,
     onDieClick
@@ -39,7 +40,12 @@ const PlayerRow = ({
         return (
             <div className='panel resources card-pile'>
                 <div className='panel-header'>Dice</div>
-                <DiceBox dice={dice} size={cardSize} onDieClick={onDieClick} />
+                <DiceBox
+                    dice={dice}
+                    size={cardSize}
+                    onDieClick={onDieClick}
+                    onMenuItemClick={onMenuItemClick}
+                />
             </div>
         );
     };

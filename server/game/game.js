@@ -360,22 +360,34 @@ class Game extends EventEmitter {
     /**
      * This function is called by the client when a card menu item is clicked
      * @param {String} sourcePlayer - name of clicking player
-     * @param {String} cardId - uuid of card whose menu was clicked
+     * @param {String} sourceId - uuid of object whose menu was clicked
      * @param {Object} menuItem - { command: String, text: String, arg: String, method: String }
      */
-    menuItemClick(sourcePlayer, cardId, menuItem) {
+    menuItemClick(sourcePlayer, sourceId, menuItem) {
         let player = this.getPlayerByName(sourcePlayer);
-        let card = this.findAnyCardInAnyList(cardId);
-        if (!player || !card) {
+        if (!player) {
             return;
         }
 
-        if (menuItem.command === 'click') {
-            this.cardClicked(sourcePlayer, cardId);
-            return;
+        let card = this.findAnyCardInAnyList(sourceId);
+        let die = this.findAnyDieInAnyList(sourceId);
+
+        if (!die && !card) return;
+
+        if (card) {
+            if (menuItem.command === 'click') {
+                this.cardClicked(sourcePlayer, sourceId);
+                return;
+            }
+            MenuCommands.cardMenuClick(menuItem, this, player, card);
+        } else if (die) {
+            if (menuItem.command === 'click') {
+                this.dieClicked(sourcePlayer, sourceId);
+                return;
+            }
+            MenuCommands.dieMenuClick(menuItem, this, player, die);
         }
 
-        MenuCommands.cardMenuClick(menuItem, this, player, card);
         this.checkGameState(true);
     }
 
