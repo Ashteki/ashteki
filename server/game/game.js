@@ -251,6 +251,27 @@ class Game extends EventEmitter {
     }
 
     /**
+     * Returns the die with matching uuid from anywhere in the game
+     * @param {String} dieId
+     * @returns Die
+     */
+    findAnyDieInAnyList(dieId) {
+        const allDice = this.getAllDice();
+        const foundDie = allDice.find((die) => die.uuid === dieId);
+        return foundDie;
+    }
+
+    getAllDice() {
+        return _.reduce(
+            this.getPlayers(),
+            (dice, player) => {
+                return dice.concat(player.dice);
+            },
+            []
+        );
+    }
+
+    /**
      * Returns all cards (i.e. characters) which matching the passed predicated
      * function from either players 'in play' area.
      * @param {Function} predicate - card => Boolean
@@ -294,6 +315,28 @@ class Game extends EventEmitter {
 
         // Check to see if the current step in the pipeline is waiting for input
         this.pipeline.handleCardClicked(player, card);
+    }
+
+    /**
+     * This function is called from the client whenever a die is clicked
+     * @param {String} sourcePlayer - name of the clicking player
+     * @param {String} dieId - uuid of the die clicked
+     */
+    dieClicked(sourcePlayer, dieId) {
+        let player = this.getPlayerByName(sourcePlayer);
+
+        if (!player) {
+            return;
+        }
+
+        let die = this.findAnyDieInAnyList(dieId);
+
+        if (!die) {
+            return;
+        }
+
+        // Check to see if the current step in the pipeline is waiting for input
+        this.pipeline.handleDieClicked(player, die);
     }
 
     facedownCardClicked(playerName, location, controllerName, isProvince = false) {

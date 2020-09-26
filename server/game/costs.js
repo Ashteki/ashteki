@@ -56,6 +56,11 @@ const Costs = {
         canPay: (context) => context.player.actions.main,
         payEvent: (context) =>
             context.game.actions.spendMainAction().getEvent(context.player, context)
+    }),
+    exhaustDice: () => ({
+        canPay: (context) => context.player.dice.length > 0,
+        payEvent: (context) =>
+            context.game.actions.exhaustDieAction().getEvent(context.player, context)
     })
     //todo: add loseSideAction
     //todo: add loseDice

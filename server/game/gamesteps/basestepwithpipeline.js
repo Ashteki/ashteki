@@ -19,6 +19,10 @@ class BaseStepWithPipeline extends BaseStep {
         return this.pipeline.handleCardClicked(player, card);
     }
 
+    onDieClicked(player, die) {
+        return this.pipeline.handleDieClicked(player, die);
+    }
+
     onCardDragged(player, card, from, to) {
         return this.pipeline.handleCardDragged(player, card, from, to);
     }

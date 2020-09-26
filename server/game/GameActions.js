@@ -109,7 +109,8 @@ const Actions = {
     sequential: (gameActions) => new GameActions.SequentialAction(gameActions), // takes an array of gameActions, not a propertyFactory
     sequentialForEach: (propertyFactory) =>
         new GameActions.SequentialForEachAction(propertyFactory),
-    spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory)
+    spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
+    exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory)
 };
 
 module.exports = Actions;

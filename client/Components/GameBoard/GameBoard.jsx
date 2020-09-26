@@ -47,6 +47,7 @@ export class GameBoard extends React.Component {
         this.onMouseOut = this.onMouseOut.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onCardClick = this.onCardClick.bind(this);
+        this.onDieClick = this.onDieClick.bind(this);
         this.handleDrawPopupChange = this.handleDrawPopupChange.bind(this);
         this.onDragDrop = this.onDragDrop.bind(this);
         this.onCommand = this.onCommand.bind(this);
@@ -91,6 +92,10 @@ export class GameBoard extends React.Component {
 
     onCardClick(card) {
         this.props.sendGameMessage('cardClicked', card.uuid);
+    }
+
+    onDieClick(die) {
+        this.props.sendGameMessage('dieClicked', die.uuid);
     }
 
     handleDrawPopupChange(event) {
@@ -206,6 +211,7 @@ export class GameBoard extends React.Component {
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}
                         onCardClick={this.onCardClick}
+                        onDieClick={this.onDieClick}
                         onMouseOut={this.onMouseOut}
                         onMouseOver={this.onMouseOver}
                         side='top'
@@ -300,6 +306,7 @@ export class GameBoard extends React.Component {
                         onDragDrop={this.onDragDrop}
                         onMouseOut={this.onMouseOut}
                         onMouseOver={this.onMouseOver}
+                        onDieClick={this.onDieClick}
                         side='bottom'
                         dice={thisPlayer.dice}
                     />

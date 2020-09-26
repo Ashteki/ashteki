@@ -66,5 +66,6 @@ module.exports = {
     UnforgeAction: require('./UnforgeAction'),
     UseAction: require('./UseAction'),
     WardAction: require('./WardAction'),
-    SpendMainAction: require('./SpendMainAction')
+    SpendMainAction: require('./SpendMainAction'),
+    ExhaustDieAction: require('./ExhaustDieAction')
 };

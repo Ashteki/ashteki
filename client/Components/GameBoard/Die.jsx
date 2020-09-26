@@ -2,39 +2,28 @@ import React from 'react';
 
 import './Die.scss';
 
-class Die extends React.Component {
-    constructor(props) {
-        super(props);
-        this.diceFont = 'phg-basic-magic';
+const Die = ({ die, onClick }) => {
+    let diceFont = 'phg-basic-magic';
 
-        if (props.die.magic && props.die.level && props.die.level !== 'basic') {
-            this.diceFont = `phg-${props.die.magic}-${props.die.level}`;
-        }
-        this.colorClass = props.die.magic;
-        if (props.die.exhausted) {
-            this.colorClass = 'exhausted';
-        }
+    if (die.magic && die.level && die.level !== 'basic') {
+        diceFont = `phg-${die.magic}-${die.level}`;
     }
+    const colorClass = die.exhausted ? 'exhausted' : die.magic;
 
-    onClick(event, die) {
+    const clickEvent = (event, die) => {
         event.preventDefault();
         event.stopPropagation();
 
-        if (this.props.onClick) {
-            this.props.onClick(die);
+        if (onClick) {
+            onClick(die);
         }
-    }
+    };
 
-    render() {
-        return (
-            <span
-                className={`die ${this.colorClass}`}
-                onClick={(ev) => this.onClick(ev, this.props.die)}
-            >
-                <span className={this.diceFont} title={`${this.props.die.magic}`}></span>
-            </span>
-        );
-    }
-}
+    return (
+        <span className={`die ${colorClass}`} onClick={(ev) => clickEvent(ev, die)}>
+            <span className={diceFont} title={`${die.magic}`}></span>
+        </span>
+    );
+};
 
 export default Die;

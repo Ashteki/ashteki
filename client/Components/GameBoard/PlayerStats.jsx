@@ -111,7 +111,7 @@ export class PlayerStats extends React.Component {
                 <div className='state' key={`action ${actionType}`}>
                     <img
                         src={
-                            this.props.actions[actionType]
+                            this.props.actions && this.props.actions[actionType]
                                 ? toggleImages[actionType].active
                                 : toggleImages[actionType].spent
                         }

@@ -15,8 +15,12 @@ class Dice {
         });
 
         let levels = ['power', 'class', 'class', 'class', 'basic', 'basic'];
-        return dice.map((dt, i) => {
-            return { id: i + 1, magic: dt, level: levels[this.getRandomInt(6)] };
+        return dice.map((dt) => {
+            return {
+                magic: dt,
+                level: levels[this.getRandomInt(6)],
+                exhausted: false
+            };
         });
     }
 }

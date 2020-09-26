@@ -13,6 +13,10 @@ class BaseStep {
         return false;
     }
 
+    onDieClicked() {
+        return false;
+    }
+
     onMenuCommand() {
         return false;
     }

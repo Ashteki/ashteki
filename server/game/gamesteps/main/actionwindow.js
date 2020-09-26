@@ -22,6 +22,17 @@ class ActionWindow extends UiPrompt {
         return false;
     }
 
+    onDieClicked(player, die) {
+        if (player === this.game.activePlayer && die.owner === player) {
+            if (die.use(player)) {
+                this.game.queueSimpleStep(() => this.checkForPhaseEnding());
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     onCardDragged(player, card, from, to) {
         if (player === this.game.activePlayer && card.controller === player && from === 'hand') {
             if (to === 'play area') {

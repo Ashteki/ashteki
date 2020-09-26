@@ -71,6 +71,17 @@ class GamePipeline {
         return false;
     }
 
+    handleDieClicked(player, die) {
+        if (this.pipeline.length > 0) {
+            var step = this.getCurrentStep();
+            if (step.onDieClicked(player, die) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     handleCardDragged(player, card, from, to) {
         if (this.pipeline.length > 0) {
             var step = this.getCurrentStep();

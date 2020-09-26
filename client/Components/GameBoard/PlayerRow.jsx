@@ -20,7 +20,8 @@ const PlayerRow = ({
     onMouseOut,
     onMouseOver,
     side,
-    dice
+    dice,
+    onDieClick
 }) => {
     const { t } = useTranslation();
 
@@ -38,7 +39,7 @@ const PlayerRow = ({
         return (
             <div className='panel resources card-pile'>
                 <div className='panel-header'>Dice</div>
-                <DiceBox dice={dice} size={cardSize} />
+                <DiceBox dice={dice} size={cardSize} onDieClick={onDieClick} />
             </div>
         );
     };
