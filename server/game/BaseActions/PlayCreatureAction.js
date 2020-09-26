@@ -3,7 +3,7 @@ const BasePlayAction = require('./BasePlayAction');
 
 class PlayCreatureAction extends BasePlayAction {
     constructor(card) {
-        super(card, [Costs.play()]);
+        super(card, [Costs.play(), Costs.die({ level: 'basic' })]);
         this.title = 'Play this creature';
     }
 

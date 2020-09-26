@@ -57,13 +57,22 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.spendMainAction().getEvent(context.player, context)
     }),
-    exhaustDice: () => ({
-        canPay: (context) => context.player.dice.length > 0,
-        payEvent: (context) =>
-            context.game.actions.exhaustDieAction().getEvent(context.player, context)
+    die: (props) => ({
+        canPay: (context) => {
+            // diceCounts.reduce((result, diceCount) => {
+            // result &&
+            return context.player.dice.some((d) => d.level == props.level && !d.exhausted);
+        },
+        payEvent: (context) => {
+            const die = context.player.dice.find(
+                (d) =>
+                    d.level == props.level &&
+                    !d.exhausted &&
+                    (props.level == 'basic' || d.magic == props.magic)
+            );
+            return context.game.actions.exhaustDie().getEvent(die, context);
+        }
     })
-    //todo: add loseSideAction
-    //todo: add loseDice
 };
 
 module.exports = Costs;
