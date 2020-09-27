@@ -108,7 +108,7 @@ class DealDamageAction extends CardGameAction {
                     event.card.addToken('damage', event.amount);
                     if (
                         !event.card.moribund &&
-                        (event.card.tokens.damage >= event.card.power ||
+                        (event.card.tokens.damage >= event.card.life ||
                             (damageDealtEvent.fightEvent &&
                                 damageDealtEvent.damageSource &&
                                 damageDealtEvent.damageSource.getKeywordValue('poison')))

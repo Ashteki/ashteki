@@ -5,6 +5,7 @@ class RecoverAction extends RemoveTokenAction {
         super(propertyFactory);
         this.type = 'damage';
     }
+
     getAmount(card) {
         return card.recover;
     }

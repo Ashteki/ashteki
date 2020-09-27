@@ -206,6 +206,9 @@ class CardService {
 
         retCard.armor = card.Armor;
         retCard.power = card.Power;
+        retCard.life = card.Power;
+        retCard.recover = 1;
+
         retCard.keywords = card.Keywords.split(',');
         retCard.expansion = card.ExpansionId;
         retCard.packCode = card.ExpansionCode;
