@@ -10,7 +10,6 @@ CREATE TABLE public."DeckCards"
     "Maverick" text COLLATE pg_catalog."default",
     "Anomaly" text COLLATE pg_catalog."default",
     "ImageUrl" text COLLATE pg_catalog."default",
-    "Enhancements" text COLLATE pg_catalog."default",
     "DeckId" integer NOT NULL,
     "HouseId" integer NULL,
     CONSTRAINT "PK_DeckCards" PRIMARY KEY ("Id"),

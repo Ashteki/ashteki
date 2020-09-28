@@ -27,10 +27,6 @@ const DeckSummary = ({ deck }) => {
             for (let i = 0; i < card.count; i++) {
                 let cardClass = 'deck-card-link';
 
-                if (card.enhancements) {
-                    cardClass += ' enhanced-card';
-                }
-
                 cardsByHouse[house].push(
                     <div
                         key={`${card.dbId}${i}`}

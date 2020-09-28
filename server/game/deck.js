@@ -36,10 +36,6 @@ class Deck {
                 result.card.cardImage = card.image;
             }
 
-            if (card.enhancements) {
-                result.card.enhancements = card.enhancements;
-            }
-
             return result;
         });
 

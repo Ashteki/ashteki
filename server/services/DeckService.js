@@ -318,10 +318,7 @@ class DeckService {
             maverick: card.Maverick || undefined,
             anomaly: card.Anomaly || undefined,
             image: card.ImageUrl || undefined,
-            house: card.House || undefined,
-            enhancements: card.Enhancements
-                ? card.Enhancements.replace(/[[{}"\]]/gi, '').split(',')
-                : undefined
+            house: card.House || undefined
         }));
 
         let houseTable = standalone ? 'StandaloneDeckHouses' : 'DeckHouses';
@@ -437,29 +434,24 @@ class DeckService {
             if (user) {
                 params.push(card.image);
                 params.push(await this.getHouseIdFromName(card.house));
-                params.push(card.enhancements ? JSON.stringify(card.enhancements) : undefined);
             }
-
             params.push(deck.id);
-            if (!user) {
-                params.push(card.enhancements);
-            }
         }
 
         try {
             if (user) {
                 await db.query(
-                    `INSERT INTO "DeckCards" ("CardId", "Count", "Maverick", "Anomaly", "ImageUrl", "HouseId", "Enhancements", "DeckId") VALUES ${expand(
+                    `INSERT INTO "DeckCards" ("CardId", "Count", "Maverick", "Anomaly", "ImageUrl", "HouseId", "DeckId") VALUES ${expand(
                         deck.cards.length,
-                        8
+                        7
                     )}`,
                     params
                 );
             } else {
                 await db.query(
-                    `INSERT INTO "StandaloneDeckCards" ("CardId", "Count", "Maverick", "Anomaly", "DeckId", "Enhancements") VALUES ${expand(
+                    `INSERT INTO "StandaloneDeckCards" ("CardId", "Count", "Maverick", "Anomaly", "DeckId") VALUES ${expand(
                         deck.cards.length,
-                        6
+                        5
                     )}`,
                     params
                 );
@@ -503,21 +495,6 @@ class DeckService {
                 logger.error('Failed to update deck', err);
 
                 throw new Error('Failed to update deck');
-            }
-        }
-
-        for (let card of deck.cards) {
-            if (card.enhancements) {
-                try {
-                    await db.query('UPDATE "DeckCards" SET "Enhancements" = $2 WHERE "Id" = $1', [
-                        card.dbId,
-                        card.enhancements
-                    ]);
-                } catch (err) {
-                    logger.error('Failed to update deck enhancements', err);
-
-                    throw new Error('Failed to update deck');
-                }
             }
         }
     }
@@ -609,10 +586,6 @@ class DeckService {
                 };
             }
 
-            if (card.is_enhanced) {
-                retCard.enhancements = [];
-            }
-
             if (card.card_type === 'Creature2') {
                 retCard.id += '2';
             }
@@ -627,19 +600,6 @@ class DeckService {
         });
 
         let toAdd = [];
-        for (let card of cards) {
-            if (card.enhancements && card.count > 1) {
-                for (let i = 0; i < card.count - 1; i++) {
-                    let cardToAdd = Object.assign({}, card);
-
-                    cardToAdd.count = 1;
-                    toAdd.push(cardToAdd);
-                }
-
-                card.count = 1;
-            }
-        }
-
         cards = cards.concat(toAdd);
 
         let uuid = deckResponse.data.id;

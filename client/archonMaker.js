@@ -175,7 +175,6 @@ export const buildDeckList = async (deck, language, translate, allCards) => {
                     ...allCards[card.card.id],
                     is_maverick: !!card.maverick,
                     is_anomaly: !!card.anomaly,
-                    enhancements: card.enhancements,
                     house: card.card.house
                 });
             }
@@ -184,7 +183,6 @@ export const buildDeckList = async (deck, language, translate, allCards) => {
                 ...allCards[card.id],
                 is_maverick: !!card.maverick,
                 is_anomaly: !!card.anomaly,
-                enhancements: card.enhancements,
                 house: card.house
             });
         }
@@ -237,8 +235,7 @@ export const buildDeckList = async (deck, language, translate, allCards) => {
 
         const title = new fabric.Text(name, {
             ...fontProps,
-            fontWeight: 300,
-            fill: card.enhancements ? '#0081ad' : 'black'
+            fontWeight: 300
         }).set({ left: x + 60, top: y });
         canvas.add(number).add(title).add(rarity);
 

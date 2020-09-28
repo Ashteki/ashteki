@@ -27,7 +27,6 @@ function processDecks(decks, state) {
                 anomaly: card.anomaly,
                 house: card.house,
                 image: card.image,
-                enhancements: card.enhancements,
                 dbId: card.dbId
             };
             result.card.image = card.image || card.id;
@@ -42,14 +41,7 @@ function processDecks(decks, state) {
             return result;
         });
 
-        let hasEnhancementsSet = true;
-
-        if (deck.cards.some((c) => c.enhancements && c.enhancements[0] === '')) {
-            hasEnhancementsSet = false;
-        }
-
         deck.status = {
-            basicRules: hasEnhancementsSet,
             flagged: !!deck.flagged,
             verified: !!deck.verified,
             usageLevel: deck.usageLevel,
