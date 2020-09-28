@@ -27,7 +27,6 @@ const placeholderPlayer = {
         purged: [],
         deck: []
     },
-    faction: null,
     activePlayer: false,
     numDeckCards: 0,
     stats: {

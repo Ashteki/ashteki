@@ -1050,6 +1050,8 @@ class Game extends EventEmitter {
             player
         );
 
+        this.jsonForUsers[player.name] = undefined;
+
         if (this.isSpectator(player)) {
             delete this.playersAndSpectators[playerName];
         } else {
