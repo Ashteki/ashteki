@@ -1,6 +1,7 @@
 const _ = require('underscore');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
+const FirstFivePrompt = require('./FirstFivePrompt.js');
 const GameStartPrompt = require('./GameStartPrompt');
 
 class SetupPhase extends Phase {
@@ -8,9 +9,7 @@ class SetupPhase extends Phase {
         super(game, 'setup');
         this.initialise([
             new SimpleStep(game, () => this.setupBegin()),
-            // choose first five
-            new SimpleStep(game, () => this.drawStartingHands()),
-
+            new FirstFivePrompt(game),
             new GameStartPrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
@@ -38,30 +37,6 @@ class SetupPhase extends Phase {
         for (let card of this.game.allCards) {
             card.applyAnyLocationPersistentEffects();
         }
-    }
-
-    // firstPlayerEffects() {
-    //     this.game.actions
-    //         .draw({ amount: 1 })
-    //         .resolve(this.game.activePlayer, this.game.getFrameworkContext());
-    //     this.game.actions
-    //         .forRemainderOfTurn({
-    //             condition: () =>
-    //                 !!this.game.cardsUsed.length ||
-    //                 !!this.game.cardsPlayed.length ||
-    //                 !!this.game.cardsDiscarded.length,
-    //             effect: Effects.noActiveHouseForPlay()
-    //         })
-    //         .resolve(this.game.activePlayer, this.game.getFrameworkContext());
-    // }
-
-    drawStartingHands() {
-        _.each(this.game.getPlayers(), (player) => {
-            this.game.actions.shuffleDeck().resolve(player, this.game.getFrameworkContext());
-            this.game.actions
-                .draw({ refill: true })
-                .resolve(player, this.game.getFrameworkContext());
-        });
     }
 
     startGame() {

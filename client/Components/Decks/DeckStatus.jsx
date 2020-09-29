@@ -17,13 +17,12 @@ const DeckStatus = ({ status }) => {
         used: status.usageLevel === 1 && !status.verified,
         popular: status.usageLevel === 2 && !status.verified,
         notorious: status.usageLevel === 3 && !status.verified,
-        'casual-play': status.basicRules && status.impossible,
+        'casual-play': status.basicRules,
         valid:
             (status.usageLevel === 0 || status.verified) &&
             status.basicRules &&
             !status.notVerified &&
-            status.noUnreleasedCards &&
-            !status.impossible
+            status.noUnreleasedCards
     });
 
     if (!status.basicRules) {
@@ -34,8 +33,6 @@ const DeckStatus = ({ status }) => {
         statusName = t('Popular');
     } else if (status.usageLevel === 3 && !status.verified) {
         statusName = t('Notorious');
-    } else if (status.impossible) {
-        statusName = t('Impossible Deck');
     } else {
         statusName = t('Valid');
     }

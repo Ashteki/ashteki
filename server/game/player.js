@@ -27,7 +27,7 @@ class Player extends GameObject {
         this.activeHouse = null;
 
         this.deckData = {};
-        this.takenMulligan = false;
+        this.firstFiveChosen = false;
 
         this.keysForgedThisRound = [];
 
@@ -189,21 +189,6 @@ class Player extends GameObject {
     shuffleDeck() {
         this.game.emitEvent('onDeckShuffled', { player: this });
         this.deck = _.shuffle(this.deck);
-    }
-
-    /**
-     * Mulligans the players starting hand, emitting an event and displaying a message in chat
-     */
-    takeMulligan() {
-        let size = this.hand.length;
-
-        for (let card of this.hand) {
-            this.moveCard(card, 'deck');
-        }
-
-        this.shuffleDeck();
-        this.drawCardsToHand(size - 1);
-        this.takenMulligan = true;
     }
 
     /**

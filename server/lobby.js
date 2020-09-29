@@ -775,8 +775,7 @@ class Lobby {
                     noUnreleasedCards: true,
                     officialRole: true,
                     usageLevel: deckUsageLevel,
-                    verified: !!deck.verified,
-                    impossible: isStandalone && deck.id >= 5
+                    verified: !!deck.verified
                 };
 
                 deck.usageCount = 0;
