@@ -118,8 +118,6 @@ class DeckBuilder {
             );
         }
 
-        cardsByName[0].enhancements = null;
-
         return cardsByName[0];
     }
 }

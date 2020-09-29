@@ -39,13 +39,14 @@ class FirstFivePrompt extends AllPlayerPrompt {
         }
 
         if (
-            !this.selectedCards[player.name].includes(card) &&
-            this.selectedCards[player.name].length < 5
+            !this.selectedCards[player.name].includes(card) && // only add if it's not already there
+            this.selectedCards[player.name].length < 5 && // only choose 5
+            !this.selectedCards[player.name].some((c) => c.name == card.name) // only one copy
         ) {
             // add
             this.selectedCards[player.name].push(card);
         } else {
-            // remove
+            // remove it
             this.selectedCards[player.name] = this.selectedCards[player.name].filter(
                 (c) => c !== card
             );
