@@ -7,7 +7,7 @@ const TriggeredAbility = require('./triggeredability');
 
 const DiscardAction = require('./BaseActions/DiscardAction');
 const PlayAction = require('./BaseActions/PlayAction');
-const PlayCreatureAction = require('./BaseActions/PlayCreatureAction');
+const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayArtifactAction = require('./BaseActions/PlayArtifactAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
 const ResolveFightAction = require('./GameActions/ResolveFightAction');
@@ -888,8 +888,8 @@ class Card extends EffectSource {
     getActions(location = this.location) {
         let actions = [];
         if (location === 'hand') {
-            if (this.type === 'creature') {
-                actions.push(new PlayCreatureAction(this));
+            if (this.type === 'Ally') {
+                actions.push(new PlayAllyAction(this));
             } else if (this.type === 'artifact') {
                 actions.push(new PlayArtifactAction(this));
             } else if (this.type === 'action') {

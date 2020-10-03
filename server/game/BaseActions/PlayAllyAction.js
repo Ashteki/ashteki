@@ -1,10 +1,10 @@
 const Costs = require('../costs');
 const BasePlayAction = require('./BasePlayAction');
 
-class PlayCreatureAction extends BasePlayAction {
+class PlayAllyAction extends BasePlayAction {
     constructor(card) {
         super(card, [Costs.play(), Costs.die({ level: 'basic' })]);
-        this.title = 'Play this creature';
+        this.title = 'Play this ally';
     }
 
     addSubEvent(event, context) {
@@ -14,4 +14,4 @@ class PlayCreatureAction extends BasePlayAction {
     }
 }
 
-module.exports = PlayCreatureAction;
+module.exports = PlayAllyAction;

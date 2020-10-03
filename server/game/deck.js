@@ -84,7 +84,7 @@ class Deck {
 
     createCard(player, cardData) {
         if (!cardData || !cardData.stub) {
-            logger.error(`no cardData for ${JSON.stringify(this.data)}`);
+            logger.error(`no cardData for ${JSON.stringify(cardData)}`);
             return;
         }
 

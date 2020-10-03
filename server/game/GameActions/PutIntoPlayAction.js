@@ -10,7 +10,7 @@ class PutIntoPlayAction extends CardGameAction {
 
     setup() {
         this.name = 'putIntoPlay';
-        this.targetType = ['creature', 'artifact'];
+        this.targetType = ['Ally', 'creature', 'artifact'];
         this.effectMsg = 'put {0} into play';
     }
 
@@ -36,23 +36,6 @@ class PutIntoPlayAction extends CardGameAction {
             } else {
                 player = this.myControl ? context.player : card.controller;
                 control = this.myControl;
-            }
-
-            if (card.gigantic) {
-                card.compositeParts.forEach((id) => {
-                    let part = card.controller
-                        .getSourceList(card.location)
-                        .find((part) => id === part.id);
-                    if (!part && card.parent) {
-                        part = card.parent.childCards.find((part) => id === part.id);
-                    }
-
-                    if (part) {
-                        card.controller.removeCardFromPile(part);
-                        card.playedParts.push(part);
-                    }
-                });
-                card.image = card.compositeImageId || card.id;
             }
 
             player.moveCard(card, 'play area', {

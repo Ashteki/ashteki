@@ -55,8 +55,6 @@ class CardImport {
             479: { 'dark-æmber-vault': true, 'it-s-coming': true, 'orb-of-wonder': true }
         };
 
-        const gigantic = ['deusillus', 'ultra-gravitron', 'niffle-kong'];
-
         for (let card of cards) {
             let imagePath = path.join(imageLangDir, card.id + '.png');
 
@@ -72,29 +70,6 @@ class CardImport {
                 await this.imageSource.fetchImage(card, imageUrl, imagePath);
             }
         }
-
-        for (const card of gigantic) {
-            let imgPath = path.join(imageLangDir, card + '-complete.png');
-            if (!fs.existsSync(imgPath)) {
-                await this.buildGigantics(card, imageLangDir, imgPath);
-            }
-        }
-    }
-
-    async buildGigantics(card, imageLangDir, imgPath) {
-        const canvas = new fabric.StaticCanvas();
-        canvas.setDimensions({ width: 300, height: 420 });
-        const bottom = await this.loadImage(path.join(imageLangDir, card + '.png'));
-        const top = await this.loadImage(path.join(imageLangDir, card + '2.png'));
-        top.rotate(-90).scaleToWidth(300).set({ top: 210, left: 0 });
-        bottom.rotate(-90).scaleToWidth(300).set({ top: 420, left: 0 });
-        canvas.add(top);
-        canvas.add(bottom);
-        canvas.renderAll();
-        let dataUrl = canvas.toDataURL();
-        let base64Data = dataUrl.replace(/^data:image\/png;base64,/, '');
-        await fs.writeFileSync(imgPath, base64Data, 'base64');
-        console.log('Built gigantic image for ' + card);
     }
 
     loadImage(imgPath) {
