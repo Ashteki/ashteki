@@ -22,14 +22,14 @@ function processDecks(decks, state) {
             let result = {
                 count: card.count,
                 card: Object.assign({}, state.cards[card.id]),
-                id: card.id,
+                id: card._id,
                 maverick: card.maverick,
                 anomaly: card.anomaly,
                 house: card.house,
                 image: card.image,
                 dbId: card.dbId
             };
-            result.card.image = card.image || card.id;
+            result.card.image = card.image || card._id;
             if (card.maverick) {
                 result.card.house = card.maverick;
             } else if (card.anomaly) {
@@ -136,12 +136,12 @@ export default function (state = { decks: [], cards: {} }, action) {
                 deckSaved: false
             });
 
-            if (!newState.decks.some((deck) => deck.id === parseInt(action.response.deck.id))) {
+            if (!newState.decks.some((deck) => deck._id === action.response.deck._id)) {
                 newState.decks.push(processDecks([action.response.deck], state));
             }
 
             var selected = newState.decks.find((deck) => {
-                return deck.id === parseInt(action.response.deck.id);
+                return deck._id === action.response.deck._id;
             });
 
             newState = selectDeck(newState, selected);
@@ -182,7 +182,7 @@ export default function (state = { decks: [], cards: {} }, action) {
             });
 
             newState.decks = newState.decks.filter((deck) => {
-                return deck.id !== parseInt(action.response.deckId);
+                return deck._id !== action.response.deckId;
             });
 
             newState.selectedDeck = newState.decks[0];

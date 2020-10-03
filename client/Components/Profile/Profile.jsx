@@ -62,8 +62,6 @@ const initialValues = {
     avatar: undefined,
     email: '',
     username: '',
-    challongeApiKey: '',
-    challongeApiSubdomain: '',
     settings: {
         background: '',
         cardSize: ''
@@ -117,11 +115,6 @@ const Profile = ({ onSubmit, isLoading }) => {
         initialValues.gameOptions = user.settings.optionSettings;
     }
 
-    if (user.challonge) {
-        initialValues.challongeApiKey = user.challonge.key;
-        initialValues.challongeApiSubdomain = user.challonge.subdomain;
-    }
-
     const schema = yup.object({
         avatar: yup
             .mixed()
@@ -165,10 +158,6 @@ const Profile = ({ onSubmit, isLoading }) => {
                  */
                 const submitValues = {
                     avatar: values.avatar ? await toBase64(values.avatar) : null,
-                    challonge: {
-                        key: values.challongeApiKey,
-                        subdomain: values.challongeApiSubdomain
-                    },
                     email: values.email,
                     username: values.username,
                     password: values.password,

@@ -1,7 +1,7 @@
 const passport = require('passport');
 
-const UserService = require('../services/UserService.js');
-const DeckService = require('../services/DeckService.js');
+const UserService = require('../services/AshesUserService.js');
+const DeckService = require('../services/AshesDeckService.js');
 const ConfigService = require('../services/ConfigService.js');
 const { wrapAsync } = require('../util.js');
 const logger = require('../log.js');
@@ -32,13 +32,13 @@ module.exports.init = function (server) {
 
                 retUser = user.getFullDetails();
 
-                if (req.user.permissions.canVerifyDecks) {
-                    retUser.invalidDecks = (
-                        await deckService.getFlaggedUnverifiedDecksForUser(user)
-                    ).map((deck) => {
-                        return { id: deck.id, uuid: deck.uuid, name: deck.name };
-                    });
-                }
+                // if (req.user.permissions.canVerifyDecks) {
+                //     retUser.invalidDecks = (
+                //         await deckService.getFlaggedUnverifiedDecksForUser(user)
+                //     ).map((deck) => {
+                //         return { id: deck._id, uuid: deck.uuid, name: deck.name };
+                //     });
+                // }
 
                 linkedAccounts = await userService.getPossiblyLinkedAccounts(user);
             } catch (error) {
@@ -75,44 +75,27 @@ module.exports.init = function (server) {
             }
 
             let userToSet = req.body.userToChange;
-            let dbUser;
 
-            try {
-                dbUser = await userService.getFullUserByUsername(req.params.username);
-            } catch (error) {
-                logger.error(error);
+            userService
+                .getUserByUsername(req.params.username)
+                .then((user) => {
+                    if (!user) {
+                        return res.status(404).send({ message: 'Not found' });
+                    }
 
-                return res.send({
-                    success: false,
-                    message: 'An error occured saving the user.  Please try again later.'
+                    user.permissions = userToSet.permissions;
+
+                    return userService.update(user);
+                })
+                .then(() => {
+                    res.send({ success: true });
+                })
+                .catch(() => {
+                    return res.send({
+                        success: false,
+                        message: 'An error occured saving the user'
+                    });
                 });
-            }
-
-            let user = dbUser.getDetails();
-
-            if (!user) {
-                return res.status(404).send({ message: 'Not found' });
-            }
-
-            if (req.user.permissions.canManagePermissions) {
-                user.permissions = userToSet.permissions;
-            }
-
-            user.verified = userToSet.verified;
-            user.disabled = userToSet.disabled;
-
-            try {
-                await userService.update(user);
-            } catch (error) {
-                logger.error(error);
-
-                return res.send({
-                    success: false,
-                    message: 'An error occured saving the user.  Please try again later.'
-                });
-            }
-
-            res.send({ success: true });
         })
     );
 

@@ -16,7 +16,7 @@ class Deck {
                 card: card.card
             };
             if (!result.card) {
-                logger.error(`Corrupt deck ${card.id} ${card}`);
+                logger.error(`Corrupt card ${card.name}: ${card}`);
                 return result;
             }
 
@@ -44,7 +44,7 @@ class Deck {
 
     prepare(player) {
         var result = {
-            houses: [],
+            conjurations: [],
             cards: [],
             diceCounts: []
         };
@@ -60,16 +60,16 @@ class Deck {
             }
         });
 
-        result.diceCounts = [
-            {
-                magic: 'natural',
-                count: 5
-            },
-            {
-                magic: 'illusion',
-                count: 5
+        this.eachRepeatedCard(this.data.conjurations, (conjData) => {
+            let card = this.createCard(player, conjData);
+            if (card) {
+                card.setupAbilities();
+                card.location = 'archives';
+                result.conjurations.push(card);
             }
-        ];
+        });
+
+        result.diceCounts = this.data.dicepool;
 
         return result;
     }
@@ -83,23 +83,16 @@ class Deck {
     }
 
     createCard(player, cardData) {
-        if (!cardData || !cardData.id) {
+        if (!cardData || !cardData.stub) {
             logger.error(`no cardData for ${JSON.stringify(this.data)}`);
             return;
         }
 
-        cardData.image = cardData.cardImage || cardData.id;
-        if (cardData.maverick) {
-            cardData.house = cardData.maverick;
-        } else if (cardData.anomaly) {
-            cardData.house = cardData.anomaly;
-        }
-
-        if (!cards[cardData.id]) {
+        if (!cards[cardData.stub]) {
             return new Card(player, cardData);
         }
 
-        let cardClass = cards[cardData.id];
+        let cardClass = cards[cardData.stub];
         return new cardClass(player, cardData);
     }
 }

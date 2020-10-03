@@ -23,7 +23,6 @@
  * @property {any} settings The user's settings
  * @property {any} permissioms The user's permissions
  * @property {boolean} verified Whether or not the user is verified
- * @property {any} challonge The user's challonge data
  */
 
 /**
@@ -63,7 +62,6 @@
  * @typedef PendingGame
  * @property {boolean} adaptive Whether or not this game is adaptive
  * @property {boolean} allowSpectators Whether or not spectators are allowed to join
- * @property {any} challonge The challonge object
  * @property {Date} createdAt When the game was created
  * @property {GameFormat} gameFormat The format of the game
  * @property {boolean} gamePrivate Whether or not the game is private

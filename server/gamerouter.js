@@ -2,7 +2,7 @@ const redis = require('redis');
 const EventEmitter = require('events');
 
 const logger = require('./log');
-const GameService = require('./services/GameService');
+const GameService = require('./services/AshesGameService');
 const { detectBinary } = require('./util');
 
 class GameRouter extends EventEmitter {
@@ -13,7 +13,7 @@ class GameRouter extends EventEmitter {
         super();
 
         this.workers = {};
-        this.gameService = new GameService();
+        this.gameService = new GameService(configService);
 
         this.subscriber = redis.createClient(configService.getValue('redisUrl'));
         this.publisher = redis.createClient(configService.getValue('redisUrl'));

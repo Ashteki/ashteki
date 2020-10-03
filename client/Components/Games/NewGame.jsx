@@ -106,7 +106,6 @@ const NewGame = ({
                                     name: `${getParticipantName(
                                         match.player1_id
                                     )} vs ${getParticipantName(match.player2_id)}`,
-                                    challonge: { matchId: match.id, tournamentId: tournament.id },
                                     tournament: true
                                 })
                             );

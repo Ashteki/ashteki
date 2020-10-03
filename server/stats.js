@@ -1,11 +1,7 @@
-/*eslint no-console: 0*/
-
 const _ = require('underscore');
-const monk = require('monk');
-
 const Constants = require('./constants.js');
-const GameService = require('./services/GameService.js');
-const config = require('config');
+const GameService = require('./services/AshesGameService.js');
+const ConfigService = require('./services/ConfigService.js');
 
 const bannedDecks = [
     'flaregas-spawn-of-conflascoot',
@@ -13,8 +9,7 @@ const bannedDecks = [
     'khyrmn-hierophant-of-the-nihilistic-haunt'
 ];
 
-let db = monk(config.dbPath);
-let gameService = new GameService(db);
+let gameService = new GameService(new ConfigService());
 /*
 let args = process.argv.slice(2);
 
@@ -215,8 +210,6 @@ gameService
 
         console.info(rejected);
     })
-    .then(() => db.close())
     .catch((error) => {
         console.log(error);
-        db.close();
     });

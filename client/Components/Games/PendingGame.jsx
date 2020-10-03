@@ -260,8 +260,8 @@ const PendingGame = () => {
                             sendSocketMessage(
                                 'selectdeck',
                                 currentGame.id,
-                                deck.id,
-                                deck.isStandalone
+                                deck._id,
+                                !!deck.precon_id
                             )
                         );
                     }}

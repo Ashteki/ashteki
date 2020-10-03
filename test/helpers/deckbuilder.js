@@ -35,7 +35,7 @@ class DeckBuilder {
             let pack = require(path.join(directory, file));
 
             for (let card of pack.cards) {
-                cards[card.id] = card;
+                cards[card._id] = card;
             }
         }
 

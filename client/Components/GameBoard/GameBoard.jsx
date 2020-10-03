@@ -195,9 +195,11 @@ export class GameBoard extends React.Component {
 
     renderBoard(thisPlayer, otherPlayer) {
         let spectating = !this.props.currentGame.players[this.props.user.username];
-        let thisSpells = thisPlayer.cardPiles.cardsInPlay.filter((card) => card.type == 'artifact');
+        let thisSpells = thisPlayer.cardPiles.cardsInPlay.filter(
+            (card) => card.type == 'Ready Spell'
+        );
         let otherSpells = otherPlayer.cardPiles.cardsInPlay.filter(
-            (card) => card.type == 'artifact'
+            (card) => card.type == 'Ready Spell'
         );
         return [
             <div key='board-middle' className='board-middle'>

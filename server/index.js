@@ -2,7 +2,7 @@ const pmx = require('pmx');
 
 const Server = require('./server');
 const Lobby = require('./lobby');
-const UserService = require('./services/UserService');
+const UserService = require('./services/AshesUserService');
 const ConfigService = require('./services/ConfigService');
 const configService = new ConfigService();
 

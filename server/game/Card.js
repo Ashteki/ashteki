@@ -20,7 +20,7 @@ class Card extends EffectSource {
         this.owner = owner;
         this.cardData = cardData;
 
-        this.id = cardData.id;
+        this.id = cardData.stub;
         this.printedName = cardData.name;
         this.image = cardData.image;
         this.setDefaultController(owner);
@@ -52,10 +52,7 @@ class Card extends EffectSource {
             });
         }
 
-        this.printedHouse = cardData.house;
         this.cardPrintedAmber = cardData.amber;
-        this.maverick = cardData.maverick;
-        this.anomaly = cardData.anomaly;
 
         this.upgrades = [];
         this.parent = null;
@@ -444,18 +441,6 @@ class Card extends EffectSource {
 
     getHouses() {
         let combinedHouses = [];
-
-        if (this.anyEffect('changeHouse')) {
-            combinedHouses = combinedHouses.concat(this.getEffects('changeHouse'));
-        } else {
-            let copyEffect = this.mostRecentEffect('copyCard');
-            combinedHouses.push(copyEffect ? copyEffect.printedHouse : this.printedHouse);
-        }
-
-        if (this.anyEffect('addHouse')) {
-            combinedHouses = combinedHouses.concat(this.getEffects('addHouse'));
-        }
-
         return combinedHouses;
     }
 
@@ -1026,7 +1011,6 @@ class Card extends EffectSource {
         }
 
         let state = {
-            anomaly: this.anomaly,
             id: this.id,
             image: this.image,
             canPlay: !!(
@@ -1045,8 +1029,6 @@ class Card extends EffectSource {
             menu: this.getMenu(),
             name: this.name,
             new: this.new,
-            printedHouse: this.printedHouse,
-            maverick: this.maverick,
             cardPrintedAmber: this.cardPrintedAmber,
             stunned: this.stunned,
             taunt: this.getType() === 'creature' && !!this.getKeywordValue('taunt'),

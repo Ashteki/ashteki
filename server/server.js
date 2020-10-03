@@ -19,7 +19,7 @@ const Sentry = require('@sentry/node');
 const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
 
-const UserService = require('./services/UserService.js');
+const UserService = require('./services/AshesUserService.js');
 const version = require('../version.js');
 
 class Server {

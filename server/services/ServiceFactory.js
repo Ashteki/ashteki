@@ -1,19 +1,23 @@
-const MessageService = require('./MessageService');
-const CardService = require('./CardService');
+const MessageService = require('./AshesMessageService');
+const monk = require('monk');
+const ConfigService = require('./ConfigService');
+const AshesCardService = require('./AshesCardService');
 
 let services = {};
 
 module.exports = {
     messageService: () => {
         if (!services.messageService) {
-            services.messageService = new MessageService();
+            let db = monk(new ConfigService().getValue('mongo'));
+
+            services.messageService = new MessageService(db);
         }
 
         return services.messageService;
     },
     cardService: (configService) => {
         if (!services.cardService) {
-            services.cardService = new CardService(configService);
+            services.cardService = new AshesCardService(configService);
         }
 
         return services.cardService;

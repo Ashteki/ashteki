@@ -17,7 +17,7 @@ import './CardImage.scss';
 const CardImage = ({ card, cardBack }) => {
     const { i18n } = useTranslation();
     let [mergedImage, setMergedImage] = useState('');
-    let { maverick, anomaly, amber, image } = card;
+    let { maverick, anomaly, amber } = card;
 
     if (card.cardPrintedAmber) {
         amber = card.cardPrintedAmber;
@@ -26,7 +26,7 @@ const CardImage = ({ card, cardBack }) => {
     useEffect(() => {
         let imgPath = card.facedown
             ? cardBack
-            : `/img/cards/${i18n.language === 'en' ? '' : i18n.language + '/'}${image}.png`;
+            : `/img/cards/${i18n.language === 'en' ? '' : i18n.language + '/'}${card.id}.png`;
 
         let imagesToMerge = [];
         if (maverick) {
@@ -50,17 +50,7 @@ const CardImage = ({ card, cardBack }) => {
         } else {
             setMergedImage(imgPath);
         }
-    }, [
-        amber,
-        anomaly,
-        i18n.language,
-        maverick,
-        setMergedImage,
-        image,
-        cardBack,
-        card.facedown,
-        card
-    ]);
+    }, [amber, anomaly, i18n.language, maverick, setMergedImage, cardBack, card.facedown, card]);
 
     return (
         <>

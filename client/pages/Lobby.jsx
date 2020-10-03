@@ -88,17 +88,6 @@ const Lobby = () => {
                     <div className='main-header' />
                 </Col>
             </div>
-            <div>
-                {/* <Col sm={{ span: 10, offset: 1 }}>
-                    <a
-                        href='https://challonge.com/tournaments/signup/T0ee0ljEUy'
-                        target='_blank'
-                        rel='noreferrer'
-                    >
-                        <div className='event-banner' />
-                    </a>
-                </Col> */}
-            </div>
             {motd?.message && (
                 <div>
                     <Col sm={{ span: 10, offset: 1 }} className='banner'>

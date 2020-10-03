@@ -9,7 +9,6 @@ class PendingGame {
     constructor(owner, details) {
         this.adaptive = details.adaptive;
         this.allowSpectators = details.allowSpectators;
-        this.challonge = details.challonge;
         this.createdAt = new Date();
         this.expansions = details.expansions;
         this.gameChat = new GameChat(this);
@@ -67,7 +66,6 @@ class PendingGame {
         return {
             id: this.id,
             adaptive: this.adaptive,
-            challonge: this.challonge,
             expansions: this.expansions,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
@@ -346,7 +344,6 @@ class PendingGame {
         return {
             adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
-            challonge: this.challonge,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
@@ -399,7 +396,6 @@ class PendingGame {
         return {
             adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
-            challonge: this.challonge,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,

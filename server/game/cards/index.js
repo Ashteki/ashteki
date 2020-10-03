@@ -18,7 +18,7 @@ function loadFiles(directory) {
     for (let file of files) {
         let card = require('./' + directory + '/' + file);
 
-        cards[card.id] = card;
+        cards[card._id] = card;
     }
 }
 

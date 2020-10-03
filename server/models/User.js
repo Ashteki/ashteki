@@ -7,7 +7,7 @@ class User {
     }
 
     get id() {
-        return this.userData.id;
+        return this.userData._id.toString();
     }
 
     get disabled() {
@@ -56,10 +56,6 @@ class User {
 
     get email() {
         return this.userData.email;
-    }
-
-    get challonge() {
-        return this.userData.challonge;
     }
 
     get verified() {
@@ -141,14 +137,13 @@ class User {
 
     getWireSafeDetails() {
         let user = {
-            id: this.userData.id,
+            id: this.userData._id,
             avatar: this.userData.settings && this.userData.settings.avatar,
             username: this.userData.username,
             email: this.userData.email,
             settings: this.userData.settings,
             permissions: this.userData.permissions,
-            verified: this.userData.verified,
-            challonge: this.userData.challonge
+            verified: this.userData.verified
         };
 
         user = Settings.getUserWithDefaultsSet(user);

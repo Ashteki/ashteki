@@ -14,7 +14,7 @@ const restrictedList = {
 
 class RestrictedList {
     validate(cards) {
-        let cardsOnRestrictedList = cards.filter((card) => restrictedList.cards.includes(card.id));
+        let cardsOnRestrictedList = cards.filter((card) => restrictedList.cards.includes(card._id));
 
         let errors = [];
 

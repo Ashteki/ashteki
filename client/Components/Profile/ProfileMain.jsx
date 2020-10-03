@@ -171,43 +171,6 @@ const ProfileMain = ({ user, formProps }) => {
                     </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
-            <Form.Row>
-                <Form.Group as={Col} md='6' controlId='formGridChallongeKey'>
-                    <Form.Label>{t('Challonge API Key')}</Form.Label>
-                    <Form.Control
-                        name='challongeApiKey'
-                        type='password'
-                        placeholder={t('Enter challonge API key')}
-                        value={formProps.values.challongeApiKey}
-                        onChange={formProps.handleChange}
-                        onBlur={formProps.handleBlur}
-                        isInvalid={
-                            formProps.touched.challongeApiKey && !!formProps.errors.challongeApiKey
-                        }
-                    />
-                    <Form.Control.Feedback type='invalid'>
-                        {formProps.errors.challongeApiKey}
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col} md='6' controlId='formGridChallongeDomain'>
-                    <Form.Label>{t('Challonge API Subdomain')}</Form.Label>
-                    <Form.Control
-                        name='challongeApiSubdomain'
-                        type='password'
-                        placeholder={t('Challonge API subdomain')}
-                        value={formProps.values.challongeApiSubdomain}
-                        onChange={formProps.handleChange}
-                        onBlur={formProps.handleBlur}
-                        isInvalid={
-                            formProps.touched.challongeApiSubdomain &&
-                            !!formProps.errors.challongeApiSubdomain
-                        }
-                    />
-                    <Form.Control.Feedback type='invalid'>
-                        {formProps.errors.challongeApiSubdomain}
-                    </Form.Control.Feedback>
-                </Form.Group>
-            </Form.Row>
         </Panel>
     );
 };

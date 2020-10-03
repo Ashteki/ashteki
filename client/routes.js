@@ -19,7 +19,6 @@ import Profile from './pages/Profile';
 import NewsAdmin from './pages/NewsAdmin';
 import MotdAdmin from './pages/MotdAdmin';
 import GameLobby from './Components/Games/GameLobby';
-import TournamentLobby from './Components/Games/TournamentLobby';
 import GameBoard from './Components/GameBoard/GameBoard.jsx';
 import BlockList from './pages/BlockList';
 import NodesAdmin from './pages/NodesAdmin';
@@ -65,11 +64,6 @@ const routes = [
                 token={context.params.token}
             />
         )
-    },
-    {
-        path: '/tournamentlobby',
-        action: () => <TournamentLobby key='tournamentlobby' />,
-        permission: 'canManageTournaments'
     },
     { path: '/security', action: () => <Security key='security' /> },
     { path: '/users', action: () => <UserAdmin key='useradmin' />, permission: 'canManageUsers' },

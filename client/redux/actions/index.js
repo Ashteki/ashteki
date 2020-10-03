@@ -9,5 +9,4 @@ export * from './admin';
 export * from './user';
 export * from './account';
 export * from './banlist';
-export * from './challonge';
 export * from './api';

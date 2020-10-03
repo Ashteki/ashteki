@@ -1,9 +1,10 @@
 const passport = require('passport');
 
-const GameService = require('../services/GameService.js');
+const GameService = require('../services/AshesGameService.js');
+const ConfigService = require('../services/ConfigService.js');
 const { wrapAsync } = require('../util.js');
 
-let gameService = new GameService();
+let gameService = new GameService(new ConfigService());
 
 module.exports.init = function (server) {
     server.get(

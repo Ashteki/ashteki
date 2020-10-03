@@ -1,10 +1,14 @@
 const passport = require('passport');
+const monk = require('monk');
 
-const NewsService = require('../services/NewsService.js');
+// const NewsService = require('../services/NewsService.js');
 const logger = require('../log.js');
 const { wrapAsync } = require('../util.js');
+const AshesNewsService = require('../services/AshesNewsService.js');
+const ConfigService = require('../services/ConfigService');
 
-let newsService = new NewsService();
+let db = monk(new ConfigService().getValue('mongo'));
+let newsService = new AshesNewsService(db);
 
 module.exports.init = function (server) {
     server.get(

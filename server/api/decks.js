@@ -1,12 +1,12 @@
 const passport = require('passport');
 
 const ConfigService = require('../services/ConfigService');
-const DeckService = require('../services/DeckService.js');
+const AshesDeckService = require('../services/AshesDeckService.js');
 const { wrapAsync } = require('../util.js');
 const logger = require('../log.js');
 const configService = new ConfigService();
 
-const deckService = new DeckService(configService);
+const deckService = new AshesDeckService(configService);
 
 module.exports.init = function (server) {
     server.get(
@@ -15,11 +15,11 @@ module.exports.init = function (server) {
             let decks;
 
             try {
-                decks = await deckService.getStandaloneDecks();
+                decks = await deckService.getPreconDecks();
             } catch (err) {
-                logger.error('Failed to get standalone decks', err);
+                logger.error('Failed to get precon decks', err);
 
-                throw new Error('Failed to get standalone decks');
+                throw new Error('Failed to get precon decks');
             }
 
             res.send({ success: true, decks: decks });
@@ -160,7 +160,7 @@ module.exports.init = function (server) {
             }
 
             deck.verified = true;
-            deck.id = id;
+            deck._id = id;
 
             await deckService.update(deck);
             res.send({ success: true, message: 'Deck verified successfully', deckId: id });

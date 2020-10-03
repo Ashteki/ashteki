@@ -1,9 +1,10 @@
 const passport = require('passport');
 
-const BanlistService = require('../services/BanlistService');
+const BanlistService = require('../services/AshesBanlistService');
+const ConfigService = require('../services/ConfigService');
 const { wrapAsync } = require('../util');
 
-let banlistService = new BanlistService();
+let banlistService = new BanlistService(new ConfigService());
 
 module.exports.init = function (server) {
     server.get(
@@ -35,7 +36,8 @@ module.exports.init = function (server) {
 
             entry = {
                 ip: req.body.ip,
-                userId: req.user.id
+                userId: req.user.id,
+                username: req.user.username
             };
 
             banlistService

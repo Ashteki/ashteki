@@ -16,12 +16,6 @@ export const LeftMenu = [
     //{ path: '/matches', title: 'Matches', showOnlyWhenLoggedIn: true },
     { path: '/play', title: 'Play' },
     {
-        path: '/tournamentlobby',
-        title: 'Tournament',
-        showOnlyWhenLoggedIn: true,
-        permission: 'canManageTournaments'
-    },
-    {
         title: 'Help',
         childItems: [
             { path: '/how-to-play', title: 'How To Play' },

@@ -188,24 +188,6 @@ class UserService extends EventEmitter {
             await db.queryTran(client, 'ROLLBACK');
         }
 
-        if (user.challonge) {
-            query =
-                'INSERT INTO "ChallongeSettings" ("ApiKey", "SubDomain", "UserId") VALUES ($1, $2, $3) ' +
-                'ON CONFLICT ("UserId") DO UPDATE SET "ApiKey" = $1, "SubDomain" = $2';
-
-            try {
-                await db.queryTran(client, query, [
-                    user.challonge.key,
-                    user.challonge.subdomain,
-                    user.id
-                ]);
-            } catch (err) {
-                logger.error('Failed to update user', err);
-
-                await db.queryTran(client, 'ROLLBACK');
-            }
-        }
-
         if (user.password && user.password !== '') {
             try {
                 this.setPassword(user, user.password);
@@ -557,21 +539,6 @@ class UserService extends EventEmitter {
             user.permissions = this.mapPermissions(permissions);
         } else {
             user.permissions = {};
-        }
-
-        let challonge;
-        try {
-            challonge = await db.query('SELECT * FROM "ChallongeSettings" WHERE "UserId" = $1', [
-                user.id
-            ]);
-        } catch (err) {
-            logger.error('Failed to lookup permissions for user', err);
-        }
-
-        if (challonge && challonge.length > 0) {
-            user.challonge = { key: challonge[0].ApiKey, subdomain: challonge[0].SubDomain };
-        } else {
-            user.challonge = { key: '', subdomain: '' };
         }
     }
 

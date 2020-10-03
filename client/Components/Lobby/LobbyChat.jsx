@@ -40,7 +40,8 @@ const LobbyChat = ({ messages, isModerator, onRemoveMessageClick }) => {
 
         for (let message of messages) {
             if (!message.user) {
-                return undefined;
+                continue;
+                // return undefined;
             }
 
             const formattedTime = moment(message.time).format('YYYYMMDDHHmm');

@@ -197,8 +197,8 @@ class Player extends GameObject {
     prepareDecks() {
         let deck = new Deck(this.deckData);
         let preparedDeck = deck.prepare(this);
-        this.houses = preparedDeck.houses;
         this.deck = preparedDeck.cards;
+        this.archives = preparedDeck.conjurations;
         this.allCards = preparedDeck.cards;
         this.diceCounts = preparedDeck.diceCounts;
     }
@@ -329,7 +329,12 @@ class Player extends GameObject {
             artifact: [...cardLocations, 'play area'],
             action: [...cardLocations, 'being played'],
             creature: [...cardLocations, 'play area'],
-            upgrade: [...cardLocations, 'play area']
+            upgrade: [...cardLocations, 'play area'],
+            'Action Spell': [...cardLocations, 'being played'],
+            'Alteration Spell': [...cardLocations, 'play area'],
+            'Ready Spell': [...cardLocations, 'spellboard'],
+            Ally: [...cardLocations, 'play area'],
+            Conjuration: [...cardLocations, 'play area']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);

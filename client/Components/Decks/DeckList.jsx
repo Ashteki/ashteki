@@ -3,14 +3,14 @@ import { Col, Form } from 'react-bootstrap';
 import moment from 'moment';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import filterFactory, { textFilter, multiSelectFilter } from 'react-bootstrap-table2-filter';
+import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import debounce from 'lodash.debounce';
 import $ from 'jquery';
 
-import Archon from './Archon';
+import Phoenixborn from './Phoenixborn';
 import { loadDecks, selectDeck, loadStandaloneDecks } from '../../redux/actions';
 
 import './DeckList.scss';
@@ -128,7 +128,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
         mode: 'radio',
         clickToSelect: true,
         hideSelectColumn: true,
-        selected: decks && selectedDeck ? [decks.find((d) => d.id === selectedDeck.id)?.id] : [],
+        selected: decks && selectedDeck ? [decks.find((d) => d._id === selectedDeck._id)?._id] : [],
         classes: 'selected-deck',
         onSelect: (deck, isSelect) => {
             if (isSelect) {
@@ -196,7 +196,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
             // eslint-disable-next-line react/display-name
             formatter: (_, row) => (
                 <div className='deck-image'>
-                    <Archon deck={row} />
+                    <Phoenixborn pbStub={row.phoenixborn} />
                 </div>
             )
         },
@@ -210,25 +210,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
             filter: textFilter({
                 getFilter: (filter) => {
                     nameFilter.current = filter;
-                }
-            })
-        },
-        {
-            dataField: 'expansion',
-            text: t('Set'),
-            headerStyle: {
-                width: '14%'
-            },
-            align: 'center',
-            sort: !standaloneDecks,
-            // eslint-disable-next-line react/display-name
-            formatter: (cell) => (
-                <img className='deck-expansion' src={Constants.SetIconPaths[cell]} />
-            ),
-            filter: multiSelectFilter({
-                options: {},
-                getFilter: (filter) => {
-                    expansionFilter.current = filter;
                 }
             })
         },

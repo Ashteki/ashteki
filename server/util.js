@@ -1,5 +1,8 @@
 const request = require('request');
 
+function escapeRegex(regex) {
+    return regex.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
+}
 function httpRequest(url, options = {}) {
     return new Promise((resolve, reject) => {
         request(url, options, (err, res, body) => {
@@ -59,6 +62,7 @@ function detectBinary(state, path = '', results = []) {
 
 module.exports = {
     detectBinary: detectBinary,
+    escapeRegex: escapeRegex,
     httpRequest: httpRequest,
     wrapAsync: wrapAsync
 };

@@ -9,8 +9,8 @@ const version = moment(require('../version').releaseDate);
 const PendingGame = require('./pendinggame');
 const GameRouter = require('./gamerouter');
 const ServiceFactory = require('./services/ServiceFactory');
-const DeckService = require('./services/DeckService');
-const UserService = require('./services/UserService');
+const AshesDeckService = require('./services/AshesDeckService');
+const UserService = require('./services/AshesUserService');
 const ConfigService = require('./services/ConfigService');
 const User = require('./models/User');
 const { sortBy } = require('./Array');
@@ -24,7 +24,7 @@ class Lobby {
         this.messageService = options.messageService || ServiceFactory.messageService();
         this.cardService = options.cardService || ServiceFactory.cardService(options.configService);
         this.userService = options.userService || new UserService(options.configService);
-        this.deckService = options.deckService || new DeckService(this.configService);
+        this.deckService = options.deckService || new AshesDeckService(this.configService);
         this.router = options.router || new GameRouter(this.configService);
 
         this.router.on('onGameClosed', this.onGameClosed.bind(this));
@@ -331,7 +331,8 @@ class Lobby {
 
     sendFilteredMessages(socket) {
         this.messageService.getLastMessagesForUser(socket.user).then((messages) => {
-            let messagesToSend = this.filterMessages(messages, socket);
+            let messagesToSend = messages;
+            //  this.filterMessages(messages, socket);
             socket.send('lobbymessages', messagesToSend.reverse());
         });
     }
@@ -511,7 +512,7 @@ class Lobby {
         }
 
         let game = new PendingGame(socket.user, gameDetails);
-        game.newGame(socket.id, socket.user, gameDetails.password, !game.challonge);
+        game.newGame(socket.id, socket.user, gameDetails.password, true);
         socket.joinChannel(game.id);
 
         this.sendGameState(game);
@@ -668,15 +669,15 @@ class Lobby {
         }
 
         let chatMessage = { message: message, time: new Date() };
-        let newMessage = await this.messageService.addMessage(chatMessage, socket.user);
-        newMessage.user = socket.user.getShortSummary();
+        chatMessage.user = socket.user.getShortSummary();
+        await this.messageService.addMessage(chatMessage, socket.user);
 
         for (let s of Object.values(this.sockets)) {
             if (s.user && s.user.hasUserBlocked(socket.user)) {
                 continue;
             }
 
-            s.send('lobbychat', newMessage);
+            s.send('lobbychat', chatMessage);
         }
     }
 
@@ -727,19 +728,18 @@ class Lobby {
         return Promise.all([
             this.cardService.getAllCards(),
             isStandalone
-                ? this.deckService.getStandaloneDeckById(deckId)
+                ? this.deckService.getPreconDeckById(deckId)
                 : this.deckService.getById(deckId)
         ])
             .then((results) => {
                 let [cards, deck] = results;
 
                 for (let card of deck.cards) {
-                    let house = card.house;
-
                     card.card = cards[card.id];
-                    if (house) {
-                        card.house = house;
-                    }
+                }
+
+                for (let conj of deck.conjurations) {
+                    conj.card = cards[conj.id];
                 }
 
                 let deckUsageLevel = 0;
@@ -932,7 +932,7 @@ class Lobby {
         this.broadcastGameMessage('newgame', newGame);
 
         let promises = [
-            this.onSelectDeck(socket, newGame.id, owner.deck.id, owner.deck.isStandalone)
+            this.onSelectDeck(socket, newGame.id, owner.deck._id, !!owner.deck.precon_id)
         ];
 
         for (let player of Object.values(game.getPlayers()).filter(
@@ -949,7 +949,7 @@ class Lobby {
 
             newGame.join(socket.id, player.user);
             promises.push(
-                this.onSelectDeck(socket, newGame.id, player.deck.id, player.deck.isStandalone)
+                this.onSelectDeck(socket, newGame.id, player.deck._id, !!player.deck.precon_id)
             );
         }
 

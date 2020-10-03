@@ -35,20 +35,6 @@ export const Account = Object.freeze({
     ForgotPasswordResponse: 'FORGOT_PASSWORD_RESPONSE'
 });
 
-export const Challonge = Object.freeze({
-    RequestTournaments: 'REQUEST_TOURNAMENTS',
-    RecevieTournaments: 'RECEIVE_TOURNAMENTS',
-    RequestFullTournament: 'REQUEST_FULL_TOURNAMENT',
-    ReceiveFullTournament: 'RECEIVE_FULL_TOURNAMENT',
-    RequestMatches: 'REQUEST_MATCHES',
-    ReceiveMatches: 'RECEIVE_MATCHES',
-    RequestParticipants: 'REQUEST_PARTICIPANTS',
-    ReceiveParticipants: 'RECEIVE_PARTICIPANTS',
-    CreateAttachments: 'CREATE_ATTACHMENTS',
-    ReceiveAttachments: 'RECEIVE_ATTACHMENTS',
-    ClearMessage: 'CLEAR_CHALLONGE_MESSAGE'
-});
-
 export const Admin = Object.freeze({
     FindUser: 'ADMIN_FINDUSER',
     UserFound: 'ADMIN_USERFOUND',

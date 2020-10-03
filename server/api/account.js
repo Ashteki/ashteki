@@ -10,9 +10,9 @@ const { fabric } = require('fabric');
 
 const logger = require('../log.js');
 const { wrapAsync } = require('../util.js');
-const UserService = require('../services/UserService');
+const UserService = require('../services/AshesUserService');
 const ConfigService = require('../services/ConfigService');
-const BanlistService = require('../services/BanlistService');
+const BanlistService = require('../services/AshesBanlistService');
 const PatreonService = require('../services/PatreonService');
 const util = require('../util.js');
 
@@ -211,7 +211,7 @@ async function processCustomBackground(newUser, user) {
 
 module.exports.init = function (server, options) {
     userService = options.userService || new UserService(options.configService);
-    banlistService = new BanlistService(options.db, configService);
+    banlistService = new BanlistService(configService);
     patreonService = new PatreonService(
         configService.getValueForSection('lobby', 'patreonClientId'),
         configService.getValueForSection('lobby', 'patreonSecret'),
@@ -341,7 +341,6 @@ module.exports.init = function (server, options) {
                 username: req.body.username,
                 avatar: req.body.username,
                 email: req.body.email,
-                challonge: req.body.challonge,
                 registerIp: ip
             };
 
@@ -621,17 +620,15 @@ module.exports.init = function (server, options) {
 
             let token = req.body.token;
 
-            let user = await userService.getFullUserByUsername(token.username);
+            let user = await userService.getUserById(token.userId);
             if (!user) {
                 res.send({ success: false, message: 'Invalid refresh token' });
 
                 return next();
             }
 
-            if (user.username !== token.username) {
-                logger.error(
-                    `Username ${user.username} did not match token username ${token.username}`
-                );
+            if (user.id !== token.userId) {
+                logger.error(`Username ${user.id} did not match token Id ${token.userId}`);
                 res.send({ success: false, message: 'Invalid refresh token' });
 
                 return next();
@@ -876,8 +873,6 @@ module.exports.init = function (server, options) {
             if (userToSet.password && userToSet.password !== '') {
                 user.password = await bcrypt.hash(userToSet.password, 10);
             }
-
-            user.challonge = userToSet.challonge;
 
             if (userToSet.avatar) {
                 user.settings.avatar = await processAvatar(userToSet, user);
