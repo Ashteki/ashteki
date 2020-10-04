@@ -337,7 +337,7 @@ class Player extends GameObject {
             upgrade: [...cardLocations, 'play area'],
             'Action Spell': [...cardLocations, 'being played'],
             'Alteration Spell': [...cardLocations, 'play area'],
-            'Ready Spell': [...cardLocations, 'spellboard'],
+            'Ready Spell': [...cardLocations, 'play area'],
             Ally: [...cardLocations, 'play area'],
             Conjuration: [...cardLocations, 'play area']
         };

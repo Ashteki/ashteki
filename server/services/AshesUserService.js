@@ -303,6 +303,10 @@ class UserService extends EventEmitter {
         }
     }
 
+    async cleanupRefreshTokens() {
+        this.refreshTokens.remove({ expiry: { $lte: new Date() } });
+    }
+
     async setSupporterStatus(userId, isSupporter) {
         const supporterRoleName = 'Supporter';
         let supporterRoles = this.roles.find({ userId: userId, Name: supporterRoleName });

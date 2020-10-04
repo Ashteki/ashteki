@@ -50,7 +50,7 @@ class BasePlayAction extends BaseAbility {
     }
 
     displayMessage(context) {
-        context.game.addMessage('{0} plays {1}', context.player, context.source);
+        context.game.addMessage('{0} plays {1}', context.player, context.source.name);
     }
 
     meetsRequirements(context = this.createContext(), ignoredRequirements = []) {

@@ -198,8 +198,14 @@ export class GameBoard extends React.Component {
         let thisSpells = thisPlayer.cardPiles.cardsInPlay.filter(
             (card) => card.type == 'Ready Spell'
         );
+        let thisUnits = thisPlayer.cardPiles.cardsInPlay.filter(
+            (card) => card.type != 'Ready Spell'
+        );
         let otherSpells = otherPlayer.cardPiles.cardsInPlay.filter(
             (card) => card.type == 'Ready Spell'
+        );
+        let otherUnits = otherPlayer.cardPiles.cardsInPlay.filter(
+            (card) => card.type != 'Ready Spell'
         );
         return [
             <div key='board-middle' className='board-middle'>
@@ -245,7 +251,7 @@ export class GameBoard extends React.Component {
                     <div className='play-area'>
                         <PlayerBoard
                             cardBackUrl={this.props.player2CardBack}
-                            cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
+                            cardsInPlay={otherUnits}
                             onCardClick={this.onCardClick}
                             onMenuItemClick={this.onMenuItemClick}
                             onMouseOut={this.onMouseOut}
@@ -260,7 +266,7 @@ export class GameBoard extends React.Component {
                         >
                             <PlayerBoard
                                 cardBackUrl={this.props.player1CardBack}
-                                cardsInPlay={thisPlayer.cardPiles.cardsInPlay}
+                                cardsInPlay={thisUnits}
                                 manualMode={this.props.currentGame.manualMode}
                                 onCardClick={this.onCardClick}
                                 onMenuItemClick={this.onMenuItemClick}

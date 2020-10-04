@@ -10,7 +10,7 @@ class PutIntoPlayAction extends CardGameAction {
 
     setup() {
         this.name = 'putIntoPlay';
-        this.targetType = ['Ally', 'creature', 'artifact'];
+        this.targetType = ['Ally', 'Ready Spell', 'Action Spell'];
         this.effectMsg = 'put {0} into play';
     }
 
@@ -46,18 +46,6 @@ class PutIntoPlayAction extends CardGameAction {
 
             if (this.myControl) {
                 card.updateEffectContexts();
-            }
-
-            // if (!this.ready && !card.anyEffect('entersPlayReady')) {
-            //     card.exhaust();
-            // }
-
-            if (card.anyEffect('entersPlayStunned')) {
-                card.stun();
-            }
-
-            if (card.anyEffect('entersPlayEnraged')) {
-                card.enrage();
             }
         });
     }
