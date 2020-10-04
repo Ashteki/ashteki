@@ -694,6 +694,7 @@ class Lobby {
             .then((results) => {
                 let [cards, deck] = results;
 
+                // add card prototypes to deckdata cardcount
                 for (let card of deck.cards) {
                     card.card = cards[card.id];
                 }
@@ -734,12 +735,19 @@ class Lobby {
             .then((results) => {
                 let [cards, deck] = results;
 
+                // add drawdeck card prototypes to deckdata cardcount
                 for (let card of deck.cards) {
                     card.card = cards[card.id];
                 }
 
+                // add conjuration card prototypes to deckdata cardcount
                 for (let conj of deck.conjurations) {
                     conj.card = cards[conj.id];
+                }
+
+                // add phoenixborn card prototypes to deckdata cardcount
+                for (let pb of deck.phoenixborn) {
+                    pb.card = cards[pb.id];
                 }
 
                 let deckUsageLevel = 0;

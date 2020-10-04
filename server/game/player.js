@@ -201,6 +201,7 @@ class Player extends GameObject {
         this.archives = preparedDeck.conjurations;
         this.allCards = preparedDeck.cards;
         this.diceCounts = preparedDeck.diceCounts;
+        this.phoenixborn = preparedDeck.phoenixborn;
     }
 
     /**
@@ -788,7 +789,8 @@ class Player extends GameObject {
             wins: this.wins,
             dice: this.getSummaryForDiceList(this.dice, activePlayer),
             diceCounts: this.diceCounts,
-            actions: this.actions
+            actions: this.actions,
+            phoenixborn: this.phoenixborn.getSummary(activePlayer)
         };
 
         if (isActivePlayer) {

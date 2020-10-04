@@ -238,6 +238,7 @@ export class GameBoard extends React.Component {
                         side='top'
                         spells={otherSpells}
                         spectating={spectating}
+                        phoenixborn={otherPlayer.phoenixborn}
                     />
                 </div>
                 <div className='board-inner'>
@@ -294,6 +295,7 @@ export class GameBoard extends React.Component {
                         onDrawPopupChange={this.handleDrawPopupChange}
                         onShuffleClick={this.onShuffleClick}
                         onDragDrop={this.onDragDrop}
+                        phoenixborn={thisPlayer.phoenixborn}
                     />
                 </div>
                 <div className='player-home-row our-side'>

@@ -1,80 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-
 import CardPile from './CardPile';
 import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
-import { buildArchon, buildDeckList } from '../../archonMaker';
-import IdentityDefault from '../../assets/img/idbacks/identity.jpg';
-import { setCardBack } from '../../redux/actions';
 import DrawDeck from './DrawDeck';
-import IdentityCard from './IdentityCard';
 import spellback from '../../assets/img/cardback-spell.png';
+import Card from './Card';
 
 import './PlayerRow.scss';
 
 const PlayerPBRow = ({
     cardSize,
-    deckData,
     discard,
     drawDeck,
-    hideDeckLists,
     isMe,
-    gameFormat,
-    language,
     manualMode,
     numDeckCards,
     onCardClick,
     onDragDrop,
     onMouseOver,
     onMouseOut,
-    player,
     side,
     spells,
     spectating,
     onDrawPopupChange,
     onShuffleClick,
-    showDeck
+    showDeck,
+    phoenixborn,
+    onMenuItemClick
 }) => {
     const { t } = useTranslation();
-    const [deckListUrl, setDeckListUrl] = useState(IdentityDefault);
-    const cards = useSelector((state) => state.cards.cards);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        let noDeckLists = false;
-
-        if ((gameFormat === 'sealed' && !isMe) || hideDeckLists) {
-            noDeckLists = true;
-        }
-
-        buildArchon(deckData, noDeckLists).then((cardBackUrl) => {
-            dispatch(setCardBack(player, cardBackUrl));
-        });
-
-        if (noDeckLists) {
-            setDeckListUrl(IdentityDefault);
-        } else {
-            buildDeckList(deckData, language, t, cards)
-                .then((deckListUrl) => {
-                    setDeckListUrl(deckListUrl);
-                })
-                .catch(() => {
-                    setDeckListUrl(IdentityDefault);
-                });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cards, deckData.uuid, gameFormat, hideDeckLists, isMe, language, player, t]);
 
     const renderDroppablePile = (source, child) => {
-        return isMe ? (
-            <Droppable onDragDrop={onDragDrop} source={source} manualMode={manualMode}>
-                {child}
-            </Droppable>
-        ) : (
-            child
-        );
+        if (isMe) {
+            return (
+                <Droppable onDragDrop={onDragDrop} source={source} manualMode={manualMode}>
+                    {child}
+                </Droppable>
+            );
+        } else {
+            return child;
+        }
     };
 
     let cardPileProps = {
@@ -130,21 +96,24 @@ const PlayerPBRow = ({
         />
     );
 
-    let identity = (
-        <IdentityCard
-            className='identity'
-            deckListUrl={deckListUrl}
-            size={cardSize}
-            onMouseOut={onMouseOut}
-            onMouseOver={onMouseOver}
-        />
-    );
+    let identityCard = <div className='card-placeholder' />;
+    if (phoenixborn) {
+        identityCard = (
+            <Card
+                card={phoenixborn}
+                onMouseOver={onMouseOver}
+                onMouseOut={onMouseOut}
+                onMenuItemClick={onMenuItemClick}
+                size={cardSize}
+            />
+        );
+    }
 
     return (
         <div className='player-home-row-container pt-1'>
             {renderDroppablePile('discard', discardToRender)}
             {renderDroppablePile('deck', drawDeckToRender)}
-            {identity}
+            {identityCard}
             {renderDroppablePile('spellboard', spellboard)}
         </div>
     );

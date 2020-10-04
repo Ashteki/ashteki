@@ -46,7 +46,8 @@ class Deck {
         var result = {
             conjurations: [],
             cards: [],
-            diceCounts: []
+            diceCounts: [],
+            phenixborn: null
         };
 
         result.houses = this.data.houses;
@@ -66,6 +67,15 @@ class Deck {
                 card.setupAbilities();
                 card.location = 'archives';
                 result.conjurations.push(card);
+            }
+        });
+
+        this.eachRepeatedCard(this.data.phoenixborn, (pbData) => {
+            let pbCard = this.createCard(player, pbData);
+            if (pbCard) {
+                pbCard.setupAbilities();
+                pbCard.location = 'play area';
+                result.phoenixborn = pbCard;
             }
         });
 

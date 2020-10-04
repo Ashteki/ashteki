@@ -196,7 +196,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
             // eslint-disable-next-line react/display-name
             formatter: (_, row) => (
                 <div className='deck-image'>
-                    <Phoenixborn pbStub={row.phoenixborn} />
+                    <Phoenixborn pbStub={row.phoenixborn[0].id} />
                 </div>
             )
         },
