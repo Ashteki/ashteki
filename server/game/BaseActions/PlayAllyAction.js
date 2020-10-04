@@ -3,7 +3,7 @@ const BasePlayAction = require('./BasePlayAction');
 
 class PlayAllyAction extends BasePlayAction {
     constructor(card) {
-        super(card, [Costs.play(), Costs.die({ level: 'basic' })]);
+        super(card, [Costs.play()]);
         this.title = 'Play this ally';
     }
 

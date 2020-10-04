@@ -1,9 +1,22 @@
 const AbilityContext = require('../AbilityContext');
 const BaseAbility = require('../baseability.js');
+const Costs = require('../costs');
+
+function parseCosts(costData) {
+    const costs = [];
+    for (let costItem of costData) {
+        if (costItem == '[[main]]') {
+            costs.push(Costs.mainAction());
+        }
+    }
+    return costs;
+}
 
 class BasePlayAction extends BaseAbility {
     constructor(card, costs = [], target) {
-        let properties = { cost: costs };
+        let cardCosts = parseCosts(card.cardData.cost);
+
+        let properties = { cost: Object.assign(costs, cardCosts) };
         if (target) {
             properties.target = target;
         }

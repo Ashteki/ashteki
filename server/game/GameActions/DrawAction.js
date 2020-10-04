@@ -5,6 +5,8 @@ class DrawAction extends PlayerAction {
         this.amount = 1;
         this.refill = false;
         this.bonus = false;
+        this.damageIfEmpty = false;
+        this.singleCopy = false;
     }
 
     setup() {
@@ -51,7 +53,7 @@ class DrawAction extends PlayerAction {
             },
             (event) => {
                 if (event.amount > 0) {
-                    event.player.drawCardsToHand(amount);
+                    event.player.drawCardsToHand(amount, this.damageIfEmpty);
                 }
             }
         );

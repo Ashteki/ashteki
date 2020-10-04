@@ -3,7 +3,7 @@ const BasePlayAction = require('./BasePlayAction');
 
 class PlayArtifactAction extends BasePlayAction {
     constructor(card) {
-        super(card, [Costs.play(), Costs.spendMainAction()]);
+        super(card, [Costs.play(), Costs.mainAction()]);
         this.title = 'Play this artifact';
     }
 

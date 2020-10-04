@@ -7,6 +7,7 @@ const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
 const Die = require('./Die');
+const GameActions = require('./GameActions');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -153,7 +154,7 @@ class Player extends GameObject {
      * Draws the passed number of cards from the top of the deck into this players hand, shuffling if necessary
      * @param {number} numCards
      */
-    drawCardsToHand(numCards) {
+    drawCardsToHand(numCards, damageIfEmpty) {
         let remainingCards = 0;
 
         if (numCards > this.deck.length) {
@@ -162,12 +163,17 @@ class Player extends GameObject {
         }
 
         for (let card of this.deck.slice(0, numCards)) {
-            this.moveCard(card, 'hand');
+            // only one copy
+            if (!this.hand.some((c) => c.name == card.name)) this.moveCard(card, 'hand');
         }
 
         if (remainingCards > 0 && this.discard.length > 0) {
-            this.deckRanOutOfCards();
-            this.game.queueSimpleStep(() => this.drawCardsToHand(remainingCards));
+            if (damageIfEmpty) {
+                GameActions.AddTokenAction({ amount: numCards }, 'damage').resolve(
+                    this,
+                    this.game.getFrameworkContext()
+                );
+            }
         }
     }
 

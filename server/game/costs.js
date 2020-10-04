@@ -52,7 +52,7 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.loseAmber({ amount: amount }).getEvent(context.player, context)
     }),
-    spendMainAction: () => ({
+    mainAction: () => ({
         canPay: (context) => context.player.actions.main,
         payEvent: (context) =>
             context.game.actions.spendMainAction().getEvent(context.player, context)
