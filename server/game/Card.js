@@ -8,7 +8,7 @@ const TriggeredAbility = require('./triggeredability');
 const DiscardAction = require('./BaseActions/DiscardAction');
 const PlayAction = require('./BaseActions/PlayAction');
 const PlayAllyAction = require('./BaseActions/PlayAllyAction');
-const PlayArtifactAction = require('./BaseActions/PlayArtifactAction');
+const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
 const ResolveFightAction = require('./GameActions/ResolveFightAction');
 const ResolveReapAction = require('./GameActions/ResolveReapAction');
@@ -890,8 +890,8 @@ class Card extends EffectSource {
         if (location === 'hand') {
             if (this.type === 'Ally') {
                 actions.push(new PlayAllyAction(this));
-            } else if (this.type === 'artifact') {
-                actions.push(new PlayArtifactAction(this));
+            } else if (this.type === 'Ready Spell') {
+                actions.push(new PlayReadySpellAction(this));
             } else if (this.type === 'action') {
                 actions.push(new PlayAction(this));
             }

@@ -1,10 +1,10 @@
 const Costs = require('../costs');
 const BasePlayAction = require('./BasePlayAction');
 
-class PlayArtifactAction extends BasePlayAction {
+class PlayReadySpellAction extends BasePlayAction {
     constructor(card) {
-        super(card, [Costs.play(), Costs.mainAction()]);
-        this.title = 'Play this artifact';
+        super(card, [Costs.play()]);
+        this.title = 'Play this ready spell';
     }
 
     addSubEvent(event, context) {
@@ -14,4 +14,4 @@ class PlayArtifactAction extends BasePlayAction {
     }
 }
 
-module.exports = PlayArtifactAction;
+module.exports = PlayReadySpellAction;

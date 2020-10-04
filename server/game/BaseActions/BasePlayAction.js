@@ -5,11 +5,34 @@ const Costs = require('../costs');
 function parseCosts(costData) {
     const costs = [];
     for (let costItem of costData) {
-        if (costItem == '[[main]]') {
-            costs.push(Costs.mainAction());
+        switch (costItem) {
+            case '[[main]]':
+                costs.push(Costs.mainAction());
+                break;
+            case '[[side]]':
+                costs.push(Costs.mainAction());
+                break;
+            case '[[exhaust]]':
+                costs.push(Costs.exhaust());
+                break;
+            default:
+                addDiceCost(costItem, costs);
         }
     }
     return costs;
+}
+
+function addDiceCost(diceCost, costs) {
+    // examples:
+    // "1 [[charm:class]]",
+    // "1 [[basic]]"
+    // "# [[type||missing:level]]"
+    const parts = diceCost.split(' ');
+    const def = parts[1].replace('[[', '').replace(']]', '').split(':');
+    const level = def.length > 1 ? def[1] : def[0];
+    const magic = def.length > 1 ? def[0] : null;
+    const params = { count: parts[0], magic: magic, level: level };
+    costs.push(Costs.die(params));
 }
 
 class BasePlayAction extends BaseAbility {

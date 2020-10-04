@@ -154,26 +154,24 @@ class Player extends GameObject {
      * Draws the passed number of cards from the top of the deck into this players hand, shuffling if necessary
      * @param {number} numCards
      */
-    drawCardsToHand(numCards, damageIfEmpty) {
-        let remainingCards = 0;
+    drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
+        let remainingCards = numCards;
 
-        if (numCards > this.deck.length) {
-            remainingCards = numCards - this.deck.length;
-            numCards = this.deck.length;
-        }
+        for (let card of this.deck) {
+            if (remainingCards == 0) break;
 
-        for (let card of this.deck.slice(0, numCards)) {
-            // only one copy
-            if (!this.hand.some((c) => c.name == card.name)) this.moveCard(card, 'hand');
-        }
-
-        if (remainingCards > 0 && this.discard.length > 0) {
-            if (damageIfEmpty) {
-                GameActions.AddTokenAction({ amount: numCards }, 'damage').resolve(
-                    this,
-                    this.game.getFrameworkContext()
-                );
+            // only one copy?
+            if (!singleCopy || !this.hand.some((c) => c.name == card.name)) {
+                this.moveCard(card, 'hand');
+                remainingCards--;
             }
+        }
+
+        if (remainingCards > 0 && damageIfEmpty) {
+            GameActions.AddTokenAction({ amount: remainingCards }, 'damage').resolve(
+                this,
+                this.game.getFrameworkContext()
+            );
         }
     }
 
