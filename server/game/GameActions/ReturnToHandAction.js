@@ -2,7 +2,7 @@ const CardGameAction = require('./CardGameAction');
 
 class ReturnToHandAction extends CardGameAction {
     setDefaultProperties() {
-        this.location = ['play area'];
+        this.location = ['play area', 'spellboard'];
     }
 
     setup() {
@@ -25,7 +25,10 @@ class ReturnToHandAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        let eventName = card.location === 'play area' ? 'onCardLeavesPlay' : 'onMoveCard';
+        let eventName =
+            card.location === 'play area' || card.location === 'spellboard'
+                ? 'onCardLeavesPlay'
+                : 'onMoveCard';
 
         return super.createEvent(
             eventName,

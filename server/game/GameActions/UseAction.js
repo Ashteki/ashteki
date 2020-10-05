@@ -14,7 +14,7 @@ class UseAction extends CardGameAction {
     canAffect(card, context) {
         return (
             card !== context.source &&
-            card.location === 'play area' &&
+            (card.location === 'play area' || card.location === 'spellboard') &&
             super.canAffect(card, context)
         );
     }

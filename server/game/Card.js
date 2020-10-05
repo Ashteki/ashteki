@@ -11,7 +11,6 @@ const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
 const ResolveFightAction = require('./GameActions/ResolveFightAction');
-const ResolveReapAction = require('./GameActions/ResolveReapAction');
 const RemoveStun = require('./BaseActions/RemoveStun');
 
 class Card extends EffectSource {
@@ -520,9 +519,15 @@ class Card extends EffectSource {
         this.location = targetLocation;
 
         if (
-            ['play area', 'discard', 'hand', 'purged', 'grafted', 'archives'].includes(
-                targetLocation
-            )
+            [
+                'play area',
+                'spellboard',
+                'discard',
+                'hand',
+                'purged',
+                'grafted',
+                'archives'
+            ].includes(targetLocation)
         ) {
             this.facedown = false;
         }
@@ -541,7 +546,12 @@ class Card extends EffectSource {
     getMenu() {
         var menu = [];
 
-        if (!this.menu.length || !this.game.manualMode || this.location !== 'play area') {
+        if (
+            !this.menu.length ||
+            !this.game.manualMode ||
+            this.location !== 'play area' ||
+            this.location !== 'spellboard'
+        ) {
             return undefined;
         }
 
@@ -550,7 +560,7 @@ class Card extends EffectSource {
         }
 
         menu.push({ command: 'click', text: 'Select Card', menu: 'main' });
-        if (this.location === 'play area') {
+        if (this.location === 'play area' || this.location === 'spellboard') {
             menu = menu.concat(this.menu);
         }
 
@@ -829,7 +839,7 @@ class Card extends EffectSource {
 
         this.game.promptWithHandlerMenu(player, {
             activePromptTitle:
-                this.location === 'play area'
+                this.location === 'play area' || this.location === 'spellboard'
                     ? 'Choose an ability:'
                     : { text: 'Play {{card}}:', values: { card: this.name } },
             source: this,
@@ -871,19 +881,11 @@ class Card extends EffectSource {
         });
     }
 
-    getReapAction() {
-        return this.action({
-            title: 'Reap with this creature',
-            condition: (context) =>
-                this.checkRestrictions('reap', context) && this.type === 'creature',
-            printedAbility: false,
-            gameAction: new ResolveReapAction({})
-        });
-    }
-
     getRemoveStunAction() {
         return new RemoveStun(this);
     }
+
+    battlefieldTypes = ['Ally', 'Conjuration'];
 
     getActions(location = this.location) {
         let actions = [];
@@ -901,9 +903,8 @@ class Card extends EffectSource {
             }
 
             actions.push(new DiscardAction(this));
-        } else if (location === 'play area' && this.type === 'creature') {
+        } else if (location === 'play area' && this.battlefieldTypes.includes(this.type)) {
             actions.push(this.getFightAction());
-            actions.push(this.getReapAction());
             actions.push(this.getRemoveStunAction());
         }
 
@@ -916,7 +917,7 @@ class Card extends EffectSource {
     }
 
     getModifiedController() {
-        if (this.location === 'play area') {
+        if (this.location === 'play area' || this.location === 'spellboard') {
             return this.mostRecentEffect('takeControl') || this.defaultController;
         }
 

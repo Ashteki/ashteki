@@ -5,7 +5,7 @@ const UseAction = require('../../GameActions/UseAction');
 class ActionWindow extends UiPrompt {
     onCardClicked(player, card) {
         if (player === this.game.activePlayer && card.controller === player) {
-            if (card.location === 'play area') {
+            if (card.location === 'play area' || card.location === 'spellboard') {
                 let useAction = new UseAction({ ignoreHouse: false });
                 let context = this.game.getFrameworkContext(player);
                 if (useAction.canAffect(card, context)) {
@@ -35,7 +35,7 @@ class ActionWindow extends UiPrompt {
 
     onCardDragged(player, card, from, to) {
         if (player === this.game.activePlayer && card.controller === player && from === 'hand') {
-            if (to === 'play area') {
+            if (to === 'play area' || to === 'spellboard') {
                 let playAction = card
                     .getLegalActions(player)
                     .find((action) => action.title.includes('Play'));

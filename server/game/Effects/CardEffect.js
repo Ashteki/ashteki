@@ -27,7 +27,7 @@ class CardEffect extends Effect {
     getTargets() {
         if (this.targetLocation === 'any') {
             return this.game.allCards.filter((card) => this.match(card, this.context));
-        } else if (this.targetLocation === 'play area') {
+        } else if (this.targetLocation === 'play area' || this.targetLocation === 'spellboard') {
             return this.game.cardsInPlay.filter((card) => this.match(card, this.context));
         }
 

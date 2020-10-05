@@ -42,7 +42,7 @@ const Card = ({
     });
 
     const isAllowedMenuSource = () => {
-        return source === 'play area';
+        return source === 'play area' || source === 'spellboard';
     };
 
     const onCardClicked = (event, card) => {
@@ -195,7 +195,7 @@ const Card = ({
             return true;
         }
 
-        if (source !== 'play area' && source !== 'faction') {
+        if (source !== 'play area' && source !== 'spellboard') {
             return false;
         }
 
@@ -256,8 +256,7 @@ const Card = ({
                     card.canPlay,
                 unselectable: card.unselectable,
                 dragging: isDragging,
-                controlled: card.controlled,
-                taunt: card.taunt && source === 'play area'
+                controlled: card.controlled
             }
         );
         let imageClass = classNames('card-image vertical', sizeClass, {

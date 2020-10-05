@@ -13,22 +13,9 @@ class BaseCardSelector {
     }
 
     buildLocation(property) {
-        let location = property || ['play area'];
+        let location = property || ['play area', 'spellboard'];
         if (!Array.isArray(location)) {
             location = [location];
-        }
-
-        let index = location.indexOf('province');
-        if (index > -1) {
-            location.splice(
-                index,
-                1,
-                'province 1',
-                'province 2',
-                'province 3',
-                'province 4',
-                'stronghold province'
-            );
         }
 
         return location;
@@ -61,7 +48,7 @@ class BaseCardSelector {
         if (this.controller !== 'opponent') {
             possibleCards = this.location.reduce((array, location) => {
                 let cards = context.player.getSourceList(location);
-                if (location === 'play area') {
+                if (location === 'play area' || location === 'spellboard') {
                     return array.concat(
                         cards,
                         upgrades.filter((card) => card.controller === context.player)
@@ -75,7 +62,7 @@ class BaseCardSelector {
         if (this.controller !== 'self' && context.player.opponent) {
             possibleCards = this.location.reduce((array, location) => {
                 let cards = context.player.opponent.getSourceList(location);
-                if (location === 'play area') {
+                if (location === 'play area' || location === 'spellboard') {
                     return array.concat(
                         cards,
                         upgrades.filter((card) => card.controller === context.player.opponent)

@@ -2,15 +2,13 @@ const CardGameAction = require('./CardGameAction');
 
 class PutIntoPlayAction extends CardGameAction {
     setDefaultProperties() {
-        this.left = false;
-        this.deployIndex = undefined;
         this.myControl = false;
         this.ready = false;
     }
 
     setup() {
         this.name = 'putIntoPlay';
-        this.targetType = ['Ally', 'Ready Spell', 'Action Spell'];
+        this.targetType = ['Ally', 'Ready Spell', 'Action Spell', 'Conjuration'];
         this.effectMsg = 'put {0} into play';
     }
 
@@ -19,7 +17,7 @@ class PutIntoPlayAction extends CardGameAction {
             return false;
         } else if (!context.player) {
             return false;
-        } else if (card.location === 'play area') {
+        } else if (card.location === 'play area' || card.location === 'spellboard') {
             return false;
         }
 
@@ -38,9 +36,7 @@ class PutIntoPlayAction extends CardGameAction {
                 control = this.myControl;
             }
 
-            player.moveCard(card, 'play area', {
-                left: this.left,
-                deployIndex: this.deployIndex,
+            player.moveCard(card, card.type.includes('Spell') ? 'spellboard' : 'play area', {
                 myControl: control
             });
 

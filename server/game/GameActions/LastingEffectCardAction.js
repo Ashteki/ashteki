@@ -36,7 +36,10 @@ class LastingEffectCardAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        if (card.location !== 'play area' && !this.targetLocation) {
+        if (
+            (card.location !== 'play area' || card.location === 'spellboard') &&
+            !this.targetLocation
+        ) {
             return false;
         }
 

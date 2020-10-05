@@ -64,7 +64,7 @@ const PlayerPBRow = ({
             onCardClick={onCardClick}
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
-            source='play area'
+            source='spellboard'
             title={t('Spellboard')}
             cardSize={cardSize}
         />

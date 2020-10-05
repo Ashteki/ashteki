@@ -230,7 +230,9 @@ class ChatCommands {
         this.game.promptForSelect(player, {
             activePromptTitle: 'Select a card',
             waitingPromptTitle: 'Waiting for opponent to set token',
-            cardCondition: (card) => card.location === 'play area' && card.controller === player,
+            cardCondition: (card) =>
+                (card.location === 'play area' || card.location === 'spellboard') &&
+                card.controller === player,
             onSelect: (p, card) => {
                 let numTokens = card.tokens[token] || 0;
                 card.addToken(token, num - numTokens);

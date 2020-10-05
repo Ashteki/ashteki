@@ -18,7 +18,10 @@ class ReturnToDeckAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        let eventName = card.location === 'play area' ? 'onCardLeavesPlay' : 'onMoveCard';
+        let eventName =
+            card.location === 'play area' || card.location === 'spellboard'
+                ? 'onCardLeavesPlay'
+                : 'onMoveCard';
         let deckLength = card.owner.getSourceList('deck').length;
 
         return super.createEvent(

@@ -19,6 +19,7 @@ class Player extends GameObject {
 
         this.hand = [];
         this.cardsInPlay = []; // This stores references to all creatures and artifacts in play.  Upgrades are not stored here.
+        this.spellboard = []; // all spells played to board
         this.discard = [];
         this.purged = [];
         this.archives = [];
@@ -302,7 +303,7 @@ class Player extends GameObject {
         let display = 'a card';
         if (
             (!card.facedown && source !== 'hand') ||
-            ['play area', 'discard', 'purged'].includes(target)
+            ['play area', 'spellboard', 'discard', 'purged'].includes(target)
         ) {
             display = card;
         }
@@ -336,8 +337,8 @@ class Player extends GameObject {
             creature: [...cardLocations, 'play area'],
             upgrade: [...cardLocations, 'play area'],
             'Action Spell': [...cardLocations, 'being played'],
-            'Alteration Spell': [...cardLocations, 'play area'],
-            'Ready Spell': [...cardLocations, 'play area'],
+            'Alteration Spell': [...cardLocations, 'spellboard'],
+            'Ready Spell': [...cardLocations, 'spellboard'],
             Ally: [...cardLocations, 'play area'],
             Conjuration: [...cardLocations, 'play area']
         };
@@ -381,7 +382,7 @@ class Player extends GameObject {
         this.removeCardFromPile(card);
         let location = card.location;
 
-        if (location === 'play area') {
+        if (location === 'play area' || location === 'spellboard') {
             if (targetLocation !== 'archives' && card.owner !== this) {
                 card.owner.moveCard(card, targetLocation, options);
                 return;
@@ -399,7 +400,7 @@ class Player extends GameObject {
 
             card.onLeavesPlay();
             card.controller = this;
-        } else if (targetLocation === 'play area') {
+        } else if (targetLocation === 'play area' || targetLocation === 'spellboard') {
             if (options.myControl) {
                 card.setDefaultController(this);
             }
@@ -419,12 +420,7 @@ class Player extends GameObject {
         if (targetLocation === 'deck' && !options.bottom) {
             targetPile.unshift(card);
         } else if (['discard', 'purged'].includes(targetLocation)) {
-            // new cards go on the top of the discard pile
             targetPile.unshift(card);
-            // } else if (targetLocation === 'play area' && options.deployIndex !== undefined) {
-            //     targetPile.splice(options.deployIndex + 1, 0, card);
-            // } else if (targetLocation === 'play area' && options.left) {
-            //     targetPile.unshift(card);
         } else if (targetPile) {
             targetPile.push(card);
         }
@@ -767,7 +763,8 @@ class Player extends GameObject {
                 cardsInPlay: this.getSummaryForCardList(this.cardsInPlay, activePlayer),
                 discard: this.getSummaryForCardList(this.discard, activePlayer),
                 hand: this.getSummaryForCardList(this.hand, activePlayer, true),
-                purged: this.getSummaryForCardList(this.purged, activePlayer)
+                purged: this.getSummaryForCardList(this.purged, activePlayer),
+                spells: this.getSummaryForCardList(this.spellboard, activePlayer)
             },
             cardback: 'cardback',
             disconnected: !!this.disconnectedAt,

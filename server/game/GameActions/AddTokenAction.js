@@ -23,7 +23,11 @@ class AddTokenAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        return this.amount > 0 && card.location === 'play area' && super.canAffect(card, context);
+        return (
+            this.amount > 0 &&
+            (card.location === 'play area' || card.location === 'spellboard') &&
+            super.canAffect(card, context)
+        );
     }
 
     getEvent(card, context) {

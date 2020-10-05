@@ -3,12 +3,12 @@ const CardGameAction = require('./CardGameAction');
 class ExhaustAction extends CardGameAction {
     setup() {
         this.name = 'exhaust';
-        this.targetType = ['creature', 'artifact'];
+        this.targetType = ['Ally', 'Ready Spell', 'Conjuration', 'Phoenixborn'];
         this.effectMsg = 'exhaust {0}';
     }
 
     canAffect(card, context) {
-        if (card.location !== 'play area') {
+        if (card.location !== 'play area' || card.location === 'spellboard') {
             return false;
         }
 

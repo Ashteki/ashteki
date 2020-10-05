@@ -195,18 +195,6 @@ export class GameBoard extends React.Component {
 
     renderBoard(thisPlayer, otherPlayer) {
         let spectating = !this.props.currentGame.players[this.props.user.username];
-        let thisSpells = thisPlayer.cardPiles.cardsInPlay.filter(
-            (card) => card.type == 'Ready Spell'
-        );
-        let thisUnits = thisPlayer.cardPiles.cardsInPlay.filter(
-            (card) => card.type != 'Ready Spell'
-        );
-        let otherSpells = otherPlayer.cardPiles.cardsInPlay.filter(
-            (card) => card.type == 'Ready Spell'
-        );
-        let otherUnits = otherPlayer.cardPiles.cardsInPlay.filter(
-            (card) => card.type != 'Ready Spell'
-        );
         return [
             <div key='board-middle' className='board-middle'>
                 <div className='player-home-row'>
@@ -242,16 +230,17 @@ export class GameBoard extends React.Component {
                         onMouseOut={this.onMouseOut}
                         player={2}
                         side='top'
-                        spells={otherSpells}
+                        spells={otherPlayer.cardPiles.spells}
                         spectating={spectating}
                         phoenixborn={otherPlayer.phoenixborn}
                     />
                 </div>
                 <div className='board-inner'>
                     <div className='play-area'>
+                        {/* opponent board */}
                         <PlayerBoard
                             cardBackUrl={this.props.player2CardBack}
-                            cardsInPlay={otherUnits}
+                            cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
                             onCardClick={this.onCardClick}
                             onMenuItemClick={this.onMenuItemClick}
                             onMouseOut={this.onMouseOut}
@@ -259,14 +248,15 @@ export class GameBoard extends React.Component {
                             rowDirection='reverse'
                             user={this.props.user}
                         />
+                        {/* myboard */}
                         <Droppable
                             onDragDrop={this.onDragDrop}
-                            source='play area'
+                            source='spellboard'
                             manualMode={this.props.currentGame.manualMode}
                         >
                             <PlayerBoard
                                 cardBackUrl={this.props.player1CardBack}
-                                cardsInPlay={thisUnits}
+                                cardsInPlay={thisPlayer.cardPiles.cardsInPlay}
                                 manualMode={this.props.currentGame.manualMode}
                                 onCardClick={this.onCardClick}
                                 onMenuItemClick={this.onMenuItemClick}
@@ -296,7 +286,7 @@ export class GameBoard extends React.Component {
                         onMenuItemClick={this.onMenuItemClick}
                         player={1}
                         side='bottom'
-                        spells={thisSpells}
+                        spells={thisPlayer.cardPiles.spells}
                         spectating={spectating}
                         onDrawPopupChange={this.handleDrawPopupChange}
                         onShuffleClick={this.onShuffleClick}

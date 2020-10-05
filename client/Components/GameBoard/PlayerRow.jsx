@@ -87,14 +87,13 @@ const PlayerRow = ({
         />
     );
 
-    let hasArchivedCards = archives?.length > 0;
     let archivesToRender = (
         <CardPile
             className='archives'
             title={t('Archives')}
             source='archives'
             cards={archives}
-            hiddenTopCard={hasArchivedCards && !isMe}
+            hiddenTopCard={true}
             cardBackUrl={conjback}
             {...cardPileProps}
         />

@@ -7,12 +7,12 @@ import { ItemTypes } from '../../constants';
 import './Droppable.scss';
 
 const validTargets = {
-    hand: ['play area', 'discard', 'deck', 'archives', 'purged'],
+    hand: ['play area', 'discard', 'deck', 'archives', 'purged', 'spellboard'],
     'play area': ['discard', 'hand', 'deck', 'archives', 'purged'],
     discard: ['archives', 'hand', 'deck', 'play area', 'purged'],
-    archives: ['hand', 'deck', 'play area', 'discard', 'purged'],
-    deck: ['hand', 'discard', 'archives', 'play area', 'purged'],
-    purged: ['deck', 'play area', 'discard', 'hand', 'archives']
+    archives: ['play area', 'purged'],
+    deck: ['hand', 'discard', 'archives', 'play area', 'spellboard', 'purged'],
+    purged: ['deck', 'play area', 'discard', 'hand', 'archives', 'spellboard']
 };
 
 const Droppable = ({ children, manualMode, onDragDrop, source }) => {
@@ -29,6 +29,7 @@ const Droppable = ({ children, manualMode, onDragDrop, source }) => {
             }
 
             if (
+                (item.source === 'hand' && source === 'spellboard') ||
                 (item.source === 'hand' && source === 'play area') ||
                 (item.source === 'hand' && source === 'discard')
             ) {
