@@ -21,7 +21,6 @@ class PlayCardAction extends CardGameAction {
             .filter((action) => action.title.includes('Play'));
         return !!actions.find((action) => {
             let actionContext = action.createContext(context.player);
-            actionContext.ignoreHouse = true;
             return !action.meetsRequirements(actionContext, ['location']);
         });
     }
@@ -31,7 +30,6 @@ class PlayCardAction extends CardGameAction {
             let playActions = card.getActions(this.location).filter((action) => {
                 if (action.title.includes('Play')) {
                     let newContext = action.createContext(context.player);
-                    newContext.ignoreHouse = true;
                     return !action.meetsRequirements(newContext, ['location']);
                 } else {
                     return false;
@@ -54,7 +52,6 @@ class PlayCardAction extends CardGameAction {
 
             context.game.queueSimpleStep(() => {
                 let actionContext = action.createContext(context.player);
-                actionContext.ignoreHouse = true;
                 context.game.resolveAbility(actionContext);
             });
         });

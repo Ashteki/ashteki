@@ -9,7 +9,7 @@ class HealAction extends CardGameAction {
 
     setup() {
         this.name = 'heal';
-        this.targetType = ['creature'];
+        this.targetType = ['Ally'];
         this.effectMsg =
             'heal {0} ' +
             (this.fully ? 'fully' : 'for ' + (this.upTo ? 'up to ' : '') + this.amount + ' damage');

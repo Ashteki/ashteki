@@ -8,7 +8,7 @@ class PlayUpgradeAction extends BasePlayAction {
     constructor(card) {
         super(card, [Costs.play()], {
             activePromptTitle: 'Choose a creature to attach this upgrade to',
-            cardType: 'creature',
+            cardType: 'Ally',
             gameAction: new AttachAction((context) => ({ upgrade: context.source }))
         });
         this.title = 'Play this upgrade';
@@ -32,10 +32,10 @@ class PlayUpgradeAction extends BasePlayAction {
     }
 
     meetsRequirements(context = this.createContext(), ignoredRequirements = []) {
-        if (context.source.printedType === 'creature' && context.source.canPlayAsUpgrade()) {
+        if (context.source.printedType === 'Ally' && context.source.canPlayAsUpgrade()) {
             context.source.printedType = 'upgrade';
             let result = super.meetsRequirements(context, ignoredRequirements);
-            context.source.printedType = 'creature';
+            context.source.printedType = 'Ally';
             return result;
         }
 

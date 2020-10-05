@@ -3,14 +3,13 @@ const CardGameAction = require('./CardGameAction');
 class FightGameAction extends CardGameAction {
     setup() {
         this.name = 'fight';
-        this.targetType = ['creature'];
+        this.targetType = ['Ally', 'Conjuration'];
         this.effectMsg = 'fight with {0}';
     }
 
     canAffect(card, context) {
         let fightAction = card.getFightAction();
         let newContext = fightAction.createContext(context.player);
-        newContext.ignoreHouse = true;
         if (!fightAction || fightAction.meetsRequirements(newContext, ['stunned'])) {
             return false;
         }

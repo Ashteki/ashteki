@@ -13,7 +13,7 @@ class RemoveTokenAction extends CardGameAction {
 
     setup() {
         this.name = 'removeToken';
-        this.targetType = ['artifact', 'creature'];
+        this.targetType = ['artifact', 'Ally'];
 
         let type = this.type === 'power' ? 'power counter' : this.type;
         if (!this.all && this.amount > 1) {

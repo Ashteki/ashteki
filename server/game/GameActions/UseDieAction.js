@@ -1,9 +1,7 @@
 const DiceGameAction = require('./DiceGameAction');
 
 class UseDieAction extends DiceGameAction {
-    setDefaultProperties() {
-        this.ignoreHouse = true;
-    }
+    setDefaultProperties() {}
 
     setup() {
         this.name = 'use';
@@ -18,8 +16,8 @@ class UseDieAction extends DiceGameAction {
     getEvent(die, context) {
         return super.createEvent(
             'onUseDie',
-            { die: die, context: context, ignoreHouse: this.ignoreHouse },
-            (event) => die.use(context.player, event.ignoreHouse)
+            { die: die, context: context },
+            die.use(context.player)
         );
     }
 }

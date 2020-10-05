@@ -236,7 +236,7 @@ class Card extends EffectSource {
         // Taunt
         this.abilities.keywordPersistentEffects.push(
             this.persistentEffect({
-                condition: () => !!this.getKeywordValue('taunt') && this.type === 'creature',
+                condition: () => !!this.getKeywordValue('taunt') && this.type === 'Ally',
                 printedAbility: false,
                 match: (card) => this.neighbors.includes(card) && !card.getKeywordValue('taunt'),
                 effect: ability.effects.cardCannot('attackDueToTaunt')
@@ -248,7 +248,7 @@ class Card extends EffectSource {
             this.persistentEffect({
                 printedAbility: false,
                 condition: () => {
-                    return this.hasToken('enrage') && this.type === 'creature';
+                    return this.hasToken('enrage') && this.type === 'Ally';
                 },
                 match: this,
                 effect: AbilityDsl.effects.mustFightIfAble()
@@ -452,7 +452,7 @@ class Card extends EffectSource {
     }
 
     onLeavesPlay() {
-        if (this.type === 'creature' && this.hasToken('amber') && this.controller.opponent) {
+        if (this.type === 'Ally' && this.hasToken('amber') && this.controller.opponent) {
             this.game.actions
                 .gainAmber({ amount: this.tokens.amber })
                 .resolve(this.controller.opponent, this.game.getFrameworkContext());
@@ -808,19 +808,18 @@ class Card extends EffectSource {
      */
     // eslint-disable-next-line no-unused-vars
     canAttach(card, context) {
-        return card && card.getType() === 'creature' && this.canPlayAsUpgrade();
+        return card && card.getType() === 'Ally' && this.canPlayAsUpgrade();
     }
 
-    use(player, ignoreHouse = false) {
-        let legalActions = this.getLegalActions(player, ignoreHouse);
+    use(player) {
+        let legalActions = this.getLegalActions(player);
 
         if (legalActions.length === 0) {
             return false;
         } else if (legalActions.length === 1) {
             let action = legalActions[0];
-            if (!this.game.activePlayer.optionSettings.confirmOneClick || ignoreHouse) {
+            if (!this.game.activePlayer.optionSettings.confirmOneClick) {
                 let context = action.createContext(player);
-                context.ignoreHouse = ignoreHouse;
                 this.game.resolveAbility(context);
                 return true;
             }
@@ -829,13 +828,8 @@ class Card extends EffectSource {
         let choices = legalActions.map((action) => action.title);
         let handlers = legalActions.map((action) => () => {
             let context = action.createContext(player);
-            context.ignoreHouse = ignoreHouse;
             this.game.resolveAbility(context);
         });
-        if (!ignoreHouse) {
-            choices = choices.concat('Cancel');
-            handlers = handlers.concat(() => true);
-        }
 
         this.game.promptWithHandlerMenu(player, {
             activePromptTitle:
@@ -850,11 +844,10 @@ class Card extends EffectSource {
         return true;
     }
 
-    getLegalActions(player, ignoreHouse = false) {
+    getLegalActions(player) {
         let actions = this.getActions();
         actions = actions.filter((action) => {
             let context = action.createContext(player);
-            context.ignoreHouse = ignoreHouse;
             return !action.meetsRequirements(context);
         });
         let canFight =
@@ -870,11 +863,11 @@ class Card extends EffectSource {
         return this.action({
             title: 'Fight with this creature',
             condition: (context) =>
-                this.checkRestrictions('fight', context) && this.type === 'creature',
+                this.checkRestrictions('fight', context) && this.type === 'Ally',
             printedAbility: false,
             target: {
                 activePromptTitle: 'Choose a creature to attack',
-                cardType: 'creature',
+                cardType: 'Ally',
                 controller: 'opponent',
                 gameAction: new ResolveFightAction({ attacker: this })
             }
@@ -925,7 +918,7 @@ class Card extends EffectSource {
     }
 
     isOnFlank(flank) {
-        if (this.type !== 'creature') {
+        if (this.type !== 'Ally') {
             return false;
         }
 
@@ -957,7 +950,7 @@ class Card extends EffectSource {
     }
 
     get neighbors() {
-        if (this.type !== 'creature') {
+        if (this.type !== 'Ally') {
             return [];
         } else if (this.clonedNeighbors) {
             return this.clonedNeighbors;
@@ -1017,7 +1010,7 @@ class Card extends EffectSource {
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
                 isController &&
-                this.getLegalActions(activePlayer, false).length > 0
+                this.getLegalActions(activePlayer).length > 0
             ),
             cardback: this.owner.deckData.cardback,
             childCards: this.childCards.map((card) => {
@@ -1032,7 +1025,7 @@ class Card extends EffectSource {
             new: this.new,
             cardPrintedAmber: this.cardPrintedAmber,
             stunned: this.stunned,
-            taunt: this.getType() === 'creature' && !!this.getKeywordValue('taunt'),
+            taunt: this.getType() === 'Ally' && !!this.getKeywordValue('taunt'),
             tokens: this.tokens,
             type: this.getType(),
             upgrades: this.upgrades.map((upgrade) => {

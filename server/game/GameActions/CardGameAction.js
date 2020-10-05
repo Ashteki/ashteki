@@ -10,7 +10,7 @@ class CardGameAction extends GameAction {
     }
 
     setup() {
-        this.targetType = ['creature', 'action', 'artifact', 'upgrade'];
+        this.targetType = ['Ally', 'action', 'artifact', 'upgrade'];
     }
 
     hasLegalTarget(context) {

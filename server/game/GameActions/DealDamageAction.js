@@ -14,7 +14,7 @@ class DealDamageAction extends CardGameAction {
     }
 
     setup() {
-        this.targetType = ['creature'];
+        this.targetType = ['Ally'];
         this.name = 'damage';
         this.effectMsg =
             'deal ' +

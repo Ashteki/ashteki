@@ -950,7 +950,7 @@ class Game extends EventEmitter {
         this.raiseEvent('onTakeControl', { player, card });
         card.controller.removeCardFromPile(card);
         card.controller = player;
-        if (card.type === 'creature' && player.creaturesInPlay.length > 0) {
+        if (card.type === 'Ally' && player.creaturesInPlay.length > 0) {
             let handlers = [
                 () => player.cardsInPlay.unshift(card),
                 () => player.cardsInPlay.push(card)
@@ -1127,7 +1127,7 @@ class Game extends EventEmitter {
             // destroy any creatures who have damage greater than equal to their power
             let creaturesToDestroy = this.creaturesInPlay.filter(
                 (card) =>
-                    card.type === 'creature' &&
+                    card.type === 'Ally' &&
                     (card.life <= 0 || card.tokens.damage >= card.life) &&
                     !card.moribund
             );
@@ -1235,7 +1235,7 @@ class Game extends EventEmitter {
     }
 
     get creaturesInPlay() {
-        return this.cardsInPlay.filter((card) => card.type === 'creature');
+        return this.cardsInPlay.filter((card) => card.type === 'Ally');
     }
 
     /**
@@ -1372,7 +1372,6 @@ class Game extends EventEmitter {
             playerSummaries[player.name] = {
                 deck: deck,
                 emailHash: player.emailHash,
-                faction: '',
                 id: player.id,
                 left: player.left,
                 lobbyId: player.lobbyId,

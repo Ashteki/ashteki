@@ -15,11 +15,11 @@ class PlayerBoard extends React.Component {
         }, {});
 
         let rows = [];
-        let creatures = groupedCards['creature'] || [];
+        let creatures = groupedCards['Ally'] || [];
         let other = [];
 
         for (let key of Object.keys(groupedCards).filter(
-            (k) => !['artifact', 'creature'].includes(k)
+            (k) => !['artifact', 'Ally'].includes(k)
         )) {
             other = other.concat(groupedCards[key]);
         }

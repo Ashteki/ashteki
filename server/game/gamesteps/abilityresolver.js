@@ -23,7 +23,7 @@ class AbilityResolver extends BaseStepWithPipeline {
     }
 
     createSnapshot() {
-        if (['creature', 'artifact'].includes(this.context.source.getType())) {
+        if (['Ally', 'artifact'].includes(this.context.source.getType())) {
             this.context.cardStateWhenInitiated = this.context.source.createSnapshot();
         }
     }

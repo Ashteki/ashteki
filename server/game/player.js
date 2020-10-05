@@ -148,7 +148,7 @@ class Player extends GameObject {
     }
 
     get creaturesInPlay() {
-        return this.cardsInPlay.filter((card) => card.type === 'creature');
+        return this.cardsInPlay.filter((card) => card.type === 'Ally');
     }
 
     /**
@@ -552,10 +552,6 @@ class Player extends GameObject {
 
         availableHouses = _.difference(_.uniq(availableHouses), this.getEffects('stopHouseChoice'));
         return availableHouses;
-    }
-
-    canIgnoreHouseRestrictions(card, context) {
-        return this.getEffects('canUse').some((match) => match(card, context));
     }
 
     getAmberSources() {

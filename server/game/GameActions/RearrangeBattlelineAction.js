@@ -17,7 +17,7 @@ class RearrangeBattlelineAction extends CardGameAction {
             numCards: 2,
             location: 'play area',
             controller: this.player === context.player ? 'self' : 'opponent',
-            cardType: 'creature',
+            cardType: 'Ally',
             onSelect: (player, cards) => {
                 if (cards.length < 2) {
                     return true;

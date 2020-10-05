@@ -60,7 +60,7 @@ const Card = ({
         const singleValueCounters = ['ward', 'enrage'];
         let counters = [];
         let needsFade = card.type === 'upgrade' && !['full deck'].includes(source);
-        if (card.type === 'creature' && card.baseStrength !== card.strength) {
+        if (card.type === 'Ally' && card.baseStrength !== card.strength) {
             counters.push({
                 name: 'strength',
                 count: card.strength,

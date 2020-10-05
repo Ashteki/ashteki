@@ -44,7 +44,7 @@ class AllocateDamageAction extends GameAction {
 
     getSelector() {
         return CardSelector.for({
-            cardType: 'creature',
+            cardType: 'Ally',
             cardCondition: this.cardCondition,
             controller: this.controller
         });

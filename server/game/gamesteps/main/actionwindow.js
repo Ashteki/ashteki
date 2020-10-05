@@ -6,7 +6,7 @@ class ActionWindow extends UiPrompt {
     onCardClicked(player, card) {
         if (player === this.game.activePlayer && card.controller === player) {
             if (card.location === 'play area' || card.location === 'spellboard') {
-                let useAction = new UseAction({ ignoreHouse: false });
+                let useAction = new UseAction({});
                 let context = this.game.getFrameworkContext(player);
                 if (useAction.canAffect(card, context)) {
                     useAction.resolve(card, context);

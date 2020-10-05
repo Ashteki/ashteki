@@ -1,13 +1,11 @@
 const CardGameAction = require('./CardGameAction');
 
 class UseAction extends CardGameAction {
-    setDefaultProperties() {
-        this.ignoreHouse = true;
-    }
+    setDefaultProperties() {}
 
     setup() {
         this.name = 'use';
-        this.targetType = ['creature', 'artifact'];
+        this.targetType = ['Ally', 'Conjuration', 'Ready Spell'];
         this.effectMsg = 'use {0}';
     }
 
@@ -20,10 +18,8 @@ class UseAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent(
-            'onUseCard',
-            { card: card, context: context, ignoreHouse: this.ignoreHouse },
-            (event) => card.use(context.player, event.ignoreHouse)
+        return super.createEvent('onUseCard', { card: card, context: context }, () =>
+            card.use(context.player)
         );
     }
 }
