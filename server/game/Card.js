@@ -58,11 +58,9 @@ class Card extends EffectSource {
         this.childCards = [];
         this.clonedNeighbors = null;
 
-        this.printedPower = cardData.power;
+        this.printedPower = cardData.attack;
         this.printedLife = cardData.life;
-        this.printedArmor = cardData.armor;
         this.printedRecover = cardData.recover;
-        this.armorUsed = 0;
         this.exhausted = false;
         this.stunned = false;
         this.moribund = false;
@@ -468,7 +466,6 @@ class Card extends EffectSource {
     }
 
     endRound() {
-        this.armorUsed = 0;
         this.elusiveUsed = false;
     }
 
@@ -696,24 +693,6 @@ class Card extends EffectSource {
     getBonusDamage(target) {
         let effects = this.getEffects('bonusDamage');
         return effects.reduce((total, match) => total + match(target), 0);
-    }
-
-    get armor() {
-        return this.getArmor();
-    }
-
-    getArmor(printed = false) {
-        if (printed) {
-            return this.printedArmor;
-        }
-
-        if (this.anyEffect('setArmor')) {
-            return this.mostRecentEffect('setArmor');
-        }
-
-        const copyEffect = this.mostRecentEffect('copyCard');
-        const printedArmor = copyEffect ? copyEffect.printedArmor : this.printedArmor;
-        return printedArmor + this.sumEffects('modifyArmor');
     }
 
     get recover() {

@@ -11,9 +11,7 @@ const Spectator = require('./spectator');
 const AnonymousSpectator = require('./anonymousspectator');
 const GamePipeline = require('./gamepipeline');
 const SetupPhase = require('./gamesteps/setup/setupphase');
-// const MainPhase = require('./gamesteps/main/MainPhase');
 const RecoveryPhase = require('./gamesteps/main/RecoveryPhase');
-// const DrawPhase = require('./gamesteps/draw/drawphase');
 const SimpleStep = require('./gamesteps/simplestep');
 const MenuPrompt = require('./gamesteps/menuprompt');
 const HandlerMenuPrompt = require('./gamesteps/handlermenuprompt');
@@ -1133,13 +1131,6 @@ class Game extends EventEmitter {
             );
             if (creaturesToDestroy.length > 0) {
                 this.actions.destroy().resolve(creaturesToDestroy, this.getFrameworkContext());
-            }
-
-            for (let card of this.creaturesInPlay) {
-                card.removeToken('armor');
-                if (card.armor - card.armorUsed > 0) {
-                    card.addToken('armor', card.armor - card.armorUsed);
-                }
             }
 
             // any terminal conditions which have met their condition

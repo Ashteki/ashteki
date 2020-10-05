@@ -12,9 +12,9 @@ let totalCards = [];
 // let clans = JSON.parse(fs.readFileSync('fiveringdsdb-data/Clan.json').toString());
 
 _.each(files, (file) => {
-    let cards = JSON.parse(fs.readFileSync(dataDirectory + file).toString());
+    let cardData = JSON.parse(fs.readFileSync(dataDirectory + file).toString());
 
-    totalCards = cards;
+    totalCards = cardData.cards;
 });
 
 _.each(totalCards, (card) => {

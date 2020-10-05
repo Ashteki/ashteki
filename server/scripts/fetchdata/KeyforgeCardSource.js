@@ -91,7 +91,6 @@ class JsonCardSource {
                         type: card.card_type,
                         rarity: card.rarity,
                         amber: card.amber,
-                        armor: card.armor,
                         power: card.power,
                         text: card.card_text
                     };

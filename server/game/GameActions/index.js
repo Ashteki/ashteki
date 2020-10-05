@@ -42,7 +42,6 @@ module.exports = {
     RearrangeBattlelineAction: require('./RearrangeBattlelineAction'),
     RearrangeCardsAction: require('./RearrangeCardsAction'),
     RecoverAction: require('./RecoverAction'),
-    ReduceArmorAction: require('./ReduceArmorAction'),
     RemoveStunAction: require('./RemoveStunAction'),
     RemoveTokenAction: require('./RemoveTokenAction'),
     RemoveWardAction: require('./RemoveWardAction'),

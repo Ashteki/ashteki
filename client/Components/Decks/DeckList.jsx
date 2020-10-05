@@ -31,7 +31,6 @@ import { Constants } from '../../constants';
  * @property {string} number
  * @property {string} image
  * @property {number} amber
- * @property {number} [armor]
  * @property {number} power
  * @property {number} expansion
  * @property {string} packCode

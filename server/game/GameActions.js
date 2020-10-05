@@ -51,7 +51,6 @@ const Actions = {
     rearrangeBattleline: (propertyFactory) =>
         new GameActions.RearrangeBattlelineAction(propertyFactory),
     recoverWounds: (propertyFactory) => new GameActions.RecoverAction(propertyFactory),
-    reduceArmor: (propertyFactory) => new GameActions.ReduceArmorAction(propertyFactory),
     removeAmber: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'amber'),
     removeDamage: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'damage'),
     removePowerCounter: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
