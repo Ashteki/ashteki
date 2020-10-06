@@ -58,11 +58,11 @@ class Card extends EffectSource {
         this.childCards = [];
         this.clonedNeighbors = null;
 
-        this.printedPower = cardData.attack;
+        this.printedAttack = cardData.attack;
         this.printedLife = cardData.life;
         this.printedRecover = cardData.recover;
         this.exhausted = false;
-        this.stunned = false;
+
         this.moribund = false;
         this.isFighting = false;
 
@@ -75,13 +75,7 @@ class Card extends EffectSource {
             { command: 'main', text: 'Back', menu: 'tokens' },
             { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
             { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
-            { command: 'addPower', text: 'Add 1 power token', menu: 'tokens' },
-            { command: 'remPower', text: 'Remove 1 power token', menu: 'tokens' },
             { command: 'addAmber', text: 'Add 1 amber', menu: 'tokens' },
-            { command: 'remAmber', text: 'Remove 1 amber', menu: 'tokens' },
-            { command: 'addEnrage', text: 'Add 1 enrage', menu: 'tokens' },
-            { command: 'remEnrage', text: 'Remove 1 enrage', menu: 'tokens' },
-            { command: 'stun', text: 'Stun/Remove Stun', menu: 'tokens' },
             { command: 'addWard', text: 'Add 1 ward', menu: 'tokens' },
             { command: 'remWard', text: 'Remove 1 ward', menu: 'tokens' }
         ];
@@ -238,55 +232,6 @@ class Card extends EffectSource {
         //         printedAbility: false,
         //         match: (card) => this.neighbors.includes(card) && !card.getKeywordValue('taunt'),
         //         effect: ability.effects.cardCannot('attackDueToTaunt')
-        //     })
-        // );
-
-        // // enraged
-        // this.abilities.keywordPersistentEffects.push(
-        //     this.persistentEffect({
-        //         printedAbility: false,
-        //         condition: () => {
-        //             return this.hasToken('enrage') && this.type === 'Ally';
-        //         },
-        //         match: this,
-        //         effect: AbilityDsl.effects.mustFightIfAble()
-        //     })
-        // );
-
-        // // warded
-        // this.abilities.keywordReactions.push(
-        //     this.interrupt({
-        //         when: {
-        //             onCardDestroyed: (event, context) =>
-        //                 event.card === context.source && context.source.warded,
-        //             onCardPurged: (event, context) =>
-        //                 event.card === context.source && context.source.warded,
-        //             onCardLeavesPlay: (event, context) =>
-        //                 event.card === context.source && context.source.warded
-        //         },
-        //         autoResolve: true,
-        //         effect: 'remove its ward token',
-        //         gameAction: [
-        //             AbilityDsl.actions.changeEvent((context) => ({
-        //                 event: context.event,
-        //                 cancel: true,
-        //                 postHandler: (context) => (context.event.card.moribund = false)
-        //             })),
-        //             AbilityDsl.actions.removeWard()
-        //         ]
-        //     })
-        // );
-
-        // // Invulnerable
-        // this.abilities.keywordPersistentEffects.push(
-        //     this.persistentEffect({
-        //         condition: () => !!this.getKeywordValue('invulnerable'),
-        //         printedAbility: false,
-        //         match: this,
-        //         effect: [
-        //             ability.effects.cardCannot('damage'),
-        //             ability.effects.cardCannot('destroy')
-        //         ]
         //     })
         // );
     }
@@ -451,7 +396,6 @@ class Card extends EffectSource {
 
     onLeavesPlay() {
         this.exhausted = false;
-        this.stunned = false;
         this.moribund = false;
         this.new = false;
         this.tokens = {};
@@ -654,7 +598,7 @@ class Card extends EffectSource {
 
     getPower(printed = false) {
         if (printed) {
-            return this.printedPower;
+            return this.printedAttack;
         }
 
         if (this.anyEffect('setPower')) {
@@ -662,7 +606,7 @@ class Card extends EffectSource {
         }
 
         const copyEffect = this.mostRecentEffect('copyCard');
-        const printedPower = copyEffect ? copyEffect.printedPower : this.printedPower;
+        const printedPower = copyEffect ? copyEffect.printedPower : this.printedAttack;
         return (
             printedPower +
             this.sumEffects('modifyPower') +
@@ -704,28 +648,6 @@ class Card extends EffectSource {
 
     get amber() {
         return this.hasToken('amber') ? this.tokens.amber : 0;
-    }
-
-    get enraged() {
-        return this.hasToken('enrage');
-    }
-
-    enrage() {
-        if (!this.hasToken('enrage')) {
-            this.addToken('enrage');
-        }
-    }
-
-    unenrage() {
-        this.clearToken('enrage');
-    }
-
-    stun() {
-        this.stunned = true;
-    }
-
-    unstun() {
-        this.stunned = false;
     }
 
     get warded() {

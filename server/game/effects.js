@@ -27,9 +27,7 @@ const Effects = {
     copyCard: (card) => EffectBuilder.card.static('copyCard', new CopyCard(card)),
     customDetachedCard: (properties) => EffectBuilder.card.detached('customEffect', properties),
     doesNotReady: () => EffectBuilder.card.static('doesNotReady'),
-    entersPlayEnraged: () => EffectBuilder.card.static('entersPlayEnraged'),
     entersPlayReady: () => EffectBuilder.card.static('entersPlayReady'),
-    entersPlayStunned: () => EffectBuilder.card.static('entersPlayStunned'),
     visbileIn: (location) => EffectBuilder.card.static('visbileIn', location),
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),

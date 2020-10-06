@@ -15,7 +15,6 @@ class ChatCommands {
             '/draw': this.draw,
             '/discard': this.discard,
             '/discardtopofdeck': this.discardtopofdeck,
-            '/forge': this.forge,
             '/manual': this.manual,
             '/modify-clock': this.modifyClock,
             '/mulligan': this.mulligan,
@@ -24,10 +23,9 @@ class ChatCommands {
             '/shuffle': this.shuffle,
             '/stop-clocks': this.stopClocks,
             '/start-clocks': this.startClocks,
-            '/token': this.setToken,
-            '/unforge': this.unforge
+            '/token': this.setToken
         };
-        this.tokens = ['amber', 'damage', 'enrage', 'power', 'stun', 'ward'];
+        this.tokens = ['damage', 'exhaust', 'status'];
         this.houses = [...Constants.Houses, 'none'];
     }
 
@@ -87,35 +85,6 @@ class ChatCommands {
         );
 
         return true;
-    }
-
-    forge(player, args) {
-        if (Object.values(player.keys).every((key) => key)) {
-            return;
-        }
-
-        const color = args[1]
-            ? args[1]
-            : Object.keys(player.keys).filter((key) => !player.keys[key])[0];
-        this.game.addAlert('danger', '{0} forges the {1} ', player, `forgedkey${color}`);
-        player.keys[color] = true;
-        player.keysForgedThisRound.push(color);
-    }
-
-    unforge(player, args) {
-        if (Object.values(player.keys).every((key) => !key)) {
-            return;
-        }
-
-        const color = args[1]
-            ? args[1]
-            : Object.keys(player.keys).filter((key) => player.keys[key])[0];
-        this.game.addAlert('danger', '{0} unforges the {1}', player, `unforgedkey${color}`);
-        player.keys[color] = false;
-        let forgedKeyIndex = player.keysForgedThisRound.findIndex((key) => key === color);
-        if (forgedKeyIndex !== -1) {
-            player.keysForgedThisRound.splice(forgedKeyIndex, 1);
-        }
     }
 
     spendAction(player, args) {

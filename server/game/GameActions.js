@@ -31,7 +31,6 @@ const Actions = {
     delayedEffect: (propertyFactory) => new GameActions.DelayedEffectAction(propertyFactory), // when, message, gameAction, handler
     discard: (propertyFactory) => new GameActions.DiscardCardAction(propertyFactory),
     destroy: (propertyFactory) => new GameActions.DestroyAction(propertyFactory),
-    enrage: (propertyFactory) => new GameActions.EnrageAction(propertyFactory),
     exalt: (propertyFactory) => new GameActions.ExaltAction(propertyFactory), // amount = 1
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
     fight: (propertyFactory) => new GameActions.FightGameAction(propertyFactory),
@@ -82,7 +81,6 @@ const Actions = {
     discardTopOfDeck: (propertyFactory) => new GameActions.DiscardTopOfDeckAction(propertyFactory), // amount = 1
     purgeAtRandom: (propertyFactory) => new GameActions.RandomPurgeAction(propertyFactory), // amount = 1
     draw: (propertyFactory) => new GameActions.DrawAction(propertyFactory), // amount = 1
-    forgeKey: (propertyFactory) => new GameActions.ForgeAction(propertyFactory), // modifier = 0
     forRemainderOfTurn: (propertyFactory) =>
         new GameActions.LastingEffectAction(propertyFactory, 1),
     untilNextTurn: (propertyFactory) => new GameActions.LastingEffectAction(propertyFactory, 2),
@@ -97,7 +95,6 @@ const Actions = {
     mulligan: (propertyFactory) => new GameActions.MulliganAction(propertyFactory), // name
     steal: (propertyFactory) => new GameActions.StealAction(propertyFactory), // amount = 1
     transferAmber: (propertyFactory) => new GameActions.TransferAmberAction(propertyFactory), // amount = 1
-    unforgeKey: (propertyFactory) => new GameActions.UnforgeAction(propertyFactory),
     // meta actions
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),
     allocateDamage: (propertyFactory) => new GameActions.AllocateDamageAction(propertyFactory),

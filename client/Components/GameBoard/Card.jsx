@@ -79,15 +79,6 @@ const Card = ({
             });
         }
 
-        if (card.pseudoDamage) {
-            counters.push({
-                name: 'damage',
-                count: card.pseudoDamage,
-                fade: true,
-                showValue: true
-            });
-        }
-
         for (const upgrade of card.upgrades || []) {
             counters = counters.concat(getCountersForCard(upgrade));
         }

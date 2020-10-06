@@ -62,17 +62,10 @@ class PlayerPromptState {
 
     getCardSelectionState(card) {
         let selectable = this.selectableCards.includes(card);
-        let pseudoDamage = 0;
-        if (this.cardDamage[card.uuid]) {
-            pseudoDamage += this.cardDamage[card.uuid].damage || 0;
-            pseudoDamage += this.cardDamage[card.uuid].splash || 0;
-        }
         return {
             selected: this.selectedCards && this.selectedCards.includes(card),
             selectable: selectable,
-            unselectable: !selectable && this.selectCard,
-            pseudoDamage: card.warded ? 0 : pseudoDamage,
-            wardBroken: pseudoDamage > 0 && card.warded
+            unselectable: !selectable && this.selectCard
         };
     }
 
