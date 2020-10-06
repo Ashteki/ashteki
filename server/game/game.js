@@ -710,7 +710,7 @@ class Game extends EventEmitter {
         this.allCards = _.reduce(
             this.getPlayers(),
             (cards, player) => {
-                return cards.concat(player.deck);
+                return cards.concat(player.deck, player.archives);
             },
             []
         );
@@ -1125,7 +1125,7 @@ class Game extends EventEmitter {
             // destroy any creatures who have damage greater than equal to their power
             let creaturesToDestroy = this.creaturesInPlay.filter(
                 (card) =>
-                    card.type === 'Ally' &&
+                    (card.type === 'Ally' || card.type === 'Conjuration') &&
                     (card.life <= 0 || card.tokens.damage >= card.life) &&
                     !card.moribund
             );
@@ -1226,7 +1226,9 @@ class Game extends EventEmitter {
     }
 
     get creaturesInPlay() {
-        return this.cardsInPlay.filter((card) => card.type === 'Ally');
+        return this.cardsInPlay.filter(
+            (card) => card.type === 'Ally' || card.type === 'Conjuration'
+        );
     }
 
     /**

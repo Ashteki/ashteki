@@ -10,7 +10,14 @@ class CardGameAction extends GameAction {
     }
 
     setup() {
-        this.targetType = ['Ally', 'action', 'artifact', 'upgrade'];
+        this.targetType = [
+            'Action Spell',
+            'Conjuration',
+            'Ally',
+            'Ready Spell',
+            'Alteration Spell',
+            'Phoenixborn'
+        ];
     }
 
     hasLegalTarget(context) {

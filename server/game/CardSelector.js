@@ -11,7 +11,14 @@ const MostHouseCardSelector = require('./CardSelectors/MostHouseCardSelector');
 const defaultProperties = {
     numCards: 1,
     cardCondition: () => true,
-    cardType: ['action', 'artifact', 'Ally', 'upgrade'],
+    cardType: [
+        'Action Spell',
+        'Conjuration',
+        'Ally',
+        'Ready Spell',
+        'Alteration Spell',
+        'Phoenixborn'
+    ],
     multiSelect: false
 };
 

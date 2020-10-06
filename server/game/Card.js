@@ -214,81 +214,81 @@ class Card extends EffectSource {
             })
         );
 
-        // Hazardous
-        this.abilities.keywordReactions.push(
-            this.interrupt({
-                title: 'Hazardous',
-                printedAbility: false,
-                when: {
-                    onFight: (event, context) => event.card === context.source
-                },
-                gameAction: ability.actions.dealDamage((context) => ({
-                    amount: context.source.getKeywordValue('hazardous'),
-                    target: context.event.attacker,
-                    damageSource: context.source,
-                    damageType: 'hazardous'
-                }))
-            })
-        );
+        // // Hazardous
+        // this.abilities.keywordReactions.push(
+        //     this.interrupt({
+        //         title: 'Hazardous',
+        //         printedAbility: false,
+        //         when: {
+        //             onFight: (event, context) => event.card === context.source
+        //         },
+        //         gameAction: ability.actions.dealDamage((context) => ({
+        //             amount: context.source.getKeywordValue('hazardous'),
+        //             target: context.event.attacker,
+        //             damageSource: context.source,
+        //             damageType: 'hazardous'
+        //         }))
+        //     })
+        // );
 
-        // Taunt
-        this.abilities.keywordPersistentEffects.push(
-            this.persistentEffect({
-                condition: () => !!this.getKeywordValue('taunt') && this.type === 'Ally',
-                printedAbility: false,
-                match: (card) => this.neighbors.includes(card) && !card.getKeywordValue('taunt'),
-                effect: ability.effects.cardCannot('attackDueToTaunt')
-            })
-        );
+        // // Taunt
+        // this.abilities.keywordPersistentEffects.push(
+        //     this.persistentEffect({
+        //         condition: () => !!this.getKeywordValue('taunt') && this.type === 'Ally',
+        //         printedAbility: false,
+        //         match: (card) => this.neighbors.includes(card) && !card.getKeywordValue('taunt'),
+        //         effect: ability.effects.cardCannot('attackDueToTaunt')
+        //     })
+        // );
 
-        // enraged
-        this.abilities.keywordPersistentEffects.push(
-            this.persistentEffect({
-                printedAbility: false,
-                condition: () => {
-                    return this.hasToken('enrage') && this.type === 'Ally';
-                },
-                match: this,
-                effect: AbilityDsl.effects.mustFightIfAble()
-            })
-        );
+        // // enraged
+        // this.abilities.keywordPersistentEffects.push(
+        //     this.persistentEffect({
+        //         printedAbility: false,
+        //         condition: () => {
+        //             return this.hasToken('enrage') && this.type === 'Ally';
+        //         },
+        //         match: this,
+        //         effect: AbilityDsl.effects.mustFightIfAble()
+        //     })
+        // );
 
-        // warded
-        this.abilities.keywordReactions.push(
-            this.interrupt({
-                when: {
-                    onCardDestroyed: (event, context) =>
-                        event.card === context.source && context.source.warded,
-                    onCardPurged: (event, context) =>
-                        event.card === context.source && context.source.warded,
-                    onCardLeavesPlay: (event, context) =>
-                        event.card === context.source && context.source.warded
-                },
-                autoResolve: true,
-                effect: 'remove its ward token',
-                gameAction: [
-                    AbilityDsl.actions.changeEvent((context) => ({
-                        event: context.event,
-                        cancel: true,
-                        postHandler: (context) => (context.event.card.moribund = false)
-                    })),
-                    AbilityDsl.actions.removeWard()
-                ]
-            })
-        );
+        // // warded
+        // this.abilities.keywordReactions.push(
+        //     this.interrupt({
+        //         when: {
+        //             onCardDestroyed: (event, context) =>
+        //                 event.card === context.source && context.source.warded,
+        //             onCardPurged: (event, context) =>
+        //                 event.card === context.source && context.source.warded,
+        //             onCardLeavesPlay: (event, context) =>
+        //                 event.card === context.source && context.source.warded
+        //         },
+        //         autoResolve: true,
+        //         effect: 'remove its ward token',
+        //         gameAction: [
+        //             AbilityDsl.actions.changeEvent((context) => ({
+        //                 event: context.event,
+        //                 cancel: true,
+        //                 postHandler: (context) => (context.event.card.moribund = false)
+        //             })),
+        //             AbilityDsl.actions.removeWard()
+        //         ]
+        //     })
+        // );
 
-        // Invulnerable
-        this.abilities.keywordPersistentEffects.push(
-            this.persistentEffect({
-                condition: () => !!this.getKeywordValue('invulnerable'),
-                printedAbility: false,
-                match: this,
-                effect: [
-                    ability.effects.cardCannot('damage'),
-                    ability.effects.cardCannot('destroy')
-                ]
-            })
-        );
+        // // Invulnerable
+        // this.abilities.keywordPersistentEffects.push(
+        //     this.persistentEffect({
+        //         condition: () => !!this.getKeywordValue('invulnerable'),
+        //         printedAbility: false,
+        //         match: this,
+        //         effect: [
+        //             ability.effects.cardCannot('damage'),
+        //             ability.effects.cardCannot('destroy')
+        //         ]
+        //     })
+        // );
     }
 
     /**
@@ -450,12 +450,6 @@ class Card extends EffectSource {
     }
 
     onLeavesPlay() {
-        if (this.type === 'Ally' && this.hasToken('amber') && this.controller.opponent) {
-            this.game.actions
-                .gainAmber({ amount: this.tokens.amber })
-                .resolve(this.controller.opponent, this.game.getFrameworkContext());
-        }
-
         this.exhausted = false;
         this.stunned = false;
         this.moribund = false;
@@ -842,11 +836,12 @@ class Card extends EffectSource {
         return this.action({
             title: 'Fight with this creature',
             condition: (context) =>
-                this.checkRestrictions('fight', context) && this.type === 'Ally',
+                this.checkRestrictions('fight', context) &&
+                this.battlefieldTypes.includes(this.type),
             printedAbility: false,
             target: {
                 activePromptTitle: 'Choose a creature to attack',
-                cardType: 'Ally',
+                cardType: ['Ally', 'Conjuration'],
                 controller: 'opponent',
                 gameAction: new ResolveFightAction({ attacker: this })
             }

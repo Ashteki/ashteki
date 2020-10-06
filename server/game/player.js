@@ -148,7 +148,9 @@ class Player extends GameObject {
     }
 
     get creaturesInPlay() {
-        return this.cardsInPlay.filter((card) => card.type === 'Ally');
+        return this.cardsInPlay.filter(
+            (card) => card.type === 'Ally' || card.type === 'Conjuration'
+        );
     }
 
     /**

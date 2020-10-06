@@ -44,7 +44,7 @@ class AllocateDamageAction extends GameAction {
 
     getSelector() {
         return CardSelector.for({
-            cardType: 'Ally',
+            cardType: ['Ally', 'Conjuration'],
             cardCondition: this.cardCondition,
             controller: this.controller
         });

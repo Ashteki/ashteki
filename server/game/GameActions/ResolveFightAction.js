@@ -3,7 +3,7 @@ const CardGameAction = require('./CardGameAction');
 class ResolveFightAction extends CardGameAction {
     setup() {
         this.name = 'attack';
-        this.targetType = ['Ally'];
+        this.targetType = ['Ally', 'Conjuration'];
         this.effectMsg = 'make {1} fight {0}';
         this.effectArgs = this.attacker;
     }
