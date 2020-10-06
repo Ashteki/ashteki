@@ -4,7 +4,7 @@ const _ = require('underscore');
 
 const { matchCardByNameAndPack } = require('./cardutil.js');
 
-const PathToSubModulePacks = path.join(__dirname, '../../keyteki-json-data/packs');
+const PathToSubModulePacks = path.join(__dirname, '../../data/cards');
 
 const defaultFiller = {
     brobnar: 'anger',
@@ -35,7 +35,7 @@ class DeckBuilder {
             let pack = require(path.join(directory, file));
 
             for (let card of pack.cards) {
-                cards[card._id] = card;
+                cards[card.stub] = card;
             }
         }
 

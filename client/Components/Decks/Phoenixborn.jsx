@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Archon.scss';
+import './Phoenixborn.scss';
 
 const Phoenixborn = ({ pbStub }) => {
     let pbImage = `/img/cards/${pbStub}.png`;
