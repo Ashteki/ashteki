@@ -59,7 +59,7 @@ class Card extends EffectSource {
         this.clonedNeighbors = null;
 
         this.printedAttack = cardData.attack;
-        this.printedLife = cardData.life;
+        this.printedLife = cardData.life == 'X' ? 0 : cardData.life;
         this.printedRecover = cardData.recover;
         this.exhausted = false;
 

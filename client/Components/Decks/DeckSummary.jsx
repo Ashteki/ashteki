@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { sortBy } from 'underscore';
 import { useTranslation } from 'react-i18next';
-import CardImage from './CardImage';
+import CardImage from '../GameBoard/CardImage';
 import { Constants } from '../../constants';
 import Phoenixborn from './Phoenixborn';
 

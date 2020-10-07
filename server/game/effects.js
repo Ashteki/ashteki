@@ -38,6 +38,7 @@ const Effects = {
     limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
     modifyBonusIcons: (icons) => EffectBuilder.card.flexible('modifyBonusIcons', icons),
     modifyPower: (amount) => EffectBuilder.card.flexible('modifyPower', amount),
+    modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
     playAbilitiesAddReap: () => EffectBuilder.card.static('playAbilitiesAddReap'),
     reapAbilitiesAddFight: () => EffectBuilder.card.static('reapAbilitiesAddFight'),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
