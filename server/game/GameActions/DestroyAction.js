@@ -70,7 +70,11 @@ class DestroyAction extends CardGameAction {
                                     newEvent.name = 'onCardLeavesPlay';
                                     newEvent.card.owner.moveCard(
                                         event.card,
-                                        this.purge ? 'purged' : 'discard'
+                                        this.purge
+                                            ? 'purged'
+                                            : event.card.type == 'Conjuration'
+                                            ? 'archives'
+                                            : 'discard'
                                     );
                                 }
                             )
@@ -80,7 +84,11 @@ class DestroyAction extends CardGameAction {
 
                     leavesPlayEvent.card.owner.moveCard(
                         event.card,
-                        this.purge ? 'purged' : 'discard'
+                        this.purge
+                            ? 'purged'
+                            : event.card.type == 'Conjuration'
+                            ? 'archives'
+                            : 'discard'
                     );
                 }
             );

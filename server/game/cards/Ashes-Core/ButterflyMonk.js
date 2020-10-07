@@ -5,6 +5,15 @@ class ButterflyMonk extends Card {
         this.persistentEffect({
             effect: ability.effects.modifyLife((card) => this.countMyType(card))
         });
+
+        this.leavesPlay({
+            target: {
+                cardCondition: (card, context) => card !== context.source,
+                activePromptTitle: 'Last blessing',
+                cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
+                gameAction: ability.actions.removeDamage({ amount: 1 })
+            }
+        });
     }
 
     countMyType(card) {

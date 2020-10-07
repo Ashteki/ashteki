@@ -93,9 +93,6 @@ class GameChat {
                             image: arg.image,
                             label: arg.name,
                             type: arg.getType(),
-                            maverick: arg.maverick,
-                            anomaly: arg.anomaly,
-                            cardPrintedAmber: arg.cardPrintedAmber,
                             argType: 'card'
                         });
                     } else if (arg instanceof Spectator || arg instanceof Player) {

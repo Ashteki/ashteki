@@ -726,6 +726,9 @@ class Card extends EffectSource {
             this.game.resolveAbility(context);
         });
 
+        choices = choices.concat('Cancel');
+        handlers = handlers.concat([() => true]);
+
         this.game.promptWithHandlerMenu(player, {
             activePromptTitle:
                 this.location === 'play area' || this.location === 'spellboard'
