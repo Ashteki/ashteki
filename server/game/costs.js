@@ -1,10 +1,14 @@
 const Costs = {
     exhaust: () => ({
-        canPay: (context) => !context.source.exhausted,
+        canPay: () => true,
         payEvent: (context) => context.game.actions.exhaust().getEvent(context.source, context)
     }),
     use: () => ({
         canPay: (context) => {
+            if (context.source.exhausted) {
+                return false;
+            }
+
             if (
                 // keyforge rule of 6 - does this map to ashes at all?
                 context.game.cardsUsed

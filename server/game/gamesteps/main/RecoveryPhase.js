@@ -23,7 +23,10 @@ class RecoveryPhase extends Phase {
 
         this.game.actions
             .ready()
-            .resolve(this.game.activePlayer.cardsInPlay, this.game.getFrameworkContext());
+            .resolve(
+                this.game.activePlayer.cardsInPlay.concat(this.game.activePlayer.spellboard),
+                this.game.getFrameworkContext()
+            );
     }
 
     endReadyCardsStep() {

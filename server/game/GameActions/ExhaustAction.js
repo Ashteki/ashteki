@@ -8,7 +8,7 @@ class ExhaustAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        if (card.location !== 'play area' || card.location === 'spellboard') {
+        if (!['play area', 'spellboard'].includes(card.location)) {
             return false;
         }
 
@@ -16,7 +16,7 @@ class ExhaustAction extends CardGameAction {
     }
 
     checkEventCondition(event) {
-        return !event.card.exhausted && super.checkEventCondition(event);
+        return super.checkEventCondition(event);
     }
 
     getEvent(card, context) {

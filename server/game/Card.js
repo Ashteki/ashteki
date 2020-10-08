@@ -61,7 +61,6 @@ class Card extends EffectSource {
         this.printedAttack = cardData.attack;
         this.printedLife = cardData.life == 'X' ? 0 : cardData.life;
         this.printedRecover = cardData.recover;
-        this.exhausted = false;
 
         this.moribund = false;
         this.isFighting = false;
@@ -395,7 +394,6 @@ class Card extends EffectSource {
     }
 
     onLeavesPlay() {
-        this.exhausted = false;
         this.moribund = false;
         this.new = false;
         this.tokens = {};
@@ -578,7 +576,6 @@ class Card extends EffectSource {
         clone.effects = _.clone(this.effects);
         clone.tokens = _.clone(this.tokens);
         clone.controller = this.controller;
-        clone.exhausted = this.exhausted;
         clone.location = this.location;
         clone.parent = this.parent;
         clone.clonedNeighbors = this.neighbors;
@@ -654,6 +651,17 @@ class Card extends EffectSource {
         return this.hasToken('ward');
     }
 
+    get exhaustion() {
+        return this.hasToken('exhaustion') ? this.tokens.exhaustion : 0;
+    }
+
+    get isReady() {
+        return !this.hasToken('exhaustion');
+    }
+    get exhausted() {
+        return this.hasToken('exhaustion');
+    }
+
     ward() {
         if (!this.hasToken('ward')) {
             this.addToken('ward');
@@ -665,11 +673,15 @@ class Card extends EffectSource {
     }
 
     exhaust() {
-        this.exhausted = true;
+        this.addToken('exhaustion');
+    }
+
+    unExhuast() {
+        this.clearToken('exhaustion');
     }
 
     ready() {
-        this.exhausted = false;
+        this.removeToken('exhaustion');
     }
 
     removeAttachment(card) {

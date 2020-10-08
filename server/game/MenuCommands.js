@@ -3,10 +3,15 @@ class MenuCommands {
         switch (menuItem.command) {
             case 'exhaust':
                 if (card.exhausted) {
-                    game.addAlert('danger', '{0} readies {1}', player, card);
+                    game.addAlert(
+                        'danger',
+                        '{0} removes an exhaustion token from {1}',
+                        player,
+                        card
+                    );
                     card.ready();
                 } else {
-                    game.addAlert('danger', '{0} exhausts {1}', player, card);
+                    game.addAlert('danger', '{0} adds and eshaustion token to {1}', player, card);
                     card.exhaust();
                 }
 

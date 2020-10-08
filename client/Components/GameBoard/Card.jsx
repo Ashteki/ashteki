@@ -238,8 +238,8 @@ const Card = ({
             statusClass,
             {
                 'custom-card': card.code && card.code.startsWith('custom'),
-                horizontal: orientation !== 'vertical' || card.exhausted,
-                vertical: orientation === 'vertical' && !card.exhausted,
+                horizontal: orientation !== 'vertical',
+                vertical: orientation === 'vertical',
                 'can-play':
                     statusClass !== 'selected' &&
                     statusClass !== 'selectable' &&
@@ -251,7 +251,7 @@ const Card = ({
             }
         );
         let imageClass = classNames('card-image vertical', sizeClass, {
-            exhausted: orientation === 'exhausted' || card.exhausted || orientation === 'horizontal'
+            exhausted: orientation === 'exhausted' || orientation === 'horizontal'
         });
         let image = card ? (
             <div className={imageClass}>

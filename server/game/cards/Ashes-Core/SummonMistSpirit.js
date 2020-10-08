@@ -1,25 +1,26 @@
 const Card = require('../../Card.js');
 
-class SummonButterflyMonk extends Card {
+class SummonMistSpirit extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Summon Butterfly Monk',
+            title: 'Summon Mist Spirit',
             cost: [
                 ability.costs.mainAction(),
-                ability.costs.die({ magic: 'natural', level: 'class' })
+                ability.costs.die({ magic: 'illusion', level: 'class' })
             ],
             location: 'spellboard',
             target: {
                 player: 'self',
                 cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'butterfly-monk',
+                cardCondition: (card) => card.id === 'mist-spirit',
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
             }
+            //todo: pay another basic to summon another mist spirit
         });
     }
 }
 
-SummonButterflyMonk.id = 'summon-butterfly-monk';
+SummonMistSpirit.id = 'summon-mist-spirit';
 
-module.exports = SummonButterflyMonk;
+module.exports = SummonMistSpirit;

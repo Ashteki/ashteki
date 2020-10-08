@@ -1,7 +1,6 @@
 const escapeRegex = require('../util.js').escapeRegex;
 const logger = require('../log.js');
 const monk = require('monk');
-const moment = require('moment');
 const crypto = require('crypto');
 const EventEmitter = require('events');
 const uuid = require('uuid');
@@ -65,9 +64,9 @@ class UserService extends EventEmitter {
         return !!usr;
     }
 
-    async getRefreshTokens(user) {
+    async getRefreshTokens(userId) {
         return await this.refreshTokens
-            .find({ userId: user.id })
+            .find({ userId: userId })
             .then((tokens) => {
                 if (tokens) {
                     return tokens;
@@ -80,9 +79,9 @@ class UserService extends EventEmitter {
             });
     }
 
-    async getBlocklist(user) {
+    async getBlocklist(userId) {
         return await this.blocklist
-            .find({ userId: user.id })
+            .find({ userId: userId })
             .then((entries) => {
                 if (entries) {
                     return entries;
@@ -95,9 +94,9 @@ class UserService extends EventEmitter {
             });
     }
 
-    async getPermissions(user) {
+    async getPermissions(userId) {
         return await this.roles
-            .find({ userId: user._id })
+            .find({ userId: userId })
             .then((permissions) => {
                 if (permissions) {
                     return this.mapPermissions(permissions);
@@ -107,14 +106,14 @@ class UserService extends EventEmitter {
             })
             .catch((err) => {
                 logger.error('Failed to lookup permissions for user', err);
-                user.permissions = {};
+                return {};
             });
     }
 
     async getUserById(id) {
         let user = await this.users.findOne({ _id: id });
-        user.tokens = await this.getRefreshTokens(user);
-        user.blocklist = await this.getBlocklist(user);
+        user.tokens = await this.getRefreshTokens(id);
+        user.blocklist = await this.getBlocklist(id);
         user.permissions = await this.getPermissions(user);
 
         return new User(user);
@@ -243,7 +242,6 @@ class UserService extends EventEmitter {
     }
 
     async addRefreshToken(user, token, ip) {
-        let expiration = moment().utc().add(1, 'months');
         let hmac = crypto.createHmac(
             'sha512',
             this.configService.getValueForSection('lobby', 'hmacSecret')
@@ -253,11 +251,13 @@ class UserService extends EventEmitter {
 
         let encodedToken = hmac.update(`REFRESH ${user.username} ${tokenId}`).digest('hex');
 
+        const expiryDate = new Date();
+        expiryDate.setMonth(expiryDate.getMonth() + 1);
         let toAdd = {
             userId: user.id,
             token: encodedToken,
             tokenId: tokenId,
-            expiry: expiration,
+            expiry: expiryDate,
             ip: ip,
             lastUsed: new Date()
         };
@@ -276,8 +276,7 @@ class UserService extends EventEmitter {
             return false;
         }
 
-        let now = moment().utc();
-        if (refreshToken.exp < now) {
+        if (refreshToken.expiry < Date.now()) {
             return false;
         }
 

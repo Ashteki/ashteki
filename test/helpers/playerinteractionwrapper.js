@@ -87,7 +87,7 @@ class PlayerInteractionWrapper {
             }
 
             this.moveCard(card, 'play area');
-            card.exhausted = false;
+            card.unExhaust();
         });
     }
 
