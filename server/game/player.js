@@ -32,6 +32,7 @@ class Player extends GameObject {
         this.firstFiveChosen = false;
 
         this.keysForgedThisRound = [];
+        this.takenPrepareDiscard = false;
 
         this.clock = ClockSelector.for(this, clockdetails);
         this.showDeck = false;

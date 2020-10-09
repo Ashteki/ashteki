@@ -1,3 +1,4 @@
+const AllPlayerDiscardPrompt = require('../AllPlayerDiscardPrompt.js');
 const DrawPhase = require('../draw/drawphase.js');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
@@ -8,7 +9,7 @@ class PreparePhase extends Phase {
         this.initialise([
             new SimpleStep(game, () => this.rollDice()),
             new SimpleStep(game, () => this.determineFirstPlayer()),
-            new SimpleStep(game, () => this.discardCards()), // actionwindow? prompt?
+            new AllPlayerDiscardPrompt(game),
             new DrawPhase(game)
         ]);
     }
@@ -19,11 +20,6 @@ class PreparePhase extends Phase {
 
     rollDice() {
         this.game.reRollPlayerDice();
-    }
-
-    discardCards() {
-        // queue up a discard prompt / action window?
-        // throw new Error('Method not implemented.');
     }
 }
 
