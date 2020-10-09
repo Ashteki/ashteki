@@ -2,7 +2,6 @@ const _ = require('underscore');
 const EventEmitter = require('events');
 const moment = require('moment');
 
-const Constants = require('../constants');
 const ChatCommands = require('./chatcommands');
 const GameChat = require('./gamechat');
 const EffectEngine = require('./effectengine');
@@ -1178,7 +1177,7 @@ class Game extends EventEmitter {
         }
 
         let playerResources = this.getPlayers()
-            .map((player) => `${player.name}: ${player.amber} amber (${this.playerKeys(player)})`)
+            .map((player) => `${player.name}: ${0} amber (${this.playerKeys(player)})`)
             .join(' ');
 
         this.addAlert('endofturn', `End of round ${this.turn}`);
@@ -1210,7 +1209,7 @@ class Game extends EventEmitter {
         //todo: set active player to alternate
 
         let playerResources = this.getPlayers()
-            .map((player) => `${player.name}: ${player.amber} amber (${this.playerKeys(player)})`)
+            .map((player) => `${player.name}: ${0} amber (X)`)
             .join(' ');
 
         this.addAlert('endofround', `End of round ${this.round}`);
@@ -1221,9 +1220,8 @@ class Game extends EventEmitter {
         this.checkForTimeExpired();
     }
 
-    playerKeys(player) {
-        const length = Object.values(player.keys).filter((forged) => forged).length;
-        return length === 1 ? '1 key' : `${length} keys`;
+    playerKeys() {
+        return `0 keys`;
     }
 
     get cardsInPlay() {
@@ -1233,27 +1231,6 @@ class Game extends EventEmitter {
     get creaturesInPlay() {
         return this.cardsInPlay.filter(
             (card) => card.type === 'Ally' || card.type === 'Conjuration'
-        );
-    }
-
-    /**
-     * Return all houses in play.
-     *
-     * @param {Array} cards - which cards to consider. Default are all cards.
-     * @param {boolean} upgrade - if upgrades should be counted. Default is false.
-     * @param {filter} filter - an extra filter to apply to the card.
-     */
-    getHousesInPlay(cards = this.cardsInPlay, upgrade = false, filter = null) {
-        return Constants.Houses.filter((house) =>
-            cards.some(
-                (card) =>
-                    ((!filter || filter(card)) && card.hasHouse(house)) ||
-                    (upgrade &&
-                        card.upgrades &&
-                        card.upgrades.some(
-                            (upgrade) => (!filter || filter(upgrade)) && upgrade.hasHouse(house)
-                        ))
-            )
         );
     }
 
@@ -1277,8 +1254,6 @@ class Game extends EventEmitter {
         let players = this.getPlayers().map((player) => {
             return {
                 deck: player.deckData.identity,
-                houses: player.houses,
-                keys: player.keys,
                 name: player.name,
                 turn: player.turn,
                 wins: player.wins

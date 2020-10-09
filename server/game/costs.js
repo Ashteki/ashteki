@@ -35,18 +35,10 @@ const Costs = {
                 return true;
             })
     }),
-    payAmber: (amount = 1) => ({
-        canPay: (context) => context.player.amber >= amount,
-        payEvent: (context) => {
-            let action = context.game.actions.transferAmber({ amount: amount });
-            action.name = 'pay';
-            return action.getEvent(context.player, context);
-        }
-    }),
-    loseAmber: (amount = 1) => ({
-        canPay: (context) => context.player.amber >= amount,
+    loseStatus: (amount = 1) => ({
+        canPay: (context) => context.source.status >= amount,
         payEvent: (context) =>
-            context.game.actions.loseAmber({ amount: amount }).getEvent(context.player, context)
+            context.game.actions.loseStatus({ amount: amount }).getEvent(context.source, context)
     }),
     mainAction: () => ({
         canPay: (context) => context.player.actions.main,

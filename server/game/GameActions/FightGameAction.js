@@ -19,17 +19,8 @@ class FightGameAction extends CardGameAction {
 
     getEvent(card, context) {
         return super.createEvent('onInitiateFight', { card, context }, () => {
-            let newContext;
-            if (card.stunned) {
-                let removeStunAction = card
-                    .getActions()
-                    .find((action) => action.title === "Remove this creature's stun");
-                newContext = removeStunAction.createContext(context.player);
-            } else {
-                let fightAction = card.getFightAction();
-                newContext = fightAction.createContext(context.player);
-            }
-
+            let fightAction = card.getFightAction();
+            let newContext = fightAction.createContext(context.player);
             newContext.canCancel = false;
             context.game.resolveAbility(newContext);
             context.game.raiseEvent('onUseCard', { card: card, context: context });

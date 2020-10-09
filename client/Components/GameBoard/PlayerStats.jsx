@@ -147,7 +147,6 @@ export class PlayerStats extends React.Component {
             <div className={statsClass}>
                 {playerAvatar}
                 {this.renderActions()}
-                {this.getButton('amber', t('Amber'))}
 
                 {matchRecord}
 

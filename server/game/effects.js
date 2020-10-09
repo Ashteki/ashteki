@@ -31,16 +31,11 @@ const Effects = {
     visbileIn: (location) => EffectBuilder.card.static('visbileIn', location),
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
-    fightAbilitiesAddReap: () => EffectBuilder.card.static('fightAbilitiesAddReap'),
     ignores: (trait) => EffectBuilder.card.static('ignores', trait),
-    keyAmber: () => EffectBuilder.card.static('keyAmber'),
-    keyAmberOpponent: () => EffectBuilder.card.static('keyAmberOpponent'),
     limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
     modifyBonusIcons: (icons) => EffectBuilder.card.flexible('modifyBonusIcons', icons),
     modifyPower: (amount) => EffectBuilder.card.flexible('modifyPower', amount),
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
-    playAbilitiesAddReap: () => EffectBuilder.card.static('playAbilitiesAddReap'),
-    reapAbilitiesAddFight: () => EffectBuilder.card.static('reapAbilitiesAddFight'),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setPower: (amount) => EffectBuilder.card.flexible('setPower', amount),
     takeControl: (player) => EffectBuilder.card.static('takeControl', player),
@@ -75,8 +70,7 @@ const Effects = {
         EffectBuilder.player.static(
             'canUse',
             (context) =>
-                (context.ability.title === 'Fight with this creature' ||
-                    context.ability.title === "Remove this creature's stun") &&
+                context.ability.title === 'Fight with this creature' &&
                 match(context.source, context)
         ),
     mustFightIfAble: () => EffectBuilder.card.static('mustFightIfAble'),
@@ -104,7 +98,6 @@ const Effects = {
             unapply: (player, context, effect) =>
                 context.game.effectEngine.removeDelayedEffect(effect)
         }),
-    forgeAmberGainedByOpponent: () => EffectBuilder.player.static('forgeAmberGainedByOpponent'),
     mayResolveBonusIconsAs: (newIcon, icon = 'any') =>
         EffectBuilder.player.static('mayResolveBonusIconsAs', { newIcon: newIcon, icon: icon }),
     modifyKeyCost: (amount) => EffectBuilder.player.flexible('modifyKeyCost', amount),
@@ -112,7 +105,6 @@ const Effects = {
     noActiveHouseForPlay: () => EffectBuilder.player.static('noActiveHouseForPlay'),
     playerCannot: (type, condition) =>
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
-    redirectAmber: (recepient) => EffectBuilder.player.static('redirectAmber', recepient),
     restrictHouseChoice: (house) => EffectBuilder.player.static('restrictHouseChoice', house),
     stealFromPool: () => EffectBuilder.player.static('stealFromPool'),
     captureFromPool: () => EffectBuilder.player.static('captureFromPool'),

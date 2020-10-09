@@ -11,7 +11,6 @@ const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
 const ResolveFightAction = require('./GameActions/ResolveFightAction');
-const RemoveStun = require('./BaseActions/RemoveStun');
 
 class Card extends EffectSource {
     constructor(owner, cardData) {
@@ -51,8 +50,6 @@ class Card extends EffectSource {
             });
         }
 
-        this.cardPrintedAmber = cardData.amber;
-
         this.upgrades = [];
         this.parent = null;
         this.childCards = [];
@@ -77,7 +74,7 @@ class Card extends EffectSource {
             { command: 'main', text: 'Back', menu: 'tokens' },
             { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
             { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
-            { command: 'addAmber', text: 'Add 1 amber', menu: 'tokens' },
+            { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
             { command: 'addWard', text: 'Add 1 ward', menu: 'tokens' },
             { command: 'remWard', text: 'Remove 1 ward', menu: 'tokens' }
         ];
@@ -173,13 +170,7 @@ class Card extends EffectSource {
             return this.mostRecentEffect('copyCard').bonusIcons;
         }
 
-        if (this.anyEffect('modifyBonusIcons')) {
-            return this.mostRecentEffect('modifyBonusIcons');
-        }
-
-        let result = this.cardPrintedAmber
-            ? Array.from(Array(this.cardPrintedAmber), () => 'amber')
-            : [];
+        let result = [];
         return result;
     }
 
@@ -266,10 +257,6 @@ class Card extends EffectSource {
         return this.reaction(Object.assign({ fight: true, name: 'Fight' }, properties));
     }
 
-    reap(properties) {
-        return this.reaction(Object.assign({ reap: true, name: 'Reap' }, properties));
-    }
-
     destroyed(properties) {
         return this.interrupt(
             Object.assign(
@@ -329,11 +316,10 @@ class Card extends EffectSource {
     }
 
     reaction(properties) {
-        if (properties.play || properties.fight || properties.reap) {
+        if (properties.play || properties.fight) {
             properties.when = {
                 onCardPlayed: (event, context) => event.card === context.source,
-                onFight: (event, context) => event.attacker === context.source,
-                onReap: (event, context) => event.card === context.source
+                onFight: (event, context) => event.attacker === context.source
             };
         }
 
@@ -688,8 +674,8 @@ class Card extends EffectSource {
         return this.printedRecover + this.sumEffects('modifyRecover');
     }
 
-    get amber() {
-        return this.hasToken('amber') ? this.tokens.amber : 0;
+    get status() {
+        return this.hasToken('status') ? this.tokens.status : 0;
     }
 
     get warded() {
@@ -834,10 +820,6 @@ class Card extends EffectSource {
         });
     }
 
-    getRemoveStunAction() {
-        return new RemoveStun(this);
-    }
-
     battlefieldTypes = ['Ally', 'Conjuration'];
 
     getActions(location = this.location) {
@@ -858,7 +840,6 @@ class Card extends EffectSource {
             actions.push(new DiscardAction(this));
         } else if (location === 'play area' && this.battlefieldTypes.includes(this.type)) {
             actions.push(this.getFightAction());
-            actions.push(this.getRemoveStunAction());
         }
 
         return actions.concat(this.actions.slice());
@@ -941,9 +922,6 @@ class Card extends EffectSource {
         let result = super.getShortSummary();
 
         // Include card specific information useful for UI rendering
-        result.maverick = this.maverick;
-        result.anomaly = this.anomaly;
-        result.cardPrintedAmber = this.cardPrintedAmber;
         result.locale = this.locale;
         return result;
     }
@@ -983,8 +961,6 @@ class Card extends EffectSource {
             menu: this.getMenu(),
             name: this.name,
             new: this.new,
-            cardPrintedAmber: this.cardPrintedAmber,
-            stunned: this.stunned,
             taunt: this.getType() === 'Ally' && !!this.getKeywordValue('taunt'),
             tokens: this.tokens,
             type: this.getType(),

@@ -60,15 +60,6 @@ class GameFlowWrapper {
     }
 
     /**
-     * Keeps hand during prompt for conflict mulligan
-     */
-    keepCards() {
-        this.guardCurrentPhase('setup');
-        this.player1.clickPrompt('Keep Hand');
-        this.player2.clickPrompt('Keep Hand');
-    }
-
-    /**
      * Asserts that the game is in the expected phase
      */
     guardCurrentPhase(phase) {

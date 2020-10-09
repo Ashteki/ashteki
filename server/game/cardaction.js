@@ -60,8 +60,6 @@ class CardAction extends CardAbility {
             !this.condition(context)
         ) {
             return 'condition';
-        } else if (!ignoredRequirements.includes('stunned') && this.card.stunned) {
-            return 'stunned';
         }
 
         return super.meetsRequirements(context);

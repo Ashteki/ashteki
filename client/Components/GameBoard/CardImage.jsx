@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import mergeImages from 'merge-images';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import './CardImage.scss';
@@ -16,45 +15,12 @@ import './CardImage.scss';
  */
 const CardImage = ({ card, cardBack }) => {
     const { i18n } = useTranslation();
-    let [mergedImage, setMergedImage] = useState('');
-    let { maverick, anomaly, amber } = card;
-
-    if (card.cardPrintedAmber) {
-        amber = card.cardPrintedAmber;
-    }
-
-    useEffect(() => {
-        let imgPath = card.facedown
-            ? cardBack
-            : `/img/cards/${i18n.language === 'en' ? '' : i18n.language + '/'}${card.id}.png`;
-
-        let imagesToMerge = [];
-        if (maverick) {
-            let bonusIcons = amber > 0;
-            let maverickHouseImg =
-                '/img/maverick/maverick-' + maverick + (bonusIcons ? '-amber' : '') + '.png';
-            imagesToMerge.push({ src: maverickHouseImg, x: 0, y: 0 });
-            imagesToMerge.push({ src: '/img/maverick/maverick-corner.png', x: 210, y: 0 });
-        }
-
-        if (anomaly) {
-            let maverickHouseImg =
-                '/img/maverick/maverick-' + anomaly + (amber > 0 ? '-amber' : '') + '.png';
-            imagesToMerge.push({ src: maverickHouseImg, x: 0, y: 0 });
-        }
-
-        if (imagesToMerge.length > 0) {
-            mergeImages([imgPath, ...imagesToMerge])
-                .then((src) => setMergedImage(src))
-                .catch(() => {});
-        } else {
-            setMergedImage(imgPath);
-        }
-    }, [amber, anomaly, i18n.language, maverick, setMergedImage, cardBack, card.facedown, card]);
-
+    let imgPath = card.facedown
+        ? cardBack
+        : `/img/cards/${i18n.language === 'en' ? '' : i18n.language + '/'}${card.id}.png`;
     return (
         <>
-            <img className='img-fluid' src={mergedImage} />
+            <img className='img-fluid' src={imgPath} />
         </>
     );
 };

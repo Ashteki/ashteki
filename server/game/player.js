@@ -226,7 +226,6 @@ class Player extends GameObject {
     initialise() {
         this.prepareDecks();
         this.keys = { red: false, blue: false, yellow: false };
-        this.amber = 0;
         this.turn = 1;
         this.readyToStart = false;
         this.opponent = this.game.getOtherPlayer(this);
@@ -547,10 +546,6 @@ class Player extends GameObject {
         return this.anyEffect('showTopConflictCard');
     }
 
-    modifyAmber(amount) {
-        this.amber = Math.max(this.amber + amount, 0);
-    }
-
     spendMainAction() {
         this.actions.main = false;
     }
@@ -589,178 +584,6 @@ class Player extends GameObject {
         return availableHouses;
     }
 
-    getAmberSources() {
-        return this.cardsInPlay
-            .filter((card) => card.anyEffect('keyAmber') && card.hasToken('amber'))
-            .concat(
-                this.opponent
-                    ? this.opponent.cardsInPlay.filter(
-                          (card) => card.anyEffect('keyAmberOpponent') && card.hasToken('amber')
-                      )
-                    : []
-            );
-    }
-
-    canForgeKey(modifier = 0) {
-        if (!this.checkRestrictions('forge', this.game.getFrameworkContext(this))) {
-            return false;
-        }
-
-        if (Object.values(this.keys).every((key) => key)) {
-            return false;
-        }
-
-        let alternativeSources = this.getAmberSources().reduce(
-            (total, source) => total + source.tokens.amber,
-            0
-        );
-        return this.amber + alternativeSources >= this.getCurrentKeyCost() + modifier;
-    }
-
-    getCurrentKeyCost() {
-        return this.sumEffects('modifyKeyCost') + 6;
-    }
-
-    getForgedKeys() {
-        return Math.max(0, Object.values(this.keys).filter((key) => key).length);
-    }
-
-    forgeKey(modifier) {
-        let cost = Math.max(0, this.getCurrentKeyCost() + modifier);
-        let modifiedCost = cost;
-        let unforgedKeys = this.getUnforgedKeys();
-        let amberSources = this.getAmberSources();
-        if (amberSources.length > 0) {
-            let totalAvailable = amberSources.reduce(
-                (total, source) => total + source.tokens.amber,
-                0
-            );
-            for (let source of amberSources) {
-                this.game.queueSimpleStep(() => {
-                    let max = Math.min(modifiedCost, source.tokens.amber);
-                    let min = Math.max(
-                        0,
-                        modifiedCost - this.amber - totalAvailable + source.tokens.amber
-                    );
-                    if (max === min) {
-                        modifiedCost -= max;
-                        totalAvailable -= max;
-                        source.removeToken('amber', max);
-                        return;
-                    }
-
-                    this.game.promptWithHandlerMenu(this, {
-                        activePromptTitle: {
-                            text: 'How much amber do you want to use from {{card}}?',
-                            values: { card: source.name }
-                        },
-                        source: source,
-                        choices: _.range(min, max + 1),
-                        choiceHandler: (choice) => {
-                            modifiedCost -= choice;
-                            totalAvailable -= choice;
-                            source.removeToken('amber', choice);
-                        }
-                    });
-                });
-            }
-        }
-
-        if (unforgedKeys.length > 1) {
-            this.game.promptWithHandlerMenu(this, {
-                activePromptTitle: { text: 'Which key would you like to forge?' },
-                source: 'Forge a key',
-                choices: unforgedKeys,
-                choiceHandler: (key) => {
-                    this.game.queueSimpleStep(() => {
-                        this.finalizeForge(key.value, modifiedCost, cost);
-                    });
-                }
-            });
-        } else {
-            this.game.queueSimpleStep(() =>
-                this.finalizeForge(unforgedKeys.shift().value, modifiedCost, cost)
-            );
-        }
-    }
-
-    finalizeForge(key, modifiedCost, cost) {
-        this.modifyAmber(-modifiedCost);
-
-        if (this.anyEffect('forgeAmberGainedByOpponent')) {
-            this.game.actions
-                .gainAmber({ amount: cost })
-                .resolve(this.opponent, this.game.getFrameworkContext());
-        }
-
-        this.keys[key] = true;
-        this.keysForgedThisRound.push(key);
-        this.game.addMessage(
-            '{0} forges the {1}, paying {2} amber',
-            this.game.activePlayer,
-            `forgedkey${key}`,
-            modifiedCost
-        );
-    }
-
-    unforgeKey(choices) {
-        if (choices.length > 1) {
-            this.game.promptWithHandlerMenu(this, {
-                activePromptTitle: { text: 'Which key would you like to unforge?' },
-                source: 'Unforge a key',
-                choices: this.getKeyOptions(choices),
-                choiceHandler: (key) => {
-                    this.game.queueSimpleStep(() => {
-                        this.keys[key.value] = false;
-                        let forgedKeyIndex = this.keysForgedThisRound.findIndex(
-                            (x) => x === key.value
-                        );
-                        if (forgedKeyIndex !== -1) {
-                            this.keysForgedThisRound.splice(forgedKeyIndex, 1);
-                        }
-
-                        this.game.addMessage(
-                            "{0} unforges {1}'s {2}",
-                            this.game.activePlayer,
-                            this.game.activePlayer.opponent,
-                            `forgedkey${key.value}`
-                        );
-                    });
-                }
-            });
-        } else {
-            this.keys[choices[0].toLowerCase()] = false;
-            let forgedKeyIndex = this.keysForgedThisRound.findIndex(
-                (x) => x === choices[0].toLowerCase()
-            );
-            if (forgedKeyIndex !== -1) {
-                this.keysForgedThisRound.splice(forgedKeyIndex, 1);
-            }
-
-            this.game.addMessage(
-                '{0} unforges the {1}',
-                this.game.activePlayer,
-                `forgedkey${choices[0]}`
-            );
-        }
-    }
-
-    getUnforgedKeys() {
-        return [
-            { text: 'Red', value: 'red', icon: 'unforgedkeyred' },
-            { text: 'Blue', value: 'blue', icon: 'unforgedkeyblue' },
-            { text: 'Yellow', value: 'yellow', icon: 'unforgedkeyyellow' }
-        ].filter((key) => !this.keys[key.value]);
-    }
-
-    getKeyOptions(options) {
-        return [
-            { text: 'Red', value: 'red', icon: 'forgedkeyred' },
-            { text: 'Blue', value: 'blue', icon: 'forgedkeyblue' },
-            { text: 'Yellow', value: 'yellow', icon: 'forgedkeyyellow' }
-        ].filter((key) => options.includes(key.value));
-    }
-
     getAdditionalCosts(context) {
         return this.getEffects('additionalCost')
             .reduce((array, costFactory) => array.concat(costFactory(context)), [])
@@ -773,10 +596,7 @@ class Player extends GameObject {
 
     getStats() {
         return {
-            amber: this.amber,
-            keys: this.keys,
-            houses: this.houses,
-            keyCost: this.getCurrentKeyCost()
+            keys: this.keys
         };
     }
 

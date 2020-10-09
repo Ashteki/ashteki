@@ -83,9 +83,9 @@ const Card = ({
             counters = counters.concat(getCountersForCard(upgrade));
         }
 
-        if (card.stunned) {
-            counters.push({ name: 'stun', count: 1, showValue: false });
-        }
+        // if (card.stunned) {
+        //     counters.push({ name: 'stun', count: 1, showValue: false });
+        // }
 
         return counters.filter((counter) => counter.count >= 0);
     };

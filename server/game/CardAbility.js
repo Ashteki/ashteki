@@ -149,10 +149,6 @@ class CardAbility extends ThenAbility {
         return false;
     }
 
-    isReap() {
-        return false;
-    }
-
     isFight() {
         return false;
     }

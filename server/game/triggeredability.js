@@ -92,11 +92,10 @@ class TriggeredAbility extends CardAbility {
             return false;
         } else if (!this.when[event.name] || !this.when[event.name](event, context)) {
             return false;
-        } else if (this.properties.play || this.properties.fight || this.properties.reap) {
+        } else if (this.properties.play || this.properties.fight) {
             if (
                 (event.name === 'onCardPlayed' && !this.isPlay()) ||
-                (event.name === 'onFight' && !this.isFight()) ||
-                (event.name === 'onReap' && !this.isReap())
+                (event.name === 'onFight' && !this.isFight())
             ) {
                 return false;
             }
@@ -110,18 +109,7 @@ class TriggeredAbility extends CardAbility {
     }
 
     isFight() {
-        let { play, fight, reap } = this.properties;
-        reap = reap || (play && this.card.anyEffect('playAbilitiesAddReap'));
-        return fight || (reap && this.card.anyEffect('reapAbilitiesAddFight'));
-    }
-
-    isReap() {
-        let { play, fight, reap } = this.properties;
-        return (
-            reap ||
-            (play && this.card.anyEffect('playAbilitiesAddReap')) ||
-            (fight && this.card.anyEffect('fightAbilitiesAddReap'))
-        );
+        return this.properties.fight;
     }
 
     registerEvents() {

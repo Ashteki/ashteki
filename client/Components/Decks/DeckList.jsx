@@ -30,7 +30,7 @@ import { Constants } from '../../constants';
  * @property {string} rarity
  * @property {string} number
  * @property {string} image
- * @property {number} amber
+ * @property {number} status
  * @property {number} power
  * @property {number} expansion
  * @property {string} packCode

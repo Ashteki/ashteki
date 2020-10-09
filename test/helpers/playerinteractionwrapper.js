@@ -16,16 +16,6 @@ class PlayerInteractionWrapper {
         return this.player.name;
     }
 
-    get amber() {
-        return this.player.amber;
-    }
-
-    set amber(newValue) {
-        if (newValue >= 0) {
-            this.player.amber = newValue;
-        }
-    }
-
     get chains() {
         return this.player.chains;
     }
@@ -468,18 +458,6 @@ class PlayerInteractionWrapper {
         if (target) {
             this.clickCard(target);
         }
-    }
-
-    reap(creature) {
-        if (
-            creature.type !== 'creature' ||
-            !this.hasPrompt('Choose a card to play, discard or use')
-        ) {
-            throw new Error(`${creature.name} cannot reap now`);
-        }
-
-        this.clickCard(creature);
-        this.clickPrompt('Reap with this creature');
     }
 
     play(card, left = false, deploy = false) {

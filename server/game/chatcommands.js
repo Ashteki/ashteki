@@ -17,7 +17,6 @@ class ChatCommands {
             '/discardtopofdeck': this.discardtopofdeck,
             '/manual': this.manual,
             '/modify-clock': this.modifyClock,
-            '/mulligan': this.mulligan,
             '/mute-spectators': this.muteSpectators,
             '/rematch': this.rematch,
             '/shuffle': this.shuffle,
@@ -175,11 +174,6 @@ class ChatCommands {
     shuffle(player) {
         this.game.addAlert('danger', '{0} is shuffling their deck', player);
         player.shuffleDeck();
-    }
-
-    mulligan(player) {
-        this.game.addAlert('danger', '{0} mulligans their hand', player);
-        player.takeMulligan();
     }
 
     cancelPrompt(player) {
