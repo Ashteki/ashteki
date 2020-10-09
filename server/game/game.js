@@ -436,8 +436,8 @@ class Game extends EventEmitter {
      */
     checkWinCondition() {
         for (const player of this.getPlayers()) {
-            if (Object.values(player.keys).every((key) => key)) {
-                this.recordWinner(player, 'keys');
+            if (player.phoenixborn.damage >= player.phoenixborn.life) {
+                this.recordWinner(player, 'damage');
             }
         }
     }

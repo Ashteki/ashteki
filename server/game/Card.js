@@ -707,6 +707,10 @@ class Card extends EffectSource {
         return this.hasToken('exhaustion');
     }
 
+    get damage() {
+        return this.hasToken('damage') ? this.tokens.damage : 0;
+    }
+
     ward() {
         if (!this.hasToken('ward')) {
             this.addToken('ward');
