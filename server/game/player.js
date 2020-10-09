@@ -190,6 +190,14 @@ class Player extends GameObject {
         this.shuffleDeck();
     }
 
+    isSpellboardFull() {
+        return this.spellboard.length >= this.phoenixborn.spellboard;
+    }
+
+    isBattlefieldFull() {
+        return this.cardsInPlay.length >= this.phoenixborn.battlefield;
+    }
+
     /**
      * Shuffles the deck, emitting an event and displaying a message in chat
      */

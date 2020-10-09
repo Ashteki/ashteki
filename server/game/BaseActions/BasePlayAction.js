@@ -48,7 +48,7 @@ class BasePlayAction extends BaseAbility {
     constructor(card, costs = [], target) {
         let cardCosts = parseCosts(card.cardData.cost);
 
-        let properties = { cost: Object.assign(costs, cardCosts) };
+        let properties = { cost: costs.concat(cardCosts) };
         if (target) {
             properties.target = target;
         }

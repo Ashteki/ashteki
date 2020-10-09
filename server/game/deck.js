@@ -50,8 +50,6 @@ class Deck {
             phenixborn: null
         };
 
-        result.houses = this.data.houses;
-
         this.eachRepeatedCard(this.data.cards, (cardData) => {
             let card = this.createCard(player, cardData);
             if (card) {

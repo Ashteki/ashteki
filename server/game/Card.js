@@ -62,6 +62,9 @@ class Card extends EffectSource {
         this.printedLife = cardData.life == 'X' ? 0 : cardData.life;
         this.printedRecover = cardData.recover;
 
+        this.printedBattlefield = cardData.battlefield;
+        this.printedSpellboard = cardData.spellboard;
+
         this.moribund = false;
         this.isFighting = false;
 
@@ -80,8 +83,11 @@ class Card extends EffectSource {
         ];
 
         this.endRound();
-        this.modifiedPower = undefined;
+        this.modifiedAttack = undefined;
         this.modifiedLife = undefined;
+        this.modifiedBattlefield = undefined;
+        this.modifiedSpellboard = undefined;
+        this.modifiedRecover = undefined;
     }
 
     get name() {
@@ -580,35 +586,74 @@ class Card extends EffectSource {
         clone.parent = this.parent;
         clone.clonedNeighbors = this.neighbors;
         clone.traits = this.getTraits();
-        clone.modifiedPower = this.getPower();
+        clone.modifiedAttack = this.getAttack();
         clone.modifiedLife = this.getLife();
+        clone.modifiedBattlefield = this.getBattlefield();
+        clone.modifiedSpellboard = this.getSpellboard();
+        clone.modifiedRecover = this.getRecover();
         return clone;
     }
 
     get power() {
-        return this.getPower();
+        return this.getAttack();
     }
 
     get life() {
         return this.getLife();
     }
 
-    getPower(printed = false) {
+    get battlefield() {
+        return this.getBattlefield();
+    }
+
+    get spellboard() {
+        return this.getSpellboard();
+    }
+
+    getAttack(printed = false) {
         if (printed) {
             return this.printedAttack;
         }
 
-        if (this.anyEffect('setPower')) {
-            return this.mostRecentEffect('setPower');
+        if (this.anyEffect('setAttack')) {
+            return this.mostRecentEffect('setAttack');
         }
 
         const copyEffect = this.mostRecentEffect('copyCard');
-        const printedPower = copyEffect ? copyEffect.printedPower : this.printedAttack;
-        return (
-            printedPower +
-            this.sumEffects('modifyPower') +
-            (this.hasToken('power') ? this.tokens.power : 0)
-        );
+        const printedAttack = copyEffect ? copyEffect.printedAttack : this.printedAttack;
+        return printedAttack + this.sumEffects('modifyAttack');
+    }
+
+    getBattlefield(printed = false) {
+        if (printed) {
+            return this.printedBattlefield;
+        }
+
+        if (this.anyEffect('setBattlefield')) {
+            return this.mostRecentEffect('setBattlefield');
+        }
+
+        const copyEffect = this.mostRecentEffect('copyCard');
+        const printedBattlefield = copyEffect
+            ? copyEffect.printedBattlefield
+            : this.printedBattlefield;
+        return printedBattlefield + this.sumEffects('modifyBattlefield');
+    }
+
+    getSpellboard(printed = false) {
+        if (printed) {
+            return this.printedSpellboard;
+        }
+
+        if (this.anyEffect('setSpellboard')) {
+            return this.mostRecentEffect('setSpellboard');
+        }
+
+        const copyEffect = this.mostRecentEffect('copyCard');
+        const printedSpellboard = copyEffect
+            ? copyEffect.printedSpellboard
+            : this.printedSpellboard;
+        return printedSpellboard + this.sumEffects('modifySpellboard');
     }
 
     getLife(printed = false) {

@@ -9,15 +9,6 @@ const Costs = {
         canPay: (context) => {
             if (context.source.exhausted) {
                 return false;
-            }
-
-            if (
-                // keyforge rule of 6 - does this map to ashes at all?
-                context.game.cardsUsed
-                    .concat(context.game.cardsPlayed)
-                    .filter((card) => card.name === context.source.name).length >= 6
-            ) {
-                return false;
             } else {
                 return true;
             }
@@ -30,10 +21,9 @@ const Costs = {
     play: () => ({
         canPay: (context) => {
             if (
-                // keyforge rule of 6 - does this map to ashes at all?
-                context.game.cardsUsed
-                    .concat(context.game.cardsPlayed)
-                    .filter((card) => card.name === context.source.name).length >= 6
+                (context.source.type === 'Ready Spell' && context.player.isSpellboardFull()) ||
+                ((context.source.type === 'Ally' || context.source.type === 'Conjuration') &&
+                    context.player.isBattlefieldFull())
             ) {
                 return false;
             } else {
