@@ -4,6 +4,7 @@ class PlayerPromptState {
     constructor(player) {
         this.player = player;
         this.selectCard = false;
+        this.selectDie = false;
         this.selectOrder = false;
         this.menuTitle = '';
         this.promptTitle = '';
@@ -11,16 +12,26 @@ class PlayerPromptState {
         this.controls = [];
 
         this.selectableCards = [];
+        this.selectableDice = [];
         this.cardDamage = {};
         this.selectedCards = [];
+        this.selectedDice = [];
     }
 
     setSelectedCards(cards) {
         this.selectedCards = cards;
     }
 
+    setSelectedDice(dice) {
+        this.selectedDice = dice;
+    }
+
     clearSelectedCards() {
         this.selectedCards = [];
+    }
+
+    clearSelectedDice() {
+        this.selectedDice = [];
     }
 
     setSelectableCards(cards) {
@@ -31,8 +42,17 @@ class PlayerPromptState {
         this.selectableCards = [];
     }
 
+    setSelectableDice(dice) {
+        this.selectableDice = dice;
+    }
+
+    clearSelectableDice() {
+        this.selectableDice = [];
+    }
+
     setPrompt(prompt) {
         this.selectCard = prompt.selectCard || false;
+        this.selectDie = prompt.selectDie || false;
         this.selectOrder = prompt.selectOrder || false;
         this.cardDamage = prompt.cardDamage || {};
         this.menuTitle = prompt.menuTitle || '';
@@ -54,6 +74,7 @@ class PlayerPromptState {
 
     cancelPrompt() {
         this.selectCard = false;
+        this.selectDie = false;
         this.cardDamage = {};
         this.menuTitle = '';
         this.buttons = [];
@@ -69,9 +90,19 @@ class PlayerPromptState {
         };
     }
 
+    getDieSelectionState(die) {
+        let selectable = this.selectableDice.includes(die);
+        return {
+            selected: this.selectedDice && this.selectedDice.includes(die),
+            selectable: selectable,
+            unselectable: !selectable && this.selectDie
+        };
+    }
+
     getState() {
         return {
             selectCard: this.selectCard,
+            selectDie: this.selectDie,
             selectOrder: this.selectOrder,
             menuTitle: this.menuTitle,
             promptTitle: this.promptTitle,

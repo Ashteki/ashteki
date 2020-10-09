@@ -40,7 +40,7 @@ class Die extends EffectSource {
 
     getSummary(activePlayer) {
         let isOwner = activePlayer === this.owner;
-        //let selectionState = activePlayer.getCardSelectionState(this);
+        let selectionState = activePlayer.getDieSelectionState(this);
 
         let state = {
             uuid: this.uuid,
@@ -55,8 +55,7 @@ class Die extends EffectSource {
             menu: this.getMenu()
         };
 
-        // return Object.assign(state, selectionState);
-        return state;
+        return Object.assign(state, selectionState);
     }
 
     getMenu() {

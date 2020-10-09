@@ -217,6 +217,37 @@ class BaseAbility {
     isTriggeredAbility() {
         return false;
     }
+
+    resolveCosts(context, results) {
+        // for (let cost of this.getCosts(context, results.playCosts, results.triggerCosts)) {
+        for (let cost of this.cost) {
+            context.game.queueSimpleStep(() => {
+                if (!results.cancelled) {
+                    // if (cost.addEventsToArray) {
+                    //     cost.addEventsToArray(results.events, context, results);
+                    // } else {
+                    if (cost.resolve) {
+                        cost.resolve(context, results);
+                    }
+                    context.game.queueSimpleStep(() => {
+                        if (!results.cancelled) {
+                            let newEvents = cost.payEvent
+                                ? cost.payEvent(context)
+                                : context.game.getEvent('payCost', {}, () => cost.pay(context));
+                            if (Array.isArray(newEvents)) {
+                                for (let event of newEvents) {
+                                    results.events.push(event);
+                                }
+                            } else {
+                                results.events.push(newEvents);
+                            }
+                        }
+                    });
+                    // }
+                }
+            });
+        }
+    }
 }
 
 module.exports = BaseAbility;

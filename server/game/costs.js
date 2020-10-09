@@ -1,6 +1,8 @@
+const Dice = require('./dice');
+
 const Costs = {
     exhaust: () => ({
-        canPay: () => true,
+        canPay: () => true, // cards can be overexhausted (>1 tokens)
         payEvent: (context) => context.game.actions.exhaust().getEvent(context.source, context)
     }),
     use: () => ({
@@ -81,7 +83,66 @@ const Costs = {
             );
             return context.game.actions.exhaustDie().getEvent(die, context);
         }
-    })
+    }),
+    dice: function (diceReq) {
+        return {
+            canPay: function (context) {
+                return Dice.canMatch(context.player.dice, diceReq);
+            },
+            resolve: function (context, result) {
+                const nonBasics = diceReq.filter((r) => r.level !== 'basic');
+                let chosenDice = Dice.matchDice(context.player.dice, nonBasics);
+                if (chosenDice.length == diceReq.length) {
+                    context.costs.returnDice = chosenDice;
+                    return true;
+                }
+                let promptPlayer = () => {
+                    let buttons = [];
+                    if (Dice.canMatch(chosenDice, diceReq)) {
+                        buttons.push({ text: 'Done', arg: 'done' });
+                    }
+                    if (result.canCancel) {
+                        buttons.push({ text: 'Cancel', arg: 'cancel' });
+                    }
+                    context.game.promptForDieSelect(context.player, {
+                        activePromptTitle: 'Select die',
+                        mode: 'exactly',
+                        selectedDice: [...chosenDice],
+                        context: context,
+                        buttons: buttons,
+                        format: diceReq,
+                        dieCondition: (d) => !d.exhausted && !chosenDice.includes(d),
+                        onSelect: (player, dice) => {
+                            // EXACTLY returns an array SINGLE does not
+                            chosenDice = chosenDice.concat(dice);
+                            if (!Dice.canMatch(chosenDice, diceReq)) {
+                                promptPlayer();
+                            } else {
+                                context.costs.returnDice = chosenDice;
+                            }
+                            return true;
+                        },
+                        onMenuCommand: (player, arg) => {
+                            if (arg === 'done') {
+                                context.costs.returnDice = chosenDice;
+                                return true;
+                            }
+                        },
+                        onCancel: () => {
+                            context.costs.returnDice = [];
+                            result.cancelled = true;
+                        }
+                    });
+                };
+                promptPlayer();
+            },
+            payEvent: (context) =>
+                context.game.actions
+                    .exhaustDie({ target: context.costs.returnDice })
+                    .getEventArray(context),
+            promptsPlayer: true
+        };
+    }
 };
 
 module.exports = Costs;

@@ -16,6 +16,10 @@ class Spectator {
     getCardSelectionState() {
         return {};
     }
+
+    getDieSelectionState() {
+        return {};
+    }
 }
 
 module.exports = Spectator;

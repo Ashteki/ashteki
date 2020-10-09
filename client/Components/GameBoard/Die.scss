@@ -1,3 +1,7 @@
+@import '../../styles/variables';
+@import '../../styles/colours';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
 
 @mixin dice-colors($text, $background){
     color: $text;
@@ -55,4 +59,46 @@
     height: 36px;
     width: 36px;
     margin: 5px;
+}
+
+.die{
+    &.can-play {
+        animation: glowing 2000ms infinite;
+
+        &.controlled {
+            box-shadow: $controlledBox,
+                0 0 10px 1px fadeout(lighten(theme-color('primary'), 60%), 10%);
+        }
+    }
+
+    &.in-danger {
+        box-shadow: 0 0 1px 2px red;
+    }
+
+    &.saved {
+        box-shadow: 0 0 1px 2px green;
+    }
+
+    &.selected {
+        box-shadow: 0 0 1px 4px theme-color('secondary');
+
+        &.controlled {
+            box-shadow: $controlledBox, 0 0 1px 4px theme-color('secondary');
+        }
+    }
+
+    
+    &.selectable {
+        box-shadow: 0 0 10px 1px fade-out(lighten(theme-color('primary'), 60%), 0.1);
+
+        &.controlled {
+            box-shadow: $controlledBox,
+                0 0 10px 1px fade-out(lighten(theme-color('primary'), 60%), 0.1);
+        }
+    }
+
+    &.unselectable {
+        filter: grayscale(100%) brightness(60%);
+    }
+
 }

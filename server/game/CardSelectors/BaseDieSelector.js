@@ -39,8 +39,11 @@ class BaseDieSelector {
         }
 
         return (
-            this.dieType.isEmpty() ||
-            (this.dieType.includes(die.getType()) && this.dieCondition(die, context))
+            //this.dieType.length == 0 ||
+            // (
+            //     this.dieType.includes(die.getType())
+            // &&
+            this.dieCondition(die, context)
         );
     }
 

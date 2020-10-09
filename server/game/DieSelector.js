@@ -1,4 +1,4 @@
-// const ExactlyXCardSelector = require('./CardSelectors/ExactlyXCardSelector');
+const ExactlyXDiceSelector = require('./CardSelectors/MatchedDiceSelector');
 // const MaxStatCardSelector = require('./CardSelectors/MaxStatCardSelector');
 // const MinStatCardSelector = require('./CardSelectors/MinStatCardSelector');
 // const MostStatCardSelector = require('./CardSelectors/MostStatCardSelector');
@@ -10,14 +10,14 @@ const SingleDieSelector = require('./CardSelectors/SingleDieSelector');
 
 const defaultProperties = {
     numDice: 1,
-    cardCondition: () => true,
+    dieCondition: () => true,
     dieType: [], // any
     multiSelect: false
 };
 
 const ModeToSelector = {
     ability: (p) => new SingleDieSelector(p),
-    // exactly: (p) => new ExactlyXCardSelector(p.numDice, p),
+    exactly: (p) => new ExactlyXDiceSelector(p.format, p),
     // minStat: (p) => new MinStatCardSelector(p),
     // maxStat: (p) => new MaxStatCardSelector(p),
     // mostHouse: (p) => new MostHouseCardSelector(p),

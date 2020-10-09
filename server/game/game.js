@@ -31,6 +31,7 @@ const CardVisibility = require('./CardVisibility');
 const PreparePhase = require('./gamesteps/main/PreparePhase');
 const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
+const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -625,6 +626,10 @@ class Game extends EventEmitter {
      */
     promptForSelect(player, properties) {
         this.queueStep(new SelectCardPrompt(this, this.activePlayer, properties));
+    }
+
+    promptForDieSelect(player, properties) {
+        this.queueStep(new SelectDiePrompt(this, this.activePlayer, properties));
     }
 
     /**

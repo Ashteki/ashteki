@@ -16,7 +16,7 @@ class SingleDieSelector extends BaseDieSelector {
     }
 
     automaticFireOnSelect() {
-        return true;
+        return false;
     }
 
     hasReachedLimit(selected) {

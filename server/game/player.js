@@ -470,7 +470,19 @@ class Player extends GameObject {
         this.promptState.clearSelectedCards();
     }
 
+    setSelectedDice(dice) {
+        this.promptState.setSelectedDice(dice);
+    }
+
+    clearSelectedDice() {
+        this.promptState.clearSelectedDice();
+    }
+
     getSelectableCards() {
+        return this.promptState.selectableCards;
+    }
+
+    getSelectableDice() {
         return this.promptState.selectableCards;
     }
 
@@ -480,6 +492,14 @@ class Player extends GameObject {
 
     clearSelectableCards() {
         this.promptState.clearSelectableCards();
+    }
+
+    setSelectableDice(cards) {
+        this.promptState.setSelectableDice(cards);
+    }
+
+    clearSelectableDice() {
+        this.promptState.clearSelectableDice();
     }
 
     getSummaryForCardList(list, activePlayer, hideWhenFaceup) {
@@ -496,6 +516,10 @@ class Player extends GameObject {
 
     getCardSelectionState(card) {
         return this.promptState.getCardSelectionState(card);
+    }
+
+    getDieSelectionState(card) {
+        return this.promptState.getDieSelectionState(card);
     }
 
     currentPrompt() {

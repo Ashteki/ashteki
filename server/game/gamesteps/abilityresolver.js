@@ -8,12 +8,14 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.context = context;
         this.canCancel = true;
         this.targetResults = {};
+        this.costResults = this.getCostResults();
         this.initialise();
     }
 
     initialise() {
         this.pipeline.initialise([
             new SimpleStep(this.game, () => this.createSnapshot()),
+            new SimpleStep(this.game, () => this.resolveCosts()),
             new SimpleStep(this.game, () => this.payCosts()),
             new SimpleStep(this.game, () => this.resolveTargets()),
             new SimpleStep(this.game, () => this.initiateAbility()),
@@ -22,9 +24,32 @@ class AbilityResolver extends BaseStepWithPipeline {
         ]);
     }
 
+    getCostResults() {
+        return {
+            cancelled: false,
+            canCancel: this.canCancel,
+            events: [],
+            playCosts: true,
+            triggerCosts: true
+        };
+    }
+
     createSnapshot() {
         if (['Ally', 'Conjuration'].includes(this.context.source.getType())) {
             this.context.cardStateWhenInitiated = this.context.source.createSnapshot();
+        }
+    }
+
+    resolveCosts() {
+        if (this.cancelled) {
+            return;
+        }
+        // this.costResults.canCancel = this.canCancel;
+        // this.context.stage = Stages.Cost;
+        this.context.ability.resolveCosts(this.context, this.costResults);
+
+        if (this.costResults.cancelled) {
+            this.cancelled = true;
         }
     }
 
@@ -44,14 +69,27 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.cancelled = this.targetResults.cancelled;
     }
 
+    // payCosts() {
+    //     if (this.cancelled) {
+    //         return;
+    //     }
+
+    //     this.costEvents = this.context.ability.payCosts(this.context);
+    //     if (this.costEvents.length > 0) {
+    //         this.game.openEventWindow(this.costEvents);
+    //     }
+    // }
+
     payCosts() {
         if (this.cancelled) {
             return;
+        } else if (this.costResults.cancelled) {
+            this.cancelled = true;
+            return;
         }
-
-        this.costEvents = this.context.ability.payCosts(this.context);
-        if (this.costEvents.length > 0) {
-            this.game.openEventWindow(this.costEvents);
+        this.passPriority = true;
+        if (this.costResults.events.length > 0) {
+            this.game.openEventWindow(this.costResults.events);
         }
     }
 
