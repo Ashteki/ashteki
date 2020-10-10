@@ -466,6 +466,10 @@ class Player extends GameObject {
         }
     }
 
+    discardSelectedCards() {
+        this.promptState.selectedCards.forEach((card) => this.moveCard(card, 'discard'));
+    }
+
     /**
      * Sets the passed cards as selected
      * @param cards
@@ -476,6 +480,10 @@ class Player extends GameObject {
 
     clearSelectedCards() {
         this.promptState.clearSelectedCards();
+    }
+
+    hasCardSelected() {
+        return this.promptState.selectedCards.length > 0;
     }
 
     setSelectedDice(dice) {
@@ -548,6 +556,10 @@ class Player extends GameObject {
 
     spendMainAction() {
         this.actions.main = false;
+    }
+
+    spendSideAction() {
+        this.actions.side = false;
     }
 
     isHaunted() {

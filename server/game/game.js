@@ -31,6 +31,7 @@ const PreparePhase = require('./gamesteps/main/PreparePhase');
 const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
+const MeditatePrompt = require('./gamesteps/MeditatePrompt');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -629,6 +630,10 @@ class Game extends EventEmitter {
 
     promptForDieSelect(player, properties) {
         this.queueStep(new SelectDiePrompt(this, this.activePlayer, properties));
+    }
+
+    promptForMeditation() {
+        this.queueStep(new MeditatePrompt(this));
     }
 
     /**

@@ -33,7 +33,6 @@ const Effects = {
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
     ignores: (trait) => EffectBuilder.card.static('ignores', trait),
     limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
-    modifyBonusIcons: (icons) => EffectBuilder.card.flexible('modifyBonusIcons', icons),
     modifyPower: (amount) => EffectBuilder.card.flexible('modifyPower', amount),
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
@@ -98,8 +97,6 @@ const Effects = {
             unapply: (player, context, effect) =>
                 context.game.effectEngine.removeDelayedEffect(effect)
         }),
-    mayResolveBonusIconsAs: (newIcon, icon = 'any') =>
-        EffectBuilder.player.static('mayResolveBonusIconsAs', { newIcon: newIcon, icon: icon }),
     modifyKeyCost: (amount) => EffectBuilder.player.flexible('modifyKeyCost', amount),
     modifyHandSize: (amount) => EffectBuilder.player.flexible('modifyHandSize', amount),
     noActiveHouseForPlay: () => EffectBuilder.player.static('noActiveHouseForPlay'),

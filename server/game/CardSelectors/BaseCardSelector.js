@@ -97,7 +97,10 @@ class BaseCardSelector {
             return false;
         }
 
-        return this.cardType.includes(card.getType()) && this.cardCondition(card, context);
+        return (
+            (this.cardType.includes('any') || this.cardType.includes(card.getType())) &&
+            this.cardCondition(card, context)
+        );
     }
 
     getAllLegalTargets(context) {

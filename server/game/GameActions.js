@@ -60,8 +60,6 @@ const Actions = {
     removeWarrantCounter: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'warrant'),
     resolveAbility: (propertyFactory) => new GameActions.ResolveAbilityAction(propertyFactory), // ability
-    resolveBonusIcons: (propertyFactory) =>
-        new GameActions.ResolveBonusIconsAction(propertyFactory),
     resolveFight: (propertyFactory) => new GameActions.ResolveFightAction(propertyFactory), // this shouldn't normally be needed
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
@@ -99,7 +97,8 @@ const Actions = {
         new GameActions.SequentialForEachAction(propertyFactory),
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
     spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
-    exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory)
+    exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),
+    meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory)
 };
 
 module.exports = Actions;

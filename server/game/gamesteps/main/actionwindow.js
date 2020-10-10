@@ -79,10 +79,13 @@ class ActionWindow extends UiPrompt {
     }
 
     activePrompt() {
-        let buttons = [{ text: 'End Turn', arg: 'done' }];
+        let buttons = [
+            { text: 'Meditate', arg: 'meditate', disabled: !this.game.activePlayer.actions.side },
+            { text: 'End Turn', arg: 'done' }
+        ];
 
         return {
-            menuTitle: 'Choose a card to play, discard or use',
+            menuTitle: 'Choose a card to play or use',
             buttons: buttons,
             promptTitle: 'Play phase'
         };
@@ -106,6 +109,12 @@ class ActionWindow extends UiPrompt {
                 }
             });
             return true;
+        }
+
+        if (choice === 'meditate') {
+            this.game.actions
+                .meditate()
+                .resolve(this.game.activePlayer, this.game.getFrameworkContext());
         }
 
         if (choice === 'done') {

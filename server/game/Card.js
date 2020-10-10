@@ -165,15 +165,6 @@ class Card extends EffectSource {
         );
     }
 
-    get bonusIcons() {
-        if (this.anyEffect('copyCard')) {
-            return this.mostRecentEffect('copyCard').bonusIcons;
-        }
-
-        let result = [];
-        return result;
-    }
-
     setupAbilities() {
         this.setupKeywordAbilities(AbilityDsl);
         this.setupCardAbilities(AbilityDsl);

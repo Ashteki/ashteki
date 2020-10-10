@@ -88,15 +88,6 @@ class BasePlayAction extends BaseAbility {
         });
     }
 
-    addBonusIconResolution(event, context) {
-        event.addSubEvent(
-            context.game.getEvent('unnamedEvent', {}, () => {
-                context.game.checkGameState(true);
-                context.game.actions.resolveBonusIcons().resolve(this.card, context);
-            })
-        );
-    }
-
     // eslint-disable-next-line no-unused-vars
     addSubEvent(event, context) {
         return;
@@ -112,7 +103,6 @@ class BasePlayAction extends BaseAbility {
             },
             () => context.game.cardsPlayed.push(context.source)
         );
-        this.addBonusIconResolution(event, context);
         this.addSubEvent(event, context);
         context.game.openEventWindow(event);
     }
