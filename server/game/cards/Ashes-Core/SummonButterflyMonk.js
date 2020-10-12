@@ -6,6 +6,7 @@ class SummonButterflyMonk extends Card {
             title: 'Summon Butterfly Monk',
             cost: [
                 ability.costs.mainAction(),
+                ability.costs.exhaust(),
                 ability.costs.die({ magic: 'natural', level: 'class' })
             ],
             location: 'spellboard',

@@ -6,6 +6,7 @@ class SummonMistSpirit extends Card {
             title: 'Summon Mist Spirit',
             cost: [
                 ability.costs.mainAction(),
+                ability.costs.exhaust(),
                 ability.costs.die({ magic: 'illusion', level: 'class' })
             ],
             location: 'spellboard',
@@ -15,8 +16,17 @@ class SummonMistSpirit extends Card {
                 cardCondition: (card) => card.id === 'mist-spirit',
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
+            },
+            then: {
+                cost: ability.costs.dice([{ level: 'basic' }]),
+                target: {
+                    player: 'self',
+                    cardType: 'Conjuration',
+                    cardCondition: (card) => card.id === 'mist-spirit',
+                    location: 'archives',
+                    gameAction: ability.actions.putIntoPlay()
+                }
             }
-            //todo: pay another basic to summon another mist spirit
         });
     }
 }

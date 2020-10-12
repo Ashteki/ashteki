@@ -51,7 +51,8 @@ class BaseCardSelector {
                 if (location === 'play area' || location === 'spellboard') {
                     return array.concat(
                         cards,
-                        upgrades.filter((card) => card.controller === context.player)
+                        upgrades.filter((card) => card.controller === context.player),
+                        context.player.phoenixborn
                     );
                 }
 
@@ -65,7 +66,8 @@ class BaseCardSelector {
                 if (location === 'play area' || location === 'spellboard') {
                     return array.concat(
                         cards,
-                        upgrades.filter((card) => card.controller === context.player.opponent)
+                        upgrades.filter((card) => card.controller === context.player.opponent),
+                        context.player.opponent.phoenixborn
                     );
                 }
 

@@ -38,7 +38,7 @@ class CardAction extends CardAbility {
             "Use this card's " + (properties.omni ? 'Omni' : 'Action') + ' ability';
         this.condition = properties.condition;
         this.omni = !!properties.omni;
-        this.cost = this.cost.concat(Costs.exhaust(), Costs.use());
+        this.cost = this.cost.concat(Costs.use());
     }
 
     meetsRequirements(context = this.createContext(), ignoredRequirements = []) {

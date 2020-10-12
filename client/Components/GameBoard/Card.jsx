@@ -186,10 +186,6 @@ const Card = ({
             return true;
         }
 
-        if (source !== 'play area' && source !== 'spellboard') {
-            return false;
-        }
-
         if (card.facedown || card.type === 'upgrade') {
             return false;
         }

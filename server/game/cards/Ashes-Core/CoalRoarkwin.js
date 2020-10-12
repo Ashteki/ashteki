@@ -8,10 +8,12 @@ class CoalRoarkwin extends Card {
             target: {
                 // target a Unit, or if no units then the pb is valid
                 cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
-                // cardCondition: (card) => {
-                //     ['Ally', 'Conjuration'].includes(card.cardType) ||
-                //         card.controller.cardsInPlay.length == 0; // implies the cardtype is pb
-                // },
+                cardCondition: (card) => {
+                    return (
+                        ['Ally', 'Conjuration'].includes(card.type) ||
+                        card.controller.cardsInPlay.length == 0 // implies the cardtype is pb
+                    );
+                },
                 controller: 'opponent',
                 gameAction: ability.actions.dealDamage({ amount: 1 })
             }
