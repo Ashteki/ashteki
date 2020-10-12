@@ -30,8 +30,6 @@ class Player extends GameObject {
 
         this.deckData = {};
         this.firstFiveChosen = false;
-
-        this.keysForgedThisRound = [];
         this.takenPrepareDiscard = false;
 
         this.clock = ClockSelector.for(this, clockdetails);
@@ -97,7 +95,7 @@ class Player extends GameObject {
      * Checks whether any cards in play are currently marked as selected
      */
     areCardsSelected() {
-        return this.cardsInPlay.any((card) => {
+        return this.cardsInPlay.some((card) => {
             return card.selected;
         });
     }
@@ -249,7 +247,6 @@ class Player extends GameObject {
     }
 
     beginRound() {
-        this.keysForgedThisRound = [];
         this.passedMain = false;
     }
 
@@ -340,17 +337,15 @@ class Player extends GameObject {
             return false;
         }
 
-        const cardLocations = ['hand', 'deck', 'discard', 'archives', 'purged', 'grafted'];
+        const cardLocations = ['hand', 'deck', 'discard', 'purged', 'grafted'];
         const legalLocations = {
-            artifact: [...cardLocations, 'play area'],
-            action: [...cardLocations, 'being played'],
-            creature: [...cardLocations, 'play area'],
             upgrade: [...cardLocations, 'play area'],
             'Action Spell': [...cardLocations, 'being played'],
-            'Alteration Spell': [...cardLocations, 'spellboard'],
+            'Alteration Spell': [...cardLocations, 'play area'],
             'Ready Spell': [...cardLocations, 'spellboard'],
+            'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],
-            Conjuration: [...cardLocations, 'play area']
+            Conjuration: [...cardLocations, 'play area', 'archives']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);

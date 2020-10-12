@@ -8,6 +8,7 @@ const DrawDeck = (props) => {
     const { t } = useTranslation();
 
     const {
+        // eslint-disable-next-line no-unused-vars
         cards,
         isMe,
         manualMode,
@@ -15,14 +16,15 @@ const DrawDeck = (props) => {
         onPopupChange,
         onShuffleClick,
         showDeck,
-        spectating
+        spectating,
+        cardCount
     } = props;
 
     let drawDeckPopupMenu = showDeck
         ? [{ text: 'Close and Shuffle', handler: () => onShuffleClick && onShuffleClick() }]
         : null;
 
-    let hasCards = cards?.length !== 0;
+    let hasCards = cardCount > 0;
 
     let drawDeck = (
         <CardPile

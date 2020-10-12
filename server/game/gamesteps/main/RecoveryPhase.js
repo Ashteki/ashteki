@@ -21,12 +21,7 @@ class RecoveryPhase extends Phase {
     readyCards() {
         this.game.addMessage('All units remove one exhaustion token.');
 
-        this.game.actions
-            .ready()
-            .resolve(
-                this.game.activePlayer.cardsInPlay.concat(this.game.activePlayer.spellboard),
-                this.game.getFrameworkContext()
-            );
+        this.game.actions.ready().resolve(this.game.cardsInPlay, this.game.getFrameworkContext());
     }
 
     endReadyCardsStep() {

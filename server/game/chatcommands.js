@@ -113,10 +113,6 @@ class ChatCommands {
             `unspendAction${actionType}`
         );
         player.actions[actionType] = true;
-        // let forgedKeyIndex = player.keysForgedThisRound.findIndex((action) => action === actionType);
-        // if (forgedKeyIndex !== -1) {
-        //     player.keysForgedThisRound.splice(forgedKeyIndex, 1);
-        // }
     }
 
     startClocks(player) {

@@ -13,7 +13,7 @@ class DealDamageAction extends CardGameAction {
     }
 
     setup() {
-        this.targetType = ['Ally', 'Conjuration'];
+        this.targetType = ['Ally', 'Conjuration', 'Phoenixborn'];
         this.name = 'damage';
         this.effectMsg =
             'deal ' +
@@ -72,7 +72,7 @@ class DealDamageAction extends CardGameAction {
                 'onDamageApplied',
                 damageAppliedParams,
                 (event) => {
-                    event.noGameStateCheck = true;
+                    // event.noGameStateCheck = true;
                     event.card.addToken('damage', event.amount);
                     if (
                         !event.card.moribund &&

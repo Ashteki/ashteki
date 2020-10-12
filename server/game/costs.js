@@ -40,6 +40,11 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.loseStatus({ amount: amount }).getEvent(context.source, context)
     }),
+    chosenDiscard: (amount = 1) => ({
+        canPay: (context) => context.player.hand.length > amount,
+        payEvent: (context) =>
+            context.game.actions.chosenDiscard({ amount: amount }).getEvent(context.player, context)
+    }),
     mainAction: () => ({
         canPay: (context) => context.player.actions.main,
         payEvent: (context) =>

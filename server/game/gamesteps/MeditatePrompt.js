@@ -16,7 +16,7 @@ class MeditatePrompt extends UiPrompt {
             owner: game.activePlayer
         });
         this.cardSelector = new SingleCardSelector({
-            location: ['hand', 'deck', 'spellboard'],
+            location: ['hand', 'spellboard'],
             controller: game.activePlayer,
             cardType: ['any'],
             cardCondition: () => true
@@ -56,9 +56,14 @@ class MeditatePrompt extends UiPrompt {
     }
 
     activePrompt() {
-        let buttons = [{ text: 'Done', arg: 'done' }];
+        let buttons = [];
+        if (!this.cardSelected && this.choosingPlayer.deck.length > 0) {
+            buttons.push({ text: 'Top of deck', arg: 'top' });
+        }
+        buttons.push({ text: 'Done', arg: 'done' });
 
         let mnuText = 'Choose a card to discard';
+
         if (this.cardSelected) {
             mnuText = 'Choose a die to raise';
         }
@@ -123,6 +128,10 @@ class MeditatePrompt extends UiPrompt {
     }
 
     menuCommand(player, arg) {
+        if (arg === 'top') {
+            return this.selectCard(this.choosingPlayer.deck[0]);
+        }
+
         if (arg === 'done') {
             this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
 

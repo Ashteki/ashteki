@@ -21,7 +21,7 @@ class ChosenDiscardAction extends PlayerAction {
     }
 
     getEvent(player, context) {
-        return super.createEvent('unnamedEvent', {}, () => {
+        return super.createEvent('unnamedEvent', { player: player }, () => {
             if (player.hand.length > 0) {
                 let amount = Math.min(player.hand.length, this.amount);
                 if (amount > 0) {

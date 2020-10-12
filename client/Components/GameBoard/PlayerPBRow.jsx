@@ -104,6 +104,7 @@ const PlayerPBRow = ({
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
                 onMenuItemClick={onMenuItemClick}
+                onClick={onCardClick}
                 size={cardSize}
             />
         );
