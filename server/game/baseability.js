@@ -1,10 +1,10 @@
 const AbilityTargetAbility = require('./AbilityTargets/AbilityTargetAbility');
 const AbilityTargetCard = require('./AbilityTargets/AbilityTargetCard');
-const AbilityTargetHouse = require('./AbilityTargets/AbilityTargetHouse');
 const AbilityTargetSelect = require('./AbilityTargets/AbilityTargetSelect');
 const AbilityTargetTrait = require('./AbilityTargets/AbilityTargetTrait');
 const AbilityTargetOptions = require('./AbilityTargets/AbilityTargetOptions');
 const AbilityTargetCardName = require('./AbilityTargets/AbilityTargetCardName');
+const AbilityTargetDie = require('./AbilityTargets/AbilityTargetDie');
 
 /**
  * Base class representing an ability that can be done by the player. This
@@ -73,10 +73,12 @@ class BaseAbility {
             properties.gameAction = [];
         }
 
+        if (properties.toSelect && properties.toSelect === 'die') {
+            return new AbilityTargetDie(name, properties, this);
+        }
+
         if (properties.mode === 'select') {
             return new AbilityTargetSelect(name, properties, this);
-        } else if (properties.mode === 'house') {
-            return new AbilityTargetHouse(name, properties, this);
         } else if (properties.mode === 'ability') {
             return new AbilityTargetAbility(name, properties, this);
         } else if (properties.mode === 'trait') {

@@ -98,6 +98,7 @@ const Actions = {
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
     spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),
+    setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory)
 };
 

@@ -1,9 +1,10 @@
-const ExactlyXDiceSelector = require('./CardSelectors/MatchedDiceSelector');
+const MatchedDiceSelector = require('./CardSelectors/MatchedDiceSelector');
 // const MaxStatCardSelector = require('./CardSelectors/MaxStatCardSelector');
 // const MinStatCardSelector = require('./CardSelectors/MinStatCardSelector');
 // const MostStatCardSelector = require('./CardSelectors/MostStatCardSelector');
 // const LeastStatCardSelector = require('./CardSelectors/LeastStatCardSelector');
 const SingleDieSelector = require('./CardSelectors/SingleDieSelector');
+const UpToXDiceSelector = require('./CardSelectors/UpToXDiceSelector');
 // const UnlimitedCardSelector = require('./CardSelectors/UnlimitedCardSelector');
 // const UpToXCardSelector = require('./CardSelectors/UpToXCardSelector');
 // const MostHouseCardSelector = require('./CardSelectors/MostHouseCardSelector');
@@ -17,15 +18,15 @@ const defaultProperties = {
 
 const ModeToSelector = {
     ability: (p) => new SingleDieSelector(p),
-    exactly: (p) => new ExactlyXDiceSelector(p.format, p),
+    match: (p) => new MatchedDiceSelector(p.format, p),
     // minStat: (p) => new MinStatCardSelector(p),
     // maxStat: (p) => new MaxStatCardSelector(p),
     // mostHouse: (p) => new MostHouseCardSelector(p),
     // mostStat: (p) => new MostStatCardSelector(p),
     // leastStat: (p) => new LeastStatCardSelector(p),
-    single: (p) => new SingleDieSelector(p)
+    single: (p) => new SingleDieSelector(p),
     // unlimited: (p) => new UnlimitedCardSelector(p),
-    // upTo: (p) => new UpToXCardSelector(p.numDice, p)
+    upTo: (p) => new UpToXDiceSelector(p.numDice, p)
 };
 
 class DieSelector {

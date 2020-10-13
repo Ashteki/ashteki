@@ -93,7 +93,7 @@ const Costs = {
                     }
                     context.game.promptForDieSelect(context.player, {
                         activePromptTitle: 'Select die',
-                        mode: 'exactly',
+                        mode: 'match',
                         selectedDice: [...chosenDice],
                         context: context,
                         buttons: buttons,
