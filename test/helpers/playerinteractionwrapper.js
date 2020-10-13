@@ -466,7 +466,7 @@ class PlayerInteractionWrapper {
         } else if (card.type === 'artifact') {
             this.clickCard(card);
             this.clickPrompt('Play this artifact');
-        } else if (card.type === 'action') {
+        } else if (card.type === 'Action Spell') {
             this.clickCard(card);
             this.clickPrompt('Play this action');
         }

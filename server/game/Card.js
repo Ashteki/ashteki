@@ -237,7 +237,7 @@ class Card extends EffectSource {
      */
 
     play(properties) {
-        if (this.type === 'action') {
+        if (this.type === 'Action Spell') {
             properties.location = properties.location || 'being played';
         }
 
@@ -820,7 +820,7 @@ class Card extends EffectSource {
                 actions.push(new PlayAllyAction(this));
             } else if (this.type === 'Ready Spell') {
                 actions.push(new PlayReadySpellAction(this));
-            } else if (this.type === 'action') {
+            } else if (this.type === 'Action Spell') {
                 actions.push(new PlayAction(this));
             }
 
