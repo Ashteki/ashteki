@@ -5,7 +5,10 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
         super(game);
         this.selectedCards = {};
         this.selectableCards = {};
-        game.getPlayers().forEach((player) => (this.selectedCards[player.name] = []));
+        game.getPlayers().forEach((player) => {
+            this.selectedCards[player.name] = [];
+            player.takenPrepareDiscard = false;
+        });
     }
 
     completionCondition(player) {
