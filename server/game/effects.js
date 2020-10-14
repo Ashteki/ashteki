@@ -34,6 +34,7 @@ const Effects = {
     ignores: (trait) => EffectBuilder.card.static('ignores', trait),
     limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
     modifyPower: (amount) => EffectBuilder.card.flexible('modifyPower', amount),
+    modifyAttack: (amount) => EffectBuilder.card.flexible('modifyAttack', amount),
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setPower: (amount) => EffectBuilder.card.flexible('setPower', amount),

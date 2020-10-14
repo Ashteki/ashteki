@@ -32,11 +32,19 @@ class EffectSource extends GameObject {
         );
     }
 
+    untilEndOfTurn(propertyFactory) {
+        var properties = propertyFactory(AbilityDsl);
+        return this.addEffectToEngine(
+            Object.assign({ duration: 'untilEndOfTurn', location: 'any' }, properties)
+        );
+    }
+
+    // until MY next turn
     untilNextTurn(propertyFactory) {
         let properties = propertyFactory(AbilityDsl);
         return this.addEffectToEngine(
             Object.assign(
-                { duration: 'untilNextTurn', location: 'any', roundDuration: 2 },
+                { duration: 'untilNextTurn', location: 'any', turnDuration: 2 },
                 properties
             )
         );
@@ -54,6 +62,10 @@ class EffectSource extends GameObject {
     }
 
     roundDurationEffect(properties) {
+        return this.addEffectToEngine(properties);
+    }
+
+    turnDurationEffect(properties) {
         return this.addEffectToEngine(properties);
     }
 

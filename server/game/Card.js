@@ -483,6 +483,21 @@ class Card extends EffectSource {
         return menu;
     }
 
+    getFlags() {
+        var flags = {};
+        if (this.location === 'play area' || this.location === 'spellboard') {
+            const attack = this.getAttack();
+            if (this.printedAttack !== attack) flags.attack = attack;
+
+            const life = this.getLife();
+            if (this.printedLife !== life) flags.life = life;
+
+            const recover = this.getRecover();
+            if (this.printedRecover !== recover) flags.recover = recover;
+        }
+        return flags;
+    }
+
     checkRestrictions(actionType, context = null) {
         return (
             super.checkRestrictions(actionType, context) &&
@@ -958,6 +973,7 @@ class Card extends EffectSource {
             upgrades: this.upgrades.map((upgrade) => {
                 return upgrade.getSummary(activePlayer, hideWhenFaceup);
             }),
+            flags: this.getFlags(),
             uuid: this.uuid
         };
 

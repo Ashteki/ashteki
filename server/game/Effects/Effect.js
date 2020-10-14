@@ -33,6 +33,7 @@ class Effect {
         this.match = properties.match || (() => true);
         this.duration = properties.duration;
         this.roundDuration = properties.roundDuration;
+        this.turnDuration = properties.turnDuration;
         this.until = properties.until || {};
         this.condition = properties.condition || (() => true);
         this.location = properties.location || 'play area';

@@ -219,6 +219,13 @@ const Card = ({
         );
     };
 
+    const getBoostedFlags = (card) => {
+        if (card.flags && card.flags.attack) {
+            return <div className='darkbg strength'>{card.flags.attack}</div>;
+        }
+        return '';
+    };
+
     const getCard = () => {
         if (!card) {
             return <div />;
@@ -252,6 +259,7 @@ const Card = ({
         let image = card ? (
             <div className={imageClass}>
                 <CardImage card={card} cardBack={cardBackUrl} />
+                {getBoostedFlags(card)}
             </div>
         ) : null;
         return (

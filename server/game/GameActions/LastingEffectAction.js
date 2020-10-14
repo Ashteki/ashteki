@@ -2,15 +2,17 @@ const GameAction = require('./GameAction');
 const Effects = require('../effects.js');
 
 class LastingEffectAction extends GameAction {
-    constructor(propertyFactory, duration = 2) {
+    constructor(propertyFactory, duration = 2, durationType = 'turn') {
         super(propertyFactory);
         this.duration = this.duration || duration;
+        this.durationType = this.durationType || durationType;
     }
 
     setDefaultProperties() {
         this.condition = null;
         this.effect = [];
-        this.targetController = this.duration === 1 ? 'current' : 'opponent';
+        this.targetController =
+            this.duration === 1 && this.durationType == 'turn' ? 'current' : 'opponent';
         this.until = null;
         this.when = null;
         this.gameAction = null;
@@ -58,10 +60,17 @@ class LastingEffectAction extends GameAction {
                 )
             ];
         }
-        properties.roundDuration = this.duration;
+        if (this.durationType === 'round') {
+            properties.roundDuration = this.duration;
+        } else {
+            properties.turnDuration = this.duration;
+        }
+
         return [
             super.createEvent('applyLastingEffect', { context: context }, (event) =>
-                event.context.source.roundDurationEffect(properties)
+                this.durationType == 'round'
+                    ? event.context.source.roundDurationEffect(properties)
+                    : event.context.source.turnDurationEffect(properties)
             )
         ];
     }

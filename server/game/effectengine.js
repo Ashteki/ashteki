@@ -6,7 +6,7 @@ class EffectEngine {
     constructor(game) {
         this.game = game;
         this.events = new EventRegistrar(game, this);
-        this.events.register(['onPhaseEnded', 'onRoundEnded']);
+        this.events.register(['onPhaseEnded', 'onRoundEnded', 'onTurnEnded']);
         this.effects = [];
         this.delayedEffects = [];
         this.terminalConditions = [];
@@ -103,6 +103,17 @@ class EffectEngine {
         _.each(this.effects, (effect) => {
             if (effect.roundDuration > 1) {
                 effect.roundDuration -= 1;
+            }
+        });
+    }
+
+    onTurnEnded() {
+        this.newEffect = this.unapplyAndRemove(
+            (effect) => effect.duration === 'untilEndOfTurn' || effect.turnDuration === 1
+        );
+        _.each(this.effects, (effect) => {
+            if (effect.turnDuration > 1) {
+                effect.turnDuration -= 1;
             }
         });
     }
