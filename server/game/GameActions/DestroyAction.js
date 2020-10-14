@@ -8,12 +8,11 @@ class DestroyAction extends CardGameAction {
     }
 
     setDefaultProperties() {
-        this.purge = false;
         this.damageEvent = null;
     }
 
     setup() {
-        this.targetType = ['Ally', 'Conjuration', 'Ready Spell'];
+        this.targetType = ['Ally', 'Conjuration'];
     }
 
     canAffect(card, context) {
@@ -42,7 +41,6 @@ class DestroyAction extends CardGameAction {
                     if (context.game.firstDestroyEvent === leavesPlayEvent) {
                         context.game.firstDestroyEvent = null;
                     } else if (
-                        !this.purge &&
                         context.game.firstDestroyEvent &&
                         !context.game.firstDestroyEvent.getChildEvents().includes(leavesPlayEvent)
                     ) {
@@ -70,11 +68,7 @@ class DestroyAction extends CardGameAction {
                                     newEvent.name = 'onCardLeavesPlay';
                                     newEvent.card.owner.moveCard(
                                         event.card,
-                                        this.purge
-                                            ? 'purged'
-                                            : event.card.type == 'Conjuration'
-                                            ? 'archives'
-                                            : 'discard'
+                                        event.card.type == 'Conjuration' ? 'archives' : 'discard'
                                     );
                                 }
                             )
@@ -84,11 +78,7 @@ class DestroyAction extends CardGameAction {
 
                     leavesPlayEvent.card.owner.moveCard(
                         event.card,
-                        this.purge
-                            ? 'purged'
-                            : event.card.type == 'Conjuration'
-                            ? 'archives'
-                            : 'discard'
+                        event.card.type == 'Conjuration' ? 'archives' : 'discard'
                     );
                 }
             );

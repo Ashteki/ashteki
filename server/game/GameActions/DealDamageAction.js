@@ -74,22 +74,10 @@ class DealDamageAction extends CardGameAction {
                 (event) => {
                     event.noGameStateCheck = true;
                     event.card.addToken('damage', event.amount);
-                    if (
-                        !event.card.moribund &&
-                        (event.card.tokens.damage >= event.card.life ||
-                            (damageDealtEvent.fightEvent &&
-                                damageDealtEvent.damageSource &&
-                                damageDealtEvent.damageSource.getKeywordValue('poison')))
-                    ) {
-                        if (this.purge) {
-                            damageDealtEvent.destroyEvent = context.game.actions
-                                .purge({ damageEvent: damageDealtEvent })
-                                .getEvent(event.card, context.game.getFrameworkContext());
-                        } else {
-                            damageDealtEvent.destroyEvent = context.game.actions
-                                .destroy({ damageEvent: damageDealtEvent })
-                                .getEvent(event.card, context.game.getFrameworkContext());
-                        }
+                    if (!event.card.moribund && event.card.tokens.damage >= event.card.life) {
+                        damageDealtEvent.destroyEvent = context.game.actions
+                            .destroy({ damageEvent: damageDealtEvent })
+                            .getEvent(event.card, context.game.getFrameworkContext());
 
                         event.addSubEvent(damageDealtEvent.destroyEvent);
                         if (damageDealtEvent.fightEvent) {
