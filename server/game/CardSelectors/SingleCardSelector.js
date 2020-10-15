@@ -1,3 +1,4 @@
+const { CardType } = require('../../constants.js');
 const BaseCardSelector = require('./BaseCardSelector.js');
 
 class SingleCardSelector extends BaseCardSelector {
@@ -9,7 +10,7 @@ class SingleCardSelector extends BaseCardSelector {
 
     defaultActivePromptTitle() {
         if (this.cardType.length === 1) {
-            if (this.cardType[0] === 'upgrade') {
+            if (this.cardType[0] === CardType.Upgrade) {
                 return 'Choose an upgrade';
             }
 

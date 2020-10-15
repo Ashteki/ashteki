@@ -3,8 +3,7 @@ class Constants {}
 Object.freeze(Constants);
 
 const CardType = {
-    upgrade: 'upgrade'
+    Upgrade: 'Alteration Spell'
 };
 
-module.exports = Constants;
-exports.CardType = CardType;
+module.exports = { Constants, CardType };

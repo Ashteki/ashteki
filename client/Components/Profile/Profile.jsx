@@ -11,7 +11,7 @@ import KeyforgeGameSettings from './KeyforgeGameSettings';
 import ProfileCardSize from './ProfileCardSize';
 import BlankBg from '../../assets/img/bgs/blank.png';
 import AshesRebornBg from '../../assets/img/bgs/ashesreborn.png';
-const { toBase64 } = require('../util.js');
+const { toBase64 } = require('../../util.js');
 
 import './Profile.scss';
 
