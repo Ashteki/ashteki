@@ -85,7 +85,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
             // fill if they didin't choose 5
             player.shuffleDeck();
             this.game.actions
-                .draw({ refill: true })
+                .draw({ refill: true, singleCopy: true })
                 .resolve(player, this.game.getFrameworkContext());
 
             player.clearSelectedCards();
