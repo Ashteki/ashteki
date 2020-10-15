@@ -32,6 +32,7 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
+const { BattlefieldTypes } = require('../constants');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -954,7 +955,7 @@ class Game extends EventEmitter {
         this.raiseEvent('onTakeControl', { player, card });
         card.controller.removeCardFromPile(card);
         card.controller = player;
-        if (card.type === 'Ally' && player.creaturesInPlay.length > 0) {
+        if (BattlefieldTypes.includes(card.type) && player.creaturesInPlay.length > 0) {
             let handlers = [
                 () => player.cardsInPlay.unshift(card),
                 () => player.cardsInPlay.push(card)
@@ -1131,7 +1132,7 @@ class Game extends EventEmitter {
             // destroy any creatures who have damage greater than equal to their power
             let creaturesToDestroy = this.creaturesInPlay.filter(
                 (card) =>
-                    (card.type === 'Ally' || card.type === 'Conjuration') &&
+                    BattlefieldTypes.includes(card.type) &&
                     (card.life <= 0 || card.tokens.damage >= card.life) &&
                     !card.moribund
             );
@@ -1235,9 +1236,7 @@ class Game extends EventEmitter {
     }
 
     get creaturesInPlay() {
-        return this.cardsInPlay.filter(
-            (card) => card.type === 'Ally' || card.type === 'Conjuration'
-        );
+        return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
     }
 
     firstThingThisTurn() {

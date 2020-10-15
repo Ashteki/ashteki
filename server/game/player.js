@@ -8,6 +8,7 @@ const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
 const Die = require('./Die');
 const GameActions = require('./GameActions');
+const { BattlefieldTypes } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -144,9 +145,7 @@ class Player extends GameObject {
     }
 
     get creaturesInPlay() {
-        return this.cardsInPlay.filter(
-            (card) => card.type === 'Ally' || card.type === 'Conjuration'
-        );
+        return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
     }
 
     /**

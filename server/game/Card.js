@@ -11,7 +11,7 @@ const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
 const ResolveFightAction = require('./GameActions/ResolveFightAction');
-const { CardType } = require('../constants.js');
+const { CardType, BattlefieldTypes } = require('../constants.js');
 
 class Card extends EffectSource {
     constructor(owner, cardData) {
@@ -59,7 +59,6 @@ class Card extends EffectSource {
         this.printedAttack = cardData.attack;
         this.printedLife = cardData.life == 'X' ? 0 : cardData.life;
         this.printedRecover = cardData.recover;
-        this.printedArmor = cardData.armor;
         this.armorUsed = 0;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
@@ -663,18 +662,12 @@ class Card extends EffectSource {
         return this.getArmor();
     }
 
-    getArmor(printed = false) {
-        if (printed) {
-            return this.printedArmor;
-        }
-
+    getArmor() {
         if (this.anyEffect('setArmor')) {
             return this.mostRecentEffect('setArmor');
         }
 
-        const copyEffect = this.mostRecentEffect('copyCard');
-        const printedArmor = copyEffect ? copyEffect.printedArmor : this.printedArmor;
-        return printedArmor + this.sumEffects('modifyArmor');
+        return this.sumEffects('modifyArmor');
     }
 
     getBonusDamage(target) {
@@ -771,7 +764,7 @@ class Card extends EffectSource {
      */
     // eslint-disable-next-line no-unused-vars
     canAttach(card, context) {
-        return card && card.getType() === 'Ally' && this.canPlayAsUpgrade();
+        return card && BattlefieldTypes.includes(card.getType()) && this.canPlayAsUpgrade();
     }
 
     use(player) {
@@ -829,8 +822,7 @@ class Card extends EffectSource {
         return this.action({
             title: 'Fight with this creature',
             condition: (context) =>
-                this.checkRestrictions('fight', context) &&
-                this.battlefieldTypes.includes(this.type),
+                this.checkRestrictions('fight', context) && BattlefieldTypes.includes(this.type),
             printedAbility: false,
             target: {
                 activePromptTitle: 'Choose a creature to attack',
@@ -840,8 +832,6 @@ class Card extends EffectSource {
             }
         });
     }
-
-    battlefieldTypes = ['Ally', 'Conjuration'];
 
     getActions(location = this.location) {
         let actions = [];
@@ -859,7 +849,7 @@ class Card extends EffectSource {
             }
 
             actions.push(new DiscardAction(this));
-        } else if (location === 'play area' && this.battlefieldTypes.includes(this.type)) {
+        } else if (location === 'play area' && BattlefieldTypes.includes(this.type)) {
             actions.push(this.getFightAction());
         }
 

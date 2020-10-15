@@ -6,4 +6,6 @@ const CardType = {
     Upgrade: 'Alteration Spell'
 };
 
-module.exports = { Constants, CardType };
+const BattlefieldTypes = ['Ally', 'Conjuration'];
+
+module.exports = { Constants, CardType, BattlefieldTypes };

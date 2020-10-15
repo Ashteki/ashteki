@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../constants');
 const Dice = require('./dice');
 
 const Costs = {
@@ -22,7 +23,7 @@ const Costs = {
         canPay: (context) => {
             if (
                 (context.source.type === 'Ready Spell' && context.player.isSpellboardFull()) ||
-                ((context.source.type === 'Ally' || context.source.type === 'Conjuration') &&
+                (BattlefieldTypes.includes(context.source.getType()) &&
                     context.player.isBattlefieldFull())
             ) {
                 return false;

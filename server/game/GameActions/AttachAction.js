@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class AttachAction extends CardGameAction {
@@ -8,7 +9,7 @@ class AttachAction extends CardGameAction {
 
     setup() {
         this.name = 'attach';
-        this.targetType = ['Ally'];
+        this.targetType = [...BattlefieldTypes];
         this.effectMsg = 'attach {1} to {0}';
         this.effectArgs = () => {
             return this.upgrade;
