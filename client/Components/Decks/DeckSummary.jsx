@@ -12,48 +12,42 @@ const DeckSummary = ({ deck }) => {
     const { t, i18n } = useTranslation();
     let [zoomCard, setZoomCard] = useState(null);
     let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
-    const cardsByHouse = {};
 
-    for (const house of deck.houses.sort()) {
-        cardsByHouse[house] = [];
-        const filteredCards = sortBy(
-            deck.cards.filter((c) => c.card.house === house),
-            (c) => c.card.name
-        );
+    let output = [];
+    const filteredCards = sortBy(deck.cards, (c) => c.card.name);
 
-        for (const card of filteredCards) {
-            for (let i = 0; i < card.count; i++) {
-                let cardClass = 'deck-card-link';
+    for (const card of filteredCards) {
+        for (let i = 0; i < card.count; i++) {
+            let cardClass = 'deck-card-link';
 
-                cardsByHouse[house].push(
-                    <div
-                        key={`${card.dbId}${i}`}
-                        className={cardClass}
-                        onMouseOver={() => setZoomCard(card)}
-                        onMouseMove={(event) => {
-                            let y = event.clientY;
-                            let yPlusHeight = y + 420;
+            output.push(
+                <div
+                    key={`${card.dbId}${i}`}
+                    className={cardClass}
+                    onMouseOver={() => setZoomCard(card)}
+                    onMouseMove={(event) => {
+                        let y = event.clientY;
+                        let yPlusHeight = y + 420;
 
-                            if (yPlusHeight >= window.innerHeight) {
-                                y -= yPlusHeight - window.innerHeight;
-                            }
+                        if (yPlusHeight >= window.innerHeight) {
+                            y -= yPlusHeight - window.innerHeight;
+                        }
 
-                            setMousePosition({ x: event.clientX, y: y });
-                        }}
-                        onMouseOut={() => setZoomCard(null)}
-                    >
-                        {card.card.locale && card.card.locale[i18n.language]
-                            ? card.card.locale[i18n.language].name
-                            : card.card.name}
-                        {card.maverick && (
-                            <img className='small-card-icon' src={Constants.MaverickIcon} />
-                        )}
-                        {card.anomaly && (
-                            <img className='small-card-icon' src={Constants.AnomalyIcon} />
-                        )}
-                    </div>
-                );
-            }
+                        setMousePosition({ x: event.clientX, y: y });
+                    }}
+                    onMouseOut={() => setZoomCard(null)}
+                >
+                    {card.card.locale && card.card.locale[i18n.language]
+                        ? card.card.locale[i18n.language].name
+                        : card.card.name}
+                    {card.maverick && (
+                        <img className='small-card-icon' src={Constants.MaverickIcon} />
+                    )}
+                    {card.anomaly && (
+                        <img className='small-card-icon' src={Constants.AnomalyIcon} />
+                    )}
+                </div>
+            );
         }
     }
 
@@ -90,21 +84,6 @@ const DeckSummary = ({ deck }) => {
                     </Row>
                 </Col>
             </Row>
-            <Row className='deck-houses'>
-                {deck.houses.map((house) => {
-                    return (
-                        <Col key={house} sm='4'>
-                            <img
-                                className='deck-house-image img-fluid'
-                                src={Constants.HouseIconPaths[house]}
-                            />
-                            <span className='deck-house'>
-                                {t(house)[0].toUpperCase() + t(house).slice(1)}
-                            </span>
-                        </Col>
-                    );
-                })}
-            </Row>
             <Row className='deck-cards'>
                 {zoomCard && (
                     <div
@@ -116,13 +95,7 @@ const DeckSummary = ({ deck }) => {
                         />
                     </div>
                 )}
-                {deck.houses.map((house) => {
-                    return (
-                        <Col key={house} sm='4'>
-                            {cardsByHouse[house]}
-                        </Col>
-                    );
-                })}
+                <Col sm='4'>{output}</Col>
             </Row>
         </Col>
     );

@@ -26,7 +26,6 @@ import { Constants } from '../../constants';
  * @property {string} id
  * @property {string} name
  * @property {string} type
- * @property {string} house
  * @property {string} rarity
  * @property {string} number
  * @property {string} image
@@ -50,7 +49,6 @@ import { Constants } from '../../constants';
  * @typedef Deck
  * @property {number} id The database id of the deck
  * @property {string} name The name of the deck
- * @property {string[]} houses The houses in the deck
  * @property {Date} lastUpdated The date the deck was last saved
  * @property {DeckCard[]} cards The cards in the deck along with how many of each card
  * @property {number} expansion The expansion number

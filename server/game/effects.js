@@ -13,7 +13,6 @@ const Effects = {
     // Card effects
     actionCardLocationAfterPlay: (location) =>
         EffectBuilder.card.static('actionCardLocationAfterPlay', location),
-    addHouse: (house) => EffectBuilder.card.static('addHouse', house),
     addKeyword: (keyword) => EffectBuilder.card.static('addKeyword', keyword),
     addTrait: (trait) => EffectBuilder.card.static('addTrait', trait),
     blank: () => EffectBuilder.card.static('blank'),
@@ -21,7 +20,6 @@ const Effects = {
     canPlayAsUpgrade: () => EffectBuilder.card.static('canPlayAsUpgrade'),
     cardCannot: (type, condition) =>
         EffectBuilder.card.static('abilityRestrictions', new CannotRestriction(type, condition)),
-    changeHouse: (house) => EffectBuilder.card.static('changeHouse', house),
     changeType: (type) => EffectBuilder.card.static('changeType', type),
     consideredAsFlank: () => EffectBuilder.card.static('consideredAsFlank'),
     copyCard: (card) => EffectBuilder.card.static('copyCard', new CopyCard(card)),
@@ -80,13 +78,8 @@ const Effects = {
             apply: (player) => player.addPlayableLocation('play', player, location),
             unapply: (player, context, location) => player.removePlayableLocation(location)
         }),
-    canPlayHouse: (house) => EffectBuilder.player.static('canPlayHouse', house),
-    canPlayNonHouse: (house) => EffectBuilder.player.flexible('canPlayNonHouse', house),
-    canPlayOrUseHouse: (house) => EffectBuilder.player.static('canPlayOrUseHouse', house),
-    canPlayOrUseNonHouse: (house) => EffectBuilder.player.static('canPlayOrUseNonHouse', house),
     canUse: (match) =>
         EffectBuilder.player.static('canUse', (context) => match(context.source, context)),
-    canUseHouse: (house) => EffectBuilder.player.static('canUseHouse', house),
     chooseCardsFromArchives: (card) => EffectBuilder.player.static('chooseCardsFromArchives', card),
     customDetachedPlayer: (properties) => EffectBuilder.player.detached('customEffect', properties),
     delayedEffect: (properties) =>
@@ -100,13 +93,10 @@ const Effects = {
         }),
     modifyKeyCost: (amount) => EffectBuilder.player.flexible('modifyKeyCost', amount),
     modifyHandSize: (amount) => EffectBuilder.player.flexible('modifyHandSize', amount),
-    noActiveHouseForPlay: () => EffectBuilder.player.static('noActiveHouseForPlay'),
     playerCannot: (type, condition) =>
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
-    restrictHouseChoice: (house) => EffectBuilder.player.static('restrictHouseChoice', house),
     stealFromPool: () => EffectBuilder.player.static('stealFromPool'),
     captureFromPool: () => EffectBuilder.player.static('captureFromPool'),
-    stopHouseChoice: (house) => EffectBuilder.player.static('stopHouseChoice', house),
     skipStep: (step) => EffectBuilder.player.static('skipStep', step)
 };
 

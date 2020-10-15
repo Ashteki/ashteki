@@ -7,7 +7,6 @@ const SingleDieSelector = require('./CardSelectors/SingleDieSelector');
 const UpToXDiceSelector = require('./CardSelectors/UpToXDiceSelector');
 // const UnlimitedCardSelector = require('./CardSelectors/UnlimitedCardSelector');
 // const UpToXCardSelector = require('./CardSelectors/UpToXCardSelector');
-// const MostHouseCardSelector = require('./CardSelectors/MostHouseCardSelector');
 
 const defaultProperties = {
     numDice: 1,
@@ -21,7 +20,6 @@ const ModeToSelector = {
     match: (p) => new MatchedDiceSelector(p.format, p),
     // minStat: (p) => new MinStatCardSelector(p),
     // maxStat: (p) => new MaxStatCardSelector(p),
-    // mostHouse: (p) => new MostHouseCardSelector(p),
     // mostStat: (p) => new MostStatCardSelector(p),
     // leastStat: (p) => new LeastStatCardSelector(p),
     single: (p) => new SingleDieSelector(p),

@@ -20,18 +20,6 @@ class Deck {
                 return result;
             }
 
-            if (card.maverick) {
-                result.card.house = card.maverick;
-                result.card.maverick = card.maverick;
-            } else if (card.anomaly) {
-                result.card.house = card.anomaly;
-                result.card.anomaly = card.anomaly;
-            }
-
-            if (card.house) {
-                result.card.house = card.house;
-            }
-
             if (card.image) {
                 result.card.cardImage = card.image;
             }

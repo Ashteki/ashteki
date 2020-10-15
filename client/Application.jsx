@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Container } from 'react-bootstrap';
-
-import { Constants } from './constants';
 import ErrorBoundary from './Components/Site/ErrorBoundary';
 import Navigation from './Components/Navigation/Navigation';
 import Router from './Router';
@@ -12,9 +10,8 @@ import { tryParseJSON } from './util';
 import AlertPanel from './Components/Site/AlertPanel';
 import * as actions from './redux/actions';
 
-import Background from './assets/img/bgs/keyforge.png';
+import Background from './assets/img/bgs/ashesreborn.png';
 import BlankBg from './assets/img/bgs/blank.png';
-import MassMutationBg from './assets/img/bgs/massmutation.png';
 
 class Application extends React.Component {
     constructor(props) {
@@ -28,13 +25,7 @@ class Application extends React.Component {
         this.bgRef = React.createRef();
 
         this.backgrounds = { blank: BlankBg };
-
-        for (let i = 0; i < Constants.Houses.length; ++i) {
-            this.backgrounds[Constants.Houses[i]] = Constants.HouseBgPaths[Constants.Houses[i]];
-        }
-
-        this.backgrounds.massmutation = MassMutationBg;
-        this.backgrounds.keyforge = Background;
+        this.backgrounds.ashesreborn = Background;
     }
 
     // eslint-disable-next-line react/no-deprecated
@@ -58,7 +49,6 @@ class Application extends React.Component {
         }
 
         this.props.loadCards();
-        this.props.loadFactions();
         this.props.loadStandaloneDecks();
 
         $(document).ajaxError((event, xhr) => {
@@ -145,15 +135,10 @@ class Application extends React.Component {
             );
         }
 
-        let background = 'keyforge';
+        let background = 'ashesreborn';
 
         if (gameBoardVisible && this.props.user) {
-            let houseIndex = Constants.HousesNames.indexOf(this.props.user.settings.background);
-            if (houseIndex === -1) {
-                background = `${this.props.user?.settings?.background}`;
-            } else {
-                background = `${Constants.Houses[houseIndex]}`;
-            }
+            background = `${this.props.user?.settings?.background}`;
 
             if (
                 this.bgRef.current &&
@@ -196,7 +181,6 @@ Application.propTypes = {
     connectLobby: PropTypes.func,
     currentGame: PropTypes.object,
     loadCards: PropTypes.func,
-    loadFactions: PropTypes.func,
     loadPacks: PropTypes.func,
     loadRestrictedList: PropTypes.func,
     loadStandaloneDecks: PropTypes.func,

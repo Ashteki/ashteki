@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 import Avatar from '../Site/Avatar';
 import AlertPanel from '../Site/AlertPanel';
-import { Constants } from '../../constants';
 import AmberImage from '../../assets/img/amber.png';
 import CardBackImage from '../../assets/img/idbacks/cardback.jpg';
 
@@ -51,13 +50,6 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const owner = useSelector(
         (state) => state.lobby.currentGame.players[state.lobby.currentGame.owner]
     );
-
-    for (let house of Constants.Houses) {
-        tokens[house] = {
-            className: 'chat-house-icon',
-            imageSrc: Constants.HouseIconPaths[house]
-        };
-    }
 
     const getMessage = () => {
         return messages.map((message, index) => {

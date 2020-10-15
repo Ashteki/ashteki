@@ -9,10 +9,9 @@ import ProfileMain from './ProfileMain';
 import ProfileBackground from './ProfileBackground';
 import KeyforgeGameSettings from './KeyforgeGameSettings';
 import ProfileCardSize from './ProfileCardSize';
-import { Constants } from '../../constants';
-import { toBase64 } from '../../util';
 import BlankBg from '../../assets/img/bgs/blank.png';
-import MassMutationBg from '../../assets/img/bgs/massmutation.png';
+import AshesRebornBg from '../../assets/img/bgs/ashesreborn.png';
+const { toBase64 } = require('../util.js');
 
 import './Profile.scss';
 
@@ -91,18 +90,10 @@ const Profile = ({ onSubmit, isLoading }) => {
         { name: 'x-large', label: t('extra-large') }
     ];
 
-    for (let i = 0; i < Constants.Houses.length; ++i) {
-        backgrounds.push({
-            name: Constants.HousesNames[i],
-            label: t(Constants.Houses[i]),
-            imageUrl: Constants.HouseBgPaths[Constants.Houses[i]]
-        });
-    }
-
     backgrounds.push({
-        name: 'massmutation',
-        label: t('Mass Mutation'),
-        imageUrl: MassMutationBg
+        name: 'ashesreborn',
+        label: t('Ashes Reborn'),
+        imageUrl: AshesRebornBg
     });
 
     if (!user) {

@@ -1,4 +1,3 @@
-const Constants = require('../constants');
 const ServiceFactory = require('../services/ServiceFactory');
 const ConfigService = require('../services/ConfigService');
 
@@ -14,12 +13,5 @@ module.exports.init = function (server) {
             .catch((err) => {
                 return next(err);
             });
-    });
-
-    server.get('/api/factions', function (req, res) {
-        let factions = Constants.Houses.map(function (house, i) {
-            return { name: Constants.HousesNames[i], value: house };
-        });
-        res.send({ success: true, factions: factions });
     });
 };

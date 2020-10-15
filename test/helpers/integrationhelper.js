@@ -164,8 +164,8 @@ beforeEach(function () {
         this[method] = (...args) => this.flow[method].apply(this.flow, args);
     });
 
-    this.buildDeck = function (faction, cards) {
-        return deckBuilder.buildDeck(faction, cards);
+    this.buildDeck = function (cards) {
+        return deckBuilder.buildDeck(cards);
     };
 
     /**

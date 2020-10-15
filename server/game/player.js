@@ -25,9 +25,6 @@ class Player extends GameObject {
         this.archives = [];
         this.wins = 0;
 
-        this.houses = [];
-        this.activeHouse = null;
-
         this.deckData = {};
         this.firstFiveChosen = false;
         this.takenPrepareDiscard = false;
@@ -359,7 +356,6 @@ class Player extends GameObject {
         this.deckData.selected = false;
         this.deckData = deckData;
         this.deckData.selected = true;
-        this.houses = deckData.houses;
     }
 
     /**
@@ -565,32 +561,6 @@ class Player extends GameObject {
         return 5 + this.sumEffects('modifyHandSize');
     }
 
-    getAvailableHouses() {
-        let availableHouses = this.hand.concat(this.cardsInPlay).reduce((houses, card) => {
-            let cardHouse = card.printedHouse;
-
-            if (card.anyEffect('changeHouse')) {
-                cardHouse = this.getEffects('changeHouse');
-            }
-
-            if (!houses.includes(cardHouse)) {
-                return houses.concat(cardHouse);
-            }
-
-            return houses;
-        }, this.houses);
-        let stopHouseChoice = this.getEffects('stopHouseChoice');
-        let restrictHouseChoice = _.flatten(this.getEffects('restrictHouseChoice')).filter(
-            (house) => !stopHouseChoice.includes(house)
-        );
-        if (restrictHouseChoice.length > 0) {
-            availableHouses = restrictHouseChoice;
-        }
-
-        availableHouses = _.difference(_.uniq(availableHouses), this.getEffects('stopHouseChoice'));
-        return availableHouses;
-    }
-
     getAdditionalCosts(context) {
         return this.getEffects('additionalCost')
             .reduce((array, costFactory) => array.concat(costFactory(context)), [])
@@ -627,7 +597,6 @@ class Player extends GameObject {
             cardback: 'cardback',
             disconnected: !!this.disconnectedAt,
             activePlayer: this.game.activePlayer === this,
-            houses: this.houses,
             id: this.id,
             left: this.left,
             name: this.name,
@@ -655,11 +624,7 @@ class Player extends GameObject {
         if (isActivePlayer) {
             let sortedDeck = this.deck.slice();
             sortedDeck.sort((a, b) => {
-                if (a.printedHouse < b.printedHouse) {
-                    return -1;
-                } else if (a.printedHouse > b.printedHouse) {
-                    return 1;
-                } else if (a.id < b.id) {
+                if (a.id < b.id) {
                     return -1;
                 } else if (a.id > b.id) {
                     return 1;

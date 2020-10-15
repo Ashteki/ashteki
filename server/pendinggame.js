@@ -57,7 +57,6 @@ class PendingGame {
     getSaveState() {
         let players = _.map(this.getPlayers(), (player) => {
             return {
-                houses: player.houses,
                 name: player.name,
                 wins: player.wins
             };
@@ -331,7 +330,6 @@ class PendingGame {
             playerSummaries[player.name] = {
                 avatar: player.user.avatar,
                 deck: activePlayer ? deck : {},
-                houses: this.started && player.deck ? player.deck.houses : [],
                 id: player.id,
                 left: player.left,
                 name: player.name,

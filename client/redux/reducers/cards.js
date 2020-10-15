@@ -12,7 +12,7 @@ function selectDeck(state, deck) {
 
 function processDecks(decks, state) {
     for (let deck of decks) {
-        if (!state.cards || !deck.houses) {
+        if (!state.cards) {
             deck.status = {};
 
             continue;
@@ -25,19 +25,10 @@ function processDecks(decks, state) {
                 id: card._id,
                 maverick: card.maverick,
                 anomaly: card.anomaly,
-                house: card.house,
                 image: card.image,
                 dbId: card.dbId
             };
             result.card.image = card.image || card._id;
-            if (card.maverick) {
-                result.card.house = card.maverick;
-            } else if (card.anomaly) {
-                result.card.house = card.anomaly;
-            } else if (card.house) {
-                result.card.house = card.house;
-            }
-
             return result;
         });
 
@@ -69,16 +60,6 @@ export default function (state = { decks: [], cards: {} }, action) {
             }
 
             return newState;
-        case 'RECEIVE_FACTIONS':
-            var factions = {};
-
-            for (const faction of action.response.factions) {
-                factions[faction.value] = faction;
-            }
-
-            return Object.assign({}, state, {
-                factions: factions
-            });
         case 'ZOOM_CARD':
             return Object.assign({}, state, {
                 zoomCard: action.card

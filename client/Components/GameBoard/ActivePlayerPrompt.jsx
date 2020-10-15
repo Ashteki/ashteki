@@ -5,7 +5,6 @@ import { withTranslation } from 'react-i18next';
 import AbilityTargeting from './AbilityTargeting';
 import CardNameLookup from './CardNameLookup';
 import TraitNameLookup from './TraitNameLookup';
-import HouseSelect from './HouseSelect';
 import OptionsSelect from './OptionsSelect';
 import Panel from '../Site/Panel';
 
@@ -17,7 +16,6 @@ class ActivePlayerPrompt extends React.Component {
     constructor(props) {
         super(props);
 
-        this.onHouseSelected = this.onHouseSelected.bind(this);
         this.onOptionSelected = this.onOptionSelected.bind(this);
     }
 
@@ -87,7 +85,7 @@ class ActivePlayerPrompt extends React.Component {
 
         if (
             !this.props.buttons ||
-            this.props.controls.some((c) => ['house-select', 'options-select'].includes(c.type))
+            this.props.controls.some((c) => ['options-select'].includes(c.type))
         ) {
             return null;
         }
@@ -143,12 +141,6 @@ class ActivePlayerPrompt extends React.Component {
         }
     }
 
-    onHouseSelected(command, uuid, method, house) {
-        if (this.props.onButtonClick) {
-            this.props.onButtonClick(command, house, uuid, method);
-        }
-    }
-
     onOptionSelected(option) {
         if (this.props.onButtonClick) {
             let button = this.props.buttons.find((button) => '' + button.arg === option);
@@ -194,13 +186,6 @@ class ActivePlayerPrompt extends React.Component {
                                 control.uuid,
                                 control.method
                             )}
-                        />
-                    );
-                case 'house-select':
-                    return (
-                        <HouseSelect
-                            buttons={this.props.buttons}
-                            onHouseSelected={this.onHouseSelected}
                         />
                     );
                 case 'options-select':

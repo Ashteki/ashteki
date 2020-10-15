@@ -1,5 +1,4 @@
 const _ = require('underscore');
-const Constants = require('./constants.js');
 const GameService = require('./services/AshesGameService.js');
 const ConfigService = require('./services/ConfigService.js');
 
@@ -36,10 +35,6 @@ gameService
         let players = {};
         let decks = {};
         let fpWinRates = { first: 0, second: 0 };
-        let houses = {};
-        for (let house of Constants.Houses) {
-            houses[house] = { name: house, wins: 0, losses: 0 };
-        }
 
         _.each(games, (game) => {
             if (_.size(game.players) !== 2) {
@@ -84,11 +79,9 @@ gameService
                 if (player.name === game.winner) {
                     playerStat.wins++;
                     deckStat.wins++;
-                    _.each(player.houses, (house) => houses[house].wins++);
                 } else {
                     playerStat.losses++;
                     deckStat.losses++;
-                    _.each(player.houses, (house) => houses[house].losses++);
                 }
             });
         });
@@ -118,10 +111,6 @@ gameService
             .first(10)
             .value();
 
-        // let factionWinners = _.sortBy(factions, faction => {
-        //     return -faction.wins;
-        // });
-
         let deckWinRates = _.map(decks, (deck) => {
             let games = deck.wins + deck.losses;
 
@@ -130,18 +119,6 @@ gameService
                 wins: deck.wins,
                 losses: deck.losses,
                 winRate: Math.round((deck.wins / games) * 100)
-            };
-        });
-
-        let houseWinRates = _.map(houses, (house) => {
-            // eslint-disable-line no-unused-vars
-            let games = house.wins + house.losses;
-
-            return {
-                name: house.name,
-                wins: house.wins,
-                losses: house.losses,
-                winRate: Math.round((house.wins / games) * 100)
             };
         });
 
@@ -184,22 +161,6 @@ gameService
                 winner.losses,
                 ' | ',
                 winner.winRate + '%'
-            );
-        });
-
-        console.info(
-            '### House win rates\n\nHouse | Number of wins | Number of losses | Win Rate\n----|-------------|------------------|--------'
-        );
-
-        _.each(houseWinRates, (house) => {
-            console.info(
-                house.name,
-                ' | ',
-                house.wins,
-                ' | ',
-                house.losses,
-                ' | ',
-                house.winRate + '%'
             );
         });
 

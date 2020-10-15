@@ -60,19 +60,9 @@ const PlayerRow = ({
         size: cardSize
     };
 
-    let sortedHand = [].concat(hand).sort((a, b) => {
-        if (a.printedHouse < b.printedHouse) {
-            return -1;
-        } else if (a.printedHouse > b.printedHouse) {
-            return 1;
-        }
-
-        return 0;
-    });
-
     let handToRender = (
         <SquishableCardPanel
-            cards={sortedHand}
+            cards={hand}
             className='panel hand'
             groupVisibleCards
             cardBackUrl={spellback}

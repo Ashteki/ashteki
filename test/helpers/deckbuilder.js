@@ -73,10 +73,10 @@ class DeckBuilder {
             deck = deck.concat(defaultFiller[houses[0]]);
         }
 
-        return this.buildDeck(houses, deck);
+        return this.buildDeck(deck);
     }
 
-    buildDeck(houses, cardLabels) {
+    buildDeck(cardLabels) {
         var cardCounts = {};
         _.each(cardLabels, (label) => {
             var cardData = this.getCard(label);
@@ -92,7 +92,6 @@ class DeckBuilder {
         });
 
         return {
-            houses: houses,
             cards: Object.values(cardCounts)
         };
     }

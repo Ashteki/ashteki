@@ -11,6 +11,7 @@ const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
 const ResolveFightAction = require('./GameActions/ResolveFightAction');
+const { CardType } = require('../constants.js');
 
 class Card extends EffectSource {
     constructor(owner, cardData) {
@@ -361,11 +362,6 @@ class Card extends EffectSource {
         let copyEffect = this.mostRecentEffect('copyCard');
         let traits = copyEffect ? copyEffect.traits : this.traits;
         return _.uniq(traits.concat(this.getEffects('addTrait')));
-    }
-
-    getHouses() {
-        let combinedHouses = [];
-        return combinedHouses;
     }
 
     applyAnyLocationPersistentEffects() {
@@ -747,12 +743,12 @@ class Card extends EffectSource {
     }
 
     canPlayAsUpgrade() {
-        return this.anyEffect('canPlayAsUpgrade') || this.type === 'upgrade';
+        return this.anyEffect('canPlayAsUpgrade') || this.type === CardType.Upgrade;
     }
 
     /**
      * Checks whether the passed card meets the upgrade restrictions (e.g.
-     * Opponent cards only, specific factions, etc) for this card.
+     * Opponent cards only etc) for this card.
      */
     // eslint-disable-next-line no-unused-vars
     canAttach(card, context) {
