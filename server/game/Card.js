@@ -59,7 +59,8 @@ class Card extends EffectSource {
         this.printedAttack = cardData.attack;
         this.printedLife = cardData.life == 'X' ? 0 : cardData.life;
         this.printedRecover = cardData.recover;
-
+        this.printedArmor = cardData.armor;
+        this.armorUsed = 0;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
 
@@ -231,7 +232,6 @@ class Card extends EffectSource {
     /**
      * @typedef PlayProperties
      * @property {CardLocation} location The location this effect can trigger from
-     * @property {TargetProperties} target The targetting specifier
      * @property {function(any): boolean} condition An expression that returns whether this effect is allowed to trigger
      * @property {string} effect The text added to the game log when this effect triggers
      * @property {function(any): [any]} effectArgs A function that returns the arguments to the effect string
@@ -382,6 +382,7 @@ class Card extends EffectSource {
 
     endRound() {
         this.elusiveUsed = false;
+        this.armorUsed = 0;
     }
 
     endTurn() {
@@ -656,6 +657,24 @@ class Card extends EffectSource {
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedLife = copyEffect ? copyEffect.printedLife : this.printedLife;
         return printedLife + this.sumEffects('modifyLife');
+    }
+
+    get armor() {
+        return this.getArmor();
+    }
+
+    getArmor(printed = false) {
+        if (printed) {
+            return this.printedArmor;
+        }
+
+        if (this.anyEffect('setArmor')) {
+            return this.mostRecentEffect('setArmor');
+        }
+
+        const copyEffect = this.mostRecentEffect('copyCard');
+        const printedArmor = copyEffect ? copyEffect.printedArmor : this.printedArmor;
+        return printedArmor + this.sumEffects('modifyArmor');
     }
 
     getBonusDamage(target) {
