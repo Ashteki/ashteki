@@ -582,7 +582,7 @@ class Card extends EffectSource {
         return clone;
     }
 
-    get power() {
+    get attack() {
         return this.getAttack();
     }
 

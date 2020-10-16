@@ -4,6 +4,8 @@ const Actions = {
     // card actionsa
     addPowerCounter: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'power'),
     addDamageToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'damage'),
+    addExhaustionToken: (propertyFactory) =>
+        new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addDisruptionCounter: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'disruption'),

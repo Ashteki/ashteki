@@ -1129,7 +1129,7 @@ class Game extends EventEmitter {
                 });
             }
 
-            // destroy any creatures who have damage greater than equal to their power
+            // destroy any creatures who have damage greater than equal to their life
             let creaturesToDestroy = this.creaturesInPlay.filter(
                 (card) =>
                     BattlefieldTypes.includes(card.type) &&

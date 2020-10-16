@@ -82,7 +82,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
 
             this.game.addMessage('{0} has chosen their first five', player);
 
-            // fill if they didin't choose 5
+            // random fill if they didn't choose 5
             player.shuffleDeck();
             this.game.actions
                 .draw({ refill: true, singleCopy: true })

@@ -37,6 +37,7 @@ const Effects = {
     modifyArmor: (amount) => EffectBuilder.card.flexible('modifyArmor', amount),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setPower: (amount) => EffectBuilder.card.flexible('setPower', amount),
+    setAttack: (amount) => EffectBuilder.card.flexible('setAttack', amount),
     takeControl: (player) => EffectBuilder.card.static('takeControl', player),
     entersPlayUnderOpponentsControl: () =>
         EffectBuilder.card.static('entersPlayUnderOpponentsControl'),
