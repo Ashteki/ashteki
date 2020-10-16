@@ -3,10 +3,6 @@ const Card = require('../../Card.js');
 class OneHundredBlades extends Card {
     setupCardAbilities(ability) {
         this.play({
-            // cost: [
-            //     ability.costs.spendMain(),
-            //     ability.costs.dice([{ level: 'basic' }, { level: 'basic' }])
-            // ],
             effect: 'deal 1 damage to all opponents units, and phoenixborn',
             gameAction: [
                 ability.actions.dealDamage((context) => ({

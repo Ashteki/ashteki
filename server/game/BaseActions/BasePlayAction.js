@@ -11,7 +11,7 @@ function parseCosts(costData) {
                 costs.push(Costs.mainAction());
                 break;
             case '[[side]]':
-                costs.push(Costs.mainAction());
+                costs.push(Costs.sideAction());
                 break;
             case '[[exhaust]]':
                 costs.push(Costs.exhaust());
