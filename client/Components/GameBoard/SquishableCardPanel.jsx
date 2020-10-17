@@ -45,6 +45,7 @@ class SquishableCardPanel extends React.Component {
                     onClick={this.props.onCardClick}
                     onMouseOver={this.props.onMouseOver}
                     onMouseOut={this.props.onMouseOut}
+                    onMenuItemClick={this.props.onMenuItemClick}
                     size={this.props.cardSize}
                     style={style}
                     language={this.props.i18n.language}
@@ -130,6 +131,7 @@ SquishableCardPanel.propTypes = {
     manualMode: PropTypes.bool,
     maxCards: PropTypes.number,
     onCardClick: PropTypes.func,
+    onMenuItemClick: PropTypes.func,
     onMouseOut: PropTypes.func,
     onMouseOver: PropTypes.func,
     source: PropTypes.string,

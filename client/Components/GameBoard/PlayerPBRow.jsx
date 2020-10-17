@@ -64,6 +64,7 @@ const PlayerPBRow = ({
             onCardClick={onCardClick}
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
+            onMenuItemClick={onMenuItemClick}
             source='spellboard'
             title={t('Spellboard')}
             cardSize={cardSize}

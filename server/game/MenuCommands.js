@@ -1,21 +1,6 @@
 class MenuCommands {
     static cardMenuClick(menuItem, game, player, card) {
         switch (menuItem.command) {
-            case 'exhaust':
-                if (card.exhausted) {
-                    game.addAlert(
-                        'danger',
-                        '{0} removes an exhaustion token from {1}',
-                        player,
-                        card
-                    );
-                    card.ready();
-                } else {
-                    game.addAlert('danger', '{0} adds and eshaustion token to {1}', player, card);
-                    card.exhaust();
-                }
-
-                break;
             case 'addDamage':
                 game.addAlert('danger', '{0} adds a damage to {1}', player, card);
                 card.addToken('damage', 1);
@@ -24,13 +9,21 @@ class MenuCommands {
                 game.addAlert('danger', '{0} removes a damage from {1}', player, card);
                 card.removeToken('damage', 1);
                 break;
-            case 'addWard':
-                game.addAlert('danger', '{0} adds a ward to {1}', player, card);
-                card.addToken('ward', 1);
+            case 'addExhaustion':
+                game.addAlert('danger', '{0} adds an exhaustion to {1}', player, card);
+                card.addToken('exhaustion', 1);
                 break;
-            case 'remWard':
-                game.addAlert('danger', '{0} removes a ward from {1}', player, card);
-                card.removeToken('ward', 1);
+            case 'remExhaustion':
+                game.addAlert('danger', '{0} removes an exhaustion from {1}', player, card);
+                card.removeToken('exhaustion', 1);
+                break;
+            case 'addStatus':
+                game.addAlert('danger', '{0} adds a status to {1}', player, card);
+                card.addToken('status', 1);
+                break;
+            case 'remStatus':
+                game.addAlert('danger', '{0} removes a status from {1}', player, card);
+                card.removeToken('status', 1);
                 break;
             case 'control':
                 if (player.opponent) {
@@ -58,7 +51,6 @@ class MenuCommands {
                     game.addAlert('danger', '{0} exhausts {1}', player, die.name);
                     die.exhaust();
                 }
-
                 break;
             case 'raise':
                 game.addAlert('danger', '{0} raises {1}', player, die.name);

@@ -65,7 +65,7 @@ class Die extends EffectSource {
             return undefined;
         }
 
-        // menu.push({ command: 'click', text: 'Select Die', menu: 'main' });
+        menu.push({ command: 'click', text: 'Select Die', menu: 'main' });
         menu = menu.concat(this.menu);
 
         return menu;

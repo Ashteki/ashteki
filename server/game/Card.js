@@ -69,15 +69,15 @@ class Card extends EffectSource {
         this.locale = cardData.locale;
 
         this.menu = [
-            { command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' },
             { command: 'tokens', text: 'Modify Tokens', menu: 'main' },
             { command: 'control', text: 'Give control', menu: 'main' },
             { command: 'main', text: 'Back', menu: 'tokens' },
+            { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
+            { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
             { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
             { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
             { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
-            { command: 'addWard', text: 'Add 1 ward', menu: 'tokens' },
-            { command: 'remWard', text: 'Remove 1 ward', menu: 'tokens' }
+            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' }
         ];
 
         this.endRound();
@@ -461,8 +461,7 @@ class Card extends EffectSource {
         if (
             !this.menu.length ||
             !this.game.manualMode ||
-            this.location !== 'play area' ||
-            this.location !== 'spellboard'
+            (this.location !== 'play area' && this.location !== 'spellboard')
         ) {
             return undefined;
         }
@@ -971,6 +970,7 @@ class Card extends EffectSource {
             location: this.location,
             menu: this.getMenu(),
             name: this.name,
+            label: this.name,
             new: this.new,
             taunt: this.getType() === 'Ally' && !!this.getKeywordValue('taunt'),
             tokens: this.tokens,
