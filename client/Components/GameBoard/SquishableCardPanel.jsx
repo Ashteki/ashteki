@@ -46,6 +46,7 @@ class SquishableCardPanel extends React.Component {
                     onMouseOver={this.props.onMouseOver}
                     onMouseOut={this.props.onMouseOut}
                     onMenuItemClick={this.props.onMenuItemClick}
+                    side={this.props.side}
                     size={this.props.cardSize}
                     style={style}
                     language={this.props.i18n.language}

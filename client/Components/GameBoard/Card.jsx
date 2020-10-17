@@ -22,6 +22,7 @@ const Card = ({
     onMouseOut,
     onMouseOver,
     orientation = 'vertical',
+    side,
     size,
     source,
     style,
@@ -285,6 +286,7 @@ const Card = ({
                 {shouldShowMenu() && (
                     <CardMenu
                         menu={card.menu}
+                        side={side}
                         onMenuItemClick={(menuItem) => {
                             onMenuItemClick && onMenuItemClick(card, menuItem);
                             setShowMenu(!showMenu);

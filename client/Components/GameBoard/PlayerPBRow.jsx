@@ -68,6 +68,7 @@ const PlayerPBRow = ({
             source='spellboard'
             title={t('Spellboard')}
             cardSize={cardSize}
+            side={side}
         />
     );
 
@@ -107,6 +108,7 @@ const PlayerPBRow = ({
                 onMenuItemClick={onMenuItemClick}
                 onClick={onCardClick}
                 size={cardSize}
+                side={side}
             />
         );
     }

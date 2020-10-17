@@ -14,6 +14,16 @@
     z-index: $layer-card-menu;
 }
 
+.bottom-menu {
+    position: absolute;
+    width: 200px;
+    left: 58px;
+    bottom: 10px;
+    font-size: 12px;
+    line-height: 16px;
+    z-index: $layer-card-menu;
+}
+
 .menu-item {
     border: 1px solid theme-color(primary);
     padding: 3px 6px;
