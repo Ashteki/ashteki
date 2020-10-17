@@ -90,7 +90,7 @@ class GameChat {
                     } else if (arg instanceof Card) {
                         returnedFraments.push({
                             name: arg.name,
-                            image: arg.image,
+                            id: arg.id,
                             label: arg.name,
                             type: arg.getType(),
                             argType: 'card'

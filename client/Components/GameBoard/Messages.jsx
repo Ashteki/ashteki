@@ -146,7 +146,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         {fragment.label}
                     </a>
                 );
-            } else if (fragment.image && fragment.label) {
+            } else if (fragment.argType === 'card') {
                 messages.push(
                     <span
                         key={index++}

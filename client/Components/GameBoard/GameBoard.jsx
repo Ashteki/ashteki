@@ -390,7 +390,7 @@ export class GameBoard extends React.Component {
                     {this.renderBoard(thisPlayer, otherPlayer)}
                     {cardToZoom && (
                         <CardZoom
-                            imageUrl={cardToZoom ? `/img/cards/${cardToZoom.image}.png` : ''}
+                            imageUrl={cardToZoom ? `/img/cards/${cardToZoom.id}.png` : ''}
                             cardName={cardToZoom ? cardToZoom.name : null}
                             card={cardToZoom}
                         />
