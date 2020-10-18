@@ -27,6 +27,7 @@ class Card extends EffectSource {
         this.printedType = cardData.type;
 
         this.tokens = {};
+        this.flags = {};
 
         this.abilities = {
             actions: [],
@@ -56,9 +57,9 @@ class Card extends EffectSource {
         this.childCards = [];
         this.clonedNeighbors = null;
 
-        this.printedAttack = cardData.attack;
-        this.printedLife = cardData.life == 'X' ? 0 : cardData.life;
-        this.printedRecover = cardData.recover;
+        this.printedAttack = cardData.attack ? cardData.attack : 0;
+        this.printedLife = cardData.life ? (cardData.life == 'X' ? 0 : cardData.life) : 0;
+        this.printedRecover = cardData.recover ? cardData.recover : 0;
         this.armorUsed = 0;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
@@ -568,6 +569,7 @@ class Card extends EffectSource {
         clone.upgrades = this.upgrades.map((upgrade) => upgrade.createSnapshot());
         clone.effects = _.clone(this.effects);
         clone.tokens = _.clone(this.tokens);
+        clone.flags = _.clone(this.flags);
         clone.controller = this.controller;
         clone.location = this.location;
         clone.parent = this.parent;
@@ -948,6 +950,7 @@ class Card extends EffectSource {
                 facedown: true,
                 uuid: this.uuid,
                 tokens: this.tokens,
+                flags: this.getFlags(),
                 ...selectionState
             };
         }

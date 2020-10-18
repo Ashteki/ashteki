@@ -99,7 +99,9 @@ const Actions = {
     spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),
     setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),
-    meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory)
+    meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),
+    lowerDie: (propertyFactory) => new GameActions.ChangeDieAction(propertyFactory, 'lower'),
+    raiseDie: (propertyFactory) => new GameActions.ChangeDieAction(propertyFactory, 'raise')
 };
 
 module.exports = Actions;

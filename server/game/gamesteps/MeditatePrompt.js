@@ -107,6 +107,10 @@ class MeditatePrompt extends UiPrompt {
             return false;
         }
 
+        if (!player.hasCardSelected()) {
+            return false;
+        }
+
         if (!this.dieSelector.canTarget(die, this.context)) {
             return false;
         }

@@ -272,7 +272,7 @@
     }
 }
 
-.strength { position: absolute;
+.attack { position: absolute;
     z-index: 10;
     padding: 0;
     text-align: center;
@@ -280,7 +280,33 @@
     line-height: 24px;
     font-size: 12px;
     bottom: 3px;
-    left: 3px;
+    margin-left: 3px;
+    height: 24px;
+    width: 24px;
+}
+
+.life { position: absolute;
+    z-index: 10;
+    padding: 0;
+    text-align: center;
+    background-color: rgba(0, 141, 0, 0.9);
+    line-height: 24px;
+    font-size: 12px;
+    margin-left: 3px;
+    bottom: 3px;
+    height: 24px;
+    width: 24px;
+}
+
+.recover { position: absolute;
+    z-index: 10;
+    padding: 0;
+    text-align: center;
+    background-color: rgba(0, 0, 201, 0.9);
+    line-height: 24px;
+    font-size: 12px;
+    bottom: 3px;
+    margin-left: 3px;
     height: 24px;
     width: 24px;
 }

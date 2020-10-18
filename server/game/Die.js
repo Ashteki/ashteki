@@ -1,3 +1,5 @@
+const DieAbility = require('./BaseActions/DieAbility');
+const Costs = require('./costs');
 const EffectSource = require('./EffectSource');
 
 // const GameObject = require('./GameObject');
@@ -110,11 +112,6 @@ class Die extends EffectSource {
             let context = action.createContext(player);
             return !action.meetsRequirements(context);
         });
-        let canFight =
-            actions.findIndex((action) => action.title === 'Fight with this creature') >= 0;
-        if (this.getEffects('mustFightIfAble').length > 0 && canFight) {
-            actions = actions.filter((action) => action.title === 'Fight with this creature');
-        }
 
         return actions;
     }
@@ -122,7 +119,9 @@ class Die extends EffectSource {
     getActions() {
         let actions = [];
         // todo: add power dice abilities here? dependent upon magic type
-        // actions.push(new ExhaustDieAbility(this));
+        if (this.level == 'power') {
+            actions.push(this.getPowerDieAction());
+        }
 
         return actions.concat([], this.actions.slice());
     }
@@ -133,6 +132,58 @@ class Die extends EffectSource {
         }
 
         return this.abilities.actions;
+    }
+
+    getPowerDieAction() {
+        switch (this.magic) {
+            case 'ceremonial':
+                return this.action({
+                    title: 'Ceremonial Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        cardType: 'Ally',
+                        location: 'discard',
+                        gameAction: this.game.actions.moveCard({ destination: 'hand' })
+                    },
+                    then: {
+                        gameAction: this.game.actions.dealDamage({
+                            amount: 1,
+                            target: this.owner.phoenixborn
+                        })
+                    }
+                });
+            case 'illusion':
+                return this.action({
+                    title: 'Illusion Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        toSelect: 'die',
+                        mode: 'upTo',
+                        numDice: 2,
+                        owner: 'opponent',
+                        gameAction: this.game.actions.lowerDie()
+                    }
+                });
+            default:
+                return this.action({
+                    title: 'Natural Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        cardType: ['Ally', 'Conjuration'],
+                        controller: 'opponent',
+                        gameAction: this.game.actions.dealDamage({ amount: 1 })
+                    }
+                });
+        }
+    }
+
+    action(properties) {
+        const action = new DieAbility(this, properties);
+        if (action.printedAbility) {
+            this.abilities.actions.push(action);
+        }
+
+        return action;
     }
 
     isBlank() {

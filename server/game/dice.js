@@ -33,9 +33,10 @@ class Dice {
     static matchDice(dice, diceReq) {
         const availableDice = [...dice];
         const matchedDice = [];
+        availableDice.sort((a, b) => (a.level < b.level ? -1 : 1));
 
         diceReq
-            .sort((a, b) => (a.level > b.level ? -1 : 1))
+            .sort((a, b) => (a.level < b.level ? -1 : 1))
             .forEach((req) => {
                 const die = this.findDie(availableDice, req);
 

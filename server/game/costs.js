@@ -6,6 +6,10 @@ const Costs = {
         canPay: () => true, // cards can be overexhausted (>1 tokens)
         payEvent: (context) => context.game.actions.exhaust().getEvent(context.source, context)
     }),
+    exhaustDie: () => ({
+        canPay: (context) => !context.source.exhausted,
+        payEvent: (context) => context.game.actions.exhaustDie().getEvent(context.source, context)
+    }),
     use: () => ({
         canPay: (context) => {
             if (context.source.exhausted) {
@@ -72,7 +76,7 @@ const Costs = {
             return context.game.actions.exhaustDie().getEvent(die, context);
         }
     }),
-    dice: function (diceReq) {
+    dice: (diceReq) => {
         return {
             canPay: function (context) {
                 return Dice.canMatch(context.player.dice, diceReq);

@@ -10,7 +10,7 @@ class ShiftingMist extends Card {
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 2,
-                player: 'self',
+                owner: 'self',
                 gameAction: ability.actions.setDieLevel({ level: 'power' })
             }
         });
