@@ -471,7 +471,7 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedAttack = copyEffect ? copyEffect.printedAttack : this.printedAttack;
-        return printedAttack + this.sumEffects('modifyAttack');
+        return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
     }
 
     getBattlefield(printed = false) {
@@ -547,7 +547,7 @@ class Card extends PlayableObject {
             return this.printedRecover;
         }
         // shot in the dark for recovery adjustment in card definitions...
-        return this.printedRecover + this.sumEffects('modifyRecover');
+        return Math.max(0, this.printedRecover + this.sumEffects('modifyRecover'));
     }
 
     get status() {
