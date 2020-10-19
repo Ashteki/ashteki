@@ -9,6 +9,8 @@ import CardImage from './CardImage';
 import { ItemTypes } from '../../constants';
 import SquishableCardPanel from './SquishableCardPanel';
 
+import Die from './Die';
+
 import './Card.scss';
 
 const Card = ({
@@ -267,6 +269,11 @@ const Card = ({
                 {getBoostedFlags(card)}
             </div>
         ) : null;
+        let dice =
+            card.dieUpgrades && card.dieUpgrades.length > 0 ? (
+                <Die die={{ magic: 'charm', level: 'power' }} />
+            ) : null;
+
         return (
             <div className='card-frame' ref={drag}>
                 {getDragFrame(image)}
@@ -286,6 +293,7 @@ const Card = ({
                         {image}
                     </div>
                     {showCounters() && <CardCounters counters={getCountersForCard(card)} />}
+                    {dice}
                 </div>
                 {shouldShowMenu() && (
                     <CardMenu

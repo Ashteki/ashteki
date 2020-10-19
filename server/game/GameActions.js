@@ -21,6 +21,8 @@ const Actions = {
         new GameActions.AddTokenAction(propertyFactory, 'warrant'),
     archive: (propertyFactory) => new GameActions.ArchiveAction(propertyFactory),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
+    attachDie: (propertyFactory) => new GameActions.AttachDieAction(propertyFactory), // upgradeDie
+    detachDie: (propertyFactory) => new GameActions.DetachDieAction(propertyFactory), // die, card
     capture: (propertyFactory) => new GameActions.CaptureAction(propertyFactory),
     cardLastingEffect: (propertyFactory) =>
         new GameActions.LastingEffectCardAction(propertyFactory), // duration = 'untilEndOfConflict', effect, targetLocation, condition, until

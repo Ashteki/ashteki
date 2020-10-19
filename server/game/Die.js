@@ -1,25 +1,19 @@
+const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const Costs = require('./costs');
-const EffectSource = require('./EffectSource');
+const PlayableObject = require('./PlayableObject');
 
-// const GameObject = require('./GameObject');
-
-class Die extends EffectSource {
+class Die extends PlayableObject {
     constructor(owner, dieData) {
         super(owner.game);
+        this.copyEffect = 'copyDie';
+        this.attachable = false;
+
         this.owner = owner;
         // this.data = dieData;
         this.magic = dieData.magic;
         this.level = dieData.level;
         this.exhausted = dieData.exhausted;
-
-        this.abilities = {
-            actions: [],
-            reactions: [],
-            persistentEffects: [],
-            keywordReactions: [],
-            keywordPersistentEffects: []
-        };
 
         this.menu = [
             { command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' },
@@ -48,6 +42,7 @@ class Die extends EffectSource {
             uuid: this.uuid,
             magic: this.magic,
             level: this.level,
+            location: this.location,
             exhausted: this.exhausted,
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
@@ -164,7 +159,7 @@ class Die extends EffectSource {
                         gameAction: this.game.actions.lowerDie()
                     }
                 });
-            default:
+            case 'natural':
                 return this.action({
                     title: 'Natural Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
@@ -172,6 +167,16 @@ class Die extends EffectSource {
                         cardType: ['Ally', 'Conjuration'],
                         controller: 'opponent',
                         gameAction: this.game.actions.dealDamage({ amount: 1 })
+                    }
+                });
+            case 'charm':
+                return this.action({
+                    title: 'Charm Dice Power',
+                    cost: [Costs.sideAction()],
+                    target: {
+                        cardType: ['Ally', 'Conjuration'],
+                        controller: 'opponent',
+                        gameAction: this.game.actions.attachDie({ upgradeDie: this })
                     }
                 });
         }
@@ -184,10 +189,6 @@ class Die extends EffectSource {
         }
 
         return action;
-    }
-
-    isBlank() {
-        return this.anyEffect('blank');
     }
 
     exhaust() {
@@ -204,6 +205,36 @@ class Die extends EffectSource {
 
     lower() {
         this.level = this.level == 'power' ? 'class' : 'basic';
+    }
+
+    moveTo(targetLocation) {
+        let originalLocation = this.location;
+        this.location = targetLocation;
+
+        if (originalLocation !== targetLocation) {
+            this.updateAbilityEvents(originalLocation, targetLocation);
+            this.updateEffects(originalLocation, targetLocation);
+            this.game.emitEvent('onDieMoved', {
+                die: this,
+                originalLocation: originalLocation,
+                newLocation: targetLocation
+            });
+        }
+    }
+
+    setupAbilities() {
+        switch (this.magic) {
+            case 'charm':
+                this.attachable = true;
+                this.whileAttached({
+                    effect: AbilityDsl.effects.modifyAttack(-1)
+                });
+                break;
+        }
+    }
+
+    canPlayAsUpgrade() {
+        return this.attachable;
     }
 }
 

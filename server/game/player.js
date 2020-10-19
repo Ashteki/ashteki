@@ -229,7 +229,12 @@ class Player extends GameObject {
     rerollAllDice() {
         let p = this;
         const diceData = Dice.rollDice(this.diceCounts);
-        this.dice = diceData.map((d) => new Die(p, d));
+        this.dice = diceData.map((d) => {
+            let die = new Die(p, d);
+            die.location = 'dicepool';
+            die.setupAbilities();
+            return die;
+        });
     }
 
     addPlayableLocation(type, player, location) {
@@ -259,6 +264,12 @@ class Player extends GameObject {
     endRound() {
         for (let card of this.cardsInPlay) {
             card.new = false;
+            // remove die attachments
+            card.dieUpgrades.forEach((die) => {
+                card.removeDieAttachment(die);
+                die.owner.dice.push(die);
+                die.moveTo('dicepool');
+            });
         }
     }
 
@@ -454,6 +465,28 @@ class Player extends GameObject {
         } else if (this[card.location]) {
             this[card.location] = this[card.location].filter((c) => c !== card);
         }
+    }
+
+    /**
+     * Removes a die from whichever list it's currently in
+     * @param die
+     */
+    removeDieFromPool(die) {
+        if (die.parent) {
+            if (die.parent.dieUpgrades.includes(die)) {
+                die.parent.dieUpgrades = die.parent.dieUpgrades.filter((d) => d !== die);
+            }
+
+            die.parent = null;
+            return;
+        }
+
+        if (die.owner !== this) {
+            die.owner.removeDieFromPool(die);
+            return;
+        }
+
+        this.dice = this.dice.filter((d) => d !== die);
     }
 
     discardSelectedCards() {

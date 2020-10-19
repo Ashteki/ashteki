@@ -4,6 +4,8 @@ module.exports = {
     AllocateDamageAction: require('./AllocateDamageAction'),
     ArchiveAction: require('./ArchiveAction'),
     AttachAction: require('./AttachAction'),
+    AttachDieAction: require('./AttachDieAction'),
+    DetachDieAction: require('./DetachDieAction'),
     ChangeEventAction: require('./ChangeEventAction'),
     ChooseGameAction: require('./ChooseGameAction'),
     ChosenDiscardAction: require('./ChosenDiscardAction'),

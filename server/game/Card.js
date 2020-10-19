@@ -2,9 +2,6 @@ const _ = require('underscore');
 
 const AbilityDsl = require('./abilitydsl.js');
 const CardAction = require('./cardaction.js');
-const EffectSource = require('./EffectSource.js');
-const TriggeredAbility = require('./triggeredability');
-
 const DiscardAction = require('./BaseActions/DiscardAction');
 const PlayAction = require('./BaseActions/PlayAction');
 const PlayAllyAction = require('./BaseActions/PlayAllyAction');
@@ -12,8 +9,9 @@ const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
 const ResolveFightAction = require('./GameActions/ResolveFightAction');
 const { CardType, BattlefieldTypes } = require('../constants.js');
+const PlayableObject = require('./PlayableObject.js');
 
-class Card extends EffectSource {
+class Card extends PlayableObject {
     constructor(owner, cardData) {
         super(owner.game);
         this.owner = owner;
@@ -29,13 +27,6 @@ class Card extends EffectSource {
         this.tokens = {};
         this.flags = {};
 
-        this.abilities = {
-            actions: [],
-            reactions: [],
-            persistentEffects: [],
-            keywordReactions: [],
-            keywordPersistentEffects: []
-        };
         this.traits = cardData.traits || [];
         this.printedKeywords = {};
         for (let keyword of cardData.keywords || []) {
@@ -53,7 +44,8 @@ class Card extends EffectSource {
         }
 
         this.upgrades = [];
-        this.parent = null;
+        this.dieUpgrades = [];
+
         this.childCards = [];
         this.clonedNeighbors = null;
 
@@ -115,56 +107,6 @@ class Card extends EffectSource {
             (ability) => ability.abilityType === 'action'
         );
         return actions.concat(effectActions);
-    }
-
-    get reactions() {
-        return this.getReactions();
-    }
-
-    getReactions(ignoreBlank = false) {
-        if (this.isBlank() && !ignoreBlank) {
-            return this.abilities.keywordReactions;
-        }
-
-        const TriggeredAbilityTypes = ['interrupt', 'reaction'];
-        let reactions = this.abilities.reactions;
-        if (this.anyEffect('copyCard')) {
-            let mostRecentEffect = _.last(
-                this.effects.filter((effect) => effect.type === 'copyCard')
-            );
-            reactions = mostRecentEffect.value.getReactions(this);
-        }
-
-        let effectReactions = this.getEffects('gainAbility').filter((ability) =>
-            TriggeredAbilityTypes.includes(ability.abilityType)
-        );
-        return reactions.concat(this.abilities.keywordReactions, effectReactions);
-    }
-
-    get persistentEffects() {
-        return this.getPersistentEffects();
-    }
-
-    getPersistentEffects(ignoreBlank = false) {
-        if (this.isBlank() && !ignoreBlank) {
-            return this.abilities.keywordPersistentEffects;
-        }
-
-        let persistentEffects = this.abilities.persistentEffects;
-        if (this.anyEffect('copyCard')) {
-            let mostRecentEffect = _.last(
-                this.effects.filter((effect) => effect.type === 'copyCard')
-            );
-            persistentEffects = mostRecentEffect.value.getPersistentEffects(this);
-        }
-
-        let gainedPersistentEffects = this.getEffects('gainAbility').filter(
-            (ability) => ability.abilityType === 'persistentEffect'
-        );
-        return persistentEffects.concat(
-            this.abilities.keywordPersistentEffects,
-            gainedPersistentEffects
-        );
     }
 
     setupAbilities() {
@@ -298,15 +240,6 @@ class Card extends EffectSource {
         );
     }
 
-    triggeredAbility(abilityType, properties) {
-        const ability = new TriggeredAbility(this.game, this, abilityType, properties);
-        if (ability.printedAbility) {
-            this.abilities.reactions.push(ability);
-        }
-
-        return ability;
-    }
-
     reaction(properties) {
         if (properties.play || properties.fight) {
             properties.when = {
@@ -316,37 +249,6 @@ class Card extends EffectSource {
         }
 
         return this.triggeredAbility('reaction', properties);
-    }
-
-    interrupt(properties) {
-        return this.triggeredAbility('interrupt', properties);
-    }
-
-    /**
-     * Applies an effect that continues as long as the card providing the effect
-     * is both in play and not blank.
-     */
-    persistentEffect(properties) {
-        const allowedLocations = ['any', 'play area'];
-        let location = properties.location || 'play area';
-        if (!allowedLocations.includes(location)) {
-            throw new Error(`'${location}' is not a supported effect location.`);
-        }
-
-        let ability = _.extend(
-            {
-                abilityType: 'persistentEffect',
-                duration: 'persistentEffect',
-                location: location,
-                printedAbility: true
-            },
-            properties
-        );
-        if (ability.printedAbility) {
-            this.abilities.persistentEffects.push(ability);
-        }
-
-        return ability;
     }
 
     hasTrait(trait) {
@@ -387,43 +289,6 @@ class Card extends EffectSource {
 
     endTurn() {
         // this.doSomething ?
-    }
-
-    updateAbilityEvents(from, to) {
-        _.each(this.getReactions(true), (reaction) => {
-            if (reaction.location.includes(to) && !reaction.location.includes(from)) {
-                reaction.registerEvents();
-            } else if (!reaction.location.includes(to) && reaction.location.includes(from)) {
-                reaction.unregisterEvents();
-            }
-        });
-    }
-
-    updateEffects(from = '', to = '') {
-        if (from === 'play area' || from === 'being played') {
-            this.removeLastingEffects();
-        }
-
-        _.each(this.getPersistentEffects(true), (effect) => {
-            if (effect.location !== 'any') {
-                if (to === 'play area' && from !== 'play area') {
-                    effect.ref = this.addEffectToEngine(effect);
-                } else if (to !== 'play area' && from === 'play area') {
-                    this.removeEffectFromEngine(effect.ref);
-                    effect.ref = [];
-                }
-            }
-        });
-    }
-
-    updateEffectContexts() {
-        for (const effect of this.getPersistentEffects(true)) {
-            if (effect.ref) {
-                for (let e of effect.ref) {
-                    e.refreshContext();
-                }
-            }
-        }
     }
 
     moveTo(targetLocation) {
@@ -543,10 +408,6 @@ class Card extends EffectSource {
         return !this.anyEffect('doesNotReady');
     }
 
-    isBlank() {
-        return this.anyEffect('blank');
-    }
-
     hasKeyword(keyword) {
         return !!this.getKeywordValue(keyword);
     }
@@ -565,8 +426,8 @@ class Card extends EffectSource {
 
     createSnapshot() {
         let clone = new Card(this.owner, this.cardData);
-
         clone.upgrades = this.upgrades.map((upgrade) => upgrade.createSnapshot());
+        // clone.dieUpgrades = this.dieUpgrades.map((die) => die.createSnapshot());
         clone.effects = _.clone(this.effects);
         clone.tokens = _.clone(this.tokens);
         clone.flags = _.clone(this.flags);
@@ -738,34 +599,12 @@ class Card extends EffectSource {
         this.upgrades = this.upgrades.filter((c) => c !== card);
     }
 
-    /**
-     * Applies an effect with the specified properties while the current card is
-     * attached to another card. By default the effect will target the parent
-     * card, but you can provide a match function to narrow down whether the
-     * effect is applied (for cases where the effect only applies to specific
-     * characters).
-     */
-    whileAttached(properties) {
-        this.persistentEffect({
-            condition: properties.condition || (() => true),
-            match: (card, context) =>
-                card === this.parent && (!properties.match || properties.match(card, context)),
-            targetController: 'any',
-            effect: properties.effect
-        });
+    removeDieAttachment(card) {
+        this.dieUpgrades = this.dieUpgrades.filter((c) => c !== card);
     }
 
     canPlayAsUpgrade() {
         return this.anyEffect('canPlayAsUpgrade') || this.type === CardType.Upgrade;
-    }
-
-    /**
-     * Checks whether the passed card meets the upgrade restrictions (e.g.
-     * Opponent cards only etc) for this card.
-     */
-    // eslint-disable-next-line no-unused-vars
-    canAttach(card, context) {
-        return card && BattlefieldTypes.includes(card.getType()) && this.canPlayAsUpgrade();
     }
 
     use(player) {
@@ -980,6 +819,9 @@ class Card extends EffectSource {
             type: this.getType(),
             upgrades: this.upgrades.map((upgrade) => {
                 return upgrade.getSummary(activePlayer, hideWhenFaceup);
+            }),
+            dieUpgrades: this.dieUpgrades.map((die) => {
+                return die.getSummary(activePlayer);
             }),
             flags: this.getFlags(),
             uuid: this.uuid
