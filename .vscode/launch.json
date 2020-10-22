@@ -2,6 +2,44 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch (Lobby Server)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/index.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "console": "internalConsole",
+            "sourceMaps": false
+        },
+        {
+            "name": "Launch (Game Server)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/server/gamenode/index.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "console": "internalConsole",
+            "sourceMaps": false
+        },
+        {
             "type": "node",
             "request": "attach",
             "port": 9339,
@@ -38,40 +76,6 @@
             "name": "Attach to Microsoft Edge",
             "port": 2015,
             "webRoot": "${workspaceFolder}"
-        }
-        {
-            "name": "Launch (Lobby Server)",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceRoot}/index.js",
-            "stopOnEntry": false,
-            "args": [],
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": null,
-            "runtimeExecutable": null,
-            "runtimeArgs": ["--nolazy"],
-            "env": {
-                "NODE_ENV": "development"
-            },
-            "console": "internalConsole",
-            "sourceMaps": false
-        },
-        {
-            "name": "Launch (Game Server)",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceRoot}/server/gamenode/index.js",
-            "stopOnEntry": false,
-            "args": [],
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": null,
-            "runtimeExecutable": null,
-            "runtimeArgs": ["--nolazy"],
-            "env": {
-                "NODE_ENV": "development"
-            },
-            "console": "internalConsole",
-            "sourceMaps": false
         },
         {
             "name": "Attach",
@@ -84,7 +88,6 @@
             "localRoot": "${workspaceRoot}",
             "remoteRoot": null
         },
-
         {
             "name": "Debug Tests",
             "type": "node",
@@ -103,7 +106,9 @@
             "env": {
                 "JASMINE_CONFIG_PATH": "./jasmine.json"
             },
-            "args": ["${relativeFile}"],
+            "args": [
+                "${relativeFile}"
+            ],
             "cwd": "${workspaceRoot}"
         }
     ]
