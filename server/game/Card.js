@@ -49,9 +49,13 @@ class Card extends PlayableObject {
         this.childCards = [];
         this.clonedNeighbors = null;
 
-        this.printedAttack = cardData.attack ? cardData.attack : 0;
+        this.printedAttack = cardData.attack ? (cardData.attack == 'X' ? 0 : cardData.attack) : 0;
         this.printedLife = cardData.life ? (cardData.life == 'X' ? 0 : cardData.life) : 0;
-        this.printedRecover = cardData.recover ? cardData.recover : 0;
+        this.printedRecover = cardData.recover
+            ? cardData.recover == 'X'
+                ? 0
+                : cardData.recover
+            : 0;
         this.armorUsed = 0;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;

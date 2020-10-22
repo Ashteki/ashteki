@@ -12,10 +12,6 @@ class ButterflyMonk extends Card {
             }
         });
     }
-
-    countMyType(card) {
-        return card.controller.getNumberOfCardsInPlay((c) => c.id == card.id);
-    }
 }
 
 ButterflyMonk.id = 'butterfly-monk';
