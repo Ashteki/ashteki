@@ -662,7 +662,7 @@ class Card extends PlayableObject {
         return actions;
     }
 
-    getFightAction() {
+    getFightAbility() {
         return this.action({
             title: 'Fight with this creature',
             condition: (context) =>
@@ -694,7 +694,7 @@ class Card extends PlayableObject {
 
             actions.push(new DiscardAction(this));
         } else if (location === 'play area' && BattlefieldTypes.includes(this.type)) {
-            actions.push(this.getFightAction());
+            actions.push(this.getFightAbility());
         }
 
         return actions.concat(this.actions.slice());

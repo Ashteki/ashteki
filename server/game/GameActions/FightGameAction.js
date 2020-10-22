@@ -8,7 +8,7 @@ class FightGameAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        let fightAction = card.getFightAction();
+        let fightAction = card.getFightAbility();
         let newContext = fightAction.createContext(context.player);
         if (!fightAction || fightAction.meetsRequirements(newContext, ['stunned'])) {
             return false;
@@ -19,7 +19,7 @@ class FightGameAction extends CardGameAction {
 
     getEvent(card, context) {
         return super.createEvent('onInitiateFight', { card, context }, () => {
-            let fightAction = card.getFightAction();
+            let fightAction = card.getFightAbility();
             let newContext = fightAction.createContext(context.player);
             newContext.canCancel = false;
             context.game.resolveAbility(newContext);
