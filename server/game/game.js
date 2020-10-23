@@ -33,6 +33,7 @@ const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
 const { BattlefieldTypes } = require('../constants');
+const UnitAttackFlow = require('./gamesteps/UnitAttackFlow');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -495,19 +496,6 @@ class Game extends EventEmitter {
         }
     }
 
-    modifyKey(playerName, color, forged) {
-        let player = this.getPlayerByName(playerName);
-        if (!player) {
-            return;
-        }
-
-        if (forged) {
-            this.chatCommands.unforge(player, ['modify-key', color]);
-        } else {
-            this.chatCommands.forge(player, ['modify-key', color]);
-        }
-    }
-
     modifyAction(playerName, actionType, unspent) {
         let player = this.getPlayerByName(playerName);
         if (!player) {
@@ -626,11 +614,11 @@ class Game extends EventEmitter {
      * @param {Object} properties - see selectcardprompt
      */
     promptForSelect(player, properties) {
-        this.queueStep(new SelectCardPrompt(this, this.activePlayer, properties));
+        this.queueStep(new SelectCardPrompt(this, player, properties));
     }
 
     promptForDieSelect(player, properties) {
-        this.queueStep(new SelectDiePrompt(this, this.activePlayer, properties));
+        this.queueStep(new SelectDiePrompt(this, player, properties));
     }
 
     promptForMeditation() {
@@ -1250,6 +1238,11 @@ class Game extends EventEmitter {
 
     continue() {
         this.pipeline.continue();
+    }
+
+    initiateUnitAttack(target) {
+        // const conflict = new Conflict(this, player, player.opponent, null, null, forcedDeclaredType);
+        this.queueStep(new UnitAttackFlow(this, target));
     }
 
     /*

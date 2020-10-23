@@ -36,7 +36,6 @@ const Actions = {
     destroy: (propertyFactory) => new GameActions.DestroyAction(propertyFactory),
     exalt: (propertyFactory) => new GameActions.ExaltAction(propertyFactory), // amount = 1
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
-    fight: (propertyFactory) => new GameActions.FightGameAction(propertyFactory),
     graft: (propertyFactory) => new GameActions.PlaceUnderAction(propertyFactory, true),
     heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
     moveCard: (propertyFactory) => new GameActions.MoveCardAction(propertyFactory), // destination, switch = false, shuffle = false

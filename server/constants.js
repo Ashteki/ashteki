@@ -3,7 +3,8 @@ class Constants {}
 Object.freeze(Constants);
 
 const CardType = {
-    Upgrade: 'Alteration Spell'
+    Upgrade: 'Alteration Spell',
+    Phoenixborn: 'Phoenixborn'
 };
 
 const BattlefieldTypes = ['Ally', 'Conjuration'];

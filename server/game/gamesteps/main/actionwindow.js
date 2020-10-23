@@ -1,7 +1,7 @@
 const UiPrompt = require('../uiprompt.js');
 const DiscardAction = require('../../BaseActions/DiscardAction');
 const UseAction = require('../../GameActions/UseAction');
-const CardGameAction = require('../../GameActions/CardGameAction.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 
 class ActionWindow extends UiPrompt {
     onCardClicked(player, card) {
@@ -79,9 +79,16 @@ class ActionWindow extends UiPrompt {
         }
     }
 
+    canAttack() {
+        return (
+            this.game.activePlayer.actions.main &&
+            this.game.activePlayer.cardsInPlay.some((c) => !c.exhausted)
+        );
+    }
+
     activePrompt() {
         let buttons = [
-            { text: 'Attack', arg: 'attack', disabled: !this.game.activePlayer.actions.main },
+            { text: 'Attack', arg: 'attack', disabled: !this.canAttack() },
             { text: 'Meditate', arg: 'meditate', disabled: !this.game.activePlayer.actions.side },
             { text: 'End Turn', arg: 'done' }
         ];
@@ -119,21 +126,20 @@ class ActionWindow extends UiPrompt {
 
         if (choice === 'attack') {
             // start a fight action.
-            new CardGameAction({
-                promptForSelect: {
-                    activePromptTitle: 'Choose an attacker',
-                    location: 'play area',
-                    controller: 'self',
-                    gameAction: this.game.actions.resolveFight((context) => ({
-                        attacker: context.target,
-                        promptForSelect: {
-                            activePromptTitle: 'Choose a unit to fight',
-                            cardType: ['Ally', 'Conjuration'],
-                            controller: 'opponent'
-                        }
-                    }))
+            this.game.promptForSelect(this.game.activePlayer, {
+                optional: true,
+                activePromptTitle: 'Select a target to attack',
+                controller: 'opponent',
+                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                onSelect: (player, card) => {
+                    if (card.type == CardType.Phoenixborn) {
+                        this.initiatePBAttack();
+                    } else {
+                        this.initiateUnitAttack(card);
+                    }
+                    return true;
                 }
-            }).resolve(this.game, this.game.getFrameworkContext(player));
+            });
         }
 
         if (choice === 'done') {
@@ -151,6 +157,14 @@ class ActionWindow extends UiPrompt {
 
             return true;
         }
+    }
+
+    initiatePBAttack() {
+        throw new Error('Method not implemented.');
+    }
+
+    initiateUnitAttack(target) {
+        this.game.initiateUnitAttack(target);
     }
 
     endActionWindow() {

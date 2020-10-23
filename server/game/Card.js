@@ -7,7 +7,6 @@ const PlayAction = require('./BaseActions/PlayAction');
 const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
-const ResolveFightAction = require('./GameActions/ResolveFightAction');
 const { CardType, BattlefieldTypes } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 
@@ -83,6 +82,7 @@ class Card extends PlayableObject {
         this.modifiedBattlefield = undefined;
         this.modifiedSpellboard = undefined;
         this.modifiedRecover = undefined;
+        this.usedGuardThisRound = false;
     }
 
     get name() {
@@ -289,6 +289,7 @@ class Card extends PlayableObject {
     endRound() {
         this.elusiveUsed = false;
         this.armorUsed = 0;
+        this.usedGuardThisRound = false;
     }
 
     endTurn() {
@@ -647,6 +648,13 @@ class Card extends PlayableObject {
         return true;
     }
 
+    canGuard() {
+        // phoenixborn and not guarded this round
+        // OR has Unit Guard keyword / ability.
+        if (this.type == CardType.Phoenixborn) return !this.usedGuardThisRound;
+        else return BattlefieldTypes.includes(this.type) && !this.exhausted;
+    }
+
     getLegalActions(player) {
         let actions = this.getActions();
         actions = actions.filter((action) => {
@@ -660,21 +668,6 @@ class Card extends PlayableObject {
         }
 
         return actions;
-    }
-
-    getFightAbility() {
-        return this.action({
-            title: 'Fight with this creature',
-            condition: (context) =>
-                this.checkRestrictions('fight', context) && BattlefieldTypes.includes(this.type),
-            printedAbility: false,
-            target: {
-                activePromptTitle: 'Choose a creature to attack',
-                cardType: ['Ally', 'Conjuration'],
-                controller: 'opponent',
-                gameAction: new ResolveFightAction({ attacker: this })
-            }
-        });
     }
 
     getActions(location = this.location) {
@@ -693,8 +686,6 @@ class Card extends PlayableObject {
             }
 
             actions.push(new DiscardAction(this));
-        } else if (location === 'play area' && BattlefieldTypes.includes(this.type)) {
-            actions.push(this.getFightAbility());
         }
 
         return actions.concat(this.actions.slice());
