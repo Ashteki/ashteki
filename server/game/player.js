@@ -493,6 +493,10 @@ class Player extends GameObject {
         this.promptState.selectedCards.forEach((card) => this.moveCard(card, 'discard'));
     }
 
+    get selectedCards() {
+        return this.promptState.selectedCards;
+    }
+
     /**
      * Sets the passed cards as selected
      * @param cards
