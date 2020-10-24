@@ -62,13 +62,14 @@ const CardPile = ({
         vertical: orientation === 'vertical'
     });
 
+    let count = cardCount || (cards ? cards.length : 0);
     let cardCountStr = cardCount || (cards ? cards.length : '0');
     let headerText = title ? `${title} (${cardCountStr})` : '';
     let topCard = cards ? cards[0] : null;
     let cardOrientation =
         orientation === 'horizontal' && topCard && topCard.facedown ? 'exhausted' : orientation;
 
-    if (hiddenTopCard && cardCount > 0) {
+    if (hiddenTopCard && count > 0) {
         topCard = { facedown: true };
     }
 
