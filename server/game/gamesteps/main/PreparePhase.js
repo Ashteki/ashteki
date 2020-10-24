@@ -1,5 +1,4 @@
 const AllPlayerDiscardPrompt = require('../AllPlayerDiscardPrompt.js');
-const DrawPhase = require('../draw/drawphase.js');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
 
@@ -10,7 +9,7 @@ class PreparePhase extends Phase {
             new SimpleStep(game, () => this.rollDice()),
             new SimpleStep(game, () => this.determineFirstPlayer()),
             new AllPlayerDiscardPrompt(game),
-            new DrawPhase(game)
+            new SimpleStep(game, () => this.drawCards())
         ]);
     }
 
@@ -20,6 +19,15 @@ class PreparePhase extends Phase {
 
     rollDice() {
         this.game.reRollPlayerDice();
+    }
+
+    // refill hand - cause damage in draw phase if unable to draw
+    drawCards() {
+        // this.game.raiseEvent('onPreparePhaseDraw', {}, () => {
+        this.game.actions
+            .draw({ refill: true, damageIfEmpty: true, singleCopy: true })
+            .resolve(this.game.getPlayers(), this.game.getFrameworkContext());
+        // });
     }
 }
 

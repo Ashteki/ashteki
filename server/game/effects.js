@@ -99,7 +99,8 @@ const Effects = {
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
     stealFromPool: () => EffectBuilder.player.static('stealFromPool'),
     captureFromPool: () => EffectBuilder.player.static('captureFromPool'),
-    skipStep: (step) => EffectBuilder.player.static('skipStep', step)
+    skipStep: (step) => EffectBuilder.player.static('skipStep', step),
+    canGuard: () => EffectBuilder.player.static('canGuard')
 };
 
 module.exports = Effects;

@@ -652,7 +652,13 @@ class Card extends PlayableObject {
         // phoenixborn and not guarded this round
         // OR has Unit Guard keyword / ability.
         if (this.type == CardType.Phoenixborn) return !this.usedGuardThisRound;
-        else return BattlefieldTypes.includes(this.type) && !this.exhausted;
+        else {
+            return (
+                BattlefieldTypes.includes(this.type) &&
+                !this.exhausted &&
+                this.anyEffect('canGuard')
+            );
+        }
     }
 
     getLegalActions(player) {
