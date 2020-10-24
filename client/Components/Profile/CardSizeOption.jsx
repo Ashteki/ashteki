@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import IdentityDefault from '../../assets/img/idbacks/identity.jpg';
+import IdentityDefault from '../../assets/img/cardback-conjuration.png';
 
 import './CardSizeOption.scss';
 

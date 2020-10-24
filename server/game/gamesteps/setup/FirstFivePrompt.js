@@ -25,7 +25,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
         return {
             selectCard: true,
             menuTitle: 'Choose your first five',
-            buttons: [{ text: 'Done', arg: 'done' }],
+            buttons: [{ text: 'Start the Game', arg: 'done' }],
             promptTitle: 'First Five'
         };
     }

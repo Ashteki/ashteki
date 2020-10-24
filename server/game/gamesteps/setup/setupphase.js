@@ -2,7 +2,6 @@ const _ = require('underscore');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
 const FirstFivePrompt = require('./FirstFivePrompt.js');
-const GameStartPrompt = require('./GameStartPrompt');
 
 class SetupPhase extends Phase {
     constructor(game) {
@@ -10,7 +9,6 @@ class SetupPhase extends Phase {
         this.initialise([
             new SimpleStep(game, () => this.setupBegin()),
             new FirstFivePrompt(game),
-            new GameStartPrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
     }
