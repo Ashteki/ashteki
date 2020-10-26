@@ -40,8 +40,7 @@ class MatchedDiceSelector extends BaseDieSelector {
 
     // eslint-disable-next-line no-unused-vars
     automaticFireOnSelect(context) {
-        return false;
-        // return this.getNumDice() === 1;
+        return this.getNumDice() === 1;
     }
 }
 

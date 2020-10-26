@@ -78,6 +78,10 @@ class Player extends GameObject {
         });
     }
 
+    get defenders() {
+        return this.cardsInPlay.concat(this.phoenixborn);
+    }
+
     /**
      * Checks whether a card with a name matching the passed card is in the passed list
      * @param {Array} list

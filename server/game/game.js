@@ -596,7 +596,7 @@ class Game extends EventEmitter {
      * @param {Object} properties - see handlermenuprompt
      */
     promptWithHandlerMenu(player, properties) {
-        this.queueStep(new HandlerMenuPrompt(this, this.activePlayer || player, properties));
+        this.queueStep(new HandlerMenuPrompt(this, player || this.activePlayer, properties));
     }
 
     /**
@@ -605,7 +605,7 @@ class Game extends EventEmitter {
      * @param {Object} properties - see handlermenuprompt
      */
     promptWithOptionsMenu(player, properties) {
-        this.queueStep(new OptionsMenuPrompt(this, this.activePlayer || player, properties));
+        this.queueStep(new OptionsMenuPrompt(this, player || this.activePlayer, properties));
     }
 
     /**

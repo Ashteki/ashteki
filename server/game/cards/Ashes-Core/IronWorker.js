@@ -1,25 +1,26 @@
 const Card = require('../../Card.js');
 
 class IronWorker extends Card {
-    // setupCardAbilities(ability) {
-    // this.reaction({
-    //     when: {
-    //         onPreparePhaseDraw: (event, context) => true
-    //     },
-    //     optional: true,
-    //     gameAction: ability.actions.draw((context) => {
-    //         context.game.promptWithHandlerMenu(context.player, {
-    //             activePromptTitle: 'Overtime: Choose how many cards to draw',
-    //             context: context,
-    //             choices: Array.from(Array(2), (x, i) => i.toString()),
-    //             choiceHandler: (choice) => {
-    //                 context.amount = parseInt(choice);
-    //             }
-    //         });
-    //         return { amount: context.amount };
-    //     })
-    // });
-    // }
+    setupCardAbilities(ability) {
+        //todo: rework this later - not working now. Onpreparephasedraw event is commented out.
+        this.reaction({
+            when: {
+                onPreparePhaseDraw: (event, context) => {
+                    return context.player == context.source.owner;
+                }
+            },
+            optional: true,
+            title: 'Overtime: choose how many extra cards to draw',
+            target: {
+                mode: 'select',
+                choices: {
+                    '1': ability.actions.draw({ amount: 1 }),
+                    '2': ability.actions.draw({ amount: 2 }),
+                    Cancel: () => true
+                }
+            }
+        });
+    }
 }
 
 IronWorker.id = 'iron-worker';
