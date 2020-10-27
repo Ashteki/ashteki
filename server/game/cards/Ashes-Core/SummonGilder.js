@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class SummonGilder extends Card {
@@ -16,6 +17,16 @@ class SummonGilder extends Card {
                 cardCondition: (card) => card.id === 'gilder',
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
+            },
+            then: {
+                gameAction: ability.actions.dealDamage((context) => ({
+                    promptForSelect: {
+                        optional: true,
+                        cardCondition: (card) => card !== context.preThenEvent.card,
+                        activePromptTitle: 'Deal 1 damage',
+                        cardType: [...BattlefieldTypes]
+                    }
+                }))
             }
         });
     }

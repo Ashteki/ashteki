@@ -113,19 +113,26 @@ class UnitAttackFlow extends BaseStepWithPipeline {
 
             // if attacker CAN dealFightDamage
             if (event.attacker.checkRestrictions('dealFightDamage')) {
+                let attackerDamageEvent = this.game.actions
+                    .dealDamage(attackerParams)
+                    .getEvent(event.attackerTarget, event.context);
+
+                // if there's a guard then trigger the onGuardDamageEvent
+                if (this.battle.guard) {
+                    let guardEvent = this.game.getEvent('onGuardDamage', {
+                        guard: this.battle.guard
+                    });
+                    guardEvent.addChildEvent(attackerDamageEvent);
+                    attackerDamageEvent = guardEvent;
+                }
+
                 // if there is damage from the defender
                 if (damageEvent) {
                     // append this to the existing COUNTER event
-                    damageEvent.addChildEvent(
-                        this.game.actions
-                            .dealDamage(attackerParams)
-                            .getEvent(event.attackerTarget, event.context)
-                    );
+                    damageEvent.addChildEvent(attackerDamageEvent);
                 } else {
                     // there's not COUNTER event, so set to be the damageEvent
-                    damageEvent = this.game.actions
-                        .dealDamage(attackerParams)
-                        .getEvent(event.attackerTarget, event.context);
+                    damageEvent = attackerDamageEvent;
                 }
             }
 

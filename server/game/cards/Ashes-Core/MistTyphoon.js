@@ -9,7 +9,8 @@ class MistTyphoon extends Card {
                 target: context.player.opponent.creaturesInPlay
             })),
             then: {
-                optional: true,
+                alwaysTriggers: true,
+                may: 'draw a card',
                 gameAction: ability.actions.draw({ amount: 1 })
             }
         });

@@ -17,21 +17,15 @@ class CloseCombat extends Card {
                     }))
                 }
             },
-            then: {
-                target: {
-                    mode: 'select',
-                    choices: {
-                        Wound: ability.actions.dealDamage((context) => ({
-                            amount: 1,
-                            target: context.targets.myChar
-                        })),
-                        Exhaust: ability.actions.exhaust((context) => ({
-                            amount: 1,
-                            target: context.targets.myChar
-                        }))
-                    }
+            gameAction: ability.actions.chooseAction((context) => ({
+                target: context.targets.myChar,
+                choices: {
+                    Wound: ability.actions.dealDamage({
+                        target: context.targets.myChar
+                    }),
+                    Exhaust: ability.actions.exhaust({ target: context.targets.myChar })
                 }
-            }
+            }))
         });
     }
 }

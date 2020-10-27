@@ -4,17 +4,18 @@ const Card = require('../../Card.js');
 class Gilder extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            effect: ability.effect.canGuard()
+            effect: ability.effects.canGuard()
         });
 
-        this.leavesPlay({
-            optional: true,
-            target: {
-                cardCondition: (card, context) => card !== context.source,
-                activePromptTitle: 'Inheritance 1',
-                cardType: [...BattlefieldTypes],
-                gameAction: ability.actions.addStatusToken()
-            }
+        this.destroyed({
+            gameAction: ability.actions.addStatusToken(() => ({
+                promptForSelect: {
+                    optional: true,
+                    cardCondition: (card, context) => card !== context.source,
+                    activePromptTitle: 'Inheritance 1',
+                    cardType: [...BattlefieldTypes]
+                }
+            }))
         });
     }
 }
