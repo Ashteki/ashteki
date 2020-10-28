@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../constants');
+const { BattlefieldTypes, CardType } = require('../../constants');
 const Costs = require('../costs');
 const BaseStepWithPipeline = require('./basestepwithpipeline');
 const SimpleStep = require('./simplestep');
@@ -6,27 +6,24 @@ const SimpleStep = require('./simplestep');
 class UnitAttackFlow extends BaseStepWithPipeline {
     constructor(game, target = null) {
         super(game);
-        this.battle = {
-            type: 'unit',
-            targetUnit: target,
-            attacker: null,
-            guard: null,
-            counter: false
-        };
-        const attackingPlayer = this.game.activePlayer;
-        const defendingPlayer = this.battle.targetUnit.controller;
+        this.target = target;
+        this.isPBAttack = target.type === CardType.Phoenixborn;
+        this.battles = [];
+        this.attackingPlayer = this.game.activePlayer;
+        this.defendingPlayer = target.controller;
 
         let steps = [];
-        if (!this.battle.targetUnit) {
-            steps.push(new SimpleStep(this.game, () => this.declareTargetUnit(attackingPlayer)));
-        }
         steps = steps.concat([
-            new SimpleStep(this.game, () => this.declareAttacker(attackingPlayer)),
-            new SimpleStep(this.game, () => this.payAttackCost(attackingPlayer)),
-            new SimpleStep(this.game, () => this.chooseGuard(defendingPlayer)),
-            new SimpleStep(this.game, () => this.promptForCounter(defendingPlayer)),
-            new SimpleStep(this.game, () => this.resolveBattle()),
-            new SimpleStep(this.game, () => this.exhaustParticipants())
+            new SimpleStep(this.game, () => this.declareAttackers()),
+            new SimpleStep(this.game, () => this.payAttackCost(this.attackingPlayer)),
+            new SimpleStep(this.game, () => {
+                this.battles.forEach((battle) => {
+                    this.game.queueSimpleStep(() => this.chooseBlockOrGuard(battle));
+                    this.game.queueSimpleStep(() => this.promptForCounter(battle));
+                    this.game.queueSimpleStep(() => this.resolveBattle(battle));
+                    this.game.queueSimpleStep(() => this.exhaustParticipants(battle));
+                });
+            })
         ]);
 
         this.pipeline.initialise(steps);
@@ -39,12 +36,12 @@ class UnitAttackFlow extends BaseStepWithPipeline {
         this.game.openEventWindow(costEvent);
     }
 
-    exhaustParticipants() {
-        let participants = [this.battle.attacker];
-        if (this.battle.guard) {
-            participants.push(this.battle.guard);
-        } else if (this.battle.counter) {
-            participants.push(this.battle.targetUnit);
+    exhaustParticipants(battle) {
+        let participants = [battle.attacker];
+        if (battle.guard) {
+            participants.push(battle.guard);
+        } else if (battle.counter) {
+            participants.push(battle.target);
         }
 
         this.game.actions
@@ -52,18 +49,18 @@ class UnitAttackFlow extends BaseStepWithPipeline {
             .resolve(participants, this.game.getFrameworkContext(this.game.activePlayer));
     }
 
-    resolveBattle() {
+    resolveBattle(battle) {
         let params = {
-            card: this.battle.targetUnit,
+            card: battle.target,
             context: this.game.getFrameworkContext(this.game.activePlayer),
             condition: (event) =>
                 event.attacker.location === 'play area' && event.card.location === 'play area',
-            attacker: this.battle.attacker,
-            attackerClone: this.battle.attacker.createSnapshot(),
-            attackerTarget: this.battle.guard ? this.battle.guard : this.battle.targetUnit,
-            defenderTarget: this.battle.attacker,
+            attacker: battle.attacker,
+            attackerClone: battle.attacker.createSnapshot(),
+            attackerTarget: battle.guard ? battle.guard : battle.target,
+            defenderTarget: battle.attacker,
             destroyed: [],
-            battle: this.battle
+            battle: battle
         };
 
         this.game.raiseEvent('onFight', params, (event) => {
@@ -100,7 +97,6 @@ class UnitAttackFlow extends BaseStepWithPipeline {
             if (
                 // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
                 event.defenderTarget === event.attacker &&
-                // event.battle.type == 'unit' &&
                 (event.battle.counter || event.battle.guard) &&
                 event.card.checkRestrictions('dealFightDamage') && // declared target can deal damage
                 event.attackerTarget.checkRestrictions('dealFightDamageWhenDefending') // or defender can't deal damage when defending
@@ -118,9 +114,9 @@ class UnitAttackFlow extends BaseStepWithPipeline {
                     .getEvent(event.attackerTarget, event.context);
 
                 // if there's a guard then trigger the onGuardDamageEvent
-                if (this.battle.guard) {
+                if (battle.guard) {
                     let guardEvent = this.game.getEvent('onGuardDamage', {
-                        guard: this.battle.guard
+                        guard: battle.guard
                     });
                     guardEvent.addChildEvent(attackerDamageEvent);
                     attackerDamageEvent = guardEvent;
@@ -155,67 +151,97 @@ class UnitAttackFlow extends BaseStepWithPipeline {
         });
     }
 
-    chooseGuard(defendingPlayer) {
-        if (!defendingPlayer.defenders.some((c) => c.canGuard())) return true;
-
-        let event = this.game.getEvent('onGuardSelect', {}, () => {
-            this.game.promptForSelect(defendingPlayer, {
-                optional: true,
-                activePromptTitle: 'Guard?',
-                waitingPromptTitle: 'Waiting for opponent to choose guard...',
-                controller: 'self',
-                cardType: [...BattlefieldTypes, 'Phoenixborn'],
-                cardCondition: (card) => card.canGuard() && card !== this.battle.targetUnit,
-                onSelect: (player, card) => {
-                    this.battle.guard = card;
-
-                    return true;
-                }
-            });
-        });
-
-        this.game.openEventWindow([event]);
-    }
-
-    promptForCounter(defendingPlayer) {
-        if (this.battle.guard) {
+    chooseBlockOrGuard(battle) {
+        if (
+            // exit if there are no eligeable blockers / guarders?
+            !this.defendingPlayer.defenders.some(
+                (c) => this.guardTest(c, battle) || this.blockTest(c)
+            )
+        ) {
             return true;
         }
 
-        this.game.promptWithHandlerMenu(defendingPlayer, {
-            title: 'Do you want to counter?',
+        let event = this.game.getEvent('onGuardSelect', {}, () => {
+            this.game.promptForSelect(this.defendingPlayer, {
+                source: battle.attacker,
+                optional: true,
+                activePromptTitle: this.isPBAttack ? 'Choose a blocker' : 'Choose a guard?',
+                waitingPromptTitle: this.isPBAttack
+                    ? 'Waiting for opponent to block'
+                    : 'Waiting for opponent to guard',
+                controller: 'self',
+                cardType: [...BattlefieldTypes, 'Phoenixborn'],
+                cardCondition: (card) => {
+                    return this.blockTest(card) || this.guardTest(card, battle);
+                },
+                onSelect: (player, card) => {
+                    battle.guard = card;
+
+                    return true;
+                }
+            });
+        });
+
+        this.game.openEventWindow([event]);
+    }
+
+    guardTest(card, battle) {
+        return !this.isPBAttack && card.canGuard() && card !== battle.target;
+    }
+
+    blockTest(card) {
+        return card.canBlock() && this.isPBAttack && !this.battles.some((b) => b.guard == card);
+    }
+
+    promptForCounter(battle) {
+        // battle.guard here holds a blocker or a guard
+        if (battle.guard) {
+            battle.counter = true;
+            return true;
+        }
+
+        if (battle.target.type == CardType.Phoenixborn) {
+            // don't ask to counter with phoenixborn (they don't have an attack value)
+            battle.counter = false;
+            return true;
+        }
+
+        this.game.promptWithHandlerMenu(this.defendingPlayer, {
+            activePromptTitle: 'Do you want to counter?',
             mode: 'select',
             choices: ['Yes', 'No'],
-            handlers: [() => (this.battle.counter = true), () => (this.battle.counter = false)]
+            handlers: [() => (battle.counter = true), () => (battle.counter = false)]
         });
     }
 
-    declareAttacker(attackingPlayer) {
-        let event = this.game.getEvent('onAttackerDeclared', {}, () => {
-            this.game.promptForSelect(attackingPlayer, {
+    declareAttackers() {
+        let event = this.game.getEvent('onAttackersDeclared', {}, () => {
+            this.game.promptForSelect(this.attackingPlayer, {
                 activePromptTitle: 'Select an attacker',
                 controller: 'self',
                 cardType: [...BattlefieldTypes],
+                mode: this.isPBAttack ? 'unlimited' : 'single',
                 onSelect: (player, card) => {
-                    this.battle.attacker = card;
+                    let cards;
+                    if (Array.isArray(card)) {
+                        cards = card;
+                    } else {
+                        cards = [card];
+                    }
+                    cards.forEach((c) => {
+                        this.battles.push({
+                            attacker: c,
+                            target: this.target,
+                            guard: null,
+                            counter: false
+                        });
+                    });
+
                     return true;
                 }
             });
         });
         this.game.openEventWindow([event]);
-    }
-
-    declareTargetUnit(attackingPlayer) {
-        this.game.promptForSelect(attackingPlayer, {
-            activePromptTitle: 'Select a target unit',
-            controller: 'opponent',
-            cardType: [...BattlefieldTypes],
-            onSelect: (player, card) => {
-                this.battle.targetUnit = card;
-                return true;
-            }
-        });
-        this.game.raiseEvent('onTargetDeclared', this.battle);
     }
 }
 

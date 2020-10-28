@@ -663,6 +663,12 @@ class Card extends PlayableObject {
         }
     }
 
+    canBlock() {
+        if (!this.checkRestrictions('block')) return false;
+
+        return BattlefieldTypes.includes(this.type) && !this.exhausted;
+    }
+
     getLegalActions(player) {
         let actions = this.getActions();
         actions = actions.filter((action) => {

@@ -33,7 +33,7 @@ class DrawAction extends PlayerAction {
             amount = this.amount;
         }
 
-        if (!this.bonus && amount > 0) {
+        if (this.refill && amount > 0) {
             context.game.addMessage(
                 '{0} draws {1} card{2}{3}',
                 player,

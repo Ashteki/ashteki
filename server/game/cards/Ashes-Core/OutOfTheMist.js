@@ -3,7 +3,8 @@ const Card = require('../../Card.js');
 class OutOfTheMist extends Card {
     setupCardAbilities(ability) {
         this.play({
-            effect: 'deal X damage to a target unit',
+            effect: 'deal {1} damage to a target unit',
+            effectArgs: (context) => context.player.cardsInPlay.length,
             target: {
                 activePromptTitle: 'Choose a target',
                 cardType: ['Ally', 'Conjuration'],

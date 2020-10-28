@@ -1245,6 +1245,11 @@ class Game extends EventEmitter {
         this.queueStep(new UnitAttackFlow(this, target));
     }
 
+    initiatePBAttack(target) {
+        // const conflict = new Conflict(this, player, player.opponent, null, null, forcedDeclaredType);
+        this.queueStep(new UnitAttackFlow(this, target));
+    }
+
     /*
      * This information is all logged when a game is won
      */

@@ -5,7 +5,7 @@ class BlueJaguar extends Card {
     setupCardAbilities(ability) {
         this.reaction({
             when: {
-                onAttackerDeclared: (event) => event.card === this
+                onAttackersDeclared: (event) => event.card === this
             },
             gameAction: ability.actions.forRemainderOfTurn({
                 targetController: 'opponent',

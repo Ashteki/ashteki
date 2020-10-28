@@ -133,7 +133,7 @@ class ActionWindow extends UiPrompt {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 onSelect: (player, card) => {
                     if (card.type == CardType.Phoenixborn) {
-                        this.initiatePBAttack();
+                        this.initiatePBAttack(card);
                     } else {
                         this.initiateUnitAttack(card);
                     }
@@ -159,8 +159,8 @@ class ActionWindow extends UiPrompt {
         }
     }
 
-    initiatePBAttack() {
-        throw new Error('Method not implemented.');
+    initiatePBAttack(target) {
+        this.game.initiatePBAttack(target);
     }
 
     initiateUnitAttack(target) {
