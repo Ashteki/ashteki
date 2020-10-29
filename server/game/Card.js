@@ -55,7 +55,6 @@ class Card extends PlayableObject {
                 ? 0
                 : cardData.recover
             : 0;
-        this.armorUsed = 0;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
 
@@ -288,7 +287,6 @@ class Card extends PlayableObject {
 
     endRound() {
         this.elusiveUsed = false;
-        this.armorUsed = 0;
         this.usedGuardThisRound = false;
     }
 
@@ -548,10 +546,9 @@ class Card extends PlayableObject {
 
     getRecover(printed = false) {
         if (printed) {
-            // might need this?
             return this.printedRecover;
         }
-        // shot in the dark for recovery adjustment in card definitions...
+
         return Math.max(0, this.printedRecover + this.sumEffects('modifyRecover'));
     }
 
@@ -653,8 +650,9 @@ class Card extends PlayableObject {
         // OR has Unit Guard keyword / ability.
         if (!this.checkRestrictions('guard')) return false;
 
-        if (this.type == CardType.Phoenixborn) return !this.usedGuardThisRound;
-        else {
+        if (this.type == CardType.Phoenixborn) {
+            return !this.usedGuardThisRound;
+        } else {
             return (
                 BattlefieldTypes.includes(this.type) &&
                 !this.exhausted &&
@@ -799,6 +797,7 @@ class Card extends PlayableObject {
                 uuid: this.uuid,
                 tokens: this.tokens,
                 flags: this.getFlags(),
+                armor: this.armor,
                 ...selectionState
             };
         }
@@ -833,6 +832,8 @@ class Card extends PlayableObject {
                 return die.getSummary(activePlayer);
             }),
             flags: this.getFlags(),
+            armor: this.armor,
+            guarded: this.usedGuardThisRound,
             uuid: this.uuid
         };
 

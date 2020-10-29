@@ -38,10 +38,18 @@ class UnitAttackFlow extends BaseStepWithPipeline {
 
     exhaustParticipants(battle) {
         let participants = [battle.attacker];
-        if (battle.guard) {
+        // if there's a guard or blocker, they counter and so exhaust
+        // otherwise if the target counters (was not guarded or blocked) they exhaust
+        if (battle.guard && battle.guard.type !== CardType.Phoenixborn) {
             participants.push(battle.guard);
         } else if (battle.counter) {
             participants.push(battle.target);
+        }
+        // phoenixborn don't exhaust, but are marked as having guarded this round
+        if (battle.guard && battle.guard.type === CardType.Phoenixborn) {
+            this.game.actions
+                .setGuarded()
+                .resolve(battle.guard, this.game.getFrameworkContext(this.game.activePlayer));
         }
 
         this.game.actions
@@ -218,8 +226,10 @@ class UnitAttackFlow extends BaseStepWithPipeline {
         let event = this.game.getEvent('onAttackersDeclared', {}, () => {
             this.game.promptForSelect(this.attackingPlayer, {
                 activePromptTitle: 'Select an attacker',
+                source: this.target,
                 controller: 'self',
                 cardType: [...BattlefieldTypes],
+                cardCondition: (card) => !card.exhausted,
                 mode: this.isPBAttack ? 'unlimited' : 'single',
                 onSelect: (player, card) => {
                     let cards;

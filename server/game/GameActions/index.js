@@ -53,5 +53,6 @@ module.exports = {
     ExhaustDieAction: require('./ExhaustDieAction'),
     SetDieLevelAction: require('./setDieLevelAction'),
     MeditateAction: require('./MeditateAction'),
+    SetGuardedAction: require('./SetGuardedAction'),
     ChangeDieAction: require('./ChangeDieAction')
 };

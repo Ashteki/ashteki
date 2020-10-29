@@ -60,15 +60,23 @@ const Card = ({
     };
 
     const getCountersForCard = (card) => {
-        const singleValueCounters = ['ward', 'enrage'];
         let counters = [];
         let needsFade = card.type === 'upgrade' && !['full deck'].includes(source);
-        if (card.type === 'Ally' && card.baseStrength !== card.strength) {
+        if (card.armor > 0) {
             counters.push({
-                name: 'strength',
-                count: card.strength,
+                name: 'armor',
+                count: card.armor,
                 fade: needsFade,
                 showValue: true
+            });
+        }
+
+        if (card.guarded) {
+            counters.push({
+                name: 'guarded',
+                count: 1,
+                fade: needsFade,
+                showValue: false
             });
         }
 
@@ -77,18 +85,13 @@ const Card = ({
                 name: key,
                 count: token,
                 fade: needsFade,
-                showValue: token > 1 || !singleValueCounters.includes(key),
-                broken: key === 'ward' && card.wardBroken
+                showValue: true
             });
         }
 
         for (const upgrade of card.upgrades || []) {
             counters = counters.concat(getCountersForCard(upgrade));
         }
-
-        // if (card.stunned) {
-        //     counters.push({ name: 'stun', count: 1, showValue: false });
-        // }
 
         return counters.filter((counter) => counter.count >= 0);
     };

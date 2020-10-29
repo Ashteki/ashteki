@@ -119,10 +119,7 @@ class DealDamageAction extends CardGameAction {
                 }
             );
 
-            if (
-                damageDealtEvent.ignoreArmor ||
-                damageDealtEvent.card.armor <= damageDealtEvent.card.armorUsed
-            ) {
+            if (damageDealtEvent.ignoreArmor) {
                 damageDealtEvent.addSubEvent(damageAppliedEvent);
             } else {
                 let armorPreventParams = {
@@ -135,13 +132,10 @@ class DealDamageAction extends CardGameAction {
                     'onDamagePreventedByArmor',
                     armorPreventParams,
                     (event) => {
-                        const currentArmor = event.card.armor - event.card.armorUsed;
-                        if (amount <= currentArmor) {
-                            card.armorUsed += event.amount;
+                        if (amount <= event.card.armor) {
                             event.damagePrevented = event.amount;
                         } else {
-                            card.armorUsed += currentArmor;
-                            event.damagePrevented = currentArmor;
+                            event.damagePrevented = event.card.armor;
                         }
 
                         damageAppliedEvent.amount -= event.damagePrevented;
