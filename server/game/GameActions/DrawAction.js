@@ -35,10 +35,10 @@ class DrawAction extends PlayerAction {
 
         if (this.refill && amount > 0) {
             context.game.addMessage(
-                '{0} draws {1} card{2}{3}',
+                '{0} draws {1} {2}{3}',
                 player,
                 amount,
-                amount > 1 ? 's' : '',
+                amount > 1 ? 'cards' : 'card',
                 this.refill ? ` to their maximum of ${player.maxHandSize}` : ''
             );
         }

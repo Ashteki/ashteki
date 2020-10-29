@@ -20,13 +20,8 @@ class SetupPhase extends Phase {
         }
 
         for (const player of this.game.getPlayers()) {
-            let link = {
-                link: 'https://www.keyforgegame.com/deck-details/' + player.deckData.uuid,
-                argType: 'link',
-                label: player.deckData.name
-            };
             if (this.game.gameFormat !== 'sealed' && !this.game.hideDeckLists) {
-                this.game.addMessage('{0} brings {1}{2} to The Crucible', player, link);
+                this.game.addMessage('{0} brings {1} to battle', player, player.phoenixborn);
             }
         }
     }

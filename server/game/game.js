@@ -748,8 +748,10 @@ class Game extends EventEmitter {
                 '{0} rolled the most basics and will go first',
                 this.activePlayer
             );
+            this.firstPlayer.setFirstPlayer();
         } else {
             this.activePlayer = this.round % 2 > 0 ? this.firstPlayer : this.firstPlayer.opponent;
+            this.getPlayers().forEach((p) => p.toggleFirstPlayer());
             this.addMessage('{0} goes first this round', this.activePlayer.name);
         }
     }
@@ -1163,15 +1165,11 @@ class Game extends EventEmitter {
             card.endTurn();
         }
 
+        this.addAlert('endofturn', `End of turn ${this.turn}`);
+
         if (this.activePlayer.opponent) {
             this.activePlayer = this.activePlayer.opponent;
         }
-
-        let playerResources = this.getPlayers()
-            .map((player) => `${player.name}: ${0} amber (${this.playerKeys(player)})`)
-            .join(' ');
-
-        this.addAlert('endofturn', `End of round ${this.turn}`);
 
         if (
             !this.activePlayer.opponent ||
@@ -1180,7 +1178,6 @@ class Game extends EventEmitter {
             this.turn++;
         }
 
-        this.addMessage(playerResources);
         this.addAlert('startofturn', `Turn ${this.turn} - {0}`, this.activePlayer);
         this.checkForTimeExpired();
     }
@@ -1197,16 +1194,9 @@ class Game extends EventEmitter {
             card.endRound();
         }
 
-        //todo: set active player to alternate
-
-        let playerResources = this.getPlayers()
-            .map((player) => `${player.name}: ${0} amber (X)`)
-            .join(' ');
-
         this.addAlert('endofround', `End of round ${this.round}`);
 
         this.round++;
-        this.addMessage(playerResources);
         this.addAlert('startofround', `Round ${this.round}`);
         this.checkForTimeExpired();
     }

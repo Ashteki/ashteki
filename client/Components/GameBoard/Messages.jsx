@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import Avatar from '../Site/Avatar';
 import AlertPanel from '../Site/AlertPanel';
 import AmberImage from '../../assets/img/amber.png';
-import CardBackImage from '../../assets/img/idbacks/cardback.jpg';
 
 const keyImages = {};
 
@@ -30,8 +29,6 @@ import './Messages.scss';
 const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const tokens = {
         amber: { className: 'icon-amber', imageSrc: AmberImage },
-        card: { className: 'icon-card', imageSrc: CardBackImage },
-        cards: { className: 'icon-card', imageSrc: CardBackImage },
         forgedkeyblue: { className: 'icon-forgedKey', imageSrc: keyImages['blue'].forged },
         forgedkeyyellow: { className: 'icon-forgedKey', imageSrc: keyImages['yellow'].forged },
         forgedkeyred: { className: 'icon-forgedKey', imageSrc: keyImages['red'].forged },

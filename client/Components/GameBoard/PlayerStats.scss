@@ -4,6 +4,29 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
+@mixin action-colors($text, $background){
+    color: $text;
+    background: $background;
+    border-color: $text;
+}
+
+.action {
+    @include action-colors(#333, #FFF);
+    border-radius: 8px;
+    margin: 5px;
+    // height: 24px;
+    width: 26px;
+    text-align: center;
+    display:inline-block;
+    z-index: $layer-cards + 1;
+    font-size: 120%;
+    border: 1pt solid black;
+}
+
+.action.exhausted{
+    @include action-colors(#CCC, #889);
+}
+
 .player-stats {
     display: flex;
 
@@ -25,11 +48,6 @@
     border-right: solid 2px;
     display: flex;
     align-items: center;
-
-    span {
-        padding-right: 3px;
-        padding-left: 3px;
-    }
 
     &:last-of-type {
         border-right: none;

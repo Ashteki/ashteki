@@ -28,6 +28,7 @@ const placeholderPlayer = {
         deck: []
     },
     activePlayer: false,
+    firstPlayer: false,
     numDeckCards: 0,
     stats: {
         keys: { red: false, blue: false, yellow: false }
@@ -384,6 +385,7 @@ export class GameBoard extends React.Component {
                         user={otherPlayer.user}
                         activePlayer={otherPlayer.activePlayer}
                         actions={otherPlayer.actions}
+                        firstPlayer={otherPlayer.firstPlayer}
                     />
                 </div>
                 <div className='main-window'>
@@ -444,6 +446,7 @@ export class GameBoard extends React.Component {
                         stats={thisPlayer.stats}
                         user={thisPlayer.user}
                         actions={thisPlayer.actions}
+                        firstPlayer={thisPlayer.firstPlayer}
                     />
                 </div>
             </div>

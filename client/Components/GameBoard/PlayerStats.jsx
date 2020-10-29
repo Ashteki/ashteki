@@ -17,6 +17,7 @@ import { Badge } from 'react-bootstrap';
 import Avatar from '../Site/Avatar';
 import Minus from '../../assets/img/Minus.png';
 import Plus from '../../assets/img/Plus.png';
+import FirstPlayerImage from '../../assets/img/firstplayer.png';
 
 import './PlayerStats.scss';
 
@@ -103,53 +104,51 @@ export class PlayerStats extends React.Component {
     }
 
     renderActions() {
-        let t = this.props.t;
-
         let actionTypes = ['main', 'side'];
-        return actionTypes.map((actionType) => {
+        let actionOutput = actionTypes.map((actionType) => {
+            let exhaustClass = this.props.actions[actionType] ? '' : 'exhausted';
+            let actionClass = classNames('action', exhaustClass);
+            let diceFont = `phg-${actionType}-action`;
             return (
-                <div className='state' key={`action ${actionType}`}>
-                    <img
-                        src={
-                            this.props.actions && this.props.actions[actionType]
-                                ? toggleImages[actionType].active
-                                : toggleImages[actionType].spent
-                        }
-                        onClick={this.toggleAction.bind(this, actionType)}
-                        title={t(`${actionType} Action`)}
-                    />
-                </div>
+                <span
+                    key={`action ${actionType}`}
+                    className={actionClass}
+                    onClick={this.toggleAction.bind(this, actionType)}
+                >
+                    <span className={diceFont} title={`${actionType}`}></span>
+                </span>
             );
         });
+
+        return <div className='state'>{actionOutput}</div>;
     }
 
     render() {
         let t = this.props.t;
         let playerAvatar = (
-            <div className='pr-1'>
+            <div className='state'>
                 <Avatar imgPath={this.props.user?.avatar} />
                 <b>{this.props.user?.username || t('Noone')}</b>
             </div>
         );
-        let matchRecord = this.props.matchRecord && (
-            <div
-                className='state'
-                title={`Matches: ${this.props.matchRecord.thisPlayer.name} ${this.props.matchRecord.thisPlayer.wins} - ${this.props.matchRecord.otherPlayer.name} ${this.props.matchRecord.otherPlayer.wins}`}
-            >
-                <span>{`${this.props.matchRecord.thisPlayer.wins} - ${this.props.matchRecord.otherPlayer.wins}`}</span>
-            </div>
-        );
+
         let statsClass = classNames('panel player-stats', {
             'active-player': this.props.activePlayer
         });
+
+        let firstPlayerToken = this.props.firstPlayer ? (
+            <div className='state'>
+                <img src={FirstPlayerImage} title='First Player' />
+            </div>
+        ) : (
+            ''
+        );
 
         return (
             <div className={statsClass}>
                 {playerAvatar}
                 {this.renderActions()}
-
-                {matchRecord}
-
+                {firstPlayerToken}
                 {this.props.activePlayer && (
                     <div className='state first-player-state'>
                         <Trans>Active Player</Trans>
@@ -236,7 +235,8 @@ PlayerStats.propTypes = {
     stats: PropTypes.object,
     t: PropTypes.func,
     user: PropTypes.object,
-    actions: PropTypes.object
+    actions: PropTypes.object,
+    firstPlayer: PropTypes.bool
 };
 
 export default withTranslation()(PlayerStats);
