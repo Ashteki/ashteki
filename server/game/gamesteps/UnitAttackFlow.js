@@ -223,7 +223,10 @@ class UnitAttackFlow extends BaseStepWithPipeline {
     }
 
     declareAttackers() {
-        let event = this.game.getEvent('onAttackersDeclared', {}, () => {
+        const params = {
+            battles: this.battles
+        };
+        let event = this.game.getEvent('onAttackersDeclared', params, () => {
             this.game.promptForSelect(this.attackingPlayer, {
                 activePromptTitle: 'Select an attacker',
                 source: this.target,

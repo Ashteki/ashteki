@@ -5,13 +5,18 @@ class BlueJaguar extends Card {
     setupCardAbilities(ability) {
         this.reaction({
             when: {
-                onAttackersDeclared: (event) => event.card === this
+                onAttackersDeclared: (event, context) => {
+                    // I'm the attacker
+                    return event.battles.some((b) => b.attacker === context.source);
+                }
             },
-            gameAction: ability.actions.forRemainderOfTurn({
-                targetController: 'opponent',
-                condition: (card) => BattlefieldTypes.includes(card.type),
-                effect: ability.effects.cardCannot('guard')
-            })
+            target: {
+                cardType: [BattlefieldTypes],
+                controller: 'opponent',
+                gameAction: ability.actions.forRemainderOfTurn({
+                    effect: ability.effects.cardCannot('guard')
+                })
+            }
         });
     }
 }

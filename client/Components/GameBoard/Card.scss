@@ -272,47 +272,39 @@
     }
 }
 
-.attack { position: absolute;
-    z-index: 10;
-    padding: 0;
-    text-align: center;
+.attack {
     background-color: rgba(255, 0, 0, 0.9);
-    line-height: 24px;
-    font-size: 12px;
-    bottom: 3px;
-    margin-left: 3px;
-    height: 24px;
-    width: 24px;
 }
 
-.life { position: absolute;
+.flag {
     z-index: 10;
     padding: 0;
-    text-align: center;
+    text-align: center;  
+    line-height: 22px;
+    font-size: 12px;
+    margin-left: 3px;
+    height: 22px;
+    width: 22px;
+}
+
+.life { 
     background-color: rgba(0, 141, 0, 0.9);
-    line-height: 24px;
-    font-size: 12px;
-    margin-left: 3px;
-    bottom: 3px;
-    height: 24px;
-    width: 24px;
 }
 
-.recover { position: absolute;
-    z-index: 10;
-    padding: 0;
-    text-align: center;
+.recover { 
     background-color: rgba(0, 0, 201, 0.9);
-    line-height: 24px;
-    font-size: 12px;
-    bottom: 3px;
-    margin-left: 3px;
-    height: 24px;
-    width: 24px;
 }
 
 .darkbg {
     // background: rgba(0,0,0,0.6);
     text-shadow: 1px 1px 2px #000;
     border-radius: 4px;
+}
+
+.flags {
+    position: absolute;
+    bottom: -2px;
+    height:28px;
+    display:flex;
+    width:100%;
 }

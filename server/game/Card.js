@@ -65,7 +65,6 @@ class Card extends PlayableObject {
 
         this.menu = [
             { command: 'tokens', text: 'Modify Tokens', menu: 'main' },
-            { command: 'control', text: 'Give control', menu: 'main' },
             { command: 'main', text: 'Back', menu: 'tokens' },
             { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
             { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
@@ -74,6 +73,9 @@ class Card extends PlayableObject {
             { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
             { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' }
         ];
+        if (!(this.type === CardType.Phoenixborn)) {
+            this.menu.push({ command: 'control', text: 'Give control', menu: 'main' });
+        }
 
         this.endRound();
         this.modifiedAttack = undefined;

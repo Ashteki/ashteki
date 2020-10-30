@@ -83,11 +83,6 @@ const Lobby = () => {
             <SideBar>
                 <UserList users={users} />
             </SideBar>
-            <div>
-                <Col sm={{ span: 10, offset: 1 }}>
-                    <div className='main-header' />
-                </Col>
-            </div>
             {motd?.message && (
                 <div>
                     <Col sm={{ span: 10, offset: 1 }} className='banner'>

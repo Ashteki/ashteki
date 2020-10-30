@@ -100,7 +100,7 @@ const Effects = {
     stealFromPool: () => EffectBuilder.player.static('stealFromPool'),
     captureFromPool: () => EffectBuilder.player.static('captureFromPool'),
     skipStep: (step) => EffectBuilder.player.static('skipStep', step),
-    canGuard: () => EffectBuilder.player.static('canGuard')
+    canGuard: () => EffectBuilder.card.static('canGuard')
 };
 
 module.exports = Effects;

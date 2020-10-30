@@ -109,6 +109,7 @@ const PlayerPBRow = ({
                 onClick={onCardClick}
                 size={cardSize}
                 side={side}
+                source='play area'
             />
         );
     }

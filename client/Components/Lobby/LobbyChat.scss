@@ -13,8 +13,6 @@
 }
 
 .lobby-message {
-    margin-bottom: 4px;
-    margin-top: 2px;
     word-wrap: break-word;
     padding-left: 30px;
 }
@@ -26,7 +24,7 @@
     bottom: 50px;
     left: 0px;
     right: 0px;
-    font-size: 11px;
+    font-size: 13px;
     overflow-y: auto;
     margin-left: 5px;
     margin-top: 10px;
@@ -43,4 +41,5 @@
 
 .message-container {
     min-height: 24px;
+    margin-top: 2px;
 }

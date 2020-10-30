@@ -227,12 +227,17 @@ const Card = ({
 
     const getBoostedFlags = (card) => {
         if (card.flags) {
-            return Object.keys(card.flags).map((key, index) => (
-                <div key={key + index} className={`darkbg ${key}`}>
-                    {card.flags[key]}
-                </div>
-            ));
+            let flagItems = Object.keys(card.flags).map((key, index) => {
+                return (
+                    <div key={key + index} className={`darkbg flag ${key}`}>
+                        {card.flags[key]}
+                    </div>
+                );
+            });
+
+            return <div className='flags'>{flagItems}</div>;
         }
+
         return '';
     };
 

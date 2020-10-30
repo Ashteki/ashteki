@@ -6,42 +6,11 @@ import Avatar from '../Site/Avatar';
 import AlertPanel from '../Site/AlertPanel';
 import AmberImage from '../../assets/img/amber.png';
 
-const keyImages = {};
-
-for (const colour of ['red', 'blue', 'yellow']) {
-    keyImages[colour] = {
-        forged: require(`../../assets/img/forgedkey${colour}.png`),
-        unforged: require(`../../assets/img/unforgedkey${colour}.png`)
-    };
-}
-
-const toggleImages = {};
-
-for (const actionType of ['main', 'side']) {
-    toggleImages[actionType] = {
-        active: require(`../../assets/img/forgedkey${actionType}.png`),
-        spent: require(`../../assets/img/unforgedkey${actionType}.png`)
-    };
-}
-
 import './Messages.scss';
 
 const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const tokens = {
-        amber: { className: 'icon-amber', imageSrc: AmberImage },
-        forgedkeyblue: { className: 'icon-forgedKey', imageSrc: keyImages['blue'].forged },
-        forgedkeyyellow: { className: 'icon-forgedKey', imageSrc: keyImages['yellow'].forged },
-        forgedkeyred: { className: 'icon-forgedKey', imageSrc: keyImages['red'].forged },
-        unforgedkeyblue: { className: 'icon-forgedKey', imageSrc: keyImages['blue'].unforged },
-        unforgedkeyyellow: {
-            className: 'icon-forgedKey',
-            imageSrc: keyImages['yellow'].unforged
-        },
-        unforgedkeyred: { className: 'icon-forgedKey', imageSrc: keyImages['red'].unforged },
-        spendActionMain: { className: 'icon-forgedKey', imageSrc: toggleImages['main'].spent },
-        unspendActionMain: { className: 'icon-forgedKey', imageSrc: toggleImages['main'].active },
-        spendActionSide: { className: 'icon-forgedKey', imageSrc: toggleImages['side'].spent },
-        unspendActionSide: { className: 'icon-forgedKey', imageSrc: toggleImages['side'].active }
+        amber: { className: 'icon-amber', imageSrc: AmberImage }
     };
 
     const owner = useSelector(

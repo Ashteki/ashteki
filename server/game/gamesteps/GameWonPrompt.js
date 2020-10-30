@@ -20,7 +20,6 @@ class GameWonPrompt extends AllPlayerPrompt {
                 values: { player: this.winner.name }
             },
             buttons: [
-                { arg: 'continue', text: 'Continue Playing' },
                 { arg: 'rematch', text: 'Rematch' },
                 { arg: 'rematch-swap', text: 'Rematch: Swap Decks' }
             ]
@@ -34,9 +33,6 @@ class GameWonPrompt extends AllPlayerPrompt {
     menuCommand(player, arg) {
         let message = '';
         switch (arg) {
-            case 'continue':
-                message = 'to continue';
-                break;
             case 'rematch':
                 message = 'a rematch';
                 break;
