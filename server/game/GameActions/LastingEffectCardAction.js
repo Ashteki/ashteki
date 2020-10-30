@@ -1,12 +1,19 @@
 const CardGameAction = require('./CardGameAction');
 
 class LastingEffectCardAction extends CardGameAction {
+    constructor(propertyFactory, duration = 2, durationType = 'turn') {
+        super(propertyFactory);
+        this.duration = this.duration || duration;
+        this.durationType = this.durationType || durationType;
+    }
+
     setDefaultProperties() {
-        this.duration = 'untilEndOfRound';
         this.condition = null;
         this.until = null;
         this.effect = [];
         this.targetLocation = null;
+        this.targetController =
+            this.duration === 1 && this.durationType == 'turn' ? 'current' : 'opponent';
     }
 
     setup() {
@@ -27,9 +34,14 @@ class LastingEffectCardAction extends CardGameAction {
             context: context,
             duration: this.duration,
             targetLocation: this.targetLocation,
-            until: this.until,
-            roundDuration: this.roundDuration
+            until: this.until
         };
+
+        if (this.durationType === 'round') {
+            effectProperties.roundDuration = this.duration;
+        } else {
+            effectProperties.turnDuration = this.duration;
+        }
         this.effect = effect.map((factory) =>
             factory(context.game, context.source, effectProperties)
         );
@@ -54,11 +66,22 @@ class LastingEffectCardAction extends CardGameAction {
             effect: effect,
             match: card,
             targetLocation: this.targetLocation,
-            until: this.until
+            until: this.until,
+            durationType: this.durationType
         };
-        let duration = this.until ? 'lastingEffect' : this.duration;
+
+        if (this.durationType === 'round') {
+            properties.roundDuration = this.duration;
+        } else {
+            properties.turnDuration = this.duration;
+        }
+
+        const methodFromDuration =
+            this.durationType == 'round' ? 'roundDurationEffect' : 'turnDurationEffect';
+        let methodName = this.until ? 'lastingEffect' : methodFromDuration;
+
         return super.createEvent('onEffectApplied', { card: card, context: context }, (event) =>
-            event.context.source[duration](() => properties)
+            event.context.source[methodName](properties)
         );
     }
 }

@@ -25,7 +25,7 @@ const Actions = {
     detachDie: (propertyFactory) => new GameActions.DetachDieAction(propertyFactory), // die, card
     capture: (propertyFactory) => new GameActions.CaptureAction(propertyFactory),
     cardLastingEffect: (propertyFactory) =>
-        new GameActions.LastingEffectCardAction(propertyFactory), // duration = 'untilEndOfConflict', effect, targetLocation, condition, until
+        new GameActions.LastingEffectCardAction(propertyFactory), // effect, targetLocation, condition, until
     clearGrowthTokens: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'growth'),
     clearGloryCounters: (propertyFactory) =>
@@ -39,6 +39,7 @@ const Actions = {
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     graft: (propertyFactory) => new GameActions.PlaceUnderAction(propertyFactory, true),
     heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
+
     moveCard: (propertyFactory) => new GameActions.MoveCardAction(propertyFactory), // destination, switch = false, shuffle = false
     moveOnBattleline: (propertyFactory) => new GameActions.MoveOnBattlelineAction(propertyFactory),
     moveToBottom: (propertyFactory) => new GameActions.MoveToBottomAction(propertyFactory),
@@ -70,6 +71,7 @@ const Actions = {
     swap: (propertyFactory) => new GameActions.SwapAction(propertyFactory), // origin
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     ward: (propertyFactory) => new GameActions.WardAction(propertyFactory),
+
     // player actions
     archiveAtRandom: (propertyFactory) => new GameActions.RandomArchiveAction(propertyFactory), // amount = 1
     chosenDiscard: (propertyFactory) => new GameActions.ChosenDiscardAction(propertyFactory), // amount = 1
@@ -87,6 +89,7 @@ const Actions = {
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name
     steal: (propertyFactory) => new GameActions.StealAction(propertyFactory), // amount = 1
+
     // meta actions
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),
     allocateDamage: (propertyFactory) => new GameActions.AllocateDamageAction(propertyFactory),
@@ -97,6 +100,7 @@ const Actions = {
     sequential: (gameActions) => new GameActions.SequentialAction(gameActions), // takes an array of gameActions, not a propertyFactory
     sequentialForEach: (propertyFactory) =>
         new GameActions.SequentialForEachAction(propertyFactory),
+
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
     spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),

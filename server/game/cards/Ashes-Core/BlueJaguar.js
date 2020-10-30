@@ -11,9 +11,11 @@ class BlueJaguar extends Card {
                 }
             },
             target: {
-                cardType: [BattlefieldTypes],
-                controller: 'opponent',
-                gameAction: ability.actions.forRemainderOfTurn({
+                optional: true,
+                gameAction: ability.actions.cardLastingEffect({
+                    cardCondition: (card, context) => card !== context.source,
+                    cardType: [...BattlefieldTypes],
+                    controller: 'opponent',
                     effect: ability.effects.cardCannot('guard')
                 })
             }
