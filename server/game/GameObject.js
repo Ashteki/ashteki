@@ -10,6 +10,7 @@ class GameObject {
         this.facedown = false;
         this.uuid = uuid.v1();
         this.effects = [];
+        this.controller = null;
     }
 
     get type() {
@@ -46,6 +47,11 @@ class GameObject {
 
     mostRecentEffect(type) {
         return _.last(this.getEffects(type));
+    }
+
+    setDefaultController(player) {
+        this.defaultController = player;
+        this.controller = player;
     }
 
     allowGameAction(actionType, context = this.game.getFrameworkContext()) {

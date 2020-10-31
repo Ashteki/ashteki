@@ -705,11 +705,6 @@ class Card extends PlayableObject {
         return actions.concat(this.actions.slice());
     }
 
-    setDefaultController(player) {
-        this.defaultController = player;
-        this.controller = player;
-    }
-
     getModifiedController() {
         if (this.location === 'play area' || this.location === 'spellboard') {
             return this.mostRecentEffect('takeControl') || this.defaultController;
