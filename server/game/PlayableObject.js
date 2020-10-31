@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { BattlefieldTypes } = require('../constants');
+const { BattlefieldTypes, CardType } = require('../constants');
 const EffectSource = require('./EffectSource');
 const TriggeredAbility = require('./triggeredability');
 
@@ -50,6 +50,18 @@ class PlayableObject extends EffectSource {
 
     updateAbilityEvents(from, to) {
         _.each(this.getReactions(true), (reaction) => {
+            if (this.type === CardType.ReactionSpell) {
+                if (
+                    to === 'deck' ||
+                    this.controller.isCardInPlayableLocation(this) ||
+                    (this.controller.opponent &&
+                        this.controller.opponent.isCardInPlayableLocation(this))
+                ) {
+                    reaction.registerEvents();
+                } else {
+                    reaction.unregisterEvents();
+                }
+            }
             if (reaction.location.includes(to) && !reaction.location.includes(from)) {
                 reaction.registerEvents();
             } else if (!reaction.location.includes(to) && reaction.location.includes(from)) {

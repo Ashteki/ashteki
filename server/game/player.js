@@ -153,7 +153,8 @@ class Player extends GameObject {
     isCardInPlayableLocation(card, playingType) {
         return _.any(
             this.playableLocations,
-            (location) => location.playingType === playingType && location.contains(card)
+            (location) =>
+                (!playingType || location.playingType === playingType) && location.contains(card)
         );
     }
 
@@ -439,8 +440,6 @@ class Player extends GameObject {
             card.controller = card.owner;
         }
 
-        card.moveTo(targetLocation);
-
         if (targetLocation === 'deck' && !options.bottom) {
             targetPile.unshift(card);
         } else if (['discard', 'purged'].includes(targetLocation)) {
@@ -448,6 +447,8 @@ class Player extends GameObject {
         } else if (targetPile) {
             targetPile.push(card);
         }
+
+        card.moveTo(targetLocation);
 
         this.game.raiseEvent('onCardPlaced', { card: card, from: location, to: targetLocation });
     }
