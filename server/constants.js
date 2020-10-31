@@ -4,7 +4,8 @@ Object.freeze(Constants);
 
 const CardType = {
     Upgrade: 'Alteration Spell',
-    Phoenixborn: 'Phoenixborn'
+    Phoenixborn: 'Phoenixborn',
+    ReactionSpell: 'Reaction Spell'
 };
 
 const BattlefieldTypes = ['Ally', 'Conjuration'];

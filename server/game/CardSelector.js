@@ -16,7 +16,8 @@ const defaultProperties = {
         'Ally',
         'Ready Spell',
         'Alteration Spell',
-        'Phoenixborn'
+        'Phoenixborn',
+        'Reaction Spell'
     ],
     multiSelect: false
 };

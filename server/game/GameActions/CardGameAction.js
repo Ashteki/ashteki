@@ -16,7 +16,8 @@ class CardGameAction extends GameAction {
             'Ally',
             'Ready Spell',
             'Alteration Spell',
-            'Phoenixborn'
+            'Phoenixborn',
+            'Reaction Spell'
         ];
     }
 
