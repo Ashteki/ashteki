@@ -1,3 +1,4 @@
+const { CardType } = require('../constants');
 const ThenAbility = require('./ThenAbility');
 
 class CardAbility extends ThenAbility {
@@ -9,12 +10,16 @@ class CardAbility extends ThenAbility {
     }
 
     isInValidLocation(context) {
-        return this.card.type === 'event'
+        return this.card.type === CardType.ReactionSpell
             ? context.player.isCardInPlayableLocation(context.source, 'play')
             : this.location.includes(this.card.location);
     }
 
     meetsRequirements(context) {
+        if (this.card.isBlank() && this.printedAbility) {
+            return 'blank';
+        }
+
         if (!this.card.checkRestrictions('triggerAbilities', context)) {
             return 'cannotTrigger';
         }
@@ -41,7 +46,9 @@ class CardAbility extends ThenAbility {
     ) {
         let messageArgs = previousMessageArgs || [
             context.player,
-            context.source.type === 'event' ? ' plays ' : ' uses ',
+            [CardType.ReactionSpell, CardType.ActionSpell].includes(context.source.type)
+                ? ' plays '
+                : ' uses ',
             context.source
         ];
 

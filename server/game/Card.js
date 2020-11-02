@@ -185,7 +185,7 @@ class Card extends PlayableObject {
      */
 
     play(properties) {
-        if (this.type === 'Action Spell') {
+        if (this.type === CardType.ActionSpell) {
             properties.location = properties.location || 'being played';
         }
 
