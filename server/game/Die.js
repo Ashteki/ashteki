@@ -1,6 +1,6 @@
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
-const Costs = require('./costs');
+const { Costs } = require('./costs');
 const PlayableObject = require('./PlayableObject');
 
 class Die extends PlayableObject {

@@ -1,3 +1,4 @@
+const { AbilityType } = require('../constants.js');
 const CannotRestriction = require('./Effects/cannotrestriction.js');
 const CopyCard = require('./Effects/CopyCard');
 const EffectBuilder = require('./Effects/EffectBuilder');
@@ -57,7 +58,7 @@ const Effects = {
         EffectBuilder.player.detached('abilityTrigger', {
             apply: (player, context) => {
                 let ability = context.source.triggeredAbility(
-                    'reaction',
+                    AbilityType.Reaction,
                     Object.assign({ printedAbility: false, player: player }, properties)
                 );
                 ability.registerEvents();

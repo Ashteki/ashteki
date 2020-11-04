@@ -1,5 +1,5 @@
 const CardAbility = require('./CardAbility.js');
-const Costs = require('./costs.js');
+const { Costs } = require('./costs');
 
 /**
  * Represents an action ability provided by card text.

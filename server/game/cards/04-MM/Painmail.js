@@ -1,9 +1,10 @@
+const { AbilityType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Painmail extends Card {
     setupCardAbilities(ability) {
         this.whileAttached({
-            effect: ability.effects.gainAbility('reaction', {
+            effect: ability.effects.gainAbility(AbilityType.ForcedReaction, {
                 when: {
                     onChooseActiveHouse: (event) => event.house === 'dis'
                 },

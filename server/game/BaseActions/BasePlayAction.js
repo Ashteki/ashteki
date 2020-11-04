@@ -1,54 +1,9 @@
 const AbilityContext = require('../AbilityContext');
 const BaseAbility = require('../baseability.js');
-const Costs = require('../costs');
-
-function parseCosts(costData) {
-    const costs = [];
-    let diceReq = [];
-    for (let costItem of costData) {
-        switch (costItem) {
-            case '[[main]]':
-                costs.push(Costs.mainAction());
-                break;
-            case '[[side]]':
-                costs.push(Costs.sideAction());
-                break;
-            case '[[exhaust]]':
-                costs.push(Costs.exhaust());
-                break;
-            default:
-                diceReq = diceReq.concat(parseDiceCost(costItem));
-        }
-    }
-    if (diceReq.length > 0) {
-        costs.push(Costs.dice(diceReq));
-    }
-
-    return costs;
-}
-
-function parseDiceCost(diceCost) {
-    // examples:
-    // "1 [[charm:class]]",
-    // "1 [[basic]]"
-    // "# [[type||missing:level]]"
-    const parts = diceCost.split(' ');
-    const count = parts[0];
-    const definition = parts[1].replace('[[', '').replace(']]', '').split(':');
-    const level = definition.length > 1 ? definition[1] : definition[0];
-    const magic = definition.length > 1 ? definition[0] : null;
-    const result = [];
-    for (let i = 1; i <= count; i++) {
-        result.push({ magic: magic, level: level });
-    }
-    return result;
-}
 
 class BasePlayAction extends BaseAbility {
     constructor(card, costs = [], target) {
-        let cardCosts = parseCosts(card.cardData.cost);
-
-        let properties = { cost: costs.concat(cardCosts) };
+        let properties = { cost: costs.concat(card.playCost) };
         if (target) {
             properties.target = target;
         }

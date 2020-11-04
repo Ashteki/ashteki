@@ -7,7 +7,7 @@ class SilverSnake extends Card {
             effect: [ability.effects.setAttack(() => this.status)]
         });
 
-        this.reaction({
+        this.forcedReaction({
             title: 'Consume',
             when: {
                 onCardDestroyed: (event, context) =>

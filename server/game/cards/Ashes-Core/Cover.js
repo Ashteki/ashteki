@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class Cover extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.forcedReaction({
             when: {
                 onUseCard: (event, context) =>
                     event.player === context.player && context.source == this

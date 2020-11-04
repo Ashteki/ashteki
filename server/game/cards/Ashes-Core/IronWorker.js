@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 class IronWorker extends Card {
     setupCardAbilities(ability) {
         //todo: rework this later - not working now. Onpreparephasedraw event is commented out.
-        this.reaction({
+        this.forcedReaction({
             when: {
                 onPreparePhaseDraw: (event, context) => {
                     return context.player == context.source.owner;

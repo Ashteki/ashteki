@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class BlueJaguar extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.forcedReaction({
             when: {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker

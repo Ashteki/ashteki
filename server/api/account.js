@@ -884,7 +884,7 @@ module.exports.init = function (server, options) {
 
             await userService.update(user);
 
-            let updatedUser = await userService.getUserById(user.id);
+            let updatedUser = await userService.getUserById(user._id);
             let safeUser = updatedUser.getWireSafeDetails();
             let authToken;
 

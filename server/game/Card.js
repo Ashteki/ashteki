@@ -7,25 +7,27 @@ const PlayAction = require('./BaseActions/PlayAction');
 const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
-const { CardType, BattlefieldTypes } = require('../constants.js');
+const { CardType, BattlefieldTypes, AbilityType } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
+const { parseCosts } = require('./costs.js');
 
 class Card extends PlayableObject {
     constructor(owner, cardData) {
         super(owner.game);
         this.owner = owner;
+        this.setDefaultController(owner);
+
         this.cardData = cardData;
 
         this.id = cardData.stub;
         this.printedName = cardData.name;
         this.image = cardData.image;
-        this.setDefaultController(owner);
-
         this.printedType = cardData.type;
+
+        this.playCost = cardData.cost ? parseCosts(cardData.cost) : [];
 
         this.tokens = {};
         this.flags = {};
-
         this.traits = cardData.traits || [];
         this.printedKeywords = {};
         for (let keyword of cardData.keywords || []) {
@@ -126,24 +128,24 @@ class Card extends PlayableObject {
     // eslint-disable-next-line no-unused-vars
     setupCardAbilities(ability) {}
 
+    // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
         // Assault
-        this.abilities.keywordReactions.push(
-            this.interrupt({
-                title: 'Assault',
-                printedAbility: false,
-                when: {
-                    onFight: (event, context) => event.attacker === context.source
-                },
-                gameAction: ability.actions.dealDamage((context) => ({
-                    amount: context.source.getKeywordValue('assault'),
-                    target: context.event.card,
-                    damageSource: context.source,
-                    damageType: 'assault'
-                }))
-            })
-        );
-
+        // this.abilities.keywordReactions.push(
+        //     this.interrupt({
+        //         title: 'Assault',
+        //         printedAbility: false,
+        //         when: {
+        //             onFight: (event, context) => event.attacker === context.source
+        //         },
+        //         gameAction: ability.actions.dealDamage((context) => ({
+        //             amount: context.source.getKeywordValue('assault'),
+        //             target: context.event.card,
+        //             damageSource: context.source,
+        //             damageType: 'assault'
+        //         }))
+        //     })
+        // );
         // // Hazardous
         // this.abilities.keywordReactions.push(
         //     this.interrupt({
@@ -160,7 +162,6 @@ class Card extends PlayableObject {
         //         }))
         //     })
         // );
-
         // // Taunt
         // this.abilities.keywordPersistentEffects.push(
         //     this.persistentEffect({
@@ -189,11 +190,11 @@ class Card extends PlayableObject {
             properties.location = properties.location || 'being played';
         }
 
-        return this.reaction(Object.assign({ play: true, name: 'Play' }, properties));
+        return this.forcedReaction(Object.assign({ play: true, name: 'Play' }, properties));
     }
 
     fight(properties) {
-        return this.reaction(Object.assign({ fight: true, name: 'Fight' }, properties));
+        return this.forcedReaction(Object.assign({ fight: true, name: 'Fight' }, properties));
     }
 
     destroyed(properties) {
@@ -253,7 +254,18 @@ class Card extends PlayableObject {
             };
         }
 
-        return this.triggeredAbility('reaction', properties);
+        return this.triggeredAbility(AbilityType.Reaction, properties);
+    }
+
+    forcedReaction(properties) {
+        if (properties.play || properties.fight) {
+            properties.when = {
+                onCardPlayed: (event, context) => event.card === context.source,
+                onFight: (event, context) => event.attacker === context.source
+            };
+        }
+
+        return this.triggeredAbility(AbilityType.ForcedReaction, properties);
     }
 
     hasTrait(trait) {

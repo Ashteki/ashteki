@@ -1,5 +1,5 @@
 const { BattlefieldTypes, CardType } = require('../../constants');
-const Costs = require('../costs');
+const { Costs } = require('../costs');
 const BaseStepWithPipeline = require('./basestepwithpipeline');
 const SimpleStep = require('./simplestep');
 

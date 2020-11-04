@@ -2,7 +2,7 @@ const BasePlayAction = require('./BasePlayAction');
 const AttachAction = require('../GameActions/AttachAction');
 const LastingEffectCardAction = require('../GameActions/LastingEffectCardAction');
 const Effects = require('../effects');
-const Costs = require('../costs');
+const { Costs } = require('../costs');
 const { CardType, BattlefieldTypes } = require('../../constants');
 
 class PlayUpgradeAction extends BasePlayAction {

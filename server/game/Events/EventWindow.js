@@ -2,6 +2,8 @@ const BaseStepWithPipeline = require('../gamesteps/basestepwithpipeline.js');
 const ForcedTriggeredAbilityWindow = require('../gamesteps/forcedtriggeredabilitywindow.js');
 const DestroyedAbilityWindow = require('../gamesteps/DestroyedAbilityWindow.js');
 const SimpleStep = require('../gamesteps/simplestep.js');
+const { AbilityType } = require('../../constants.js');
+const TriggeredAbilityWindow = require('../gamesteps/triggeredabilitywindow.js');
 
 class EventWindow extends BaseStepWithPipeline {
     constructor(game, event) {
@@ -13,12 +15,13 @@ class EventWindow extends BaseStepWithPipeline {
     initialise() {
         this.pipeline.initialise([
             new SimpleStep(this.game, () => this.checkEventCondition()),
-            new SimpleStep(this.game, () => this.openAbilityWindow('interrupt')),
+            new SimpleStep(this.game, () => this.openAbilityWindow(AbilityType.Interrupt)),
             new SimpleStep(this.game, () => this.preResolutionEffects()),
             new SimpleStep(this.game, () => this.executeHandler()),
             new SimpleStep(this.game, () => this.checkGameState()),
             new SimpleStep(this.game, () => this.checkForSubEvent()),
-            new SimpleStep(this.game, () => this.openAbilityWindow('reaction'))
+            new SimpleStep(this.game, () => this.openAbilityWindow(AbilityType.ForcedReaction)),
+            new SimpleStep(this.game, () => this.openAbilityWindow(AbilityType.Reaction))
         ]);
     }
 
@@ -28,21 +31,28 @@ class EventWindow extends BaseStepWithPipeline {
 
     openAbilityWindow(abilityType) {
         let events = this.event.getSimultaneousEvents();
-        if (events.length === 0 || (abilityType === 'reaction' && !this.event.openReactionWindow)) {
+        if (
+            events.length === 0 ||
+            (abilityType === AbilityType.ForcedReaction && !this.event.openReactionWindow)
+        ) {
             return;
         }
 
         if (
-            abilityType === 'interrupt' &&
+            abilityType === AbilityType.Interrupt &&
             events.some((event) => event.name === 'onCardLeavesPlay')
         ) {
             this.queueStep(new DestroyedAbilityWindow(this.game, abilityType, this));
         } else {
-            if (abilityType === 'reaction') {
+            if (abilityType === AbilityType.ForcedReaction) {
                 this.game.checkDelayedEffects(events);
             }
 
-            this.queueStep(new ForcedTriggeredAbilityWindow(this.game, abilityType, this));
+            if ([AbilityType.ForcedReaction, AbilityType.ForcedInterrupt].includes(abilityType)) {
+                this.queueStep(new ForcedTriggeredAbilityWindow(this.game, abilityType, this));
+            } else {
+                this.queueStep(new TriggeredAbilityWindow(this.game, abilityType, this));
+            }
         }
     }
 
@@ -59,9 +69,8 @@ class EventWindow extends BaseStepWithPipeline {
             event.checkCondition();
             if (!event.cancelled) {
                 event.executeHandler();
+                this.game.emit(event.name, event);
             }
-
-            this.game.emit(event.name, event);
         }
     }
 

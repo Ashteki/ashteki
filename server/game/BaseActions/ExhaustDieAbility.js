@@ -1,4 +1,4 @@
-const Costs = require('../costs');
+const { Costs } = require('../costs');
 const DieAbility = require('./DieAbility');
 
 class ExhaustDieAbility extends DieAbility {

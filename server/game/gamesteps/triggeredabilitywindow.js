@@ -10,58 +10,13 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         this.prevPlayerPassed = false;
     }
 
-    showBluffPrompt(player) {
-        // Show a bluff prompt if the player has an event which could trigger (but isn't in their hand) and that setting
-        if (
-            player.timerSettings.eventsInDeck &&
-            this.choices.some((context) => context.player === player)
-        ) {
-            return true;
-        }
-
-        // Show a bluff prompt if we're in Step 6, the player has the approriate setting, and there's an event for the other player
-        return (
-            this.abilityType === 'cancelinterrupt' &&
-            player.timerSettings.events &&
-            _.any(
-                this.events,
-                (event) =>
-                    event.name === 'onCardAbilityInitiated' &&
-                    event.card.type === 'event' &&
-                    event.context.player !== player
-            )
-        );
-    }
-
-    promptWithBluffPrompt(player) {
-        this.game.promptWithMenu(player, this, {
-            source: 'Triggered Abilities',
-            waitingPromptTitle: 'Waiting for opponent',
-            activePrompt: {
-                promptTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
-                controls: this.getPromptControls(),
-                buttons: [
-                    { timer: true, method: 'pass' },
-                    { text: 'I need more time', timerCancel: true },
-                    {
-                        text: "Don't ask again until end of round",
-                        timerCancel: true,
-                        method: 'pass',
-                        arg: 'pauseRound'
-                    },
-                    { text: 'Pass', method: 'pass' }
-                ]
-            }
-        });
-    }
-
     pass(player, arg) {
         if (arg === 'pauseRound') {
             player.noTimer = true;
             player.resetTimerAtEndOfRound = true;
         }
 
-        if (this.prevPlayerPassed || !this.currentPlayer.opponent) {
+        if (this.prevPlayerPassed || !this.currentPlayer || !this.currentPlayer.opponent) {
             this.complete = true;
         } else {
             this.currentPlayer = this.currentPlayer.opponent;
@@ -131,6 +86,52 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             onMenuCommand: (player, arg) => {
                 this.pass(player, arg);
                 return true;
+            }
+        });
+    }
+
+    showBluffPrompt() {
+        return false;
+        // Show a bluff prompt if the player has an event which could trigger (but isn't in their hand) and that setting
+        // if (
+        //     player.timerSettings.eventsInDeck &&
+        //     this.choices.some((context) => context.player === player)
+        // ) {
+        //     return true;
+        // }
+
+        // // Show a bluff prompt if we're in Step 6, the player has the approriate setting, and there's an event for the other player
+        // return (
+        //     this.abilityType === 'cancelinterrupt' &&
+        //     player.timerSettings.events &&
+        //     _.any(
+        //         this.events,
+        //         (event) =>
+        //             event.name === 'onCardAbilityInitiated' &&
+        //             event.card.type === 'event' &&
+        //             event.context.player !== player
+        //     )
+        // );
+    }
+
+    promptWithBluffPrompt(player) {
+        this.game.promptWithMenu(player, this, {
+            source: 'Triggered Abilities',
+            waitingPromptTitle: 'Waiting for opponent',
+            activePrompt: {
+                promptTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
+                controls: this.getPromptControls(),
+                buttons: [
+                    { timer: true, method: 'pass' },
+                    { text: 'I need more time', timerCancel: true },
+                    {
+                        text: "Don't ask again until end of round",
+                        timerCancel: true,
+                        method: 'pass',
+                        arg: 'pauseRound'
+                    },
+                    { text: 'Pass', method: 'pass' }
+                ]
             }
         });
     }

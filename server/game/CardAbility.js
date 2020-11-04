@@ -7,6 +7,10 @@ class CardAbility extends ThenAbility {
 
         this.location = properties.location || 'play area';
         this.printedAbility = properties.printedAbility === false ? false : true;
+
+        if (card.getType() === CardType.ReactionSpell) {
+            this.cost = this.cost.concat(card.playCost);
+        }
     }
 
     isInValidLocation(context) {

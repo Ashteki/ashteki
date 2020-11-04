@@ -1,7 +1,7 @@
 const Effects = require('./effects.js');
 const GameActions = require('./GameActions');
 const AbilityLimit = require('./abilitylimit');
-const Costs = require('./costs.js');
+const { Costs } = require('./costs.js');
 
 const AbilityDsl = {
     actions: GameActions,

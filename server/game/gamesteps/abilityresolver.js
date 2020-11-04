@@ -109,6 +109,16 @@ class AbilityResolver extends BaseStepWithPipeline {
             return;
         }
 
+        this.context.player.moveCard(this.context.source, 'being played');
+        this.context.game.queueSimpleStep(() => {
+            if (this.context.source.location === 'being played') {
+                let location =
+                    this.context.source.mostRecentEffect('actionCardLocationAfterPlay') ||
+                    'discard';
+                this.context.source.owner.moveCard(this.context.source, location);
+            }
+        });
+
         this.game.raiseEvent('onAbilityInitiated', {
             context: this.context,
             noGameStateCheck: true

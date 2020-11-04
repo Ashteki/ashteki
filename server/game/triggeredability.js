@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const { CardType } = require('../constants.js');
 
 const CardAbility = require('./CardAbility.js');
 const TriggeredAbilityContext = require('./TriggeredAbilityContext.js');
@@ -48,30 +49,33 @@ class TriggeredAbility extends CardAbility {
         }
     }
 
+    meetsRequirements(context, ignoredRequirements = []) {
+        let canPlayerTrigger =
+            this.anyPlayer ||
+            context.player === this.card.controller ||
+            this.card.anyEffect('canBeTriggeredByOpponent');
+
+        if (!ignoredRequirements.includes('player') && !canPlayerTrigger) {
+            if (
+                this.card.type !== CardType.ReactionSpell ||
+                !context.player.isCardInPlayableLocation(this.card, context.playType)
+            ) {
+                return 'player';
+            }
+        }
+
+        return super.meetsRequirements(context, ignoredRequirements);
+    }
+
     eventHandler(event, window) {
-        let player = this.properties.player || this.card.controller;
-        if (
-            !this.isLastingAbilityTrigger &&
-            event.name === 'onCardPlayed' &&
-            this.card.type === 'Action Spell'
-        ) {
-            player = event.player;
-        } else if (this.triggeredByOpponent) {
-            player = player.opponent;
-        }
-
-        if (!player) {
-            return;
-        }
-
-        let context = this.createContext(player, event);
-        //  console.log(event.name, this.card.name, this.card.reactions.includes(this), this.isTriggeredByEvent(event, context), this.meetsRequirements(context));
-        if (
-            this.card.reactions.includes(this) ||
-            (this.isLastingAbilityTrigger &&
-                (!this.hasTriggered || this.properties.multipleTrigger))
-        ) {
-            if (this.isTriggeredByEvent(event, context) && this.meetsRequirements(context) === '') {
+        for (const player of this.game.getPlayers()) {
+            let context = this.createContext(player, event);
+            //console.log(event.name, this.card.name, this.isTriggeredByEvent(event, context), this.meetsRequirements(context));
+            if (
+                this.card.reactions.includes(this) &&
+                this.isTriggeredByEvent(event, context) &&
+                this.meetsRequirements(context) === ''
+            ) {
                 window.addChoice(context);
             }
         }
