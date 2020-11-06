@@ -214,6 +214,15 @@ class Card extends PlayableObject {
         );
     }
 
+    entersPlay(properties) {
+        return this.forcedReaction(
+            Object.assign(
+                { when: { onCardEntersPlay: (event, context) => event.card === context.source } },
+                properties
+            )
+        );
+    }
+
     leavesPlay(properties) {
         return this.interrupt(
             Object.assign(
@@ -439,6 +448,10 @@ class Card extends PlayableObject {
             (total, keywords) => total + (keywords[keyword] ? keywords[keyword] : 0),
             0
         );
+    }
+
+    exhaustsOnCounter() {
+        return !this.hasKeyword('alert');
     }
 
     createSnapshot() {

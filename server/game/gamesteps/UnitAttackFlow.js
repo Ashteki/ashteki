@@ -30,6 +30,15 @@ class UnitAttackFlow extends BaseStepWithPipeline {
     }
 
     payAttackCost(attackingPlayer) {
+        let attackers = this.battles.map((b) => b.attacker);
+        this.game.addAlert(
+            'danger',
+            '{0} attacks {1} with {2}',
+            attackingPlayer,
+            this.target,
+            attackers
+        );
+
         const costEvent = Costs.mainAction().payEvent(
             this.game.getFrameworkContext(attackingPlayer)
         );
@@ -40,9 +49,13 @@ class UnitAttackFlow extends BaseStepWithPipeline {
         let participants = [battle.attacker];
         // if there's a guard or blocker, they counter and so exhaust
         // otherwise if the target counters (was not guarded or blocked) they exhaust
-        if (battle.guard && battle.guard.type !== CardType.Phoenixborn) {
+        if (
+            battle.guard &&
+            battle.guard.type !== CardType.Phoenixborn &&
+            battle.guard.exhaustsOnCounter()
+        ) {
             participants.push(battle.guard);
-        } else if (battle.counter) {
+        } else if (battle.counter && battle.target.exhaustsOnCounter()) {
             participants.push(battle.target);
         }
         // phoenixborn don't exhaust, but are marked as having guarded this round
@@ -204,11 +217,19 @@ class UnitAttackFlow extends BaseStepWithPipeline {
     promptForCounter(battle) {
         // battle.guard here holds a blocker or a guard
         if (battle.guard) {
+            this.game.addAlert(
+                'warning',
+                this.isPBAttack ? '{0} blocks {1} with {2}' : '{0} guards against {1} with {2}',
+                this.defendingPlayer,
+                battle.attacker,
+                battle.guard
+            );
+
             battle.counter = true;
             return true;
         }
 
-        if (battle.target.type == CardType.Phoenixborn) {
+        if (this.isPBAttack) {
             // don't ask to counter with phoenixborn (they don't have an attack value)
             battle.counter = false;
             return true;

@@ -1,7 +1,6 @@
 const passport = require('passport');
 
 const UserService = require('../services/AshesUserService.js');
-const DeckService = require('../services/AshesDeckService.js');
 const ConfigService = require('../services/ConfigService.js');
 const { wrapAsync } = require('../util.js');
 const logger = require('../log.js');
@@ -9,7 +8,6 @@ const logger = require('../log.js');
 let configService = new ConfigService();
 
 let userService = new UserService(configService);
-let deckService = new DeckService(configService);
 
 module.exports.init = function (server) {
     server.get(
@@ -32,15 +30,7 @@ module.exports.init = function (server) {
 
                 retUser = user.getFullDetails();
 
-                // if (req.user.permissions.canVerifyDecks) {
-                //     retUser.invalidDecks = (
-                //         await deckService.getFlaggedUnverifiedDecksForUser(user)
-                //     ).map((deck) => {
-                //         return { id: deck._id, uuid: deck.uuid, name: deck.name };
-                //     });
-                // }
-
-                linkedAccounts = await userService.getPossiblyLinkedAccounts(user);
+                // linkedAccounts = await userService.getPossiblyLinkedAccounts(user);
             } catch (error) {
                 logger.error(error);
 
@@ -115,7 +105,7 @@ module.exports.init = function (server) {
                     return res.status(404).send({ message: 'Not found' });
                 }
 
-                await deckService.verifyDecksForUser(user.id);
+                // await deckService.verifyDecksForUser(user.id);
             } catch (error) {
                 logger.error(error);
 

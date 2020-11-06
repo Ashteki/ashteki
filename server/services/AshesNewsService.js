@@ -1,9 +1,11 @@
+const logger = require('../log');
+
 class AshesNewsService {
     constructor(db) {
         this.news = db.get('news');
     }
 
-    getRecentNewsItems(options) {
+    async getRecentNewsItems(options) {
         var params = {};
 
         params.sort = { datePublished: -1 };
@@ -14,8 +16,22 @@ class AshesNewsService {
         return this.news.find({}, params);
     }
 
-    addNews(news) {
+    async addNews(news) {
         return this.news.insert(news);
+    }
+
+    async deleteNews(id) {
+        this.news.remove({ _id: id });
+    }
+
+    async editNews(id, text) {
+        let props = {
+            text: text
+        };
+        return this.news.update({ _id: id }, { $set: props }).catch((err) => {
+            logger.error(err);
+            throw new Error('Error updating news');
+        });
     }
 }
 

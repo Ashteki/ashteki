@@ -10,15 +10,11 @@ class SariaGuideman extends Card {
                 ability.costs.dice([{ magic: 'charm', level: 'class' }])
             ],
             gameAction: [
-                ability.actions.draw()
-                //TODO: discardTopOfDeck doesn't seem to work :(
-                // ability.actions.discardTopOfDeck((context) => ({
-                //     target: context.player.opponent
-                // }))
-            ],
-            then: {
-                message: '!! MANUAL OPPONENT DISCARD !!'
-            }
+                ability.actions.draw(),
+                ability.actions.discardTopOfDeck((context) => ({
+                    target: context.player.opponent
+                }))
+            ]
         });
     }
 }

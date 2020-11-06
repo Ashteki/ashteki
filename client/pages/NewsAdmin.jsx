@@ -67,15 +67,15 @@ const NewsAdmin = () => {
 
     useEffect(() => {
         dispatch(loadNews({ limit: 5, forceLoad: true }));
-    }, []);
+    }, [dispatch]);
 
     const renderedNews = news.map((newsItem) => {
         return (
-            <tr key={newsItem.id} className='d-flex'>
+            <tr key={newsItem._id} className='d-flex'>
                 <td className='col-2'>{moment(newsItem.datePublished).format('YYYY-MM-DD')}</td>
                 <td className='col-2'>{newsItem.poster}</td>
                 <td className='col'>
-                    {editId === newsItem.id ? (
+                    {editId === newsItem._id ? (
                         <Form.Control
                             as='textarea'
                             rows={4}
@@ -89,7 +89,7 @@ const NewsAdmin = () => {
                 </td>
                 <td className='col-3'>
                     <div className='btn-group'>
-                        {editId === newsItem.id ? (
+                        {editId === newsItem._id ? (
                             <Button
                                 variant='primary'
                                 type='button'
@@ -106,7 +106,7 @@ const NewsAdmin = () => {
                                 variant='primary'
                                 type='button'
                                 onClick={() => {
-                                    setEditId(newsItem.id);
+                                    setEditId(newsItem._id);
                                     setEditText(newsItem.text);
                                 }}
                             >
@@ -116,7 +116,7 @@ const NewsAdmin = () => {
                         <Button
                             variant='danger'
                             type='button'
-                            onClick={() => dispatch(deleteNews(newsItem.id))}
+                            onClick={() => dispatch(deleteNews(newsItem._id))}
                         >
                             Delete
                         </Button>

@@ -52,11 +52,11 @@ module.exports.init = function (server) {
         '/api/decks',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            let numDecks = await deckService.getNumDecksForUser(req.user, req.query);
+            let numDecks = await deckService.getNumDecksForUser(req.user);
             let decks = [];
 
             if (numDecks > 0) {
-                decks = (await deckService.findForUser(req.user, req.query)).map((deck) => {
+                decks = (await deckService.findByUserName(req.user)).map((deck) => {
                     let deckUsageLevel = 0;
                     if (
                         deck.usageCount >
@@ -102,7 +102,7 @@ module.exports.init = function (server) {
             let savedDeck;
 
             try {
-                savedDeck = await deckService.create(req.user, deck);
+                savedDeck = await deckService.create(deck);
             } catch (error) {
                 return res.send({
                     success: false,

@@ -182,9 +182,9 @@ class GameList extends React.Component {
                 continue;
             }
 
-            if (!this.props.gameFilter[game.gameFormat]) {
-                continue;
-            }
+            // if (!this.props.gameFilter[game.gameFormat]) {
+            //     continue;
+            // }
 
             let players = this.getPlayers(game);
 

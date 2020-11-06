@@ -35,10 +35,10 @@ export function addBanlist(ip) {
 
 export function deleteBanlist(id) {
     return {
-        types: ['BANLIST_NEWS', 'BANLIST_DELETED'],
+        types: ['DELETE_BANLIST', 'BANLIST_DELETED'],
         shouldCallAPI: () => true,
         APIParams: {
-            url: `/api/news/${id}`,
+            url: `/api/banlist/${id}`,
             type: 'DELETE'
         }
     };

@@ -114,7 +114,7 @@ class UserService extends EventEmitter {
         let user = await this.users.findOne({ _id: id });
         user.tokens = await this.getRefreshTokens(id);
         user.blocklist = await this.getBlocklist(id);
-        user.permissions = await this.getPermissions(user);
+        // user.permissions = await this.getPermissions(user);
 
         return new User(user);
     }
