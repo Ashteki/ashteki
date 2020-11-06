@@ -1,0 +1,12 @@
+{
+    mongo: 'mongodb://mongodb-w27f:27017/ashteki',
+    redisUrl: 'redis://redis-hq6o:10000',
+    
+    lobby: {
+        port: 4000
+    },
+
+    gameNode: {
+        hostname: 'localhost'
+    }
+}
