@@ -37,3 +37,33 @@
 .enhanced-card {
     color: #4f779b;
 }
+
+.deck-card-group {
+    position: relative;
+    margin: 5px 5px 5px 0;
+    padding: 10px;
+    border: 1px solid rgba(71, 58, 56, 0.65);
+  }
+
+  
+.card-group-title {
+    background-color: theme-color('primary');
+    color: white;
+    margin: 5px 5px 0 0;
+    padding: 5px 1px;
+    border: 1px solid theme-color('primary');
+    border-radius: 4px 4px 0 0;
+    border-bottom: none;
+    text-align: center;
+    position: relative;
+    top: 5px;
+  }
+
+.cards-no-break {
+    width:50%
+}
+
+.cards {
+    flex-flow: row wrap;
+    display: flex;
+}

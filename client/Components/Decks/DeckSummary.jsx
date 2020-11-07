@@ -3,7 +3,6 @@ import { Col, Row } from 'react-bootstrap';
 import { sortBy } from 'underscore';
 import { useTranslation } from 'react-i18next';
 import CardImage from '../GameBoard/CardImage';
-import { Constants } from '../../constants';
 import Phoenixborn from './Phoenixborn';
 
 import './DeckSummary.scss';
@@ -40,16 +39,75 @@ const DeckSummary = ({ deck }) => {
                     {card.card.locale && card.card.locale[i18n.language]
                         ? card.card.locale[i18n.language].name
                         : card.card.name}
-                    {card.maverick && (
-                        <img className='small-card-icon' src={Constants.MaverickIcon} />
-                    )}
-                    {card.anomaly && (
-                        <img className='small-card-icon' src={Constants.AnomalyIcon} />
-                    )}
                 </div>
             );
         }
     }
+
+    const getCardsToRender = () => {
+        let cardsToRender = [];
+        let groupedCards = {};
+
+        let combinedCards = deck.cards.concat(deck.conjurations);
+
+        combinedCards.forEach((card) => {
+            let type = card.card.type;
+
+            if (type === 'character' || type === 'event') {
+                type = card.card.side + ` ${type}`;
+            }
+            if (!groupedCards[type]) {
+                groupedCards[type] = [card];
+            } else {
+                groupedCards[type].push(card);
+            }
+        });
+
+        for (let key in groupedCards) {
+            let cardList = groupedCards[key];
+            let cards = [];
+            let count = 0;
+
+            cardList.forEach((card) => {
+                cards.push(
+                    <div key={card.card.id}>
+                        <span>{card.count + 'x '}</span>
+                        <span
+                            className='card-link'
+                            onMouseOver={() => setZoomCard(card)}
+                            onMouseMove={(event) => {
+                                let y = event.clientY;
+                                let yPlusHeight = y + 420;
+
+                                if (yPlusHeight >= window.innerHeight) {
+                                    y -= yPlusHeight - window.innerHeight;
+                                }
+
+                                setMousePosition({ x: event.clientX, y: y });
+                            }}
+                            onMouseOut={() => setZoomCard(null)}
+                        >
+                            {card.card.name}
+                        </span>
+                    </div>
+                );
+                count += parseInt(card.count);
+            });
+
+            cardsToRender.push(
+                <div className='cards-no-break'>
+                    <div className='card-group-title'>{key + ' (' + count.toString() + ')'}</div>
+                    <div key={key} className='deck-card-group'>
+                        {cards}
+                    </div>
+                </div>
+            );
+        }
+
+        return cardsToRender;
+    };
+
+    var cardsToRender = getCardsToRender();
 
     return (
         <Col xs='12' className='deck-summary'>
@@ -95,7 +153,7 @@ const DeckSummary = ({ deck }) => {
                         />
                     </div>
                 )}
-                <Col sm='4'>{output}</Col>
+                <div className='cards'>{cardsToRender}</div>
             </Row>
         </Col>
     );

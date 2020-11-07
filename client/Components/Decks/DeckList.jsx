@@ -140,10 +140,11 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
         }
     };
 
+    // eslint-disable-next-line no-unused-vars
     const rowClasses = (row) => {
-        if (!row.status.basicRules) {
-            return 'invalid';
-        }
+        // if (!row.status.basicRules) {
+        //     return 'invalid';
+        // }
 
         return '';
     };
@@ -246,7 +247,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
     ];
 
     let onNameChange = debounce((event) => {
-        nameFilter.current(event.target.value.toLowerCase());
+        nameFilter.current(event.target.value);
     }, 500);
 
     return (
@@ -280,7 +281,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
                     bootstrap4
                     remote
                     hover
-                    keyField='id'
+                    keyField='_id'
                     data={decks}
                     columns={columns}
                     selectRow={selectRow}

@@ -26,8 +26,8 @@ class AshesDeckService {
         return this.preconDecks.find();
     }
 
-    findByUserName(userName) {
-        return this.decks.find({ username: userName }, { sort: { lastUpdated: -1 } });
+    async findByUserName(userName) {
+        return await this.decks.find({ username: userName }, { sort: { lastUpdated: -1 } });
     }
 
     clearPrecons() {
@@ -81,8 +81,8 @@ class AshesDeckService {
         return this.decks.remove({ _id: id });
     }
 
-    getNumDecksForUser(user) {
-        const userDecks = this.findByUserName(user.username);
+    async getNumDecksForUser(user) {
+        const userDecks = await this.findByUserName(user.username);
         //todo: handle options
         return userDecks ? userDecks.length : 0;
     }

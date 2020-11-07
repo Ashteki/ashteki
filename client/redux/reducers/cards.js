@@ -18,19 +18,16 @@ function processDecks(decks, state) {
             continue;
         }
 
-        deck.cards = deck.cards.map((card) => {
-            let result = {
-                count: card.count,
-                card: Object.assign({}, state.cards[card.id]),
-                id: card._id,
-                maverick: card.maverick,
-                anomaly: card.anomaly,
-                image: card.image,
-                dbId: card.dbId
-            };
-            result.card.image = card.image || card._id;
-            return result;
-        });
+        deck.cards = deck.cards.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id
+        }));
+        deck.conjurations = deck.conjurations.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id
+        }));
 
         deck.status = {
             flagged: !!deck.flagged,
