@@ -5,7 +5,7 @@ import { ButtonGroup, Col } from 'react-bootstrap';
 import ConfirmButton from '../Form/ConfirmButton';
 import DeckSummary from './DeckSummary';
 import Panel from '../Site/Panel';
-import { deleteDeck } from '../../redux/actions';
+import { deleteDeck, navigate } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
 /**
@@ -22,11 +22,18 @@ const ViewDeck = ({ deck }) => {
     const handleDeleteClick = () => {
         dispatch(deleteDeck(deck));
     };
+    const handleEditClick = () => {
+        dispatch(navigate('/decks/edit'));
+    };
 
     return (
-        <Panel title={deck.name}>
+        <Panel title={deck?.name}>
             <Col xs={12} className='text-center'>
                 <ButtonGroup>
+                    <button className='btn btn-primary' onClick={handleEditClick}>
+                        Edit
+                    </button>
+
                     <ConfirmButton onClick={handleDeleteClick}>
                         <Trans>Delete</Trans>
                     </ConfirmButton>

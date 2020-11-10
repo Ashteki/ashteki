@@ -6,7 +6,6 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
 import debounce from 'lodash.debounce';
 import $ from 'jquery';
 
@@ -14,7 +13,6 @@ import Phoenixborn from './Phoenixborn';
 import { loadDecks, selectDeck, loadStandaloneDecks } from '../../redux/actions';
 
 import './DeckList.scss';
-import { Constants } from '../../constants';
 
 /**
  * @typedef CardLanguage
@@ -90,7 +88,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
         filter: []
     });
     const nameFilter = useRef(null);
-    const expansionFilter = useRef(null);
     const dispatch = useDispatch();
 
     const { decks, numDecks, selectedDeck } = useSelector((state) => ({
@@ -108,18 +105,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
 
         $('.filter-label').parent().parent().hide();
     }, [pagingDetails, dispatch, standaloneDecks]);
-
-    const MultiSelectFilter = () => {
-        return (
-            <Select
-                isMulti
-                options={Constants.Expansions}
-                defaultValue={Constants.Expansions}
-                value={pagingDetails.filter.find((f) => f.name === 'expansion')?.value}
-                onChange={(values) => expansionFilter.current(values.map((v) => v))}
-            />
-        );
-    };
 
     const selectRow = {
         mode: 'radio',
@@ -194,7 +179,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
             // eslint-disable-next-line react/display-name
             formatter: (_, row) => (
                 <div className='deck-image'>
-                    <Phoenixborn pbStub={row.phoenixborn[0].id} />
+                    <Phoenixborn pbStub={row.phoenixborn[0]?.id} />
                 </div>
             )
         },
@@ -256,7 +241,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
                 <Col md={12}>
                     <Form>
                         <Form.Row>
-                            <Form.Group as={Col} lg='6' controlId='formGridName'>
+                            <Form.Group as={Col} controlId='formGridName'>
                                 <Form.Label>{t('Name')}</Form.Label>
                                 <Form.Control
                                     name='name'
@@ -267,10 +252,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
                                     }}
                                     placeholder={t('Filter by name')}
                                 />
-                            </Form.Group>
-                            <Form.Group as={Col} lg='6' controlId='formGridExpansion'>
-                                <Form.Label>{t('Expansion')}</Form.Label>
-                                <Form.Control as={MultiSelectFilter} />
                             </Form.Group>
                         </Form.Row>
                     </Form>

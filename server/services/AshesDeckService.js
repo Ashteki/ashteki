@@ -74,7 +74,7 @@ class AshesDeckService {
             lastUpdated: new Date()
         };
 
-        return this.decks.update({ _id: deck._id }, { $set: properties });
+        return this.decks.update({ _id: deck.id }, { $set: properties });
     }
 
     delete(id) {

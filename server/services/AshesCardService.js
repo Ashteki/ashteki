@@ -27,22 +27,13 @@ class AshesCardService {
 
                 _.each(result, (card) => {
                     if (options && options.shortForm) {
-                        cards[card.stub] = _.pick(
-                            card,
-                            '_id',
-                            'name',
-                            'type',
-                            'clan',
-                            'side',
-                            'deck_limit',
-                            'element',
-                            'unicity',
-                            'influence_cost',
-                            'influence_pool',
-                            'pack_cards',
-                            'role_restriction',
-                            'allowed_clans'
-                        );
+                        cards[card.stub] = {
+                            _id: card._id,
+                            name: card.name,
+                            type: card.type,
+                            stub: card.stub,
+                            id: card.stub
+                        };
                     } else {
                         cards[card.stub] = card;
                     }

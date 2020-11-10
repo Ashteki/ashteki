@@ -6,6 +6,8 @@ import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Lobby from './pages/Lobby';
 import Decks from './pages/Decks';
+import AddDeck from './pages/AddDeck';
+import EditDeck from './pages/EditDeck';
 //import Matches from './pages/Matches';
 import ImportDeck from './Components/Decks/ImportDeck';
 import HowToPlay from './pages/HowToPlay';
@@ -37,6 +39,9 @@ const routes = [
     },
     { path: '/blocklist', action: () => <BlockList key='blocklist' /> },
     { path: '/decks', action: () => <Decks key='decks' /> },
+    { path: '/decks/add', action: () => <AddDeck /> },
+    { path: '/decks/edit', action: (params) => <EditDeck deckId={params.deckId} /> },
+
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
     { path: '/how-to-play', action: () => <HowToPlay key='howtoplay' /> },

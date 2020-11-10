@@ -49,6 +49,19 @@ export function selectDeck(deck) {
     };
 }
 
+export function addDeck() {
+    return {
+        type: 'ADD_DECK'
+    };
+}
+
+export function updateDeck(deck) {
+    return {
+        type: 'UPDATE_DECK',
+        deck: deck
+    };
+}
+
 export function deleteDeck(deck) {
     return {
         types: [Decks.DeleteDeck, Decks.DeckDeleted],
@@ -62,18 +75,28 @@ export function deleteDeck(deck) {
 
 export function saveDeck(deck) {
     let str = JSON.stringify({
-        uuid: deck.uuid
+        deckName: deck.name,
+        phoenixborn: formatCards(deck.phoenixborn),
+        cards: formatCards(deck.cards),
+        conjurations: formatCards(deck.conjurations),
+        dicepool: deck.dicepool
     });
 
     return {
         types: [Decks.SaveDeck, Decks.DeckSaved],
         shouldCallAPI: () => true,
         APIParams: {
-            url: '/api/decks/',
-            type: 'POST',
+            url: '/api/decks/' + (deck._id || ''),
+            type: deck._id ? 'PUT' : 'POST',
             data: str
         }
     };
+}
+
+function formatCards(cards) {
+    return cards.map((card) => {
+        return { id: card.id, count: card.count };
+    });
 }
 
 export function clearDeckStatus() {

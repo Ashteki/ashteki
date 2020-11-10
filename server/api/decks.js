@@ -95,31 +95,39 @@ module.exports.init = function (server) {
         '/api/decks',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            if (!req.body.uuid) {
-                return res.send({ success: false, message: 'uuid must be specified' });
+            if (!req.user) {
+                return res.status(401).send({ message: 'Unauthorized' });
             }
 
-            let deck = Object.assign({}, { uuid: req.body.uuid, username: req.user.username });
-            let savedDeck;
+            let deck = Object.assign(req.body, { username: req.user.username });
+            await deckService.create(deck);
+            res.send({ success: true });
+        })
+    );
 
-            try {
-                savedDeck = await deckService.create(deck);
-            } catch (error) {
-                return res.send({
-                    success: false,
-                    message: error.message
-                });
+    server.put(
+        '/api/decks/:id',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            if (!req.user) {
+                return res.status(401).send({ message: 'Unauthorized' });
             }
 
-            if (!savedDeck) {
-                return res.send({
-                    success: false,
-                    message:
-                        'An error occurred importing your deck.  Please check the Url or try again later.'
-                });
+            let deck = await deckService.getById(req.params.id);
+
+            if (!deck) {
+                return res.status(404).send({ message: 'No such deck' });
             }
 
-            res.send({ success: true, deck: savedDeck });
+            if (deck.username !== req.user.username) {
+                return res.status(401).send({ message: 'Unauthorized' });
+            }
+
+            let data = Object.assign({ id: req.params.id }, req.body);
+
+            deckService.update(data);
+
+            res.send({ success: true, message: 'Saved' });
         })
     );
 
@@ -141,30 +149,6 @@ module.exports.init = function (server) {
 
             await deckService.delete(id);
             res.send({ success: true, message: 'Deck deleted successfully', deckId: id });
-        })
-    );
-
-    server.post(
-        '/api/decks/:id/verify',
-        passport.authenticate('jwt', { session: false }),
-        wrapAsync(async function (req, res) {
-            if (!req.user.permissions || !req.user.permissions.canVerifyDecks) {
-                return res.status(403);
-            }
-
-            let id = req.params.id;
-
-            let deck = await deckService.getById(id);
-
-            if (!deck) {
-                return res.status(404).send({ success: false, message: 'No such deck' });
-            }
-
-            deck.verified = true;
-            deck._id = id;
-
-            await deckService.update(deck);
-            res.send({ success: true, message: 'Deck verified successfully', deckId: id });
         })
     );
 };

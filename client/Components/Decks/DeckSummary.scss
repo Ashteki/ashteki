@@ -43,8 +43,13 @@
     margin: 5px 5px 5px 0;
     padding: 10px;
     border: 1px solid rgba(71, 58, 56, 0.65);
+    
   }
 
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+ }
   
 .card-group-title {
     background-color: theme-color('primary');
@@ -66,4 +71,5 @@
 .cards {
     flex-flow: row wrap;
     display: flex;
+    width:100%;
 }

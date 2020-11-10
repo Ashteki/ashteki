@@ -1,48 +1,16 @@
 import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { sortBy } from 'underscore';
-import { useTranslation } from 'react-i18next';
 import CardImage from '../GameBoard/CardImage';
 import Phoenixborn from './Phoenixborn';
+import Die from '../GameBoard/Die';
 
 import './DeckSummary.scss';
 
 const DeckSummary = ({ deck }) => {
-    const { t, i18n } = useTranslation();
     let [zoomCard, setZoomCard] = useState(null);
     let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
 
-    let output = [];
-    const filteredCards = sortBy(deck.cards, (c) => c.card.name);
-
-    for (const card of filteredCards) {
-        for (let i = 0; i < card.count; i++) {
-            let cardClass = 'deck-card-link';
-
-            output.push(
-                <div
-                    key={`${card.dbId}${i}`}
-                    className={cardClass}
-                    onMouseOver={() => setZoomCard(card)}
-                    onMouseMove={(event) => {
-                        let y = event.clientY;
-                        let yPlusHeight = y + 420;
-
-                        if (yPlusHeight >= window.innerHeight) {
-                            y -= yPlusHeight - window.innerHeight;
-                        }
-
-                        setMousePosition({ x: event.clientX, y: y });
-                    }}
-                    onMouseOut={() => setZoomCard(null)}
-                >
-                    {card.card.locale && card.card.locale[i18n.language]
-                        ? card.card.locale[i18n.language].name
-                        : card.card.name}
-                </div>
-            );
-        }
-    }
+    if (!deck) return null;
 
     const getCardsToRender = () => {
         let cardsToRender = [];
@@ -107,36 +75,55 @@ const DeckSummary = ({ deck }) => {
         return cardsToRender;
     };
 
+    const getDiceToRender = () => {
+        const diceToRender = [];
+        if (deck.dicepool) {
+            deck.dicepool.forEach((diceCount) => {
+                for (let i = 0; i < diceCount.count; i++) {
+                    diceToRender.push(<Die die={{ magic: diceCount.magic, level: 'power' }} />);
+                }
+            });
+        }
+        return (
+            <div>
+                <div className='card-group-title'>Dice</div>
+                <div className='deck-card-group flex'> {diceToRender}</div>
+            </div>
+        );
+    };
+
     var cardsToRender = getCardsToRender();
+    var diceToRender = getDiceToRender();
+    var phoenixbornStub = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].id : '';
 
     return (
         <Col xs='12' className='deck-summary'>
             <Row>
                 <Col xs='2' sm='3'>
-                    <Phoenixborn pbStub={deck.phoenixborn[0].id} />
+                    <Phoenixborn pbStub={phoenixbornStub} />
                 </Col>
                 <Col xs='8' sm='5'>
                     <Row>
                         <Col xs='7'>
-                            <span>{t('Wins')}</span>
+                            <span>Wins</span>
                         </Col>
                         <Col xs='5'>{deck.wins}</Col>
                     </Row>
                     <Row>
                         <Col xs='7'>
-                            <span>{t('Losses')}</span>
+                            <span>Losses</span>
                         </Col>
                         <Col xs='5'>{deck.losses}</Col>
                     </Row>
                     <Row>
                         <Col xs='7'>
-                            <span>{t('Total')}</span>
+                            <span>Total</span>
                         </Col>
                         <Col xs='5'>{parseInt(deck.wins) + parseInt(deck.losses)}</Col>
                     </Row>
                     <Row>
                         <Col xs='7'>
-                            <span>{t('Win Rate')}</span>
+                            <span>Win Rate</span>
                         </Col>
                         <Col xs='5'>{deck.winRate?.toFixed(2)}%</Col>
                     </Row>
@@ -154,6 +141,9 @@ const DeckSummary = ({ deck }) => {
                     </div>
                 )}
                 <div className='cards'>{cardsToRender}</div>
+            </Row>
+            <Row>
+                <div className='large'>{diceToRender}</div>
             </Row>
         </Col>
     );

@@ -18,6 +18,11 @@ function processDecks(decks, state) {
             continue;
         }
 
+        deck.phoenixborn = deck.phoenixborn.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id
+        }));
         deck.cards = deck.cards.map((card) => ({
             count: card.count,
             card: Object.assign({}, state.cards[card.id]),
@@ -136,24 +141,65 @@ export default function (state = { decks: [], cards: {} }, action) {
             }
 
             return newState;
-        case Decks.SaveDeck:
+        case 'ADD_DECK':
+            var aradel = state.cards['aradel-summergaard'];
+            var newDeck = {
+                name: 'New Deck',
+                cards: [],
+                conjurations: [],
+                phoenixborn: [aradel]
+            };
+
+            newState = Object.assign({}, state, {
+                selectedDeck: newDeck,
+                deckSaved: false
+            });
+
+            processDecks([newState.selectedDeck], state);
+
+            return newState;
+        case 'UPDATE_DECK':
+            newState = Object.assign({}, state, {
+                selectedDeck: action.deck,
+                deckSaved: false
+            });
+
+            if (newState.selectedDeck) {
+                processDecks([newState.selectedDeck], state);
+            }
+
+            return newState;
+        case 'SAVE_DECK':
             newState = Object.assign({}, state, {
                 deckSaved: false
             });
 
             return newState;
-        case Decks.DeckSaved:
-            decks = state.decks;
-            decks.unshift(action.response.deck);
+        case 'DECK_SAVED':
             newState = Object.assign({}, state, {
                 deckSaved: true,
-                selectedDeck: action.response.deck,
-                decks: decks
+                decks: []
             });
 
-            processDecks(newState.decks, state);
-
             return newState;
+        // case Decks.SaveDeck:
+        //     newState = Object.assign({}, state, {
+        //         deckSaved: false
+        //     });
+
+        //     return newState;
+        // case Decks.DeckSaved:
+        //     decks = state.decks;
+        //     decks.unshift(action.response.deck);
+        //     newState = Object.assign({}, state, {
+        //         deckSaved: true,
+        //         selectedDeck: action.response.deck,
+        //         decks: decks
+        //     });
+
+        //     processDecks(newState.decks, state);
+
+        //     return newState;
         case 'DECK_DELETED':
             newState = Object.assign({}, state, {
                 deckDeleted: true
