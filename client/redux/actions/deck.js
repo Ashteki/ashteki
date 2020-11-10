@@ -95,7 +95,7 @@ export function saveDeck(deck) {
 
 function formatCards(cards) {
     return cards.map((card) => {
-        return { id: card.id, count: card.count };
+        return { id: card.id, count: card.count || 1 };
     });
 }
 
