@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class AradelSummergaard extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,7 @@ class AradelSummergaard extends Card {
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([{ magic: 'natural', level: 'class' }])
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Natural)])
             ],
             target: {
                 cardType: ['Ally', 'Conjuration'],

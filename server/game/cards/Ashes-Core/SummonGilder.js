@@ -1,5 +1,6 @@
-const { BattlefieldTypes } = require('../../../constants.js');
+const { BattlefieldTypes, Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class SummonGilder extends Card {
     setupCardAbilities(ability) {
@@ -8,7 +9,7 @@ class SummonGilder extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([{ magic: 'natural', level: 'class' }])
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Natural)])
             ],
             location: 'spellboard',
             target: {

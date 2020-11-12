@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class SummonSilverSnake extends Card {
     setupCardAbilities(ability) {
@@ -8,8 +10,8 @@ class SummonSilverSnake extends Card {
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([
-                    { magic: 'charm', level: 'power' },
-                    { magic: 'natural', level: 'power' }
+                    new DiceCount(1, Level.Power, Magic.Charm),
+                    new DiceCount(1, Level.Power, Magic.Natural)
                 ])
             ],
             location: 'spellboard',

@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class SummonBloodPuppet extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,7 @@ class SummonBloodPuppet extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([{ magic: 'ceremonial', level: 'class' }])
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
             location: 'spellboard',
             target: {

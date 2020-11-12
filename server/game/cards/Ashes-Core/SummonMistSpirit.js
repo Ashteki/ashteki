@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class SummonMistSpirit extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,7 @@ class SummonMistSpirit extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
-                ability.costs.die({ magic: 'illusion', level: 'class' })
+                ability.costs.die(new DiceCount(1, Level.Class, Magic.Illusion))
             ],
             location: 'spellboard',
             target: {
@@ -18,7 +20,7 @@ class SummonMistSpirit extends Card {
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
-                cost: ability.costs.dice([{ level: 'basic' }]),
+                cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
                 target: {
                     player: 'self',
                     cardType: 'Conjuration',

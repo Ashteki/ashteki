@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class SummonFalseDemon extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,10 @@ class SummonFalseDemon extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([{ magic: 'illusion', level: 'class' }, { level: 'basic' }])
+                ability.costs.dice([
+                    new DiceCount(1, Level.Class, Magic.Illusion),
+                    new DiceCount(1, Level.Basic)
+                ])
             ],
             location: 'spellboard',
             target: {

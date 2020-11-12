@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class SummonMaskedWolf extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,7 @@ class SummonMaskedWolf extends Card {
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([{ magic: 'illusion', level: 'class' }])
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
             ],
             location: 'spellboard',
             target: {

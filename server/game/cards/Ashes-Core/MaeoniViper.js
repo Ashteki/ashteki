@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class MaeoniViper extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,7 @@ class MaeoniViper extends Card {
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([{ level: 'basic' }, { level: 'basic' }])
+                ability.costs.dice([new DiceCount(2, Level.Basic, Magic.Natural)])
             ],
             targets: {
                 myChar: {

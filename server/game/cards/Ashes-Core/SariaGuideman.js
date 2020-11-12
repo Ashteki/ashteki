@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class SariaGuideman extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,7 @@ class SariaGuideman extends Card {
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([{ magic: 'charm', level: 'class' }])
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Charm)])
             ],
             gameAction: [
                 ability.actions.draw(),

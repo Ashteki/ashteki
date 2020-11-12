@@ -1,4 +1,6 @@
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class Purge extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +9,7 @@ class Purge extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
-                ability.costs.die({ magic: 'charm', level: 'class' })
+                ability.costs.die(new DiceCount(1, Level.Class, Magic.Charm))
             ],
             location: 'spellboard',
             gameAction: ability.actions.discardTopOfDeck({ player: this.controller.opponent })
