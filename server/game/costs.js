@@ -1,4 +1,5 @@
 const { BattlefieldTypes } = require('../constants');
+const ChosenActionCost = require('./Costs/chosenactionscost');
 const DiceCost = require('./Costs/DiceCost');
 const DiceCount = require('./DiceCount');
 
@@ -13,6 +14,7 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.spendSideAction().getEvent(context.player, context)
     }),
+    chosenAction: () => new ChosenActionCost(),
     exhaust: () => ({
         canPay: () => true, // cards can be overexhausted (>1 tokens)
         payEvent: (context) => context.game.actions.exhaust().getEvent(context.source, context)
@@ -98,9 +100,10 @@ function parseCosts(costData) {
                 }
                 if (Array.isArray(costItem)) {
                     // this is a parallel cost
-                    if (!costItem.indexOf('magic')) {
-                        // this is an parallel action cost
-
+                    if (costItem.includes('[[main]]')) {
+                        //ASSUMPTION: this is a parallel action cost
+                        // and will always include main as an option
+                        costs.push(Costs.chosenAction());
                         break;
                     }
                 }
