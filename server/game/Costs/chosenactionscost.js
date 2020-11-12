@@ -39,9 +39,9 @@ class ChosenActionCost {
     payEvent(context) {
         switch (context.costs.actionType) {
             case 'main':
-                return context.game.actions.spendMain().getEvent(context);
+                return context.game.actions.spendMainAction().getEvent(context.player, context);
             case 'side':
-                return context.game.actions.spendSide().getEvent(context);
+                return context.game.actions.spendSideAction().getEvent(context.player, context);
         }
         throw new Error(`Cannot determine cost payEvent for ChosenActionCost`);
     }
