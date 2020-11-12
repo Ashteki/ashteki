@@ -1,9 +1,11 @@
+const Dice = require('../dice');
 const BaseDieSelector = require('./BaseDieSelector');
 
 class MatchedDiceSelector extends BaseDieSelector {
     constructor(format, properties) {
         super(properties);
 
+        // make sure it's an array for diceReq.
         this.format = Array.isArray(format) ? format : [format];
     }
 
@@ -12,7 +14,7 @@ class MatchedDiceSelector extends BaseDieSelector {
         //     return this.numDice(context);
         // }
 
-        return this.format.length;
+        return Dice.getRequiredCount(this.format);
     }
 
     defaultActivePromptTitle() {
@@ -30,7 +32,7 @@ class MatchedDiceSelector extends BaseDieSelector {
 
     // eslint-disable-next-line no-unused-vars
     hasEnoughSelected(selectedDice, context) {
-        return selectedDice.length === this.format.length;
+        return selectedDice.length === this.getNumDice();
     }
 
     // eslint-disable-next-line no-unused-vars

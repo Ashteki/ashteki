@@ -22,4 +22,20 @@ const AbilityType = {
     OtherEffects: 'OtherEffects'
 };
 
-module.exports = { Constants, CardType, BattlefieldTypes, AbilityType };
+const Magic = {
+    Ceremonial: 'ceremonial',
+    Charm: 'charm',
+    Divine: 'divine',
+    Illusion: 'illusion',
+    Natural: 'natural',
+    Sympathy: 'sympathy',
+    Time: 'time'
+};
+
+const Level = {
+    Basic: 'basic',
+    Class: 'class',
+    Power: 'power'
+};
+
+module.exports = { Constants, CardType, BattlefieldTypes, AbilityType, Magic, Level };

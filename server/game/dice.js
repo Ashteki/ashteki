@@ -27,28 +27,60 @@ class Dice {
     // can diceReq be matched from the collection of dice?
     static canMatch(dice, diceReq) {
         const matchedDice = this.matchDice(dice, diceReq);
-        return matchedDice.length == diceReq.length;
+        // matched length == number of dice askedfor
+        const expectedCount = Dice.getRequiredCount(diceReq);
+        return matchedDice.length == expectedCount;
+    }
+
+    static getRequiredCount(diceReq) {
+        return diceReq.reduce((acc, req) => {
+            // if it's a parallel cost then return the count of the first item
+            // ASSUMPTION: parallel dice costs will always ask for the same dice count.
+            if (Array.isArray(req)) {
+                return acc + req[0].count;
+            }
+            return acc + req.count;
+        }, 0);
     }
 
     static matchDice(dice, diceReq) {
         const availableDice = [...dice];
         const matchedDice = [];
+        // sort dice basic -> class -> power so .find() will use class over power dice.
         availableDice.sort((a, b) => (a.level < b.level ? -1 : 1));
 
-        diceReq
+        let parallels = diceReq.filter((r) => Array.isArray(r));
+        let directs = diceReq.filter((r) => !Array.isArray(r));
+        directs
             .sort((a, b) => (a.level < b.level ? -1 : 1))
             .forEach((req) => {
-                const die = this.findDie(availableDice, req);
-
-                if (die) {
-                    const index = availableDice.indexOf(die);
-                    if (index > -1) {
-                        availableDice.splice(index, 1);
-                    }
-                    matchedDice.push(die);
+                // support requests for multiples
+                for (let i = 0; i < req.count; i++) {
+                    Dice.findADie(availableDice, req, matchedDice);
                 }
             });
+        // there should only be one parallel dice cost, but anyway...
+        parallels.forEach((p) => {
+            p.forEach((item) => {
+                //BUG?: assuming a single die return needed... what if count is 2?
+                if (Dice.findADie(availableDice, item, matchedDice)) return;
+            });
+        });
         return matchedDice;
+    }
+
+    static findADie(availableDice, req, matchedDice) {
+        const die = this.findDie(availableDice, req);
+
+        if (die) {
+            const index = availableDice.indexOf(die);
+            if (index > -1) {
+                availableDice.splice(index, 1);
+            }
+            matchedDice.push(die);
+            return true;
+        }
+        return false;
     }
 
     static findDie(dice, req) {
