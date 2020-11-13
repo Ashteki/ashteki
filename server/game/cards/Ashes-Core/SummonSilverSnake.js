@@ -1,4 +1,4 @@
-const { Level, Magic } = require('../../../constants.js');
+const { Level, Magic, Location } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -19,8 +19,14 @@ class SummonSilverSnake extends Card {
                 player: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'silver-snake',
-                location: 'archives',
+                location: Location.Archives,
                 gameAction: ability.actions.putIntoPlay()
+            },
+            then: {
+                gameAction: ability.actions.addStatusToken((context) => ({
+                    amount: context.source.focus,
+                    target: context.preThenEvent.card
+                }))
             }
         });
     }

@@ -10,6 +10,10 @@ const CardType = {
     ReadySpell: 'Ready Spell'
 };
 
+const Location = {
+    Archives: 'archives'
+};
+
 const BattlefieldTypes = ['Ally', 'Conjuration'];
 
 const AbilityType = {
@@ -39,4 +43,4 @@ const Level = {
     Power: 'power'
 };
 
-module.exports = { Constants, CardType, BattlefieldTypes, AbilityType, Magic, Level };
+module.exports = { Constants, CardType, Location, BattlefieldTypes, AbilityType, Magic, Level };
