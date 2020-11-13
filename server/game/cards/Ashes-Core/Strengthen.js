@@ -8,10 +8,10 @@ class Strengthen extends Card {
             location: 'spellboard',
             target: {
                 cardType: ['Ally', 'Conjuration'],
-                gameAction: ability.actions.cardLastingEffect({
+                gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
-                    effect: ability.effects.modifyAttack(2)
-                })
+                    effect: ability.effects.modifyAttack(context.source.focus === 2 ? 3 : 2)
+                }))
             }
         });
     }
