@@ -6,7 +6,8 @@ const CardType = {
     Upgrade: 'Alteration Spell',
     Phoenixborn: 'Phoenixborn',
     ActionSpell: 'Action Spell',
-    ReactionSpell: 'Reaction Spell'
+    ReactionSpell: 'Reaction Spell',
+    ReadySpell: 'Ready Spell'
 };
 
 const BattlefieldTypes = ['Ally', 'Conjuration'];

@@ -381,6 +381,9 @@ class Card extends PlayableObject {
 
             const recover = this.getRecover();
             if (this.printedRecover !== recover) flags.recover = recover;
+
+            const focus = this.focus;
+            if (focus > 0) flags.focus = focus;
         }
         return flags;
     }
@@ -686,6 +689,14 @@ class Card extends PlayableObject {
                 this.anyEffect('canGuard')
             );
         }
+    }
+
+    get focus() {
+        if (this.type !== CardType.ReadySpell || this.location !== 'spellboard') return 0;
+
+        const focusLevel =
+            this.owner.spellboard.filter((spell) => spell.name === this.name).length - 1;
+        return focusLevel;
     }
 
     canBlock() {

@@ -6,10 +6,6 @@ import { getMessageWithLinks } from '../../util';
 import './NewsItem.scss';
 
 /**
- * @typedef {'unforged-red' | 'unforged-blue'| 'unforged-yellow'} NewsIcon
- */
-
-/**
  * @typedef NewsItemProps
  * @property {Date} date The date the news item was posted
  * @property {NewsIcon} icon The icon to display

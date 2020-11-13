@@ -200,7 +200,8 @@ class Player extends GameObject {
     }
 
     isSpellboardFull() {
-        return this.spellboard.length >= this.phoenixborn.spellboard;
+        const spellCount = new Set(this.spellboard.map((s) => s.name)).size;
+        return spellCount >= this.phoenixborn.spellboard;
     }
 
     isBattlefieldFull() {

@@ -8,7 +8,7 @@ const { CardType, BattlefieldTypes } = require('../../constants');
 class PlayUpgradeAction extends BasePlayAction {
     constructor(card) {
         super(card, [Costs.play()], {
-            activePromptTitle: 'Choose a unit to attach this upgrade to',
+            activePromptTitle: 'Choose a unit to attach to',
             cardType: [...BattlefieldTypes],
             gameAction: new AttachAction((context) => ({ upgrade: context.source }))
         });

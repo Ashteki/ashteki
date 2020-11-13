@@ -12,7 +12,7 @@ class SquishableCardPanel extends React.Component {
         let overallDimensions = this.getOverallDimensions();
         let dimensions = this.getCardDimensions();
 
-        let cards = this.props.cards;
+        let cards = [...this.props.cards];
         let cardIndex = 0;
         let handLength = cards ? cards.length : 0;
         let cardWidth = dimensions.width;
@@ -21,15 +21,28 @@ class SquishableCardPanel extends React.Component {
         let overflow = requiredWidth - overallDimensions.width;
         let offset = overflow / (handLength - 1);
 
+        cards = cards.sort((a, b) => (a.name < b.name ? -1 : 1));
         if (this.props.groupVisibleCards && this.hasMixOfVisibleCards()) {
-            cards = [...this.props.cards].sort((a, b) => (a.facedown && !b.facedown ? -1 : 1));
+            cards = cards.sort((a, b) => (a.facedown && !b.facedown ? -1 : 1));
         }
 
+        let lastCardName = '';
+        let focusLeftDelta = 0;
         let hand = cards.map((card) => {
-            let left = (cardWidth - offset) * cardIndex++;
+            if (lastCardName === card.name) {
+                focusLeftDelta += -30;
+            } else {
+                //focusLeftDelta = 0;
+            }
+            lastCardName = card.name;
+            let left = 0;
+            if (needsSquish) {
+                left = (cardWidth - offset) * cardIndex++;
+            }
+            left = left + focusLeftDelta;
 
             let style = {};
-            if (needsSquish) {
+            if (needsSquish || focusLeftDelta !== 0) {
                 style = {
                     left: left + 'px'
                 };
@@ -97,7 +110,7 @@ class SquishableCardPanel extends React.Component {
     render() {
         let dimensions = this.getOverallDimensions();
         let maxCards = this.props.maxCards;
-        let needsSquish = this.props.cards && this.props.cards.length > maxCards;
+        let needsSquish = this.cards && this.cards.length > maxCards;
         let cards = this.getCards(needsSquish, maxCards);
 
         let className = classNames('squishable-card-panel', this.props.className, {

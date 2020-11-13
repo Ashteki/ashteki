@@ -24,7 +24,7 @@ const News = ({ news }) => {
     /**
      * @type import('./NewsItem').NewsIcon[]
      */
-    let icons = ['unforged-red', 'unforged-blue', 'unforged-yellow'];
+    let icons = ['firstplayer'];
 
     let iconIndex = 0;
     let newsIndex = 0;

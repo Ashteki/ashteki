@@ -21,15 +21,6 @@ import FirstPlayerImage from '../../assets/img/firstplayer.png';
 
 import './PlayerStats.scss';
 
-const toggleImages = {};
-
-for (const actionType of ['main', 'side']) {
-    toggleImages[actionType] = {
-        active: require(`../../assets/img/forgedkey${actionType}.png`),
-        spent: require(`../../assets/img/unforgedkey${actionType}.png`)
-    };
-}
-
 export class PlayerStats extends React.Component {
     constructor(props) {
         super(props);

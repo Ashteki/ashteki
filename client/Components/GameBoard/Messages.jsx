@@ -4,13 +4,12 @@ import { useSelector } from 'react-redux';
 
 import Avatar from '../Site/Avatar';
 import AlertPanel from '../Site/AlertPanel';
-import AmberImage from '../../assets/img/amber.png';
 
 import './Messages.scss';
 
 const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const tokens = {
-        amber: { className: 'icon-amber', imageSrc: AmberImage }
+        // amber: { className: 'icon-amber', imageSrc: AmberImage }
     };
 
     const owner = useSelector(
