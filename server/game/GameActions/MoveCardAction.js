@@ -1,9 +1,9 @@
+const { Location } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class MoveCardAction extends CardGameAction {
     setDefaultProperties() {
         this.destination = '';
-        this.switch = false;
         this.shuffle = false;
     }
 
@@ -27,12 +27,13 @@ class MoveCardAction extends CardGameAction {
 
     getEvent(card, context) {
         return super.createEvent('onMoveCard', { card: card, context: context }, () => {
+            let origin = card.location;
             context.player.moveCard(card, this.destination);
             if (
                 this.shuffle &&
                 this.target.findIndex((c) => c === card) === this.target.length - 1
             ) {
-                if (this.destination === 'deck') {
+                if (this.destination === Location.Deck || origin === Location.Deck) {
                     context.player.shuffleDeck();
                 }
             }

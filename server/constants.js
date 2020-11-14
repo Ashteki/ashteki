@@ -11,6 +11,8 @@ const CardType = {
 };
 
 const Location = {
+    Deck: 'deck',
+    Hand: 'hand',
     Archives: 'archives'
 };
 

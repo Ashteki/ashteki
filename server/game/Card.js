@@ -383,7 +383,7 @@ class Card extends PlayableObject {
             if (this.printedRecover !== recover) flags.recover = recover;
 
             const focus = this.focus;
-            if (focus > 0) flags.focus = focus;
+            if (focus > 0) flags.spellfocus = focus;
         }
         return flags;
     }
