@@ -1,6 +1,7 @@
 const { BattlefieldTypes } = require('../constants');
 const ChosenActionCost = require('./Costs/chosenactionscost');
 const DiceCost = require('./Costs/DiceCost');
+const DynamicDiceCost = require('./Costs/dynamicdicecost');
 const DiceCount = require('./DiceCount');
 
 const Costs = {
@@ -76,7 +77,8 @@ const Costs = {
             return context.game.actions.exhaustDie().getEvent(die, context);
         }
     }),
-    dice: (cost) => new DiceCost({ diceReq: cost })
+    dice: (cost) => new DiceCost({ diceReq: cost }),
+    dynamicDice: (costFunc) => new DynamicDiceCost(costFunc)
 };
 
 function parseCosts(costData) {
