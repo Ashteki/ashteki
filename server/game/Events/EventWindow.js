@@ -15,6 +15,7 @@ class EventWindow extends BaseStepWithPipeline {
     initialise() {
         this.pipeline.initialise([
             new SimpleStep(this.game, () => this.checkEventCondition()),
+            new SimpleStep(this.game, () => this.openAbilityWindow(AbilityType.ForcedInterrupt)),
             new SimpleStep(this.game, () => this.openAbilityWindow(AbilityType.Interrupt)),
             new SimpleStep(this.game, () => this.preResolutionEffects()),
             new SimpleStep(this.game, () => this.executeHandler()),

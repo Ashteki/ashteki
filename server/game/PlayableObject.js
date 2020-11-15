@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { BattlefieldTypes, CardType } = require('../constants');
+const { BattlefieldTypes, CardType, AbilityType } = require('../constants');
 const EffectSource = require('./EffectSource');
 const TriggeredAbility = require('./triggeredability');
 
@@ -166,7 +166,11 @@ class PlayableObject extends EffectSource {
     }
 
     interrupt(properties) {
-        return this.triggeredAbility('interrupt', properties);
+        return this.triggeredAbility(AbilityType.Interrupt, properties);
+    }
+
+    forcedInterrupt(properties) {
+        return this.triggeredAbility(AbilityType.ForcedInterrupt, properties);
     }
 
     triggeredAbility(abilityType, properties) {

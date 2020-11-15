@@ -6,7 +6,7 @@ class IronRhino extends Card {
             effect: ability.effects.addKeyword({ gigantic: 1 })
         });
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onCardDestroyed: (event, context) =>
                     event.damageEvent &&
