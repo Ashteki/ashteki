@@ -12,12 +12,12 @@ class Purge extends Card {
                 ability.costs.die(new DiceCount(1, Level.Class, Magic.Charm))
             ],
             location: 'spellboard',
-            gameAction: ability.actions.discardTopOfDeck({ player: this.controller.opponent })
-            // then: {
-            //     condition: is this focused?
-            //     cost: ability.costs.dice([{ level: 'basic' }]),
-            //     gameAction: ability.actions.discardTopOfDeck({ player: this.controller.opponent })
-            // }
+            gameAction: ability.actions.discardTopOfDeck({ player: this.controller.opponent }),
+            then: (context) => ({
+                condition: context.source.focus > 0,
+                cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
+                gameAction: ability.actions.discardTopOfDeck({ player: this.controller.opponent })
+            })
         });
     }
 }

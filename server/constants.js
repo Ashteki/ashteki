@@ -13,7 +13,8 @@ const CardType = {
 const Location = {
     Deck: 'deck',
     Hand: 'hand',
-    Archives: 'archives'
+    Archives: 'archives',
+    Discard: 'discard'
 };
 
 const BattlefieldTypes = ['Ally', 'Conjuration'];

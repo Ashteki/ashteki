@@ -1,9 +1,9 @@
 const Card = require('../../Card.js');
 
-class HammerKnight extends Card {
+class IronRhino extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            effect: ability.effects.addKeyword({ alert: 1 })
+            effect: ability.effects.addKeyword({ gigantic: 1 })
         });
 
         this.forcedReaction({
@@ -14,16 +14,14 @@ class HammerKnight extends Card {
                     event.damageEvent.damageSource === context.source &&
                     event.damageEvent.fightEvent.attacker === context.source
             },
-            target: {
-                activePromptTitle: 'Aftershock 1',
-                cardType: ['Ally', 'Conjuration'],
-                controller: 'opponent',
-                gameAction: ability.actions.dealDamage({ amount: 1 })
-            }
+            gameAction: ability.actions.dealDamage((context) => ({
+                amount: 2,
+                target: context.player.opponent.phoenixborn
+            }))
         });
     }
 }
 
-HammerKnight.id = 'hammer-knight';
+IronRhino.id = 'iron-rhino';
 
-module.exports = HammerKnight;
+module.exports = IronRhino;
