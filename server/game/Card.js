@@ -198,7 +198,7 @@ class Card extends PlayableObject {
     }
 
     destroyed(properties) {
-        return this.interrupt(
+        return this.forcedInterrupt(
             Object.assign(
                 {
                     when: {
