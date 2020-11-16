@@ -7,7 +7,8 @@ const CardType = {
     Phoenixborn: 'Phoenixborn',
     ActionSpell: 'Action Spell',
     ReactionSpell: 'Reaction Spell',
-    ReadySpell: 'Ready Spell'
+    ReadySpell: 'Ready Spell',
+    AlterationSpell: 'Alteration Spell'
 };
 
 const Location = {
