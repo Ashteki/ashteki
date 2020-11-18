@@ -1,7 +1,7 @@
 {
-    "name": "keyteki",
+    "name": "ashteki",
     "version": "2.0.0",
-    "description": "A Keyforge Card Game Server",
+    "description": "An Ashes Reborn Card Game Server",
     "main": "index.js",
     "scripts": {
         "mongod": "mongod --dbpath=/data --port 27017\n",
