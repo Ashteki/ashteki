@@ -15,8 +15,9 @@ class GameRouter extends EventEmitter {
         this.workers = {};
         this.gameService = new GameService(configService);
 
-        this.subscriber = redis.createClient(configService.getValue('redisUrl'));
-        this.publisher = redis.createClient(configService.getValue('redisUrl'));
+        const redisUrl = process.env.REDIS_URL || configService.getValue('redisUrl');
+        this.subscriber = redis.createClient(redisUrl);
+        this.publisher = redis.createClient(redisUrl);
 
         this.subscriber.on('error', this.onError);
         this.publisher.on('error', this.onError);

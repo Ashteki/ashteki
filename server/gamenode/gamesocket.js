@@ -23,9 +23,10 @@ class GameSocket extends EventEmitter {
 
         this.nodeName = process.env.SERVER || configService.getValueForSection('gameNode', 'name');
 
-        this.subscriber = redis.createClient(configService.getValue('redisUrl'));
-        this.publisher = redis.createClient(configService.getValue('redisUrl'));
-        this.redis = redis.createClient(configService.getValue('redisUrl'));
+        const redisUrl = process.env.REDIS_URL || configService.getValue('redisUrl');
+        this.subscriber = redis.createClient(redisUrl);
+        this.publisher = redis.createClient(redisUrl);
+        this.redis = redis.createClient(redisUrl);
 
         this.subscriber.on('error', this.onError);
         this.publisher.on('error', this.onError);
