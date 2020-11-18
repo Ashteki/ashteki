@@ -10,7 +10,8 @@ class UserService extends EventEmitter {
     constructor(configService) {
         super();
         this.configService = configService;
-        let db = monk(configService.getValue('mongo'));
+        const mongoUrl = process.env.MONGO_URL || configService.getValue('mongo');
+        let db = monk(mongoUrl);
 
         this.users = db.get('users');
         this.refreshTokens = db.get('refresh_tokens');

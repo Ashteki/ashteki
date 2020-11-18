@@ -5,7 +5,8 @@ const logger = require('../log.js');
 
 class GameService {
     constructor(configService) {
-        let db = monk(configService.getValue('mongo'));
+        const mongoUrl = process.env.MONGO_URL || configService.getValue('mongo');
+        let db = monk(mongoUrl);
         this.games = db.get('games');
     }
 

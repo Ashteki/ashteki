@@ -2,7 +2,8 @@ const monk = require('monk');
 
 class UserService {
     constructor(configService) {
-        let db = monk(configService.getValue('mongo'));
+        const mongoUrl = process.env.MONGO_URL || configService.getValue('mongo');
+        let db = monk(mongoUrl);
         this.banlist = db.get('banlist');
     }
 

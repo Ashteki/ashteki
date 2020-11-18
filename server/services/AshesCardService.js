@@ -4,8 +4,11 @@ const monk = require('monk');
 const logger = require('../log.js');
 
 class AshesCardService {
-    constructor(configService) {
-        let db = monk(configService.getValue('mongo'));
+    constructor(configService, db) {
+        if (!db) {
+            const mongoUrl = process.env.MONGO_URL || configService.getValue('mongo');
+            db = monk(mongoUrl);
+        }
 
         this.cards = db.get('cards');
         this.packs = db.get('packs');

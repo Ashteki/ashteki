@@ -7,7 +7,8 @@ const { wrapAsync } = require('../util.js');
 const AshesNewsService = require('../services/AshesNewsService.js');
 const ConfigService = require('../services/ConfigService');
 
-let db = monk(new ConfigService().getValue('mongo'));
+const mongoUrl = process.env.MONGO_URL || new ConfigService().getValue('mongo');
+let db = monk(mongoUrl);
 let newsService = new AshesNewsService(db);
 
 module.exports.init = function (server) {

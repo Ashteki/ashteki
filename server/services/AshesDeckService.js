@@ -2,8 +2,12 @@ const logger = require('../log.js');
 const monk = require('monk');
 
 class AshesDeckService {
-    constructor(configService) {
-        let db = monk(configService.getValue('mongo'));
+    constructor(configService, db) {
+        if (!db) {
+            const mongoUrl = process.env.MONGO_URL || configService.getValue('mongo');
+            db = monk(mongoUrl);
+        }
+
         this.decks = db.get('decks');
         this.preconDecks = db.get('precon_decks');
     }

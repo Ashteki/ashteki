@@ -8,7 +8,8 @@ let services = {};
 module.exports = {
     messageService: () => {
         if (!services.messageService) {
-            let db = monk(new ConfigService().getValue('mongo'));
+            const mongoUrl = process.env.MONGO_URL || new ConfigService().getValue('mongo');
+            let db = monk(mongoUrl);
 
             services.messageService = new MessageService(db);
         }
