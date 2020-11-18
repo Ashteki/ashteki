@@ -619,7 +619,7 @@ class Card extends PlayableObject {
         this.addToken('exhaustion');
     }
 
-    unExhuast() {
+    unExhaust() {
         this.clearToken('exhaustion');
     }
 

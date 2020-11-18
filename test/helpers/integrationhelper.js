@@ -187,19 +187,6 @@ beforeEach(function () {
         this.player2.selectDeck(deckBuilder.customDeck(options.player2));
 
         this.startGame();
-        //Setup phase
-
-        if (options.phase !== 'setup') {
-            // Choose a house
-            this.player1.clickPrompt(this.player1.currentButtons[0]);
-            this.player1.endTurn();
-            this.player2.clickPrompt(this.player2.currentButtons[0]);
-            this.player2.endTurn();
-            if (options.player1.house) {
-                this.player1.clickPrompt(options.player1.house);
-            }
-        }
-
         //Player stats
         this.player1.keys = options.player1.keys;
         this.player2.keys = options.player2.keys;
@@ -209,6 +196,9 @@ beforeEach(function () {
         this.player1.inPlay = options.player1.inPlay;
         this.player2.inPlay = options.player2.inPlay;
         //Conflict deck related
+        this.player1.spellboard = options.player1.spellboard;
+        this.player2.spellboard = options.player2.spellboard;
+
         this.player1.hand = options.player1.hand;
         this.player2.hand = options.player2.hand;
         this.player1.discard = options.player1.discard;
@@ -217,7 +207,7 @@ beforeEach(function () {
         this.player2.archives = options.player2.archives;
 
         for (let player of [this.player1, this.player2]) {
-            let cards = ['inPlay', 'hand', 'discard', 'archives'].reduce(
+            let cards = ['inPlay', 'spellboard', 'hand', 'discard', 'archives'].reduce(
                 (array, location) => array.concat(player[location]),
                 []
             );

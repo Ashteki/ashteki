@@ -57,9 +57,6 @@ class PlayerInteractionWrapper {
      * {
      *    card: String,
      *    fate: Integer,
-     *    honor: 'honored' or 'dishonored',
-     *    bowed: Boolean
-     *    covert: Boolean,
      *    upgrades: String[]
      *  }
      * or String containing name or id of the card
@@ -77,6 +74,41 @@ class PlayerInteractionWrapper {
             }
 
             this.moveCard(card, 'play area');
+            card.unExhaust();
+        });
+    }
+
+    /**
+     * Gets all cards in play for a player
+     * @return {DrawCard[]} - List of player's cards currently in play
+     */
+    get spellboard() {
+        return this.player.spellboard;
+    }
+
+    /**
+     * List of objects describing characters in spellboard and any upgrades:
+     * Either as Object:
+     * {
+     *    card: String,
+     *    fate: Integer,
+     *    upgrades: String[]
+     *  }
+     * or String containing name or id of the card
+     * @param {(Object|String)[]} newState - list of cards in play and their states
+     */
+    set spellboard(newState = []) {
+        // First, move all cards in play back to the appropriate decks
+        _.each(this.spellboard, (card) => {
+            this.moveCard(card, 'deck');
+        });
+        // Set up each of the cards
+        _.each(newState, (card) => {
+            if (_.isString(card)) {
+                card = this.findCardByName(card, 'deck');
+            }
+
+            this.moveCard(card, 'spellboard');
             card.unExhaust();
         });
     }
@@ -117,6 +149,10 @@ class PlayerInteractionWrapper {
 
     get archives() {
         return this.player.archives;
+    }
+
+    get phoenixborn() {
+        return this.player.phoenixborn;
     }
 
     get opponent() {
@@ -298,6 +334,7 @@ class PlayerInteractionWrapper {
 
         if (!promptButton) {
             throw new Error(
+                // eslint-disable-next-line prettier/prettier
                 `Couldn't click on "${text}" for ${
                     this.player.name
                 }. Current prompt is:\n${this.formatPrompt()}`
@@ -473,10 +510,6 @@ class PlayerInteractionWrapper {
     }
 
     useAction(card, omni = false) {
-        if (card.type !== 'creature' && card.type !== 'artifact') {
-            throw new Error(`${card.name} cannot act`);
-        }
-
         this.clickCard(card);
         this.clickPrompt("Use this card's " + (omni ? 'Omni' : 'Action') + ' ability');
     }

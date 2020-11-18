@@ -6,19 +6,8 @@ const { matchCardByNameAndPack } = require('./cardutil.js');
 
 const PathToSubModulePacks = path.join(__dirname, '../../data/cards');
 
-const defaultFiller = {
-    brobnar: 'anger',
-    dis: 'hand-of-dis',
-    logos: 'foggify',
-    mars: 'ammonia-clouds',
-    sanctum: 'champion-anaphiel',
-    shadows: 'macis-asp',
-    untamed: 'ancient-bear',
-    staralliance: 'explo-rover',
-    saurian: 'tricerian-legionary'
-};
-const minDeck = 15;
-const fillerHouses = ['untamed', 'sanctum', 'shadows'];
+const defaultFiller = ['open-memories'];
+const minDeck = 6;
 
 class DeckBuilder {
     constructor() {
@@ -48,51 +37,57 @@ class DeckBuilder {
     customDeck(player = {}) {
         let deck = [];
 
-        for (let zone of ['deck', 'hand', 'inPlay', 'discard', 'archives']) {
+        for (let zone of ['deck', 'hand', 'inPlay', 'spellboard', 'discard', 'archives']) {
             if (Array.isArray(player[zone])) {
                 deck = deck.concat(player[zone]);
             }
         }
 
-        let houses = [];
-        for (let label of deck) {
-            let card = this.getCard(label);
-            if (!houses.includes(card.house.toLowerCase())) {
-                houses.push(card.house.toLowerCase());
-            }
-        }
-
-        let missingHouses = 3 - houses.length;
-        if (missingHouses < 0) {
-            throw new Error('More than 3 houses present');
-        } else if (missingHouses > 0) {
-            houses = houses.concat(_.difference(fillerHouses, houses).slice(0, missingHouses));
-        }
-
         while (deck.length < minDeck) {
-            deck = deck.concat(defaultFiller[houses[0]]);
+            deck = deck.concat(defaultFiller[0]);
         }
 
-        return this.buildDeck(deck);
+        let dice = [
+            {
+                magic: 'illusion',
+                count: 5
+            },
+            {
+                magic: 'ceremonial',
+                count: 5
+            }
+        ];
+
+        return this.buildDeck(deck, player['phoenixborn'], dice);
     }
 
-    buildDeck(cardLabels) {
+    buildDeck(cardLabels, phoenixborn, dice) {
         var cardCounts = {};
         _.each(cardLabels, (label) => {
             var cardData = this.getCard(label);
-            if (cardCounts[cardData.id]) {
-                cardCounts[cardData.id].count++;
+            if (cardCounts[cardData.stub]) {
+                cardCounts[cardData.stub].count++;
             } else {
-                cardCounts[cardData.id] = {
+                cardCounts[cardData.stub] = {
                     count: 1,
                     card: cardData,
-                    id: cardData.id
+                    id: cardData.stub
                 };
             }
         });
 
+        var pbData = this.getCard(phoenixborn);
+
         return {
-            cards: Object.values(cardCounts)
+            cards: Object.values(cardCounts),
+            phoenixborn: [
+                {
+                    count: 1,
+                    card: pbData,
+                    id: pbData.stub
+                }
+            ],
+            dicepool: dice
         };
     }
 

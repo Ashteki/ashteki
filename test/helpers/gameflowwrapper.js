@@ -54,9 +54,12 @@ class GameFlowWrapper {
 
     startGame() {
         this.game.initialise();
+        this.game.firstPlayer = this.player1.player;
         this.game.activePlayer = this.player1.player;
         this.player1.clickPrompt('Start the Game');
         this.player2.clickPrompt('Start the Game');
+        this.player1.clickPrompt('Done'); // discard
+        this.player2.clickPrompt('Done'); // discard
     }
 
     /**

@@ -13,8 +13,8 @@ const CardUtil = {
 
         return function (cardData) {
             return (
-                (cardData.name === name && (!pack || cardData.pack_code === pack)) ||
-                cardData.id === name
+                cardData.stub === name ||
+                (cardData.name === name && (!pack || cardData.pack_code === pack))
             );
         };
     }
