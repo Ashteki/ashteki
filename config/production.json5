@@ -1,4 +1,23 @@
 {
+    secret: 'somethingverysecret',
+    minLobbyChatTime: 0, // The time (in seconds) an account has to be registered before it can chat in the lobby
+
+    lobby: {
+        appName: 'Ashes Reborn Online',
+        emailFromAddress: 'noreply@ashteki.online',
+        blockDisposableEmail: false,
+        requireActivation: false,
+        hmacSecret: 'somethingevenmoresecret'
+
+        /*
+         * Other server configurations used, but not specified, include:
+         *  - cookieLifetime
+         *  - emailKey
+         *  - hmacSecret
+         *  - captchaKey
+         */
+    },
+    
     gameNode: {
         name: 'gamenode1',
         host: 'gn1',
