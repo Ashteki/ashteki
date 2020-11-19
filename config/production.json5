@@ -1,8 +1,8 @@
 {
     gameNode: {
-        name: 'gamenode',
-        host: 'gamenode1-gg2p:10000',
-        socketioPort: 9500
+        name: 'gamenode1',
+        host: 'gamenode1-gg2p',
+        socketioPort: 10000
 
         /*
          * Other game node configurations used, but not specified, include:
