@@ -1,7 +1,7 @@
 {
     gameNode: {
         name: 'gamenode1',
-        host: 'gamenode1-gg2p',
+        host: 'gn1',
         socketioPort: 10000
 
         /*
