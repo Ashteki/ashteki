@@ -86,10 +86,7 @@ class GameSocket extends EventEmitter {
             maxGames: config.maxGames,
             version: this.version,
             address: this.listenAddress,
-            port:
-                process.env.NODE_ENV === 'production'
-                    ? 80
-                    : process.env.PORT || config.gameNode.socketioPort,
+            port: process.env.PORT || config.gameNode.socketioPort,
             protocol: this.protocol,
             games: games
         });
