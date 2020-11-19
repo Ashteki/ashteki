@@ -1,0 +1,434 @@
+[
+  {
+    "precon_id": 6,
+    "name": "The Shadows of Viros",
+    "phoenixborn": [
+      {
+        "id": "noah-redmoon",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 5
+      },
+      {
+        "magic": "ceremonial",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "small-sacrifice",
+        "count": 3
+      },
+      {
+        "id": "summon-masked-wolf",
+        "count": 3
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 3
+      },
+      {
+        "id": "sleight-of-hand",
+        "count": 3
+      },
+      {
+        "id": "bound-soul",
+        "count": 3
+      },
+      {
+        "id": "bring-forth",
+        "count": 3
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 3
+      },
+      {
+        "id": "shadow-counter",
+        "count": 3
+      },
+      {
+        "id": "fade-away",
+        "count": 3
+      },
+      {
+        "id": "stormwind-sniper",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "masked-wolf",
+        "count": 5
+      },
+      {
+        "id": "false-demon",
+        "count": 5
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "precon_id": 5,
+    "name": "The Bloodwoods Queen",
+    "phoenixborn": [
+      {
+        "id": "jessa-na-ni",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 5
+      },
+      {
+        "magic": "ceremonial",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "fear",
+        "count": 3
+      },
+      {
+        "id": "blood-transfer",
+        "count": 3
+      },
+      {
+        "id": "summon-blood-puppet",
+        "count": 3
+      },
+      {
+        "id": "cut-the-strings",
+        "count": 3
+      },
+      {
+        "id": "undying-heart",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 3
+      },
+      {
+        "id": "final-cry",
+        "count": 3
+      },
+      {
+        "id": "blood-archer",
+        "count": 3
+      },
+      {
+        "id": "living-doll",
+        "count": 3
+      },
+      {
+        "id": "leach",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blood-puppet",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "precon_id": 4,
+    "name": "The Cloudsea Siren",
+    "phoenixborn": [
+      {
+        "id": "saria-guideman",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 5
+      },
+      {
+        "magic": "illusion",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "purge",
+        "count": 3
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 3
+      },
+      {
+        "id": "summon-seaside-raven",
+        "count": 3
+      },
+      {
+        "id": "abundance",
+        "count": 3
+      },
+      {
+        "id": "hidden-power",
+        "count": 3
+      },
+      {
+        "id": "seal",
+        "count": 3
+      },
+      {
+        "id": "strange-copy",
+        "count": 3
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 3
+      },
+      {
+        "id": "rose-fire-dancer",
+        "count": 3
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "three-eyed-owl",
+        "count": 5
+      },
+      {
+        "id": "seaside-raven",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 3,
+    "name": "The Mist Guardian",
+    "phoenixborn": [
+      {
+        "id": "aradel-summergaard",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 5
+      },
+      {
+        "magic": "illusion",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "shifting-mist",
+        "count": 3
+      },
+      {
+        "id": "summon-mist-spirit",
+        "count": 3
+      },
+      {
+        "id": "summon-blue-jaguar",
+        "count": 3
+      },
+      {
+        "id": "reflections-in-the-water",
+        "count": 3
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 3
+      },
+      {
+        "id": "out-of-the-mist",
+        "count": 3
+      },
+      {
+        "id": "root-armor",
+        "count": 3
+      },
+      {
+        "id": "steady-gaze",
+        "count": 3
+      },
+      {
+        "id": "massive-growth",
+        "count": 3
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blue-jaguar",
+        "count": 2
+      },
+      {
+        "id": "mist-spirit",
+        "count": 10
+      },
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 2,
+    "name": "The Snakes in Silver",
+    "phoenixborn": [
+      {
+        "id": "maeoni-viper",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 5
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "call-upon-the-realms",
+        "count": 3
+      },
+      {
+        "id": "summon-silver-snake",
+        "count": 3
+      },
+      {
+        "id": "refresh",
+        "count": 3
+      },
+      {
+        "id": "empower",
+        "count": 3
+      },
+      {
+        "id": "hypnotize",
+        "count": 3
+      },
+      {
+        "id": "open-memories",
+        "count": 3
+      },
+      {
+        "id": "molten-gold",
+        "count": 3
+      },
+      {
+        "id": "transfer",
+        "count": 3
+      },
+      {
+        "id": "golden-veil",
+        "count": 3
+      },
+      {
+        "id": "summon-gilder",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "silver-snake",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 1,
+    "name": "The Iron Men",
+    "phoenixborn": [
+      {
+        "id": "coal-roarkwin",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 5
+      },
+      {
+        "magic": "ceremonial",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "expand-energy",
+        "count": 3
+      },
+      {
+        "id": "strengthen",
+        "count": 3
+      },
+      {
+        "id": "cover",
+        "count": 3
+      },
+      {
+        "id": "chant-of-revenge",
+        "count": 3
+      },
+      {
+        "id": "summon-iron-rhino",
+        "count": 3
+      },
+      {
+        "id": "anchornaut",
+        "count": 3
+      },
+      {
+        "id": "iron-worker",
+        "count": 3
+      },
+      {
+        "id": "hammer-knight",
+        "count": 3
+      },
+      {
+        "id": "one-hundred-blades",
+        "count": 3
+      },
+      {
+        "id": "close-combat",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "iron-rhino",
+        "count": 1
+      }
+    ]
+  }
+]
