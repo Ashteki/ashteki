@@ -122,13 +122,13 @@ class Server {
         let port =
             process.env.PORT || this.configService.getValueForSection('lobby', 'port') || 4000;
 
-        this.server.listen(port, '0.0.0.0', function onStart(err) {
+        this.server.listen(port, function onStart(err) {
             if (err) {
                 logger.error(err);
             }
 
             logger.info(
-                `==> ?? Listening on port ${port}. Open up http://0.0.0.0:${port}/ in your browser.`
+                `==> ?? Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`
             );
         });
     }
