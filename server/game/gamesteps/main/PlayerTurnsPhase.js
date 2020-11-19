@@ -1,4 +1,4 @@
-const Phase = require('../Phase');
+const Phase = require('../phase');
 const SimpleStep = require('../simplestep');
 const ActionWindow = require('./actionwindow');
 

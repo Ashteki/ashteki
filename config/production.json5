@@ -1,3 +1,14 @@
 {
+    gameNode: {
+        name: 'gamenode',
+        host: 'gamenode1-gg2p:10000',
+        socketioPort: 9500
 
+        /*
+         * Other game node configurations used, but not specified, include:
+         *  - keyPath
+         *  - certPath
+         *  - maxGames
+         */
+    }
 }
