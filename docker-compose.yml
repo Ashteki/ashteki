@@ -1,0 +1,54 @@
+version: '3.5'
+services:
+    lobby:
+        restart: always
+        build: .
+        image: ashteki
+        ports:
+            - '4000:4000'
+            - '9229:9229'
+        volumes:
+            - './client:/usr/src/app/client'
+            - './server:/usr/src/app/server'
+            - './public:/usr/src/app/public'
+            - './less:/usr/src/app/less'
+        links:
+            - mongo
+        depends_on:
+            - mongo
+        command:
+            - node
+            - '--inspect=0.0.0.0:9229'
+            - '.'
+    node:
+        restart: always
+        build: .
+        ports:
+            - '9500:9500'
+            - '9339:9339'
+        volumes:
+            - './server:/usr/src/app/server'
+        command:
+            - node
+            - '--inspect=0.0.0.0:9339'
+            - 'server/gamenode'
+    mongo:
+        image: mongo
+        ports: 
+            - '27017:27017'
+        restart: always
+        # environment:
+        #     MONGO_INITDB_ROOT_USERNAME: root
+        #     MONGO_INITDB_ROOT_PASSWORD: example
+    redis:
+        image: 'redis:alpine'
+        command: redis-server
+        ports:
+            - '6379:6379'
+        volumes:
+            - $PWD/redis-data:/var/lib/redis
+            - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+        environment:
+            - REDIS_REPLICATION_MODE=master
+volumes:
+    node_modules:

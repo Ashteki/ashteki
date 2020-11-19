@@ -1,4 +1,4 @@
-const DiceCost = require('./DiceCost');
+const DiceCost = require('./dicecost');
 
 class DynamicDiceCost extends DiceCost {
     constructor(costFunc) {

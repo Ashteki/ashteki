@@ -1,13 +1,9 @@
 {
     env: 'development',
 
+    mongo: 'mongodb://mongo:27017/ashteki',
     secret: 'somethingverysecret',
     redisUrl: 'redis://redis/',
-    dbUser: 'keyteki',
-    dbHost: 'postgres',
-    dbDatabase: 'keyteki',
-    dbPassword: 'changemeplease',
-    dbPort: 5432,
     minLobbyChatTime: 0, // The time (in seconds) an account has to be registered before it can chat in the lobby
     /*
      * Other global configurations used, but not specified, include:
@@ -16,14 +12,11 @@
 
     lobby: {
         port: 4000,
-        appName: 'The Crucible Online',
-        emailFromAddress: 'noreply@thecrucible.online',
+        appName: 'Ashes Reborn Online',
+        emailFromAddress: 'noreply@ashteki.online',
         blockDisposableEmail: false,
         requireActivation: false,
-        hmacSecret: 'somethingevenmoresecret',
-        lowerDeckThreshold: 1,
-        middleDeckThreshold: 2,
-        upperDeckThreshold: 3
+        hmacSecret: 'somethingevenmoresecret'
 
         /*
          * Other server configurations used, but not specified, include:
