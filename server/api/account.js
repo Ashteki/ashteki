@@ -344,6 +344,13 @@ module.exports.init = function (server, options) {
                 registerIp: ip
             };
 
+            newUser.settings = {
+                background: 'ashesreborn',
+                cardSize: 'large',
+                avatar: req.body.username,
+                customBackground: null
+            };
+
             if (configService.getValueForSection('lobby', 'requireActivation')) {
                 let expiration = moment().utc().add(7, 'days');
                 let formattedExpiration = expiration.format('YYYYMMDD-HH:mm:ss');
