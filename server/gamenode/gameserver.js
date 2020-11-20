@@ -2,8 +2,8 @@ const socketio = require('socket.io');
 const jwt = require('jsonwebtoken');
 const Sentry = require('@sentry/node');
 const http = require('http');
-const https = require('https');
-const fs = require('fs');
+// const https = require('https');
+// const fs = require('fs');
 const jsondiffpatch = require('jsondiffpatch').create({
     objectHash: (obj, index) => {
         return obj.uuid || obj.name || obj.id || obj._id || '$$index:' + index;
@@ -30,16 +30,16 @@ class GameServer {
         this.games = {};
         this.protocol = 'https';
 
-        try {
-            var privateKey = fs
-                .readFileSync(this.configService.getValueForSection('gameNode', 'keyPath'))
-                .toString();
-            var certificate = fs
-                .readFileSync(this.configService.getValueForSection('gameNode', 'certPath'))
-                .toString();
-        } catch (e) {
-            this.protocol = 'http';
-        }
+        // try {
+        //     var privateKey = fs
+        //         .readFileSync(this.configService.getValueForSection('gameNode', 'keyPath'))
+        //         .toString();
+        //     var certificate = fs
+        //         .readFileSync(this.configService.getValueForSection('gameNode', 'certPath'))
+        //         .toString();
+        // } catch (e) {
+        //     this.protocol = 'http';
+        // }
 
         this.host =
             process.env.GAMENODE_HOST || this.configService.getValueForSection('gameNode', 'host');
@@ -59,11 +59,11 @@ class GameServer {
 
         var server = undefined;
 
-        if (!privateKey || !certificate) {
-            server = http.createServer();
-        } else {
-            server = https.createServer({ key: privateKey, cert: certificate });
-        }
+        // if (!privateKey || !certificate) {
+        server = http.createServer();
+        // } else {
+        //     server = https.createServer({ key: privateKey, cert: certificate });
+        // }
 
         const nodeName = this.configService.getValueForSection('gameNode', 'name');
         const socketioPort = this.configService.getValueForSection('gameNode', 'socketioPort');
