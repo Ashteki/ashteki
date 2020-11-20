@@ -41,7 +41,8 @@ class GameServer {
             this.protocol = 'http';
         }
 
-        this.host = this.configService.getValueForSection('gameNode', 'host');
+        this.host =
+            process.env.GAMENODE_HOST || this.configService.getValueForSection('gameNode', 'host');
 
         this.gameSocket = new GameSocket(
             this.configService,
@@ -79,9 +80,7 @@ class GameServer {
             options.origins = corsOrigin;
         }
 
-        if (process.env.NODE_ENV !== 'production') {
-            options.path = '/' + (process.env.SERVER || nodeName) + '/socket.io';
-        }
+        options.path = '/' + (process.env.SERVER || nodeName) + '/socket.io';
 
         logger.info(
             `Listening on 0.0.0.0:${process.env.PORT || socketioPort}/${
