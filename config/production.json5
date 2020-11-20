@@ -20,7 +20,8 @@
     
     gameNode: {
         name: 'gamenode1',
-        socketioPort: 10000
+        socketioPort: 10000,
+        origin: '*:*'
 
         /*
          * Other game node configurations used, but not specified, include:
