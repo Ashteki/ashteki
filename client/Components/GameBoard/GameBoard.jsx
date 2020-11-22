@@ -18,6 +18,7 @@ import * as actions from '../../redux/actions';
 
 import './GameBoard.scss';
 import PlayerPBRow from './PlayerPBRow';
+import { imageUrl } from '../../util';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -392,7 +393,7 @@ export class GameBoard extends React.Component {
                     {this.renderBoard(thisPlayer, otherPlayer)}
                     {cardToZoom && (
                         <CardZoom
-                            imageUrl={cardToZoom ? `/img/cards/${cardToZoom.id}.png` : ''}
+                            imageUrl={cardToZoom ? imageUrl(cardToZoom.id) : ''}
                             cardName={cardToZoom ? cardToZoom.name : null}
                             card={cardToZoom}
                         />

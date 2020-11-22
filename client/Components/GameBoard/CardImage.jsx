@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { imageUrl } from '../../util';
 
 import './CardImage.scss';
 
@@ -14,10 +14,8 @@ import './CardImage.scss';
  * @param {CardImageProps} props
  */
 const CardImage = ({ card, cardBack }) => {
-    const { i18n } = useTranslation();
-    let imgPath = card.facedown
-        ? cardBack
-        : `/img/cards/${i18n.language === 'en' ? '' : i18n.language + '/'}${card.id}.png`;
+    let imgPath = card.facedown ? cardBack : imageUrl(card.id);
+
     return (
         <>
             <img className='img-fluid' src={imgPath} />

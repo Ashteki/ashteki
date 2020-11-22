@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './Phoenixborn.scss';
+import { imageUrl } from '../../util';
 
 const Phoenixborn = ({ pbStub }) => {
-    let pbImage = `/img/cards/${pbStub}.png`;
+    let pbImage = imageUrl(pbStub);
     const [imageZoom, setImageZoom] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
