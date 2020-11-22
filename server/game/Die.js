@@ -135,6 +135,7 @@ class Die extends PlayableObject {
                     title: 'Ceremonial Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
+                        controller: 'self',
                         cardType: 'Ally',
                         location: 'discard',
                         gameAction: this.game.actions.moveCard({ destination: 'hand' })

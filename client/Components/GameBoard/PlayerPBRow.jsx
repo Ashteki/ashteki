@@ -58,6 +58,7 @@ const PlayerPBRow = ({
             cards={spells}
             className='panel hand'
             groupVisibleCards
+            focusDupes={true}
             cardBackUrl={spellback}
             manualMode={manualMode}
             maxCards={6}
