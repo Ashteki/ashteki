@@ -29,7 +29,7 @@ class SquishableCardPanel extends React.Component {
         let lastCardName = '';
         let focusLeftDelta = 0;
         let hand = cards.map((card) => {
-            if (lastCardName === card.name) {
+            if (lastCardName === card.name && this.props.focusDupes) {
                 focusLeftDelta += -30;
             } else {
                 //focusLeftDelta = 0;
@@ -110,8 +110,8 @@ class SquishableCardPanel extends React.Component {
     render() {
         let dimensions = this.getOverallDimensions();
         let maxCards = this.props.maxCards;
-        let needsSquish = this.cards && this.cards.length > maxCards;
-        let cards = this.getCards(needsSquish, maxCards);
+        let needsSquish = this.props.cards && this.props.cards.length > maxCards;
+        let cards = this.getCards(needsSquish);
 
         let className = classNames('squishable-card-panel', this.props.className, {
             [this.props.cardSize]: this.props.cardSize !== 'normal',
@@ -140,6 +140,7 @@ SquishableCardPanel.propTypes = {
     cardSize: PropTypes.string,
     cards: PropTypes.array,
     className: PropTypes.string,
+    focusDupes: PropTypes.bool,
     groupVisibleCards: PropTypes.bool,
     i18n: PropTypes.object,
     manualMode: PropTypes.bool,

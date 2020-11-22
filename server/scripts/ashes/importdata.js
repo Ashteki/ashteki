@@ -14,7 +14,7 @@ let totalCards = [];
 _.each(files, (file) => {
     let cardData = JSON.parse(fs.readFileSync(dataDirectory + file).toString());
 
-    totalCards = cardData.cards;
+    totalCards = cardData.results;
 });
 
 _.each(totalCards, (card) => {
