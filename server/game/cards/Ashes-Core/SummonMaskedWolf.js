@@ -5,7 +5,7 @@ const DiceCount = require('../../DiceCount.js');
 class SummonMaskedWolf extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Summon False Demon',
+            title: 'Summon Masked Wolf',
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),

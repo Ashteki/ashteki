@@ -19,7 +19,7 @@ class Player extends GameObject {
         this.owner = owner;
 
         this.hand = [];
-        this.cardsInPlay = []; // This stores references to all creatures and artifacts in play.  Upgrades are not stored here.
+        this.cardsInPlay = []; // This stores references to all allies and conjurations in play.  Upgrades are not stored here.
         this.spellboard = []; // all spells played to board
         this.discard = [];
         this.purged = [];
