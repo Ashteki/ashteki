@@ -5,6 +5,10 @@ const urlMatchingRegex = new RegExp(
     'ig'
 );
 
+export function imageUrl(cardStub) {
+    return `https://cdn.ashes.live/images/cards/${cardStub}.jpg`;
+}
+
 export function tryParseJSON(jsonString) {
     try {
         var retObject = JSON.parse(jsonString);

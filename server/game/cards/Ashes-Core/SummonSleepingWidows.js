@@ -7,7 +7,7 @@ class SummonSleepingWidows extends Card {
             when: {
                 onCardDestroyed: (event, context) =>
                     BattlefieldTypes.includes(event.card.type) &&
-                    event.card.controller == context.player
+                    event.card.controller === context.source.owner
             },
             target: {
                 mode: 'upTo',

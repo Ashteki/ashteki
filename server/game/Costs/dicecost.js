@@ -39,7 +39,7 @@ class DiceCost {
                 context: context,
                 buttons: buttons,
                 format: this.getDiceReq(context),
-                dieCondition: (d) => !d.exhausted && !chosenDice.includes(d),
+                dieCondition: (d) => !d.exhausted,
                 onSelect: (player, dice) => {
                     // EXACTLY returns an array SINGLE does not
                     chosenDice = chosenDice.concat(dice);
