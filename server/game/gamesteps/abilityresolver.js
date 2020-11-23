@@ -19,7 +19,7 @@ class AbilityResolver extends BaseStepWithPipeline {
             new SimpleStep(this.game, () => this.payCosts()),
             new SimpleStep(this.game, () => this.resolveTargets()),
             new SimpleStep(this.game, () => this.initiateAbility()),
-            new SimpleStep(this.game, () => this.executeHandler()),
+            // new SimpleStep(this.game, () => this.executeHandler()),
             new SimpleStep(this.game, () => this.raiseResolvedEvent())
         ]);
     }
@@ -53,14 +53,6 @@ class AbilityResolver extends BaseStepWithPipeline {
         }
     }
 
-    resolveEarlyTargets() {
-        if (this.cancelled) {
-            return;
-        }
-
-        this.targetResults = this.context.ability.resolveTargets(this.context);
-    }
-
     checkForCancel() {
         if (this.cancelled) {
             return;
@@ -68,17 +60,6 @@ class AbilityResolver extends BaseStepWithPipeline {
 
         this.cancelled = this.targetResults.cancelled;
     }
-
-    // payCosts() {
-    //     if (this.cancelled) {
-    //         return;
-    //     }
-
-    //     this.costEvents = this.context.ability.payCosts(this.context);
-    //     if (this.costEvents.length > 0) {
-    //         this.game.openEventWindow(this.costEvents);
-    //     }
-    // }
 
     payCosts() {
         if (this.cancelled) {
@@ -119,10 +100,14 @@ class AbilityResolver extends BaseStepWithPipeline {
             }
         });
 
-        this.game.raiseEvent('onAbilityInitiated', {
-            context: this.context,
-            noGameStateCheck: true
-        });
+        this.game.raiseEvent(
+            'onAbilityInitiated',
+            {
+                context: this.context,
+                noGameStateCheck: true
+            },
+            () => this.executeHandler()
+        );
     }
 
     executeHandler() {
