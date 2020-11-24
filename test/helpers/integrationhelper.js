@@ -188,8 +188,8 @@ beforeEach(function () {
 
         this.startGame();
         //Player stats
-        this.player1.keys = options.player1.keys;
-        this.player2.keys = options.player2.keys;
+        this.player1.actions = { main: true, side: true };
+        this.player2.actions = { main: true, side: true };
         //Field
         this.player1.hand = [];
         this.player2.hand = [];
@@ -198,6 +198,8 @@ beforeEach(function () {
         //Conflict deck related
         this.player1.spellboard = options.player1.spellboard;
         this.player2.spellboard = options.player2.spellboard;
+        this.player1.dicepool = options.player1.dicepool;
+        this.player2.dicepool = options.player2.dicepool;
 
         this.player1.hand = options.player1.hand;
         this.player2.hand = options.player2.hand;

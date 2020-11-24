@@ -180,7 +180,7 @@ class Player extends GameObject {
         }
 
         if (remainingCards > 0 && damageIfEmpty) {
-            GameActions.AddTokenAction({ amount: remainingCards }, 'damage').resolve(
+            GameActions.addDamageToken({ amount: remainingCards }).resolve(
                 this,
                 this.game.getFrameworkContext()
             );
