@@ -23,7 +23,7 @@ class DeckBuilder {
         for (let file of jsonPacks) {
             let pack = require(path.join(directory, file));
 
-            for (let card of pack.cards) {
+            for (let card of pack.results) {
                 cards[card.stub] = card;
             }
         }
