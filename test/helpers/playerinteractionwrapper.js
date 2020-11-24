@@ -383,6 +383,14 @@ class PlayerInteractionWrapper {
         return card;
     }
 
+    clickDie(index) {
+        let die = this.player.dice[index];
+        this.game.dieClicked(this.player.name, die.uuid);
+        this.game.continue();
+        this.checkUnserializableGameState();
+        return die;
+    }
+
     clickMenu(card, menuText) {
         if (_.isString(card)) {
             card = this.findCardByName(card);
