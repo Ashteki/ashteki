@@ -3,6 +3,7 @@ const _ = require('underscore');
 
 const { matchCardByNameAndPack } = require('./cardutil.js');
 const { detectBinary } = require('../../server/util');
+const Die = require('../../server/game/Die.js');
 
 class PlayerInteractionWrapper {
     constructor(game, player) {
@@ -110,6 +111,26 @@ class PlayerInteractionWrapper {
 
             this.moveCard(card, 'spellboard');
             card.unExhaust();
+        });
+    }
+
+    get dicepool() {
+        return this.player.dice;
+    }
+
+    set dicepool(newState = []) {
+        // Set up each of the dice
+        this.player.dice = [];
+        _.each(newState, (d) => {
+            let die;
+            if (_.isString(d)) {
+                die = new Die(this.player, {
+                    magic: d,
+                    level: 'power',
+                    exhausted: false
+                });
+            }
+            this.player.dice.push(die);
         });
     }
 
@@ -360,6 +381,14 @@ class PlayerInteractionWrapper {
         this.game.continue();
         this.checkUnserializableGameState();
         return card;
+    }
+
+    clickDie(index) {
+        let die = this.player.dice[index];
+        this.game.dieClicked(this.player.name, die.uuid);
+        this.game.continue();
+        this.checkUnserializableGameState();
+        return die;
     }
 
     clickMenu(card, menuText) {
