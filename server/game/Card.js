@@ -691,6 +691,10 @@ class Card extends PlayableObject {
         }
     }
 
+    attacksFirst() {
+        return this.anyEffect('quickStrike');
+    }
+
     get focus() {
         if (this.type !== CardType.ReadySpell || this.location !== 'spellboard') return 0;
 
