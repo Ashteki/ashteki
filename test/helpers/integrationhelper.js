@@ -209,10 +209,14 @@ beforeEach(function () {
         this.player2.archives = options.player2.archives;
 
         for (let player of [this.player1, this.player2]) {
-            let cards = ['inPlay', 'spellboard', 'hand', 'discard', 'archives'].reduce(
-                (array, location) => array.concat(player[location]),
-                []
-            );
+            let cards = [
+                'inPlay',
+                'spellboard',
+                'hand',
+                'discard',
+                'archives',
+                'phoenixborn'
+            ].reduce((array, location) => array.concat(player[location]), []);
             for (let card of cards) {
                 let split = card.id.split('-');
                 for (let i = 1; i < split.length; i++) {

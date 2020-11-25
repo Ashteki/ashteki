@@ -2,21 +2,23 @@ const Card = require('../../Card.js');
 
 class Cover extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.interrupt({
             when: {
-                onUseCard: (event, context) =>
-                    event.player === context.player && context.source == this
+                onDamageDealt: (event, context) =>
+                    event.context.player === context.player.opponent &&
+                    event.card === context.player.phoenixborn &&
+                    event.fightEvent.battle.guard === context.player.phoenixborn
             },
-            gameAction: [
-                ability.actions.changeEvent((context) => ({
-                    event: context.event,
-                    cancel: true
-                })),
-                ability.actions.dealDamage((context) => ({
-                    amount: 1,
-                    target: context.event.card
-                }))
-            ]
+            gameAction: ability.actions.changeEvent((context) => ({
+                event: context.event,
+                cancel: true
+            })),
+            then: (context) => ({
+                gameAction: ability.actions.dealDamage({
+                    target: context.event.damageSource,
+                    amount: 1
+                })
+            })
         });
     }
 }
