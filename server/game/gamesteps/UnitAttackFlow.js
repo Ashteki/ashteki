@@ -118,7 +118,7 @@ class UnitAttackFlow extends BaseStepWithPipeline {
             if (
                 // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
                 event.defenderTarget === event.attacker &&
-                (event.battle.counter || event.battle.guard) &&
+                event.battle.counter &&
                 event.card.checkRestrictions('dealFightDamage') && // declared target can deal damage
                 event.attackerTarget.checkRestrictions('dealFightDamageWhenDefending') // or defender can't deal damage when defending
             ) {
@@ -225,12 +225,14 @@ class UnitAttackFlow extends BaseStepWithPipeline {
                 battle.guard
             );
 
-            battle.counter = true;
+            // if it's not a pb guard then counter
+            battle.counter = battle.guard.type !== CardType.Phoenixborn;
             return true;
         }
 
-        if (this.isPBAttack) {
+        if (this.isPBAttack || battle.target.exhausted) {
             // don't ask to counter with phoenixborn (they don't have an attack value)
+            // and exhausted targets cannot counter
             battle.counter = false;
             return true;
         }
