@@ -175,12 +175,8 @@ class UnitAttackFlow extends BaseStepWithPipeline {
     }
 
     chooseBlockOrGuard(battle) {
-        if (
-            // exit if there are no eligeable blockers / guarders?
-            !this.defendingPlayer.defenders.some(
-                (c) => this.guardTest(c, battle) || this.blockTest(c)
-            )
-        ) {
+        // exit if there are no eligeable blockers / guarders?
+        if (!this.blockersAvailable(battle)) {
             return true;
         }
 
@@ -195,7 +191,7 @@ class UnitAttackFlow extends BaseStepWithPipeline {
                 controller: 'self',
                 cardType: [...BattlefieldTypes, 'Phoenixborn'],
                 cardCondition: (card) => {
-                    return this.blockTest(card) || this.guardTest(card, battle);
+                    return this.availableToBlockOrGuard(card, battle);
                 },
                 onSelect: (player, card) => {
                     battle.guard = card;
@@ -208,12 +204,28 @@ class UnitAttackFlow extends BaseStepWithPipeline {
         this.game.openEventWindow([event]);
     }
 
-    guardTest(card, battle) {
-        return !this.isPBAttack && card.canGuard() && card !== battle.target;
+    blockersAvailable(battle) {
+        return this.defendingPlayer.defenders.some((c) => this.availableToBlockOrGuard(c, battle));
+    }
+
+    availableToBlockOrGuard(c, battle) {
+        return (
+            (this.guardTest(c, battle.target) || this.blockTest(c)) &&
+            this.checkGigantic(c, battle.attacker)
+        );
+    }
+
+    guardTest(card, target) {
+        return !this.isPBAttack && card.canGuard() && card !== target;
     }
 
     blockTest(card) {
-        return card.canBlock() && this.isPBAttack && !this.battles.some((b) => b.guard == card);
+        return this.isPBAttack && !this.battles.some((b) => b.guard == card) && card.canBlock();
+    }
+
+    checkGigantic(card, attacker) {
+        // ok to block if attacker doesn't have gigantic, or gigantic value is less than this card's life value
+        return !attacker.hasKeyword('gigantic') || attacker.getKeywordValue('gigantic') < card.life;
     }
 
     promptForCounter(battle) {
