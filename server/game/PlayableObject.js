@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { BattlefieldTypes, CardType, AbilityType } = require('../constants');
+const { BattlefieldTypes, CardType, AbilityType, EffectLocations } = require('../constants');
 const EffectSource = require('./EffectSource');
 const TriggeredAbility = require('./triggeredability');
 
@@ -99,7 +99,7 @@ class PlayableObject extends EffectSource {
      * is both in play and not blank.
      */
     persistentEffect(properties) {
-        const allowedLocations = ['any', 'play area'];
+        const allowedLocations = ['any', 'play area', 'spellboard'];
         let location = properties.location || 'play area';
         if (!allowedLocations.includes(location)) {
             throw new Error(`'${location}' is not a supported effect location.`);
@@ -128,9 +128,9 @@ class PlayableObject extends EffectSource {
 
         _.each(this.getPersistentEffects(true), (effect) => {
             if (effect.location !== 'any') {
-                if (to === 'play area' && from !== 'play area') {
+                if (EffectLocations.includes(to) && !EffectLocations.includes(from)) {
                     effect.ref = this.addEffectToEngine(effect);
-                } else if (to !== 'play area' && from === 'play area') {
+                } else if (EffectLocations.includes(from) && !EffectLocations.includes(to)) {
                     this.removeEffectFromEngine(effect.ref);
                     effect.ref = [];
                 }

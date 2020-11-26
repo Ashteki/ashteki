@@ -2,7 +2,10 @@ const Card = require('../../Card.js');
 
 class MassiveGrowth extends Card {
     setupCardAbilities(ability) {
-        // TODO: spell guard
+        this.persistentEffect({
+            effect: ability.effects.spellGuard()
+        });
+
         this.whileAttached({
             effect: [ability.effects.modifyAttack(4), ability.effects.modifyLife(4)]
         });

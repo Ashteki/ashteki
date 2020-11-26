@@ -19,6 +19,7 @@ const Location = {
 };
 
 const BattlefieldTypes = ['Ally', 'Conjuration'];
+const EffectLocations = ['play area', 'spellboard'];
 
 const AbilityType = {
     Action: 'action',
@@ -47,4 +48,13 @@ const Level = {
     Power: 'power'
 };
 
-module.exports = { Constants, CardType, Location, BattlefieldTypes, AbilityType, Magic, Level };
+module.exports = {
+    Constants,
+    CardType,
+    Location,
+    BattlefieldTypes,
+    AbilityType,
+    Magic,
+    Level,
+    EffectLocations
+};

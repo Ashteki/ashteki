@@ -493,6 +493,10 @@ class Card extends PlayableObject {
         return this.getSpellboard();
     }
 
+    get isSpell() {
+        return this.type.includes('Spell');
+    }
+
     getAttack(printed = false) {
         if (printed) {
             return this.printedAttack;

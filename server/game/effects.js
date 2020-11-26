@@ -55,6 +55,7 @@ const Effects = {
     transferDamage: (card) => EffectBuilder.card.static('transferDamage', card),
     canGuard: () => EffectBuilder.card.static('canGuard'),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
+    spellGuard: () => EffectBuilder.card.static('spellGuard'),
 
     // Player effects
     lastingAbilityTrigger: (properties) =>

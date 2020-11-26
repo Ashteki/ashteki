@@ -83,7 +83,11 @@ class BaseCardSelector {
             return false;
         }
 
-        if (this.checkTarget && !card.checkRestrictions('target', context)) {
+        if (
+            this.checkTarget &&
+            (!card.checkRestrictions('target', context) ||
+                (context.source.isSpell && card.anyEffect('spellGuard')))
+        ) {
             return false;
         }
 
