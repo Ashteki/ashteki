@@ -2,6 +2,10 @@ const Card = require('../../Card.js');
 
 class StormwindSniper extends Card {
     setupCardAbilities(ability) {
+        this.persistentEffect({
+            effect: ability.effects.concealed()
+        });
+
         this.play({
             title: 'Ambush 1',
             effect: 'deal 1 damage to a target phoenixborn',

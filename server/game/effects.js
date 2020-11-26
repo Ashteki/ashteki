@@ -54,6 +54,7 @@ const Effects = {
         }),
     transferDamage: (card) => EffectBuilder.card.static('transferDamage', card),
     canGuard: () => EffectBuilder.card.static('canGuard'),
+    concealed: () => EffectBuilder.card.static('concealed'),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     spellGuard: () => EffectBuilder.card.static('spellGuard'),
 

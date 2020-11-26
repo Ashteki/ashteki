@@ -86,7 +86,9 @@ class BaseCardSelector {
         if (
             this.checkTarget &&
             (!card.checkRestrictions('target', context) ||
-                (context.source.isSpell && card.anyEffect('spellGuard')))
+                (context.player === card.controller.opponent &&
+                    (card.anyEffect('concealed') ||
+                        (context.source.isSpell && card.anyEffect('spellGuard')))))
         ) {
             return false;
         }
