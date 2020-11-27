@@ -40,7 +40,7 @@ class EventWindow extends BaseStepWithPipeline {
         }
 
         if (
-            abilityType === AbilityType.Interrupt &&
+            abilityType === AbilityType.ForcedInterrupt &&
             events.some((event) => event.name === 'onCardLeavesPlay')
         ) {
             this.queueStep(new DestroyedAbilityWindow(this.game, abilityType, this));

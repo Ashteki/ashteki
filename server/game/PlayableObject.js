@@ -79,7 +79,12 @@ class PlayableObject extends EffectSource {
             return this.abilities.keywordReactions;
         }
 
-        const TriggeredAbilityTypes = ['interrupt', 'reaction'];
+        const TriggeredAbilityTypes = [
+            AbilityType.ForcedInterrupt,
+            AbilityType.ForcedReaction,
+            AbilityType.Interrupt,
+            AbilityType.Reaction
+        ];
         let reactions = this.abilities.reactions;
         if (this.anyEffect(this.copyEffect)) {
             let mostRecentEffect = _.last(

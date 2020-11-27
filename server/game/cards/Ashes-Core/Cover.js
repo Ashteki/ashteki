@@ -7,6 +7,7 @@ class Cover extends Card {
                 onDamageDealt: (event, context) =>
                     event.context.player === context.player.opponent &&
                     event.card === context.player.phoenixborn &&
+                    event.fightEvent &&
                     event.fightEvent.battle.guard === context.player.phoenixborn
             },
             gameAction: ability.actions.changeEvent((context) => ({

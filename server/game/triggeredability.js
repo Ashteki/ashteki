@@ -49,33 +49,30 @@ class TriggeredAbility extends CardAbility {
         }
     }
 
-    meetsRequirements(context, ignoredRequirements = []) {
-        let canPlayerTrigger =
-            this.anyPlayer ||
-            context.player === this.card.controller ||
-            this.card.anyEffect('canBeTriggeredByOpponent');
-
-        if (!ignoredRequirements.includes('player') && !canPlayerTrigger) {
-            if (
-                this.card.type !== CardType.ReactionSpell ||
-                !context.player.isCardInPlayableLocation(this.card, context.playType)
-            ) {
-                return 'player';
-            }
+    eventHandler(event, window) {
+        let player = this.properties.player || this.card.controller;
+        if (
+            !this.isLastingAbilityTrigger &&
+            event.name === 'onCardPlayed' &&
+            this.card.type === 'action'
+        ) {
+            player = event.player;
+        } else if (this.triggeredByOpponent) {
+            player = player.opponent;
         }
 
-        return super.meetsRequirements(context, ignoredRequirements);
-    }
+        if (!player) {
+            return;
+        }
 
-    eventHandler(event, window) {
-        for (const player of this.game.getPlayers()) {
-            let context = this.createContext(player, event);
-            //console.log(event.name, this.card.name, this.isTriggeredByEvent(event, context), this.meetsRequirements(context));
-            if (
-                this.card.reactions.includes(this) &&
-                this.isTriggeredByEvent(event, context) &&
-                this.meetsRequirements(context) === ''
-            ) {
+        let context = this.createContext(player, event);
+        // console.log(event.name, this.card.name, this.isTriggeredByEvent(event, context), this.meetsRequirements(context));
+        if (
+            this.card.reactions.includes(this) ||
+            (this.isLastingAbilityTrigger &&
+                (!this.hasTriggered || this.properties.multipleTrigger))
+        ) {
+            if (this.isTriggeredByEvent(event, context) && this.meetsRequirements(context) === '') {
                 window.addChoice(context);
             }
         }
@@ -140,6 +137,24 @@ class TriggeredAbility extends CardAbility {
             });
             this.events = null;
         }
+    }
+
+    meetsRequirements(context, ignoredRequirements = []) {
+        let canPlayerTrigger =
+            this.anyPlayer ||
+            context.player === this.card.controller ||
+            this.card.anyEffect('canBeTriggeredByOpponent');
+
+        if (!ignoredRequirements.includes('player') && !canPlayerTrigger) {
+            if (
+                this.card.type !== CardType.ReactionSpell ||
+                !context.player.isCardInPlayableLocation(this.card, context.playType)
+            ) {
+                return 'player';
+            }
+        }
+
+        return super.meetsRequirements(context, ignoredRequirements);
     }
 }
 
