@@ -58,6 +58,7 @@ const Effects = {
     concealed: () => EffectBuilder.card.static('concealed'),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     spellGuard: () => EffectBuilder.card.static('spellGuard'),
+    bypass: () => EffectBuilder.card.static('bypass'),
 
     // Player effects
     lastingAbilityTrigger: (properties) =>

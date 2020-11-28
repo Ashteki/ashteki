@@ -176,7 +176,7 @@ class UnitAttackFlow extends BaseStepWithPipeline {
 
     chooseBlockOrGuard(battle) {
         // exit if there are no eligeable blockers / guarders?
-        if (!this.blockersAvailable(battle)) {
+        if (!this.blockersAvailable(battle) || battle.attacker.hasKeyword('bypass')) {
             return true;
         }
 

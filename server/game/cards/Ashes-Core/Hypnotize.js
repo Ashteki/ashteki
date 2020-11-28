@@ -1,0 +1,28 @@
+const { Level, Magic } = require('../../../constants.js');
+const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
+
+class Hypnotize extends Card {
+    setupCardAbilities(ability) {
+        this.action({
+            title: 'Hypnotize a unit',
+            location: 'spellboard',
+            cost: [
+                ability.costs.sideAction(),
+                ability.costs.exhaust(),
+                ability.costs.dice([new DiceCount(2, Level.Class, Magic.Charm)])
+            ],
+            target: {
+                cardType: ['Ally', 'Conjuration'],
+                gameAction: ability.actions.cardLastingEffect({
+                    duration: 'untilEndOfTurn',
+                    effect: ability.effects.addKeyword({ bypass: 1 })
+                })
+            }
+        });
+    }
+}
+
+Hypnotize.id = 'hypnotize';
+
+module.exports = Hypnotize;
