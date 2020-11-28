@@ -9,7 +9,8 @@ class PreparePhase extends Phase {
             new SimpleStep(game, () => this.rollDice()),
             new SimpleStep(game, () => this.determineFirstPlayer()),
             new AllPlayerDiscardPrompt(game),
-            new SimpleStep(game, () => this.drawCards())
+            new SimpleStep(game, () => this.drawCards()),
+            new SimpleStep(game, () => this.additionalDraw())
         ]);
     }
 
@@ -23,11 +24,22 @@ class PreparePhase extends Phase {
 
     // refill hand - cause damage in draw phase if unable to draw
     drawCards() {
-        // this.game.raiseEvent('onPreparePhaseDraw', {}, () => {
         this.game.actions
             .draw({ refill: true, damageIfEmpty: true, singleCopy: true })
             .resolve(this.game.getPlayers(), this.game.getFrameworkContext());
-        // });
+    }
+
+    additionalDraw() {
+        if (!this.game.getPlayers().some((p) => p.sumEffects('additionalDraw') > 0)) {
+            return true;
+        }
+
+        // prompt players for extra draw
+        let maxValues = {};
+        for (const player of this.game.getPlayers()) {
+            maxValues[player.uuid] = player.sumEffects('additionalDraw');
+        }
+        this.game.promptForAdditionalDraw(maxValues);
     }
 }
 

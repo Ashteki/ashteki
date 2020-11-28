@@ -34,6 +34,7 @@ const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
 const { BattlefieldTypes } = require('../constants');
 const UnitAttackFlow = require('./gamesteps/UnitAttackFlow');
+const ValueSelectPrompt = require('./gamesteps/valueselectprompt');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -623,6 +624,11 @@ class Game extends EventEmitter {
 
     promptForMeditation() {
         this.queueStep(new MeditatePrompt(this));
+    }
+
+    //TODO: refactor to allow reuse for other gameActions, not just draw
+    promptForAdditionalDraw(maxValues) {
+        this.queueStep(new ValueSelectPrompt(this, maxValues));
     }
 
     /**

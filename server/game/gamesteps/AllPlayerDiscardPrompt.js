@@ -22,6 +22,7 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
 
         return super.continue();
     }
+
     activePrompt() {
         return {
             selectCard: true,
