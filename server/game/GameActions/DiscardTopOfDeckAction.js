@@ -12,7 +12,7 @@ class DiscardTopOfDeckAction extends PlayerAction {
         this.effectMsg =
             'discard ' +
             (this.amount === 1 ? 'a card' : this.amount + ' cards') +
-            ' at random from their ' +
+            ' from their ' +
             this.location;
     }
 
