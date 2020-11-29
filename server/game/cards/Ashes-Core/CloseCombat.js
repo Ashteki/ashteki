@@ -18,6 +18,7 @@ class CloseCombat extends Card {
                 }
             },
             gameAction: ability.actions.chooseAction((context) => ({
+                // activePromptTitle: 'Choose one:',
                 target: context.targets.myChar,
                 choices: {
                     Wound: ability.actions.dealDamage({

@@ -4,6 +4,11 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonSilverSnake extends Card {
     setupCardAbilities(ability) {
+        this.persistentEffect({
+            location: 'spellboard',
+            effect: ability.effects.spellGuard()
+        });
+
         this.action({
             title: 'Summon Silver Snake',
             cost: [

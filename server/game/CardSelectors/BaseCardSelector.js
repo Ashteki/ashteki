@@ -83,7 +83,13 @@ class BaseCardSelector {
             return false;
         }
 
-        if (this.checkTarget && !card.checkRestrictions('target', context)) {
+        if (
+            this.checkTarget &&
+            (!card.checkRestrictions('target', context) ||
+                (context.player === card.controller.opponent &&
+                    (card.anyEffect('concealed') ||
+                        (context.source.isSpell && card.anyEffect('spellGuard')))))
+        ) {
             return false;
         }
 

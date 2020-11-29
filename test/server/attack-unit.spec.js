@@ -71,6 +71,38 @@ describe('Unit attacks', function () {
         expect(this.blueJaguar.exhausted).toBe(true);
     });
 
+    it('simultaneous damage dealt from destroyed attacker', function () {
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
+        expect(this.mistSpirit.tokens.damage).toBeUndefined();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickCard(this.mistSpirit); // single attacker
+
+        this.player2.clickPrompt('Done'); // no guard
+        this.player2.clickPrompt('Yes'); // DO counter
+
+        expect(this.fluteMage.tokens.damage).toBe(this.mistSpirit.attack);
+        expect(this.mistSpirit.location).toBe('archives');
+        expect(this.fluteMage.exhausted).toBe(true);
+    });
+
+    it('simultaneous damage dealt from destroyed defender', function () {
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
+        expect(this.ironWorker.tokens.damage).toBeUndefined();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickCard(this.ironWorker); // single attacker
+
+        this.player2.clickPrompt('Done'); // no guard
+        this.player2.clickPrompt('Yes'); // DO counter
+
+        expect(this.fluteMage.location).toBe('discard');
+        expect(this.ironWorker.tokens.damage).toBe(this.fluteMage.attack);
+        expect(this.ironWorker.exhausted).toBe(true);
+    });
+
     it('defender may not counter when exhausted', function () {
         expect(this.fluteMage.tokens.damage).toBeUndefined();
         expect(this.blueJaguar.tokens.damage).toBeUndefined();

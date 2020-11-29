@@ -19,7 +19,8 @@ class BlueJaguar extends Card {
                     effect: [
                         ability.effects.cardCannot('guard'),
                         ability.effects.cardCannot('block')
-                    ]
+                    ],
+                    duration: 'untilEndOfTurn'
                 })
             }
         });

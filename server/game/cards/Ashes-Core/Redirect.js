@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Redirect extends Card {
@@ -6,18 +7,18 @@ class Redirect extends Card {
         this.interrupt({
             // if card is phoenixborn, and unit is in play, do damage to that unit instead
             when: {
-                onDamageDealt: (event, context) =>
-                    // damage is done to this player's pb
-                    event.card == context.player.phoenixborn
+                onDamageDealt: (event, context) => event.card == context.player.phoenixborn
             },
             condition: (context) => context.player.cardsInPlay.length > 0,
-            effect: 'redirect the damage - MANUAL!!'
-            //todo: should use changeEvent to change target of dealDamage Event
-            // copy shadow self here...
-            // gameAction: ability.actions.addStatusToken((context) => ({
-            //     amount: 1,
-            //     target: context.player.phoenixborn
-            // }))
+            effect: 'redirect the damage - MANUAL!!',
+            target: {
+                cardType: [...BattlefieldTypes],
+                controller: 'self',
+                gameAction: ability.actions.changeEvent((context) => ({
+                    event: context.event,
+                    card: context.target
+                }))
+            }
         });
     }
 }

@@ -14,12 +14,14 @@ const MovablePanel = ({ children, name, onCloseClick, side, title }) => {
     const savedStyle = localStorage.getItem(key);
     const style = (savedStyle && JSON.parse(savedStyle)) || PopupDefaults[key];
 
-    if (style.left >= window.innerWidth) {
-        style.left = window.innerWidth - 50;
-    }
+    if (style) {
+        if (style.left >= window.innerWidth) {
+            style.left = window.innerWidth - 50;
+        }
 
-    if (style.top >= window.innerHeight) {
-        style.top = window.innerHeight - 50;
+        if (style.top >= window.innerHeight) {
+            style.top = window.innerHeight - 50;
+        }
     }
 
     const [position, setPosition] = useState(Object.assign({}, style));

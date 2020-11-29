@@ -13,7 +13,9 @@ class SeasideRaven extends Card {
             }
         });
 
-        //todo:  quick strike
+        this.persistentEffect({
+            effect: ability.effects.quickStrike()
+        });
     }
 }
 

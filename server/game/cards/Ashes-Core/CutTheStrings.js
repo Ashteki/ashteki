@@ -23,7 +23,7 @@ class CutTheStrings extends Card {
                 },
                 second: {
                     dependsOn: 'first',
-                    cardType: CardType.AlterationSpell,
+                    cardType: CardType.Upgrade,
                     gameAction: ability.actions.discard()
                 }
             }

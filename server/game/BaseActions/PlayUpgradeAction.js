@@ -12,7 +12,7 @@ class PlayUpgradeAction extends BasePlayAction {
             cardType: [...BattlefieldTypes],
             gameAction: new AttachAction((context) => ({ upgrade: context.source }))
         });
-        this.title = 'Play this upgrade';
+        this.title = 'Play this alteration';
     }
 
     displayMessage(context) {

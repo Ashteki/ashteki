@@ -35,6 +35,7 @@ const Effects = {
     modifyPower: (amount) => EffectBuilder.card.flexible('modifyPower', amount),
     modifyAttack: (amount) => EffectBuilder.card.flexible('modifyAttack', amount),
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
+    modifyRecover: (amount) => EffectBuilder.card.flexible('modifyRecover', amount),
     modifyArmor: (amount) => EffectBuilder.card.flexible('modifyArmor', amount),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setPower: (amount) => EffectBuilder.card.flexible('setPower', amount),
@@ -53,6 +54,12 @@ const Effects = {
                 context.game.effectEngine.removeTerminalCondition(effect)
         }),
     transferDamage: (card) => EffectBuilder.card.static('transferDamage', card),
+    canGuard: () => EffectBuilder.card.static('canGuard'),
+    concealed: () => EffectBuilder.card.static('concealed'),
+    quickStrike: () => EffectBuilder.card.static('quickStrike'),
+    spellGuard: () => EffectBuilder.card.static('spellGuard'),
+    bypass: () => EffectBuilder.card.static('bypass'),
+
     // Player effects
     lastingAbilityTrigger: (properties) =>
         EffectBuilder.player.detached('abilityTrigger', {
@@ -96,12 +103,12 @@ const Effects = {
         }),
     modifyKeyCost: (amount) => EffectBuilder.player.flexible('modifyKeyCost', amount),
     modifyHandSize: (amount) => EffectBuilder.player.flexible('modifyHandSize', amount),
+    additionalDraw: (amount) => EffectBuilder.player.flexible('additionalDraw', amount),
     playerCannot: (type, condition) =>
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
     stealFromPool: () => EffectBuilder.player.static('stealFromPool'),
     captureFromPool: () => EffectBuilder.player.static('captureFromPool'),
-    skipStep: (step) => EffectBuilder.player.static('skipStep', step),
-    canGuard: () => EffectBuilder.card.static('canGuard')
+    skipStep: (step) => EffectBuilder.player.static('skipStep', step)
 };
 
 module.exports = Effects;

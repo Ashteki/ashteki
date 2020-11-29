@@ -8,7 +8,7 @@ const CardType = {
     ActionSpell: 'Action Spell',
     ReactionSpell: 'Reaction Spell',
     ReadySpell: 'Ready Spell',
-    AlterationSpell: 'Alteration Spell'
+    Ally: 'Ally'
 };
 
 const Location = {
@@ -19,10 +19,11 @@ const Location = {
 };
 
 const BattlefieldTypes = ['Ally', 'Conjuration'];
+const EffectLocations = ['play area', 'spellboard'];
 
 const AbilityType = {
-    Action: 'action',
-    WouldInterrupt: 'cancelinterrupt',
+    Action: 'action', // not used
+    WouldInterrupt: 'cancelinterrupt', // not used
     ForcedInterrupt: 'forcedinterrupt',
     Interrupt: 'interrupt',
     ForcedReaction: 'forcedreaction',
@@ -47,4 +48,13 @@ const Level = {
     Power: 'power'
 };
 
-module.exports = { Constants, CardType, Location, BattlefieldTypes, AbilityType, Magic, Level };
+module.exports = {
+    Constants,
+    CardType,
+    Location,
+    BattlefieldTypes,
+    AbilityType,
+    Magic,
+    Level,
+    EffectLocations
+};
