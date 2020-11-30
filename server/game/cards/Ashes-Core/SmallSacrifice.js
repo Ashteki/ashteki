@@ -5,7 +5,7 @@ const DiceCount = require('../../DiceCount.js');
 class SmallSacrifice extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Cut the Strings',
+            title: 'Small Sacrifice',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),

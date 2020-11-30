@@ -60,9 +60,14 @@ function detectBinary(state, path = '', results = []) {
     return results;
 }
 
+function capitalize(input) {
+    return input.charAt(0).toUpperCase() + input.slice(1);
+}
+
 module.exports = {
     detectBinary: detectBinary,
     escapeRegex: escapeRegex,
     httpRequest: httpRequest,
-    wrapAsync: wrapAsync
+    wrapAsync: wrapAsync,
+    capitalize: capitalize
 };

@@ -5,6 +5,8 @@ const DiceCount = require('../../DiceCount.js');
 class Empower extends Card {
     setupCardAbilities(ability) {
         this.action({
+            title: 'Empower',
+            location: 'spellboard',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
@@ -16,19 +18,51 @@ class Empower extends Card {
                     ]
                 ])
             ],
-            gameAction: ability.actions.addStatusToken(() => ({
-                promptForSelect: {
-                    optional: true,
-                    controller: 'self',
-                    cardCondition: (card, context) => card !== context.source,
-                    activePromptTitle: 'Choose a unit to empower',
-                    cardType: [...BattlefieldTypes]
+            target: {
+                controller: 'self',
+                activePromptTitle: 'Choose a unit to empower',
+                cardType: [...BattlefieldTypes],
+                gameAction: ability.actions.addStatusToken()
+            },
+            then: {
+                condition: (context) => context.source.focus,
+                targets: {
+                    tokenBoy: {
+                        controller: 'self',
+                        activePromptTitle: 'Choose a unit',
+                        cardType: [...BattlefieldTypes],
+                        cardCondition: (card) => card.tokens.status
+                    },
+                    amount: {
+                        dependsOn: 'tokenBoy',
+                        mode: 'options',
+                        options: (context) =>
+                            this.getValueOptions(context.targets.tokenBoy.tokens.status),
+                        handler: (option) => (this.chosenValue = option.value)
+                    },
+                    sucker: {
+                        dependsOn: 'amount',
+                        activePromptTitle: 'Choose a unit',
+                        cardType: [...BattlefieldTypes],
+
+                        gameAction: ability.actions.dealDamage(() => ({
+                            amount: this.chosenValue
+                        }))
+                    }
                 }
-            }))
+            }
         });
+    }
+
+    getValueOptions(maxValue) {
+        let values = [];
+        for (let i = 0; i <= maxValue; i++) {
+            values.push({ name: '' + i, value: i });
+        }
+        return values;
     }
 }
 
-Empower.id = 'gilder';
+Empower.id = 'empower';
 
 module.exports = Empower;

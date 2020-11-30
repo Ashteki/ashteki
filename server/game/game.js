@@ -34,7 +34,7 @@ const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
 const { BattlefieldTypes } = require('../constants');
 const UnitAttackFlow = require('./gamesteps/UnitAttackFlow');
-const ValueSelectPrompt = require('./gamesteps/valueselectprompt');
+const ValueSelectPrompt = require('./gamesteps/valueselectprompt.js');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {

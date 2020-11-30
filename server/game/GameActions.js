@@ -7,6 +7,7 @@ const Actions = {
     addExhaustionToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
+    addToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory),
     addDisruptionCounter: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'disruption'),
     addDoomCounter: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'doom'),
@@ -54,6 +55,7 @@ const Actions = {
     recoverWounds: (propertyFactory) => new GameActions.RecoverAction(propertyFactory),
     removeDamage: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'damage'),
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
+    removeToken: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
     removePowerCounter: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
     removeSchemeCounter: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'scheme'),
