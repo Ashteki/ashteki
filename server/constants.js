@@ -24,9 +24,9 @@ const EffectLocations = ['play area', 'spellboard'];
 const AbilityType = {
     Action: 'action', // not used
     WouldInterrupt: 'cancelinterrupt', // not used
-    ForcedInterrupt: 'forcedinterrupt',
+    ForcedInterrupt: 'forcedInterrupt',
     Interrupt: 'interrupt',
-    ForcedReaction: 'forcedreaction',
+    ForcedReaction: 'forcedReaction',
     Reaction: 'reaction',
     Persistent: 'persistent',
     OtherEffects: 'OtherEffects'

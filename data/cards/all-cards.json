@@ -3196,7 +3196,6 @@
             },
             "placement": "Discard",
             "cost": [
-                "[[main]]",
                 [
                     "1 [[illusion:power]]",
                     "1 [[sympathy:power]]"

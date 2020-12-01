@@ -37,7 +37,6 @@ const Actions = {
     destroy: (propertyFactory) => new GameActions.DestroyAction(propertyFactory),
     exalt: (propertyFactory) => new GameActions.ExaltAction(propertyFactory), // amount = 1
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
-    setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     graft: (propertyFactory) => new GameActions.PlaceUnderAction(propertyFactory, true),
     heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
 
@@ -70,6 +69,7 @@ const Actions = {
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
+    setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     swap: (propertyFactory) => new GameActions.SwapAction(propertyFactory), // origin
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     ward: (propertyFactory) => new GameActions.WardAction(propertyFactory),
