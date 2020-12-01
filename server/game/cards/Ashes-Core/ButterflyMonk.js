@@ -7,14 +7,14 @@ class ButterflyMonk extends Card {
         });
 
         this.destroyed({
-            gameAction: ability.actions.removeDamage(() => ({
-                promptForSelect: {
-                    optional: true,
-                    cardCondition: (card, context) => card !== context.source,
-                    activePromptTitle: 'Mend 1',
-                    cardType: ['Ally', 'Conjuration', 'Phoenixborn']
-                }
-            }))
+            target: {
+                controller: 'self',
+                optional: true,
+                cardCondition: (card, context) => card !== context.source,
+                activePromptTitle: 'Mend 1',
+                cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
+                gameAction: ability.actions.removeDamage()
+            }
         });
     }
 }
