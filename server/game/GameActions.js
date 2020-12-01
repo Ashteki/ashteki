@@ -91,6 +91,9 @@ const Actions = {
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name
     steal: (propertyFactory) => new GameActions.StealAction(propertyFactory), // amount = 1
+    chosenAmountDraw: (propertyFactory) => new GameActions.ChosenAmountDrawAction(propertyFactory),
+    spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
+    spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
 
     // meta actions
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),
@@ -103,8 +106,6 @@ const Actions = {
     sequentialForEach: (propertyFactory) =>
         new GameActions.SequentialForEachAction(propertyFactory),
 
-    spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
-    spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),
     setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),

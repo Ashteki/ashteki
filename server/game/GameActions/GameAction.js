@@ -42,6 +42,7 @@ class GameAction {
     }
 
     applyProperties(properties) {
+        this.propertyCache = properties;
         for (let [key, value] of Object.entries(properties)) {
             if (value !== undefined) {
                 this[key] = value;

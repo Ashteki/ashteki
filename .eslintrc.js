@@ -17,7 +17,10 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:jest/recommended'
     ],
-    rules: { 'react/prop-types': 'off' },
+    rules: {
+        'react/prop-types': 'off',
+        'prettier/prettier': 'warn'
+    },
     settings: {
         react: {
             version: 'detect'
