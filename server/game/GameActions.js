@@ -54,6 +54,8 @@ const Actions = {
     recoverWounds: (propertyFactory) => new GameActions.RecoverAction(propertyFactory),
     removeDamage: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'damage'),
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
+    removeExhaustion: (propertyFactory) =>
+        new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
     removeToken: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
     removePowerCounter: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
     removeSchemeCounter: (propertyFactory) =>
