@@ -54,5 +54,6 @@ module.exports = {
     SetDieLevelAction: require('./setDieLevelAction'),
     MeditateAction: require('./MeditateAction'),
     SetGuardedAction: require('./SetGuardedAction'),
-    ChangeDieAction: require('./ChangeDieAction')
+    ChangeDieAction: require('./ChangeDieAction'),
+    ChosenAmountDrawAction: require('./ChosenAmountDrawAction')
 };

@@ -512,6 +512,10 @@ class Player extends GameObject {
         return this.promptState.selectedCards;
     }
 
+    get selectedDice() {
+        return this.promptState.selectedDice;
+    }
+
     /**
      * Sets the passed cards as selected
      * @param cards

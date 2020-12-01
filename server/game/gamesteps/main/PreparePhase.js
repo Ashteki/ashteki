@@ -39,7 +39,7 @@ class PreparePhase extends Phase {
         for (const player of this.game.getPlayers()) {
             maxValues[player.uuid] = player.sumEffects('additionalDraw');
         }
-        this.game.promptForAdditionalDraw(maxValues);
+        this.game.promptForAdditionalDraw({ maxValues: maxValues });
     }
 }
 

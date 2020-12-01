@@ -411,6 +411,10 @@ class Card extends PlayableObject {
         return !!this.tokens[type];
     }
 
+    hasAnyTokens() {
+        return Object.keys(this.tokens).length;
+    }
+
     removeToken(type, number = this.tokens[type]) {
         if (!this.tokens[type]) {
             return;

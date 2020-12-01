@@ -11,6 +11,7 @@ class AbilityTargetOptions {
             );
             dependsOnTarget.dependentTarget = this;
         }
+        this.handler = properties.handler || this.defaultHandler;
     }
 
     getOptions(context) {
@@ -71,9 +72,11 @@ class AbilityTargetOptions {
             waitingPromptTitle: 'Waiting for opponent',
             source: this.properties.source || context.source,
             options: this.getOptions(context),
-            optionsHandler: (option) => (context.option = option)
+            optionsHandler: (option) => (context.option = this.handler(option))
         });
     }
+
+    defaultHandler = (option) => option;
 }
 
 module.exports = AbilityTargetOptions;

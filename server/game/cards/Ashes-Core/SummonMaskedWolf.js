@@ -17,7 +17,16 @@ class SummonMaskedWolf extends Card {
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'masked-wolf',
                 location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
+                gameAction: ability.actions.putIntoPlay({
+                    postHandler: (context) => {
+                        if (
+                            context.source.focus > 0 &&
+                            context.costs.returnDice.some((d) => d.level === 'power')
+                        ) {
+                            context.player.actions.side = true;
+                        }
+                    }
+                })
             }
         });
     }

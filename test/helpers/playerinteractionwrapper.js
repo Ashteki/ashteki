@@ -31,6 +31,10 @@ class PlayerInteractionWrapper {
         return this.player.hand;
     }
 
+    get actions() {
+        return this.player.actions;
+    }
+
     /**
      * Sets the player's hand to contain the specified cards. Moves cards between
      * hand and conflict deck

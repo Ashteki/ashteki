@@ -43,10 +43,10 @@ class ConditionalAction extends GameAction {
 
     hasLegalTarget(context) {
         this.update(context);
-        if (this.target.length === 0) {
-            return false;
-        }
-
+        // if (this.target.length === 0) {
+        //     return false;
+        // }
+        // delegate to game action(s)
         let gameAction = this.getGameAction(context);
         return gameAction && gameAction.hasLegalTarget(context);
     }

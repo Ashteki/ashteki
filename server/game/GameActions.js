@@ -7,6 +7,7 @@ const Actions = {
     addExhaustionToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
+    addToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory),
     addDisruptionCounter: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'disruption'),
     addDoomCounter: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'doom'),
@@ -36,7 +37,6 @@ const Actions = {
     destroy: (propertyFactory) => new GameActions.DestroyAction(propertyFactory),
     exalt: (propertyFactory) => new GameActions.ExaltAction(propertyFactory), // amount = 1
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
-    setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     graft: (propertyFactory) => new GameActions.PlaceUnderAction(propertyFactory, true),
     heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
 
@@ -54,6 +54,7 @@ const Actions = {
     recoverWounds: (propertyFactory) => new GameActions.RecoverAction(propertyFactory),
     removeDamage: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'damage'),
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
+    removeToken: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
     removePowerCounter: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
     removeSchemeCounter: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'scheme'),
@@ -68,6 +69,7 @@ const Actions = {
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
+    setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     swap: (propertyFactory) => new GameActions.SwapAction(propertyFactory), // origin
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     ward: (propertyFactory) => new GameActions.WardAction(propertyFactory),
@@ -89,6 +91,9 @@ const Actions = {
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name
     steal: (propertyFactory) => new GameActions.StealAction(propertyFactory), // amount = 1
+    chosenAmountDraw: (propertyFactory) => new GameActions.ChosenAmountDrawAction(propertyFactory),
+    spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
+    spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
 
     // meta actions
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),
@@ -101,8 +106,6 @@ const Actions = {
     sequentialForEach: (propertyFactory) =>
         new GameActions.SequentialForEachAction(propertyFactory),
 
-    spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
-    spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),
     setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),

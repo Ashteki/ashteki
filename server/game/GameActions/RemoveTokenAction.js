@@ -1,7 +1,7 @@
 const CardGameAction = require('./CardGameAction');
 
 class RemoveTokenAction extends CardGameAction {
-    constructor(propertyFactory, type = 'power') {
+    constructor(propertyFactory, type = 'status') {
         super(propertyFactory);
         this.type = type;
     }
@@ -15,7 +15,7 @@ class RemoveTokenAction extends CardGameAction {
         this.name = 'removeToken';
         this.targetType = ['Conjuration', 'Ally', 'Ready Spell', 'Phoenixborn'];
 
-        let type = this.type === 'power' ? 'power counter' : this.type;
+        let type = this.type === 'status' ? 'status token' : this.type;
         if (!this.all && this.amount > 1) {
             type += 's';
         }
