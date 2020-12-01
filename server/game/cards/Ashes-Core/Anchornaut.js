@@ -7,7 +7,6 @@ class Anchornaut extends Card {
             target: {
                 activePromptTitle: 'Throw 1',
                 cardType: ['Ally', 'Conjuration'],
-                controller: 'opponent',
                 gameAction: ability.actions.dealDamage({ amount: 1 })
             }
         });
