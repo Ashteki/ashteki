@@ -41,12 +41,11 @@ class DiceCost {
                 format: this.getDiceReq(context),
                 dieCondition: (d) => !d.exhausted,
                 onSelect: (player, dice) => {
-                    // EXACTLY returns an array SINGLE does not
-                    chosenDice = chosenDice.concat(dice);
-                    if (!Dice.canMatch(chosenDice, this.getDiceReq(context))) {
+                    // match returns an array SINGLE does not
+                    if (!Dice.canMatch(dice, this.getDiceReq(context))) {
                         promptPlayer();
                     } else {
-                        context.costs.returnDice = chosenDice;
+                        context.costs.returnDice = dice;
                     }
                     return true;
                 },
