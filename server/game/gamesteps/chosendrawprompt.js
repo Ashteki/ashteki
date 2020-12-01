@@ -10,8 +10,8 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
         game.getPlayers().forEach((p) => (prevention[p.uuid] = 0));
         this.prevention = properties.prevention || prevention;
 
-        this.promptTitle = properties.promptTitle || 'Draw cards';
-        this.menuTitle = properties.menuTitle || 'Choose a number';
+        this.promptTitle = properties.promptTitle || 'Extra card draw';
+        this.menuTitle = properties.menuTitle || 'Choose how many';
         this.remainderDamages = properties.remainderDamages || false;
         this.bid = {};
         this.remainder = {};
