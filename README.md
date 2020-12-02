@@ -1,4 +1,4 @@
-# Keyteki
+# Ashteki
 
 Web based implementation of the Ashes Reborn card game
 
