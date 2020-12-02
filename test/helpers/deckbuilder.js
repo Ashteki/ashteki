@@ -50,11 +50,19 @@ class DeckBuilder {
         let dice = [
             {
                 magic: 'illusion',
-                count: 5
+                count: 3
             },
             {
                 magic: 'ceremonial',
-                count: 5
+                count: 2
+            },
+            {
+                magic: 'charm',
+                count: 3
+            },
+            {
+                magic: 'natural',
+                count: 2
             }
         ];
 

@@ -30,6 +30,8 @@ describe('Fade away', function () {
 
         // pass p1
         this.player1.clickPrompt('End Turn');
+        this.player1.clickPrompt('Done');
+        this.player2.clickPrompt('Done');
 
         expect(this.game.round).toBe(2);
         expect(this.ironRhino.location).toBe('archives');
@@ -49,6 +51,8 @@ describe('Fade away', function () {
 
         // pass p1
         this.player1.clickPrompt('End Turn');
+        this.player1.clickPrompt('Done');
+        this.player2.clickPrompt('Done');
 
         expect(this.game.round).toBe(2);
         expect(this.ironWorker.location).toBe('purged');

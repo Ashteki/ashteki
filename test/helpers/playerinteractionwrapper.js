@@ -229,6 +229,10 @@ class PlayerInteractionWrapper {
         return this.player.promptState.selectableCards;
     }
 
+    get currentActionDiceTargets() {
+        return this.player.promptState.selectableDice;
+    }
+
     /**
      * Lists cards currently selected by the player
      * @return {DrawCard[]} - selected cards

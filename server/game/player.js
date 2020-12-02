@@ -29,6 +29,8 @@ class Player extends GameObject {
         this.deckData = {};
         this.firstFiveChosen = false;
         this.takenPrepareDiscard = false;
+        this.recoveryDicePinned = false;
+        this.pinnedDice = [];
 
         this.clock = ClockSelector.for(this, clockdetails);
         this.showDeck = false;
@@ -244,13 +246,28 @@ class Player extends GameObject {
 
     rerollAllDice() {
         let p = this;
-        const diceData = Dice.rollDice(this.diceCounts);
-        this.dice = diceData.map((d) => {
+        const diceCountsAfterPins = [...this.diceCounts];
+        if (this.pinnedDice) {
+            this.pinnedDice.forEach((pin) => {
+                const dCount = this.diceCounts.find((dc) => dc.magic === pin.magic);
+                dCount.count = dCount.count - 1;
+            });
+        }
+        const diceData = Dice.rollDice(diceCountsAfterPins);
+        let newDice = diceData.map((d) => {
             let die = new Die(p, d);
             die.location = 'dicepool';
             die.setupAbilities();
             return die;
         });
+        this.dice = this.pinnedDice.concat(newDice);
+        this.pinnedDice = [];
+        this.recoveryDicePinned = false;
+    }
+
+    pinSelectedDice() {
+        this.pinnedDice = this.selectedDice;
+        this.recoveryDicePinned = true;
     }
 
     addPlayableLocation(type, player, location) {
@@ -546,7 +563,7 @@ class Player extends GameObject {
     }
 
     getSelectableDice() {
-        return this.promptState.selectableCards;
+        return this.promptState.selectableDice;
     }
 
     setSelectableCards(cards) {
@@ -557,8 +574,8 @@ class Player extends GameObject {
         this.promptState.clearSelectableCards();
     }
 
-    setSelectableDice(cards) {
-        this.promptState.setSelectableDice(cards);
+    setSelectableDice(dice) {
+        this.promptState.setSelectableDice(dice);
     }
 
     clearSelectableDice() {

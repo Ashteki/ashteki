@@ -166,7 +166,6 @@ class SelectDiePrompt extends UiPrompt {
 
         return {
             selectDie: this.properties.selectDie,
-            selectRing: true,
             selectOrder: this.properties.ordered,
             menuTitle:
                 this.properties.activePromptTitle ||
