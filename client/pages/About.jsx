@@ -12,7 +12,7 @@ class About extends React.Component {
 
         return (
             <Col className='full-height' xs='12'>
-                <Panel title={t('About The Crucible Online - Help and information')}>
+                <Panel title={t('About Ashes Reborn Online - Help and information')}>
                     <a
                         className='btn btn-danger btn-lg float-right'
                         target='_blank'
