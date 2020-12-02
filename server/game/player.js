@@ -246,10 +246,12 @@ class Player extends GameObject {
 
     rerollAllDice() {
         let p = this;
-        const diceCountsAfterPins = [...this.diceCounts];
+        const diceCountsAfterPins = this.diceCounts.map((a) => {
+            return { ...a };
+        });
         if (this.pinnedDice) {
             this.pinnedDice.forEach((pin) => {
-                const dCount = this.diceCounts.find((dc) => dc.magic === pin.magic);
+                const dCount = diceCountsAfterPins.find((dc) => dc.magic === pin.magic);
                 dCount.count = dCount.count - 1;
             });
         }
@@ -266,7 +268,7 @@ class Player extends GameObject {
     }
 
     pinSelectedDice() {
-        this.pinnedDice = this.selectedDice;
+        this.pinnedDice = [...this.selectedDice];
         this.recoveryDicePinned = true;
     }
 
