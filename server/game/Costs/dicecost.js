@@ -35,19 +35,21 @@ class DiceCost {
             context.game.promptForDieSelect(context.player, {
                 activePromptTitle: 'Select die',
                 mode: 'match',
-                selectedDice: [...chosenDice],
+                selectedDice: chosenDice,
                 context: context,
                 buttons: buttons,
                 format: this.getDiceReq(context),
                 dieCondition: (d) => !d.exhausted,
                 onSelect: (player, dice) => {
+                    chosenDice = dice;
                     // match returns an array SINGLE does not
-                    if (!Dice.canMatch(dice, this.getDiceReq(context))) {
-                        promptPlayer();
+                    if (!Dice.canMatch(chosenDice, this.getDiceReq(context))) {
+                        //promptPlayer();
+                        return false;
                     } else {
-                        context.costs.returnDice = dice;
+                        context.costs.returnDice = chosenDice;
+                        return true;
                     }
-                    return true;
                 },
                 onMenuCommand: (player, arg) => {
                     if (arg === 'done') {
