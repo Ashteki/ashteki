@@ -8,15 +8,14 @@ class Gilder extends Card {
         });
 
         this.destroyed({
-            gameAction: ability.actions.addStatusToken(() => ({
-                // not the usual way to do this - probably could do with target:{   }
-                promptForSelect: {
-                    optional: true,
-                    cardCondition: (card, context) => card !== context.source,
-                    activePromptTitle: 'Inheritance 1',
-                    cardType: [...BattlefieldTypes]
-                }
-            }))
+            target: {
+                optional: true,
+                controller: 'self',
+                activePromptTitle: 'Inheritance 1',
+                cardType: BattlefieldTypes,
+                cardCondition: (card, context) => card !== context.source,
+                gameAction: ability.actions.addStatusToken()
+            }
         });
     }
 }

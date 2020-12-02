@@ -14,7 +14,6 @@ class CoalRoarkwin extends Card {
                         card.controller.cardsInPlay.length == 0 // implies the cardtype is pb
                     );
                 },
-                controller: 'opponent',
                 gameAction: ability.actions.dealDamage({ amount: 1 })
             }
         });

@@ -440,7 +440,7 @@ class Game extends EventEmitter {
     checkWinCondition() {
         for (const player of this.getPlayers()) {
             if (player.phoenixborn.damage >= player.phoenixborn.life) {
-                this.recordWinner(player, 'damage');
+                this.recordWinner(player.opponent, 'damage');
             }
         }
     }

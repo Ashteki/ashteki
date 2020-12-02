@@ -26,7 +26,6 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
     activePrompt() {
         return {
             selectCard: true,
-            selectRing: true,
             menuTitle: 'Select cards to discard',
             buttons: [{ text: 'Done', arg: 'done' }],
             promptTitle: 'Prepare phase discard'

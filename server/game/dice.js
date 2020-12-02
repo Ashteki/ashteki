@@ -52,7 +52,7 @@ class Dice {
         let parallels = diceReq.filter((r) => Array.isArray(r));
         let directs = diceReq.filter((r) => !Array.isArray(r));
         directs
-            .sort((a, b) => (a.level < b.level ? -1 : 1))
+            .sort((a, b) => (a.level > b.level ? -1 : 1)) // power first, then class, then basic
             .forEach((req) => {
                 // support requests for multiples
                 for (let i = 0; i < req.count; i++) {

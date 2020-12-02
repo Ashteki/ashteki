@@ -165,7 +165,6 @@ class Die extends PlayableObject {
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         cardType: ['Ally', 'Conjuration'],
-                        controller: 'opponent',
                         gameAction: this.game.actions.dealDamage({ amount: 1 })
                     }
                 });

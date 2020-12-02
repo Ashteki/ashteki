@@ -29,6 +29,8 @@ class Player extends GameObject {
         this.deckData = {};
         this.firstFiveChosen = false;
         this.takenPrepareDiscard = false;
+        this.recoveryDicePinned = false;
+        this.pinnedDice = [];
 
         this.clock = ClockSelector.for(this, clockdetails);
         this.showDeck = false;
@@ -199,9 +201,10 @@ class Player extends GameObject {
         this.shuffleDeck();
     }
 
-    isSpellboardFull() {
-        const spellCount = new Set(this.spellboard.map((s) => s.name)).size;
-        return spellCount >= this.phoenixborn.spellboard;
+    isSpellboardFull(spellToAdd) {
+        const spellSet = new Set(this.spellboard.map((s) => s.name));
+        const spellCount = spellSet.size;
+        return !spellSet.has(spellToAdd) && spellCount >= this.phoenixborn.spellboard;
     }
 
     isBattlefieldFull() {
@@ -243,13 +246,30 @@ class Player extends GameObject {
 
     rerollAllDice() {
         let p = this;
-        const diceData = Dice.rollDice(this.diceCounts);
-        this.dice = diceData.map((d) => {
+        const diceCountsAfterPins = this.diceCounts.map((a) => {
+            return { ...a };
+        });
+        if (this.pinnedDice) {
+            this.pinnedDice.forEach((pin) => {
+                const dCount = diceCountsAfterPins.find((dc) => dc.magic === pin.magic);
+                dCount.count = dCount.count - 1;
+            });
+        }
+        const diceData = Dice.rollDice(diceCountsAfterPins);
+        let newDice = diceData.map((d) => {
             let die = new Die(p, d);
             die.location = 'dicepool';
             die.setupAbilities();
             return die;
         });
+        this.dice = this.pinnedDice.concat(newDice);
+        this.pinnedDice = [];
+        this.recoveryDicePinned = false;
+    }
+
+    pinSelectedDice() {
+        this.pinnedDice = [...this.selectedDice];
+        this.recoveryDicePinned = true;
     }
 
     addPlayableLocation(type, player, location) {
@@ -545,7 +565,7 @@ class Player extends GameObject {
     }
 
     getSelectableDice() {
-        return this.promptState.selectableCards;
+        return this.promptState.selectableDice;
     }
 
     setSelectableCards(cards) {
@@ -556,8 +576,8 @@ class Player extends GameObject {
         this.promptState.clearSelectableCards();
     }
 
-    setSelectableDice(cards) {
-        this.promptState.setSelectableDice(cards);
+    setSelectableDice(dice) {
+        this.promptState.setSelectableDice(dice);
     }
 
     clearSelectableDice() {

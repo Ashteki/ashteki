@@ -6,8 +6,8 @@ class Refresh extends Card {
         this.play({
             effect: 'remove all exhaustion tokens from a target unit',
             target: {
-                cardType: [...BattlefieldTypes],
-                gameAction: ability.actions.removeStatus({ all: true })
+                cardType: BattlefieldTypes,
+                gameAction: ability.actions.removeExhaustion({ all: true })
             }
         });
     }

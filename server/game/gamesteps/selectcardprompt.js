@@ -166,7 +166,6 @@ class SelectCardPrompt extends UiPrompt {
 
         return {
             selectCard: this.properties.selectCard,
-            selectRing: true,
             selectOrder: this.properties.ordered,
             menuTitle:
                 this.properties.activePromptTitle ||

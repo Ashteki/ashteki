@@ -102,6 +102,44 @@ var customMatchers = {
             }
         };
     },
+    toBeAbleToSelectDie: function () {
+        return {
+            compare: function (player, die) {
+                let result = {};
+
+                result.pass = player.currentActionDiceTargets.includes(die);
+
+                if (result.pass) {
+                    result.message = `Expected ${die.level} ${die.magic} die not to be selectable by ${player.name} but it was.`;
+                } else {
+                    result.message = `Expected ${die.level} ${die.magic} die to be selectable by ${player.name} but it wasn't.`;
+                }
+
+                return result;
+            }
+        };
+    },
+    toBeAbleToPlayFromHand: function () {
+        return {
+            compare: function (player, card) {
+                if (_.isString(card)) {
+                    card = player.findCardByName(card, 'hand');
+                }
+
+                let result = {};
+
+                result.pass = card.getLegalActions(player.player, false).length > 0;
+
+                if (result.pass) {
+                    result.message = `Expected ${card.name} not to be playable by ${player.name} but it was.`;
+                } else {
+                    result.message = `Expected ${card.name} to be playable by ${player.name} but it wasn't.`;
+                }
+
+                return result;
+            }
+        };
+    },
     toBeAbleToPlay: function () {
         return {
             compare: function (player, card) {

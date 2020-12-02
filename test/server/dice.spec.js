@@ -11,6 +11,30 @@ describe('dice matching', function () {
         { uuid: '5', magic: 'ceremonial', level: 'power' }
     ];
 
+    it('Refresh BUG test part 1 - req order shouldnt matter', function () {
+        const diceReq = [new DiceCount(1, Level.Power, Magic.Charm), new DiceCount(1, Level.Basic)];
+
+        let testDice = [
+            { uuid: '1', magic: 'natural', level: 'power' },
+            { uuid: '3', magic: 'charm', level: 'power' }
+        ];
+        let result = Dice.canMatch(testDice, diceReq);
+
+        expect(result).toBe(true);
+    });
+
+    it('Refresh BUG test because req order shouldnt matter', function () {
+        const diceReq = [new DiceCount(1, Level.Power, Magic.Charm), new DiceCount(1, Level.Basic)];
+
+        let testDice = [
+            { uuid: '3', magic: 'charm', level: 'power' },
+            { uuid: '1', magic: 'natural', level: 'power' }
+        ];
+        let result = Dice.canMatch(testDice, diceReq);
+
+        expect(result).toBe(true);
+    });
+
     it('should match exact class when power is available', function () {
         const diceReq = [
             new DiceCount(1, Level.Class, Magic.Ceremonial),
