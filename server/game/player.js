@@ -199,9 +199,10 @@ class Player extends GameObject {
         this.shuffleDeck();
     }
 
-    isSpellboardFull() {
-        const spellCount = new Set(this.spellboard.map((s) => s.name)).size;
-        return spellCount >= this.phoenixborn.spellboard;
+    isSpellboardFull(spellToAdd) {
+        const spellSet = new Set(this.spellboard.map((s) => s.name));
+        const spellCount = spellSet.size;
+        return !spellSet.has(spellToAdd) && spellCount >= this.phoenixborn.spellboard;
     }
 
     isBattlefieldFull() {

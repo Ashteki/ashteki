@@ -102,6 +102,27 @@ var customMatchers = {
             }
         };
     },
+    toBeAbleToPlayFromHand: function () {
+        return {
+            compare: function (player, card) {
+                if (_.isString(card)) {
+                    card = player.findCardByName(card, 'hand');
+                }
+
+                let result = {};
+
+                result.pass = card.getLegalActions(player.player, false).length > 0;
+
+                if (result.pass) {
+                    result.message = `Expected ${card.name} not to be playable by ${player.name} but it was.`;
+                } else {
+                    result.message = `Expected ${card.name} to be playable by ${player.name} but it wasn't.`;
+                }
+
+                return result;
+            }
+        };
+    },
     toBeAbleToPlay: function () {
         return {
             compare: function (player, card) {
