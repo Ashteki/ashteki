@@ -12,7 +12,8 @@ describe('Undying heart', function () {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['iron-worker'],
                 spellboard: ['summon-iron-rhino'],
-                hand: []
+                hand: ['molten-gold'],
+                dicepool: ['natural', 'natural', 'charm', 'charm']
             }
         });
     });
@@ -28,7 +29,7 @@ describe('Undying heart', function () {
         expect(this.mistSpirit.effects.length).toBe(3); // two modifies and a destroyed
     });
 
-    it('returns destroyed ally to hand', function () {
+    it('returns destroyed ally to hand after ATTACK', function () {
         this.player1.clickCard(this.undyingHeart); // play card
         this.player1.clickPrompt('Play this alteration');
         this.player1.clickCard(this.anchornaut); // attach
@@ -42,6 +43,22 @@ describe('Undying heart', function () {
         this.player2.clickCard(this.ironWorker);
         this.player1.clickPrompt('Done'); // no guard
         this.player1.clickPrompt('No'); // no counter
+        expect(this.undyingHeart.location).toBe('discard');
+        expect(this.anchornaut.location).toBe('hand');
+    });
+
+    it('returns destroyed ally to hand after MG', function () {
+        this.player1.clickCard(this.undyingHeart); // play card
+        this.player1.clickPrompt('Play this alteration');
+        this.player1.clickCard(this.anchornaut); // attach
+        expect(this.undyingHeart.location).toBe('play area');
+        expect(this.anchornaut.effects.length).toBe(3);
+        this.player1.clickPrompt('End Turn');
+        this.player1.clickPrompt('Yes');
+
+        this.player2.clickCard(this.moltenGold);
+        this.player2.clickPrompt('Play this Action');
+        this.player2.clickCard(this.anchornaut);
         expect(this.undyingHeart.location).toBe('discard');
         expect(this.anchornaut.location).toBe('hand');
     });
