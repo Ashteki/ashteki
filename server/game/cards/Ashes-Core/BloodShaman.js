@@ -5,6 +5,7 @@ class BloodShaman extends Card {
         this.destroyed({
             condition: (context) =>
                 context.event.triggeringEvent &&
+                context.event.triggeringEvent.name === 'onCardDestroyed' &&
                 context.event.triggeringEvent.damageEvent &&
                 context.event.triggeringEvent.damageEvent.damageSource.owner ===
                     context.source.owner,
