@@ -10,6 +10,7 @@ class CloseCombat extends Card {
                     cardCondition: (card) => !card.exhausted
                 },
                 oppChar: {
+                    dependsOn: 'myChar',
                     cardType: ['Ally', 'Conjuration'],
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
