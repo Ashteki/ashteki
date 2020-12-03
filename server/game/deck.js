@@ -61,6 +61,7 @@ class Deck {
             if (pbCard) {
                 pbCard.setupAbilities();
                 pbCard.location = 'play area';
+
                 result.phoenixborn = pbCard;
             }
         });
