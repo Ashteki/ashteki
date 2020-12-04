@@ -21,8 +21,22 @@ describe('Summon Masked Wolf', function () {
             this.player1.clickCard(this.summonMaskedWolf);
             this.player1.clickPrompt('Summon Masked Wolf');
             this.player1.clickCard(this.player1.archives[0]);
+            expect(this.player1).toHavePrompt('Select die');
+            this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.player1.archives[0]);
 
-            // Butterfly monk is now on the battlefield
+            expect(this.player1.inPlay.length).toBe(1);
+        });
+
+        it('should not autosubmit on dice choice', function () {
+            this.player1.dicepool[1].level = 'class';
+            this.player1.clickCard(this.summonMaskedWolf);
+            this.player1.clickPrompt('Summon Masked Wolf');
+            expect(this.player1).toHavePrompt('Select die');
+
+            this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.player1.archives[0]);
+
             expect(this.player1.inPlay.length).toBe(1);
         });
 
@@ -31,9 +45,12 @@ describe('Summon Masked Wolf', function () {
             expect(this.player1.dicepool[2].level).toBe('power');
             this.player1.clickCard(this.summonMaskedWolf);
             this.player1.clickPrompt('Summon Masked Wolf');
+            this.player1.clickDie(1); // unselect auto class die
+            this.player1.clickDie(2); // select wolf
+            this.player1.clickPrompt('Done');
+
             this.player1.clickCard(this.player1.archives[0]);
 
-            // Butterfly monk is now on the battlefield
             expect(this.player1.inPlay.length).toBe(1);
             expect(this.player1.actions.side).toBe(true);
         });
@@ -47,9 +64,10 @@ describe('Summon Masked Wolf', function () {
 
             this.player1.clickCard(this.summonMaskedWolf);
             this.player1.clickPrompt('Summon Masked Wolf');
+            this.player1.clickPrompt('Done');
+
             this.player1.clickCard(this.player1.archives[0]);
 
-            // Butterfly monk is now on the battlefield
             expect(this.player1.inPlay.length).toBe(1);
             expect(this.player1.actions.side).toBe(false);
         });

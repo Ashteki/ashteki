@@ -19,7 +19,10 @@ class DiceCost {
         const nonParallels = this.getDiceReq(context).filter((r) => !Array.isArray(r));
         const nonBasics = nonParallels.filter((r) => r.level !== 'basic');
         let chosenDice = Dice.matchDice(context.player.dice, nonBasics);
-        if (chosenDice.length == Dice.getRequiredCount(this.getDiceReq(context))) {
+        if (
+            !context.source.preventAutoDice &&
+            chosenDice.length == Dice.getRequiredCount(this.getDiceReq(context))
+        ) {
             context.costs.returnDice = chosenDice;
             return true;
         }
