@@ -25,8 +25,7 @@ class About extends React.Component {
                         <h3>What is this?</h3>
 
                         <p>
-                            This site was setup to allow you to play Keyforge, a Unique Deck Game
-                            from Fantasy Flight Games (FFG) in your browser.
+                            This site was setup to allow you to play Ashes Reborn in your browser.
                         </p>
                     </Trans>
                     <Trans i18nKey='about.cool'>
