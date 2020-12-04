@@ -1,6 +1,6 @@
 bower_components
 node_modules
-public
+# public
 dist
 typings
 coverage
@@ -16,4 +16,3 @@ build/
 mongodb
 .vscode/
 /.idea/
-public/img/avatar/
