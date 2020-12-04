@@ -13,7 +13,7 @@ class HowToPlay extends React.Component {
 
         return (
             <div className='col-xs-12 full-height'>
-                <Panel title={t('How To Play on The Crucible Online')}>
+                <Panel title={t('How To Play on Ashes Reborn Online')}>
                     <a
                         className='btn btn-danger pull-right'
                         target='_blank'
@@ -26,7 +26,7 @@ class HowToPlay extends React.Component {
                     <p>
                         <Trans i18nKey='howtoplay.thisguide'>
                             This guide is aimed at players familiar with Keyforge: the Unique Deck
-                            Game who want to start playing online using the The Crucible Online
+                            Game who want to start playing online using the Ashes Reborn Online
                             platform. If you are new to this cardgame in general, there is a{' '}
                             <a
                                 href='https://www.youtube.com/watch?v=D7qt2H9Im2Q'
@@ -223,7 +223,7 @@ class HowToPlay extends React.Component {
                     </h3>
                     <p>
                         <Trans i18nKey='howtoplay.about'>
-                            The Crucible Online does not rank and/or match players by skill level in
+                            Ashes Reborn Online does not rank and/or match players by skill level in
                             any way. There are three categories (beginner, casual and competitive)
                             to be chosen when creating a game which gives an indication of what to
                             expect, but it doesn&apos;t enforce anything. Even though personal stats

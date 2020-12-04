@@ -1,3 +1,4 @@
+const { Location } = require('../../constants.js');
 const BaseStepWithPipeline = require('./basestepwithpipeline.js');
 const SimpleStep = require('./simplestep.js');
 
@@ -88,6 +89,16 @@ class AbilityResolver extends BaseStepWithPipeline {
         } else if (this.targetResults.cancelled) {
             this.cancelled = true;
             return;
+        }
+
+        // Increment limits (limits aren't used up on cards in hand)
+        if (
+            this.context.ability.limit &&
+            this.context.source.location !== Location.Hand &&
+            (!this.context.cardStateWhenInitiated ||
+                this.context.cardStateWhenInitiated.location === this.context.source.location)
+        ) {
+            this.context.ability.limit.increment(this.context.player);
         }
 
         this.context.player.moveCard(this.context.source, 'being played');

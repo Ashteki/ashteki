@@ -180,6 +180,19 @@ class PlayerInteractionWrapper {
         return this.player.phoenixborn;
     }
 
+    // set phoenixborn(card) {
+    //     // First, move all cards in play back to the appropriate decks
+    //     this.moveCard(card, 'deck');
+    //     // Set up each of the cards
+
+    //     if (_.isString(card)) {
+    //         card = this.findCardByName(card);
+    //     }
+
+    //     this.moveCard(card, 'play area');
+    //     card.unExhaust();
+    // }
+
     get opponent() {
         return this.player.opponent;
     }
@@ -315,7 +328,7 @@ class PlayerInteractionWrapper {
             player = this.opponent;
         }
 
-        var cards = player.allCards.filter(condition);
+        var cards = player.allCards.concat(player.phoenixborn).filter(condition);
         if (cards.length === 0) {
             throw new Error(`Could not find any matching cards for ${player.name}`);
         }

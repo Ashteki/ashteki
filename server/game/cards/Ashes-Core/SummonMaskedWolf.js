@@ -4,6 +4,8 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonMaskedWolf extends Card {
     setupCardAbilities(ability) {
+        this.preventAutoDice = true;
+
         this.action({
             title: 'Summon Masked Wolf',
             cost: [

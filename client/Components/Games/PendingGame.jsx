@@ -18,7 +18,7 @@ import { useEffect } from 'react';
 
 function showNotification(notification) {
     if (window.Notification && Notification.permission === 'granted') {
-        let windowNotification = new Notification('The Crucible Online', notification);
+        let windowNotification = new Notification('Ashes Reborn Online', notification);
 
         setTimeout(() => windowNotification.close(), 5000);
     }

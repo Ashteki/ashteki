@@ -242,6 +242,7 @@ class Player extends GameObject {
         this.readyToStart = false;
         this.opponent = this.game.getOtherPlayer(this);
         this.actions = { main: true, side: true };
+        this.phoenixborn.updateAbilityEvents('deck', 'play area');
     }
 
     rerollAllDice() {

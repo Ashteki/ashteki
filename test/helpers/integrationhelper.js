@@ -231,6 +231,8 @@ beforeEach(function () {
         //Field
         this.player1.hand = [];
         this.player2.hand = [];
+        // this.player1.phoenixborn = options.player1.phoenixborn;
+        // this.player2.phoenixborn = options.player2.phoenixborn;
         this.player1.inPlay = options.player1.inPlay;
         this.player2.inPlay = options.player2.inPlay;
         //Conflict deck related

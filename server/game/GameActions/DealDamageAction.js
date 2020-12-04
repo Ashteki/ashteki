@@ -79,7 +79,7 @@ class DealDamageAction extends CardGameAction {
                     if (!event.card.moribund && event.card.tokens.damage >= event.card.life) {
                         damageDealtEvent.destroyEvent = context.game.actions
                             .destroy({ damageEvent: damageDealtEvent })
-                            .getEvent(event.card, context.game.getFrameworkContext());
+                            .getEvent(event.card, context.game.getFrameworkContext(context.player));
 
                         event.addSubEvent(damageDealtEvent.destroyEvent);
                         if (damageDealtEvent.fightEvent) {

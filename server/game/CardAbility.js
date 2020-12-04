@@ -1,4 +1,5 @@
 const { CardType } = require('../constants');
+const AbilityLimit = require('./abilitylimit');
 const ThenAbility = require('./ThenAbility');
 
 class CardAbility extends ThenAbility {
@@ -7,6 +8,10 @@ class CardAbility extends ThenAbility {
 
         this.location = properties.location || 'play area';
         this.printedAbility = properties.printedAbility === false ? false : true;
+
+        this.limit = properties.limit || AbilityLimit.perTurn(1);
+        this.limit.registerEvents(game);
+        this.limit.ability = this;
 
         if (card.getType() === CardType.ReactionSpell) {
             this.cost = this.cost.concat(card.playCost);
@@ -26,6 +31,10 @@ class CardAbility extends ThenAbility {
 
         if (!this.card.checkRestrictions('triggerAbilities', context)) {
             return 'cannotTrigger';
+        }
+
+        if (this.limit.isAtMax(context.player)) {
+            return 'limit';
         }
 
         return super.meetsRequirements(context);
