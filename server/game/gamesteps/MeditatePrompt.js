@@ -77,12 +77,6 @@ class MeditatePrompt extends UiPrompt {
             },
             buttons: buttons,
             promptTitle: 'Meditate'
-            // controls: [
-            //     {
-            //         type: 'targeting',
-            //         source: this.context.source.getShortSummary(),
-            //         targets: []
-            //     }
         };
     }
 
@@ -126,7 +120,7 @@ class MeditatePrompt extends UiPrompt {
     selectDie(die) {
         this.choosingPlayer.discardSelectedCards();
         die.level = 'power';
-        this.count = this.count++;
+        this.count = this.count + 1;
         this.resetSelections(this.choosingPlayer);
         return true;
     }
