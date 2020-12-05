@@ -38,7 +38,6 @@ const GameLobby = ({ gameId }) => {
     }));
     const user = useSelector((state) => state.account.user);
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
-    const [quickJoin, setQuickJoin] = useState(false);
     const topRef = useRef(null);
 
     useEffect(() => {
@@ -89,7 +88,7 @@ const GameLobby = ({ gameId }) => {
     return (
         <Col md={{ offset: 2, span: 8 }}>
             <div ref={topRef}>
-                {newGame && <NewGame quickJoin={quickJoin} />}
+                {newGame && <NewGame quickJoin={false} />}
                 {currentGame?.started === false && <PendingGame />}
                 {passwordGame && <PasswordGame />}
             </div>
@@ -109,16 +108,6 @@ const GameLobby = ({ gameId }) => {
                             onClick={() => dispatch(startNewGame())}
                         >
                             <Trans>New Game</Trans>
-                        </Button>
-                        <Button
-                            disabled={!user}
-                            variant='primary'
-                            onClick={() => {
-                                setQuickJoin(true);
-                                dispatch(startNewGame());
-                            }}
-                        >
-                            <Trans>Quick Join</Trans>
                         </Button>
                     </Col>
                     <Col sm={8} lg={9}>
