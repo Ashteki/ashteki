@@ -35,6 +35,7 @@ const MeditatePrompt = require('./gamesteps/MeditatePrompt');
 const { BattlefieldTypes } = require('../constants');
 const UnitAttackFlow = require('./gamesteps/UnitAttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
+const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -78,6 +79,7 @@ class Game extends EventEmitter {
         this.cardsDiscarded = [];
         this.effectsUsed = [];
         this.activePlayer = null;
+        this.firstPlayer = null;
         this.jsonForUsers = {};
 
         this.cardData = options.cardData || [];
@@ -748,13 +750,12 @@ class Game extends EventEmitter {
             this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCountPlayer0);
             this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCountPlayer1);
             this.activePlayer = basicCountPlayer0 > basicCountPlayer1 ? players[0] : players[1];
-            this.firstPlayer = this.activePlayer;
             this.addAlert(
                 'info',
-                '{0} rolled the most basics and will go first',
+                '{0} rolled the most basics so will choose first player',
                 this.activePlayer
             );
-            this.firstPlayer.setFirstPlayer();
+            this.queueStep(new FirstPlayerSelection(this));
         } else {
             this.activePlayer = this.round % 2 > 0 ? this.firstPlayer : this.firstPlayer.opponent;
             this.getPlayers().forEach((p) => p.toggleFirstPlayer());
