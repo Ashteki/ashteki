@@ -763,6 +763,12 @@ class Game extends EventEmitter {
         }
     }
 
+    SetFirstPlayer(player) {
+        this.firstPlayer = player;
+        this.firstPlayer.setFirstPlayer();
+        this.activePlayer = player;
+    }
+
     reRollPlayerDice() {
         for (let player of this.getPlayers()) {
             player.rerollAllDice();
