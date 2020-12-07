@@ -34,10 +34,12 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
 
     highlightSelectableCards() {
         this.game.getPlayers().forEach((player) => {
-            if (!this.selectableCards[player.name]) {
-                this.selectableCards[player.name] = player.hand;
+            if (!player.takenPrepareDiscard) {
+                if (!this.selectableCards[player.name]) {
+                    this.selectableCards[player.name] = player.hand;
+                }
+                player.setSelectableCards(this.selectableCards[player.name]);
             }
-            player.setSelectableCards(this.selectableCards[player.name]);
         });
     }
 
@@ -69,12 +71,16 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
 
     menuCommand(player, arg) {
         if (arg === 'done') {
+            player.clearSelectableCards();
+
             if (this.selectedCards[player.name].length > 0) {
-                for (const card of this.selectedCards[player.name]) {
-                    player.moveCard(card, 'discard');
-                }
-                // player.drawCardsToHand(this.selectedCards[player.name].length);
-                // player.shuffleConflictDeck();
+                this.game.actions
+                    .discard()
+                    .resolve(
+                        this.selectedCards[player.name],
+                        this.game.getFrameworkContext(player)
+                    );
+
                 this.game.addMessage(
                     '{0} has discarded {1} cards from hand',
                     player,
@@ -85,7 +91,6 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
             }
 
             player.clearSelectedCards();
-            player.clearSelectableCards();
             player.takenPrepareDiscard = true;
             return true;
         }

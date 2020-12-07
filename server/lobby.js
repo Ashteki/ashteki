@@ -750,28 +750,6 @@ class Lobby {
                     pb.card = cards[pb.id];
                 }
 
-                let deckUsageLevel = 0;
-                if (
-                    deck.usageCount >
-                    this.configService.getValueForSection('lobby', 'lowerDeckThreshold')
-                ) {
-                    deckUsageLevel = 1;
-                }
-
-                if (
-                    deck.usageCount >
-                    this.configService.getValueForSection('lobby', 'middleDeckThreshold')
-                ) {
-                    deckUsageLevel = 2;
-                }
-
-                if (
-                    deck.usageCount >
-                    this.configService.getValueForSection('lobby', 'upperDeckThreshold')
-                ) {
-                    deckUsageLevel = 3;
-                }
-
                 if (isStandalone) {
                     deck.verified = true;
                 }
@@ -782,7 +760,7 @@ class Lobby {
                     extendedStatus: [],
                     noUnreleasedCards: true,
                     officialRole: true,
-                    usageLevel: deckUsageLevel,
+                    usageLevel: 0,
                     verified: !!deck.verified
                 };
 

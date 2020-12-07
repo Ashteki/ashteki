@@ -45,8 +45,7 @@ class FirstPlayerSelection extends UiPrompt {
     }
 
     onCompleted() {
-        this.game.firstPlayer = this.firstPlayer;
-        this.game.firstPlayer.setFirstPlayer();
+        this.game.SetFirstPlayer(this.firstPlayer);
     }
 }
 
