@@ -1,36 +1,54 @@
 const { BattlefieldTypes, CardType } = require('../../constants');
 const { Costs } = require('../costs');
+const AttackState = require('./AttackState');
 const BaseStepWithPipeline = require('./basestepwithpipeline');
+const ChooseDefendersPrompt = require('./ChooseDefendersPrompt');
 const SimpleStep = require('./simplestep');
 
-class UnitAttackFlow extends BaseStepWithPipeline {
+class AttackFlow extends BaseStepWithPipeline {
     constructor(game, target = null) {
         super(game);
         this.target = target;
         this.isPBAttack = target.type === CardType.Phoenixborn;
-        this.battles = [];
         this.attackingPlayer = this.game.activePlayer;
         this.defendingPlayer = target.controller;
+        game.setAttackState(new AttackState(this.target, this.attackingPlayer));
 
         let steps = [];
         steps = steps.concat([
             new SimpleStep(this.game, () => this.declareAttackers()),
             new SimpleStep(this.game, () => this.payAttackCost(this.attackingPlayer)),
+            // should choose blockers here as a player prompt
+            new ChooseDefendersPrompt(this.game, this.attack),
             new SimpleStep(this.game, () => {
-                this.battles.forEach((battle) => {
-                    this.game.queueSimpleStep(() => this.chooseBlockOrGuard(battle));
+                this.attack.battles.forEach((battle) => {
+                    // this.game.queueSimpleStep(() => this.chooseBlockOrGuard(battle));
+                    // the rest are fight resolution
                     this.game.queueSimpleStep(() => this.promptForCounter(battle));
                     this.game.queueSimpleStep(() => this.resolveBattle(battle));
                     this.game.queueSimpleStep(() => this.exhaustParticipants(battle));
                 });
-            })
+            }),
+            new SimpleStep(this.game, () => this.clearAttackStatuses())
         ]);
 
         this.pipeline.initialise(steps);
     }
 
+    get attack() {
+        return this.game.attackState;
+    }
+
+    clearAttackStatuses() {
+        this.game.clearAttackState();
+        this.attack.battles.forEach((battle) => {
+            battle.attacker.isAttacker = false;
+            if (battle.guard) battle.guard.isDefender = false;
+        });
+    }
+
     payAttackCost(attackingPlayer) {
-        let attackers = this.battles.map((b) => b.attacker);
+        let attackers = this.attack.battles.map((b) => b.attacker);
         this.game.addAlert(
             'danger',
             '{0} attacks {1} with {2}',
@@ -174,35 +192,35 @@ class UnitAttackFlow extends BaseStepWithPipeline {
         });
     }
 
-    chooseBlockOrGuard(battle) {
-        // exit if there are no eligeable blockers / guarders?
-        if (!this.blockersAvailable(battle) || battle.attacker.hasKeyword('bypass')) {
-            return true;
-        }
+    // chooseBlockOrGuard(battle) {
+    //     // exit if there are no eligeable blockers / guarders?
+    //     if (!this.blockersAvailable(battle) || battle.attacker.hasKeyword('bypass')) {
+    //         return true;
+    //     }
 
-        let event = this.game.getEvent('onGuardSelect', {}, () => {
-            this.game.promptForSelect(this.defendingPlayer, {
-                source: battle.attacker,
-                optional: true,
-                activePromptTitle: this.isPBAttack ? 'Choose a blocker' : 'Choose a guard?',
-                waitingPromptTitle: this.isPBAttack
-                    ? 'Waiting for opponent to block'
-                    : 'Waiting for opponent to guard',
-                controller: 'self',
-                cardType: [...BattlefieldTypes, 'Phoenixborn'],
-                cardCondition: (card) => {
-                    return this.availableToBlockOrGuard(card, battle);
-                },
-                onSelect: (player, card) => {
-                    battle.guard = card;
+    //     let event = this.game.getEvent('onGuardSelect', {}, () => {
+    //         this.game.promptForSelect(this.defendingPlayer, {
+    //             source: battle.attacker,
+    //             optional: true,
+    //             activePromptTitle: this.isPBAttack ? 'Choose a blocker' : 'Choose a guard?',
+    //             waitingPromptTitle: this.isPBAttack
+    //                 ? 'Waiting for opponent to block'
+    //                 : 'Waiting for opponent to guard',
+    //             controller: 'self',
+    //             cardType: [...BattlefieldTypes, 'Phoenixborn'],
+    //             cardCondition: (card) => {
+    //                 return this.availableToBlockOrGuard(card, battle);
+    //             },
+    //             onSelect: (player, card) => {
+    //                 battle.guard = card;
 
-                    return true;
-                }
-            });
-        });
+    //                 return true;
+    //             }
+    //         });
+    //     });
 
-        this.game.openEventWindow([event]);
-    }
+    //     this.game.openEventWindow([event]);
+    // }
 
     blockersAvailable(battle) {
         return this.defendingPlayer.defenders.some((c) => this.availableToBlockOrGuard(c, battle));
@@ -210,22 +228,20 @@ class UnitAttackFlow extends BaseStepWithPipeline {
 
     availableToBlockOrGuard(c, battle) {
         return (
-            (this.guardTest(c, battle.target) || this.blockTest(c)) &&
-            this.checkGigantic(c, battle.attacker)
+            this.guardTest(c, battle.target, battle.attacker) || this.blockTest(c, battle.attacker)
         );
     }
 
-    guardTest(card, target) {
-        return !this.isPBAttack && card.canGuard() && card !== target;
+    guardTest(card, target, attacker) {
+        return !this.isPBAttack && card.canGuard(attacker) && card !== target;
     }
 
-    blockTest(card) {
-        return this.isPBAttack && !this.battles.some((b) => b.guard == card) && card.canBlock();
-    }
-
-    checkGigantic(card, attacker) {
-        // ok to block if attacker doesn't have gigantic, or gigantic value is less than this card's life value
-        return !attacker.hasKeyword('gigantic') || attacker.getKeywordValue('gigantic') < card.life;
+    blockTest(card, attacker) {
+        return (
+            this.isPBAttack &&
+            !this.attack.battles.some((b) => b.guard == card) &&
+            card.canBlock(attacker)
+        );
     }
 
     promptForCounter(battle) {
@@ -262,11 +278,11 @@ class UnitAttackFlow extends BaseStepWithPipeline {
     declareAttackers() {
         const params = {
             attackingPlayer: this.attackingPlayer,
-            battles: this.battles
+            battles: this.attack.battles
         };
         let event = this.game.getEvent('onAttackersDeclared', params, () => {
             this.game.promptForSelect(this.attackingPlayer, {
-                activePromptTitle: 'Select an attacker',
+                activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',
                 source: this.target,
                 controller: 'self',
                 cardType: [...BattlefieldTypes],
@@ -280,12 +296,13 @@ class UnitAttackFlow extends BaseStepWithPipeline {
                         cards = [card];
                     }
                     cards.forEach((c) => {
-                        this.battles.push({
+                        this.attack.battles.push({
                             attacker: c,
                             target: this.target,
                             guard: null,
                             counter: false
                         });
+                        c.isAttacker = true;
                     });
 
                     return true;
@@ -296,4 +313,4 @@ class UnitAttackFlow extends BaseStepWithPipeline {
     }
 }
 
-module.exports = UnitAttackFlow;
+module.exports = AttackFlow;

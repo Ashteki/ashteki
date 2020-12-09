@@ -8,21 +8,24 @@ import './PlayerBoard.scss';
 
 class PlayerBoard extends React.Component {
     renderRow(row) {
-        return row.map((card) => (
-            <Card
-                key={card.uuid}
-                cardBackUrl={this.props.cardBackUrl}
-                canDrag={this.props.manualMode}
-                card={card}
-                disableMouseOver={card.facedown && !card.code}
-                onClick={this.props.onCardClick}
-                onMenuItemClick={this.props.onMenuItemClick}
-                onMouseOut={this.props.onMouseOut}
-                onMouseOver={this.props.onMouseOver}
-                size={this.props.user.settings.cardSize}
-                source='play area'
-            />
-        ));
+        return row
+            .sort((a, b) => (a.isAttacker && !b.isAttacker ? -1 : 1))
+            .map((card) => (
+                <Card
+                    key={card.uuid}
+                    cardBackUrl={this.props.cardBackUrl}
+                    canDrag={this.props.manualMode}
+                    card={card}
+                    disableMouseOver={card.facedown && !card.code}
+                    onClick={this.props.onCardClick}
+                    onMenuItemClick={this.props.onMenuItemClick}
+                    onMouseOut={this.props.onMouseOut}
+                    onMouseOver={this.props.onMouseOver}
+                    size={this.props.user.settings.cardSize}
+                    source='play area'
+                    side={this.props.side}
+                />
+            ));
     }
 
     render() {

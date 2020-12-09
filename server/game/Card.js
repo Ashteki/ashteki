@@ -683,22 +683,6 @@ class Card extends PlayableObject {
         return true;
     }
 
-    canGuard() {
-        // phoenixborn and not guarded this round
-        // OR has Unit Guard keyword / ability.
-        if (!this.checkRestrictions('guard')) return false;
-
-        if (this.type == CardType.Phoenixborn) {
-            return !this.usedGuardThisRound;
-        } else {
-            return (
-                BattlefieldTypes.includes(this.type) &&
-                !this.exhausted &&
-                this.anyEffect('canGuard')
-            );
-        }
-    }
-
     attacksFirst() {
         return this.anyEffect('quickStrike');
     }
@@ -711,10 +695,34 @@ class Card extends PlayableObject {
         return focusLevel;
     }
 
-    canBlock() {
+    canGuard(attacker) {
+        // phoenixborn and not guarded this round
+        // OR has Unit Guard keyword / ability.
+        if (!this.checkRestrictions('guard')) return false;
+
+        if (this.type == CardType.Phoenixborn) {
+            return !this.usedGuardThisRound;
+        } else {
+            return (
+                BattlefieldTypes.includes(this.type) &&
+                !this.exhausted &&
+                this.anyEffect('canGuard') &&
+                this.checkGigantic(attacker)
+            );
+        }
+    }
+
+    canBlock(attacker) {
         if (!this.checkRestrictions('block')) return false;
 
-        return BattlefieldTypes.includes(this.type) && !this.exhausted;
+        return (
+            BattlefieldTypes.includes(this.type) && !this.exhausted && this.checkGigantic(attacker)
+        );
+    }
+
+    checkGigantic(attacker) {
+        // ok to block if attacker doesn't have gigantic, or gigantic value is less than this card's life value
+        return !attacker.hasKeyword('gigantic') || attacker.getKeywordValue('gigantic') < this.life;
     }
 
     getLegalActions(player) {
@@ -879,7 +887,9 @@ class Card extends PlayableObject {
             flags: this.getFlags(),
             armor: this.armor,
             guarded: this.usedGuardThisRound,
-            uuid: this.uuid
+            uuid: this.uuid,
+            isAttacker: this.isAttacker,
+            isDefender: this.isDefender
         };
 
         return Object.assign(state, selectionState);

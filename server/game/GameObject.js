@@ -11,6 +11,8 @@ class GameObject {
         this.uuid = uuid.v1();
         this.effects = [];
         this.controller = null;
+        this.isAttacker = false;
+        this.isDefender = false;
     }
 
     get type() {

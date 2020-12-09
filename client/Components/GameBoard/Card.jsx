@@ -264,11 +264,15 @@ const Card = ({
                     statusClass !== 'selected' &&
                     statusClass !== 'selectable' &&
                     !card.unselectable &&
+                    !card.isAttacker &&
+                    !card.isDefender &&
                     card.canPlay,
                 unselectable: card.unselectable,
                 dragging: isDragging,
                 controlled: card.controlled
-            }
+            },
+            card.isAttacker ? 'attacker-' + side : '',
+            card.isDefender ? 'defender-' + side : ''
         );
         let imageClass = classNames('card-image vertical', sizeClass, {
             exhausted: orientation === 'exhausted' || orientation === 'horizontal'
@@ -341,7 +345,7 @@ const Card = ({
     }
     if (wrapped) {
         return (
-            <div className='card-wrapper' style={style}>
+            <div className={'card-wrapper'} style={style}>
                 {getCard()}
                 {getupgrades()}
                 {renderUnderneathCards()}
