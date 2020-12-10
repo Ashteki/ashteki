@@ -18,9 +18,15 @@ class AttackState {
         blocker.isDefender = true;
     }
 
+    setGuard(blocker) {
+        let battle = this.battles[0];
+        battle.guard = blocker;
+        blocker.isDefender = true;
+    }
+
     getSummary() {
         let state = {
-            target: this.target.id,
+            target: this.target.uuid,
             attackingPlayer: this.attackingPlayer.uuid,
             battles: this.battles.map((b) => ({
                 attacker: b.attacker ? b.attacker.uuid : null,

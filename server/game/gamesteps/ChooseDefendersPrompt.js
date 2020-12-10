@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../constants.js');
+const { BattlefieldTypes, CardType } = require('../../constants.js');
 const SingleCardSelector = require('../CardSelectors/SingleCardSelector.js');
 const UiPrompt = require('./uiprompt.js');
 
@@ -17,8 +17,8 @@ class ChooseDefendersPrompt extends UiPrompt {
         this.myCardSelector = new SingleCardSelector({
             // source: this.attack.battle.attacker,
             location: ['play area'],
-            controller: attack.defendingPlayer,
-            cardType: BattlefieldTypes,
+            controller: this.attack.defendingPlayer,
+            cardType: [...BattlefieldTypes, CardType.Phoenixborn],
             cardCondition: (card) => {
                 return this.availableToBlockOrGuard(card);
             }
@@ -31,6 +31,8 @@ class ChooseDefendersPrompt extends UiPrompt {
         if (!this.isComplete()) {
             // if you don't have a card selected, then highlight options
             if (!this.selectedCard) {
+                if (!this.blockersAvailable()) return true;
+
                 this.highlightSelectableCards();
             } else {
                 // don't highlight selectables.
@@ -41,10 +43,13 @@ class ChooseDefendersPrompt extends UiPrompt {
         return super.continue();
     }
 
+    blockersAvailable() {
+        return this.attack.defendingPlayer.defenders.some((c) => this.availableToBlockOrGuard(c));
+    }
+
     highlightSelectableCards() {
-        this.choosingPlayer.setSelectableCards(
-            this.myCardSelector.getAllLegalTargets(this.context)
-        );
+        const legalTargets = this.myCardSelector.getAllLegalTargets(this.context);
+        this.choosingPlayer.setSelectableCards(legalTargets);
     }
 
     // selector methods
@@ -55,7 +60,7 @@ class ChooseDefendersPrompt extends UiPrompt {
     }
 
     guardTest(card, target, attacker) {
-        return card !== target && card.canGuard(attacker);
+        return !attacker.hasKeyword('bypass') && card !== target && card.canGuard(attacker);
     }
 
     blockTest(card, attacker) {
@@ -78,7 +83,16 @@ class ChooseDefendersPrompt extends UiPrompt {
             menuTitle: this.selectedCard
                 ? 'Choose which attacker to ' + this.blockType
                 : this.menuTitleText,
-            selectCard: !this.completed
+            selectCard: !this.completed,
+            controls: this.attack.isPBAttack
+                ? []
+                : [
+                      {
+                          type: 'targeting',
+                          source: this.attack.battles[0].attacker.getShortSummary(),
+                          targets: [this.attack.target.getShortSummary()]
+                      }
+                  ]
         };
     }
 
@@ -103,6 +117,17 @@ class ChooseDefendersPrompt extends UiPrompt {
 
             // do stuff with the card.
             this.selectMyCard(card);
+            if (!this.attack.isPBAttack) {
+                this.attack.setGuard(this.selectedCard);
+                this.game.addMessage(
+                    '{0} uses {1} to guard',
+                    this.choosingPlayer,
+                    this.selectedCard
+                );
+                this.selectedCard = null;
+                this.clearSelection();
+                this.complete();
+            }
         } else {
             if (card.isAttacker && this.selectedCard) {
                 this.attack.setBlockerForAttacker(this.selectedCard, card);

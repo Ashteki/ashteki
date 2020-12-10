@@ -240,6 +240,7 @@ export class GameBoard extends React.Component {
                     <div className='play-area'>
                         {/* opponent board */}
                         <PlayerBoard
+                            attack={this.props.currentGame.attackState}
                             cardBackUrl={this.props.player2CardBack}
                             cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
                             onCardClick={this.onCardClick}

@@ -40,11 +40,11 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     clearAttackStatuses() {
-        this.game.clearAttackState();
         this.attack.battles.forEach((battle) => {
             battle.attacker.isAttacker = false;
             if (battle.guard) battle.guard.isDefender = false;
         });
+        this.game.clearAttackState();
     }
 
     payAttackCost(attackingPlayer) {

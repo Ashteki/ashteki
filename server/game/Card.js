@@ -707,7 +707,8 @@ class Card extends PlayableObject {
                 BattlefieldTypes.includes(this.type) &&
                 !this.exhausted &&
                 this.anyEffect('canGuard') &&
-                this.checkGigantic(attacker)
+                this.checkGigantic(attacker) &&
+                !attacker.hasKeyword('bypass')
             );
         }
     }
@@ -716,7 +717,10 @@ class Card extends PlayableObject {
         if (!this.checkRestrictions('block')) return false;
 
         return (
-            BattlefieldTypes.includes(this.type) && !this.exhausted && this.checkGigantic(attacker)
+            BattlefieldTypes.includes(this.type) &&
+            !this.exhausted &&
+            this.checkGigantic(attacker) &&
+            !attacker.hasKeyword('bypass')
         );
     }
 
