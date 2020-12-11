@@ -29,6 +29,8 @@ describe('Unit attacks', function () {
 
         expect(this.fluteMage.tokens.damage).toBe(1);
         expect(this.mistSpirit.tokens.damage).toBeUndefined();
+        expect(this.fluteMage.exhausted).toBe(false);
+        expect(this.mistSpirit.exhausted).toBe(true);
     });
 
     it('defender may choose to guard with phoenixborn', function () {

@@ -16,8 +16,8 @@ class HammerKnight extends Card {
             },
             target: {
                 activePromptTitle: 'Aftershock 1',
+                waitingPromptTitle: 'Aftershock 1: waiting for opponent',
                 cardType: ['Ally', 'Conjuration'],
-                controller: 'opponent',
                 gameAction: ability.actions.dealDamage({ amount: 1 })
             }
         });

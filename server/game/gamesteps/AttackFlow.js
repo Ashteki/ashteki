@@ -89,138 +89,10 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     resolveBattle(battle) {
-        let params = {
-            card: battle.target,
-            context: this.game.getFrameworkContext(this.game.activePlayer),
-            condition: (event) =>
-                event.attacker.location === 'play area' && event.card.location === 'play area',
-            attacker: battle.attacker,
-            attackerClone: battle.attacker.createSnapshot(),
-            attackerTarget: battle.guard ? battle.guard : battle.target,
-            defenderTarget: battle.attacker,
-            destroyed: [],
-            battle: battle
-        };
-
-        this.game.raiseEvent('onFight', params, (event) => {
-            let defenderAmount = event.card.attack;
-            if (event.card.anyEffect('limitFightDamage')) {
-                defenderAmount = Math.min(
-                    defenderAmount,
-                    ...event.card.getEffects('limitFightDamage')
-                );
-            }
-
-            let defenderParams = {
-                amount: defenderAmount,
-                fightEvent: event,
-                damageSource: event.card
-            };
-
-            let attackerAmount =
-                event.attacker.attack + event.attacker.getBonusDamage(event.attackerTarget);
-            if (event.attacker.anyEffect('limitFightDamage')) {
-                attackerAmount = Math.min(
-                    attackerAmount,
-                    ...event.attacker.getEffects('limitFightDamage')
-                );
-            }
-
-            let attackerParams = {
-                amount: attackerAmount,
-                fightEvent: event,
-                damageSource: event.attacker
-            };
-
-            let damageEvent;
-            if (
-                // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
-                event.defenderTarget === event.attacker &&
-                event.battle.counter &&
-                // don't counter damage if the attacker strikes first and the damage will destroy the defender
-                !(event.attacker.attacksFirst() && attackerAmount >= event.attackerTarget.life) &&
-                event.card.checkRestrictions('dealFightDamage') && // declared target can deal damage
-                event.attackerTarget.checkRestrictions('dealFightDamageWhenDefending') // or defender can't deal damage when defending
-            ) {
-                // Counter damage event
-                damageEvent = this.game.actions
-                    .dealDamage(defenderParams)
-                    .getEvent(event.defenderTarget, event.context);
-            }
-
-            // if attacker CAN dealFightDamage
-            if (event.attacker.checkRestrictions('dealFightDamage')) {
-                let attackerDamageEvent = this.game.actions
-                    .dealDamage(attackerParams)
-                    .getEvent(event.attackerTarget, event.context);
-
-                // if there's a guard then trigger the onGuardDamageEvent
-                if (battle.guard) {
-                    let guardEvent = this.game.getEvent('onGuardDamage', {
-                        guard: battle.guard
-                    });
-                    guardEvent.addChildEvent(attackerDamageEvent);
-                    attackerDamageEvent = guardEvent;
-                }
-
-                // if there is damage from the defender
-                if (damageEvent) {
-                    // append this to the existing COUNTER event
-                    damageEvent.addChildEvent(attackerDamageEvent);
-                } else {
-                    // there's not COUNTER event, so set to be the damageEvent
-                    damageEvent = attackerDamageEvent;
-                }
-            }
-
-            // If anyone is getting damaged...
-            if (damageEvent) {
-                // mark as fighting
-                event.card.isFighting = true;
-                event.attacker.isFighting = true;
-                this.game.checkGameState(true); // ?? to check for pre-fight damage / deaths?
-                damageEvent.openReactionWindow = false; // this damage event doesn't trigger reaction opportunities
-                this.game.openEventWindow(damageEvent); // ?? err...
-                this.game.queueSimpleStep(() => {
-                    // add a new event to fire the damage event and
-                    event.addChildEvent(damageEvent);
-                    damageEvent.openReactionWindow = true;
-                    event.card.isFighting = false;
-                    event.attacker.isFighting = false;
-                });
-            }
-        });
+        this.game.actions
+            .resolveBattle({ battle: battle })
+            .resolve(null, this.game.getFrameworkContext(this.game.activePlayer));
     }
-
-    // chooseBlockOrGuard(battle) {
-    //     // exit if there are no eligeable blockers / guarders?
-    //     if (!this.blockersAvailable(battle) || battle.attacker.hasKeyword('bypass')) {
-    //         return true;
-    //     }
-
-    //     let event = this.game.getEvent('onGuardSelect', {}, () => {
-    //         this.game.promptForSelect(this.defendingPlayer, {
-    //             source: battle.attacker,
-    //             optional: true,
-    //             activePromptTitle: this.isPBAttack ? 'Choose a blocker' : 'Choose a guard?',
-    //             waitingPromptTitle: this.isPBAttack
-    //                 ? 'Waiting for opponent to block'
-    //                 : 'Waiting for opponent to guard',
-    //             controller: 'self',
-    //             cardType: [...BattlefieldTypes, 'Phoenixborn'],
-    //             cardCondition: (card) => {
-    //                 return this.availableToBlockOrGuard(card, battle);
-    //             },
-    //             onSelect: (player, card) => {
-    //                 battle.guard = card;
-
-    //                 return true;
-    //             }
-    //         });
-    //     });
-
-    //     this.game.openEventWindow([event]);
-    // }
 
     blockersAvailable(battle) {
         return this.defendingPlayer.defenders.some((c) => this.availableToBlockOrGuard(c, battle));
@@ -247,14 +119,6 @@ class AttackFlow extends BaseStepWithPipeline {
     promptForCounter(battle) {
         // battle.guard here holds a blocker or a guard
         if (battle.guard) {
-            this.game.addAlert(
-                'warning',
-                this.isPBAttack ? '{0} blocks {1} with {2}' : '{0} guards against {1} with {2}',
-                this.defendingPlayer,
-                battle.attacker,
-                battle.guard
-            );
-
             // if it's not a pb guard then counter
             battle.counter = battle.guard.type !== CardType.Phoenixborn;
             return true;

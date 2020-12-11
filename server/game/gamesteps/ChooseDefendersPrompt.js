@@ -37,6 +37,7 @@ class ChooseDefendersPrompt extends UiPrompt {
             } else {
                 // don't highlight selectables.
                 this.clearSelection();
+                this.highlightAttackers();
             }
         }
 
@@ -52,11 +53,15 @@ class ChooseDefendersPrompt extends UiPrompt {
         this.choosingPlayer.setSelectableCards(legalTargets);
     }
 
+    highlightAttackers() {
+        this.choosingPlayer.setSelectableCards(this.attack.battles.map((b) => b.attacker));
+    }
+
     // selector methods
-    availableToBlockOrGuard(c) {
+    availableToBlockOrGuard(defender) {
         if (this.attack.isPBAttack)
-            return this.attack.battles.some((b) => this.blockTest(c, b.attacker));
-        else return this.attack.battles.some((b) => this.guardTest(c, b.target, b.attacker));
+            return this.attack.battles.some((b) => this.blockTest(defender, b.attacker));
+        else return this.attack.battles.some((b) => this.guardTest(defender, b.target, b.attacker));
     }
 
     guardTest(card, target, attacker) {

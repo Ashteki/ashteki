@@ -11,6 +11,7 @@ class DealDamageAction extends CardGameAction {
         this.purge = false;
         this.ignoreArmor = false;
         this.bonus = false;
+        this.showMessage = false;
     }
 
     setup() {
@@ -85,6 +86,9 @@ class DealDamageAction extends CardGameAction {
                         if (damageDealtEvent.fightEvent) {
                             damageDealtEvent.fightEvent.destroyed.push(event.card);
                         }
+                    }
+                    if (this.showMessage) {
+                        context.game.addMessage('{0} takes {1} damage', event.card, event.amount);
                     }
                 }
             );
