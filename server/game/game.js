@@ -33,7 +33,7 @@ const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
 const { BattlefieldTypes } = require('../constants');
-const UnitAttackFlow = require('./gamesteps/UnitAttackFlow');
+const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 
@@ -105,6 +105,8 @@ class Game extends EventEmitter {
         this.setMaxListeners(0);
 
         this.router = options.router;
+
+        this.attackState = null;
     }
 
     /*
@@ -1244,13 +1246,19 @@ class Game extends EventEmitter {
     }
 
     initiateUnitAttack(target) {
-        // const conflict = new Conflict(this, player, player.opponent, null, null, forcedDeclaredType);
-        this.queueStep(new UnitAttackFlow(this, target));
+        this.queueStep(new AttackFlow(this, target));
     }
 
     initiatePBAttack(target) {
-        // const conflict = new Conflict(this, player, player.opponent, null, null, forcedDeclaredType);
-        this.queueStep(new UnitAttackFlow(this, target));
+        this.queueStep(new AttackFlow(this, target));
+    }
+
+    setAttackState(attack) {
+        this.attackState = attack;
+    }
+
+    clearAttackState() {
+        this.attackState = null;
     }
 
     /*
@@ -1364,6 +1372,7 @@ class Game extends EventEmitter {
         return {
             adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
+            attack: this.attackState ? this.attackState.getSummary() : null,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,

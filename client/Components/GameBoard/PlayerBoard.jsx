@@ -7,8 +7,18 @@ import Card from './Card';
 import './PlayerBoard.scss';
 
 class PlayerBoard extends React.Component {
+    attackInvolvesCard(card) {
+        let attack = this.props.attack;
+        return attack.battles.some((b) => b.attacker === card.uuid || b.target === card.uuid);
+    }
     renderRow(row) {
-        return row.map((card) => (
+        let rowCards = row;
+        if (this.props.attack) {
+            rowCards = rowCards.sort((a, b) =>
+                this.attackInvolvesCard(a) && !this.attackInvolvesCard(b) ? -1 : 1
+            );
+        }
+        return rowCards.map((card) => (
             <Card
                 key={card.uuid}
                 cardBackUrl={this.props.cardBackUrl}
@@ -21,6 +31,7 @@ class PlayerBoard extends React.Component {
                 onMouseOver={this.props.onMouseOver}
                 size={this.props.user.settings.cardSize}
                 source='play area'
+                side={this.props.side}
             />
         ));
     }
