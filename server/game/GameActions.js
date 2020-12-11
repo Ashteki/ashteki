@@ -107,6 +107,7 @@ const Actions = {
     sequential: (gameActions) => new GameActions.SequentialAction(gameActions), // takes an array of gameActions, not a propertyFactory
     sequentialForEach: (propertyFactory) =>
         new GameActions.SequentialForEachAction(propertyFactory),
+    resolveBattle: (propertyFactory) => new GameActions.ResolveBattleAction(propertyFactory), // battle
 
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),
     setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),

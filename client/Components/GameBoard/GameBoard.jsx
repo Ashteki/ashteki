@@ -240,6 +240,7 @@ export class GameBoard extends React.Component {
                     <div className='play-area'>
                         {/* opponent board */}
                         <PlayerBoard
+                            attack={this.props.currentGame.attackState}
                             cardBackUrl={this.props.player2CardBack}
                             cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
                             onCardClick={this.onCardClick}
@@ -247,6 +248,7 @@ export class GameBoard extends React.Component {
                             onMouseOut={this.onMouseOut}
                             onMouseOver={this.onMouseOver}
                             rowDirection='reverse'
+                            side='top'
                             user={this.props.user}
                         />
                         {/* myboard */}
@@ -264,6 +266,7 @@ export class GameBoard extends React.Component {
                                 onMouseOut={this.onMouseOut}
                                 onMouseOver={this.onMouseOver}
                                 rowDirection='default'
+                                side='bottom'
                                 user={this.props.user}
                             />
                         </Droppable>
