@@ -5,7 +5,7 @@ const DiceCount = require('../../DiceCount.js');
 class BloodTransfer extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Cut the Strings',
+            title: 'Blood Transfer',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
