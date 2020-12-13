@@ -65,6 +65,7 @@ class PlayerBoard extends React.Component {
     }
 
     renderCard(card) {
+        if (!card) return;
         return (
             <Card
                 key={card.uuid}
