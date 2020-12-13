@@ -12,19 +12,26 @@ describe('Attack on Phoenixborn', function () {
         });
     });
 
-    it('blocker automatic counters', function () {
+    it('multiple attackers prompt for resolution order', function () {
         expect(this.fluteMage.tokens.damage).toBeUndefined();
         expect(this.mistSpirit.tokens.damage).toBeUndefined();
 
         this.player1.clickPrompt('Attack');
-        this.player1.clickCard(this.fluteMage); // target
-        this.player1.clickCard(this.mistSpirit); // single attacker
+        this.player1.clickCard(this.coalRoarkwin); // target
+        this.player1.clickCard(this.mistSpirit);
+        this.player1.clickCard(this.ironWorker); // 2 attackers
+        this.player1.clickPrompt('Done'); // end attacker choice
 
-        this.player2.clickPrompt('Done'); // no guard
-        this.player2.clickPrompt('No'); // no counter
+        this.player2.clickPrompt('Done'); // no blockers
+        expect(this.player1).toHavePrompt('Choose a fight to resolve');
+        expect(this.player1).toBeAbleToSelect(this.mistSpirit);
+        expect(this.player1).toBeAbleToSelect(this.ironWorker);
 
-        expect(this.fluteMage.tokens.damage).toBe(1);
-        expect(this.mistSpirit.tokens.damage).toBeUndefined();
+        this.player1.clickCard(this.ironWorker);
+        // second battle auto-resolves
+        expect(this.coalRoarkwin.damage).toBe(3); // Damage from both have resolved
+        expect(this.player1).not.toBeAbleToSelect(this.mistSpirit);
+        expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
     });
 
     it('defender may choose not to block', function () {

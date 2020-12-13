@@ -27,10 +27,11 @@ class AttackState {
     getSummary() {
         let state = {
             target: this.target.uuid,
-            attackingPlayer: this.attackingPlayer.uuid,
+            isPBAttack: this.isPBAttack,
+            attackingPlayer: this.attackingPlayer.id,
             battles: this.battles.map((b) => ({
                 attacker: b.attacker ? b.attacker.uuid : null,
-                target: b.target,
+                target: b.target.uuid,
                 guard: b.guard ? b.guard.uuid : null,
                 counter: b.counter ? b.counter.uuid : null
             }))

@@ -9,16 +9,63 @@ import './PlayerBoard.scss';
 class PlayerBoard extends React.Component {
     attackInvolvesCard(card) {
         let attack = this.props.attack;
-        return attack.battles.some((b) => b.attacker === card.uuid || b.target === card.uuid);
+        if (!attack) return false;
+
+        return attack.battles.some(
+            (b) => b.attacker === card.uuid || b.target === card.uuid || b.guard === card.uuid
+        );
     }
+
+    getCard(uuid) {
+        return this.props.cardsInPlay.find((c) => c.uuid === uuid);
+    }
+
     renderRow(row) {
-        let rowCards = row;
-        if (this.props.attack) {
-            rowCards = rowCards.sort((a, b) =>
-                this.attackInvolvesCard(a) && !this.attackInvolvesCard(b) ? -1 : 1
-            );
-        }
-        return rowCards.map((card) => (
+        const results = [];
+        // render attack cards or gaps
+        let attack = this.props.attack;
+        // #1 - is there an attack
+        if (attack)
+            // should we display the attackers or defenders?
+            // is this player (top or bottom) the attacker?
+
+            attack.battles.map((b) => {
+                if (attack.attackingPlayer === this.props.playerId) {
+                    const attackerCard = this.getCard(b.attacker);
+                    // just display the attackers
+                    results.push(this.renderCard(attackerCard));
+                } else {
+                    // work out defender or blank
+                    let defender = b.guard ? b.guard : b.target;
+
+                    let defCard = this.getCard(defender);
+                    if (defCard) results.push(this.renderCard(defCard));
+                    else results.push(this.renderCardGap());
+                }
+            });
+
+        // render the remaining cards not involved in the attack
+        let rowCards = row.filter((c) => !this.attackInvolvesCard(c));
+        return results.concat(rowCards.map((card) => this.renderCard(card)));
+    }
+
+    renderCardGap() {
+        const sizeClass = {
+            [this.props.cardSize]: this.props.cardSize !== 'normal'
+        };
+        let cardClass = classNames('game-card', 'vertical', sizeClass);
+
+        return (
+            <div className={'card-wrapper'}>
+                <div className='card-frame'>
+                    <div className={cardClass} />
+                </div>
+            </div>
+        );
+    }
+
+    renderCard(card) {
+        return (
             <Card
                 key={card.uuid}
                 cardBackUrl={this.props.cardBackUrl}
@@ -29,11 +76,11 @@ class PlayerBoard extends React.Component {
                 onMenuItemClick={this.props.onMenuItemClick}
                 onMouseOut={this.props.onMouseOut}
                 onMouseOver={this.props.onMouseOver}
-                size={this.props.user.settings.cardSize}
+                size={this.props.cardSize}
                 source='play area'
                 side={this.props.side}
             />
-        ));
+        );
     }
 
     render() {
@@ -59,7 +106,8 @@ PlayerBoard.propTypes = {
     onMouseOut: PropTypes.func,
     onMouseOver: PropTypes.func,
     rowDirection: PropTypes.oneOf(['default', 'reverse']),
-    user: PropTypes.object
+    cardSize: PropTypes.string,
+    playerId: PropTypes.string
 };
 
 export default PlayerBoard;
