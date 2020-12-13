@@ -240,7 +240,7 @@ export class GameBoard extends React.Component {
                     <div className='play-area'>
                         {/* opponent board */}
                         <PlayerBoard
-                            attack={this.props.currentGame.attackState}
+                            attack={this.props.currentGame.attack}
                             cardBackUrl={this.props.player2CardBack}
                             cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
                             onCardClick={this.onCardClick}
@@ -249,7 +249,8 @@ export class GameBoard extends React.Component {
                             onMouseOver={this.onMouseOver}
                             rowDirection='reverse'
                             side='top'
-                            user={this.props.user}
+                            cardSize={this.props.user.settings.cardSize}
+                            playerId={otherPlayer.id}
                         />
                         {/* myboard */}
                         <Droppable
@@ -258,6 +259,7 @@ export class GameBoard extends React.Component {
                             manualMode={this.props.currentGame.manualMode}
                         >
                             <PlayerBoard
+                                attack={this.props.currentGame.attack}
                                 cardBackUrl={this.props.player1CardBack}
                                 cardsInPlay={thisPlayer.cardPiles.cardsInPlay}
                                 manualMode={this.props.currentGame.manualMode}
@@ -267,7 +269,8 @@ export class GameBoard extends React.Component {
                                 onMouseOver={this.onMouseOver}
                                 rowDirection='default'
                                 side='bottom'
-                                user={this.props.user}
+                                cardSize={this.props.user.settings.cardSize}
+                                playerId={thisPlayer.id}
                             />
                         </Droppable>
                     </div>

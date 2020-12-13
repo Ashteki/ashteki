@@ -1330,6 +1330,7 @@ class Game extends EventEmitter {
                     };
                 }),
                 started: this.started,
+                attack: this.attackState ? this.attackState.getSummary() : null,
                 swap: this.swap,
                 useGameTimeLimit: this.useGameTimeLimit,
                 winner: this.winner ? this.winner.name : undefined
@@ -1372,7 +1373,6 @@ class Game extends EventEmitter {
         return {
             adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
-            attack: this.attackState ? this.attackState.getSummary() : null,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,

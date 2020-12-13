@@ -120,6 +120,8 @@ class ResolveBattleAction extends GameAction {
                         event.attacker.isFighting = false;
                     });
                 }
+
+                this.battle.resolved = true;
             })
         );
     }
