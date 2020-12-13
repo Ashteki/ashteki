@@ -31,4 +31,18 @@ describe('Jessa Na Ni', function () {
         this.player1.clickDie(1);
         expect(this.coalRoarkwin.damage).toBe(1);
     });
+
+    it('pass ability', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.anchornaut);
+        this.player1.clickCard(this.ironWorker);
+        this.player2.clickPrompt('Done'); // no guard
+        this.player2.clickPrompt('No'); // no counter
+        expect(this.anchornaut.location).toBe('discard');
+        // prompt for jessa
+        expect(this.player1).toHavePrompt('Any reactions to Anchornaut leaving play?');
+        this.player1.pass();
+        expect(this.coalRoarkwin.damage).toBe(0);
+        expect(this.player1).not.toHavePrompt('Any reactions to Anchornaut leaving play?');
+    });
 });

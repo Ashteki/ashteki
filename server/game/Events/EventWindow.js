@@ -34,7 +34,8 @@ class EventWindow extends BaseStepWithPipeline {
         let events = this.event.getSimultaneousEvents();
         if (
             events.length === 0 ||
-            (abilityType === AbilityType.ForcedReaction && !this.event.openReactionWindow)
+            ((abilityType === AbilityType.ForcedReaction || abilityType === AbilityType.Reaction) &&
+                !this.event.openReactionWindow)
         ) {
             return;
         }

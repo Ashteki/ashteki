@@ -90,7 +90,8 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         });
     }
 
-    showBluffPrompt() {
+    // eslint-disable-next-line no-unused-vars
+    showBluffPrompt(player) {
         return false;
         // Show a bluff prompt if the player has an event which could trigger (but isn't in their hand) and that setting
         // if (
