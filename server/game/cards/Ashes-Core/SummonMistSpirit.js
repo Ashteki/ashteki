@@ -9,7 +9,7 @@ class SummonMistSpirit extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
-                ability.costs.die(new DiceCount(1, Level.Class, Magic.Illusion))
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
             ],
             location: 'spellboard',
             target: {
@@ -20,6 +20,7 @@ class SummonMistSpirit extends Card {
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
+                optional: true,
                 cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
                 target: {
                     player: 'self',

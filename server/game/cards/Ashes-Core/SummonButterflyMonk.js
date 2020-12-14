@@ -9,7 +9,7 @@ class SummonButterflyMonk extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
-                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Natural)])
+                ability.costs.dice([new DiceCount(1, Level.Power, Magic.Natural)])
             ],
             location: 'spellboard',
             target: {
