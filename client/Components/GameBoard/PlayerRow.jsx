@@ -80,7 +80,7 @@ const PlayerRow = ({
     let archivesToRender = (
         <CardPile
             className='archives'
-            title={t('Archives')}
+            title={t('Conjurations')}
             source='archives'
             cards={archives}
             hiddenTopCard={true}
