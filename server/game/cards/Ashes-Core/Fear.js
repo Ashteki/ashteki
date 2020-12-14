@@ -18,7 +18,7 @@ class Fear extends Card {
                 },
                 second: {
                     dependsOn: 'first',
-                    player: 'opponent',
+                    controller: 'opponent',
                     cardType: [...BattlefieldTypes],
                     gameAction: ability.actions.discard()
                 }
