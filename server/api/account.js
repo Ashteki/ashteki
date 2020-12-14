@@ -214,7 +214,7 @@ module.exports.init = function (server, options) {
     banlistService = new BanlistService(configService);
     patreonService = new PatreonService(
         configService.getValueForSection('lobby', 'patreonClientId'),
-        configService.getValueForSection('lobby', 'patreonSecret'),
+        process.env.PATREON_SECRET || configService.getValueForSection('lobby', 'patreonSecret'),
         userService,
         configService.getValueForSection('lobby', 'patreonCallbackUrl')
     );
