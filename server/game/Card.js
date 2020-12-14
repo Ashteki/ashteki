@@ -97,6 +97,10 @@ class Card extends PlayableObject {
         return this.mostRecentEffect('changeType') || this.printedType;
     }
 
+    get discardLocation() {
+        return this.type == 'Conjuration' ? 'archives' : 'discard';
+    }
+
     get actions() {
         if (this.isBlank()) {
             return [];
