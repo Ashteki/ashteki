@@ -3,6 +3,7 @@ const { CardType } = require('../../constants');
 class AttackState {
     constructor(target, attackingPlayer) {
         this.target = target;
+        this.target.isDefender = true;
         this.battles = [];
         this.attackingPlayer = attackingPlayer;
         this.defendingPlayer = target.controller;
@@ -14,6 +15,9 @@ class AttackState {
 
     setBlockerForAttacker(blocker, attacker) {
         let battle = this.battles.find((b) => b.attacker === attacker);
+        if (battle.guard) {
+            battle.guard.isDefender = false;
+        }
         battle.guard = blocker;
         blocker.isDefender = true;
     }
