@@ -8,6 +8,7 @@
         blockDisposableEmail: false,
         requireActivation: false,
         hmacSecret: 'somethingevenmoresecret'
+        patreonCallbackUrl: 'https://ashteki.com/patreon'
 
         /*
          * Other server configurations used, but not specified, include:
