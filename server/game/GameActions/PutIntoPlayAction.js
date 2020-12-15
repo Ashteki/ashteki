@@ -3,7 +3,7 @@ const CardGameAction = require('./CardGameAction');
 class PutIntoPlayAction extends CardGameAction {
     setDefaultProperties() {
         this.myControl = false;
-        this.ready = false;
+        this.opponentControls = false;
     }
 
     setup() {
@@ -28,7 +28,10 @@ class PutIntoPlayAction extends CardGameAction {
         return super.createEvent('onCardEntersPlay', { card: card, context: context }, () => {
             let player;
             let control;
-            if (card.anyEffect('entersPlayUnderOpponentsControl') && card.owner.opponent) {
+            if (
+                (this.opponentControls || card.anyEffect('entersPlayUnderOpponentsControl')) &&
+                card.owner.opponent
+            ) {
                 player = card.owner.opponent;
                 control = true;
             } else {

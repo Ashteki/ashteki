@@ -24,21 +24,17 @@ class PlayerBoard extends React.Component {
         const results = [];
         // render attack cards or gaps
         let attack = this.props.attack;
-        // #1 - is there an attack
         if (attack)
             // should we display the attackers or defenders?
             // is this player (top or bottom) the attacker?
-
             attack.battles.map((b) => {
                 if (attack.attackingPlayer === this.props.playerId) {
-                    const attackerCard = this.getCard(b.attacker);
                     // just display the attackers
+                    const attackerCard = this.getCard(b.attacker);
                     results.push(this.renderCard(attackerCard));
                 } else {
                     // work out defender or blank
-                    let defender = b.guard ? b.guard : b.target;
-
-                    let defCard = this.getCard(defender);
+                    let defCard = this.getCard(b.guard) || this.getCard(b.target);
                     if (defCard) results.push(this.renderCard(defCard));
                     else results.push(this.renderCardGap());
                 }
