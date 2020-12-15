@@ -7,7 +7,7 @@
         emailFromAddress: 'noreply@ashteki.online',
         blockDisposableEmail: false,
         requireActivation: false,
-        hmacSecret: 'somethingevenmoresecret'
+        hmacSecret: 'somethingevenmoresecret',
         patreonCallbackUrl: 'https://ashteki.com/patreon'
 
         /*
