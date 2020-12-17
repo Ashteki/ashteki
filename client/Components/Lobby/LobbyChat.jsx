@@ -113,7 +113,7 @@ const LobbyChat = ({ messages, isModerator, onRemoveMessageClick }) => {
                             <a
                                 href='#'
                                 className='btn-icon icon-remove'
-                                onClick={() => onRemoveMessageClick(message.id)}
+                                onClick={() => onRemoveMessageClick(message._id)}
                             >
                                 <FontAwesomeIcon icon={faTimes} />
                             </a>
