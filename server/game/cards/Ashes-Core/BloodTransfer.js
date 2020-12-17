@@ -19,7 +19,7 @@ class BloodTransfer extends Card {
                 first: {
                     activePromptTitle: 'Choose a unit to wound',
                     controller: 'self',
-                    cardType: [...BattlefieldTypes],
+                    cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({ amount: 2 })
                 },
                 second: {

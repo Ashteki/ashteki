@@ -9,7 +9,7 @@ class AttachAction extends CardGameAction {
 
     setup() {
         this.name = 'attach';
-        this.targetType = [...BattlefieldTypes];
+        this.targetType = BattlefieldTypes;
         this.effectMsg = 'attach {1} to {0}';
         this.effectArgs = () => {
             return this.upgrade;

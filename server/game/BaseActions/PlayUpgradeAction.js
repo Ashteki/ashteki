@@ -9,7 +9,7 @@ class PlayUpgradeAction extends BasePlayAction {
     constructor(card) {
         super(card, [Costs.play()], {
             activePromptTitle: 'Choose a unit to attach to',
-            cardType: [...BattlefieldTypes],
+            cardType: BattlefieldTypes,
             gameAction: new AttachAction((context) => ({ upgrade: context.source }))
         });
         this.title = 'Play this alteration';
@@ -33,13 +33,13 @@ class PlayUpgradeAction extends BasePlayAction {
     }
 
     meetsRequirements(context = this.createContext(), ignoredRequirements = []) {
+        // if this is an acquired lasting effect attachment
         if (
             BattlefieldTypes.includes(context.source.printedType) &&
             context.source.canPlayAsUpgrade()
         ) {
             context.source.printedType = CardType.Upgrade;
             let result = super.meetsRequirements(context, ignoredRequirements);
-            // context.source.printedType = 'Ally';
             return result;
         }
 
@@ -50,6 +50,7 @@ class PlayUpgradeAction extends BasePlayAction {
         event.addChildEvent(
             new AttachAction({ upgrade: context.source }).getEvent(context.target, context)
         );
+        // if this is attachable because of a lasting effect...
         if (BattlefieldTypes.includes(context.source.type)) {
             const changeTypeEvent = new LastingEffectCardAction({
                 duration: 'lastingEffect',

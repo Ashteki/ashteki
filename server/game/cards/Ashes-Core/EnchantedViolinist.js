@@ -8,7 +8,7 @@ class EnchantedViolinist extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             effect: 'deal 1 damage',
             target: {
-                cardType: [...BattlefieldTypes],
+                cardType: BattlefieldTypes,
                 controller: 'opponent',
                 gameAction: ability.actions.dealDamage({ amount: 1 })
             },

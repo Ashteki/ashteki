@@ -6,7 +6,7 @@ class SteadyGaze extends Card {
         this.play({
             effect: 'place 2 exhaustion tokens on a target unit',
             target: {
-                cardType: [...BattlefieldTypes],
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.addExhaustionToken({ amount: 2 })
             }
         });

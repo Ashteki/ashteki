@@ -16,12 +16,12 @@ class SmallSacrifice extends Card {
             targets: {
                 first: {
                     player: 'self',
-                    cardType: [...BattlefieldTypes]
+                    cardType: BattlefieldTypes
                 },
                 second: {
                     dependsOn: 'first',
                     player: 'opponent',
-                    cardType: [...BattlefieldTypes]
+                    cardType: BattlefieldTypes
                 },
                 tokenChoice: {
                     dependsOn: 'second',

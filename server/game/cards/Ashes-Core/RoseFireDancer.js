@@ -7,7 +7,7 @@ class RoseFireDancer extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             effect: 'place 1 exhaustion tokens on a target unit',
             target: {
-                cardType: [...BattlefieldTypes],
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.addExhaustionToken()
             }
         });

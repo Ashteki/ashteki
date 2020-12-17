@@ -7,7 +7,7 @@ class Fear extends Card {
             targets: {
                 first: {
                     player: 'self',
-                    cardType: [...BattlefieldTypes],
+                    cardType: BattlefieldTypes,
                     gameAction: ability.actions.sequential([
                         ability.actions.destroy(),
                         ability.actions.removeDamage((context) => ({
@@ -19,7 +19,7 @@ class Fear extends Card {
                 second: {
                     dependsOn: 'first',
                     controller: 'opponent',
-                    cardType: [...BattlefieldTypes],
+                    cardType: BattlefieldTypes,
                     gameAction: ability.actions.discard()
                 }
             }

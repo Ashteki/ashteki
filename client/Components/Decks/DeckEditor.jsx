@@ -203,7 +203,7 @@ class InnerDeckEditor extends React.Component {
 
         let list;
 
-        if (card.type === 'Conjuration') {
+        if (card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell') {
             list = conjurations;
         } else if (card.type === 'Phoenixborn') {
             list = phoenixborn;

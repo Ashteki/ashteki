@@ -14,7 +14,7 @@ class BlueJaguar extends Card {
                 optional: true,
                 gameAction: ability.actions.cardLastingEffect({
                     cardCondition: (card, context) => card !== context.source,
-                    cardType: [...BattlefieldTypes],
+                    cardType: BattlefieldTypes,
                     controller: 'opponent',
                     effect: [
                         ability.effects.cardCannot('guard'),

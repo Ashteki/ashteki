@@ -16,6 +16,7 @@ const defaultProperties = {
         'Ally',
         'Ready Spell',
         'Alteration Spell',
+        'Conjured Alteration Spell',
         'Phoenixborn',
         'Reaction Spell'
     ],

@@ -1,4 +1,4 @@
-const { Level, Magic, BattlefieldTypes, CardType } = require('../../../constants.js');
+const { Level, Magic, BattlefieldTypes, UpgradeCardTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -18,12 +18,12 @@ class CutTheStrings extends Card {
             targets: {
                 first: {
                     player: 'self',
-                    cardType: [...BattlefieldTypes],
+                    cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({ amount: 2 })
                 },
                 second: {
                     dependsOn: 'first',
-                    cardType: CardType.Upgrade,
+                    cardType: UpgradeCardTypes,
                     gameAction: ability.actions.discard()
                 }
             }
