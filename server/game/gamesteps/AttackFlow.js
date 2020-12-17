@@ -93,7 +93,7 @@ class AttackFlow extends BaseStepWithPipeline {
                 activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',
                 source: this.target,
                 controller: 'self',
-                cardType: [...BattlefieldTypes],
+                cardType: BattlefieldTypes,
                 cardCondition: (card) => !card.exhausted,
                 mode: this.isPBAttack ? 'unlimited' : 'single',
                 onSelect: (player, card) => {

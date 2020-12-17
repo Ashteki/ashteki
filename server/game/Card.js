@@ -7,7 +7,7 @@ const PlayAction = require('./BaseActions/PlayAction');
 const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
-const { CardType, BattlefieldTypes, AbilityType } = require('../constants.js');
+const { CardType, BattlefieldTypes, UpgradeCardTypes, AbilityType } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
 
@@ -98,7 +98,9 @@ class Card extends PlayableObject {
     }
 
     get discardLocation() {
-        return this.type == 'Conjuration' ? 'archives' : 'discard';
+        return this.type == 'Conjuration' || this.type === 'Conjured Alteration Spell'
+            ? 'archives'
+            : 'discard';
     }
 
     get actions() {
@@ -648,7 +650,7 @@ class Card extends PlayableObject {
     }
 
     canPlayAsUpgrade() {
-        return this.anyEffect('canPlayAsUpgrade') || this.type === CardType.Upgrade;
+        return this.anyEffect('canPlayAsUpgrade') || UpgradeCardTypes.includes(this.type);
     }
 
     use(player) {
@@ -724,6 +726,7 @@ class Card extends PlayableObject {
             BattlefieldTypes.includes(this.type) &&
             !this.exhausted &&
             this.checkGigantic(attacker) &&
+            this.checkTerrifying(attacker) &&
             !attacker.hasKeyword('bypass')
         );
     }
@@ -731,6 +734,14 @@ class Card extends PlayableObject {
     checkGigantic(attacker) {
         // ok to block if attacker doesn't have gigantic, or gigantic value is less than this card's life value
         return !attacker.hasKeyword('gigantic') || attacker.getKeywordValue('gigantic') < this.life;
+    }
+
+    checkTerrifying(attacker) {
+        // ok to block if attacker doesn't have terrifying, or terrifying value is less than this card's attack value
+        return (
+            !attacker.hasKeyword('terrifying') ||
+            attacker.getKeywordValue('terrifying') < this.attack
+        );
     }
 
     getLegalActions(player) {

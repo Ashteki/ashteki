@@ -6,7 +6,7 @@ import { useDrag } from 'react-dnd';
 import CardMenu from './CardMenu';
 import CardCounters from './CardCounters';
 import CardImage from './CardImage';
-import { ItemTypes } from '../../constants';
+import { ItemTypes, UpgradeCardTypes } from '../../constants';
 import SquishableCardPanel from './SquishableCardPanel';
 
 import Die from './Die';
@@ -61,7 +61,7 @@ const Card = ({
 
     const getCountersForCard = (card) => {
         let counters = [];
-        let needsFade = card.type === 'upgrade' && !['full deck'].includes(source);
+        let needsFade = UpgradeCardTypes.includes(card.type) && !['full deck'].includes(source);
         if (card.armor > 0) {
             counters.push({
                 name: 'armor',
@@ -192,7 +192,7 @@ const Card = ({
             return true;
         }
 
-        if (card.facedown || card.type === 'upgrade') {
+        if (card.facedown || UpgradeCardTypes.includes(card.type)) {
             return false;
         }
 

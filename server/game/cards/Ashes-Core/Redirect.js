@@ -12,7 +12,7 @@ class Redirect extends Card {
             condition: (context) => context.player.cardsInPlay.length > 0,
             effect: 'redirect the damage - MANUAL!!',
             target: {
-                cardType: [...BattlefieldTypes],
+                cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: ability.actions.changeEvent((context) => ({
                     event: context.event,

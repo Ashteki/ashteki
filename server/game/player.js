@@ -388,7 +388,8 @@ class Player extends GameObject {
             'Ready Spell': [...cardLocations, 'spellboard'],
             'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],
-            Conjuration: [...cardLocations, 'play area', 'archives']
+            Conjuration: [...cardLocations, 'play area', 'archives'],
+            'Conjured Alteration Spell': [...cardLocations, 'play area', 'archives']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);

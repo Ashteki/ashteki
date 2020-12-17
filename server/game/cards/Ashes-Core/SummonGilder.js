@@ -25,7 +25,7 @@ class SummonGilder extends Card {
                         optional: true,
                         cardCondition: (card) => card !== context.preThenEvent.card,
                         activePromptTitle: 'Deal 1 damage',
-                        cardType: [...BattlefieldTypes]
+                        cardType: BattlefieldTypes
                     }
                 }))
             }

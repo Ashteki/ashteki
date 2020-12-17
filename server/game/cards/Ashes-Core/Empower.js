@@ -21,7 +21,7 @@ class Empower extends Card {
             target: {
                 controller: 'self',
                 activePromptTitle: 'Choose a unit to empower',
-                cardType: [...BattlefieldTypes],
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.addStatusToken()
             },
             then: {
@@ -30,7 +30,7 @@ class Empower extends Card {
                     tokenBoy: {
                         controller: 'self',
                         activePromptTitle: 'Choose a unit',
-                        cardType: [...BattlefieldTypes],
+                        cardType: BattlefieldTypes,
                         cardCondition: (card) => card.tokens.status
                     },
                     amount: {
@@ -43,7 +43,7 @@ class Empower extends Card {
                     sucker: {
                         dependsOn: 'amount',
                         activePromptTitle: 'Choose a unit',
-                        cardType: [...BattlefieldTypes],
+                        cardType: BattlefieldTypes,
 
                         gameAction: ability.actions.dealDamage(() => ({
                             amount: this.chosenValue
