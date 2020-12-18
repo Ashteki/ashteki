@@ -5,7 +5,7 @@ class UseAction extends CardGameAction {
 
     setup() {
         this.name = 'use';
-        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn'];
+        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
         this.effectMsg = 'use {0}';
     }
 

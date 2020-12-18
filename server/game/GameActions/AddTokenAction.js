@@ -12,7 +12,7 @@ class AddTokenAction extends CardGameAction {
 
     setup() {
         this.name = 'addToken';
-        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn'];
+        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
         let token = '+1 power counters';
         if (this.amount === 1) {
             token = '+1 power counter';

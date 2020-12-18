@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class FreezingBlast extends Card {
     setupCardAbilities(ability) {
         this.play({
-            title: 'Freezing Blast',
+            title: 'deal 2 damage and remove 2 status tokens',
             target: {
                 cardType: BattlefieldTypes,
                 gameAction: [
