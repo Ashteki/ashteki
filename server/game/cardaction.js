@@ -31,14 +31,15 @@ const { Costs } = require('./costs');
 class CardAction extends CardAbility {
     constructor(game, card, properties) {
         super(game, card, properties);
-
         this.abilityType = 'action';
         this.title =
             properties.title ||
             "Use this card's " + (properties.omni ? 'Omni' : 'Action') + ' ability';
         this.condition = properties.condition;
         this.omni = !!properties.omni;
-        this.cost = this.cost.concat(Costs.use());
+        if (!this.properties.inexhaustible) {
+            this.cost = this.cost.concat(Costs.use());
+        }
     }
 
     meetsRequirements(context = this.createContext(), ignoredRequirements = []) {

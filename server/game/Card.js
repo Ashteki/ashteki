@@ -612,7 +612,7 @@ class Card extends PlayableObject {
         return !this.hasToken('exhaustion');
     }
     get exhausted() {
-        return this.hasToken('exhaustion');
+        return this.hasToken('exhaustion') || this.anyEffect('exhausted');
     }
 
     get damage() {

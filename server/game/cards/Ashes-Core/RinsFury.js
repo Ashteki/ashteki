@@ -8,8 +8,10 @@ class RinsFury extends Card {
                 onDamageDealt: (event, context) =>
                     event.context.player === context.player.opponent &&
                     BattlefieldTypes.includes(event.card.type) &&
-                    event.fightEvent
+                    event.fightEvent &&
+                    event.damageSource.owner === context.player.opponent
                 // check the fightevent is from a unit?
+                // check it's my unit being damaged
             },
             gameAction: ability.actions.changeEvent((context) => ({
                 event: context.event,
