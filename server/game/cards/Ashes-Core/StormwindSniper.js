@@ -6,13 +6,7 @@ class StormwindSniper extends Card {
             effect: ability.effects.concealed()
         });
 
-        this.play({
-            title: 'Ambush 1',
-            effect: 'deal 1 damage to a target phoenixborn',
-            gameAction: ability.actions.dealDamage((context) => ({
-                target: context.player.opponent.phoenixborn
-            }))
-        });
+        this.ambush(1);
     }
 }
 

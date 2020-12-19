@@ -199,6 +199,16 @@ class Card extends PlayableObject {
         return this.forcedReaction(Object.assign({ play: true, name: 'Play' }, properties));
     }
 
+    ambush(amount) {
+        this.play({
+            title: 'Ambush ' + amount,
+            effect: 'deal ' + amount + ' damage to a target phoenixborn',
+            gameAction: AbilityDsl.actions.dealDamage((context) => ({
+                target: context.player.opponent.phoenixborn
+            }))
+        });
+    }
+
     fight(properties) {
         return this.forcedReaction(Object.assign({ fight: true, name: 'Fight' }, properties));
     }
