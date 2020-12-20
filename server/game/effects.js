@@ -60,6 +60,7 @@ const Effects = {
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     spellGuard: () => EffectBuilder.card.static('spellGuard'),
     bypass: () => EffectBuilder.card.static('bypass'),
+    preventDamage: (shield) => EffectBuilder.card.static('preventDamage', shield),
 
     // Player effects
     lastingAbilityTrigger: (properties) =>
