@@ -209,6 +209,18 @@ class Card extends PlayableObject {
         });
     }
 
+    fleeting() {
+        this.forcedReaction({
+            title: 'Fleeting',
+            when: {
+                onRoundEnded: () => true
+            },
+            gameAction: AbilityDsl.actions.discard((context) => ({
+                card: context.source
+            }))
+        });
+    }
+
     fight(properties) {
         return this.forcedReaction(Object.assign({ fight: true, name: 'Fight' }, properties));
     }
