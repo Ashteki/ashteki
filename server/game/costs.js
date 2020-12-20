@@ -20,6 +20,10 @@ const Costs = {
         canPay: () => true, // cards can be overexhausted (>1 tokens)
         payEvent: (context) => context.game.actions.exhaust().getEvent(context.source, context)
     }),
+    destroy: () => ({
+        canPay: (context) => context.player.cardsInPlay.includes(context.source),
+        payEvent: (context) => context.game.actions.destroy().getEvent(context.source, context)
+    }),
     exhaustDie: () => ({
         canPay: (context) => !context.source.exhausted,
         payEvent: (context) => context.game.actions.exhaustDie().getEvent(context.source, context)

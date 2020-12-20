@@ -64,6 +64,14 @@ class DealDamageAction extends CardGameAction {
             bonus: this.bonus
         };
 
+        if (card.anyEffect('preventDamage')) {
+            let preventer = card.getEffects('preventDamage')[0];
+            context.game.addMessage('{0} prevents damage to {1}', preventer, card);
+
+            // add preventer and card as params when this matters
+            return context.game.getEvent('onDamagePrevented');
+        }
+
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {
             let damageAppliedParams = {
                 amount: damageDealtEvent.amount,

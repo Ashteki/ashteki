@@ -51,7 +51,7 @@ describe('Summon Ice Golem', function () {
             this.player1.inPlay[0].tokens.damage = 1;
         });
 
-        it('should place an ice golem into play', function () {
+        it('should remove 1 damage from all ice golems', function () {
             expect(this.player1.inPlay[0].damage).toBe(1);
             this.player1.clickCard(this.summonIceGolem);
             this.player1.clickPrompt('Summon Ice Golem');

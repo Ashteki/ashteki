@@ -10,15 +10,7 @@ class MassiveGrowth extends Card {
             effect: [ability.effects.modifyAttack(4), ability.effects.modifyLife(4)]
         });
 
-        this.forcedReaction({
-            title: 'Fleeting',
-            when: {
-                onRoundEnded: () => true
-            },
-            gameAction: ability.actions.discard((context) => ({
-                card: context.source
-            }))
-        });
+        this.fleeting();
     }
 
     canAttach(card, context) {
