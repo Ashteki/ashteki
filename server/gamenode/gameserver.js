@@ -21,7 +21,7 @@ const version = require('../../version');
 class GameServer {
     constructor() {
         this.configService = new ConfigService();
-        const sentryDsn = this.configService.getValue('sentryDsn');
+        const sentryDsn = process.env.SENTRY_DSN || this.configService.getValue('sentryDsn');
 
         if (sentryDsn) {
             Sentry.init({ dsn: sentryDsn, release: version.build });
