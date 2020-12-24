@@ -33,7 +33,10 @@ class Server {
 
     init(options) {
         if (!this.isDeveloping) {
-            Sentry.init({ dsn: this.configService.getValue('sentryDsn'), release: version.build });
+            Sentry.init({
+                dsn: process.env.SENTRY_DSN || this.configService.getValue('sentryDsn'),
+                release: version.build
+            });
             app.use(Sentry.Handlers.requestHandler());
             app.use(Sentry.Handlers.errorHandler());
         }
