@@ -16,7 +16,7 @@ import ErrorBoundary from './Components/Site/ErrorBoundary';
 import './i18n';
 
 const sentryOptions = {
-    dsn: 'https://8e2615acba9548ba8d83fa2735de2bd2@sentry.io/1515148',
+    dsn: process.env.SENTRY_DSN,
     blacklistUrls: [
         // Facebook flakiness
         /graph\.facebook\.com/i,

@@ -7,7 +7,7 @@
     minLobbyChatTime: 0, // The time (in seconds) an account has to be registered before it can chat in the lobby
     /*
      * Other global configurations used, but not specified, include:
-     *  - sentryDsn (for production only)
+     *  - sentryDsn (for production only) - DON'T USE THIS, use process.env.SENTRY_DSN
      */
 
     lobby: {
