@@ -18,7 +18,6 @@ export const LeftMenu = [
     {
         title: 'Help',
         childItems: [
-            { path: '/how-to-play', title: 'How To Play' },
             { path: '/about', title: 'About' },
             { path: '/privacy', title: 'Privacy Policy' }
         ]
