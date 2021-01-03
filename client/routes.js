@@ -10,7 +10,6 @@ import AddDeck from './pages/AddDeck';
 import EditDeck from './pages/EditDeck';
 //import Matches from './pages/Matches';
 import ImportDeck from './Components/Decks/ImportDeck';
-import HowToPlay from './pages/HowToPlay';
 import About from './pages/About';
 import Security from './pages/Security.jsx';
 import Activation from './pages/Activation';
@@ -44,7 +43,6 @@ const routes = [
 
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
-    { path: '/how-to-play', action: () => <HowToPlay key='howtoplay' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
     //{ path: '/matches', action: () => <Matches key='matches' /> },

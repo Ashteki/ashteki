@@ -102,7 +102,13 @@ const PendingGame = () => {
     }
 
     const canClickStart = () => {
-        if (!user || !currentGame || currentGame.owner !== user.username || connecting) {
+        if (
+            !user ||
+            !currentGame ||
+            currentGame.owner !== user.username ||
+            connecting ||
+            Object.values(currentGame.players).length < 2
+        ) {
             return false;
         }
 

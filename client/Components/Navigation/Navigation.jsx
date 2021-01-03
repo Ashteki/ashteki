@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 import Link from './Link';
 import { RightMenu, ProfileMenu, LeftMenu } from '../../menus';
-import LanguageSelector from './LanguageSelector';
 import ProfileDropdown from './ProfileDropdown';
 import ServerStatus from './ServerStatus';
 import GameContextMenu from './GameContextMenu';
@@ -162,7 +161,6 @@ const Navigation = (props) => {
                     )}
                     {renderMenuItems(RightMenu)}
                     <ProfileDropdown menu={ProfileMenu} user={props.user} />
-                    <LanguageSelector />
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

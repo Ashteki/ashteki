@@ -58,29 +58,7 @@ module.exports.init = function (server) {
             if (numDecks > 0) {
                 const rawDecks = await deckService.findByUserName(req.user.username);
                 decks = rawDecks.map((deck) => {
-                    let deckUsageLevel = 0;
-                    if (
-                        deck.usageCount >
-                        configService.getValueForSection('lobby', 'lowerDeckThreshold')
-                    ) {
-                        deckUsageLevel = 1;
-                    }
-
-                    if (
-                        deck.usageCount >
-                        configService.getValueForSection('lobby', 'middleDeckThreshold')
-                    ) {
-                        deckUsageLevel = 2;
-                    }
-
-                    if (
-                        deck.usageCount >
-                        configService.getValueForSection('lobby', 'upperDeckThreshold')
-                    ) {
-                        deckUsageLevel = 3;
-                    }
-
-                    deck.usageLevel = deckUsageLevel;
+                    deck.usageLevel = 0;
                     deck.usageCount = undefined;
 
                     return deck;
