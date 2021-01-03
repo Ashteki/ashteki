@@ -26,13 +26,15 @@ const placeholderPlayer = {
         discard: [],
         hand: [],
         purged: [],
+        spells: [],
         deck: []
     },
     activePlayer: false,
     firstPlayer: false,
     numDeckCards: 0,
-    stats: {
-        keys: { red: false, blue: false, yellow: false }
+    actions: {
+        main: false,
+        side: false
     },
     title: null,
     user: null,
