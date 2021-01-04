@@ -19,6 +19,12 @@ class UserService extends EventEmitter {
         this.blocklist = db.get('block_list');
     }
 
+    async getAllUsers() {
+        return this.users.find().catch((err) => {
+            logger.error('Error fetching all users', err);
+            throw new Error('Error occured fetching all users');
+        });
+    }
     async getUserByUsername(username) {
         return this.users
             .find({
