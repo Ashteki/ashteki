@@ -38,8 +38,10 @@ class BattleStep extends BaseStepWithPipeline {
     promptForCounter() {
         // battle.guard here holds a blocker or a guard
         if (this.chosenBattle.guard) {
-            // if it's not a pb guard then counter
-            this.chosenBattle.counter = this.chosenBattle.guard.type !== CardType.Phoenixborn;
+            // if it's not a pb guard then counter - blockers always counter IF not exhausted
+            this.chosenBattle.counter =
+                this.chosenBattle.guard.type !== CardType.Phoenixborn &&
+                !this.chosenBattle.guard.exhausted;
             return true;
         }
 
