@@ -960,7 +960,7 @@ class Game extends EventEmitter {
         this.raiseEvent('onTakeControl', { player, card });
         card.controller.removeCardFromPile(card);
         card.controller = player;
-        if (BattlefieldTypes.includes(card.type) && player.creaturesInPlay.length > 0) {
+        if (BattlefieldTypes.includes(card.type) && player.unitsInPlay.length > 0) {
             let handlers = [
                 () => player.cardsInPlay.unshift(card),
                 () => player.cardsInPlay.push(card)
@@ -1135,7 +1135,7 @@ class Game extends EventEmitter {
             }
 
             // destroy any creatures who have damage greater than equal to their life
-            let creaturesToDestroy = this.creaturesInPlay.filter(
+            let creaturesToDestroy = this.unitsInPlay.filter(
                 (card) =>
                     BattlefieldTypes.includes(card.type) &&
                     (card.life <= 0 || card.tokens.damage >= card.life) &&
@@ -1228,7 +1228,7 @@ class Game extends EventEmitter {
         );
     }
 
-    get creaturesInPlay() {
+    get unitsInPlay() {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
     }
 

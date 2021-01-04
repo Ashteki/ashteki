@@ -35,7 +35,7 @@ class DestroyAction extends CardGameAction {
                     context: context,
                     condition: (event) => event.card.location === 'play area',
                     triggeringEvent: event,
-                    battlelineIndex: event.card.controller.creaturesInPlay.indexOf(event.card) - 1
+                    battlelineIndex: event.card.controller.unitsInPlay.indexOf(event.card) - 1
                 },
                 (leavesPlayEvent) => {
                     leavesPlayEvent.card.owner.moveCard(

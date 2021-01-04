@@ -6,7 +6,7 @@ class MistTyphoon extends Card {
             effect: 'deal 1 damage to all opponents units',
             gameAction: ability.actions.dealDamage((context) => ({
                 amount: 1,
-                target: context.player.opponent.creaturesInPlay
+                target: context.player.opponent.unitsInPlay
             })),
             then: {
                 alwaysTriggers: true,
