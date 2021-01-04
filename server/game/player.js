@@ -160,7 +160,7 @@ class Player extends GameObject {
         );
     }
 
-    get creaturesInPlay() {
+    get unitsInPlay() {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
     }
 

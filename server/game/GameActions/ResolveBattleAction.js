@@ -15,6 +15,11 @@ class ResolveBattleAction extends GameAction {
         super.preEventHandler(context);
         this.events = [];
 
+        const attackerTarget =
+            this.battle.guard && this.battle.guard.isInPlay
+                ? this.battle.guard
+                : this.battle.target;
+
         let params = {
             card: this.battle.target,
             context: context,
@@ -22,7 +27,7 @@ class ResolveBattleAction extends GameAction {
                 event.attacker.location === 'play area' && event.card.location === 'play area',
             attacker: this.battle.attacker,
             attackerClone: this.battle.attacker.createSnapshot(),
-            attackerTarget: this.battle.guard ? this.battle.guard : this.battle.target,
+            attackerTarget: attackerTarget,
             defenderTarget: this.battle.attacker,
             destroyed: [],
             battle: this.battle

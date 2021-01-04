@@ -11,7 +11,7 @@ class OneHundredBlades extends Card {
                 })),
                 ability.actions.dealDamage((context) => ({
                     amount: 1,
-                    target: context.player.opponent.creaturesInPlay
+                    target: context.player.opponent.unitsInPlay
                 }))
             ],
             then: {

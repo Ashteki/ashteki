@@ -1,6 +1,6 @@
 const _ = require('underscore');
-const GameService = require('./services/AshesGameService.js');
-const ConfigService = require('./services/ConfigService.js');
+const GameService = require('../services/AshesGameService.js');
+const ConfigService = require('../services/ConfigService.js');
 
 let gameService = new GameService(new ConfigService());
 /*
@@ -17,7 +17,7 @@ if(_.size(args) < 2) {
 let start = new Date('2018-08-26T13:00:00');
 let end = new Date();
 //console.info('Running stats between', args[0], 'and', args[1]);
-console.info('Running stats between', start, 'and', end);
+console.info('Games between', start, 'and', end);
 
 gameService
     .getAllGames(start, end)
@@ -32,6 +32,7 @@ gameService
 
         _.each(games, (game) => {
             console.info(game);
+
             if (_.size(game.players) !== 2) {
                 rejected.singlePlayer++;
 

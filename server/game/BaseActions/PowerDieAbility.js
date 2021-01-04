@@ -13,7 +13,7 @@ class PowerDieAbility extends DieAbility {
     //         case 'natural':
     //             context.game.actions.dealDamage((context) => ({
     //                 amount: 1,
-    //                 target: context.game.creaturesInPlay
+    //                 target: context.game.unitsInPlay
     //             })).resolve(, context);
     //     }
     //     // context.game.actions.exhaustDie().resolve(this.die, context);

@@ -815,7 +815,7 @@ class Card extends PlayableObject {
             return false;
         }
 
-        let position = this.controller.creaturesInPlay.indexOf(this);
+        let position = this.controller.unitsInPlay.indexOf(this);
         if (flank === 'left') {
             return (
                 (this.anyEffect('consideredAsFlank') || this.neighbors.length < 2) && position === 0
@@ -823,7 +823,7 @@ class Card extends PlayableObject {
         } else if (flank === 'right') {
             return (
                 (this.anyEffect('consideredAsFlank') || this.neighbors.length < 2) &&
-                position === this.controller.creaturesInPlay.length - 1
+                position === this.controller.unitsInPlay.length - 1
             );
         }
 
@@ -831,7 +831,7 @@ class Card extends PlayableObject {
     }
 
     isInCenter() {
-        let creatures = this.controller.creaturesInPlay;
+        let creatures = this.controller.unitsInPlay;
         if (creatures.length % 2 === 0) {
             return false;
         }
@@ -842,6 +842,10 @@ class Card extends PlayableObject {
         return this === centerCreature;
     }
 
+    get isInPlay() {
+        return this.type === CardType.Phoenixborn || this.controller.unitsInPlay.includes(this);
+    }
+
     get neighbors() {
         if (this.type !== 'Ally') {
             return [];
@@ -849,7 +853,7 @@ class Card extends PlayableObject {
             return this.clonedNeighbors;
         }
 
-        let creatures = this.controller.creaturesInPlay;
+        let creatures = this.controller.unitsInPlay;
         let index = creatures.indexOf(this);
         let neighbors = [];
 
