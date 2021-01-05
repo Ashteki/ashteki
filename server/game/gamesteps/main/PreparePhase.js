@@ -24,9 +24,21 @@ class PreparePhase extends Phase {
 
     // refill hand - cause damage in draw phase if unable to draw
     drawCards() {
-        this.game.actions
-            .draw({ refill: true, damageIfEmpty: true, singleCopy: true })
-            .resolve(this.game.getPlayers(), this.game.getFrameworkContext());
+        const players = this.game.getPlayers();
+        let loopCount = 0;
+        while (players.some((p) => p.hand.length + loopCount < 5)) {
+            this.doPlayerDraw(this.game.activePlayer, loopCount);
+            this.doPlayerDraw(this.game.activePlayer.opponent, loopCount);
+            loopCount++;
+        }
+    }
+    // this is kind of ugly, but it works... :(
+    doPlayerDraw(player, loopCount) {
+        if (player.hand.length + loopCount < 5) {
+            this.game.actions
+                .draw({ damageIfEmpty: true })
+                .resolve(player, this.game.getFrameworkContext());
+        }
     }
 
     additionalDraw() {

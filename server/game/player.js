@@ -182,8 +182,13 @@ class Player extends GameObject {
         }
 
         if (remainingCards > 0 && damageIfEmpty) {
+            this.game.addMessage(
+                '{0} receives {1} fatigue damage',
+                this.phoenixborn,
+                remainingCards
+            );
             GameActions.addDamageToken({ amount: remainingCards }).resolve(
-                this,
+                this.phoenixborn,
                 this.game.getFrameworkContext()
             );
         }
