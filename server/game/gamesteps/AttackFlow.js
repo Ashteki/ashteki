@@ -22,10 +22,12 @@ class AttackFlow extends BaseStepWithPipeline {
             new ChooseDefendersPrompt(this.game, this.attack),
 
             new SimpleStep(this.game, () => {
+                // will not queue if no attackers selected (no battles)
                 this.attack.battles.forEach(() => {
                     this.queueStep(new BattleStep(this.game, this.attack));
                 });
             }),
+            // always tidy up
             new SimpleStep(this.game, () => this.clearAttackStatuses())
         ]);
 
@@ -37,6 +39,7 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     clearAttackStatuses() {
+        this.attack.target.isDefender = false;
         this.attack.battles.forEach((battle) => {
             battle.attacker.isAttacker = false;
             battle.target.isDefender = false;
@@ -47,6 +50,8 @@ class AttackFlow extends BaseStepWithPipeline {
 
     payAttackCost(attackingPlayer) {
         let attackers = this.attack.battles.map((b) => b.attacker);
+        if (attackers.length === 0) return;
+
         this.game.addAlert(
             'danger',
             '{0} attacks {1} with {2}',
@@ -84,25 +89,22 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     declareAttackers() {
-        const params = {
-            attackingPlayer: this.attackingPlayer,
-            battles: this.attack.battles
-        };
-        let event = this.game.getEvent('onAttackersDeclared', params, () => {
-            this.game.promptForSelect(this.attackingPlayer, {
-                activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',
-                source: this.target,
-                controller: 'self',
-                cardType: BattlefieldTypes,
-                cardCondition: (card) => !card.exhausted,
-                mode: this.isPBAttack ? 'unlimited' : 'single',
-                onSelect: (player, card) => {
-                    let cards;
-                    if (Array.isArray(card)) {
-                        cards = card;
-                    } else {
-                        cards = [card];
-                    }
+        this.game.promptForSelect(this.attackingPlayer, {
+            activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',
+            source: this.target,
+            controller: 'self',
+            cardType: BattlefieldTypes,
+            cardCondition: (card) => !card.exhausted,
+            mode: this.isPBAttack ? 'unlimited' : 'single',
+            optional: true,
+            onSelect: (player, card) => {
+                let cards;
+                if (Array.isArray(card)) {
+                    cards = card;
+                } else {
+                    cards = [card];
+                }
+                if (cards.length > 0) {
                     cards.forEach((c) => {
                         this.attack.battles.push({
                             attacker: c,
@@ -113,12 +115,15 @@ class AttackFlow extends BaseStepWithPipeline {
                         });
                         c.isAttacker = true;
                     });
-
-                    return true;
+                    const params = {
+                        attackingPlayer: this.attackingPlayer,
+                        battles: this.attack.battles
+                    };
+                    this.game.raiseEvent('onAttackersDeclared', params);
                 }
-            });
+                return true;
+            }
         });
-        this.game.openEventWindow([event]);
     }
 }
 
