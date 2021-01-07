@@ -6,15 +6,7 @@ class ReflectionsInTheWater extends Card {
             effect: ability.effects.blank()
         });
 
-        this.interrupt({
-            title: 'Fleeting (round)',
-            when: {
-                onRoundEnded: () => true
-            },
-            gameAction: ability.actions.discard((context) => ({
-                card: context.source
-            }))
-        });
+        this.fleeting();
     }
 }
 

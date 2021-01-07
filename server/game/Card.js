@@ -210,7 +210,7 @@ class Card extends PlayableObject {
     }
 
     fleeting() {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Fleeting',
             when: {
                 onRoundEnded: () => true
