@@ -210,7 +210,7 @@ class Card extends PlayableObject {
     }
 
     fleeting() {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Fleeting',
             when: {
                 onRoundEnded: () => true
@@ -639,16 +639,6 @@ class Card extends PlayableObject {
 
     get damage() {
         return this.hasToken('damage') ? this.tokens.damage : 0;
-    }
-
-    ward() {
-        if (!this.hasToken('ward')) {
-            this.addToken('ward');
-        }
-    }
-
-    unward() {
-        this.clearToken('ward');
     }
 
     exhaust() {

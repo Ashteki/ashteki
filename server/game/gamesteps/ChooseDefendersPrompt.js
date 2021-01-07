@@ -28,6 +28,10 @@ class ChooseDefendersPrompt extends UiPrompt {
     }
 
     continue() {
+        // skip if no attackers
+        let attackers = this.attack.battles.map((b) => b.attacker);
+        if (attackers.length === 0) return true;
+
         if (!this.isComplete()) {
             // if you don't have a card selected, then highlight options
             if (!this.selectedCard) {

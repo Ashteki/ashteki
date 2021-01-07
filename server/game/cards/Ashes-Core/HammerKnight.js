@@ -15,6 +15,7 @@ class HammerKnight extends Card {
                     event.damageEvent.fightEvent.attacker === context.source
             },
             target: {
+                optional: true,
                 activePromptTitle: 'Aftershock 1',
                 waitingPromptTitle: 'Aftershock 1: waiting for opponent',
                 cardType: ['Ally', 'Conjuration'],

@@ -1,6 +1,7 @@
 declare module jasmine {
     interface Matchers {
         toHavePrompt(expected: string): boolean;
+        toHaveDefaultPrompt(): boolean;
         toBeAbleToSelect(expected: object): boolean;
         toBeAbleToSelectDie(expected: object): boolean;
         toHaveRecentChatMessage(expected: string): boolean;
