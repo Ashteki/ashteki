@@ -32,6 +32,25 @@ var customMatchers = {
             }
         };
     },
+
+    toHaveDefaultPrompt: function () {
+        return {
+            compare: function (actual) {
+                var result = {};
+                var currentPrompt = actual.currentPrompt();
+                result.pass = actual.hasDefaultPrompt();
+
+                if (result.pass) {
+                    result.message = `Expected ${actual.name} not to have the default prompt but it did.`;
+                } else {
+                    result.message = `Expected ${actual.name} to have  the default prompt but it had menuTitle "${currentPrompt.menuTitle}" and promptTitle "${currentPrompt.promptTitle}".`;
+                }
+
+                return result;
+            }
+        };
+    },
+
     toHavePromptButton: function (util, customEqualityMatchers) {
         return {
             compare: function (actual, expected) {

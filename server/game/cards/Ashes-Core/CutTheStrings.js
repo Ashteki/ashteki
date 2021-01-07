@@ -15,14 +15,18 @@ class CutTheStrings extends Card {
                 ])
             ],
             location: 'spellboard',
-            targets: {
-                first: {
-                    player: 'self',
-                    cardType: BattlefieldTypes,
-                    gameAction: ability.actions.dealDamage({ amount: 2 })
-                },
-                second: {
-                    dependsOn: 'first',
+            target: {
+                activePromptTitle: 'Choose a unit to damage',
+                controller: 'self',
+                cardType: BattlefieldTypes,
+                gameAction: ability.actions.dealDamage({
+                    amount: 2
+                })
+            },
+            then: {
+                target: {
+                    optional: true,
+                    activePromptTitle: 'Choose an alteration',
                     cardType: UpgradeCardTypes,
                     gameAction: ability.actions.discard()
                 }

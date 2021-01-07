@@ -360,6 +360,10 @@ class PlayerInteractionWrapper {
         );
     }
 
+    hasDefaultPrompt() {
+        return this.hasPrompt('Choose a card to play or use');
+    }
+
     selectDeck(deck) {
         this.game.selectDeck(this.player.name, deck);
     }
@@ -533,10 +537,7 @@ class PlayerInteractionWrapper {
     }
 
     fightWith(creature, target) {
-        if (
-            creature.type !== 'creature' ||
-            !this.hasPrompt('Choose a card to play, discard or use')
-        ) {
+        if (creature.type !== 'creature' || !this.hasDefaultPrompt()) {
             throw new Error(`${creature.name} cannot fight now`);
         }
 
@@ -566,7 +567,7 @@ class PlayerInteractionWrapper {
 
     playUpgrade(upgrade, target) {
         let card = this.clickCard(upgrade, 'hand');
-        this.clickPrompt('Play this upgrade');
+        this.clickPrompt('Play this Alteration');
         this.clickCard(target, 'play area');
         return card;
     }
