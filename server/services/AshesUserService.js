@@ -145,7 +145,7 @@ class UserService extends EventEmitter {
             settings: user.settings,
             promptedActionWindows: user.promptedActionWindows,
             permissions: user.permissions,
-            patreon: user.patreon ? JSON.stringify(user.patreon) : null
+            patreon: user.patreon
         };
 
         if (user.password && user.password !== '') {
