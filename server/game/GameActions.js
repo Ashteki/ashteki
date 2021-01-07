@@ -60,7 +60,6 @@ const Actions = {
     removePowerCounter: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
     removeSchemeCounter: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'scheme'),
-    removeWard: (propertyFactory) => new GameActions.RemoveWardAction(propertyFactory),
     removeWardToken: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'ward'),
     removeWarrantCounter: (propertyFactory) =>
@@ -74,7 +73,6 @@ const Actions = {
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     swap: (propertyFactory) => new GameActions.SwapAction(propertyFactory), // origin
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
-    ward: (propertyFactory) => new GameActions.WardAction(propertyFactory),
 
     // player actions
     archiveAtRandom: (propertyFactory) => new GameActions.RandomArchiveAction(propertyFactory), // amount = 1
