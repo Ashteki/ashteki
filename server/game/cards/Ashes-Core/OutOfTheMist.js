@@ -12,6 +12,10 @@ class OutOfTheMist extends Card {
                 gameAction: ability.actions.dealDamage((context) => ({
                     amount: context.player.cardsInPlay.length
                 }))
+            },
+            then: {
+                may: 'draw a card?',
+                gameAction: ability.actions.draw()
             }
         });
     }
