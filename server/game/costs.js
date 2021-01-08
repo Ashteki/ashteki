@@ -66,22 +66,6 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.chosenDiscard({ amount: amount }).getEvent(context.player, context)
     }),
-    die: (props) => ({
-        canPay: (context) => {
-            // diceCounts.reduce((result, diceCount) => {
-            // result &&
-            return context.player.dice.some((d) => d.level == props.level && !d.exhausted);
-        },
-        payEvent: (context) => {
-            const die = context.player.dice.find(
-                (d) =>
-                    d.level == props.level &&
-                    !d.exhausted &&
-                    (props.level == 'basic' || d.magic == props.magic)
-            );
-            return context.game.actions.exhaustDie().getEvent(die, context);
-        }
-    }),
     dice: (cost) => new DiceCost({ diceReq: cost }),
     dynamicDice: (costFunc) => new DynamicDiceCost(costFunc)
 };
