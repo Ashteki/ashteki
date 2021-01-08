@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class OpenMemories extends Card {
     setupCardAbilities(ability) {
         this.play({
-            effect: 'place 2 exhaustion tokens on a target unit',
+            effect: 'place a card into their hand',
             target: {
                 player: 'self',
                 location: Location.Deck,

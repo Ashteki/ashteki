@@ -28,12 +28,14 @@ describe('Empower focussed', function () {
         this.player1.clickCard(this.ironWorker);
 
         expect(this.ironWorker.tokens.status).toBe(1);
+        expect(this.player1).toHavePrompt('Choose a unit with status tokens');
 
         this.player1.clickCard(this.anchornaut);
         this.player1.clickPrompt('2');
-        expect(this.player1).toHavePrompt('Choose a unit');
+        expect(this.player1).toHavePrompt('Choose a unit to damage');
         this.player1.clickCard(this.hammerKnight);
 
+        expect(this.anchornaut.status).toBe(0);
         expect(this.hammerKnight.damage).toBe(2);
     });
 });
