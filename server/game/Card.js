@@ -443,7 +443,7 @@ class Card extends PlayableObject {
         return Object.keys(this.tokens).length;
     }
 
-    removeToken(type, number = this.tokens[type]) {
+    removeToken(type, number = 1) {
         if (!this.tokens[type]) {
             return;
         }
@@ -630,9 +630,6 @@ class Card extends PlayableObject {
         return this.hasToken('exhaustion') ? this.tokens.exhaustion : 0;
     }
 
-    get isReady() {
-        return !this.hasToken('exhaustion');
-    }
     get exhausted() {
         return this.hasToken('exhaustion') || this.anyEffect('exhausted');
     }
