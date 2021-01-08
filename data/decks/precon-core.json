@@ -1,5 +1,137 @@
 [
   {
+    "precon_id": 8,
+    "name": "The Children of Blackcloud",
+    "phoenixborn": [
+      {
+        "id": "brennen-blackcloud",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "blackcloud-ninja",
+        "count": 3
+      },
+      {
+        "id": "blood-chains",
+        "count": 3
+      },
+      {
+        "id": "chant-of-worship",
+        "count": 3
+      },
+      {
+        "id": "choke",
+        "count": 3
+      },
+      {
+        "id": "crimson-bomber",
+        "count": 3
+      },
+      {
+        "id": "summon-dread-wraith",
+        "count": 3
+      },
+      {
+        "id": "fester",
+        "count": 3
+      },
+      {
+        "id": "fire-archer",
+        "count": 3
+      },
+      {
+        "id": "regress",
+        "count": 3
+      },
+      {
+        "id": "safeguard",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "dread-wraith",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 7,
+    "name": "The Frostdale Giants",
+    "phoenixborn": [
+      {
+        "id": "rin-northfell",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "crystal-shield",
+        "count": 3
+      },
+      {
+        "id": "deep-freeze",
+        "count": 3
+      },
+      {
+        "id": "freezing-blast",
+        "count": 3
+      },
+      {
+        "id": "frost-bite",
+        "count": 3
+      },
+      {
+        "id": "frost-fang",
+        "count": 3
+      },
+      {
+        "id": "frozen-crown",
+        "count": 3
+      },
+      {
+        "id": "ice-trap",
+        "count": 3
+      },
+      {
+        "id": "rins-fury",
+        "count": 3
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 3
+      },
+      {
+        "id": "summon-ice-golem",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "ice-golem",
+        "count": 3
+      }
+    ]
+  },
+  {
     "precon_id": 6,
     "name": "The Shadows of Viros",
     "phoenixborn": [
