@@ -52,7 +52,7 @@ class AshesDeckService {
 
     getDeckProperties(deck, isPrecon) {
         let properties = {
-            name: deck.deckName,
+            name: deck.name,
             phoenixborn: deck.phoenixborn,
             dicepool: deck.dicepool,
             cards: deck.cards,
