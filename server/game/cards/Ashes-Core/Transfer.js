@@ -20,7 +20,9 @@ class Transfer extends Card {
                 },
                 receiver: {
                     dependsOn: 'amount',
-                    cardCondition: (card) => card.type !== CardType.Phoenixborn,
+                    cardCondition: (card, context) =>
+                        card.type !== CardType.Phoenixborn &&
+                        card.controller === context.targets.tokenBoy.controller,
                     gameAction: [
                         ability.actions.removeToken((context) => ({
                             target: context.targets.tokenBoy,

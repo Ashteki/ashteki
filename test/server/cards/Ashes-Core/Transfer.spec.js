@@ -11,10 +11,13 @@ describe('Transfer actions spell', function () {
             player2: {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['blue-jaguar', 'mist-spirit'],
-                spellboard: []
+                spellboard: ['empower', 'summon-mist-spirit']
             }
         });
         this.ironWorker.tokens.status = 2;
+        this.ironWorker.tokens.exhaustion = 1;
+        this.chantOfRevenge.tokens.exhaustion = 1;
+        this.summonMistSpirit.tokens.exhaustion = 1;
     });
 
     it('should move 1 chosen token type between cards', function () {
@@ -25,10 +28,18 @@ describe('Transfer actions spell', function () {
         this.player1.clickPrompt('Play this action');
         this.player1.clickDie(0);
         this.player1.clickPrompt('Done');
-        this.player1.clickCard(this.ironWorker);
-        this.player1.clickPrompt('Status');
-        this.player1.clickCard(this.chantOfRevenge);
+        expect(this.player1).toBeAbleToSelect(this.chantOfRevenge); // mine
+        expect(this.player1).toBeAbleToSelect(this.summonMistSpirit); // other player
+        expect(this.player1).not.toBeAbleToSelect(this.empower); // no tokens
 
+        this.player1.clickCard(this.ironWorker);
+        expect(this.player1).toHavePromptButton('Exhaustion');
+        expect(this.player1).toHavePromptButton('Status');
+
+        this.player1.clickPrompt('Status');
+        expect(this.player1).not.toBeAbleToSelect(this.empower); // needs same player controlling target
+
+        this.player1.clickCard(this.chantOfRevenge);
         expect(this.ironWorker.tokens.status).toBe(1);
         expect(this.chantOfRevenge.tokens.status).toBe(1);
     });
