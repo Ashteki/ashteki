@@ -7,7 +7,7 @@ class BloodTransfer extends Card {
         this.action({
             title: 'Blood Transfer',
             cost: [
-                ability.costs.mainAction(),
+                ability.costs.sideAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([
                     new DiceCount(1, Level.Class, Magic.Ceremonial),

@@ -20,8 +20,8 @@ class ShadowStrike extends Card {
         });
     }
 
-    notAttacking(c, battles) {
-        return !battles.some((b) => b.attacker === c);
+    notAttacking(card, battles) {
+        return !battles.some((b) => b.attacker === card);
     }
 }
 
