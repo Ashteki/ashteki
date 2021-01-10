@@ -25,6 +25,17 @@ describe('Stormwind Sniper', function () {
         expect(this.player1).not.toBeAbleToSelect(this.stormwindSniper);
     });
 
+    it('is not concealed from spell targetting when exhausted', function () {
+        exhaustCard(this.stormwindSniper, this.game);
+
+        this.player1.clickCard(this.moltenGold); // play seal
+        this.player1.clickPrompt('Play this action');
+        expect(this.player1).toHavePrompt('Choose a card');
+        // concealed!
+        expect(this.player1).toBeAbleToSelect(this.ironWorker);
+        expect(this.player1).toBeAbleToSelect(this.stormwindSniper);
+    });
+
     it('is concealed from unit attacks', function () {
         this.player1.clickPrompt('Attack');
         expect(this.player1).toHavePrompt('Select a target to attack');
@@ -32,4 +43,18 @@ describe('Stormwind Sniper', function () {
         expect(this.player1).toBeAbleToSelect(this.ironWorker);
         expect(this.player1).not.toBeAbleToSelect(this.stormwindSniper);
     });
+
+    it('is not concealed from unit attacks when exhausted', function () {
+        exhaustCard(this.stormwindSniper, this.game);
+
+        this.player1.clickPrompt('Attack');
+        expect(this.player1).toHavePrompt('Select a target to attack');
+        // concealed!
+        expect(this.player1).toBeAbleToSelect(this.ironWorker);
+        expect(this.player1).toBeAbleToSelect(this.stormwindSniper);
+    });
+
+    function exhaustCard(card, game) {
+        game.actions.exhaust().resolve(card, game.getFrameworkContext());
+    }
 });
