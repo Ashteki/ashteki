@@ -20,14 +20,12 @@ class SummonGilder extends Card {
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
-                gameAction: ability.actions.dealDamage((context) => ({
-                    promptForSelect: {
-                        optional: true,
-                        cardCondition: (card) => card !== context.preThenEvent.card,
-                        activePromptTitle: 'Deal 1 damage',
-                        cardType: BattlefieldTypes
-                    }
-                }))
+                target: {
+                    optional: true,
+                    activePromptTitle: 'Deal 1 damage',
+                    cardType: BattlefieldTypes,
+                    gameAction: ability.actions.dealDamage()
+                }
             }
         });
     }
