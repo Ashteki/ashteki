@@ -8,17 +8,20 @@ class Transfer extends Card {
             title: 'Transfer',
             targets: {
                 tokenBoy: {
+                    activePromptTitle: 'Choose a unit with tokens',
                     controller: 'any',
                     cardCondition: (card) =>
                         card.hasAnyTokens() && card.type !== CardType.Phoenixborn
                 },
                 amount: {
+                    activePromptTitle: 'Choose a type',
                     dependsOn: 'tokenBoy',
                     mode: 'options',
                     options: (context) => this.getTokenOptions(context.targets.tokenBoy),
                     handler: (option) => (this.chosenType = option.value)
                 },
                 receiver: {
+                    activePromptTitle: 'Choose a card to receive the token',
                     dependsOn: 'amount',
                     cardCondition: (card, context) =>
                         card.type !== CardType.Phoenixborn &&

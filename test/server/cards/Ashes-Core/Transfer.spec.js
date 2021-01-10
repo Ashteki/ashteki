@@ -31,13 +31,16 @@ describe('Transfer actions spell', function () {
         expect(this.player1).toBeAbleToSelect(this.chantOfRevenge); // mine
         expect(this.player1).toBeAbleToSelect(this.summonMistSpirit); // other player
         expect(this.player1).not.toBeAbleToSelect(this.empower); // no tokens
+        expect(this.player1).toHavePrompt('Choose a unit with tokens');
 
         this.player1.clickCard(this.ironWorker);
+        expect(this.player1).toHavePrompt('Choose a type');
         expect(this.player1).toHavePromptButton('Exhaustion');
         expect(this.player1).toHavePromptButton('Status');
 
         this.player1.clickPrompt('Status');
         expect(this.player1).not.toBeAbleToSelect(this.empower); // needs same player controlling target
+        expect(this.player1).toHavePrompt('Choose a card to receive the token');
 
         this.player1.clickCard(this.chantOfRevenge);
         expect(this.ironWorker.tokens.status).toBe(1);
