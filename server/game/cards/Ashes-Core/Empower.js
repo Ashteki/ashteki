@@ -52,7 +52,7 @@ class Empower extends Card {
                             })),
                             ability.actions.removeStatus((context) => ({
                                 target: context.targets.tokenBoy,
-                                amount: 2
+                                amount: this.chosenValue
                             }))
                         ]
                     }
