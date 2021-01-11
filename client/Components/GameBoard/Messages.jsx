@@ -143,6 +143,19 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         {fragment.name}
                     </span>
                 );
+            } else if (fragment.argType === 'die') {
+                let diceFont = 'phg-basic-magic';
+
+                if (fragment.magic && fragment.level && fragment.level !== 'basic') {
+                    diceFont = `phg-${fragment.magic}-${fragment.level}`;
+                }
+                let dieClass = classNames('chat-die', fragment.magic);
+
+                messages.push(
+                    <span key={index++} className={dieClass}>
+                        <span className={diceFont} title={`${fragment.name}`}></span>
+                    </span>
+                );
             } else {
                 let messageFragment = processKeywords(fragment.toString());
                 messages.push(<span className='message-fragment'>{messageFragment}</span>);

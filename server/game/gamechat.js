@@ -105,7 +105,9 @@ class GameChat {
                         returnedFraments.push({
                             name: arg.name,
                             type: arg.getType,
-                            argType: 'die'
+                            argType: 'die',
+                            level: arg.level,
+                            magic: arg.magic
                         });
                     } else {
                         returnedFraments.push(arg);
