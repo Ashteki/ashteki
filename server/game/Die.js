@@ -112,7 +112,7 @@ class Die extends PlayableObject {
 
     getActions() {
         let actions = [];
-        // todo: add power dice abilities here? dependent upon magic type
+
         if (this.level == 'power') {
             actions.push(this.getPowerDieAction());
         }
@@ -145,7 +145,9 @@ class Die extends PlayableObject {
                             amount: 1,
                             target: this.owner.phoenixborn
                         })
-                    }
+                    },
+                    message:
+                        '{0} uses {1} to move {2} from discard to hand, and receives 1 PB damage'
                 });
             case 'illusion':
                 return this.action({
@@ -157,7 +159,8 @@ class Die extends PlayableObject {
                         numDice: 2,
                         owner: 'opponent',
                         gameAction: this.game.actions.lowerDie()
-                    }
+                    },
+                    message: '{0} uses {1} to lower up to 2 opponent dice'
                 });
             case 'natural':
                 return this.action({
@@ -166,7 +169,8 @@ class Die extends PlayableObject {
                     target: {
                         cardType: ['Ally', 'Conjuration'],
                         gameAction: this.game.actions.dealDamage({ amount: 1 })
-                    }
+                    },
+                    message: '{0} uses {1} to deal 1 damage to {2}'
                 });
             case 'charm':
                 return this.action({
@@ -176,7 +180,9 @@ class Die extends PlayableObject {
                         cardType: ['Ally', 'Conjuration'],
                         controller: 'opponent',
                         gameAction: this.game.actions.attachDie({ upgradeDie: this })
-                    }
+                    },
+                    message: '{0} attaches {1} to {2}',
+                    messageArgs: (context) => context.target
                 });
         }
     }

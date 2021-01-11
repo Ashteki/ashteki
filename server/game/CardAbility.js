@@ -169,10 +169,6 @@ class CardAbility extends ThenAbility {
         return false;
     }
 
-    isFight() {
-        return false;
-    }
-
     isTriggeredAbility() {
         return true;
     }

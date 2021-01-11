@@ -17,16 +17,6 @@ class PlayerInteractionWrapper {
         return this.player.name;
     }
 
-    get chains() {
-        return this.player.chains;
-    }
-
-    set chains(newValue) {
-        if (newValue > 0) {
-            this.player.chains = newValue;
-        }
-    }
-
     get hand() {
         return this.player.hand;
     }
@@ -133,6 +123,7 @@ class PlayerInteractionWrapper {
                     level: 'power',
                     exhausted: false
                 });
+                die.setupAbilities();
             }
             this.player.dice.push(die);
         });

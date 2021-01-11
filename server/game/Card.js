@@ -759,11 +759,6 @@ class Card extends PlayableObject {
             let context = action.createContext(player);
             return !action.meetsRequirements(context);
         });
-        let canFight =
-            actions.findIndex((action) => action.title === 'Fight with this creature') >= 0;
-        if (this.getEffects('mustFightIfAble').length > 0 && canFight) {
-            actions = actions.filter((action) => action.title === 'Fight with this creature');
-        }
 
         return actions;
     }

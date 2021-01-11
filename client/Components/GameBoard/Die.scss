@@ -52,6 +52,12 @@
     z-index: $layer-cards + 1;
 
 }
+.chat-die{
+    border-radius: 3px;
+    text-align: center;
+    display:inline-block;
+    padding:2px;
+}
 
 
 .large .die {

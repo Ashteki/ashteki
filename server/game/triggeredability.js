@@ -93,11 +93,8 @@ class TriggeredAbility extends CardAbility {
             return false;
         } else if (!this.when[event.name] || !this.when[event.name](event, context)) {
             return false;
-        } else if (this.properties.play || this.properties.fight) {
-            if (
-                (event.name === 'onCardPlayed' && !this.isPlay()) ||
-                (event.name === 'onFight' && !this.isFight())
-            ) {
+        } else if (this.properties.play) {
+            if (event.name === 'onCardPlayed' && !this.isPlay()) {
                 return false;
             }
         }
@@ -107,10 +104,6 @@ class TriggeredAbility extends CardAbility {
 
     isPlay() {
         return this.properties.play;
-    }
-
-    isFight() {
-        return this.properties.fight;
     }
 
     registerEvents() {

@@ -306,12 +306,17 @@ class Player extends GameObject {
         for (let card of this.cardsInPlay) {
             card.new = false;
             // remove die attachments
-            card.dieUpgrades.forEach((die) => {
-                card.removeDieAttachment(die);
-                die.owner.dice.push(die);
-                die.moveTo('dicepool');
-            });
+            this.removeDieAttachments(card);
         }
+    }
+
+    removeDieAttachments(card) {
+        card.dieUpgrades.forEach((die) => {
+            card.removeDieAttachment(die);
+            die.exhaust();
+            die.owner.dice.push(die);
+            die.moveTo('dicepool');
+        });
     }
 
     /**
@@ -435,6 +440,7 @@ class Player extends GameObject {
         this.removeCardFromPile(card);
         let location = card.location;
 
+        // from play
         if (location === 'play area' || location === 'spellboard') {
             if (targetLocation !== 'archives' && card.owner !== this) {
                 card.owner.moveCard(card, targetLocation, options);
@@ -443,24 +449,30 @@ class Player extends GameObject {
 
             for (let upgrade of card.upgrades) {
                 upgrade.onLeavesPlay();
-                upgrade.owner.moveCard(upgrade, 'discard');
+                upgrade.owner.moveCard(upgrade, upgrade.discardLocation);
             }
 
             for (let child of card.childCards) {
                 child.onLeavesPlay();
-                child.owner.moveCard(child, 'discard');
+                child.owner.moveCard(child, child.discardLocation);
             }
+
+            this.removeDieAttachments(card);
 
             card.onLeavesPlay();
             card.controller = this;
         } else if (targetLocation === 'play area' || targetLocation === 'spellboard') {
+            // into play
             if (options.myControl) {
                 card.setDefaultController(this);
             }
         } else if (card.owner !== this) {
+            // not in/out of play, and not mine
             card.owner.moveCard(card, targetLocation, options);
             return;
         } else if (card.location === 'archives' && card.controller !== card.owner) {
+            // card is in archives, and it's not mine?
+            //todo: can we remove this? i don't think it applies to ashes
             card.controller = card.owner;
             targetLocation = 'hand';
             targetPile = this.getSourceList(targetLocation);
