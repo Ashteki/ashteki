@@ -104,7 +104,7 @@ class GameChat {
                     } else if (arg instanceof Die) {
                         returnedFraments.push({
                             name: arg.name,
-                            type: arg.getType,
+                            type: arg.getType(),
                             argType: 'die',
                             level: arg.level,
                             magic: arg.magic
