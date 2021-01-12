@@ -104,8 +104,17 @@ class SelectDiePrompt extends UiPrompt {
             onCancel: () => true
         };
     }
+
     getDiceReq() {
-        return this.properties.format || [];
+        return this.properties.format
+            ? this.properties.format.map((f) => {
+                  if (Array.isArray(f)) {
+                      return [f[0].getSummary(), f[1].getSummary()];
+                  } else {
+                      return f.getSummary();
+                  }
+              })
+            : [];
     }
 
     getDefaultControls() {

@@ -21,7 +21,7 @@ describe('Summon Masked Wolf', function () {
             this.player1.clickCard(this.summonMaskedWolf);
             this.player1.clickPrompt('Summon Masked Wolf');
             this.player1.clickCard(this.player1.archives[0]);
-            expect(this.player1).toHavePrompt('Select die');
+            expect(this.player1).toHavePrompt('Select dice');
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.player1.archives[0]);
 
@@ -32,7 +32,7 @@ describe('Summon Masked Wolf', function () {
             this.player1.dicepool[1].level = 'class';
             this.player1.clickCard(this.summonMaskedWolf);
             this.player1.clickPrompt('Summon Masked Wolf');
-            expect(this.player1).toHavePrompt('Select die');
+            expect(this.player1).toHavePrompt('Select dice');
 
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.player1.archives[0]);

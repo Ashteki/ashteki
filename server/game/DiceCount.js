@@ -4,6 +4,14 @@ class DiceCount {
         this.level = level;
         this.magic = magic;
     }
+
+    getSummary() {
+        return {
+            count: this.count,
+            level: this.level,
+            magic: this.magic
+        };
+    }
 }
 
 module.exports = DiceCount;
