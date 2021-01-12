@@ -184,7 +184,7 @@ class InnerDeckEditor extends React.Component {
                 index++;
             }
             let num = parseInt(line.substr(0, index));
-            let magic = line.substr(index, line.length);
+            let magic = this.parseMagic(line.substr(index, line.length).toLowerCase());
             if (magic == '') return;
             deck.dicepool.push({ magic: magic.toLowerCase(), count: num });
         });
@@ -193,6 +193,29 @@ class InnerDeckEditor extends React.Component {
 
         this.setState({ diceList: event.target.value, deck: deck });
         this.props.updateDeck(deck);
+    }
+
+    parseMagic(input) {
+        let mgc = '';
+        // do translations / synonyms
+        switch (input) {
+            case 'nature':
+            case 'nat':
+                mgc = 'natural';
+                break;
+            case 'cha':
+                mgc = 'charm';
+                break;
+            case 'ill':
+                mgc = 'illusion';
+                break;
+            case 'cer':
+                mgc = 'ceremonial';
+                break;
+        }
+        let validMagics = ['charm', 'ceremonial', 'illusion', 'natural'];
+        let isValid = validMagics.includes(mgc);
+        return isValid ? mgc : '';
     }
 
     addCard(card, number) {
