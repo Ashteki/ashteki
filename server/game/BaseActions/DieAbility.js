@@ -20,51 +20,6 @@ class DieAbility extends ThenAbility {
         return super.meetsRequirements(context);
     }
 
-    // executeGameActions(actions, context) {
-    //     // Get any gameActions for this ability
-    //     // Get their events, and execute simultaneously
-    //     let events = actions.reduce(
-    //         (array, action) => array.concat(action.getEventArray(context)),
-    //         []
-    //     );
-    //     let then = this.properties.then;
-    //     if (then && typeof then === 'function') {
-    //         then = then(context);
-    //     }
-
-    //     if (events.length > 0) {
-    //         this.game.openEventWindow(events);
-    //         if (then) {
-    //             this.game.queueSimpleStep(() => {
-    //                 if (then.alwaysTriggers || events.every((event) => !event.cancelled)) {
-    //                     let thenAbility = new DieAbility(this.die, then);
-    //                     let thenContext = thenAbility.createContext(context.player);
-    //                     thenContext.preThenEvents = events;
-    //                     thenContext.preThenEvent = events[0];
-    //                     if (
-    //                         !thenAbility.meetsRequirements(thenContext) &&
-    //                         thenAbility.condition(thenContext)
-    //                     ) {
-    //                         this.game.resolveAbility(thenContext);
-    //                     }
-    //                 }
-    //             });
-    //         }
-    //     } else if (then && then.alwaysTriggers) {
-    //         let thenAbility = new DieAbility(this.die, then);
-    //         let thenContext = thenAbility.createContext(context.player);
-    //         if (!thenAbility.meetsRequirements(thenContext) && thenAbility.condition(thenContext)) {
-    //             this.game.resolveAbility(thenContext);
-    //         }
-    //     }
-
-    //     for (let action of actions) {
-    //         if (action.postHandler) {
-    //             action.postHandler(context, action);
-    //         }
-    //     }
-    // }
-
     // todo: needed?
     // eslint-disable-next-line no-unused-vars
     addSubEvent(event, context) {
