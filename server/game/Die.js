@@ -1,3 +1,4 @@
+const logger = require('../log');
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const { Costs } = require('./costs');
@@ -184,6 +185,8 @@ class Die extends PlayableObject {
                     message: '{0} attaches {1} to {2}',
                     messageArgs: (context) => context.target
                 });
+            default:
+                logger.error('unexpected dice magic value: {0}', this.magic);
         }
     }
 

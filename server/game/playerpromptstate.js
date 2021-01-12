@@ -10,6 +10,7 @@ class PlayerPromptState {
         this.promptTitle = '';
         this.buttons = [];
         this.controls = [];
+        this.diceReq = [];
 
         this.selectableCards = [];
         this.selectableDice = [];
@@ -70,6 +71,7 @@ class PlayerPromptState {
             return button;
         });
         this.controls = prompt.controls || [];
+        this.diceReq = prompt.diceReq || [];
     }
 
     cancelPrompt() {
@@ -107,7 +109,8 @@ class PlayerPromptState {
             menuTitle: this.menuTitle,
             promptTitle: this.promptTitle,
             buttons: this.buttons,
-            controls: this.controls
+            controls: this.controls,
+            diceReq: this.diceReq
         };
     }
 }

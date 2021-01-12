@@ -36,7 +36,7 @@ class DiceCost {
                 buttons.push({ text: 'Cancel', arg: 'cancel' });
             }
             context.game.promptForDieSelect(context.player, {
-                activePromptTitle: 'Select die',
+                activePromptTitle: 'Select dice',
                 mode: 'match',
                 selectedDice: chosenDice,
                 context: context,

@@ -346,7 +346,7 @@ module.exports.init = function (server, options) {
 
             newUser.settings = {
                 background: 'ashesreborn',
-                cardSize: 'large',
+                cardSize: 'normal',
                 avatar: req.body.username,
                 customBackground: null
             };

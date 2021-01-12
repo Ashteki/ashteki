@@ -413,6 +413,7 @@ export class GameBoard extends React.Component {
                                     cards={this.props.cards}
                                     buttons={thisPlayer.buttons}
                                     controls={thisPlayer.controls}
+                                    diceReq={thisPlayer.diceReq}
                                     promptText={thisPlayer.menuTitle}
                                     promptTitle={thisPlayer.promptTitle}
                                     onButtonClick={this.onCommand}

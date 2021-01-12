@@ -96,12 +96,25 @@ class SelectDiePrompt extends UiPrompt {
             waitingPromptTitle: 'Waiting for opponent',
             buttons: [],
             controls: this.getDefaultControls(),
+            diceReq: this.getDiceReq(),
             selectDie: true,
             dieCondition: () => true,
             onSelect: () => true,
             onMenuCommand: () => true,
             onCancel: () => true
         };
+    }
+
+    getDiceReq() {
+        return this.properties.format
+            ? this.properties.format.map((f) => {
+                  if (Array.isArray(f)) {
+                      return [f[0].getSummary(), f[1].getSummary()];
+                  } else {
+                      return f.getSummary();
+                  }
+              })
+            : [];
     }
 
     getDefaultControls() {
@@ -172,7 +185,8 @@ class SelectDiePrompt extends UiPrompt {
                 this.selector.defaultActivePromptTitle(this.context),
             buttons: buttons,
             promptTitle: this.promptTitle,
-            controls: this.properties.controls
+            controls: this.properties.controls,
+            diceReq: this.properties.diceReq
         };
     }
 
