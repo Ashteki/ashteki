@@ -18,16 +18,7 @@ class MatchedDiceSelector extends BaseDieSelector {
     }
 
     defaultActivePromptTitle() {
-        let numDice = this.getNumDice();
-        if (this.dieType.length === 1) {
-            return numDice === 1
-                ? 'Choose a ' + this.dieType[0]
-                : { text: `Choose {{amount}} ${this.dieType[0]}s`, values: { amount: numDice } };
-        }
-
-        return numDice === 1
-            ? 'Choose a die'
-            : { text: 'Choose {{amount}} Dice', values: { amount: numDice } };
+        return 'Select dice';
     }
 
     // eslint-disable-next-line no-unused-vars

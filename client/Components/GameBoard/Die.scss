@@ -41,6 +41,11 @@
     @include dice-colors(#dfdfdf, #9a2e36);
 }
 
+.any {
+    @include dice-colors(#111, #fff);
+    border: 1px solid #fff;
+}
+
 
 .die{
     border-radius: 3px;
@@ -52,6 +57,18 @@
     z-index: $layer-cards + 1;
 
 }
+
+.prompt-die{
+    border-radius: 3px;
+    margin: 5px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    display:inline-block;
+    z-index: $layer-cards + 1;
+    line-height: 1.5;
+}
+
 .chat-die{
     border-radius: 3px;
     text-align: center;

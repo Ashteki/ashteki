@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 import AbilityTargeting from './AbilityTargeting';
 import CardNameLookup from './CardNameLookup';
@@ -199,6 +200,33 @@ class ActivePlayerPrompt extends React.Component {
         });
     }
 
+    getDice() {
+        if (!this.props.diceReq) return;
+        let dice = this.props.diceReq.map((dr, index) => this.getDie(dr, index));
+
+        return <h4>{dice}</h4>;
+    }
+
+    getDie(req, index) {
+        let diceFont = 'phg-basic-magic';
+
+        if (req.magic && req.level && req.level !== 'basic') {
+            diceFont = `phg-${req.magic}-${req.level}`;
+        }
+        let dieClass = classNames('prompt-die', req.magic ? req.magic : 'any');
+
+        let count = req.count > 1 ? req.count + 'x' : '';
+
+        return (
+            <span>
+                {count}
+                <span key={index} className={dieClass}>
+                    <span className={diceFont}></span>
+                </span>
+            </span>
+        );
+    }
+
     safePromptText(promptObject) {
         if (promptObject) {
             return typeof promptObject === 'string' ? promptObject : promptObject.text;
@@ -259,6 +287,7 @@ class ActivePlayerPrompt extends React.Component {
                 {promptTitle}
                 <div className='menu-pane'>
                     <h4>{promptTexts}</h4>
+                    {this.getDice()}
                     {this.getControls()}
                     {this.getButtons()}
                 </div>
@@ -272,6 +301,7 @@ ActivePlayerPrompt.propTypes = {
     buttons: PropTypes.array,
     cards: PropTypes.object,
     controls: PropTypes.array,
+    diceReq: PropTypes.array,
     i18n: PropTypes.object,
     onButtonClick: PropTypes.func,
     onMouseOut: PropTypes.func,
