@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 class OrchidDove extends Card {
     setupCardAbilities(ability) {
         this.destroyed({
-            optional: true,
+            may: 'force opponent to discard top of deck',
             gameAction: ability.actions.discardTopOfDeck()
         });
     }

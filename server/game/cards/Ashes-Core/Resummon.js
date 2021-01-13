@@ -16,7 +16,7 @@ class Resummon extends Card {
             ],
             location: 'spellboard',
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 gameAction: ability.actions.destroy()
             },

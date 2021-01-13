@@ -171,6 +171,9 @@ class PlayerInteractionWrapper {
         return this.player.phoenixborn;
     }
 
+    get promptState() {
+        return this.player.promptState;
+    }
     // set phoenixborn(card) {
     //     // First, move all cards in play back to the appropriate decks
     //     this.moveCard(card, 'deck');

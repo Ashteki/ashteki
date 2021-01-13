@@ -24,7 +24,7 @@ class SummonBloodPuppet extends Card {
                 },
                 conjuration: {
                     dependsOn: 'first',
-                    player: 'self',
+                    controller: 'self',
                     cardType: 'Conjuration',
                     cardCondition: (card) => card.id === 'blood-puppet',
                     location: 'archives',

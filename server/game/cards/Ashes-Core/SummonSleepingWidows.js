@@ -12,7 +12,7 @@ class SummonSleepingWidows extends Card {
             target: {
                 mode: 'upTo',
                 numCards: 2,
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'sleeping-widow',
                 location: 'archives',

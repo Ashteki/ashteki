@@ -201,15 +201,19 @@ class InnerDeckEditor extends React.Component {
         switch (input) {
             case 'nature':
             case 'nat':
+            case 'natural':
                 mgc = 'natural';
                 break;
             case 'cha':
+            case 'charm':
                 mgc = 'charm';
                 break;
             case 'ill':
+            case 'illusion':
                 mgc = 'illusion';
                 break;
             case 'cer':
+            case 'ceremonial':
                 mgc = 'ceremonial';
                 break;
         }

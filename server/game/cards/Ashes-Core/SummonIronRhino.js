@@ -15,7 +15,7 @@ class SummonIronRhino extends Card {
             ],
             location: 'spellboard',
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'iron-rhino',
                 location: 'archives',
