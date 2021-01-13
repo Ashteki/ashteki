@@ -12,7 +12,7 @@ class LeoSunshadow extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'glow-finch',
                 location: 'archives',

@@ -13,7 +13,7 @@ class SummonDreadWraith extends Card {
             ],
             location: 'spellboard',
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'dread-wraith',
                 location: 'archives',

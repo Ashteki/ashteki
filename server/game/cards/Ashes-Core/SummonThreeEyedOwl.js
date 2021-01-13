@@ -13,7 +13,7 @@ class SummonThreeEyedOwl extends Card {
             ],
             location: 'spellboard',
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'three-eyed-owl',
                 location: 'archives',

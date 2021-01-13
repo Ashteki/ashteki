@@ -13,7 +13,7 @@ class SummonBlueJaguar extends Card {
             ],
             location: 'spellboard',
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'blue-jaguar',
                 location: 'archives',

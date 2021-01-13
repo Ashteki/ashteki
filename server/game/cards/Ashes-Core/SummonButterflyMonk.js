@@ -13,7 +13,7 @@ class SummonButterflyMonk extends Card {
             ],
             location: 'spellboard',
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'butterfly-monk',
                 location: 'archives',

@@ -13,7 +13,7 @@ class SummonSeasideRaven extends Card {
             ],
             location: 'spellboard',
             target: {
-                player: 'self',
+                controller: 'self',
                 cardType: 'Conjuration',
                 cardCondition: (card) => card.id === 'seaside-raven',
                 location: 'archives',
