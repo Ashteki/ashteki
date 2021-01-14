@@ -767,11 +767,9 @@ module.exports.init = function (server, options) {
         '/api/account/password-reset',
         wrapAsync(async (req, res) => {
             let resetToken;
-
+            let captchaSecret = process.env.CAPTCHA_SECRET || configService.getValue('captchaKey');
             let response = await util.httpRequest(
-                `https://www.google.com/recaptcha/api/siteverify?secret=${configService.getValue(
-                    'captchaKey'
-                )}&response=${req.body.captcha}`
+                `https://www.google.com/recaptcha/api/siteverify?secret=${captchaSecret}&response=${req.body.captcha}`
             );
             let answer = JSON.parse(response);
 

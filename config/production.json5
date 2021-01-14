@@ -9,8 +9,7 @@
         requireActivation: false,
         hmacSecret: 'somethingevenmoresecret',
         patreonCallbackUrl: 'https://ashteki.com/patreon',
-        patreonClientId: 'kPREwt5MsRP3lK0rsqLitscg7A9o5hn-bkbzELmHIcgo4C80TPARfUWe3rjXIqOh',
-        captchaKey: '6LfbXiwaAAAAANrwNp3Q08-2-5PSN1OXog2Fk4Rw'
+        patreonClientId: 'kPREwt5MsRP3lK0rsqLitscg7A9o5hn-bkbzELmHIcgo4C80TPARfUWe3rjXIqOh'
 
         /*
          * Other server configurations used, but not specified, include:
