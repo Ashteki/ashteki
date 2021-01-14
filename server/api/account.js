@@ -42,7 +42,9 @@ function isValidImage(base64Image) {
 }
 
 async function sendEmail(address, subject, email) {
-    if (!configService.getValueForSection('lobby', 'emailKey')) {
+    let emailKey =
+        process.env.SENDGRID_API_KEY || configService.getValueForSection('lobby', 'emailKey');
+    if (!emailKey) {
         logger.info(`Trying to send email to ${address}, but email key not configured.`);
         return;
     }
@@ -219,7 +221,8 @@ module.exports.init = function (server, options) {
         configService.getValueForSection('lobby', 'patreonCallbackUrl')
     );
 
-    let emailKey = configService.getValueForSection('lobby', 'emailKey');
+    let emailKey =
+        process.env.SENDGRID_API_KEY || configService.getValueForSection('lobby', 'emailKey');
     if (emailKey) {
         sendgrid.setApiKey(emailKey);
     }
