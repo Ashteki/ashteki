@@ -4,7 +4,7 @@
 
     lobby: {
         appName: 'Ashes Reborn Online',
-        emailFromAddress: 'noreply@ashteki.com',
+        emailFromAddress: 'mailer@ashteki.com',
         blockDisposableEmail: false,
         requireActivation: false,
         hmacSecret: 'somethingevenmoresecret',
