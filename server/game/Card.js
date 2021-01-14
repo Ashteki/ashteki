@@ -710,6 +710,12 @@ class Card extends PlayableObject {
         return focusLevel;
     }
 
+    alert() {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.addKeyword({ alert: 1 })
+        });
+    }
+
     canGuard(attacker) {
         // phoenixborn and not guarded this round
         // OR has Unit Guard keyword / ability.
