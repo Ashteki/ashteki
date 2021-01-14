@@ -2,9 +2,7 @@ const Card = require('../../Card.js');
 
 class HammerKnight extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            effect: ability.effects.addKeyword({ alert: 1 })
-        });
+        this.alert();
 
         this.forcedReaction({
             when: {

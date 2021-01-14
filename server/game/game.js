@@ -1259,6 +1259,7 @@ class Game extends EventEmitter {
 
     clearAttackState() {
         this.attackState = null;
+        this.checkGameState(true);
     }
 
     /*

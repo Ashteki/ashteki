@@ -99,7 +99,7 @@ const ForgotPassword = () => {
                                 <Form.Group as={Col} sm={8}>
                                     <ReCAPTCHA
                                         className='is-invalid'
-                                        sitekey='6LdMGfYUAAAAAJN_sqZOBPn0URaFkWQ1QXvQqBbj'
+                                        sitekey='6LfbXiwaAAAAAODKSXIi-ZHcWO6LE3SPN4F1CiG-'
                                         theme='dark'
                                         onChange={(value) =>
                                             formProps.setFieldValue('captchaValue', value, true)

@@ -4,12 +4,13 @@
 
     lobby: {
         appName: 'Ashes Reborn Online',
-        emailFromAddress: 'noreply@ashteki.online',
+        emailFromAddress: 'noreply@ashteki.com',
         blockDisposableEmail: false,
         requireActivation: false,
         hmacSecret: 'somethingevenmoresecret',
         patreonCallbackUrl: 'https://ashteki.com/patreon',
-        patreonClientId: 'kPREwt5MsRP3lK0rsqLitscg7A9o5hn-bkbzELmHIcgo4C80TPARfUWe3rjXIqOh'
+        patreonClientId: 'kPREwt5MsRP3lK0rsqLitscg7A9o5hn-bkbzELmHIcgo4C80TPARfUWe3rjXIqOh',
+        captchaKey: '6LfbXiwaAAAAAODKSXIi-ZHcWO6LE3SPN4F1CiG-'
 
         /*
          * Other server configurations used, but not specified, include:

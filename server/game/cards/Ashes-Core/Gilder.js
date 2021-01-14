@@ -3,9 +3,7 @@ const Card = require('../../Card.js');
 
 class Gilder extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            effect: ability.effects.canGuard()
-        });
+        this.unitGuard();
 
         this.destroyed({
             target: {

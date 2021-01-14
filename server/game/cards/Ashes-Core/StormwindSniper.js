@@ -1,11 +1,8 @@
 const Card = require('../../Card.js');
 
 class StormwindSniper extends Card {
-    setupCardAbilities(ability) {
-        this.persistentEffect({
-            condition: () => !this.exhausted,
-            effect: ability.effects.concealed()
-        });
+    setupCardAbilities() {
+        this.concealed();
 
         this.ambush(1);
     }

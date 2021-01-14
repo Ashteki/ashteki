@@ -69,7 +69,12 @@ class ChooseDefendersPrompt extends UiPrompt {
     }
 
     guardTest(card, target, attacker) {
-        return !attacker.hasKeyword('bypass') && card !== target && card.canGuard(attacker);
+        return (
+            !attacker.hasKeyword('bypass') &&
+            !attacker.hasKeyword('preventguard') &&
+            card !== target &&
+            card.canGuard(attacker)
+        );
     }
 
     blockTest(card, attacker) {
