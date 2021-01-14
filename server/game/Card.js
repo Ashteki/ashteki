@@ -742,7 +742,8 @@ class Card extends PlayableObject {
                 !this.exhausted &&
                 this.anyEffect('canGuard') &&
                 this.checkGigantic(attacker) &&
-                !attacker.hasKeyword('bypass')
+                !attacker.hasKeyword('bypass') &&
+                !attacker.hasKeyword('preventguard')
             );
         }
     }
