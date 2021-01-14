@@ -16,7 +16,7 @@ describe('Summon Gilder', function () {
             });
         });
 
-        it('should place an ice golem into play', function () {
+        it('should place a gilder into play', function () {
             this.player1.clickCard(this.summonGilder);
             this.player1.clickPrompt('Summon Gilder');
             this.player1.clickCard(this.player1.archives[0]);

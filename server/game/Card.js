@@ -716,6 +716,19 @@ class Card extends PlayableObject {
         });
     }
 
+    concealed() {
+        this.persistentEffect({
+            condition: () => !this.exhausted,
+            effect: AbilityDsl.effects.concealed()
+        });
+    }
+
+    unitGuard() {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.canGuard()
+        });
+    }
+
     canGuard(attacker) {
         // phoenixborn and not guarded this round
         // OR has Unit Guard keyword / ability.

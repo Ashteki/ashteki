@@ -2,9 +2,7 @@ const Card = require('../../Card.js');
 
 class GlowFinch extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            effect: ability.effects.canGuard()
-        });
+        this.unitGuard();
 
         this.destroyed({
             may: 'Last Request 2',
