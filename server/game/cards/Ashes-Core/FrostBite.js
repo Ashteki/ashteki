@@ -10,8 +10,9 @@ class FrostBite extends Card {
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dynamicDice((context) => {
-                    let level = context.source.focus ? Level.Basic : Level.Class;
-                    return [new DiceCount(1, level, Magic.Natural)];
+                    return context.source.focus
+                        ? [new DiceCount(1, Level.Basic)]
+                        : [new DiceCount(1, Level.Class, Magic.Natural)];
                 })
             ],
             location: 'spellboard',
