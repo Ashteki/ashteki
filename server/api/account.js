@@ -42,7 +42,9 @@ function isValidImage(base64Image) {
 }
 
 async function sendEmail(address, subject, email) {
-    if (!configService.getValueForSection('lobby', 'emailKey')) {
+    let emailKey =
+        process.env.SENDGRID_API_KEY || configService.getValueForSection('lobby', 'emailKey');
+    if (!emailKey) {
         logger.info(`Trying to send email to ${address}, but email key not configured.`);
         return;
     }
@@ -219,7 +221,8 @@ module.exports.init = function (server, options) {
         configService.getValueForSection('lobby', 'patreonCallbackUrl')
     );
 
-    let emailKey = configService.getValueForSection('lobby', 'emailKey');
+    let emailKey =
+        process.env.SENDGRID_API_KEY || configService.getValueForSection('lobby', 'emailKey');
     if (emailKey) {
         sendgrid.setApiKey(emailKey);
     }
@@ -767,11 +770,9 @@ module.exports.init = function (server, options) {
         '/api/account/password-reset',
         wrapAsync(async (req, res) => {
             let resetToken;
-
+            let captchaSecret = process.env.CAPTCHA_SECRET || configService.getValue('captchaKey');
             let response = await util.httpRequest(
-                `https://www.google.com/recaptcha/api/siteverify?secret=${configService.getValue(
-                    'captchaKey'
-                )}&response=${req.body.captcha}`
+                `https://www.google.com/recaptcha/api/siteverify?secret=${captchaSecret}&response=${req.body.captcha}`
             );
             let answer = JSON.parse(response);
 

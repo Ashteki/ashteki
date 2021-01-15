@@ -17,7 +17,7 @@ class FrostBite extends Card {
             location: 'spellboard',
             target: {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
-                gameAction: ability.actions.dealDamage({ amount: 2 })
+                gameAction: ability.actions.dealDamage({ amount: 1 })
             }
         });
     }
