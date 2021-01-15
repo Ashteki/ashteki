@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class PutIntoPlayAction extends CardGameAction {
@@ -25,7 +26,7 @@ class PutIntoPlayAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent('onCardEntersPlay', { card: card, context: context }, () => {
+        return super.createEvent('onCardEntersPlay', { card: card, context: context }, (event) => {
             let player;
             let control;
             if (
@@ -37,6 +38,16 @@ class PutIntoPlayAction extends CardGameAction {
             } else {
                 player = this.myControl ? context.player : card.controller;
                 control = this.myControl;
+            }
+
+            if (BattlefieldTypes.includes(card.type) && context.player.isBattlefieldFull()) {
+                context.game.addMessage(
+                    '{0} cannot put {1} into play because their battlefield is full',
+                    player,
+                    card
+                );
+                event.cancel();
+                return;
             }
 
             player.moveCard(card, card.type.includes('Spell') ? 'spellboard' : 'play area', {
