@@ -144,9 +144,9 @@ class ChatCommands {
             num,
             num > 1 ? 's' : ''
         );
-        GameActions.discardAtRandom({ amount: num }).resolve(
+        GameActions.chosenDiscard({ amount: num }).resolve(
             player,
-            this.game.getFrameworkContext()
+            this.game.getFrameworkContext(player)
         );
     }
 
@@ -161,7 +161,7 @@ class ChatCommands {
         );
         GameActions.discardTopOfDeck({ amount: num }).resolve(
             player,
-            this.game.getFrameworkContext()
+            this.game.getFrameworkContext(player)
         );
     }
 
