@@ -7,6 +7,7 @@ services:
         ports:
             - '4000:4000'
             - '9229:9229'
+            - '49153:49153'
         volumes:
             - './client:/usr/src/app/client'
             - './server:/usr/src/app/server'
