@@ -8,6 +8,7 @@ class SilverSnake extends Card {
         });
 
         this.forcedReaction({
+            inexhaustible: true,
             title: 'Consume',
             when: {
                 onCardDestroyed: (event, context) =>

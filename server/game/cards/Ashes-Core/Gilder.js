@@ -6,6 +6,7 @@ class Gilder extends Card {
         this.unitGuard();
 
         this.destroyed({
+            inexhaustible: true,
             target: {
                 optional: true,
                 controller: 'self',

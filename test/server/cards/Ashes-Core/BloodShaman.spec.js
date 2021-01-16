@@ -35,6 +35,23 @@ describe('Blood Shaman', function () {
         expect(this.player1.dicepool[0].level).toBe('power');
     });
 
+    it('triggers when exhausted', function () {
+        this.bloodShaman.tokens.exhaustion = 1;
+
+        expect(this.player1.dicepool[0].level).toBe('class');
+        this.player1.clickCard(this.moltenGold);
+        this.player1.clickPrompt('Play this action');
+
+        expect(this.player1).toHavePrompt('Choose a card');
+        this.player1.clickCard(this.bloodShaman);
+
+        expect(this.player1).toHavePrompt('Choose a die');
+        this.player1.clickDie(0);
+
+        expect(this.aradelSummergaard.damage).toBe(0);
+        expect(this.player1.dicepool[0].level).toBe('power');
+    });
+
     it('no trigger when destroyed by opponent spell', function () {
         expect(this.player1.dicepool[0].level).toBe('class');
         this.player1.clickPrompt('End turn');

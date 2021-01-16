@@ -5,6 +5,7 @@ class ButterflyMonk extends Card {
         this.unitGuard();
 
         this.destroyed({
+            inexhaustible: true,
             target: {
                 controller: 'self',
                 optional: true,
