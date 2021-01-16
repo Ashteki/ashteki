@@ -18,7 +18,7 @@ class DeepFreeze extends Card {
                     gameAction: ability.actions.removeStatus({ target: this }),
                     then: {
                         condition: () => this.status === 0,
-                        gameAction: ability.actions.discard()
+                        gameAction: ability.actions.discard({ target: this })
                     }
                 })
             ]

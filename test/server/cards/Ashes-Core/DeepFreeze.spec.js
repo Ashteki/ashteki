@@ -47,5 +47,6 @@ describe('Deep Freeze', function () {
         this.player1.clickCard(this.mistSpirit);
         this.player1.clickPrompt('Thaw');
         expect(this.deepFreeze.location).toBe('discard');
+        expect(this.mistSpirit.location).toBe('play area');
     });
 });
