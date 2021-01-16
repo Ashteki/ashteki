@@ -145,10 +145,10 @@ class ActionWindow extends UiPrompt {
 
         if (choice === 'done') {
             let cards = player.cardsInPlay.concat(player.hand);
-            if (cards.some((card) => card.getLegalActions(player).length > 0)) {
+            if (player.actions.main && cards.some((card) => card.getLegalActions(player).length > 0)) {
                 this.game.promptWithHandlerMenu(player, {
                     source: 'End Turn',
-                    activePromptTitle: 'Are you sure you want to end your turn?',
+                    activePromptTitle: 'Pass your main action?',
                     choices: ['Yes', 'No'],
                     handlers: [() => this.endActionWindow(), () => true]
                 });
