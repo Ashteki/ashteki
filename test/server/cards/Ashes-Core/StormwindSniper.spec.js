@@ -55,6 +55,21 @@ describe('Stormwind Sniper', function () {
             expect(this.player1).toBeAbleToSelect(this.stormwindSniper);
         });
 
+        it('is concealed from PB abilities', function () {
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('Water Blast');
+
+            expect(this.player1).not.toBeAbleToSelect(this.stormwindSniper);
+        });
+
+        it('is not concealed from PB abilities when exhausted', function () {
+            exhaustCard(this.stormwindSniper, this.game);
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('Water Blast');
+
+            expect(this.player1).toBeAbleToSelect(this.stormwindSniper);
+        });
+
         function exhaustCard(card, game) {
             game.actions.exhaust().resolve(card, game.getFrameworkContext());
         }
