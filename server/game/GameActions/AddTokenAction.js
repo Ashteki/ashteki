@@ -1,7 +1,7 @@
 const CardGameAction = require('./CardGameAction');
 
 class AddTokenAction extends CardGameAction {
-    constructor(propertyFactory, type = 'power') {
+    constructor(propertyFactory, type = 'damage') {
         super(propertyFactory);
         this.type = type;
     }
@@ -13,13 +13,7 @@ class AddTokenAction extends CardGameAction {
     setup() {
         this.name = 'addToken';
         this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
-        let token = '+1 power counters';
-        if (this.amount === 1) {
-            token = '+1 power counter';
-        }
-
-        this.effectMsg =
-            'place ' + this.amount + ' ' + (this.type === 'power' ? token : this.type) + ' on {0}';
+        this.effectMsg = 'place ' + this.amount + ' ' + this.type + ' on {0}';
     }
 
     canAffect(card, context) {
@@ -33,7 +27,7 @@ class AddTokenAction extends CardGameAction {
     getEvent(card, context) {
         return super.createEvent(
             'onAddToken',
-            { card: card, context: context, amount: this.amount },
+            { card: card, context: context, amount: this.amount, type: this.type },
             () => card.addToken(this.type, this.amount)
         );
     }
