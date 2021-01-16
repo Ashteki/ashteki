@@ -1,5 +1,5 @@
 const { parseCosts, parseDiceCost } = require('../../server/game/costs.js');
-const DiceCost = require('../../server/game/costs/dicecost');
+const DiceCost = require('../../server/game/Costs/dicecost');
 const DiceCount = require('../../server/game/DiceCount');
 const { Magic, Level } = require('../../server/constants');
 
