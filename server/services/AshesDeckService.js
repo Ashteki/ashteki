@@ -27,7 +27,7 @@ class AshesDeckService {
     }
 
     getPreconDecks() {
-        return this.preconDecks.find();
+        return this.preconDecks.find({}, { sort: { _id: 1 } });
     }
 
     async findByUserName(userName) {
