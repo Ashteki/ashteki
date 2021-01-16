@@ -31,6 +31,9 @@ class EventWindow extends BaseStepWithPipeline {
     }
 
     openAbilityWindow(abilityType) {
+        if (abilityType === 'reaction') {
+            console.log(abilityType + ': ' + this.event.name);
+        }
         let events = this.event.getSimultaneousEvents();
         if (
             events.length === 0 ||
