@@ -7,6 +7,7 @@ class DeepFreeze extends Card {
         });
 
         this.whileAttached({
+            inexhaustible: true,
             effect: [
                 ability.effects.exhausted(),
                 ability.effects.gainAbility('action', {

@@ -22,7 +22,11 @@ class About extends React.Component {
                     </a>
                     <h3>What is this?</h3>
 
-                    <p>This site was setup to allow you to play Ashes Reborn in your browser.</p>
+                    <p>
+                        This site was setup to allow you to play Ashes Reborn in your browser. If
+                        you&apos;re looking for a card browser, or advanced deck builder, check out{' '}
+                        <a href='http://ashes.live'>http://ashes.live</a>
+                    </p>
 
                     <h3 id='bugs'>
                         <Trans>Bugs and Automation</Trans>
@@ -128,10 +132,9 @@ class About extends React.Component {
                         The Ashes Reborn card game, the artwork and many other things are all
                         copyright <a href='plaidhatgames.com'>Plaid Hat Games</a> and I make no
                         claims of ownership or otherwise of any of the artwork or trademarks. This
-                        site exists for site exists for site exists for passionate fans to play and
-                        augment, rather than replace, the in-person experience. If you don&apos;t
-                        have it already, you can show PHG how much you love the game by buying a
-                        physical copy.
+                        site site exists for passionate fans to play and augment, rather than
+                        replace, the in-person experience. If you don&apos;t have it already, you
+                        can show PHG how much you love the game by buying a physical copy.
                     </p>
                 </Panel>
             </Col>

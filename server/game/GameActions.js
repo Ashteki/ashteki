@@ -2,44 +2,23 @@ const GameActions = require('./GameActions/index');
 
 const Actions = {
     // card actionsa
-    addPowerCounter: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'power'),
     addDamageToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'damage'),
     addExhaustionToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory),
-    addDisruptionCounter: (propertyFactory) =>
-        new GameActions.AddTokenAction(propertyFactory, 'disruption'),
-    addDoomCounter: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'doom'),
-    addFuseCounter: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'fuse'),
-    addGloryCounter: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'glory'),
-    addGrowthCounter: (propertyFactory) =>
-        new GameActions.AddTokenAction(propertyFactory, 'growth'),
-    addSchemeCounter: (propertyFactory) =>
-        new GameActions.AddTokenAction(propertyFactory, 'scheme'),
-    addWardToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'ward'),
-    addWarrantCounter: (propertyFactory) =>
-        new GameActions.AddTokenAction(propertyFactory, 'warrant'),
     archive: (propertyFactory) => new GameActions.ArchiveAction(propertyFactory),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
     attachDie: (propertyFactory) => new GameActions.AttachDieAction(propertyFactory), // upgradeDie
     detachDie: (propertyFactory) => new GameActions.DetachDieAction(propertyFactory), // die, card
-    capture: (propertyFactory) => new GameActions.CaptureAction(propertyFactory),
     cardLastingEffect: (propertyFactory) =>
         new GameActions.LastingEffectCardAction(propertyFactory), // effect, targetLocation, condition, until
-    clearGrowthTokens: (propertyFactory) =>
-        new GameActions.RemoveTokenAction(propertyFactory, 'growth'),
-    clearGloryCounters: (propertyFactory) =>
-        new GameActions.RemoveTokenAction(propertyFactory, 'glory'),
     dealDamage: (propertyFactory) => new GameActions.DealDamageAction(propertyFactory),
     delayedEffect: (propertyFactory) => new GameActions.DelayedEffectAction(propertyFactory), // when, message, gameAction, handler
     discard: (propertyFactory) => new GameActions.DiscardCardAction(propertyFactory),
     destroy: (propertyFactory) => new GameActions.DestroyAction(propertyFactory),
-    exalt: (propertyFactory) => new GameActions.ExaltAction(propertyFactory), // amount = 1
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
-    graft: (propertyFactory) => new GameActions.PlaceUnderAction(propertyFactory, true),
     heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
-
     moveCard: (propertyFactory) => new GameActions.MoveCardAction(propertyFactory), // destination, switch = false, shuffle = false
     moveOnBattleline: (propertyFactory) => new GameActions.MoveOnBattlelineAction(propertyFactory),
     moveToBottom: (propertyFactory) => new GameActions.MoveToBottomAction(propertyFactory),
@@ -57,13 +36,6 @@ const Actions = {
     removeExhaustion: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
     removeToken: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
-    removePowerCounter: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
-    removeSchemeCounter: (propertyFactory) =>
-        new GameActions.RemoveTokenAction(propertyFactory, 'scheme'),
-    removeWardToken: (propertyFactory) =>
-        new GameActions.RemoveTokenAction(propertyFactory, 'ward'),
-    removeWarrantCounter: (propertyFactory) =>
-        new GameActions.RemoveTokenAction(propertyFactory, 'warrant'),
     resolveAbility: (propertyFactory) => new GameActions.ResolveAbilityAction(propertyFactory), // ability
     resolveFight: (propertyFactory) => new GameActions.ResolveFightAction(propertyFactory), // this shouldn't normally be needed
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false

@@ -77,24 +77,51 @@ class DealDamageAction extends CardGameAction {
                 amount: damageDealtEvent.amount,
                 card: damageDealtEvent.card,
                 context: damageDealtEvent.context,
-                condition: (event) => event.amount > 0
+                condition: (event) => event.amount > 0,
+                noGameStateCheck: true
             };
             let damageAppliedEvent = super.createEvent(
                 'onDamageApplied',
                 damageAppliedParams,
                 (event) => {
-                    event.noGameStateCheck = true;
-                    event.card.addToken('damage', event.amount);
-                    if (!event.card.moribund && event.card.tokens.damage >= event.card.life) {
-                        damageDealtEvent.destroyEvent = context.game.actions
-                            .destroy({ damageEvent: damageDealtEvent })
-                            .getEvent(event.card, context.game.getFrameworkContext(context.player));
+                    // add tokens to victim - turn this into an event / use addtoken action
+                    let tokenEvent = context.game.actions
+                        .addToken({
+                            type: 'damage',
+                            amount: event.amount
+                        })
+                        .getEvent(event.card, context.game.getFrameworkContext(context.player));
 
-                        event.addSubEvent(damageDealtEvent.destroyEvent);
-                        if (damageDealtEvent.fightEvent) {
-                            damageDealtEvent.fightEvent.destroyed.push(event.card);
+                    tokenEvent.noGameStateCheck = true;
+                    tokenEvent.openReactionWindow = true;
+                    event.addSubEvent(tokenEvent);
+                    // event.card.addToken('damage', event.amount);
+
+                    let checkParams = {
+                        amount: event.amount,
+                        card: event.card,
+                        context: event.context,
+                        condition: (event) => event.amount > 0,
+                        noGameStateCheck: true
+                    };
+
+                    let killerEvent = super.createEvent('unnamedEvent', checkParams, (event) => {
+                        if (!event.card.moribund && event.card.tokens.damage >= event.card.life) {
+                            damageDealtEvent.destroyEvent = context.game.actions
+                                .destroy({ damageEvent: damageDealtEvent })
+                                .getEvent(
+                                    event.card,
+                                    context.game.getFrameworkContext(context.player)
+                                );
+
+                            event.addSubEvent(damageDealtEvent.destroyEvent);
+                            if (damageDealtEvent.fightEvent) {
+                                damageDealtEvent.fightEvent.destroyed.push(event.card);
+                            }
                         }
-                    }
+                    });
+                    tokenEvent.addSubEvent(killerEvent);
+
                     if (this.showMessage) {
                         context.game.addMessage('{0} takes {1} damage', event.card, event.amount);
                     }
