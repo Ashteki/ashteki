@@ -18,7 +18,7 @@ describe('Massive Growth alteration', function () {
     it('attaches to target card, grants attack and life', function () {
         this.player1.clickCard(this.massiveGrowth);
         this.player1.clickPrompt('Play this Alteration');
-        this.player1.clickDie(2);
+        this.player1.clickDie(1);
         this.player1.clickPrompt('Done');
         this.player1.clickCard(this.mistSpirit);
         expect(this.mistSpirit.upgrades.length).toBe(1);

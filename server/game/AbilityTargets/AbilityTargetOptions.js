@@ -76,7 +76,9 @@ class AbilityTargetOptions {
         });
     }
 
-    defaultHandler = (option) => option;
+    defaultHandler(option) {
+        return option;
+    }
 }
 
 module.exports = AbilityTargetOptions;
