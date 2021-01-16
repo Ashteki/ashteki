@@ -89,6 +89,9 @@ class TriggeredAbility extends CardAbility {
     }
 
     isTriggeredByEvent(event, context) {
+        if (this.card.exhausted && !this.properties.inexhaustible) {
+            return false;
+        }
         if (this.properties.condition && !this.properties.condition(context)) {
             return false;
         } else if (!this.when[event.name] || !this.when[event.name](event, context)) {

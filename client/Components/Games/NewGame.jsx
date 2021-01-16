@@ -190,6 +190,7 @@ const NewGame = ({
                                     <Form.Control
                                         type='password'
                                         placeholder={t('Enter a password')}
+                                        autoComplete='off'
                                         {...getStandardControlProps(formProps, 'password')}
                                     />
                                 </Form.Group>

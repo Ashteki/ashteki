@@ -4,6 +4,7 @@ const Card = require('../../Card.js');
 class UndyingHeart extends Card {
     setupCardAbilities(ability) {
         this.whileAttached({
+            inexhaustible: true,
             effect: [
                 ability.effects.gainAbility('destroyed', {
                     effect: 'return {0} to hand',

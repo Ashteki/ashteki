@@ -72,12 +72,7 @@ class About extends React.Component {
                                 continue
                             </Trans>
                         </li>
-                        <li>
-                            /discard x -{' '}
-                            <Trans i18nKey='howtoplay.cmd.discard'>
-                                Discards x cards randomly from your hand
-                            </Trans>
-                        </li>
+                        <li>/discard x - Prompts to choose x cards to discard from your hand</li>
                         <li>
                             /discardtopofdeck x -{' '}
                             <Trans i18nKey='howtoplay.cmd.discardtopofdeck'>

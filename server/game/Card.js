@@ -190,7 +190,6 @@ class Card extends PlayableObject {
      * @property {string} effect The text added to the game log when this effect triggers
      * @property {function(any): [any]} effectArgs A function that returns the arguments to the effect string
      */
-
     play(properties) {
         if (this.type === CardType.ActionSpell) {
             properties.location = properties.location || 'being played';
@@ -297,8 +296,7 @@ class Card extends PlayableObject {
     forcedReaction(properties) {
         if (properties.play || properties.fight) {
             properties.when = {
-                onCardPlayed: (event, context) => event.card === context.source,
-                onFight: (event, context) => event.attacker === context.source
+                onCardPlayed: (event, context) => event.card === context.source
             };
         }
 

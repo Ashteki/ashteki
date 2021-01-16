@@ -3,6 +3,7 @@ const Card = require('../../Card.js');
 class BloodShaman extends Card {
     setupCardAbilities(ability) {
         this.destroyed({
+            inexhaustible: true,
             condition: (context) =>
                 context.event.triggeringEvent &&
                 context.event.triggeringEvent.name === 'onCardDestroyed' &&
