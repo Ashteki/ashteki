@@ -28,6 +28,7 @@ class Empower extends Card {
                 condition: (context) => context.source.focus,
                 targets: {
                     tokenBoy: {
+                        optional: true,
                         controller: 'self',
                         activePromptTitle: 'Choose a unit with status tokens',
                         cardType: BattlefieldTypes,
@@ -38,6 +39,7 @@ class Empower extends Card {
                         activePromptTitle: 'how many tokens?',
                         mode: 'options',
                         options: (context) =>
+                            context.targets.tokenBoy &&
                             this.getValueOptions(context.targets.tokenBoy.tokens.status),
                         handler: (option) => (this.chosenValue = option.value)
                     },
