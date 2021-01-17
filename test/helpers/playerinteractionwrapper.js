@@ -487,7 +487,7 @@ class PlayerInteractionWrapper {
         }
 
         this.clickPrompt('End Turn');
-        if (this.currentPrompt().menuTitle === 'Are you sure you want to end your turn?') {
+        if (this.currentPrompt().menuTitle === 'Pass your main action?') {
             this.clickPrompt('Yes');
         }
     }
