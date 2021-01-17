@@ -60,22 +60,22 @@ describe('Empower focussed', function () {
         expect(this.hammerKnight.damage).toBe(1);
     });
 
-    // it('token removal is optional', function () {
-    //     expect(this.ironWorker.tokens.status).toBeUndefined();
+    it('token removal is optional', function () {
+        expect(this.ironWorker.tokens.status).toBeUndefined();
 
-    //     this.player1.clickCard(this.empower);
-    //     this.player1.clickPrompt('Empower');
-    //     this.player1.clickDie(0);
-    //     expect(this.player1).toHavePrompt('Choose a unit to empower');
-    //     this.player1.clickCard(this.ironWorker);
+        this.player1.clickCard(this.empower);
+        this.player1.clickPrompt('Empower');
+        this.player1.clickDie(0);
+        expect(this.player1).toHavePrompt('Choose a unit to empower');
+        this.player1.clickCard(this.ironWorker);
 
-    //     expect(this.ironWorker.tokens.status).toBe(1);
-    //     expect(this.player1).toHavePrompt('Choose a unit with status tokens');
+        expect(this.ironWorker.tokens.status).toBe(1);
+        expect(this.player1).toHavePrompt('Choose a unit with status tokens');
 
-    //     this.player1.clickPrompt('Done');
-    //     expect(this.player1).toHaveDefaultPrompt();
+        this.player1.clickPrompt('Done');
+        expect(this.player1).toHaveDefaultPrompt();
 
-    //     expect(this.anchornaut.status).toBe(2);
-    //     expect(this.hammerKnight.damage).toBe(0);
-    // });
+        expect(this.anchornaut.status).toBe(2);
+        expect(this.hammerKnight.damage).toBe(0);
+    });
 });
