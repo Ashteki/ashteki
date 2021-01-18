@@ -17,8 +17,21 @@ class BodyInversion extends Card {
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
                     effect: [
-                        ability.effects.setAttack(context.target.life),
-                        ability.effects.setLife(context.target.attack)
+                        ability.effects.setAttack(() => {
+                            const printedLife = context.target.anyEffect('setPrintedLife')
+                                ? context.target.mostRecentEffect('setPrintedLife')
+                                : context.target.printedLife;
+                            return Math.max(
+                                0,
+                                printedLife + context.target.sumEffects('modifyAttack')
+                            );
+                        }),
+                        ability.effects.setLife(() => {
+                            const printedAttack = context.target.anyEffect('setPrintedAttack')
+                                ? context.target.mostRecentEffect('setPrintedAttack')
+                                : context.target.printedAttack;
+                            return printedAttack + context.target.sumEffects('modifyLife');
+                        })
                     ]
                 }))
             }

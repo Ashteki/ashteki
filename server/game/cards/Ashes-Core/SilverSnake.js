@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class SilverSnake extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            effect: [ability.effects.setAttack(() => this.status)]
+            effect: [ability.effects.setPrintedAttack(() => this.status)]
         });
 
         this.forcedReaction({

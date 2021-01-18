@@ -537,7 +537,11 @@ class Card extends PlayableObject {
         }
 
         const copyEffect = this.mostRecentEffect('copyCard');
-        const printedAttack = copyEffect ? copyEffect.printedAttack : this.printedAttack;
+        const printedAttack = this.anyEffect('setPrintedAttack')
+            ? this.mostRecentEffect('setPrintedAttack')
+            : copyEffect
+            ? copyEffect.printedAttack
+            : this.printedAttack;
         return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
     }
 
@@ -583,7 +587,11 @@ class Card extends PlayableObject {
         }
 
         const copyEffect = this.mostRecentEffect('copyCard');
-        const printedLife = copyEffect ? copyEffect.printedLife : this.printedLife;
+        const printedLife = this.anyEffect('setPrintedLife')
+            ? this.mostRecentEffect('setPrintedLife')
+            : copyEffect
+            ? copyEffect.printedLife
+            : this.printedLife;
         return printedLife + this.sumEffects('modifyLife');
     }
 
