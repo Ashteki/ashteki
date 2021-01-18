@@ -17,7 +17,7 @@ class MeditatePrompt extends UiPrompt {
         });
         this.cardSelector = new SingleCardSelector({
             location: ['hand', 'spellboard'],
-            controller: game.activePlayer,
+            controller: 'self',
             cardType: ['any'],
             cardCondition: () => true
         });
