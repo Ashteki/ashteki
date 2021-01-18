@@ -18,18 +18,18 @@ class BodyInversion extends Card {
                     duration: 'untilEndOfTurn',
                     effect: [
                         ability.effects.setAttack(() => {
-                            const printedLife = context.target.anyEffect('setPrintedLife')
-                                ? context.target.mostRecentEffect('setPrintedLife')
-                                : context.target.printedLife;
+                            const printedLife =
+                                context.target.mostRecentEffect('setPrintedLife') ||
+                                context.target.printedLife;
                             return Math.max(
                                 0,
                                 printedLife + context.target.sumEffects('modifyAttack')
                             );
                         }),
                         ability.effects.setLife(() => {
-                            const printedAttack = context.target.anyEffect('setPrintedAttack')
-                                ? context.target.mostRecentEffect('setPrintedAttack')
-                                : context.target.printedAttack;
+                            const printedAttack =
+                                context.target.mostRecentEffect('setPrintedAttack') ||
+                                context.target.printedAttack;
                             return printedAttack + context.target.sumEffects('modifyLife');
                         })
                     ]
