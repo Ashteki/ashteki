@@ -40,6 +40,9 @@ const Effects = {
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setPower: (amount) => EffectBuilder.card.flexible('setPower', amount),
     setAttack: (amount) => EffectBuilder.card.flexible('setAttack', amount),
+    setPrintedAttack: (amount) => EffectBuilder.card.flexible('setPrintedAttack', amount),
+    setLife: (amount) => EffectBuilder.card.flexible('setLife', amount),
+    setPrintedLife: (amount) => EffectBuilder.card.flexible('setPrintedLife', amount),
     takeControl: (player) => EffectBuilder.card.static('takeControl', player),
     entersPlayUnderOpponentsControl: () =>
         EffectBuilder.card.static('entersPlayUnderOpponentsControl'),
