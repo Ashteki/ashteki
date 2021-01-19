@@ -10,8 +10,12 @@ class Abundance extends Card {
                 let prevention = {};
                 prevention[context.player.uuid] = context.source.focus;
                 prevention[context.player.opponent.uuid] = 0;
+                let requiredDraw = {};
+                requiredDraw[context.player.uuid] = 2;
+                requiredDraw[context.player.opponent.uuid] = 2;
 
                 return {
+                    requiredDraw: requiredDraw,
                     remainderDamages: true,
                     prevention: prevention,
                     promptTitle: 'Abundance',

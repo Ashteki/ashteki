@@ -13,7 +13,7 @@ class AradelSummergaard extends Card {
             ],
             target: {
                 cardType: ['Ally', 'Conjuration'],
-                controller: 'opponent',
+                controller: 'any',
                 gameAction: ability.actions.dealDamage({ amount: 2 })
             }
         });
