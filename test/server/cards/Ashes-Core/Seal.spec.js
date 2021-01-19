@@ -26,4 +26,16 @@ describe('Seal action spell', function () {
         expect(this.player2.spellboard[1].exhausted).toBe(true);
         expect(this.chantOfRevenge.exhausted).toBe(false);
     });
+
+    it('exhausts chosen exhausted spell', function () {
+        this.player2.spellboard[0].exhaust();
+        this.player1.clickCard(this.seal); // play seal
+        this.player1.clickPrompt('Play this action');
+        this.player1.clickCard(this.player2.spellboard[0]); // first summon spell
+
+        expect(this.seal.location).toBe('discard');
+        expect(this.player2.spellboard[0].tokens.exhaustion).toBe(2);
+        expect(this.player2.spellboard[1].tokens.exhaustion).toBe(1);
+        expect(this.chantOfRevenge.exhausted).toBe(false);
+    });
 });
