@@ -3,6 +3,7 @@ const GameActions = require('./GameActions');
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const Deck = require('./deck');
 const RematchPrompt = require('./gamesteps/RematchPrompt');
+const { CardType } = require('../constants');
 
 class ChatCommands {
     constructor(game) {
@@ -10,6 +11,7 @@ class ChatCommands {
         this.commands = {
             '/add-card': this.addCard,
             '/cancel-prompt': this.cancelPrompt,
+            '/conjuration': this.moveConjuration,
             '/disconnectme': this.disconnectMe,
             '/draw': this.draw,
             '/discard': this.discard,
@@ -104,12 +106,7 @@ class ChatCommands {
         const actionType = args[1]
             ? args[1]
             : Object.keys(player.actions).filter((action) => player.actions[action])[0];
-        this.game.addAlert(
-            'danger',
-            '{0} sets their {1} action to unspent',
-            player,
-            `unspendAction${actionType}`
-        );
+        this.game.addAlert('danger', '{0} sets their {1} action to unspent', player, actionType);
         player.actions[actionType] = true;
     }
 
@@ -213,6 +210,22 @@ class ChatCommands {
             onSelect: (player, card) => {
                 card.facedown = false;
                 this.game.addAlert('danger', '{0} reveals {1}', player, card);
+                return true;
+            }
+        });
+    }
+
+    moveConjuration(player) {
+        this.game.promptForSelect(player, {
+            location: 'archives',
+            cardType: CardType.Conjuration,
+            controller: 'self',
+            activePromptTitle: 'Select a card',
+            onSelect: (player, card) => {
+                this.game.addAlert('danger', '{0} manually moves {1} into play', player, card);
+                GameActions.moveCard({
+                    destination: 'play area'
+                }).resolve(card, this.game.getFrameworkContext(player));
                 return true;
             }
         });
