@@ -257,7 +257,7 @@ export class GameBoard extends React.Component {
                         {/* myboard */}
                         <Droppable
                             onDragDrop={this.onDragDrop}
-                            source='spellboard'
+                            source='play area'
                             manualMode={this.props.currentGame.manualMode}
                         >
                             <PlayerBoard

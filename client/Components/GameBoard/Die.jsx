@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import './Die.scss';
 
-const Die = ({ die, onClick, onMenuItemClick }) => {
+const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMouseOver }) => {
     const [showMenu, setShowMenu] = useState(false);
 
     let diceFont = 'phg-basic-magic';
@@ -69,7 +69,12 @@ const Die = ({ die, onClick, onMenuItemClick }) => {
 
     return (
         <div className='die-frame'>
-            <span className={dieClass} onClick={(ev) => clickEvent(ev, die)}>
+            <span
+                className={dieClass}
+                onClick={(ev) => clickEvent(ev, die)}
+                onMouseOver={!disableMouseOver && onMouseOver ? () => onMouseOver(die) : undefined}
+                onMouseOut={!disableMouseOver ? onMouseOut : undefined}
+            >
                 <span className={diceFont} title={`${die.magic}`}></span>
             </span>
             {renderMenu() ? <CardMenu menu={die.menu} onMenuItemClick={onMenuClick} /> : null}

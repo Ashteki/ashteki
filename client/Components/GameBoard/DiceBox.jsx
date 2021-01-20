@@ -19,6 +19,8 @@ class DiceBox extends React.Component {
                         die={thisDie}
                         onClick={this.props.onDieClick}
                         onMenuItemClick={this.props.onMenuItemClick}
+                        onMouseOut={this.props.onMouseOut}
+                        onMouseOver={this.props.onMouseOver}
                     />
                 ))
         );

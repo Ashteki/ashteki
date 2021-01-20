@@ -45,6 +45,8 @@ const PlayerRow = ({
                     size={cardSize}
                     onDieClick={onDieClick}
                     onMenuItemClick={onMenuItemClick}
+                    onMouseOver={onMouseOver}
+                    onMouseOut={onMouseOut}
                 />
             </div>
         );
