@@ -38,6 +38,7 @@ class Die extends PlayableObject {
         let selectionState = activePlayer.getDieSelectionState(this);
 
         let state = {
+            id: this.magic + '-magic',
             uuid: this.uuid,
             magic: this.magic,
             level: this.level,
