@@ -40,9 +40,9 @@ class PutIntoPlayAction extends CardGameAction {
                 control = this.myControl;
             }
 
-            if (BattlefieldTypes.includes(card.type) && context.player.isBattlefieldFull()) {
+            if (BattlefieldTypes.includes(card.type) && player.isBattlefieldFull()) {
                 context.game.addMessage(
-                    '{0} cannot put {1} into play because their battlefield is full',
+                    '{1} cannot be put into play because the battlefield is full',
                     player,
                     card
                 );
