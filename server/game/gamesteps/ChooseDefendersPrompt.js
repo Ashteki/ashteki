@@ -79,7 +79,11 @@ class ChooseDefendersPrompt extends UiPrompt {
 
     blockTest(card, attacker) {
         // guard is used for blockers too
-        return !this.battles.some((b) => b.guard == card) && card.canBlock(attacker);
+        return (
+            !attacker.hasKeyword('preventblock') &&
+            !this.battles.some((b) => b.guard == card) &&
+            card.canBlock(attacker)
+        );
     }
 
     // who's choosing / active?
