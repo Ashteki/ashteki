@@ -24,7 +24,7 @@ describe('To Shadows played', function () {
         expect(this.player1).toHavePrompt('Choose an exhausted unit to discard');
 
         expect(this.player1).toBeAbleToSelect(this.enchantedViolinist);
-        expect(this.player1).toBeAbleToSelect(this.enchantedViolinist);
+        expect(this.player1).toBeAbleToSelect(this.anchornaut);
         expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
         expect(this.player1).not.toBeAbleToSelect(this.mistSpirit);
 
