@@ -760,6 +760,7 @@ class Card extends PlayableObject {
             !this.exhausted &&
             this.checkGigantic(attacker) &&
             this.checkTerrifying(attacker) &&
+            !attacker.hasKeyword('preventblock') &&
             !attacker.hasKeyword('bypass')
         );
     }
