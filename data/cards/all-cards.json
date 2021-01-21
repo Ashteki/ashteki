@@ -805,7 +805,7 @@
             "text": "* Rage 1: Add 1 to this unit's attack value for each wound token on this unit.",
             "attack": 1,
             "life": 6,
-            "recover": 1,
+            "recover": 0,
             "copies": 2
         },
         {
