@@ -89,6 +89,7 @@ class About extends React.Component {
                                 Draws x cards from your deck to your hand
                             </Trans>
                         </li>
+                        <li>/conjuration - Choose a conjuration to put into play</li>
                         <li>
                             /give-control -{' '}
                             <Trans i18nKey='howtoplay.cmd.givecontrol'>
