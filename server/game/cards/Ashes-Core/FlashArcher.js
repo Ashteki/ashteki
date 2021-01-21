@@ -1,7 +1,7 @@
 const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
-class BloodArcher extends Card {
+class FlashArcher extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Double Shot',
@@ -20,6 +20,6 @@ class BloodArcher extends Card {
     }
 }
 
-BloodArcher.id = 'blood-archer';
+FlashArcher.id = 'flash-archer';
 
-module.exports = BloodArcher;
+module.exports = FlashArcher;
