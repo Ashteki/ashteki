@@ -655,6 +655,10 @@ class PlayerInteractionWrapper {
     getForgedKeys() {
         return this.player.getForgedKeys();
     }
+
+    clearHand() {
+        this.player.hand = [];
+    }
 }
 
 module.exports = PlayerInteractionWrapper;
