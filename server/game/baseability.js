@@ -5,6 +5,7 @@ const AbilityTargetTrait = require('./AbilityTargets/AbilityTargetTrait');
 const AbilityTargetOptions = require('./AbilityTargets/AbilityTargetOptions');
 const AbilityTargetCardName = require('./AbilityTargets/AbilityTargetCardName');
 const AbilityTargetDie = require('./AbilityTargets/AbilityTargetDie');
+const AbilityTargetPlayer = require('./AbilityTargets/AbilityTargetPlayer');
 
 /**
  * Base class representing an ability that can be done by the player. This
@@ -87,6 +88,8 @@ class BaseAbility {
             return new AbilityTargetCardName(name, properties, this);
         } else if (properties.mode === 'options') {
             return new AbilityTargetOptions(name, properties, this);
+        } else if (properties.mode === 'player') {
+            return new AbilityTargetPlayer(name, properties, this);
         }
 
         return new AbilityTargetCard(name, properties, this);

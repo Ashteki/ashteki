@@ -3,6 +3,11 @@ const PlayerAction = require('./PlayerAction');
 class ChosenDiscardAction extends PlayerAction {
     setDefaultProperties() {
         this.amount = 1;
+        this.targetPlayer = null;
+    }
+
+    defaultTargets(context) {
+        return [context.player.opponent, context.player];
     }
 
     setup() {
@@ -13,6 +18,9 @@ class ChosenDiscardAction extends PlayerAction {
     }
 
     canAffect(player, context) {
+        if (context && context.target && player !== context.target) {
+            return false;
+        }
         if (player.hand.length === 0 || this.amount === 0) {
             return false;
         }

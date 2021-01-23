@@ -72,7 +72,7 @@ class AbilityTargetOptions {
             waitingPromptTitle: 'Waiting for opponent',
             source: this.properties.source || context.source,
             options: this.getOptions(context),
-            optionsHandler: (option) => (context.option = this.handler(option))
+            optionsHandler: (option) => (context.option = this.handler(option, context))
         });
     }
 
