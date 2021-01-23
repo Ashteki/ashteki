@@ -4,8 +4,8 @@ class AbilityTargetPlayer extends AbilityTargetOptions {
     constructor(name, properties, ability) {
         super(name, properties, ability);
         this.options = [
-            { name: 'Me', value: false },
-            { name: 'Opponent', value: true }
+            { name: 'Opponent', value: true },
+            { name: 'Me', value: false }
         ];
         this.handler = (option, context) =>
             (context.target = option.value ? context.player.opponent : context.player);

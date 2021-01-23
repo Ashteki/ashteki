@@ -3,7 +3,6 @@ const PlayerAction = require('./PlayerAction');
 class ChosenDiscardAction extends PlayerAction {
     setDefaultProperties() {
         this.amount = 1;
-        this.targetPlayer = null;
     }
 
     defaultTargets(context) {
