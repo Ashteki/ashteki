@@ -8,9 +8,9 @@ class GoldenVeil extends Card {
             when: {
                 onAbilityInitiated: (event, context) =>
                     event.context.player === context.player.opponent &&
-                    event.context.target &&
-                    event.context.target.controller === context.player &&
-                    BattlefieldTypes.includes(event.context.target.type)
+                    Object.values(event.context.targets).some(
+                        (t) => t.controller === context.player && BattlefieldTypes.includes(t.type)
+                    )
             },
             effect: 'cancel the ability',
             gameAction: ability.actions.changeEvent((context) => ({
