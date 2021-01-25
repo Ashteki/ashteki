@@ -1,17 +1,17 @@
+const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Choke extends Card {
     setupCardAbilities(ability) {
         this.play({
+            condition: (context) => !context.source.exhausted,
             title: 'Choke',
-            gameAction: [
-                ability.actions.dealDamage((context) => ({
-                    target: context.source.owner.opponent.phoenixborn
-                })),
-                ability.actions.exhaust((context) => ({
-                    target: context.source.owner.opponent.phoenixborn
-                }))
-            ]
+            target: {
+                cardType: CardType.Phoenixborn,
+                controller: 'opponent',
+                cardCondition: (card) => !card.exhausted,
+                gameAction: [ability.actions.dealDamage(), ability.actions.exhaust()]
+            }
         });
     }
 }

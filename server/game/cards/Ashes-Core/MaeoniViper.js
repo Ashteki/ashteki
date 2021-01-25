@@ -13,11 +13,13 @@ class MaeoniViper extends Card {
             ],
             targets: {
                 myChar: {
+                    activePromptTitle: 'Choose an unexhausted unit.',
                     cardType: ['Ally', 'Conjuration'],
                     controller: 'self',
                     cardCondition: (card) => !card.exhausted
                 },
                 oppChar: {
+                    activePromptTitle: 'Choose a unit to damage',
                     cardType: ['Ally', 'Conjuration'],
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({

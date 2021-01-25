@@ -37,7 +37,7 @@ class ChooseDefendersPrompt extends UiPrompt {
             if (!this.selectedCard) {
                 if (!this.blockersAvailable()) return true;
 
-                this.highlightSelectableCards();
+                this.highlightSelectableBlockers();
             } else {
                 // don't highlight selectables.
                 this.clearSelection();
@@ -52,13 +52,16 @@ class ChooseDefendersPrompt extends UiPrompt {
         return this.attack.defendingPlayer.defenders.some((c) => this.availableToBlockOrGuard(c));
     }
 
-    highlightSelectableCards() {
+    highlightSelectableBlockers() {
         const legalTargets = this.myCardSelector.getAllLegalTargets(this.context);
         this.choosingPlayer.setSelectableCards(legalTargets);
     }
 
     highlightAttackers() {
-        this.choosingPlayer.setSelectableCards(this.attack.battles.map((b) => b.attacker));
+        const legalChoices = this.attack.battles
+            .map((b) => b.attacker)
+            .filter((a) => this.selectedCard.canBlock(a));
+        this.choosingPlayer.setSelectableCards(legalChoices);
     }
 
     // selector methods
