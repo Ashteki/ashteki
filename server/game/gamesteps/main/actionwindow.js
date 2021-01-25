@@ -127,7 +127,7 @@ class ActionWindow extends UiPrompt {
         if (choice === 'attack') {
             // start a fight action.
             this.game.promptForSelect(this.game.activePlayer, {
-                optional: true,
+                mode: 'single',
                 activePromptTitle: 'Select a target to attack',
                 controller: 'opponent',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
@@ -139,7 +139,8 @@ class ActionWindow extends UiPrompt {
                         this.initiateUnitAttack(card);
                     }
                     return true;
-                }
+                },
+                buttons: [{ text: 'Cancel', arg: 'cancel' }]
             });
         }
 
