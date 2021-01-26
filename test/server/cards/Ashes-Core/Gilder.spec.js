@@ -19,7 +19,7 @@ describe('Gilder', function () {
         this.player1.dicepool[0].lower();
     });
 
-    it('adds a status token on destroyed', function () {
+    it('adds a status token on destroyed by action spell', function () {
         this.player1.clickCard(this.moltenGold);
         this.player1.clickPrompt('Play this action');
         this.player1.clickCard(this.gilder);
@@ -29,13 +29,40 @@ describe('Gilder', function () {
         expect(this.ironWorker.status).toBe(1);
     });
 
-    it('adds a status token on destroyed while blocking', function () {
+    it('adds a status token on destroyed when attacked', function () {
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.gilder);
         this.player1.clickCard(this.crimsonBomber);
 
         this.player2.clickPrompt('Done');
         this.player2.clickPrompt('No');
+
+        this.player2.clickCard(this.ironWorker);
+
+        expect(this.ironWorker.status).toBe(1);
+    });
+
+    it('adds a status token on destroyed while blocking', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.maeoniViper);
+        this.player1.clickCard(this.crimsonBomber);
+        this.player1.clickPrompt('Done');
+
+        this.player2.clickCard(this.gilder);
+        this.player2.clickCard(this.crimsonBomber);
+        this.player2.clickPrompt('Done');
+
+        this.player2.clickCard(this.ironWorker);
+
+        expect(this.ironWorker.status).toBe(1);
+    });
+
+    it('adds a status token on destroyed while guarding', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.ironWorker);
+        this.player1.clickCard(this.crimsonBomber);
+
+        this.player2.clickCard(this.gilder);
 
         this.player2.clickCard(this.ironWorker);
 
