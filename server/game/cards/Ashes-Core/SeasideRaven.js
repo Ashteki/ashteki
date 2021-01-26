@@ -7,7 +7,7 @@ class SeasideRaven extends Card {
             target: {
                 activePromptTitle: 'Prey 2',
                 cardType: ['Ally', 'Conjuration'],
-                controller: 'opponent',
+                controller: 'any',
                 cardCondition: (card) => card.life <= 2,
                 gameAction: ability.actions.destroy()
             }
