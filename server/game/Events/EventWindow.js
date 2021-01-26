@@ -4,6 +4,7 @@ const DestroyedAbilityWindow = require('../gamesteps/DestroyedAbilityWindow.js')
 const SimpleStep = require('../gamesteps/simplestep.js');
 const { AbilityType } = require('../../constants.js');
 const TriggeredAbilityWindow = require('../gamesteps/triggeredabilitywindow.js');
+const logger = require('../../log.js');
 
 class EventWindow extends BaseStepWithPipeline {
     constructor(game, event) {
@@ -31,6 +32,8 @@ class EventWindow extends BaseStepWithPipeline {
     }
 
     openAbilityWindow(abilityType) {
+        logger.debug(abilityType + 'window for ' + this.event.name);
+
         let events = this.event.getSimultaneousEvents();
         if (
             events.length === 0 ||

@@ -112,18 +112,18 @@ class ResolveBattleAction extends GameAction {
                 // If anyone is getting damaged...
                 if (damageEvent) {
                     // mark as fighting
-                    event.card.isFighting = true;
-                    event.attacker.isFighting = true;
-                    context.game.checkGameState(true); // ?? to check for pre-fight damage / deaths?
-                    damageEvent.openReactionWindow = false; // this damage event doesn't trigger reaction opportunities
+                    // event.card.isFighting = true;
+                    // event.attacker.isFighting = true;
+                    // context.game.checkGameState(true); // ?? to check for pre-fight damage / deaths?
+                    // damageEvent.openReactionWindow = false; // this damage event doesn't trigger reaction opportunities
                     context.game.openEventWindow(damageEvent); // ?? err...
-                    context.game.queueSimpleStep(() => {
-                        // add a new event to fire the damage event and
-                        event.addChildEvent(damageEvent);
-                        damageEvent.openReactionWindow = true;
-                        event.card.isFighting = false;
-                        event.attacker.isFighting = false;
-                    });
+                    // context.game.queueSimpleStep(() => {
+                    //     // add a new event to fire the damage event and
+                    //     // event.addChildEvent(damageEvent);
+                    //     // damageEvent.openReactionWindow = true;
+                    //     // event.card.isFighting = false;
+                    //     // event.attacker.isFighting = false;
+                    // });
                 }
 
                 this.battle.resolved = true;

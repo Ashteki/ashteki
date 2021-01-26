@@ -41,5 +41,7 @@ describe('When Battlefield is full', function () {
 
         this.player1.clickCard(this.gilder);
         expect(this.player1.inPlay.length).toBe(8);
+        // additional test to ensure summon-gilder pings event when gilder not placed
+        expect(this.player1).toHavePrompt('Deal 1 damage');
     });
 });

@@ -11,15 +11,14 @@ class BrennenBlackcloud extends Card {
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
-            targets: {
-                myUnit: {
-                    activePromptTitle: 'Destroy a Unit',
-                    cardType: BattlefieldTypes,
-                    controller: 'self',
-                    gameAction: ability.actions.destroy()
-                },
-                phb: {
-                    dependsOn: 'myUnit',
+            target: {
+                activePromptTitle: 'Destroy a Unit',
+                cardType: BattlefieldTypes,
+                controller: 'self',
+                gameAction: ability.actions.destroy()
+            },
+            then: {
+                target: {
                     cardType: CardType.Phoenixborn,
                     gameAction: ability.actions.dealDamage({ amount: 2 })
                 }

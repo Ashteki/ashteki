@@ -61,7 +61,7 @@ class Card extends PlayableObject {
         this.printedSpellboard = cardData.spellboard;
 
         this.moribund = false;
-        this.isFighting = false;
+        // this.isFighting = false;
 
         this.locale = cardData.locale;
 
@@ -294,7 +294,7 @@ class Card extends PlayableObject {
     }
 
     forcedReaction(properties) {
-        if (properties.play || properties.fight) {
+        if (properties.play) {
             properties.when = {
                 onCardPlayed: (event, context) => event.card === context.source
             };

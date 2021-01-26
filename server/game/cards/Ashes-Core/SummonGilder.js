@@ -20,6 +20,7 @@ class SummonGilder extends Card {
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
+                alwaysTriggers: true,
                 target: {
                     optional: true,
                     activePromptTitle: 'Deal 1 damage',
