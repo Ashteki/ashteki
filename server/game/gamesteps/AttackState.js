@@ -26,6 +26,7 @@ class AttackState {
         let battle = this.battles[0];
         battle.guard = blocker;
         blocker.isDefender = true;
+        battle.target.isDefender = false;
     }
 
     getSummary() {

@@ -12,7 +12,10 @@ class PlayerBoard extends React.Component {
         if (!attack) return false;
 
         return attack.battles.some(
-            (b) => b.attacker === card.uuid || b.target === card.uuid || b.guard === card.uuid
+            (b) =>
+                b.attacker === card.uuid ||
+                (b.target === card.uuid && !b.guard) ||
+                b.guard === card.uuid
         );
     }
 
