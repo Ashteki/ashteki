@@ -4,7 +4,7 @@ class HammerKnight extends Card {
     setupCardAbilities(ability) {
         this.alert();
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onCardDestroyed: (event, context) =>
                     event.damageEvent &&
