@@ -107,7 +107,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                 messages.push(formatMessageText(fragment.message));
             } else if (fragment.link && fragment.label) {
                 messages.push(
-                    <a href={fragment.link} target='_blank' rel='noopener noreferrer'>
+                    <a key={index++} href={fragment.link} target='_blank' rel='noopener noreferrer'>
                         {fragment.label}
                     </a>
                 );
@@ -158,7 +158,11 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                 );
             } else {
                 let messageFragment = processKeywords(fragment.toString());
-                messages.push(<span className='message-fragment'>{messageFragment}</span>);
+                messages.push(
+                    <span key={index++} className='message-fragment'>
+                        {messageFragment}
+                    </span>
+                );
             }
         }
 

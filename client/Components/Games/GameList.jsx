@@ -291,8 +291,8 @@ class GameList extends React.Component {
         }
 
         return (
-            <div>
-                <div className={gameHeaderClass}>
+            <div key={gameType}>
+                <div className={gameHeaderClass} key={gameType + 'header'}>
                     {t(gameType)} ({gamesToReturn.length})
                 </div>
                 {gamesToReturn}

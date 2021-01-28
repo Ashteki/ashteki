@@ -45,7 +45,8 @@ class PlayerBoard extends React.Component {
 
         // render the remaining cards not involved in the attack
         let rowCards = row.filter((c) => !this.attackInvolvesCard(c));
-        return results.concat(rowCards.map((card) => this.renderCard(card)));
+        const renderedCards = rowCards.map((card) => this.renderCard(card));
+        return results.concat(renderedCards);
     }
 
     renderCardGap() {

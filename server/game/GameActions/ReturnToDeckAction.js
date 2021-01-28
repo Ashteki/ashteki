@@ -1,16 +1,17 @@
+const { ConjuredCardTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class ReturnToDeckAction extends CardGameAction {
     setDefaultProperties() {
         this.bottom = false;
-        this.shuffle = false;
+        this.shuffle = true;
     }
 
     setup() {
         super.setup();
         this.name = 'returnToDeck';
         if (this.shuffle) {
-            this.effectMsg = 'return {0} to their deck';
+            this.effectMsg = 'shuffle {0} back into their deck';
         } else {
             this.effectMsg =
                 'return {0} to the ' + (this.bottom ? 'bottom' : 'top') + ' of their deck';
@@ -22,13 +23,16 @@ class ReturnToDeckAction extends CardGameAction {
             card.location === 'play area' || card.location === 'spellboard'
                 ? 'onCardLeavesPlay'
                 : 'onMoveCard';
-        let deckLength = card.owner.getSourceList('deck').length;
+
+        let destinationPile = ConjuredCardTypes.includes(card.type) ? 'archives' : 'deck';
+
+        let deckLength = card.owner.getSourceList(destinationPile).length;
 
         return super.createEvent(
             eventName,
             { card: card, context: context, deckLength: deckLength },
             () => {
-                card.owner.moveCard(card, 'deck', { bottom: this.bottom });
+                card.owner.moveCard(card, destinationPile, { bottom: this.bottom });
                 let cardsByOwner = this.target.filter((c) => c.owner === card.owner);
                 if (
                     this.shuffle &&

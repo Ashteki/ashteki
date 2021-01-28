@@ -15,7 +15,7 @@ class DiceBox extends React.Component {
                 .sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1))
                 .map((thisDie) => (
                     <Die
-                        key={thisDie.id}
+                        key={thisDie.uuid}
                         die={thisDie}
                         onClick={this.props.onDieClick}
                         onMenuItemClick={this.props.onMenuItemClick}

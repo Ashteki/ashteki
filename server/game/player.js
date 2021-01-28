@@ -8,7 +8,7 @@ const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
 const Die = require('./Die');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes } = require('../constants');
+const { BattlefieldTypes, Level } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -271,6 +271,10 @@ class Player extends GameObject {
         this.dice = this.pinnedDice.concat(newDice);
         this.pinnedDice = [];
         this.recoveryDicePinned = false;
+    }
+
+    makeAllDiceBasic() {
+        this.dice.forEach((d) => (d.level = Level.Basic));
     }
 
     pinSelectedDice() {
