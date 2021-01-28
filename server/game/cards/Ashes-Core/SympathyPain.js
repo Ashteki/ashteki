@@ -9,7 +9,8 @@ class SympathyPain extends Card {
                     event.card == context.player.phoenixborn &&
                     // it's a wound
                     event.type == 'damage' &&
-                    event.context.player == context.player.opponent
+                    event.context.player == context.player.opponent &&
+                    event.card.damage < event.card.life
             },
             effect: 'deal 2 damage to oppponents unit or phoenixborn',
             target: {

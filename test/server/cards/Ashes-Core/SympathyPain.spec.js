@@ -44,7 +44,20 @@ describe('Sympathy pain reaction spell', function () {
 
             expect(this.hammerKnight.damage).toBe(2);
         });
+
+        it('should not be played when phoenixborn is dead :)', function () {
+            this.sariaGuideman.tokens.damage = 18;
+            // bug reported as this scenario
+            expect(this.hammerKnight.damage).toBe(0);
+            this.player1.clickCard(this.moltenGold);
+            this.player1.clickPrompt('Play this Action');
+            this.player1.clickCard(this.sariaGuideman);
+            expect(this.sariaGuideman.damage).toBe(21);
+            expect(this.player2).not.toBeAbleToSelect(this.sympathyPain);
+            expect(this.player2).toHavePrompt('Player1 has won the game!');
+        });
     });
+
     describe('On attack damage', function () {
         beforeEach(function () {
             this.setupTest({
