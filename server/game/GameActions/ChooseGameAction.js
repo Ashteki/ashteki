@@ -6,7 +6,7 @@ class ChooseGameAction extends GameAction {
         this.choices = {};
         this.messages = {};
         this.activePromptTitle = 'Select an action:';
-
+        this.player = null;
         this.gameActions = []; // This shouldn't be set as a property
     }
 
@@ -39,6 +39,11 @@ class ChooseGameAction extends GameAction {
         for (let gameAction of this.gameActions) {
             gameAction.setDefaultTarget(() => target);
         }
+
+        if (this.player !== target.controller) {
+            this.effectMsg = 'make {1} ' + this.effectMsg;
+            this.effectArgs = () => this.player;
+        }
     }
 
     preEventHandler(context) {
@@ -60,7 +65,8 @@ class ChooseGameAction extends GameAction {
                 }
             };
         });
-        context.game.promptWithHandlerMenu(context.player, {
+        const choosingPlayer = this.player || context.player;
+        context.game.promptWithHandlerMenu(choosingPlayer, {
             activePromptTitle,
             context,
             choices,

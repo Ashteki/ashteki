@@ -2,7 +2,6 @@ const _ = require('underscore');
 
 const AbilityDsl = require('./abilitydsl.js');
 const CardAction = require('./cardaction.js');
-const DiscardAction = require('./BaseActions/DiscardAction');
 const PlayAction = require('./BaseActions/PlayAction');
 const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
@@ -802,8 +801,6 @@ class Card extends PlayableObject {
             if (this.canPlayAsUpgrade()) {
                 actions.push(new PlayUpgradeAction(this));
             }
-
-            actions.push(new DiscardAction(this));
         }
 
         return actions.concat(this.actions.slice());
