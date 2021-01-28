@@ -29,6 +29,7 @@ class DiscardAction extends BaseAbility {
         ) {
             return 'location';
         } else if (context.game.currentPhase !== 'main') {
+            // this will stop this working - phase is now playerturns
             return 'phase';
         }
 
