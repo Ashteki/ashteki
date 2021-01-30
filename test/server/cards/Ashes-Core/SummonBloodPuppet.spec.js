@@ -12,7 +12,7 @@ describe('Summon Blood Puppet', function () {
                 player2: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: [],
-                    spellboard: []
+                    dicepool: ['natural', 'ceremonial', 'charm', 'charm']
                 }
             });
         });
@@ -29,6 +29,8 @@ describe('Summon Blood Puppet', function () {
         });
 
         it('should place a blood puppet onto opponents battlefield', function () {
+            expect(this.player2.side).toBe(true);
+
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('Summon Blood Puppet');
             this.player1.clickPrompt("Opponent's");
@@ -37,6 +39,14 @@ describe('Summon Blood Puppet', function () {
             // Blood puppet is now on the battlefield
             expect(this.player1.inPlay.length).toBe(0);
             expect(this.player2.inPlay.length).toBe(1);
+
+            this.player1.endTurn();
+            this.player2.clickCard(this.bloodPuppet);
+            expect(this.player2).toHavePromptButton('Self Inflict');
+            this.player2.clickPrompt('Self Inflict');
+            this.player2.clickDie(0);
+            expect(this.player2.side).toBe(false);
+            expect(this.bloodPuppet.damage).toBe(1);
         });
     });
 
