@@ -34,16 +34,27 @@ class SmallSacrifice extends Card {
                 alwaysTriggers: true,
                 gameAction: ability.actions.conditional({
                     condition: () => this.chosenType === 'exhaust',
-                    trueGameAction: ability.actions.exhaust({
-                        target: [context.targets.first, context.targets.second]
-                    }),
-                    falseGameAction: ability.actions.dealDamage({
-                        target: [context.targets.first, context.targets.second]
-                    })
+                    trueGameAction: ability.actions.sequential([
+                        ability.actions.exhaust({
+                            target: context.targets.first
+                        }),
+                        ability.actions.exhaust({
+                            target: context.targets.second
+                        })
+                    ]),
+                    falseGameAction: ability.actions.sequential([
+                        ability.actions.dealDamage({
+                            target: context.targets.first
+                        }),
+                        ability.actions.dealDamage({
+                            target: context.targets.second
+                        })
+                    ])
                 })
             })
         });
     }
+
     getSacrificeOptions(targets) {
         let choices = ['damage'];
 
