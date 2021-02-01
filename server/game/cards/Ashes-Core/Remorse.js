@@ -7,7 +7,7 @@ class Remorse extends Card {
                 onAttackersDeclared: (event, context) =>
                     event.attackingPlayer === context.source.owner.opponent
             },
-            effect: 'discard 2 cards from top of deck',
+            // effect: 'force {0} to discard 2 cards from the top of their deck',
             gameAction: ability.actions.discardTopOfDeck({ amount: 2 }),
             then: {
                 condition: (context) => context.player.opponent.deck.length === 0,
