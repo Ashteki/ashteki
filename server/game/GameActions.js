@@ -45,6 +45,7 @@ const Actions = {
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     swap: (propertyFactory) => new GameActions.SwapAction(propertyFactory), // origin
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
+    moveToken: (propertyFactory) => new GameActions.MoveTokenAction(propertyFactory),
 
     // player actions
     archiveAtRandom: (propertyFactory) => new GameActions.RandomArchiveAction(propertyFactory), // amount = 1
