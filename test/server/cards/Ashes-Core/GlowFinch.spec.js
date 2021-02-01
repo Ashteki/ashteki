@@ -25,7 +25,6 @@ describe('Glow Finch', function () {
         this.player1.clickCard(this.moltenGold);
         this.player1.clickPrompt('Play this action');
         this.player1.clickCard(this.glowFinch);
-        this.player2.clickPrompt('Yes'); // yes to Last Request 2
 
         expect(this.player1.deck.length).toBe(cardCount - 2); // -1 for playing mg, -2 for glowFinch
     });
