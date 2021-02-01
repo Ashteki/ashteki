@@ -89,9 +89,14 @@ class PlayerBoard extends React.Component {
             'our-side': this.props.rowDirection === 'default'
         });
 
+        let maxUpgrades = Math.min(this.props.cardsInPlay.map((c) => c.upgrades.length));
+        let topMargin = maxUpgrades * 15;
+        let style = { 'margin-top': topMargin + 'px' };
         return (
             <div className={className}>
-                <div className='card-row'>{this.renderRow(this.props.cardsInPlay)}</div>
+                <div className='card-row' style={style}>
+                    {this.renderRow(this.props.cardsInPlay)}
+                </div>
             </div>
         );
     }
