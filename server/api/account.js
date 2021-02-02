@@ -686,7 +686,6 @@ module.exports.init = function (server, options) {
             if (!req.body.id || !req.body.token || !req.body.newPassword) {
                 return res.send({ success: false, message: 'Invalid parameters' });
             }
-            logger.info('-1');
 
             let user = await userService.getUserById(req.body.id);
             if (!user) {
@@ -698,7 +697,6 @@ module.exports.init = function (server, options) {
 
                 return next();
             }
-            logger.info('0');
 
             if (!user.resetToken) {
                 logger.error('Got unexpected reset request for user %s', user.username);
@@ -712,7 +710,6 @@ module.exports.init = function (server, options) {
                 return next();
             }
 
-            logger.info('1');
             let now = moment().utc().toDate();
             if (user.tokenExpires < now) {
                 res.send({
@@ -724,7 +721,6 @@ module.exports.init = function (server, options) {
 
                 return next();
             }
-            logger.info('2');
 
             let hmac = crypto.createHmac(
                 'sha512',
@@ -743,7 +739,6 @@ module.exports.init = function (server, options) {
                     'YYYYMMDD-HH:mm:ss'
                 )} ${resetToken}`
             );
-            logger.info('3');
 
             if (resetToken !== req.body.token) {
                 logger.error(`Invalid reset token for ${user.username}: ${req.body.token}`);
@@ -818,12 +813,8 @@ module.exports.init = function (server, options) {
                 user._id
             }&token=${resetToken}`;
             let emailText =
-                `Hi,\n\nSomeone, hopefully you, has requested their password on ${appName} (${
-                    req.protocol
-                }://${req.get(
-                    'host'
-                )}) to be reset.  If this was you, click this link ${url} to complete the process.\n\n` +
-                'If you did not request this reset, do not worry, your account has not been affected and your password has not been changed, just ignore this email.\n' +
+                `Hi,\n\nSomeone, hopefully you, has requested their password on ashteki.com to be reset.  If this was you, click this link to complete the process:\n\n ${url}` +
+                '\n\nIf you did not request this reset, do not worry, your account has not been affected and your password has not been changed, just ignore this email.\n' +
                 'Kind regards,\n\n' +
                 `${appName} team`;
 
