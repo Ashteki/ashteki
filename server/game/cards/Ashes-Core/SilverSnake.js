@@ -10,6 +10,7 @@ class SilverSnake extends Card {
         this.forcedReaction({
             inexhaustible: true,
             title: 'Consume',
+            autoResolve: true,
             when: {
                 onCardDestroyed: (event, context) =>
                     event.clone.controller !== context.player &&
