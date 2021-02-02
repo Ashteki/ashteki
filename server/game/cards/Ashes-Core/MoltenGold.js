@@ -6,7 +6,7 @@ class MoltenGold extends Card {
             title: 'Molten Gold',
             target: {
                 cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
-                gameAction: ability.actions.dealDamage({ amount: 3 })
+                gameAction: ability.actions.addDamageToken({ amount: 3 })
             }
         });
     }

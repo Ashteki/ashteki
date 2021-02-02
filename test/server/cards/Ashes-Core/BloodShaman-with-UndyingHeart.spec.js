@@ -5,7 +5,7 @@ describe('Blood Shaman with undying heart', function () {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['blood-shaman'],
                 dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
-                hand: ['molten-gold', 'undying-heart']
+                hand: ['freezing-blast', 'undying-heart']
             },
             player2: {
                 phoenixborn: 'maeoni-viper',
@@ -18,6 +18,7 @@ describe('Blood Shaman with undying heart', function () {
 
         this.aradelSummergaard.tokens.damage = 1;
         this.player1.dicepool[0].lower();
+        this.bloodShaman.tokens.damage = 1; // ensure freezing blast kills unit
 
         this.player1.clickCard(this.undyingHeart);
         this.player1.clickPrompt('Play this alteration');
@@ -26,7 +27,7 @@ describe('Blood Shaman with undying heart', function () {
 
     it('triggers both abilities when destroyed by own spell', function () {
         expect(this.player1.dicepool[0].level).toBe('class');
-        this.player1.clickCard(this.moltenGold);
+        this.player1.clickCard(this.freezingBlast);
         this.player1.clickPrompt('Play this action');
 
         expect(this.player1).toHavePrompt('Choose a card');
