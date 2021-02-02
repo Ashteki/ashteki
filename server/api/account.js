@@ -686,6 +686,7 @@ module.exports.init = function (server, options) {
             if (!req.body.id || !req.body.token || !req.body.newPassword) {
                 return res.send({ success: false, message: 'Invalid parameters' });
             }
+            logger.info('-1');
 
             let user = await userService.getUserById(req.body.id);
             if (!user) {
@@ -697,6 +698,7 @@ module.exports.init = function (server, options) {
 
                 return next();
             }
+            logger.info('0');
 
             if (!user.resetToken) {
                 logger.error('Got unexpected reset request for user %s', user.username);
@@ -710,6 +712,7 @@ module.exports.init = function (server, options) {
                 return next();
             }
 
+            logger.info('1');
             let now = moment().utc().toDate();
             if (user.tokenExpires < now) {
                 res.send({
@@ -721,6 +724,7 @@ module.exports.init = function (server, options) {
 
                 return next();
             }
+            logger.info('2');
 
             let hmac = crypto.createHmac(
                 'sha512',
@@ -739,6 +743,7 @@ module.exports.init = function (server, options) {
                     'YYYYMMDD-HH:mm:ss'
                 )} ${resetToken}`
             );
+            logger.info('3');
 
             if (resetToken !== req.body.token) {
                 logger.error(`Invalid reset token for ${user.username}: ${req.body.token}`);
