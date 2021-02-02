@@ -26,15 +26,11 @@ class Transfer extends Card {
                     cardCondition: (card, context) =>
                         card.type !== CardType.Phoenixborn &&
                         card.controller === context.targets.tokenBoy.controller,
-                    gameAction: [
-                        ability.actions.removeToken((context) => ({
-                            target: context.targets.tokenBoy,
-                            type: this.chosenType
-                        })),
-                        ability.actions.addToken(() => ({
-                            type: this.chosenType
-                        }))
-                    ]
+                    gameAction: ability.actions.moveToken((context) => ({
+                        from: context.targets.tokenBoy,
+                        to: context.targets.receiver,
+                        type: this.chosenType
+                    }))
                 }
             }
         });

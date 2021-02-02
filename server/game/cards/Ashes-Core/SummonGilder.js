@@ -26,7 +26,9 @@ class SummonGilder extends Card {
                     activePromptTitle: 'Deal 1 damage',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage()
-                }
+                },
+                message: '{0} uses {1} to deal 1 damage to {2}',
+                messageArgs: (context) => context.target
             }
         });
     }

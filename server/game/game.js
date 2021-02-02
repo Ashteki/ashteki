@@ -761,7 +761,7 @@ class Game extends EventEmitter {
         } else {
             this.activePlayer = this.round % 2 > 0 ? this.firstPlayer : this.firstPlayer.opponent;
             this.getPlayers().forEach((p) => p.toggleFirstPlayer());
-            this.addMessage('{0} goes first this round', this.activePlayer.name);
+            this.addMessage('{0} goes first this round', this.activePlayer);
         }
     }
 
@@ -1187,7 +1187,7 @@ class Game extends EventEmitter {
             card.endTurn();
         }
 
-        this.addAlert('endofturn', `End of turn ${this.turn}`);
+        // this.addAlert('endofturn', `End of turn ${this.turn}`);
 
         if (this.activePlayer.opponent) {
             this.activePlayer = this.activePlayer.opponent;

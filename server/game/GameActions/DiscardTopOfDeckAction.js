@@ -10,7 +10,7 @@ class DiscardTopOfDeckAction extends PlayerAction {
         super.setup();
         this.name = 'discard-top-of-deck';
         this.effectMsg =
-            'discard ' +
+            'make {0} discard ' +
             (this.amount === 1 ? 'a card' : this.amount + ' cards') +
             ' from their ' +
             this.location;

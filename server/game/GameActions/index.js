@@ -36,6 +36,7 @@ module.exports = {
     RearrangeCardsAction: require('./RearrangeCardsAction'),
     RecoverAction: require('./RecoverAction'),
     RemoveTokenAction: require('./RemoveTokenAction'),
+    MoveTokenAction: require('./MoveTokenAction'),
     ResolveAbilityAction: require('./ResolveAbilityAction'),
     ResolveFightAction: require('./ResolveBattleAction'),
     ReturnToDeckAction: require('./ReturnToDeckAction'),

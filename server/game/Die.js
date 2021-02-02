@@ -185,6 +185,51 @@ class Die extends PlayableObject {
                     message: '{0} attaches {1} to {2}',
                     messageArgs: (context) => context.target
                 });
+            case 'divine':
+                return this.action({
+                    title: 'Divine Dice Power',
+                    cost: [Costs.sideAction()],
+                    target: {
+                        cardType: ['Ally', 'Conjuration'],
+                        controller: 'self',
+                        gameAction: this.game.actions.attachDie({ upgradeDie: this })
+                    },
+                    message: '{0} attaches {1} to {2}',
+                    messageArgs: (context) => context.target
+                });
+            case 'sympathy':
+                return this.action({
+                    title: 'Sympathy Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    gameAction: this.game.actions.draw(),
+                    message: '{0} uses {1} to draw 1 card',
+                    then: {
+                        targets: {
+                            myCard: {
+                                activePromptTitle: 'Select a card to return to your deck?',
+                                controller: 'self',
+                                location: 'hand',
+                                optional: true
+                            },
+                            action: {
+                                mode: 'select',
+                                dependsOn: 'myCard',
+                                player: 'self',
+                                choices: {
+                                    Top: this.game.actions.returnToDeck((context) => ({
+                                        target: context.targets.myCard,
+                                        shuffle: false
+                                    })),
+                                    Bottom: this.game.actions.returnToDeck((context) => ({
+                                        bottom: true,
+                                        target: context.targets.myCard,
+                                        shuffle: false
+                                    }))
+                                }
+                            }
+                        }
+                    }
+                });
         }
     }
 
@@ -234,6 +279,12 @@ class Die extends PlayableObject {
                 this.attachable = true;
                 this.whileAttached({
                     effect: AbilityDsl.effects.modifyAttack(-1)
+                });
+                break;
+            case 'divine':
+                this.attachable = true;
+                this.whileAttached({
+                    effect: AbilityDsl.effects.modifyAttack(1)
                 });
                 break;
         }

@@ -52,6 +52,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
             return false;
         }
 
+        // why would a forced reaction be optional?
         this.noOptionalChoices = this.choices.every((context) => !context.ability.optional);
         if (
             this.noOptionalChoices &&

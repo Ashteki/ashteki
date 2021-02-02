@@ -18,6 +18,7 @@ const defaultProperties = {
 const ModeToSelector = {
     ability: (p) => new SingleDieSelector(p),
     match: (p) => new MatchedDiceSelector(p.format, p),
+    // exactly: (p) => new ExactlyXCardSelector(p.numCards, p),
     // minStat: (p) => new MinStatCardSelector(p),
     // maxStat: (p) => new MaxStatCardSelector(p),
     // mostStat: (p) => new MostStatCardSelector(p),

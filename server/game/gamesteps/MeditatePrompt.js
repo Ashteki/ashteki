@@ -131,7 +131,7 @@ class MeditatePrompt extends UiPrompt {
         }
 
         if (arg === 'done') {
-            this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
+            this.game.addMessage('{0} meditates {1} cards/dice', player, this.count);
 
             this.resetSelections(player);
 
