@@ -9,7 +9,7 @@ class CardAbility extends ThenAbility {
         this.location = properties.location || 'play area';
         this.printedAbility = properties.printedAbility === false ? false : true;
 
-        this.limit = properties.limit || AbilityLimit.perTurn(1);
+        this.limit = properties.limit || AbilityLimit.unrestricted();
         this.limit.registerEvents(game);
         this.limit.ability = this;
 

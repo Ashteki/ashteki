@@ -200,6 +200,8 @@ class UserService extends EventEmitter {
     }
 
     async setResetToken(user, token, tokenExpiration) {
+        logger.info('entering: setResetToken');
+
         return this.users
             .update(
                 { username: user.username },
@@ -213,6 +215,8 @@ class UserService extends EventEmitter {
     }
 
     async setPassword(user, password) {
+        logger.info('entering: setPassword');
+
         return this.users
             .update({ username: user.username }, { $set: { password: password } })
             .catch((err) => {
@@ -223,6 +227,7 @@ class UserService extends EventEmitter {
     }
 
     async clearResetToken(user) {
+        logger.info('entering: clearResetToken');
         return this.users
             .update(
                 { username: user.username },
@@ -236,6 +241,7 @@ class UserService extends EventEmitter {
     }
 
     async clearUserSessions(username) {
+        logger.info('entering: clearUserSessions');
         let user = await this.getFullUserByUsername(username);
 
         if (!user) {
@@ -250,6 +256,8 @@ class UserService extends EventEmitter {
     }
 
     async addRefreshToken(user, token, ip) {
+        logger.info('entering: addRefreshToken');
+
         let hmac = crypto.createHmac(
             'sha512',
             this.configService.getValueForSection('lobby', 'hmacSecret')

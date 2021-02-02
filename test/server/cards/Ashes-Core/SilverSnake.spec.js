@@ -5,11 +5,12 @@ describe('Silver Snake', function () {
                 player1: {
                     phoenixborn: 'maeoni-viper',
                     inPlay: ['silver-snake'],
+                    hand: ['mist-typhoon'],
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
                 },
                 player2: {
-                    phoenixborn: 'jessa-na-ni',
-                    inPlay: ['blood-archer'],
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['blood-archer', 'mist-spirit', 'mist-spirit', 'mist-spirit'],
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
                 }
             });
@@ -38,6 +39,13 @@ describe('Silver Snake', function () {
             this.player1.clickCard(this.silverSnake);
             this.player1.clickCard(this.bloodArcher);
             expect(this.silverSnake.status).toBe(4);
+        });
+
+        it('triggers multiple times on multiple deaths', function () {
+            this.player1.clickCard(this.mistTyphoon);
+            this.player1.clickPrompt('Play this Action');
+            expect(this.bloodArcher.location).toBe('play area');
+            expect(this.silverSnake.status).toBe(6);
         });
     });
 });

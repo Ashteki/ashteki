@@ -12,7 +12,7 @@ describe('Safeguard', function () {
                 inPlay: ['hammer-knight'],
                 spellboard: ['summon-butterfly-monk'],
                 dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
-                hand: ['molten-gold'],
+                hand: ['mist-typhoon'],
                 archives: ['butterfly-monk']
             }
         });
@@ -26,7 +26,7 @@ describe('Safeguard', function () {
         this.player1.clickDie(0);
         this.player1.clickCard(this.mistSpirit);
         this.player1.endTurn();
-        this.player2.clickCard(this.moltenGold);
+        this.player2.clickCard(this.mistTyphoon);
         this.player2.clickPrompt('Play this action');
         this.player2.clickCard(this.mistSpirit);
 

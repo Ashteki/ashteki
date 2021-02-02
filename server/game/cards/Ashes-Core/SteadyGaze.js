@@ -4,7 +4,8 @@ const Card = require('../../Card.js');
 class SteadyGaze extends Card {
     setupCardAbilities(ability) {
         this.play({
-            effect: 'place 2 exhaustion tokens on a target unit',
+            effect: 'place 2 exhaustion tokens on {1}',
+            effectArgs: (context) => context.target,
             target: {
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.addExhaustionToken({ amount: 2 })

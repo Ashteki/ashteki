@@ -58,13 +58,18 @@ class ThenAbility extends BaseAbility {
                 activePromptTitle: 'Do you wish to ' + this.properties.may + '?',
                 context: context,
                 choices: ['Yes', 'No'],
-                handlers: [() => this.handler(context), () => true]
+                handlers: [() => this.displayMessageAndExecuteHandler(context), () => true]
             });
         } else {
-            this.handler(context);
+            this.displayMessageAndExecuteHandler(context);
         }
 
         this.game.queueSimpleStep(() => this.game.checkGameState());
+    }
+
+    displayMessageAndExecuteHandler(context) {
+        this.displayMessage(context);
+        this.handler(context);
     }
 
     executeGameActionPrehandlers(context) {

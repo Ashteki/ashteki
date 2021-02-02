@@ -1,3 +1,4 @@
+const { CardType } = require('../../constants');
 const AbilityContext = require('../AbilityContext');
 const BaseAbility = require('../baseability.js');
 
@@ -14,7 +15,9 @@ class BasePlayAction extends BaseAbility {
     }
 
     displayMessage(context) {
-        context.game.addMessage('{0} plays {1}', context.player, context.source);
+        if (![CardType.ReactionSpell, CardType.ActionSpell].includes(context.source.type)) {
+            context.game.addMessage('{0} plays {1}', context.player, context.source);
+        }
     }
 
     meetsRequirements(context = this.createContext(), ignoredRequirements = []) {
@@ -49,6 +52,7 @@ class BasePlayAction extends BaseAbility {
     }
 
     executeHandler(context) {
+        this.displayMessage(context);
         let event = context.game.getEvent(
             'onCardPlayed',
             {

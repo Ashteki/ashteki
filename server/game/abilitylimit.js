@@ -38,6 +38,32 @@ class FixedAbilityLimit {
     }
 }
 
+class UnrestrictedAbilityLimit {
+    isRepeatable() {
+        return true;
+    }
+
+    isAtMax() {
+        return false;
+    }
+
+    increment() {
+        return;
+    }
+
+    reset() {
+        // no effect
+    }
+
+    registerEvents() {
+        // No event handling
+    }
+
+    unregisterEvents() {
+        // No event handling
+    }
+}
+
 class RepeatableAbilityLimit extends FixedAbilityLimit {
     constructor(max, eventName) {
         super(max);
@@ -79,6 +105,10 @@ AbilityLimit.perRound = function (max) {
 
 AbilityLimit.perTurn = function (max) {
     return new RepeatableAbilityLimit(max, 'onTurnEnded');
+};
+
+AbilityLimit.unrestricted = function () {
+    return new UnrestrictedAbilityLimit();
 };
 
 module.exports = AbilityLimit;
