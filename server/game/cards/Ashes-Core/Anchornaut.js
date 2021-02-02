@@ -3,7 +3,8 @@ const Card = require('../../Card.js');
 class Anchornaut extends Card {
     setupCardAbilities(ability) {
         this.play({
-            effect: 'deal 1 damage to a target unit',
+            effect: 'deal 1 damage to {1}',
+            effectArgs: (context) => context.target,
             target: {
                 optional: true,
                 activePromptTitle: 'Throw 1',

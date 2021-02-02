@@ -5,7 +5,7 @@ class GlowFinch extends Card {
         this.unitGuard();
 
         this.destroyed({
-            // may: 'use Last Request 2',
+            may: 'use Last Request 2',
             gameAction: ability.actions.discardTopOfDeck({ amount: 2 })
         });
     }

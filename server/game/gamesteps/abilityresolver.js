@@ -127,7 +127,7 @@ class AbilityResolver extends BaseStepWithPipeline {
         }
 
         this.context.stage = 'effect';
-        this.context.ability.displayMessage(this.context);
+        // this.context.ability.displayMessage(this.context);
         this.context.ability.executeHandler(this.context);
     }
 
