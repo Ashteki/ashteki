@@ -2,7 +2,7 @@ const monk = require('monk');
 const mongoUrl = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/ashteki';
 console.log('attached to: ' + mongoUrl);
 let db = monk(mongoUrl);
-console.log('updating user: ' + process.argv[2]);
+console.log('selecting user: ' + process.argv[2]);
 const collection = db.get('users');
 collection
     .find({ username: process.argv[2] })

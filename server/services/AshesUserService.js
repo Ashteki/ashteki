@@ -153,7 +153,7 @@ class UserService extends EventEmitter {
         }
 
         return this.users.update({ username: user.username }, { $set: toSet }).catch((err) => {
-            logger.error(err);
+            logger.error('Error setting user details', err);
 
             throw new Error('Error setting user details');
         });
@@ -191,7 +191,7 @@ class UserService extends EventEmitter {
                 }
             )
             .catch((err) => {
-                logger.error(err);
+                logger.error('Error setting user details', err);
 
                 throw new Error('Error setting user details');
             });
@@ -206,7 +206,7 @@ class UserService extends EventEmitter {
                 { $set: { resetToken: token, tokenExpires: tokenExpiration } }
             )
             .catch((err) => {
-                logger.error(err);
+                logger.error('Error setting reset token: ', err);
 
                 throw new Error('Error setting reset token');
             });
@@ -216,7 +216,7 @@ class UserService extends EventEmitter {
         return this.users
             .update({ username: user.username }, { $set: { password: password } })
             .catch((err) => {
-                logger.error(err);
+                logger.error('Error setting password: ', err);
 
                 throw new Error('Error setting password');
             });
@@ -229,7 +229,7 @@ class UserService extends EventEmitter {
                 { $set: { resetToken: undefined, tokenExpires: undefined } }
             )
             .catch((err) => {
-                logger.error(err);
+                logger.error('Error clearing reset token:', err);
 
                 throw new Error('Error clearing reset token');
             });
@@ -297,7 +297,7 @@ class UserService extends EventEmitter {
             lastUsed: new Date()
         };
         this.refreshTokens.update({ tokenId: tokenId }, { $set: toSet }).catch((err) => {
-            logger.error(err);
+            logger.error('Error saving token usage: ', err);
             throw new Error('Error saving token usage');
         });
     }
