@@ -810,7 +810,7 @@ module.exports.init = function (server, options) {
             }
 
             let url = `${req.protocol}://${req.get('host')}/reset-password?id=${
-                user.id
+                user._id
             }&token=${resetToken}`;
             let emailText =
                 `Hi,\n\nSomeone, hopefully you, has requested their password on ${appName} (${
