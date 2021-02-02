@@ -432,7 +432,7 @@ module.exports.init = function (server, options) {
                 return next();
             }
 
-            let now = moment().utc();
+            let now = moment().utc().format();
             if (user.activationTokenExpiry < now) {
                 res.send({
                     success: false,
@@ -710,7 +710,7 @@ module.exports.init = function (server, options) {
                 return next();
             }
 
-            let now = moment().utc();
+            let now = moment().utc().toDate();
             if (user.tokenExpires < now) {
                 res.send({
                     success: false,
@@ -804,7 +804,7 @@ module.exports.init = function (server, options) {
             logger.info(`${resetToken} ${user.username} ${formattedExpiration}`);
 
             try {
-                await userService.setResetToken(user, resetToken, expiration);
+                await userService.setResetToken(user, resetToken, expiration.toDate());
             } catch (err) {
                 return;
             }
