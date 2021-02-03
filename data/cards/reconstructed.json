@@ -1,0 +1,50 @@
+{
+    "count": 2,
+    "results": [
+        {
+            "name": "Pain Shaman",
+            "stub": "pain-shaman",
+            "type": "Ally",
+            "release": {
+                "name": "The King of Titans",
+                "stub": "the-king-of-titans"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "2 [[natural:class]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 2
+            },
+            "text": "Exchange Pain 1: When this unit comes into play, you may deal 1 damage to a target unit, and then remove 1 wound token from a target unit or Phoenixborn.",
+            "attack": 1,
+            "life": 3,
+            "recover": 1
+        },
+        {
+            "name": "Nature's Wrath",
+            "stub": "natures-wrath",
+            "type": "Action Spell",
+            "release": {
+                "name": "The King of Titans",
+                "stub": "the-king-of-titans"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:class]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            },
+            "text": "Deal 1 damage to all units."
+        }
+    ]
+}
