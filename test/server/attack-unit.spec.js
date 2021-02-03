@@ -51,6 +51,32 @@ describe('Unit attacks', function () {
         // damage to pb, and guarded token
         expect(this.coalRoarkwin.tokens.damage).toBe(1);
         expect(this.coalRoarkwin.usedGuardThisRound).toBe(true);
+        expect(this.coalRoarkwin.exhausted).toBe(false);
+        expect(this.fluteMage.exhausted).toBe(false);
+        expect(this.mistSpirit.exhausted).toBe(true);
+    });
+
+    it('defender may choose to guard with exhausted phoenixborn', function () {
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
+        expect(this.mistSpirit.tokens.damage).toBeUndefined();
+        this.coalRoarkwin.tokens.exhaustion = 1;
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickCard(this.mistSpirit); // single attacker
+
+        this.player2.clickCard(this.coalRoarkwin); // guard with pb
+
+        // no damage to target (flutey) or attacker (mist spirit)
+        expect(this.fluteMage.location).toBe('play area');
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
+        expect(this.mistSpirit.location).toBe('play area');
+        expect(this.mistSpirit.tokens.damage).toBeUndefined();
+        // damage to pb, and guarded token
+        expect(this.coalRoarkwin.tokens.damage).toBe(1);
+        expect(this.coalRoarkwin.usedGuardThisRound).toBe(true);
+        expect(this.coalRoarkwin.exhausted).toBe(true);
+        expect(this.coalRoarkwin.tokens.exhaustion).toBe(1);
         expect(this.fluteMage.exhausted).toBe(false);
         expect(this.mistSpirit.exhausted).toBe(true);
     });
