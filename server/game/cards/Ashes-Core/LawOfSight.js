@@ -4,14 +4,10 @@ class LawOfSight extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
             may: 'draw up to 2 cards',
-
-            target: {
-                mode: 'select',
-                choices: ['1', '2'],
-                handlers: [() => (this.amount = true), () => (this.amount = false)]
-            },
-            gameAction: ability.actions.draw(() => ({
-                amount: this.amount
+            location: 'spellboard',
+            gameAction: ability.actions.playerChosenAmountDraw((context) => ({
+                target: context.player,
+                amount: 2
             }))
         });
 
