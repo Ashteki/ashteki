@@ -739,15 +739,18 @@ class Lobby {
                 for (let card of deck.cards) {
                     card.card = cards[card.id];
                 }
+                let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
 
                 // add conjuration card prototypes to deckdata cardcount
                 for (let conj of deck.conjurations) {
                     conj.card = cards[conj.id];
                 }
 
+                let hasPhoenixborn = false;
                 // add phoenixborn card prototypes to deckdata cardcount
                 for (let pb of deck.phoenixborn) {
                     pb.card = cards[pb.id];
+                    hasPhoenixborn = true;
                 }
 
                 if (isStandalone) {
@@ -755,7 +758,7 @@ class Lobby {
                 }
 
                 deck.status = {
-                    basicRules: true,
+                    basicRules: hasPhoenixborn && cardCount === 30,
                     notVerified: !deck.verified,
                     extendedStatus: [],
                     noUnreleasedCards: true,

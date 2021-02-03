@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import CardImage from '../GameBoard/CardImage';
 import Phoenixborn from './Phoenixborn';
 import Die from '../GameBoard/Die';
+import DeckStatus from './DeckStatus';
 
 import './DeckSummary.scss';
 
@@ -126,6 +127,11 @@ const DeckSummary = ({ deck }) => {
                             <span>Win Rate</span>
                         </Col>
                         <Col xs='5'>{deck.winRate?.toFixed(2)}%</Col>
+                    </Row>
+                    <Row>
+                        <Col xs='12'>
+                            <DeckStatus status={deck.status} />
+                        </Col>
                     </Row>
                 </Col>
             </Row>
