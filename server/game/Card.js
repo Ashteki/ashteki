@@ -219,10 +219,6 @@ class Card extends PlayableObject {
         });
     }
 
-    fight(properties) {
-        return this.forcedReaction(Object.assign({ fight: true, name: 'Fight' }, properties));
-    }
-
     destroyed(properties) {
         return this.forcedInterrupt(
             Object.assign(
@@ -270,15 +266,6 @@ class Card extends PlayableObject {
         }
 
         return action;
-    }
-
-    beforeFight(properties) {
-        return this.interrupt(
-            Object.assign(
-                { when: { onFight: (event, context) => event.attacker === context.source } },
-                properties
-            )
-        );
     }
 
     reaction(properties) {
