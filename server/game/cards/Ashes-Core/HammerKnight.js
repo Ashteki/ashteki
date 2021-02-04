@@ -4,14 +4,7 @@ class HammerKnight extends Card {
     setupCardAbilities(ability) {
         this.alert();
 
-        this.forcedInterrupt({
-            when: {
-                onCardDestroyed: (event, context) =>
-                    event.damageEvent &&
-                    event.damageEvent.fightEvent &&
-                    event.damageEvent.damageSource === context.source &&
-                    event.damageEvent.fightEvent.attacker === context.source
-            },
+        this.destroysFighting({
             target: {
                 optional: true,
                 activePromptTitle: 'Aftershock 1',

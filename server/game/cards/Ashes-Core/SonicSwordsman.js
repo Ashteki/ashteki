@@ -6,14 +6,7 @@ class SonicSwordsman extends Card {
             effect: ability.effects.addKeyword({ alert: 1 })
         });
 
-        this.forcedReaction({
-            when: {
-                onCardDestroyed: (event, context) =>
-                    event.damageEvent &&
-                    event.damageEvent.fightEvent &&
-                    event.damageEvent.damageSource === context.source &&
-                    event.damageEvent.fightEvent.attacker === context.source
-            },
+        this.destroysFighting({
             target: {
                 activePromptTitle: 'Sonic Pulse 1',
                 waitingPromptTitle: 'Sonic Pulse 1: waiting for opponent',

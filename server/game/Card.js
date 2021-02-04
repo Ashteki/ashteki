@@ -236,6 +236,23 @@ class Card extends PlayableObject {
         );
     }
 
+    destroysFighting(properties) {
+        return this.forcedInterrupt(
+            Object.assign(
+                {
+                    when: {
+                        onCardDestroyed: (event, context) =>
+                            event.damageEvent &&
+                            event.damageEvent.fightEvent &&
+                            event.damageEvent.damageSource === context.source &&
+                            event.damageEvent.fightEvent.attacker === context.source
+                    }
+                },
+                properties
+            )
+        );
+    }
+
     entersPlay(properties) {
         return this.forcedReaction(
             Object.assign(
