@@ -27,7 +27,7 @@ describe('stalk keyword', function () {
 
     it('prevents guard', function () {
         this.player1.clickPrompt('Attack');
-        expect(this.shadowHound.hasKeyword('preventguard')).toBe(true);
+        expect(this.shadowHound.anyEffect('preventGuard')).toBe(true);
         this.player1.clickCard(this.anchornaut); // target
         this.player1.clickCard(this.shadowHound);
         expect(this.player2).not.toHavePrompt('Choose a guard?');

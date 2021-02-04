@@ -470,7 +470,7 @@ class Card extends PlayableObject {
     }
 
     exhaustsOnCounter() {
-        return !this.hasKeyword('alert');
+        return !this.anyEffect('alert');
     }
 
     createSnapshot() {
@@ -702,7 +702,7 @@ class Card extends PlayableObject {
 
     alert() {
         this.persistentEffect({
-            effect: AbilityDsl.effects.addKeyword({ alert: 1 })
+            effect: AbilityDsl.effects.alert()
         });
     }
 
@@ -710,6 +710,12 @@ class Card extends PlayableObject {
         this.persistentEffect({
             condition: () => !this.exhausted,
             effect: AbilityDsl.effects.concealed()
+        });
+    }
+
+    stalk() {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.preventGuard()
         });
     }
 
@@ -738,8 +744,8 @@ class Card extends PlayableObject {
                 !this.exhausted &&
                 this.anyEffect('canGuard') &&
                 this.checkGigantic(attacker) &&
-                !attacker.hasKeyword('bypass') &&
-                !attacker.hasKeyword('preventguard')
+                !attacker.anyEffect('bypass') &&
+                !attacker.anyEffect('preventGuard')
             );
         }
     }
@@ -752,8 +758,8 @@ class Card extends PlayableObject {
             !this.exhausted &&
             this.checkGigantic(attacker) &&
             this.checkTerrifying(attacker) &&
-            !attacker.hasKeyword('preventblock') &&
-            !attacker.hasKeyword('bypass')
+            !attacker.anyEffect('preventBlock') &&
+            !attacker.anyEffect('bypass')
         );
     }
 

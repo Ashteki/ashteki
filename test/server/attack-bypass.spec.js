@@ -21,7 +21,7 @@ describe('bypass', function () {
         this.player1.clickCard(this.hypnotize);
         this.player1.clickPrompt('Hypnotize a unit');
         this.player1.clickCard(this.ironRhino);
-        expect(this.ironRhino.hasKeyword('bypass')).toBe(true);
+        expect(this.ironRhino.anyEffect('bypass')).toBe(true);
 
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.coalRoarkwin); // target
@@ -35,7 +35,7 @@ describe('bypass', function () {
         this.player1.clickCard(this.hypnotize);
         this.player1.clickPrompt('Hypnotize a unit');
         this.player1.clickCard(this.ironRhino);
-        expect(this.ironRhino.hasKeyword('bypass')).toBe(true);
+        expect(this.ironRhino.anyEffect('bypass')).toBe(true);
 
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.anchornaut); // target

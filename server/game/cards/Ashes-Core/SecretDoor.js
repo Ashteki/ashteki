@@ -18,7 +18,7 @@ class SecretDoor extends Card {
                 cardType: BattlefieldTypes,
                 duration: 'untilEndOfTurn',
                 gameAction: ability.actions.cardLastingEffect(() => ({
-                    effect: ability.effects.addKeyword({ preventblock: 1 })
+                    effect: ability.effects.preventBlock()
                 }))
             }
         });

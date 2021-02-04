@@ -16,24 +16,24 @@ describe('Hypnotize', function () {
     });
 
     it('grants bypass to target', function () {
-        expect(this.ironWorker.hasKeyword('bypass')).toBe(false);
+        expect(this.ironWorker.anyEffect('bypass')).toBe(false);
         this.player1.clickCard(this.hypnotize);
         this.player1.clickPrompt('Hypnotize a unit');
         this.player1.clickCard(this.ironWorker);
 
-        expect(this.ironWorker.hasKeyword('bypass')).toBe(true);
+        expect(this.ironWorker.anyEffect('bypass')).toBe(true);
     });
 
     it('bypass is removed at turn end', function () {
-        expect(this.ironWorker.hasKeyword('bypass')).toBe(false);
+        expect(this.ironWorker.anyEffect('bypass')).toBe(false);
         this.player1.clickCard(this.hypnotize);
         this.player1.clickPrompt('Hypnotize a unit');
         this.player1.clickCard(this.ironWorker);
 
-        expect(this.ironWorker.hasKeyword('bypass')).toBe(true);
+        expect(this.ironWorker.anyEffect('bypass')).toBe(true);
 
         this.player1.clickPrompt('End Turn');
 
-        expect(this.ironWorker.hasKeyword('bypass')).toBe(false);
+        expect(this.ironWorker.anyEffect('bypass')).toBe(false);
     });
 });

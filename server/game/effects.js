@@ -57,6 +57,7 @@ const Effects = {
                 context.game.effectEngine.removeTerminalCondition(effect)
         }),
     transferDamage: (card) => EffectBuilder.card.static('transferDamage', card),
+    alert: () => EffectBuilder.card.static('alert'),
     bound: () => EffectBuilder.card.static('bound'),
     canGuard: () => EffectBuilder.card.static('canGuard'),
     concealed: () => EffectBuilder.card.static('concealed'),
@@ -64,6 +65,8 @@ const Effects = {
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     spellGuard: () => EffectBuilder.card.static('spellGuard'),
     bypass: () => EffectBuilder.card.static('bypass'),
+    preventGuard: () => EffectBuilder.card.static('preventGuard'),
+    preventBlock: () => EffectBuilder.card.static('preventBlock'),
     preventDamage: (shield) => EffectBuilder.card.static('preventDamage', shield),
 
     // Player effects

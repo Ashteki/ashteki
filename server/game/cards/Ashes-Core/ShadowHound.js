@@ -1,12 +1,10 @@
 const Card = require('../../Card.js');
 
 class ShadowHound extends Card {
-    setupCardAbilities(ability) {
+    setupCardAbilities() {
         this.concealed();
 
-        this.persistentEffect({
-            effect: ability.effects.addKeyword({ preventguard: 1 })
-        });
+        this.stalk();
     }
 }
 
