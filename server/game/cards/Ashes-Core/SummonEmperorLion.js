@@ -2,15 +2,15 @@ const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
-class SummonWingedLioness extends Card {
+class SummonEmperorLion extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Summon Winged Lioness',
+            title: 'Summon Emperor Lion',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([
-                    new DiceCount(1, Level.Class, Magic.Divine),
+                    new DiceCount(2, Level.Class, Magic.Divine),
                     new DiceCount(1, Level.Basic)
                 ])
             ],
@@ -18,7 +18,7 @@ class SummonWingedLioness extends Card {
             target: {
                 controller: 'self',
                 cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'winged-lioness',
+                cardCondition: (card) => card.id === 'emperor-lion',
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
             }
@@ -26,6 +26,6 @@ class SummonWingedLioness extends Card {
     }
 }
 
-SummonWingedLioness.id = 'summon-winged-lioness';
+SummonEmperorLion.id = 'summon-emperor-lion';
 
-module.exports = SummonWingedLioness;
+module.exports = SummonEmperorLion;
