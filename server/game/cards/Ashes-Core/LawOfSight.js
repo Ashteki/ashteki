@@ -1,3 +1,4 @@
+const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class LawOfSight extends Card {
@@ -11,7 +12,15 @@ class LawOfSight extends Card {
             }))
         });
 
-        // this.bound();
+        this.persistentEffect({
+            targetController: 'Any',
+            effect: ability.effects.playerCannot(
+                'play',
+                (context) => context.source.type === CardType.ReactionSpell
+            )
+        });
+
+        this.bound();
         this.fleeting();
     }
 }

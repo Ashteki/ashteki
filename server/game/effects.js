@@ -57,6 +57,7 @@ const Effects = {
                 context.game.effectEngine.removeTerminalCondition(effect)
         }),
     transferDamage: (card) => EffectBuilder.card.static('transferDamage', card),
+    bound: () => EffectBuilder.card.static('bound'),
     canGuard: () => EffectBuilder.card.static('canGuard'),
     concealed: () => EffectBuilder.card.static('concealed'),
     exhausted: () => EffectBuilder.card.static('exhausted'),

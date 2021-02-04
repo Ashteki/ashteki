@@ -4,12 +4,6 @@ const DiceCount = require('../../DiceCount.js');
 
 class BloodPuppet extends Card {
     setupCardAbilities(ability) {
-        // this.persistentEffect({
-        //     location: 'any',
-        //     targetController: 'any',
-        //     effect: ability.effects.entersPlayUnderOpponentsControl()
-        // });
-
         // end of round wounds pb
         this.forcedInterrupt({
             title: 'Cursed 1',

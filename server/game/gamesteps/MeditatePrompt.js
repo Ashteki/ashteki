@@ -19,7 +19,8 @@ class MeditatePrompt extends UiPrompt {
             location: ['hand', 'spellboard'],
             controller: 'self',
             cardType: ['any'],
-            cardCondition: () => true
+            // can't meditate bound cards from spellboard (hand is ok)
+            cardCondition: (card) => !(card.location === 'spellboard' && card.anyEffect('bound'))
         });
 
         this.count = 0;

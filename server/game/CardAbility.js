@@ -28,8 +28,11 @@ class CardAbility extends ThenAbility {
         if (this.card.isBlank() && this.printedAbility) {
             return 'blank';
         }
-
-        if (!this.card.checkRestrictions('triggerAbilities', context)) {
+        if (
+            !this.card.checkRestrictions('triggerAbilities', context) ||
+            (this.card.type === CardType.ReactionSpell &&
+                !context.player.checkRestrictions('play', context))
+        ) {
             return 'cannotTrigger';
         }
 
