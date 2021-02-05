@@ -17,12 +17,7 @@ const DeckStatus = ({ status }) => {
         used: status.usageLevel === 1 && !status.verified,
         popular: status.usageLevel === 2 && !status.verified,
         notorious: status.usageLevel === 3 && !status.verified,
-        'casual-play': status.basicRules,
-        valid:
-            (status.usageLevel === 0 || status.verified) &&
-            status.basicRules &&
-            !status.notVerified &&
-            status.noUnreleasedCards
+        valid: status.basicRules
     });
 
     if (!status.basicRules) {

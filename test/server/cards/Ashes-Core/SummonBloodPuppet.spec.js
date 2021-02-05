@@ -26,6 +26,15 @@ describe('Summon Blood Puppet', function () {
             // Blood puppet is now on the battlefield
             expect(this.player1.inPlay.length).toBe(1);
             expect(this.player2.inPlay.length).toBe(0);
+
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.endTurn();
+
+            // keep dice prompts, end round
+            this.player1.clickPrompt('Done');
+            this.player2.clickPrompt('Done');
+            expect(this.player1.phoenixborn.damage).toBe(1);
         });
 
         it('should place a blood puppet onto opponents battlefield', function () {
@@ -47,6 +56,14 @@ describe('Summon Blood Puppet', function () {
             this.player2.clickDie(0);
             expect(this.player2.side).toBe(false);
             expect(this.bloodPuppet.damage).toBe(1);
+
+            this.player2.endTurn();
+            this.player1.endTurn();
+
+            // keep dice prompts, end round
+            this.player1.clickPrompt('Done');
+            this.player2.clickPrompt('Done');
+            expect(this.player2.phoenixborn.damage).toBe(1);
         });
     });
 

@@ -73,8 +73,8 @@ class ChooseDefendersPrompt extends UiPrompt {
 
     guardTest(card, target, attacker) {
         return (
-            !attacker.hasKeyword('bypass') &&
-            !attacker.hasKeyword('preventguard') &&
+            !attacker.anyEffect('bypass') &&
+            !attacker.anyEffect('preventGuard') &&
             card !== target &&
             card.canGuard(attacker)
         );
@@ -83,7 +83,7 @@ class ChooseDefendersPrompt extends UiPrompt {
     blockTest(card, attacker) {
         // guard is used for blockers too
         return (
-            !attacker.hasKeyword('preventblock') &&
+            !attacker.anyEffect('preventblock') &&
             !this.battles.some((b) => b.guard == card) &&
             card.canBlock(attacker)
         );

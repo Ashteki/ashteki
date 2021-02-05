@@ -23,6 +23,8 @@ function processDecks(decks, state) {
             card: Object.assign({}, state.cards[card.id]),
             id: card.id
         }));
+        let hasPhoenixborn = deck.phoenixborn.length === 1;
+
         deck.cards = deck.cards.map((card) => ({
             count: card.count,
             card: Object.assign({}, state.cards[card.id]),
@@ -34,7 +36,9 @@ function processDecks(decks, state) {
             id: card.id
         }));
 
+        let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
         deck.status = {
+            basicRules: hasPhoenixborn && cardCount === 30,
             flagged: !!deck.flagged,
             verified: !!deck.verified,
             usageLevel: deck.usageLevel,

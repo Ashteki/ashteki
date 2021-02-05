@@ -127,9 +127,9 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
 
     // eslint-disable-next-line no-unused-vars
     const rowClasses = (row) => {
-        // if (!row.status.basicRules) {
-        //     return 'invalid';
-        // }
+        if (!row.status.basicRules) {
+            return 'invalid';
+        }
 
         return '';
     };

@@ -6,14 +6,8 @@ class IronRhino extends Card {
             effect: ability.effects.addKeyword({ gigantic: 1 })
         });
 
-        this.forcedInterrupt({
-            when: {
-                onCardDestroyed: (event, context) =>
-                    event.damageEvent &&
-                    event.damageEvent.fightEvent &&
-                    event.damageEvent.damageSource === context.source &&
-                    event.damageEvent.fightEvent.attacker === context.source
-            },
+        // overkill 2
+        this.destroysFighting({
             gameAction: ability.actions.dealDamage((context) => ({
                 amount: 2,
                 target: context.player.opponent.phoenixborn

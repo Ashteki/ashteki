@@ -6,8 +6,11 @@ import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import './DeckStatusSummary.scss';
 
 const DeckStatusSummary = ({ status }) => {
-    let { flagged, verified, noUnreleasedCards } = status;
-    let items = [{ title: 'Only released cards', value: noUnreleasedCards }];
+    let { flagged, verified, noUnreleasedCards, basicRules } = status;
+    let items = [
+        { title: 'Basic Rules (deck size)', value: basicRules },
+        { title: 'Only released cards', value: noUnreleasedCards }
+    ];
     if (verified) {
         items.push({ title: 'Deck verified', value: true });
     } else if (flagged) {

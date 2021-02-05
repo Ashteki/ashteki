@@ -12,6 +12,7 @@ class JessaNaNi extends Card {
             limit: ability.limit.perTurn(1),
             cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
             gameAction: ability.actions.dealDamage((context) => ({
+                amount: 1,
                 target: context.player.opponent.phoenixborn
             }))
         });

@@ -2,7 +2,7 @@ const CardGameAction = require('./CardGameAction');
 
 class DealDamageAction extends CardGameAction {
     setDefaultProperties() {
-        this.amount = null;
+        this.amount = 1;
         this.amountForCard = () => 1;
         this.fightEvent = null;
         this.damageSource = null;

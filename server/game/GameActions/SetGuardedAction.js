@@ -2,9 +2,9 @@ const CardGameAction = require('./CardGameAction');
 
 class SetGuardedAction extends CardGameAction {
     setup() {
-        this.name = 'exhaust';
+        this.name = 'setGuarded';
         this.targetType = ['Phoenixborn'];
-        this.effectMsg = 'exhaust {0}';
+        this.effectMsg = 'set {0} as having guarded';
     }
 
     canAffect(card, context) {

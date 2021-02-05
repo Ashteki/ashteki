@@ -209,6 +209,7 @@ class Card extends PlayableObject {
 
     fleeting() {
         this.forcedInterrupt({
+            inexhaustible: true,
             title: 'Fleeting',
             when: {
                 onRoundEnded: () => true
@@ -217,10 +218,6 @@ class Card extends PlayableObject {
                 card: context.source
             }))
         });
-    }
-
-    fight(properties) {
-        return this.forcedReaction(Object.assign({ fight: true, name: 'Fight' }, properties));
     }
 
     destroyed(properties) {
@@ -234,6 +231,23 @@ class Card extends PlayableObject {
                             event.card === context.source
                     },
                     destroyed: true
+                },
+                properties
+            )
+        );
+    }
+
+    destroysFighting(properties) {
+        return this.forcedInterrupt(
+            Object.assign(
+                {
+                    when: {
+                        onCardDestroyed: (event, context) =>
+                            event.damageEvent &&
+                            event.damageEvent.fightEvent &&
+                            event.damageEvent.damageSource === context.source &&
+                            event.damageEvent.fightEvent.attacker === context.source
+                    }
                 },
                 properties
             )
@@ -270,15 +284,6 @@ class Card extends PlayableObject {
         }
 
         return action;
-    }
-
-    beforeFight(properties) {
-        return this.interrupt(
-            Object.assign(
-                { when: { onFight: (event, context) => event.attacker === context.source } },
-                properties
-            )
-        );
     }
 
     reaction(properties) {
@@ -483,7 +488,7 @@ class Card extends PlayableObject {
     }
 
     exhaustsOnCounter() {
-        return !this.hasKeyword('alert');
+        return !this.anyEffect('alert');
     }
 
     createSnapshot() {
@@ -715,7 +720,7 @@ class Card extends PlayableObject {
 
     alert() {
         this.persistentEffect({
-            effect: AbilityDsl.effects.addKeyword({ alert: 1 })
+            effect: AbilityDsl.effects.alert()
         });
     }
 
@@ -726,9 +731,21 @@ class Card extends PlayableObject {
         });
     }
 
+    stalk() {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.preventGuard()
+        });
+    }
+
     unitGuard() {
         this.persistentEffect({
             effect: AbilityDsl.effects.canGuard()
+        });
+    }
+
+    bound() {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.bound()
         });
     }
 
@@ -745,8 +762,8 @@ class Card extends PlayableObject {
                 !this.exhausted &&
                 this.anyEffect('canGuard') &&
                 this.checkGigantic(attacker) &&
-                !attacker.hasKeyword('bypass') &&
-                !attacker.hasKeyword('preventguard')
+                !attacker.anyEffect('bypass') &&
+                !attacker.anyEffect('preventGuard')
             );
         }
     }
@@ -759,8 +776,8 @@ class Card extends PlayableObject {
             !this.exhausted &&
             this.checkGigantic(attacker) &&
             this.checkTerrifying(attacker) &&
-            !attacker.hasKeyword('preventblock') &&
-            !attacker.hasKeyword('bypass')
+            !attacker.anyEffect('preventBlock') &&
+            !attacker.anyEffect('bypass')
         );
     }
 

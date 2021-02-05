@@ -6,7 +6,8 @@ describe('rins fury reaction spell', function () {
                 inPlay: ['mist-spirit', 'iron-worker'],
                 spellboard: [],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
-                archives: []
+                archives: [],
+                hand: ['freezing-blast']
             },
             player2: {
                 phoenixborn: 'rin-northfell',

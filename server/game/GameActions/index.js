@@ -56,5 +56,6 @@ module.exports = {
     MeditateAction: require('./MeditateAction'),
     SetGuardedAction: require('./SetGuardedAction'),
     ChangeDieAction: require('./ChangeDieAction'),
-    ChosenAmountDrawAction: require('./ChosenAmountDrawAction')
+    ChosenAmountDrawAction: require('./ChosenAmountDrawAction'),
+    PlayerChosenAmountDrawAction: require('./PlayerChosenAmountDrawAction')
 };
