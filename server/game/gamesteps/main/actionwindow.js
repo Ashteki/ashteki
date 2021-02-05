@@ -121,7 +121,8 @@ class ActionWindow extends UiPrompt {
                 activePromptTitle: 'Select a target to attack',
                 controller: 'opponent',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
-                cardCondition: (card) => !card.anyEffect('concealed'),
+                cardCondition: (card) =>
+                    !(card.anyEffect('concealed') || card.anyEffect('cannotBeAttackTarget')),
                 onSelect: (player, card) => {
                     if (card.type == CardType.Phoenixborn) {
                         this.initiatePBAttack(card);
