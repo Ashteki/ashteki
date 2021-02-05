@@ -284,10 +284,6 @@ class InnerDeckEditor extends React.Component {
 
         return (
             <div>
-                <h4>
-                    Either type the cards manually into the box below, add the cards one by one
-                    using the card box and autocomplete.
-                </h4>
                 <Form>
                     <Form.Group as={Row} controlId='deckName'>
                         <Form.Label column sm='3'>
@@ -321,6 +317,11 @@ class InnerDeckEditor extends React.Component {
                             </Form.Control>
                         </Col>
                     </Form.Group>
+                    <h4>
+                        You can type card names and quantities into the box below, or add them using
+                        this lookup box.
+                    </h4>
+
                     <Form.Group as={Row} controlId='cardLookup'>
                         <Form.Label column sm='3'>
                             Card
@@ -357,6 +358,7 @@ class InnerDeckEditor extends React.Component {
                         value={this.state.cardList}
                         onChange={this.onCardListChange.bind(this)}
                     />
+                    <h4>Enter dice quantities into the box below, one per line e.g. 3 Charm</h4>
                     <TextArea
                         label='Dice'
                         rows='4'
