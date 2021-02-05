@@ -11,7 +11,7 @@ class BloodPuppet extends Card {
                 onRoundEnded: () => true
             },
             gameAction: ability.actions.dealDamage((context) => ({
-                target: context.source.owner.phoenixborn
+                target: context.source.controller.phoenixborn
             }))
         });
 
