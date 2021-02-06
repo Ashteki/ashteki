@@ -891,6 +891,10 @@ class Card extends PlayableObject {
         return neighbors;
     }
 
+    isLimited() {
+        return this.type === CardType.ReactionSpell;
+    }
+
     ignores(trait) {
         return this.getEffects('ignores').includes(trait);
     }
