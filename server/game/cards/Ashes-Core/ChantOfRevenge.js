@@ -3,6 +3,7 @@ const Card = require('../../Card.js');
 class ChantOfRevenge extends Card {
     setupCardAbilities(ability) {
         this.forcedReaction({
+            autoResolve: true,
             location: 'spellboard',
             when: {
                 onCardDestroyed: (event, context) =>
