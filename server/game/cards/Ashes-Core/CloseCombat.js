@@ -5,12 +5,14 @@ class CloseCombat extends Card {
         this.play({
             targets: {
                 myChar: {
+                    activePromptTitle: 'Select a card for attack value',
                     cardType: ['Ally', 'Conjuration'],
                     controller: 'self',
                     cardCondition: (card) => !card.exhausted
                 },
                 oppChar: {
                     dependsOn: 'myChar',
+                    activePromptTitle: 'Choose a unit to damage',
                     cardType: ['Ally', 'Conjuration'],
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
