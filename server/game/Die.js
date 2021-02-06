@@ -293,6 +293,10 @@ class Die extends PlayableObject {
     canPlayAsUpgrade() {
         return this.attachable;
     }
+
+    isLimited() {
+        return false;
+    }
 }
 
 module.exports = Die;

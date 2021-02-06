@@ -40,7 +40,19 @@ class CardAbility extends ThenAbility {
             return 'limit';
         }
 
+        if (
+            this.isCardPlayed() &&
+            this.card.isLimited() &&
+            context.player.limitedPlayed >= context.player.maxLimited
+        ) {
+            return 'limited';
+        }
+
         return super.meetsRequirements(context);
+    }
+
+    isCardPlayed() {
+        return this.card.type === CardType.ReactionSpell;
     }
 
     addMessage(messageArgs) {

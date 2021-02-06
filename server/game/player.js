@@ -33,6 +33,9 @@ class Player extends GameObject {
         this.pinnedDice = [];
 
         this.clock = ClockSelector.for(this, clockdetails);
+
+        this.maxLimited = 1;
+        this.limitedPlayed = 0;
         this.showDeck = false;
         this.role = user.role;
         this.avatar = user.avatar;
@@ -294,6 +297,7 @@ class Player extends GameObject {
 
     beginRound() {
         this.passedMain = false;
+        this.limitedPlayed = 0;
     }
 
     beginTurn() {

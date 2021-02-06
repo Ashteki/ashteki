@@ -91,6 +91,10 @@ class AbilityResolver extends BaseStepWithPipeline {
             return;
         }
 
+        if (this.context.source.isLimited()) {
+            this.context.player.limitedPlayed += 1;
+        }
+
         // Increment limits (limits aren't used up on cards in hand)
         if (
             this.context.ability.limit &&
