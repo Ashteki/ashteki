@@ -30,15 +30,20 @@ function processDecks(decks, state) {
             card: Object.assign({}, state.cards[card.id]),
             id: card.id
         }));
+
         deck.conjurations = deck.conjurations.map((card) => ({
             count: card.count,
             card: Object.assign({}, state.cards[card.id]),
             id: card.id
         }));
+        let hasConjurations = checkConjurations(deck);
+        let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
         deck.status = {
             basicRules: hasPhoenixborn && cardCount === 30,
+            hasConjurations: hasConjurations,
+            tenDice: tenDice,
             flagged: !!deck.flagged,
             verified: !!deck.verified,
             usageLevel: deck.usageLevel,
@@ -47,6 +52,16 @@ function processDecks(decks, state) {
             extendedStatus: []
         };
     }
+}
+
+function checkConjurations(deck) {
+    let cons = deck.cards
+        .concat(deck.phoenixborn)
+        .filter((c) => !!c.card.conjurations)
+        .reduce((acc, c) => acc.concat(c.card.conjurations), [])
+        .map((c) => c.stub);
+    let result = cons.reduce((a, stub) => a && deck.conjurations.some((c) => c.id === stub), true);
+    return result;
 }
 
 export default function (state = { decks: [], cards: {} }, action) {
