@@ -78,7 +78,7 @@ class ResolveAbilityAction extends CardAction {
             }
 
             context.game.queueSimpleStep(() => {
-                if (ability && ability.condition(context)) {
+                if (ability && (!ability.condition || ability.condition(context))) {
                     let newContext = Object.assign(ability.createContext(context.player), {
                         isResolveAbility: true,
                         secondResolution: this.secondResolution

@@ -3,7 +3,7 @@ describe('Close combat played', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['iron-rhino', 'mist-spirit', 'silver-snake'],
+                inPlay: ['iron-rhino', 'mist-spirit', 'silver-snake', 'blue-jaguar'],
                 dicepool: ['natural', 'illusion', 'charm', 'charm'],
                 spellboard: ['summon-butterfly-monk'],
                 hand: ['close-combat']
