@@ -13,6 +13,36 @@ class AttackState {
         return this.target.type === CardType.Phoenixborn;
     }
 
+    involvesCard(card) {
+        return (
+            this.target === card ||
+            this.battles.some((b) => b.target === card || b.guard === card || b.attacker === card)
+        );
+    }
+
+    removeFromBattle(card) {
+        this.battles.forEach((b) => {
+            // can remove unit target to replace with phoenixborn
+            if (b.target === card) {
+                card.isDefender = false;
+                b.target === card.controller.phoenixborn;
+            }
+
+            // can remove guards / blockers
+            if (b.guard === card) {
+                card.isDefender = false;
+                b.guard = null;
+            }
+
+            // can remove attackers (whole battle)
+            if (b.attacker === card) {
+                card.isAttacker = false;
+                this.battles = this.battles.filter((bf) => bf !== b);
+                return;
+            }
+        });
+    }
+
     setBlockerForAttacker(blocker, attacker) {
         let battle = this.battles.find((b) => b.attacker === attacker);
         if (battle.guard) {
