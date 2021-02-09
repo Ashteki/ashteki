@@ -166,7 +166,8 @@ export default function (state = { decks: [], cards: {} }, action) {
                 name: 'New Deck',
                 cards: [],
                 conjurations: [],
-                phoenixborn: [aradel]
+                phoenixborn: [aradel],
+                dicepool: []
             };
 
             newState = Object.assign({}, state, {
