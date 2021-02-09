@@ -8,12 +8,14 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
     const [showMenu, setShowMenu] = useState(false);
 
     let diceFont = 'phg-basic-magic';
+    let description = 'basic die';
 
     if (die.magic && die.level && die.level !== 'basic') {
         diceFont = `phg-${die.magic}-${die.level}`;
+        description = `${die.magic} ${die.level}`;
     }
     const colorClass = die.exhausted ? 'exhausted' : die.magic;
-
+    const readerSpan = die.exhausted ? '' : <span className='sr-only'>{description}</span>;
     const getStatusClass = () => {
         if (!die) {
             return undefined;
@@ -75,7 +77,8 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
                 onMouseOver={!disableMouseOver && onMouseOver ? () => onMouseOver(die) : undefined}
                 onMouseOut={!disableMouseOver ? onMouseOut : undefined}
             >
-                <span className={diceFont} title={`${die.magic}`}></span>
+                <span aria-hidden='true' className={diceFont} title={description} />
+                {readerSpan}
             </span>
             {renderMenu() ? <CardMenu menu={die.menu} onMenuItemClick={onMenuClick} /> : null}
         </div>
