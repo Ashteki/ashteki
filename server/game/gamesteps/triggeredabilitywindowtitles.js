@@ -2,6 +2,7 @@ const _ = require('underscore');
 const { AbilityType } = require('../../constants');
 
 const EventToTitleFunc = {
+    onAbilityInitiated: (event) => event.context.ability.title,
     onCardAbilityInitiated: (event) => 'the effects of ' + event.card.name,
     onCardBowed: (event) => event.card.name + ' being bowed',
     onClaimRing: (event) => 'to the ' + event.conflict.conflictRing + ' ring being claimed',

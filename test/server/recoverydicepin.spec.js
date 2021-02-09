@@ -18,8 +18,8 @@ describe('Recovery phase dice pinning', function () {
         this.player1.dicepool[0].exhaust();
         this.savedUUID = this.player1.dicepool[1].uuid;
 
-        this.player1.clickPrompt('End Turn');
-        this.player2.clickPrompt('End Turn');
+        this.player1.endTurn();
+        this.player2.endTurn();
 
         expect(this.player1).toHavePrompt('Select dice to keep');
         expect(this.player2).toHavePrompt('Select dice to keep');

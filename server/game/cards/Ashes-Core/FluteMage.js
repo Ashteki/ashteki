@@ -9,7 +9,7 @@ class FluteMage extends Card {
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'any',
-                gameAction: ability.actions.RemoveExhaustion({ amount: 1 })
+                gameAction: ability.actions.removeExhaustion({ amount: 1 })
             }
         });
     }
