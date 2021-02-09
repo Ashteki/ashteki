@@ -253,6 +253,7 @@ export class GameBoard extends React.Component {
                             side='top'
                             cardSize={this.props.user.settings.cardSize}
                             playerId={otherPlayer.id}
+                            active={otherPlayer.activePlayer}
                         />
                         {/* myboard */}
                         <Droppable
@@ -273,6 +274,7 @@ export class GameBoard extends React.Component {
                                 side='bottom'
                                 cardSize={this.props.user.settings.cardSize}
                                 playerId={thisPlayer.id}
+                                active={thisPlayer.activePlayer}
                             />
                         </Droppable>
                     </div>

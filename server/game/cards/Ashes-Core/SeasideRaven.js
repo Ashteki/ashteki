@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 class SeasideRaven extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
-            effect: 'destroy a target unit',
+            effect: 'destroy {0}',
             target: {
                 activePromptTitle: 'Prey 2',
                 cardType: ['Ally', 'Conjuration'],

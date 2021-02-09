@@ -86,7 +86,8 @@ class PlayerBoard extends React.Component {
 
     render() {
         let className = classNames('player-board', {
-            'our-side': this.props.rowDirection === 'default'
+            'our-side': this.props.rowDirection === 'default',
+            'active-player': this.props.active
         });
 
         let maxUpgrades = Math.min(this.props.cardsInPlay.map((c) => c.upgrades.length));
@@ -113,7 +114,8 @@ PlayerBoard.propTypes = {
     onMouseOver: PropTypes.func,
     rowDirection: PropTypes.oneOf(['default', 'reverse']),
     cardSize: PropTypes.string,
-    playerId: PropTypes.string
+    playerId: PropTypes.string,
+    active: PropTypes.bool
 };
 
 export default PlayerBoard;

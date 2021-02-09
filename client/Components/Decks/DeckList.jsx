@@ -131,6 +131,10 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
             return 'invalid';
         }
 
+        if (!row.status.hasConjurations) {
+            return 'conjurations';
+        }
+
         return '';
     };
 

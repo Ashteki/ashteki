@@ -21,7 +21,7 @@ describe('Golden Veil', function () {
         this.player1.clickPrompt('Play this action');
         this.player1.clickCard(this.hammerKnight);
 
-        expect(this.player2).toHavePrompt('Any Interrupts?');
+        expect(this.player2).toHavePrompt('Any Interrupts to molten gold?');
         this.player2.clickCard(this.goldenVeil);
 
         expect(this.hammerKnight.damage).toBe(0);
@@ -38,7 +38,7 @@ describe('Golden Veil', function () {
         this.player1.clickCard(this.ironWorker);
         this.player1.clickCard(this.hammerKnight);
 
-        expect(this.player2).toHavePrompt('Any Interrupts?');
+        expect(this.player2).toHavePrompt('Any Interrupts to command strike?');
         this.player2.clickCard(this.goldenVeil);
 
         expect(this.hammerKnight.damage).toBe(0);

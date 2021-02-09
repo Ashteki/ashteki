@@ -37,6 +37,7 @@ module.exports = {
     RecoverAction: require('./RecoverAction'),
     RemoveTokenAction: require('./RemoveTokenAction'),
     MoveTokenAction: require('./MoveTokenAction'),
+    RemoveFromBattleAction: require('./RemoveFromBattleAction'),
     ResolveAbilityAction: require('./ResolveAbilityAction'),
     ResolveFightAction: require('./ResolveBattleAction'),
     ReturnToDeckAction: require('./ReturnToDeckAction'),

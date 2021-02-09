@@ -9,11 +9,7 @@
 }
 
 .panel {
-    // font-family: Keyforge;
-
-    -moz-box-shadow: 3px 3px 5px theme-color('primary');
-    -webkit-box-shadow: 3px 3px 5px theme-color('primary');
-    box-shadow: 3px 3px 5px theme-color('primary');
+    box-shadow: 1px 1px 2px  theme-color('primary') !important;
 
     .panel-heading {
         font-weight: normal;

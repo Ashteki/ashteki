@@ -39,6 +39,15 @@
 
     display: flex;
     align-items: center;
+
+    
+    &.active-player {
+        background-color: rgba(theme-color('secondary'), 0.4);
+
+        .state svg {
+            color: white;
+        }
+    }
 }
 
 .state {
@@ -91,13 +100,6 @@
     line-height: 15px;
 }
 
-.active-player {
-    background-color: rgba(theme-color('primary'), 0.4);
-
-    .state svg {
-        color: white;
-    }
-}
 
 .chat-status {
     position: absolute;

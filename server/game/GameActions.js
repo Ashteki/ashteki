@@ -46,6 +46,7 @@ const Actions = {
     swap: (propertyFactory) => new GameActions.SwapAction(propertyFactory), // origin
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     moveToken: (propertyFactory) => new GameActions.MoveTokenAction(propertyFactory),
+    removeFromBattle: (propertyFactory) => new GameActions.RemoveFromBattleAction(propertyFactory),
 
     // player actions
     archiveAtRandom: (propertyFactory) => new GameActions.RandomArchiveAction(propertyFactory), // amount = 1

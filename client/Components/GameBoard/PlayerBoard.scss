@@ -26,7 +26,15 @@
     }
 }
 
-.player-board .card-wrapper {
-    margin-right: 10px;
-    margin-bottom: 5px;
+.player-board{
+    &.card-wrapper{
+        margin-right: 10px;
+        margin-bottom: 5px;
+
+    }
+
+    &.active-player{
+        // background-color: rgba(248, 247, 216, 0.7);
+
+    }
 }

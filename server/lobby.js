@@ -701,6 +701,7 @@ class Lobby {
 
                 deck.status = {
                     basicRules: true,
+                    conjurations: true,
                     extendedStatus: [],
                     flagged: false,
                     noUnreleasedCards: true,
@@ -757,8 +758,13 @@ class Lobby {
                     deck.verified = true;
                 }
 
+                let hasConjurations = this.checkConjurations(deck);
+                let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
+
                 deck.status = {
                     basicRules: hasPhoenixborn && cardCount === 30,
+                    hasConjurations: hasConjurations,
+                    tenDice: tenDice,
                     notVerified: !deck.verified,
                     extendedStatus: [],
                     noUnreleasedCards: true,
@@ -778,6 +784,19 @@ class Lobby {
 
                 return;
             });
+    }
+
+    checkConjurations(deck) {
+        let cons = deck.cards
+            .concat(deck.phoenixborn)
+            .filter((c) => !!c.card.conjurations)
+            .reduce((acc, c) => acc.concat(c.card.conjurations), [])
+            .map((c) => c.stub);
+        let result = cons.reduce(
+            (a, stub) => a && deck.conjurations.some((c) => c.id === stub),
+            true
+        );
+        return result;
     }
 
     onConnectFailed(socket) {

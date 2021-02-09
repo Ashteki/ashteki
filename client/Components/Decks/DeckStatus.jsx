@@ -13,14 +13,14 @@ const DeckStatus = ({ status }) => {
     let statusName;
     let className = classNames('deck-status', {
         invalid: !status.basicRules,
-        'not-verified': status.basicRules && status.notVerified,
+        conjurations: !status.hasConjurations,
         used: status.usageLevel === 1 && !status.verified,
         popular: status.usageLevel === 2 && !status.verified,
         notorious: status.usageLevel === 3 && !status.verified,
-        valid: status.basicRules
+        valid: status.basicRules && status.hasConjurations && status.tenDice
     });
 
-    if (!status.basicRules) {
+    if (!status.basicRules || !status.hasConjurations || !status.tenDice) {
         statusName = t('Invalid');
     } else if (status.usageLevel === 1 && !status.verified) {
         statusName = t('Used');
