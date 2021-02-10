@@ -68,7 +68,7 @@ class DiceGameAction extends GameAction {
                 }
             };
             let properties = Object.assign(defaultProperties, this.promptForSelect);
-            context.game.promptForSelect(properties.player, properties);
+            context.game.promptForDieSelect(properties.player, properties);
         } else if (this.promptWithHandlerMenu) {
             let properties = this.promptWithHandlerMenu;
             if (!properties.customHandler) {

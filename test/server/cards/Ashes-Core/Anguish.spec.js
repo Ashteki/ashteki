@@ -107,10 +107,10 @@ describe('Anguish', function () {
             this.player1.clickPrompt('Done');
             this.player2.clickPrompt('Discard');
             this.player2.clickPrompt('Exhaust 2 Dice');
-            expect(this.player1).toHavePrompt('Select dice');
             this.player1.clickOpponentDie(0);
             this.player1.clickOpponentDie(1);
 
+            this.player1.clickPrompt('Done');
             expect(this.player2.dicepool[0].exhausted).toBe(true);
             expect(this.player2.dicepool[1].exhausted).toBe(true);
 
