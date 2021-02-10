@@ -66,7 +66,8 @@ class BasePlayAction extends BaseAbility {
             {
                 player: context.player,
                 card: context.source,
-                originalLocation: context.source.location
+                originalLocation: context.source.location,
+                context: context
             },
             () => context.game.cardsPlayed.push(context.source)
         );

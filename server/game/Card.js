@@ -287,10 +287,9 @@ class Card extends PlayableObject {
     }
 
     reaction(properties) {
-        if (properties.play || properties.fight) {
+        if (properties.play) {
             properties.when = {
-                onCardPlayed: (event, context) => event.card === context.source,
-                onFight: (event, context) => event.attacker === context.source
+                onCardPlayed: (event, context) => event.card === context.source
             };
         }
 
