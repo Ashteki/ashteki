@@ -5,19 +5,22 @@ class ChangePsyche extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Change Psyche',
-            target: {
-                mode: 'select',
-                choices: {
-                    'Add token': ability.actions.exhaust({
-                        promptForSelect: {
-                            cardType: BattlefieldTypes
-                        }
-                    }),
-                    'Remove token': ability.actions.removeExhaustion({
-                        promptForSelect: {
-                            cardType: BattlefieldTypes
-                        }
-                    })
+            // this is set because messages are displayed before gameAction promptForSelect triggers
+            targets: {
+                aUnit: {
+                    cardType: BattlefieldTypes
+                },
+                chooser: {
+                    dependsOn: 'aUnit',
+                    mode: 'select',
+                    choices: {
+                        'Add token': ability.actions.exhaust((context) => ({
+                            target: context.targets.aUnit
+                        })),
+                        'Remove token': ability.actions.removeExhaustion((context) => ({
+                            target: context.targets.aUnit
+                        }))
+                    }
                 }
             }
         });

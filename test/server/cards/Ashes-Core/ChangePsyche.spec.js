@@ -22,8 +22,8 @@ describe('Change Psyche played', function () {
         this.player1.clickPrompt('Play this Action');
         this.player1.clickDie(0);
         this.player1.clickPrompt('Done');
-        this.player1.clickPrompt('Add token');
         this.player1.clickCard(this.mistSpirit); // attach to ms
+        this.player1.clickPrompt('Add token');
         expect(this.mistSpirit.exhausted).toBe(true);
     });
 
@@ -36,8 +36,8 @@ describe('Change Psyche played', function () {
         this.player1.clickPrompt('Play this Action');
         this.player1.clickDie(0);
         this.player1.clickPrompt('Done');
-        this.player1.clickPrompt('Remove token');
         this.player1.clickCard(this.mistSpirit); // attach to ms
+        this.player1.clickPrompt('Remove token');
         expect(this.mistSpirit.exhausted).toBe(true);
         expect(this.mistSpirit.tokens.exhaustion).toBe(1);
     });
