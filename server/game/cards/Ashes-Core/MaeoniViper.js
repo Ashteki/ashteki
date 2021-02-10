@@ -6,6 +6,9 @@ class MaeoniViper extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Command Strike',
+            condition: (context) =>
+                context.player.unitsInPlay.length > 0 &&
+                context.player.opponent.unitsInPlay.length > 0,
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
