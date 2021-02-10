@@ -47,15 +47,17 @@ describe('Close combat played', function () {
     });
 
     it('wounds choice for my unit', function () {
+        this.silverSnake.tokens.status = 1;
+
         this.player1.clickCard(this.closeCombat); // play card
         this.player1.clickPrompt('Play this action');
-        this.player1.clickCard(this.blueJaguar); // choose ms for 1 damage
+        this.player1.clickCard(this.silverSnake); // choose ss for 1 damage
         this.player1.clickCard(this.ironWorker); // choose iw to take 1
 
         this.player1.clickPrompt('Wound');
 
         expect(this.ironWorker.damage).toBe(1);
-        expect(this.blueJaguar.exhausted).toBe(false);
-        expect(this.blueJaguar.damage).toBe(1);
+        expect(this.silverSnake.exhausted).toBe(false);
+        expect(this.silverSnake.damage).toBe(1);
     });
 });

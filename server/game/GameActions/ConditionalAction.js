@@ -29,6 +29,13 @@ class ConditionalAction extends GameAction {
         return gameAction;
     }
 
+    preEventHandler(context) {
+        super.preEventHandler(context);
+
+        const gameAction = this.getGameAction(context);
+        gameAction.preEventHandler(context);
+    }
+
     update(context) {
         super.update(context);
 
