@@ -7,7 +7,6 @@ const EventToTitleFunc = {
     onCardBowed: (event) => event.card.name + ' being bowed',
     onClaimRing: (event) => 'to the ' + event.conflict.conflictRing + ' ring being claimed',
     onCardLeavesPlay: (event) => event.card.name + ' leaving play',
-    onCardDestroyed: (event) => event.card.name + ' being destroyed',
     onCharacterEntersPlay: (event) => event.card.name + ' entering play',
     onCardPlayed: (event) => event.card.name + ' being played',
     onCardHonored: (event) => event.card.name + ' being honored',
