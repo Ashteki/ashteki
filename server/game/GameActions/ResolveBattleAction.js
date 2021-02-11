@@ -50,8 +50,9 @@ class ResolveBattleAction extends GameAction {
                     showMessage: true
                 };
 
-                let attackerAmount =
-                    event.attacker.attack + event.attacker.getBonusDamage(event.attackerTarget);
+                let attackerAmount = event.attacker.exhausted
+                    ? 0
+                    : event.attacker.attack + event.attacker.getBonusDamage(event.attackerTarget);
                 if (event.attacker.anyEffect('limitFightDamage')) {
                     attackerAmount = Math.min(
                         attackerAmount,
