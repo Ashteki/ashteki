@@ -82,7 +82,7 @@ class MeditatePrompt extends UiPrompt {
     }
 
     waitingPrompt() {
-        return { menuTitle: 'Waiting for opponent' };
+        return { menuTitle: 'Opponent is meditating...' };
     }
 
     onCardClicked(player, card) {
@@ -119,8 +119,11 @@ class MeditatePrompt extends UiPrompt {
     }
 
     selectDie(die) {
+        const cards = [...this.choosingPlayer.selectedCards];
         this.choosingPlayer.discardSelectedCards();
         die.level = 'power';
+        this.game.addMessage('{0} meditates {1} to gain a {2}', this.choosingPlayer, cards, die);
+
         this.count = this.count + 1;
         this.resetSelections(this.choosingPlayer);
         return true;
@@ -132,7 +135,7 @@ class MeditatePrompt extends UiPrompt {
         }
 
         if (arg === 'done') {
-            this.game.addMessage('{0} meditates {1} cards/dice', player, this.count);
+            this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
 
             this.resetSelections(player);
 

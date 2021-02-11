@@ -26,6 +26,7 @@ class DestroyAction extends CardGameAction {
             damageEvent: this.damageEvent
         };
         return super.createEvent('onCardDestroyed', params, (event) => {
+            event.context.game.addMessage('{0} is destroyed', card);
             event.card.moribund = true;
 
             event.leavesPlayEvent = context.game.getEvent(
