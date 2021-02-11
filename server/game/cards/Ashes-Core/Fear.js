@@ -8,20 +8,21 @@ class Fear extends Card {
                 activePromptTitle: 'Choose a unit to destroy',
                 player: 'self',
                 cardType: BattlefieldTypes,
-                gameAction: [
-                    ability.actions.destroy(),
-                    ability.actions.removeDamage((context) => ({
-                        amount: context.target.recover,
-                        target: context.source.owner.phoenixborn
-                    }))
-                ]
+                gameAction: [ability.actions.destroy()]
             },
             then: {
-                target: {
-                    activePromptTitle: 'Choose a unit to discard',
-                    controller: 'opponent',
-                    cardType: BattlefieldTypes,
-                    gameAction: ability.actions.discard()
+                gameAction: ability.actions.removeDamage((context) => ({
+                    amount: context.preThenEvent.context.target.recover,
+                    target: context.source.owner.phoenixborn
+                })),
+                then: {
+                    alwaysTriggers: true,
+                    target: {
+                        activePromptTitle: 'Choose a unit to discard',
+                        controller: 'opponent',
+                        cardType: BattlefieldTypes,
+                        gameAction: ability.actions.discard()
+                    }
                 }
             }
         });
