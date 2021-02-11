@@ -7,7 +7,6 @@ const Actions = {
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory),
-    archive: (propertyFactory) => new GameActions.ArchiveAction(propertyFactory),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
     attachDie: (propertyFactory) => new GameActions.AttachDieAction(propertyFactory), // upgradeDie
     detachDie: (propertyFactory) => new GameActions.DetachDieAction(propertyFactory), // die, card
@@ -49,7 +48,6 @@ const Actions = {
     removeFromBattle: (propertyFactory) => new GameActions.RemoveFromBattleAction(propertyFactory),
 
     // player actions
-    archiveAtRandom: (propertyFactory) => new GameActions.RandomArchiveAction(propertyFactory), // amount = 1
     chosenDiscard: (propertyFactory) => new GameActions.ChosenDiscardAction(propertyFactory), // amount = 1
     chosenExhaust: (propertyFactory) => new GameActions.ChosenExhaustAction(propertyFactory), // amount = 1
     discardAtRandom: (propertyFactory) => new GameActions.RandomDiscardAction(propertyFactory), // amount = 1
