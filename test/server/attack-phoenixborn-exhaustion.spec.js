@@ -40,5 +40,8 @@ describe('During attack on Phoenixborn', function () {
         expect(this.ironWorker.exhausted).toBe(true); // attacked
         // second battle auto-resolves - defender has been exhausted
         expect(this.ironWorker.damage).toBe(0); // no counter from mist spirit
+
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.aradelSummergaard.exhausted).toBe(false);
     });
 });
