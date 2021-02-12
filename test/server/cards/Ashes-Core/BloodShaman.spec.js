@@ -5,7 +5,7 @@ describe('Blood Shaman', function () {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['blood-shaman'],
                 dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
-                hand: ['freezing-blast']
+                hand: ['freezing-blast', 'fear']
             },
             player2: {
                 phoenixborn: 'maeoni-viper',
@@ -65,5 +65,20 @@ describe('Blood Shaman', function () {
         expect(this.bloodShaman.location).toBe('discard');
         expect(this.aradelSummergaard.damage).toBe(1);
         expect(this.player1.dicepool[0].level).toBe('class');
+    });
+
+    it('triggers when destroyed by fear - no damagedealt', function () {
+        expect(this.player1.dicepool[0].level).toBe('class');
+        this.player1.clickCard(this.fear);
+        this.player1.clickPrompt('Play this action');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.bloodShaman);
+
+        expect(this.player1).toHavePrompt('Choose a die');
+        this.player1.clickDie(0);
+        expect(this.aradelSummergaard.damage).toBe(0);
+        expect(this.player1.dicepool[0].level).toBe('power');
+
+        expect(this.player1).toHavePrompt('Choose a unit to discard'); // resume fear part 2...
     });
 });
