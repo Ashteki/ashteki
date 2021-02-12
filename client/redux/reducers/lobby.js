@@ -122,6 +122,7 @@ function handleGameState(action, state) {
 
     if (
         currentState &&
+        currentState.spectators &&
         currentState.spectators.some((spectator) => {
             return spectator.name === username;
         })
