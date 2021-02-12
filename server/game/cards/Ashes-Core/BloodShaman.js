@@ -7,9 +7,7 @@ class BloodShaman extends Card {
             condition: (context) =>
                 context.event.triggeringEvent &&
                 context.event.triggeringEvent.name === 'onCardDestroyed' &&
-                context.event.triggeringEvent.damageEvent &&
-                context.event.triggeringEvent.damageEvent.damageSource.owner ===
-                    context.source.owner,
+                context.event.triggeringEvent.context.player === context.source.controller,
             gameAction: ability.actions.removeDamage((context) => ({
                 amount: 1,
                 target: context.source.owner.phoenixborn
