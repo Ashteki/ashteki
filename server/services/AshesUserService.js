@@ -43,7 +43,11 @@ class UserService extends EventEmitter {
     }
 
     async getFullUserByUsername(username) {
-        return new User(await this.getUserByUsername(username));
+        const user = await this.getUserByUsername(username);
+        user.tokens = await this.getRefreshTokens(user._id.toString());
+        user.blocklist = await this.getBlocklist(user._id.toString());
+
+        return new User(user);
     }
 
     async doesUserExist(username) {
