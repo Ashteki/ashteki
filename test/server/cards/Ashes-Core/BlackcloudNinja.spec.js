@@ -10,14 +10,17 @@ describe('Blackcloud Ninja reaction', function () {
             player2: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['flute-mage', 'hammer-knight'],
-                spellboard: ['summon-butterfly-monk'],
+                spellboard: ['summon-butterfly-monk', 'empower'],
                 hand: ['redirect'],
                 dicepool: ['natural', 'natural', 'charm', 'charm']
             }
         });
+
+        this.empower.tokens.exhaustion = 1;
     });
 
     it('prompts for reaction when ninja is declared attacker', function () {
+        expect(this.empower.exhausted).toBe(true);
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.coalRoarkwin); // target
         this.player1.clickCard(this.blackcloudNinja); // single attacker
@@ -27,6 +30,7 @@ describe('Blackcloud Ninja reaction', function () {
         this.player1.clickCard(this.blackcloudNinja); // redirect damage to hammerKnight
 
         expect(this.player2).toBeAbleToSelect(this.summonButterflyMonk);
+        expect(this.player2).not.toBeAbleToSelect(this.empower);
         // any interrupts?
         this.player2.clickCard(this.summonButterflyMonk); // click to exhaust
 
