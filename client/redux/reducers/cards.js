@@ -25,11 +25,15 @@ function processDecks(decks, state) {
         }));
         let hasPhoenixborn = deck.phoenixborn.length === 1;
 
-        deck.cards = deck.cards.map((card) => ({
-            count: card.count,
-            card: Object.assign({}, state.cards[card.id]),
-            id: card.id
-        }));
+        deck.cards = deck.cards.map((card) => {
+            const c = Object.assign({}, state.cards[card.id]);
+            return {
+                count: card.count,
+                card: c,
+                id: card.id,
+                conjurations: c.conjurations
+            };
+        });
 
         deck.conjurations = deck.conjurations.map((card) => ({
             count: card.count,

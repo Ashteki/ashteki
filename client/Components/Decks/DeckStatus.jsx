@@ -12,11 +12,8 @@ const DeckStatus = ({ status }) => {
 
     let statusName;
     let className = classNames('deck-status', {
-        invalid: !status.basicRules,
+        invalid: !status.basicRules || !status.hasConjurations || !status.tenDice,
         conjurations: !status.hasConjurations,
-        used: status.usageLevel === 1 && !status.verified,
-        popular: status.usageLevel === 2 && !status.verified,
-        notorious: status.usageLevel === 3 && !status.verified,
         valid: status.basicRules && status.hasConjurations && status.tenDice
     });
 
