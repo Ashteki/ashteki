@@ -4,6 +4,7 @@ class ChosenExhaustAction extends PlayerAction {
     setDefaultProperties() {
         this.amount = 1;
         this.cardType = 'any';
+        this.cardCondition = null;
     }
 
     setup() {
@@ -30,6 +31,7 @@ class ChosenExhaustAction extends PlayerAction {
                         mode: 'exactly',
                         numCards: amount,
                         cardType: this.cardType,
+                        cardCondition: this.cardCondition,
                         controller: player === context.player ? 'self' : 'opponent',
                         onSelect: (player, cards) => {
                             context.game.addMessage('{0} discards {1}', player, cards);

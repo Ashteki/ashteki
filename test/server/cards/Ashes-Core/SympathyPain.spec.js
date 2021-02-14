@@ -5,7 +5,7 @@ describe('Sympathy pain reaction spell', function () {
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['flute-mage', 'hammer-knight'],
-                    spellboard: [],
+                    spellboard: ['chant-of-revenge'],
                     dicepool: ['natural', 'natural', 'charm', 'charm'],
                     hand: ['cover', 'molten-gold']
                 },
@@ -15,6 +15,7 @@ describe('Sympathy pain reaction spell', function () {
                     hand: ['sympathy-pain']
                 }
             });
+            this.chantOfRevenge.tokens.status = 1;
         });
 
         it('can be played when my phoenixborn takes damage from coal PB ability', function () {
@@ -37,6 +38,18 @@ describe('Sympathy pain reaction spell', function () {
             this.player1.clickCard(this.moltenGold);
             this.player1.clickPrompt('Play this Action');
             this.player1.clickCard(this.sariaGuideman);
+            expect(this.player2).toBeAbleToSelect(this.sympathyPain);
+            this.player2.clickCard(this.sympathyPain); // click sym pain to play as reaction
+            this.player2.clickDie(3);
+            this.player2.clickCard(this.hammerKnight); // redirect damage to hammerKnight
+
+            expect(this.hammerKnight.damage).toBe(2);
+        });
+
+        it('can be played when my phoenixborn takes damage from chant of revenge', function () {
+            expect(this.hammerKnight.damage).toBe(0);
+            this.player1.clickCard(this.chantOfRevenge); // use slash
+            this.player1.clickPrompt('Take Revenge');
             expect(this.player2).toBeAbleToSelect(this.sympathyPain);
             this.player2.clickCard(this.sympathyPain); // click sym pain to play as reaction
             this.player2.clickDie(3);

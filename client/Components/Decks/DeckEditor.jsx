@@ -249,7 +249,12 @@ class InnerDeckEditor extends React.Component {
         if (list[card.id]) {
             list[card.id].count += number;
         } else {
-            list.push({ count: number, card: card, id: card.stub });
+            list.push({
+                count: number,
+                card: card,
+                id: card.stub,
+                conjurations: card.conjurations
+            });
         }
     }
 

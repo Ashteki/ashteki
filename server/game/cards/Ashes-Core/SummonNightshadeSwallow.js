@@ -20,6 +20,7 @@ class SummonNightshadeSwallow extends Card {
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
+                alwaysTriggers: true,
                 may: 'force opponent to discard?',
                 condition: (context) =>
                     this.focus &&
