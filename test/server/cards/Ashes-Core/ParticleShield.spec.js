@@ -18,7 +18,7 @@ describe('Particle Shield reaction spell', function () {
 
     it('should prevent damage on attack and give draw', function () {
         expect(this.fluteMage.damage).toBe(0);
-        expect(this.player2.deck.length).toBe(4);
+        const p2deck = this.player2.deck.length;
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.fluteMage);
         this.player1.clickCard(this.ironWorker);
@@ -29,12 +29,12 @@ describe('Particle Shield reaction spell', function () {
         expect(this.particleShield.location).toBe('discard');
         expect(this.fluteMage.damage).toBe(1);
         expect(this.player2.hand.length).toBe(1);
-        expect(this.player2.deck.length).toBe(3);
+        expect(this.player2.deck.length).toBe(p2deck - 1); // one played, one drawn
     });
 
     it('should prevent damage on ability and give draw', function () {
         expect(this.fluteMage.damage).toBe(0);
-        expect(this.player2.deck.length).toBe(4);
+        const p2deck = this.player2.deck.length;
         this.player1.clickCard(this.aradelSummergaard);
         this.player1.clickPrompt('Water Blast');
         this.player1.clickCard(this.fluteMage);
@@ -43,12 +43,12 @@ describe('Particle Shield reaction spell', function () {
         expect(this.particleShield.location).toBe('discard');
         expect(this.fluteMage.damage).toBe(1);
         expect(this.player2.hand.length).toBe(1);
-        expect(this.player2.deck.length).toBe(3);
+        expect(this.player2.deck.length).toBe(p2deck - 1); // one played, one drawn
     });
 
     it('can prevent self inflicted damage', function () {
         expect(this.fluteMage.damage).toBe(0);
-        expect(this.player2.deck.length).toBe(4);
+        const p2deck = this.player2.deck.length;
         this.player1.endTurn();
 
         this.player2.clickCard('aradel-summergaard', 'any', 'self');
@@ -59,6 +59,6 @@ describe('Particle Shield reaction spell', function () {
         expect(this.particleShield.location).toBe('discard');
         expect(this.fluteMage.damage).toBe(1);
         expect(this.player2.hand.length).toBe(1);
-        expect(this.player2.deck.length).toBe(3);
+        expect(this.player2.deck.length).toBe(p2deck - 1); // one played, one drawn
     });
 });

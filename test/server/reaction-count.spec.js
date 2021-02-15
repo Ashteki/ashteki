@@ -10,7 +10,7 @@ describe('Reactions', function () {
                         'ceremonial',
                         'ceremonial',
                         'ceremonial',
-                        'ceremonial',
+                        'illusion',
                         'charm',
                         'charm'
                     ],
@@ -22,8 +22,16 @@ describe('Reactions', function () {
                     phoenixborn: 'jessa-na-ni',
                     inPlay: ['anchornaut', 'mist-spirit'],
                     spellboard: [],
-                    dicepool: ['charm', 'charm', 'illusion', 'ceremonial', 'ceremonial'],
-                    hand: []
+                    dicepool: [
+                        'charm',
+                        'charm',
+                        'illusion',
+                        'ceremonial',
+                        'ceremonial',
+                        'natural',
+                        'natural'
+                    ],
+                    hand: ['molten-gold']
                 }
             });
         });
@@ -35,7 +43,7 @@ describe('Reactions', function () {
             expect(this.fireArcher.location).toBe('discard');
 
             this.player1.clickCard(this.jessaNaNi);
-            expect(this.player1).toHavePrompt('Any reactions to Fire Archer leaving play?');
+            expect(this.player1).toHavePrompt('Any reactions to Fire Archer being destroyed?');
 
             this.player1.clickCard(this.summonSleepingWidows);
             expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
@@ -46,10 +54,37 @@ describe('Reactions', function () {
             this.player1.clickPrompt('Done');
             expect(this.player1.inPlay.length).toBe(2);
             expect(this.player1.discard.length).toBe(2); // summonSleepingWidows and fire archer
-            expect(this.player1).not.toHavePrompt('Any reactions to Fire Archer leaving play?');
-            expect(this.player2).toHavePrompt('Any reactions to Fire Archer leaving play?'); // jessa reaction
+            expect(this.player1).not.toHavePrompt('Any reactions to Fire Archer being destroyed?');
+            expect(this.player2).toHavePrompt('Any reactions to Fire Archer being destroyed?'); // jessa reaction
 
             this.player2.clickPrompt('Pass');
+        });
+
+        it('reaction count resets each turn', function () {
+            this.player1.clickCard(this.brennenBlackcloud);
+            this.player1.clickPrompt('Spirit Burn');
+            this.player1.clickCard(this.fireArcher);
+            this.player1.clickCard(this.jessaNaNi);
+            expect(this.player1).toHavePrompt('Any reactions to Fire Archer being destroyed?');
+
+            this.player1.clickCard(this.summonSleepingWidows);
+            this.player1.clickCard(this.player1.archives[0]);
+            this.player1.clickCard(this.player1.archives[1]);
+            this.player1.clickPrompt('Done');
+
+            expect(this.player1).not.toHavePrompt('Any reactions to Fire Archer being destroyed?');
+            expect(this.player2).toHavePrompt('Any reactions to Fire Archer being destroyed?'); // jessa reaction
+
+            this.player2.clickPrompt('Pass');
+            this.player1.clickCard(this.jessaNaNi);
+            this.player1.endTurn();
+            this.player2.clickCard(this.moltenGold);
+            this.player2.clickPrompt('Play this action');
+            this.player2.clickCard(this.sleepingWidow);
+            expect(this.player2).toHavePrompt('Any reactions to Sleeping Widow being destroyed?');
+
+            this.player2.clickPrompt('Pass');
+            expect(this.player1).toHavePrompt('Any reactions to Sleeping Widow being destroyed?');
         });
     });
 
@@ -88,8 +123,8 @@ describe('Reactions', function () {
             this.player1.clickPrompt('Self Inflict');
             this.player1.clickDie(0);
             expect(this.bloodPuppet.location).toBe('archives');
-            expect(this.player1).toHavePrompt('Any reactions to blood puppet leaving play?');
-            expect(this.player2).not.toHavePrompt('Any reactions to blood puppet leaving play?');
+            expect(this.player1).toHavePrompt('Any reactions to blood puppet being destroyed?');
+            expect(this.player2).not.toHavePrompt('Any reactions to blood puppet being destroyed?');
 
             this.player1.clickCard(this.summonSleepingWidows);
             expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
@@ -98,7 +133,7 @@ describe('Reactions', function () {
             this.player1.clickCard(this.player1.archives[1]);
             this.player1.clickPrompt('Done');
 
-            expect(this.player2).toHavePrompt('Any reactions to blood puppet leaving play?');
+            expect(this.player2).toHavePrompt('Any reactions to blood puppet being destroyed?');
             this.player2.clickCard(this.jessaNaNi);
             this.player2.clickDie(1);
 
@@ -148,7 +183,7 @@ describe('Reactions', function () {
             // player2 uses reaction spell
             this.player2.clickCard('ice-trap');
             expect(this.fireArcher.location).toBe('discard');
-            expect(this.player1).toHavePrompt('Any reactions to Fire Archer leaving play?');
+            expect(this.player1).toHavePrompt('Any reactions to Fire Archer being destroyed?');
 
             this.player1.clickPrompt('Pass');
             this.player1.clickCard(this.brennenBlackcloud);
@@ -156,10 +191,10 @@ describe('Reactions', function () {
             this.player1.clickCard(this.ironWorker);
             expect(this.ironWorker.location).toBe('discard');
             // player1 has not used a reaction spell, so is asked for reaction
-            expect(this.player1).toHavePrompt('Any reactions to Iron Worker leaving play?');
+            expect(this.player1).toHavePrompt('Any reactions to Iron Worker being destroyed?');
             this.player1.clickPrompt('Pass');
             // player 2 should not be prompted because they reacted already this turn
-            expect(this.player2).not.toHavePrompt('Any reactions to Iron Worker leaving play?');
+            expect(this.player2).not.toHavePrompt('Any reactions to Iron Worker being destroyed?');
         });
     });
 });

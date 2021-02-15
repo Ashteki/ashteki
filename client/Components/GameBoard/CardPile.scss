@@ -147,7 +147,7 @@
     .panel {
         .inner {
             @include calculate-tiled-card-prop(min-height, 1, height);
-            @include calculate-tiled-card-prop(width, 7, width, $scrollbar-width);
+            @include calculate-tiled-card-prop(width, 8, width, $scrollbar-width);
         }
     }
 }

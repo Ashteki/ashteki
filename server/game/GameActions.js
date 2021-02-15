@@ -84,6 +84,7 @@ const Actions = {
 
     exhaustDie: (propertyFactory) => new GameActions.ExhaustDieAction(propertyFactory),
     setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),
+    rerollDie: (propertyFactory) => new GameActions.RerollDieAction(propertyFactory),
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),
     lowerDie: (propertyFactory) => new GameActions.ChangeDieAction(propertyFactory, 'lower'),
     raiseDie: (propertyFactory) => new GameActions.ChangeDieAction(propertyFactory, 'raise')

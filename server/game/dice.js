@@ -14,14 +14,18 @@ class Dice {
             }
         });
 
-        let levels = ['power', 'class', 'class', 'class', 'basic', 'basic'];
         return dice.map((dt) => {
             return {
                 magic: dt,
-                level: levels[this.getRandomInt(6)],
+                level: this.getRandomDieLevel(),
                 exhausted: false
             };
         });
+    }
+
+    static getRandomDieLevel() {
+        let levels = ['power', 'class', 'class', 'class', 'basic', 'basic'];
+        return levels[this.getRandomInt(6)];
     }
 
     // can diceReq be matched from the collection of dice?

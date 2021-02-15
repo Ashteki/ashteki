@@ -2,29 +2,25 @@ const _ = require('underscore');
 const { AbilityType } = require('../../constants');
 
 const EventToTitleFunc = {
+    onCardPlayed: (event) => event.card.name + ' being played',
+    onCardEntersPlay: (event) => event.card.name + ' being played',
     onAbilityInitiated: (event) => event.context.ability.title,
     onCardAbilityInitiated: (event) => 'the effects of ' + event.card.name,
     onCardBowed: (event) => event.card.name + ' being bowed',
-    onClaimRing: (event) => 'to the ' + event.conflict.conflictRing + ' ring being claimed',
+    onDamageDealt: (event) => event.card.name + ' receiving damage',
+    onCardDestroyed: (event) => event.card.name + ' being destroyed',
     onCardLeavesPlay: (event) => event.card.name + ' leaving play',
-    onCharacterEntersPlay: (event) => event.card.name + ' entering play',
-    onCardPlayed: (event) => event.card.name + ' being played',
-    onCardHonored: (event) => event.card.name + ' being honored',
-    onCardDishonored: (event) => event.card.name + ' being dishonored',
-    onMoveCharactersToConflict: () => 'characters moving to the conflict',
     onPhaseEnded: (event) => event.phase + ' phase ending',
     onPhaseStarted: (event) => event.phase + ' phase starting',
-    onReturnRing: (event) => 'returning the ' + event.ring.element + ' ring',
-    onSacrificed: (event) => event.card.name + ' being sacrificed',
-    onRemovedFromChallenge: (event) => event.card.name + ' being removed from the challenge'
+    onSacrificed: (event) => event.card.name + ' being sacrificed'
 };
 
 const AbilityTypeToWord = {
     cancelinterrupt: 'interrupt',
     interrupt: 'interrupt',
     reaction: 'reaction',
-    forcedreaction: 'forced reaction',
-    forcedinterrupt: 'forced interrupt',
+    forcedreaction: 'reaction',
+    forcedinterrupt: 'interrupt',
     whenrevealed: 'when revealed'
 };
 

@@ -18,15 +18,13 @@ class UpToXDiceSelector extends BaseDieSelector {
 
     defaultActivePromptTitle(context) {
         let numDice = this.getNumDice(context);
-        // if (this.cardType.length === 1) {
-        //     return numDice === 1
-        //         ? 'Choose a ' + this.cardType[0]
-        //         : { text: `Choose {{amount}} ${this.cardType[0]}s`, values: { amount: numDice } };
-        // }
-
         return numDice === 1
-            ? 'Choose a die'
-            : { text: 'Choose {{amount}} dice', values: { amount: numDice } };
+            ? this.owner === 'self'
+                ? 'Choose a die'
+                : "Choose an opponent's die"
+            : this.owner === 'self'
+            ? 'Choose up to ' + numDice + ' dice'
+            : 'Choose up to ' + numDice + " of your opponent's dice";
     }
 
     hasReachedLimit(selectedDice, context) {

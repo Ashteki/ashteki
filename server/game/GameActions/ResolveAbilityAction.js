@@ -7,8 +7,8 @@ class NoCostsAbilityResolver extends AbilityResolver {
         this.pipeline.initialise([
             new SimpleStep(this.game, () => this.createSnapshot()),
             new SimpleStep(this.game, () => this.resolveTargets()),
-            new SimpleStep(this.game, () => this.initiateAbility()),
-            new SimpleStep(this.game, () => this.executeHandler())
+            new SimpleStep(this.game, () => this.initiateAbility())
+            // new SimpleStep(this.game, () => this.executeHandler())
         ]);
     }
 }
