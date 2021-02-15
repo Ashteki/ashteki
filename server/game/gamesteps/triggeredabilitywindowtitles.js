@@ -11,6 +11,7 @@ const EventToTitleFunc = {
     onCardPlayed: (event) => event.card.name + ' being played',
     onCardHonored: (event) => event.card.name + ' being honored',
     onCardDishonored: (event) => event.card.name + ' being dishonored',
+    onDamageDealt: (event) => event.card.name + ' receiving damage',
     onMoveCharactersToConflict: () => 'characters moving to the conflict',
     onPhaseEnded: (event) => event.phase + ' phase ending',
     onPhaseStarted: (event) => event.phase + ' phase starting',
