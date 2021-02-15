@@ -26,7 +26,7 @@ describe('Jessa Na Ni', function () {
         this.player2.clickPrompt('No'); // no counter
         expect(this.anchornaut.location).toBe('discard');
         // prompt for jessa
-        expect(this.player1).toHavePrompt('Any reactions to Anchornaut leaving play?');
+        expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
         this.player1.clickCard(this.jessaNaNi);
         this.player1.clickDie(1);
         expect(this.coalRoarkwin.damage).toBe(1);
@@ -40,9 +40,9 @@ describe('Jessa Na Ni', function () {
         this.player2.clickPrompt('No'); // no counter
         expect(this.anchornaut.location).toBe('discard');
         // prompt for jessa
-        expect(this.player1).toHavePrompt('Any reactions to Anchornaut leaving play?');
+        expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
         this.player1.pass();
         expect(this.coalRoarkwin.damage).toBe(0);
-        expect(this.player1).not.toHavePrompt('Any reactions to Anchornaut leaving play?');
+        expect(this.player1).not.toHavePrompt('Any reactions to Anchornaut being destroyed?');
     });
 });

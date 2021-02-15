@@ -38,7 +38,7 @@ describe('Summon Sleeping Widows bugreport', function () {
         this.player1.clickCard(this.ironWorker);
         this.player1.clickPrompt('Damage');
         expect(this.maskedWolf.location).toBe('archives');
-        expect(this.player1).toHavePrompt('Any reactions to Masked Wolf leaving play?');
+        expect(this.player1).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player1.clickCard(this.summonSleepingWidows);
         expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
         expect(this.player1).toBeAbleToSelect(this.player1.archives[1]);
@@ -47,7 +47,7 @@ describe('Summon Sleeping Widows bugreport', function () {
         this.player1.clickPrompt('Done');
         expect(this.player1.inPlay.length).toBe(2);
         // prompt for jessa screams
-        expect(this.player2).toHavePrompt('Any reactions to Masked Wolf leaving play?');
+        expect(this.player2).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player2.clickPrompt('Pass');
     });
 
@@ -58,7 +58,7 @@ describe('Summon Sleeping Widows bugreport', function () {
         this.player1.clickCard(this.anchornaut);
         this.player1.clickPrompt('Damage');
         expect(this.maskedWolf.location).toBe('archives');
-        expect(this.player1).toHavePrompt('Any reactions to Masked Wolf leaving play?');
+        expect(this.player1).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player1.clickCard(this.summonSleepingWidows);
         expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
         expect(this.player1).toBeAbleToSelect(this.player1.archives[1]);
@@ -67,7 +67,7 @@ describe('Summon Sleeping Widows bugreport', function () {
         this.player1.clickPrompt('Done');
         expect(this.player1.inPlay.length).toBe(2);
         // prompt for jessa screams
-        expect(this.player2).toHavePrompt('Any reactions to Masked Wolf leaving play?');
+        expect(this.player2).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player2.clickCard(this.jessaNaNi);
         this.player2.clickDie(0);
         expect(this.noahRedmoon.damage).toBe(1);

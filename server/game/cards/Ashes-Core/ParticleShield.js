@@ -9,13 +9,14 @@ class ParticleShield extends Card {
                     BattlefieldTypes.includes(event.card.type) &&
                     event.card.controller == context.player
             },
+            effect: 'prevent 1 damage and draw a card',
             gameAction: ability.actions.changeEvent((context) => ({
                 event: context.event,
                 amount: context.event.amount - 1
             })),
-            then: () => ({
+            then: {
                 gameAction: ability.actions.draw()
-            })
+            }
         });
     }
 }

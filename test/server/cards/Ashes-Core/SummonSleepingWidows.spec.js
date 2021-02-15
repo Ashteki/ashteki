@@ -27,9 +27,9 @@ describe('Summon Sleeping Widows', function () {
         this.player2.clickPrompt('No'); // no counter
         expect(this.anchornaut.location).toBe('discard');
         // prompt for jessa - Active player
-        expect(this.player1).toHavePrompt('Any reactions to Anchornaut leaving play?');
+        expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
         this.player1.clickPrompt('Pass');
-        expect(this.player2).toHavePrompt('Any reactions to Anchornaut leaving play?');
+        expect(this.player2).toHavePrompt('Any reactions to Anchornaut being destroyed?');
         this.player2.clickCard(this.summonSleepingWidows);
         expect(this.player2).toBeAbleToSelect(this.player2.archives[0]);
         expect(this.player2).toBeAbleToSelect(this.player2.archives[1]);

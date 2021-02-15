@@ -1,3 +1,4 @@
+const ExactlyXDiceSelector = require('./CardSelectors/ExactlyXDiceSelector');
 const MatchedDiceSelector = require('./CardSelectors/MatchedDiceSelector');
 // const MaxStatCardSelector = require('./CardSelectors/MaxStatCardSelector');
 // const MinStatCardSelector = require('./CardSelectors/MinStatCardSelector');
@@ -18,7 +19,7 @@ const defaultProperties = {
 const ModeToSelector = {
     ability: (p) => new SingleDieSelector(p),
     match: (p) => new MatchedDiceSelector(p.format, p),
-    // exactly: (p) => new ExactlyXCardSelector(p.numCards, p),
+    exactly: (p) => new ExactlyXDiceSelector(p.numDice, p),
     // minStat: (p) => new MinStatCardSelector(p),
     // maxStat: (p) => new MaxStatCardSelector(p),
     // mostStat: (p) => new MostStatCardSelector(p),
@@ -35,7 +36,7 @@ class DieSelector {
         let factory = ModeToSelector[properties.mode];
 
         if (!factory) {
-            throw new Error(`Unknown card selector mode of ${properties.mode}`);
+            throw new Error(`Unknown die selector mode of ${properties.mode}`);
         }
 
         return factory(properties);

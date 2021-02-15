@@ -124,17 +124,23 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     }
 
     getPromptProperties() {
+        const triggeringEvents = this.events.filter((e) =>
+            this.choices.map((c) => c.event.name).includes(e.name)
+        );
         return {
             source: 'Triggered Abilities',
-            controls: this.getPromptControls(),
-            activePromptTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
+            controls: this.getPromptControls(triggeringEvents),
+            activePromptTitle: TriggeredAbilityWindowTitles.getTitle(
+                this.abilityType,
+                triggeringEvents
+            ),
             waitingPromptTitle: 'Waiting for opponent'
         };
     }
 
-    getPromptControls() {
+    getPromptControls(triggeringEvents) {
         let map = new Map();
-        for (let event of this.events) {
+        for (let event of triggeringEvents) {
             if (event.context && event.context.source) {
                 let targets = map.get(event.context.source) || [];
                 if (event.context.target) {
