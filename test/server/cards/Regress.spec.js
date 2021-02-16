@@ -37,5 +37,12 @@ describe('Regress', function () {
         expect(this.hammerKnight.damage).toBe(2);
         expect(this.hammerKnight.location).toBe('play area');
         expect(this.player2).toHaveDefaultPrompt();
+
+        this.player2.endTurn();
+        this.player1.clickPrompt('Done');
+        this.player2.clickPrompt('Done');
+
+        // fleeting
+        expect(this.regress.location).toBe('discard');
     });
 });
