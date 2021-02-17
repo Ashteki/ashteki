@@ -290,6 +290,7 @@ export class GameBoard extends React.Component {
                         hideDecklists={this.props.currentGame.hideDecklists && spectating}
                         isMe={!spectating}
                         language={this.props.i18n.language}
+                        manualMode={this.props.currentGame.manualMode}
                         numDeckCards={thisPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
