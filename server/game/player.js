@@ -404,9 +404,8 @@ class Player extends GameObject {
 
         const cardLocations = ['hand', 'deck', 'discard', 'purged', 'grafted'];
         const legalLocations = {
-            upgrade: [...cardLocations, 'play area'],
             'Action Spell': [...cardLocations, 'being played'],
-            'Alteration Spell': [...cardLocations, 'play area'],
+            'Alteration Spell': [...cardLocations, 'being played', 'play area'],
             'Ready Spell': [...cardLocations, 'spellboard'],
             'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],

@@ -105,15 +105,10 @@ class AbilityResolver extends BaseStepWithPipeline {
             this.context.ability.limit.increment(this.context.player);
         }
 
-        this.context.player.moveCard(this.context.source, 'being played');
-        this.context.game.queueSimpleStep(() => {
-            if (this.context.source.location === 'being played') {
-                let location =
-                    this.context.source.mostRecentEffect('actionCardLocationAfterPlay') ||
-                    'discard';
-                this.context.source.owner.moveCard(this.context.source, location);
-            }
-        });
+        // move cards played from hand to active location
+        if (this.context.source.location === 'hand') {
+            this.context.player.moveCard(this.context.source, 'being played');
+        }
 
         this.game.raiseEvent(
             'onAbilityInitiated',
@@ -123,6 +118,15 @@ class AbilityResolver extends BaseStepWithPipeline {
             },
             () => this.executeHandler()
         );
+
+        this.context.game.queueSimpleStep(() => {
+            if (this.context.source.location === 'being played') {
+                let location =
+                    this.context.source.mostRecentEffect('actionCardLocationAfterPlay') ||
+                    'discard';
+                this.context.source.owner.moveCard(this.context.source, location);
+            }
+        });
     }
 
     executeHandler() {
