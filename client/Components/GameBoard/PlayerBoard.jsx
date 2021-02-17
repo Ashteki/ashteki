@@ -90,7 +90,7 @@ class PlayerBoard extends React.Component {
             'active-player': this.props.active
         });
 
-        let maxUpgrades = Math.min(this.props.cardsInPlay.map((c) => c.upgrades.length));
+        let maxUpgrades = Math.max(...this.props.cardsInPlay.map((c) => c.upgrades.length));
         let topMargin = maxUpgrades * 15;
         let style = { 'margin-top': topMargin + 'px' };
         return (

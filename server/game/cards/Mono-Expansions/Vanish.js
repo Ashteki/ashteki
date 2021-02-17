@@ -7,7 +7,8 @@ class Vanish extends Card {
         this.interrupt({
             when: {
                 onAbilityInitiated: (event, context) =>
-                    event.context.player === context.player.opponent && // it's targetting my phoenixborn
+                    event.context.player === context.player.opponent &&
+                    // it's targetting my phoenixborn
                     (Object.values(event.context.targets).some(
                         (t) => t.controller === context.player && t.type === CardType.Phoenixborn
                     ) ||

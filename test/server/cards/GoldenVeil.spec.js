@@ -4,8 +4,8 @@ describe('Golden Veil', function () {
             player1: {
                 phoenixborn: 'maeoni-viper',
                 inPlay: ['mist-spirit', 'iron-worker'],
-                dicepool: ['ceremonial', 'natural', 'natural', 'charm'],
-                hand: ['molten-gold']
+                dicepool: ['ceremonial', 'natural', 'natural', 'illusion', 'charm'],
+                hand: ['molten-gold', 'fade-away']
             },
             player2: {
                 phoenixborn: 'rin-northfell',
@@ -27,6 +27,20 @@ describe('Golden Veil', function () {
         expect(this.hammerKnight.damage).toBe(0);
         expect(this.hammerKnight.location).toBe('play area');
         expect(this.player1).toHaveDefaultPrompt();
+        expect(this.moltenGold.location).toBe('discard');
+    });
+
+    it('cancels alteration spell attachment to unit', function () {
+        this.player1.clickCard(this.fadeAway);
+        this.player1.clickPrompt('Play this alteration');
+        this.player1.clickCard(this.hammerKnight);
+
+        // expect(this.player2).toHavePrompt('Any Interrupts to molten gold?');
+        this.player2.clickCard(this.goldenVeil);
+
+        expect(this.hammerKnight.upgrades.length).toBe(0);
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.fadeAway.location).toBe('discard');
     });
 
     it('cancels multi-target ability - Maeoni', function () {
