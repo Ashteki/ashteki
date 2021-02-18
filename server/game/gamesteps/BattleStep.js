@@ -72,17 +72,17 @@ class BattleStep extends BaseStepWithPipeline {
     exhaustParticipants() {
         let battle = this.chosenBattle;
         let participants = [battle.attacker];
-        // if there's a guard or blocker, they counter and so exhaust
-        // otherwise if the target counters (was not guarded or blocked) they exhaust
-        if (
-            battle.guard &&
-            battle.guard.type !== CardType.Phoenixborn &&
-            battle.guard.exhaustsOnCounter()
-        ) {
-            participants.push(battle.guard);
+        // if there's a guard or blocker, they MUST counter and so exhaust
+        // EXCEPTION! not if it's a phoenixborn - no counter or exhaust
+        if (battle.guard && battle.guard.type !== CardType.Phoenixborn) {
+            if (battle.guard.exhaustsOnCounter()) {
+                participants.push(battle.guard);
+            }
         } else if (battle.counter && battle.target.exhaustsOnCounter()) {
+            // otherwise if the target counters (was not guarded or blocked) they exhaust
             participants.push(battle.target);
         }
+
         // phoenixborn don't exhaust, but are marked as having guarded this round
         if (battle.guard && battle.guard.type === CardType.Phoenixborn) {
             this.game.actions
