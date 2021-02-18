@@ -20,9 +20,7 @@ describe('Fade away', function () {
     it('destroys at end of round', function () {
         expect(this.game.round).toBe(1);
 
-        this.player1.clickCard(this.fadeAway); // play card
-        this.player1.clickPrompt('Play this alteration');
-        this.player1.clickCard(this.ironRhino); // attach to ms
+        this.player1.play(this.fadeAway, this.ironRhino); // attach to ms
 
         this.player1.clickPrompt('End Turn');
         // pass p2
@@ -41,9 +39,7 @@ describe('Fade away', function () {
     it('purges allies at end of round', function () {
         expect(this.game.round).toBe(1);
 
-        this.player1.clickCard(this.fadeAway); // play card
-        this.player1.clickPrompt('Play this alteration');
-        this.player1.clickCard(this.ironWorker); // attach to ms
+        this.player1.play(this.fadeAway, this.ironWorker); // attach to ms
 
         this.player1.clickPrompt('End Turn');
         // pass p2
