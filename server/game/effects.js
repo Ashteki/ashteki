@@ -61,6 +61,7 @@ const Effects = {
     bound: () => EffectBuilder.card.static('bound'),
     canGuard: () => EffectBuilder.card.static('canGuard'),
     concealed: () => EffectBuilder.card.static('concealed'),
+    cannotBeAttackTarget: () => EffectBuilder.card.static('cannotBeAttackTarget'),
     exhausted: () => EffectBuilder.card.static('exhausted'),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     spellGuard: () => EffectBuilder.card.static('spellGuard'),
