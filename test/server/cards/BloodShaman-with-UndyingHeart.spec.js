@@ -20,9 +20,7 @@ describe('Blood Shaman with undying heart', function () {
         this.player1.dicepool[0].lower();
         this.bloodShaman.tokens.damage = 1; // ensure freezing blast kills unit
 
-        this.player1.clickCard(this.undyingHeart);
-        this.player1.clickPrompt('Play this alteration');
-        this.player1.clickCard(this.bloodShaman);
+        this.player1.play(this.undyingHeart, this.bloodShaman);
     });
 
     it('triggers both abilities when destroyed by own spell', function () {

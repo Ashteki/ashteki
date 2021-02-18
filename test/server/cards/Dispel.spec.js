@@ -20,8 +20,7 @@ describe('Dispel action spell', function () {
     });
 
     it('should remove status tokens', function () {
-        this.player1.clickCard(this.massiveGrowth);
-        this.player1.clickPrompt('Play this Alteration');
+        this.player1.play(this.massiveGrowth);
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
         this.player1.clickCard(this.ironWorker);
@@ -38,8 +37,7 @@ describe('Dispel action spell', function () {
     });
 
     it('should remove chosen upgrade', function () {
-        this.player1.clickCard(this.massiveGrowth);
-        this.player1.clickPrompt('Play this Alteration');
+        this.player1.play(this.massiveGrowth);
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
         this.player1.clickCard(this.ironWorker);

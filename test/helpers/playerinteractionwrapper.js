@@ -554,15 +554,18 @@ class PlayerInteractionWrapper {
         }
     }
 
-    play(card, left = false, deploy = false) {
-        if (card.type === 'creature') {
-            this.playCreature(card, left, deploy);
-        } else if (card.type === 'artifact') {
+    play(card, target) {
+        if (card.type === 'Ally') {
+            this.playAlly(card);
+        } else if (card.type === 'Alteration Spell') {
             this.clickCard(card);
-            this.clickPrompt('Play this artifact');
+            this.clickPrompt('Play this Alteration');
         } else if (card.type === 'Action Spell') {
             this.clickCard(card);
             this.clickPrompt('Play this action');
+        }
+        if (target) {
+            this.clickCard(target);
         }
     }
 
@@ -578,24 +581,13 @@ class PlayerInteractionWrapper {
         return card;
     }
 
-    playCreature(card, left = false, deploy = false) {
+    playAlly(card) {
         if (_.isString(card)) {
             card = this.findCardByName(card, 'hand');
         }
 
         this.clickCard(card, 'hand');
-        this.clickPrompt('Play this creature');
-        if (this.hasPrompt('Which flank do you want to place this creature on?')) {
-            if (left && deploy) {
-                this.clickPrompt('Deploy Left');
-            } else if (left && !deploy) {
-                this.clickPrompt('Left');
-            } else if (!left && deploy) {
-                this.clickPrompt('Deploy Right');
-            } else {
-                this.clickPrompt('Right');
-            }
-        }
+        this.clickPrompt('Play this Ally');
 
         return card;
     }
