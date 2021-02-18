@@ -14,7 +14,7 @@ class BloodChains extends Card {
                 phb: {
                     dependsOn: 'myUnit',
                     cardType: BattlefieldTypes,
-                    gameAction: ability.actions.exhaust((context) => ({
+                    gameAction: ability.actions.addExhaustionToken((context) => ({
                         amount: context.targets.myUnit.damage > 0 ? 2 : 1
                     }))
                 }
