@@ -20,18 +20,8 @@ class DieAbility extends ThenAbility {
         return super.meetsRequirements(context);
     }
 
-    // todo: needed?
-    // eslint-disable-next-line no-unused-vars
-    addSubEvent(event, context) {
-        return;
-    }
-
     isAction() {
         return true;
-    }
-
-    isCardAbility() {
-        return false;
     }
 }
 
