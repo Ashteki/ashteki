@@ -5,6 +5,7 @@ class SeasideRaven extends Card {
         this.entersPlay({
             effect: 'destroy {0}',
             target: {
+                optional: true,
                 activePromptTitle: 'Prey 2',
                 cardType: ['Ally', 'Conjuration'],
                 controller: 'any',
