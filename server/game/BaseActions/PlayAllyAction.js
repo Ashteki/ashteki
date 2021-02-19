@@ -9,7 +9,7 @@ class PlayAllyAction extends BasePlayAction {
 
     addSubEvent(event, context) {
         let action = context.game.actions.putIntoPlay({ myControl: true });
-        action.preEventHandler(context);
+        // action.preEventHandler(context);
         event.addChildEvent(action.getEvent(context.source, context));
     }
 }

@@ -1,17 +1,5 @@
 const CardAction = require('./CardGameAction');
-const AbilityResolver = require('../gamesteps/abilityresolver.js');
-const SimpleStep = require('../gamesteps/simplestep.js');
-
-class NoCostsAbilityResolver extends AbilityResolver {
-    initialise() {
-        this.pipeline.initialise([
-            new SimpleStep(this.game, () => this.createSnapshot()),
-            new SimpleStep(this.game, () => this.resolveTargets()),
-            new SimpleStep(this.game, () => this.initiateAbility())
-            // new SimpleStep(this.game, () => this.executeHandler())
-        ]);
-    }
-}
+const { NoCostsAbilityResolver } = require('../gamesteps/NoCostsAbilityResolver');
 
 class ResolveAbilityAction extends CardAction {
     setDefaultProperties() {
