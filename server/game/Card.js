@@ -24,6 +24,7 @@ class Card extends PlayableObject {
         this.printedType = cardData.type;
 
         this.playCost = cardData.cost ? parseCosts(cardData.cost) : [];
+        this.magicCost = this.getMagicCost(cardData);
 
         this.tokens = {};
         this.flags = {};
@@ -100,6 +101,15 @@ class Card extends PlayableObject {
         return this.type == 'Conjuration' || this.type === 'Conjured Alteration Spell'
             ? 'archives'
             : 'discard';
+    }
+
+    getMagicCost(cardData) {
+        let result = 0;
+        if (cardData.magicCost) {
+            result = Object.values(cardData.magicCost).reduce((acc, val) => acc + val, result);
+        }
+
+        return result;
     }
 
     get actions() {
