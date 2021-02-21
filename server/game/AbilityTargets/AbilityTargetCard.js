@@ -6,6 +6,7 @@ class AbilityTargetCard {
     constructor(name, properties, ability) {
         this.name = name;
         this.properties = properties;
+        this.random = properties.random || false;
         for (let gameAction of this.properties.gameAction) {
             gameAction.setDefaultTarget((context) => context.targets[name]);
         }
@@ -71,6 +72,18 @@ class AbilityTargetCard {
 
     resolve(context, targetResults) {
         if (targetResults.cancelled || targetResults.payCostsFirst) {
+            return;
+        }
+
+        if (this.random) {
+            const cardList = this.selector.findPossibleCards(context);
+            let amount = Math.min(this.selector.numCards, cardList.length);
+            let cards = _.shuffle(cardList).slice(0, amount);
+
+            context.targets[this.name] = cards;
+            if (this.name === 'target') {
+                context.target = cards;
+            }
             return;
         }
 
