@@ -21,7 +21,6 @@ class MemoryTheft extends Card {
                     choices: {
                         Discard: ability.actions.discard({
                             showMessage: true,
-                            message: 'discarding stufff',
                             player: context.player.opponent
                         }),
                         Damage: ability.actions.dealDamage({
