@@ -630,6 +630,10 @@ class Game extends EventEmitter {
         this.queueStep(new MeditatePrompt(this));
     }
 
+    promptForDiceChange(player, properties) {
+        this.promptForDieSelect(player, properties);
+    }
+
     //TODO: refactor to allow reuse for other gameActions, not just draw
     promptForAdditionalDraw(properties) {
         this.queueStep(new ChosenDrawPrompt(this, properties));

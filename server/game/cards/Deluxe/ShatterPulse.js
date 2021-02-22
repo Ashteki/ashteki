@@ -1,4 +1,4 @@
-const { BattlefieldTypes, Level } = require('../../../constants.js');
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class ShatterPulse extends Card {
@@ -14,15 +14,10 @@ class ShatterPulse extends Card {
                 gameAction: ability.actions.destroy()
             },
             then: {
-                may: "change 2 of opponent's dice",
-                target: {
-                    toSelect: 'die',
-                    dieCondition: (d) => !d.exhausted,
-                    mode: 'upTo',
+                gameAction: ability.actions.changeDice({
                     numDice: 2,
-                    owner: 'opponent',
-                    gameAction: ability.actions.setDieLevel({ level: Level.Basic }) //todo: choice
-                }
+                    owner: 'opponent'
+                })
             }
         });
     }

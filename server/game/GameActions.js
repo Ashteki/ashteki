@@ -88,7 +88,8 @@ const Actions = {
     rerollDie: (propertyFactory) => new GameActions.RerollDieAction(propertyFactory),
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),
     lowerDie: (propertyFactory) => new GameActions.ChangeDieAction(propertyFactory, 'lower'),
-    raiseDie: (propertyFactory) => new GameActions.ChangeDieAction(propertyFactory, 'raise')
+    raiseDie: (propertyFactory) => new GameActions.ChangeDieAction(propertyFactory, 'raise'),
+    changeDice: (propertyFactory) => new GameActions.ChangeDiceAction(propertyFactory)
 };
 
 module.exports = Actions;

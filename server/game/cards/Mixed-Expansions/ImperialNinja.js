@@ -23,7 +23,6 @@ class ImperialNinja extends Card {
                         choices: {
                             ['Discard ' + context.target[0].name]: ability.actions.discard({
                                 showMessage: true,
-                                message: 'discarding stufff',
                                 player: context.player.opponent
                             }),
                             'Discard 2 top of deck': ability.actions.discardTopOfDeck({

@@ -6,6 +6,7 @@ class UpToXDiceSelector extends BaseDieSelector {
 
         this.numDice = numDice;
         this.optional = true;
+        this.selectPrefix = properties.selectPrefix || 'Choose';
     }
 
     getNumDice(context) {
@@ -20,11 +21,11 @@ class UpToXDiceSelector extends BaseDieSelector {
         let numDice = this.getNumDice(context);
         return numDice === 1
             ? this.owner === 'self'
-                ? 'Choose a die'
-                : "Choose an opponent's die"
+                ? this.selectPrefix + ' a die'
+                : this.selectPrefix + " an opponent's die"
             : this.owner === 'self'
-            ? 'Choose up to ' + numDice + ' dice'
-            : 'Choose up to ' + numDice + " of your opponent's dice";
+            ? this.selectPrefix + ' up to ' + numDice + ' dice'
+            : this.selectPrefix + ' up to ' + numDice + " of your opponent's dice";
     }
 
     hasReachedLimit(selectedDice, context) {

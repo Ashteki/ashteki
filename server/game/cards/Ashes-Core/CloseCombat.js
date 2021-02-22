@@ -24,10 +24,10 @@ class CloseCombat extends Card {
                 // activePromptTitle: 'Choose one:',
                 target: context.targets.myChar,
                 choices: {
-                    Wound: ability.actions.dealDamage({
+                    Wound: ability.actions.addDamageToken({
                         target: context.targets.myChar
                     }),
-                    Exhaust: ability.actions.exhaust({ target: context.targets.myChar })
+                    Exhaust: ability.actions.addExhaustionToken({ target: context.targets.myChar })
                 }
             }))
         });

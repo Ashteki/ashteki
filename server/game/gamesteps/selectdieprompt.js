@@ -1,6 +1,7 @@
 const _ = require('underscore');
 
 const AbilityContext = require('../AbilityContext.js');
+const Dice = require('../dice.js');
 const DieSelector = require('../DieSelector.js');
 const EffectSource = require('../EffectSource.js');
 const UiPrompt = require('./uiprompt.js');
@@ -66,6 +67,7 @@ class SelectDiePrompt extends UiPrompt {
             (properties.context && properties.context.source) ||
             new EffectSource(game);
         this.promptTitle = this.promptTitle || this.source.name;
+        this.levelState = {};
 
         this.properties = properties;
         this.context =
@@ -85,10 +87,22 @@ class SelectDiePrompt extends UiPrompt {
 
         this.selector = properties.selector || DieSelector.for(this.properties);
         this.selectedDice = properties.selectedDice || [];
+        this.initLevelState(this.selectedDice);
+
         this.revealTargets = properties.revealTargets;
         this.revealFunc = null;
         this.savePreviouslySelectedDice();
         this.choosingPlayer.setSelectedDice(this.selectedDice);
+        this.owner = properties.owner;
+
+        this.cycleDirection = properties.cycleDirection;
+        this.sort = properties.sort;
+    }
+
+    initLevelState(selectedDice) {
+        selectedDice.forEach((d) => {
+            this.levelState[d.uuid] = d.level;
+        });
     }
 
     defaultProperties() {
@@ -150,12 +164,6 @@ class SelectDiePrompt extends UiPrompt {
         const legalDice = this.selector.getAllLegalTargets(this.context);
         // let allDice = this.selector.findPossibleDice(this.context);
         this.choosingPlayer.setSelectableDice(legalDice);
-
-        // if (this.revealTargets && !this.revealFunc) {
-        //     this.revealFunc = (die, player) =>
-        //         player === this.choosingPlayer && allDice.includes(die);
-        //     this.game.cardVisibility.addRule(this.revealFunc);
-        // }
     }
 
     activeCondition(player) {
@@ -244,10 +252,20 @@ class SelectDiePrompt extends UiPrompt {
             return false;
         }
 
+        // if it's a new dice add to the selection and remember the initial level state
         if (!this.selectedDice.includes(die)) {
             this.selectedDice.push(die);
+            this.levelState[die.uuid] = die.level;
+            // cycle the die after we save initial state
+            this.cycleDie(die);
         } else {
-            this.selectedDice = _.reject(this.selectedDice, (c) => c === die);
+            // cycle the die before we check for removal
+            this.cycleDie(die);
+
+            // if we're back where we started then remove the die
+            if (this.removalCheck(die)) {
+                this.selectedDice = _.reject(this.selectedDice, (c) => c === die);
+            }
         }
 
         this.choosingPlayer.setSelectedDice(this.selectedDice);
@@ -257,6 +275,17 @@ class SelectDiePrompt extends UiPrompt {
         }
 
         return true;
+    }
+    cycleDie(die) {
+        // cycle the level if it's that kind of prompt
+        if (this.cycleDirection) {
+            die.level =
+                this.cycleDirection === 'up' ? Dice.levelUp(die.level) : Dice.levelDown(die.level);
+        }
+    }
+
+    removalCheck(die) {
+        return this.levelState[die.uuid] === die.level;
     }
 
     fireOnSelect() {
@@ -290,6 +319,11 @@ class SelectDiePrompt extends UiPrompt {
 
     complete() {
         this.clearSelection();
+        if (this.sort) {
+            let player =
+                this.owner === 'opponent' ? this.choosingPlayer.opponent : this.choosingPlayer;
+            player.sortDice();
+        }
         return super.complete();
     }
 
@@ -300,11 +334,6 @@ class SelectDiePrompt extends UiPrompt {
 
         // Restore previous selections.
         this.choosingPlayer.setSelectedDice(this.previouslySelectedDice);
-
-        // if (this.revealTargets && this.revealFunc) {
-        //     this.game.cardVisibility.removeRule(this.revealFunc);
-        //     this.revealFunc = null;
-        // }
     }
 }
 
