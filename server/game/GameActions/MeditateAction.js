@@ -10,6 +10,7 @@ class MeditateAction extends PlayerAction {
         //     canPass: true
         // };
     }
+
     defaultTargets(context) {
         return [context.player];
     }

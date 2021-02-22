@@ -1,4 +1,30 @@
+const { Level } = require('../constants');
+
 class Dice {
+    static levelUp(level) {
+        switch (level) {
+            case Level.Basic:
+                return Level.Class;
+            case Level.Class:
+                return Level.Power;
+            case Level.Power:
+                return Level.Basic;
+        }
+        throw new Error('level not recognised');
+    }
+
+    static levelDown(level) {
+        switch (level) {
+            case Level.Basic:
+                return Level.Power;
+            case Level.Class:
+                return Level.Basic;
+            case Level.Power:
+                return Level.Class;
+        }
+        throw new Error('level not recognised');
+    }
+
     static countBasic(dice) {
         return dice.filter((d) => d.level === 'basic').length;
     }

@@ -272,6 +272,7 @@ class Player extends GameObject {
             return die;
         });
         this.dice = this.pinnedDice.concat(newDice);
+        this.sortDice();
         this.pinnedDice = [];
         this.recoveryDicePinned = false;
     }
@@ -564,6 +565,10 @@ class Player extends GameObject {
 
     get selectedDice() {
         return this.promptState.selectedDice;
+    }
+
+    sortDice() {
+        this.dice.sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1));
     }
 
     /**

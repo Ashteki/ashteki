@@ -12,7 +12,7 @@ class DiceBox extends React.Component {
         return (
             this.props.dice
                 // .filter(aDie => aDie.level === level)
-                .sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1))
+                // .sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1))
                 .map((thisDie) => (
                     <Die
                         key={thisDie.uuid}
