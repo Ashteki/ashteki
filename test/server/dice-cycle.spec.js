@@ -22,8 +22,9 @@ describe('Dice cycle', function () {
         this.player1.play(this.callUponTheRealms);
         const target = this.player1.dicepool[0];
         expect(target.level).toBe('power');
+
         this.player1.clickDie(0);
-        expect(target.level).toBe('basic');
+        expect(target.level).toBe('power');
         expect(this.player1.player.selectedDice.length).toBe(1);
 
         this.player1.clickDie(0);
@@ -31,12 +32,17 @@ describe('Dice cycle', function () {
         expect(this.player1.player.selectedDice.length).toBe(1);
 
         this.player1.clickDie(0);
+        expect(target.level).toBe('basic');
+        expect(this.player1.player.selectedDice.length).toBe(1);
+
+        this.player1.clickDie(0);
         expect(target.level).toBe('power');
         expect(this.player1.player.selectedDice.length).toBe(0);
 
-        this.player1.clickDie(0);
-        this.player1.clickPrompt('Done');
-        expect(target.level).toBe('basic');
+        this.player1.clickDie(0); // add as power
+        this.player1.clickDie(0); // reduce to class
+        this.player1.clickPrompt('done');
+        expect(target.level).toBe('class');
     });
 
     it('check for cycle down and deselect of opponent', function () {
@@ -54,21 +60,26 @@ describe('Dice cycle', function () {
 
         expect(this.mistSpirit.location).toBe('archives');
         expect(target.level).toBe('power');
+
+        this.player2.clickOpponentDie(0);
+        expect(target.level).toBe('basic');
+        expect(this.player2.player.selectedDice.length).toBe(1);
+
         this.player2.clickOpponentDie(0);
         expect(target.level).toBe('class');
         expect(this.player2.player.selectedDice.length).toBe(1);
 
         this.player2.clickOpponentDie(0);
-        expect(target.level).toBe('basic');
+        expect(target.level).toBe('power');
         expect(this.player2.player.selectedDice.length).toBe(1);
 
         this.player2.clickOpponentDie(0);
         expect(target.level).toBe('power');
         expect(this.player2.player.selectedDice.length).toBe(0);
 
-        this.player2.clickOpponentDie(0);
-        this.player2.clickOpponentDie(0);
+        this.player2.clickOpponentDie(0); // add as basic
+        this.player2.clickOpponentDie(0); // increase to class
         this.player2.clickPrompt('Done');
-        expect(target.level).toBe('basic');
+        expect(target.level).toBe('class');
     });
 });

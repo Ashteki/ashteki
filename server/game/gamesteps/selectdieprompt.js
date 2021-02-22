@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const { Level } = require('../../constants.js');
 
 const AbilityContext = require('../AbilityContext.js');
 const Dice = require('../dice.js');
@@ -94,8 +95,7 @@ class SelectDiePrompt extends UiPrompt {
         this.savePreviouslySelectedDice();
         this.choosingPlayer.setSelectedDice(this.selectedDice);
         this.owner = properties.owner;
-
-        this.cycleDirection = properties.cycleDirection;
+        this.cycleLevels = properties.cycleLevels;
         this.sort = properties.sort;
     }
 
@@ -256,15 +256,18 @@ class SelectDiePrompt extends UiPrompt {
         if (!this.selectedDice.includes(die)) {
             this.selectedDice.push(die);
             this.levelState[die.uuid] = die.level;
-            // cycle the die after we save initial state
-            this.cycleDie(die);
+            // set to power / basic on add.
+            if (this.cycleLevels) {
+                die.level = die.owner === this.choosingPlayer ? Level.Power : Level.Basic;
+            }
         } else {
-            // cycle the die before we check for removal
-            this.cycleDie(die);
-
-            // if we're back where we started then remove the die
+            // remove the die if we're dropping off the bottom
             if (this.removalCheck(die)) {
+                die.level = this.levelState[die.uuid];
                 this.selectedDice = _.reject(this.selectedDice, (c) => c === die);
+            } else {
+                // cycle the die before we check for removal
+                this.cycleDie(die);
             }
         }
 
@@ -278,14 +281,21 @@ class SelectDiePrompt extends UiPrompt {
     }
     cycleDie(die) {
         // cycle the level if it's that kind of prompt
-        if (this.cycleDirection) {
+        if (this.cycleLevels) {
             die.level =
-                this.cycleDirection === 'up' ? Dice.levelUp(die.level) : Dice.levelDown(die.level);
+                die.owner === this.choosingPlayer // it's mine?
+                    ? Dice.levelDown(die.level)
+                    : Dice.levelUp(die.level);
         }
     }
 
     removalCheck(die) {
-        return this.levelState[die.uuid] === die.level;
+        return (
+            !this.cycleLevels ||
+            (die.owner === this.choosingPlayer // it's mine?
+                ? die.level === Level.Basic
+                : die.level === Level.Power)
+        );
     }
 
     fireOnSelect() {

@@ -23,7 +23,7 @@ class ChangeDiceAction extends PlayerAction {
             context: context,
             numDice: this.numDice,
             owner: this.owner,
-            cycleDirection: this.owner === 'opponent' ? 'down' : 'up',
+            cycleLevels: true,
             sort: true
         };
         return super.createEvent('onChangeDice', params, (event) => {
