@@ -587,6 +587,10 @@ class Player extends GameObject {
         return this.promptState.selectedCards.length > 0;
     }
 
+    hasDieSelected() {
+        return this.promptState.selectedDice.length > 0;
+    }
+
     setSelectedDice(dice) {
         this.promptState.setSelectedDice(dice);
     }

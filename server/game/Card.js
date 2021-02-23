@@ -913,6 +913,7 @@ class Card extends PlayableObject {
 
         // Include card specific information useful for UI rendering
         result.locale = this.locale;
+        result.location = this.location;
         return result;
     }
 

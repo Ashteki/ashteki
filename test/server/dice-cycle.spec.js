@@ -25,19 +25,19 @@ describe('Dice cycle', function () {
 
         this.player1.clickDie(0);
         expect(target.level).toBe('power');
-        expect(this.player1.player.selectedDice.length).toBe(1);
+        expect(this.player1.selectedDice.length).toBe(1);
 
         this.player1.clickDie(0);
         expect(target.level).toBe('class');
-        expect(this.player1.player.selectedDice.length).toBe(1);
+        expect(this.player1.selectedDice.length).toBe(1);
 
         this.player1.clickDie(0);
         expect(target.level).toBe('basic');
-        expect(this.player1.player.selectedDice.length).toBe(1);
+        expect(this.player1.selectedDice.length).toBe(1);
 
         this.player1.clickDie(0);
         expect(target.level).toBe('power');
-        expect(this.player1.player.selectedDice.length).toBe(0);
+        expect(this.player1.selectedDice.length).toBe(0);
 
         this.player1.clickDie(0); // add as power
         this.player1.clickDie(0); // reduce to class
