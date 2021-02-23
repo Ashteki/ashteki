@@ -8,7 +8,7 @@ class Transfer extends Card {
             title: 'Transfer',
             targets: {
                 tokenBoy: {
-                    activePromptTitle: 'Choose a unit with tokens',
+                    activePromptTitle: 'Choose a card with tokens',
                     controller: 'any',
                     cardCondition: (card) =>
                         card.hasAnyTokens() && card.type !== CardType.Phoenixborn
@@ -25,7 +25,8 @@ class Transfer extends Card {
                     dependsOn: 'amount',
                     cardCondition: (card, context) =>
                         card.type !== CardType.Phoenixborn &&
-                        card.controller === context.targets.tokenBoy.controller,
+                        card.controller === context.targets.tokenBoy.controller &&
+                        card !== context.targets.tokenBoy,
                     gameAction: ability.actions.moveToken((context) => ({
                         from: context.targets.tokenBoy,
                         to: context.targets.receiver,
