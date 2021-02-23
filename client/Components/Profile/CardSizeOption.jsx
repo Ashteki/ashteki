@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import IdentityDefault from '../../assets/img/cardback-conjuration.png';
+import conjurationCardBack from '../../assets/img/cardback-conjuration.png';
 
 import './CardSizeOption.scss';
 
@@ -18,7 +18,10 @@ function CardSizeOption(props) {
     return (
         <div key={name} className='card-settings' onClick={handleClick}>
             <div className={classNames('game-card', 'vertical', name, { selected: selected })}>
-                <img className={classNames('game-card', 'vertical', name)} src={IdentityDefault} />
+                <img
+                    className={classNames('game-card', 'vertical', name)}
+                    src={conjurationCardBack}
+                />
             </div>
             <span className='bg-label'>{label}</span>
         </div>

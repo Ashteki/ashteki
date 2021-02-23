@@ -25,7 +25,7 @@ describe('Small sacrifice focus', function () {
         this.player1.clickCard(this.ironWorker); // my unit
         this.player1.clickCard(this.blueJaguar); // target
         // should be prompted for choice of token
-        expect(this.player1.player.promptState.buttons.length).toBe(2);
+        expect(this.player1.promptState.buttons.length).toBe(2);
 
         this.player1.clickPrompt('Damage');
 
@@ -42,7 +42,7 @@ describe('Small sacrifice focus', function () {
         this.player1.clickCard(this.ironWorker); // my unit
         this.player1.clickCard(this.blueJaguar); // target
         // should be prompted for choice of token
-        expect(this.player1.player.promptState.buttons.length).toBe(2);
+        expect(this.player1.promptState.buttons.length).toBe(2);
 
         this.player1.clickPrompt('Exhaust');
 

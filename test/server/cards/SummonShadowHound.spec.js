@@ -92,4 +92,42 @@ describe('Summon Shadow Hound', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('Focus 2 damage when no summon', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    spellboard: [
+                        'summon-shadow-hound',
+                        'summon-shadow-hound',
+                        'summon-shadow-hound'
+                    ],
+                    dicepool: ['charm', 'illusion', 'illusion', 'illusion'],
+                    archives: []
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: []
+                }
+            });
+        });
+
+        it('should give optional damage prompts', function () {
+            this.player1.clickCard(this.summonShadowHound);
+            this.player1.clickPrompt('Summon Shadow Hound');
+
+            expect(this.player1).not.toHaveDefaultPrompt(); // focus 1 +
+            expect(this.player1).toHavePromptButton('Done');
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.damage).toBe(1);
+
+            expect(this.player1).not.toHaveDefaultPrompt(); // focus 2
+            expect(this.player1).toHavePromptButton('Done');
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.damage).toBe(2);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

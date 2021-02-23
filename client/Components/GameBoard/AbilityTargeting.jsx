@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CardImage from './CardImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import spellback from '../../assets/img/cardback-spell.png';
 
 import './AbilityTargetting.scss';
 
@@ -21,16 +22,17 @@ class AbilityTargeting extends React.Component {
 
     renderSimpleCard(card) {
         if (!card.id) return '';
-        else
-            return (
-                <div
-                    className='target-card vertical mb-2'
-                    onMouseOut={(event) => this.onMouseOut(event, card)}
-                    onMouseOver={(event) => this.onMouseOver(event, card)}
-                >
-                    <CardImage card={card} />
-                </div>
-            );
+
+        let checkCard = card.location === 'deck' ? { facedown: true } : card;
+        return (
+            <div
+                className='target-card vertical mb-2'
+                onMouseOut={(event) => this.onMouseOut(event, checkCard)}
+                onMouseOver={(event) => this.onMouseOver(event, checkCard)}
+            >
+                <CardImage card={checkCard} cardBack={spellback} />
+            </div>
+        );
     }
 
     render() {

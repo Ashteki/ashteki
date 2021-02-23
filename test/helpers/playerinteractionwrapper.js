@@ -178,18 +178,6 @@ class PlayerInteractionWrapper {
     get side() {
         return this.player.actions.side;
     }
-    // set phoenixborn(card) {
-    //     // First, move all cards in play back to the appropriate decks
-    //     this.moveCard(card, 'deck');
-    //     // Set up each of the cards
-
-    //     if (_.isString(card)) {
-    //         card = this.findCardByName(card);
-    //     }
-
-    //     this.moveCard(card, 'play area');
-    //     card.unExhaust();
-    // }
 
     get opponent() {
         return this.player.opponent;
@@ -249,7 +237,14 @@ class PlayerInteractionWrapper {
      * @return {DrawCard[]} - selected cards
      */
     get selectedCards() {
-        return this.player.promptState.selectedCards;
+        return this.player.selectedCards;
+    }
+
+    /**
+     * Lists dice currently selected by the player
+     */
+    get selectedDice() {
+        return this.player.selectedDice;
     }
 
     /**

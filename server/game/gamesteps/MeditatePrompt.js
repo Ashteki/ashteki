@@ -1,5 +1,7 @@
+const { Level } = require('../../constants.js');
 const SingleCardSelector = require('../CardSelectors/SingleCardSelector.js');
 const SingleDieSelector = require('../CardSelectors/SingleDieSelector.js');
+const Dice = require('../dice.js');
 const UiPrompt = require('./uiprompt.js');
 
 class MeditatePrompt extends UiPrompt {
@@ -24,10 +26,15 @@ class MeditatePrompt extends UiPrompt {
         });
 
         this.count = 0;
+        this.levelState = {};
     }
 
     get cardSelected() {
         return this.choosingPlayer.hasCardSelected();
+    }
+
+    get diceSelected() {
+        return this.choosingPlayer.hasDieSelected();
     }
 
     continue() {
@@ -56,17 +63,34 @@ class MeditatePrompt extends UiPrompt {
         return player === this.choosingPlayer;
     }
 
+    get selectedCard() {
+        return this.choosingPlayer.selectedCards[0];
+    }
+
     activePrompt() {
-        let buttons = [];
-        if (!this.cardSelected && this.choosingPlayer.deck.length > 0) {
-            buttons.push({ text: 'Top of deck', arg: 'top' });
-        }
-        buttons.push({ text: 'Done', arg: 'done' });
-
+        const buttons = [];
         let mnuText = 'Choose a card to discard';
-
+        const controls = [];
         if (this.cardSelected) {
-            mnuText = 'Choose a die to raise';
+            mnuText = 'Choose a die to change';
+            controls.push({
+                type: 'targeting',
+                source: this.selectedCard.getShortSummary(),
+                targets: []
+            });
+        }
+        if (this.diceSelected) {
+            mnuText = 'Confirm chosen side for this die, or click again to change side / remove';
+            buttons.push({ text: 'Confirm', arg: 'set' });
+        } else {
+            if (!this.cardSelected && this.choosingPlayer.deck.length > 0) {
+                buttons.push({ text: 'Choose top of deck', arg: 'top' });
+            }
+        }
+        if (this.diceSelected || this.cardSelected) {
+            buttons.push({ text: 'Clear selection', arg: 'clear' });
+        } else {
+            buttons.push({ text: 'Stop meditating', arg: 'done' });
         }
 
         return {
@@ -77,7 +101,8 @@ class MeditatePrompt extends UiPrompt {
                 text: mnuText
             },
             buttons: buttons,
-            promptTitle: 'Meditate'
+            promptTitle: 'Meditate',
+            controls: controls
         };
     }
 
@@ -119,14 +144,32 @@ class MeditatePrompt extends UiPrompt {
     }
 
     selectDie(die) {
-        const cards = [...this.choosingPlayer.selectedCards];
-        this.choosingPlayer.discardSelectedCards();
-        die.level = 'power';
-        this.game.addMessage('{0} meditates {1} to gain a {2}', this.choosingPlayer, cards, die);
+        if (
+            this.dieSelector.hasReachedLimit(this.choosingPlayer.selectedDice) &&
+            !this.choosingPlayer.selectedDice.includes(die)
+        ) {
+            return false;
+        }
 
-        this.count = this.count + 1;
-        this.resetSelections(this.choosingPlayer);
+        if (!this.choosingPlayer.selectedDice.includes(die)) {
+            this.choosingPlayer.setSelectedDice([die]);
+            this.levelState[die.uuid] = die.level;
+            die.level = Level.Power;
+        } else {
+            if (die.level === Level.Basic) {
+                // remove the die
+                this.removeDie(die);
+            } else {
+                die.level = Dice.levelDown(die.level);
+            }
+        }
+
         return true;
+    }
+
+    removeDie(die) {
+        die.level = this.levelState[die.uuid];
+        this.choosingPlayer.clearSelectedDice();
     }
 
     menuCommand(player, arg) {
@@ -134,8 +177,30 @@ class MeditatePrompt extends UiPrompt {
             return this.selectCard(this.choosingPlayer.deck[0]);
         }
 
+        if (arg === 'set') {
+            const cards = [...this.choosingPlayer.selectedCards];
+            const dice = [...this.choosingPlayer.selectedDice];
+            this.choosingPlayer.discardSelectedCards();
+            this.game.addMessage(
+                '{0} meditates {1} to gain a {2}',
+                this.choosingPlayer,
+                cards,
+                dice
+            );
+            this.count = this.count + 1;
+            this.resetSelections(this.choosingPlayer);
+            return true;
+        }
+
+        if (arg === 'clear') {
+            this.resetDice();
+            this.resetSelections(this.choosingPlayer);
+            return true;
+        }
+
         if (arg === 'done') {
             this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
+
             player.sortDice();
 
             this.resetSelections(player);
@@ -144,6 +209,14 @@ class MeditatePrompt extends UiPrompt {
             return true;
         }
         return false;
+    }
+
+    resetDice() {
+        if (this.choosingPlayer.hasDieSelected) {
+            this.choosingPlayer.selectedDice.forEach((d) => {
+                this.removeDie(d);
+            });
+        }
     }
 
     resetSelections(player) {

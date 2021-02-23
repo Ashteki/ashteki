@@ -20,6 +20,7 @@ class SummonShadowHound extends Card {
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
+                alwaysTriggers: true,
                 condition: () => this.focus > 0,
                 target: {
                     optional: true,
