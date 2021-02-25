@@ -31,7 +31,7 @@ describe('Transfer actions spell', function () {
         expect(this.player1).toBeAbleToSelect(this.chantOfRevenge); // mine
         expect(this.player1).toBeAbleToSelect(this.summonMistSpirit); // other player
         expect(this.player1).not.toBeAbleToSelect(this.empower); // no tokens
-        expect(this.player1).toHavePrompt('Choose a unit with tokens');
+        expect(this.player1).toHavePrompt('Choose a card with tokens');
 
         this.player1.clickCard(this.ironWorker);
         expect(this.player1).toHavePrompt('Choose a type');

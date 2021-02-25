@@ -6,13 +6,11 @@ const EventToTitleFunc = {
     onCardEntersPlay: (event) => event.card.name + ' being played',
     onAbilityInitiated: (event) => event.context.ability.title,
     onCardAbilityInitiated: (event) => 'the effects of ' + event.card.name,
-    onCardBowed: (event) => event.card.name + ' being bowed',
     onDamageDealt: (event) => event.card.name + ' receiving damage',
     onCardDestroyed: (event) => event.card.name + ' being destroyed',
     onCardLeavesPlay: (event) => event.card.name + ' leaving play',
     onPhaseEnded: (event) => event.phase + ' phase ending',
-    onPhaseStarted: (event) => event.phase + ' phase starting',
-    onSacrificed: (event) => event.card.name + ' being sacrificed'
+    onPhaseStarted: (event) => event.phase + ' phase starting'
 };
 
 const AbilityTypeToWord = {

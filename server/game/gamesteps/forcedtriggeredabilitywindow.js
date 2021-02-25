@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const { EffectLocations } = require('../../constants.js');
 
 const BaseStep = require('./basestep.js');
 const TriggeredAbilityWindowTitles = require('./triggeredabilitywindowtitles.js');
@@ -213,9 +214,15 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     }
 
     promptBetweenEventCards(choices, addBackButton = true) {
+        // The events which this ability can respond to only affect a single card
         if (_.uniq(choices, (context) => context.event.card).length === 1) {
-            // The events which this ability can respond to only affect a single card
             this.promptBetweenEvents(choices, addBackButton);
+            return;
+        }
+
+        // The events which this ability can respond to only affect cards where effects don't matter i.e. destroyed
+        if (choices.every((context) => !EffectLocations.includes(context.event.card.location))) {
+            this.promptBetweenEvents([choices[0]], addBackButton);
             return;
         }
 
