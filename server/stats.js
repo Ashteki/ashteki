@@ -77,6 +77,13 @@ gameService
             });
         });
 
+        let topPlayers = _.chain(players)
+            .sortBy((player) => {
+                return -(player.wins + player.losses);
+            })
+            .first(20)
+            .value();
+
         let winners = _.chain(players)
             .sortBy((player) => {
                 return -player.wins;
@@ -117,14 +124,20 @@ gameService
             return -deck.winRate;
         });
 
-        console.info('### Top 10\n\nName | Number of wins\n-----|----------------');
+        console.info('\n### Top 10 Players\n\nName | Number of games\n-----|----------------');
+
+        _.each(topPlayers, (p) => {
+            console.info(p.name, ' | ', p.wins + p.losses);
+        });
+
+        console.info('\n### Top 10\n\nName | Number of wins\n-----|----------------');
 
         _.each(winners, (winner) => {
             console.info(winner.name, ' | ', winner.wins);
         });
 
         console.info(
-            '### Top 10 by winrate\n\nName | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
+            '\n### Top 10 by winrate\n\nName | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
         );
 
         _.each(winRateStats, (winner) => {
@@ -140,7 +153,7 @@ gameService
         });
 
         console.info(
-            '### Deck win rates\n\nDeck | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
+            '\n### Deck win rates\n\nDeck | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
         );
 
         _.each(deckWinRateStats, (winner) => {
