@@ -54,7 +54,7 @@ describe('Copycat', function () {
         });
     });
 
-    describe('reaction', function () {
+    describe('reaction to coal slashing', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -85,6 +85,56 @@ describe('Copycat', function () {
             this.player2.clickCard(this.hammerKnight);
             expect(this.hammerKnight.damage).toBe(1);
             expect(this.coalRoarkwin.damage).toBe(0);
+        });
+    });
+
+    describe('copy Transfer', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['iron-worker'],
+                    dicepool: ['natural', 'ceremonial', 'charm', 'charm'],
+                    hand: ['transfer'],
+                    spellboard: ['chant-of-revenge']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['blue-jaguar', 'mist-spirit'],
+                    spellboard: ['empower', 'summon-mist-spirit'],
+                    dicepool: ['natural', 'ceremonial', 'charm', 'charm'],
+                    hand: ['copycat']
+                }
+            });
+            this.ironWorker.tokens.status = 2;
+            this.ironWorker.tokens.exhaustion = 1;
+            this.chantOfRevenge.tokens.exhaustion = 1;
+            this.summonMistSpirit.tokens.exhaustion = 1;
+        });
+
+        it('should move 1 chosen token type between cards', function () {
+            expect(this.ironWorker.tokens.status).toBe(2);
+            expect(this.chantOfRevenge.tokens.status).toBeUndefined();
+            expect(this.summonMistSpirit.exhausted).toBe(true);
+
+            this.player1.clickCard(this.transfer);
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickPrompt('Status');
+            this.player1.clickCard(this.chantOfRevenge);
+            expect(this.ironWorker.tokens.status).toBe(1);
+            expect(this.chantOfRevenge.tokens.status).toBe(1);
+
+            this.player2.clickCard(this.copycat);
+            this.player2.clickDie(0);
+            this.player2.clickCard(this.summonMistSpirit);
+            this.player2.clickPrompt('Exhaustion');
+            this.player2.clickCard(this.empower);
+            expect(this.summonMistSpirit.exhausted).toBe(false);
+            expect(this.empower.exhausted).toBe(true);
         });
     });
 });

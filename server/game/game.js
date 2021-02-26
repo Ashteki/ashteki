@@ -1279,7 +1279,7 @@ class Game extends EventEmitter {
     getSaveState() {
         let players = this.getPlayers().map((player) => {
             return {
-                deck: player.deckData.identity,
+                deck: player.phoenixborn.name,
                 name: player.name,
                 turn: player.turn,
                 wins: player.wins

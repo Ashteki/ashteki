@@ -45,7 +45,7 @@ gameService
                 return;
             } else if (game.players[0].deck === game.players[1].deck) {
                 rejected.mirror++;
-                return;
+                // return;
             }
 
             if (

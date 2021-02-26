@@ -57,14 +57,15 @@ class PendingGame {
     getSaveState() {
         let players = _.map(this.getPlayers(), (player) => {
             return {
+                deck: player.deck.phoenixborn[0].card.name,
                 name: player.name,
+                turn: player.turn,
                 wins: player.wins
             };
         });
 
         return {
             id: this.id,
-            adaptive: this.adaptive,
             expansions: this.expansions,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,

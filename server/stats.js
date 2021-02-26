@@ -31,7 +31,6 @@ gameService
         let fpWinRates = { first: 0, second: 0 };
 
         _.each(games, (game) => {
-            console.info(game);
             if (_.size(game.players) !== 2) {
                 rejected.singlePlayer++;
 
@@ -44,7 +43,7 @@ gameService
                 return;
             } else if (game.players[0].deck === game.players[1].deck) {
                 rejected.mirror++;
-                return;
+                // return;
             }
 
             if (
@@ -118,14 +117,14 @@ gameService
             return -deck.winRate;
         });
 
-        console.info('### Top 10\n\nName | Number of wins\n----|----------------');
+        console.info('### Top 10\n\nName | Number of wins\n-----|----------------');
 
         _.each(winners, (winner) => {
             console.info(winner.name, ' | ', winner.wins);
         });
 
         console.info(
-            '### Top 10 by winrate\n\nName | Number of wins | Number of losses | Win Rate\n----|-------------|------------------|--------'
+            '### Top 10 by winrate\n\nName | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
         );
 
         _.each(winRateStats, (winner) => {
@@ -141,7 +140,7 @@ gameService
         });
 
         console.info(
-            '### Deck win rates\n\nDeck | Number of wins | Number of losses | Win Rate\n----|-------------|------------------|--------'
+            '### Deck win rates\n\nDeck | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
         );
 
         _.each(deckWinRateStats, (winner) => {
