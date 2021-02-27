@@ -206,7 +206,7 @@ class Die extends PlayableObject {
                     then: {
                         targets: {
                             myCard: {
-                                activePromptTitle: 'Select a card to return to your deck?',
+                                activePromptTitle: 'Select a card to return to your deck',
                                 controller: 'self',
                                 location: 'hand',
                                 optional: true

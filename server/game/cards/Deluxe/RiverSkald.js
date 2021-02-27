@@ -19,7 +19,7 @@ class RiverSkald extends Card {
                         dependsOn: 'discard',
                         activePromptTitle: 'Choose a damage target',
                         gameAction: ability.actions.dealDamage((context) => ({
-                            amount: context.targets.discard.magicCost
+                            amount: context.targets.discard && context.targets.discard.magicCost
                         }))
                     }
                 }

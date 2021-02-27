@@ -1,3 +1,5 @@
+const { CardType } = require('../../constants');
+
 class BaseCardSelector {
     constructor(properties) {
         this.cardCondition = properties.cardCondition;
@@ -87,8 +89,13 @@ class BaseCardSelector {
             this.checkTarget &&
             (!card.checkRestrictions('target', context) ||
                 (context.player === card.controller.opponent &&
+                    // concealed
                     (card.anyEffect('concealed') ||
-                        (context.source.isSpell && card.anyEffect('spellGuard')))))
+                        // spell guard
+                        (context.source.isSpell && card.anyEffect('spellGuard')) ||
+                        // lightning speed / no reactions can target
+                        (context.source.type === CardType.ReactionSpell &&
+                            card.anyEffect('cannotBeReactionTarget')))))
         ) {
             return false;
         }
