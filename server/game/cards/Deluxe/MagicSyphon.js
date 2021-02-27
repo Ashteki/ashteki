@@ -12,6 +12,7 @@ class MagicSyphon extends Card {
                 owner: 'self'
             }),
             then: {
+                alwaysTriggers: true,
                 gameAction: ability.actions.changeDice({
                     numDice: 1,
                     owner: 'any'
