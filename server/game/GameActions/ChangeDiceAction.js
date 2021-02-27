@@ -24,9 +24,16 @@ class ChangeDiceAction extends PlayerAction {
             numDice: this.numDice,
             owner: this.owner,
             cycleLevels: true,
-            sort: true
+            sort: true,
+            preventAuto: true
         };
         return super.createEvent('onChangeDice', params, (event) => {
+            let playerPhrase = ' of your dice'; // self by default
+            if (event.owner === 'opponent') {
+                playerPhrase = " of your opponent's dice";
+            } else if (event.owner === 'any') {
+                playerPhrase = " of any player's dice";
+            }
             const props = Object.assign(
                 {
                     onSelect: (player, dice) => {
@@ -36,7 +43,8 @@ class ChangeDiceAction extends PlayerAction {
                     activePromptTitle:
                         'Change ' +
                         event.numDice +
-                        ' dice. Click a die again to change its magic level'
+                        playerPhrase +
+                        '. Click a die again to change its magic level'
                 },
                 params
             );

@@ -18,7 +18,7 @@ class BaseDieSelector {
             return context.player.opponent.dice;
         }
 
-        return context.player.dice;
+        return context.player.dice.concat(context.player.opponent.dice);
     }
 
     canTarget(die, context) {
