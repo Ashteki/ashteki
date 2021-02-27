@@ -65,6 +65,7 @@ const Effects = {
     exhausted: () => EffectBuilder.card.static('exhausted'),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     spellGuard: () => EffectBuilder.card.static('spellGuard'),
+    cannotBeReactionTarget: () => EffectBuilder.card.static('cannotBeReactionTarget'),
     bypass: () => EffectBuilder.card.static('bypass'),
     preventGuard: () => EffectBuilder.card.static('preventGuard'),
     preventBlock: () => EffectBuilder.card.static('preventBlock'),

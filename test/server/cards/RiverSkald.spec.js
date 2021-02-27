@@ -30,5 +30,16 @@ describe('River Skald', function () {
             expect(this.riverSkald.location).toBe('play area');
             expect(this.livingDoll.location).toBe('discard');
         });
+
+        it('should be optional', function () {
+            expect(this.hammerKnight.damage).toBe(0);
+
+            this.player1.clickCard(this.riverSkald);
+            this.player1.clickPrompt('Play this Ally');
+            expect(this.player1).toHavePrompt('Harsh Melody');
+
+            this.player1.clickPrompt('Done');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 });
