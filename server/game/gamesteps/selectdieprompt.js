@@ -97,6 +97,7 @@ class SelectDiePrompt extends UiPrompt {
         this.owner = properties.owner;
         this.cycleLevels = properties.cycleLevels;
         this.sort = properties.sort;
+        this.preventAuto = properties.preventAuto;
     }
 
     initLevelState(selectedDice) {
@@ -174,6 +175,7 @@ class SelectDiePrompt extends UiPrompt {
         let buttons = this.properties.buttons;
         if (
             this.properties.optional ||
+            this.preventAuto ||
             (!this.selector.automaticFireOnSelect(this.context) && this.hasEnoughSelected())
         ) {
             if (buttons.every((button) => button.text !== 'Done')) {
@@ -225,6 +227,7 @@ class SelectDiePrompt extends UiPrompt {
         }
 
         if (
+            !this.preventAuto &&
             this.selector.automaticFireOnSelect(this.context) &&
             this.selector.hasReachedLimit(this.selectedDice, this.context)
         ) {
