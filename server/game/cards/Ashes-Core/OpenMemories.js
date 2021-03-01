@@ -6,7 +6,7 @@ class OpenMemories extends Card {
         this.play({
             effect: 'place a card into their hand',
             target: {
-                player: 'self',
+                controller: 'self',
                 location: Location.Deck,
                 gameAction: ability.actions.moveCard({ destination: Location.Hand, shuffle: true })
             }

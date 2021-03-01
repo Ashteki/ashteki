@@ -6,7 +6,7 @@ class Fear extends Card {
         this.play({
             target: {
                 activePromptTitle: 'Choose a unit to destroy',
-                player: 'self',
+                controller: 'self',
                 cardType: BattlefieldTypes,
                 gameAction: [ability.actions.destroy()]
             },

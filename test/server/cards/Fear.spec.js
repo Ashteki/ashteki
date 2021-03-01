@@ -57,6 +57,7 @@ describe('Fear', function () {
             this.player1.clickPrompt('Play this action');
             this.player1.clickDie(0);
             expect(this.player1).toHavePrompt('Choose a unit to destroy');
+            expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
             this.player1.clickCard(this.enchantedViolinist); // destroy
             this.player1.clickPrompt('Pass'); // jessa ability pass
 

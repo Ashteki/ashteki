@@ -13,7 +13,7 @@ class RinNorthfell extends Card {
                 },
                 conj: {
                     dependsOn: 'unit',
-                    player: 'self',
+                    controller: 'self',
                     cardType: CardType.ConjuredAlteration,
                     cardCondition: (card) => card.id === 'ice-buff',
                     location: 'archives',
