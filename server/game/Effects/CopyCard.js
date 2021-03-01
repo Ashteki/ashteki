@@ -5,28 +5,18 @@ class CopyCard extends EffectValue {
     constructor(card) {
         super(card);
         this.abilitiesForTargets = {};
+        this.source = card.abilities;
         if (card.anyEffect('copyCard')) {
-            this.value = card.mostRecentEffect('copyCard');
-            this.actions = this.value.actions.map(
-                (action) => new GainAbility('action', action, true)
-            );
-            this.reactions = this.value.reactions.map(
-                (ability) => new GainAbility(ability.abilityType, ability, true)
-            );
-            this.persistentEffects = this.value.persistentEffects.map(
-                (properties) => new GainAbility('persistentEffect', properties)
-            );
-        } else {
-            this.actions = card.abilities.actions.map(
-                (action) => new GainAbility('action', action, true)
-            );
-            this.reactions = card.abilities.reactions.map(
-                (ability) => new GainAbility(ability.abilityType, ability, true)
-            );
-            this.persistentEffects = card.abilities.persistentEffects.map(
-                (properties) => new GainAbility('persistentEffect', properties)
-            );
+            this.source = card.mostRecentEffect('copyCard');
         }
+        // copy all the funky stuff
+        this.actions = this.source.actions.map((action) => new GainAbility('action', action, true));
+        this.reactions = this.source.reactions.map(
+            (ability) => new GainAbility(ability.abilityType, ability, true)
+        );
+        this.persistentEffects = this.source.persistentEffects.map(
+            (properties) => new GainAbility('persistentEffect', properties)
+        );
     }
 
     apply(target) {

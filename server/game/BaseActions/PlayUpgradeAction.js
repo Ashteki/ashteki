@@ -33,7 +33,6 @@ class PlayUpgradeAction extends BasePlayAction {
     }
 
     meetsRequirements(context = this.createContext(), ignoredRequirements = []) {
-        // if this is an acquired lasting effect attachment
         if (
             BattlefieldTypes.includes(context.source.printedType) &&
             context.source.canPlayAsUpgrade()

@@ -22,6 +22,8 @@ userService
         _.each(users, (user) => {
             console.info(user);
         });
+
+        console.info('' + _.size(users), 'total users');
     })
     .catch((error) => {
         console.log(error);
