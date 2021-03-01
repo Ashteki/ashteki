@@ -24,6 +24,6 @@ class Augury extends Card {
     }
 }
 
-Augury.id = 'chant-of-revenge';
+Augury.id = 'augury';
 
 module.exports = Augury;

@@ -557,6 +557,45 @@ class Card extends PlayableObject {
         return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
     }
 
+    getLife(printed = false) {
+        if (printed) {
+            return this.printedLife;
+        }
+
+        if (this.anyEffect('setLife')) {
+            return this.mostRecentEffect('setLife');
+        }
+
+        const copyEffect = this.mostRecentEffect('copyCard');
+        const printedLifeEffect = this.mostRecentEffect('setPrintedLife');
+        const printedLife = copyEffect
+            ? copyEffect.printedLife
+            : printedLifeEffect || this.printedLife;
+        return printedLife + this.sumEffects('modifyLife');
+    }
+
+    get recover() {
+        return this.getRecover();
+    }
+
+    getRecover(printed = false) {
+        if (printed) {
+            return this.printedRecover;
+        }
+
+        if (this.anyEffect('setRecover')) {
+            return this.mostRecentEffect('setRecover');
+        }
+
+        const copyEffect = this.mostRecentEffect('copyCard');
+        const printedRecoverEffect = this.mostRecentEffect('setPrintedRecover');
+        const printedRecover = copyEffect
+            ? copyEffect.printedRecover
+            : printedRecoverEffect || this.printedRecover;
+
+        return Math.max(0, printedRecover + this.sumEffects('modifyRecover'));
+    }
+
     getBattlefield(printed = false) {
         if (printed) {
             return this.printedBattlefield;
@@ -589,23 +628,6 @@ class Card extends PlayableObject {
         return printedSpellboard + this.sumEffects('modifySpellboard');
     }
 
-    getLife(printed = false) {
-        if (printed) {
-            return this.printedLife;
-        }
-
-        if (this.anyEffect('setLife')) {
-            return this.mostRecentEffect('setLife');
-        }
-
-        const copyEffect = this.mostRecentEffect('copyCard');
-        const printedLifeEffect = this.mostRecentEffect('setPrintedLife');
-        const printedLife = copyEffect
-            ? copyEffect.printedLife
-            : printedLifeEffect || this.printedLife;
-        return printedLife + this.sumEffects('modifyLife');
-    }
-
     get armor() {
         return this.getArmor();
     }
@@ -621,18 +643,6 @@ class Card extends PlayableObject {
     getBonusDamage(target) {
         let effects = this.getEffects('bonusDamage');
         return effects.reduce((total, match) => total + match(target), 0);
-    }
-
-    get recover() {
-        return this.getRecover();
-    }
-
-    getRecover(printed = false) {
-        if (printed) {
-            return this.printedRecover;
-        }
-
-        return Math.max(0, this.printedRecover + this.sumEffects('modifyRecover'));
     }
 
     get status() {

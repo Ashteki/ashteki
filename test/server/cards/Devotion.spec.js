@@ -16,6 +16,7 @@ describe('Devotion', function () {
                 hand: ['summon-mist-spirit']
             }
         });
+        this.anchornaut.tokens.exhaustion = 1;
     });
 
     it('stops attached card from attacking', function () {
@@ -24,7 +25,7 @@ describe('Devotion', function () {
         this.player1.clickCard(this.coalRoarkwin);
 
         expect(this.player1).not.toBeAbleToSelect(this.mistSpirit);
-        expect(this.player1).toBeAbleToSelect(this.anchornaut);
+        expect(this.player1).toBeAbleToSelect(this.ironWorker);
     });
 
     it('adds alert behaviour to attached card', function () {
@@ -51,9 +52,7 @@ describe('Devotion', function () {
     });
 
     it('removes an exhaustion token from ', function () {
-        this.player1.clickCard(this.devotion);
-        this.player1.clickPrompt('Play this Alteration');
-        expect(this.player1).toBeAbleToSelect(this.sleepingWidow);
-        expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
+        this.player1.play(this.devotion, this.anchornaut);
+        expect(this.anchornaut.exhausted).toBe(false);
     });
 });
