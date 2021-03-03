@@ -735,7 +735,7 @@ class Game extends EventEmitter {
 
         this.playStarted = true;
         this.startedAt = new Date();
-        this.round = 1;
+        this.round = 0;
         this.turn = 1;
 
         this.continue();
@@ -767,7 +767,7 @@ class Game extends EventEmitter {
             const newFirstPlayer =
                 this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
             this.setRoundFirstPlayer(newFirstPlayer);
-            this.addMessage('{0} goes first this round', this.activePlayer);
+            this.addAlert('{0} goes first this round', this.activePlayer);
         }
     }
 
@@ -840,6 +840,9 @@ class Game extends EventEmitter {
      * @returns {undefined}
      */
     beginRound() {
+        this.round++;
+        this.addAlert('startofround', `Round ${this.round}`);
+
         this.raiseEvent('onBeginRound');
         this.getPlayers().forEach((player) => player.beginRound());
         this.queueStep(new PreparePhase(this));
@@ -850,6 +853,11 @@ class Game extends EventEmitter {
 
         this.queueStep(new SimpleStep(this, () => this.raiseEndRoundEvent()));
         this.queueStep(new SimpleStep(this, () => this.beginRound()));
+    }
+
+    beginTurn() {
+        this.addAlert('startofturn', `Turn ${this.turn} - {0}`, this.activePlayer);
+        this.raiseEvent('onBeginTurn');
     }
 
     /*
@@ -1213,7 +1221,6 @@ class Game extends EventEmitter {
             this.turn++;
         }
 
-        this.addAlert('startofturn', `Turn ${this.turn} - {0}`, this.activePlayer);
         this.checkForTimeExpired();
     }
 
@@ -1230,9 +1237,6 @@ class Game extends EventEmitter {
         }
 
         this.addAlert('endofround', `End of round ${this.round}`);
-
-        this.round++;
-        this.addAlert('startofround', `Round ${this.round}`);
         this.checkForTimeExpired();
     }
 

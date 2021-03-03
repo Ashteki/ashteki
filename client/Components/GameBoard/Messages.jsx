@@ -57,7 +57,6 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                             >
                                 <hr className={'mt-2 mb-2' + fragment.type} />
                                 {message}
-                                {fragment.type === 'phasestart' && <hr />}
                             </div>
                         );
                         break;

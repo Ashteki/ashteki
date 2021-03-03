@@ -25,10 +25,9 @@ class Phase extends BaseStepWithPipeline {
             //todo: change this to a property on the phase
             if (this.name !== 'setup') {
                 this.game.addAlert(
-                    'endofround',
-                    '{0} phase - {1}',
-                    this.name.charAt(0).toUpperCase() + this.name.slice(1),
-                    this.game.activePlayer
+                    'phasestart',
+                    '{0} phase',
+                    this.name.charAt(0).toUpperCase() + this.name.slice(1)
                 );
             }
         });

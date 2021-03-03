@@ -36,7 +36,7 @@ class FirstPlayerSelection extends UiPrompt {
             message = '{0} chooses to go second';
         }
 
-        this.game.addMessage(message, player);
+        this.game.addAlert('info', message, player);
         this.clickedButton = true;
 
         this.complete();
