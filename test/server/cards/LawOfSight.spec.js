@@ -20,7 +20,7 @@ describe('law of sight', function () {
 
         it('gives draw prompt when played', function () {
             let hand = this.player1.hand.length;
-            this.player1.clickCard(this.lawOfSight); // target
+            this.player1.clickCard(this.lawOfSight);
             this.player1.clickPrompt('Play this ready spell');
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');

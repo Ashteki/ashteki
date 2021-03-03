@@ -13,16 +13,15 @@ describe('Beast Mage', function () {
                 inPlay: ['beast-mage']
             }
         });
-        this.game.determineFirstPlayer();
     });
 
     it('modifies stats when not first player', function () {
         expect(this.player1.player.firstPlayer).toBe(true);
         expect(this.player2.player.firstPlayer).toBe(false);
 
-        // expect(this.beastMage.attack).toBe(4);
-        // expect(this.beastMage.life).toBe(4);
-        // expect(this.beastMage.recover).toBe(2);
+        expect(this.beastMage.attack).toBe(4);
+        expect(this.beastMage.life).toBe(4);
+        expect(this.beastMage.recover).toBe(2);
 
         this.player1.endTurn();
         this.player2.endTurn();

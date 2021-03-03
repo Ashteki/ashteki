@@ -79,7 +79,8 @@ class Game extends EventEmitter {
         this.cardsDiscarded = [];
         this.effectsUsed = [];
         this.activePlayer = null;
-        this.firstPlayer = null;
+        this.gameFirstPlayer = null;
+        this.roundFirstPlayer = null;
         this.jsonForUsers = {};
 
         this.cardData = options.cardData || [];
@@ -741,7 +742,7 @@ class Game extends EventEmitter {
     }
 
     determineFirstPlayer() {
-        if (!this.activePlayer) {
+        if (!this.gameFirstPlayer) {
             let players = this.getPlayers();
             let i = 0;
             while (
@@ -763,15 +764,23 @@ class Game extends EventEmitter {
             );
             this.queueStep(new FirstPlayerSelection(this));
         } else {
-            this.activePlayer = this.round % 2 > 0 ? this.firstPlayer : this.firstPlayer.opponent;
-            this.getPlayers().forEach((p) => p.toggleFirstPlayer());
+            const newFirstPlayer =
+                this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
+            this.setRoundFirstPlayer(newFirstPlayer);
             this.addMessage('{0} goes first this round', this.activePlayer);
         }
     }
 
-    SetFirstPlayer(player) {
-        this.firstPlayer = player;
-        this.firstPlayer.setFirstPlayer();
+    // this only gets called once at the start of the game
+    setGameFirstPlayer(player) {
+        this.gameFirstPlayer = player;
+        this.setRoundFirstPlayer(player);
+    }
+
+    setRoundFirstPlayer(player) {
+        this.roundFirstPlayer = player;
+        player.firstPlayer = true;
+        player.opponent.firstPlayer = false;
         this.activePlayer = player;
     }
 
