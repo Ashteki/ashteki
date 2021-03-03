@@ -29,9 +29,11 @@ describe('Strange Copy reaction spell', function () {
         this.player2.clickCard(this.strangeCopy); // guard with pb
         this.player2.clickDie(0);
 
+        this.player2.clickCard(this.fluteMage); // my unit
+
+        expect(this.player2).not.toBeAbleToSelect(this.fluteMage);
         expect(this.player2).toBeAbleToSelect(this.ironRhino);
-        this.player2.clickCard(this.ironRhino); // click cover to play as reaction
-        this.player2.clickCard(this.fluteMage); // target
+        this.player2.clickCard(this.ironRhino); // unit to copy
 
         // card played
         expect(this.strangeCopy.location).toBe('discard');
@@ -54,10 +56,10 @@ describe('Strange Copy reaction spell', function () {
         this.player2.clickCard(this.strangeCopy); // guard with pb
         this.player2.clickDie(0);
 
+        this.player2.clickCard(this.fluteMage); // my unit
         expect(this.player2).toBeAbleToSelect(this.silverSnake);
         expect(this.silverSnake.attack).toBe(4);
         this.player2.clickCard(this.silverSnake); // click cover to play as reaction
-        this.player2.clickCard(this.fluteMage); // target
 
         // card played
         expect(this.strangeCopy.location).toBe('discard');
