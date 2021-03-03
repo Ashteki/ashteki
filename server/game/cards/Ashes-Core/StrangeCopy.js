@@ -16,15 +16,17 @@ class StrangeCopy extends Card {
             },
             effect: 'to strange copy {0}',
             targets: {
-                sourceUnit: {
-                    activePromptTitle: 'Choose a unit to copy',
+                myUnit: {
+                    activePromptTitle: 'Choose a unit you control to affect',
+                    controller: 'self',
                     cardType: BattlefieldTypes
                 },
-                myUnit: {
-                    activePromptTitle: 'Choose a unit to affect',
-                    controller: 'self',
+                sourceUnit: {
+                    activePromptTitle: 'Choose a target unit to copy',
                     cardType: BattlefieldTypes,
+                    cardCondition: (card, context) => card !== context.targets.myUnit,
                     gameAction: ability.actions.cardLastingEffect((context) => ({
+                        target: context.targets.myUnit,
                         duration: 'untilEndOfTurn',
                         effect: ability.effects.copyCard(context.targets.sourceUnit)
                     }))
