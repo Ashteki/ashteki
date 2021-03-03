@@ -50,14 +50,6 @@ class Player extends GameObject {
         this.firstPlayer = false;
     }
 
-    setFirstPlayer() {
-        this.firstPlayer = true;
-    }
-
-    toggleFirstPlayer() {
-        this.firstPlayer = !this.firstPlayer;
-    }
-
     get name() {
         return this.user.username;
     }

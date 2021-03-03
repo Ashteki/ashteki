@@ -15,12 +15,12 @@ class SmallSacrifice extends Card {
             location: 'spellboard',
             targets: {
                 first: {
-                    player: 'self',
+                    controller: 'self',
                     cardType: BattlefieldTypes
                 },
                 second: {
                     dependsOn: 'first',
-                    player: 'opponent',
+                    controller: 'opponent',
                     cardType: BattlefieldTypes
                 },
                 tokenChoice: {

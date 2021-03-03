@@ -79,7 +79,8 @@ class Game extends EventEmitter {
         this.cardsDiscarded = [];
         this.effectsUsed = [];
         this.activePlayer = null;
-        this.firstPlayer = null;
+        this.gameFirstPlayer = null;
+        this.roundFirstPlayer = null;
         this.jsonForUsers = {};
 
         this.cardData = options.cardData || [];
@@ -734,14 +735,14 @@ class Game extends EventEmitter {
 
         this.playStarted = true;
         this.startedAt = new Date();
-        this.round = 1;
+        this.round = 0;
         this.turn = 1;
 
         this.continue();
     }
 
     determineFirstPlayer() {
-        if (!this.activePlayer) {
+        if (!this.gameFirstPlayer) {
             let players = this.getPlayers();
             let i = 0;
             while (
@@ -763,15 +764,23 @@ class Game extends EventEmitter {
             );
             this.queueStep(new FirstPlayerSelection(this));
         } else {
-            this.activePlayer = this.round % 2 > 0 ? this.firstPlayer : this.firstPlayer.opponent;
-            this.getPlayers().forEach((p) => p.toggleFirstPlayer());
-            this.addMessage('{0} goes first this round', this.activePlayer);
+            const newFirstPlayer =
+                this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
+            this.setRoundFirstPlayer(newFirstPlayer);
+            this.addAlert('{0} goes first this round', this.activePlayer);
         }
     }
 
-    SetFirstPlayer(player) {
-        this.firstPlayer = player;
-        this.firstPlayer.setFirstPlayer();
+    // this only gets called once at the start of the game
+    setGameFirstPlayer(player) {
+        this.gameFirstPlayer = player;
+        this.setRoundFirstPlayer(player);
+    }
+
+    setRoundFirstPlayer(player) {
+        this.roundFirstPlayer = player;
+        player.firstPlayer = true;
+        player.opponent.firstPlayer = false;
         this.activePlayer = player;
     }
 
@@ -831,6 +840,9 @@ class Game extends EventEmitter {
      * @returns {undefined}
      */
     beginRound() {
+        this.round++;
+        this.addAlert('startofround', `Round ${this.round}`);
+
         this.raiseEvent('onBeginRound');
         this.getPlayers().forEach((player) => player.beginRound());
         this.queueStep(new PreparePhase(this));
@@ -841,6 +853,11 @@ class Game extends EventEmitter {
 
         this.queueStep(new SimpleStep(this, () => this.raiseEndRoundEvent()));
         this.queueStep(new SimpleStep(this, () => this.beginRound()));
+    }
+
+    beginTurn() {
+        this.addAlert('startofturn', `Turn ${this.turn} - {0}`, this.activePlayer);
+        this.raiseEvent('onBeginTurn');
     }
 
     /*
@@ -1204,7 +1221,6 @@ class Game extends EventEmitter {
             this.turn++;
         }
 
-        this.addAlert('startofturn', `Turn ${this.turn} - {0}`, this.activePlayer);
         this.checkForTimeExpired();
     }
 
@@ -1221,9 +1237,6 @@ class Game extends EventEmitter {
         }
 
         this.addAlert('endofround', `End of round ${this.round}`);
-
-        this.round++;
-        this.addAlert('startofround', `Round ${this.round}`);
         this.checkForTimeExpired();
     }
 

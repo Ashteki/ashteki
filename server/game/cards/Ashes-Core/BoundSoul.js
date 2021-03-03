@@ -6,7 +6,7 @@ class BoundSoul extends Card {
         this.play({
             effect: 'return an ally from discard to hand',
             target: {
-                player: 'self',
+                controller: 'self',
                 location: Location.Discard,
                 cardType: CardType.Ally,
                 gameAction: ability.actions.moveCard({ destination: Location.Hand, shuffle: true })

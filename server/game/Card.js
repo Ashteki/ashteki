@@ -552,7 +552,7 @@ class Card extends PlayableObject {
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedAttackEffect = this.mostRecentEffect('setPrintedAttack');
         const printedAttack = copyEffect
-            ? copyEffect.attack // use calculated value of attack - e.g. for SilverSnake X attack
+            ? copyEffect.printedAttack // use calculated value of attack - e.g. for SilverSnake X attack
             : printedAttackEffect || this.printedAttack;
         return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
     }
@@ -568,7 +568,9 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedLifeEffect = this.mostRecentEffect('setPrintedLife');
-        const printedLife = copyEffect ? copyEffect.life : printedLifeEffect || this.printedLife;
+        const printedLife = copyEffect
+            ? copyEffect.printedLife
+            : printedLifeEffect || this.printedLife;
         return printedLife + this.sumEffects('modifyLife');
     }
 
@@ -588,7 +590,7 @@ class Card extends PlayableObject {
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedRecoverEffect = this.mostRecentEffect('setPrintedRecover');
         const printedRecover = copyEffect
-            ? copyEffect.recover
+            ? copyEffect.printedRecover
             : printedRecoverEffect || this.printedRecover;
 
         return Math.max(0, printedRecover + this.sumEffects('modifyRecover'));

@@ -9,7 +9,7 @@ class PlayerTurnsPhase extends Phase {
     }
 
     beginTurn() {
-        this.game.raiseEvent('onBeginTurn');
+        this.game.beginTurn();
         this.game.activePlayer.beginTurn();
 
         this.queueStep(new ActionWindow(this.game));

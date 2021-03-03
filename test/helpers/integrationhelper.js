@@ -274,7 +274,8 @@ beforeEach(function () {
                 'hand',
                 'discard',
                 'archives',
-                'phoenixborn'
+                'phoenixborn',
+                'deck'
             ].reduce((array, location) => array.concat(player[location]), []);
             for (let card of cards) {
                 let split = card.id.split('-');

@@ -1,20 +1,13 @@
 const { BattlefieldTypes } = require('../constants');
+const ActionCost = require('./Costs/actioncost');
 const ChosenActionCost = require('./Costs/chosenactionscost');
 const DiceCost = require('./Costs/dicecost');
 const DynamicDiceCost = require('./Costs/dynamicdicecost');
 const DiceCount = require('./DiceCount');
 
 const Costs = {
-    mainAction: () => ({
-        canPay: (context) => context.player.actions.main,
-        payEvent: (context) =>
-            context.game.actions.spendMainAction().getEvent(context.player, context)
-    }),
-    sideAction: () => ({
-        canPay: (context) => context.player.actions.side,
-        payEvent: (context) =>
-            context.game.actions.spendSideAction().getEvent(context.player, context)
-    }),
+    mainAction: () => new ActionCost({ type: 'main' }),
+    sideAction: () => new ActionCost({ type: 'side' }),
     chosenAction: () => new ChosenActionCost(),
     exhaust: () => ({
         canPay: () => true, // cards can be overexhausted (>1 tokens)
