@@ -208,7 +208,7 @@ class Player extends GameObject {
     }
 
     isBattlefieldFull() {
-        return this.cardsInPlay.length >= this.phoenixborn.battlefield;
+        return this.cardsInPlay.filter((c) => !c.moribund).length >= this.phoenixborn.battlefield;
     }
 
     /**
