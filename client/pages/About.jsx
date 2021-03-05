@@ -115,15 +115,41 @@ class About extends React.Component {
                             </Trans>
                         </li>
                     </ul>
+                    <h3>Meaning of Username Colors</h3>
+                    <p>
+                        Some usernames have different colors and the intent is to acknowledge the
+                        supporters of the platform:
+                    </p>
+                    <ul>
+                        <li>
+                            <span className='username admin-role'>admin</span> - site administrator
+                        </li>
+                        <li>
+                            <span className='username contributor-role'>contributor</span> - people
+                            who have made significant development contributions to the site
+                        </li>
+                        <li>
+                            <span className='username supporter-role'>supporter</span> - patreon
+                            supporters
+                        </li>
+                        <li>
+                            <span className='username winner-role'>winner</span> - current
+                            tournament winner
+                        </li>
+                        <li>
+                            <span className='username previouswinner-role'>previous winner</span> -
+                            former tournament winner
+                        </li>
+                    </ul>
 
                     <h3 id='conceding'>
                         <Trans>About Stats, Conceding and Leaving Games</Trans>
                     </h3>
                     <p>
-                        Ashes Reborn Online does not rank and/or match players by skill level in any
-                        way. There are three categories (beginner, casual and competitive) to be
-                        chosen when creating a game which gives an indication of what to expect, but
-                        it doesn&apos;t enforce anything. Even though personal stats are not being
+                        Ashteki does not rank and/or match players by skill level in any way. There
+                        are three categories (beginner, casual and competitive) to be chosen when
+                        creating a game which gives an indication of what to expect, but it
+                        doesn&apos;t enforce anything. Even though personal stats are not being
                         tracked, most players still very much appreciate a formal concede by
                         clicking the ‘Concede’ button and typing ‘gg’ before leaving a game.
                     </p>
