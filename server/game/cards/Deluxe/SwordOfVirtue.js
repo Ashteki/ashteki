@@ -9,9 +9,14 @@ class SwordOfVirtue extends Card {
                     cardType: BattlefieldTypes,
                     choices: {
                         Destroy: ability.actions.destroy(),
-                        'Remove all wounds': ability.actions.removeDamage({
-                            all: true
-                        })
+                        'Remove tokens': [
+                            ability.actions.removeDamage({
+                                all: true
+                            }),
+                            ability.actions.removeExhaustion({
+                                all: true
+                            })
+                        ]
                     }
                 }))
             }
