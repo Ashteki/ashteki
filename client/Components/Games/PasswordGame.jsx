@@ -33,7 +33,7 @@ const PasswordGame = () => {
                 <div className='mt-1 mb-3'>
                     <input
                         className='form-control'
-                        type='password'
+                        type='text'
                         onChange={(event) => setPassword(event.target.value)}
                         value={password}
                     />

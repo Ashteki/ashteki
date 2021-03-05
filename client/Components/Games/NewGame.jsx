@@ -188,7 +188,7 @@ const NewGame = ({
                                 <Form.Group as={Col} sm={8}>
                                     <Form.Label>{t('Password')}</Form.Label>
                                     <Form.Control
-                                        type='password'
+                                        type='text'
                                         placeholder={t('Enter a password')}
                                         autoComplete='off'
                                         {...getStandardControlProps(formProps, 'password')}
