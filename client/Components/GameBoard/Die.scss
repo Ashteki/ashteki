@@ -110,10 +110,10 @@
     }
 
     &.selected {
-        box-shadow: 0 0 1px 4px theme-color('secondary');
+        box-shadow: 0 0 1px 4px theme-color('selected');
 
         &.controlled {
-            box-shadow: $controlledBox, 0 0 1px 4px theme-color('secondary');
+            box-shadow: $controlledBox, 0 0 1px 4px theme-color('selected');
         }
     }
 

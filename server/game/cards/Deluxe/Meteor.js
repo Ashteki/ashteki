@@ -15,8 +15,18 @@ class Meteor extends Card {
             then: {
                 gameAction: ability.actions.dealDamage((context) => {
                     let diceCost = context.preThenEvent.context.event.context.costs.returnDice;
+                    const numLions = diceCost.filter((d) => d.level === Level.Power).length;
+                    // BUG: this is reporting twice - switch to message and messageArgs?
+                    // if (numLions > 0) {
+                    //     context.game.addMessage(
+                    //         '{0} uses {1} to deal an additional {2} damage',
+                    //         context.player,
+                    //         context.source,
+                    //         numLions
+                    //     );
+                    // }
                     return {
-                        amount: diceCost.filter((d) => d.level === Level.Power).length,
+                        amount: numLions,
                         target: context.game.unitsInPlay
                     };
                 })
