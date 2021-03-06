@@ -284,9 +284,11 @@ const Card = ({
             </div>
         ) : null;
         let dice =
-            card.dieUpgrades && card.dieUpgrades.length > 0 ? (
-                <Die die={{ magic: 'charm', level: 'power' }} />
-            ) : null;
+            card.dieUpgrades && card.dieUpgrades.length > 0
+                ? card.dieUpgrades.map((d) => (
+                      <Die key={'dup-' + d.uuid} die={{ magic: d.magic, level: 'power' }} />
+                  ))
+                : null;
 
         return (
             <div className='card-frame' ref={drag}>
