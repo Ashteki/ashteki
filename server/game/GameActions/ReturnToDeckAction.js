@@ -5,6 +5,7 @@ class ReturnToDeckAction extends CardGameAction {
     setDefaultProperties() {
         this.bottom = false;
         this.shuffle = true;
+        this.chooseTopBottom = false;
     }
 
     setup() {
@@ -15,6 +16,17 @@ class ReturnToDeckAction extends CardGameAction {
         } else {
             this.effectMsg =
                 'return {0} to the ' + (this.bottom ? 'bottom' : 'top') + ' of their deck';
+        }
+    }
+
+    preEventHandler(context) {
+        if (this.chooseTopBottom) {
+            context.game.promptWithHandlerMenu(context.player, {
+                activePromptTitle: 'Choose how to return the card',
+                context: context,
+                choices: ['Top', 'Bottom'],
+                handlers: [() => (this.bottom = false), () => (this.bottom = true)]
+            });
         }
     }
 
