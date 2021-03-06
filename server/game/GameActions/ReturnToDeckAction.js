@@ -20,6 +20,8 @@ class ReturnToDeckAction extends CardGameAction {
     }
 
     preEventHandler(context) {
+        super.preEventHandler(context);
+
         if (this.chooseTopBottom) {
             context.game.promptWithHandlerMenu(context.player, {
                 activePromptTitle: 'Choose how to return the card',
