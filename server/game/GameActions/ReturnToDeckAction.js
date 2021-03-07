@@ -45,7 +45,12 @@ class ReturnToDeckAction extends CardGameAction {
         return super.createEvent(
             eventName,
             { card: card, context: context, deckLength: deckLength },
-            () => {
+            (event) => {
+                const message = this.shuffle
+                    ? '{0} shuffles a card back into their deck'
+                    : '{0} returns a card to the {2} of their deck';
+                const dest = this.bottom ? 'bottom' : 'top';
+                event.context.game.addMessage(message, event.context.player, event.card, dest);
                 card.owner.moveCard(card, destinationPile, { bottom: this.bottom });
                 let cardsByOwner = this.target.filter((c) => c.owner === card.owner);
                 if (
