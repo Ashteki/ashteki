@@ -36,7 +36,7 @@ describe('River Skald', function () {
 
             this.player1.clickCard(this.riverSkald);
             this.player1.clickPrompt('Play this Ally');
-            expect(this.player1).toHavePrompt('Harsh Melody');
+            expect(this.player1).toHavePrompt('Choose a card to discard');
 
             this.player1.clickPrompt('Done');
             expect(this.player1).toHaveDefaultPrompt();
