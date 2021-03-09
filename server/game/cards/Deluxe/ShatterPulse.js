@@ -14,6 +14,7 @@ class ShatterPulse extends Card {
                 gameAction: ability.actions.destroy()
             },
             then: {
+                condition: (context) => context.player.checkRestrictions('changeOpponentsDice'),
                 gameAction: ability.actions.changeDice({
                     numDice: 2,
                     owner: 'opponent'

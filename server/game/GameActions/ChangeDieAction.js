@@ -7,9 +7,10 @@ class ChangeDieAction extends DiceGameAction {
     }
 
     setup() {
-        this.name = this.change + 'Die';
+        super.setup();
+        // this.name = this.change + 'Die';
+        this.name = 'changeDie';
         this.effectMsg = this.change + ' die {0}';
-        this.targetType = ['die'];
     }
 
     getEvent(die, context) {

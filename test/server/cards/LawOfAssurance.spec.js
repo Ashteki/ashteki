@@ -41,10 +41,6 @@ describe('law of Assurance', function () {
 
         //     expect(this.player2).toHavePrompt('Any reactions to mist spirit being destroyed?');
         // });
-
-        // it('stops opponents dice being set', function () {
-
-        // });
     });
 
     describe('law of assurance in play', function () {
@@ -53,15 +49,15 @@ describe('law of Assurance', function () {
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['mist-spirit', 'iron-worker'],
-                    dicepool: ['divine', 'divine', 'charm', 'charm', 'natural', 'natural'],
-                    spellboard: ['law-of-assurance', 'summon-gilder'],
-                    hand: ['freezing-blast']
+                    dicepool: ['illusion', 'natural', 'sympathy', 'sympathy', 'ceremonial'],
+                    spellboard: ['law-of-assurance', 'magic-syphon', 'summon-gilder'],
+                    hand: ['call-upon-the-realms']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
                     inPlay: ['hammer-knight'],
                     hand: ['rins-fury'],
-                    dicepool: ['natural', 'natural']
+                    dicepool: ['illusion', 'illusion']
                 }
             });
         });
@@ -79,5 +75,30 @@ describe('law of Assurance', function () {
             this.player2.clickPrompt('Done');
             expect(this.lawOfAssurance.location).toBe('discard');
         });
+
+        it('stops opponents dice being lowered by illusion dice power', function () {
+            this.player1.clickDie(0); // illusion die
+            expect(this.player1).not.toHavePrompt('Illusion Power Die');
+        });
+
+        it('stops opponents dice being changed by ChangeDiceAction', function () {
+            this.player1.clickCard(this.magicSyphon);
+            this.player1.clickPrompt('Magic Syphon');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('done');
+            expect(this.player1).toBeAbleToSelectDie(this.player1.dicepool[0]);
+            expect(this.player1).not.toBeAbleToSelectDie(this.player2.dicepool[0]);
+        });
+
+        it('does not stop own dice being changed by ChangeDiceAction', function () {
+            this.player1.clickCard(this.callUponTheRealms);
+            expect(this.player1).toHavePromptButton('Play this action');
+        });
+
+        // it('does not stop use of shatter pulse as only part changes opponents dice', function () {
+
+        //     expect(this.player1).toHavePromptButton('Play this action');
+        //     this.player1.clickDie(4);
+        // });
     });
 });

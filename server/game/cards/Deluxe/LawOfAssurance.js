@@ -1,4 +1,3 @@
-const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class LawOfAssurance extends Card {
@@ -12,10 +11,13 @@ class LawOfAssurance extends Card {
 
         this.persistentEffect({
             targetController: 'Any',
-            effect: ability.effects.playerCannot(
-                'changeOpponentsDie',
-                (context) => context.source.type === CardType.ReactionSpell
-            )
+            effect: [
+                ability.effects.playerCannot(
+                    'changeDie',
+                    (context) => context.source.owner === context.player.opponent
+                ),
+                ability.effects.playerCannot('changeOpponentsDice')
+            ]
         });
 
         this.bound();

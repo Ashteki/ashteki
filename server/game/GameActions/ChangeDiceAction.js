@@ -18,6 +18,10 @@ class ChangeDiceAction extends PlayerAction {
     }
 
     getEvent(player, context) {
+        if (!player.checkRestrictions('diceChange', context)) {
+            return;
+        }
+
         const params = {
             player: player,
             context: context,

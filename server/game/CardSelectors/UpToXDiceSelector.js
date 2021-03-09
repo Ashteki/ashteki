@@ -35,10 +35,6 @@ class UpToXDiceSelector extends BaseDieSelector {
     hasExceededLimit(selectedDice, context) {
         return selectedDice.length > this.getNumDice(context);
     }
-
-    hasEnoughTargets() {
-        return true;
-    }
 }
 
 module.exports = UpToXDiceSelector;

@@ -11,11 +11,12 @@ class MagicSyphon extends Card {
                 owner: 'self'
             }),
             then: {
+                //todo: this isn't right - need to target a player then select from their dice
                 alwaysTriggers: true,
-                gameAction: ability.actions.changeDice({
+                gameAction: ability.actions.changeDice((context) => ({
                     numDice: 1,
-                    owner: 'any'
-                })
+                    owner: context.player.checkRestrictions('changeOpponentsDice') ? 'any' : 'self'
+                }))
             }
         });
     }
