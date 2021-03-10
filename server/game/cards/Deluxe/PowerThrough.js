@@ -5,7 +5,7 @@ class PowerThrough extends Card {
         this.whileAttached({
             effect: [
                 ability.effects.modifyAttack(1),
-                ability.effects.gainAbility('destroysFighting', {
+                ability.effects.gainAbility('afterDestroysFighting', {
                     // overkill 1
                     gameAction: ability.actions.dealDamage((context) => ({
                         amount: 1,

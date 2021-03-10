@@ -494,7 +494,7 @@ class Player extends GameObject {
 
         card.moveTo(targetLocation);
 
-        this.game.raiseEvent('onCardPlaced', { card: card, from: location, to: targetLocation });
+        // this.game.raiseEvent('onCardPlaced', { card: card, from: location, to: targetLocation });
     }
 
     /**

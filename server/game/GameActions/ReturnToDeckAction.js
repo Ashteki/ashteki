@@ -5,6 +5,7 @@ class ReturnToDeckAction extends CardGameAction {
     setDefaultProperties() {
         this.bottom = false;
         this.shuffle = true;
+        this.chooseTopBottom = false;
     }
 
     setup() {
@@ -15,6 +16,19 @@ class ReturnToDeckAction extends CardGameAction {
         } else {
             this.effectMsg =
                 'return {0} to the ' + (this.bottom ? 'bottom' : 'top') + ' of their deck';
+        }
+    }
+
+    preEventHandler(context) {
+        super.preEventHandler(context);
+
+        if (this.chooseTopBottom) {
+            context.game.promptWithHandlerMenu(context.player, {
+                activePromptTitle: 'Choose how to return the card',
+                context: context,
+                choices: ['Top', 'Bottom'],
+                handlers: [() => (this.bottom = false), () => (this.bottom = true)]
+            });
         }
     }
 
@@ -31,7 +45,12 @@ class ReturnToDeckAction extends CardGameAction {
         return super.createEvent(
             eventName,
             { card: card, context: context, deckLength: deckLength },
-            () => {
+            (event) => {
+                const message = this.shuffle
+                    ? '{0} shuffles a card back into their deck'
+                    : '{0} returns a card to the {2} of their deck';
+                const dest = this.bottom ? 'bottom' : 'top';
+                event.context.game.addMessage(message, event.context.player, event.card, dest);
                 card.owner.moveCard(card, destinationPile, { bottom: this.bottom });
                 let cardsByOwner = this.target.filter((c) => c.owner === card.owner);
                 if (

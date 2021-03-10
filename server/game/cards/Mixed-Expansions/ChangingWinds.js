@@ -7,7 +7,25 @@ class ChangingWinds extends Card {
             location: 'spellboard',
             gameAction: ability.actions.draw({
                 amount: 2
-            })
+            }),
+            then: {
+                target: {
+                    location: 'hand',
+                    gameAction: ability.actions.returnToDeck({
+                        chooseTopBottom: true,
+                        shuffle: false
+                    })
+                },
+                then: {
+                    target: {
+                        location: 'hand',
+                        gameAction: ability.actions.returnToDeck({
+                            chooseTopBottom: true,
+                            shuffle: false
+                        })
+                    }
+                }
+            }
         });
 
         this.action({

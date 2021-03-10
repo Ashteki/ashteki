@@ -1,8 +1,7 @@
-const BaseStepWithPipeline = require('../gamesteps/basestepwithpipeline.js');
-const ForcedTriggeredAbilityWindow = require('../gamesteps/forcedtriggeredabilitywindow.js');
-const DestroyedAbilityWindow = require('../gamesteps/DestroyedAbilityWindow.js');
-const SimpleStep = require('../gamesteps/simplestep.js');
 const { AbilityType } = require('../../constants.js');
+const BaseStepWithPipeline = require('../gamesteps/basestepwithpipeline.js');
+const SimpleStep = require('../gamesteps/simplestep.js');
+const ForcedTriggeredAbilityWindow = require('../gamesteps/forcedtriggeredabilitywindow.js');
 const TriggeredAbilityWindow = require('../gamesteps/triggeredabilitywindow.js');
 const logger = require('../../log.js');
 
@@ -43,21 +42,14 @@ class EventWindow extends BaseStepWithPipeline {
             return;
         }
 
-        if (
-            abilityType === AbilityType.ForcedInterrupt &&
-            events.some((event) => event.name === 'onCardLeavesPlay')
-        ) {
-            this.queueStep(new DestroyedAbilityWindow(this.game, abilityType, this));
-        } else {
-            if (abilityType === AbilityType.ForcedReaction) {
-                this.game.checkDelayedEffects(events);
-            }
+        if (abilityType === AbilityType.ForcedReaction) {
+            this.game.checkDelayedEffects(events);
+        }
 
-            if ([AbilityType.ForcedReaction, AbilityType.ForcedInterrupt].includes(abilityType)) {
-                this.queueStep(new ForcedTriggeredAbilityWindow(this.game, abilityType, this));
-            } else {
-                this.queueStep(new TriggeredAbilityWindow(this.game, abilityType, this));
-            }
+        if ([AbilityType.ForcedReaction, AbilityType.ForcedInterrupt].includes(abilityType)) {
+            this.queueStep(new ForcedTriggeredAbilityWindow(this.game, abilityType, this));
+        } else {
+            this.queueStep(new TriggeredAbilityWindow(this.game, abilityType, this));
         }
     }
 

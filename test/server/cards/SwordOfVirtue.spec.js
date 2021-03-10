@@ -26,8 +26,8 @@ describe('Sword of Virtue action spell', function () {
         this.player1.clickPrompt('Done');
         this.player1.clickCard(this.ironRhino);
         expect(this.player1).toHavePromptButton('Destroy');
-        expect(this.player1).toHavePromptButton('Remove all wounds');
-        this.player1.clickPrompt('remove all wounds');
+        expect(this.player1).toHavePromptButton('Remove tokens');
+        this.player1.clickPrompt('Remove tokens');
 
         expect(this.ironRhino.damage).toBe(0);
     });

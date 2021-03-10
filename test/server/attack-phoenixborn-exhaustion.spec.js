@@ -61,7 +61,7 @@ describe('During attack on Phoenixborn', function () {
             });
         });
 
-        it('side effect exhaustion of blocker prevents counter', function () {
+        it('side effect exhaustion of attacker removes their attack', function () {
             expect(this.ironWorker.damage).toBe(0); // will check damage from mist spirit
 
             this.player1.clickPrompt('Attack');

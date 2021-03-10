@@ -4,7 +4,7 @@ class SonicSwordsman extends Card {
     setupCardAbilities(ability) {
         this.alert();
 
-        this.destroysFighting({
+        this.afterDestroysFighting({
             target: {
                 activePromptTitle: 'Sonic Pulse 1',
                 waitingPromptTitle: 'Sonic Pulse 1: waiting for opponent',
