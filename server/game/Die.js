@@ -161,7 +161,8 @@ class Die extends PlayableObject {
                         owner: 'opponent',
                         gameAction: this.game.actions.lowerDie()
                     },
-                    message: '{0} uses {1} to lower up to 2 opponent dice'
+                    message: '{0} uses {1} to lower up to 2 opponent dice',
+                    changeDie: true
                 });
             case 'natural':
                 return this.action({

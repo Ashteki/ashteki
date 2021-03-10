@@ -38,13 +38,17 @@ class BaseDieSelector {
             return false;
         }
 
-        return (
-            //this.dieType.length == 0 ||
-            // (
-            //     this.dieType.includes(die.getType())
-            // &&
-            this.dieCondition(die, context)
-        );
+        if (
+            die.owner === context.player.opponent &&
+            context.ability &&
+            context.ability.properties &&
+            context.ability.properties.changeDie &&
+            !context.player.checkRestrictions('changeOpponentsDice')
+        ) {
+            return false;
+        }
+
+        return this.dieCondition(die, context);
     }
 
     getAllLegalTargets(context) {

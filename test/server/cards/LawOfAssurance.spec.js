@@ -94,11 +94,5 @@ describe('law of Assurance', function () {
             this.player1.clickCard(this.callUponTheRealms);
             expect(this.player1).toHavePromptButton('Play this action');
         });
-
-        // it('does not stop use of shatter pulse as only part changes opponents dice', function () {
-
-        //     expect(this.player1).toHavePromptButton('Play this action');
-        //     this.player1.clickDie(4);
-        // });
     });
 });

@@ -12,8 +12,7 @@ class DieAbility extends ThenAbility {
             //todo: bit of a guess here - assuming there's a 'cannot exhaust dice type thing' ?
             !ignoredRequirements.includes('cannotTrigger') &&
             (!context.player.checkRestrictions('use', context) ||
-                !context.source.checkRestrictions('use', context) ||
-                !context.player.checkRestrictions('changeDie', context))
+                !context.source.checkRestrictions('use', context))
         ) {
             return 'cannotTrigger';
         }

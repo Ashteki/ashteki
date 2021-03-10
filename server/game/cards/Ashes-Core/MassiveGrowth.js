@@ -3,7 +3,8 @@ const Card = require('../../Card.js');
 class MassiveGrowth extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            effect: ability.effects.spellGuard()
+            effect: ability.effects.spellGuard(),
+            match: this
         });
 
         this.whileAttached({

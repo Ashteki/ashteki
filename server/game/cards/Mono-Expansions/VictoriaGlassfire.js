@@ -6,6 +6,7 @@ class VictoriaGlassfire extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Surprise!',
+            condition: (context) => context.player.checkRestrictions('changeOpponentsDice'),
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),

@@ -36,7 +36,7 @@ describe('Surprise ability', function () {
     });
 
     it('can be played to deal damage to a Unit', function () {
-        this.player1.clickCard(this.victoriaGlassfire); // use slash
+        this.player1.clickCard(this.victoriaGlassfire);
         this.player1.clickPrompt('Surprise!');
         this.player1.clickOpponentDie(0);
         this.player1.clickOpponentDie(1);
