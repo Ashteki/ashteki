@@ -4,7 +4,7 @@ class HammerKnight extends Card {
     setupCardAbilities(ability) {
         this.alert();
 
-        this.destroysFighting({
+        this.afterDestroysFighting({
             target: {
                 optional: true,
                 activePromptTitle: 'Aftershock 1',

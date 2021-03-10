@@ -183,10 +183,6 @@ class CardAbility extends ThenAbility {
     isPlay() {
         return false;
     }
-
-    isTriggeredAbility() {
-        return true;
-    }
 }
 
 module.exports = CardAbility;

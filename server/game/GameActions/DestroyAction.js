@@ -19,7 +19,15 @@ class DestroyAction extends CardGameAction {
         return !card.moribund && card.location === 'play area' && super.canAffect(card, context);
     }
 
+    checkEventCondition(event) {
+        return (
+            // removing canAffect check here otherwise ondestroy reactions never trigger e.g. with undying heart
+            event.card.checkRestrictions(this.name, event.context)
+        );
+    }
+
     getEvent(card, context) {
+        card.moribund = true;
         const params = {
             card: card,
             context: context,

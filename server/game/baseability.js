@@ -216,10 +216,6 @@ class BaseAbility {
         return false;
     }
 
-    isTriggeredAbility() {
-        return false;
-    }
-
     resolveCosts(context, results) {
         // for (let cost of this.getCosts(context, results.playCosts, results.triggerCosts)) {
         for (let cost of this.cost) {

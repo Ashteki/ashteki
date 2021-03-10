@@ -235,10 +235,7 @@ class Card extends PlayableObject {
             Object.assign(
                 {
                     when: {
-                        onCardLeavesPlay: (event, context) =>
-                            event.triggeringEvent &&
-                            event.triggeringEvent.name === 'onCardDestroyed' &&
-                            event.card === context.source
+                        onCardDestroyed: (event, context) => event.card === context.source
                     },
                     destroyed: true
                 },
@@ -247,16 +244,22 @@ class Card extends PlayableObject {
         );
     }
 
-    destroysFighting(properties) {
+    afterDestroysFighting(properties) {
+        // NOTE: this is not AFTER Destroy ==> forcedReaction to destroy.
+        // This has to happen before the onCardLeavesPlay because when a card is moved the event
+        // listeners are removed from the game - so a card like iron Rhino can't overkill if it is
+        // destroyed in the simultaneous damage.
         return this.forcedInterrupt(
             Object.assign(
                 {
                     when: {
-                        onCardDestroyed: (event, context) =>
-                            event.damageEvent &&
-                            event.damageEvent.fightEvent &&
-                            event.damageEvent.damageSource === context.source &&
-                            event.damageEvent.fightEvent.attacker === context.source
+                        onCardLeavesPlay: (event, context) =>
+                            event.triggeringEvent &&
+                            event.triggeringEvent.name === 'onCardDestroyed' &&
+                            event.triggeringEvent.damageEvent &&
+                            event.triggeringEvent.damageEvent.fightEvent &&
+                            event.triggeringEvent.damageEvent.damageSource === context.source &&
+                            event.triggeringEvent.damageEvent.fightEvent.attacker === context.source
                     }
                 },
                 properties

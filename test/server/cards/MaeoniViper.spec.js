@@ -29,6 +29,11 @@ describe('Maeoni Viper command strike', function () {
             this.player1.clickCard(this.bloodArcher);
             expect(this.silverSnake.status).toBe(4);
         });
+
+        it('cannot use without unexhausted units', function () {
+            this.silverSnake.tokens.exhaustion = 1;
+            this.player1.clickCard(this.maeoniViper);
+        });
     });
 
     describe('no units in play (mine)', function () {
