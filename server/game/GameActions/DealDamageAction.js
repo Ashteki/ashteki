@@ -1,3 +1,4 @@
+// const Card = require('../Card');
 const CardGameAction = require('./CardGameAction');
 
 class DealDamageAction extends CardGameAction {
@@ -64,12 +65,17 @@ class DealDamageAction extends CardGameAction {
             bonus: this.bonus
         };
 
-        if (card.anyEffect('preventDamage')) {
-            let preventer = card.getEffects('preventDamage')[0];
+        if (card.anyEffect('preventAllDamage')) {
+            let preventer = card.getEffects('preventAllDamage')[0];
             context.game.addMessage('{0} prevents damage to {1}', preventer, card);
 
             // add preventer and card as params when this matters
             return context.game.getEvent('onDamagePrevented');
+        }
+
+        if (card.anyEffect('preventDamage') && !this.damageSource.anyEffect('unpreventable')) {
+            let preventAmount = card.sumEffects('preventDamage');
+            params.amount = params.amount - preventAmount;
         }
 
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {

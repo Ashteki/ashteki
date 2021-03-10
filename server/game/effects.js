@@ -69,7 +69,8 @@ const Effects = {
     bypass: () => EffectBuilder.card.static('bypass'),
     preventGuard: () => EffectBuilder.card.static('preventGuard'),
     preventBlock: () => EffectBuilder.card.static('preventBlock'),
-    preventDamage: (shield) => EffectBuilder.card.static('preventDamage', shield),
+    preventDamage: (amount) => EffectBuilder.card.static('preventDamage', amount),
+    preventAllDamage: (shield) => EffectBuilder.card.static('preventAllDamage', shield),
 
     // Player effects
     lastingAbilityTrigger: (properties) =>
