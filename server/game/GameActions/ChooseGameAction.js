@@ -46,7 +46,7 @@ class ChooseGameAction extends GameAction {
             gameAction.setDefaultTarget(() => target);
         }
 
-        if (this.player !== target.controller) {
+        if (this.player && this.player !== target.controller) {
             this.effectMsg = 'make {1} ' + this.effectMsg;
             this.effectArgs = () => this.player;
         }

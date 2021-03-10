@@ -4,6 +4,7 @@ class RemoveTokenAction extends CardGameAction {
     constructor(propertyFactory, type = 'status') {
         super(propertyFactory);
         this.type = type;
+        this.showMessage = false;
     }
 
     setDefaultProperties() {
@@ -45,6 +46,15 @@ class RemoveTokenAction extends CardGameAction {
             { type: this.type, card: card, context: context, amount: this.getAmount(card) },
             (event) => {
                 card.removeToken(event.type, event.amount);
+                if (this.showMessage) {
+                    context.game.addMessage(
+                        `{0} removes {1} {2} tokens from {3}`,
+                        context.player,
+                        this.all ? 'all' : event.amount,
+                        event.type,
+                        event.card
+                    );
+                }
             }
         );
     }

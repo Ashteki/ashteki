@@ -11,10 +11,12 @@ class SwordOfVirtue extends Card {
                         Destroy: ability.actions.destroy(),
                         'Remove tokens': [
                             ability.actions.removeDamage({
-                                all: true
+                                all: true,
+                                showMessage: true
                             }),
                             ability.actions.removeExhaustion({
-                                all: true
+                                all: true,
+                                showMessage: true
                             })
                         ]
                     }
