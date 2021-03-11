@@ -91,10 +91,9 @@ class Dice {
             });
         // there should only be one parallel dice cost, but anyway...
         parallels.forEach((p) => {
-            p.forEach((item) => {
-                //BUG?: assuming a single die return needed... what if count is 2?
+            for (const item of p) {
                 if (Dice.findADie(availableDice, item, matchedDice)) return;
-            });
+            }
         });
         return matchedDice;
     }

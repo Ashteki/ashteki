@@ -86,7 +86,7 @@ describe('dice matching', function () {
         expect(chosenDice[0].level).toBe('power');
     });
 
-    it('should match parallel to single dice', function () {
+    it('should match parallel to single dice if only one available', function () {
         const dice = [
             { uuid: '3', magic: 'charm', level: 'class' },
             { uuid: '5', magic: 'ceremonial', level: 'class' }
@@ -108,6 +108,31 @@ describe('dice matching', function () {
         expect(chosenDice[0].magic).toBe('ceremonial');
         expect(chosenDice[1].level).toBe('class');
         expect(chosenDice[1].magic).toBe('charm');
+    });
+
+    it('should match parallel to first dice where both available', function () {
+        const dice = [
+            { uuid: '3', magic: 'charm', level: 'class' },
+            { uuid: '2', magic: 'illusion', level: 'class' },
+            { uuid: '5', magic: 'ceremonial', level: 'class' }
+        ];
+        // parallel cost should match charm class die
+        const diceReq = [
+            [
+                new DiceCount(1, Level.Class, Magic.Illusion),
+                new DiceCount(1, Level.Class, Magic.Charm)
+            ],
+            new DiceCount(1, Level.Class, Magic.Ceremonial)
+        ];
+
+        let chosenDice = Dice.matchDice(dice, diceReq);
+
+        expect(chosenDice.length).toBe(2);
+        // non-parallel first
+        expect(chosenDice[0].level).toBe('class');
+        expect(chosenDice[0].magic).toBe('ceremonial');
+        expect(chosenDice[1].level).toBe('class');
+        expect(chosenDice[1].magic).toBe('illusion');
     });
 
     it('matches multiple dice in a single cost', function () {
