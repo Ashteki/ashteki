@@ -6,7 +6,6 @@ class Crescendo extends Card {
         this.reaction({
             when: {
                 onAttackersDeclared: (event, context) => {
-                    // opponent declares attackers
                     return event.attackingPlayer === context.source.owner; // my attack
                 }
             },
