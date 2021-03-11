@@ -208,7 +208,7 @@ class Card extends PlayableObject {
     }
 
     ambush(amount) {
-        this.play({
+        return this.play({
             title: 'Ambush ' + amount,
             effect: 'deal ' + amount + ' damage to a target phoenixborn',
             gameAction: AbilityDsl.actions.dealDamage((context) => ({
@@ -218,7 +218,7 @@ class Card extends PlayableObject {
     }
 
     fleeting() {
-        this.forcedInterrupt({
+        return this.forcedInterrupt({
             inexhaustible: true,
             title: 'Fleeting',
             when: {
@@ -231,13 +231,31 @@ class Card extends PlayableObject {
     }
 
     fade() {
-        this.forcedReaction({
+        return this.forcedReaction({
             inexhaustible: true,
             title: 'Fade',
             when: {
                 onRoundEnded: () => true
             },
             gameAction: AbilityDsl.actions.destroy()
+        });
+    }
+
+    groupTactics(properties) {
+        return this.forcedReaction({
+            when: {
+                onAttackersDeclared: (event, context) => {
+                    return (
+                        event.attackingPlayer === context.source.owner && event.battles.length >= 3
+                    );
+                }
+            },
+            gameAction: AbilityDsl.actions.cardLastingEffect(() => ({
+                target: this,
+                effect: AbilityDsl.effects.modifyAttack(properties.amount),
+                duration: 'untilEndOfTurn'
+            })),
+            effect: 'increase its attack value by 2'
         });
     }
 
@@ -256,7 +274,7 @@ class Card extends PlayableObject {
     }
 
     inheritance() {
-        this.destroyed({
+        return this.destroyed({
             inexhaustible: true,
             target: {
                 optional: true,
