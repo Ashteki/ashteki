@@ -230,6 +230,17 @@ class Card extends PlayableObject {
         });
     }
 
+    fade() {
+        this.forcedReaction({
+            inexhaustible: true,
+            title: 'Fade',
+            when: {
+                onRoundEnded: () => true
+            },
+            gameAction: AbilityDsl.actions.destroy()
+        });
+    }
+
     destroyed(properties) {
         return this.forcedInterrupt(
             Object.assign(
@@ -242,6 +253,20 @@ class Card extends PlayableObject {
                 properties
             )
         );
+    }
+
+    inheritance() {
+        this.destroyed({
+            inexhaustible: true,
+            target: {
+                optional: true,
+                controller: 'self',
+                activePromptTitle: 'Inheritance 1',
+                cardType: BattlefieldTypes,
+                cardCondition: (card, context) => card !== context.source,
+                gameAction: AbilityDsl.actions.addStatusToken()
+            }
+        });
     }
 
     afterDestroysFighting(properties) {

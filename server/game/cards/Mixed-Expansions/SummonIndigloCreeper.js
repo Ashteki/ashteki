@@ -2,7 +2,7 @@ const { Level, Magic, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
-class SummonIndigloCreeper extends Card {
+class SummonIndiglowCreeper extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Summon Indiglo Creeper',
@@ -18,13 +18,13 @@ class SummonIndigloCreeper extends Card {
             target: {
                 controller: 'self',
                 cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'indiglo-creeper',
+                cardCondition: (card) => card.id === 'indiglow-creeper',
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
                 condition: () => this.focus >= 1,
-                gameAction: ability.actions.addStatus({
+                gameAction: ability.actions.addStatusToken({
                     promptForSelect: {
                         cardType: BattlefieldTypes,
                         controller: 'self'
@@ -35,6 +35,6 @@ class SummonIndigloCreeper extends Card {
     }
 }
 
-SummonIndigloCreeper.id = 'summon-indiglo-creeper';
+SummonIndiglowCreeper.id = 'summon-indiglow-creeper';
 
-module.exports = SummonIndigloCreeper;
+module.exports = SummonIndiglowCreeper;
