@@ -3,6 +3,7 @@ const Dice = require('../dice');
 class DiceCost {
     constructor(properties) {
         this.diceReq = properties.diceReq;
+        this.properties = properties;
         this.promptsPlayer = true;
     }
 
@@ -35,8 +36,9 @@ class DiceCost {
             if (result.canCancel) {
                 buttons.push({ text: 'Cancel', arg: 'cancel' });
             }
+            const title = this.properties.title ? this.properties.title + ': Select dice' : null;
             context.game.promptForDieSelect(context.player, {
-                activePromptTitle: 'Select dice',
+                activePromptTitle: title || 'Select dice',
                 mode: 'match',
                 selectedDice: chosenDice,
                 context: context,

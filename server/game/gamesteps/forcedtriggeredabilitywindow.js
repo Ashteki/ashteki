@@ -7,12 +7,14 @@ const TriggeredAbilityWindowTitles = require('./triggeredabilitywindowtitles.js'
 class ForcedTriggeredAbilityWindow extends BaseStep {
     constructor(game, abilityType, window, eventsToExclude = []) {
         super(game);
+        // choices holds all of the abilities that were triggered by the event - this may be more than one for a single card
         this.choices = [];
+        // all of the events that are being handled together - e.g. events and child events
         this.events = [];
         this.eventWindow = window;
         this.eventsToExclude = eventsToExclude;
-        this.abilityType = abilityType;
-        this.currentPlayer = this.game.activePlayer;
+        this.abilityType = abilityType; // forcedInterrupt / forcedReaction etc.
+        this.currentPlayer = this.game.activePlayer; // active player chooses first
         this.resolvedAbilities = [];
         this.pressedDone = false;
     }
@@ -24,6 +26,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         }
 
         if (this.filterChoices()) {
+            // all done
             this.game.currentAbilityWindow = null;
             return true;
         }
@@ -32,43 +35,49 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     }
 
     addChoice(context) {
-        if (
-            !this.resolvedAbilities.some(
-                (resolved) =>
-                    resolved.ability === context.ability && resolved.event === context.event
-            )
-        ) {
+        if (!this.hasAbilityBeenTriggered(context)) {
             this.choices.push(context);
         }
     }
 
+    hasAbilityBeenTriggered(context) {
+        return this.resolvedAbilities.some(
+            (resolved) => resolved.ability === context.ability && resolved.event === context.event
+        );
+    }
+
     filterChoices() {
+        // Processes the choices left for this window, return true to end the window
         if (this.choices.length === 0 || this.pressedDone) {
             return true;
         }
 
+        // autoResolve choices are things that don't impact other objects e.g. Silver Snake gains a status
         let autoResolveChoice = this.choices.find((context) => context.ability.autoResolve);
         if (autoResolveChoice) {
             this.resolveAbility(autoResolveChoice);
             return false;
         }
 
-        // why would a forced reaction be optional?
-        this.noOptionalChoices = this.choices.every((context) => !context.ability.optional);
-        if (
-            this.noOptionalChoices &&
-            (this.choices.length === 1 || !this.currentPlayer.optionSettings.orderForcedAbilities)
-        ) {
+        if (this.choices.length === 1) {
             this.resolveAbility(this.choices[0]);
             return false;
         }
 
-        // Choose a card to trigger
-        this.promptBetweenSources(this.choices);
+        if (_.uniq(this.choices, (context) => context.source).length === 1) {
+            // All choices share a source
+            this.promptBetweenAbilities(this.choices, false);
+        } else {
+            // Choose an card to trigger
+            this.promptBetweenSources(this.choices);
+        }
         return false;
     }
 
+    // choose a card that is tied to the ability / choices available
     promptBetweenSources(choices) {
+        // lasting Triggers appear to be separate from immediate card abilities.
+        // add them as buttons
         let lastingTriggers = _.uniq(
             choices.filter(
                 (context) =>
@@ -83,17 +92,23 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
             buttons.push({ text: lastingTriggerCards[i].name, arg: i.toString() });
         }
 
+        // set up the PROPERTIES for the select prompt
         let defaultProperties = this.getPromptForSelectProperties();
         let properties = Object.assign({}, defaultProperties);
         properties.buttons = buttons.concat(defaultProperties.buttons);
+
+        // remove lasting Triggers from selection (they're added as buttons above)
         properties.cardCondition = (card) =>
             !lastingTriggerCards.includes(card) &&
             choices.some((context) => context.source === card);
+
+        // onSelect
         properties.onSelect = (player, card) => {
             this.promptBetweenAbilities(choices.filter((context) => context.source === card));
             return true;
         };
 
+        // onMenuCommand
         properties.onMenuCommand = (player, arg) => {
             if (defaultProperties.onMenuCommand(player, arg)) {
                 return true;
@@ -203,10 +218,12 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
             handlers.push(() => this.promptBetweenSources(this.choices));
         }
 
+        const player = choices[0].player || this.currentPlayer;
+
         this.game.promptWithHandlerMenu(
-            this.currentPlayer,
+            player,
             _.extend(this.getPromptProperties(), {
-                activePromptTitle: 'Which ability would you like to use?',
+                activePromptTitle: 'Choose an ability to use',
                 choices: menuChoices,
                 handlers: handlers
             })

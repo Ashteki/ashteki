@@ -275,6 +275,7 @@ class Card extends PlayableObject {
 
     inheritance() {
         return this.destroyed({
+            title: 'Inheritance 1',
             inexhaustible: true,
             target: {
                 optional: true,

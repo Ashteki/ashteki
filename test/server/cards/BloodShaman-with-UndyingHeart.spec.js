@@ -32,7 +32,7 @@ describe('Blood Shaman with undying heart', function () {
         this.player1.clickCard(this.bloodShaman);
         // prompt for choice between shaman and heart interrupts
         this.player1.clickCard(this.bloodShaman);
-        expect(this.player1).toHavePrompt('Which ability would you like to use?');
+        expect(this.player1).toHavePrompt('Choose an ability to use');
         this.player1.clickPrompt('Blood Shaman');
         this.player1.clickDie(0);
 

@@ -59,7 +59,7 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.chosenDiscard({ amount: amount }).getEvent(context.player, context)
     }),
-    dice: (cost) => new DiceCost({ diceReq: cost }),
+    dice: (cost, title) => new DiceCost({ diceReq: cost, title: title }),
     dynamicDice: (costFunc) => new DynamicDiceCost(costFunc)
 };
 
