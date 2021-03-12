@@ -10,7 +10,7 @@ class WeepingSpirit extends Card {
         // side action
         this.action({
             title: 'Quell',
-            cost: [ability.costs.sideAction(), ability.costs.discard()],
+            cost: [ability.costs.sideAction(), ability.costs.chosenDiscard()],
             gameAction: ability.actions.destroy({ target: this })
         });
     }
