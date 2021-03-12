@@ -47,6 +47,7 @@ class About extends React.Component {
                         <li>The Duchess of Deception - (Victoria Glassfire)</li>
                         <li>The Laws of Lions - (Odette Diamondcrest)</li>
                         <li>The Song of Soaksend - (Namine Hymntide)</li>
+                        <li>The Boy Among Wolves - (Koji Wolfcub)</li>
                     </ul>
                     <p>
                         Many other cards are either coded, or in progress, but the above expansions
