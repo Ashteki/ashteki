@@ -1,5 +1,369 @@
 [
   {
+    "precon_id": 13,
+    "name": "The Boy Among Wolves",
+    "phoenixborn": [
+      {
+        "id": "koji-wolfcub",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 5
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "join-the-hunt",
+        "count": 3
+      },
+      {
+        "id": "summon-indiglow-creeper",
+        "count": 3
+      },
+      {
+        "id": "summon-biter",
+        "count": 3
+      },
+      {
+        "id": "sleeping-bear",
+        "count": 3
+      },
+      {
+        "id": "jungle-warrior",
+        "count": 3
+      },
+      {
+        "id": "temple-elder",
+        "count": 3
+      },
+      {
+        "id": "hunt-master",
+        "count": 3
+      },
+      {
+        "id": "explosive-growth",
+        "count": 3
+      },
+      {
+        "id": "invigorate",
+        "count": 3
+      },
+      {
+        "id": "lick-wounds",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "panther-spirit",
+        "count": 3
+      },
+      {
+        "id": "indiglow-creeper",
+        "count": 3
+      },
+      {
+        "id": "luminous-seedling",
+        "count": 3
+      },
+      {
+        "id": "brilliant-thorn",
+        "count": 3
+      },
+      {
+        "id": "biter",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 12,
+    "name": "The Song of Soaksend",
+    "phoenixborn": [
+      {
+        "id": "namine-hymntide",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "guilt-link",
+        "count": 3
+      },
+      {
+        "id": "summon-salamander-monk",
+        "count": 3
+      },
+      {
+        "id": "magic-syphon",
+        "count": 3
+      },
+      {
+        "id": "summon-squall-stallion",
+        "count": 3
+      },
+      {
+        "id": "encore",
+        "count": 3
+      },
+      {
+        "id": "shatter-pulse",
+        "count": 3
+      },
+      {
+        "id": "crescendo",
+        "count": 3
+      },
+      {
+        "id": "string-mage",
+        "count": 3
+      },
+      {
+        "id": "flute-mage",
+        "count": 3
+      },
+      {
+        "id": "river-skald",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "salamander-monk",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk-spirit",
+        "count": 3
+      },
+      {
+        "id": "squall-stallion",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "precon_id": 11,
+    "name": "The Law of Lions",
+    "phoenixborn": [
+      {
+        "id": "odette-diamondcrest",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "law-of-sight",
+        "count": 3
+      },
+      {
+        "id": "summon-winged-lioness",
+        "count": 3
+      },
+      {
+        "id": "law-of-assurance",
+        "count": 3
+      },
+      {
+        "id": "summon-emperor-lion",
+        "count": 3
+      },
+      {
+        "id": "sword-of-virtue",
+        "count": 3
+      },
+      {
+        "id": "heal",
+        "count": 3
+      },
+      {
+        "id": "meteor",
+        "count": 3
+      },
+      {
+        "id": "power-through",
+        "count": 3
+      },
+      {
+        "id": "shield-mage",
+        "count": 3
+      },
+      {
+        "id": "holy-knight",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "emperor-lion",
+        "count": 1
+      },
+      {
+        "id": "winged-lioness",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "precon_id": 10,
+    "name": "The Roaring Rose",
+    "phoenixborn": [
+      {
+        "id": "leo-sunshadow",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "amplify",
+        "count": 3
+      },
+      {
+        "id": "anguish",
+        "count": 3
+      },
+      {
+        "id": "beast-tamer",
+        "count": 3
+      },
+      {
+        "id": "change-psyche",
+        "count": 3
+      },
+      {
+        "id": "dispel",
+        "count": 3
+      },
+      {
+        "id": "memory-theft",
+        "count": 3
+      },
+      {
+        "id": "mind-probe",
+        "count": 3
+      },
+      {
+        "id": "remorse",
+        "count": 3
+      },
+      {
+        "id": "summon-nightshade-swallow",
+        "count": 3
+      },
+      {
+        "id": "summon-orchid-dove",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "glow-finch",
+        "count": 3
+      },
+      {
+        "id": "nightshade-swallow",
+        "count": 3
+      },
+      {
+        "id": "orchid-dove",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 9,
+    "name": "The Duchess of Deception",
+    "phoenixborn": [
+      {
+        "id": "victoria-glassfire",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "body-inversion",
+        "count": 3
+      },
+      {
+        "id": "copycat",
+        "count": 3
+      },
+      {
+        "id": "figures-in-the-fog",
+        "count": 3
+      },
+      {
+        "id": "flash-archer",
+        "count": 3
+      },
+      {
+        "id": "particle-shield",
+        "count": 3
+      },
+      {
+        "id": "secret-door",
+        "count": 3
+      },
+      {
+        "id": "summon-shadow-hound",
+        "count": 3
+      },
+      {
+        "id": "summon-shadow-spirit",
+        "count": 3
+      },
+      {
+        "id": "to-shadows",
+        "count": 3
+      },
+      {
+        "id": "vanish",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shadow-hound",
+        "count": 2
+      },
+      {
+        "id": "shadow-spirit",
+        "count": 3
+      }
+    ]
+  },
+  {
     "precon_id": 8,
     "name": "The Children of Blackcloud",
     "phoenixborn": [
