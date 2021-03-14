@@ -801,6 +801,16 @@ class Card extends PlayableObject {
         });
     }
 
+    dismount() {
+        return this.destroyed({
+            effect: 'return its ally to hand',
+            gameAction: AbilityDsl.actions.sequentialForEach((context) => ({
+                forEach: context.source.childCards,
+                action: AbilityDsl.actions.moveCard({ destination: 'hand' })
+            }))
+        });
+    }
+
     transform(properties) {
         return this.persistentEffect({
             condition: () => !this.controller.firstPlayer,
