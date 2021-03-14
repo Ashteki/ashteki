@@ -23,6 +23,6 @@ class SummonSpectralAssassin extends Card {
     }
 }
 
-SummonSpectralAssassin.id = 'summon-archasaurus-mount';
+SummonSpectralAssassin.id = 'spectral-assassin';
 
 module.exports = SummonSpectralAssassin;
