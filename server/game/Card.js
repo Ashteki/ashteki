@@ -6,7 +6,13 @@ const PlayAction = require('./BaseActions/PlayAction');
 const PlayAllyAction = require('./BaseActions/PlayAllyAction');
 const PlayReadySpellAction = require('./BaseActions/PlayReadySpellAction');
 const PlayUpgradeAction = require('./BaseActions/PlayUpgradeAction');
-const { CardType, BattlefieldTypes, UpgradeCardTypes, AbilityType } = require('../constants.js');
+const {
+    CardType,
+    BattlefieldTypes,
+    UpgradeCardTypes,
+    AbilityType,
+    ConjuredCardTypes
+} = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
 
@@ -795,6 +801,18 @@ class Card extends PlayableObject {
         });
     }
 
+    transform(properties) {
+        return this.persistentEffect({
+            condition: () => !this.controller.firstPlayer,
+            match: this,
+            effect: [
+                AbilityDsl.effects.modifyAttack(properties.amount),
+                AbilityDsl.effects.modifyLife(properties.amount),
+                AbilityDsl.effects.modifyRecover(properties.amount)
+            ]
+        });
+    }
+
     stalk() {
         this.persistentEffect({
             effect: AbilityDsl.effects.preventGuard()
@@ -986,6 +1004,7 @@ class Card extends PlayableObject {
                 tokens: this.tokens,
                 flags: this.getFlags(),
                 armor: this.armor,
+                isConjuration: ConjuredCardTypes.includes(this.type),
                 ...selectionState
             };
         }
@@ -1024,7 +1043,8 @@ class Card extends PlayableObject {
             guarded: this.usedGuardThisRound,
             uuid: this.uuid,
             isAttacker: this.isAttacker,
-            isDefender: this.isDefender
+            isDefender: this.isDefender,
+            isConjuration: ConjuredCardTypes.includes(this.type)
         };
 
         return Object.assign(state, selectionState);

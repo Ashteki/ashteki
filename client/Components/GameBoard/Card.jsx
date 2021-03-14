@@ -8,6 +8,8 @@ import CardCounters from './CardCounters';
 import CardImage from './CardImage';
 import { ItemTypes, UpgradeCardTypes } from '../../constants';
 import SquishableCardPanel from './SquishableCardPanel';
+import spellback from '../../assets/img/cardback-spell.png';
+import conjback from '../../assets/img/cardback-conjuration.png';
 
 import Die from './Die';
 
@@ -30,6 +32,7 @@ const Card = ({
     style,
     wrapped = true
 }) => {
+    const cardBack = cardBackUrl || (card.isConjuration ? conjback : spellback);
     const sizeClass = {
         [size]: size !== 'normal'
     };
@@ -154,7 +157,6 @@ const Card = ({
         let maxCards = 1 + (underneathCards.length - 1) / 6;
         return (
             <SquishableCardPanel
-                cardBackUrl={cardBackUrl}
                 cardSize={size}
                 cards={underneathCards}
                 className='underneath'
@@ -279,7 +281,7 @@ const Card = ({
         });
         let image = card ? (
             <div className={imageClass}>
-                <CardImage card={card} cardBack={cardBackUrl} />
+                <CardImage card={card} cardBack={cardBack} />
                 {getBoostedFlags(card)}
             </div>
         ) : null;
