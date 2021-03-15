@@ -6,14 +6,12 @@ class RearrangeCardsAction extends PlayerAction {
         this.purge = 0;
         this.remainingCards = [];
         this.purgeCards = [];
+        this.purgeType = 'purge';
     }
 
     setup() {
         super.setup();
         this.name = 'rearrangeDeck';
-        // this.effectMsg = `look at the top ${this.amount} cards of {0} deck`;
-        // if (this.purge) this.effectMsg += ', remove ' + this.purge + ' from play,';
-        // this.effectMsg += ` and rearrange them in any order`;
     }
 
     defaultTargets(context) {
@@ -25,10 +23,15 @@ class RearrangeCardsAction extends PlayerAction {
     }
 
     promptForRemainingCards(context) {
+        const purgeText =
+            this.purgeType === 'bottom'
+                ? 'Select a card to remove from the game'
+                : 'select a card to move to the bottom of the deck';
+
         context.game.promptWithHandlerMenu(context.player, {
             activePromptTitle: !this.allPurged()
-                ? 'Select a card to remove from the game'
-                : 'Select next card to return (last one is top)',
+                ? purgeText
+                : 'Select the next card to return (last one is top)',
             context: context,
             cards: this.remainingCards,
             cardHandler: (card) => {
@@ -76,14 +79,27 @@ class RearrangeCardsAction extends PlayerAction {
                 context: context
             },
             (event) => {
-                context.game.actions.purge().resolve(event.purgeCards, context);
-                context.game.addMessage(
-                    '{0} removes {1} from the game',
-                    context.player,
-                    event.purgeCards
-                );
+                if (this.purgeType === 'bottom') {
+                    player.deck.unshift(...this.purgeCards);
+
+                    context.game.addMessage(
+                        '{0} returns {1} to the bottom of the deck',
+                        context.player,
+                        event.purgeCards
+                    );
+                } else {
+                    context.game.actions.purge().resolve(event.purgeCards, context);
+                    context.game.addMessage(
+                        '{0} removes {1} from the game',
+                        context.player,
+                        event.purgeCards
+                    );
+                }
+
                 player.deck.splice(0, this.amount, ...this.orderedCards);
-                context.game.addMessage('Remaining cards are returned in order to the deck');
+                context.game.addMessage(
+                    'Remaining cards are returned as ordered to the top of the deck'
+                );
             }
         );
     }
