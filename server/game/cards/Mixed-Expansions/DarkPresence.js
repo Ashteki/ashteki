@@ -32,6 +32,6 @@ class DarkPresence extends Card {
     }
 }
 
-DarkPresence.id = 'summon-gilder';
+DarkPresence.id = 'dark-presence';
 
 module.exports = DarkPresence;
