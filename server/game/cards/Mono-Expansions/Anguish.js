@@ -41,12 +41,14 @@ class Anguish extends Card {
                             }),
                             falseGameAction: ability.actions.dealDamage((context) => ({
                                 target: context.player.opponent.phoenixborn,
-                                amount: 2
+                                amount: 2,
+                                showMessage: true
                             }))
                         }),
                         'Take 2 Damage': ability.actions.dealDamage((context) => ({
                             target: context.player.opponent.phoenixborn,
-                            amount: 2
+                            amount: 2,
+                            showMessage: true
                         }))
                     }
                 }))
