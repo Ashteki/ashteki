@@ -207,24 +207,26 @@ export default function (state = { decks: [], cards: {} }, action) {
             });
 
             return newState;
-        // case Decks.SaveDeck:
-        //     newState = Object.assign({}, state, {
-        //         deckSaved: false
-        //     });
 
-        //     return newState;
-        // case Decks.DeckSaved:
-        //     decks = state.decks;
-        //     decks.unshift(action.response.deck);
-        //     newState = Object.assign({}, state, {
-        //         deckSaved: true,
-        //         selectedDeck: action.response.deck,
-        //         decks: decks
-        //     });
+        case Decks.ImportDeck:
+            newState = Object.assign({}, state, {
+                deckSaved: false
+            });
 
-        //     processDecks(newState.decks, state);
+            return newState;
+        case Decks.DeckImported:
+            decks = state.decks;
+            decks.unshift(action.response.deck);
+            newState = Object.assign({}, state, {
+                deckSaved: true,
+                selectedDeck: action.response.deck,
+                decks: decks
+            });
 
-        //     return newState;
+            processDecks(newState.decks, state);
+
+            return newState;
+
         case 'DECK_DELETED':
             newState = Object.assign({}, state, {
                 deckDeleted: true

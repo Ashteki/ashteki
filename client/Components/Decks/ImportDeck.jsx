@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Col, Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
@@ -10,19 +10,19 @@ import * as yup from 'yup';
 import Panel from '../Site/Panel';
 import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
-import { clearApiStatus, navigate, saveDeck } from '../../redux/actions';
+import { clearApiStatus, navigate, importDeck } from '../../redux/actions';
 
 const ImportDeck = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const apiState = useSelector((state) => {
-        const retState = state.api[Decks.SaveDeck];
+        const retState = state.api[Decks.ImportDeck];
 
         if (retState && retState.success) {
             retState.message = t('Deck added successfully');
 
             setTimeout(() => {
-                dispatch(clearApiStatus(Decks.SaveDeck));
+                dispatch(clearApiStatus(Decks.ImportDeck));
                 dispatch(navigate('/decks'));
             }, 1000);
         }
@@ -35,12 +35,12 @@ const ImportDeck = () => {
             .string()
             .required(t('You must specify the deck link'))
             .notOneOf(
-                ['https://www.keyforgegame.com/deck-details/00000000-0000-0000-0000-000000000000'],
-                t('The URL you entered is invalid.  Please check it and try again.')
+                ['https://ashes.live/decks/share/00000000-0000-0000-0000-000000000000'],
+                'The URL you entered is invalid.  Please check it and try again.'
             )
             .matches(
                 /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/,
-                t('The URL you entered is invalid.  Please check it and try again.')
+                'The URL you entered is invalid.  Please check it and try again.'
             )
     });
 
@@ -52,7 +52,7 @@ const ImportDeck = () => {
         const regex = /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
         let uuid = values.deckLink.match(regex);
 
-        dispatch(saveDeck({ uuid: uuid[0] }));
+        dispatch(importDeck({ uuid: uuid[0] }));
     };
 
     return (
@@ -60,30 +60,24 @@ const ImportDeck = () => {
             <Col md={{ span: 8, offset: 2 }} className='profile full-height'>
                 <ApiStatus
                     state={apiState}
-                    onClose={() => dispatch(clearApiStatus(Decks.SaveDeck))}
+                    onClose={() => dispatch(clearApiStatus(Decks.ImportDeck))}
                 />
                 <Panel title={t('Import Deck')}>
-                    <Trans i18nKey='importdeck.enterlink'>
-                        <p>
-                            Enter the deck link from the&nbsp;
-                            <a
-                                href='https://keyforgegame.com'
-                                target='_blank'
-                                rel='noopener noreferrer'
-                            >
-                                keyforge website.
-                            </a>
-                        </p>
-                        <p>
-                            Either search for a deck, or find one from the &quot;My Decks&quot;
-                            section of the website. Find the URL of the deck and paste it in to the
-                            box below.
-                        </p>
-                        <p>The URL looks like this: </p>
-                    </Trans>
+                    <p>
+                        Enter the deck share link from the&nbsp;
+                        <a href='https://ashes.live' target='_blank' rel='noopener noreferrer'>
+                            ashes.live website.
+                        </a>
+                    </p>
+                    <p>
+                        Locate and view a deck on ashes.live, then click the &apos;Share...&apos;
+                        button. You can copy the url displayed in the &apos;Share and export&apos;
+                        overlay.
+                    </p>
+                    <p>The URL looks like this: </p>
                     <p>
                         <code>
-                            https://www.keyforgegame.com/deck-details/00000000-0000-0000-0000-000000000000
+                            https://ashes.live/decks/share/00000000-0000-0000-0000-000000000000
                         </code>
                     </p>
                     <Formik

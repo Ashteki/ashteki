@@ -77,9 +77,31 @@ module.exports.init = function (server) {
                 return res.status(401).send({ message: 'Unauthorized' });
             }
 
-            let deck = Object.assign(req.body, { username: req.user.username });
-            await deckService.create(deck);
-            res.send({ success: true });
+            if (!req.body.uuid) {
+                return res.send({ success: false, message: 'uuid must be specified' });
+            }
+
+            let deck = Object.assign({}, { uuid: req.body.uuid, username: req.user.username });
+            let savedDeck;
+
+            try {
+                savedDeck = await deckService.import(req.user, deck);
+            } catch (error) {
+                return res.send({
+                    success: false,
+                    message: error.message
+                });
+            }
+
+            if (!savedDeck) {
+                return res.send({
+                    success: false,
+                    message:
+                        'An error occurred importing your deck.  Please check the Url or try again later.'
+                });
+            }
+
+            res.send({ success: true, deck: savedDeck });
         })
     );
 

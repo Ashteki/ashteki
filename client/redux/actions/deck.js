@@ -93,6 +93,22 @@ export function saveDeck(deck) {
     };
 }
 
+export function importDeck(deck) {
+    let str = JSON.stringify({
+        uuid: deck.uuid
+    });
+
+    return {
+        types: [Decks.ImportDeck, Decks.DeckImported],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/decks/',
+            type: 'POST',
+            data: str
+        }
+    };
+}
+
 function formatCards(cards) {
     return cards.map((card) => {
         return { id: card.id, count: card.count || 1 };
