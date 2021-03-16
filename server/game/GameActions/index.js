@@ -26,6 +26,7 @@ module.exports = {
     MoveToBottomAction: require('./MoveToBottomAction'),
     PlaceUnderAction: require('./PlaceUnderAction'),
     PlayCardAction: require('./PlayCardAction'),
+    PreventDamageAction: require('./PreventDamageAction'),
     PurgeAction: require('./PurgeAction'),
     PutIntoPlayAction: require('./PutIntoPlayAction'),
     RandomDiscardAction: require('./RandomDiscardAction'),

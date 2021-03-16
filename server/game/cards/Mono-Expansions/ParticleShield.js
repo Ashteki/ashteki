@@ -10,9 +10,9 @@ class ParticleShield extends Card {
                     event.card.controller == context.player
             },
             effect: 'prevent 1 damage and draw a card',
-            gameAction: ability.actions.changeEvent((context) => ({
+            gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,
-                amount: context.event.amount - 1
+                amount: 1
             })),
             then: {
                 gameAction: ability.actions.draw()

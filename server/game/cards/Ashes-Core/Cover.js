@@ -10,9 +10,9 @@ class Cover extends Card {
                     event.fightEvent &&
                     event.fightEvent.battle.guard === context.player.phoenixborn
             },
-            gameAction: ability.actions.changeEvent((context) => ({
+            gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,
-                cancel: true
+                amount: 'all'
             })),
             then: (context) => ({
                 gameAction: ability.actions.dealDamage({

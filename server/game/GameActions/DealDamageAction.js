@@ -64,18 +64,20 @@ class DealDamageAction extends CardGameAction {
             ignoreArmor: this.ignoreArmor,
             bonus: this.bonus
         };
+        params.preventable = !params.damageSource.anyEffect('unpreventable');
+        if (params.preventable) {
+            if (card.anyEffect('preventAllDamage')) {
+                let preventer = card.getEffects('preventAllDamage')[0];
+                context.game.addMessage('{0} prevents damage to {1}', preventer, card);
 
-        if (card.anyEffect('preventAllDamage')) {
-            let preventer = card.getEffects('preventAllDamage')[0];
-            context.game.addMessage('{0} prevents damage to {1}', preventer, card);
+                // add preventer and card as params when this matters
+                return context.game.getEvent('onDamagePrevented');
+            }
 
-            // add preventer and card as params when this matters
-            return context.game.getEvent('onDamagePrevented');
-        }
-
-        if (card.anyEffect('preventDamage') && !this.damageSource.anyEffect('unpreventable')) {
-            let preventAmount = card.sumEffects('preventDamage');
-            params.amount = params.amount - preventAmount;
+            if (card.anyEffect('preventDamage')) {
+                let preventAmount = card.sumEffects('preventDamage');
+                params.amount = params.amount - preventAmount;
+            }
         }
 
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {
@@ -134,7 +136,7 @@ class DealDamageAction extends CardGameAction {
                 }
             );
 
-            if (damageDealtEvent.ignoreArmor) {
+            if (damageDealtEvent.ignoreArmor || !damageDealtEvent.preventable) {
                 damageDealtEvent.addSubEvent(damageAppliedEvent);
             } else {
                 let armorPreventParams = {

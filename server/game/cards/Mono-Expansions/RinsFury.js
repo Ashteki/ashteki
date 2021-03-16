@@ -13,9 +13,9 @@ class RinsFury extends Card {
                 // check the fightevent is from a unit?
                 // check it's my unit being damaged
             },
-            gameAction: ability.actions.changeEvent((context) => ({
+            gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,
-                cancel: true
+                amount: 'all'
             })),
             then: (context) => ({
                 gameAction: ability.actions.destroy({

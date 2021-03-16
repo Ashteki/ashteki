@@ -67,6 +67,7 @@ const Effects = {
     spellGuard: () => EffectBuilder.card.static('spellGuard'),
     cannotBeReactionTarget: () => EffectBuilder.card.static('cannotBeReactionTarget'),
     bypass: () => EffectBuilder.card.static('bypass'),
+    unpreventable: () => EffectBuilder.card.static('unpreventable'),
     preventGuard: () => EffectBuilder.card.static('preventGuard'),
     preventBlock: () => EffectBuilder.card.static('preventBlock'),
     preventDamage: (amount) => EffectBuilder.card.static('preventDamage', amount),
