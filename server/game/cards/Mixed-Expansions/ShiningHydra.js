@@ -16,7 +16,7 @@ class ShiningHydra extends Card {
                     cardCondition: (card) => card.id === 'shining-hydra-head',
                     location: 'archives',
                     gameAction: ability.actions.attach((context) => ({
-                        upgrade: context.targets.conj,
+                        upgrade: context.target,
                         target: context.source
                     }))
                 }
