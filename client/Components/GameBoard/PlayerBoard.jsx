@@ -102,7 +102,7 @@ const PlayerBoard = ({
 
     let maxUpgrades = Math.max(...cardsInPlay.map((c) => c.upgrades.length));
     let topMargin = maxUpgrades * 15;
-    let style = { 'margin-top': topMargin + 'px' };
+    let style = { marginTop: topMargin + 'px' };
 
     return (
         <div className={className}>

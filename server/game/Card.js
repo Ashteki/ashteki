@@ -1062,7 +1062,6 @@ class Card extends PlayableObject {
             name: this.name,
             label: this.name,
             new: this.new,
-            taunt: this.getType() === 'Ally' && !!this.getKeywordValue('taunt'),
             tokens: this.tokens,
             type: this.getType(),
             upgrades: this.upgrades.map((upgrade) => {
