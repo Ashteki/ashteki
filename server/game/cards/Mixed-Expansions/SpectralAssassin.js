@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class SpectralAssassin extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.forcedReaction({
             title: 'Sneaky Strike',
             when: {
                 onAttackersDeclared: (event, context) => {
@@ -11,8 +11,8 @@ class SpectralAssassin extends Card {
                     return event.battles.some((b) => b.attacker === context.source);
                 }
             },
-            gameAction: ability.actions.cardLastingEffect({
-                duration: 'untilEndOfTurn',
+            gameAction: ability.actions.forRemainderOfTurn({
+                targetController: 'opponent',
                 effect: ability.effects.playerCannot(
                     'play',
                     (context) => context.source.type === CardType.ReactionSpell
@@ -22,6 +22,6 @@ class SpectralAssassin extends Card {
     }
 }
 
-SpectralAssassin.id = 'blackcloud-ninja';
+SpectralAssassin.id = 'spectral-assassin';
 
 module.exports = SpectralAssassin;

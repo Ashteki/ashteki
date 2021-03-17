@@ -23,6 +23,6 @@ class SummonSpectralAssassin extends Card {
     }
 }
 
-SummonSpectralAssassin.id = 'spectral-assassin';
+SummonSpectralAssassin.id = 'summon-spectral-assassin';
 
 module.exports = SummonSpectralAssassin;
