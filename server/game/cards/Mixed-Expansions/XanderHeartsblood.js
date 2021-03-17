@@ -18,7 +18,8 @@ class XanderHeartsblood extends Card {
                 location: 'discard',
                 gameAction: ability.actions.moveCard({ destination: 'hand' })
             },
-            message: '{0} uses {1} to move {2} from discard to hand'
+            message: '{0} uses {1} to move {2} from discard to hand',
+            messageArgs: (context) => [context.player, context.source, context.target]
         });
     }
 }
