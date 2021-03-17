@@ -39,7 +39,7 @@ describe('rins fury reaction spell', function () {
         expect(this.rinsFury.location).toBe('discard');
         expect(this.player2.hand.length).toBe(0);
 
-        // damage dealt to attacker
+        // attacker destroyed
         expect(this.ironWorker.location).toBe('discard');
         expect(this.hammerKnight.damage).toBe(0);
     });
