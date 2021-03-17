@@ -16,7 +16,7 @@ class XanderHeartsblood extends Card {
                 controller: 'self',
                 cardType: 'Ally',
                 location: 'discard',
-                gameAction: this.game.actions.moveCard({ destination: 'hand' })
+                gameAction: ability.actions.moveCard({ destination: 'hand' })
             },
             message: '{0} uses {1} to move {2} from discard to hand'
         });

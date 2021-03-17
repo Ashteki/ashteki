@@ -15,6 +15,7 @@ class ParticleShield extends Card {
                 amount: 1
             })),
             then: {
+                alwaysTriggers: true,
                 gameAction: ability.actions.draw()
             }
         });
