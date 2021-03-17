@@ -44,6 +44,20 @@ describe('Fallen ', function () {
 
             expect(this.ironWorker.damage).toBe(1);
         });
+
+        it('unpreventable damage when countering', function () {
+            this.player1.player.actions.main = false;
+            this.player1.endTurn();
+            this.player2.clickPrompt('Attack');
+            this.player2.clickCard(this.fallen);
+            this.player2.clickCard(this.frostFang);
+            this.player1.clickPrompt('Done'); // no guard
+            this.player1.clickPrompt('Yes'); // counter
+            this.player2.clickPrompt('Pass'); // particle shield
+
+            expect(this.fallen.location).toBe('archives');
+            expect(this.frostFang.location).toBe('discard'); // dead after one damage through armour
+        });
     });
 
     describe('Fallen vs Cover', function () {
