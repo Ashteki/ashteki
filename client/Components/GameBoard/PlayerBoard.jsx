@@ -41,7 +41,7 @@ const PlayerBoard = ({
         if (attack)
             // should we display the attackers or defenders?
             // is this player (top or bottom) the attacker?
-            attack.battles.map((b) => {
+            attack.battles.forEach((b) => {
                 if (attack.attackingPlayer === playerId) {
                     // just display the attackers
                     const attackerCard = getCard(b.attacker);

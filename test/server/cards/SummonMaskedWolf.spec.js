@@ -41,7 +41,9 @@ describe('Summon Masked Wolf', function () {
         });
 
         it('should refresh side action if wolf was spent and focussed', function () {
-            expect(this.player1.dicepool[1].level).toBe('power');
+            this.player1.dicepool[1].level = 'class';
+
+            expect(this.player1.dicepool[1].level).toBe('class');
             expect(this.player1.dicepool[2].level).toBe('power');
             this.player1.clickCard(this.summonMaskedWolf);
             this.player1.clickPrompt('Summon Masked Wolf');
