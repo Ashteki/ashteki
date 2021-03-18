@@ -157,7 +157,9 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     getPromptControls(triggeringEvents) {
         let map = new Map();
         for (let event of triggeringEvents) {
-            if (event.context && event.context.source) {
+            let src = event.damageSource || event.context.source;
+
+            if (event.context && src) {
                 let targets = map.get(event.context.source) || [];
                 if (event.context.target) {
                     targets = targets.concat(event.context.target);
@@ -169,7 +171,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
                     targets = targets.concat(event.card);
                 }
 
-                map.set(event.context.source, _.uniq(targets));
+                map.set(src, _.uniq(targets));
             }
         }
 
