@@ -1,6 +1,11 @@
 const CardGameAction = require('./CardGameAction');
 
 class PlayCardAction extends CardGameAction {
+    constructor(propertyFactory) {
+        super(propertyFactory);
+        this.ignoreActionCost = false;
+    }
+
     setDefaultProperties() {
         this.location = 'hand';
     }
@@ -21,8 +26,16 @@ class PlayCardAction extends CardGameAction {
             .filter((action) => action.title.includes('Play'));
         return !!actions.find((action) => {
             let actionContext = action.createContext(context.player);
-            return !action.meetsRequirements(actionContext, ['location']);
+            return !action.meetsRequirements(actionContext, this.getIgnoredRequirements());
         });
+    }
+
+    getIgnoredRequirements() {
+        const ignores = ['location'];
+        if (this.ignoreActionCost) {
+            ignores.push('actionCost');
+        }
+        return ignores;
     }
 
     getEvent(card, context) {
@@ -30,7 +43,7 @@ class PlayCardAction extends CardGameAction {
             let playActions = card.getActions(this.location).filter((action) => {
                 if (action.title.includes('Play')) {
                     let newContext = action.createContext(context.player);
-                    return !action.meetsRequirements(newContext, ['location']);
+                    return !action.meetsRequirements(newContext, this.getIgnoredRequirements());
                 } else {
                     return false;
                 }

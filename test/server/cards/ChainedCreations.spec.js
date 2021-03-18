@@ -38,6 +38,7 @@ describe('Chained Creations', function () {
             this.player1.clickPrompt('Done');
 
             this.player1.clickCard(this.ironRhino); // does not destroy
+            expect(this.ironRhino.damage).toBe(2);
             expect(this.player1).not.toBeAbleToSelect(this.summonMaskedWolf);
             expect(this.player1).not.toBeAbleToSelect(this.empower);
             expect(this.player1).not.toBeAbleToSelect(this.summonIronRhino);

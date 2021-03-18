@@ -42,7 +42,7 @@ class BasePlayAction extends BaseAbility {
             return 'limited';
         }
 
-        return super.meetsRequirements(context);
+        return super.meetsRequirements(context, ignoredRequirements);
     }
 
     createContext(player = this.card.controller) {

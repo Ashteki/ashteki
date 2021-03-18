@@ -5,6 +5,7 @@ const AbilityTargetTrait = require('./AbilityTargets/AbilityTargetTrait');
 const AbilityTargetOptions = require('./AbilityTargets/AbilityTargetOptions');
 const AbilityTargetCardName = require('./AbilityTargets/AbilityTargetCardName');
 const AbilityTargetDie = require('./AbilityTargets/AbilityTargetDie');
+const ActionCost = require('./Costs/actioncost');
 
 /**
  * Base class representing an ability that can be done by the player. This
@@ -96,7 +97,7 @@ class BaseAbility {
      * @param {*} context
      * @returns {String}
      */
-    meetsRequirements(context) {
+    meetsRequirements(context, ignoredRequirements = []) {
         // check legal targets exist
         // check costs can be paid
         // check for potential to change game state
@@ -108,7 +109,7 @@ class BaseAbility {
             action.reset();
         }
 
-        if (!this.canPayCosts(context)) {
+        if (!this.canPayCosts(context, ignoredRequirements)) {
             return 'cost';
         } else if (
             this.checkThenAbilities() ||
@@ -136,8 +137,11 @@ class BaseAbility {
      *
      * @returns {Boolean}
      */
-    canPayCosts(context) {
+    canPayCosts(context, ignoredRequirements = []) {
         let cost = this.cost.concat(context.player.getAdditionalCosts(context));
+        if (ignoredRequirements.includes('actionCost')) {
+            cost = cost.filter((c) => !(c instanceof ActionCost));
+        }
         return cost.every((cost) => cost.canPay(context));
     }
 
