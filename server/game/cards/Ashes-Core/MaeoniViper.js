@@ -30,7 +30,15 @@ class MaeoniViper extends Card {
                         amount: context.targets.myChar.attack
                     }))
                 }
-            }
+            },
+            message: '{0} uses {1} and chooses {2} to deal {3} damage to {4}',
+            messageArgs: (context) => [
+                context.player,
+                context.source,
+                context.targets.myChar,
+                context.targets.myChar.attack,
+                context.targets.oppChar
+            ]
         });
     }
 }
