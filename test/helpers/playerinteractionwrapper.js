@@ -361,6 +361,10 @@ class PlayerInteractionWrapper {
         this.game.selectDeck(this.player.name, deck);
     }
 
+    clickDone() {
+        this.clickPrompt('Done');
+    }
+
     clickPrompt(text) {
         text = text.toString();
         var currentPrompt = this.player.currentPrompt();

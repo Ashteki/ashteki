@@ -6,7 +6,7 @@ describe('Guilt link', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['iron-worker'],
                     dicepool: ['natural', 'illusion', 'charm', 'charm', 'natural', 'natural'],
-                    hand: ['molten-gold']
+                    hand: ['molten-gold', 'one-hundred-blades']
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
@@ -50,13 +50,25 @@ describe('Guilt link', function () {
         });
 
         it('no status token on Action Spell', function () {
-            this.guiltLink.tokens.exhaustion = 1;
             expect(this.guiltLink.status).toBe(0);
 
             this.player1.play(this.moltenGold);
 
             this.player1.clickCard(this.coalRoarkwin);
             expect(this.coalRoarkwin.damage).toBe(3);
+            expect(this.guiltLink.status).toBe(0);
+        });
+
+        it('no status token on dealDamage', function () {
+            expect(this.guiltLink.status).toBe(0);
+
+            this.player1.play(this.oneHundredBlades);
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            this.player1.clickDone();
+
+            this.player1.clickCard(this.coalRoarkwin);
+            expect(this.coalRoarkwin.damage).toBe(1);
             expect(this.guiltLink.status).toBe(0);
         });
 

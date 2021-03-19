@@ -12,6 +12,8 @@ class GuiltLink extends Card {
                     // it's a wound
                     event.type == 'damage' &&
                     event.context.player == context.player.opponent &&
+                    event.parentEvent &&
+                    event.parentEvent.fightEvent &&
                     event.card.damage < event.card.life
             },
             condition: (context) => context.source.status == 0,
