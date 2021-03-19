@@ -18,19 +18,25 @@ class ImperialNinja extends Card {
                 location: 'hand',
                 gameAction: [
                     ability.actions.reveal(),
-                    ability.actions.chooseAction((context) => ({
-                        player: context.player.opponent,
-                        choices: {
+                    ability.actions.chooseAction((context) => {
+                        const choices = {
                             ['Discard ' + context.target[0].name]: ability.actions.discard({
                                 showMessage: true,
                                 player: context.player.opponent
-                            }),
-                            'Discard 2 top of deck': ability.actions.discardTopOfDeck({
+                            })
+                        };
+                        if (context.player.opponent.deck.length >= 2) {
+                            choices['Discard 2 top of deck'] = ability.actions.discardTopOfDeck({
                                 amount: 2,
                                 target: context.player.opponent
-                            })
+                            });
                         }
-                    }))
+
+                        return {
+                            player: context.player.opponent,
+                            choices: choices
+                        };
+                    })
                 ]
             }
         });
