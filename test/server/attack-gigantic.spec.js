@@ -8,7 +8,7 @@ describe('Gigantic attacks', function () {
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['anchornaut', 'iron-worker'],
+                inPlay: ['anchornaut', 'iron-worker', 'glow-finch', 'biter'],
                 spellboard: [],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 hand: ['anchornaut']
@@ -25,5 +25,15 @@ describe('Gigantic attacks', function () {
         expect(this.player2).toHavePrompt('Choose a blocker');
         expect(this.player2).toBeAbleToSelect(this.ironWorker);
         expect(this.player2).not.toBeAbleToSelect(this.anchornaut);
+    });
+
+    it('defender guard choice is limited by Gigantic 1', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.anchornaut); // target
+        this.player1.clickCard(this.ironRhino); // single attacker
+
+        expect(this.player2).toHavePrompt('Choose a guard?');
+        expect(this.player2).toBeAbleToSelect(this.biter);
+        expect(this.player2).not.toBeAbleToSelect(this.glowFinch);
     });
 });

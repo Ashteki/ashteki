@@ -157,7 +157,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     getPromptControls(triggeringEvents) {
         let map = new Map();
         for (let event of triggeringEvents) {
-            let src = event.damageSource || event.context.source;
+            let src = event.damageSource || (event.context && event.context.source);
 
             if (event.context && src) {
                 let targets = map.get(event.context.source) || [];

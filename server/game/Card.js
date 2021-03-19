@@ -878,6 +878,7 @@ class Card extends PlayableObject {
                 !this.exhausted &&
                 this.anyEffect('canGuard') &&
                 this.checkGigantic(attacker) &&
+                this.checkTerrifying(attacker) &&
                 !attacker.anyEffect('bypass') &&
                 !attacker.anyEffect('preventGuard')
             );

@@ -14,6 +14,7 @@ class SquallStallion extends Card {
         });
 
         this.action({
+            inexhaustible: true,
             title: 'Torrent',
             cost: [ability.costs.sideAction()],
             targets: {

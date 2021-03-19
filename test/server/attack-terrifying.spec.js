@@ -8,7 +8,7 @@ describe('Terrifying attacks', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['anchornaut', 'iron-worker'],
+                    inPlay: ['anchornaut', 'iron-worker', 'gilder', 'biter'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm'],
                     hand: ['anchornaut']
@@ -41,6 +41,16 @@ describe('Terrifying attacks', function () {
             this.player2.clickCard(this.anchornaut);
             expect(this.player2).toBeAbleToSelect(this.frostFang);
             expect(this.player2).not.toBeAbleToSelect(this.frostbackBear);
+        });
+
+        it('defender guard choice is limited by Terrifying 1', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.anchornaut); // target
+            this.player1.clickCard(this.frostbackBear); // single attacker
+
+            expect(this.player2).toHavePrompt('Choose a guard?');
+            expect(this.player2).toBeAbleToSelect(this.biter);
+            expect(this.player2).not.toBeAbleToSelect(this.gilder);
         });
     });
 
