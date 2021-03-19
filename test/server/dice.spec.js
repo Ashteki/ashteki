@@ -35,6 +35,24 @@ describe('dice matching', function () {
         expect(result).toBe(true);
     });
 
+    it('Chaos Gravity BUG test - match parallel and basic ', function () {
+        const diceReq = [
+            [
+                new DiceCount(1, Level.Class, Magic.Divine),
+                new DiceCount(1, Level.Class, Magic.Sympathy)
+            ],
+            new DiceCount(1, Level.Basic)
+        ];
+
+        let testDice = [
+            { uuid: '3', magic: 'sympathy', level: 'class' },
+            { uuid: '1', magic: 'natural', level: 'class' }
+        ];
+        let result = Dice.canMatch(testDice, diceReq);
+
+        expect(result).toBe(true);
+    });
+
     it('should match exact class when power is available', function () {
         const diceReq = [
             new DiceCount(1, Level.Class, Magic.Ceremonial),
@@ -133,6 +151,34 @@ describe('dice matching', function () {
         expect(chosenDice[0].magic).toBe('ceremonial');
         expect(chosenDice[1].level).toBe('class');
         expect(chosenDice[1].magic).toBe('illusion');
+    });
+
+    it('should match parallel and basic - chaos gravity test', function () {
+        const dice = [
+            { uuid: '3', magic: 'divine', level: 'power' },
+            { uuid: '2', magic: 'divine', level: 'class' },
+            { uuid: '5', magic: 'sympathy', level: 'class' },
+            { uuid: '6', magic: 'sympathy', level: 'class' },
+            { uuid: '7', magic: 'charm', level: 'basic' },
+            { uuid: '8', magic: 'ceremonial', level: 'basic' }
+        ];
+        // parallel cost should match charm class die
+        const diceReq = [
+            [
+                new DiceCount(1, Level.Class, Magic.Sympathy),
+                new DiceCount(1, Level.Class, Magic.Divine)
+            ],
+            new DiceCount(1, Level.Basic)
+        ];
+
+        let matchedDice = Dice.matchDice(dice, diceReq);
+
+        expect(matchedDice.length).toBe(2);
+        // parallel first
+        expect(matchedDice[0].level).toBe('class');
+        expect(matchedDice[0].magic).toBe('sympathy');
+        expect(matchedDice[1].level).toBe('basic');
+        expect(matchedDice[1].magic).toBe('charm');
     });
 
     it('matches multiple dice in a single cost', function () {

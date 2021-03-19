@@ -81,7 +81,9 @@ class Dice {
 
         let parallels = diceReq.filter((r) => Array.isArray(r));
         let directs = diceReq.filter((r) => !Array.isArray(r));
-        directs
+        let nonBasics = directs.filter((r) => r.level !== Level.Basic);
+        let basics = directs.filter((r) => r.level === Level.Basic);
+        nonBasics
             .sort((a, b) => (a.level > b.level ? -1 : 1)) // power first, then class, then basic
             .forEach((req) => {
                 // support requests for multiples
@@ -93,6 +95,12 @@ class Dice {
         parallels.forEach((p) => {
             for (const item of p) {
                 if (Dice.findADie(availableDice, item, matchedDice)) return;
+            }
+        });
+        basics.forEach((req) => {
+            // support requests for multiples
+            for (let i = 0; i < req.count; i++) {
+                Dice.findADie(availableDice, req, matchedDice);
             }
         });
         return matchedDice;
