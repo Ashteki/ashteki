@@ -37,4 +37,17 @@ describe('Blackcloud Ninja reaction', function () {
         expect(this.summonButterflyMonk.exhausted).toBe(true);
         expect(this.player2).toHavePrompt('Choose a blocker'); // carry on with attack sequence
     });
+
+    it('cannot play if opponent has no unexhausted ready spells', function () {
+        this.summonButterflyMonk.tokens.exhaustion = 1;
+        expect(this.empower.exhausted).toBe(true);
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.coalRoarkwin); // target
+        this.player1.clickCard(this.blackcloudNinja); // single attacker
+        this.player1.clickPrompt('Done'); // end attacker select
+
+        expect(this.player1).not.toBeAbleToSelect(this.blackcloudNinja);
+
+        expect(this.player2).toHavePrompt('Choose a blocker'); // carry on with attack sequence
+    });
 });

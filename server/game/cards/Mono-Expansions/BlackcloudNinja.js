@@ -11,6 +11,7 @@ class BlackcloudNinja extends Card {
                     return event.battles.some((b) => b.attacker === context.source);
                 }
             },
+            condition: (context) => context.player.opponent.spellboard.some((c) => !c.exhausted),
             gameAction: ability.actions.chosenExhaust((context) => ({
                 target: context.player.opponent,
                 cardType: CardType.ReadySpell,
