@@ -10,7 +10,7 @@ class SummonMirrorSpirit extends Card {
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([
-                    new DiceCount(2, Level.Class, Magic.Sympathy),
+                    new DiceCount(1, Level.Class, Magic.Sympathy),
                     new DiceCount(1, Level.Basic)
                 ])
             ],
