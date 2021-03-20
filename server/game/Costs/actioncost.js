@@ -4,7 +4,10 @@ class ActionCost {
     }
 
     canPay(context) {
-        return context.player.actions[this.actionType];
+        return (
+            context.player.actions[this.actionType] &&
+            context.player.checkRestrictions('spendMain', context)
+        );
     }
 
     payEvent(context) {
