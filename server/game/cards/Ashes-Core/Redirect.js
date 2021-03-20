@@ -9,7 +9,7 @@ class Redirect extends Card {
             when: {
                 onDamageDealt: (event, context) => event.card == context.player.phoenixborn
             },
-            condition: (context) => context.player.cardsInPlay.length > 0,
+            condition: (context) => context.player.unitsInPlay.length > 0,
             effect: 'redirect the damage',
             target: {
                 cardType: BattlefieldTypes,

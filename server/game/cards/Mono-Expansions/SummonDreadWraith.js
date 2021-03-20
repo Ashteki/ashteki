@@ -23,7 +23,7 @@ class SummonDreadWraith extends Card {
                 condition: () => this.focus === 2,
                 gameAction: ability.actions.removeExhaustion((context) => ({
                     amount: 1,
-                    target: context.player.cardsInPlay.filter((c) => c.id === 'dread-wraith')
+                    target: context.player.unitsInPlay.filter((c) => c.id === 'dread-wraith')
                 }))
             }
         });

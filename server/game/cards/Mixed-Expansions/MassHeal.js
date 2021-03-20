@@ -13,7 +13,7 @@ class MassHeal extends Card {
                     ),
                 trueGameAction: ability.actions.removeDamage({
                     amount: 1,
-                    target: [context.player.phoenixborn, context.player.cardsInPlay]
+                    target: [context.player.phoenixborn, ...context.player.unitsInPlay]
                 }),
                 falseGameAction: ability.actions.removeDamage({
                     amount: 1,

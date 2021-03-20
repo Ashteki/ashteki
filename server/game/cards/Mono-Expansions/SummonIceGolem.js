@@ -26,7 +26,7 @@ class SummonIceGolem extends Card {
                 condition: () => this.focus === 2,
                 gameAction: ability.actions.removeDamage((context) => ({
                     amount: 1,
-                    target: context.player.cardsInPlay.filter((c) => c.id === 'ice-golem')
+                    target: context.player.unitsInPlay.filter((c) => c.id === 'ice-golem')
                 }))
             }
         });

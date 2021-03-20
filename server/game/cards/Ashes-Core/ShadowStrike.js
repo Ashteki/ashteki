@@ -6,7 +6,7 @@ class ShadowStrike extends Card {
             when: {
                 onAttackersDeclared: (event, context) =>
                     event.attackingPlayer === context.source.owner.opponent &&
-                    event.attackingPlayer.cardsInPlay.some((c) =>
+                    event.attackingPlayer.unitsInPlay.some((c) =>
                         this.notAttacking(c, event.battles)
                     )
             },
