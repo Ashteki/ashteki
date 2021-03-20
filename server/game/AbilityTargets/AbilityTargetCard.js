@@ -130,10 +130,12 @@ class AbilityTargetCard {
                 return true;
             }
         };
-        context.game.promptForSelect(
-            context.player,
-            Object.assign(promptProperties, otherProperties)
-        );
+        let player = context.player;
+        if (this.properties.player && this.properties.player === 'opponent') {
+            player = player.opponent;
+        }
+
+        context.game.promptForSelect(player, Object.assign(promptProperties, otherProperties));
     }
 
     checkTarget(context) {

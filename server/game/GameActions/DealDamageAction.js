@@ -13,6 +13,7 @@ class DealDamageAction extends CardGameAction {
         this.ignoreArmor = false;
         this.bonus = false;
         this.showMessage = false;
+        this.unpreventable = false;
     }
 
     setup() {
@@ -64,7 +65,15 @@ class DealDamageAction extends CardGameAction {
             ignoreArmor: this.ignoreArmor,
             bonus: this.bonus
         };
-        params.preventable = !params.damageSource.anyEffect('unpreventable');
+        // preventable by default. check restrictions if it's a fight
+        params.preventable = this.fightEvent
+            ? card.controller.checkRestrictions('preventFightDamage', context)
+            : true;
+        // add unpreventable flags and restrictions
+        params.preventable =
+            params.preventable &&
+            !(this.unpreventable || params.damageSource.anyEffect('unpreventable'));
+
         if (params.preventable) {
             if (card.anyEffect('preventAllDamage')) {
                 let preventer = card.getEffects('preventAllDamage')[0];
