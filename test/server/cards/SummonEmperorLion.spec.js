@@ -53,7 +53,9 @@ describe('Summon Emperor Lion', function () {
         expect(this.lawOfSight.location).toBe('hand');
         expect(this.player1.deck.length).toBe(3); // 3 OM plus one law
         this.player1.clickCard(this.lawOfSight);
+        expect(this.player1).toHavePrompt('Select dice');
         this.player1.clickDie(3);
+        this.player1.clickPrompt('Done');
         expect(this.lawOfSight.location).toBe('spellboard');
         this.player1.clickPrompt('No'); // law of sight prompt to draw up to 2
         expect(this.player1).toHaveDefaultPrompt();

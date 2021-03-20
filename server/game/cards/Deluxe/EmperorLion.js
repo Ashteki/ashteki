@@ -1,4 +1,3 @@
-const PlayReadySpellAction = require('../../BaseActions/PlayReadySpellAction.js');
 const Card = require('../../Card.js');
 
 class EmperorLion extends Card {
@@ -22,9 +21,13 @@ class EmperorLion extends Card {
                     location: 'hand',
                     controller: 'self',
                     cardCondition: (card) => card.name.startsWith('Law '),
-                    gameAction: ability.actions.resolveAbility((context) => ({
-                        ability: new PlayReadySpellAction(context.target, false) // no action cost
+                    gameAction: ability.actions.playCard((context) => ({
+                        target: context.target,
+                        ignoreActionCost: true
                     }))
+                    // gameAction: ability.actions.resolveAbility((context) => ({
+                    //     ability: new PlayReadySpellAction(context.target, false) // no action cost
+                    // }))
                 },
                 then: {
                     alwaysTriggers: true,
