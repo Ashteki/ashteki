@@ -15,6 +15,7 @@ class EmperorLion extends Card {
                 ]
             },
             then: {
+                alwaysTriggers: true,
                 target: {
                     activePromptTitle: 'Choose a Law',
                     optional: true,
@@ -25,9 +26,6 @@ class EmperorLion extends Card {
                         target: context.target,
                         ignoreActionCost: true
                     }))
-                    // gameAction: ability.actions.resolveAbility((context) => ({
-                    //     ability: new PlayReadySpellAction(context.target, false) // no action cost
-                    // }))
                 },
                 then: {
                     alwaysTriggers: true,
