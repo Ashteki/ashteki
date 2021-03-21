@@ -43,6 +43,6 @@ class SummonGhostlyMount extends Card {
     }
 }
 
-SummonGhostlyMount.id = 'summon-cerasaurus-mount';
+SummonGhostlyMount.id = 'summon-ghostly-mount';
 
 module.exports = SummonGhostlyMount;

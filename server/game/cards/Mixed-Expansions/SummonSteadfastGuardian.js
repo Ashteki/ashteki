@@ -36,6 +36,6 @@ class SummonSteadfastGuardian extends Card {
     }
 }
 
-SummonSteadfastGuardian.id = 'summon-ice-golem';
+SummonSteadfastGuardian.id = 'summon-steadfast-guardian';
 
 module.exports = SummonSteadfastGuardian;
