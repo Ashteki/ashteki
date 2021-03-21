@@ -101,11 +101,15 @@ class DealDamageAction extends CardGameAction {
                 'onDamageApplied',
                 damageAppliedParams,
                 (event) => {
+                    let numTokens = event.amount;
+                    if (event.card.anyEffect('multiplyDamage')) {
+                        numTokens = event.amount * event.card.sumEffects('multiplyDamage');
+                    }
                     // add tokens to victim - turn this into an event / use addtoken action
                     let tokenEvent = context.game.actions
                         .addToken({
                             type: 'damage',
-                            amount: event.amount
+                            amount: numTokens
                         })
                         .getEvent(event.card, context.game.getFrameworkContext(context.player));
 

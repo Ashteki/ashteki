@@ -37,6 +37,7 @@ const Effects = {
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
     modifyRecover: (amount) => EffectBuilder.card.flexible('modifyRecover', amount),
     modifyArmor: (amount) => EffectBuilder.card.flexible('modifyArmor', amount),
+    multiplyDamage: (amount) => EffectBuilder.card.flexible('multiplyDamage', amount),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setPower: (amount) => EffectBuilder.card.flexible('setPower', amount),
     setAttack: (amount) => EffectBuilder.card.flexible('setAttack', amount),

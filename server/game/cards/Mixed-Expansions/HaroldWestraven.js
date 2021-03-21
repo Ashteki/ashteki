@@ -8,8 +8,7 @@ class HaroldWestraven extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             targets: {
                 unit: {
-                    cardType: BattlefieldTypes,
-                    controller: 'self'
+                    cardType: BattlefieldTypes
                 },
                 conj: {
                     dependsOn: 'unit',
@@ -27,6 +26,6 @@ class HaroldWestraven extends Card {
     }
 }
 
-HaroldWestraven.id = 'rin-northfell';
+HaroldWestraven.id = 'harold-westraven';
 
 module.exports = HaroldWestraven;
