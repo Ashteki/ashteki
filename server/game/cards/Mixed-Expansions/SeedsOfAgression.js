@@ -14,6 +14,7 @@ class SeedsOfAggression extends Card {
                     dependsOn: 'myUnit',
                     activePromptTitle: "Choose an opponent's Unit",
                     cardType: BattlefieldTypes,
+                    controller: 'opponent',
                     gameAction: [
                         ability.actions.dealDamage((context) => ({
                             target: context.targets.theirs,
@@ -30,6 +31,6 @@ class SeedsOfAggression extends Card {
     }
 }
 
-SeedsOfAggression.id = 'blood-chains';
+SeedsOfAggression.id = 'seeds-of-aggression';
 
 module.exports = SeedsOfAggression;
