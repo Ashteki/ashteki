@@ -365,6 +365,10 @@ class PlayerInteractionWrapper {
         this.clickPrompt('Done');
     }
 
+    clickPass() {
+        this.clickPrompt('Pass');
+    }
+
     clickPrompt(text) {
         text = text.toString();
         var currentPrompt = this.player.currentPrompt();

@@ -93,6 +93,7 @@ class Card extends PlayableObject {
         this.modifiedSpellboard = undefined;
         this.modifiedRecover = undefined;
         this.usedGuardThisRound = false;
+        this.actsAs = undefined;
     }
 
     get name() {
@@ -785,8 +786,12 @@ class Card extends PlayableObject {
         if (this.type !== CardType.ReadySpell || this.location !== 'spellboard') return 0;
 
         const focusLevel =
-            this.owner.spellboard.filter((spell) => spell.name === this.name).length - 1;
-        return focusLevel;
+            this.owner.spellboard.filter((spell) => spell.cardSlot === this.id).length - 1;
+        return Math.max(focusLevel, 0);
+    }
+
+    get cardSlot() {
+        return this.actsAs || this.id;
     }
 
     alert() {
@@ -1062,6 +1067,7 @@ class Card extends PlayableObject {
             location: this.location,
             menu: this.getMenu(),
             name: this.name,
+            cardSlot: this.cardSlot,
             label: this.name,
             new: this.new,
             tokens: this.tokens,

@@ -1,4 +1,4 @@
-const { Location, AbilityType } = require('../../constants.js');
+const { Location } = require('../../constants.js');
 const BaseStepWithPipeline = require('./basestepwithpipeline.js');
 const SimpleStep = require('./simplestep.js');
 
@@ -93,7 +93,7 @@ class AbilityResolver extends BaseStepWithPipeline {
 
         if (
             this.context.source.isLimited() ||
-            this.context.ability.abilityType === AbilityType.Reaction
+            (this.context.ability.properties && this.context.ability.properties.isLimited)
         ) {
             this.context.player.limitedPlayed += 1;
         }

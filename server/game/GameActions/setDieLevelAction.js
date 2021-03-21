@@ -20,7 +20,7 @@ class SetDieLevelAction extends DiceGameAction {
     }
 
     checkEventCondition(event) {
-        return !event.die.exhausted && super.checkEventCondition(event);
+        return super.checkEventCondition(event);
     }
 
     getEvent(die, context) {

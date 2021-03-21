@@ -16,8 +16,8 @@ class SecretDoor extends Card {
                 cardCondition: (card, context) => card !== context.source,
                 controller: 'self',
                 cardType: BattlefieldTypes,
-                duration: 'untilEndOfTurn',
                 gameAction: ability.actions.cardLastingEffect(() => ({
+                    duration: 'untilEndOfTurn',
                     effect: ability.effects.preventBlock()
                 }))
             }

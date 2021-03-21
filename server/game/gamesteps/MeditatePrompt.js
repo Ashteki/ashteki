@@ -2,6 +2,7 @@ const { Level } = require('../../constants.js');
 const SingleCardSelector = require('../CardSelectors/SingleCardSelector.js');
 const SingleDieSelector = require('../CardSelectors/SingleDieSelector.js');
 const Dice = require('../dice.js');
+const GameActions = require('../GameActions.js');
 const UiPrompt = require('./uiprompt.js');
 
 class MeditatePrompt extends UiPrompt {
@@ -180,7 +181,11 @@ class MeditatePrompt extends UiPrompt {
         if (arg === 'set') {
             const cards = [...this.choosingPlayer.selectedCards];
             const dice = [...this.choosingPlayer.selectedDice];
-            this.choosingPlayer.discardSelectedCards();
+            GameActions.discard().resolve(
+                this.choosingPlayer.selectedCards,
+                this.game.getFrameworkContext(player)
+            );
+            // this.choosingPlayer.discardSelectedCards();
             this.game.addMessage(
                 '{0} meditates {1} to gain a {2}',
                 this.choosingPlayer,

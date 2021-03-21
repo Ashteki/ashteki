@@ -5,6 +5,7 @@ class ShadowGuard extends Card {
         this.unitGuard();
 
         this.reaction({
+            isLimited: true,
             when: {
                 onAttackersDeclared: (event, context) =>
                     event.attackingPlayer === context.source.owner.opponent
@@ -12,7 +13,8 @@ class ShadowGuard extends Card {
             location: 'hand',
             gameAction: ability.actions.playCard(() => ({
                 target: this,
-                ignoreActionCost: true
+                ignoreActionCost: true,
+                isLimited: true
             }))
         });
     }

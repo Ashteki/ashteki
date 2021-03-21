@@ -16,30 +16,27 @@ class ChosenExhaustAction extends PlayerAction {
 
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player: player }, () => {
-            if (player.hand.length > 0) {
-                let amount = Math.min(player.hand.length, this.amount);
-                if (amount > 0) {
-                    context.game.promptForSelect(player, {
-                        activePromptTitle:
-                            amount === 1
-                                ? 'Choose a card to exhaust'
-                                : {
-                                      text: 'Choose {{amount}} cards to exhaust',
-                                      values: { amount: amount }
-                                  },
-                        context: context,
-                        mode: 'exactly',
-                        numCards: amount,
-                        cardType: this.cardType,
-                        cardCondition: this.cardCondition,
-                        controller: player === context.player ? 'self' : 'opponent',
-                        onSelect: (player, cards) => {
-                            context.game.addMessage('{0} discards {1}', player, cards);
-                            context.game.actions.exhaust().resolve(cards, context);
-                            return true;
-                        }
-                    });
-                }
+            if (this.amount > 0) {
+                context.game.promptForSelect(player, {
+                    activePromptTitle:
+                        this.amount === 1
+                            ? 'Choose a card to exhaust'
+                            : {
+                                  text: 'Choose {{amount}} cards to exhaust',
+                                  values: { amount: this.amount }
+                              },
+                    context: context,
+                    mode: 'exactly',
+                    numCards: this.amount,
+                    cardType: this.cardType,
+                    cardCondition: this.cardCondition,
+                    controller: player === context.player ? 'self' : 'opponent',
+                    onSelect: (player, cards) => {
+                        context.game.addMessage('{0} discards {1}', player, cards);
+                        context.game.actions.exhaust().resolve(cards, context);
+                        return true;
+                    }
+                });
             }
         });
     }

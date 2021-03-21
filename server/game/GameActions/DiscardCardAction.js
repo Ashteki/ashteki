@@ -10,8 +10,13 @@ class DiscardCardAction extends CardGameAction {
 
     getEvent(card, context) {
         let location = card.location;
+        let eventName =
+            card.location === 'play area' || card.location === 'spellboard'
+                ? 'onCardLeavesPlay'
+                : 'onCardDiscarded';
+
         return super.createEvent(
-            'onCardDiscarded',
+            eventName,
             { card, context, location, showMessage: this.showMessage },
             (event) => {
                 if (card.location === 'hand') {

@@ -4,7 +4,7 @@ class ExhaustAction extends CardGameAction {
     setup() {
         this.name = 'exhaust';
         this.targetType = ['Ally', 'Ready Spell', 'Conjuration', 'Phoenixborn'];
-        this.effectMsg = 'exhaust {0}';
+        this.effectMsg = 'exhausts {0}';
     }
 
     canAffect(card, context) {

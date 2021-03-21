@@ -21,20 +21,20 @@ class SquishableCardPanel extends React.Component {
         let overflow = requiredWidth - overallDimensions.width;
         let offset = overflow / (handLength - 1);
 
-        cards = cards.sort((a, b) => (a.name < b.name ? -1 : 1));
+        cards = cards.sort((a, b) => (a.cardSlot < b.cardSlot ? -1 : 1));
         if (this.props.groupVisibleCards && this.hasMixOfVisibleCards()) {
             cards = cards.sort((a, b) => (a.facedown && !b.facedown ? -1 : 1));
         }
 
-        let lastCardName = '';
+        let lastCardSlot = '';
         let focusLeftDelta = 0;
         let hand = cards.map((card) => {
-            if (lastCardName === card.name && this.props.focusDupes) {
+            if (this.props.focusDupes && lastCardSlot === card.cardSlot) {
                 focusLeftDelta += -30;
             } else {
                 //focusLeftDelta = 0;
             }
-            lastCardName = card.name;
+            lastCardSlot = card.cardSlot;
             let left = 0;
             if (needsSquish) {
                 left = (cardWidth - offset) * cardIndex++;
