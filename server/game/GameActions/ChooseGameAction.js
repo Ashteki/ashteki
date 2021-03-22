@@ -8,7 +8,7 @@ class ChooseGameAction extends GameAction {
     }
 
     setDefaultProperties() {
-        this.choice = null;
+        // this.choice = null;
         // this.choices = {};
         // this.messages = {};
         this.activePromptTitle = 'Select an action:';
