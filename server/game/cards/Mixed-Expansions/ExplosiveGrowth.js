@@ -9,7 +9,9 @@ class ExplosiveGrowth extends Card {
             })),
             then: {
                 gameAction: ability.actions.discard(() => ({
-                    target: this.parent.upgrades.filter((c) => c !== this)
+                    target: this.parent.upgrades.filter(
+                        (card) => card !== this && card.id === 'explosive-growth'
+                    )
                 }))
             }
         });

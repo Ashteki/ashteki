@@ -11,7 +11,8 @@ describe('Hunters Mark', function () {
             player2: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['iron-worker'],
-                dicepool: ['natural', 'natural', 'charm', 'charm']
+                dicepool: ['natural', 'natural', 'sympathy', 'sympathy'],
+                hand: ['explosive-growth', 'explosive-growth']
             }
         });
     });
@@ -29,5 +30,26 @@ describe('Hunters Mark', function () {
         this.player2.clickPrompt('No'); // counter
 
         expect(this.ironWorker.location).toBe('discard');
+    });
+
+    it('multiple upgrades - bug report', function () {
+        this.player1.clickCard(this.haroldWestraven);
+
+        this.player1.clickPrompt('Mark Prey');
+        this.player1.clickCard(this.ironWorker);
+        this.player1.clickCard(this.huntersMark);
+        this.player1.endTurn();
+        this.player2.play(this.explosiveGrowth, this.ironWorker);
+        expect(this.ironWorker.upgrades.length).toBe(2);
+    });
+
+    it('multiple explosive growth not allowed', function () {
+        this.player1.endTurn();
+        this.player2.play(this.explosiveGrowth, this.ironWorker);
+        expect(this.ironWorker.upgrades.length).toBe(1);
+        this.player2.player.actions.side = true;
+        this.player2.play(this.player2.hand[0], this.ironWorker);
+        expect(this.ironWorker.upgrades.length).toBe(1);
+        expect(this.player2.discard[0].id).toBe('explosive-growth');
     });
 });

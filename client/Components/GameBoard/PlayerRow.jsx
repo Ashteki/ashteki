@@ -39,7 +39,7 @@ const PlayerRow = ({
     const renderResources = (dice) => {
         return (
             <div className='panel resources card-pile'>
-                <div className='panel-header'>Dice</div>
+                <h3 className='panel-header'>Dice</h3>
                 <DiceBox
                     dice={dice}
                     size={cardSize}

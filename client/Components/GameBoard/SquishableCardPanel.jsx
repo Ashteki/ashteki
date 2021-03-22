@@ -126,7 +126,7 @@ class SquishableCardPanel extends React.Component {
         return (
             <div className={className} style={style}>
                 {this.props.title && (
-                    <div className='panel-header'>{`${this.props.title} (${cards.length})`}</div>
+                    <h3 className='panel-header'>{`${this.props.title} (${cards.length})`}</h3>
                 )}
                 {cards}
             </div>
