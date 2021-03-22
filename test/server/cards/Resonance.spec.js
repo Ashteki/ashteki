@@ -6,7 +6,7 @@ describe('resonance', function () {
                 inPlay: ['mist-spirit', 'iron-worker'],
                 spellboard: ['summon-iron-rhino', 'empower', 'summon-gilder'],
                 dicepool: ['divine', 'sympathy', 'sympathy'],
-                hand: ['resonance']
+                hand: ['resonance', 'summon-mist-spirit']
             },
             player2: {
                 phoenixborn: 'rin-northfell',
@@ -25,7 +25,7 @@ describe('resonance', function () {
         this.player1.clickCard(this.summonIronRhino);
         // unexhaust one copy of each exhausted spell
         expect(this.resonance.location).toBe('spellboard');
-        expect(this.player1.player.isSpellboardFull()).toBe(false);
+        expect(this.player1.player.isSpellboardFull('summon-mist-spirit')).toBe(false);
         expect(this.empower.focus).toBe(0);
         expect(this.summonIronRhino.focus).toBe(1);
         expect(this.resonance.focus).toBe(0);

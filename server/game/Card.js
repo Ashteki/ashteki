@@ -832,7 +832,9 @@ class Card extends PlayableObject {
     tame(properties) {
         return this.persistentEffect({
             targetController: 'opponent',
-            condition: (context) => context.source.isAttacker || context.source.isDefender,
+            condition: (context) =>
+                (context.source.isAttacker || context.source.isDefender) &&
+                !context.source.exhausted,
             match: (card, context) =>
                 BattlefieldTypes.includes(card.type) && // unit
                 (card.isAttacker || card.isDefender) &&

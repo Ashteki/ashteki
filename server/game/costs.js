@@ -34,7 +34,7 @@ const Costs = {
         canPay: (context) => {
             if (
                 (context.source.type === 'Ready Spell' &&
-                    context.player.isSpellboardFull(context.source.name)) ||
+                    context.player.isSpellboardFull(context.source.cardSlot)) ||
                 (BattlefieldTypes.includes(context.source.getType()) &&
                     context.player.isBattlefieldFull())
             ) {
