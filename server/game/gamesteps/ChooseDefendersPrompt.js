@@ -58,7 +58,11 @@ class ChooseDefendersPrompt extends UiPrompt {
     }
 
     highlightAttackers() {
+        const allNonUnseenBlocked = !this.attack.battles.some(
+            (b) => !b.attacker.anyEffect('unseen') && !b.guard
+        );
         const legalChoices = this.attack.battles
+            .filter((b) => !b.attacker.anyEffect('unseen') || allNonUnseenBlocked)
             .map((b) => b.attacker)
             .filter((a) => this.selectedCard.canBlock(a));
         this.choosingPlayer.setSelectableCards(legalChoices);
@@ -173,12 +177,40 @@ class ChooseDefendersPrompt extends UiPrompt {
 
     menuCommand(player, arg) {
         if (arg === 'done') {
+            if (!this.checkThreatening()) return false;
+
             this.game.addMessage('{0} has chosen defenders', player);
             this.resetSelections(player);
             this.complete();
             return true;
         }
         return false;
+    }
+
+    checkThreatening() {
+        const unblockedThreatBattles = this.attack.battles.filter(
+            (b) => b.attacker.anyEffect('threatening') && !b.guard
+        );
+
+        const numThreats = unblockedThreatBattles.length;
+        // there are some threatening attackers without blockers
+        if (numThreats > 0) {
+            // potential defenders
+            let defenders = this.attack.defendingPlayer.unitsInPlay.filter((u) => !u.exhausted);
+
+            unblockedThreatBattles.forEach((battle) => {
+                const def = defenders.find((d) => d.canBlock(battle.attacker));
+                if (def) {
+                    defenders = defenders.filter((d) => d !== def);
+                } else {
+                    return true;
+                }
+            });
+
+            return false;
+        }
+
+        return true;
     }
 
     resetSelections(player) {
