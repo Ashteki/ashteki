@@ -6,6 +6,7 @@ class SonicSwordsman extends Card {
 
         this.afterDestroysFighting({
             target: {
+                optional: true,
                 activePromptTitle: 'Sonic Pulse 1',
                 waitingPromptTitle: 'Sonic Pulse 1: waiting for opponent',
                 cardType: ['Ally', 'Conjuration'],

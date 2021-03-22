@@ -361,6 +361,11 @@ class PlayerInteractionWrapper {
         this.game.selectDeck(this.player.name, deck);
     }
 
+    clickAttack(target) {
+        this.clickPrompt('Attack');
+        this.clickCard(target);
+    }
+
     clickDone() {
         this.clickPrompt('Done');
     }
