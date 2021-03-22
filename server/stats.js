@@ -1,4 +1,6 @@
+const moment = require('moment');
 const _ = require('underscore');
+
 const GameService = require('./services/AshesGameService.js');
 const ConfigService = require('./services/ConfigService.js');
 
@@ -28,6 +30,7 @@ gameService
 
         let players = {};
         let decks = {};
+        let weekCount = [];
         let fpWinRates = { first: 0, second: 0 };
 
         _.each(games, (game) => {
@@ -54,6 +57,9 @@ gameService
             } else {
                 fpWinRates.second++;
             }
+
+            const week = moment(game.startedAt).week();
+            weekCount[week] = weekCount[week] ? weekCount[week] + 1 : 1;
 
             _.each(game.players, (player) => {
                 if (!players[player.name]) {
@@ -123,6 +129,11 @@ gameService
         let deckWinRateStats = _.sortBy(deckWinRates, (deck) => {
             return -deck.winRate;
         });
+
+        console.info('\n### Game count by week \n\nWeek | Count');
+        for (var key in weekCount) {
+            console.info(key, ' | ', weekCount[key]);
+        }
 
         console.info('\n### Top 10 Players\n\nName | Number of games\n-----|----------------');
 
