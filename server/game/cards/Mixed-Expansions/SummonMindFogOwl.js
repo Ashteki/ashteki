@@ -1,4 +1,4 @@
-const { Level, Magic } = require('../../../constants.js');
+const { Level, Magic, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -23,6 +23,20 @@ class SummonMindFogOwl extends Card {
                 cardCondition: (card) => card.id === 'mind-fog-owl',
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
+            },
+            then: {
+                condition: (context) =>
+                    context.preThenEvent.context.costs.returnDice.some((d) => d.level === 'power'),
+                target: {
+                    cardType: BattlefieldTypes,
+                    controller: 'opponent',
+                    cardCondition: (card) => !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
+                    gameAction: ability.actions.attachDie((context) => ({
+                        upgradeDie: context.preThenEvent.context.costs.returnDice.find(
+                            (d) => d.level === 'power'
+                        )
+                    }))
+                }
             }
         });
     }

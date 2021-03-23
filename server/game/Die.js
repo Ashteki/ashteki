@@ -1,3 +1,4 @@
+const { Magic } = require('../constants');
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const { Costs } = require('./costs');
@@ -180,6 +181,8 @@ class Die extends PlayableObject {
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         cardType: ['Ally', 'Conjuration'],
+                        cardCondition: (card) =>
+                            !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
                         controller: 'opponent',
                         gameAction: this.game.actions.attachDie({ upgradeDie: this })
                     },
@@ -192,6 +195,8 @@ class Die extends PlayableObject {
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         cardType: ['Ally', 'Conjuration'],
+                        cardCondition: (card) =>
+                            !card.dieUpgrades.some((d) => d.magic === Magic.Divine),
                         controller: 'self',
                         gameAction: this.game.actions.attachDie({ upgradeDie: this })
                     },
