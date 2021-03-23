@@ -1,5 +1,6 @@
 const { parseCosts, parseDiceCost } = require('../../server/game/costs.js');
 const DiceCost = require('../../server/game/Costs/dicecost');
+const XDiceCost = require('../../server/game/Costs/xdicecost');
 const DiceCount = require('../../server/game/DiceCount');
 const { Magic, Level } = require('../../server/constants');
 
@@ -18,6 +19,23 @@ describe('playcost parsing', function () {
         expect(Array.isArray(diceReq[0])).toBe(true);
         expect(diceReq[0][0].magic).toBe('ceremonial');
         expect(diceReq[0][0].level).toBe('class');
+    });
+
+    it('should understand X dice cost', function () {
+        // parallel dice cost - stored as an array literal
+        const costSpec = 'X [[basic]]';
+
+        let diceReq = parseDiceCost(costSpec);
+
+        // dice cost is potentially multiples
+        expect(Array.isArray(diceReq)).toBe(false);
+        // that entry is an array of choices
+        expect(diceReq.level).toBe('basic');
+        expect(diceReq.count).toBe(null); // implies unlimited
+
+        const dc = new parseCosts([costSpec]);
+
+        expect(dc[0] instanceof XDiceCost).toBe(true);
     });
 
     it('Dicecost is a class', function () {

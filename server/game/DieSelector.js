@@ -5,6 +5,7 @@ const MatchedDiceSelector = require('./CardSelectors/MatchedDiceSelector');
 // const MostStatCardSelector = require('./CardSelectors/MostStatCardSelector');
 // const LeastStatCardSelector = require('./CardSelectors/LeastStatCardSelector');
 const SingleDieSelector = require('./CardSelectors/SingleDieSelector');
+const UnlimitedDieSelector = require('./CardSelectors/UnlimitedDieSelector');
 const UpToXDiceSelector = require('./CardSelectors/UpToXDiceSelector');
 // const UnlimitedCardSelector = require('./CardSelectors/UnlimitedCardSelector');
 // const UpToXCardSelector = require('./CardSelectors/UpToXCardSelector');
@@ -25,7 +26,7 @@ const ModeToSelector = {
     // mostStat: (p) => new MostStatCardSelector(p),
     // leastStat: (p) => new LeastStatCardSelector(p),
     single: (p) => new SingleDieSelector(p),
-    // unlimited: (p) => new UnlimitedCardSelector(p),
+    unlimited: (p) => new UnlimitedDieSelector(p),
     upTo: (p) => new UpToXDiceSelector(p.numDice, p)
 };
 

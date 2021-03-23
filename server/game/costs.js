@@ -3,6 +3,7 @@ const ActionCost = require('./Costs/actioncost');
 const ChosenActionCost = require('./Costs/chosenactionscost');
 const DiceCost = require('./Costs/dicecost');
 const DynamicDiceCost = require('./Costs/dynamicdicecost');
+const XDiceCost = require('./Costs/xdicecost');
 const DiceCount = require('./DiceCount');
 
 const Costs = {
@@ -60,6 +61,7 @@ const Costs = {
             context.game.actions.chosenDiscard({ amount: amount }).getEvent(context.player, context)
     }),
     dice: (cost, title) => new DiceCost({ diceReq: cost, title: title }),
+    xDice: (cost, title) => new XDiceCost({ diceReq: cost, title: title }),
     dynamicDice: (costFunc) => new DynamicDiceCost(costFunc)
 };
 
@@ -96,7 +98,11 @@ function parseCosts(costData) {
         }
     }
     if (diceReq.length > 0) {
-        costs.push(Costs.dice(diceReq));
+        if (diceReq[0].count === null) {
+            costs.push(Costs.xDice(diceReq));
+        } else {
+            costs.push(Costs.dice(diceReq));
+        }
     }
 
     return costs;
@@ -112,7 +118,7 @@ function parseDiceCost(diceCost) {
     // "1 [[basic]]"
     // "# [[type||missing:level]]"
     const parts = diceCost.split(' ');
-    const count = parseInt(parts[0]);
+    const count = isNaN(parts[0]) ? null : parseInt(parts[0]);
     const definition = parts[1].replace('[[', '').replace(']]', '').split(':');
     const level = definition.length > 1 ? definition[1] : definition[0];
     const magic = definition.length > 1 ? definition[0] : null;
