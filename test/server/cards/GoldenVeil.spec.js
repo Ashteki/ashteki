@@ -30,6 +30,33 @@ describe('Golden Veil', function () {
         expect(this.moltenGold.location).toBe('discard');
     });
 
+    it('cancels natural dice power', function () {
+        this.player1.clickDie(1);
+        this.player1.clickPrompt('Natural Dice Power');
+        this.player1.clickCard(this.hammerKnight);
+
+        expect(this.player2).toHavePrompt('Any interrupts to natural dice power?');
+        this.player2.clickCard(this.goldenVeil);
+
+        expect(this.hammerKnight.damage).toBe(0);
+        expect(this.hammerKnight.location).toBe('play area');
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.player1.dicepool[1].exhausted).toBe(true);
+    });
+
+    it('cancels charm dice power', function () {
+        this.player1.clickDie(4);
+        this.player1.clickPrompt('Charm Dice Power');
+        this.player1.clickCard(this.hammerKnight);
+
+        expect(this.player2).toHavePrompt('Any interrupts to charm dice power?');
+        this.player2.clickCard(this.goldenVeil);
+
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.hammerKnight.dieUpgrades.length).toBe(0);
+        expect(this.player1.dicepool[4].exhausted).toBe(true);
+    });
+
     it('cancels alteration spell attachment to unit', function () {
         this.player1.clickCard(this.fadeAway);
         this.player1.clickPrompt('Play this alteration');

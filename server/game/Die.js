@@ -177,7 +177,7 @@ class Die extends PlayableObject {
             case 'charm':
                 return this.action({
                     title: 'Charm Dice Power',
-                    cost: [Costs.sideAction()],
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         cardType: ['Ally', 'Conjuration'],
                         controller: 'opponent',
@@ -189,7 +189,7 @@ class Die extends PlayableObject {
             case 'divine':
                 return this.action({
                     title: 'Divine Dice Power',
-                    cost: [Costs.sideAction()],
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         cardType: ['Ally', 'Conjuration'],
                         controller: 'self',
