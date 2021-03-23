@@ -58,9 +58,7 @@ class ChooseDefendersPrompt extends UiPrompt {
     }
 
     highlightAttackers() {
-        const allNonUnseenBlocked = !this.attack.battles.some(
-            (b) => !b.attacker.anyEffect('unseen') && !b.guard
-        );
+        const allNonUnseenBlocked = this.attack.checkUnseen();
         const legalChoices = this.attack.battles
             .filter((b) => !b.attacker.anyEffect('unseen') || allNonUnseenBlocked)
             .map((b) => b.attacker)
@@ -155,6 +153,11 @@ class ChooseDefendersPrompt extends UiPrompt {
             }
         } else {
             if (card.isAttacker && this.selectedCard) {
+                // check validity
+                if (card.anyEffect('unseen') && !this.attack.checkUnseen()) {
+                    return false;
+                }
+
                 this.attack.setBlockerForAttacker(this.selectedCard, card);
                 this.game.addMessage(
                     '{0} uses {1} to {2} against {3}',
@@ -177,7 +180,13 @@ class ChooseDefendersPrompt extends UiPrompt {
 
     menuCommand(player, arg) {
         if (arg === 'done') {
-            if (!this.checkThreatening()) return false;
+            if (!this.checkThreatening()) {
+                this.game.addAlert(
+                    'info',
+                    'Units with the Threatening ability must be blocked if able'
+                );
+                return false;
+            }
 
             this.game.addMessage('{0} has chosen defenders', player);
             this.resetSelections(player);

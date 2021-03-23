@@ -14,7 +14,7 @@ describe('unseen', function () {
             });
         });
 
-        it('must be blocked', function () {
+        it('must block others first', function () {
             this.player1.clickAttack(this.coalRoarkwin);
             this.player1.clickCard(this.ironWorker);
             this.player1.clickCard(this.mindFogOwl);
@@ -24,6 +24,11 @@ describe('unseen', function () {
             this.player2.clickCard(this.anchornaut);
             expect(this.player2).not.toBeAbleToSelect(this.mindFogOwl);
             expect(this.player2).toBeAbleToSelect(this.ironWorker);
+
+            this.player2.clickCard(this.mindFogOwl);
+            expect(
+                this.game.attackState.battles.some((b) => b.attacker === this.mindFogOwl && b.guard)
+            ).toBe(false);
 
             this.player2.clickCard(this.ironWorker);
 

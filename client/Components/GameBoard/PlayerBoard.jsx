@@ -100,7 +100,7 @@ const PlayerBoard = ({
         'active-player': active
     });
 
-    let maxUpgrades = Math.max(...cardsInPlay.map((c) => c.upgrades.length));
+    let maxUpgrades = Math.max(...cardsInPlay.map((c) => (c.upgrades ? c.upgrades.length : 0)));
     let topMargin = maxUpgrades * 15;
     let style = { marginTop: topMargin + 'px' };
 

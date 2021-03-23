@@ -74,6 +74,10 @@ class AttackState {
 
         return state;
     }
+
+    checkUnseen() {
+        return !this.battles.some((b) => !b.attacker.anyEffect('unseen') && !b.guard);
+    }
 }
 
 module.exports = AttackState;
