@@ -57,6 +57,10 @@ class PutIntoPlayAction extends CardGameAction {
             if (this.myControl) {
                 card.updateEffectContexts();
             }
+
+            if (event.context.game.lastCardPlayed !== card) {
+                event.context.game.cardPlayed(card);
+            }
         });
     }
 }

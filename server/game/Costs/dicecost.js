@@ -72,9 +72,19 @@ class DiceCost {
     }
 
     payEvent(context) {
-        return context.game.actions
+        const params = {
+            dice: context.costs.returnDice
+        };
+
+        const payEvent = context.game.getEvent('onDiceSpent', params);
+        const exhaustEvents = context.game.actions
             .exhaustDie({ target: context.costs.returnDice })
             .getEventArray(context);
+        for (let event of exhaustEvents) {
+            payEvent.addChildEvent(event);
+        }
+
+        return payEvent;
     }
 }
 

@@ -133,3 +133,18 @@
     display: flex;
     flex-direction: column;
 }
+
+.card-log{
+    align-items: right;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-left: auto;
+    width: $keyteki-card-width + 10;
+
+}
+
+.card-log-arrow{
+    text-align: center;
+    background-color: rgba(theme-color('secondary'), 0.4);
+}

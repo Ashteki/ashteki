@@ -9,6 +9,7 @@ import PlayerStats from './PlayerStats';
 import PlayerRow from './PlayerRow';
 import ActivePlayerPrompt from './ActivePlayerPrompt';
 import CardZoom from './CardZoom';
+import CardLog from './CardLog';
 import PlayerBoard from './PlayerBoard';
 import GameChat from './GameChat';
 import GameConfigurationModal from './GameConfigurationModal';
@@ -411,6 +412,11 @@ export class GameBoard extends React.Component {
                     )}
                     <div className='right-side'>
                         <div className='prompt-area'>
+                            <CardLog
+                                cards={this.props.currentGame.cardLog}
+                                onMouseOut={this.onMouseOut}
+                                onMouseOver={this.onMouseOver}
+                            />
                             <div className='inset-pane'>
                                 <ActivePlayerPrompt
                                     cards={this.props.cards}

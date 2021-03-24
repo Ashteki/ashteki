@@ -110,6 +110,19 @@ class Game extends EventEmitter {
         this.attackState = null;
     }
 
+    cardUsed(card) {
+        this.cardsPlayed.push(card);
+    }
+
+    cardPlayed(card) {
+        this.cardsPlayed.push(card);
+    }
+
+    get lastCardPlayed() {
+        if (this.cardsPlayed.length > 0) return this.cardsPlayed[this.cardsPlayed.length - 1];
+
+        return null;
+    }
     /*
      * Reports errors from the game engine back to the router
      * @param {type} e
@@ -1199,8 +1212,6 @@ class Game extends EventEmitter {
 
     endTurn() {
         this.activePlayer.endTurn();
-        this.cardsUsed = [];
-        this.cardsPlayed = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
 
@@ -1226,7 +1237,6 @@ class Game extends EventEmitter {
 
     endRound() {
         this.getPlayers().forEach((player) => player.endRound());
-        this.cardsUsed = [];
         this.cardsPlayed = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
@@ -1254,15 +1264,6 @@ class Game extends EventEmitter {
 
     get unitsInPlay() {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
-    }
-
-    firstThingThisTurn() {
-        return (
-            this.cardsDiscarded.length === 0 &&
-            this.cardsUsed.length === 0 &&
-            this.cardsPlayed.length === 0 &&
-            this.effectsUsed.length === 0
-        );
     }
 
     continue() {
@@ -1333,6 +1334,7 @@ class Game extends EventEmitter {
             return {
                 adaptive: this.adaptive,
                 cancelPromptUsed: this.cancelPromptUsed,
+                cardLog: this.cardsPlayed.map((c) => c.getShortSummary()),
                 gameFormat: this.gameFormat,
                 gamePrivate: this.gamePrivate,
                 gameTimeLimitStarted: this.timeLimit.timeLimitStarted,
