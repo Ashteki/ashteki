@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RiverSkald extends Card {
@@ -18,6 +19,7 @@ class RiverSkald extends Card {
                     victim: {
                         dependsOn: 'discard',
                         activePromptTitle: 'Choose a damage target',
+                        cardType: BattlefieldTypes,
                         gameAction: ability.actions.dealDamage((context) => ({
                             amount: context.targets.discard && context.targets.discard.magicCost
                         }))
