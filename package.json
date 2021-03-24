@@ -58,7 +58,7 @@
         "@fortawesome/react-fontawesome": "^0.1.9",
         "@sendgrid/mail": "^6.5.5",
         "@sentry/browser": "^5.15.4",
-        "@sentry/node": "^5.15.4",
+        "@sentry/node": "^6.2.3",
         "@types/jasmine": "^3.5.11",
         "@types/redis": "^2.8.21",
         "@types/socket.io": "^2.1.5",
