@@ -33,18 +33,20 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/keyteki/keyteki.git"
+        "url": "git+https://github.com/danj3000/ashteki.git"
     },
     "keywords": [
-        "keyforge",
+        "ashes",
+        "reborn",
+        "phoenixborn",
         "cardgame"
     ],
     "author": "Various",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/keyteki/keyteki/issues"
+        "url": "https://github.com/danj3000/ashteki/issues"
     },
-    "homepage": "https://github.com/keyteki/keyteki#readme",
+    "homepage": "https://github.com/danj3000/ashteki#readme",
     "dependencies": {
         "@babel/cli": "^7.10.1",
         "@babel/core": "^7.9.0",
