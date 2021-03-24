@@ -4,6 +4,8 @@ class Admonisher extends Card {
     setupCardAbilities(ability) {
         // end of round wounds pb
         this.forcedInterrupt({
+            autoResolve: true,
+
             title: 'Rebuke 1',
             when: {
                 onRoundEnded: () => true

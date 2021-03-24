@@ -227,6 +227,7 @@ class Card extends PlayableObject {
 
     fleeting() {
         return this.forcedInterrupt({
+            autoResolve: true,
             inexhaustible: true,
             title: 'Fleeting',
             when: {
