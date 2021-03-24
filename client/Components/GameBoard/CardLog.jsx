@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import CardImage from './CardImage';
 
 import './CardZoom.scss';
 
 const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
+    const [show, setShow] = useState(true);
+
     if (!cards) {
         return null;
     }
 
     const renderSimpleCard = (card) => {
-        if (!card.id) return '';
+        if (!card.id || !show) return '';
 
         return (
             <div
@@ -26,11 +28,13 @@ const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
     const cardPics = cards.map((c) => renderSimpleCard(c));
 
     // const size = card.type === 'decklist' ? 'x-large' : 'normal';
-
+    const arrow = show ? '︿' : '﹀';
     return (
         <div className='card-log bg-dark'>
             {cardPics}
-            <div className='card-log-arrow'>&#65087;</div>
+            <div className='card-log-arrow' onClick={() => setShow(!show)}>
+                {arrow}
+            </div>
         </div>
     );
 };
