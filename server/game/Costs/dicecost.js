@@ -74,7 +74,8 @@ class DiceCost {
 
     payEvent(context) {
         const params = {
-            dice: context.costs.returnDice
+            dice: context.costs.returnDice,
+            player: context.player
         };
 
         const payEvent = context.game.getEvent('onDiceSpent', params);
