@@ -62,7 +62,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    overflow-y: hidden;
 }
 
 .play-area {
@@ -137,12 +136,12 @@
 }
 
 .card-log{
-    align-items: right;
     display: flex;
     flex-direction: column;
     padding: 5px;
     margin-left: auto;
     width: $keyteki-card-width + 10;
+    overflow:unset;
 }
 
 .card-log-arrow{
