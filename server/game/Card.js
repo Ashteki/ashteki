@@ -330,7 +330,7 @@ class Card extends PlayableObject {
     }
 
     leavesPlay(properties) {
-        return this.interrupt(
+        return this.forcedInterrupt(
             Object.assign(
                 { when: { onCardLeavesPlay: (event, context) => event.card === context.source } },
                 properties

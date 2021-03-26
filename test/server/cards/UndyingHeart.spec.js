@@ -25,8 +25,6 @@ describe('Undying heart', function () {
 
         expect(this.mistSpirit.life).toBe(2);
         expect(this.mistSpirit.recover).toBe(1);
-
-        expect(this.mistSpirit.effects.length).toBe(3); // two modifies and a destroyed
     });
 
     it('returns destroyed ally to hand after ATTACK', function () {
@@ -34,17 +32,21 @@ describe('Undying heart', function () {
         this.player1.clickPrompt('Play this alteration');
         this.player1.clickCard(this.anchornaut); // attach
         expect(this.undyingHeart.location).toBe('play area');
-        expect(this.anchornaut.effects.length).toBe(3);
-        this.player1.clickPrompt('End Turn');
-        this.player1.clickPrompt('Yes');
+        this.player1.endTurn();
 
         this.player2.clickPrompt('Attack');
         this.player2.clickCard(this.anchornaut);
         this.player2.clickCard(this.ironWorker);
         this.player1.clickPrompt('Done'); // no guard
         this.player1.clickPrompt('No'); // no counter
+        this.player1.clickYes();
+
         expect(this.undyingHeart.location).toBe('discard');
         expect(this.anchornaut.location).toBe('hand');
+        expect(this.anchornaut.effects.length).toBe(0);
+        this.player2.endTurn();
+        this.player1.play(this.anchornaut);
+        expect(this.anchornaut.life).toBe(1);
     });
 
     it('returns destroyed ally to hand after MG', function () {
@@ -52,15 +54,17 @@ describe('Undying heart', function () {
         this.player1.clickPrompt('Play this alteration');
         this.player1.clickCard(this.anchornaut); // attach
         expect(this.undyingHeart.location).toBe('play area');
-        expect(this.anchornaut.effects.length).toBe(3);
         this.player1.clickPrompt('End Turn');
         this.player1.clickPrompt('Yes');
 
         this.player2.clickCard(this.moltenGold);
         this.player2.clickPrompt('Play this Action');
         this.player2.clickCard(this.anchornaut);
+        this.player1.clickYes();
+
         expect(this.undyingHeart.location).toBe('discard');
         expect(this.anchornaut.location).toBe('hand');
+        expect(this.anchornaut.life).toBe(1);
     });
 
     it('doesnt return conjuration to hand', function () {

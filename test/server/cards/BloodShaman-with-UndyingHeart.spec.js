@@ -31,10 +31,12 @@ describe('Blood Shaman with undying heart', function () {
         expect(this.player1).toHavePrompt('Choose a card');
         this.player1.clickCard(this.bloodShaman);
         // prompt for choice between shaman and heart interrupts
-        this.player1.clickCard(this.bloodShaman);
-        expect(this.player1).toHavePrompt('Choose an ability to use');
-        this.player1.clickPrompt('Blood Shaman');
+        // this.player1.clickCard(this.bloodShaman);
+        // expect(this.player1).toHavePrompt('Choose an ability to use');
+        // this.player1.clickPrompt('Blood Shaman');
         this.player1.clickDie(0);
+
+        this.player1.clickPrompt('Yes');
 
         expect(this.aradelSummergaard.damage).toBe(0);
         expect(this.player1.dicepool[0].level).toBe('power'); // blood shaman effect

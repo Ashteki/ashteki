@@ -54,8 +54,12 @@ class ThenAbility extends BaseAbility {
 
     executeHandler(context) {
         if (this.properties.may) {
+            let may = this.properties.may;
+            if (typeof may === 'function') {
+                may = may(context);
+            }
             this.game.promptWithHandlerMenu(context.player, {
-                activePromptTitle: 'Do you wish to ' + this.properties.may + '?',
+                activePromptTitle: 'Do you wish to ' + may + '?',
                 context: context,
                 choices: ['Yes', 'No'],
                 handlers: [() => this.displayMessageAndExecuteHandler(context), () => true]

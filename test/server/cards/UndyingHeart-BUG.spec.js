@@ -30,6 +30,8 @@ describe('Undying heart BUG', function () {
             this.player2.clickCard(this.ironRhino);
             this.player1.clickPrompt('Done'); // no guard
             this.player1.clickPrompt('No'); // no counter
+            this.player1.clickYes();
+
             expect(this.undyingHeart.location).toBe('discard');
             expect(this.bloodShaman.location).toBe('hand');
         });
@@ -43,6 +45,8 @@ describe('Undying heart BUG', function () {
             this.player2.clickCard(this.moltenGold);
             this.player2.clickPrompt('Play this Action');
             this.player2.clickCard(this.bloodShaman);
+            this.player1.clickYes();
+
             expect(this.undyingHeart.location).toBe('discard');
             expect(this.bloodShaman.location).toBe('hand');
         });
@@ -54,7 +58,15 @@ describe('Undying heart BUG', function () {
                 player1: {
                     phoenixborn: 'jessa-na-ni',
                     inPlay: ['blood-archer'],
-                    dicepool: ['natural', 'illusion', 'charm', 'natural'],
+                    dicepool: [
+                        'natural',
+                        'illusion',
+                        'charm',
+                        'natural',
+                        'ceremonial',
+                        'charm',
+                        'divine'
+                    ],
                     spellboard: [],
                     hand: ['undying-heart', 'fear']
                 },
@@ -76,10 +88,20 @@ describe('Undying heart BUG', function () {
             this.player1.clickPrompt('Play this action');
             this.player1.clickDie(0);
             this.player1.clickCard(this.bloodArcher);
+            this.player1.clickYes();
             this.player1.clickPrompt('Pass'); // jessa ability pass
 
             expect(this.undyingHeart.location).toBe('discard');
             expect(this.bloodArcher.location).toBe('hand');
+            this.player1.clickCard(this.ironRhino);
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.play(this.bloodArcher);
+            this.player1.clickDie(6);
+            this.player1.clickDone();
+
+            expect(this.bloodArcher.location).toBe('play area');
+            expect(this.bloodArcher.life).toBe(3);
         });
     });
 });

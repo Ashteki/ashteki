@@ -44,13 +44,10 @@ class DestroyAction extends CardGameAction {
                     context: context,
                     condition: (event) => event.card.location === 'play area',
                     triggeringEvent: event,
-                    battlelineIndex: event.card.controller.unitsInPlay.indexOf(event.card) - 1
+                    destination: event.card.type == 'Conjuration' ? 'archives' : 'discard'
                 },
                 (leavesPlayEvent) => {
-                    leavesPlayEvent.card.owner.moveCard(
-                        event.card,
-                        event.card.type == 'Conjuration' ? 'archives' : 'discard'
-                    );
+                    leavesPlayEvent.card.owner.moveCard(event.card, leavesPlayEvent.destination);
                 }
             );
 
