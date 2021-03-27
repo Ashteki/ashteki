@@ -2,26 +2,29 @@ const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RoyalCharm extends Card {
-    setupCardAbilities(ability) {
+    setupCardAbilities() {
         this.forcedReaction({
-            may: 'place a die on Royal Charm',
             when: {
                 onDiceSpent: (event, context) =>
                     event.player === context.player &&
                     event.dice.some(
                         (d) =>
-                            d.level === Level.Power &&
-                            ((d.magic === Magic.Charm &&
-                                !context.source.dieUpgrades.some((u) => u.magic === Magic.Charm)) ||
-                                (d.magic === Magic.Divine &&
-                                    !context.source.dieUpgrades.some(
-                                        (u) => u.magic === Magic.Divine
-                                    )))
-                    )
+                            d.level === Level.Power && [Magic.Charm, Magic.Divine].includes(d.magic)
+                    ) &&
+                    context.source.dieUpgrades.length === 0
             },
             title: 'Royal Charm',
             location: 'spellboard',
-            gameAction: ability.actions.addStatusToken(() => ({ target: this }))
+            target: {
+                activePromptTitle: 'Place die on Royal Charm?',
+                optional: true,
+                toSelect: 'die',
+                dieCondition: (die, context) => context.event.dice.includes(die),
+                gameAction: this.game.actions.attachDie((context) => ({
+                    target: context.source,
+                    upgradeDie: context.target
+                }))
+            }
         });
     }
 }

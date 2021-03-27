@@ -193,7 +193,11 @@ class PlayableObject extends EffectSource {
      */
     // eslint-disable-next-line no-unused-vars
     canAttach(card, context) {
-        return card && BattlefieldTypes.includes(card.getType()) && this.canPlayAsUpgrade();
+        return (
+            card &&
+            [...BattlefieldTypes, CardType.ReadySpell].includes(card.getType()) &&
+            this.canPlayAsUpgrade()
+        );
     }
 
     canPlayAsUpgrade() {

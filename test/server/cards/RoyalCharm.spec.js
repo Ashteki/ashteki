@@ -17,11 +17,12 @@ describe('Royal Charm', function () {
             });
         });
 
-        it('should give my units armour 1', function () {
+        it('option to attach to royal charm', function () {
             this.player1.play(this.enchantedViolinist);
-
+            this.player1.clickDie(2);
             // check spellboard is still just 1
-            expect(this.royalCharm.status).toBe(1);
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.player1.dicepool.length).toBe(3);
         });
     });
 });
