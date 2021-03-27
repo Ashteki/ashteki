@@ -5,6 +5,7 @@ class IndiglowCreeper extends Card {
         this.fade();
 
         this.destroyed({
+            inexhaustible: true,
             target: {
                 activePromptTitle: 'Germinate',
                 controller: 'self',

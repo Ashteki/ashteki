@@ -8,6 +8,7 @@ class JungleWarrior extends Card {
 
         this.destroyed({
             title: 'Last Orders 1',
+            inexhaustible: true,
             cost: ability.costs.dice([new DiceCount(1, Level.Basic)], 'Last Orders 1'),
             target: {
                 activePromptTitle: 'Last Orders 1',
