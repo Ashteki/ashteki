@@ -1,6 +1,242 @@
 [
   {
-    "precon_id": 13,
+    "precon_id": 19,
+    "name": "The Ghost Guardian",
+    "phoenixborn": [
+      {
+        "id": "rimea-careworn",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 5,
+        "name": "illusion"
+      },
+      {
+        "count": 5,
+        "name": "sympathy"
+      }
+    ],
+    "cards": [
+      {
+        "id": "ancestral-army",
+        "count": 3
+      },
+      {
+        "id": "augury",
+        "count": 3
+      },
+      {
+        "id": "battle-seer",
+        "count": 3
+      },
+      {
+        "id": "dark-presence",
+        "count": 3
+      },
+      {
+        "id": "hollow",
+        "count": 3
+      },
+      {
+        "id": "memorialize",
+        "count": 3
+      },
+      {
+        "id": "resonance",
+        "count": 3
+      },
+      {
+        "id": "shared-sorrow",
+        "count": 3
+      },
+      {
+        "id": "summon-ancestor-spirit",
+        "count": 3
+      },
+      {
+        "id": "summon-ghostly-mount",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "ancestor-spirit",
+        "count": 2
+      },
+      {
+        "id": "nightmare-mount",
+        "count": 1
+      },
+      {
+        "id": "pale-steed-mount",
+        "count": 1
+      },
+      {
+        "id": "spectral-charger-mount",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 18,
+    "name": "The King of Titans",
+    "phoenixborn": [
+      {
+        "id": "xander-heartsblood",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 5,
+        "name": "natural"
+      },
+      {
+        "count": 5,
+        "name": "divine"
+      }
+    ],
+    "cards": [
+      {
+        "id": "earthquake",
+        "count": 3
+      },
+      {
+        "id": "law-of-domination",
+        "count": 3
+      },
+      {
+        "id": "mass-heal",
+        "count": 3
+      },
+      {
+        "id": "natures-wrath",
+        "count": 3
+      },
+      {
+        "id": "pain-shaman",
+        "count": 3
+      },
+      {
+        "id": "raptor-herder",
+        "count": 3
+      },
+      {
+        "id": "sacred-ground",
+        "count": 3
+      },
+      {
+        "id": "summon-archasaurus-mount",
+        "count": 3
+      },
+      {
+        "id": "summon-cerasaurus-mount",
+        "count": 3
+      },
+      {
+        "id": "summon-shining-hydra",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "archasaurus-mount",
+        "count": 1
+      },
+      {
+        "id": "cerasaurus-mount",
+        "count": 2
+      },
+      {
+        "id": "raptor-hatchling",
+        "count": 3
+      },
+      {
+        "id": "shining-hydra",
+        "count": 1
+      },
+      {
+        "id": "shining-hydra-head",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 16,
+    "name": "The Spirits of Memoria",
+    "phoenixborn": [
+      {
+        "id": "sembali-grimtongue",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 5,
+        "name": "illusion"
+      },
+      {
+        "count": 5,
+        "name": "divine"
+      }
+    ],
+    "cards": [
+      {
+        "id": "angelic-rescue",
+        "count": 3
+      },
+      {
+        "id": "celestial-knight",
+        "count": 3
+      },
+      {
+        "id": "chained-creations",
+        "count": 3
+      },
+      {
+        "id": "gates-thrown-open",
+        "count": 3
+      },
+      {
+        "id": "law-of-grace",
+        "count": 3
+      },
+      {
+        "id": "purify",
+        "count": 3
+      },
+      {
+        "id": "shadow-guard",
+        "count": 3
+      },
+      {
+        "id": "shepherd-of-lost-souls",
+        "count": 3
+      },
+      {
+        "id": "summon-admonisher",
+        "count": 3
+      },
+      {
+        "id": "summon-spectral-assassin",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "admonisher",
+        "count": 3
+      },
+      {
+        "id": "spectral-assassin",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 15,
     "name": "The Boy Among Wolves",
     "phoenixborn": [
       {
@@ -75,11 +311,11 @@
       },
       {
         "id": "brilliant-thorn",
-        "count": 3
+        "count": 6
       },
       {
         "id": "biter",
-        "count": 3
+        "count": 4
       }
     ]
   },
