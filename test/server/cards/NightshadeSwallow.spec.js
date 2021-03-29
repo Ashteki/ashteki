@@ -26,6 +26,20 @@ describe('Nightshade Swallow', function () {
         expect(this.seasideRaven.exhausted).toBe(true);
     });
 
+    it('does not trigger when exhausted', function () {
+        this.nightshadeSwallow.tokens.exhaustion = 1;
+
+        expect(this.seasideRaven.exhausted).toBe(false);
+
+        this.player1.clickCard(this.aradelSummergaard);
+        this.player1.clickPrompt('Water Blast');
+        this.player1.clickCard(this.nightshadeSwallow);
+        expect(this.player1).toHaveDefaultPrompt();
+
+        expect(this.nightshadeSwallow.location).toBe('archives');
+        expect(this.seasideRaven.exhausted).toBe(false);
+    });
+
     it('triggers when destroyed. Exhaust sonic swordsman to prevent sonic pulse', function () {
         expect(this.sonicSwordsman.exhausted).toBe(false);
 

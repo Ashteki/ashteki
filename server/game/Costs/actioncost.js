@@ -6,7 +6,7 @@ class ActionCost {
     canPay(context) {
         return (
             context.player.actions[this.actionType] &&
-            context.player.checkRestrictions('spendMain', context)
+            (this.actionType !== 'main' || context.player.checkRestrictions('spendMain', context))
         );
     }
 
