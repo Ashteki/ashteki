@@ -74,7 +74,8 @@ class ResolveBattleAction extends GameAction {
                     event.battle.counter &&
                     // don't counter damage if the attacker strikes first and the damage will destroy the defender
                     !(
-                        event.attacker.attacksFirst() && attackerAmount >= event.attackerTarget.life
+                        event.attacker.attacksFirst() &&
+                        this.damageWillDestroyTarget(attackerAmount, event.attackerTarget)
                     ) &&
                     event.card.checkRestrictions('dealFightDamage') && // declared target can deal damage
                     event.attackerTarget.checkRestrictions('dealFightDamageWhenDefending') // or defender can't deal damage when defending
@@ -130,6 +131,10 @@ class ResolveBattleAction extends GameAction {
                 this.battle.resolved = true;
             })
         );
+    }
+
+    damageWillDestroyTarget(attackerAmount, target) {
+        return attackerAmount + target.damage - target.armor >= target.life;
     }
 
     getEventArray() {
