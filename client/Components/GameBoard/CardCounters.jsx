@@ -13,7 +13,7 @@ class CardCounters extends React.Component {
         }
 
         let countersClass = classNames('counters', 'ignore-mouse-events', {
-            'many-counters': this.props.counters.length > 3
+            'many-counters': this.props.counters.length > 2
         });
 
         let counterDivs = [];

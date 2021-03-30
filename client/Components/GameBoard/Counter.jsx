@@ -12,6 +12,7 @@ class Counter extends React.Component {
 
         return (
             <div key={this.props.name} className={className}>
+                <span className='sr-only'>{this.props.name[0]}</span>
                 {this.props.showValue && <span>{this.props.value}</span>}
             </div>
         );
