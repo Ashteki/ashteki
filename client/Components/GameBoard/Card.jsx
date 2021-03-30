@@ -234,6 +234,7 @@ const Card = ({
                 .map((key, index) => {
                     return (
                         <div key={key + index} className={`darkbg flag ${key}`}>
+                            <span className='sr-only'>{key[0]}</span>
                             {card.flags[key]}
                         </div>
                     );
