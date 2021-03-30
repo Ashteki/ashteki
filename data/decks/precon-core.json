@@ -11,11 +11,11 @@
     "dicepool": [
       {
         "count": 5,
-        "name": "illusion"
+        "magic": "illusion"
       },
       {
         "count": 5,
-        "name": "sympathy"
+        "magic": "sympathy"
       }
     ],
     "cards": [
@@ -91,11 +91,11 @@
     "dicepool": [
       {
         "count": 5,
-        "name": "natural"
+        "magic": "natural"
       },
       {
         "count": 5,
-        "name": "divine"
+        "magic": "divine"
       }
     ],
     "cards": [
@@ -175,11 +175,11 @@
     "dicepool": [
       {
         "count": 5,
-        "name": "illusion"
+        "magic": "illusion"
       },
       {
         "count": 5,
-        "name": "divine"
+        "magic": "divine"
       }
     ],
     "cards": [
