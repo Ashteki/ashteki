@@ -55,7 +55,6 @@
     text-align: center;
     display:inline-block;
     z-index: $layer-cards + 1;
-
 }
 
 .prompt-die{
@@ -78,12 +77,31 @@
 }
 
 
+.small .die {
+
+    // line-height: 2rem;
+    border-radius:3px;
+    height: 18px;
+    width: 18px;
+    margin: 3px;
+}
+
 .large .die {
     font-size: 1.3rem;
-    // line-height: 2.25rem;
+    line-height: 2rem;
     border-radius: 5px;
     height: 36px;
     width: 36px;
+    margin: 5px;
+}
+
+
+.x-large .die{
+    font-size: 1.6rem;
+    line-height: 3rem;
+    border-radius: 5px;
+    height: 48px;
+    width: 48px;
     margin: 5px;
 }
 
