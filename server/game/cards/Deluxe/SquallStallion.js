@@ -32,10 +32,12 @@ class SquallStallion extends Card {
                     choices: {
                         Top: this.game.actions.returnToDeck((context) => ({
                             target: context.targets.myCard,
+                            reveal: false,
                             shuffle: false
                         })),
                         Bottom: this.game.actions.returnToDeck((context) => ({
                             bottom: true,
+                            reveal: false,
                             target: context.targets.myCard,
                             shuffle: false
                         }))

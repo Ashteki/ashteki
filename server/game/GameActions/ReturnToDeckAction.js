@@ -6,16 +6,21 @@ class ReturnToDeckAction extends CardGameAction {
         this.bottom = false;
         this.shuffle = true;
         this.chooseTopBottom = false;
+        this.reveal = true;
     }
 
     setup() {
         super.setup();
         this.name = 'returnToDeck';
         if (this.shuffle) {
-            this.effectMsg = 'shuffle {0} back into their deck';
+            this.effectMsg = this.reveal
+                ? 'shuffle {0} back into their deck'
+                : 'shuffle a card back into their deck';
         } else {
             this.effectMsg =
-                'return {0} to the ' + (this.bottom ? 'bottom' : 'top') + ' of their deck';
+                (this.reveal ? 'return {0} to the ' : 'return a card to the ') +
+                (this.bottom ? 'bottom' : 'top') +
+                ' of their deck';
         }
     }
 
