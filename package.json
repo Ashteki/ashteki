@@ -112,7 +112,7 @@
         "passport-local": "^1.0.0",
         "path-to-regexp": "^2.4.0",
         "patreon": "^0.4.1",
-        "pg": "^7.18.2",
+        "pg": "^8.5.1",
         "pmx": "^1.5.4",
         "popper.js": "^1.16.1",
         "prettier": "^2.0.5",
