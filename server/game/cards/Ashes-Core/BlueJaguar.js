@@ -11,11 +11,12 @@ class BlueJaguar extends Card {
                 }
             },
             target: {
+                activePromptTitle: 'choose a unit to prevent block/guard',
                 optional: true,
+                cardType: BattlefieldTypes,
+                controller: 'opponent',
+                cardCondition: (card, context) => card !== context.source,
                 gameAction: ability.actions.cardLastingEffect({
-                    cardCondition: (card, context) => card !== context.source,
-                    cardType: BattlefieldTypes,
-                    controller: 'opponent',
                     effect: [
                         ability.effects.cardCannot('guard'),
                         ability.effects.cardCannot('block')

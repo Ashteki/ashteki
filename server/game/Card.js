@@ -1084,6 +1084,7 @@ class Card extends PlayableObject {
             flags: this.getFlags(),
             armor: this.armor,
             guarded: this.usedGuardThisRound,
+            cannotBlock: !this.checkRestrictions('block'),
             uuid: this.uuid,
             isAttacker: this.isAttacker,
             isDefender: this.isDefender,
