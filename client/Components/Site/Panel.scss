@@ -1,10 +1,8 @@
 @import '../../styles/colours';
-@import '../../styles/fonts';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
 .card {
-    // font-family: Keyforge, Helvetica, sans-serif;
     box-shadow: 1px 1px 1px theme-color('primary') !important;
 
     .card-header {
