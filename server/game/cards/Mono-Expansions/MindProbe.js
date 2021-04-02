@@ -7,7 +7,8 @@ class MindProbe extends Card {
             gameAction: ability.actions.rearrangeCards((context) => ({
                 amount: 5,
                 purge: 1,
-                target: context.player.opponent
+                target: context.player.opponent,
+                reveal: true
             })),
             preferActionPromptMessage: true
         });
