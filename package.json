@@ -64,7 +64,7 @@
         "@types/jasmine": "^3.5.11",
         "@types/redis": "^2.8.21",
         "@types/socket.io": "^2.1.13",
-        "assets-webpack-plugin": "^5.1.1",
+        "assets-webpack-plugin": "^6.1.2",
         "bcrypt": "^5.0.1",
         "bootstrap": "^4.5.0",
         "canvas": "^2.6.1",
