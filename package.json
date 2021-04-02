@@ -59,7 +59,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "@fortawesome/react-fontawesome": "^0.1.9",
         "@sendgrid/mail": "^6.5.5",
-        "@sentry/browser": "^5.15.4",
+        "@sentry/browser": "^6.2.5",
         "@sentry/node": "^6.2.3",
         "@types/jasmine": "^3.5.11",
         "@types/redis": "^2.8.21",
