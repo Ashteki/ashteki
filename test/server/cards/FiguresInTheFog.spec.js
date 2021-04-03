@@ -24,7 +24,7 @@ describe('Figures in the fog reaction spell', function () {
         this.player1.clickCard(this.ironWorker); // single attacker
 
         // card played
-        expect(this.player2).toHavePrompt('Any reactions?');
+        expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
     });
 
     it('can be played when attackers are declared - PB attack', function () {
@@ -34,6 +34,6 @@ describe('Figures in the fog reaction spell', function () {
         this.player1.clickPrompt('Done');
 
         // card played
-        expect(this.player2).toHavePrompt('Any reactions?');
+        expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
     });
 });

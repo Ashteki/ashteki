@@ -10,7 +10,8 @@ class MindProbe extends Card {
                 target: context.player.opponent,
                 reveal: true
             })),
-            preferActionPromptMessage: true
+            preferActionPromptMessage: true,
+            message: 'test'
         });
     }
 }

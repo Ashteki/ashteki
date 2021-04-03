@@ -1,18 +1,18 @@
 const PlayerAction = require('./PlayerAction');
 
 class RearrangeCardsAction extends PlayerAction {
+    constructor(propertyFactory) {
+        super(propertyFactory);
+        this.name = 'rearrangeDeck';
+        this.remainingCards = [];
+        this.purgeCards = [];
+    }
+
     setDefaultProperties() {
         this.amount = 3;
         this.purge = 0;
-        this.remainingCards = [];
-        this.purgeCards = [];
         this.purgeType = 'purge';
         this.reveal = false;
-    }
-
-    setup() {
-        super.setup();
-        this.name = 'rearrangeDeck';
     }
 
     defaultTargets(context) {
@@ -63,7 +63,13 @@ class RearrangeCardsAction extends PlayerAction {
         this.amount = Math.min(this.amount, player.deck.length);
         this.orderedCards = this.amount === 1 ? player.deck.slice(0, 1) : [];
         this.remainingCards = player.deck.slice(0, this.amount);
-
+        context.game.addMessage(
+            "{0} uses {1} to look at the top {2} cards of {3}'s deck",
+            context.player,
+            context.source,
+            this.amount,
+            player
+        );
         if (this.reveal) {
             context.game.addMessage('{0} reveals {1}', player, this.remainingCards);
         }
@@ -84,8 +90,7 @@ class RearrangeCardsAction extends PlayerAction {
             (event) => {
                 const subject = this.reveal ? '{1} ' : 'a card ';
                 if (this.purgeType === 'bottom') {
-                    player.deck.unshift(...this.purgeCards);
-
+                    player.deck.push(...this.purgeCards);
                     const bottomMessage = '{0} returns ' + subject + 'to the bottom of the deck';
                     context.game.addMessage(bottomMessage, context.player, event.purgeCards);
                 } else {
