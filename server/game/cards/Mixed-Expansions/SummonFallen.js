@@ -24,6 +24,7 @@ class SummonFallen extends Card {
                 ability.costs.mainAction(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
+            condition: (context) => context.player.spellboard.some((s) => s.status > 0),
             targets: {
                 donors: {
                     mode: 'upTo',

@@ -25,7 +25,7 @@ describe('Shadow Strike reaction', function () {
         this.player1.clickCard(this.seasideRaven); // single attacker
         this.player1.clickPrompt('Done'); // done for attackers
 
-        expect(this.player2).toHavePrompt('Any Reactions?');
+        expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
         expect(this.player2).toBeAbleToSelect(this.shadowStrike);
         this.player2.clickCard(this.shadowStrike);
         expect(this.player2).toBeAbleToSelect(this.mistSpirit);
@@ -40,7 +40,7 @@ describe('Shadow Strike reaction', function () {
         this.player1.clickCard(this.fluteMage); // target
         this.player1.clickCard(this.seasideRaven); // single attacker
 
-        expect(this.player2).toHavePrompt('Any Reactions?');
+        expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
         expect(this.player2).toBeAbleToSelect(this.shadowStrike);
         this.player2.clickCard(this.shadowStrike);
         expect(this.player2).toBeAbleToSelect(this.mistSpirit);

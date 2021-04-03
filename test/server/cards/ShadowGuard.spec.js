@@ -34,7 +34,7 @@ describe('Shadow Guard', function () {
         this.player1.clickCard(this.fluteMage); // target
         this.player1.clickCard(this.mistSpirit); // single attacker
 
-        expect(this.player2).toHavePrompt('Any Reactions?');
+        expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
         expect(this.player2).toBeAbleToSelect(this.shadowGuard);
         expect(this.mistSpirit.location).toBe('play area'); // not killed yet
 

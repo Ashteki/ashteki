@@ -1,17 +1,18 @@
 const PlayerAction = require('./PlayerAction');
 
 class RearrangeCardsAction extends PlayerAction {
+    constructor(propertyFactory) {
+        super(propertyFactory);
+        this.name = 'rearrangeDeck';
+        this.remainingCards = [];
+        this.purgeCards = [];
+    }
+
     setDefaultProperties() {
         this.amount = 3;
         this.purge = 0;
-        this.remainingCards = [];
-        this.purgeCards = [];
         this.purgeType = 'purge';
-    }
-
-    setup() {
-        super.setup();
-        this.name = 'rearrangeDeck';
+        this.reveal = false;
     }
 
     defaultTargets(context) {
@@ -62,8 +63,16 @@ class RearrangeCardsAction extends PlayerAction {
         this.amount = Math.min(this.amount, player.deck.length);
         this.orderedCards = this.amount === 1 ? player.deck.slice(0, 1) : [];
         this.remainingCards = player.deck.slice(0, this.amount);
-
-        context.game.addMessage('{0} reveals {1}', player, this.remainingCards);
+        context.game.addMessage(
+            "{0} uses {1} to look at the top {2} cards of {3}'s deck",
+            context.player,
+            context.source,
+            this.amount,
+            player
+        );
+        if (this.reveal) {
+            context.game.addMessage('{0} reveals {1}', player, this.remainingCards);
+        }
         if (this.amount > 1) {
             this.promptForRemainingCards(context);
         }
@@ -79,21 +88,15 @@ class RearrangeCardsAction extends PlayerAction {
                 context: context
             },
             (event) => {
+                const subject = this.reveal ? '{1} ' : 'a card ';
                 if (this.purgeType === 'bottom') {
-                    player.deck.unshift(...this.purgeCards);
-
-                    context.game.addMessage(
-                        '{0} returns {1} to the bottom of the deck',
-                        context.player,
-                        event.purgeCards
-                    );
+                    player.deck.push(...this.purgeCards);
+                    const bottomMessage = '{0} returns ' + subject + 'to the bottom of the deck';
+                    context.game.addMessage(bottomMessage, context.player, event.purgeCards);
                 } else {
                     context.game.actions.purge().resolve(event.purgeCards, context);
-                    context.game.addMessage(
-                        '{0} removes {1} from the game',
-                        context.player,
-                        event.purgeCards
-                    );
+                    const purgeMessage = '{0} removes ' + subject + 'from the game';
+                    context.game.addMessage(purgeMessage, context.player, event.purgeCards);
                 }
 
                 player.deck.splice(0, this.amount, ...this.orderedCards);

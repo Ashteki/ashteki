@@ -7,7 +7,8 @@ class RimeaCareworn extends Card {
             cost: ability.costs.sideAction(),
             gameAction: ability.actions.rearrangeCards((context) => ({
                 target: context.player.opponent,
-                purgeType: 'bottom'
+                purgeType: 'bottom',
+                purge: 1 // to bottom
             })),
             preferActionPromptMessage: true
         });

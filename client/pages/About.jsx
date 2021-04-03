@@ -48,6 +48,10 @@ class About extends React.Component {
                         <li>The Laws of Lions - (Odette Diamondcrest)</li>
                         <li>The Song of Soaksend - (Namine Hymntide)</li>
                         <li>The Boy Among Wolves - (Koji Wolfcub)</li>
+                        <li>The Spirits of Memoria - (Sembali Grimtongue)</li>
+                        <li>The King of Titans - (Xander Heartsblood)</li>
+                        <li>The Protector of Argaia - (Fiona Mercywind)</li>
+                        <li>The Grave King - (James Endersight)</li>
                     </ul>
                     <p>
                         Many other cards are either coded, or in progress, but the above expansions
