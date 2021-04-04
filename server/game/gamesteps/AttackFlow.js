@@ -66,28 +66,6 @@ class AttackFlow extends BaseStepWithPipeline {
         this.game.openEventWindow(costEvent);
     }
 
-    blockersAvailable(battle) {
-        return this.defendingPlayer.defenders.some((c) => this.availableToBlockOrGuard(c, battle));
-    }
-
-    availableToBlockOrGuard(c, battle) {
-        return (
-            this.guardTest(c, battle.target, battle.attacker) || this.blockTest(c, battle.attacker)
-        );
-    }
-
-    guardTest(card, target, attacker) {
-        return !this.isPBAttack && card.canGuard(attacker) && card !== target;
-    }
-
-    blockTest(card, attacker) {
-        return (
-            this.isPBAttack &&
-            !this.attack.battles.some((b) => b.guard == card) &&
-            card.canBlock(attacker)
-        );
-    }
-
     declareAttackers() {
         this.game.promptForSelect(this.attackingPlayer, {
             activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',

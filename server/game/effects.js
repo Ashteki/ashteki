@@ -75,6 +75,7 @@ const Effects = {
     preventBlock: () => EffectBuilder.card.static('preventBlock'),
     preventDamage: (amount) => EffectBuilder.card.static('preventDamage', amount),
     preventAllDamage: (shield) => EffectBuilder.card.static('preventAllDamage', shield),
+    cannotBeGuarded: () => EffectBuilder.card.static('cannotBeGuarded'),
 
     // Player effects
     lastingAbilityTrigger: (properties) =>
@@ -117,13 +118,11 @@ const Effects = {
             unapply: (player, context, effect) =>
                 context.game.effectEngine.removeDelayedEffect(effect)
         }),
-    modifyKeyCost: (amount) => EffectBuilder.player.flexible('modifyKeyCost', amount),
     modifyHandSize: (amount) => EffectBuilder.player.flexible('modifyHandSize', amount),
+    mustAttack: () => EffectBuilder.player.static('mustAttack'),
     additionalDraw: (amount) => EffectBuilder.player.flexible('additionalDraw', amount),
     playerCannot: (type, condition) =>
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
-    stealFromPool: () => EffectBuilder.player.static('stealFromPool'),
-    captureFromPool: () => EffectBuilder.player.static('captureFromPool'),
     skipStep: (step) => EffectBuilder.player.static('skipStep', step)
 };
 

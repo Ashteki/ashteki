@@ -51,8 +51,30 @@ describe('Light Bringer in play', function () {
             this.player2.clickPrompt('Done');
         });
 
+        it('stops opponent passing main action (end turn)', function () {
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.actions.main).toBe(true);
+
+            this.player1.clickPrompt('End Turn');
+            expect(this.player1).toHaveDefaultPrompt();
+
+            // check player can attack
+            this.player1.clickPrompt('Attack');
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.lightBringer);
+            this.player1.clickCard(this.mistSpirit);
+            this.player2.clickPrompt('Done');
+        });
+
         it('lasts only one turn', function () {
+            // cannot pass so must attack
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.rinNorthfell);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickDone();
+            this.player2.clickDone();
             this.player1.endTurn();
+
             this.player2.clickCard(this.summonBiter); // use main action
             this.player2.clickPrompt('Play this ready spell');
             this.player2.endTurn();

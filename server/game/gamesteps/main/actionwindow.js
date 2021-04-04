@@ -136,6 +136,11 @@ class ActionWindow extends UiPrompt {
         }
 
         if (choice === 'done') {
+            if (player.actions.main && player.anyEffect('mustAttack') && player.canAttack()) {
+                this.game.addMessage('{0} must attack if able', player);
+                return true;
+            }
+
             let cards = player.cardsInPlay.concat(player.hand);
             if (
                 player.actions.main &&

@@ -26,30 +26,25 @@ describe('Hunters Mark', function () {
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.ironWorker);
         this.player1.clickCard(this.mistSpirit);
-        this.player2.clickDone(); // guard
+        // no guard prompt because of HM
         this.player2.clickPrompt('No'); // counter
 
         expect(this.ironWorker.location).toBe('discard');
     });
 
-    it('multiple upgrades - bug report', function () {
+    it('no guarding when targetted', function () {
         this.player1.clickCard(this.haroldWestraven);
-
         this.player1.clickPrompt('Mark Prey');
         this.player1.clickCard(this.ironWorker);
         this.player1.clickCard(this.huntersMark);
-        this.player1.endTurn();
-        this.player2.play(this.explosiveGrowth, this.ironWorker);
-        expect(this.ironWorker.upgrades.length).toBe(2);
-    });
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.ironWorker);
+        this.player1.clickCard(this.mistSpirit);
+        expect(this.player2).not.toHavePrompt('Choose a guard?');
+        // this.player2.clickDone(); // guard
+        expect(this.player2).toHavePrompt('Do you want to counter?');
+        this.player2.clickPrompt('No'); // counter
 
-    it('multiple explosive growth not allowed', function () {
-        this.player1.endTurn();
-        this.player2.play(this.explosiveGrowth, this.ironWorker);
-        expect(this.ironWorker.upgrades.length).toBe(1);
-        this.player2.player.actions.side = true;
-        this.player2.play(this.player2.hand[0], this.ironWorker);
-        expect(this.ironWorker.upgrades.length).toBe(1);
-        expect(this.player2.discard[0].id).toBe('explosive-growth');
+        expect(this.ironWorker.location).toBe('discard');
     });
 });
