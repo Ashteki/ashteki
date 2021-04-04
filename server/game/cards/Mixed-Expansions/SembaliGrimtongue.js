@@ -24,7 +24,7 @@ class SembaliGrimtongue extends Card {
                 ]
             },
             message:
-                '{0} uses {1} to remove all exhaustion tokens from {2}. {2} cannot be guarded this turn.',
+                '{0} uses {1} to remove all exhaustion tokens from {2}. {2} cannot be guarded against this turn.',
             messageArgs: (context) => [context.player, context.source, context.target]
         });
     }

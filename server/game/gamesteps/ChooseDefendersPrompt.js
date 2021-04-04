@@ -77,6 +77,7 @@ class ChooseDefendersPrompt extends UiPrompt {
         return (
             !attacker.anyEffect('bypass') &&
             !attacker.anyEffect('preventGuard') &&
+            !target.anyEffect('cannotBeGuarded') &&
             card !== target &&
             card.canGuard(attacker)
         );
