@@ -41,6 +41,7 @@ class DiceCost {
                 activePromptTitle: title || 'Select dice',
                 mode: 'match',
                 selectedDice: chosenDice,
+                owner: 'self',
                 context: context,
                 buttons: buttons,
                 format: this.getDiceReq(context),
