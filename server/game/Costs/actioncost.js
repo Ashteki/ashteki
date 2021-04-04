@@ -6,7 +6,8 @@ class ActionCost {
     canPay(context) {
         return (
             context.player.actions[this.actionType] &&
-            (this.actionType !== 'main' || context.player.checkRestrictions('spendMain', context))
+            (this.actionType !== 'main' ||
+                !(context.player.anyEffect('mustAttack') && context.player.canAttack()))
         );
     }
 

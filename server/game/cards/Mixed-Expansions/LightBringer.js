@@ -5,10 +5,7 @@ class LightBringer extends Card {
         this.entersPlay({
             gameAction: ability.actions.untilNextTurn({
                 targetController: 'opponent',
-                effect: ability.effects.playerCannot(
-                    'spendMain',
-                    (context) => context.player.unitsInPlay.length > 0
-                )
+                effect: ability.effects.mustAttack('spendMain')
             })
         });
     }

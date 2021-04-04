@@ -647,6 +647,10 @@ class Player extends GameObject {
         this.promptState.cancelPrompt();
     }
 
+    canAttack() {
+        return this.unitsInPlay.some((c) => !c.exhausted);
+    }
+
     isTopCardShown() {
         return this.anyEffect('showTopConflictCard');
     }
