@@ -312,7 +312,7 @@ const Card = ({
                         {image}
                     </div>
                     {showCounters() && <CardCounters counters={getCountersForCard(card)} />}
-                    {dice}
+                    <div className='die-upgrades'>{dice}</div>
                 </div>
                 {shouldShowMenu() && (
                     <CardMenu
