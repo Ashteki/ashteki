@@ -810,6 +810,7 @@ class Card extends PlayableObject {
 
     dismount() {
         return this.destroyed({
+            inexhaustible: true,
             effect: 'return its ally to hand',
             gameAction: AbilityDsl.actions.sequentialForEach((context) => ({
                 forEach: context.source.childCards,

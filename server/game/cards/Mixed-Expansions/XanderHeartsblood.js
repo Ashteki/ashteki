@@ -9,7 +9,7 @@ class XanderHeartsblood extends Card {
             title: 'Reincarnate',
             cost: [
                 Costs.sideAction(),
-                Costs.exhaustDie(),
+                Costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Divine)])
             ],
             target: {
