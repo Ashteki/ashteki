@@ -118,11 +118,7 @@ class PlayerInteractionWrapper {
         _.each(newState, (d) => {
             let die;
             if (_.isString(d)) {
-                die = new Die(this.player, {
-                    magic: d,
-                    level: 'power',
-                    exhausted: false
-                });
+                die = new Die(this.player, d, 'power');
                 die.setupAbilities();
             }
             this.player.dice.push(die);

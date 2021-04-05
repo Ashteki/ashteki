@@ -803,13 +803,6 @@ class Game extends EventEmitter {
         }
     }
 
-    displayPlayerDice() {
-        for (let player of this.getPlayers()) {
-            player.rerollAllDice();
-            player.makeAllDiceBasic();
-        }
-    }
-
     reInitialisePlayers(swap) {
         let players = this.getPlayers();
 

@@ -5,15 +5,16 @@ const { Costs } = require('./costs');
 const PlayableObject = require('./PlayableObject');
 
 class Die extends PlayableObject {
-    constructor(owner, dieData) {
+    constructor(owner, magic, level) {
         super(owner.game);
         this.copyEffect = 'copyDie';
         this.attachable = false;
 
         this.owner = owner;
-        this.magic = dieData.magic;
-        this.level = dieData.level;
-        this.exhausted = dieData.exhausted;
+        this.magic = magic;
+        this.level = level;
+        this.exhausted = false;
+        this.pinned = false;
 
         this.menu = [
             { command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' },
