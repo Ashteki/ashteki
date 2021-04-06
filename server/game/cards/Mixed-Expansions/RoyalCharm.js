@@ -26,6 +26,36 @@ class RoyalCharm extends Card {
                 }))
             }
         });
+
+        // this.action({
+        //     title: 'Use Die',
+        //     condition: (context) => context.source.dieUpgrades.length > 0,
+        //     cost: [ability.costs.sideAction(), ability.costs.exhaust()],
+        //     targets: {
+        //         action: {
+        //             mode: 'select',
+        //             choices: this.getUseActionChoices(context.source)
+        //         },
+        //         unit: {
+        //             dependsOn: 'action',
+        //             cardType: BattlefieldTypes,
+        //             gameAction: ability.actions.resolveAbility((context) => ({
+        //                 ability: context.source.dieUpgrades.find(
+        //                     (d) => d.magic === context.selects.action.choice
+        //                 ).ability
+        //             }))
+        //         }
+        //     }
+        // });
+    }
+
+    getUseActionChoices(card) {
+        let result = {};
+        card.dieUpgrades.forEach((d) => {
+            result[d.magic] = () => true;
+        });
+
+        return result;
     }
 }
 
