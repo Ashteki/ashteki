@@ -23,6 +23,7 @@ describe('Vampire Bat Swarm', function () {
         expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
         this.player2.clickDie(1);
         expect(this.vampireBatSwarm.location).toBe('play area');
+        expect(this.vampireBatSwarm.damage).toBe(0);
     });
 
     it('triggers when destroyed. choose not to swarm', function () {
