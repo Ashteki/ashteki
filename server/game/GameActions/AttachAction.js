@@ -49,15 +49,19 @@ class AttachAction extends CardGameAction {
                 } else {
                     event.card.controller.removeCardFromPile(event.card);
                     event.card.new = true;
+                    if (event.card.ownerControlled) {
+                        event.card.setDefaultController(event.card.owner.opponent);
+                    }
+
                     event.card.moveTo('play area');
                 }
 
                 event.parent.upgrades.push(event.card);
                 event.card.parent = event.parent;
-                if (event.card.controller !== event.context.player) {
-                    event.card.controller = event.context.player;
-                    event.card.updateEffectContexts();
-                }
+                // if (event.card.controller !== event.context.player) {
+                //     event.card.controller = event.context.player;
+                //     event.card.updateEffectContexts();
+                // }
             }
         );
     }

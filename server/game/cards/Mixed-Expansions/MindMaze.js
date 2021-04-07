@@ -10,6 +10,8 @@ class MindMaze extends Card {
             ]
         });
 
+        this.ownerControlled = true;
+
         this.action({
             inexhaustible: true,
             title: 'Escape',
@@ -28,7 +30,9 @@ class MindMaze extends Card {
             when: {
                 onRoundEnded: () => true
             },
-            gameAction: ability.actions.discard()
+            gameAction: ability.actions.discard((context) => ({
+                target: context.source.parent
+            }))
         });
     }
 }
