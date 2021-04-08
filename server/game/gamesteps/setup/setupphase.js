@@ -8,7 +8,6 @@ class SetupPhase extends Phase {
         super(game, 'setup');
         this.initialise([
             new SimpleStep(game, () => this.setupBegin()),
-            new SimpleStep(game, () => this.displayDice()),
             new FirstFivePrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
@@ -31,10 +30,6 @@ class SetupPhase extends Phase {
         for (let card of this.game.allCards) {
             card.applyAnyLocationPersistentEffects();
         }
-    }
-
-    displayDice() {
-        this.game.displayPlayerDice();
     }
 
     startGame() {

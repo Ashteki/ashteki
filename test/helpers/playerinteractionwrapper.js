@@ -118,11 +118,7 @@ class PlayerInteractionWrapper {
         _.each(newState, (d) => {
             let die;
             if (_.isString(d)) {
-                die = new Die(this.player, {
-                    magic: d,
-                    level: 'power',
-                    exhausted: false
-                });
+                die = new Die(this.player, d, 'power');
                 die.setupAbilities();
             }
             this.player.dice.push(die);
@@ -420,6 +416,14 @@ class PlayerInteractionWrapper {
 
     clickDie(index) {
         let die = this.player.dice[index];
+        this.game.dieClicked(this.player.name, die.uuid);
+        this.game.continue();
+        this.checkUnserializableGameState();
+        return die;
+    }
+
+    clickDieUpgrade(card, index) {
+        let die = card.dieUpgrades[index];
         this.game.dieClicked(this.player.name, die.uuid);
         this.game.continue();
         this.checkUnserializableGameState();

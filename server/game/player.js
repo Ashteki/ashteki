@@ -6,9 +6,8 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
-const Die = require('./Die');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, Level } = require('../constants');
+const { BattlefieldTypes } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -230,6 +229,7 @@ class Player extends GameObject {
         this.allCards = preparedDeck.cards;
         this.diceCounts = preparedDeck.diceCounts;
         this.phoenixborn = preparedDeck.phoenixborn;
+        this.dice = preparedDeck.dice;
     }
 
     /**
@@ -237,6 +237,7 @@ class Player extends GameObject {
      */
     initialise() {
         this.prepareDecks();
+
         this.keys = { red: false, blue: false, yellow: false };
         this.turn = 1;
         this.readyToStart = false;
@@ -246,35 +247,19 @@ class Player extends GameObject {
     }
 
     rerollAllDice() {
-        let p = this;
-        const diceCountsAfterPins = this.diceCounts.map((a) => {
-            return { ...a };
+        this.dice.forEach((die) => {
+            if (!die.pinned) {
+                die.level = Dice.getRandomDieLevel();
+            }
+            die.exhausted = false;
         });
-        if (this.pinnedDice) {
-            this.pinnedDice.forEach((pin) => {
-                const dCount = diceCountsAfterPins.find((dc) => dc.magic === pin.magic);
-                dCount.count = dCount.count - 1;
-            });
-        }
-        const diceData = Dice.rollDice(diceCountsAfterPins);
-        let newDice = diceData.map((d) => {
-            let die = new Die(p, d);
-            die.location = 'dicepool';
-            die.setupAbilities();
-            return die;
-        });
-        this.dice = this.pinnedDice.concat(newDice);
+
         this.sortDice();
-        this.pinnedDice = [];
         this.recoveryDicePinned = false;
     }
 
-    makeAllDiceBasic() {
-        this.dice.forEach((d) => (d.level = Level.Basic));
-    }
-
     pinSelectedDice() {
-        this.pinnedDice = [...this.selectedDice];
+        this.selectedDice.forEach((die) => (die.pinned = true));
         this.recoveryDicePinned = true;
     }
 
@@ -320,6 +305,7 @@ class Player extends GameObject {
             card.removeDieAttachment(die);
             die.exhaust();
             die.owner.dice.push(die);
+            die.parent = null;
             die.moveTo('dicepool');
         });
     }

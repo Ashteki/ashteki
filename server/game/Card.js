@@ -458,6 +458,9 @@ class Card extends PlayableObject {
         }
 
         menu.push({ command: 'click', text: 'Select Card', menu: 'main' });
+        if (this.dieUpgrades.length) {
+            menu.push({ command: 'detachDie', text: 'Remove Die', menu: 'main' });
+        }
         if (this.location === 'play area' || this.location === 'spellboard') {
             menu = menu.concat(this.menu);
         }

@@ -1,3 +1,5 @@
+const GameActions = require('./GameActions');
+
 class MenuCommands {
     static cardMenuClick(menuItem, game, player, card) {
         switch (menuItem.command) {
@@ -38,6 +40,20 @@ class MenuCommands {
                 }
 
                 break;
+            case 'detachDie':
+                if (card.dieUpgrades.length === 1) {
+                    player.removeDieAttachments(card);
+                    game.addAlert(
+                        'danger',
+                        '{0} removes {1} from {2}',
+                        player,
+                        card.dieUpgrades[0],
+                        card
+                    );
+                    return true;
+                }
+
+                break;
         }
     }
 
@@ -59,6 +75,27 @@ class MenuCommands {
             case 'lower':
                 game.addAlert('danger', '{0} lowers {1}', player, die.name);
                 die.lower();
+                break;
+            case 'attach':
+                game.promptForSelect(player, {
+                    activePromptTitle: 'Select a card',
+                    waitingPromptTitle: 'Waiting for opponent to attach die',
+                    cardCondition: (card) =>
+                        card.location === 'play area' || card.location === 'spellboard',
+                    onSelect: (p, card) => {
+                        GameActions.attachDie({
+                            target: card,
+                            upgradeDie: die
+                        }).resolve(die, game.getFrameworkContext(player));
+
+                        game.addAlert('danger', '{0} attaches {1} to {2}', p, die, card);
+                        return true;
+                    }
+                });
+
+                break;
+            case 'detach':
+                player.removeDieAttachments(die.parent);
                 break;
         }
     }

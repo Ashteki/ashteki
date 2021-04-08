@@ -9,9 +9,14 @@ class BaseDieSelector {
         if (!Array.isArray(properties.dieType)) {
             this.dieType = [properties.dieType];
         }
+        this.from = properties.from;
     }
 
     findPossibleDice(context) {
+        if (typeof this.from === 'function') {
+            return this.from(context);
+        }
+
         if (this.owner === 'self') {
             return context.player.dice;
         } else if (this.owner === 'opponent') {

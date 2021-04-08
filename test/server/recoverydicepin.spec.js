@@ -34,14 +34,8 @@ describe('Recovery phase dice pinning', function () {
         this.player1.clickDie(1);
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
-        expect(this.player1.dicepool.length).toBe(10);
+        expect(this.player1.dicepool[0].exhausted).toBe(false);
+        expect(this.player1.dicepool.length).toBe(4);
         expect(this.player1.dicepool.filter((d) => d.uuid === this.savedUUID).length).toBe(1);
-    });
-
-    it('should reroll unpinned dice', function () {
-        this.player1.clickPrompt('Done');
-        this.player2.clickPrompt('Done');
-        expect(this.player1.dicepool.length).toBe(10);
-        expect(this.player1.dicepool[1].uuid).not.toBe(this.savedUUID);
     });
 });
