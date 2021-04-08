@@ -1,9 +1,10 @@
-const { Level, Magic } = require('../../../constants.js');
+const { Level, Magic, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RoyalCharm extends Card {
-    setupCardAbilities() {
+    setupCardAbilities(ability) {
         this.forcedReaction({
+            autoResolve: true,
             when: {
                 onDiceSpent: (event, context) =>
                     event.player === context.player &&
@@ -27,26 +28,26 @@ class RoyalCharm extends Card {
             }
         });
 
-        // this.action({
-        //     title: 'Use Die',
-        //     condition: (context) => context.source.dieUpgrades.length > 0,
-        //     cost: [ability.costs.sideAction(), ability.costs.exhaust()],
-        //     targets: {
-        //         action: {
-        //             mode: 'select',
-        //             choices: this.getUseActionChoices(context.source)
-        //         },
-        //         unit: {
-        //             dependsOn: 'action',
-        //             cardType: BattlefieldTypes,
-        //             gameAction: ability.actions.resolveAbility((context) => ({
-        //                 ability: context.source.dieUpgrades.find(
-        //                     (d) => d.magic === context.selects.action.choice
-        //                 ).ability
-        //             }))
-        //         }
-        //     }
-        // });
+        this.action({
+            title: 'Use Die',
+            condition: (context) => context.source.dieUpgrades.length > 0,
+            cost: [ability.costs.sideAction(), ability.costs.exhaust()],
+            targets: {
+                die: {
+                    toSelect: 'die',
+                    from: (context) => context.source.dieUpgrades
+                },
+                host: {
+                    dependsOn: 'die',
+                    cardType: BattlefieldTypes,
+                    cardCondition: (card, context) =>
+                        !card.dieUpgrades.some((d) => d.magic === context.targets.die.magic),
+                    gameAction: this.game.actions.attachDie((context) => ({
+                        upgradeDie: context.targets.die
+                    }))
+                }
+            }
+        });
     }
 
     getUseActionChoices(card) {

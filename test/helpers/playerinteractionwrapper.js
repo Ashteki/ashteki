@@ -422,6 +422,14 @@ class PlayerInteractionWrapper {
         return die;
     }
 
+    clickDieUpgrade(card, index) {
+        let die = card.dieUpgrades[index];
+        this.game.dieClicked(this.player.name, die.uuid);
+        this.game.continue();
+        this.checkUnserializableGameState();
+        return die;
+    }
+
     clickOpponentDie(index) {
         let die = this.opponent.dice[index];
         this.game.dieClicked(this.player.name, die.uuid);

@@ -281,12 +281,19 @@ class Game extends EventEmitter {
     }
 
     getAllDice() {
+        const dieUpgrades = _.reduce(
+            this.cardsInPlay,
+            (dice, card) => {
+                return dice.concat(card.dieUpgrades);
+            },
+            []
+        );
         return _.reduce(
             this.getPlayers(),
             (dice, player) => {
                 return dice.concat(player.dice);
             },
-            []
+            dieUpgrades
         );
     }
 

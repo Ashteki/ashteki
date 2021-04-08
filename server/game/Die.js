@@ -65,6 +65,14 @@ class Die extends PlayableObject {
         }
 
         menu.push({ command: 'click', text: 'Select Die', menu: 'main' });
+
+        if ([Magic.Divine, Magic.Charm].includes(this.magic)) {
+            if (this.parent) {
+                menu.push({ command: 'detach', text: 'Detach', menu: 'main' });
+            } else {
+                menu.push({ command: 'attach', text: 'Attach to card', menu: 'main' });
+            }
+        }
         menu = menu.concat(this.menu);
 
         return menu;
@@ -103,11 +111,11 @@ class Die extends PlayableObject {
         return true;
     }
 
-    getLegalActions(player) {
+    getLegalActions(player, ignoredRequirements = []) {
         let actions = this.getActions();
         actions = actions.filter((action) => {
             let context = action.createContext(player);
-            return !action.meetsRequirements(context);
+            return !action.meetsRequirements(context, ignoredRequirements);
         });
 
         return actions;
@@ -185,7 +193,9 @@ class Die extends PlayableObject {
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
                         controller: 'opponent',
-                        gameAction: this.game.actions.attachDie({ upgradeDie: this })
+                        gameAction: this.game.actions.attachDie((context) => ({
+                            upgradeDie: context.source
+                        }))
                     },
                     message: '{0} attaches {1} to {2}',
                     messageArgs: (context) => context.target

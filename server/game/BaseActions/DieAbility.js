@@ -17,7 +17,7 @@ class DieAbility extends ThenAbility {
             return 'cannotTrigger';
         }
 
-        return super.meetsRequirements(context);
+        return super.meetsRequirements(context, ignoredRequirements);
     }
 
     isAction() {

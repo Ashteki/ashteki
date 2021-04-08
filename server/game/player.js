@@ -305,6 +305,7 @@ class Player extends GameObject {
             card.removeDieAttachment(die);
             die.exhaust();
             die.owner.dice.push(die);
+            die.parent = null;
             die.moveTo('dicepool');
         });
     }
