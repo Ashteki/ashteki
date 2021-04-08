@@ -78,7 +78,7 @@ class BattleStep extends BaseStepWithPipeline {
             if (battle.guard.exhaustsOnCounter()) {
                 participants.push(battle.guard);
             }
-        } else if (battle.counter && battle.target.exhaustsOnCounter()) {
+        } else if (battle.counter && battle.target && battle.target.exhaustsOnCounter()) {
             // otherwise if the target counters (was not guarded or blocked) they exhaust
             participants.push(battle.target);
         }

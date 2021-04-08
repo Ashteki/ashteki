@@ -3,7 +3,7 @@ describe('Vampire Bat Swarm', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['seaside-raven'],
+                inPlay: ['iron-worker'],
                 dicepool: ['natural']
             },
             player2: {
@@ -24,6 +24,25 @@ describe('Vampire Bat Swarm', function () {
         this.player2.clickDie(1);
         expect(this.vampireBatSwarm.location).toBe('play area');
         expect(this.vampireBatSwarm.damage).toBe(0);
+        expect(this.vampireBatSwarm.exhausted).toBe(false);
+        expect(this.vampireBatSwarm.isAttacker).toBe(false);
+        expect(this.vampireBatSwarm.isDefender).toBe(false);
+    });
+
+    it('triggers during attack when destroyed. choose to swarm', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.vampireBatSwarm);
+        this.player1.clickCard(this.ironWorker);
+        this.player2.clickDone();
+        this.player2.clickYes();
+        // on destroy choices...
+        expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
+        this.player2.clickDie(1);
+        expect(this.vampireBatSwarm.location).toBe('play area');
+        expect(this.vampireBatSwarm.damage).toBe(0);
+        expect(this.vampireBatSwarm.exhausted).toBe(false);
+        expect(this.vampireBatSwarm.isAttacker).toBe(false);
+        expect(this.vampireBatSwarm.isDefender).toBe(false);
     });
 
     it('triggers when destroyed. choose not to swarm', function () {

@@ -22,13 +22,16 @@ class VampireBatSwarm extends Card {
                 ],
                 'Activate Swarm?'
             ),
-            gameAction: ability.actions.addEventToWindow((context) => ({
-                subEvent: true,
-                targetEvent: context.event,
-                eventToAdd: ability.actions
-                    .putIntoPlay()
-                    .getEvent(context.source, context.event.context)
-            })),
+            gameAction: [
+                ability.actions.removeFromBattle((context) => ({ target: context.source })),
+                ability.actions.addEventToWindow((context) => ({
+                    subEvent: true,
+                    targetEvent: context.event,
+                    eventToAdd: ability.actions
+                        .putIntoPlay()
+                        .getEvent(context.source, context.event.context)
+                }))
+            ],
             effect: 'place {0} on their battlefield'
         });
     }

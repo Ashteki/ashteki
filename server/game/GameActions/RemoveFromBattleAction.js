@@ -11,7 +11,7 @@ class RemoveFromBattleAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        return context.game.attackState.involvesCard(card);
+        return context.game.attackState && context.game.attackState.involvesCard(card);
     }
 
     getEvent(card, context) {
