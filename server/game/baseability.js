@@ -109,7 +109,10 @@ class BaseAbility {
         //     action.reset();
         // }
 
-        if (!this.canPayCosts(context, ignoredRequirements)) {
+        if (
+            !ignoredRequirements.includes('allCost') &&
+            !this.canPayCosts(context, ignoredRequirements)
+        ) {
             return 'cost';
         } else if (
             this.checkThenAbilities() ||

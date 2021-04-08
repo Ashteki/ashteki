@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import './Die.scss';
 
 const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMouseOver }) => {
-    const [showMenu, setShowMenu] = useState(false);
+    const [showDieMenu, setShowDieMenu] = useState(false);
 
     let diceFont = 'phg-basic-magic';
     let description = 'basic die';
@@ -14,7 +14,7 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
         diceFont = `phg-${die.magic}-${die.level}`;
         description = `${die.magic} ${die.level}`;
     }
-    const colorClass = die.exhausted ? 'exhausted' : die.magic;
+    const colorClass = die.location === 'dicepool' && die.exhausted ? 'exhausted' : die.magic;
     const readerSpan = die.exhausted ? '' : <span className='sr-only'>{description}</span>;
     const getStatusClass = () => {
         if (!die) {
@@ -44,7 +44,7 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
             die.menu &&
             die.menu.length !== 0
         ) {
-            setShowMenu(!showMenu);
+            setShowDieMenu(!showDieMenu);
 
             return;
         }
@@ -57,12 +57,12 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
     const onMenuClick = (menuItem) => {
         if (onMenuItemClick) {
             onMenuItemClick(die, menuItem);
-            setShowMenu(!showMenu);
+            setShowDieMenu(!showDieMenu);
         }
     };
 
     const renderMenu = () => {
-        if (!die.menu || !showMenu) {
+        if (!die.menu || !showDieMenu) {
             return false;
         }
 

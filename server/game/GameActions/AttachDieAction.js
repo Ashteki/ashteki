@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../constants');
+const { BattlefieldTypes, CardType } = require('../../constants');
 const DiceGameAction = require('./DiceGameAction');
 
 class AttachDieAction extends DiceGameAction {
@@ -11,7 +11,7 @@ class AttachDieAction extends DiceGameAction {
         this.name = 'attach';
 
         // can only affect units
-        this.targetType = BattlefieldTypes;
+        this.targetType = [...BattlefieldTypes, CardType.ReadySpell];
         this.effectMsg = 'attach {1} to {0}';
         this.effectArgs = () => {
             return this.upgradeDie;
@@ -21,7 +21,12 @@ class AttachDieAction extends DiceGameAction {
     // attaching to a card, can this card have a dice attached.
     canAffect(card, context) {
         // only valid in the play area
-        if (!context || !context.player || !card || card.location !== 'play area') {
+        if (
+            !context ||
+            !context.player ||
+            !card ||
+            !['play area', 'spellboard'].includes(card.location)
+        ) {
             return false;
         } else if (this.upgradeChosenOnResolution) {
             return super.canAffect(card, context);

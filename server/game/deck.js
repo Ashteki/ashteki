@@ -3,6 +3,8 @@ const _ = require('underscore');
 const cards = require('./cards');
 const Card = require('./Card.js');
 const logger = require('../log.js');
+const Die = require('./Die');
+const { Level } = require('../constants');
 
 class Deck {
     constructor(data) {
@@ -35,7 +37,8 @@ class Deck {
             conjurations: [],
             cards: [],
             diceCounts: [],
-            phenixborn: null
+            phenixborn: null,
+            dice: []
         };
 
         this.eachRepeatedCard(this.data.cards, (cardData) => {
@@ -66,7 +69,14 @@ class Deck {
             }
         });
 
-        result.diceCounts = this.data.dicepool;
+        this.data.dicepool.forEach((dc) => {
+            for (let i = 0; i < dc.count; i++) {
+                const die = new Die(player, dc.magic, Level.Basic);
+                die.location = 'dicepool';
+                die.setupAbilities();
+                result.dice.push(die);
+            }
+        });
 
         return result;
     }

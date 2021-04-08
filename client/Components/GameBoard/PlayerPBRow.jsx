@@ -17,6 +17,7 @@ const PlayerPBRow = ({
     manualMode,
     numDeckCards,
     onCardClick,
+    onDieClick,
     onDragDrop,
     onMouseOver,
     onMouseOut,
@@ -63,6 +64,7 @@ const PlayerPBRow = ({
             manualMode={manualMode}
             maxCards={6}
             onCardClick={onCardClick}
+            onDieClick={onDieClick}
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
             onMenuItemClick={onMenuItemClick}

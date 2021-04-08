@@ -42,7 +42,8 @@ class AttackFlow extends BaseStepWithPipeline {
         this.attack.target.isDefender = false;
         this.attack.battles.forEach((battle) => {
             battle.attacker.isAttacker = false;
-            battle.target.isDefender = false;
+            // battle target is null if the card id destroyed mid battle, see vampire bat swarm
+            if (battle.target) battle.target.isDefender = false;
             if (battle.guard) battle.guard.isDefender = false;
         });
         this.game.clearAttackState();

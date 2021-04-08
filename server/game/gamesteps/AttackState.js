@@ -22,10 +22,10 @@ class AttackState {
 
     removeFromBattle(card) {
         this.battles.forEach((b) => {
-            // can remove unit target to replace with phoenixborn
+            // can remove unit target
             if (b.target === card) {
                 card.isDefender = false;
-                b.target === card.controller.phoenixborn;
+                b.target = null;
             }
 
             // can remove guards / blockers

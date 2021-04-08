@@ -8,6 +8,7 @@ class DetachDieAction extends DiceGameAction {
     }
 
     setup() {
+        super.setup();
         this.name = 'detachDie';
 
         this.effectMsg = 'detach {1} from {0}';

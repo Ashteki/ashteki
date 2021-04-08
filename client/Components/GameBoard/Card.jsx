@@ -22,6 +22,7 @@ const Card = ({
     className,
     disableMouseOver,
     onClick,
+    onDieClick,
     onMenuItemClick,
     onMouseOut,
     onMouseOver,
@@ -289,7 +290,7 @@ const Card = ({
         let dice =
             card.dieUpgrades && card.dieUpgrades.length > 0
                 ? card.dieUpgrades.map((d) => (
-                      <Die key={'dup-' + d.uuid} die={{ magic: d.magic, level: 'power' }} />
+                      <Die key={'dup-' + d.uuid} die={d} onClick={onDieClick} />
                   ))
                 : null;
 
