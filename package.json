@@ -75,7 +75,7 @@
         "connect-history-api-fallback": "^1.6.0",
         "cookie-parser": "^1.4.5",
         "core-js": "^3.6.4",
-        "cross-env": "^3.2.4",
+        "cross-env": "^7.0.3",
         "css-loader": "^3.4.2",
         "emoji-js": "^3.5.0",
         "eslint-config-prettier": "^6.11.0",
