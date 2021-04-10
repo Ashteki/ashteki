@@ -306,7 +306,7 @@ class Lobby {
     }
 
     clearStalePendingGames() {
-        const timeout = 15 * 60 * 1000;
+        const timeout = 20 * 60 * 1000;
         let staleGames = Object.values(this.games).filter(
             (game) => !game.started && Date.now() - game.createdAt > timeout
         );

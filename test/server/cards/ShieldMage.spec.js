@@ -24,4 +24,12 @@ describe('Shield Mage', function () {
         expect(this.player1).not.toBeAbleToSelect(this.shieldMage);
         expect(this.player1).toBeAbleToSelect(this.coalRoarkwin);
     });
+
+    it('can be targetted for attack if exhausted', function () {
+        this.shieldMage.tokens.exhaustion = 1;
+        this.player1.clickPrompt('Attack');
+        expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
+        expect(this.player1).not.toBeAbleToSelect(this.shieldMage);
+        expect(this.player1).toBeAbleToSelect(this.coalRoarkwin);
+    });
 });

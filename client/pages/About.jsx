@@ -47,6 +47,7 @@ class About extends React.Component {
                         <li>The Duchess of Deception - (Victoria Glassfire)</li>
                         <li>The Laws of Lions - (Odette Diamondcrest)</li>
                         <li>The Song of Soaksend - (Namine Hymntide)</li>
+                        <li>The Goddess of Ishra - (Astrea)</li>
                         <li>The Boy Among Wolves - (Koji Wolfcub)</li>
                         <li>The Spirits of Memoria - (Sembali Grimtongue)</li>
                         <li>The King of Titans - (Xander Heartsblood)</li>

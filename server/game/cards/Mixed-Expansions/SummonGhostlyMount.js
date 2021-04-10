@@ -8,6 +8,7 @@ class SummonGhostlyMount extends Card {
             title: 'Summon Ghostly Mount',
             cost: [
                 ability.costs.chosenAction(),
+                ability.costs.exhaust(),
                 ability.costs.dice([
                     new DiceCount(1, Level.Class, Magic.Illusion),
                     new DiceCount(1, Level.Class, Magic.Sympathy)
