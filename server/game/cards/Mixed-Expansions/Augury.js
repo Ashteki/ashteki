@@ -14,6 +14,8 @@ class Augury extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             target: {
                 cardCondition: (card) => card.magicCost === this.status,
+                location: 'deck',
+                controller: 'self',
                 gameAction: [
                     ability.actions.reveal(),
                     ability.actions.moveCard({ destination: 'hand' }),
