@@ -246,6 +246,7 @@ export class GameBoard extends React.Component {
                             attack={this.props.currentGame.attack}
                             cardBackUrl={this.props.player2CardBack}
                             cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
+                            phoenixborn={otherPlayer.phoenixborn}
                             onCardClick={this.onCardClick}
                             onMenuItemClick={this.onMenuItemClick}
                             onMouseOut={this.onMouseOut}
@@ -266,6 +267,7 @@ export class GameBoard extends React.Component {
                                 attack={this.props.currentGame.attack}
                                 cardBackUrl={this.props.player1CardBack}
                                 cardsInPlay={thisPlayer.cardPiles.cardsInPlay}
+                                phoenixborn={thisPlayer.phoenixborn}
                                 manualMode={this.props.currentGame.manualMode}
                                 onCardClick={this.onCardClick}
                                 onMenuItemClick={this.onMenuItemClick}

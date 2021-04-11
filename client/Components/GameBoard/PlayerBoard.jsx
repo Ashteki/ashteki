@@ -10,6 +10,7 @@ const PlayerBoard = ({
     attack,
     cardBackUrl,
     cardsInPlay,
+    phoenixborn,
     cardSize,
     manualMode,
     onCardClick,
@@ -32,7 +33,7 @@ const PlayerBoard = ({
     };
 
     const getCard = (uuid) => {
-        return cardsInPlay.find((c) => c.uuid === uuid);
+        return phoenixborn.uuid === uuid ? phoenixborn : cardsInPlay.find((c) => c.uuid === uuid);
     };
 
     const renderRow = (row) => {
@@ -49,7 +50,7 @@ const PlayerBoard = ({
                 } else {
                     // work out defender or blank
                     let defCard = getCard(b.guard) || getCard(b.target);
-                    if (defCard) results.push(renderCard(defCard));
+                    if (defCard && defCard !== phoenixborn) results.push(renderCard(defCard));
                     else results.push(renderCardGap());
                 }
             });
