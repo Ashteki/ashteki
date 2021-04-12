@@ -33,6 +33,15 @@ describe('Unit attacks', function () {
         expect(this.mistSpirit.exhausted).toBe(true);
     });
 
+    it('attack without attackers chosen is a cancellation with no cost spent', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickPrompt('Done'); // no guard
+
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.player1.actions.main).toBe(true);
+    });
+
     it('defender may choose to guard with phoenixborn', function () {
         expect(this.fluteMage.tokens.damage).toBeUndefined();
         expect(this.mistSpirit.tokens.damage).toBeUndefined();
