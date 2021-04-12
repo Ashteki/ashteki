@@ -9,6 +9,7 @@ class DestroyAction extends CardGameAction {
 
     setDefaultProperties() {
         this.damageEvent = null;
+        this.purge = false;
     }
 
     setup() {
@@ -31,10 +32,18 @@ class DestroyAction extends CardGameAction {
         const params = {
             card: card,
             context: context,
-            damageEvent: this.damageEvent
+            damageEvent: this.damageEvent,
+            purge: this.purge
         };
         return super.createEvent('onCardDestroyed', params, (event) => {
-            event.context.game.addMessage('{0} is destroyed', card);
+            const newDestination =
+                event.card.type == 'Conjuration' ? 'archives' : event.purge ? 'purged' : 'discard';
+
+            let message = '{0} is destroyed';
+            if (event.purge) {
+                message = message + ', and removed from the game';
+            }
+            event.context.game.addMessage(message, card);
             event.card.moribund = true;
 
             event.leavesPlayEvent = context.game.getEvent(
@@ -44,7 +53,7 @@ class DestroyAction extends CardGameAction {
                     context: context,
                     condition: (event) => event.card.location === 'play area',
                     triggeringEvent: event,
-                    destination: event.card.type == 'Conjuration' ? 'archives' : 'discard'
+                    destination: newDestination
                 },
                 (leavesPlayEvent) => {
                     leavesPlayEvent.card.owner.moveCard(event.card, leavesPlayEvent.destination);
