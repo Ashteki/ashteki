@@ -88,6 +88,41 @@ describe('Copycat', function () {
         });
     });
 
+    describe('copy Open Memories', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'blood-archer'],
+                    dicepool: ['natural', 'natural', 'illusion', 'charm', 'charm'],
+                    deck: ['molten-gold', 'redirect', 'out-of-the-mist', 'cover'],
+                    hand: ['open-memories']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['glow-finch'],
+                    hand: ['copycat', 'dispel'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
+                    deck: ['anchornaut', 'iron-worker', 'purge', 'one-hundred-blades']
+                }
+            });
+        });
+
+        it('check only triggers once (bug reported, not found)', function () {
+            this.player1.play(this.openMemories);
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+            this.player1.clickCard(this.moltenGold);
+            expect(this.moltenGold.location).toBe('hand');
+
+            this.player2.clickCard(this.copycat);
+            this.player2.clickDie(0);
+            this.player2.clickCard(this.ironWorker);
+            expect(this.ironWorker.location).toBe('hand');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
     describe('copy Transfer', function () {
         beforeEach(function () {
             this.setupTest({
