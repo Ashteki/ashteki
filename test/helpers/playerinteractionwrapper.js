@@ -583,6 +583,9 @@ class PlayerInteractionWrapper {
         } else if (card.type === 'Action Spell') {
             this.clickCard(card);
             this.clickPrompt('Play this action');
+        } else if (card.type === 'Ready Spell') {
+            this.clickCard(card);
+            this.clickPrompt('Play this ready spell');
         }
         if (target) {
             this.clickCard(target);
