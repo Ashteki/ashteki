@@ -6,7 +6,9 @@ class IceTrap extends Card {
         this.reaction({
             when: {
                 onCardEntersPlay: (event) =>
-                    BattlefieldTypes.includes(event.card.type) && event.card.life <= 2
+                    BattlefieldTypes.includes(event.card.type) &&
+                    event.card.life <= 2 &&
+                    !event.card.anyEffect('concealed')
             },
             gameAction: ability.actions.destroy((context) => ({ target: context.event.card }))
         });
