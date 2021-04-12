@@ -50,16 +50,7 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     payAttackCost(attackingPlayer) {
-        let attackers = this.attack.battles.map((b) => b.attacker);
-        if (attackers.length === 0) return;
-
-        this.game.addAlert(
-            'danger',
-            '{0} attacks {1} with {2}',
-            attackingPlayer,
-            this.target,
-            attackers
-        );
+        if (this.cancelled) return;
 
         const costEvent = Costs.mainAction().payEvent(
             this.game.getFrameworkContext(attackingPlayer)
@@ -83,7 +74,16 @@ class AttackFlow extends BaseStepWithPipeline {
                 } else {
                     cards = [card];
                 }
+
                 if (cards.length > 0) {
+                    this.game.addAlert(
+                        'danger',
+                        '{0} attacks {1} with {2}',
+                        this.attackingPlayer,
+                        this.target,
+                        cards
+                    );
+
                     cards.forEach((c) => {
                         this.attack.battles.push({
                             attacker: c,
@@ -94,12 +94,17 @@ class AttackFlow extends BaseStepWithPipeline {
                         });
                         c.isAttacker = true;
                     });
+
                     const params = {
                         attackingPlayer: this.attackingPlayer,
                         battles: this.attack.battles
                     };
                     this.game.raiseEvent('onAttackersDeclared', params);
                 }
+                return true;
+            },
+            onCancel: () => {
+                this.cancelled = true;
                 return true;
             }
         });
