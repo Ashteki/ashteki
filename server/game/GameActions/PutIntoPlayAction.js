@@ -47,6 +47,7 @@ class PutIntoPlayAction extends CardGameAction {
                     card
                 );
                 event.cancel();
+                event.unable = true;
                 return;
             }
 

@@ -18,6 +18,15 @@ class SummonAdmonisher extends Card {
                 cardCondition: (card) => card.id === 'admonisher',
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
+            },
+            then: {
+                alwaysTriggers: true,
+                condition: (context) =>
+                    context.source.focus > 0 &&
+                    (!context.preThenEvent || context.preThenEvent.unable),
+                gameAction: ability.actions.dealDamage((context) => ({
+                    target: context.player.opponent.phoenixborn
+                }))
             }
         });
     }
