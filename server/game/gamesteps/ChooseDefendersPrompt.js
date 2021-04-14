@@ -111,12 +111,12 @@ class ChooseDefendersPrompt extends UiPrompt {
             controls: this.attack.isPBAttack
                 ? []
                 : [
-                      {
-                          type: 'targeting',
-                          source: this.attack.battles[0].attacker.getShortSummary(),
-                          targets: [this.attack.target.getShortSummary()]
-                      }
-                  ]
+                    {
+                        type: 'targeting',
+                        source: this.attack.battles[0].attacker.getShortSummary(),
+                        targets: [this.attack.target.getShortSummary()]
+                    }
+                ]
         };
     }
 
@@ -181,7 +181,7 @@ class ChooseDefendersPrompt extends UiPrompt {
 
     menuCommand(player, arg) {
         if (arg === 'done') {
-            if (!this.checkThreatening()) {
+            if (this.attack.isPBAttack && !this.checkThreatening()) {
                 this.game.addAlert(
                     'info',
                     'Units with the Threatening ability must be blocked if able'

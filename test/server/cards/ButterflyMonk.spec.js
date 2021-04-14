@@ -89,15 +89,24 @@ describe('Butterfly Monk', function () {
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    inPlay: ['butterfly-monk', 'living-doll']
+                    inPlay: ['butterfly-monk', 'frostback-bear'],
+                    archives: ['ice-buff']
                 }
             });
-
-            this.livingDoll.tokens.damage = 1;
         });
 
-        it('triggers when destroyed by blocking. Heal livingDoll', function () {
-            expect(this.livingDoll.damage).toBe(1);
+        it('triggers when destroyed by blocking. Heal bear', function () {
+            this.player1.endTurn();
+            this.player2.clickCard(this.rinNorthfell);
+            this.player2.clickPrompt('Ice Buff');
+            this.player2.clickCard(this.frostbackBear);
+            this.player2.clickCard(this.iceBuff);
+            this.frostbackBear.tokens.damage = 3;
+
+            expect(this.frostbackBear.damage).toBe(3);
+            expect(this.frostbackBear.life).toBe(4);
+            this.player2.actions.main = false;
+            this.player2.endTurn();
 
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.rinNorthfell);
@@ -107,10 +116,10 @@ describe('Butterfly Monk', function () {
             this.player2.clickCard(this.beastTamer);
             this.player2.clickPrompt('Done');
             expect(this.player2).toHavePrompt('Mend 1');
-            this.player2.clickCard(this.livingDoll);
+            this.player2.clickCard(this.frostbackBear);
 
             expect(this.butterflyMonk.location).toBe('archives');
-            expect(this.livingDoll.damage).toBe(0);
+            expect(this.frostbackBear.damage).toBe(2);
         });
 
         // did not reproduce the problem :/
