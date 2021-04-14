@@ -14,7 +14,7 @@ describe('threatening', function () {
             });
         });
 
-        it('must be blocked', function () {
+        it('must be blocked during PB attack', function () {
             this.player1.clickAttack(this.coalRoarkwin);
             this.player1.clickCard(this.graveKnight);
             this.player1.clickDone();
@@ -29,6 +29,19 @@ describe('threatening', function () {
             this.player2.clickDone();
 
             expect(this.player2).not.toHavePrompt('Choose a blocker');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('no effect during unit attack', function () {
+            this.player1.clickAttack(this.anchornaut);
+            this.player1.clickCard(this.graveKnight);
+
+            expect(this.player2).toHavePrompt('Choose a guard?');
+            this.player2.clickDone();
+            expect(this.player2).toHavePrompt('Do you want to counter?');
+            this.player2.clickNo();
+
+            expect(this.anchornaut.location).toBe('discard');
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
