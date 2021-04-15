@@ -28,7 +28,7 @@ describe('Mark of the Goddess played', function () {
         });
     });
 
-    describe('only one choice', function () {
+    describe('No other unexhausted choice', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -40,19 +40,38 @@ describe('Mark of the Goddess played', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['iron-worker'],
+                    inPlay: ['iron-worker', 'anchornaut'],
                     spellboard: ['summon-iron-rhino', 'summon-iron-rhino', 'chant-of-revenge']
                 }
             });
+            this.anchornaut.tokens.exhaustion = 1;
         });
 
-        it('deals attack damage from one unit to phoenixborn', function () {
+        it('allows player to target phoenixborn', function () {
             this.player1.clickCard(this.markOfTheGoddess); // play card
             this.player1.clickPrompt('Play this action');
             this.player1.clickDie(0);
             this.player1.clickCard(this.ironWorker); // choose iw for 2 damage
 
+            expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
+            expect(this.player1).toBeAbleToSelect(this.anchornaut);
+            expect(this.player1).toBeAbleToSelect(this.coalRoarkwin);
+            this.player1.clickCard(this.coalRoarkwin);
             expect(this.coalRoarkwin.damage).toBe(2);
+        });
+
+        it('player can target exhausted unit', function () {
+            this.player1.clickCard(this.markOfTheGoddess); // play card
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.ironWorker); // choose iw for 2 damage
+
+            expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
+            expect(this.player1).toBeAbleToSelect(this.anchornaut);
+            expect(this.player1).toBeAbleToSelect(this.coalRoarkwin);
+            this.player1.clickCard(this.anchornaut);
+            expect(this.coalRoarkwin.damage).toBe(0);
+            expect(this.anchornaut.location).toBe('discard');
         });
     });
 });
