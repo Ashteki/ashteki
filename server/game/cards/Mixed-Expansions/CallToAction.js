@@ -13,7 +13,7 @@ class CallToAction extends Card {
             target: {
                 activePromptTitle: 'Choose a unit to remove exhaustion',
                 cardType: BattlefieldTypes,
-                cardCondition: (card) => !card.exhausted,
+                cardCondition: (card) => card.exhausted,
                 controller: 'self',
                 gameAction: ability.actions.removeExhaustion()
             }
