@@ -1,6 +1,5 @@
 const { Level, CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
-const { Costs } = require('../../costs.js');
 const DiceCount = require('../../DiceCount.js');
 
 class SembaliGrimtongue extends Card {
@@ -8,8 +7,8 @@ class SembaliGrimtongue extends Card {
         return this.action({
             title: 'Gift of Wings',
             cost: [
-                Costs.sideAction(),
-                Costs.exhaust(),
+                ability.costs.sideAction(),
+                ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(2, Level.Basic)])
             ],
             target: {
