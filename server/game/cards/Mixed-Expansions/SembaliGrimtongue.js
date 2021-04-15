@@ -9,7 +9,7 @@ class SembaliGrimtongue extends Card {
             title: 'Gift of Wings',
             cost: [
                 Costs.sideAction(),
-                Costs.exhaustDie(),
+                Costs.exhaust(),
                 ability.costs.dice([new DiceCount(2, Level.Basic)])
             ],
             target: {
