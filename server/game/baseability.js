@@ -135,6 +135,10 @@ class BaseAbility {
         return false;
     }
 
+    resolveMayClause() {
+        return;
+    }
+
     /**
      * Return whether all costs are capable of being paid for the ability.
      *
@@ -201,7 +205,7 @@ class BaseAbility {
     }
 
     // eslint-disable-next-line no-unused-vars
-    displayMessage(context) {}
+    displayMessage(context) { }
 
     /**
      * Executes the ability once all costs have been paid. Inheriting classes
@@ -209,7 +213,7 @@ class BaseAbility {
      * does nothing.
      */
     // eslint-disable-next-line no-unused-vars
-    executeHandler(context) {}
+    executeHandler(context) { }
 
     isAction() {
         return false;

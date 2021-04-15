@@ -52,7 +52,7 @@ class ThenAbility extends BaseAbility {
         return actions.concat(this.gameAction);
     }
 
-    executeHandler(context) {
+    resolveMayClause(context, results) {
         if (this.properties.may) {
             let may = this.properties.may;
             if (typeof may === 'function') {
@@ -62,11 +62,15 @@ class ThenAbility extends BaseAbility {
                 activePromptTitle: 'Do you wish to ' + may + '?',
                 context: context,
                 choices: ['Yes', 'No'],
-                handlers: [() => this.displayMessageAndExecuteHandler(context), () => true]
+                handlers: [() => true, () => (results.cancelled = true)]
             });
         } else {
-            this.displayMessageAndExecuteHandler(context);
+            super.resolveMayClause();
         }
+    }
+
+    executeHandler(context) {
+        this.displayMessageAndExecuteHandler(context);
 
         this.game.queueSimpleStep(() => this.game.checkGameState());
     }

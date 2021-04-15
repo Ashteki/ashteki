@@ -22,6 +22,7 @@ describe('River Skald', function () {
 
             this.player1.clickCard(this.riverSkald);
             this.player1.clickPrompt('Play this Ally');
+            this.player1.clickYes(); // optional / may clause
             expect(this.player1).toHavePrompt('Choose a card to discard');
 
             this.player1.clickCard(this.livingDoll); // in hand
@@ -36,9 +37,9 @@ describe('River Skald', function () {
 
             this.player1.clickCard(this.riverSkald);
             this.player1.clickPrompt('Play this Ally');
-            expect(this.player1).toHavePrompt('Choose a card to discard');
+            this.player1.clickNo(); // optional / may clause
 
-            this.player1.clickPrompt('Done');
+            expect(this.player1).not.toHavePrompt('Choose a card to discard');
             expect(this.player1).toHaveDefaultPrompt();
         });
     });

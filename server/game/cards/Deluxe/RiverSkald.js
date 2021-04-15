@@ -6,30 +6,23 @@ class RiverSkald extends Card {
         this.entersPlay({
             gameAction: ability.actions.draw(),
             then: {
-                // effect: 'deal 1 damage to {1}',
-                // effectArgs: (context) => context.target,
-                targets: {
-                    discard: {
-                        activePromptTitle: 'Choose a card to discard',
-                        optional: true,
-                        location: 'hand',
-                        controller: 'self',
-                        gameAction: ability.actions.discard()
-                    },
-                    victim: {
-                        dependsOn: 'discard',
-                        activePromptTitle: 'Choose a damage target',
-                        cardType: BattlefieldTypes,
-                        gameAction: ability.actions.dealDamage((context) => ({
-                            amount: context.targets.discard && context.targets.discard.magicCost
-                        }))
-                    }
+                may: 'discard a card to deal damage',
+                cost: [ability.costs.chosenDiscard()],
+                payCostsFirst: true,
+                target: {
+                    activePromptTitle: 'Choose a damage target',
+                    cardType: BattlefieldTypes,
+                    gameAction: ability.actions.dealDamage((context) => ({
+                        amount:
+                            context.costs.discardedCards &&
+                            context.costs.discardedCards[0].magicCost
+                    }))
                 },
                 message: '{0} discards {3} to deal {4} damage to {5}',
                 messageArgs: (context) => [
-                    context.targets.discard,
-                    context.targets.discard.magicCost,
-                    context.targets.victim
+                    context.costs.discardedCards,
+                    context.costs.discardedCards[0].magicCost,
+                    context.target
                 ]
             }
         });

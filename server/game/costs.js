@@ -62,7 +62,9 @@ const Costs = {
     chosenDiscard: (amount = 1) => ({
         canPay: (context) => context.player.hand.length >= amount,
         payEvent: (context) =>
-            context.game.actions.chosenDiscard({ amount: amount }).getEvent(context.player, context)
+            context.game.actions
+                .chosenDiscard({ amount: amount, asCost: true })
+                .getEvent(context.player, context)
     }),
     dice: (cost, title) => new DiceCost({ diceReq: cost, title: title }),
     xDice: (cost, title) => new XDiceCost({ diceReq: cost, title: title }),
