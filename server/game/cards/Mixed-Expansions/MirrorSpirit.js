@@ -9,7 +9,7 @@ class MirrorSpirit extends Card {
         this.entersPlay({
             target: {
                 mode: 'options',
-                activePromptTitle: "Which player's battlefield?",
+                activePromptTitle: "Reflect Sorrow: Choose which player's units",
                 options: [
                     { name: 'Mine', value: false },
                     { name: "Opponent's", value: true }
