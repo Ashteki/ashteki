@@ -2,6 +2,10 @@ const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Resonance extends Card {
+    get isPlayedToExistingSpellboardSlot() {
+        return true;
+    }
+
     setupCardAbilities(ability) {
         this.play({
             title: 'Resonance',

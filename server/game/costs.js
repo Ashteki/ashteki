@@ -35,8 +35,11 @@ const Costs = {
         // is this card playable, are there limits on the target location
         canPay: (context) => {
             if (
+                // check for spellboard space
                 (context.source.type === 'Ready Spell' &&
-                    context.player.isSpellboardFull(context.source.cardSlot)) ||
+                    context.player.isSpellboardFull(context.source.cardSlot) &&
+                    !context.source.isPlayedToExistingSpellboardSlot) ||
+                // check for battlefield space
                 (BattlefieldTypes.includes(context.source.getType()) &&
                     context.player.isBattlefieldFull())
             ) {
