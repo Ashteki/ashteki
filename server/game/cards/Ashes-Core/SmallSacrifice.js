@@ -15,10 +15,12 @@ class SmallSacrifice extends Card {
             location: 'spellboard',
             targets: {
                 first: {
+                    activePromptTitle: 'Choose one of your units',
                     controller: 'self',
                     cardType: BattlefieldTypes
                 },
                 second: {
+                    activePromptTitle: "Choose an opponent's unit",
                     dependsOn: 'first',
                     controller: 'opponent',
                     cardType: BattlefieldTypes
@@ -26,6 +28,7 @@ class SmallSacrifice extends Card {
                 tokenChoice: {
                     dependsOn: 'second',
                     mode: 'options',
+                    activePromptTitle: 'Choose an action',
                     options: (context) => this.getSacrificeOptions(context.targets),
                     handler: (option) => (this.chosenType = option.value)
                 }
