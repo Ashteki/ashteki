@@ -29,9 +29,21 @@ describe('Polarity Mage', function () {
 
             expect(this.massiveGrowth.location).toBe('hand');
         });
+
+        it('return upgrade cancelled', function () {
+            this.player1.clickCard(this.polarityMage);
+            this.player1.clickPrompt('Play this Ally');
+            this.player1.clickDie(3);
+            this.player1.clickPrompt('Return to Hand');
+            expect(this.player1).toHavePrompt('Choose a card');
+
+            this.player1.clickDone();
+
+            expect(this.massiveGrowth.location).toBe('discard');
+        });
     });
 
-    describe('enters play discard', function () {
+    describe('enters play - Discard from Play', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -49,7 +61,7 @@ describe('Polarity Mage', function () {
             });
         });
 
-        it('returns upgrade from discard', function () {
+        it('Discard from Play', function () {
             this.player1.clickCard(this.massiveGrowth);
             this.player1.clickPrompt('Play this Alteration');
             this.player1.clickDie(3);
@@ -69,5 +81,27 @@ describe('Polarity Mage', function () {
 
             expect(this.massiveGrowth.location).toBe('discard');
         });
+
+        it('Discard from Play cancelled', function () {
+            this.player1.clickCard(this.massiveGrowth);
+            this.player1.clickPrompt('Play this Alteration');
+            this.player1.clickDie(3);
+            this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.upgrades[0]).toBe(this.massiveGrowth);
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            this.player1.clickCard(this.polarityMage);
+            this.player1.clickPrompt('Play this Ally');
+            this.player1.clickDie(2);
+            this.player1.clickPrompt('Discard from Play');
+            expect(this.player1).toHavePrompt('Choose a card');
+
+            this.player1.clickDone(); // cancelled
+
+            expect(this.massiveGrowth.location).toBe('play area');
+        });
+
     });
 });
