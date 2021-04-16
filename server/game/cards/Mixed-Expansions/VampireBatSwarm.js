@@ -10,6 +10,7 @@ class VampireBatSwarm extends Card {
             autoResolve: true,
             when: {
                 onCardLeavesPlay: (event, context) =>
+                    event.triggeringEvent &&
                     event.triggeringEvent.name === 'onCardDestroyed' &&
                     event.card === context.source
             },
