@@ -8,6 +8,7 @@ class UndyingHeart extends Card {
             inexhaustible: true,
             when: {
                 onCardLeavesPlay: (event, context) =>
+                    event.triggeringEvent &&
                     event.triggeringEvent.name === 'onCardDestroyed' &&
                     event.card === context.source.parent
             },

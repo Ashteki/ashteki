@@ -23,14 +23,17 @@ class SummonMirrorSpirit extends Card {
                 gameAction: ability.actions.putIntoPlay()
             },
             then: {
+                alwaysTriggers: true,
                 condition: () => this.focus > 0,
                 target: {
-                    cardCondition: (card) => card.id === 'mirror-spirit',
+                    activePromptTitle: 'Choose a mirror spirit with status tokens',
+                    cardCondition: (card) => card.id === 'mirror-spirit' && card.status > 0,
                     controller: 'self',
-                    gameAction: ability.actions.removeStatus({ amount: 'all' })
+                    gameAction: ability.actions.removeStatus({ all: true })
                 },
                 then: {
                     target: {
+                        activePromptTitle: 'Choose a unit to exhaust',
                         cardType: BattlefieldTypes,
                         gameAction: ability.actions.exhaust()
                     }

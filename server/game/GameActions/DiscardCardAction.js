@@ -15,6 +15,8 @@ class DiscardCardAction extends CardGameAction {
                 ? 'onCardLeavesPlay'
                 : 'onCardDiscarded';
 
+        // TODO: for consistency within onCardLeavesPlay this should be a 
+        // discarded event with a leaves play child event
         return super.createEvent(
             eventName,
             { card, context, location, showMessage: this.showMessage },

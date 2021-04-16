@@ -4,8 +4,16 @@ describe('Golden Veil', function () {
             player1: {
                 phoenixborn: 'maeoni-viper',
                 inPlay: ['mist-spirit', 'iron-worker'],
-                dicepool: ['ceremonial', 'natural', 'natural', 'illusion', 'charm'],
-                hand: ['molten-gold', 'fade-away']
+                dicepool: [
+                    'ceremonial',
+                    'natural',
+                    'natural',
+                    'illusion',
+                    'charm',
+                    'sympathy',
+                    'sympathy'
+                ],
+                hand: ['molten-gold', 'fade-away', 'river-skald']
             },
             player2: {
                 phoenixborn: 'rin-northfell',
@@ -84,6 +92,19 @@ describe('Golden Veil', function () {
 
         expect(this.hammerKnight.damage).toBe(0);
         expect(this.hammerKnight.location).toBe('play area');
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('cancels river skald without cost refund (discard)', function () {
+        this.player1.play(this.riverSkald);
+        this.player1.clickYes();
+        this.player1.clickCard(this.moltenGold);
+        this.player1.clickCard(this.hammerKnight);
+        this.player2.clickCard(this.goldenVeil);
+
+        expect(this.hammerKnight.damage).toBe(0);
+        expect(this.hammerKnight.location).toBe('play area');
+        expect(this.moltenGold.location).toBe('discard');
         expect(this.player1).toHaveDefaultPrompt();
     });
 });

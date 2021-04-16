@@ -3,6 +3,7 @@ const PlayerAction = require('./PlayerAction');
 class ChosenDiscardAction extends PlayerAction {
     setDefaultProperties() {
         this.amount = 1;
+        this.asCost = false;
     }
 
     setup() {
@@ -30,15 +31,18 @@ class ChosenDiscardAction extends PlayerAction {
                             amount === 1
                                 ? 'Choose a card to discard'
                                 : {
-                                      text: 'Choose {{amount}} cards to discard',
-                                      values: { amount: amount }
-                                  },
+                                    text: 'Choose {{amount}} cards to discard',
+                                    values: { amount: amount }
+                                },
                         context: context,
                         mode: 'exactly',
                         numCards: amount,
                         location: 'hand',
                         controller: player === context.player ? 'self' : 'opponent',
                         onSelect: (player, cards) => {
+                            if (this.asCost) {
+                                context.costs.discardedCards = cards;
+                            }
                             context.game.addMessage('{0} discards {1}', player, cards);
                             context.game.actions.discard().resolve(cards, context);
                             return true;
