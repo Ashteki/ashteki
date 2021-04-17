@@ -24,6 +24,7 @@ class SummonMirrorSpirit extends Card {
             },
             then: {
                 alwaysTriggers: true,
+                may: 'remove status to exhaust a unit',
                 condition: () => this.focus > 0,
                 target: {
                     activePromptTitle: 'Choose a mirror spirit with status tokens',
