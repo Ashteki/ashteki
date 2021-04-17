@@ -227,7 +227,7 @@ function handleMessage(action, state) {
             break;
         case 'removemessage':
             var message = newState.messages.find(
-                (message) => message.id === parseInt(action.args[0])
+                (message) => message._id === action.args[0]
             );
             message.deletedBy = action.args[1];
             message.deleted = true;

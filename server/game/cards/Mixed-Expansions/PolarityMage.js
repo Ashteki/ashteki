@@ -9,6 +9,7 @@ class PolarityMage extends Card {
                 choices: {
                     'Return to Hand': ability.actions.moveCard({
                         promptForSelect: {
+                            optional: true,
                             controller: 'self',
                             location: 'discard',
                             cardType: [CardType.ConjuredAlteration, CardType.Upgrade]
@@ -17,6 +18,7 @@ class PolarityMage extends Card {
                     }),
                     'Discard from Play': ability.actions.discard({
                         promptForSelect: {
+                            optional: true,
                             CardType: UpgradeCardTypes,
                             controller: 'self'
                         }
