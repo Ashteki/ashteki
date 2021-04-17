@@ -1,5 +1,5 @@
 {
-    "count": 284,
+    "count": 297,
     "results": [
         {
             "name": "Abundance",
@@ -21,6 +21,27 @@
                 "illusion:class": 1
             },
             "text": "[[main]] - [[exhaust]]: All players may draw up to 2 cards. For each card they cannot or do not draw, deal 1 damage to their Phoenixborn.\n\nFocus 1: Reduce the damage your Phoenixborn receives from this spell by 1.\n\nFocus 2: Reduce the damage your Phoenixborn receives from this spell by an additional 1."
+        },
+        {
+            "name": "Accelerate",
+            "stub": "accelerate",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "Draw 1 card. Change 2 dice in your active pool to a side of your choice. You may take up to 2 additional side actions this turn."
         },
         {
             "name": "Admonisher",
@@ -412,6 +433,28 @@
             "recover": 1
         },
         {
+            "name": "Blink",
+            "stub": "blink",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Remove a target unit from the game. At the end of this turn, place that unit onto its owner's battlefield.",
+            "phoenixborn": "Jericho, Reborn"
+        },
+        {
             "name": "Blood Archer",
             "stub": "blood-archer",
             "type": "Ally",
@@ -691,7 +734,7 @@
                 "stub": "the-king-of-titans"
             },
             "placement": "Battlefield",
-            "text": "Overkill 1: After this unit destroys a unit an opponent controls by attacking, deal 1 damage to that opponent's target Phoenixborn.\n\n* Dismount: When this unit is destroyed, take any allies currently underneath this unit from your discard pile and place them into your hand.",
+            "text": "Overkill 1: After this unit destroys a unit an opponent controls by attacking, deal 1 damage to that opponent's target Phoenixborn.\n\n* Dismount: When this unit is destroyed, place any allies you own underneath this unit into your hand.",
             "attack": 3,
             "life": 3,
             "recover": 0,
@@ -1083,7 +1126,7 @@
             "dice": [
                 "ceremonial"
             ],
-            "text": "[[side]] - [[exhaust]] - 1 [[ceremonial:class]] - 1 [[basic]]: Deal 2 damage to a unit you control. If you do, you may discard a target alteration spell."
+            "text": "[[main]] - [[exhaust]] - 1 [[ceremonial:class]] - 1 [[basic]]: Deal 2 damage to a unit you control. If you do, you may discard a target alteration spell."
         },
         {
             "name": "Dark Presence",
@@ -1278,7 +1321,7 @@
                 "stub": "the-law-of-lions"
             },
             "placement": "Battlefield",
-            "text": "Decree: When this unit comes into play, search your draw pile. You may reveal a ready spell with \"Law\" in its title and place it into your hand.  You may immediately play a \"Law\" from your hand without paying any <main> or <side> costs. Shuffle your draw pile.",
+            "text": "Decree: When this unit comes into play, search your draw pile. You may reveal a ready spell with \"Law\" in its title and place it into your hand.  You may immediately play a \"Law\" from your hand without paying any [[main]] or [[side]] costs. Shuffle your draw pile.",
             "attack": 3,
             "life": 3,
             "recover": 0,
@@ -1678,6 +1721,26 @@
             "recover": 2
         },
         {
+            "name": "Flash Strike",
+            "stub": "flash-strike",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "You may play this spell after an opponent has the choice to declare blockers or a guard. Choose a unit you control with 1 or more status tokens on it. For the remainder of the turn, add 2 to its attack value and it gains the following ability:\n\nQuick Strike: While this unit is attacking, it deals its damage before units in battle with it."
+        },
+        {
             "name": "Flute Mage",
             "stub": "flute-mage",
             "type": "Ally",
@@ -1702,6 +1765,27 @@
             "attack": 1,
             "life": 2,
             "recover": 1
+        },
+        {
+            "name": "Foresight",
+            "stub": "foresight",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "During the draw cards step, you may draw 1 additional card.\n\n[[main]] - [[exhaust]]: Look at the top 2 cards of a target player's draw pile. Place 1 of those cards on the bottom of that draw pile, and the place the other card on the top of that draw pile."
         },
         {
             "name": "Freezing Blast",
@@ -2383,6 +2467,25 @@
             "text": "Convene With Souls: [[side]] - [[exhaust]]: Search your draw pile for an ally, reveal it, and place it into your hand. Place a number of wound tokens equal to that ally's life value on this card. Shuffle your draw pile.",
             "battlefield": 7,
             "life": 19,
+            "spellboard": 3
+        },
+        {
+            "name": "Jericho, Reborn",
+            "stub": "jericho-reborn",
+            "type": "Phoenixborn",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "dice": [
+                "time"
+            ],
+            "effectMagicCost": {
+                "time:class": 1
+            },
+            "text": "Prepare: [[side]] - [[exhaust]] - 1 [[time:class]]: Search your draw pile for 1 card and set it aside. Shuffle your draw pile, then place the set aside card on top of it.",
+            "battlefield": 7,
+            "life": 17,
             "spellboard": 3
         },
         {
@@ -3267,6 +3370,26 @@
             "copies": 3
         },
         {
+            "name": "Outmatch",
+            "stub": "outmatch",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "You may play this spell after an opponent declares attackers. Add 4 to the attack value of a target unit you control for the remainder of the turn."
+        },
+        {
             "name": "Out Of The Mist",
             "stub": "out-of-the-mist",
             "type": "Action Spell",
@@ -4038,7 +4161,7 @@
                 "stub": "the-song-of-soaksend"
             },
             "placement": "Battlefield",
-            "text": "* Transparent: This unit cannot block or be chosen at the target of an attack.",
+            "text": "* Transparent: This unit cannot block or be chosen as the target of an attack.",
             "attack": 1,
             "life": 1,
             "recover": 0,
@@ -4477,7 +4600,7 @@
             "dice": [
                 "ceremonial"
             ],
-            "text": "[[main]] - 1 [[ceremonial:class]]: Deal 1 damage to a target unit on your battlefield. If you do, you may deal 1 damage to a target unit on an opponent's battlefield.\n\nFocus 1: If both targeted units are unexhausted, you may place 1 exhaustion token on both units instead of damage."
+            "text": "[[main]] - [[exhaust]] - 1 [[ceremonial:class]]: Deal 1 damage to a target unit on your battlefield. If you do, you may deal 1 damage to a target unit on an opponent's battlefield.\n\nFocus 1: If both targeted units are unexhausted, you may place 1 exhaustion token on both units instead of damage."
         },
         {
             "name": "Sonic Swordsman",
@@ -4552,6 +4675,53 @@
             "life": 3,
             "recover": 0,
             "copies": 2
+        },
+        {
+            "name": "Standard Bearer",
+            "stub": "standard-bearer",
+            "type": "Ally",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "time:class": 1
+            },
+            "text": "* Resourceful 1: When this unit comes into play, place 1 status token on this unit. At the beginning of the player turns phase, place 1 status token on this unit.\n\nInspire 1: When this unit is declared as an attacker, you may choose a number of other attacking units up to the number of status tokens on this unit. Add 1 to the chosen unit's attack values for the remainder of the turn.",
+            "attack": 1,
+            "life": 3,
+            "recover": 1
+        },
+        {
+            "name": "Stasis",
+            "stub": "stasis",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "~ After an opponent declares attackers, you may play this spell from your hand without paying its side action cost. It is also a reaction spell until it is in play.\n\nThis unit is considered to be exhausted. If it was declared as an attacker, it is not longer attacking.\n\nUnchain: [[main]] - [[side]]: Discard this spell."
         },
         {
             "name": "Steadfast Guardian",
@@ -4784,7 +4954,7 @@
             "dice": [
                 "natural"
             ],
-            "text": "[[main]] - 1 [[natural:class]] - 1 [[basic]]: Place a [[Biter]] conjuration onto your battlefield.",
+            "text": "[[main]] - [[exhaust]] - 1 [[natural:class]] - 1 [[basic]]: Place a [[Biter]] conjuration onto your battlefield.",
             "conjurations": [
                 {
                     "name": "Biter",
@@ -5025,7 +5195,7 @@
             "magicCost": {
                 "basic": 1
             },
-            "text": "[[main]] or [[side]] - 1 [[illusion:class]] - 1 [[sympathy:class]]: Remove an unexhausted ally you control from play. If you do, place a [[Pale Steed Mount]] or [[Spectral Charger Mount]] conjuration onto your battlefield and place that ally face down under that unit.\n\nFocus 2: You may place a [[Nightmare Mount]] conjuration instead.",
+            "text": "[[main]] or [[side]] - [[exhaust]] - 1 [[illusion:class]] - 1 [[sympathy:class]]: Remove an unexhausted ally you control from play. If you do, place a [[Pale Steed Mount]] or [[Spectral Charger Mount]] conjuration onto your battlefield and place that ally face down under that unit.\n\nFocus 2: You may place a [[Nightmare Mount]] conjuration instead.",
             "conjurations": [
                 {
                     "name": "Spectral Charger Mount",
@@ -5221,7 +5391,7 @@
             "magicCost": {
                 "basic": 1
             },
-            "text": "[[side]] - [[exhaust]] - 1 [[illusion:class]]: Place a [[Masked Wolf]] conjuration onto your battlefield.\n\nFocus 1: If you spent any[[illusion:power]] to activate this spell, you may take an additional side action this turn.",
+            "text": "[[side]] - [[exhaust]] - 1 [[illusion:class]]: Place a [[Masked Wolf]] conjuration onto your battlefield.\n\nFocus 1: If you spent any [[illusion:power]] to activate this spell, you may take an additional side action this turn.",
             "conjurations": [
                 {
                     "name": "Masked Wolf",
@@ -5245,7 +5415,7 @@
             "dice": [
                 "charm"
             ],
-            "text": "[[main]] - [[exhaust]] - 1 [[charm:class]] - 1 [[basic]]: Place a [[Mind Fog Owl]] conjuration onto your battlefield.\n\nFocus 1: If you spent any[[charm:power]] to activate this spell, you may choose 1 [[charm:power]] spent and resolve its dice power without paying its cost.",
+            "text": "[[main]] - [[exhaust]] - 1 [[charm:class]] - 1 [[basic]]: Place a [[Mind Fog Owl]] conjuration onto your battlefield.\n\nFocus 1: If you spent any [[charm:power]] to activate this spell, you may choose 1 [[charm:power]] spent and resolve its dice power without paying its cost.",
             "conjurations": [
                 {
                     "name": "Mind Fog Owl",
@@ -5649,6 +5819,63 @@
             ]
         },
         {
+            "name": "Summon Time Hopper",
+            "stub": "summon-time-hopper",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "effectMagicCost": {
+                "time:class": 1
+            },
+            "text": "[[side]] - [[exhaust]] - 1 [[time:class]]: Place a [[Time Hopper]] conjuration onto your battlefield.\n\nFocus 1: Then, if you control an unexhausted Time Hopper with 1 or more status tokens on it, you may place an additional [[Time Hopper]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Time Hopper",
+                    "stub": "time-hopper"
+                }
+            ]
+        },
+        {
+            "name": "Summon Turtle Guard",
+            "stub": "summon-turtle-guard",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "effectMagicCost": {
+                "time:power": 1
+            },
+            "text": "[[main]] - [[side]] - [[exhaust]] - 1 [[time:power]]: You may place a [[Turtle Guard]] conjuration onto your battlefield.\n\nFocus 1: If you do not, you may place 1 exhaustion token on an unexhausted Turtle Guard you control to place 1 exhaustion token on a target unexhausted unit an opponent controls.",
+            "conjurations": [
+                {
+                    "name": "Turtle Guard",
+                    "stub": "turtle-guard"
+                }
+            ]
+        },
+        {
             "name": "Summon Vampire Bat Swarm",
             "stub": "summon-vampire-bat-swarm",
             "type": "Ready Spell",
@@ -5745,6 +5972,30 @@
             "recover": 1
         },
         {
+            "name": "Swift Messenger",
+            "stub": "swift-messenger",
+            "type": "Ally",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "~ Swift: After a unit comes into play onto an opponent's battlefield, you may play this unit from your hand without paying its main action cost.\n\nAssist 1: When this unit comes into play, draw 1 card.",
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
             "name": "Sword of Virtue",
             "stub": "sword-of-virtue",
             "type": "Action Spell",
@@ -5763,7 +6014,7 @@
             "magicCost": {
                 "basic": 2
             },
-            "text": "Destroy a target unit or remove all wound tokens from a target unit.",
+            "text": "Destroy a target unit or remove all wound tokens and exhaustion tokens from a target unit.",
             "phoenixborn": "Odette Diamondcrest"
         },
         {
@@ -5828,6 +6079,21 @@
             "life": 2,
             "recover": 0,
             "copies": 3
+        },
+        {
+            "name": "Time Hopper",
+            "stub": "time-hopper",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Battlefield",
+            "text": "Gift 1: When this unit comes into play, you may place 1 status token on another target unit.\n\nFearful: This unit cannot block.",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
         },
         {
             "name": "To Shadows",
@@ -5900,6 +6166,21 @@
                 "sympathy:class": 1
             },
             "text": "Swap any number of dice in your exhausted pool with an equal number of dice in your active pool, placing them each on a side of your choice. Change 1 die in each target player's active pool to a side of your choice."
+        },
+        {
+            "name": "Turtle Guard",
+            "stub": "turtle-guard",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Battlefield",
+            "text": "Rooted: This unit cannot attack.\n\nUnit Guard: This unit may guard a unit that is being attacked.\n\n* Withdraw 1: While this unit is exhausted, prevent all damage dealt to this unit from being received.",
+            "attack": 2,
+            "life": 3,
+            "recover": 1,
+            "copies": 2
         },
         {
             "name": "Undying Heart",

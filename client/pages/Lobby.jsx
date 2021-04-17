@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import { Trans, useTranslation } from 'react-i18next';
-import { Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
 import NewsComponent from '../Components/News/News';
 import AlertPanel from '../Components/Site/AlertPanel';
@@ -13,7 +13,9 @@ import UserList from '../Components/Lobby/UserList';
 import LobbyChat from '../Components/Lobby/LobbyChat';
 import { clearChatStatus, loadNews, removeLobbyMessage, sendSocketMessage } from '../redux/actions';
 import { News } from '../redux/types';
-
+import discordTextLogo from '../assets/img/discord-logo-white.svg';
+import githubLogo from '../assets/img/GitHub-Mark-Light-64px.png';
+import patreonLogo from '../assets/img/Patreon-Coral.png';
 import './Lobby.scss';
 import { useRef } from 'react';
 
@@ -97,6 +99,43 @@ const Lobby = () => {
                     </Col>
                 </div>
             )}
+            <div >
+                <Col sm={{ span: 10, offset: 1 }}>
+                    <Panel>
+                        <div className='link-box'>
+                            <a
+                                className='link-box-item'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                href='https://discord.gg/UU5bduq'
+
+                            >
+                                <img src={discordTextLogo} className='textlogo' />
+                                <div className='caption'>Join the Ashes Community Discord</div>
+                            </a>
+                            <a
+                                className='link-box-item'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                href='https://www.patreon.com/ashteki'
+
+                            >
+                                <img src={patreonLogo} className='textlogo' />
+                                <div className='caption'>Support the site</div>
+                            </a>
+                            <a
+                                className='link-box-item'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                href='https://github.com/danj3000/ashteki/issues'
+                            >
+                                <img src={githubLogo} className='textlogo' />
+                                <div className='caption'>Submit a bug report</div>
+                            </a>
+                        </div>
+                    </Panel>
+                </Col>
+            </div>
             <div>
                 <Col sm={{ span: 10, offset: 1 }}>
                     <Panel title={t('Latest site news')}>
@@ -152,7 +191,7 @@ const Lobby = () => {
                     </div>
                 </form>
             </Col>
-        </div>
+        </div >
     );
 };
 
