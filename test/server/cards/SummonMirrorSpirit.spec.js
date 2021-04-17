@@ -26,7 +26,11 @@ describe('Summon Mirror Spirit', function () {
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.player1.archives[0]);
 
+            // enters play - reflect sorrow
+            this.player1.clickPrompt("Opponent's");
             expect(this.mirrorSpirit.location).toBe('play area');
+            // no focus prompt
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 
@@ -56,10 +60,12 @@ describe('Summon Mirror Spirit', function () {
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.mirrorSpirit);
+            // enters play - reflect sorrow
             this.player1.clickPrompt("Opponent's");
 
             expect(this.mirrorSpirit.location).toBe('play area');
             expect(this.mirrorSpirit.status).toBe(1);
+            this.player1.clickYes(); // remove status to exhaust a unit
             this.player1.clickCard(this.mirrorSpirit);
             this.player1.clickCard(this.hammerKnight);
             expect(this.hammerKnight.exhausted).toBe(true);
