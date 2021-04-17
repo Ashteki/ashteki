@@ -57,3 +57,36 @@
     left: 15px;
     right: 15px;
 }
+
+.textlogo{
+    // background-color: #7289DA;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 60px;
+    border-radius: 5px;
+}
+.discord-textlogo{
+    background-color: #7289DA;
+    // background-color: black;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.link-box{
+    display: flex;
+    flex-direction: row;
+}
+
+.link-box .caption{
+    padding: 5px;
+}
+
+.link-box img{
+    display:inline-block;
+}
+
+.link-box-item{
+    display: flex;
+    width: 270px;
+    margin-left:10px;
+    color: inherit;
+}
