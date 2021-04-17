@@ -74,6 +74,7 @@ module.exports.init = function (server) {
                     }
 
                     user.permissions = userToSet.permissions;
+                    user.disabled = userToSet.disabled;
 
                     return userService.update(user);
                 })
