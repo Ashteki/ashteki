@@ -18,11 +18,11 @@ describe('mirror spirit enters play', function () {
         });
 
         this.gilder.tokens.exhaustion = 1;
-        this.mistSpirit.tokens.exhaustion = 1;
+        this.mistSpirit.tokens.exhaustion = 2;
         this.ironWorker.tokens.exhaustion = 1;
     });
 
-    it('gets status tokens equal to exhausted units (opponent)', function () {
+    it('gets status tokens equal to exhaustion tokens (opponent)', function () {
         this.player1.clickCard(this.summonMirrorSpirit);
         this.player1.clickPrompt('Summon Mirror Spirit');
         this.player1.clickDie(0);
@@ -33,7 +33,7 @@ describe('mirror spirit enters play', function () {
         expect(this.mirrorSpirit.status).toBe(1);
     });
 
-    it('gets status tokens equal to exhausted units (mine)', function () {
+    it('gets status tokens equal to exhaustion tokens (mine)', function () {
         this.player1.clickCard(this.summonMirrorSpirit);
         this.player1.clickPrompt('Summon Mirror Spirit');
         this.player1.clickDie(0);
@@ -41,6 +41,6 @@ describe('mirror spirit enters play', function () {
         this.player1.clickCard(this.mirrorSpirit);
 
         this.player1.clickPrompt('Mine');
-        expect(this.mirrorSpirit.status).toBe(2);
+        expect(this.mirrorSpirit.status).toBe(3);
     });
 });
