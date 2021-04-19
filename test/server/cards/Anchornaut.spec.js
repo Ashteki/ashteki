@@ -23,7 +23,9 @@ describe('Anchornaut', function () {
             this.player1.clickCard(this.anchornaut);
             this.player1.clickPrompt('Play this Ally');
             this.player1.clickDie(1);
-            this.player1.clickCard('blue-jaguar', 'any', 'opponent');
+            expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+
+            this.player1.clickCard(this.blueJaguar);
 
             expect(this.blueJaguar.tokens.damage).toBe(1);
         });

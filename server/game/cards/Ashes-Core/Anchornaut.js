@@ -7,6 +7,7 @@ class Anchornaut extends Card {
             effectArgs: (context) => context.target,
             target: {
                 optional: true,
+                cardCondition: (card, context) => card !== context.source,
                 activePromptTitle: 'Throw 1',
                 cardType: ['Ally', 'Conjuration'],
                 gameAction: ability.actions.dealDamage({
