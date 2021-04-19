@@ -181,6 +181,31 @@ class About extends React.Component {
                     </ul>
 
                     <h3 id='conceding'>
+                        <Trans>Supporting the site</Trans>
+                    </h3>
+                    <p>
+                        Playing games on Ashteki is free, but alas hosting the site is not. If you
+                        would like to contribute to the cost of hosting to ensure its long life,
+                        then you can sign up to ashteki on{' '}
+                        <a
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href='https://www.patreon.com/ashteki'
+                        >
+                            Patreon
+                        </a>{' '}
+                        for a monthly amount. Alternatively you can send your contribution via
+                        paypal to{' '}
+                        <a
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href='https://paypal.me/ashteki'
+                        >
+                            https://paypal.me/ashteki
+                        </a>. All contributions will be very gratefully received. Thank you.
+                    </p>
+
+                    <h3 id='conceding'>
                         <Trans>About Stats, Conceding and Leaving Games</Trans>
                     </h3>
                     <p>
