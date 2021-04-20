@@ -4,8 +4,6 @@ import { withTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 import AbilityTargeting from './AbilityTargeting';
-import CardNameLookup from './CardNameLookup';
-import TraitNameLookup from './TraitNameLookup';
 import OptionsSelect from './OptionsSelect';
 import Panel from '../Site/Panel';
 
@@ -163,30 +161,6 @@ class ActivePlayerPrompt extends React.Component {
                             onMouseOver={this.props.onMouseOver}
                             source={control.source}
                             targets={control.targets}
-                        />
-                    );
-                case 'card-name':
-                    return (
-                        <CardNameLookup
-                            cards={this.props.cards}
-                            onCardSelected={this.onCardNameSelected.bind(
-                                this,
-                                control.command,
-                                control.uuid,
-                                control.method
-                            )}
-                        />
-                    );
-                case 'trait-name':
-                    return (
-                        <TraitNameLookup
-                            cards={this.props.cards}
-                            onValueSelected={this.handleLookupValueSelected.bind(
-                                this,
-                                control.command,
-                                control.uuid,
-                                control.method
-                            )}
                         />
                     );
                 case 'options-select':

@@ -82,14 +82,6 @@ class GameObject {
         return false;
     }
 
-    hasTrait() {
-        return false;
-    }
-
-    getTraits() {
-        return [];
-    }
-
     hasToken() {
         return false;
     }

@@ -35,7 +35,6 @@ class Card extends PlayableObject {
 
         this.tokens = {};
         this.flags = {};
-        this.traits = cardData.traits || [];
         this.printedKeywords = {};
         for (let keyword of cardData.keywords || []) {
             let split = keyword.split(':');
@@ -149,7 +148,7 @@ class Card extends PlayableObject {
      * @param ability - object containing limits, costs, effects, and game actions
      */
     // eslint-disable-next-line no-unused-vars
-    setupCardAbilities(ability) {}
+    setupCardAbilities(ability) { }
 
     // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
@@ -372,21 +371,6 @@ class Card extends PlayableObject {
         return this.triggeredAbility(AbilityType.ForcedReaction, properties);
     }
 
-    hasTrait(trait) {
-        if (!trait) {
-            return false;
-        }
-
-        trait = trait.toLowerCase();
-        return this.getTraits().includes(trait);
-    }
-
-    getTraits() {
-        let copyEffect = this.mostRecentEffect('copyCard');
-        let traits = copyEffect ? copyEffect.traits : this.traits;
-        return _.uniq(traits.concat(this.getEffects('addTrait')));
-    }
-
     applyAnyLocationPersistentEffects() {
         _.each(this.persistentEffects, (effect) => {
             if (effect.location === 'any') {
@@ -570,7 +554,6 @@ class Card extends PlayableObject {
         clone.location = this.location;
         clone.parent = this.parent;
         clone.clonedNeighbors = this.neighbors;
-        clone.traits = this.getTraits();
         clone.modifiedAttack = this.getAttack();
         clone.modifiedLife = this.getLife();
         clone.modifiedBattlefield = this.getBattlefield();
@@ -1022,10 +1005,6 @@ class Card extends PlayableObject {
 
     isLimited() {
         return this.type === CardType.ReactionSpell;
-    }
-
-    ignores(trait) {
-        return this.getEffects('ignores').includes(trait);
     }
 
     getShortSummary() {
