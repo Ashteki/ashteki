@@ -128,18 +128,6 @@ class ActivePlayerPrompt extends React.Component {
         return buttons;
     }
 
-    handleLookupValueSelected(command, uuid, method, cardName) {
-        if (this.props.onButtonClick) {
-            this.props.onButtonClick(command, cardName, uuid, method);
-        }
-    }
-
-    onCardNameSelected(command, uuid, method, cardName) {
-        if (this.props.onButtonClick) {
-            this.props.onButtonClick(command, cardName, uuid, method);
-        }
-    }
-
     onOptionSelected(option) {
         if (this.props.onButtonClick) {
             let button = this.props.buttons.find((button) => '' + button.arg === option);
