@@ -6,7 +6,7 @@ describe('Copycat', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['hammer-knight', 'blood-archer'],
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
-                    hand: ['molten-gold', 'redirect', 'out-of-the-mist', 'cover'],
+                    hand: ['molten-gold', 'redirect', 'out-of-the-mist', 'cover', 'anguish'],
                     deck: ['redirect', 'out-of-the-mist', 'cover']
                 },
                 player2: {
@@ -29,6 +29,29 @@ describe('Copycat', function () {
             this.player2.clickCard(this.hammerKnight);
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.hammerKnight.damage).toBe(3);
+        });
+
+        it('copy anguish (bug report)', function () {
+            this.player1.clickCard(this.anguish);
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            this.player1.clickDone();
+            this.player2.clickPrompt('Damage');
+            // second part
+            this.player2.clickPrompt('Take 2 Damage');
+
+            expect(this.maeoniViper.damage).toBe(4);
+
+            this.player2.clickCard(this.copycat);
+            this.player2.clickDie(0);
+
+            this.player1.clickPrompt('Damage');
+            this.player1.clickPrompt('Pass'); // redirect prompt
+            this.player1.clickPrompt('Take 2 Damage');
+            this.player1.clickPrompt('Pass'); // redirect prompt
+
+            expect(this.aradelSummergaard.damage).toBe(4);
         });
 
         it('copy pb ablity (water blast)', function () {
