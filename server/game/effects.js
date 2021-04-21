@@ -15,7 +15,6 @@ const Effects = {
     actionCardLocationAfterPlay: (location) =>
         EffectBuilder.card.static('actionCardLocationAfterPlay', location),
     addKeyword: (keyword) => EffectBuilder.card.static('addKeyword', keyword),
-    addTrait: (trait) => EffectBuilder.card.static('addTrait', trait),
     blank: () => EffectBuilder.card.static('blank'),
     bonusDamage: (match) => EffectBuilder.card.static('bonusDamage', match),
     canPlayAsUpgrade: () => EffectBuilder.card.static('canPlayAsUpgrade'),
@@ -30,7 +29,6 @@ const Effects = {
     visbileIn: (location) => EffectBuilder.card.static('visbileIn', location),
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
-    ignores: (trait) => EffectBuilder.card.static('ignores', trait),
     limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
     modifyPower: (amount) => EffectBuilder.card.flexible('modifyPower', amount),
     modifyAttack: (amount) => EffectBuilder.card.flexible('modifyAttack', amount),

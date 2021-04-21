@@ -18,11 +18,14 @@ class MirrorSpirit extends Card {
             },
             gameAction: ability.actions.addStatusToken((context) => ({
                 target: context.source,
-                amount: this.chosenValue
-                    ? context.player.opponent.unitsInPlay.filter((c) => c.exhausted).length
-                    : context.player.unitsInPlay.filter((c) => c.exhausted).length
+                amount: this.getTokenCount(context)
             }))
         });
+    }
+
+    getTokenCount(context) {
+        const player = this.chosenValue ? context.player.opponent : context.player;
+        return player.unitsInPlay.reduce((acc, u) => acc + u.exhaustion, 0);
     }
 }
 

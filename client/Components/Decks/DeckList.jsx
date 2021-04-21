@@ -31,7 +31,6 @@ import './DeckList.scss';
  * @property {number} power
  * @property {number} expansion
  * @property {string} packCode
- * @property {string[]} traits
  * @property {string[]} keywords
  * @property {{[key: string]: CardLanguage}} locale
  */
@@ -276,10 +275,10 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
                         standaloneDecks
                             ? null
                             : paginationFactory({
-                                  page: pagingDetails.page,
-                                  sizePerPage: pagingDetails.pageSize,
-                                  totalSize: numDecks
-                              })
+                                page: pagingDetails.page,
+                                sizePerPage: pagingDetails.pageSize,
+                                totalSize: numDecks
+                            })
                     }
                     filter={filterFactory()}
                     filterPosition='top'

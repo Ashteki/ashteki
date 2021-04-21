@@ -391,8 +391,7 @@ class PlayerInteractionWrapper {
         if (!promptButton) {
             throw new Error(
                 // eslint-disable-next-line prettier/prettier
-                `Couldn't click on "${text}" for ${
-                    this.player.name
+                `Couldn't click on "${text}" for ${this.player.name
                 }. Current prompt is:\n${this.formatPrompt()}`
             );
         }
@@ -458,52 +457,13 @@ class PlayerInteractionWrapper {
         this.checkUnserializableGameState();
     }
 
-    selectTrait(trait) {
-        let currentPrompt = this.player.currentPrompt();
-        let promptControl = currentPrompt.controls.find(
-            (control) => control.type.toString().toLowerCase() === 'trait-name'
-        );
-
-        if (!promptControl) {
-            throw new Error(
-                `Couldn't select a trait for ${
-                    this.player.name
-                }. Current prompt is:\n${this.formatPrompt()}`
-            );
-        }
-
-        this.game.menuButton(this.player.name, trait, promptControl.uuid, promptControl.method);
-        this.game.continue();
-        this.checkUnserializableGameState();
-    }
-
-    selectCardName(cardName) {
-        let currentPrompt = this.player.currentPrompt();
-        let promptControl = currentPrompt.controls.find(
-            (control) => control.type.toString().toLowerCase() === 'card-name'
-        );
-
-        if (!promptControl) {
-            throw new Error(
-                `Couldn't select a card name for ${
-                    this.player.name
-                }. Current prompt is:\n${this.formatPrompt()}`
-            );
-        }
-
-        this.game.menuButton(this.player.name, cardName, promptControl.uuid, promptControl.method);
-        this.game.continue();
-        this.checkUnserializableGameState();
-    }
-
     selectOption(option) {
         let currentPrompt = this.player.currentPrompt();
         let promptButton = currentPrompt.buttons.find((button) => button.arg === option);
 
         if (!promptButton) {
             throw new Error(
-                `Couldn't select an option for ${
-                    this.player.name
+                `Couldn't select an option for ${this.player.name
                 }. Current prompt is:\n${this.formatPrompt()}`
             );
         }
