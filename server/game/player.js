@@ -275,12 +275,15 @@ class Player extends GameObject {
 
     beginRound() {
         this.passedMain = false;
+        this.turn = 0;
     }
 
     beginTurn() {
         this.passedMain = false;
+        this.turn += 1;
         this.actions = { main: true, side: true };
         this.limitedPlayed = 0; // reset for my turn
+        this.game.addAlert('startofturn', `Turn ${this.turn} - {0}`, this);
     }
 
     endTurn() {
@@ -288,7 +291,6 @@ class Player extends GameObject {
         if (this.passedMain) {
             this.game.addAlert('info', '{0} PASSES their main action', this);
         }
-        this.turn += 1;
         this.limitedPlayed = 0; // reset for opponent's turn
     }
 
