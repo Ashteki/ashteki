@@ -48,6 +48,7 @@ describe('Summon Blood Puppet', function () {
             // Blood puppet is now on the battlefield
             expect(this.player1.inPlay.length).toBe(0);
             expect(this.player2.inPlay.length).toBe(1);
+            expect(this.bloodPuppet.controller.id).toBe('222');
 
             this.player1.endTurn();
             this.player2.clickCard(this.bloodPuppet);
