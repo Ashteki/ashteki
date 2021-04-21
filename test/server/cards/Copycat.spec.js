@@ -193,6 +193,8 @@ describe('Copycat', function () {
             this.player2.clickCard(this.empower);
             expect(this.summonMistSpirit.exhausted).toBe(false);
             expect(this.empower.exhausted).toBe(true);
+
+            expect(this.player1).toHaveDefaultPrompt;
         });
     });
 });
