@@ -24,6 +24,7 @@ class Resonance extends Card {
             effectArgs: (context) => context.target,
             then: {
                 target: {
+                    dieCondition: (die) => die.exhausted,
                     toSelect: 'die',
                     mode: 'upTo',
                     numDice: 2,
