@@ -756,7 +756,6 @@ class Game extends EventEmitter {
         this.playStarted = true;
         this.startedAt = new Date();
         this.round = 0;
-        this.turn = 1;
 
         this.continue();
     }
@@ -869,7 +868,6 @@ class Game extends EventEmitter {
     }
 
     beginTurn() {
-        this.addAlert('startofturn', `Turn ${this.turn} - {0}`, this.activePlayer);
         this.raiseEvent('onBeginTurn');
     }
 
@@ -935,7 +933,7 @@ class Game extends EventEmitter {
     /**
      * Creates an EventWindow which will open windows for each kind of triggered
      * ability which can respond any passed events, and execute their handlers.
-     * @param events
+     * @param event
      * @returns {EventWindow}
      */
     openEventWindow(event) {
@@ -1219,17 +1217,8 @@ class Game extends EventEmitter {
             card.endTurn();
         }
 
-        // this.addAlert('endofturn', `End of turn ${this.turn}`);
-
         if (this.activePlayer.opponent) {
             this.activePlayer = this.activePlayer.opponent;
-        }
-
-        if (
-            !this.activePlayer.opponent ||
-            this.activePlayer.turn === this.activePlayer.opponent.turn
-        ) {
-            this.turn++;
         }
 
         this.checkForTimeExpired();
@@ -1240,7 +1229,6 @@ class Game extends EventEmitter {
         this.cardsPlayed = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
-        this.turn = 1;
 
         for (let card of this.cardsInPlay) {
             card.endRound();
@@ -1301,19 +1289,19 @@ class Game extends EventEmitter {
         });
 
         return {
-            adaptive: this.adaptive,
-            finishedAt: this.finishedAt,
+            id: this.savedGameId,
             gameFormat: this.gameFormat,
             gameId: this.id,
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
-            id: this.savedGameId,
             players: players,
-            previousWinner: this.previousWinner,
             startedAt: this.startedAt,
-            swap: this.swap,
+            finishedAt: this.finishedAt,
+            round: this.round,
             winReason: this.winReason,
-            winner: this.winner ? this.winner.name : undefined
+            winner: this.winner ? this.winner.name : undefined,
+            swap: this.swap,
+            previousWinner: this.previousWinner
         };
     }
 

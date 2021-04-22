@@ -224,8 +224,20 @@ class InnerDeckEditor extends React.Component {
             case 'sympathy':
                 mgc = 'sympathy';
                 break;
+            case 'tim':
+            case 'time':
+                mgc = 'time';
+                break;
         }
-        let validMagics = ['charm', 'ceremonial', 'illusion', 'natural', 'divine', 'sympathy'];
+        let validMagics = [
+            'charm',
+            'ceremonial',
+            'illusion',
+            'natural',
+            'divine',
+            'sympathy',
+            'time'
+        ];
         let isValid = validMagics.includes(mgc);
         return isValid ? mgc : '';
     }

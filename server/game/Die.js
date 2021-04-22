@@ -1,4 +1,4 @@
-const { Magic } = require('../constants');
+const { Magic, BattlefieldTypes, CardType } = require('../constants');
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const { Costs } = require('./costs');
@@ -246,6 +246,27 @@ class Die extends PlayableObject {
                             }
                         }
                     }
+                });
+            case 'time':
+                return this.action({
+                    title: 'Time Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        controller: 'self',
+                        cardType: BattlefieldTypes,
+                        gameAction: this.game.actions.addStatusToken()
+                    },
+                    then: {
+                        target: {
+                            optional: true,
+                            controller: 'opponent',
+                            cardType: [...BattlefieldTypes, CardType.ReadySpell],
+                            cardCondition: (card) => card.status > 0,
+                            gameAction: this.game.actions.removeStatus()
+                        },
+                        message: '{0} then removes 1 status token from {2}'
+                    },
+                    message: '{0} uses {1} to add 1 status token to {2}'
                 });
         }
     }

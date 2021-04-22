@@ -179,6 +179,10 @@ class PlayerInteractionWrapper {
         return this.player.opponent;
     }
 
+    get turn() {
+        return this.player.turn;
+    }
+
     replaceLocalizedValues(title) {
         if (!title) {
             return null;
