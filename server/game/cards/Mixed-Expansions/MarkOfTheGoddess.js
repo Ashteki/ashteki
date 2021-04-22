@@ -15,6 +15,7 @@ class MarkOfTheGoddess extends Card {
                     cardCondition: (card) => !card.exhausted
                 },
                 victim: {
+                    dependsOn: 'source',
                     activePromptTitle: "Select another opponent's card to deal damage to",
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                     cardCondition: (card, context) =>
