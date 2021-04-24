@@ -148,6 +148,7 @@ class ChooseDefendersPrompt extends UiPrompt {
                     this.choosingPlayer,
                     this.selectedCard
                 );
+                this.game.checkGameState(true);
                 this.selectedCard = null;
                 this.clearSelection();
                 this.complete();

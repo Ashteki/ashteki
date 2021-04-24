@@ -126,6 +126,15 @@ describe('Beast tamer', function () {
             expect(this.ironWorker.attack).toBe(2);
         });
 
+        it('does not reduce attack as defender - unit PB guard', function () {
+            this.player1.endTurn();
+            this.player2.clickPrompt('Attack');
+            this.player2.clickCard(this.beastTamer); // target
+            this.player2.clickCard(this.ironWorker); // attacker
+            this.player1.clickCard(this.aradelSummergaard); // no guard
+            expect(this.aradelSummergaard.damage).toBe(2);
+        });
+
         it('check for destroyed units', function () {
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.ironWorker); // target
