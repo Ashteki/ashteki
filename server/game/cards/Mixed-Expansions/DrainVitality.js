@@ -13,12 +13,16 @@ class DrainVitality extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
             target: {
+                activePromptTitle: 'Choose a card to damage',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage()
             },
             then: {
-                cardType: BattlefieldTypes,
-                gameAction: ability.actions.removeDamage()
+                target: {
+                    activePromptTitle: 'Choose a card to remove damage',
+                    cardType: BattlefieldTypes,
+                    gameAction: ability.actions.removeDamage()
+                }
             }
         });
 
@@ -35,8 +39,10 @@ class DrainVitality extends Card {
                 gameAction: ability.actions.removeStatus()
             },
             then: {
-                cardType: BattlefieldTypes,
-                gameAction: ability.actions.addStatusToken()
+                target: {
+                    cardType: BattlefieldTypes,
+                    gameAction: ability.actions.addStatusToken()
+                }
             }
         });
     }
