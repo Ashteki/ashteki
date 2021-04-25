@@ -18,10 +18,12 @@ class Encore extends Card {
                     activePromptTitle: 'Choose where to return it to',
                     choices: {
                         Top: this.game.actions.returnToDeck((context) => ({
+                            reveal: true,
                             target: context.targets.myCard,
                             shuffle: false
                         })),
                         Bottom: this.game.actions.returnToDeck((context) => ({
+                            reveal: true,
                             bottom: true,
                             target: context.targets.myCard,
                             shuffle: false
