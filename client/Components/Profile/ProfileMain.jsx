@@ -48,6 +48,7 @@ const ProfileMain = ({ user, formProps }) => {
                 <Form.Group as={Col} md='6' controlId='formGridUsername'>
                     <Form.Label>{t('Username')}</Form.Label>
                     <Form.Control
+                        readOnly
                         name='username'
                         type='text'
                         placeholder={t('Enter a username')}
