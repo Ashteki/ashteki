@@ -8,9 +8,17 @@ class GoldenVeil extends Card {
             when: {
                 onAbilityInitiated: (event, context) =>
                     event.context.player === context.player.opponent &&
-                    Object.values(event.context.targets).some(
+                    (Object.values(event.context.targets).some(
                         (t) => t.controller === context.player && BattlefieldTypes.includes(t.type)
-                    )
+                    ) ||
+                        // it's targetting one of my units without using context.targets -e.g. rins fury or any multi-targets thenAbility
+                        event.context.ability.gameAction.some((g) =>
+                            g.target.some(
+                                (t) =>
+                                    BattlefieldTypes.includes(t.type) &&
+                                    t.controller === context.player
+                            )
+                        ))
             },
             effect: 'cancel the {1} ability',
             effectArgs: (context) => context.event.context.ability.title,
