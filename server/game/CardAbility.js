@@ -80,6 +80,10 @@ class CardAbility extends ThenAbility {
             context.source
         ];
 
+        if (this.properties.shortMessage) {
+            return messageArgs;
+        }
+
         // effectMessage: Player1 plays Assassination
         if (effectMessage) {
             if (extraArgs) {
