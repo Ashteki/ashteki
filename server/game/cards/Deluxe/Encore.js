@@ -4,7 +4,6 @@ class Encore extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Encore',
-            effect: 'deal 1 damage to all units',
             targets: {
                 myCard: {
                     activePromptTitle: 'Select a card to return to your deck',
@@ -19,10 +18,12 @@ class Encore extends Card {
                     activePromptTitle: 'Choose where to return it to',
                     choices: {
                         Top: this.game.actions.returnToDeck((context) => ({
+                            reveal: true,
                             target: context.targets.myCard,
                             shuffle: false
                         })),
                         Bottom: this.game.actions.returnToDeck((context) => ({
+                            reveal: true,
                             bottom: true,
                             target: context.targets.myCard,
                             shuffle: false

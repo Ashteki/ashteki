@@ -361,6 +361,10 @@ class PlayerInteractionWrapper {
         this.game.selectDeck(this.player.name, deck);
     }
 
+    removeFillerCards() {
+        this.player.deck = this.deck.filter((c) => c.id !== 'open-memories');
+    }
+
     clickAttack(target) {
         this.clickPrompt('Attack');
         this.clickCard(target);

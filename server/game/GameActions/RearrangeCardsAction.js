@@ -88,21 +88,26 @@ class RearrangeCardsAction extends PlayerAction {
                 context: context
             },
             (event) => {
-                const subject = this.reveal ? '{1} ' : 'a card ';
-                if (this.purgeType === 'bottom') {
-                    player.deck.push(...this.purgeCards);
-                    const bottomMessage = '{0} returns ' + subject + 'to the bottom of the deck';
-                    context.game.addMessage(bottomMessage, context.player, event.purgeCards);
+                if (this.purge > 0) {
+                    const subject = this.reveal ? '{1} ' : 'a card ';
+                    if (this.purgeType === 'bottom') {
+                        player.deck.push(...this.purgeCards);
+                        const bottomMessage = '{0} returns ' + subject + 'to the bottom of the deck';
+                        context.game.addMessage(bottomMessage, context.player, event.purgeCards);
+                    } else {
+                        context.game.actions.purge().resolve(event.purgeCards, context);
+                        const purgeMessage = '{0} removes ' + subject + 'from the game';
+                        context.game.addMessage(purgeMessage, context.player, event.purgeCards);
+                    }
+                    context.game.addMessage(
+                        'Remaining cards return in chosen order to the top of the deck'
+                    );
                 } else {
-                    context.game.actions.purge().resolve(event.purgeCards, context);
-                    const purgeMessage = '{0} removes ' + subject + 'from the game';
-                    context.game.addMessage(purgeMessage, context.player, event.purgeCards);
+                    context.game.addMessage(
+                        'All cards return in chosen order to the top of the deck'
+                    );
                 }
-
                 player.deck.splice(0, this.amount, ...this.orderedCards);
-                context.game.addMessage(
-                    'Remaining cards are returned as ordered to the top of the deck'
-                );
             }
         );
     }
