@@ -235,12 +235,14 @@ class Die extends PlayableObject {
                                 choices: {
                                     Top: this.game.actions.returnToDeck((context) => ({
                                         target: context.targets.myCard,
-                                        shuffle: false
+                                        shuffle: false,
+                                        reveal: false
                                     })),
                                     Bottom: this.game.actions.returnToDeck((context) => ({
                                         bottom: true,
                                         target: context.targets.myCard,
-                                        shuffle: false
+                                        shuffle: false,
+                                        reveal: false
                                     }))
                                 }
                             }
