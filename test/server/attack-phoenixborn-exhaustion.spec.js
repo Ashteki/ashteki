@@ -63,6 +63,7 @@ describe('During attack on Phoenixborn', function () {
 
         it('side effect exhaustion of attacker removes their attack', function () {
             expect(this.ironWorker.damage).toBe(0); // will check damage from mist spirit
+            expect(this.ironRhino.exhaustion).toBe(0);
 
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.aradelSummergaard); // target pb
@@ -84,6 +85,7 @@ describe('During attack on Phoenixborn', function () {
             expect(this.nightshadeSwallow.isInPlay).toBe(false); // killed by ironWorker
             expect(this.ironRhino.exhausted).toBe(true); // ability
             expect(this.ironWorker.exhausted).toBe(true); // attacked
+            expect(this.ironRhino.exhaustion).toBe(1); // don't double exhaust
 
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.aradelSummergaard.damage).toBe(0); // no damage
