@@ -28,7 +28,7 @@ class Server {
 
         this.userService = new UserService(this.configService);
         this.isDeveloping = isDeveloping;
-        this.server = http.Server(app);
+        this.server = http.createServer(app);
     }
 
     init(options) {

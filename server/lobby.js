@@ -36,8 +36,11 @@ class Lobby {
 
         this.userService.on('onBlocklistChanged', this.onBlocklistChanged.bind(this));
 
-        this.io = options.io || socketio(server, { perMessageDeflate: false });
-        this.io.set('heartbeat timeout', 30000);
+        this.io = options.io || new socketio.Server(server, {
+
+        });
+
+        // this.io.set('heartbeat timeout', 30000);
         this.io.use(this.handshake.bind(this));
         this.io.on('connection', this.onConnection.bind(this));
 
@@ -866,11 +869,11 @@ class Lobby {
         let newMotd =
             motd && motd.message
                 ? {
-                      message: motd.message,
-                      motdType: motd.motdType,
-                      type: 'motd',
-                      time: new Date()
-                  }
+                    message: motd.message,
+                    motdType: motd.motdType,
+                    type: 'motd',
+                    time: new Date()
+                }
                 : {};
 
         this.messageService
@@ -1028,7 +1031,7 @@ class Lobby {
         this.clearGamesForNode(nodeName);
     }
 
-    onWorkerStarted() {}
+    onWorkerStarted() { }
 
     onClearSessions(socket, username) {
         this.userService.clearUserSessions(username).then((success) => {
