@@ -90,6 +90,8 @@ class BattleStep extends BaseStepWithPipeline {
                 .resolve(battle.guard, this.game.getFrameworkContext(this.game.activePlayer));
         }
 
+        // don't exhaust any participants that have been exhausted mid-battle
+        participants = participants.filter((p) => p && !p.exhausted);
         this.game.actions
             .exhaust()
             .resolve(participants, this.game.getFrameworkContext(this.game.activePlayer));

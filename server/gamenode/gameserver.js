@@ -77,18 +77,22 @@ class GameServer {
 
         const corsOrigin = this.configService.getValueForSection('gameNode', 'origin');
         if (corsOrigin) {
-            options.origins = corsOrigin;
+            options.cors = {
+                origin: corsOrigin,
+                methods: ['GET', 'POST'],
+                // allowedHeaders: ["my-custom-header"],
+                credentials: true
+            };
         }
 
         options.path = '/' + (process.env.SERVER || nodeName) + '/socket.io';
 
         logger.info(
-            `Listening on 0.0.0.0:${process.env.PORT || socketioPort}/${
-                process.env.SERVER || nodeName
+            `Listening on 0.0.0.0:${process.env.PORT || socketioPort}/${process.env.SERVER || nodeName
             }/socket.io`
         );
 
-        this.io = socketio(server, options);
+        this.io = new socketio.Server(server, options);
         this.io.use(this.handshake.bind(this));
 
         this.io.on('connection', this.onConnection.bind(this));

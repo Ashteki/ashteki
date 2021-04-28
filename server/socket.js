@@ -16,6 +16,7 @@ class Socket extends EventEmitter {
         socket.on('error', this.onError.bind(this));
         socket.on('authenticate', this.onAuthenticate.bind(this));
         socket.on('disconnect', this.onDisconnect.bind(this));
+        socket.on('ping', this.onPing.bind(this));
     }
 
     get id() {
@@ -78,6 +79,10 @@ class Socket extends EventEmitter {
 
     onError(err) {
         logger.info(`Socket.IO error: ${err}. Socket ID ${this.socket.id}`);
+    }
+
+    onPing(cb) {
+        if (typeof cb === 'function') cb();
     }
 }
 

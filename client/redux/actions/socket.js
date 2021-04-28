@@ -158,10 +158,6 @@ export function connectLobby() {
 
         dispatch(lobbyConnecting(socket));
 
-        socket.on('pong', (responseTime) => {
-            dispatch(responseTimeReceived(responseTime));
-        });
-
         socket.on('connect', () => {
             dispatch(lobbyConnected());
         });
@@ -206,5 +202,17 @@ export function connectLobby() {
         socket.on('removemessage', (messageId, deletedBy) => {
             dispatch(lobbyMessageReceived('removemessage', messageId, deletedBy));
         });
+
+        setInterval(() => {
+            if (!getState().lobby.currentGame?.started) {
+                const start = Date.now();
+
+                // volatile, so the packet will be discarded if the socket is not connected
+                socket.volatile.emit('ping', () => {
+                    const latency = Date.now() - start;
+                    dispatch(responseTimeReceived(latency));
+                });
+            }
+        }, 10000);
     };
 }

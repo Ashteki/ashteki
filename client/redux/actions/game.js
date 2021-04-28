@@ -136,10 +136,6 @@ export function connectGameSocket(url, name) {
             query: state.auth.token ? 'token=' + state.auth.token : undefined
         });
 
-        gameSocket.on('pong', (responseTime) => {
-            dispatch(responseTimeReceived(responseTime));
-        });
-
         dispatch(gameSocketConnecting(url + '/' + name, gameSocket));
 
         gameSocket.on('connect', () => {
@@ -190,6 +186,18 @@ export function connectGameSocket(url, name) {
         gameSocket.on('cleargamestate', () => {
             dispatch(clearGameState());
         });
+
+        setInterval(() => {
+            if (getState().lobby.currentGame?.started) {
+                const start = Date.now();
+
+                // volatile, so the packet will be discarded if the socket is not connected
+                gameSocket.volatile.emit('ping', () => {
+                    const latency = Date.now() - start;
+                    dispatch(responseTimeReceived(latency));
+                });
+            }
+        }, 10000);
     };
 }
 

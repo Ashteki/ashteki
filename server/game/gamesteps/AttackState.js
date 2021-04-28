@@ -37,6 +37,7 @@ class AttackState {
             // can remove attackers (whole battle)
             if (b.attacker === card) {
                 card.isAttacker = false;
+                b.attacker = null;
                 this.battles = this.battles.filter((bf) => bf !== b);
                 return;
             }
