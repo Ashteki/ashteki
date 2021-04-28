@@ -128,7 +128,7 @@
         "react-draggable": "^3.3.2",
         "react-google-recaptcha": "^2.1.0",
         "react-i18next": "^10.13.2",
-        "react-redux": "^7.2.3",
+        "react-redux": "^7.2.4",
         "react-redux-toastr": "^7.6.5",
         "react-select": "^4.3.0",
         "react-transition-group": "^4.4.1",
