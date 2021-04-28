@@ -8,7 +8,7 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
     const [showDieMenu, setShowDieMenu] = useState(false);
 
     let diceFont = 'phg-basic-magic';
-    let description = 'basic die';
+    let description = die.magic ? die.magic + ' basic' : 'basic die';
 
     if (die.magic && die.level && die.level !== 'basic') {
         diceFont = `phg-${die.magic}-${die.level}`;
