@@ -319,6 +319,16 @@ class Card extends PlayableObject {
         );
     }
 
+    overkill(amount) {
+        return this.afterDestroysFighting({
+            autoResolve: true,
+            gameAction: AbilityDsl.actions.dealDamage((context) => ({
+                amount: amount,
+                target: context.player.opponent.phoenixborn
+            }))
+        });
+    }
+
     entersPlay(properties) {
         return this.forcedReaction(
             Object.assign(
