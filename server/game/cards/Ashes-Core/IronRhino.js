@@ -7,13 +7,7 @@ class IronRhino extends Card {
         });
 
         // overkill 2
-        this.afterDestroysFighting({
-            autoResolve: true,
-            gameAction: ability.actions.dealDamage((context) => ({
-                amount: 2,
-                target: context.player.opponent.phoenixborn
-            }))
-        });
+        this.overkill(2);
     }
 }
 
