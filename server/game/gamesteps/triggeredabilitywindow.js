@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const { BluffAbilityTypes } = require('../../constants.js');
 
 const ForcedTriggeredAbilityWindow = require('./forcedtriggeredabilitywindow.js');
 const TriggeredAbilityWindowTitles = require('./triggeredabilitywindowtitles.js');
@@ -28,12 +29,12 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
 
     filterChoices() {
         // If both players have passed, close the window
-        if (this.complete) {
+        if (this.complete || !this.currentPlayer) {
             return true;
         }
 
         // remove any choices which involve the current player canceling their own abilities
-        if (this.abilityType === 'cancelinterrupt') {
+        if (BluffAbilityTypes.includes(this.abilityType)) {
             this.choices = this.choices.filter(
                 (context) =>
                     !(
@@ -92,27 +93,19 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
 
     // eslint-disable-next-line no-unused-vars
     showBluffPrompt(player) {
-        return false;
-        // Show a bluff prompt if the player has an event which could trigger (but isn't in their hand) and that setting
-        // if (
-        //     player.timerSettings.eventsInDeck &&
-        //     this.choices.some((context) => context.player === player)
-        // ) {
-        //     return true;
-        // }
-
-        // // Show a bluff prompt if we're in Step 6, the player has the approriate setting, and there's an event for the other player
-        // return (
-        //     this.abilityType === 'cancelinterrupt' &&
-        //     player.timerSettings.events &&
-        //     _.any(
-        //         this.events,
-        //         (event) =>
-        //             event.name === 'onCardAbilityInitiated' &&
-        //             event.card.type === 'event' &&
-        //             event.context.player !== player
-        //     )
-        // );
+        // Show a bluff prompt if we're in Step 6, the player has the approriate setting, and there's an event for the other player
+        return (
+            BluffAbilityTypes.includes(this.abilityType) &&
+            // player.timerSettings.events && // not sure what this does
+            _.any(
+                this.events,
+                (event) =>
+                    event.name === 'onCardEntersPlay' &&
+                    this.abilityType === 'reaction' &&
+                    event.context && event.context.player !== player
+                // event.card.type === 'event' &&
+            )
+        );
     }
 
     promptWithBluffPrompt(player) {
@@ -121,7 +114,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             waitingPromptTitle: 'Waiting for opponent',
             activePrompt: {
                 promptTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
-                controls: this.getPromptControls(),
+                controls: this.getPromptControls(this.events),
                 buttons: [
                     { timer: true, method: 'pass' },
                     { text: 'I need more time', timerCancel: true },
