@@ -149,6 +149,10 @@ export class GameBoard extends React.Component {
         this.props.sendGameMessage('toggleOptionSetting', option, value);
     }
 
+    onTimerExpired(uuid) {
+        this.props.sendGameMessage('menuButton', null, uuid, 'pass');
+    }
+
     onMuteClick() {
         this.props.sendGameMessage('toggleMuteSpectators');
     }
@@ -433,6 +437,7 @@ export class GameBoard extends React.Component {
                                     onButtonClick={this.onCommand}
                                     onMouseOver={this.onMouseOver}
                                     onMouseOut={this.onMouseOut}
+                                    onTimerExpired={this.onTimerExpired.bind(this)}
                                     user={this.props.user}
                                     phase={thisPlayer.phase}
                                 />

@@ -35,6 +35,7 @@ class ActivePlayerPrompt extends React.Component {
             this.props.onButtonClick(command, arg, uuid, method);
         }
     }
+
     onCancelTimerClick(event, button) {
         event.preventDefault();
 
@@ -114,6 +115,7 @@ class ActivePlayerPrompt extends React.Component {
 
         for (const button of this.props.buttons) {
             if (button.timer) {
+                this.timerUuid = button.uuid;
                 continue;
             }
 
@@ -274,7 +276,7 @@ class ActivePlayerPrompt extends React.Component {
             }
 
             this.timer.started = new Date();
-            this.timer.timerTime = 100; //newProps.user.settings.windowTimer;
+            this.timer.timerTime = 5; //Math.floor(Math.random() * 3) + 2; //newProps.user.settings.windowTimer;
 
             let handle = setInterval(() => {
                 let now = new Date();
@@ -289,7 +291,7 @@ class ActivePlayerPrompt extends React.Component {
                     this.setState({ timerHandle: undefined });
 
                     if (newProps.onTimerExpired) {
-                        newProps.onTimerExpired();
+                        newProps.onTimerExpired(this.timerUuid);
                     }
                 }
 
@@ -363,8 +365,8 @@ class ActivePlayerPrompt extends React.Component {
 
         return (
             <Panel title={this.props.t(this.props.phase + ' phase')} titleClass='phase-indicator'>
-                {timer}
                 {promptTitle}
+                {timer}
                 <div className='menu-pane'>
                     <h4>{promptTexts}</h4>
                     {this.getDice()}
@@ -386,6 +388,7 @@ ActivePlayerPrompt.propTypes = {
     onButtonClick: PropTypes.func,
     onMouseOut: PropTypes.func,
     onMouseOver: PropTypes.func,
+    onTimerExpired: PropTypes.func,
     onTitleClick: PropTypes.func,
     phase: PropTypes.string,
     promptText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),

@@ -100,12 +100,15 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             _.any(
                 this.events,
                 (event) =>
-                    event.name === 'onCardEntersPlay' &&
-                    this.abilityType === 'reaction' &&
+                    this.eventCanTriggerReaction(event) &&
                     event.context && event.context.player !== player
                 // event.card.type === 'event' &&
             )
         );
+    }
+
+    eventCanTriggerReaction(event) {
+        return (event.name === 'onCardEntersPlay' && this.abilityType === 'reaction');
     }
 
     promptWithBluffPrompt(player) {
@@ -113,17 +116,18 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             source: 'Triggered Abilities',
             waitingPromptTitle: 'Waiting for opponent',
             activePrompt: {
-                promptTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
+                promptTitle: 'BLUFF Delay',
+                menuTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
                 controls: this.getPromptControls(this.events),
                 buttons: [
                     { timer: true, method: 'pass' },
-                    { text: 'I need more time', timerCancel: true },
-                    {
-                        text: "Don't ask again until end of round",
-                        timerCancel: true,
-                        method: 'pass',
-                        arg: 'pauseRound'
-                    },
+                    { text: 'Wait', timerCancel: true },
+                    // {
+                    //     text: "Don't ask again until end of round",
+                    //     timerCancel: true,
+                    //     method: 'pass',
+                    //     arg: 'pauseRound'
+                    // },
                     { text: 'Pass', method: 'pass' }
                 ]
             }
