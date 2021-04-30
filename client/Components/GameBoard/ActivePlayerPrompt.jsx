@@ -114,7 +114,7 @@ class ActivePlayerPrompt extends React.Component {
 
         for (const button of this.props.buttons) {
             if (button.timer) {
-                return;
+                continue;
             }
 
             const originalButtonText = this.localizedText(button.card, button.text, button.values);
@@ -245,19 +245,19 @@ class ActivePlayerPrompt extends React.Component {
     //         newState.timeLeft !== this.state.timeLeft || newState.timerClass !== this.state.timerClass;
     // }
 
-    // buttonsAreEqual(oldButtons, newButtons) {
-    //     if (!oldButtons || !newButtons || oldButtons.length !== newButtons.length) {
-    //         return false;
-    //     }
+    buttonsAreEqual(oldButtons, newButtons) {
+        if (!oldButtons || !newButtons || oldButtons.length !== newButtons.length) {
+            return false;
+        }
 
-    //     for (let i = 0; i < oldButtons.length; ++i) {
-    //         if (!_.isEqual(oldButtons[i], newButtons[i])) {
-    //             return false;
-    //         }
-    //     }
+        for (let i = 0; i < oldButtons.length; ++i) {
+            if (!_.isEqual(oldButtons[i], newButtons[i])) {
+                return false;
+            }
+        }
 
-    //     return true;
-    // }
+        return true;
+    }
 
     UNSAFE_componentWillUpdate(newProps, newState) {
         if (_.difference(newProps.buttons, this.props.buttons).length === 0) {
@@ -274,7 +274,7 @@ class ActivePlayerPrompt extends React.Component {
             }
 
             this.timer.started = new Date();
-            this.timer.timerTime = 10000; //newProps.user.settings.windowTimer;
+            this.timer.timerTime = 100; //newProps.user.settings.windowTimer;
 
             let handle = setInterval(() => {
                 let now = new Date();
