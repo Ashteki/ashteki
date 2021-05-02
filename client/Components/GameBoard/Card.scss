@@ -127,6 +127,10 @@
     overflow: hidden;
     z-index: $layer-cards;
 
+    &:hover{
+        z-index: 200;
+    }
+    
     &.small {
         &.vertical {
             height: $keyteki-card-sm-height;

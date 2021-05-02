@@ -56,10 +56,18 @@ class Card extends PlayableObject {
         this.childCards = [];
         this.clonedNeighbors = null;
 
-        this.printedAttack = cardData.attack ? (cardData.attack == 'X' ? 0 : cardData.attack) : 0;
-        this.printedLife = cardData.life ? (cardData.life == 'X' ? 0 : cardData.life) : 0;
+        this.printedAttack = cardData.attack
+            ? typeof cardData.attack === 'string'
+                ? 0
+                : cardData.attack
+            : 0;
+        this.printedLife = cardData.life
+            ? typeof cardData.life === 'string'
+                ? 0
+                : cardData.life
+            : 0;
         this.printedRecover = cardData.recover
-            ? cardData.recover == 'X'
+            ? typeof cardData.recover === 'string'
                 ? 0
                 : cardData.recover
             : 0;
@@ -621,7 +629,7 @@ class Card extends PlayableObject {
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedLifeEffect = this.mostRecentEffect('setPrintedLife');
         const printedLife = copyEffect ? copyEffect.life : printedLifeEffect || this.printedLife;
-        return printedLife + this.sumEffects('modifyLife');
+        return Math.max(0, printedLife + this.sumEffects('modifyLife'));
     }
 
     get recover() {
