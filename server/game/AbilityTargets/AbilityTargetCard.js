@@ -75,6 +75,12 @@ class AbilityTargetCard {
             return;
         }
 
+        if (this.properties.autoTarget) {
+            const autoTargets = this.properties.autoTarget(context);
+            this.setSelectedCard(context, autoTargets);
+            return;
+        }
+
         if (this.random) {
             const cardList = this.selector.findPossibleCards(context);
             let amount = Math.min(this.selector.numCards, cardList.length);
@@ -110,10 +116,7 @@ class AbilityTargetCard {
             selector: this.selector,
             buttons: buttons,
             onSelect: (player, card) => {
-                context.targets[this.name] = card;
-                if (this.name === 'target') {
-                    context.target = card;
-                }
+                this.setSelectedCard(context, card);
 
                 return true;
             },
@@ -136,6 +139,13 @@ class AbilityTargetCard {
         }
 
         context.game.promptForSelect(player, Object.assign(promptProperties, otherProperties));
+    }
+
+    setSelectedCard(context, card) {
+        context.targets[this.name] = card;
+        if (this.name === 'target') {
+            context.target = card;
+        }
     }
 
     checkTarget(context) {

@@ -12,9 +12,10 @@ describe('Golden Veil', function () {
                         'illusion',
                         'charm',
                         'sympathy',
-                        'sympathy'
+                        'sympathy',
+                        'divine'
                     ],
-                    hand: ['molten-gold', 'fade-away', 'river-skald']
+                    hand: ['molten-gold', 'fade-away', 'river-skald', 'mist-typhoon', 'kneel']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
@@ -37,6 +38,33 @@ describe('Golden Veil', function () {
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.moltenGold.location).toBe('discard');
+        });
+
+        it('cannot cancel mist typhoon AoE - no target', function () {
+            this.player1.clickCard(this.mistTyphoon);
+            this.player1.clickPrompt('Play this action');
+
+            expect(this.player2).not.toHavePrompt('Any Interrupts to mist Typhoon?');
+            expect(this.player2).not.toBeAbleToSelect(this.goldenVeil);
+
+            this.player1.clickYes(); // draw a card
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.hammerKnight.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.mistTyphoon.location).toBe('discard');
+        });
+
+        it('cannot cancel kneel - no target', function () {
+            this.player1.clickCard(this.kneel);
+            this.player1.clickPrompt('Play this action');
+
+            expect(this.player2).not.toHavePrompt('Any Interrupts to Kneel?');
+            expect(this.player2).not.toBeAbleToSelect(this.goldenVeil);
+
+            expect(this.hammerKnight.exhaustion).toBe(1);
+            expect(this.hammerKnight.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.kneel.location).toBe('discard');
         });
 
         it('cancels natural dice power', function () {
@@ -146,6 +174,7 @@ describe('Golden Veil', function () {
             this.player2.clickDie(0);
             this.player2.clickDie(1);
             this.player2.clickDone(); // wants to destroy ironWorker
+            // this.player2.clickCard(this.ironWorker);
             expect(this.player1).not.toHaveDefaultPrompt();
             expect(this.player1).toBeAbleToSelect(this.goldenVeil);
             this.player1.clickCard(this.goldenVeil); // prevent ironWorker destruction

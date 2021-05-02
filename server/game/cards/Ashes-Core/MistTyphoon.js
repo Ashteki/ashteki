@@ -3,6 +3,7 @@ const Card = require('../../Card.js');
 class MistTyphoon extends Card {
     setupCardAbilities(ability) {
         this.play({
+            title: 'Mist Typhoon',
             effect: 'deal 1 damage to all opponents units',
             gameAction: ability.actions.dealDamage((context) => ({
                 amount: 1,
