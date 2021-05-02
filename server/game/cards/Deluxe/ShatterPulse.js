@@ -6,7 +6,7 @@ class ShatterPulse extends Card {
         this.reaction({
             when: {
                 onCardDestroyed: (event, context) =>
-                    event.card.controller == context.player && // it's mine
+                    event.clone.controller == context.player && // it's mine
                     BattlefieldTypes.includes(event.card.type) // it's a unit
             },
             target: {
