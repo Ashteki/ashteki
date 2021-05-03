@@ -19,10 +19,10 @@ class Meteor extends Card {
                     return {
                         message: '{0} paid {3} so deals {4} extra damage to all units',
                         messageArgs: [diceCost, numLions],
-                        gameAction: ability.actions.dealDamage({
+                        gameAction: ability.actions.dealDamage((context) => ({
                             amount: numLions,
                             target: context.game.unitsInPlay
-                        })
+                        }))
                     };
             }
         });
