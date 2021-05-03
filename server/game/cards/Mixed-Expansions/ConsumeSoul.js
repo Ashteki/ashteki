@@ -6,7 +6,7 @@ class ConsumeSoul extends Card {
         this.reaction({
             when: {
                 onCardDestroyed: (event, context) =>
-                    event.card.controller == context.player.opponent && // opponent controls
+                    event.clone.controller == context.player.opponent && // opponent controls
                     BattlefieldTypes.includes(event.card.type) && // a unit
                     event.damageEvent && // defensive for the attack test
                     event.damageEvent.fightEvent && // its an attack

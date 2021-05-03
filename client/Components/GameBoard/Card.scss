@@ -104,6 +104,22 @@
     }
 }
 
+// @keyframes new-card {
+//     0% {
+//         box-shadow: 0 0 1px 2px  rgba(theme-color('info'), 0.7),
+//         10px 10px 10px 5px   rgba(theme-color('info'), 0.7),
+//         -10px -10px 10px 5px   rgba(theme-color('info'), 0.7),
+//         0 0 15px 10px   rgba(theme-color('info'), 0.7)
+//     }
+//     100% {
+//         box-shadow: 
+//         0 0 0px 2px  rgba(theme-color('info'), 1),
+//         0px 0px 0px 0px rgba(theme-color('info'), 1),
+//         0px 0px 0px 0px   rgba(theme-color('info'), 1),
+//         0 0 0px 0px   rgba(theme-color('info'), 1)
+//     }
+// }
+
 .game-card {
     position: relative;
     border-radius: 4px;
@@ -111,6 +127,10 @@
     overflow: hidden;
     z-index: $layer-cards;
 
+    &:hover{
+        z-index: 200;
+    }
+    
     &.small {
         &.vertical {
             height: $keyteki-card-sm-height;
@@ -196,7 +216,8 @@
     }
 
     &.new {
-        box-shadow: 0 0 1px 2px theme-color('info');
+        box-shadow: 0 0 0px 2px rgb(255,215,0);
+        animation: new-card 1s cubic-bezier(0.5,1,0.5,1) forwards;
     }
 
     &.controlled {

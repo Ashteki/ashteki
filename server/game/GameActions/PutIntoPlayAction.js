@@ -59,9 +59,9 @@ class PutIntoPlayAction extends CardGameAction {
                 card.updateEffectContexts();
             }
 
-            if (event.context.game.lastCardPlayed !== card) {
-                event.context.game.cardPlayed(card);
-            }
+            // if (event.context.game.lastCardPlayed !== card) {
+            event.context.game.cardPlayed(card);
+            // }
         });
     }
 }
