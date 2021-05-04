@@ -5,7 +5,7 @@ const DiceCount = require('../../DiceCount.js');
 class SummonTimeHopper extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Summon Winged Lioness',
+            title: 'Summon Time Hopper',
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
@@ -22,7 +22,7 @@ class SummonTimeHopper extends Card {
             then: {
                 condition: (context) =>
                     context.source.focus > 0 &&
-                    context.player.unitInPlay.some(
+                    context.player.unitsInPlay.some(
                         (c) => c.id === 'time-hopper' && c.status > 0 && !c.exhausted
                     ),
                 target: {
