@@ -1,7 +1,7 @@
 const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
-class SquallStallion extends Card {
+class TimeHopper extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
             target: {
@@ -19,6 +19,6 @@ class SquallStallion extends Card {
     }
 }
 
-SquallStallion.id = 'squall-stallion';
+TimeHopper.id = 'time-hopper';
 
-module.exports = SquallStallion;
+module.exports = TimeHopper;

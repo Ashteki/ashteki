@@ -15,7 +15,7 @@ describe('Summon Squall Stallion', function () {
         });
     });
 
-    it('should place a shadow spirit into play', function () {
+    it('should place a squall stallion into play', function () {
         this.player1.clickCard(this.summonSquallStallion);
         this.player1.clickPrompt('Summon Squall Stallion');
         this.player1.clickDie(0);

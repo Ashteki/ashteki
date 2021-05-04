@@ -53,9 +53,13 @@ describe('Summon Time Hopper', function () {
             this.player1.clickCard(this.summonTimeHopper);
             this.player1.clickPrompt('Summon Time Hopper');
             this.player1.clickCard(this.player1.archives[0]);
+            // add a status token
+            this.player1.clickDone();
             this.player1.clickCard(this.player1.archives[0]); // second hopper
+            this.player1.clickDone();
 
             expect(this.player1.inPlay.length).toBe(3);
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
