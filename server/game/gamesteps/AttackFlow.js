@@ -19,9 +19,10 @@ class AttackFlow extends BaseStepWithPipeline {
         steps = steps.concat([
             new SimpleStep(this.game, () => this.declareAttackers()),
             new SimpleStep(this.game, () => this.game.attackState.pruneBattles()),
-            // new SimpleStep(this.game, () => this.payAttackCost(this.attackingPlayer)),
             new ChooseDefendersPrompt(this.game, this.attack),
-
+            new SimpleStep(this.game, () =>
+                this.game.raiseEvent('onDefendersDeclared', { attack: this.attack })
+            ),
             new SimpleStep(this.game, () => {
                 // will not queue if no attackers selected (no battles)
                 this.attack.battles.forEach(() => {
