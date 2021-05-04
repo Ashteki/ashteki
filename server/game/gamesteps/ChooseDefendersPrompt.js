@@ -29,7 +29,9 @@ class ChooseDefendersPrompt extends UiPrompt {
 
     continue() {
         // skip if no attackers
-        let attackers = this.attack.battles.map((b) => b.attacker);
+        let attackers = this.attack.battles
+            .filter((b) => !b.attacker.exhausted)
+            .map((b) => b.attacker);
         if (attackers.length === 0) return true;
 
         if (!this.isComplete()) {
