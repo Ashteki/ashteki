@@ -4,6 +4,7 @@ class Biter extends Card {
     setupCardAbilities(ability) {
         this.unitGuard();
 
+        // rooted
         this.persistentEffect({
             effect: ability.effects.cardCannot('attack')
         });
