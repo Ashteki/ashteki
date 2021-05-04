@@ -24,6 +24,7 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
                 this.bid[key] = 0;
             }
         }
+        this.source = properties.source;
     }
 
     completionCondition(player) {
@@ -61,12 +62,13 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
 
                     // after draw, and damage if unable then deal damage for the remainder
                     if (this.remainderDamages && this.remainder[player.uuid] > 0) {
+                        const sourceController = this.source ? this.source.controller : null;
                         this.game.actions
                             .dealDamage({
                                 amount: this.remainder[player.uuid],
                                 target: player.phoenixborn
                             })
-                            .resolve(player, this.game.getFrameworkContext());
+                            .resolve(player, this.game.getFrameworkContext(sourceController));
 
                         this.game.addMessage(
                             '{0} receives {1} damage',

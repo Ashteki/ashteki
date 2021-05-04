@@ -5,8 +5,8 @@ describe('Sympathy pain reaction spell', function () {
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['flute-mage', 'hammer-knight'],
-                    spellboard: ['chant-of-revenge'],
-                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    spellboard: ['chant-of-revenge', 'abundance'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'illusion'],
                     hand: ['cover', 'molten-gold']
                 },
                 player2: {
@@ -56,6 +56,20 @@ describe('Sympathy pain reaction spell', function () {
             this.player2.clickCard(this.hammerKnight); // redirect damage to hammerKnight
 
             expect(this.hammerKnight.damage).toBe(2);
+        });
+
+        it('can be played when my phoenixborn takes damage from abundance', function () {
+            this.player1.clickCard(this.abundance);
+            this.player1.clickPrompt('Abundance');
+            // draw refused - player 2 PB takes damage
+            this.player2.clickPrompt('0');
+            // this.player1.clickPrompt('2');
+
+            expect(this.player2).toBeAbleToSelect(this.sympathyPain);
+            this.player2.clickCard(this.sympathyPain); // click sym pain to play as reaction
+            this.player2.clickDie(3);
+
+            expect(this.coalRoarkwin.damage).toBe(2);
         });
 
         it('should not be played when phoenixborn is dead :)', function () {

@@ -19,7 +19,8 @@ class Abundance extends Card {
                     remainderDamages: true,
                     prevention: prevention,
                     promptTitle: 'Abundance',
-                    menuTitle: 'Draw or damage: choose number of cards to draw'
+                    menuTitle: 'Draw or damage: choose number of cards to draw',
+                    source: context.source
                 };
             })
         });
