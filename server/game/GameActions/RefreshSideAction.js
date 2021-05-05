@@ -23,7 +23,7 @@ class RefreshSideAction extends PlayerAction {
         return super.createEvent(
             'onRefreshSideAction',
             { player: player, context: context },
-            (event) => (event.player.actions.side = true)
+            (event) => (event.player.actions.side += 1)
         );
     }
 }

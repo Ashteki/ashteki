@@ -17,7 +17,7 @@ describe('Flash Strike', function () {
             }
         });
 
-        this.ironWorker.tokens.status = 1;
+        this.mistSpirit.tokens.status = 1;
     });
 
     it('reaction on guard choice - unit attack', function () {

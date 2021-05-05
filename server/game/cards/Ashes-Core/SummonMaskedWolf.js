@@ -25,7 +25,7 @@ class SummonMaskedWolf extends Card {
                             context.source.focus > 0 &&
                             context.costs.returnDice.some((d) => d.level === 'power')
                         ) {
-                            context.player.actions.side = true;
+                            context.player.actions.side += 1;
                         }
                     }
                 })

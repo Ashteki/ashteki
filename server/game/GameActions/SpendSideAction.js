@@ -12,7 +12,7 @@ class SpendSideAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        return player.actions.side && super.canAffect(player, context);
+        return !!player.actions.side && super.canAffect(player, context);
     }
 
     getEvent(player, context) {
