@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class PainShaman extends Card {
     setupCardAbilities(ability) {
-        this.play({
+        this.entersPlay({
             effect: 'deal 1 damage to a target unit',
             target: {
                 optional: true,

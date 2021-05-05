@@ -215,6 +215,7 @@ export class GameBoard extends React.Component {
                         onMouseOver={this.onMouseOver}
                         side='top'
                         dice={otherPlayer.dice}
+                        purgedPile={otherPlayer.cardPiles.purged}
                     />
                 </div>
                 <div className='player-home-row'>
@@ -325,6 +326,7 @@ export class GameBoard extends React.Component {
                         onMenuItemClick={this.onMenuItemClick}
                         side='bottom'
                         dice={thisPlayer.dice}
+                        purgedPile={thisPlayer.cardPiles.purged}
                     />
                 </div>
             </div>

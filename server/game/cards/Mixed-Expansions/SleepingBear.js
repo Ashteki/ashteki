@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class SleepingBear extends Card {
     setupCardAbilities(ability) {
-        this.play({
+        this.entersPlay({
             gameAction: ability.actions.addExhaustionToken({ target: this })
         });
     }

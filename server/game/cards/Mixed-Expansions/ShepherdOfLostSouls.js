@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class ShepherdOfLostSouls extends Card {
     setupCardAbilities() {
-        return this.play({
+        this.entersPlay({
             title: 'Reincarnate',
             target: {
                 controller: 'self',
