@@ -100,14 +100,16 @@ export class PlayerStats extends React.Component {
             let exhaustClass = this.props.actions[actionType] ? '' : 'exhausted';
             let actionClass = classNames('action', exhaustClass);
             let diceFont = `phg-${actionType}-action`;
+            const actionCount = actionType === 'side' ? this.props.actions[actionType] : '';
             return (
                 <span
                     key={`action ${actionType}`}
                     className={actionClass}
                     onClick={this.toggleAction.bind(this, actionType)}
                 >
+                    {actionCount}
                     <span className={diceFont} title={`${actionType}`}></span>
-                </span>
+                </span >
             );
         });
 

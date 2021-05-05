@@ -30,6 +30,8 @@ describe('Flash Strike', function () {
         this.player1.clickCard(this.mistSpirit);
 
         expect(this.player1.dicepool[0].exhausted).toBe(true);
+        expect(this.mistSpirit.attack).toBe(3);
+        this.player2.clickPrompt('Yes'); // DO counter
 
         expect(this.mistSpirit.location).toBe('play area');
         expect(this.mistSpirit.exhausted).toBe(true);

@@ -1,6 +1,6 @@
 const Card = require('../../Card.js');
 
-class Meteor extends Card {
+class Accelerate extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Accelerate',
@@ -17,6 +17,6 @@ class Meteor extends Card {
     }
 }
 
-Meteor.id = 'meteor';
+Accelerate.id = 'accelerate';
 
-module.exports = Meteor;
+module.exports = Accelerate;
