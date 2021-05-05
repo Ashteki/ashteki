@@ -10,27 +10,13 @@ class Blink extends Card {
                 gameAction: ability.actions.purge()
             },
             then: (thenContext) => ({
-                gameAction: ability.actions.delayedEffect({
+                gameAction: ability.actions.lastingEffect({
                     when: {
-                        onTurnEnded: () => true,
-                        gameAction: ability.actions.putIntoPlay({
-                            target: thenContext.target
-                        })
+                        onTurnEnded: () => true
                     },
-                    target: thenContext.target
-
-
-                    // ,
-                    // then: (thenContext) => ({
-                    //     gameAction: ability.actions.cardLastingEffect({
-                    //         until: {
-                    //             onTurnEnded: () => true,
-                    //             gameAction: ability.actions.putIntoPlay(() => ({
-                    //                 target: thenContext.target
-                    //             }))
-                    //         }
-                    //     })
-                    // })
+                    gameAction: ability.actions.putIntoPlay({
+                        target: thenContext.target
+                    })
                 })
             })
         });
