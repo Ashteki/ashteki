@@ -19,7 +19,7 @@ describe('Blink action spell', function () {
         expect(this.ironWorker.damage).toBe(0);
 
         this.player1.play(this.blink);
-        this.player1.clickCard(this.ironWorker);
+        // this.player1.clickCard(this.ironWorker);
         this.player1.clickDie(0);
         this.player1.clickCard(this.ironWorker);
 

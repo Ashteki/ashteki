@@ -4,23 +4,36 @@ const Card = require('../../Card.js');
 class Blink extends Card {
     setupCardAbilities(ability) {
         this.play({
+            effect: 'remove {0} from play until the end of the turn',
             target: {
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.sequential([
-                    // ability.actions.purge(),
-                    ability.actions.cardLastingEffect(() => ({
-                        duration: 'lastingEffect',
-                        effect: ability.effects.delayedEffect({
-                            when: {
-                                onTurnEnded: () => true
-                            },
-                            gameAction: ability.actions.putIntoPlay()
-                        })
-                    }))
-                ])
+                gameAction: ability.actions.purge()
             },
-            effect: 'remove {0} from play until the end of the turn'
-        })
+            then: (thenContext) => ({
+                gameAction: ability.actions.delayedEffect({
+                    when: {
+                        onTurnEnded: () => true,
+                        gameAction: ability.actions.putIntoPlay({
+                            target: thenContext.target
+                        })
+                    },
+                    target: thenContext.target
+
+
+                    // ,
+                    // then: (thenContext) => ({
+                    //     gameAction: ability.actions.cardLastingEffect({
+                    //         until: {
+                    //             onTurnEnded: () => true,
+                    //             gameAction: ability.actions.putIntoPlay(() => ({
+                    //                 target: thenContext.target
+                    //             }))
+                    //         }
+                    //     })
+                    // })
+                })
+            })
+        });
     }
 }
 
