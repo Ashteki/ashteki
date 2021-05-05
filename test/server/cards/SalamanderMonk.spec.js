@@ -77,4 +77,38 @@ describe('Salamander Monk', function () {
             expect(this.salamanderMonkSpirit.location).toBe('play area');
         });
     });
+
+    describe('destruction interaction with meteor', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker'],
+                    dicepool: ['divine', 'divine', 'divine', 'illusion', 'charm', 'charm'],
+                    spellboard: [],
+                    hand: ['meteor', 'power-through']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin', // battlefield 6
+                    inPlay: ['mist-spirit', 'anchornaut', 'hammer-knight', 'salamander-monk'],
+                    spellboard: ['summon-iron-rhino'],
+                    hand: ['molten-gold'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    archives: ['salamander-monk-spirit']
+                }
+            });
+        });
+
+        it('on destroy summons spirit', function () {
+            expect(this.salamanderMonk.location).toBe('play area');
+            this.player1.play(this.meteor);
+            this.player1.clickPrompt('Done');
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player2.clickCard(this.salamanderMonkSpirit);
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.salamanderMonk.location).toBe('archives');
+            expect(this.salamanderMonkSpirit.location).toBe('archives');
+        });
+    });
+
 });

@@ -9,7 +9,7 @@ class RimeaCareworn extends Card {
             cost: ability.costs.sideAction(),
             target: {
                 mode: 'options',
-                activePromptTitle: "Reflect Sorrow: Choose which player's units",
+                activePromptTitle: "Visions: Choose a player's deck",
                 options: [
                     { name: 'Mine', value: false },
                     { name: "Opponent's", value: true }
