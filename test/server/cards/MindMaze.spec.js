@@ -31,7 +31,7 @@ describe('Mind Maze', function () {
         this.player2.clickCard(this.moltenGold);
 
         expect(this.player2.actions.main).toBe(false);
-        expect(this.player2.actions.side).toBe(false);
+        expect(this.player2.actions.side).toBe(0);
 
         expect(this.mindMaze.location).toBe('discard');
     });

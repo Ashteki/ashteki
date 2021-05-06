@@ -38,7 +38,7 @@ describe('Summon Blood Puppet', function () {
         });
 
         it('should place a blood puppet onto opponents battlefield', function () {
-            expect(this.player2.side).toBe(true);
+            expect(this.player2.side).toBe(1);
 
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('Summon Blood Puppet');
@@ -55,7 +55,7 @@ describe('Summon Blood Puppet', function () {
             expect(this.player2).toHavePromptButton('Self Inflict');
             this.player2.clickPrompt('Self Inflict');
             this.player2.clickDie(0);
-            expect(this.player2.side).toBe(false);
+            expect(this.player2.side).toBe(0);
             expect(this.bloodPuppet.damage).toBe(1);
 
             this.player2.endTurn();

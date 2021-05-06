@@ -54,7 +54,7 @@ describe('Summon Masked Wolf', function () {
             this.player1.clickCard(this.player1.archives[0]);
 
             expect(this.player1.inPlay.length).toBe(1);
-            expect(this.player1.actions.side).toBe(true);
+            expect(this.player1.actions.side).toBe(1);
         });
 
         it('should not refresh side action if no wolf was spent', function () {
@@ -71,7 +71,7 @@ describe('Summon Masked Wolf', function () {
             this.player1.clickCard(this.player1.archives[0]);
 
             expect(this.player1.inPlay.length).toBe(1);
-            expect(this.player1.actions.side).toBe(false);
+            expect(this.player1.actions.side).toBe(0);
         });
     });
 });

@@ -19,7 +19,8 @@ class JerichoReborn extends Card {
                     ability.actions.shuffleDeck(),
                     ability.actions.moveCard({ destination: 'deck', shuffle: false })
                 ]
-            }
+            },
+            effect: 'find a card in their deck, shuffle, then place that card on top of their deck'
         });
     }
 }

@@ -1,10 +1,14 @@
 const CardGameAction = require('./CardGameAction');
 
 class PurgeAction extends CardGameAction {
+    setDefaultProperties() {
+        this.reveal = true;
+    }
+
     setup() {
         super.setup();
         this.name = 'purge';
-        this.effectMsg = 'remove {0} from the game';
+        this.effectMsg = this.reveal ? 'remove {0} from the game' : 'remove a card from the game';
     }
 
     getEvent(card, context) {
