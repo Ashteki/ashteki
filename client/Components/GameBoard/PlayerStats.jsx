@@ -97,23 +97,48 @@ export class PlayerStats extends React.Component {
     renderActions() {
         let actionTypes = ['main', 'side'];
         let actionOutput = actionTypes.map((actionType) => {
-            let exhaustClass = this.props.actions[actionType] ? '' : 'exhausted';
-            let actionClass = classNames('action', exhaustClass);
-            let diceFont = `phg-${actionType}-action`;
-            const actionCount = actionType === 'side' ? this.props.actions[actionType] : '';
-            return (
+            return this.renderAction(actionType);
+        });
+
+        return <div className='state'>{actionOutput}</div>;
+    }
+
+    renderAction(actionType) {
+        const actionValue = this.props.actions[actionType];
+        let actionClass = classNames('action', actionValue ? '' : 'exhausted');
+        let diceFont = `phg-${actionType}-action`;
+        const actionCount = actionType === 'side' ? actionValue : '';
+        return (
+            <div>
+                {this.props.showControls && actionType === 'side' ? (
+                    <a
+                        href='#'
+                        className='btn-stat'
+                        onClick={this.sendUpdate.bind(this, actionType, 'down')}
+                    >
+                        <img src={Minus} title='-' alt='-' />
+                    </a>
+                ) : null}
                 <span
                     key={`action ${actionType}`}
                     className={actionClass}
                     onClick={this.toggleAction.bind(this, actionType)}
                 >
                     {actionCount}
-                    <span className={diceFont} title={`${actionType}`}></span>
-                </span >
-            );
-        });
+                    <span className={diceFont} title={`${actionType} action`}></span>
+                </span>
+                {this.props.showControls && actionType === 'side' ? (
+                    <a
+                        href='#'
+                        className='btn-stat'
+                        onClick={this.sendUpdate.bind(this, actionType, 'up')}
+                    >
+                        <img src={Plus} title='+' alt='+' />
+                    </a>
+                ) : null}
 
-        return <div className='state'>{actionOutput}</div>;
+            </div>
+        );
     }
 
     render() {
