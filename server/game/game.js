@@ -115,7 +115,9 @@ class Game extends EventEmitter {
     }
 
     cardPlayed(card) {
-        this.cardsPlayed.push(card);
+        if (this.lastCardPlayed !== card) {
+            this.cardsPlayed.push(card);
+        }
         card.new = true;
     }
 
