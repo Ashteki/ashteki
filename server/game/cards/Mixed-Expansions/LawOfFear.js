@@ -16,7 +16,7 @@ class LawOfFear extends Card {
 
         this.persistentEffect({
             targetController: 'Any',
-            match: (card) => card.isAttacker || card.isDefender,
+            match: (card) => card.isAttacker,
             effect: ability.effects.modifyAttack(-1)
         });
 

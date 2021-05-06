@@ -26,7 +26,7 @@ describe('law of fear', function () {
             this.player1.clickCard(this.hammerKnight); // target
             this.player1.clickCard(this.ironWorker); // single attacker
 
-            expect(this.hammerKnight.attack).toBe(2);
+            expect(this.hammerKnight.attack).toBe(3);
             expect(this.ironWorker.attack).toBe(1);
             expect(this.mistSpirit.attack).toBe(1);
         });
