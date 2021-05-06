@@ -115,7 +115,9 @@ class Game extends EventEmitter {
     }
 
     cardPlayed(card) {
-        this.cardsPlayed.push(card);
+        if (this.lastCardPlayed !== card) {
+            this.cardsPlayed.push(card);
+        }
         card.new = true;
     }
 
@@ -507,17 +509,17 @@ class Game extends EventEmitter {
 
         let target = player;
 
-        target[stat] += value;
+        target.actions[stat] += value;
 
-        if (target[stat] < 0) {
-            target[stat] = 0;
+        if (target.actions[stat] < 0) {
+            target.actions[stat] = 0;
         } else {
             this.addAlert(
                 info ? 'info' : 'danger',
                 '{0} sets {1} to {2} ({3})',
                 player,
                 stat,
-                target[stat],
+                target.actions[stat],
                 (value > 0 ? '+' : '') + value
             );
         }

@@ -39,7 +39,7 @@ describe('Charm Dice Power', function () {
         this.player1.clickCard(this.ironWorker);
         expect(this.ironWorker.attack).toBe(1);
 
-        this.player1.actions.side = true; // bodge it
+        this.player1.actions.side = 1; // bodge it
         this.player1.clickCard(this.aradelSummergaard);
         this.player1.clickPrompt('Water Blast');
         this.player1.clickCard(this.ironWorker);

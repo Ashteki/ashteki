@@ -27,7 +27,7 @@ describe('Confusion Spores', function () {
 
             this.player1.clickPrompt('Yes');
 
-            expect(this.player1.player.actions.side).toBe(true);
+            expect(this.player1.player.actions.side).toBe(1);
             expect(this.player1.dicepool[1].exhausted).toBe(true);
         });
 
@@ -39,7 +39,7 @@ describe('Confusion Spores', function () {
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickPrompt('No');
 
-            expect(this.player1.player.actions.side).toBe(false);
+            expect(this.player1.player.actions.side).toBe(0);
             expect(this.player1.dicepool[1].exhausted).toBe(false);
         });
     });

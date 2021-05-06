@@ -15,9 +15,9 @@ class DelayedEffectAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        if (card.location !== 'play area' || card.location === 'spellboard') {
-            return false;
-        }
+        // if (card.location !== 'play area' && card.location !== 'spellboard') {
+        //     return false;
+        // }
 
         return super.canAffect(card, context);
     }

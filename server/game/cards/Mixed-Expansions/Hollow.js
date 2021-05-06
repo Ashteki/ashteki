@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class Hollow extends Card {
     setupCardAbilities() {
-        this.play({
+        this.entersPlay({
             title: 'Hex 2',
             target: {
                 toSelect: 'die',

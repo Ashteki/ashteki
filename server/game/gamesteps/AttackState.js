@@ -44,6 +44,17 @@ class AttackState {
         });
     }
 
+    pruneBattles() {
+        this.battles
+            .filter((b) => b.attacker.exhausted)
+            .forEach((b) => {
+                b.attacker.isAttacker = false;
+                if (b.guard) b.guard.isDefender = false;
+                if (b.target && !this.isPBAttack) b.target.isDefender = false;
+            });
+        this.battles = this.battles.filter((b) => !b.attacker.exhausted);
+    }
+
     setBlockerForAttacker(blocker, attacker) {
         let battle = this.battles.find((b) => b.attacker === attacker);
         if (battle.guard) {

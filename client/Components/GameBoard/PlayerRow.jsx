@@ -22,7 +22,8 @@ const PlayerRow = ({
     onMenuItemClick,
     side,
     dice,
-    onDieClick
+    onDieClick,
+    purgedPile
 }) => {
     const { t } = useTranslation();
 
@@ -91,11 +92,22 @@ const PlayerRow = ({
         />
     );
 
+    let purged = (
+        <CardPile
+            className='purged'
+            title={t('Purged')}
+            source='purged'
+            cards={purgedPile}
+            {...cardPileProps}
+        />
+    );
+
     return (
         <div className='player-home-row-container pt-1'>
             {renderDroppablePile('hand', handToRender)}
             {renderDroppablePile('archives', archivesToRender)}
             {renderResources(dice)}
+            {(purgedPile.length > 0 || manualMode) && renderDroppablePile('purged', purged)}
         </div>
     );
 };

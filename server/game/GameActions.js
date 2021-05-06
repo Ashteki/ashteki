@@ -70,8 +70,7 @@ const Actions = {
         new GameActions.PlayerChosenAmountDrawAction(propertyFactory),
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
     spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
-    refreshSideAction: (propertyFactory) => new GameActions.RefreshSideAction(propertyFactory),
-
+    addSideAction: (propertyFactory) => new GameActions.AddSideAction(propertyFactory),
     // meta actions
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),
     allocateDamage: (propertyFactory) => new GameActions.AllocateDamageAction(propertyFactory),

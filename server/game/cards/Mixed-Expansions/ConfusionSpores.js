@@ -32,7 +32,7 @@ class ConfusionSpores extends Card {
                             new DiceCount(1, Level.Class, Magic.Sympathy)
                         ])
                     })),
-                    ability.actions.refreshSideAction()
+                    ability.actions.addSideAction()
                 ]
             }
         });

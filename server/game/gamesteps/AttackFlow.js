@@ -18,9 +18,11 @@ class AttackFlow extends BaseStepWithPipeline {
         let steps = [];
         steps = steps.concat([
             new SimpleStep(this.game, () => this.declareAttackers()),
-            new SimpleStep(this.game, () => this.payAttackCost(this.attackingPlayer)),
+            new SimpleStep(this.game, () => this.game.attackState.pruneBattles()),
             new ChooseDefendersPrompt(this.game, this.attack),
-
+            new SimpleStep(this.game, () =>
+                this.game.raiseEvent('onDefendersDeclared', { attack: this.attack })
+            ),
             new SimpleStep(this.game, () => {
                 // will not queue if no attackers selected (no battles)
                 this.attack.battles.forEach(() => {
@@ -49,14 +51,14 @@ class AttackFlow extends BaseStepWithPipeline {
         this.game.clearAttackState();
     }
 
-    payAttackCost(attackingPlayer) {
-        if (this.cancelled) return;
+    // payAttackCost(attackingPlayer) {
+    //     if (this.cancelled) return;
 
-        const costEvent = Costs.mainAction().payEvent(
-            this.game.getFrameworkContext(attackingPlayer)
-        );
-        this.game.openEventWindow(costEvent);
-    }
+    //     const costEvent = Costs.mainAction().payEvent(
+    //         this.game.getFrameworkContext(attackingPlayer)
+    //     );
+    //     this.game.openEventWindow(costEvent);
+    // }
 
     declareAttackers() {
         this.game.promptForSelect(this.attackingPlayer, {
@@ -94,6 +96,11 @@ class AttackFlow extends BaseStepWithPipeline {
                         });
                         c.isAttacker = true;
                     });
+
+                    const costEvent = Costs.mainAction().payEvent(
+                        this.game.getFrameworkContext(this.attackingPlayer)
+                    );
+                    this.game.openEventWindow(costEvent);
 
                     const params = {
                         attackingPlayer: this.attackingPlayer,

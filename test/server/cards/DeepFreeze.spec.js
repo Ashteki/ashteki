@@ -25,7 +25,7 @@ describe('Deep Freeze', function () {
         expect(this.deepFreeze.status).toBe(3);
 
         // can i use thaw?
-        expect(this.player1.actions.side).toBe(true);
+        expect(this.player1.actions.side).toBe(1);
         this.player1.clickCard(this.mistSpirit);
         this.player1.clickPrompt('Thaw');
         expect(this.deepFreeze.status).toBe(2);
@@ -43,7 +43,7 @@ describe('Deep Freeze', function () {
         this.deepFreeze.tokens.status = 1;
 
         // can i use thaw?
-        expect(this.player1.actions.side).toBe(true);
+        expect(this.player1.actions.side).toBe(1);
         this.player1.clickCard(this.mistSpirit);
         this.player1.clickPrompt('Thaw');
         expect(this.deepFreeze.location).toBe('discard');

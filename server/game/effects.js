@@ -80,7 +80,7 @@ const Effects = {
         EffectBuilder.player.detached('abilityTrigger', {
             apply: (player, context) => {
                 let ability = context.source.triggeredAbility(
-                    AbilityType.Reaction,
+                    AbilityType.ForcedReaction,
                     Object.assign({ printedAbility: false, player: player }, properties)
                 );
                 ability.registerEvents();

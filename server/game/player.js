@@ -242,7 +242,7 @@ class Player extends GameObject {
         this.turn = 1;
         this.readyToStart = false;
         this.opponent = this.game.getOtherPlayer(this);
-        this.actions = { main: true, side: true };
+        this.actions = { main: true, side: 1 };
         this.phoenixborn.updateAbilityEvents('deck', 'play area');
     }
 
@@ -283,7 +283,7 @@ class Player extends GameObject {
         this.spellboard.forEach((c) => (c.new = false));
         this.passedMain = false;
         this.turn += 1;
-        this.actions = { main: true, side: true };
+        this.actions = { main: true, side: 1 };
         this.limitedPlayed = 0; // reset for my turn
         this.game.addAlert('startofturn', `Turn ${this.turn} - {0}`, this);
     }
@@ -650,7 +650,7 @@ class Player extends GameObject {
     }
 
     spendSideAction() {
-        this.actions.side = false;
+        this.actions.side -= 1;
     }
 
     isHaunted() {

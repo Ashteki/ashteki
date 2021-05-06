@@ -15,7 +15,8 @@
     border-radius: 8px;
     margin: 5px;
     // height: 24px;
-    width: 26px;
+    // width: 26px;
+    padding: 0px 5px;
     text-align: center;
     display:inline-block;
     z-index: $layer-cards + 1;
@@ -104,4 +105,15 @@
 .chat-status {
     position: absolute;
     right: 10px;
+}
+
+.btn-stat {
+    padding: 0;
+    font-size: 12px;
+    height: 22px;
+    width: 22px;
+    background-color: transparent;
+}
+.btn-stat img {
+    vertical-align: text-bottom;
 }
