@@ -13,6 +13,7 @@ class ChangingWinds extends Card {
                     location: 'hand',
                     gameAction: ability.actions.returnToDeck({
                         chooseTopBottom: true,
+                        reveal: false,
                         shuffle: false
                     })
                 },
@@ -21,6 +22,7 @@ class ChangingWinds extends Card {
                         location: 'hand',
                         gameAction: ability.actions.returnToDeck({
                             chooseTopBottom: true,
+                            reveal: false,
                             shuffle: false
                         })
                     }
