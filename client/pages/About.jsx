@@ -26,47 +26,6 @@ class About extends React.Component {
                         you&apos;re looking for a card browser, or advanced deck builder, check out{' '}
                         <a href='http://ashes.live'>http://ashes.live</a>
                     </p>
-
-                    <h3 id='bugs'>
-                        <Trans>Card Progress</Trans>
-                    </h3>
-                    <p>
-                        Not all cards are coded yet. You can include non-coded cards in a game, but
-                        you will need to be familiar with manual mode in order to use any abilities
-                        etc. The following list of expansions are coded, and should be fully
-                        operational:
-                    </p>
-                    <ul>
-                        <li>
-                            Master Set - (Coal Roarkwin, Maeoni Viper, Aradel Summergaard, Saria
-                            Guideman, Jessa Na Ni, Noah Redmoon)
-                        </li>
-                        <li>The Children of Blackcloud - (Brennan Blackcloud)</li>
-                        <li>The Frostdale Giants - (Rin Northfell)</li>
-                        <li>The Roaring Rose - (Leo Sunshadow)</li>
-                        <li>The Duchess of Deception - (Victoria Glassfire)</li>
-                        <li>The Laws of Lions - (Odette Diamondcrest)</li>
-                        <li>The Song of Soaksend - (Namine Hymntide)</li>
-                        <li>The Goddess of Ishra - (Astrea)</li>
-                        <li>The Boy Among Wolves - (Koji Wolfcub)</li>
-                        <li>The Spirits of Memoria - (Sembali Grimtongue)</li>
-                        <li>The King of Titans - (Xander Heartsblood)</li>
-                        <li>The Protector of Argaia - (Fiona Mercywind)</li>
-                        <li>The Grave King - (James Endersight)</li>
-                    </ul>
-                    <p>
-                        Many other cards are either coded, or in progress, but the above expansions
-                        have had the most testing and will take priority for bug fixes. For the
-                        latest info on card support check out the #software-dev channel on the{' '}
-                        <a
-                            target='_blank'
-                            href='https://discord.gg/UU5bduq'
-                            rel='noopener noreferrer'
-                        >
-                            Ashes Community Discord
-                        </a>
-                        .
-                    </p>
                     <h3 id='bugs'>
                         <Trans>Bugs and Automation</Trans>
                     </h3>
