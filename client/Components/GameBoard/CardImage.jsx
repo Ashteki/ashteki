@@ -18,7 +18,7 @@ const CardImage = ({ card, cardBack }) => {
 
     return (
         <>
-            <img className='img-fluid' src={imgPath} alt={card.name} />
+            <img className='img-fluid' src={imgPath} />
         </>
     );
 };
