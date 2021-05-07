@@ -26,6 +26,7 @@ class SummonMindFogOwl extends Card {
             },
             then: {
                 condition: (context) =>
+                    context.source.focus > 0 &&
                     context.preThenEvent.context.costs.returnDice.some((d) => d.level === 'power'),
                 target: {
                     cardType: BattlefieldTypes,
