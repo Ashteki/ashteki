@@ -26,13 +26,13 @@ class RearrangeCardsAction extends PlayerAction {
     promptForRemainingCards(context) {
         const purgeText =
             this.purgeType === 'bottom'
-                ? 'select a card to move to the bottom of the deck'
-                : 'Select a card to remove from the game';
+                ? 'Choose a card to move to the bottom of the deck'
+                : 'Choose a card to remove from the game';
 
         context.game.promptWithHandlerMenu(context.player, {
             activePromptTitle: !this.allPurged()
                 ? purgeText
-                : 'Select the next card to return (last one is top)',
+                : 'Choose a card to place on top of the deck',
             context: context,
             cards: this.remainingCards,
             cardHandler: (card) => {
