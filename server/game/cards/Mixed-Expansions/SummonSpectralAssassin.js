@@ -17,6 +17,11 @@ class SummonSpectralAssassin extends Card {
                     cardCondition: (card) => card.id === 'spectral-assassin',
                     location: 'archives',
                     gameAction: ability.actions.putIntoPlay()
+                },
+                then: {
+                    alwaysTriggers: true,
+                    may: 'draw a card',
+                    gameAction: ability.actions.draw()
                 }
             }
         });

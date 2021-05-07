@@ -14,8 +14,12 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
         diceFont = `phg-${die.magic}-${die.level}`;
         description = `${die.magic} ${die.level}`;
     }
+    if (die.exhausted) {
+        description = 'Exhausted ' + description;
+    }
+
     const colorClass = die.location === 'dicepool' && die.exhausted ? 'exhausted' : die.magic;
-    const readerSpan = die.exhausted ? '' : <span className='sr-only'>{description}</span>;
+    const readerSpan = <span className='sr-only'>{description}</span>;
     const getStatusClass = () => {
         if (!die) {
             return undefined;
