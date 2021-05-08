@@ -7,7 +7,6 @@ class ButterflyMonk extends Card {
         this.destroyed({
             inexhaustible: true,
             target: {
-                controller: 'self',
                 optional: true,
                 cardCondition: (card, context) => card !== context.source,
                 activePromptTitle: 'Mend 1',
