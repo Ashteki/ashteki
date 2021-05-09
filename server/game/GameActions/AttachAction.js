@@ -5,6 +5,7 @@ class AttachAction extends CardGameAction {
     setDefaultProperties() {
         this.upgrade = null;
         this.upgradeChosenOnResolution = false;
+        this.giveControl = false;
     }
 
     setup() {
@@ -42,7 +43,7 @@ class AttachAction extends CardGameAction {
     getEvent(card, context) {
         return super.createEvent(
             'onCardAttached',
-            { card: this.upgrade, parent: card, context: context },
+            { card: this.upgrade, parent: card, context: context, giveControl: this.giveControl },
             (event) => {
                 if (event.card.location === 'play area') {
                     event.card.parent.removeAttachment(event.card);
@@ -50,7 +51,7 @@ class AttachAction extends CardGameAction {
                     event.card.controller.removeCardFromPile(event.card);
                     event.card.new = true;
                     if (event.card.ownerControlled) {
-                        event.card.setDefaultController(event.card.owner.opponent);
+                        event.card.setDefaultController(event.parent.controller);
                     }
 
                     event.card.moveTo('play area');
@@ -58,10 +59,6 @@ class AttachAction extends CardGameAction {
 
                 event.parent.upgrades.push(event.card);
                 event.card.parent = event.parent;
-                // if (event.card.controller !== event.context.player) {
-                //     event.card.controller = event.context.player;
-                //     event.card.updateEffectContexts();
-                // }
             }
         );
     }

@@ -42,6 +42,7 @@ describe('Stasis In Hand', function () {
         this.player2.clickCard(this.mistSpirit);
 
         expect(this.stasis.parent).toBe(this.mistSpirit);
+        expect(this.stasis.controller).toBe(this.player1.player);
         expect(this.player2.dicepool[0].exhausted).toBe(true);
 
         // attack was effectively cancelled. MS exhausted, but still in play
