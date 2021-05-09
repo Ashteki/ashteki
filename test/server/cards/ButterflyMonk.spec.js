@@ -24,7 +24,7 @@ describe('Butterfly Monk', function () {
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.butterflyMonk);
-
+            expect(this.player2).toBeAbleToSelect(this.seasideRaven);
             this.player2.clickCard(this.maeoniViper);
 
             expect(this.butterflyMonk.location).toBe('archives');
