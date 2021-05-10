@@ -274,9 +274,7 @@ const Card = ({
                 unselectable: card.unselectable,
                 dragging: isDragging,
                 controlled: card.controlled
-            },
-            card.isAttacker ? 'attacker-' + side : '',
-            card.isDefender ? 'defender-' + side : ''
+            }
         );
         let imageClass = classNames('card-image vertical', sizeClass, {
             exhausted: orientation === 'exhausted' || orientation === 'horizontal'
@@ -290,8 +288,8 @@ const Card = ({
         let dice =
             card.dieUpgrades && card.dieUpgrades.length > 0
                 ? card.dieUpgrades.map((d) => (
-                      <Die key={'dup-' + d.uuid} die={d} onClick={onDieClick} />
-                  ))
+                    <Die key={'dup-' + d.uuid} die={d} onClick={onDieClick} />
+                ))
                 : null;
 
         return (
@@ -338,6 +336,10 @@ const Card = ({
             return 'selected';
         } else if (card.selectable) {
             return 'selectable';
+        } else if (card.isAttacker) {
+            return 'attacker-' + side;
+        } else if (card.isDefender) {
+            return 'defender-' + side;
         } else if (card.new) {
             return 'new';
         }
