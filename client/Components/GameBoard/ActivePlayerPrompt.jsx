@@ -266,7 +266,7 @@ class ActivePlayerPrompt extends React.Component {
             return;
         }
 
-        if (newProps.user.settings.windowTimer === 0) {
+        if (!newProps.user.settings.bluffTimer || newProps.user.settings.bluffTimer === 0) {
             return;
         }
 
@@ -276,7 +276,7 @@ class ActivePlayerPrompt extends React.Component {
             }
 
             this.timer.started = new Date();
-            this.timer.timerTime = 5; //Math.floor(Math.random() * 3) + 2; //newProps.user.settings.windowTimer;
+            this.timer.timerTime = newProps.user.settings.bluffTimer;
 
             let handle = setInterval(() => {
                 let now = new Date();

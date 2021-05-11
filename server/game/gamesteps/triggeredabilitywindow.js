@@ -95,6 +95,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
     showBluffPrompt(player) {
         // Show a bluff prompt if we're in Step 6, the player has the approriate setting, and there's an event for the other player
         return (
+            player.user.settings.bluffTimer > 0 &&
             BluffAbilityTypes.includes(this.abilityType) &&
             // player.timerSettings.events && // not sure what this does
             _.any(
@@ -107,8 +108,13 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         );
     }
 
+    // this is used to limit the events that should trigger a bluff
+    // some 'After X' events are reactions, but others are interrupts. This method holds that information
     eventCanTriggerReaction(event) {
-        return (event.name === 'onCardEntersPlay' && this.abilityType === 'reaction');
+        return (
+            (event.name === 'onCardEntersPlay' && this.abilityType === 'reaction') ||
+            (event.name === 'onDamageDealt' && this.abilityType === 'interrupt')
+        );
     }
 
     promptWithBluffPrompt(player) {

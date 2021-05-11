@@ -85,7 +85,7 @@ const Profile = ({ onSubmit, isLoading }) => {
     const [localCardSize, setCardSize] = useState(user?.settings.cardSize);
     const [customBg, setCustomBg] = useState(null);
     const topRowRef = useRef(null);
-    const [bluffTimer, setBluffTimer] = useState(0);
+    const [bluffTimer, setBluffTimer] = useState(user?.settings.bluffTimer || 0);
 
     const backgrounds = [{ name: 'none', label: t('none'), imageUrl: BlankBg }];
     const cardSizes = [
@@ -170,6 +170,10 @@ const Profile = ({ onSubmit, isLoading }) => {
 
                 if (customBg) {
                     submitValues.customBackground = customBg;
+                }
+
+                if (bluffTimer) {
+                    submitValues.settings.bluffTimer = bluffTimer;
                 }
 
                 onSubmit(submitValues);
