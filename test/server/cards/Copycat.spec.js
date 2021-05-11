@@ -47,9 +47,7 @@ describe('Copycat', function () {
             this.player2.clickDie(0);
 
             this.player1.clickPrompt('Damage');
-            this.player1.clickPrompt('Pass'); // redirect prompt
             this.player1.clickPrompt('Take 2 Damage');
-            this.player1.clickPrompt('Pass'); // redirect prompt
 
             expect(this.aradelSummergaard.damage).toBe(4);
         });

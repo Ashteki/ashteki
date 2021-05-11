@@ -11,12 +11,12 @@ class Anguish extends Card {
                     Discard: ability.actions.conditional({
                         condition: (context) => context.player.opponent.hand.length > 0,
                         trueGameAction: ability.actions.discardAtRandom(),
-                        falseGameAction: ability.actions.dealDamage((context) => ({
+                        falseGameAction: ability.actions.addDamageToken((context) => ({
                             target: context.player.opponent.phoenixborn,
                             amount: 2
                         }))
                     }),
-                    Damage: ability.actions.dealDamage((context) => ({
+                    Damage: ability.actions.addDamageToken((context) => ({
                         target: context.player.opponent.phoenixborn,
                         amount: 2
                     }))
@@ -39,13 +39,13 @@ class Anguish extends Card {
                                     owner: 'opponent'
                                 }
                             }),
-                            falseGameAction: ability.actions.dealDamage((context) => ({
+                            falseGameAction: ability.actions.addDamageToken((context) => ({
                                 target: context.player.opponent.phoenixborn,
                                 amount: 2,
                                 showMessage: true
                             }))
                         }),
-                        'Take 2 Damage': ability.actions.dealDamage((context) => ({
+                        'Take 2 Damage': ability.actions.addDamageToken((context) => ({
                             target: context.player.opponent.phoenixborn,
                             amount: 2,
                             showMessage: true
