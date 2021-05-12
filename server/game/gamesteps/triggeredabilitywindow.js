@@ -115,7 +115,15 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                 this.eventCanTriggerReaction(event) &&
                 event.context &&
                 event.context.player !== player &&
-                deckReactions.some((r) => Object.keys(r.when).includes(event.name))
+                deckReactions.some((r) => {
+                    let context = r.createContext(player, event);
+
+                    return (
+                        Object.keys(r.when).includes(event.name) &&
+                        r.canPayCosts(context) &&
+                        r.when[event.name](event, context)
+                    );
+                })
         );
     }
 
