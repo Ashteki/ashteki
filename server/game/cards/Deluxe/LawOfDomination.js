@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class LawOfDomination extends Card {
     setupCardAbilities(ability) {
-        this.entersPlay({
+        this.entersSpellboard({
             condition: (context) =>
                 context.player.unitsInPlay.length > 0 &&
                 context.player.opponent.unitsInPlay.length > 0,
