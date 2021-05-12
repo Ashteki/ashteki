@@ -4,6 +4,8 @@ class Anguish extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Anguish',
+            message: '{0} plays {1}',
+            messageArgs: (context) => [context.player, context.source],
             target: {
                 mode: 'select',
                 player: 'opponent',
@@ -13,12 +15,14 @@ class Anguish extends Card {
                         trueGameAction: ability.actions.discardAtRandom(),
                         falseGameAction: ability.actions.addDamageToken((context) => ({
                             target: context.player.opponent.phoenixborn,
-                            amount: 2
+                            amount: 2,
+                            showMessage: true
                         }))
                     }),
                     Damage: ability.actions.addDamageToken((context) => ({
                         target: context.player.opponent.phoenixborn,
-                        amount: 2
+                        amount: 2,
+                        showMessage: true
                     }))
                 }
             },
