@@ -91,20 +91,31 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         });
     }
 
-    // eslint-disable-next-line no-unused-vars
     showBluffPrompt(player) {
-        // Show a bluff prompt if we're in Step 6, the player has the approriate setting, and there's an event for the other player
-        return (
-            player.user.settings.bluffTimer > 0 &&
-            BluffAbilityTypes.includes(this.abilityType) &&
-            // player.timerSettings.events && // not sure what this does
-            _.any(
-                this.events,
-                (event) =>
-                    this.eventCanTriggerReaction(event) &&
-                    event.context && event.context.player !== player
-                // event.card.type === 'event' &&
-            )
+        if (
+            player.limitedPlayed || // reaction used already
+            !player.user.settings.bluffTimer || // no setting configured
+            !BluffAbilityTypes.includes(this.abilityType) // skip forced stuff
+        ) {
+            return false;
+        }
+
+        // what reactions are in the deck
+        let deckReactions = player.deck.reduce(
+            (accumulator, card) =>
+                accumulator.concat(
+                    card.abilities.reactions.filter((r) => r.abilityType === this.abilityType)
+                ),
+            []
+        );
+
+        return _.any(
+            this.events,
+            (event) =>
+                this.eventCanTriggerReaction(event) &&
+                event.context &&
+                event.context.player !== player &&
+                deckReactions.some((r) => Object.keys(r.when).includes(event.name))
         );
     }
 
@@ -112,8 +123,16 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
     // some 'After X' events are reactions, but others are interrupts. This method holds that information
     eventCanTriggerReaction(event) {
         return (
-            (event.name === 'onCardEntersPlay' && this.abilityType === 'reaction') ||
-            (event.name === 'onDamageDealt' && this.abilityType === 'interrupt')
+            (this.abilityType === 'reaction' &&
+                [
+                    'onAddToken',
+                    'onAttackersDeclared',
+                    // 'onAbilityResolved', (copycat)
+                    'onCardEntersPlay',
+                    'onCardDestroyed'
+                ].includes(event.name)) ||
+            (this.abilityType === 'interrupt' &&
+                ['onAbilityInitiated', 'onDamageDealt'].includes(event.name))
         );
     }
 

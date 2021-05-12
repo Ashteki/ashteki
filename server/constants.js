@@ -35,7 +35,7 @@ const AbilityType = {
     Persistent: 'persistent',
     OtherEffects: 'OtherEffects'
 };
-const BluffAbilityTypes = [AbilityType.Interrupt, AbilityType.Reaction]
+const BluffAbilityTypes = [AbilityType.Interrupt, AbilityType.Reaction];
 
 const Magic = {
     Ceremonial: 'ceremonial',
