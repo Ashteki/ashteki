@@ -22,7 +22,7 @@ class Security extends React.Component {
     }
 
     // eslint-disable-next-line react/no-deprecated
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         if (this.props.user) {
             this.props.loadActiveSessions(this.props.user);
 
@@ -78,22 +78,22 @@ class Security extends React.Component {
 
         let sessions = this.props.sessions
             ? this.props.sessions.map((session) => {
-                  return (
-                      <tr key={session.id}>
-                          <td>{session.ip}</td>
-                          <td>{moment(session.lastUsed).format('YYYY-MM-DD HH:mm')}</td>
-                          <td>
-                              <a
-                                  href='#'
-                                  onClick={this.onRemoveClick.bind(this, session)}
-                                  className='text-danger'
-                              >
-                                  <FontAwesomeIcon icon={faTimes} />
-                              </a>
-                          </td>
-                      </tr>
-                  );
-              })
+                return (
+                    <tr key={session.id}>
+                        <td>{session.ip}</td>
+                        <td>{moment(session.lastUsed).format('YYYY-MM-DD HH:mm')}</td>
+                        <td>
+                            <a
+                                href='#'
+                                onClick={this.onRemoveClick.bind(this, session)}
+                                className='text-danger'
+                            >
+                                <FontAwesomeIcon icon={faTimes} />
+                            </a>
+                        </td>
+                    </tr>
+                );
+            })
             : null;
         let table =
             this.props.sessions && this.props.sessions.length === 0 ? (

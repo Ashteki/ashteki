@@ -20,7 +20,7 @@ class BrennenBlackcloud extends Card {
             then: {
                 target: {
                     cardType: CardType.Phoenixborn,
-                    gameAction: ability.actions.dealDamage({ amount: 2 })
+                    gameAction: ability.actions.dealDamage({ amount: 2, showMessage: true })
                 }
             }
         });

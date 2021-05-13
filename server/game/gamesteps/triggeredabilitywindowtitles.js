@@ -3,7 +3,7 @@ const { AbilityType } = require('../../constants');
 
 const EventToTitleFunc = {
     onAttackersDeclared: () => 'attackers being declared',
-    onCardPlayed: (event) => event.card.name + ' being played',
+    // onCardPlayed: (event) => event.card.name + ' being played',
     onCardEntersPlay: (event) => event.card.name + ' being played',
     onAbilityInitiated: (event) => event.context.ability.title,
     onCardAbilityInitiated: (event) => 'the effects of ' + event.card.name,

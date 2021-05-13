@@ -351,7 +351,8 @@ module.exports.init = function (server, options) {
                 background: 'ashesreborn',
                 cardSize: 'normal',
                 avatar: req.body.username,
-                customBackground: null
+                customBackground: null,
+                bluffTimer: 0
             };
 
             if (configService.getValueForSection('lobby', 'requireActivation')) {
@@ -376,9 +377,8 @@ module.exports.init = function (server, options) {
             user = await userService.addUser(newUser);
 
             if (configService.getValueForSection('lobby', 'requireActivation')) {
-                let url = `${req.protocol}://${req.get('host')}/activation?id=${user.id}&token=${
-                    newUser.activationToken
-                }`;
+                let url = `${req.protocol}://${req.get('host')}/activation?id=${user.id}&token=${newUser.activationToken
+                    }`;
                 let emailText =
                     `Hi,\n\nSomeone, hopefully you, has requested an account to be created on ashteki.com.  If this was you, click this link: \n ${url} \n to complete the process.\n\n` +
                     'If you did not request this please disregard this email.\n' +
@@ -729,9 +729,9 @@ module.exports.init = function (server, options) {
             let resetToken = hmac
                 .update(
                     'RESET ' +
-                        user.username +
-                        ' ' +
-                        moment(user.tokenExpires).format('YYYYMMDD-HH:mm:ss')
+                    user.username +
+                    ' ' +
+                    moment(user.tokenExpires).format('YYYYMMDD-HH:mm:ss')
                 )
                 .digest('hex');
             logger.info(
@@ -809,9 +809,8 @@ module.exports.init = function (server, options) {
                 return;
             }
 
-            let url = `${req.protocol}://${req.get('host')}/reset-password?id=${
-                user._id
-            }&token=${resetToken}`;
+            let url = `${req.protocol}://${req.get('host')}/reset-password?id=${user._id
+                }&token=${resetToken}`;
             let emailText =
                 `Hi,\n\nSomeone, hopefully you, has requested their password on ashteki.com to be reset.  If this was you, click this link to complete the process:\n\n ${url}` +
                 '\n\nIf you did not request this reset, do not worry, your account has not been affected and your password has not been changed, just ignore this email.\n' +
@@ -1111,7 +1110,7 @@ module.exports.init = function (server, options) {
                     user.permissions.isSupporter = req.user.permissions.isSupporter = false;
                 }
                 // eslint-disable-next-line no-empty
-            } catch (err) {}
+            } catch (err) { }
 
             return res.send({ success: true });
         })

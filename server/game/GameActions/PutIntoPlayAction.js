@@ -26,7 +26,8 @@ class PutIntoPlayAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent('onCardEntersPlay', { card: card, context: context }, (event) => {
+        const eventName = card.type.includes('Spell') ? 'onSpellbookPlayed' : 'onCardEntersPlay';
+        return super.createEvent(eventName, { card: card, context: context }, (event) => {
             let player;
             let control;
             if (

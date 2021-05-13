@@ -21,7 +21,10 @@ class MajesticTitan extends Card {
             then: {
                 message: 'All exhaustion tokens and alterations are removed from {1}',
                 gameAction: [
-                    ability.actions.removeExhaustion({ amount: 'all' }),
+                    ability.actions.removeExhaustion((context) => ({
+                        all: true,
+                        target: context.source
+                    })),
                     ability.actions.discard((context) => ({
                         target: context.source.upgrades
                     }))

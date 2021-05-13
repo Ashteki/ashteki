@@ -4,6 +4,8 @@ class Anguish extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Anguish',
+            message: '{0} plays {1}',
+            messageArgs: (context) => [context.player, context.source],
             target: {
                 mode: 'select',
                 player: 'opponent',
@@ -11,14 +13,16 @@ class Anguish extends Card {
                     Discard: ability.actions.conditional({
                         condition: (context) => context.player.opponent.hand.length > 0,
                         trueGameAction: ability.actions.discardAtRandom(),
-                        falseGameAction: ability.actions.dealDamage((context) => ({
+                        falseGameAction: ability.actions.addDamageToken((context) => ({
                             target: context.player.opponent.phoenixborn,
-                            amount: 2
+                            amount: 2,
+                            showMessage: true
                         }))
                     }),
-                    Damage: ability.actions.dealDamage((context) => ({
+                    Damage: ability.actions.addDamageToken((context) => ({
                         target: context.player.opponent.phoenixborn,
-                        amount: 2
+                        amount: 2,
+                        showMessage: true
                     }))
                 }
             },
@@ -39,13 +43,13 @@ class Anguish extends Card {
                                     owner: 'opponent'
                                 }
                             }),
-                            falseGameAction: ability.actions.dealDamage((context) => ({
+                            falseGameAction: ability.actions.addDamageToken((context) => ({
                                 target: context.player.opponent.phoenixborn,
                                 amount: 2,
                                 showMessage: true
                             }))
                         }),
-                        'Take 2 Damage': ability.actions.dealDamage((context) => ({
+                        'Take 2 Damage': ability.actions.addDamageToken((context) => ({
                             target: context.player.opponent.phoenixborn,
                             amount: 2,
                             showMessage: true
