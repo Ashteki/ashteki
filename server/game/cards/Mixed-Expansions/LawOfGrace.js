@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class LawOfGrace extends Card {
     setupCardAbilities(ability) {
-        this.entersPlay({
+        this.entersSpellboard({
             gameAction: ability.actions.removeDamage((context) => ({
                 target: context.player.phoenixborn,
                 amount: 1

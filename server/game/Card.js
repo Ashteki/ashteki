@@ -356,6 +356,15 @@ class Card extends PlayableObject {
         );
     }
 
+    entersSpellboard(properties) {
+        return this.forcedReaction(
+            Object.assign(
+                { when: { onSpellbookPlayed: (event, context) => event.card === context.source } },
+                properties
+            )
+        );
+    }
+
     omni(properties) {
         properties.omni = true;
         return this.action(properties);

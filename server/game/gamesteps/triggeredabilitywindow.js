@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const { BluffAbilityTypes } = require('../../constants.js');
 
 const ForcedTriggeredAbilityWindow = require('./forcedtriggeredabilitywindow.js');
 const TriggeredAbilityWindowTitles = require('./triggeredabilitywindowtitles.js');
@@ -28,12 +29,12 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
 
     filterChoices() {
         // If both players have passed, close the window
-        if (this.complete) {
+        if (this.complete || !this.currentPlayer) {
             return true;
         }
 
         // remove any choices which involve the current player canceling their own abilities
-        if (this.abilityType === 'cancelinterrupt') {
+        if (BluffAbilityTypes.includes(this.abilityType)) {
             this.choices = this.choices.filter(
                 (context) =>
                     !(
@@ -90,29 +91,57 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         });
     }
 
-    // eslint-disable-next-line no-unused-vars
     showBluffPrompt(player) {
-        return false;
-        // Show a bluff prompt if the player has an event which could trigger (but isn't in their hand) and that setting
-        // if (
-        //     player.timerSettings.eventsInDeck &&
-        //     this.choices.some((context) => context.player === player)
-        // ) {
-        //     return true;
-        // }
+        if (
+            player.limitedPlayed || // reaction used already
+            !player.user.settings.bluffTimer || // no setting configured
+            !BluffAbilityTypes.includes(this.abilityType) // skip forced stuff
+        ) {
+            return false;
+        }
 
-        // // Show a bluff prompt if we're in Step 6, the player has the approriate setting, and there's an event for the other player
-        // return (
-        //     this.abilityType === 'cancelinterrupt' &&
-        //     player.timerSettings.events &&
-        //     _.any(
-        //         this.events,
-        //         (event) =>
-        //             event.name === 'onCardAbilityInitiated' &&
-        //             event.card.type === 'event' &&
-        //             event.context.player !== player
-        //     )
-        // );
+        // what reactions are in the deck
+        let deckReactions = player.deck.reduce(
+            (accumulator, card) =>
+                accumulator.concat(
+                    card.abilities.reactions.filter((r) => r.abilityType === this.abilityType)
+                ),
+            []
+        );
+
+        return _.any(
+            this.events,
+            (event) =>
+                this.eventCanTriggerReaction(event) &&
+                event.context &&
+                event.context.player !== player &&
+                deckReactions.some((r) => {
+                    let context = r.createContext(player, event);
+
+                    return (
+                        Object.keys(r.when).includes(event.name) &&
+                        r.canPayCosts(context) &&
+                        r.when[event.name](event, context)
+                    );
+                })
+        );
+    }
+
+    // this is used to limit the events that should trigger a bluff
+    // some 'After X' events are reactions, but others are interrupts. This method holds that information
+    eventCanTriggerReaction(event) {
+        return (
+            (this.abilityType === 'reaction' &&
+                [
+                    'onAddToken',
+                    'onAttackersDeclared',
+                    // 'onAbilityResolved', (copycat)
+                    'onCardEntersPlay',
+                    'onCardDestroyed'
+                ].includes(event.name)) ||
+            (this.abilityType === 'interrupt' &&
+                ['onAbilityInitiated', 'onDamageDealt'].includes(event.name))
+        );
     }
 
     promptWithBluffPrompt(player) {
@@ -120,17 +149,18 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             source: 'Triggered Abilities',
             waitingPromptTitle: 'Waiting for opponent',
             activePrompt: {
-                promptTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
-                controls: this.getPromptControls(),
+                promptTitle: 'BLUFF Delay',
+                menuTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
+                controls: this.getPromptControls(this.events),
                 buttons: [
                     { timer: true, method: 'pass' },
-                    { text: 'I need more time', timerCancel: true },
-                    {
-                        text: "Don't ask again until end of round",
-                        timerCancel: true,
-                        method: 'pass',
-                        arg: 'pauseRound'
-                    },
+                    { text: 'Wait', timerCancel: true },
+                    // {
+                    //     text: "Don't ask again until end of round",
+                    //     timerCancel: true,
+                    //     method: 'pass',
+                    //     arg: 'pauseRound'
+                    // },
                     { text: 'Pass', method: 'pass' }
                 ]
             }

@@ -1,7 +1,7 @@
 const Card = require('../../Card.js');
 class Augury extends Card {
     setupCardAbilities(ability) {
-        this.entersPlay({
+        this.entersSpellboard({
             gameAction: ability.actions.addStatusToken(() => ({
                 amount: 3,
                 target: this

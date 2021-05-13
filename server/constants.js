@@ -1,4 +1,4 @@
-class Constants {}
+class Constants { }
 
 Object.freeze(Constants);
 
@@ -35,6 +35,7 @@ const AbilityType = {
     Persistent: 'persistent',
     OtherEffects: 'OtherEffects'
 };
+const BluffAbilityTypes = [AbilityType.Interrupt, AbilityType.Reaction];
 
 const Magic = {
     Ceremonial: 'ceremonial',
@@ -62,5 +63,6 @@ module.exports = {
     AbilityType,
     Magic,
     Level,
-    EffectLocations
+    EffectLocations,
+    BluffAbilityTypes
 };

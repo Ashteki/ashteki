@@ -89,14 +89,21 @@ class TriggeredAbility extends CardAbility {
     }
 
     isTriggeredByEvent(event, context) {
+        // exhausted cards don't trigger abilities (unless inexhaustible)
         if (this.card.exhausted && !this.properties.inexhaustible) {
             return false;
         }
+        // abilities with conditions need to have those met
         if (this.properties.condition && !this.properties.condition(context)) {
+            // this seems like a duplication of 'when'...?
             return false;
-        } else if (!this.when[event.name] || !this.when[event.name](event, context)) {
+        }
+        // check 'when' clause to ensure that is met
+        if (!this.when[event.name] || !this.when[event.name](event, context)) {
             return false;
-        } else if (this.properties.play) {
+        }
+
+        if (this.properties.play) {
             if (event.name === 'onCardPlayed' && !this.isPlay()) {
                 return false;
             }
