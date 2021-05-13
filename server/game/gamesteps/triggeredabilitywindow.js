@@ -94,7 +94,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
     showBluffPrompt(player) {
         if (
             player.limitedPlayed || // reaction used already
-            !player.user.settings.bluffTimer || // no setting configured
+            !(player.user.settings.bluffTimer > 0) || // no setting configured
             !BluffAbilityTypes.includes(this.abilityType) // skip forced stuff
         ) {
             return false;
