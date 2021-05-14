@@ -109,6 +109,10 @@ class TriggeredAbility extends CardAbility {
             }
         }
 
+        if (this.properties.isLimited && !this.card.controller.canPlayLimited()) {
+            return false;
+        }
+
         return true;
     }
 

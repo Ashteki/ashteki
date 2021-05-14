@@ -473,6 +473,9 @@ class Card extends PlayableObject {
         if (this.dieUpgrades.length) {
             menu.push({ command: 'detachDie', text: 'Remove Die', menu: 'main' });
         }
+        if (UpgradeCardTypes.includes(this.type)) {
+            menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
+        }
         if (this.location === 'play area' || this.location === 'spellboard') {
             menu = menu.concat(this.menu);
         }

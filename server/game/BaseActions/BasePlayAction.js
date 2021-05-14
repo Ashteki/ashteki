@@ -34,11 +34,7 @@ class BasePlayAction extends BaseAbility {
             return 'cannotTrigger';
         }
 
-        if (
-            this.isCardPlayed() &&
-            this.card.isLimited() &&
-            context.player.limitedPlayed >= context.player.maxLimited
-        ) {
+        if (this.isCardPlayed() && this.card.isLimited() && !context.player.canPlayLimited()) {
             return 'limited';
         }
 

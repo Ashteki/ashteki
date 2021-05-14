@@ -54,6 +54,23 @@ class MenuCommands {
                 }
 
                 break;
+            case 'attach':
+                game.promptForSelect(player, {
+                    activePromptTitle: 'Select a card to attach to',
+                    waitingPromptTitle: 'Waiting for opponent to attach a card',
+                    cardCondition: (c) => c.location === 'play area',
+                    onSelect: (player, c) => {
+                        GameActions.attach({
+                            target: c,
+                            upgrade: card
+                        }).resolve(card, game.getFrameworkContext(player));
+
+                        game.addAlert('danger', '{0} attaches {1} to {2}', player, card, c);
+                        return true;
+                    }
+                });
+
+                break;
         }
     }
 
