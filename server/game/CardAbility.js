@@ -40,11 +40,7 @@ class CardAbility extends ThenAbility {
             return 'limit';
         }
 
-        if (
-            this.isCardPlayed() &&
-            this.card.isLimited() &&
-            context.player.limitedPlayed >= context.player.maxLimited
-        ) {
+        if (this.isCardPlayed() && this.card.isLimited() && !context.player.canPlayLimited()) {
             return 'limited';
         }
 

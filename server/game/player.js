@@ -61,6 +61,10 @@ class Player extends GameObject {
         return false;
     }
 
+    canPlayLimited() {
+        return this.limitedPlayed < this.maxLimited;
+    }
+
     startClock() {
         this.clock.start();
         if (this.opponent) {

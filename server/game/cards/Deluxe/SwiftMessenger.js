@@ -17,8 +17,7 @@ class SwiftMessenger extends Card {
             location: 'hand',
             gameAction: ability.actions.playCard(() => ({
                 target: this,
-                ignoreActionCost: true,
-                isLimited: true
+                ignoreActionCost: true
             }))
         });
     }
