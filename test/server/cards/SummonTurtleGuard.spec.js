@@ -102,4 +102,43 @@ describe('Summon Turtle Guard', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('Focus No Summon - choice not to place TG', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'brennen-blackcloud',
+                    inPlay: [
+                        'turtle-guard',
+                        'ice-golem',
+                        'ice-golem',
+                        'iron-worker',
+                        'iron-worker'
+                    ],
+                    spellboard: ['summon-turtle-guard', 'summon-turtle-guard'],
+                    dicepool: ['natural', 'divine', 'divine', 'natural'],
+                    archives: ['turtle-guard']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: []
+                }
+            });
+        });
+
+        it('triggers exhaust prompts', function () {
+            this.player1.clickCard(this.summonTurtleGuard);
+            this.player1.clickPrompt('Focus Without Summon');
+            this.player1.clickDie(0);
+
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.player1.inPlay[0]);
+            this.player1.clickCard(this.hammerKnight);
+
+            expect(this.player1.inPlay[0].exhausted).toBe(true);
+            expect(this.hammerKnight.exhausted).toBe(true);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

@@ -20,40 +20,63 @@ class SummonTurtleGuard extends Card {
                 location: 'archives',
                 gameAction: ability.actions.putIntoPlay()
             },
-            then: {
+            then: () => ({
                 alwaysTriggers: true,
                 condition: (context) =>
                     context.source.focus > 0 &&
                     (!context.preThenEvent || context.preThenEvent.unable),
-                targets: {
-                    first: {
-                        activePromptTitle: 'Choose an unexhausted Turtle Guard',
-                        controller: 'self',
-                        cardType: BattlefieldTypes,
-                        optional: true,
-                        cardCondition: (card) => card.id === 'turtle-guard' && !card.exhausted
-                    },
-                    second: {
-                        activePromptTitle: "Choose an opponent's unexhausted unit",
-                        dependsOn: 'first',
-                        controller: 'opponent',
-                        cardType: BattlefieldTypes,
-                        cardCondition: (card) => !card.exhausted
-                    }
-                },
-                then: (context) => ({
-                    alwaysTriggers: true,
-                    gameAction: ability.actions.sequential([
-                        ability.actions.exhaust({
-                            target: context.targets.first
-                        }),
-                        ability.actions.exhaust({
-                            target: context.targets.second
-                        })
-                    ])
-                })
-            }
+                targets: this.getTurtleTargets(),
+                then: this.getTurtleThen(ability)
+            })
         });
+
+        this.action({
+            condition: (context) => context.source.focus,
+            title: 'Focus Without Summon',
+            cost: [
+                ability.costs.mainAction(),
+                ability.costs.sideAction(),
+                ability.costs.exhaust(),
+                ability.costs.dice([new DiceCount(1, Level.Basic)])
+            ],
+            location: 'spellboard',
+
+            targets: this.getTurtleTargets(),
+            then: this.getTurtleThen(ability)
+        });
+    }
+
+    getTurtleTargets() {
+        return {
+            first: {
+                activePromptTitle: 'Choose an unexhausted Turtle Guard',
+                controller: 'self',
+                cardType: BattlefieldTypes,
+                optional: true,
+                cardCondition: (card) => card.id === 'turtle-guard' && !card.exhausted
+            },
+            second: {
+                activePromptTitle: "Choose an opponent's unexhausted unit",
+                dependsOn: 'first',
+                controller: 'opponent',
+                cardType: BattlefieldTypes,
+                cardCondition: (card) => !card.exhausted
+            }
+        };
+    }
+
+    getTurtleThen(ability) {
+        return (context) => ({
+            alwaysTriggers: true,
+            gameAction: ability.actions.sequential([
+                ability.actions.exhaust({
+                    target: context.targets.first
+                }),
+                ability.actions.exhaust({
+                    target: context.targets.second
+                })
+            ])
+        })
     }
 }
 
