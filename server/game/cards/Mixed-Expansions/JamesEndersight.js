@@ -21,7 +21,7 @@ class JamesEndersight extends Card {
             then: {
                 gameAction: ability.actions.shuffleDeck()
             },
-            message: '{0} uses {1} to move {2} from discard to hand, then {1} takes {3} wounds',
+            message: '{0} uses {1} to move {2} from deck to hand, then takes {3} wounds',
             messageArgs: (context) => [
                 context.player,
                 context.source,
