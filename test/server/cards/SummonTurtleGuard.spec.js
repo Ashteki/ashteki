@@ -6,7 +6,7 @@ describe('Summon Turtle Guard', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['ice-golem'],
                     spellboard: ['summon-turtle-guard'],
-                    dicepool: ['natural', 'divine', 'divine', 'natural'],
+                    dicepool: ['natural', 'divine', 'divine', 'time'],
                     archives: ['turtle-guard', 'ice-golem']
                 },
                 player2: {
@@ -34,7 +34,7 @@ describe('Summon Turtle Guard', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['turtle-guard'],
                     spellboard: ['summon-turtle-guard', 'summon-turtle-guard'],
-                    dicepool: ['natural', 'divine', 'divine', 'natural'],
+                    dicepool: ['natural', 'divine', 'divine', 'time'],
                     archives: ['ice-golem']
                 },
                 player2: {
@@ -76,7 +76,7 @@ describe('Summon Turtle Guard', function () {
                         'iron-worker'
                     ],
                     spellboard: ['summon-turtle-guard', 'summon-turtle-guard'],
-                    dicepool: ['natural', 'divine', 'divine', 'natural'],
+                    dicepool: ['natural', 'divine', 'divine', 'time'],
                     archives: ['turtle-guard']
                 },
                 player2: {
@@ -116,7 +116,7 @@ describe('Summon Turtle Guard', function () {
                         'iron-worker'
                     ],
                     spellboard: ['summon-turtle-guard', 'summon-turtle-guard'],
-                    dicepool: ['natural', 'divine', 'divine', 'natural'],
+                    dicepool: ['natural', 'divine', 'divine', 'time'],
                     archives: ['turtle-guard']
                 },
                 player2: {

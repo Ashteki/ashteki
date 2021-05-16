@@ -1,4 +1,4 @@
-const { Level, BattlefieldTypes } = require('../../../constants.js');
+const { Level, BattlefieldTypes, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -6,12 +6,7 @@ class SummonTurtleGuard extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Summon Turtle Guard',
-            cost: [
-                ability.costs.mainAction(),
-                ability.costs.sideAction(),
-                ability.costs.exhaust(),
-                ability.costs.dice([new DiceCount(1, Level.Basic)])
-            ],
+            cost: this.getTurtleCost(ability),
             location: 'spellboard',
             target: {
                 controller: 'self',
@@ -33,17 +28,21 @@ class SummonTurtleGuard extends Card {
         this.action({
             condition: (context) => context.source.focus,
             title: 'Focus Without Summon',
-            cost: [
-                ability.costs.mainAction(),
-                ability.costs.sideAction(),
-                ability.costs.exhaust(),
-                ability.costs.dice([new DiceCount(1, Level.Basic)])
-            ],
+            cost: this.getTurtleCost(ability),
             location: 'spellboard',
 
             targets: this.getTurtleTargets(),
             then: this.getTurtleThen(ability)
         });
+    }
+
+    getTurtleCost(ability) {
+        return [
+            ability.costs.mainAction(),
+            ability.costs.sideAction(),
+            ability.costs.exhaust(),
+            ability.costs.dice([new DiceCount(1, Level.Power, Magic.Time)])
+        ]
     }
 
     getTurtleTargets() {
