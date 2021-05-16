@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class ChangingWinds extends Card {
     setupCardAbilities(ability) {
-        this.entersPlay({
+        this.entersSpellboard({
             may: 'draw 2 cards',
             location: 'spellboard',
             gameAction: ability.actions.draw({

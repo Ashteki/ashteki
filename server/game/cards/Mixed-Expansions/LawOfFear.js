@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class LawOfFear extends Card {
     setupCardAbilities(ability) {
-        this.entersPlay({
+        this.entersSpellboard({
             location: 'spellboard',
             target: {
                 optional: true,

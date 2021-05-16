@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class LawOfAssurance extends Card {
     setupCardAbilities(ability) {
-        this.entersPlay({
+        this.entersSpellboard({
             gameAction: ability.actions.setDieLevel((context) => ({
                 target: context.player.dice,
                 level: 'class'
