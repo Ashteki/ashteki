@@ -796,6 +796,10 @@ class Card extends PlayableObject {
         return true;
     }
 
+    canAttack() {
+        return !this.exhausted && this.checkRestrictions('attack');
+    }
+
     attacksFirst() {
         return this.anyEffect('quickStrike');
     }

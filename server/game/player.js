@@ -642,7 +642,7 @@ class Player extends GameObject {
     }
 
     canAttack() {
-        return this.unitsInPlay.some((c) => !c.exhausted);
+        return this.unitsInPlay.some((c) => c.canAttack());
     }
 
     isTopCardShown() {

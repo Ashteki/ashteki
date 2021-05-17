@@ -124,4 +124,51 @@ describe('Light Bringer in play', function () {
             this.player1.clickPrompt('Play this action');
         });
     });
+
+    describe('no units that can attack - no effect', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['turtle-guard', 'biter'],
+                    dicepool: [
+                        'illusion',
+                        'natural',
+                        'natural',
+                        'sympathy',
+                        'sympathy',
+                        'ceremonial'
+                    ],
+                    hand: ['call-upon-the-realms']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    spellboard: ['summon-light-bringer'],
+                    archives: ['light-bringer'],
+                    dicepool: ['divine']
+                }
+            });
+
+            this.player1.endTurn();
+            this.player2.clickCard(this.summonLightBringer);
+            this.player2.clickPrompt('Summon Light Bringer');
+            this.player2.clickCard(this.lightBringer);
+            this.player2.endTurn();
+        });
+
+        it('does not stop opponent playing main actions spell', function () {
+            this.player1.clickCard(this.callUponTheRealms);
+            expect(this.player1).not.toHaveDefaultPrompt();
+            expect(this.player1).toHavePrompt('Call upon the realms');
+            this.player1.clickPrompt('Play this action');
+        });
+
+        it('does not stop opponent passing main action', function () {
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.actions.main).toBe(true);
+
+            this.player1.clickPrompt('End Turn');
+            expect(this.player1).not.toHaveDefaultPrompt();
+        });
+    });
 });
