@@ -11,7 +11,11 @@ class AncestorSpirit extends Card {
                     activePromptTitle: 'Guidance',
                     location: 'hand',
                     controller: 'self',
-                    gameAction: ability.actions.returnToDeck({ bottom: true, shuffle: false })
+                    gameAction: ability.actions.returnToDeck({
+                        bottom: true,
+                        shuffle: false,
+                        reveal: false
+                    })
                 }
             }
         });
