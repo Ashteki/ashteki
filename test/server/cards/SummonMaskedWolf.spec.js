@@ -40,6 +40,25 @@ describe('Summon Masked Wolf', function () {
             expect(this.player1.inPlay.length).toBe(1);
         });
 
+        it('should allow deselect on dice choice', function () {
+            this.player1.dicepool[1].level = 'class';
+            this.player1.clickCard(this.summonMaskedWolf);
+            this.player1.clickPrompt('Summon Masked Wolf');
+            expect(this.player1).toHavePrompt('Select dice');
+            expect(this.player1.selectedDice.includes(this.player1.dicepool[1])).toBe(true);
+
+            this.player1.clickDie(1);
+            this.player1.clickDie(2);
+
+            this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.player1.archives[0]);
+
+            expect(this.player1.inPlay.length).toBe(1);
+            expect(this.player1.actions.side).toBe(1);
+            expect(this.player1.dicepool[1].exhausted).toBe(false);
+            expect(this.player1.dicepool[2].exhausted).toBe(true);
+        });
+
         it('should refresh side action if wolf was spent and focussed', function () {
             this.player1.dicepool[1].level = 'class';
 
