@@ -263,7 +263,7 @@ class Card extends PlayableObject {
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
-                        event.attackingPlayer === context.source.owner && event.battles.length >= 3
+                        event.attackingPlayer === context.source.controller && event.battles.length >= 3
                     );
                 }
             },
@@ -272,7 +272,7 @@ class Card extends PlayableObject {
                 effect: AbilityDsl.effects.modifyAttack(properties.amount),
                 duration: 'untilEndOfTurn'
             })),
-            effect: 'increase its attack value by 2'
+            effect: 'increase its attack value by ' + properties.amount
         });
     }
 
