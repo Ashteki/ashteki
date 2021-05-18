@@ -1,5 +1,4 @@
 const _ = require('underscore');
-import * as jsondiffpatch from 'jsondiffpatch';
 
 const defaultState = {
     games: [],
@@ -50,13 +49,12 @@ export default function (state = defaultState, action) {
         case 'GAME_SOCKET_CLOSED':
             newState.currentGame = undefined;
             newState.newGame = false;
-            newState.rootState = undefined;
 
             break;
-        case 'GAME_SOCKET_DISCONNECTED':
-            newState.rootState = undefined;
+        // case 'GAME_SOCKET_DISCONNECTED':
+        //     newState.rootState = undefined;
 
-            break;
+        //     break;
         case 'PROFILE_SAVED':
             if (state.socket) {
                 state.socket.emit('authenticate', action.response.token);
@@ -96,10 +94,6 @@ export default function (state = defaultState, action) {
             newState.responseTime = action.responseTime;
 
             break;
-        case 'SET_ROOT_STATE':
-            newState.rootState = action.state;
-
-            break;
         default:
             return state;
     }
@@ -109,7 +103,7 @@ export default function (state = defaultState, action) {
 
 function handleGameState(action, state) {
     let retState = Object.assign({}, state, {
-        currentGame: jsondiffpatch.clone(action.args[0])
+        currentGame: action.args[0]
     });
 
     var username = action.args[1];
