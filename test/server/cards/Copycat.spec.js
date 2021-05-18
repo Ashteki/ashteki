@@ -109,6 +109,42 @@ describe('Copycat', function () {
         });
     });
 
+    describe('reaction to brennen ability', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'brennen-blackcloud',
+                    inPlay: ['hammer-knight', 'blood-archer'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'ceremonial', 'charm'],
+                    hand: ['molten-gold', 'out-of-the-mist', 'cover'],
+                    deck: ['molten-gold', 'redirect', 'out-of-the-mist', 'cover']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['glow-finch', 'iron-worker'],
+                    hand: ['copycat', 'dispel'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
+                }
+            });
+        });
+
+        it('copy brennen ability', function () {
+            this.player1.clickCard(this.brennenBlackcloud);
+            this.player1.clickPrompt('Spirit Burn');
+            this.player1.clickCard(this.bloodArcher);
+            this.player1.clickCard(this.maeoniViper);
+            expect(this.maeoniViper.damage).toBe(2);
+
+            this.player2.clickCard(this.copycat);
+            this.player2.clickDie(0);
+            this.player2.clickCard(this.ironWorker);
+            this.player2.clickCard(this.brennenBlackcloud);
+            expect(this.ironWorker.location).toBe('discard');
+            expect(this.brennenBlackcloud.damage).toBe(2);
+        });
+    });
+
+
     describe('copy Open Memories', function () {
         beforeEach(function () {
             this.setupTest({

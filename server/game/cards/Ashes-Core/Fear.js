@@ -8,7 +8,7 @@ class Fear extends Card {
                 activePromptTitle: 'Choose a unit to destroy',
                 controller: 'self',
                 cardType: BattlefieldTypes,
-                gameAction: [ability.actions.destroy()]
+                gameAction: ability.actions.destroy()
             },
             then: {
                 gameAction: ability.actions.removeDamage((context) => ({
