@@ -78,7 +78,7 @@ class AttackState {
             attackingPlayer: this.attackingPlayer.id,
             battles: this.battles.map((b) => ({
                 attacker: b.attacker ? b.attacker.uuid : null,
-                target: b.target.uuid,
+                target: b.target ? b.target.uuid : null,
                 guard: b.guard ? b.guard.uuid : null,
                 counter: b.counter ? b.counter.uuid : null
             }))

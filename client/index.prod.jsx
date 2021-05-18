@@ -19,7 +19,7 @@ const sentryOptions = {
     dsn:
         process.env.SENTRY_DSN ||
         'https://759229506f9f4a90927e07cd903866e0@o496056.ingest.sentry.io/5569773',
-    blacklistUrls: [
+    denyUrls: [
         // Facebook flakiness
         /graph\.facebook\.com/i,
         // Facebook blocked
@@ -30,6 +30,7 @@ const sentryOptions = {
         // Chrome extensions
         /extensions\//i,
         /^chrome:\/\//i,
+        /chrome-extension:/i,
         // Other plugins
         /127\.0\.0\.1:4001\/isrunning/i, // Cacaoweb
         /webappstoolbarba\.texthelp\.com\//i,
