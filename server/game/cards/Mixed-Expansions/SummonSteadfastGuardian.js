@@ -27,9 +27,14 @@ class SummonSteadfastGuardian extends Card {
                 target: {
                     controller: 'self',
                     cardCondition: (card) => card.id === 'steadfast-guardian',
-                    gameAction: ability.actions.removeDamage({
-                        all: true
-                    })
+                    gameAction: [
+                        ability.actions.removeDamage({
+                            all: true
+                        }),
+                        ability.actions.removeExhaustion({
+                            all: true
+                        })
+                    ]
                 }
             }
         });
