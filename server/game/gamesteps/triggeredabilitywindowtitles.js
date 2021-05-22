@@ -1,17 +1,18 @@
 const _ = require('underscore');
-const { AbilityType } = require('../../constants');
+const { AbilityType, CardType, BattlefieldTypes } = require('../../constants');
 
 const EventToTitleFunc = {
     onAttackersDeclared: () => 'attackers being declared',
     // onCardPlayed: (event) => event.card.name + ' being played',
     onCardEntersPlay: (event) => event.card.name + ' being played',
-    onAbilityInitiated: (event) => event.context.ability.title,
+    onAbilityInitiated: GetTargettingTitlePhrase,
     onCardAbilityInitiated: (event) => 'the effects of ' + event.card.name,
     onDamageDealt: (event) => event.card.name + ' receiving damage',
     onCardDestroyed: (event) => event.card.name + ' being destroyed',
-    onCardLeavesPlay: (event) => event.card.name + ' leaving play',
-    onPhaseEnded: (event) => event.phase + ' phase ending',
-    onPhaseStarted: (event) => event.phase + ' phase starting'
+    onCardLeavesPlay: (event) => event.card.name + ' leaving play'
+    // ,
+    // onPhaseEnded: (event) => event.phase + ' phase ending',
+    // onPhaseStarted: (event) => event.phase + ' phase starting'
 };
 
 const AbilityTypeToWord = {
@@ -23,6 +24,25 @@ const AbilityTypeToWord = {
     whenrevealed: 'when revealed'
 };
 
+function GetTargettingTitlePhrase(event, player) {
+    let myEvent = event;
+    if (event.context.preThenEvent && event.context.preThenEvent.name !== 'unnamedEvent') {
+        myEvent = event.context.preThenEvent;
+    }
+    const abilityTitle = myEvent.context.ability.title || myEvent.context.source.name;
+    // are there any of the players units / pb to name drop
+    let targetList = '';
+    const targets = Object.values(myEvent.context.targets).filter(
+        (t) => t.controller === player &&
+            [CardType.Phoenixborn, ...BattlefieldTypes].includes(t.type)
+    );
+    if (targets && targets.length) {
+        targetList = targets.length > 1
+            ? ' targetting multiple units'
+            : ' targetting ' + targets[0].name
+    }
+    return abilityTitle + targetList;
+}
 function FormatTitles(titles) {
     return _.reduce(
         titles,
@@ -40,17 +60,17 @@ function FormatTitles(titles) {
 }
 
 const AbilityWindowTitles = {
-    getTitle: function (abilityType, events) {
+    getTitle: function (abilityType, events, player) {
         if (!_.isArray(events)) {
             events = [events];
         }
 
-        let abilityWord = AbilityTypeToWord[abilityType] || abilityType;
+        let abilityWord = 'Reaction'; // AbilityTypeToWord[abilityType] || abilityType;
         let titles = _.filter(
             _.map(events, (event) => {
                 let func = EventToTitleFunc[event.name];
                 if (func) {
-                    return func(event);
+                    return func(event, player);
                 }
             }),
             (string) => string

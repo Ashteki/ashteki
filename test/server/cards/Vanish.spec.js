@@ -1,4 +1,4 @@
-describe('Golden Veil', function () {
+describe('Vanish', function () {
     beforeEach(function () {
         this.setupTest({
             player1: {
@@ -24,7 +24,9 @@ describe('Golden Veil', function () {
         this.player1.clickPrompt('Done');
         this.player1.clickCard(this.rinNorthfell);
 
-        expect(this.player2).toHavePrompt('Any Interrupts to one hundred blades?');
+        expect(this.player2).toHavePrompt(
+            'Any Reactions to one hundred blades targetting Rin Northfell?'
+        );
         this.player2.clickCard(this.vanish);
 
         expect(this.rinNorthfell.damage).toBe(0);
@@ -36,7 +38,7 @@ describe('Golden Veil', function () {
         this.player1.clickPrompt('Play this action');
         this.player1.clickCard(this.rinNorthfell);
 
-        expect(this.player2).toHavePrompt('Any Interrupts to molten gold?');
+        expect(this.player2).toHavePrompt('Any Reactions to molten gold targetting rin northfell?');
         this.player2.clickCard(this.vanish);
 
         expect(this.rinNorthfell.damage).toBe(0);
@@ -50,7 +52,9 @@ describe('Golden Veil', function () {
         this.player1.clickCard(this.mistSpirit);
         expect(this.mistSpirit.location).toBe('archives');
 
-        expect(this.player2).toHavePrompt('Any Interrupts?');
+        expect(this.player2).toHavePrompt(
+            'Any Reactions to Song of Sorrow targetting mist spirit?'
+        );
         this.player2.clickCard(this.vanish);
 
         expect(this.rinNorthfell.damage).toBe(0);

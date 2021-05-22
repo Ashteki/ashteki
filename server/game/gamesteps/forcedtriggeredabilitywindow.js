@@ -93,7 +93,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         }
 
         // set up the PROPERTIES for the select prompt
-        let defaultProperties = this.getPromptForSelectProperties();
+        let defaultProperties = this.getPromptForSelectProperties(this.currentPlayer);
         let properties = Object.assign({}, defaultProperties);
         properties.buttons = buttons.concat(defaultProperties.buttons);
 
@@ -123,7 +123,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         this.game.promptForSelect(this.currentPlayer, properties);
     }
 
-    getPromptForSelectProperties() {
+    getPromptForSelectProperties(player) {
         let properties = {
             buttons: this.choices.every((context) => context.ability.optional)
                 ? [{ text: 'Done', arg: 'done' }]
@@ -136,10 +136,10 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
                 }
             }
         };
-        return Object.assign(properties, this.getPromptProperties());
+        return Object.assign(properties, this.getPromptProperties(player));
     }
 
-    getPromptProperties() {
+    getPromptProperties(player) {
         const triggeringEvents = this.events.filter((e) =>
             this.choices.map((c) => c.event.name).includes(e.name)
         );
@@ -148,7 +148,8 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
             controls: this.getPromptControls(triggeringEvents),
             activePromptTitle: TriggeredAbilityWindowTitles.getTitle(
                 this.abilityType,
-                triggeringEvents
+                triggeringEvents,
+                player
             ),
             waitingPromptTitle: 'Waiting for opponent'
         };
@@ -224,7 +225,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
 
         this.game.promptWithHandlerMenu(
             player,
-            _.extend(this.getPromptProperties(), {
+            _.extend(this.getPromptProperties(player), {
                 activePromptTitle: 'Choose an ability to use',
                 choices: menuChoices,
                 handlers: handlers
@@ -246,9 +247,10 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         }
 
         // Several cards could be affected by this ability - prompt the player to choose which they want to affect
+        // e.g. particle shield can protect
         this.game.promptForSelect(
             this.currentPlayer,
-            _.extend(this.getPromptForSelectProperties(), {
+            _.extend(this.getPromptForSelectProperties(this.currentPlayer), {
                 activePromptTitle: 'Select a card to affect',
                 cardCondition: (card) => _.any(choices, (context) => context.event.card === card),
                 buttons: addBackButton ? [{ text: 'Back', arg: 'back' }] : [],
@@ -276,24 +278,27 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
             return;
         }
 
+        // Ashes abilities don't respond to more than one event.
+        //  COMMENTING this out while working on the prompt messaging (getPromptProperties)
+        // -------------------------------------------------------
         // Several events affect this card and the chosen ability can respond to more than one of them - prompt player to pick one
-        let menuChoices = choices.map((context) =>
-            TriggeredAbilityWindowTitles.getAction(context.event)
-        );
-        let handlers = choices.map((context) => () => this.resolveAbility(context));
-        if (addBackButton) {
-            menuChoices.push('Back');
-            handlers.push(() => this.promptBetweenSources(this.choices));
-        }
+        // let menuChoices = choices.map((context) =>
+        //     TriggeredAbilityWindowTitles.getAction(context.event)
+        // );
+        // let handlers = choices.map((context) => () => this.resolveAbility(context));
+        // if (addBackButton) {
+        //     menuChoices.push('Back');
+        //     handlers.push(() => this.promptBetweenSources(this.choices));
+        // }
 
-        this.game.promptWithHandlerMenu(
-            this.currentPlayer,
-            _.extend(this.getPromptProperties(), {
-                activePromptTitle: 'Choose an event to respond to',
-                choices: menuChoices,
-                handlers: handlers
-            })
-        );
+        // this.game.promptWithHandlerMenu(
+        //     this.currentPlayer,
+        //     _.extend(this.getPromptProperties(), {
+        //         activePromptTitle: 'Choose an event to respond to',
+        //         choices: menuChoices,
+        //         handlers: handlers
+        //     })
+        // );
     }
 
     resolveAbility(context) {

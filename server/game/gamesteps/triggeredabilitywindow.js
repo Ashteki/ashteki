@@ -80,8 +80,8 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         super.resolveAbility(context);
     }
 
-    getPromptForSelectProperties() {
-        return _.extend(super.getPromptForSelectProperties(), {
+    getPromptForSelectProperties(player) {
+        return _.extend(super.getPromptForSelectProperties(player), {
             selectCard: true,
             buttons: [{ text: 'Pass', arg: 'pass' }],
             onMenuCommand: (player, arg) => {
@@ -150,7 +150,11 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             waitingPromptTitle: 'Waiting for opponent',
             activePrompt: {
                 promptTitle: 'BLUFF Delay',
-                menuTitle: TriggeredAbilityWindowTitles.getTitle(this.abilityType, this.events),
+                menuTitle: TriggeredAbilityWindowTitles.getTitle(
+                    this.abilityType,
+                    this.events,
+                    player
+                ),
                 controls: this.getPromptControls(this.events),
                 buttons: [
                     { timer: true, method: 'pass' },

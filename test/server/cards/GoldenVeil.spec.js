@@ -31,7 +31,9 @@ describe('Golden Veil', function () {
             this.player1.clickPrompt('Play this action');
             this.player1.clickCard(this.hammerKnight);
 
-            expect(this.player2).toHavePrompt('Any Interrupts to molten gold?');
+            expect(this.player2).toHavePrompt(
+                'Any Reactions to molten gold targetting Hammer Knight?'
+            );
             this.player2.clickCard(this.goldenVeil);
 
             expect(this.hammerKnight.damage).toBe(0);
@@ -44,7 +46,7 @@ describe('Golden Veil', function () {
             this.player1.clickCard(this.mistTyphoon);
             this.player1.clickPrompt('Play this action');
 
-            expect(this.player2).not.toHavePrompt('Any Interrupts to mist Typhoon?');
+            expect(this.player2).not.toHavePrompt('Any Reactions to mist Typhoon?');
             expect(this.player2).not.toBeAbleToSelect(this.goldenVeil);
 
             this.player1.clickYes(); // draw a card
@@ -58,7 +60,7 @@ describe('Golden Veil', function () {
             this.player1.clickCard(this.kneel);
             this.player1.clickPrompt('Play this action');
 
-            expect(this.player2).not.toHavePrompt('Any Interrupts to Kneel?');
+            expect(this.player2).not.toHavePrompt('Any Reactions to Kneel?');
             expect(this.player2).not.toBeAbleToSelect(this.goldenVeil);
 
             expect(this.hammerKnight.exhaustion).toBe(1);
@@ -72,7 +74,9 @@ describe('Golden Veil', function () {
             this.player1.clickPrompt('Natural Dice Power');
             this.player1.clickCard(this.hammerKnight);
 
-            expect(this.player2).toHavePrompt('Any interrupts to natural dice power?');
+            expect(this.player2).toHavePrompt(
+                'Any Reactions to natural dice power targetting hammer knight?'
+            );
             this.player2.clickCard(this.goldenVeil);
 
             expect(this.hammerKnight.damage).toBe(0);
@@ -86,7 +90,9 @@ describe('Golden Veil', function () {
             this.player1.clickPrompt('Charm Dice Power');
             this.player1.clickCard(this.hammerKnight);
 
-            expect(this.player2).toHavePrompt('Any interrupts to charm dice power?');
+            expect(this.player2).toHavePrompt(
+                'Any Reactions to charm dice power targetting hammer knight?'
+            );
             this.player2.clickCard(this.goldenVeil);
 
             expect(this.player1).toHaveDefaultPrompt();
@@ -99,7 +105,7 @@ describe('Golden Veil', function () {
             this.player1.clickPrompt('Play this alteration');
             this.player1.clickCard(this.hammerKnight);
 
-            // expect(this.player2).toHavePrompt('Any Interrupts to molten gold?');
+            // expect(this.player2).toHavePrompt('Any Reactions to molten gold?');
             this.player2.clickCard(this.goldenVeil);
 
             expect(this.hammerKnight.upgrades.length).toBe(0);
@@ -116,7 +122,9 @@ describe('Golden Veil', function () {
             this.player1.clickCard(this.ironWorker);
             this.player1.clickCard(this.hammerKnight);
 
-            expect(this.player2).toHavePrompt('Any Interrupts to command strike?');
+            expect(this.player2).toHavePrompt(
+                'Any Reactions to command strike targetting hammer knight?'
+            );
             this.player2.clickCard(this.goldenVeil);
 
             expect(this.hammerKnight.damage).toBe(0);
