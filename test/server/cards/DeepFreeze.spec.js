@@ -16,37 +16,39 @@ describe('Deep Freeze', function () {
     });
 
     it('makes target card exhausted with thaw action', function () {
-        expect(this.mistSpirit.exhausted).toBe(false);
+        expect(this.ironWorker.exhausted).toBe(false);
 
         this.player1.clickCard(this.deepFreeze); // play card
         this.player1.clickPrompt('Play this alteration');
-        this.player1.clickCard(this.mistSpirit); // attach to ms
-        expect(this.mistSpirit.exhausted).toBe(true);
+        this.player1.clickCard(this.ironWorker); // attach to ms
+        expect(this.ironWorker.exhausted).toBe(true);
         expect(this.deepFreeze.status).toBe(3);
+        expect(this.deepFreeze.controller.name).toBe(this.player2.name);
 
+        this.player1.endTurn();
         // can i use thaw?
-        expect(this.player1.actions.side).toBe(1);
-        this.player1.clickCard(this.mistSpirit);
-        this.player1.clickPrompt('Thaw');
+        this.player2.clickCard(this.ironWorker);
+        this.player2.clickPrompt('Thaw');
         expect(this.deepFreeze.status).toBe(2);
     });
 
     it('disposed when status token is cleared', function () {
-        expect(this.mistSpirit.exhausted).toBe(false);
+        expect(this.ironWorker.exhausted).toBe(false);
 
         this.player1.clickCard(this.deepFreeze); // play card
         this.player1.clickPrompt('Play this alteration');
-        this.player1.clickCard(this.mistSpirit); // attach to ms
-        expect(this.mistSpirit.exhausted).toBe(true);
+        this.player1.clickCard(this.ironWorker); // attach to ms
+        expect(this.ironWorker.exhausted).toBe(true);
         expect(this.deepFreeze.status).toBe(3);
-        // fudge the token count
+        expect(this.deepFreeze.controller.name).toBe(this.player2.name);
+
+        this.player1.endTurn();
         this.deepFreeze.tokens.status = 1;
 
         // can i use thaw?
-        expect(this.player1.actions.side).toBe(1);
-        this.player1.clickCard(this.mistSpirit);
-        this.player1.clickPrompt('Thaw');
+        this.player2.clickCard(this.ironWorker);
+        this.player2.clickPrompt('Thaw');
         expect(this.deepFreeze.location).toBe('discard');
-        expect(this.mistSpirit.location).toBe('play area');
+        expect(this.ironWorker.location).toBe('play area');
     });
 });

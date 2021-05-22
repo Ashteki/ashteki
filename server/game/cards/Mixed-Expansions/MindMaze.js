@@ -10,8 +10,6 @@ class MindMaze extends Card {
             ]
         });
 
-        this.ownerControlled = true;
-
         this.action({
             inexhaustible: true,
             title: 'Escape',

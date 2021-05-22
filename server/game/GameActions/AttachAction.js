@@ -50,9 +50,10 @@ class AttachAction extends CardGameAction {
                 } else {
                     event.card.controller.removeCardFromPile(event.card);
                     event.card.new = true;
-                    if (event.card.ownerControlled) {
-                        event.card.setDefaultController(event.parent.controller);
-                    }
+                    // all attachments become controlled by the controller of the parent / host
+                    // if (event.card.ownerControlled) {
+                    event.card.setDefaultController(event.parent.controller);
+                    // }
 
                     event.card.moveTo('play area');
                 }

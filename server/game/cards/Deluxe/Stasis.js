@@ -20,8 +20,6 @@ class Stasis extends Card {
             effect: ability.effects.exhausted()
         });
 
-        this.ownerControlled = true;
-
         this.action({
             title: 'Unchain',
             cost: [ability.costs.mainAction(), ability.costs.sideAction()],
