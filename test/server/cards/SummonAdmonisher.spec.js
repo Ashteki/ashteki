@@ -106,6 +106,5 @@ describe('Summon Admonisher', function () {
 
             expect(this.coalRoarkwin.damage).toBe(1);
         });
-
     });
 });

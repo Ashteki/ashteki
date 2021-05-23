@@ -25,7 +25,8 @@ class SummonAdmonisher extends Card {
                     context.source.focus > 0 &&
                     (!context.preThenEvent || context.preThenEvent.unable),
                 gameAction: ability.actions.dealDamage((context) => ({
-                    target: context.player.opponent.phoenixborn
+                    target: context.player.opponent.phoenixborn,
+                    showMessage: true
                 }))
             }
         });
