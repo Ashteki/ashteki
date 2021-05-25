@@ -3,7 +3,7 @@ describe('rins fury reaction spell', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['mist-spirit', 'iron-worker'],
+                inPlay: ['mist-spirit', 'iron-worker', 'fallen'],
                 spellboard: [],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 archives: [],
@@ -42,5 +42,28 @@ describe('rins fury reaction spell', function () {
         // attacker destroyed
         expect(this.ironWorker.location).toBe('discard');
         expect(this.hammerKnight.damage).toBe(0);
+    });
+
+    it('BUG: fallen damage is not prevented, but fallen is destroyed', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.hammerKnight); // target
+        this.player1.clickCard(this.fallen); // single attacker
+
+        this.player2.clickPrompt('Done'); // no guard
+        this.player2.clickPrompt('No'); // no counter
+
+        expect(this.player2).toBeAbleToSelect(this.rinsFury);
+        this.player2.clickCard(this.rinsFury); // click cover to play as reaction
+        this.player2.clickDie(0);
+        this.player2.clickDie(1);
+        this.player2.clickPrompt('Done');
+
+        // card played
+        expect(this.rinsFury.location).toBe('discard');
+        expect(this.player2.hand.length).toBe(0);
+
+        // attacker destroyed
+        expect(this.fallen.location).toBe('archives');
+        expect(this.hammerKnight.damage).toBe(1);
     });
 });

@@ -17,13 +17,14 @@ class RinsFury extends Card {
                 event: context.event,
                 amount: 'all'
             })),
-            then: {
+            then: (context) => ({
+                alwaysTriggers: true,
                 target: {
                     cardType: BattlefieldTypes,
-                    autoTarget: (context) => context.preThenEvent.gameAction.event.damageSource,
+                    autoTarget: () => context.event.damageSource,
                     gameAction: ability.actions.destroy()
                 }
-            }
+            })
         });
     }
 }
