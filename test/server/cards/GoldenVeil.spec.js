@@ -190,4 +190,43 @@ describe('Golden Veil', function () {
             expect(this.hammerKnight.damage).toBe(0); // but first part of fury still happens
         });
     });
+
+    describe('Golden Veil and Shared Sorrow', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['mist-spirit'],
+                    dicepool: ['natural', 'natural', 'sympathy', 'sympathy'],
+                    hand: ['shared-sorrow', 'iron-worker'],
+                    discard: ['molten-gold']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight'],
+                    dicepool: ['charm', 'natural'],
+                    hand: ['choke', 'golden-veil']
+                }
+            });
+        });
+
+        it('cancels damage part, but not card moves', function () {
+            expect(this.hammerKnight.damage).toBe(0);
+            this.player1.play(this.sharedSorrow);
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.ironWorker); // discard from hand
+            this.player1.clickCard(this.moltenGold); // return to hand
+            this.player1.clickCard(this.hammerKnight); // damage to hammerknight
+
+            expect(this.player2).not.toHaveDefaultPrompt();
+            expect(this.player2).toBeAbleToSelect(this.goldenVeil);
+            this.player2.clickCard(this.goldenVeil);
+            expect(this.hammerKnight.damage).toBe(0); // prevent damage
+            expect(this.moltenGold.location).toBe('hand');
+            expect(this.ironWorker.location).toBe('discard');
+
+        });
+    });
 });

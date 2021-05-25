@@ -19,13 +19,16 @@ class SharedSorrow extends Card {
                     cardCondition: (card, context) =>
                         card.magicCost === context.targets.discard.magicCost,
                     gameAction: ability.actions.moveCard({ destination: 'hand' })
-                },
-                victim: {
-                    dependsOn: 'discard',
+                }
+            },
+            then: {
+                target: {
                     activePromptTitle: 'Choose a unit to damage',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage((context) => ({
-                        amount: context.targets.discard && context.targets.discard.magicCost
+                        amount:
+                            context.preThenEvent.context.targets.discard &&
+                            context.preThenEvent.context.targets.discard.magicCost
                     }))
                 }
             }
