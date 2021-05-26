@@ -1,4 +1,6 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class MindMaze extends Card {
     setupCardAbilities(ability) {
@@ -16,7 +18,7 @@ class MindMaze extends Card {
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.sideAction(),
-                ability.costs.exhaust(),
+                ability.costs.dice([new DiceCount(1, Level.Basic)]),
                 ability.costs.chosenDiscard()
             ],
             gameAction: ability.actions.discard({ target: this })

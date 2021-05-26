@@ -30,6 +30,7 @@ describe('Mind Maze', function () {
         this.player2.clickDie(0);
         this.player2.clickCard(this.moltenGold);
 
+        expect(this.player2.dicepool[0].exhausted).toBe(true);
         expect(this.player2.actions.main).toBe(false);
         expect(this.player2.actions.side).toBe(0);
 
