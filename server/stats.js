@@ -16,7 +16,7 @@ if(_.size(args) < 2) {
 }
 */
 
-let start = new Date('2018-08-26T13:00:00');
+let start = new Date('2021-01-01T00:00:01');
 let end = new Date();
 //console.info('Running stats between', args[0], 'and', args[1]);
 console.info('Running stats between', start, 'and', end);
@@ -31,6 +31,7 @@ gameService
         let players = {};
         let decks = {};
         let weekCount = [];
+        let monthCount = [];
         let fpWinRates = { first: 0, second: 0 };
 
         _.each(games, (game) => {
@@ -58,8 +59,11 @@ gameService
                 fpWinRates.second++;
             }
 
-            const week = moment(game.startedAt).week();
+            const startDateTime = moment(game.startedAt);
+            const week = startDateTime.week();
+            const month = startDateTime.month();
             weekCount[week] = weekCount[week] ? weekCount[week] + 1 : 1;
+            monthCount[month] = monthCount[month] ? monthCount[month] + 1 : 1;
 
             _.each(game.players, (player) => {
                 if (!players[player.name]) {
@@ -133,6 +137,25 @@ gameService
         console.info('\n### Game count by week \n\nWeek | Count');
         for (var key in weekCount) {
             console.info(key, ' | ', weekCount[key]);
+        }
+
+        const monthNames = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ];
+        console.info('\n### Game count by month \n\nMonth | Count');
+        for (const m in monthCount) {
+            console.info(monthNames[m], ' | ', monthCount[m]);
         }
 
         console.info('\n### Top 10 Players\n\nName | Number of games\n-----|----------------');
