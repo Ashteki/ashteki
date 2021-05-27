@@ -39,6 +39,7 @@ class ChosenDiscardAction extends PlayerAction {
                         numCards: amount,
                         location: 'hand',
                         controller: player === context.player ? 'self' : 'opponent',
+                        cardCondition: (card, context) => card !== context.source,
                         onSelect: (player, cards) => {
                             if (this.asCost) {
                                 context.costs.discardedCards = cards;

@@ -60,7 +60,7 @@ const Costs = {
     }),
     // player chooses their own card to discard from hand
     chosenDiscard: (amount = 1) => ({
-        canPay: (context) => context.player.hand.length >= amount,
+        canPay: (context) => context.player.hand.filter((c) => c !== context.source).length >= amount,
         payEvent: (context) =>
             context.game.actions
                 .chosenDiscard({ amount: amount, asCost: true })
