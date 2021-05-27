@@ -427,7 +427,7 @@ export class GameBoard extends React.Component {
                         />
                     )}
                     {this.state.showDiceHistory && (
-                        <div className='diceHistory'>
+                        <div>
                             <DiceHistory
                                 diceHistory={thisPlayer.diceHistory}
                                 onCloseClick={this.onDiceHistoryClick}

@@ -2,6 +2,7 @@ import React from 'react';
 import './DiceBox.scss';
 import MovablePanel from './MovablePanel';
 import Die from './Die';
+import './DiceHistory.scss';
 
 const DiceHistory = ({ diceHistory, onCloseClick, side }) => {
 
