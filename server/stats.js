@@ -30,6 +30,7 @@ gameService
 
         let players = {};
         let decks = {};
+        let playersByMonth = {};
         let weekCount = [];
         let monthCount = [];
         let fpWinRates = { first: 0, second: 0 };
@@ -64,10 +65,16 @@ gameService
             const month = startDateTime.month();
             weekCount[week] = weekCount[week] ? weekCount[week] + 1 : 1;
             monthCount[month] = monthCount[month] ? monthCount[month] + 1 : 1;
+            if (!playersByMonth[month]) {
+                playersByMonth[month] = {};
+            }
 
             _.each(game.players, (player) => {
                 if (!players[player.name]) {
                     players[player.name] = { name: player.name, wins: 0, losses: 0 };
+                }
+                if (!playersByMonth[month][player.name]) {
+                    playersByMonth[month][player.name] = { name: player.name, wins: 0, losses: 0 };
                 }
 
                 if (!decks[player.deck]) {
@@ -75,13 +82,16 @@ gameService
                 }
 
                 var playerStat = players[player.name];
+                var playerMonthStat = playersByMonth[month][player.name];
                 var deckStat = decks[player.deck];
 
                 if (player.name === game.winner) {
                     playerStat.wins++;
+                    playerMonthStat.wins++;
                     deckStat.wins++;
                 } else {
                     playerStat.losses++;
+                    playerMonthStat.losses++;
                     deckStat.losses++;
                 }
             });
@@ -208,6 +218,12 @@ gameService
         );
 
         console.info(rejected);
+
+        console.info('\n### Players by Month\n\nMonth | players');
+
+        _.each(Object.keys(playersByMonth), (month) => {
+            console.info(monthNames[month] + ' | ' + Object.keys(playersByMonth[month]).length);
+        });
     })
     .catch((error) => {
         console.log(error);
