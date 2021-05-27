@@ -30,6 +30,7 @@ class Player extends GameObject {
         this.takenPrepareDiscard = false;
         this.recoveryDicePinned = false;
         this.pinnedDice = [];
+        this.diceHistory = [];
 
         this.clock = ClockSelector.for(this, clockdetails);
 
@@ -250,13 +251,17 @@ class Player extends GameObject {
         this.phoenixborn.updateAbilityEvents('deck', 'play area');
     }
 
-    rerollAllDice() {
+    rerollAllDice(round) {
         this.dice.forEach((die) => {
             if (!die.pinned) {
                 die.level = Dice.getRandomDieLevel();
             }
             die.exhausted = false;
         });
+
+        this.diceHistory[round] = this.dice
+            .sort((a, b) => (a.uuid > b.uuid ? 1 : -1))
+            .map((d) => ({ uuid: d.uuid, magic: d.magic, level: d.level }));
 
         this.sortDice();
         this.recoveryDicePinned = false;
@@ -721,6 +726,7 @@ class Player extends GameObject {
             wins: this.wins,
             dice: this.getSummaryForDiceList(this.dice, activePlayer),
             diceCounts: this.diceCounts,
+            diceHistory: this.diceHistory,
             actions: this.actions,
             phoenixborn: this.phoenixborn.getSummary(activePlayer),
             firstPlayer: this.firstPlayer

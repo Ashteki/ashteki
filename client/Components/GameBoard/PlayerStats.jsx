@@ -176,6 +176,13 @@ export class PlayerStats extends React.Component {
                 {this.props.showMessages && (
                     <div className='state chat-status'>
                         <div className='state'>
+                            <a href='#' onClick={this.props.onDiceHistoryClick} className='pl-1'>
+                                <span className='phg-basic-magic die' title='Dice history'>
+                                    {' '}
+                                </span>
+                            </a>
+                        </div>
+                        <div className='state'>
                             <a href='#' className='pr-1 pl-1'>
                                 <FontAwesomeIcon
                                     icon={this.props.muteSpectators ? faEyeSlash : faEye}
@@ -254,7 +261,9 @@ PlayerStats.propTypes = {
     t: PropTypes.func,
     user: PropTypes.object,
     actions: PropTypes.object,
-    firstPlayer: PropTypes.bool
+    firstPlayer: PropTypes.bool,
+    diceHistory: PropTypes.array,
+    onDiceHistoryClick: PropTypes.func
 };
 
 export default withTranslation()(PlayerStats);

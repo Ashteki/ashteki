@@ -7,6 +7,7 @@ import { withTranslation, Trans } from 'react-i18next';
 
 import PlayerStats from './PlayerStats';
 import PlayerRow from './PlayerRow';
+import DiceHistory from './DiceHistory';
 import ActivePlayerPrompt from './ActivePlayerPrompt';
 import CardZoom from './CardZoom';
 import CardLog from './CardLog';
@@ -59,6 +60,7 @@ export class GameBoard extends React.Component {
         this.sendChatMessage = this.sendChatMessage.bind(this);
         this.onSettingsClick = this.onSettingsClick.bind(this);
         this.onMessagesClick = this.onMessagesClick.bind(this);
+        this.onDiceHistoryClick = this.onDiceHistoryClick.bind(this);
         this.onManualModeClick = this.onManualModeClick.bind(this);
         this.onMuteClick = this.onMuteClick.bind(this);
 
@@ -67,6 +69,7 @@ export class GameBoard extends React.Component {
             showActionWindowsMenu: false,
             showCardMenu: {},
             showMessages: true,
+            showDiceHistory: false,
             lastMessageCount: 0,
             newMessages: 0,
             showModal: false
@@ -174,6 +177,10 @@ export class GameBoard extends React.Component {
         }
 
         this.setState(newState);
+    }
+
+    onDiceHistoryClick() {
+        this.setState({ showDiceHistory: !this.state.showDiceHistory });
     }
 
     onManualModeClick(event) {
@@ -419,6 +426,15 @@ export class GameBoard extends React.Component {
                             card={cardToZoom}
                         />
                     )}
+                    {this.state.showDiceHistory && (
+                        <div className='diceHistory'>
+                            <DiceHistory
+                                diceHistory={thisPlayer.diceHistory}
+                                onCloseClick={this.onDiceHistoryClick}
+                                side='bottom'
+                            />
+                        </div>
+                    )}
                     <div className='right-side'>
                         <div className='prompt-area'>
                             <CardLog
@@ -476,6 +492,7 @@ export class GameBoard extends React.Component {
                         user={thisPlayer.user}
                         actions={thisPlayer.actions}
                         firstPlayer={thisPlayer.firstPlayer}
+                        onDiceHistoryClick={this.onDiceHistoryClick}
                     />
                 </div>
             </div>

@@ -808,7 +808,7 @@ class Game extends EventEmitter {
 
     reRollPlayerDice() {
         for (let player of this.getPlayers()) {
-            player.rerollAllDice();
+            player.rerollAllDice(this.round);
         }
     }
 
