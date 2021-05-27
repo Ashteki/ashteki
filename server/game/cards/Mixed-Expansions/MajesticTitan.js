@@ -5,7 +5,7 @@ const DiceCount = require('../../DiceCount.js');
 class MajesticTitan extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            effect: ability.effects.addKeyword({ gigantic: 2 })
+            effect: ability.effects.addKeyword({ gigantic: 1 })
         });
 
         this.action({
