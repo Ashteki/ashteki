@@ -4,8 +4,9 @@ describe('Golden Veil', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'maeoni-viper',
-                    inPlay: ['mist-spirit', 'iron-worker'],
+                    inPlay: ['mist-spirit', 'iron-worker', 'crimson-bomber'],
                     dicepool: [
+                        'ceremonial',
                         'ceremonial',
                         'natural',
                         'natural',
@@ -19,7 +20,7 @@ describe('Golden Veil', function () {
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    inPlay: ['hammer-knight'],
+                    inPlay: ['hammer-knight', 'string-mage'],
                     dicepool: ['charm', 'natural'],
                     hand: ['golden-veil', 'rins-fury']
                 }
@@ -70,7 +71,7 @@ describe('Golden Veil', function () {
         });
 
         it('cancels natural dice power', function () {
-            this.player1.clickDie(1);
+            this.player1.clickDie(2);
             this.player1.clickPrompt('Natural Dice Power');
             this.player1.clickCard(this.hammerKnight);
 
@@ -82,11 +83,11 @@ describe('Golden Veil', function () {
             expect(this.hammerKnight.damage).toBe(0);
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.player1).toHaveDefaultPrompt();
-            expect(this.player1.dicepool[1].exhausted).toBe(true);
+            expect(this.player1.dicepool[2].exhausted).toBe(true);
         });
 
         it('cancels charm dice power', function () {
-            this.player1.clickDie(4);
+            this.player1.clickDie(5);
             this.player1.clickPrompt('Charm Dice Power');
             this.player1.clickCard(this.hammerKnight);
 
@@ -97,7 +98,7 @@ describe('Golden Veil', function () {
 
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.hammerKnight.dieUpgrades.length).toBe(0);
-            expect(this.player1.dicepool[4].exhausted).toBe(true);
+            expect(this.player1.dicepool[5].exhausted).toBe(true);
         });
 
         it('cancels alteration spell attachment to unit', function () {
@@ -142,6 +143,21 @@ describe('Golden Veil', function () {
             expect(this.hammerKnight.damage).toBe(0);
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.moltenGold.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('cancels crimson bomber damage', function () {
+            this.player1.clickCard(this.crimsonBomber);
+            this.player1.clickPrompt('Detonate 3');
+
+            this.player1.clickCard(this.stringMage);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickDone();
+            this.player2.clickCard(this.goldenVeil);
+
+            expect(this.hammerKnight.damage).toBe(0);
+            expect(this.stringMage.damage).toBe(0);
+            expect(this.hammerKnight.location).toBe('play area');
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
@@ -226,7 +242,6 @@ describe('Golden Veil', function () {
             expect(this.hammerKnight.damage).toBe(0); // prevent damage
             expect(this.moltenGold.location).toBe('hand');
             expect(this.ironWorker.location).toBe('discard');
-
         });
     });
 });
