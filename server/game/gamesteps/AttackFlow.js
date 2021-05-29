@@ -51,15 +51,6 @@ class AttackFlow extends BaseStepWithPipeline {
         this.game.clearAttackState();
     }
 
-    // payAttackCost(attackingPlayer) {
-    //     if (this.cancelled) return;
-
-    //     const costEvent = Costs.mainAction().payEvent(
-    //         this.game.getFrameworkContext(attackingPlayer)
-    //     );
-    //     this.game.openEventWindow(costEvent);
-    // }
-
     declareAttackers() {
         this.game.promptForSelect(this.attackingPlayer, {
             activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',
@@ -69,6 +60,7 @@ class AttackFlow extends BaseStepWithPipeline {
             cardCondition: (card) => card.canAttack(),
             mode: this.isPBAttack ? 'unlimited' : 'single',
             optional: true,
+            showCancel: true,
             onSelect: (player, card) => {
                 let cards;
                 if (Array.isArray(card)) {
