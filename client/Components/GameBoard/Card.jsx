@@ -253,6 +253,7 @@ const Card = ({
         }
 
         let statusClass = getStatusClass();
+        const combatClass = card.isAttacker || card.isDefender ? 'combat-' + side : null;
 
         let cardClass = classNames(
             'game-card',
@@ -260,6 +261,7 @@ const Card = ({
             className,
             sizeClass,
             statusClass,
+            combatClass,
             {
                 'custom-card': card.code && card.code.startsWith('custom'),
                 horizontal: orientation !== 'vertical',
@@ -273,7 +275,9 @@ const Card = ({
                     card.canPlay,
                 unselectable: card.unselectable,
                 dragging: isDragging,
-                controlled: card.controlled
+                controlled: card.controlled,
+                attacker: card.isAttacker,
+                defender: card.isDefender
             }
         );
         let imageClass = classNames('card-image vertical', sizeClass, {
@@ -335,11 +339,12 @@ const Card = ({
         if (card.selected) {
             return 'selected';
         } else if (card.selectable) {
+            // if (card.isAttacker) return 'attacker-' + side + ' selectable ';
             return 'selectable';
-        } else if (card.isAttacker) {
-            return 'attacker-' + side;
-        } else if (card.isDefender) {
-            return 'defender-' + side;
+            // } else if (card.isAttacker) {
+            //     return 'attacker-' + side;
+            // } else if (card.isDefender) {
+            //     return 'defender-' + side;
         } else if (card.new) {
             return 'new';
         }

@@ -100,14 +100,16 @@ class ChooseDefendersPrompt extends UiPrompt {
     }
 
     activePrompt() {
-        let buttons = [];
-        buttons.push({ text: 'Done', arg: 'done' });
+        let buttons = [
+            { text: 'Clear', arg: 'clear' },
+            { text: 'Done', arg: 'done' }
+        ];
 
         return {
             buttons: buttons,
             promptTitle: 'Attack',
             menuTitle: this.selectedCard
-                ? 'Choose which attacker to ' + this.blockType
+                ? 'Choose which attacker to ' + this.blockType + ' with ' + this.selectedCard.name
                 : this.menuTitleText,
             selectCard: !this.completed,
             controls: this.attack.isPBAttack
@@ -197,6 +199,18 @@ class ChooseDefendersPrompt extends UiPrompt {
             this.complete();
             return true;
         }
+
+        if (arg === 'clear') {
+            this.attack.clearAllBlockers();
+            this.game.addAlert('info', '{0} clears all blockers', this.choosingPlayer);
+            this.game.checkGameState(true);
+            this.selectedCard = null;
+            this.clearSelection();
+            this.resetSelections(player);
+
+            return true;
+        }
+
         return false;
     }
 

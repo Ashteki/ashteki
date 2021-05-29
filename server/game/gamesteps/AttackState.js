@@ -64,6 +64,13 @@ class AttackState {
         blocker.isDefender = true;
     }
 
+    clearAllBlockers() {
+        this.battles.forEach((b) => {
+            if (b.guard) b.guard.isDefender = false;
+            b.guard = null;
+        });
+    }
+
     setGuard(blocker) {
         let battle = this.battles[0];
         battle.guard = blocker;
