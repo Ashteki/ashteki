@@ -34,6 +34,7 @@ describe('During attack on Phoenixborn', function () {
             this.player1.clickCard(this.sonicSwordsman);
             expect(this.player1).toHavePrompt('Sonic Pulse 1');
             this.player1.clickCard(this.mistSpirit); // sonic pulse target
+            this.player1.clickCard(this.ironWorker);
 
             expect(this.anchornaut.isInPlay).toBe(false); // killed by sonicswordsman
             expect(this.mistSpirit.isInPlay).toBe(false); // killed by ironWorker

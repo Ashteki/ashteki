@@ -72,6 +72,7 @@ const Effects = {
     preventGuard: () => EffectBuilder.card.static('preventGuard'),
     preventBlock: () => EffectBuilder.card.static('preventBlock'),
     preventDamage: (amount) => EffectBuilder.card.static('preventDamage', amount),
+    preventNonAttackDamage: (amount) => EffectBuilder.card.static('preventNonAttackDamage', amount),
     preventAllDamage: (shield) => EffectBuilder.card.static('preventAllDamage', shield),
     cannotBeGuarded: () => EffectBuilder.card.static('cannotBeGuarded'),
 

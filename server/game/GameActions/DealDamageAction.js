@@ -69,6 +69,7 @@ class DealDamageAction extends CardGameAction {
         params.preventable = this.fightEvent
             ? card.controller.checkRestrictions('preventFightDamage', context)
             : true;
+
         // add unpreventable flags and restrictions
         params.preventable =
             params.preventable &&
@@ -86,7 +87,11 @@ class DealDamageAction extends CardGameAction {
             if (card.anyEffect('preventDamage')) {
                 let preventAmount = card.sumEffects('preventDamage');
                 params.amount = params.amount - preventAmount;
+            } else if (card.anyEffect('preventNonAttackDamage') && !this.fightEvent) {
+                let preventAmount = card.sumEffects('preventNonAttackDamage');
+                params.amount = params.amount - preventAmount;
             }
+
         }
 
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {

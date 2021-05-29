@@ -29,7 +29,8 @@ describe('Attack on Phoenixborn', function () {
             expect(this.player1).toBeAbleToSelect(this.ironWorker);
 
             this.player1.clickCard(this.ironWorker);
-            // second battle auto-resolves
+            this.player1.clickCard(this.mistSpirit);
+
             expect(this.coalRoarkwin.damage).toBe(3); // Damage from both have resolved
             expect(this.player1).not.toBeAbleToSelect(this.mistSpirit);
             expect(this.player1).not.toBeAbleToSelect(this.ironWorker);

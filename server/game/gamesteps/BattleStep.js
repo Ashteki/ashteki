@@ -10,9 +10,6 @@ class BattleStep extends BaseStepWithPipeline {
         let steps = [
             // prompt for battle
             new SimpleStep(this.game, () => this.chooseBattle()),
-            new SimpleStep(this.game, () => this.promptForCounter()),
-            new SimpleStep(this.game, () => this.resolveBattle()),
-            new SimpleStep(this.game, () => this.exhaustParticipants())
         ];
 
         this.pipeline.initialise(steps);
@@ -20,19 +17,31 @@ class BattleStep extends BaseStepWithPipeline {
 
     chooseBattle() {
         const unresolvedBattles = this.attack.battles.filter((b) => b.resolved === false);
-        if (unresolvedBattles.length > 1) {
+        if (unresolvedBattles.length === 0) {
+            return true;
+        }
+
+        if (this.attack.isPBAttack && this.attack.battles.length > 1) {
             this.game.promptForSelect(this.attack.attackingPlayer, {
                 activePromptTitle: 'Choose a fight to resolve',
                 controller: 'self',
                 cardCondition: (card) => unresolvedBattles.map((b) => b.attacker).includes(card),
                 onSelect: (player, card) => {
-                    this.chosenBattle = unresolvedBattles.find((b) => b.attacker === card);
+                    this.setChosenBattle(unresolvedBattles.find((b) => b.attacker === card));
+                    this.game.addMessage('Resolving attack from {0}', this.chosenBattle.attacker);
                     return true;
                 }
             });
         } else {
-            this.chosenBattle = unresolvedBattles[0];
+            this.setChosenBattle(unresolvedBattles[0]);
         }
+    }
+
+    setChosenBattle(battle) {
+        this.chosenBattle = battle;
+        this.queueStep(new SimpleStep(this.game, () => this.promptForCounter()));
+        this.queueStep(new SimpleStep(this.game, () => this.resolveBattle()));
+        this.queueStep(new SimpleStep(this.game, () => this.exhaustParticipants()));
     }
 
     promptForCounter() {

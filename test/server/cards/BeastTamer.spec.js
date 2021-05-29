@@ -104,6 +104,7 @@ describe('Beast tamer', function () {
             expect(this.fluteMage.attack).toBe(1);
             this.player1.clickPrompt('Done'); // done
             this.player2.clickCard(this.ironWorker); // resolve order
+            this.player2.clickCard(this.fluteMage);
 
             expect(this.ironWorker.location).toBe('discard');
             expect(this.beastTamer.damage).toBe(1);

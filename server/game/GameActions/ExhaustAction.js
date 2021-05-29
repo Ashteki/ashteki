@@ -16,8 +16,12 @@ class ExhaustAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent('onCardExhausted', { card: card, context: context }, () =>
-            card.exhaust()
+        return super.createEvent('onCardExhausted', { card: card, context: context }, () => {
+            card.exhaust();
+            if (card.isAttacker) {
+                context.game.attackState.removeFromBattle(card);
+            }
+        }
         );
     }
 }

@@ -90,6 +90,8 @@ describe('unseen', function () {
             this.player2.clickCard(this.mindFogOwl);
 
             this.player1.clickCard(this.mindFogOwl);
+            this.player1.clickCard(this.ironWorker);
+
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
