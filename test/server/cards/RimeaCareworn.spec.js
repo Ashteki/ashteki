@@ -31,6 +31,8 @@ describe('Rimea Careworn', function () {
             // return cards firs
             this.player1.clickPrompt('anchornaut'); // bottom
             this.player1.clickPrompt('cover'); // middle
+            this.player1.clickPrompt('hammer knight'); // top
+
             // automatic HK to top
 
             expect(this.player2.deck.length).toBe(length);
@@ -54,7 +56,7 @@ describe('Rimea Careworn', function () {
             // return cards firs
             this.player1.clickPrompt('memorialize'); // bottom
             this.player1.clickPrompt('molten gold'); // middle
-            // automatic aug to top
+            this.player1.clickPrompt('augury'); // top
 
             expect(this.player1.deck.length).toBe(length);
             expect(this.player1.deck[2].id).toBe('memorialize'); // anchornaut on bottom

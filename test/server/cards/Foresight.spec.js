@@ -26,6 +26,7 @@ describe('Foresight', function () {
             this.player1.clickPrompt('Foresight');
             this.player1.clickPrompt('Mine');
             this.player1.clickPrompt('anchornaut');
+            this.player1.clickPrompt('iron worker');
 
             expect(this.player1.deck[2].id).toBe('anchornaut'); // anchornaut on bottom
             expect(this.player1.deck[0].id).toBe('iron-worker'); // index 0 is the top

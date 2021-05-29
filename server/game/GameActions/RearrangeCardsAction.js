@@ -43,9 +43,7 @@ class RearrangeCardsAction extends PlayerAction {
                 }
                 this.remainingCards = this.remainingCards.filter((c) => c !== card);
 
-                if (this.remainingCards.length === 1) {
-                    this.orderedCards.unshift(this.remainingCards[0]);
-                } else {
+                if (this.remainingCards.length > 0) {
                     this.promptForRemainingCards(context);
                 }
             }

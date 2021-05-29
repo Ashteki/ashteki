@@ -8,7 +8,7 @@ class Foresight extends Card {
             cost: [ability.costs.mainAction(), ability.costs.exhaust()],
             target: {
                 mode: 'options',
-                activePromptTitle: "Visions: Choose a player's deck",
+                activePromptTitle: "Foresight: Choose a player's deck",
                 options: [
                     { name: 'Mine', value: false },
                     { name: "Opponent's", value: true }

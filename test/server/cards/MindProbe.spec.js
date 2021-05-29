@@ -29,7 +29,7 @@ describe('Mind Probe', function () {
             this.player1.clickPrompt('hammer knight');
             this.player1.clickPrompt('cover');
             this.player1.clickPrompt('choke');
-            // (implicit close-combat final return)
+            this.player1.clickPrompt('close combat');
 
             expect(this.player2.deck.length).toBe(length - 1);
             expect(this.player2.deck[0].id).toBe('close-combat');
@@ -73,7 +73,7 @@ describe('Mind Probe', function () {
             this.player1.clickPrompt('anchornaut'); // purge
             // return
             this.player1.clickPrompt('hammer knight');
-            // (implicit cover final return)
+            this.player1.clickPrompt('cover');
 
             expect(this.player2.deck.length).toBe(length - 1);
             expect(this.player2.deck[0].id).toBe('cover');
