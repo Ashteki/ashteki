@@ -34,4 +34,19 @@ describe('Salamander Monk Spirit', function () {
         expect(this.player2).toBeAbleToSelect(this.ironWorker);
         expect(this.player2).not.toBeAbleToSelect(this.salamanderMonkSpirit);
     });
+
+    it('can be blocked', function () {
+        this.player1.endTurn();
+        this.player2.clickAttack(this.aradelSummergaard);
+        this.player2.clickCard(this.salamanderMonkSpirit);
+        this.player2.clickCard(this.ironWorker);
+        this.player2.clickPrompt('Done');
+        this.player1.clickCard(this.mistSpirit);
+        expect(this.player1).toBeAbleToSelect(this.salamanderMonkSpirit);
+        this.player1.clickCard(this.salamanderMonkSpirit);
+        this.player1.clickDone();
+        this.player2.clickCard(this.salamanderMonkSpirit);
+        expect(this.aradelSummergaard.damage).toBe(0);
+        expect(this.salamanderMonkSpirit.location).toBe('archives');
+    });
 });
