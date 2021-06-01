@@ -20,17 +20,13 @@ class SummonSilverSnake extends Card {
                 ])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'silver-snake',
-                location: Location.Archives,
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'silver-snake'
+            }),
             then: {
                 gameAction: ability.actions.addStatusToken((context) => ({
                     amount: context.source.focus,
-                    target: context.preThenEvent.card
+                    target: context.preThenEvent.childEvent.card
                 }))
             }
         });
