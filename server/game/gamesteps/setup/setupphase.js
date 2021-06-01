@@ -20,9 +20,7 @@ class SetupPhase extends Phase {
         }
 
         for (const player of this.game.getPlayers()) {
-            if (this.game.gameFormat !== 'sealed' && !this.game.hideDeckLists) {
-                this.game.addMessage('{0} brings {1} to battle', player, player.phoenixborn);
-            }
+            this.game.addMessage('{0} brings {1} to battle', player, player.phoenixborn);
         }
     }
 

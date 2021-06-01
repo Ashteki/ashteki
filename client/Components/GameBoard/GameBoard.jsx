@@ -236,7 +236,6 @@ export class GameBoard extends React.Component {
                         discard={otherPlayer.cardPiles.discard}
                         drawDeck={otherPlayer.cardPiles.deck}
                         gameFormat={this.props.currentGame.gameFormat}
-                        hideDecklists={this.props.currentGame.hideDecklists}
                         isMe={false}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}
@@ -302,7 +301,6 @@ export class GameBoard extends React.Component {
                         discard={thisPlayer.cardPiles.discard}
                         drawDeck={thisPlayer.cardPiles.deck}
                         gameFormat={this.props.currentGame.gameFormat}
-                        hideDecklists={this.props.currentGame.hideDecklists && spectating}
                         isMe={!spectating}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}

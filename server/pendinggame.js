@@ -16,7 +16,6 @@ class PendingGame {
         this.gamePrivate = !!details.gamePrivate;
         this.gameTimeLimit = details.gameTimeLimit;
         this.gameType = details.gameType;
-        this.hideDeckLists = details.hideDeckLists;
         this.id = uuid.v1();
         this.muteSpectators = details.muteSpectators;
         this.name = details.name;
@@ -400,7 +399,6 @@ class PendingGame {
             gamePrivate: this.gamePrivate,
             gameTimeLimit: this.gameTimeLimit,
             gameType: this.gameType,
-            hideDeckLists: this.hideDeckLists,
             id: this.id,
             muteSpectators: this.muteSpectators,
             name: this.name,
