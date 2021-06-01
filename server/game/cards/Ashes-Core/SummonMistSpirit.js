@@ -12,23 +12,15 @@ class SummonMistSpirit extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'mist-spirit',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'mist-spirit'
+            }),
             then: {
                 optional: true,
                 cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
-                target: {
-                    player: 'self',
-                    cardType: 'Conjuration',
-                    cardCondition: (card) => card.id === 'mist-spirit',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
-                }
+                gameAction: ability.actions.summon({
+                    conjuration: 'mist-spirit'
+                })
             }
         });
     }

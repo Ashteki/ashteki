@@ -27,8 +27,6 @@ describe('Salamander Monk', function () {
             this.player1.clickCard(this.ironWorker);
             this.player2.clickPrompt('Done');
             this.player2.clickPrompt('No');
-            expect(this.player1).not.toHaveDefaultPrompt();
-            this.player2.clickCard(this.salamanderMonkSpirit);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.salamanderMonk.location).toBe('archives');
             expect(this.salamanderMonkSpirit.location).toBe('play area');
@@ -70,8 +68,6 @@ describe('Salamander Monk', function () {
             this.player1.clickCard(this.ironWorker);
             this.player2.clickPrompt('Done');
             this.player2.clickPrompt('No');
-            expect(this.player1).not.toHaveDefaultPrompt();
-            this.player2.clickCard(this.salamanderMonkSpirit);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.salamanderMonk.location).toBe('archives');
             expect(this.salamanderMonkSpirit.location).toBe('play area');
@@ -103,8 +99,6 @@ describe('Salamander Monk', function () {
             expect(this.salamanderMonk.location).toBe('play area');
             this.player1.play(this.meteor);
             this.player1.clickPrompt('Done');
-            expect(this.player1).not.toHaveDefaultPrompt();
-            this.player2.clickCard(this.salamanderMonkSpirit);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.salamanderMonk.location).toBe('archives');
             expect(this.salamanderMonkSpirit.location).toBe('archives');

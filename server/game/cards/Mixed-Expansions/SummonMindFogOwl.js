@@ -17,13 +17,9 @@ class SummonMindFogOwl extends Card {
                 ])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'mind-fog-owl',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'mind-fog-owl'
+            }),
             then: {
                 condition: (context) =>
                     context.source.focus > 0 &&

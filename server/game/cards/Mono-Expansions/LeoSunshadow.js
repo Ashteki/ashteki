@@ -11,13 +11,9 @@ class LeoSunshadow extends Card {
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'glow-finch',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'glow-finch'
+            })
         });
     }
 }

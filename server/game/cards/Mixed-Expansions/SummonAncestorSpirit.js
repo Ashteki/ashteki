@@ -12,13 +12,9 @@ class SummonAncestorSpirit extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Power, Magic.Sympathy)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'ancestor-spirit',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'ancestor-spirit'
+            })
         });
     }
 }

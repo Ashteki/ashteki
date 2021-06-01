@@ -12,13 +12,9 @@ class SummonSeasideRaven extends Card {
                 ability.costs.dice([new DiceCount(3, Level.Basic)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'seaside-raven',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'seaside-raven'
+            })
         });
     }
 }

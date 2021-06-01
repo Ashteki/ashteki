@@ -24,7 +24,6 @@ describe('Summon Ice Golem', function () {
             this.player1.clickPrompt('Summon Ice Golem');
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.player1.archives[0]);
 
             expect(this.player1.inPlay.length).toBe(2);
             expect(this.player1.inPlay.every((c) => c.damage == 0)).toBe(false);
@@ -57,7 +56,6 @@ describe('Summon Ice Golem', function () {
             this.player1.clickPrompt('Summon Ice Golem');
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.player1.archives[0]);
 
             expect(this.player1.inPlay.length).toBe(2);
             expect(this.player1.inPlay.every((c) => c.damage == 0)).toBe(true);

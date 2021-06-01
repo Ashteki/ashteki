@@ -15,13 +15,9 @@ class SummonIndiglowCreeper extends Card {
                 ])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'indiglow-creeper',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'indiglow-creeper'
+            }),
             then: {
                 condition: () => this.focus >= 1,
                 gameAction: ability.actions.addStatusToken({

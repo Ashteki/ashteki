@@ -18,7 +18,6 @@ describe('Summon Shadow Spirit', function () {
     it('should place a shadow spirit into play', function () {
         this.player1.clickCard(this.summonShadowSpirit);
         this.player1.clickPrompt('Summon Shadow Spirit');
-        this.player1.clickCard(this.player1.archives[0]);
         expect(this.player1).toHaveDefaultPrompt();
         expect(this.shadowSpirit.location).toBe('play area');
     });

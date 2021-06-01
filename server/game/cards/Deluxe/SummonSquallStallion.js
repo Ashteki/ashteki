@@ -18,13 +18,9 @@ class SummonSquallStallion extends Card {
             gameAction: ability.actions.draw(),
             then: {
                 alwaysTriggers: true,
-                target: {
-                    controller: 'self',
-                    cardType: 'Conjuration',
-                    cardCondition: (card) => card.id === 'squall-stallion',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
-                }
+                gameAction: ability.actions.summon({
+                    conjuration: 'squall-stallion'
+                })
             }
         });
     }

@@ -12,26 +12,18 @@ class SummonTimeHopper extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Time)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'time-hopper',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'time-hopper'
+            }),
             then: {
                 condition: (context) =>
                     context.source.focus > 0 &&
                     context.player.unitsInPlay.some(
                         (c) => c.id === 'time-hopper' && c.status > 0 && !c.exhausted
                     ),
-                target: {
-                    controller: 'self',
-                    cardType: 'Conjuration',
-                    cardCondition: (card) => card.id === 'time-hopper',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
-                }
+                gameAction: ability.actions.summon({
+                    conjuration: 'time-hopper'
+                })
             }
         });
     }

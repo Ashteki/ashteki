@@ -12,13 +12,9 @@ class SummonButterflyMonk extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Power, Magic.Natural)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'butterfly-monk',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'butterfly-monk'
+            })
         });
     }
 }

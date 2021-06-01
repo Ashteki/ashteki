@@ -12,20 +12,16 @@ class SummonNightshadeSwallow extends Card {
                 ability.costs.dice([new DiceCount(2, Level.Class, Magic.Charm)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'nightshade-swallow',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'nightshade-swallow'
+            }),
             then: {
                 alwaysTriggers: true,
                 may: 'force opponent to discard?',
                 condition: (context) =>
                     this.focus &&
                     context.player.dice.filter((d) => !d.exhausted).length <
-                        context.player.opponent.dice.filter((d) => !d.exhausted).length,
+                    context.player.opponent.dice.filter((d) => !d.exhausted).length,
                 gameAction: ability.actions.discardTopOfDeck()
             }
         });

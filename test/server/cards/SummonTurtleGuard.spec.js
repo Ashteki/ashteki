@@ -21,7 +21,6 @@ describe('Summon Turtle Guard', function () {
             this.player1.clickCard(this.summonTurtleGuard);
             this.player1.clickPrompt('Summon Turtle Guard');
             this.player1.clickDie(0);
-            this.player1.clickCard(this.turtleGuard);
 
             expect(this.turtleGuard.location).toBe('play area');
         });
@@ -91,7 +90,6 @@ describe('Summon Turtle Guard', function () {
             this.player1.clickCard(this.summonTurtleGuard);
             this.player1.clickPrompt('Summon Turtle Guard');
             this.player1.clickDie(0);
-            this.player1.clickCard(this.player1.archives[0]); // tries but fails
 
             expect(this.player1).not.toHaveDefaultPrompt();
             this.player1.clickCard(this.player1.inPlay[0]);

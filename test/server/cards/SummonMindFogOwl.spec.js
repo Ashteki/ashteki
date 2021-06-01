@@ -22,7 +22,6 @@ describe('Summon Mind Fog Owl', function () {
             this.player1.clickPrompt('Summon Mind Fog Owl');
             this.player1.clickDie(2);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.player1.archives[0]);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.mindFogOwl.location).toBe('play area');
         });
@@ -32,7 +31,6 @@ describe('Summon Mind Fog Owl', function () {
             this.player1.clickPrompt('Summon Mind Fog Owl');
             this.player1.clickDie(2);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.player1.archives[0]);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.mindFogOwl.location).toBe('play area');
         });
@@ -60,7 +58,6 @@ describe('Summon Mind Fog Owl', function () {
             this.player1.clickPrompt('Summon Mind Fog Owl');
             this.player1.clickDie(2);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.player1.archives[0]);
             expect(this.mindFogOwl.location).toBe('play area');
             expect(this.player1).not.toHaveDefaultPrompt();
 

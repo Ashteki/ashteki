@@ -6,14 +6,9 @@ class IndiglowCreeper extends Card {
 
         this.destroyed({
             inexhaustible: true,
-            target: {
-                activePromptTitle: 'Germinate',
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'luminous-seedling',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'luminous-seedling'
+            })
         });
     }
 }

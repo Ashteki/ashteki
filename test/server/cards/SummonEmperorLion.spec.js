@@ -21,7 +21,6 @@ describe('Summon Emperor Lion', function () {
         this.player1.clickPrompt('Summon Emperor Lion');
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
-        this.player1.clickCard(this.player1.archives[0]);
         this.player1.clickPrompt('Done');
         expect(this.player1).toHaveDefaultPrompt();
         expect(this.emperorLion.location).toBe('play area');
@@ -32,7 +31,6 @@ describe('Summon Emperor Lion', function () {
         this.player1.clickPrompt('Summon Emperor Lion');
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
-        this.player1.clickCard(this.player1.archives[0]);
         this.player1.clickCard('law-of-sight');
         expect(this.lawOfSight.location).toBe('hand');
         this.player1.clickPrompt('Done');
@@ -48,7 +46,6 @@ describe('Summon Emperor Lion', function () {
         this.player1.clickPrompt('Summon Emperor Lion');
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
-        this.player1.clickCard(this.player1.archives[0]);
         this.player1.clickCard('law-of-sight');
         expect(this.lawOfSight.location).toBe('hand');
         expect(this.player1.deck.length).toBe(3); // 3 OM plus one law

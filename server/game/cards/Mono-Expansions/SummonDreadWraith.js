@@ -12,13 +12,9 @@ class SummonDreadWraith extends Card {
                 ability.costs.dice([new DiceCount(3, Level.Class, Magic.Ceremonial)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'dread-wraith',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'dread-wraith'
+            }),
             then: {
                 condition: () => this.focus === 2,
                 gameAction: ability.actions.removeExhaustion((context) => ({

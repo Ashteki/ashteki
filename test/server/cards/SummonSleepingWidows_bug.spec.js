@@ -40,11 +40,6 @@ describe('Summon Sleeping Widows bugreport', function () {
         expect(this.maskedWolf.location).toBe('archives');
         expect(this.player1).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player1.clickCard(this.summonSleepingWidows);
-        expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
-        expect(this.player1).toBeAbleToSelect(this.player1.archives[1]);
-        this.player1.clickCard(this.player1.archives[0]);
-        this.player1.clickCard(this.player1.archives[1]);
-        this.player1.clickPrompt('Done');
         expect(this.player1.inPlay.length).toBe(2);
         // prompt for jessa screams
         expect(this.player2).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
@@ -60,11 +55,6 @@ describe('Summon Sleeping Widows bugreport', function () {
         expect(this.maskedWolf.location).toBe('archives');
         expect(this.player1).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player1.clickCard(this.summonSleepingWidows);
-        expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
-        expect(this.player1).toBeAbleToSelect(this.player1.archives[1]);
-        this.player1.clickCard(this.player1.archives[0]);
-        this.player1.clickCard(this.player1.archives[1]);
-        this.player1.clickPrompt('Done');
         expect(this.player1.inPlay.length).toBe(2);
         // prompt for jessa screams
         expect(this.player2).toHavePrompt('Any reactions to Masked Wolf being destroyed?');

@@ -16,13 +16,9 @@ class SummonOrchidDove extends Card {
                 })
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'orchid-dove',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'orchid-dove'
+            }),
             then: {
                 alwaysTriggers: true,
                 may: 'deal 1 damage to opponents PB',

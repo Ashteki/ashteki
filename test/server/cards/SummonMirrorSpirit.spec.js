@@ -24,8 +24,6 @@ describe('Summon Mirror Spirit', function () {
             this.player1.clickPrompt('Summon Mirror Spirit');
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.player1.archives[0]);
-
             // enters play - reflect sorrow
             this.player1.clickPrompt("Opponent's");
             expect(this.mirrorSpirit.location).toBe('play area');
@@ -59,7 +57,6 @@ describe('Summon Mirror Spirit', function () {
             this.player1.clickPrompt('Summon Mirror Spirit');
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.mirrorSpirit);
             // enters play - reflect sorrow
             this.player1.clickPrompt("Opponent's");
 

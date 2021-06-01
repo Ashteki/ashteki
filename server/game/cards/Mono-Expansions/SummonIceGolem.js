@@ -15,13 +15,9 @@ class SummonIceGolem extends Card {
                 ])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'ice-golem',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'ice-golem'
+            }),
             then: {
                 condition: () => this.focus === 2,
                 gameAction: ability.actions.removeDamage((context) => ({

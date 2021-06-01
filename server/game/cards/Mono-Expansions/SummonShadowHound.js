@@ -12,13 +12,9 @@ class SummonShadowHound extends Card {
                 ability.costs.dice([new DiceCount(3, Level.Class, Magic.Illusion)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'shadow-hound',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'shadow-hound'
+            }),
             then: {
                 alwaysTriggers: true,
                 condition: () => this.focus > 0,

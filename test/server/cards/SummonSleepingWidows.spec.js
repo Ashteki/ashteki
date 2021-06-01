@@ -32,11 +32,6 @@ describe('Summon Sleeping Widows', function () {
             this.player1.clickPrompt('Pass');
             expect(this.player2).toHavePrompt('Any reactions to Anchornaut being destroyed?');
             this.player2.clickCard(this.summonSleepingWidows);
-            expect(this.player2).toBeAbleToSelect(this.player2.archives[0]);
-            expect(this.player2).toBeAbleToSelect(this.player2.archives[1]);
-            this.player2.clickCard(this.player2.archives[0]);
-            this.player2.clickCard(this.player2.archives[1]);
-            this.player2.clickPrompt('Done');
             expect(this.player2.inPlay.length).toBe(2);
         });
     });

@@ -20,7 +20,6 @@ describe('Summon Squall Stallion', function () {
         this.player1.clickPrompt('Summon Squall Stallion');
         this.player1.clickDie(0);
         this.player1.clickPrompt('Done');
-        this.player1.clickCard(this.player1.archives[0]);
         expect(this.player1).toHaveDefaultPrompt();
         expect(this.squallStallion.location).toBe('play area');
 

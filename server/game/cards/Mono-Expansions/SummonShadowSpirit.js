@@ -12,13 +12,9 @@ class SummonShadowSpirit extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Power, Magic.Illusion)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'shadow-spirit',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'shadow-spirit'
+            })
         });
     }
 }

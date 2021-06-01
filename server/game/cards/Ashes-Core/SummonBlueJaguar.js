@@ -12,13 +12,9 @@ class SummonBlueJaguar extends Card {
                 ability.costs.dice([new DiceCount(2, Level.Basic)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'blue-jaguar',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'blue-jaguar'
+            })
         });
     }
 }

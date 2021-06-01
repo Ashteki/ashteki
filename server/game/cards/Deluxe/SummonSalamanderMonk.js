@@ -12,13 +12,9 @@ class SummonSalamanderMonk extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Sympathy)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'salamander-monk',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'salamander-monk'
+            })
         });
     }
 }

@@ -10,15 +10,10 @@ class SummonSleepingWidows extends Card {
                     // check the clone because ondestroyed resets controller to owner (blood puppet)
                     event.clone.controller === context.source.owner
             },
-            target: {
-                mode: 'upTo',
-                numCards: 2,
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'sleeping-widow',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'sleeping-widow',
+                count: 2
+            })
         });
     }
 }

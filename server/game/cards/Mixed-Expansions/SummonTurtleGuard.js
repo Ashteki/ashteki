@@ -8,18 +8,16 @@ class SummonTurtleGuard extends Card {
             title: 'Summon Turtle Guard',
             cost: this.getTurtleCost(ability),
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'turtle-guard',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'turtle-guard'
+            }),
             then: () => ({
                 alwaysTriggers: true,
                 condition: (context) =>
                     context.source.focus > 0 &&
-                    (!context.preThenEvent || context.preThenEvent.unable),
+                    (!context.preThenEvent.childEvent ||
+                        (context.preThenEvent.childEvent.name === 'onCardEntersPlay' &&
+                            context.preThenEvent.childEvent.cancelled)),
                 targets: this.getTurtleTargets(),
                 then: this.getTurtleThen(ability)
             })

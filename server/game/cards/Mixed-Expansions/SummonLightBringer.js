@@ -12,13 +12,9 @@ class SummonLightBringer extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Divine)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'light-bringer',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'light-bringer'
+            })
         });
     }
 }

@@ -23,11 +23,6 @@ describe('Rising Horde', function () {
             this.player2.clickPrompt('Done'); // no blocker
             this.player2.clickPrompt('No'); // no counter
 
-            expect(this.player2).toHavePrompt('Rising Horde');
-            this.player2.clickCard(this.player2.archives[0]);
-            this.player2.clickCard(this.player2.archives[1]);
-            this.player2.clickDone();
-
             expect(this.player1).toHaveDefaultPrompt();
 
             expect(this.player2.inPlay.length).toBe(3);
@@ -68,16 +63,8 @@ describe('Rising Horde', function () {
             this.player2.clickPrompt('Done'); // no blocker
             this.player2.clickPrompt('No'); // no counter
 
-            expect(this.player2).toHavePrompt('Rising Horde');
-            this.player2.clickCard(this.player2.archives[0]);
-            this.player2.clickCard(this.player2.archives[1]);
-            this.player2.clickDone();
-
             expect(this.player1).not.toHaveDefaultPrompt();
             this.player2.clickCard(this.summonSleepingWidows);
-            this.player2.clickCard(this.player2.archives[1]);
-            this.player2.clickCard(this.player2.archives[2]);
-            this.player2.clickDone();
 
             expect(this.player2.inPlay.length).toBe(4); // maeoni max
             expect(this.risingHorde.location).toBe('discard');

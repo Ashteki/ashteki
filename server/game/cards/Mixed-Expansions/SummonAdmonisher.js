@@ -12,18 +12,16 @@ class SummonAdmonisher extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Divine)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'admonisher',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'admonisher'
+            }),
             then: {
                 alwaysTriggers: true,
                 condition: (context) =>
                     context.source.focus > 0 &&
-                    (!context.preThenEvent || context.preThenEvent.unable),
+                    (!context.preThenEvent.childEvent ||
+                        (context.preThenEvent.childEvent.name === 'onCardEntersPlay' &&
+                            context.preThenEvent.childEvent.cancelled)),
                 gameAction: ability.actions.dealDamage((context) => ({
                     target: context.player.opponent.phoenixborn,
                     showMessage: true

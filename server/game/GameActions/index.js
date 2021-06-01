@@ -63,5 +63,6 @@ module.exports = {
 
     ChosenAmountDrawAction: require('./ChosenAmountDrawAction'),
     PlayerChosenAmountDrawAction: require('./PlayerChosenAmountDrawAction'),
-    RerollDieAction: require('./RerollDieAction')
+    RerollDieAction: require('./RerollDieAction'),
+    SummonAction: require('./SummonAction')
 };

@@ -12,13 +12,9 @@ class SummonThreeEyedOwl extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Charm)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'three-eyed-owl',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'three-eyed-owl'
+            })
         });
     }
 }

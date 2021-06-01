@@ -4,13 +4,9 @@ class SalamanderMonk extends Card {
     setupCardAbilities(ability) {
         this.destroyed({
             inexhaustible: true,
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'salamander-monk-spirit',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'salamander-monk-spirit'
+            })
         });
     }
 }

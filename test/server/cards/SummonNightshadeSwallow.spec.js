@@ -19,7 +19,6 @@ describe('Summon Nightshade Swallow', function () {
         it('should place a swallow', function () {
             this.player1.clickCard(this.summonNightshadeSwallow);
             this.player1.clickPrompt('Summon Nightshade Swallow');
-            this.player1.clickCard(this.player1.archives[0]);
         });
     });
 
@@ -45,7 +44,6 @@ describe('Summon Nightshade Swallow', function () {
             let deckSize = this.player2.deck.length;
             this.player1.clickCard(this.summonNightshadeSwallow);
             this.player1.clickPrompt('Summon Nightshade Swallow');
-            this.player1.clickCard(this.player1.archives[0]);
 
             this.player1.clickPrompt('Yes');
 
@@ -85,7 +83,6 @@ describe('Summon Nightshade Swallow', function () {
             let deckSize = this.player2.deck.length;
             this.player1.clickCard(this.summonNightshadeSwallow);
             this.player1.clickPrompt('Summon Nightshade Swallow');
-            this.player1.clickCard(this.player1.archives[0]);
 
             this.player1.clickPrompt('Yes');
 

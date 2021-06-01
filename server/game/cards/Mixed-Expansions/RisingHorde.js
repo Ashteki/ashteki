@@ -5,15 +5,10 @@ class RisingHorde extends Card {
         this.destroyed({
             title: 'Raise Fallen',
             inexhaustible: true,
-            target: {
-                mode: 'upTo',
-                numCards: 2,
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'fallen',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'fallen',
+                count: 2
+            })
         });
     }
 }

@@ -22,7 +22,6 @@ describe('Summon Dread Wraith', function () {
         it('should place a dread wraith play', function () {
             this.player1.clickCard(this.summonDreadWraith);
             this.player1.clickPrompt('Summon Dread Wraith');
-            this.player1.clickCard(this.player1.archives[0]);
 
             expect(this.player1.inPlay.length).toBe(2);
             expect(this.player1.inPlay.every((c) => c.exhaustion == 0)).toBe(false);
@@ -57,7 +56,6 @@ describe('Summon Dread Wraith', function () {
             expect(this.player1.inPlay[0].exhaustion).toBe(1);
             this.player1.clickCard(this.summonDreadWraith);
             this.player1.clickPrompt('Summon Dread Wraith');
-            this.player1.clickCard(this.player1.archives[0]);
 
             expect(this.player1.inPlay.length).toBe(2);
             expect(this.player1.inPlay.some((c) => c.exhausted)).toBe(false);

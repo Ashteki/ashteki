@@ -46,12 +46,6 @@ describe('Reactions', function () {
             expect(this.player1).toHavePrompt('Any reactions to Fire Archer being destroyed?');
 
             this.player1.clickCard(this.summonSleepingWidows);
-            expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
-            expect(this.player1).toBeAbleToSelect(this.player1.archives[1]);
-
-            this.player1.clickCard(this.player1.archives[0]);
-            this.player1.clickCard(this.player1.archives[1]);
-            this.player1.clickPrompt('Done');
             expect(this.player1.inPlay.length).toBe(2);
             expect(this.player1.discard.length).toBe(2); // summonSleepingWidows and fire archer
             expect(this.player1).not.toHavePrompt('Any reactions to Fire Archer being destroyed?');
@@ -68,9 +62,6 @@ describe('Reactions', function () {
             expect(this.player1).toHavePrompt('Any reactions to Fire Archer being destroyed?');
 
             this.player1.clickCard(this.summonSleepingWidows);
-            this.player1.clickCard(this.player1.archives[0]);
-            this.player1.clickCard(this.player1.archives[1]);
-            this.player1.clickPrompt('Done');
 
             expect(this.player1).not.toHavePrompt('Any reactions to Fire Archer being destroyed?');
             expect(this.player2).toHavePrompt('Any reactions to Fire Archer being destroyed?'); // jessa reaction
@@ -127,11 +118,6 @@ describe('Reactions', function () {
             expect(this.player2).not.toHavePrompt('Any reactions to blood puppet being destroyed?');
 
             this.player1.clickCard(this.summonSleepingWidows);
-            expect(this.player1).toBeAbleToSelect(this.player1.archives[0]);
-            expect(this.player1).toBeAbleToSelect(this.player1.archives[1]);
-            this.player1.clickCard(this.player1.archives[0]);
-            this.player1.clickCard(this.player1.archives[1]);
-            this.player1.clickPrompt('Done');
 
             expect(this.player2).toHavePrompt('Any reactions to blood puppet being destroyed?');
             this.player2.clickCard(this.jessaNaNi);

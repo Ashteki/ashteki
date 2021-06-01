@@ -17,13 +17,9 @@ class SummonNightsongCricket extends Card {
                 ])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'nightsong-cricket',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'nightsong-cricket'
+            }),
             then: {
                 condition: (context) =>
                     context.source.focus > 0 &&

@@ -33,17 +33,11 @@ class SummonFallen extends Card {
                     location: 'spellboard',
                     gameAction: ability.actions.removeStatus()
                 },
-                conj: {
-                    dependsOn: 'donors',
-                    mode: 'upTo',
-                    numCards: (context) => context.targets.donors.length,
-                    cardCondition: (card) => card.id === 'fallen',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
-                }
-            },
-            effect: 'put {1} fallen into play',
-            effectArgs: (context) => context.targets.conj.length
+                gameAction: ability.actions.summon((context) => ({
+                    conjuration: 'fallen',
+                    count: context.targets.donors.length
+                }))
+            }
         });
     }
 }

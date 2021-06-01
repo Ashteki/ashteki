@@ -15,13 +15,9 @@ class SummonSteadfastGuardian extends Card {
                 ])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'steadfast-guardian',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            },
+            gameAction: ability.actions.summon({
+                conjuration: 'steadfast-guardian'
+            }),
             then: {
                 condition: () => this.focus > 0,
                 target: {

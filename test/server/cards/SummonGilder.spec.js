@@ -19,9 +19,11 @@ describe('Summon Gilder', function () {
         it('should place a gilder into play', function () {
             this.player1.clickCard(this.summonGilder);
             this.player1.clickPrompt('Summon Gilder');
-            this.player1.clickCard(this.player1.archives[0]);
-            expect(this.player1).toBeAbleToSelect(this.gilder);
+            // this.player1.clickCard(this.player1.archives[0]);
+            // expect(this.player1).toBeAbleToSelect(this.gilder);
+            expect(this.gilder.location).toBe('play area');
 
+            // 1 damage to a unit
             expect(this.player1).toHavePromptButton('Done'); // it's optional
             expect(this.player1).toBeAbleToSelect(this.hammerKnight);
             this.player1.clickCard(this.hammerKnight);

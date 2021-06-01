@@ -5,14 +5,9 @@ class HuntMaster extends Card {
         this.entersPlay({
             gameAction: ability.actions.addStatusToken({ amount: 2 }),
             then: {
-                target: {
-                    activePromptTitle: 'Call the Hunt',
-                    controller: 'self',
-                    cardType: 'Conjuration',
-                    cardCondition: (card) => card.id === 'panther-spirit',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
-                }
+                gameAction: ability.actions.summon({
+                    conjuration: 'panther-spirit'
+                })
             }
         });
 

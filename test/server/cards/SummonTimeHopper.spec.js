@@ -22,7 +22,6 @@ describe('Summon Time Hopper', function () {
         it('should place a time hopper into play', function () {
             this.player1.clickCard(this.summonTimeHopper);
             this.player1.clickPrompt('Summon Time Hopper');
-            this.player1.clickCard(this.player1.archives[0]);
 
             expect(this.player1.inPlay.length).toBe(2);
             expect(this.player1.inPlay.every((c) => c.damage == 0)).toBe(false);
@@ -52,10 +51,8 @@ describe('Summon Time Hopper', function () {
         it('should add a second time hopper when unexhausted status hopper is in play', function () {
             this.player1.clickCard(this.summonTimeHopper);
             this.player1.clickPrompt('Summon Time Hopper');
-            this.player1.clickCard(this.player1.archives[0]);
             // add a status token
             this.player1.clickDone();
-            this.player1.clickCard(this.player1.archives[0]); // second hopper
             this.player1.clickDone();
 
             expect(this.player1.inPlay.length).toBe(3);

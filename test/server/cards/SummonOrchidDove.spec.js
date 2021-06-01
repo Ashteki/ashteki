@@ -20,7 +20,6 @@ describe('Summon Orchid Dove', function () {
             this.player1.clickCard(this.summonOrchidDove);
             this.player1.clickPrompt('Summon Orchid Dove');
             this.player1.clickDie(0);
-            this.player1.clickCard(this.player1.archives[0]);
         });
     });
 
@@ -49,7 +48,6 @@ describe('Summon Orchid Dove', function () {
             this.player1.clickCard(this.summonOrchidDove);
             this.player1.clickPrompt('Summon Orchid Dove');
             this.player1.clickDie(0);
-            this.player1.clickCard(this.player1.archives[0]);
 
             this.player1.clickPrompt('Yes');
 
