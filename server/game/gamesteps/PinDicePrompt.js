@@ -1,4 +1,5 @@
 const AllPlayerPrompt = require('./allplayerprompt');
+const { Level } = require('../../constants');
 
 class PinDicePrompt extends AllPlayerPrompt {
     constructor(game) {
@@ -37,6 +38,13 @@ class PinDicePrompt extends AllPlayerPrompt {
                 this.selectableDice[player.name] = player.dice.filter((d) => this.dieCondition(d));
             }
             player.setSelectableDice(this.selectableDice[player.name]);
+
+            if (!this.selectedDice[player.name]) {
+                this.selectedDice[player.name] = this.selectableDice[player.name].filter(
+                    (d) => d.level === Level.Power
+                );
+            }
+            player.setSelectedDice(this.selectedDice[player.name]);
         });
     }
 
