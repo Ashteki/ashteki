@@ -25,19 +25,19 @@ class SummonFallen extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
             condition: (context) => context.player.spellboard.some((s) => s.status > 0),
-            targets: {
-                donors: {
-                    mode: 'upTo',
-                    numCards: 3,
-                    cardCondition: (card) => card.id === 'summon-fallen' && card.status > 0,
-                    location: 'spellboard',
-                    gameAction: ability.actions.removeStatus()
-                },
-                gameAction: ability.actions.summon((context) => ({
+            target: {
+                mode: 'upTo',
+                numCards: 3,
+                cardCondition: (card) => card.id === 'summon-fallen' && card.status > 0,
+                location: 'spellboard',
+                gameAction: ability.actions.removeStatus()
+            },
+            then: (context) => ({
+                gameAction: ability.actions.summon({
                     conjuration: 'fallen',
-                    count: context.targets.donors.length
-                }))
-            }
+                    count: context.target.length
+                })
+            })
         });
     }
 }
