@@ -161,6 +161,13 @@ class TriggeredAbility extends CardAbility {
             }
         }
 
+        if (
+            this.card.type === CardType.ReactionSpell &&
+            context.game.currentPhase !== 'playerturns'
+        ) {
+            return 'phase';
+        }
+
         return super.meetsRequirements(context, ignoredRequirements);
     }
 }

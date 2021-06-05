@@ -119,4 +119,36 @@ describe('Sympathy pain reaction spell', function () {
             expect(this.hammerKnight.damage).toBe(2);
         });
     });
+
+    describe('During End of Round Phase', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['flute-mage', 'hammer-knight', 'admonisher'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    hand: ['cover', 'molten-gold']
+                },
+                player2: {
+                    phoenixborn: 'saria-guideman',
+                    inPlay: ['iron-worker'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    hand: ['sympathy-pain']
+                }
+            });
+        });
+
+        it('should not be allowed at end of round', function () {
+            // bug reported as this scenario
+
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.clickDone(); // no pins
+            this.player2.clickDone();
+
+            expect(this.sariaGuideman.damage).toBe(1); // from admonisher
+            expect(this.player2).not.toHavePrompt('Any reactions?');
+        });
+    });
 });
