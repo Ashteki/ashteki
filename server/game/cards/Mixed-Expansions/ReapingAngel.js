@@ -15,6 +15,7 @@ class ReapingAngel extends Card {
                 ]
             },
             then: {
+                alwaysTriggers: true,
                 target: {
                     activePromptTitle: 'Choose a card to remove from the game',
                     optional: true,
