@@ -1,4 +1,4 @@
 module.exports = {
-    releaseDate: '2021-06-01',
-    build: '221'
+    releaseDate: '2021-06-06',
+    build: '222'
 };
