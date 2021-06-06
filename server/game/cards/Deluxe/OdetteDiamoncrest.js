@@ -12,7 +12,7 @@ class OdetteDiamondcrest extends Card {
                     ability.actions.dealDamage({ amount: 2 }),
                     ability.actions.dealDamage((context) => ({
                         amount: context.target.attack,
-                        target: this
+                        target: context.player.phoenixborn
                     }))
                 ]
             }

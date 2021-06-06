@@ -109,6 +109,40 @@ describe('Copycat', function () {
         });
     });
 
+    describe('reaction to odette enter the fray', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'odette-diamondcrest',
+                    inPlay: ['hammer-knight', 'blood-archer'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
+                    hand: ['molten-gold', 'out-of-the-mist', 'cover'],
+                    deck: ['molten-gold', 'out-of-the-mist', 'cover']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['glow-finch', 'iron-worker'],
+                    hand: ['copycat', 'dispel'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
+                }
+            });
+        });
+
+        it('copy pb ability (odette)', function () {
+            this.player1.clickCard(this.odetteDiamondcrest); // use ability
+            this.player1.clickPrompt('Enter the Fray');
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.location).toBe('discard');
+            expect(this.odetteDiamondcrest.damage).toBe(2);
+
+            this.player2.clickCard(this.copycat);
+            this.player2.clickDie(0);
+            this.player2.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.damage).toBe(2);
+            expect(this.maeoniViper.damage).toBe(3);
+            expect(this.odetteDiamondcrest.damage).toBe(2);
+        });
+    });
     describe('reaction to brennen ability', function () {
         beforeEach(function () {
             this.setupTest({
