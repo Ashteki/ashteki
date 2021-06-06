@@ -14,7 +14,8 @@ class StrangeCopy extends Card {
                 onAttackersDeclared: (event, context) =>
                     event.attackingPlayer === context.source.owner.opponent
             },
-            effect: 'to strange copy {0}',
+            effect: 'to make {1} copy {2}',
+            effectArgs: (context) => [context.targets.myUnit, context.targets.sourceUnit],
             targets: {
                 myUnit: {
                     activePromptTitle: 'Choose a unit you control to affect',
