@@ -83,4 +83,44 @@ describe('Mind Probe', function () {
             expect(this.player2.player.purged[0].id).toBe('anchornaut');
         });
     });
+
+    describe('with 1 card in deck', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'leo-sunshadow',
+                    inPlay: ['mist-spirit', 'iron-worker'],
+                    dicepool: ['ceremonial', 'natural', 'charm', 'charm'],
+                    hand: ['mind-probe']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight'],
+                    dicepool: ['natural', 'natural'],
+                    hand: ['choke'],
+                    deck: ['anchornaut']
+                }
+            });
+
+            // remove fillers
+            this.player2.removeFillerCards();
+        });
+
+        it('purge and rearrange as expected', function () {
+            let length = this.player2.deck.length;
+            expect(length).toBe(1);
+
+            this.player1.clickCard(this.mindProbe);
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickPrompt('anchornaut'); // purge
+            // no cards to return
+
+            expect(this.player2.deck.length).toBe(length - 1);
+            // anchornaut is removed from play
+            expect(this.player2.player.purged[0].id).toBe('anchornaut');
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
 });

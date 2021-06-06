@@ -6,6 +6,7 @@ class RearrangeCardsAction extends PlayerAction {
         this.name = 'rearrangeDeck';
         this.remainingCards = [];
         this.purgeCards = [];
+        this.orderedCards = [];
     }
 
     setDefaultProperties() {
@@ -59,7 +60,7 @@ class RearrangeCardsAction extends PlayerAction {
 
         let player = this.target[0];
         this.amount = Math.min(this.amount, player.deck.length);
-        this.orderedCards = this.amount === 1 ? player.deck.slice(0, 1) : [];
+        // this.orderedCards = this.amount === 1 ? player.deck.slice(0, 1) : [];
         this.remainingCards = player.deck.slice(0, this.amount);
         context.game.addMessage(
             "{0} uses {1} to look at the top {2} cards of {3}'s deck",
@@ -71,9 +72,9 @@ class RearrangeCardsAction extends PlayerAction {
         if (this.reveal) {
             context.game.addMessage('{0} reveals {1}', player, this.remainingCards);
         }
-        if (this.amount > 1) {
-            this.promptForRemainingCards(context);
-        }
+        // if (this.amount > 1) {
+        this.promptForRemainingCards(context);
+        // }
     }
 
     getEvent(player, context) {
