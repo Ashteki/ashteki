@@ -6,7 +6,8 @@ describe('Redirect reaction spell', function () {
                 inPlay: ['blue-jaguar', 'mist-spirit'],
                 spellboard: ['summon-butterfly-monk'],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
-                archives: ['butterfly-monk']
+                archives: ['butterfly-monk'],
+                hand: ['one-hundred-blades']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -18,7 +19,7 @@ describe('Redirect reaction spell', function () {
         });
     });
 
-    it('can be played when a phoenixborn takes damage', function () {
+    it('can be played when a phoenixborn takes attack damage', function () {
         expect(this.hammerKnight.tokens.damage).toBeUndefined;
 
         this.player1.clickPrompt('Attack');
@@ -37,5 +38,24 @@ describe('Redirect reaction spell', function () {
         expect(this.hammerKnight.tokens.damage).toBe(this.mistSpirit.attack);
         expect(this.coalRoarkwin.tokens.damage).toBeUndefined;
         expect(this.mistSpirit.tokens.damage).toBeUndefined;
+    });
+
+    it('can be played when a phoenixborn takes Water Blast damage', function () {
+        expect(this.hammerKnight.tokens.damage).toBeUndefined;
+
+        this.player1.play(this.oneHundredBlades);
+        this.player1.clickDie(0);
+        this.player1.clickDie(1);
+        this.player1.clickDone();
+        this.player1.clickCard(this.coalRoarkwin);
+        // any interrupts?
+        this.player2.clickCard(this.redirect); // click redirect to play as reaction
+        this.player2.clickCard(this.hammerKnight); // redirect damage to hammerKnight
+
+        expect(this.redirect.location).toBe('discard');
+        expect(this.player2.hand.length).toBe(0);
+
+        expect(this.hammerKnight.damage).toBe(2);
+        expect(this.coalRoarkwin.tokens.damage).toBeUndefined;
     });
 });
