@@ -31,8 +31,15 @@ class AshesDeckService {
         return this.preconDecks.find({}, { sort: { precon_id: 1 } });
     }
 
-    async findByUserName(userName) {
-        return await this.decks.find({ username: userName }, { sort: { lastUpdated: -1 } });
+    async findByUserName(userName, limit = 0, skip = 0) {
+        return await this.decks.find(
+            { username: userName },
+            {
+                sort: { lastUpdated: -1 },
+                skip: skip,
+                limit: limit
+            }
+        );
     }
 
     clearPrecons() {

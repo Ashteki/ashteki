@@ -56,7 +56,9 @@ module.exports.init = function (server) {
             let decks = [];
 
             if (numDecks > 0) {
-                const rawDecks = await deckService.findByUserName(req.user.username);
+                const limit = req.query.pageSize * 1;
+                const skip = limit * (req.query.page - 1);
+                const rawDecks = await deckService.findByUserName(req.user.username, limit, skip);
                 decks = rawDecks.map((deck) => {
                     deck.usageLevel = 0;
                     deck.usageCount = undefined;
