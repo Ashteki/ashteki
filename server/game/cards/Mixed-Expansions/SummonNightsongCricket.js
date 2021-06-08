@@ -25,7 +25,8 @@ class SummonNightsongCricket extends Card {
                     context.source.focus > 0 &&
                     context.preThenEvent.context.costs.returnDice.some((d) => d.level === 'power'),
                 target: {
-                    controller: 'opponent',
+                    optional: true,
+                    controller: 'any',
                     location: 'discard',
                     gameAction: ability.actions.purge()
                 }
