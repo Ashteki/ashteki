@@ -31,15 +31,30 @@ class AshesDeckService {
         return this.preconDecks.find({}, { sort: { precon_id: 1 } });
     }
 
-    async findByUserName(userName, limit = 0, skip = 0) {
-        return await this.decks.find(
-            { username: userName },
-            {
-                sort: { lastUpdated: -1 },
-                skip: skip,
-                limit: limit
+    async findByUserName(userName, options, applyLimit = true) {
+        let nameSearch = '';
+        let limit = 0;
+        let skip = 0;
+        if (options && applyLimit) {
+            limit = options.pageSize * 1;
+            skip = limit * (options.page - 1);
+        }
+        if (options && options.filter) {
+            for (let filterObject of options.filter || []) {
+                if (filterObject.name === 'name') {
+                    nameSearch = filterObject.value;
+                }
             }
-        );
+        }
+        const searchFields = { username: userName };
+        if (nameSearch !== '') {
+            searchFields.name = { $regex: nameSearch };
+        }
+        return await this.decks.find(searchFields, {
+            sort: { lastUpdated: -1 },
+            skip: skip,
+            limit: limit
+        });
     }
 
     clearPrecons() {
@@ -140,8 +155,8 @@ class AshesDeckService {
         return this.decks.remove({ _id: id });
     }
 
-    async getNumDecksForUser(user) {
-        const userDecks = await this.findByUserName(user.username);
+    async getNumDecksForUser(user, options) {
+        const userDecks = await this.findByUserName(user.username, options, false);
         //todo: handle options
         return userDecks ? userDecks.length : 0;
     }
