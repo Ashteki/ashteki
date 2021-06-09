@@ -93,4 +93,45 @@ describe('Augury', function () {
             expect(this.augury.status).toBe(1);
         });
     });
+
+    describe('When cost is not found in draw pile', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'leo-sunshadow',
+                    inPlay: ['mist-spirit'],
+                    dicepool: ['ceremonial', 'natural', 'charm', 'charm'],
+                    spellboard: ['augury'],
+                    deck: [
+                        'anchornaut',
+                        'flash-archer',
+                        'blood-archer',
+                        'summon-blood-puppet',
+                        'summon-gilder'
+                    ]
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight'],
+                    dicepool: ['natural', 'natural'],
+                    hand: ['choke']
+                }
+            });
+            this.augury.tokens.status = 2;
+        });
+
+        it('status cost is not paid', function () {
+            this.player1.clickCard(this.augury);
+            this.player1.clickPrompt('Augury Search');
+
+            expect(this.player1).not.toBeAbleToSelect(this.bloodArcher);
+            expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+            expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
+            expect(this.player1).not.toBeAbleToSelect(this.flashArcher);
+
+            expect(this.augury.status).toBe(2);
+            expect(this.augury.exhausted).toBe(true);
+        });
+    });
+
 });

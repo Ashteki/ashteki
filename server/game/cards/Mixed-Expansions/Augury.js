@@ -18,9 +18,11 @@ class Augury extends Card {
                 controller: 'self',
                 gameAction: [
                     ability.actions.reveal(),
-                    ability.actions.moveCard({ destination: 'hand' }),
-                    ability.actions.removeStatus({ target: this })
+                    ability.actions.moveCard({ destination: 'hand' })
                 ]
+            },
+            then: {
+                gameAction: ability.actions.removeStatus({ target: this })
             }
         });
     }
