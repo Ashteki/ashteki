@@ -11,6 +11,7 @@ class ChatCommands {
         this.commands = {
             '/add-card': this.addCard,
             '/cancel-prompt': this.cancelPrompt,
+            '/conj': this.moveConjuration,
             '/conjuration': this.moveConjuration,
             '/disconnectme': this.disconnectMe,
             '/draw': this.draw,
