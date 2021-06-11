@@ -88,6 +88,7 @@ describe('unseen', function () {
             // now you can block the owl
             expect(this.player2).toBeAbleToSelect(this.mindFogOwl);
             this.player2.clickCard(this.mindFogOwl);
+            this.player2.clickDone();
 
             this.player1.clickCard(this.mindFogOwl);
             this.player1.clickCard(this.ironWorker);

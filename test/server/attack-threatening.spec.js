@@ -95,6 +95,7 @@ describe('threatening', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
             this.player2.clickCard(this.anchornaut);
             this.player2.clickCard(this.graveKnight);
+            this.player2.clickDone();
 
             expect(this.anchornaut.location).toBe('discard');
             // overkill 1
@@ -128,7 +129,9 @@ describe('threatening', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
             this.player2.clickCard(this.anchornaut);
             this.player2.clickCard(this.player1.inPlay[1]);
+            this.player2.clickDone();
 
+            this.player1.clickCard(this.player1.inPlay[0]);
             this.player1.clickCard(this.player1.inPlay[1]);
 
             expect(this.anchornaut.location).toBe('discard');

@@ -30,6 +30,8 @@ describe('During attack on Phoenixborn', function () {
             this.player2.clickCard(this.mistSpirit);
             this.player2.clickCard(this.ironWorker);
 
+            this.player2.clickDone();
+
             expect(this.player1).toHavePrompt('Choose a fight to resolve');
             this.player1.clickCard(this.sonicSwordsman);
             expect(this.player1).toHavePrompt('Sonic Pulse 1');

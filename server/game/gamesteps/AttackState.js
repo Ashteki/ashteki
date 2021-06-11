@@ -20,39 +20,41 @@ class AttackState {
         );
     }
 
-    removeFromBattle(card) {
-        this.battles.forEach((b) => {
-            // can remove unit target
-            if (b.target === card) {
-                card.isDefender = false;
-                b.target = null;
-            }
+    removeFromBattle(card, includeResolved = false) {
+        this.battles
+            .filter((b) => includeResolved || !b.resolved)
+            .forEach((b) => {
+                // can remove unit target
+                if (b.target === card) {
+                    card.isDefender = false;
+                    b.target = null;
+                }
 
-            // can remove guards / blockers
-            if (b.guard === card) {
-                card.isDefender = false;
-                b.guard = null;
-            }
+                // can remove guards / blockers
+                if (b.guard === card) {
+                    card.isDefender = false;
+                    b.guard = null;
+                }
 
-            // can remove attackers (whole battle)
-            if (b.attacker === card) {
-                card.isAttacker = false;
-                b.attacker = null;
-                this.battles = this.battles.filter((bf) => bf !== b);
-                return;
-            }
-        });
+                // can remove attackers (whole battle)
+                if (b.attacker === card) {
+                    card.isAttacker = false;
+                    b.attacker = null;
+                    this.battles = this.battles.filter((bf) => bf !== b);
+                    return;
+                }
+            });
     }
 
     pruneBattles() {
         this.battles
-            .filter((b) => b.attacker.exhausted)
+            .filter((b) => b.attacker.exhausted && !b.resolved)
             .forEach((b) => {
                 b.attacker.isAttacker = false;
                 if (b.guard) b.guard.isDefender = false;
                 if (b.target && !this.isPBAttack) b.target.isDefender = false;
             });
-        this.battles = this.battles.filter((b) => !b.attacker.exhausted);
+        this.battles = this.battles.filter((b) => !b.attacker.exhausted && !b.resolved);
     }
 
     setBlockerForAttacker(blocker, attacker) {

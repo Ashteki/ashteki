@@ -72,7 +72,9 @@ class ChooseDefendersPrompt extends UiPrompt {
     availableToBlockOrGuard(defender) {
         if (this.attack.isPBAttack)
             return this.attack.battles.some((b) => this.blockTest(defender, b.attacker));
-        else return this.attack.battles.some((b) => this.guardTest(defender, b.target, b.attacker));
+        else {
+            return this.attack.battles.some((b) => this.guardTest(defender, b.target, b.attacker));
+        }
     }
 
     guardTest(card, target, attacker) {
@@ -89,7 +91,7 @@ class ChooseDefendersPrompt extends UiPrompt {
         // guard is used for blockers too
         return (
             !attacker.anyEffect('preventblock') &&
-            !this.battles.some((b) => b.guard == card) &&
+            // !this.battles.some((b) => b.guard == card) &&
             card.canBlock(attacker)
         );
     }
@@ -219,24 +221,20 @@ class ChooseDefendersPrompt extends UiPrompt {
             (b) => b.attacker.anyEffect('threatening') && !b.guard
         );
 
-        const numThreats = unblockedThreatBattles.length;
-        // there are some threatening attackers without blockers
-        if (numThreats > 0) {
-            // potential defenders
-            let defenders = this.attack.defendingPlayer.unitsInPlay.filter((u) => !u.exhausted);
-
-            unblockedThreatBattles.forEach((battle) => {
-                const def = defenders.find((d) => d.canBlock(battle.attacker));
-                if (def) {
-                    defenders = defenders.filter((d) => d !== def);
-                } else {
-                    return true;
-                }
-            });
-
-            return false;
+        // potential defenders, unexhausted and not blocking a threatening unit
+        let defenders = this.attack.defendingPlayer.unitsInPlay.filter(
+            (u) =>
+                !u.exhausted &&
+                !this.attack.battles.some(
+                    (b) => b.guard === u && b.attacker.anyEffect('threatening')
+                )
+        );
+        for (const battle of unblockedThreatBattles) {
+            const def = defenders.find((d) => d.canBlock(battle.attacker));
+            if (def) {
+                return false;
+            }
         }
-
         return true;
     }
 

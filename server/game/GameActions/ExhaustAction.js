@@ -21,8 +21,7 @@ class ExhaustAction extends CardGameAction {
             if (card.isAttacker) {
                 context.game.attackState.removeFromBattle(card);
             }
-        }
-        );
+        });
     }
 }
 

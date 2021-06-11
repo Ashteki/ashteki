@@ -32,6 +32,7 @@ describe('standard bearer', function () {
         this.player2.clickDone();
         this.player1.clickCard(this.standardBearer);
         this.player1.clickCard(this.timeHopper);
+        this.player1.clickCard(this.mistSpirit);
         expect(this.player1).toHaveDefaultPrompt();
         expect(this.coalRoarkwin.damage).toBe(5);
     });

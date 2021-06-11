@@ -82,7 +82,7 @@ describe('Call to action reaction', function () {
             // defender 1
             this.player2.clickCard(this.sunSister);
             this.player2.clickCard(this.frostbackBear);
-            // this.player2.clickPrompt('Done'); (no other valid options because of terrifying 1)
+            this.player2.clickPrompt('Done'); // (no other valid options because of terrifying 1)
 
             expect(this.sunSister.location).toBe('discard'); // killed by FBB
             expect(this.frostbackBear.exhausted).toBe(true); // attacked

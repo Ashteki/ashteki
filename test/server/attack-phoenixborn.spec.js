@@ -8,7 +8,7 @@ describe('Attack on Phoenixborn', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['flute-mage', 'iron-worker']
+                    inPlay: ['flute-mage', 'anchornaut']
                 }
             });
         });
@@ -61,7 +61,7 @@ describe('Attack on Phoenixborn', function () {
 
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.coalRoarkwin); // target
-            this.player1.clickCard(this.ironWorker); // single attacker
+            this.player1.clickCard(this.ironWorker);
             this.player1.clickPrompt('Done'); // end attacker choice
 
             this.player2.clickCard(this.fluteMage); // blocker
@@ -76,6 +76,42 @@ describe('Attack on Phoenixborn', function () {
             // counter damage to attacker
             expect(this.ironWorker.tokens.damage).toBe(1);
             expect(this.fluteMage.location).toBe('discard');
+        });
+
+        it('defender may choose multiple blockers', function () {
+            expect(this.coalRoarkwin.tokens.damage).toBeUndefined();
+            expect(this.ironWorker.tokens.damage).toBeUndefined();
+
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.coalRoarkwin); // target
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickPrompt('Done'); // end attacker choice
+
+            this.player2.clickCard(this.fluteMage); // blocker
+            expect(this.player2).toBeAbleToSelect(this.ironWorker);
+            this.player2.clickCard(this.ironWorker); // who to block
+            this.player2.clickCard(this.anchornaut); // blocker
+            this.player2.clickCard(this.mistSpirit); // who to block
+
+            this.player2.clickPrompt('Done'); // for blockers, always click 'done'
+
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.mistSpirit);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            // no damage to pb
+            expect(this.coalRoarkwin.damage).toBe(0);
+            expect(this.coalRoarkwin.exhausted).toBe(false);
+
+            // counter damage to attacker
+            expect(this.ironWorker.damage).toBe(1);
+            expect(this.fluteMage.location).toBe('discard');
+            expect(this.mistSpirit.damage).toBe(0);
+            expect(this.anchornaut.location).toBe('discard');
+
+            expect(this.anchornaut.isDefender).toBe(false);
+            expect(this.fluteMage.isDefender).toBe(false);
         });
     });
 

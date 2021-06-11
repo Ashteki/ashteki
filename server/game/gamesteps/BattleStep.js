@@ -9,7 +9,7 @@ class BattleStep extends BaseStepWithPipeline {
         this.chosenBattle = null;
         let steps = [
             // prompt for battle
-            new SimpleStep(this.game, () => this.chooseBattle()),
+            new SimpleStep(this.game, () => this.chooseBattle())
         ];
 
         this.pipeline.initialise(steps);

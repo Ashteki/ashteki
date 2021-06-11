@@ -43,6 +43,7 @@ describe('Massive Growth alteration', function () {
         this.player1.clickCard(this.coalRoarkwin);
         this.player1.clickCard(this.mistSpirit);
         this.player1.clickPrompt('Done');
+
         expect(this.coalRoarkwin.damage).toBe(5);
     });
 
