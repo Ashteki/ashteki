@@ -40,6 +40,17 @@ class MenuCommands {
                 }
 
                 break;
+            case 'guarded':
+                card.usedGuardThisRound = !card.usedGuardThisRound;
+                game.addAlert(
+                    'danger',
+                    "{0} sets {1}'s guarded status to {2}",
+                    player,
+                    card,
+                    card.usedGuardThisRound ? 'true' : 'false'
+                );
+
+                break;
             case 'detachDie':
                 if (card.dieUpgrades.length === 1) {
                     player.removeDieAttachments(card);

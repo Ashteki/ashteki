@@ -89,7 +89,9 @@ class Card extends PlayableObject {
             { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
             { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' }
         ];
-        if (!(this.type === CardType.Phoenixborn)) {
+        if (this.type === CardType.Phoenixborn) {
+            this.menu.push({ command: 'guarded', text: 'toggle guarded', menu: 'main' });
+        } else {
             this.menu.push({ command: 'control', text: 'Give control', menu: 'main' });
         }
 
