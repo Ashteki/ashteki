@@ -9,6 +9,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         super(game);
         // choices holds all of the abilities that were triggered by the event - this may be more than one for a single card
         this.choices = [];
+        this.allChoices = [];
         // all of the events that are being handled together - e.g. events and child events
         this.events = [];
         this.eventWindow = window;
@@ -37,6 +38,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     addChoice(context) {
         if (!this.hasAbilityBeenTriggered(context)) {
             this.choices.push(context);
+            this.allChoices = [...this.choices];
         }
     }
 
@@ -47,6 +49,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     }
 
     filterChoices() {
+
         // Processes the choices left for this window, return true to end the window
         if (this.choices.length === 0 || this.pressedDone) {
             return true;
@@ -54,7 +57,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
 
         // autoResolve choices are things that don't impact other objects e.g. Silver Snake gains a status
         let autoResolveChoice = this.choices.find((context) => context.ability.autoResolve);
-        if (autoResolveChoice) {
+        if (autoResolveChoice && false) {
             this.resolveAbility(autoResolveChoice);
             return false;
         }

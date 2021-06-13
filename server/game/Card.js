@@ -245,7 +245,7 @@ class Card extends PlayableObject {
 
     fade() {
         return this.forcedReaction({
-            autoResolve: true,
+            // autoResolve: true,
             inexhaustible: true,
             title: 'Fade',
             when: {

@@ -77,11 +77,7 @@ const AbilityWindowTitles = {
             (string) => string
         );
 
-        if (
-            [AbilityType.ForcedReaction, AbilityType.ForcedInterrupt, 'whenrevealed'].includes(
-                abilityType
-            )
-        ) {
+        if ([AbilityType.ForcedReaction, AbilityType.ForcedInterrupt].includes(abilityType)) {
             if (titles.length > 0) {
                 return 'Choose ' + abilityWord + ' order for ' + FormatTitles(titles);
             }
