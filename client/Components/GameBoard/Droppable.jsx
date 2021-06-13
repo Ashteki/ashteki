@@ -12,7 +12,8 @@ const validTargets = {
     discard: ['archives', 'hand', 'deck', 'play area', 'purged'],
     archives: ['play area', 'purged'],
     deck: ['hand', 'discard', 'archives', 'play area', 'spellboard', 'purged'],
-    purged: ['deck', 'play area', 'discard', 'hand', 'archives', 'spellboard']
+    purged: ['deck', 'play area', 'discard', 'hand', 'archives', 'spellboard'],
+    spellboard: ['hand', 'discard']
 };
 
 const Droppable = ({ children, manualMode, onDragDrop, source }) => {
