@@ -11,6 +11,7 @@ class Die extends PlayableObject {
         this.attachable = false;
 
         this.owner = owner;
+        this.controller = owner;
         this.magic = magic;
         this.level = level;
         this.exhausted = false;

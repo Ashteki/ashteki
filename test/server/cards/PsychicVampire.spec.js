@@ -45,5 +45,15 @@ describe('psychic vampire', function () {
             expect(this.ironWorker.location).toBe('discard');
         });
 
+        it('ability triggers on dice power', function () {
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('natural dice power');
+            this.player1.clickCard(this.psychicVampire);
+
+            this.player1.clickCard(this.ironWorker);
+
+            expect(this.psychicVampire.location).toBe('discard');
+            expect(this.ironWorker.location).toBe('discard');
+        });
     });
 });
