@@ -58,6 +58,11 @@ class AttackState {
     }
 
     setBlockerForAttacker(blocker, attacker) {
+        let fromBattle = this.battles.find(b => b.guard === blocker);
+        if (fromBattle) {
+            fromBattle.guard = null;
+        }
+
         let battle = this.battles.find((b) => b.attacker === attacker);
         if (battle.guard) {
             battle.guard.isDefender = false;
