@@ -96,47 +96,61 @@ export class PlayerStats extends React.Component {
 
     renderActions() {
         let actionTypes = ['main', 'side'];
-        let actionOutput = actionTypes.map((actionType) => {
-            return this.renderAction(actionType);
-        });
+        // let actionOutput =  + this.renderSideAction();
 
-        return <div className='state'>{actionOutput}</div>;
+        return (
+            <div className='state'>
+                {this.renderMainAction()}
+                {this.renderSideAction()}
+            </div>
+        )
     }
 
-    renderAction(actionType) {
-        const actionValue = this.props.actions[actionType];
+    renderMainAction() {
+        const actionValue = this.props.actions['main'];
         let actionClass = classNames('action', actionValue ? '' : 'exhausted');
-        let diceFont = `phg-${actionType}-action`;
-        const actionCount = actionType === 'side' ? actionValue : '';
+        let diceFont = `phg-main-action`;
         return (
             <div>
-                {this.props.showControls && actionType === 'side' ? (
-                    <a
-                        href='#'
-                        className='btn-stat'
-                        onClick={this.sendUpdate.bind(this, actionType, 'down')}
-                    >
-                        <img src={Minus} title='-' alt='-' />
-                    </a>
-                ) : null}
                 <span
-                    key={`action ${actionType}`}
+                    key={`action-main`}
                     className={actionClass}
-                    onClick={this.toggleAction.bind(this, actionType)}
+                    onClick={this.toggleAction.bind(this, 'main')}
                 >
-                    {actionCount}
-                    <span className={diceFont} title={`${actionType} action`}></span>
+                    <span className={diceFont} title={`main action`}></span>
                 </span>
-                {this.props.showControls && actionType === 'side' ? (
+            </div>
+        );
+    }
+
+    renderSideAction() {
+        const actionValue = this.props.actions['side'];
+        let actionClass = classNames('action', actionValue ? '' : 'exhausted');
+        let diceFont = `phg-side-action`;
+        return (
+            <div>
+                {this.props.showControls ? (
                     <a
                         href='#'
                         className='btn-stat'
-                        onClick={this.sendUpdate.bind(this, actionType, 'up')}
+                        onClick={this.sendUpdate.bind(this, 'side', 'down')}
                     >
-                        <img src={Plus} title='+' alt='+' />
+                        <img src={Minus} title='- side' alt='-' />
                     </a>
                 ) : null}
-
+                <span key={`action-side`} className={actionClass}>
+                    {actionValue}
+                    <span className={diceFont} title={`side action`}></span>
+                </span>
+                {this.props.showControls ? (
+                    <a
+                        href='#'
+                        className='btn-stat'
+                        onClick={this.sendUpdate.bind(this, 'side', 'up')}
+                    >
+                        <img src={Plus} title='+ side' alt='+' />
+                    </a>
+                ) : null}
             </div>
         );
     }
