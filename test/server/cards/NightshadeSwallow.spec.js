@@ -40,7 +40,7 @@ describe('Nightshade Swallow', function () {
         expect(this.seasideRaven.exhausted).toBe(false);
     });
 
-    it('triggers when destroyed. Exhaust sonic swordsman to prevent sonic pulse', function () {
+    it('triggers when destroyed. Exhaust sonic swordsman to prevent sonic pulse, double exhaust', function () {
         expect(this.sonicSwordsman.exhausted).toBe(false);
 
         this.player1.clickPrompt('Attack');
@@ -56,7 +56,9 @@ describe('Nightshade Swallow', function () {
         expect(this.player1).toHaveDefaultPrompt();
 
         expect(this.nightshadeSwallow.location).toBe('archives');
-        expect(this.sonicSwordsman.exhausted).toBe(true); // he attacked
-        expect(this.livingDoll.exhausted).toBe(false); // he attacked
+
+        expect(this.sonicSwordsman.exhausted).toBe(true);
+        expect(this.sonicSwordsman.exhaustion).toBe(2); // attack + Pacify
+        expect(this.livingDoll.exhausted).toBe(false);
     });
 });
