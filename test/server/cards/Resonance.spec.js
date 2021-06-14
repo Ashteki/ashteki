@@ -1,4 +1,28 @@
 describe('resonance', function () {
+    describe('Empty spellboard', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['mist-spirit', 'iron-worker'],
+                    dicepool: ['divine', 'sympathy', 'sympathy', 'divine', 'sympathy', 'sympathy'],
+                    hand: ['resonance', 'summon-mist-spirit']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural']
+                }
+            });
+        });
+
+        it('cannot be played', function () {
+            this.player1.clickCard(this.resonance);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
     describe('resonance', function () {
         beforeEach(function () {
             this.setupTest({
