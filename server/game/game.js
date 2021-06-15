@@ -1059,9 +1059,9 @@ class Game extends EventEmitter {
                 return false;
             }
 
-            let difference = moment().diff(moment(player.disconnectedAt), 'seconds');
+            let difference = moment().diff(moment(player.disconnectedAt), 'minutes');
 
-            return difference > 30;
+            return difference > 5;
         });
     }
 
