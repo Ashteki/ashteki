@@ -24,7 +24,11 @@ class AttachAction extends CardGameAction {
             return super.canAffect(card, context);
         }
 
-        if (!this.upgrade || !this.upgrade.canAttach(card, context)) {
+        if (
+            !this.upgrade ||
+            this.upgrade.location === 'play area' ||
+            !this.upgrade.canAttach(card, context)
+        ) {
             return false;
         }
 

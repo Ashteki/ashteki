@@ -35,6 +35,5 @@ describe('Hunters Mark Ability', function () {
         expect(this.huntersMark.parent).toBe(this.ironWorker);
         this.player1.clickCard(this.huntersMark);
         expect(this.huntersMark.parent).toBe(this.ironWorker);
-
     });
 });
