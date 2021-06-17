@@ -4,13 +4,13 @@ describe('Fade away', function () {
             player1: {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['mist-spirit', 'anchornaut'],
-                dicepool: ['natural', 'illusion', 'charm', 'illusion'],
+                dicepool: ['natural', 'illusion', 'natural', 'charm', 'illusion'],
                 spellboard: [],
-                hand: ['fade-away']
+                hand: ['fade-away', 'root-armor']
             },
             player2: {
                 phoenixborn: 'jessa-na-ni',
-                inPlay: ['iron-worker', 'iron-rhino'],
+                inPlay: ['iron-worker', 'iron-rhino', 'frostback-bear'],
                 spellboard: ['summon-iron-rhino'],
                 dicepool: ['natural'],
                 hand: []
@@ -23,12 +23,12 @@ describe('Fade away', function () {
 
         this.player1.play(this.fadeAway, this.ironRhino); // attach to ir
 
-        this.player1.clickPrompt('End Turn');
+        this.player1.endTurn();
         // pass p2
-        this.player2.clickPrompt('End Turn');
+        this.player2.endTurn();
 
         // pass p1
-        this.player1.clickPrompt('End Turn');
+        this.player1.endTurn();
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
 
@@ -44,12 +44,12 @@ describe('Fade away', function () {
 
         this.player1.play(this.fadeAway, this.ironWorker); // attach to iw
 
-        this.player1.clickPrompt('End Turn');
+        this.player1.endTurn();
         // pass p2
-        this.player2.clickPrompt('End Turn');
+        this.player2.endTurn();
 
         // pass p1
-        this.player1.clickPrompt('End Turn');
+        this.player1.endTurn();
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
 
@@ -58,6 +58,28 @@ describe('Fade away', function () {
 
         expect(this.game.round).toBe(2);
         expect(this.ironWorker.location).toBe('purged');
+        expect(this.fadeAway.location).toBe('discard');
+    });
+
+    it('immortal bear bug report', function () {
+        expect(this.game.round).toBe(1);
+
+        this.player1.play(this.rootArmor, this.frostbackBear);
+        this.player1.play(this.fadeAway, this.frostbackBear);
+
+        this.player1.endTurn();
+        // pass p2
+        this.player2.endTurn();
+
+        // pass p1
+        this.player1.endTurn();
+        this.player1.clickPrompt('Done');
+        this.player2.clickPrompt('Done');
+
+        expect(this.player2).toHavePrompt('Any reactions to frostback bear being destroyed?');
+        this.player2.clickPass();
+        expect(this.game.round).toBe(2);
+        expect(this.frostbackBear.location).toBe('archives');
         expect(this.fadeAway.location).toBe('discard');
     });
 });
