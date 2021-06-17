@@ -19,7 +19,7 @@ describe('Join the Hunt', function () {
             });
         });
 
-        it('deals Overkill 1 to PB', function () {
+        it('gives group tactics 2 to myunit', function () {
             this.player1.clickCard(this.joinTheHunt); // play card
             this.player1.clickPrompt('Join the hunt');
             this.player1.clickCard(this.mistSpirit);
@@ -55,7 +55,7 @@ describe('Join the Hunt', function () {
             });
         });
 
-        it('deals Overkill 1 to PB', function () {
+        it('gives group tactics 2', function () {
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('summon blood puppet');
             this.player1.clickPrompt("Opponent's");

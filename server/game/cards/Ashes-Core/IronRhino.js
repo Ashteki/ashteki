@@ -3,11 +3,11 @@ const Card = require('../../Card.js');
 class IronRhino extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            effect: ability.effects.addKeyword({ gigantic: 1 })
+            effect: [
+                ability.effects.addKeyword({ gigantic: 1 }),
+                ability.effects.addKeyword({ overkill: 2 })
+            ]
         });
-
-        // overkill 2
-        this.overkill(2);
     }
 }
 

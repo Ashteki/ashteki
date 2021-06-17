@@ -162,22 +162,17 @@ class Card extends PlayableObject {
 
     // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
-        // Assault
-        // this.abilities.keywordReactions.push(
-        //     this.interrupt({
-        //         title: 'Assault',
-        //         printedAbility: false,
-        //         when: {
-        //             onFight: (event, context) => event.attacker === context.source
-        //         },
-        //         gameAction: ability.actions.dealDamage((context) => ({
-        //             amount: context.source.getKeywordValue('assault'),
-        //             target: context.event.card,
-        //             damageSource: context.source,
-        //             damageType: 'assault'
-        //         }))
-        //     })
-        // );
+        // Overkill
+        this.abilities.keywordReactions.push(
+            this.afterDestroysFighting({
+                autoResolve: true,
+                gameAction: AbilityDsl.actions.dealDamage((context) => ({
+                    amount: context.source.getKeywordValue('overkill'),
+                    target: context.player.opponent.phoenixborn
+                }))
+            })
+        );
+
         // // Hazardous
         // this.abilities.keywordReactions.push(
         //     this.interrupt({
@@ -328,16 +323,6 @@ class Card extends PlayableObject {
                 properties
             )
         );
-    }
-
-    overkill(amount) {
-        return this.afterDestroysFighting({
-            autoResolve: true,
-            gameAction: AbilityDsl.actions.dealDamage((context) => ({
-                amount: amount,
-                target: context.player.opponent.phoenixborn
-            }))
-        });
     }
 
     entersPlay(properties) {

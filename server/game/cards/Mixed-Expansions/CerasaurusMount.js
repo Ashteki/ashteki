@@ -1,10 +1,12 @@
 const Card = require('../../Card.js');
 
 class CerasaurusMount extends Card {
-    setupCardAbilities() {
+    setupCardAbilities(ability) {
         this.dismount();
 
-        this.overkill(1);
+        this.persistentEffect({
+            effect: [ability.effects.addKeyword({ overkill: 1 })]
+        });
     }
 }
 

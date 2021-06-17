@@ -3,16 +3,7 @@ const Card = require('../../Card.js');
 class PowerThrough extends Card {
     setupCardAbilities(ability) {
         this.whileAttached({
-            effect: [
-                ability.effects.modifyAttack(1),
-                ability.effects.gainAbility('afterDestroysFighting', {
-                    // overkill 1
-                    gameAction: ability.actions.dealDamage((context) => ({
-                        amount: 1,
-                        target: context.player.opponent.phoenixborn
-                    }))
-                })
-            ]
+            effect: [ability.effects.modifyAttack(1), ability.effects.addKeyword({ overkill: 1 })]
         });
     }
 }
