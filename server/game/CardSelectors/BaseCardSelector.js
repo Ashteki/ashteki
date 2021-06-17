@@ -7,7 +7,7 @@ class BaseCardSelector {
         this.optional = properties.optional;
         this.location = this.buildLocation(properties.location);
         this.controller = properties.controller || 'any';
-        this.checkTarget = properties.targets;
+        this.checkTarget = properties.ignoreTargetCheck ? false : !!properties.targets;
 
         if (!Array.isArray(properties.cardType)) {
             this.cardType = [properties.cardType];

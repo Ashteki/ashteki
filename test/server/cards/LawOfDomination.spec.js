@@ -10,7 +10,7 @@ describe('law of Domination', function () {
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    inPlay: ['hammer-knight'],
+                    inPlay: ['hammer-knight', 'holy-knight'],
                     spellboard: [],
                     hand: ['rins-fury'],
                     dicepool: ['natural', 'natural']
@@ -18,12 +18,13 @@ describe('law of Domination', function () {
             });
         });
 
-        it('makes two units deal damage to each other', function () {
+        it('makes two units deal damage to each other without targetting', function () {
             this.player1.clickCard(this.lawOfDomination);
             this.player1.clickPrompt('Play this ready spell');
             expect(this.player2).toHavePrompt('choose a card');
             expect(this.player2).not.toBeAbleToSelect(this.ironWorker);
             expect(this.player2).toBeAbleToSelect(this.hammerKnight);
+            expect(this.player2).toBeAbleToSelect(this.holyKnight); // ignores targetting restrictions
             this.player2.clickCard(this.hammerKnight);
             expect(this.player1).toHavePrompt('choose a card');
             expect(this.player1).toBeAbleToSelect(this.ironWorker);
