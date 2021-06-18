@@ -9,6 +9,7 @@ class SunSister extends Card {
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'self',
+                cardCondition: (card, context) => card !== context.source,
                 gameAction: ability.actions.removeDamage()
             }
         });
