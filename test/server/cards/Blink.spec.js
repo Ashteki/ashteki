@@ -9,7 +9,7 @@ describe('Blink action spell', function () {
             },
             player2: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['iron-worker', 'mist-spirit', 'anchornaut'],
+                inPlay: ['iron-worker', 'mist-spirit', 'fire-archer', 'anchornaut'],
                 spellboard: []
             }
         });
@@ -37,7 +37,21 @@ describe('Blink action spell', function () {
 
         this.player1.endTurn();
         expect(this.anchornaut.location).toBe('play area');
-        // enters play reaction
+        // enters play ability
         expect(this.player2).toHavePrompt('Throw 1');
+    });
+
+    it('should allow enters play triggers - fire archer', function () {
+        expect(this.coalRoarkwin.damage).toBe(0);
+        this.player1.play(this.blink);
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.fireArcher);
+
+        expect(this.fireArcher.location).toBe('purged');
+
+        this.player1.endTurn();
+        expect(this.fireArcher.location).toBe('play area');
+        // enters play ability
+        expect(this.coalRoarkwin.damage).toBe(1);
     });
 });

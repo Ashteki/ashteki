@@ -220,7 +220,7 @@ class Card extends PlayableObject {
     }
 
     ambush(amount) {
-        return this.play({
+        return this.entersPlay({
             title: 'Ambush ' + amount,
             effect: 'deal ' + amount + ' damage to a target phoenixborn',
             gameAction: AbilityDsl.actions.dealDamage((context) => ({
