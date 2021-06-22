@@ -30,7 +30,7 @@ class DrainVitality extends Card {
             title: 'Status',
             location: 'spellboard',
             cost: [
-                ability.costs.mainAction(),
+                ability.costs.sideAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Sympathy)])
             ],
