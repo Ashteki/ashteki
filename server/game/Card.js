@@ -1063,6 +1063,9 @@ class Card extends PlayableObject {
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
                 isController &&
+                //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target 
+                // and properties when interrupted mid-resolution
+                activePlayer.promptState.promptTitle === 'Play phase' &&
                 this.getLegalActions(activePlayer).length > 0
             ),
             cardback: this.owner.deckData.cardback,

@@ -3,10 +3,11 @@ const PlayerAction = require('./PlayerAction');
 class RearrangeCardsAction extends PlayerAction {
     constructor(propertyFactory) {
         super(propertyFactory);
+    }
+
+    setup() {
+        super.setup();
         this.name = 'rearrangeDeck';
-        this.remainingCards = [];
-        this.purgeCards = [];
-        this.orderedCards = [];
     }
 
     setDefaultProperties() {
@@ -14,6 +15,9 @@ class RearrangeCardsAction extends PlayerAction {
         this.purge = 0;
         this.purgeType = 'purge';
         this.reveal = false;
+        this.remainingCards = [];
+        this.purgeCards = [];
+        this.orderedCards = [];
     }
 
     defaultTargets(context) {
@@ -90,11 +94,17 @@ class RearrangeCardsAction extends PlayerAction {
                 if (this.purge > 0) {
                     const subject = this.reveal ? '{1} ' : 'a card ';
                     if (this.purgeType === 'bottom') {
-                        player.deck.push(...this.purgeCards);
+                        event.purgeCards.forEach((c) => {
+                            event.player.moveToBottom(c);
+                        });
+                        // event.player.deck.push(...event.purgeCards);
                         const bottomMessage = '{0} returns ' + subject + 'to the bottom of the deck';
                         context.game.addMessage(bottomMessage, context.player, event.purgeCards);
                     } else {
-                        context.game.actions.purge().resolve(event.purgeCards, context);
+                        event.purgeCards.forEach((c) => {
+                            event.player.moveCard(c, 'purged');
+                        });
+                        // context.game.actions.purge().resolve(event.purgeCards, context);
                         const purgeMessage = '{0} removes ' + subject + 'from the game';
                         context.game.addMessage(purgeMessage, context.player, event.purgeCards);
                     }
@@ -106,7 +116,7 @@ class RearrangeCardsAction extends PlayerAction {
                         'All cards return in chosen order to the top of the deck'
                     );
                 }
-                player.deck.splice(0, this.amount, ...this.orderedCards);
+                event.player.deck.splice(0, event.cards.length, ...event.cards);
             }
         );
     }

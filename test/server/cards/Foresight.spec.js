@@ -25,9 +25,10 @@ describe('Foresight', function () {
             this.player1.clickCard(this.foresight);
             this.player1.clickPrompt('Foresight');
             this.player1.clickPrompt('Mine');
-            this.player1.clickPrompt('anchornaut');
-            this.player1.clickPrompt('iron worker');
+            this.player1.clickPrompt('anchornaut'); // place on bottom
+            this.player1.clickPrompt('iron worker'); // place on top
 
+            expect(this.player1.deck.length).toBe(3);
             expect(this.player1.deck[2].id).toBe('anchornaut'); // anchornaut on bottom
             expect(this.player1.deck[0].id).toBe('iron-worker'); // index 0 is the top
             expect(this.player1).toHaveDefaultPrompt();

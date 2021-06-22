@@ -421,6 +421,11 @@ class Player extends GameObject {
         this.deckData.selected = true;
     }
 
+    moveToBottom(card) {
+        this.deck = this.deck.filter((c) => c !== card);
+        this.deck.push(card);
+    }
+
     /**
      * Moves a card from one location to another. This involves removing in from the list it's currently in, calling DrawCard.move (which changes
      * its location property), and then adding it to the list it should now be in
