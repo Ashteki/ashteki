@@ -9,7 +9,6 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         super(game);
         // choices holds all of the abilities that were triggered by the event - this may be more than one for a single card
         this.choices = [];
-        this.allChoices = [];
         // all of the events that are being handled together - e.g. events and child events
         this.events = [];
         this.eventWindow = window;
@@ -38,7 +37,6 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     addChoice(context) {
         if (!this.hasAbilityBeenTriggered(context)) {
             this.choices.push(context);
-            this.allChoices = [...this.choices];
         }
     }
 
@@ -49,30 +47,36 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     }
 
     filterChoices() {
+        if (this.choices.length === 0) return true;
 
+        const myChoices = this.choices.filter(c => c.player === this.currentPlayer);
         // Processes the choices left for this window, return true to end the window
-        if (this.choices.length === 0 || this.pressedDone) {
+        if (myChoices.length === 0 || this.pressedDone) {
+            if (this.currentPlayer === this.game.activePlayer) {
+                this.currentPlayer = this.currentPlayer.opponent;
+                return this.filterChoices();
+            }
             return true;
         }
 
         // autoResolve choices are things that don't impact other objects e.g. Silver Snake gains a status
-        let autoResolveChoice = this.choices.find((context) => context.ability.autoResolve);
-        if (autoResolveChoice && false) {
+        let autoResolveChoice = myChoices.find((context) => context.ability.autoResolve);
+        if (autoResolveChoice) {
             this.resolveAbility(autoResolveChoice);
             return false;
         }
 
-        if (this.choices.length === 1) {
-            this.resolveAbility(this.choices[0]);
+        if (myChoices.length === 1) {
+            this.resolveAbility(myChoices[0]);
             return false;
         }
 
-        if (_.uniq(this.choices, (context) => context.source).length === 1) {
+        if (_.uniq(myChoices, (context) => context.source).length === 1) {
             // All choices share a source
-            this.promptBetweenAbilities(this.choices, false);
+            this.promptBetweenAbilities(myChoices, false);
         } else {
             // Choose an card to trigger
-            this.promptBetweenSources(this.choices);
+            this.promptBetweenSources(myChoices);
         }
         return false;
     }

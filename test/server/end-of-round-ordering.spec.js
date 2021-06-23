@@ -21,9 +21,10 @@ describe('End of round event', function () {
             this.player2.endTurn();
             this.player1.clickDone(); // keep dice
             this.player2.clickDone();
-            this.player1.clickCard(this.brilliantThorn);
-            this.player2.clickDone();
+            // these are player2 cards, so player 2 should have the prompt
             expect(this.player2).toHavePrompt('choose reaction order');
+            this.player2.clickCard(this.brilliantThorn);
+            this.player2.clickDone();
             expect(this.indiglowCreeper.location).toBe('archives');
             expect(this.brilliantThorn.location).toBe('archives');
         });

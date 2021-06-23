@@ -27,6 +27,11 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         return true;
     }
 
+    addChoice(context) {
+        if (!this.hasAbilityBeenTriggered(context)) {
+            this.choices.push(context);
+        }
+    }
     filterChoices() {
         // If both players have passed, close the window
         if (this.complete || !this.currentPlayer) {
