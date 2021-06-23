@@ -42,23 +42,26 @@ class Empower extends Card {
                             context.targets.tokenBoy &&
                             this.getValueOptions(context.targets.tokenBoy.tokens.status),
                         handler: (option) => (this.chosenValue = option.value)
-                    },
-                    sucker: {
-                        dependsOn: 'amount',
-                        activePromptTitle: 'Choose a unit to damage',
-                        cardType: BattlefieldTypes,
+                    }
+                },
+                then: (preThenContext) => ({
+                    alwaysTriggers: true,
+                    condition: () => this.chosenValue > 0,
+                    gameAction: ability.actions.removeStatus(() => ({
+                        target: preThenContext.targets.tokenBoy,
+                        amount: this.chosenValue
+                    })),
+                    then: {
+                        target: {
+                            activePromptTitle: 'Choose a unit to damage',
+                            cardType: BattlefieldTypes,
 
-                        gameAction: [
-                            ability.actions.dealDamage(() => ({
-                                amount: this.chosenValue
-                            })),
-                            ability.actions.removeStatus((context) => ({
-                                target: context.targets.tokenBoy,
+                            gameAction: ability.actions.dealDamage(() => ({
                                 amount: this.chosenValue
                             }))
-                        ]
+                        }
                     }
-                }
+                })
             }
         });
     }
