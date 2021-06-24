@@ -1,3 +1,4 @@
+const { Level } = require('../../constants');
 const AllPlayerPrompt = require('./allplayerprompt');
 
 class PinDicePrompt extends AllPlayerPrompt {
@@ -8,6 +9,8 @@ class PinDicePrompt extends AllPlayerPrompt {
         game.getPlayers().forEach((player) => {
             this.selectedDice[player.name] = [];
         });
+
+        this.powerDiceSelected = false;
     }
 
     completionCondition(player) {
@@ -15,11 +18,26 @@ class PinDicePrompt extends AllPlayerPrompt {
     }
 
     continue() {
+        if (!this.powerDiceSelected) {
+            this.selectPowerDice();
+        }
+
         if (!this.isComplete()) {
             this.highlightSelectableDice();
         }
 
         return super.continue();
+    }
+
+    selectPowerDice() {
+        this.game.getPlayers().forEach((player) => {
+            this.selectedDice[player.name] = player.dice.filter(
+                (d) => this.dieCondition(d) && d.level === Level.Power
+            );
+            player.setSelectedDice(this.selectedDice[player.name]);
+        });
+
+        this.powerDiceSelected = true;
     }
 
     activePrompt() {
@@ -71,9 +89,11 @@ class PinDicePrompt extends AllPlayerPrompt {
             player.pinSelectedDice();
 
             this.game.addMessage(
-                '{0} keeps {1} dice',
+                '{0} keeps {1} dice{2}{3}',
                 player,
-                this.selectedDice[player.name].length
+                this.selectedDice[player.name].length,
+                this.selectedDice[player.name].length > 0 ? ' : ' : '',
+                this.selectedDice[player.name]
             );
 
             player.clearSelectedDice();
