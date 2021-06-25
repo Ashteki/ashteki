@@ -8,23 +8,25 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
     constructor(game, abilityType, window, eventsToExclude = []) {
         super(game, abilityType, window, eventsToExclude);
         this.complete = false;
-        this.prevPlayerPassed = false;
     }
 
     pass(player, arg) {
-        if (arg === 'pauseRound') {
-            player.noTimer = true;
-            player.resetTimerAtEndOfRound = true;
-        }
+        // if (arg === 'pauseRound') {
+        //     player.noTimer = true;
+        //     player.resetTimerAtEndOfRound = true;
+        // }
 
-        if (this.prevPlayerPassed || !this.currentPlayer || !this.currentPlayer.opponent) {
+        if (this.SecondPlayerActive()) {
             this.complete = true;
         } else {
             this.currentPlayer = this.currentPlayer.opponent;
-            this.prevPlayerPassed = true;
         }
 
         return true;
+    }
+
+    SecondPlayerActive() {
+        return this.currentPlayer === this.game.activePlayer.opponent;
     }
 
     addChoice(context) {
@@ -32,6 +34,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             this.choices.push(context);
         }
     }
+
     filterChoices() {
         // If both players have passed, close the window
         if (this.complete || !this.currentPlayer) {
@@ -80,8 +83,9 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
     }
 
     resolveAbility(context) {
-        this.prevPlayerPassed = false;
-        this.currentPlayer = this.currentPlayer.opponent || this.currentPlayer;
+        if (!this.SecondPlayerActive()) {
+            this.currentPlayer = this.currentPlayer.opponent;
+        }
         super.resolveAbility(context);
     }
 
