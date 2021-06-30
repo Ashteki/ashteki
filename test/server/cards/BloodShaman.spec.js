@@ -5,7 +5,7 @@ describe('Blood Shaman', function () {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['blood-shaman'],
                 dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
-                hand: ['freezing-blast', 'fear']
+                hand: ['freezing-blast', 'fear', 'molten-gold']
             },
             player2: {
                 phoenixborn: 'maeoni-viper',
@@ -20,12 +20,24 @@ describe('Blood Shaman', function () {
         this.player1.dicepool[0].lower();
     });
 
-    it('triggers when destroyed by own spell', function () {
+    it('triggers when destroyed by own damage spell', function () {
         expect(this.player1.dicepool[0].level).toBe('class');
         this.player1.clickCard(this.freezingBlast);
         this.player1.clickPrompt('Play this action');
 
         expect(this.player1).toHavePrompt('Choose a card');
+        this.player1.clickCard(this.bloodShaman);
+
+        expect(this.player1).toHavePrompt('Choose a die');
+        this.player1.clickDie(0);
+
+        expect(this.aradelSummergaard.damage).toBe(0);
+        expect(this.player1.dicepool[0].level).toBe('power');
+    });
+
+    it('triggers when destroyed by own wounds spell', function () {
+        expect(this.player1.dicepool[0].level).toBe('class');
+        this.player1.play(this.moltenGold);
         this.player1.clickCard(this.bloodShaman);
 
         expect(this.player1).toHavePrompt('Choose a die');

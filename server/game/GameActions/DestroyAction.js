@@ -9,6 +9,7 @@ class DestroyAction extends CardGameAction {
 
     setDefaultProperties() {
         this.damageEvent = null;
+        this.tokenEvent = null;
         this.purge = false;
     }
 
@@ -33,6 +34,7 @@ class DestroyAction extends CardGameAction {
             card: card,
             context: context,
             damageEvent: this.damageEvent,
+            tokenEvent: this.tokenEvent,
             purge: this.purge
         };
         return super.createEvent('onCardDestroyed', params, (event) => {

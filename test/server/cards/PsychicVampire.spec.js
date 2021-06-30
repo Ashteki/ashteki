@@ -55,5 +55,15 @@ describe('psychic vampire', function () {
             expect(this.psychicVampire.location).toBe('discard');
             expect(this.ironWorker.location).toBe('discard');
         });
+
+        it('ability triggers on molten gold', function () {
+            this.player1.play(this.moltenGold);
+            this.player1.clickCard(this.psychicVampire);
+
+            this.player1.clickCard(this.ironWorker);
+
+            expect(this.psychicVampire.location).toBe('discard');
+            expect(this.ironWorker.location).toBe('discard');
+        });
     });
 });

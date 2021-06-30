@@ -100,7 +100,8 @@ class DealDamageAction extends CardGameAction {
                 card: damageDealtEvent.card,
                 context: damageDealtEvent.context,
                 condition: (event) => event.amount > 0,
-                noGameStateCheck: true
+                noGameStateCheck: true,
+                damageEvent: damageDealtEvent
             };
             let damageAppliedEvent = super.createEvent(
                 'onDamageApplied',
@@ -114,39 +115,14 @@ class DealDamageAction extends CardGameAction {
                     let tokenEvent = context.game.actions
                         .addToken({
                             type: 'damage',
-                            amount: numTokens
+                            amount: numTokens,
+                            damageDealtEvent: event.damageEvent
                         })
                         .getEvent(event.card, context.game.getFrameworkContext(context.player));
 
                     tokenEvent.noGameStateCheck = true;
                     tokenEvent.openReactionWindow = true;
                     event.addSubEvent(tokenEvent);
-                    // event.card.addToken('damage', event.amount);
-
-                    let checkParams = {
-                        amount: event.amount,
-                        card: event.card,
-                        context: event.context,
-                        condition: (event) => event.amount > 0,
-                        noGameStateCheck: true
-                    };
-
-                    let killerEvent = super.createEvent('unnamedEvent', checkParams, (event) => {
-                        if (!event.card.moribund && event.card.tokens.damage >= event.card.life) {
-                            damageDealtEvent.destroyEvent = context.game.actions
-                                .destroy({ damageEvent: damageDealtEvent })
-                                .getEvent(
-                                    event.card,
-                                    context.game.getFrameworkContext(context.player)
-                                );
-
-                            event.addSubEvent(damageDealtEvent.destroyEvent);
-                            if (damageDealtEvent.fightEvent) {
-                                damageDealtEvent.fightEvent.destroyed.push(event.card);
-                            }
-                        }
-                    });
-                    tokenEvent.addSubEvent(killerEvent);
 
                     if (this.showMessage) {
                         context.game.addMessage('{0} takes {1} damage', event.card, event.amount);
