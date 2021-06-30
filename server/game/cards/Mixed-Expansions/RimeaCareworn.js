@@ -25,11 +25,14 @@ class RimeaCareworn extends Card {
                     ability.costs.dice([new DiceCount(1, Level.Basic)],
                         'Move top of deck to the bottom?'
                     )],
-                gameAction: ability.actions.moveToBottom((context) => ({
-                    target: this.chosenValue
-                        ? context.player.opponent.deck[0]
-                        : context.player.deck[0]
-                })),
+                gameAction: [
+                    ability.actions.moveToBottom((context) => ({
+                        target: this.chosenValue
+                            ? context.player.opponent.deck[0]
+                            : context.player.deck[0]
+                    })),
+                    ability.actions.exhaust()
+                ],
                 message: '{0} moves 1 card from the top of their deck to the bottom',
                 messageArgs: (context) => [context.player]
             },
