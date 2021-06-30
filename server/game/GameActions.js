@@ -6,7 +6,7 @@ const Actions = {
     addExhaustionToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
-    addToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory),
+    addToken: (propertyFactory, type) => new GameActions.AddTokenAction(propertyFactory, type),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
     attachDie: (propertyFactory) => new GameActions.AttachDieAction(propertyFactory), // upgradeDie
     detachDie: (propertyFactory) => new GameActions.DetachDieAction(propertyFactory), // die, card
@@ -34,7 +34,7 @@ const Actions = {
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
     removeExhaustion: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
-    removeToken: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory),
+    removeToken: (propertyFactory, type) => new GameActions.RemoveTokenAction(propertyFactory, type),
     resolveAbility: (propertyFactory) => new GameActions.ResolveAbilityAction(propertyFactory), // ability
     resolveFight: (propertyFactory) => new GameActions.ResolveFightAction(propertyFactory), // this shouldn't normally be needed
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false
