@@ -72,7 +72,7 @@ describe('Summon Turtle Guard', function () {
                         'ice-golem',
                         'ice-golem',
                         'iron-worker',
-                        'iron-worker'
+                        'anchornaut'
                     ],
                     spellboard: ['summon-turtle-guard', 'summon-turtle-guard'],
                     dicepool: ['natural', 'divine', 'divine', 'time'],
@@ -92,6 +92,10 @@ describe('Summon Turtle Guard', function () {
             this.player1.clickDie(0);
 
             expect(this.player1).not.toHaveDefaultPrompt();
+            expect(this.player1).toBeAbleToSelect(this.player1.inPlay[0]);
+            expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
+            // this.player1.clickCard(this.ironWorker); // ignored
+
             this.player1.clickCard(this.player1.inPlay[0]);
             this.player1.clickCard(this.hammerKnight);
 
