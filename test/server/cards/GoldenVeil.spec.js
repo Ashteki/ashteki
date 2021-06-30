@@ -244,4 +244,39 @@ describe('Golden Veil', function () {
             expect(this.ironWorker.location).toBe('discard');
         });
     });
+
+    describe('Golden Veil and blood chains', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['mist-spirit'],
+                    dicepool: ['natural', 'natural', 'ceremonial', 'ceremonial'],
+                    hand: ['blood-chains', 'iron-worker'],
+                    discard: ['molten-gold']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight'],
+                    dicepool: ['charm', 'natural'],
+                    hand: ['choke', 'golden-veil']
+                }
+            });
+        });
+
+        it('cancels exhaust, but not sacrifice', function () {
+            expect(this.hammerKnight.damage).toBe(0);
+            this.player1.play(this.bloodChains);
+            this.player1.clickCard(this.mistSpirit);
+
+            this.player1.clickCard(this.hammerKnight); // damage to hammerknight
+
+            expect(this.player2).not.toHaveDefaultPrompt();
+            expect(this.player2).toBeAbleToSelect(this.goldenVeil);
+            this.player2.clickCard(this.goldenVeil);
+            expect(this.hammerKnight.damage).toBe(0); // prevent damage
+            expect(this.mistSpirit.location).toBe('archives');
+            expect(this.hammerKnight.location).toBe('play area');
+        });
+    });
 });

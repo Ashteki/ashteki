@@ -4,18 +4,17 @@ const Card = require('../../Card.js');
 class BloodChains extends Card {
     setupCardAbilities(ability) {
         this.play({
-            targets: {
-                myUnit: {
-                    activePromptTitle: 'Destroy a Unit',
-                    cardType: BattlefieldTypes,
-                    controller: 'self',
-                    gameAction: ability.actions.destroy()
-                },
-                phb: {
-                    dependsOn: 'myUnit',
+            target: {
+                activePromptTitle: 'Destroy a Unit',
+                cardType: BattlefieldTypes,
+                controller: 'self',
+                gameAction: ability.actions.destroy()
+            },
+            then: {
+                target: {
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.addExhaustionToken((context) => ({
-                        amount: context.targets.myUnit.damage > 0 ? 2 : 1
+                        amount: context.preThenEvent.clone.damage > 0 ? 2 : 1
                     }))
                 }
             }
