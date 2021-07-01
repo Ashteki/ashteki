@@ -1,4 +1,4 @@
-const { Location } = require('../../constants.js');
+const { Location, CardType } = require('../../constants.js');
 const BaseStepWithPipeline = require('./basestepwithpipeline.js');
 const SimpleStep = require('./simplestep.js');
 
@@ -125,6 +125,9 @@ class AbilityResolver extends BaseStepWithPipeline {
         // move cards played from hand to active location
         if (this.context.source.location === 'hand') {
             this.context.player.moveCard(this.context.source, 'being played');
+            if (this.context.source.type === CardType.ReactionSpell) {
+                this.context.game.cardUsed(this.context.source);
+            }
         }
 
         this.game.raiseEvent(

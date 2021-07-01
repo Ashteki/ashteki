@@ -166,7 +166,7 @@ class Card extends PlayableObject {
         this.abilities.keywordReactions.push(
             this.afterDestroysFighting({
                 autoResolve: true,
-                gameAction: AbilityDsl.actions.dealDamage((context) => ({
+                gameAction: ability.actions.dealDamage((context) => ({
                     amount: context.source.getKeywordValue('overkill'),
                     target: context.player.opponent.phoenixborn
                 }))
