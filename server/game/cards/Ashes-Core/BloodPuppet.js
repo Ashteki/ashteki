@@ -6,8 +6,6 @@ class BloodPuppet extends Card {
     setupCardAbilities(ability) {
         // end of round wounds pb
         this.forcedInterrupt({
-            autoResolve: true,
-
             title: 'Cursed 1',
             when: {
                 onRoundEnded: () => true

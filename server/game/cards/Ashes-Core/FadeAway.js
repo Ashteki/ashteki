@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class FadeAway extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Fade Away',
             when: {
                 onRoundEnded: () => true

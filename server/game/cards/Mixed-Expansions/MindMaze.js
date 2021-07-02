@@ -24,7 +24,7 @@ class MindMaze extends Card {
             gameAction: ability.actions.discard({ target: this })
         });
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             inexhaustible: true,
             title: 'Lost',
             when: {
