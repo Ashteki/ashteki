@@ -99,6 +99,7 @@ class About extends React.Component {
                                 Activate or deactivate manual mode (see above).
                             </Trans>
                         </li>
+                        <li>/purge - Choose a card to remove from the game.</li>
                         <li>
                             /rematch -{' '}
                             <Trans i18nKey='howtoplay.cmd.rematch'>
@@ -106,10 +107,7 @@ class About extends React.Component {
                             </Trans>
                         </li>
                         <li>
-                            /token x y -{' '}
-                            <Trans i18nKey='howtoplay.cmd.token'>
-                                Choose a card and change the number of tokens of type x to y
-                            </Trans>
+                            /token x y - Choose a card and change the number of tokens of type x to y
                         </li>
                     </ul>
                     <h3>Meaning of Username Colors</h3>

@@ -20,6 +20,7 @@ class ChatCommands {
             '/manual': this.manual,
             '/modify-clock': this.modifyClock,
             '/mute-spectators': this.muteSpectators,
+            '/purge': this.purgeCard,
             '/rematch': this.rematch,
             '/shuffle': this.shuffle,
             '/stop-clocks': this.stopClocks,
@@ -227,6 +228,23 @@ class ChatCommands {
                 GameActions.moveCard({
                     destination: 'play area'
                 }).resolve(card, this.game.getFrameworkContext(player));
+                return true;
+            }
+        });
+    }
+
+    purgeCard(player) {
+        this.game.promptForSelect(player, {
+            controller: 'self',
+            activePromptTitle: 'Select a card to remove from the game',
+            onSelect: (player, card) => {
+                this.game.addAlert(
+                    'danger',
+                    '{0} manually removes {1} from the game',
+                    player,
+                    card
+                );
+                GameActions.purge().resolve(card, this.game.getFrameworkContext(player));
                 return true;
             }
         });
