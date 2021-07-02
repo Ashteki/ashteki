@@ -6,13 +6,13 @@ describe('psychic vampire', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['rose-fire-dancer'],
                     spellboard: [],
-                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
                     archives: [],
-                    hand: ['molten-gold', 'iron-worker']
+                    hand: ['molten-gold', 'iron-worker', 'crimson-bomber']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    inPlay: ['psychic-vampire'],
+                    inPlay: ['psychic-vampire', 'hammer-knight'],
                     spellboard: [],
                     hand: ['rins-fury'],
                     dicepool: ['natural', 'natural']
@@ -64,6 +64,21 @@ describe('psychic vampire', function () {
 
             expect(this.psychicVampire.location).toBe('discard');
             expect(this.ironWorker.location).toBe('discard');
+        });
+
+        it('ability triggers on crimson bomber', function () {
+            this.player1.play(this.crimsonBomber);
+            this.player1.clickCard(this.crimsonBomber);
+            this.player1.clickPrompt('Detonate 3');
+            this.player1.clickCard(this.psychicVampire);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickDone();
+            this.player1.clickCard(this.ironWorker); // discard
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.psychicVampire.location).toBe('discard');
+            expect(this.hammerKnight.location).toBe('play area');
+            expect(this.hammerKnight.damage).toBe(1);
         });
     });
 });
