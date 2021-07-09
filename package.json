@@ -127,7 +127,7 @@
         "react-dom": "^16.14.0",
         "react-draggable": "^3.3.2",
         "react-google-recaptcha": "^2.1.0",
-        "react-i18next": "^10.13.2",
+        "react-i18next": "^11.11.1",
         "react-redux": "^7.2.3",
         "react-redux-toastr": "^7.6.5",
         "react-select": "^4.3.0",
