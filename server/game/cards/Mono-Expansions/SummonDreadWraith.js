@@ -16,7 +16,7 @@ class SummonDreadWraith extends Card {
                 conjuration: 'dread-wraith'
             }),
             then: {
-                condition: () => this.focus === 2,
+                condition: () => this.focus >= 2,
                 gameAction: ability.actions.removeExhaustion((context) => ({
                     amount: 1,
                     target: context.player.unitsInPlay.filter((c) => c.id === 'dread-wraith')

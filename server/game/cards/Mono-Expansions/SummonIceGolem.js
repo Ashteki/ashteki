@@ -19,7 +19,7 @@ class SummonIceGolem extends Card {
                 conjuration: 'ice-golem'
             }),
             then: {
-                condition: () => this.focus === 2,
+                condition: () => this.focus >= 2,
                 gameAction: ability.actions.removeDamage((context) => ({
                     amount: 1,
                     target: context.player.unitsInPlay.filter((c) => c.id === 'ice-golem')

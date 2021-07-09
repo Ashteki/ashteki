@@ -10,7 +10,7 @@ class Strengthen extends Card {
                 cardType: ['Ally', 'Conjuration'],
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
-                    effect: ability.effects.modifyAttack(context.source.focus === 2 ? 3 : 2)
+                    effect: ability.effects.modifyAttack(context.source.focus >= 2 ? 3 : 2)
                 }))
             }
         });

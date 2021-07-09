@@ -25,7 +25,7 @@ class SummonShadowHound extends Card {
                     gameAction: ability.actions.dealDamage()
                 },
                 then: {
-                    condition: () => this.focus === 2,
+                    condition: () => this.focus >= 2,
                     target: {
                         optional: true,
                         activePromptTitle: 'Deal 1 damage',
