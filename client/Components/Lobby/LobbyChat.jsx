@@ -126,13 +126,18 @@ const LobbyChat = ({ messages, isModerator, onRemoveMessageClick }) => {
                 'username' +
                 (firstMessage.user.role ? ` ${firstMessage.user.role.toLowerCase()}-role` : '');
 
+            let userStyle = {};
+            if (firstMessage.user.faveColor) {
+                userStyle.color = firstMessage.user.faveColor;
+            }
+
             return (
                 <div
                     key={timestamp + firstMessage.user.username + (index++).toString()}
                     className='message-container'
                 >
                     <Avatar imgPath={firstMessage.user.avatar} float />
-                    <span className={userClass}>{firstMessage.user.username}</span>
+                    <span className={userClass} style={userStyle}>{firstMessage.user.username}</span>
                     <span>{timestamp}</span>
                     {renderedMessages}
                 </div>

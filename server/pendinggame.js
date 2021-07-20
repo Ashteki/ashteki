@@ -335,7 +335,8 @@ class PendingGame {
                 name: player.name,
                 owner: player.owner,
                 role: player.user.role,
-                wins: player.wins
+                wins: player.wins,
+                faveColor: player.user.faveColor
             };
         });
 

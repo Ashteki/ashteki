@@ -109,13 +109,18 @@ class GameList extends React.Component {
     getPlayerNameAndAvatar(player, firstPlayer) {
         let userClass = 'username' + (player.role ? ` ${player.role.toLowerCase()}-role` : '');
 
+        let userStyle = {};
+        if (player.faveColor) {
+            userStyle.color = player.faveColor;
+        }
+
         if (firstPlayer) {
             return (
                 <div className='game-player-name'>
                     <span className='gamelist-avatar'>
                         <Avatar imgPath={player.avatar} />
                     </span>
-                    <span className={userClass}>{player.name}</span>
+                    <span className={userClass} style={userStyle}>{player.name}</span>
                 </div>
             );
         }

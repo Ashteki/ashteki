@@ -153,7 +153,8 @@ class UserService extends EventEmitter {
             settings: user.settings,
             promptedActionWindows: user.promptedActionWindows,
             permissions: user.permissions,
-            patreon: user.patreon
+            patreon: user.patreon,
+            faveColor: user.faveColor
         };
 
         if (user.password && user.password !== '') {

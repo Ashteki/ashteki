@@ -728,7 +728,8 @@ class Player extends GameObject {
                 username: this.user.username,
                 settings: this.user.settings,
                 role: this.user.role,
-                avatar: this.user.avatar
+                avatar: this.user.avatar,
+                faveColor: this.user.faveColor
             },
             deckData: this.deckData,
             wins: this.wins,

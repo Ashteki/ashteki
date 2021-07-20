@@ -14,6 +14,10 @@ class User {
         return this.userData.disabled;
     }
 
+    get faveColor() {
+        return this.userData.faveColor;
+    }
+
     get username() {
         return this.userData.username;
     }
@@ -156,7 +160,8 @@ class User {
             username: this.username,
             avatar: this.avatar,
             name: this.username,
-            role: this.role
+            role: this.role,
+            faveColor: this.faveColor
         };
     }
 

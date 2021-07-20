@@ -124,11 +124,14 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             } else if (fragment.name && fragment.argType === 'player') {
                 let userClass =
                     'username' + (fragment.role ? ` ${fragment.role.toLowerCase()}-role` : '');
-
+                let userStyle = {};
+                if (fragment.faveColor) {
+                    userStyle.color = fragment.faveColor;
+                }
                 messages.push(
                     <div key={index++} className='message-chat mb-1'>
                         <Avatar imgPath={fragment.avatar} float />
-                        <span key={index++} className={userClass}>
+                        <span key={index++} className={userClass} style={userStyle}>
                             {fragment.name}
                         </span>
                     </div>
@@ -136,9 +139,12 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             } else if (fragment.argType === 'nonAvatarPlayer') {
                 let userClass =
                     'username' + (fragment.role ? ` ${fragment.role.toLowerCase()}-role` : '');
-
+                let userStyle = {};
+                if (fragment.faveColor) {
+                    userStyle.color = fragment.faveColor;
+                }
                 messages.push(
-                    <span key={index++} className={userClass}>
+                    <span key={index++} className={userClass} style={userStyle}>
                         {fragment.name}
                     </span>
                 );

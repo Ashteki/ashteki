@@ -13,6 +13,7 @@ import { clearApiStatus, findUser, clearUserSessions, saveUser } from '../redux/
 
 import './UserAdmin.scss';
 import { useState } from 'react';
+import { TwitterPicker } from 'react-color';
 
 const defaultPermissions = {
     canEditNews: false,
@@ -88,19 +89,22 @@ const UserAdmin = () => {
     );
     const [userVerified, setUserVerified] = useState(currentUser?.verified);
     const [userDisabled, setUserDisabled] = useState(currentUser?.disabled);
+    const [faveColor, setfaveColor] = useState(currentUser?.faveColor);
 
     useEffect(() => {
         if (currentUser) {
             setCurrentPermissions(currentUser.permissions);
             setUserDisabled(currentUser.disabled);
             setUserVerified(currentUser.verified);
+            setfaveColor(currentUser.faveColor);
         }
     }, [currentUser]);
 
     const initialValues = {
         username: '',
         disabled: currentUser?.disabled,
-        verified: currentUser?.verified
+        verified: currentUser?.verified,
+        faveColor: currentUser?.faveColor
     };
 
     const schema = yup.object({
@@ -224,6 +228,22 @@ const UserAdmin = () => {
                                                 </dd>
                                             </Col>
                                         </Row>
+                                        <Row>
+                                            <Col md={3}>
+                                                <dt>Favorite Color:</dt>
+                                            </Col>
+                                            <Col md={3}>
+                                                <TwitterPicker
+                                                    onChange={(color, event) => setfaveColor(color.hex)}
+                                                />
+                                                <Form.Control
+                                                    name='favecolor'
+                                                    type='text'
+                                                    value={faveColor}
+                                                    style={{ backgroundColor: faveColor }}
+                                                />
+                                            </Col>
+                                        </Row>
                                     </dl>
 
                                     <Form.Check
@@ -244,6 +264,7 @@ const UserAdmin = () => {
                                         value='true'
                                         checked={userVerified}
                                     ></Form.Check>
+
                                 </Panel>
                                 {currentUser.linkedAccounts && (
                                     <Panel title='Possibly linked accounts'>
@@ -313,7 +334,7 @@ const UserAdmin = () => {
                                             currentUser.permissions = currentPermissions;
                                             currentUser.verified = userVerified;
                                             currentUser.disabled = userDisabled;
-
+                                            currentUser.faveColor = faveColor;
                                             dispatch(saveUser(currentUser));
                                         }}
                                     >

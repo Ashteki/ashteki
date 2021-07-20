@@ -75,6 +75,7 @@ module.exports.init = function (server) {
 
                     user.permissions = userToSet.permissions;
                     user.disabled = userToSet.disabled;
+                    user.faveColor = userToSet.faveColor;
 
                     return userService.update(user);
                 })

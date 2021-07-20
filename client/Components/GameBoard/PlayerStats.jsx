@@ -157,10 +157,16 @@ export class PlayerStats extends React.Component {
 
     render() {
         let t = this.props.t;
+        let userStyle = {};
+        if (this.props.user?.faveColor) {
+            userStyle.color = this.props.user.faveColor;
+        }
+        let userClass = 'username' + (this.props.user.role ? ` ${this.props.user.role.toLowerCase()}-role` : '');
+
         let playerAvatar = (
             <div className='state'>
                 <Avatar imgPath={this.props.user?.avatar} />
-                <b>{this.props.user?.username || t('Noone')}</b>
+                <b className={userClass} style={userStyle}>{this.props.user?.username || t('Noone')}</b>
             </div>
         );
 

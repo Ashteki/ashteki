@@ -66,6 +66,10 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
 
                 let userClass =
                     'username' + (player.role ? ` ${player.role.toLowerCase()}-role` : '');
+                let userStyle = {};
+                if (player.faveColor) {
+                    userStyle.color = player.faveColor;
+                }
                 let rowClass = 'player-row';
                 if (firstPlayer) {
                     rowClass += ' mb-2';
@@ -75,7 +79,7 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
                 return (
                     <div className={rowClass} key={player.name}>
                         <Avatar imgPath={player.avatar} />
-                        <span className={userClass}>{player.name}</span>
+                        <span className={userClass} style={userStyle}>{player.name}</span>
                         {deck} {status} {selectLink}
                     </div>
                 );
