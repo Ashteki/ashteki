@@ -13,7 +13,7 @@ import { clearApiStatus, findUser, clearUserSessions, saveUser } from '../redux/
 
 import './UserAdmin.scss';
 import { useState } from 'react';
-import { TwitterPicker } from 'react-color';
+import { HexColorPicker } from 'react-colorful';
 
 const defaultPermissions = {
     canEditNews: false,
@@ -233,15 +233,18 @@ const UserAdmin = () => {
                                                 <dt>Favorite Color:</dt>
                                             </Col>
                                             <Col md={3}>
-                                                <TwitterPicker
-                                                    onChange={(color, event) => setfaveColor(color.hex)}
+                                                <HexColorPicker
+                                                    color={faveColor}
+                                                    onChange={setfaveColor}
                                                 />
+                                                ;
                                                 <Form.Control
                                                     name='favecolor'
                                                     type='text'
                                                     value={faveColor}
                                                     style={{ backgroundColor: faveColor }}
                                                 />
+                                                <Button onClick={() => setfaveColor('')}>Clear</Button>
                                             </Col>
                                         </Row>
                                     </dl>
