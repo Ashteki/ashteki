@@ -243,6 +243,9 @@ const UserAdmin = () => {
                                                     type='text'
                                                     value={faveColor}
                                                     style={{ backgroundColor: faveColor }}
+                                                    onChange={(event) =>
+                                                        setfaveColor(event.target.value)
+                                                    }
                                                 />
                                                 <Button onClick={() => setfaveColor('')}>Clear</Button>
                                             </Col>
