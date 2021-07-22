@@ -1,5 +1,301 @@
 [
   {
+    "precon_id": 22,
+    "name": "The Breaker of Fate",
+    "phoenixborn": [
+      {
+        "id": "jericho-reborn",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 10,
+        "magic": "time"
+      }
+    ],
+    "cards": [
+      {
+        "id": "accelerate",
+        "count": 3
+      },
+      {
+        "id": "blink",
+        "count": 3
+      },
+      {
+        "id": "flash-strike",
+        "count": 3
+      },
+      {
+        "id": "foresight",
+        "count": 3
+      },
+      {
+        "id": "outmatch",
+        "count": 3
+      },
+      {
+        "id": "standard-bearer",
+        "count": 3
+      },
+      {
+        "id": "stasis",
+        "count": 3
+      },
+      {
+        "id": "summon-time-hopper",
+        "count": 3
+      },
+      {
+        "id": "summon-turtle-guard",
+        "count": 3
+      },
+      {
+        "id": "swift-messenger",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "time-hopper",
+        "count": 4
+      },
+      {
+        "id": "turtle-guard",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 21,
+    "name": "The Grave King",
+    "phoenixborn": [
+      {
+        "id": "james-endersight",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 5,
+        "magic": "divine"
+      },
+      {
+        "count": 5,
+        "magic": "ceremonial"
+      }
+    ],
+    "cards": [
+      {
+        "id": "vengeance",
+        "count": 3
+      },
+      {
+        "id": "summon-fallen",
+        "count": 3
+      },
+      {
+        "id": "chant-of-sacrifice",
+        "count": 3
+      },
+      {
+        "id": "revival-pact",
+        "count": 3
+      },
+      {
+        "id": "rising-horde",
+        "count": 3
+      },
+      {
+        "id": "immortal-commander",
+        "count": 3
+      },
+      {
+        "id": "reaping-angel",
+        "count": 3
+      },
+      {
+        "id": "grave-knight",
+        "count": 3
+      },
+      {
+        "id": "rally-the-troops",
+        "count": 3
+      },
+      {
+        "id": "reclaim-soul",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "fallen",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "precon_id": 20,
+    "name": "The Protector of Argaia",
+    "phoenixborn": [
+      {
+        "id": "fiona-mercywind",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 5,
+        "magic": "sympathy"
+      },
+      {
+        "count": 5,
+        "magic": "charm"
+      }
+    ],
+    "cards": [
+      {
+        "id": "mind-maze",
+        "count": 3
+      },
+      {
+        "id": "confusion-spores",
+        "count": 3
+      },
+      {
+        "id": "summon-majestic-titan",
+        "count": 3
+      },
+      {
+        "id": "summon-nightsong-cricket",
+        "count": 3
+      },
+      {
+        "id": "summon-mind-fog-owl",
+        "count": 3
+      },
+      {
+        "id": "return-to-soil",
+        "count": 3
+      },
+      {
+        "id": "essence-druid",
+        "count": 3
+      },
+      {
+        "id": "exhortation",
+        "count": 3
+      },
+      {
+        "id": "new-ideas",
+        "count": 3
+      },
+      {
+        "id": "seeds-of-aggression",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "majestic-titan",
+        "count": 1
+      },
+      {
+        "id": "nightsong-cricket",
+        "count": 4
+      },
+      {
+        "id": "mind-fog-owl",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 19,
+    "name": "The Ghost Guardian",
+    "phoenixborn": [
+      {
+        "id": "rimea-careworn",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 5,
+        "magic": "sympathy"
+      },
+      {
+        "count": 5,
+        "magic": "illusion"
+      }
+    ],
+    "cards": [
+      {
+        "id": "ancestral-army",
+        "count": 3
+      },
+      {
+        "id": "hollow",
+        "count": 3
+      },
+      {
+        "id": "battle-seer",
+        "count": 3
+      },
+      {
+        "id": "dark-presence",
+        "count": 3
+      },
+      {
+        "id": "summon-ghostly-mount",
+        "count": 3
+      },
+      {
+        "id": "summon-ancestor-spirit",
+        "count": 3
+      },
+      {
+        "id": "resonance",
+        "count": 3
+      },
+      {
+        "id": "augury",
+        "count": 3
+      },
+      {
+        "id": "memorialize",
+        "count": 3
+      },
+      {
+        "id": "shared-sorrow",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "ancestor-spirit",
+        "count": 2
+      },
+      {
+        "id": "pale-steed-mount",
+        "count": 1
+      },
+      {
+        "id": "nightmare-mount",
+        "count": 1
+      },
+      {
+        "id": "shining-hydra",
+        "count": 1
+      },
+      {
+        "id": "spectral-charger-mount",
+        "count": 1
+      }
+    ]
+  },
+  {
     "precon_id": 18,
     "name": "The King of Titans",
     "phoenixborn": [
@@ -79,6 +375,78 @@
       },
       {
         "id": "shining-hydra-head",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 17,
+    "name": "The Demons of Darmas",
+    "phoenixborn": [
+      {
+        "id": "harold-westraven",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "count": 5,
+        "magic": "sympathy"
+      },
+      {
+        "count": 5,
+        "magic": "ceremonial"
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-vampire-bat-swarm",
+        "count": 3
+      },
+      {
+        "id": "drain-vitality",
+        "count": 3
+      },
+      {
+        "id": "beast-mage",
+        "count": 3
+      },
+      {
+        "id": "beast-warrior",
+        "count": 3
+      },
+      {
+        "id": "master-vampire",
+        "count": 3
+      },
+      {
+        "id": "psychic-vampire",
+        "count": 3
+      },
+      {
+        "id": "dark-reaping",
+        "count": 3
+      },
+      {
+        "id": "transmute-magic",
+        "count": 3
+      },
+      {
+        "id": "adrenaline-rush",
+        "count": 3
+      },
+      {
+        "id": "consume-soul",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "hunters-mark",
+        "count": 1
+      },
+      {
+        "id": "vampire-bat-swarm",
         "count": 3
       }
     ]
