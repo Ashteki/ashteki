@@ -153,12 +153,14 @@ class UserService extends EventEmitter {
             settings: user.settings,
             promptedActionWindows: user.promptedActionWindows,
             permissions: user.permissions,
-            patreon: user.patreon,
-            faveColor: user.faveColor
+            patreon: user.patreon
         };
 
         if (user.password && user.password !== '') {
             toSet.password = user.password;
+        }
+        if (user.faveColor) {
+            toSet.faveColor = user.faveColor;
         }
 
         return this.users.update({ username: user.username }, { $set: toSet }).catch((err) => {
