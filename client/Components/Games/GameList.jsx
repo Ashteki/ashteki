@@ -127,7 +127,7 @@ class GameList extends React.Component {
 
         return (
             <div className='game-player-name'>
-                <span className={userClass}>{player.name}</span>
+                <span className={userClass} style={userStyle}>{player.name}</span>
                 <span className='gamelist-avatar'>
                     <Avatar imgPath={player.avatar} />
                 </span>
