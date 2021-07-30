@@ -80,7 +80,8 @@ describe('Vampire Bat Swarm', function () {
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['vampire-bat-swarm', 'living-doll'],
-                    dicepool: ['natural', 'ceremonial']
+                    dicepool: ['natural', 'ceremonial'],
+                    hand: ['fear']
                 },
                 player2: {
                     phoenixborn: 'maeoni-viper',
@@ -105,6 +106,24 @@ describe('Vampire Bat Swarm', function () {
             expect(this.vampireBatSwarm.exhausted).toBe(false);
             expect(this.vampireBatSwarm.isAttacker).toBe(false);
             expect(this.vampireBatSwarm.isDefender).toBe(false);
+        });
+
+        it('triggers when destroyed by FEAR. choose to swarm', function () {
+            this.player1.play(this.fear);
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.vampireBatSwarm);
+            // on destroy choices...
+            expect(this.player1).toHavePrompt('Activate Swarm?: select dice');
+            this.player1.clickDie(1);
+
+            this.player1.clickCard(this.ironWorker);
+
+            expect(this.vampireBatSwarm.location).toBe('play area');
+            expect(this.vampireBatSwarm.damage).toBe(0);
+            expect(this.vampireBatSwarm.exhausted).toBe(false);
+            expect(this.vampireBatSwarm.isAttacker).toBe(false);
+            expect(this.vampireBatSwarm.isDefender).toBe(false);
+            expect(this.ironWorker.location).toBe('discard');
         });
     });
 });
