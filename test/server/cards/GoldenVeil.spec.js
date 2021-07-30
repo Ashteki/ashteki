@@ -207,14 +207,14 @@ describe('Golden Veil', function () {
         });
     });
 
-    describe('Golden Veil and Shared Sorrow', function () {
+    describe('Golden Veil and Shared Sorrow and Crescendo', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'maeoni-viper',
-                    inPlay: ['mist-spirit'],
+                    inPlay: ['mist-spirit', 'blood-puppet'],
                     dicepool: ['natural', 'natural', 'sympathy', 'sympathy'],
-                    hand: ['shared-sorrow', 'iron-worker'],
+                    hand: ['shared-sorrow', 'iron-worker', 'crescendo'],
                     discard: ['molten-gold']
                 },
                 player2: {
@@ -241,6 +241,27 @@ describe('Golden Veil', function () {
             this.player2.clickCard(this.goldenVeil);
             expect(this.hammerKnight.damage).toBe(0); // prevent damage
             expect(this.moltenGold.location).toBe('hand');
+            expect(this.ironWorker.location).toBe('discard');
+        });
+
+        it('crescendo damages own, but GV cancels 3 damage', function () {
+            expect(this.bloodPuppet.damage).toBe(0);
+            expect(this.hammerKnight.damage).toBe(0);
+            this.player1.clickAttack(this.rinNorthfell);
+            this.player1.clickCard(this.mistSpirit); // attacker
+            this.player1.clickDone();
+
+            this.player1.clickCard(this.crescendo);
+            this.player1.clickCard(this.ironWorker); // discard from hand
+
+            this.player1.clickCard(this.bloodPuppet); // 1 damage
+            this.player1.clickCard(this.hammerKnight); // 3 damage
+
+            expect(this.player2).not.toHaveDefaultPrompt();
+            expect(this.player2).toBeAbleToSelect(this.goldenVeil);
+            this.player2.clickCard(this.goldenVeil);
+            expect(this.hammerKnight.damage).toBe(0); // prevent damage
+            expect(this.bloodPuppet.damage).toBe(1);
             expect(this.ironWorker.location).toBe('discard');
         });
     });
