@@ -3,13 +3,13 @@ describe('Strange Copy reaction spell', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['silver-snake', 'iron-worker', 'iron-rhino'],
+                inPlay: ['silver-snake', 'iron-worker', 'iron-rhino', 'frostback-bear'],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 archives: ['butterfly-monk']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['flute-mage'],
+                inPlay: ['flute-mage', 'salamander-monk', 'blood-archer'],
                 hand: ['strange-copy'],
                 dicepool: ['illusion']
             }
@@ -68,5 +68,36 @@ describe('Strange Copy reaction spell', function () {
         expect(this.fluteMage.recover).toBe(3);
 
         // add further tests for abilities etc
+    });
+
+    it('Bug report - sal and FBB counter damage', function () {
+        expect(this.fluteMage.tokens.damage).toBeUndefined;
+
+        this.player1.clickAttack(this.coalRoarkwin);
+        this.player1.clickCard(this.frostbackBear); // single attacker
+        this.player1.clickDone();
+
+        expect(this.player2).toBeAbleToSelect(this.strangeCopy);
+
+        this.player2.clickCard(this.strangeCopy); // guard with pb
+        this.player2.clickDie(0);
+
+        this.player2.clickCard(this.salamanderMonk); // my unit
+        expect(this.player2).toBeAbleToSelect(this.bloodArcher);
+        expect(this.bloodArcher.attack).toBe(3);
+        this.player2.clickCard(this.bloodArcher); // click cover to play as reaction
+
+        // card played
+        expect(this.strangeCopy.location).toBe('discard');
+        expect(this.salamanderMonk.attack).toBe(3);
+        expect(this.salamanderMonk.life).toBe(3);
+        expect(this.salamanderMonk.recover).toBe(2);
+
+        // add further tests for abilities etc
+        this.player2.clickCard(this.bloodArcher);
+        this.player2.clickCard(this.frostbackBear);
+        this.player2.clickDone(); // blockers
+
+        expect(this.frostbackBear.location).toBe('archives');
     });
 });
