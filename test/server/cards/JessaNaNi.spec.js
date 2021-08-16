@@ -47,6 +47,7 @@ describe('Jessa Na Ni', function () {
             expect(this.player1).not.toHavePrompt('Any reactions to Anchornaut being destroyed?');
         });
     });
+
     describe('after reactions', function () {
         beforeEach(function () {
             this.setupTest({
@@ -81,6 +82,65 @@ describe('Jessa Na Ni', function () {
             expect(this.player2).toHavePrompt('Any reactions to Anchornaut being destroyed?');
             this.player2.clickCard(this.jessaNaNi);
             this.player2.clickDie(3);
+            expect(this.coalRoarkwin.damage).toBe(3);
+        });
+    });
+
+    describe('after reactions: BUG report', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'jessa-na-ni',
+                    inPlay: ['anchornaut'],
+                    dicepool: ['natural', 'ceremonial', 'ceremonial', 'ceremonial'],
+                    spellboard: [],
+                    hand: ['final-cry', 'blood-chains']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['iron-worker'],
+                    spellboard: ['summon-iron-rhino'],
+                    dicepool: ['natural', 'illusion', 'ceremonial', 'ceremonial'],
+                    hand: []
+                }
+            });
+        });
+
+        it('ability triggers after final cry', function () {
+            this.player1.play(this.bloodChains);
+            this.player1.clickCard(this.anchornaut);
+            expect(this.anchornaut.location).toBe('discard');
+            expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
+            this.player1.clickCard(this.finalCry);
+            expect(this.coalRoarkwin.damage).toBe(2);
+
+            // prompt for jessa
+            expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
+            this.player1.clickCard(this.jessaNaNi);
+            this.player1.clickDie(3);
+
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.exhausted).toBe(true);
+
+            expect(this.coalRoarkwin.damage).toBe(3);
+        });
+
+        it('ability triggers then offers final cry', function () {
+            this.player1.play(this.bloodChains);
+            this.player1.clickCard(this.anchornaut);
+            expect(this.anchornaut.location).toBe('discard');
+            // prompt for jessa
+            expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
+            this.player1.clickCard(this.jessaNaNi);
+            this.player1.clickDie(3);
+            expect(this.coalRoarkwin.damage).toBe(1);
+
+            expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
+            this.player1.clickCard(this.finalCry);
+
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.exhausted).toBe(true);
+
             expect(this.coalRoarkwin.damage).toBe(3);
         });
     });

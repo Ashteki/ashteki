@@ -76,16 +76,14 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         this.choices = _.filter(
             this.choices,
             (context) =>
-                context.player === this.currentPlayer && context.ability.isInValidLocation(context)
+                context.player === this.currentPlayer &&
+                context.ability.isInValidLocation(context)
         );
         this.promptBetweenSources(this.choices);
         return false;
     }
 
     resolveAbility(context) {
-        if (!this.SecondPlayerActive()) {
-            this.currentPlayer = this.currentPlayer.opponent;
-        }
         super.resolveAbility(context);
     }
 
