@@ -18,7 +18,7 @@ describe('Fade away', function () {
         });
     });
 
-    it('destroys at end of round, onCardDestroyed reaction available', function () {
+    it('destroys at end of round, onCardDestroyed reaction NOT available', function () {
         expect(this.game.round).toBe(1);
 
         this.player1.play(this.fadeAway, this.ironRhino); // attach to ir
@@ -32,14 +32,14 @@ describe('Fade away', function () {
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
 
-        expect(this.player2).toHavePrompt('Any reactions to iron rhino being destroyed?');
-        this.player2.clickPass();
+        expect(this.player2).not.toHavePrompt('Any reactions to iron rhino being destroyed?');
+        // this.player2.clickPass();
         expect(this.game.round).toBe(2);
         expect(this.ironRhino.location).toBe('archives');
         expect(this.fadeAway.location).toBe('discard');
     });
 
-    it('purges allies at end of round, onCardDestroyed reaction available', function () {
+    it('purges allies at end of round, onCardDestroyed reaction NOT available', function () {
         expect(this.game.round).toBe(1);
 
         this.player1.play(this.fadeAway, this.ironWorker); // attach to iw
@@ -53,8 +53,8 @@ describe('Fade away', function () {
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
 
-        expect(this.player2).toHavePrompt('Any reactions to iron worker being destroyed?');
-        this.player2.clickPass();
+        expect(this.player2).not.toHavePrompt('Any reactions to iron worker being destroyed?');
+        // this.player2.clickPass();
 
         expect(this.game.round).toBe(2);
         expect(this.ironWorker.location).toBe('purged');
@@ -76,8 +76,8 @@ describe('Fade away', function () {
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
 
-        expect(this.player2).toHavePrompt('Any reactions to frostback bear being destroyed?');
-        this.player2.clickPass();
+        expect(this.player2).not.toHavePrompt('Any reactions to frostback bear being destroyed?');
+        // this.player2.clickPass();
         expect(this.game.round).toBe(2);
         expect(this.frostbackBear.location).toBe('archives');
         expect(this.fadeAway.location).toBe('discard');

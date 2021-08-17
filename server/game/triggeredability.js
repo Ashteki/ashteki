@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { CardType } = require('../constants.js');
+const { CardType, AbilityType } = require('../constants.js');
 
 const CardAbility = require('./CardAbility.js');
 const TriggeredAbilityContext = require('./TriggeredAbilityContext.js');
@@ -162,7 +162,8 @@ class TriggeredAbility extends CardAbility {
         }
 
         if (
-            this.card.type === CardType.ReactionSpell &&
+            (this.card.type === CardType.ReactionSpell ||
+                this.abilityType === AbilityType.Reaction) &&
             context.game.currentPhase !== 'playerturns'
         ) {
             return 'phase';
