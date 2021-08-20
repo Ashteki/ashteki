@@ -1,11 +1,18 @@
 const CardGameAction = require('./CardGameAction');
 
 class UseAction extends CardGameAction {
-    setDefaultProperties() {}
+    setDefaultProperties() { }
 
     setup() {
         this.name = 'use';
-        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
+        this.targetType = [
+            'Ally',
+            'Conjuration',
+            'Ready Spell',
+            'Phoenixborn',
+            'Alteration Spell',
+            'Conjured Alteration Spell'
+        ];
         this.effectMsg = 'use {0}';
     }
 
