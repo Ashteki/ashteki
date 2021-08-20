@@ -61,7 +61,8 @@ const Actions = {
     untilEndOfMyNextTurn: (propertyFactory) =>
         new GameActions.LastingEffectAction(propertyFactory, 3),
     lastingEffect: (propertyFactory) => new GameActions.LastingEffectAction(propertyFactory),
-    rearrangeCards: (propertFactory) => new GameActions.RearrangeCardsAction(propertFactory),
+    rearrangeCards: (propertyFactory) => new GameActions.RearrangeCardsAction(propertyFactory),
+    filterDeck: (propertyFactory) => new GameActions.FilterDeckAction(propertyFactory),
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name
     steal: (propertyFactory) => new GameActions.StealAction(propertyFactory), // amount = 1
