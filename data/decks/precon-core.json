@@ -1,5 +1,81 @@
 [
   {
+    "precon_id": 23,
+    "name": "The Gorrenrock Survivors",
+    "phoenixborn": [
+      {
+        "id": "lulu-firststone",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "backtrack",
+        "count": 3
+      },
+      {
+        "id": "canyon-shelter",
+        "count": 3
+      },
+      {
+        "id": "fighting-spirit",
+        "count": 3
+      },
+      {
+        "id": "gorrenrock-brawler",
+        "count": 3
+      },
+      {
+        "id": "hunting-weapons",
+        "count": 3
+      },
+      {
+        "id": "inflame",
+        "count": 3
+      },
+      {
+        "id": "phoenix-barrage",
+        "count": 3
+      },
+      {
+        "id": "summon-emberoot-lizard",
+        "count": 3
+      },
+      {
+        "id": "summon-omen-bringer",
+        "count": 3
+      },
+      {
+        "id": "survival-of-the-fittest",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "emberoot-lizard",
+        "count": 3
+      },
+      {
+        "id": "omen-bringer",
+        "count": 2
+      },
+      {
+        "id": "spark",
+        "count": 3
+      }
+    ]
+  },
+  {
     "precon_id": 22,
     "name": "The Breaker of Fate",
     "phoenixborn": [
