@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../../constants.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Backtrack extends Card {
@@ -13,7 +13,7 @@ class Backtrack extends Card {
             target: {
                 activePromptTitle: 'Choose an attacker to return to hand',
                 cardType: BattlefieldTypes,
-                cardCondition: (card) => card.isAttacker,
+                cardCondition: (card) => card.isAttacker && card.type === CardType.Ally,
                 controller: 'opponent',
                 gameAction: [
                     ability.actions.removeFromBattle(),
