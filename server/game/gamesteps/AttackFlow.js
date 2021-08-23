@@ -87,6 +87,7 @@ class AttackFlow extends BaseStepWithPipeline {
                             resolved: false
                         });
                         c.isAttacker = true;
+                        c.wasAttacker = true;
                     });
 
                     const costEvent = Costs.mainAction().payEvent(

@@ -290,6 +290,9 @@ class Player extends GameObject {
     beginTurn() {
         this.cardsInPlay.forEach((c) => {
             c.new = false;
+            c.wasAttacker = false;
+            c.wasDefender = false;
+
             c.upgrades.forEach((u) => (u.new = false));
         });
         this.spellboard.forEach((c) => (c.new = false));

@@ -69,6 +69,7 @@ class AttackState {
         }
         battle.guard = blocker;
         blocker.isDefender = true;
+        blocker.wasDefender = true;
     }
 
     clearAllBlockers() {
@@ -78,10 +79,11 @@ class AttackState {
         });
     }
 
-    setGuard(blocker) {
+    setGuard(guard) {
         let battle = this.battles[0];
-        battle.guard = blocker;
-        blocker.isDefender = true;
+        battle.guard = guard;
+        guard.isDefender = true;
+        guard.wasDefender = true;
         battle.target.isDefender = false;
     }
 

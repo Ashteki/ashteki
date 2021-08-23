@@ -35,6 +35,7 @@ const Actions = {
     removeExhaustion: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
     removeToken: (propertyFactory, type) => new GameActions.RemoveTokenAction(propertyFactory, type),
+    removeAllTokens: (propertyFactory) => new GameActions.RemoveAllTokensAction(propertyFactory),
     resolveAbility: (propertyFactory) => new GameActions.ResolveAbilityAction(propertyFactory), // ability
     resolveFight: (propertyFactory) => new GameActions.ResolveFightAction(propertyFactory), // this shouldn't normally be needed
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false

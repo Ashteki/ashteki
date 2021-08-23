@@ -514,6 +514,18 @@ class Card extends PlayableObject {
         return Object.keys(this.tokens).length;
     }
 
+    allTokenCount() {
+        return !this.tokens
+            ? 0
+            : Object.keys(this.tokens)
+                .map((key) => this.tokens[key])
+                .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    }
+
+    removeAllTokens() {
+        this.tokens = {};
+    }
+
     removeToken(type, number = 1) {
         if (!this.tokens[type]) {
             return;
