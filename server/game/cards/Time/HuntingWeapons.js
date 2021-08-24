@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../../constants.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class HuntingWeapons extends Card {
@@ -16,7 +16,7 @@ class HuntingWeapons extends Card {
                     target: {
                         optional: true,
                         activePromptTitle: 'Choose a unit to damage',
-                        cardType: BattlefieldTypes,
+                        cardType: CardType.Ally,
                         gameAction: ability.actions.dealDamage({
                             amount: 1
                         })
