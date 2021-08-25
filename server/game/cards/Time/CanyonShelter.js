@@ -1,5 +1,6 @@
-const { BattlefieldTypes } = require('../../../constants.js');
+const { BattlefieldTypes, Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const DiceCount = require('../../DiceCount.js');
 
 class CanyonShelter extends Card {
     setupCardAbilities(ability) {
@@ -27,6 +28,10 @@ class CanyonShelter extends Card {
         this.action({
             title: 'Return Unit',
             condition: (context) => context.source.childCards.length > 0,
+            cost: [
+                ability.costs.mainAction(),
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Time)])
+            ],
             location: 'spellboard',
             gameAction: ability.actions.putIntoPlay((context) => ({
                 promptWithHandlerMenu: {
