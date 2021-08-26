@@ -8,6 +8,7 @@ const UiPrompt = require('./uiprompt.js');
 class MeditatePrompt extends UiPrompt {
     constructor(game) {
         super(game);
+        this.firstTopOfDeck = null;
 
         this.choosingPlayer = game.activePlayer;
         this.context = {
@@ -47,7 +48,11 @@ class MeditatePrompt extends UiPrompt {
             }
         }
 
-        return super.continue();
+        const result = super.continue();
+        if (this.isComplete()) {
+            this.game.raiseEvent('onMeditated', { firstTopOfDeck: this.firstTopOfDeck });
+        }
+        return result;
     }
 
     highlightSelectableCards() {
@@ -175,6 +180,7 @@ class MeditatePrompt extends UiPrompt {
 
     menuCommand(player, arg) {
         if (arg === 'top') {
+            this.isTopDeck = true;
             return this.selectCard(this.choosingPlayer.deck[0]);
         }
 
@@ -192,6 +198,9 @@ class MeditatePrompt extends UiPrompt {
                 cards,
                 dice
             );
+            if (!this.firstTopOfDeck && this.isTopDeck) {
+                this.firstTopOfDeck = this.choosingPlayer.selectedCards[0]; // should only be 1
+            }
             this.count = this.count + 1;
             this.resetSelections(this.choosingPlayer);
             return true;
@@ -225,6 +234,7 @@ class MeditatePrompt extends UiPrompt {
     }
 
     resetSelections(player) {
+        this.isTopDeck = false;
         player.clearSelectedCards();
         player.clearSelectableCards();
         player.clearSelectedDice();
@@ -232,7 +242,6 @@ class MeditatePrompt extends UiPrompt {
     }
 
     clearSelection() {
-        this.cardDamage = {};
         this.choosingPlayer.clearSelectableCards();
     }
 }

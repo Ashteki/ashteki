@@ -10,7 +10,8 @@ const EventToTitleFunc = {
     onDamageDealt: (event) =>
         event.card.name + ' receiving ' + event.amount + ' damage from ' + event.damageSource.name,
     onCardDestroyed: (event) => event.card.name + ' being destroyed',
-    onCardLeavesPlay: (event) => event.card.name + ' leaving play'
+    onCardLeavesPlay: (event) => event.card.name + ' leaving play',
+    onMeditated: () => 'meditation'
     // ,
     // onPhaseEnded: (event) => event.phase + ' phase ending',
     // onPhaseStarted: (event) => event.phase + ' phase starting'
