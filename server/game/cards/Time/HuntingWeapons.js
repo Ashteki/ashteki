@@ -16,7 +16,7 @@ class HuntingWeapons extends Card {
                     target: {
                         optional: true,
                         activePromptTitle: 'Choose a unit to damage',
-                        cardType: CardType.Ally,
+                        cardType: BattlefieldTypes,
                         gameAction: ability.actions.dealDamage({
                             amount: 1
                         })
