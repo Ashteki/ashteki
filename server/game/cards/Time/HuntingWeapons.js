@@ -25,6 +25,11 @@ class HuntingWeapons extends Card {
             ]
         });
     }
+
+    canAttach(card, context) {
+        const myCondition = card.type === CardType.Ally;
+        return super.canAttach(card, context) && myCondition;
+    }
 }
 
 HuntingWeapons.id = 'hunting-weapons';
