@@ -5,7 +5,7 @@ let db = monk(mongoUrl);
 console.log('selecting user: ' + process.argv[2]);
 const collection = db.get('users');
 collection
-    .find({ username: process.argv[2] })
+    .find({ $or: [{ username: process.argv[2] }, { email: process.argv[2] }] })
     .then((result) => {
         // Updated the document with the field a equal to 2
         console.log(result);
