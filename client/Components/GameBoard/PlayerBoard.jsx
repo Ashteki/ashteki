@@ -49,7 +49,13 @@ const PlayerBoard = ({
                     results.push(renderCard(attackerCard));
                 } else {
                     // work out defender or blank
-                    let defCard = getCard(b.guard) || getCard(b.target);
+                    const guardCard = getCard(b.guard);
+                    const targetCard = getCard(b.target);
+                    let defCard = guardCard;
+                    if (!guardCard && !b.guard) {
+                        defCard = targetCard;
+                    }
+
                     if (defCard && defCard !== phoenixborn) results.push(renderCard(defCard));
                     else results.push(renderCardGap());
                 }
