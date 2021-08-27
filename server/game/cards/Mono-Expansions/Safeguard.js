@@ -9,7 +9,7 @@ class Safeguard extends Card {
                 controller: 'self',
                 gameAction: ability.actions.cardLastingEffect({
                     effect: ability.effects.preventAllDamage(this),
-                    turnDuration: 2
+                    duration: 'untilNextTurn'
                 })
             }
         });

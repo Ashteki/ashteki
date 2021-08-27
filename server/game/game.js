@@ -870,7 +870,7 @@ class Game extends EventEmitter {
     }
 
     beginTurn() {
-        this.raiseEvent('onBeginTurn');
+        this.raiseEvent('onBeginTurn', { player: this.activePlayer });
     }
 
     /*

@@ -98,7 +98,7 @@ class EffectEngine {
 
     onRoundEnded() {
         this.newEffect = this.unapplyAndRemove(
-            (effect) => effect.roundDuration === 'untilEndOfRound' || effect.roundDuration === 1
+            (effect) => effect.duration === 'untilEndOfRound' || effect.roundDuration === 1
         );
         _.each(this.effects, (effect) => {
             if (effect.roundDuration > 1) {
@@ -109,7 +109,7 @@ class EffectEngine {
 
     onTurnEnded() {
         this.newEffect = this.unapplyAndRemove(
-            (effect) => effect.turnDuration === 'untilEndOfTurn' || effect.turnDuration === 1
+            (effect) => effect.duration === 'untilEndOfTurn' || effect.turnDuration === 1
         );
         _.each(this.effects, (effect) => {
             if (effect.turnDuration > 1) {

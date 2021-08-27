@@ -11,7 +11,8 @@ const {
     BattlefieldTypes,
     UpgradeCardTypes,
     AbilityType,
-    ConjuredCardTypes
+    ConjuredCardTypes,
+    Magic
 } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
@@ -750,8 +751,12 @@ class Card extends PlayableObject {
         this.upgrades = this.upgrades.filter((c) => c !== card);
     }
 
-    removeDieAttachment(card) {
-        this.dieUpgrades = this.dieUpgrades.filter((c) => c !== card);
+    removeDieAttachment(die) {
+        this.dieUpgrades = this.dieUpgrades.filter((c) => c !== die);
+    }
+
+    get hasCharmDie() {
+        return this.dieUpgrades.some((c) => c.magic === Magic.Charm);
     }
 
     canPlayAsUpgrade() {

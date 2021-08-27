@@ -31,6 +31,7 @@ describe('Sacred Ground', function () {
             expect(this.blueJaguar.armor).toBe(1);
             expect(this.hammerKnight.armor).toBe(0);
 
+            this.player2.actions.main = false; // fudge not to end round
             this.player2.endTurn();
             expect(this.mistSpirit.armor).toBe(0);
             expect(this.blueJaguar.armor).toBe(0);

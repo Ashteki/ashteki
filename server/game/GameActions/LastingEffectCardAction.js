@@ -70,18 +70,15 @@ class LastingEffectCardAction extends CardGameAction {
             durationType: this.durationType
         };
 
-        if (this.durationType === 'round') {
-            properties.roundDuration = this.duration;
-        } else {
-            properties.turnDuration = this.duration;
-        }
+        // if (this.durationType === 'round') {
+        //     properties.roundDuration = this.duration;
+        // } else {
+        //     properties.turnDuration = this.duration;
+        // }
 
-        const methodFromDuration =
-            this.durationType == 'round' ? 'roundDurationEffect' : 'turnDurationEffect';
-        let methodName = this.until ? 'lastingEffect' : methodFromDuration;
-
+        let duration = this.until ? 'lastingEffect' : this.duration;
         return super.createEvent('onEffectApplied', { card: card, context: context }, (event) =>
-            event.context.source[methodName](properties)
+            event.context.source[duration](() => properties)
         );
     }
 }
