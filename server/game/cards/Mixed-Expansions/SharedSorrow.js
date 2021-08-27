@@ -6,14 +6,16 @@ class SharedSorrow extends Card {
         this.play({
             targets: {
                 discard: {
-                    activePromptTitle: 'Shared Sorrow',
+                    promptTitle: 'Shared Sorrow',
+                    activePromptTitle: 'Discard 1 card from your hand with a magic play cost of 1 or more',
                     location: 'hand',
                     controller: 'self',
+                    cardCondition: (card) => card.magicCost >= 1,
                     gameAction: ability.actions.discard()
                 },
                 return: {
                     dependsOn: 'discard',
-                    activePromptTitle: 'Choose a card to return',
+                    activePromptTitle: 'Choose a card to place into your hand',
                     location: 'discard',
                     controller: 'self',
                     cardCondition: (card, context) =>
