@@ -52,6 +52,7 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     declareAttackers() {
+        this.game.checkGameState(true);
         this.game.promptForSelect(this.attackingPlayer, {
             activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',
             source: this.target,
