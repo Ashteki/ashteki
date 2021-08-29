@@ -59,8 +59,8 @@ class GameFlowWrapper {
         this.player1.clickPrompt('Start the Game');
         this.player2.clickPrompt('Start the Game');
 
-        this.player1.clickPrompt('Done'); // discard
-        this.player2.clickPrompt('Done'); // discard
+        this.player1.clickNo(); // discard
+        this.player2.clickNo(); // discard
     }
 
     /**
