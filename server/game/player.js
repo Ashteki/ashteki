@@ -27,7 +27,6 @@ class Player extends GameObject {
 
         this.deckData = {};
         this.firstFiveChosen = false;
-        this.takenPrepareDiscard = false;
         this.recoveryDicePinned = false;
         this.pinnedDice = [];
         this.diceHistory = [];

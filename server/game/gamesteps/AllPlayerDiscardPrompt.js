@@ -8,6 +8,7 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
         game.getPlayers().forEach((player) => {
             this.selectedCards[player.name] = [];
             player.takenPrepareDiscard = false;
+            player.madeDiscardChoice = false;
         });
     }
 
@@ -23,7 +24,18 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
         return super.continue();
     }
 
-    activePrompt() {
+    activePrompt(player) {
+        if (!player.madeDiscardChoice) {
+            return {
+                selectCard: false,
+                menuTitle: 'Do you want to discard any cards?',
+                buttons: [
+                    { text: 'Yes', arg: 'yes' },
+                    { text: 'No', arg: 'no' }
+                ],
+                promptTitle: 'Prepare phase discard'
+            };
+        }
         return {
             selectCard: true,
             menuTitle: 'Select cards to discard',
@@ -34,7 +46,7 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
 
     highlightSelectableCards() {
         this.game.getPlayers().forEach((player) => {
-            if (!player.takenPrepareDiscard) {
+            if (player.madeDiscardChoice && !player.takenPrepareDiscard) {
                 if (!this.selectableCards[player.name]) {
                     this.selectableCards[player.name] = player.hand;
                 }
@@ -52,7 +64,7 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
     }
 
     onCardClicked(player, card) {
-        if (!player || !this.activeCondition(player) || !card) {
+        if (!player || !this.activeCondition(player) || !player.madeDiscardChoice || !card) {
             return false;
         }
         if (!this.cardCondition(card)) {
@@ -70,6 +82,12 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
     }
 
     menuCommand(player, arg) {
+        if (arg === 'yes' || arg === 'no') {
+            player.madeDiscardChoice = true;
+            player.takenPrepareDiscard = arg === 'no';
+            return player.takenPrepareDiscard;
+        }
+
         if (arg === 'done') {
             player.clearSelectableCards();
 
