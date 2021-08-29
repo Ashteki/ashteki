@@ -8,7 +8,7 @@ Web based implementation of the Ashes Reborn card game
 
 This is the respository for the code internally known as ashteki which allows people to play Ashes Reborn using only their browser
 
-### Does't this look a lot like The Crucible Online and other sites like it?
+### Doesn't this look a lot like The Crucible Online and other sites like it?
 
 Yep. This is a fork of the Keyteki source, with some retrofitting from ringteki.
 
@@ -25,21 +25,21 @@ If you're not coding inclined, then just playing games on the site, and reportin
 
 ### X Y Z doesn't work
 
-As of writing only the reborn core set has been implemented, so any cards from later expansions may load, but won't trigger any automatic ablities. You may be able to use manual mode, but hopefully you won't have to for long. If there's anything you can't do that you need to be able to do, let me know by raising an issue. Likewise if there's a bug, a crash, or anything amiss then let me know by raising an issue on github or visiting the Ashes discord server.
+As of writing only the Reborn set up to and including Lulu has been implemented, so any cards from later expansions may load, but won't trigger any automatic ablities. You may be able to use manual mode, but hopefully you won't have to for long. If there's anything you can't do that you need to be able to do, let me know by raising an issue. Likewise if there's a bug, a crash, or anything amiss then let me know by raising an issue on github or visiting the Ashes discord server.
 
 ## Development
 
 ### Docker
 
 If you have docker installed, you can use the containerised version of the site.
-Clone the repository, then run the following commands:
+Clone the repository, then navigate to the repository and run the following commands:
 
 ```
 npm install
 docker-compose up
 ```
 
-In another terminal, run the following command:
+In another terminal, navigate to the repository and run the following commands:
 
 ```
 docker-compose exec lobby node server/scripts/ashes/importdata
@@ -84,7 +84,7 @@ node .
 node server/gamenode
 ```
 
-There are two exectuable components and you'll need to configure/run both to run a local server. First is the lobby server and then there are game nodes. The default configurations assume you are running postgres locally on the default port. If you need to change any configurations, edit `config/default.json5` or create a `config/local.json5` configuration that overrides any desired settings.
+There are two executable components and you'll need to configure/run both to run a local server. First is the lobby server and then there are game nodes. The default configurations assume you are running postgres locally on the default port. If you need to change any configurations, edit `config/default.json5` or create a `config/local.json5` configuration that overrides any desired settings.
 
 To download all supported languages (not needed if you're running just a test / dev server):
 
