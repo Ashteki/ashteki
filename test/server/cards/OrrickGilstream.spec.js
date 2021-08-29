@@ -48,6 +48,18 @@ describe('Insight ability', function () {
         expect(this.player1.hand.length).toBe(0);
     });
 
+    it('does not trigger on opponents turn', function () {
+        this.player1.endTurn();
+        this.player2.clickPrompt('Meditate');
+        this.player2.clickPrompt('Choose top Of Deck');
+        this.player2.clickDie(0);
+        this.player2.clickPrompt('Confirm');
+        this.player2.clickPrompt('Stop meditating');
+
+        expect(this.player2).toHaveDefaultPrompt();
+        expect(this.player1).toHavePrompt('waiting for opponent');
+    });
+
     it('does not trigger on change of mind away from top of deck', function () {
         this.player1.clickPrompt('Meditate');
         const target = this.player1.dicepool[0];

@@ -8,7 +8,8 @@ class OrrickGilstream extends Card {
             title: 'Insight',
             cost: ability.costs.exhaust(),
             when: {
-                onMeditated: (event) => event.firstTopOfDeck
+                onMeditated: (event, context) =>
+                    event.firstTopOfDeck && event.player == context.player
             },
             gameAction: ability.actions.moveCard((context) => ({
                 destination: 'hand',
