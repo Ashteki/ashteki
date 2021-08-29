@@ -51,10 +51,14 @@ class PinDicePrompt extends AllPlayerPrompt {
 
     highlightSelectableDice() {
         this.game.getPlayers().forEach((player) => {
-            if (!this.selectableDice[player.name]) {
-                this.selectableDice[player.name] = player.dice.filter((d) => this.dieCondition(d));
+            if (!player.recoveryDicePinned) {
+                if (!this.selectableDice[player.name]) {
+                    this.selectableDice[player.name] = player.dice.filter((d) =>
+                        this.dieCondition(d)
+                    );
+                }
+                player.setSelectableDice(this.selectableDice[player.name]);
             }
-            player.setSelectableDice(this.selectableDice[player.name]);
         });
     }
 
