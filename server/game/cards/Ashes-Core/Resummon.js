@@ -22,7 +22,8 @@ class Resummon extends Card {
             },
             then: {
                 gameAction: ability.actions.putIntoPlay((context) => ({
-                    target: context.preThenEvent.card
+                    target: context.preThenEvent.card,
+                    showMessage: true
                 }))
             }
         });

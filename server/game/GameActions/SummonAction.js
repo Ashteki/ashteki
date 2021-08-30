@@ -32,7 +32,8 @@ class SummonAction extends PlayerAction {
         const summonEvent = super.createEvent('onSummon', { player: player, context: context });
         if (this.cards && this.cards.length) {
             const gameAction = context.game.actions.putIntoPlay({
-                target: this.cards
+                target: this.cards,
+                showMessage: true
             });
             for (let event of gameAction.getEventArray(context)) {
                 summonEvent.addChildEvent(event);
