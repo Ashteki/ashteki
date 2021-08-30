@@ -13,6 +13,7 @@ services:
             - './server:/usr/src/app/server'
             - './public:/usr/src/app/public'
             - './less:/usr/src/app/less'
+            - './config:/usr/src/app/config'
         links:
             - mongo
         depends_on:
@@ -29,6 +30,7 @@ services:
             - '9339:9339'
         volumes:
             - './server:/usr/src/app/server'
+            - './config:/usr/src/app/config'
         command:
             - node
             - '--inspect=0.0.0.0:9339'
