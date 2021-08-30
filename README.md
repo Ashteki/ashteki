@@ -78,7 +78,7 @@ Create config/local.json5 and put something like the following in it:
 Run the following commands:
 
 ```
-node server/scripts/ashes/importdata.js
+node server/scripts/ashes/importdata
 node server/scripts/ashes/importprecons
 node .
 node server/gamenode
@@ -92,24 +92,18 @@ To download all supported languages (not needed if you're running just a test / 
 
 The game server should be accessible by browsing to localhost:4000.
 
-The docker setup creates a default 'admin' user with the password of 'password'.
-!THIS ISN'T WORKING RIGHT NOW!
-
 You can register 2 or more users, to play against yourself.
 They can have fake email addresses.
 You can login as both users either from 2 different browsers, or by
 using an incognito window.
 
 These users will be normal (non-admin) users. To escalate a user to
-the admin role requires manual edits to the database, but that
-is not required for testing in-game functionality.
-
-If you implement or make changes to a card, you can use manual mode
-to add it to a deck from within a game. Use manual mode, and the command:
-
+the admin role you can run
 ```
-/add-card <card name>
+node server/scripts/ashes/makeSuperuser <username>
 ```
+
+This is not required for testing in-game functionality.
 
 Before you run the unit tests, be sure all the necessary dependencies are installed
 
