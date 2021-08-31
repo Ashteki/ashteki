@@ -50,7 +50,10 @@ class MeditatePrompt extends UiPrompt {
 
         const result = super.continue();
         if (this.isComplete()) {
-            this.game.raiseEvent('onMeditated', { firstTopOfDeck: this.firstTopOfDeck });
+            this.game.raiseEvent('onMeditated', {
+                firstTopOfDeck: this.firstTopOfDeck,
+                player: this.choosingPlayer
+            });
         }
         return result;
     }
