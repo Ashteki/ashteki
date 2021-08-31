@@ -17,6 +17,13 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
     }
 
     continue() {
+        this.game.getPlayers().forEach((player) => {
+            if (player.hand.length === 0) {
+                player.takenPrepareDiscard = true;
+                player.madeDiscardChoice = true;
+            }
+        });
+
         if (!this.isComplete()) {
             this.highlightSelectableCards();
         }

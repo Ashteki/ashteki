@@ -18,6 +18,12 @@ class PinDicePrompt extends AllPlayerPrompt {
     }
 
     continue() {
+        this.game.getPlayers().forEach((player) => {
+            if (player.dice.filter((d) => this.dieCondition(d)).length === 0) {
+                player.recoveryDicePinned = true;
+            }
+        });
+
         if (!this.powerDiceSelected) {
             this.selectPowerDice();
         }
