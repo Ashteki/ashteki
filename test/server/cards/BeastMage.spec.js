@@ -29,8 +29,8 @@ describe('Beast Mage', function () {
         // dice
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
-        this.player1.clickPrompt('Done');
-        this.player2.clickPrompt('Done');
+        this.player1.clickNo();
+        this.player2.clickNo();
 
         expect(this.player2.player.firstPlayer).toBe(true);
         expect(this.beastMage.attack).toBe(2);
@@ -43,8 +43,8 @@ describe('Beast Mage', function () {
         // dice
         this.player1.clickPrompt('Done');
         this.player2.clickPrompt('Done');
-        this.player1.clickPrompt('Done');
-        this.player2.clickPrompt('Done');
+        this.player1.clickNo();
+        this.player2.clickNo();
 
         expect(this.beastMage.attack).toBe(4);
         expect(this.beastMage.life).toBe(4);

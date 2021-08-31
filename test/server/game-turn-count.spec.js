@@ -36,8 +36,8 @@ describe('Game Turns', function () {
 
         this.player1.clickDone(); // pin dice
         this.player2.clickDone();
-        this.player1.clickDone(); // discard cards
-        this.player2.clickDone();
+        this.player1.clickNo(); // discard cards
+        this.player2.clickNo();
 
         // end round
 

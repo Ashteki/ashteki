@@ -89,8 +89,8 @@ describe('Captivate', function () {
             this.player1.clickDone();
             this.player2.clickDone();
             // card discard
-            this.player1.clickDone();
-            this.player2.clickDone();
+            this.player1.clickNo();
+            this.player2.clickNo();
             this.player2.clickPrompt('0'); // iron worker overtime
 
             expect(this.player2).toHaveDefaultPrompt();
