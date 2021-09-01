@@ -954,7 +954,7 @@ class Lobby {
         for (let player of Object.values(game.getPlayers()).filter(
             (player) => player.name !== owner.username
         )) {
-            let socket = this.socketsByName[owner.name];
+            let socket = this.socketsByName[player.name];
 
             if (!socket) {
                 logger.warn(
@@ -985,7 +985,7 @@ class Lobby {
         }
 
         for (let spectator of game.getSpectators()) {
-            let socket = this.socketsByName[owner.name];
+            let socket = this.socketsByName[spectator.name];
 
             if (!socket) {
                 logger.warn(
