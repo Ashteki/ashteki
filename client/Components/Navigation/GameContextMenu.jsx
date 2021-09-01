@@ -46,6 +46,16 @@ const GameContextMenu = () => {
         return true;
     };
 
+    const onConcedeClick = () => {
+        toastr.confirm(t('Are you sure you want to concede this game?'), {
+            okText: t('Ok'),
+            cancelText: t('Cancel'),
+            onOk: () => {
+                dispatch(sendGameMessage('concede'));
+            }
+        });
+    };
+
     const onLeaveClick = () => {
         if (!isSpectating && isGameActive()) {
             toastr.confirm(
@@ -86,7 +96,7 @@ const GameContextMenu = () => {
             </Nav.Link>
             {showPopup && spectatorPopup}
             {!isSpectating && (
-                <Nav.Link onClick={() => dispatch(sendGameMessage('concede'))}>
+                <Nav.Link onClick={onConcedeClick}>
                     <Trans>Concede</Trans>
                 </Nav.Link>
             )}
