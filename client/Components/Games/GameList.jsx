@@ -51,7 +51,8 @@ class GameList extends React.Component {
     canWatch(game) {
         return (
             !this.props.currentGame &&
-            (game.allowSpectators || this.props.user?.permissions?.canManageGames)
+            (game.allowSpectators || this.props.user?.permissions?.canManageGames) &&
+            !(game.started && Object.keys(game.players).length < 2)
         );
     }
 
