@@ -17,6 +17,7 @@ class SummonMistSpirit extends Card {
             }),
             then: {
                 optional: true,
+                activePromptTitle: 'Summon another Mist Spirit?',
                 cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
                 gameAction: ability.actions.summon({
                     conjuration: 'mist-spirit'
