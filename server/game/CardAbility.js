@@ -112,6 +112,7 @@ class CardAbility extends ThenAbility {
             return;
         }
 
+        // message: property overrides auto-messaging
         if (this.properties.message) {
             let messageArgs = this.properties.messageArgs;
             if (typeof messageArgs === 'function') {
@@ -126,7 +127,9 @@ class CardAbility extends ThenAbility {
             return;
         }
 
+        // effect: property prevents auto message building through gameaction effectMsg properties
         if (!this.properties.effect) {
+            // use gameAction effectMsg properties
             let gameActions = this.getGameActions(context).filter((gameAction) =>
                 gameAction.hasLegalTarget(context)
             );
