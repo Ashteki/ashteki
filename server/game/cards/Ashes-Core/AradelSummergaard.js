@@ -10,12 +10,12 @@ class AradelSummergaard extends Card {
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Natural)])
-            ],
-            effect: 'deal 2 damage to a unit',
+            ],    
             target: {
                 activePromptTitle: 'Water Blast',
                 cardType: [BattlefieldTypes],
                 controller: 'any',
+                effect: 'deal 2 damage to a unit',
                 gameAction: ability.actions.dealDamage({ amount: 2 })
             }
         });
