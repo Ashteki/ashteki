@@ -22,8 +22,8 @@ const NewsItem = ({ date, icon, text }) => {
     return (
         <div className='news-item'>
             <div className={`news-icon ${icon}`} />
-            &nbsp;{moment(date).format('YYYY-MM-DD') + ' - '}
-            {parts}
+            <div>&nbsp;{moment(date).format('YYYY-MM-DD') + ' - '}&nbsp;
+                {parts}&nbsp;</div>
         </div>
     );
 };

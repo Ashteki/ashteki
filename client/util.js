@@ -35,7 +35,7 @@ export function getMessageWithLinks(message) {
         if (token.match(urlMatchingRegex)) {
             return (
                 <a key={`link-${i++}`} href={token} target='_blank' rel='noopener noreferrer'>
-                    {token}
+                    {token}&nbsp;
                 </a>
             );
         }
