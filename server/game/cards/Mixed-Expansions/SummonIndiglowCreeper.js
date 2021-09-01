@@ -5,7 +5,7 @@ const DiceCount = require('../../DiceCount.js');
 class SummonIndiglowCreeper extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Summon Indiglo Creeper',
+            title: 'Summon Indiglow Creeper',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),

@@ -293,7 +293,6 @@ class Card extends PlayableObject {
             inexhaustible: true,
             target: {
                 optional: true,
-                controller: 'self',
                 activePromptTitle: 'Inheritance 1',
                 cardType: BattlefieldTypes,
                 cardCondition: (card, context) => card !== context.source,
