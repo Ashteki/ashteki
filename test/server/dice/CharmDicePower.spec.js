@@ -27,7 +27,6 @@ describe('Charm Dice Power', function () {
         this.player1.endTurn();
         this.player2.endTurn();
         this.player1.clickPrompt('Done'); // no pins
-        this.player2.clickPrompt('Done'); // no pins
         expect(this.ironWorker.dieUpgrades.length).toBe(0);
     });
 
