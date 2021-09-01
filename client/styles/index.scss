@@ -211,6 +211,13 @@ h3 {
     background: theme-color(primary) !important;
 }
 
+.rrt-button {
+    color: white;
+}
+.rrt-button:hover {
+    color: theme-color(dark) !important;
+}
+
 .clickable {
     cursor: pointer;
     cursor: hand;

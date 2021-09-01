@@ -16,7 +16,7 @@ class SummonSpectralAssassin extends Card {
                     cardType: CardType.Conjuration,
                     cardCondition: (card) => card.id === 'spectral-assassin',
                     location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
+                    gameAction: ability.actions.putIntoPlay({ showMessage: true })
                 },
                 then: {
                     alwaysTriggers: true,
