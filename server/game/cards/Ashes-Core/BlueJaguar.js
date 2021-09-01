@@ -11,7 +11,7 @@ class BlueJaguar extends Card {
                 }
             },
             target: {
-                activePromptTitle: 'choose a unit to prevent block/guard',
+                activePromptTitle: 'Choose a unit to prevent block/guard',
                 optional: true,
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
