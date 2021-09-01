@@ -13,9 +13,8 @@ class AradelSummergaard extends Card {
             ],    
             target: {
                 activePromptTitle: 'Water Blast',
-                cardType: [BattlefieldTypes],
+                cardType: BattlefieldTypes,
                 controller: 'any',
-                effect: 'deal 2 damage to a unit',
                 gameAction: ability.actions.dealDamage({ amount: 2 })
             }
         });
