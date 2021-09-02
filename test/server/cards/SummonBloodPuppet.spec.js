@@ -7,7 +7,9 @@ describe('Summon Blood Puppet', function () {
                     inPlay: [],
                     spellboard: ['summon-blood-puppet'],
                     dicepool: ['natural', 'ceremonial', 'charm', 'charm'],
-                    archives: ['blood-puppet']
+                    archives: ['blood-puppet'],
+                    deck: ['iron-worker', 'anchornaut'],
+                    hand: ['iron-worker', 'anchornaut']
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',

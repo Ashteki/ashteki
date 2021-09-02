@@ -20,8 +20,9 @@ class GameWonPrompt extends AllPlayerPrompt {
                 values: { player: this.winner.name }
             },
             buttons: [
-                { arg: 'rematch', text: 'Rematch' },
-                { arg: 'rematch-swap', text: 'Rematch: Swap Decks' }
+                { command: 'leavegame', arg: 'leavegame', text: 'Leave' }
+                // { arg: 'rematch', text: 'Rematch' },
+                // { arg: 'rematch-swap', text: 'Rematch: Swap Decks' }
             ]
         };
     }
@@ -39,6 +40,9 @@ class GameWonPrompt extends AllPlayerPrompt {
             case 'rematch-swap':
                 message = 'a rematch and swap decks';
                 break;
+            case 'leave':
+                leaveGame(this.game.id);
+                return true;
         }
 
         this.game.addMessage('{0} would like {1}', player, message);
@@ -57,6 +61,7 @@ class GameWonPrompt extends AllPlayerPrompt {
 
             return true;
         }
+
 
         return true;
     }
