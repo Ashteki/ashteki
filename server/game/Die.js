@@ -147,7 +147,7 @@ class Die extends PlayableObject {
                     title: 'Ceremonial Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
-                        activePromptTitle: 'Select an ally to return to your hand',
+                        //activePromptTitle: 'Select an ally to return to your hand',
                         controller: 'self',
                         cardType: 'Ally',
                         location: 'discard',
@@ -167,7 +167,7 @@ class Die extends PlayableObject {
                     title: 'Illusion Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
-                        activePromptTitle: 'Select up to 2 dice to lower',
+                        //activePromptTitle: 'Select up to 2 dice to lower',
                         toSelect: 'die',
                         mode: 'upTo',
                         numDice: 2,
@@ -182,7 +182,7 @@ class Die extends PlayableObject {
                     title: 'Natural Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
-                        activePromptTitle: 'Select a unit to deal 1 damage to',
+                        //activePromptTitle: 'Select a unit to deal 1 damage to',
                         cardType: ['Ally', 'Conjuration'],
                         gameAction: this.game.actions.dealDamage({ amount: 1 })
                     },
@@ -193,7 +193,7 @@ class Die extends PlayableObject {
                     title: 'Charm Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
-                        activePromptTitle: 'Select a unit to add a Charm die to',
+                        //activePromptTitle: 'Select a unit to add a Charm die to',
                         cardType: ['Ally', 'Conjuration'],
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
@@ -210,7 +210,7 @@ class Die extends PlayableObject {
                     title: 'Divine Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
-                        activePromptTitle: 'Select a unit to add a Divine die to',
+                        //activePromptTitle: 'Select a unit to add a Divine die to',
                         cardType: ['Ally', 'Conjuration'],
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Divine),
