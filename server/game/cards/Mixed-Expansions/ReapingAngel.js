@@ -3,12 +3,13 @@ const Card = require('../../Card.js');
 class ReapingAngel extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
+            may: 'discard an ally from your draw pile',
             target: {
                 optional: true,
                 activePromptTitle: 'Choose an ally to discard',
                 location: 'deck',
                 controller: 'self',
-		        cardType: 'Ally',
+                cardType: 'Ally',
                 gameAction: [
                     ability.actions.reveal(),
                     ability.actions.moveCard({ destination: 'discard' }),
@@ -16,7 +17,9 @@ class ReapingAngel extends Card {
                 ]
             }
         });
+
         this.entersPlay({
+            may: 'remove a discarded ally from the game to heal 1 phoenixborn wound',
             target: {
                 activePromptTitle: 'Choose an ally to remove from the game',
                 optional: true,
