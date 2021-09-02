@@ -36,7 +36,7 @@ class Empower extends Card {
                     },
                     amount: {
                         dependsOn: 'tokenBoy',
-                        activePromptTitle: 'how many tokens?',
+                        activePromptTitle: 'How many tokens?',
                         mode: 'options',
                         options: (context) =>
                             context.targets.tokenBoy &&

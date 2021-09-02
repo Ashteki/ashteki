@@ -15,7 +15,7 @@ class StringMage extends Card {
                     cardCondition: (card) => card.hasToken('status') || card.hasToken('damage')
                 },
                 amount: {
-                    activePromptTitle: 'Choose a type',
+                    activePromptTitle: 'Choose a token type',
                     dependsOn: 'tokenBoy',
                     mode: 'options',
                     options: (context) => this.getTokenOptions(context.targets.tokenBoy),

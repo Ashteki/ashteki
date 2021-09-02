@@ -5,7 +5,7 @@ const DiceCount = require('../../DiceCount.js');
 class SummonIndiglowCreeper extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Summon Indiglo Creeper',
+            title: 'Summon Indiglow Creeper',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
@@ -22,6 +22,8 @@ class SummonIndiglowCreeper extends Card {
                 condition: () => this.focus >= 1,
                 gameAction: ability.actions.addStatusToken({
                     promptForSelect: {
+			            optional: true,
+			            activePromptTitle: 'Choose a unit to add 1 status token to',
                         cardType: BattlefieldTypes,
                         controller: 'self'
                     }

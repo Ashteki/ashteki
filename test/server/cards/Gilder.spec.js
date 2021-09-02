@@ -68,4 +68,14 @@ describe('Gilder', function () {
 
         expect(this.ironWorker.status).toBe(1);
     });
+
+    it('able to select opposing unit on destroyed while guarding', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.ironWorker);
+        this.player1.clickCard(this.crimsonBomber);
+
+        this.player2.clickCard(this.gilder);
+
+        expect(this.player2).toBeAbleToSelect(this.crimsonBomber);
+    });
 });

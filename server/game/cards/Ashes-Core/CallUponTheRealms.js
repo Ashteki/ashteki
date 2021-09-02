@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 class CallUponTheRealms extends Card {
     setupCardAbilities(ability) {
         this.play({
-            effect: 'Change 3 dice in their active pool',
+            effect: 'change 3 dice in their active pool',
             gameAction: ability.actions.changeDice({
                 numDice: 3,
                 owner: 'self'

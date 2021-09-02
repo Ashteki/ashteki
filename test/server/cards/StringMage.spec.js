@@ -30,7 +30,7 @@ describe('String Mage ability', function () {
         expect(this.player1).toHavePrompt('Choose a unit with wound or status tokens');
 
         this.player1.clickCard(this.ironWorker);
-        expect(this.player1).toHavePrompt('Choose a type');
+        expect(this.player1).toHavePrompt('Choose a token type');
         expect(this.player1).toHavePromptButton('Damage');
         expect(this.player1).toHavePromptButton('Status');
 
@@ -56,7 +56,7 @@ describe('String Mage ability', function () {
         expect(this.player1).toHavePrompt('Choose a unit with wound or status tokens');
 
         this.player1.clickCard(this.stringMage);
-        expect(this.player1).toHavePrompt('Choose a type');
+        expect(this.player1).toHavePrompt('Choose a token type');
         expect(this.player1).toHavePromptButton('Damage');
 
         this.player1.clickPrompt('Damage');
@@ -83,7 +83,7 @@ describe('String Mage ability', function () {
         expect(this.player1).toHavePrompt('Choose a unit with wound or status tokens');
 
         this.player1.clickCard(this.stringMage);
-        expect(this.player1).toHavePrompt('Choose a type');
+        expect(this.player1).toHavePrompt('Choose a token type');
         expect(this.player1).toHavePromptButton('Damage');
 
         this.player1.clickPrompt('Damage');
