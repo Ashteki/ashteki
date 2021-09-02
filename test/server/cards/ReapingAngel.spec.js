@@ -33,5 +33,19 @@ describe('Reaping Angel', function () {
             expect(this.anchornaut.location).toBe('purged');
             expect(this.coalRoarkwin.damage).toBe(7);
         });
+
+        it('should allow purge from draw pile independent of discard', function () {
+            this.player1.clickCard(this.reapingAngel);
+            this.player1.clickPrompt('Play this Ally');
+
+            this.player1.clickPrompt('Done');
+
+            expect(this.ironWorker.location).toBe('deck');
+
+            this.player1.clickCard(this.anchornaut); // in discard
+
+            expect(this.anchornaut.location).toBe('purged');
+            expect(this.coalRoarkwin.damage).toBe(7);
+        });
     });
 });

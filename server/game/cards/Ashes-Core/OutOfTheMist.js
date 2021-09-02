@@ -14,7 +14,7 @@ class OutOfTheMist extends Card {
                 }))
             },
             then: {
-                may: 'Draw a card?',
+                may: 'draw a card?',
                 gameAction: ability.actions.draw()
             }
         });
