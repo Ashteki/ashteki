@@ -224,7 +224,7 @@ class Die extends PlayableObject {
                     then: {
                         targets: {
                             myCard: {
-                                activePromptTitle: 'Select a card to return to your deck',
+                                activePromptTitle: 'You may select a card to return to your deck',
                                 controller: 'self',
                                 location: 'hand',
                                 optional: true
@@ -255,12 +255,14 @@ class Die extends PlayableObject {
                     title: 'Time Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
+                        activePromptTitle: 'Select a card to add a status token to',
                         controller: 'self',
                         cardType: BattlefieldTypes,
                         gameAction: this.game.actions.addStatusToken()
                     },
                     then: {
                         target: {
+                            activePromptTitle: 'Select a card to remove a status token from',
                             optional: true,
                             controller: 'opponent',
                             cardType: [...BattlefieldTypes, CardType.ReadySpell],
