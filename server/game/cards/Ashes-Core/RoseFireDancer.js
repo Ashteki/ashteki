@@ -6,7 +6,7 @@ class RoseFireDancer extends Card {
         this.action({
             title: 'Distract',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
-            effect: 'place 1 exhaustion tokens on {0}',
+            effect: 'place 1 exhaustion token on {0}',
             target: {
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.addExhaustionToken()

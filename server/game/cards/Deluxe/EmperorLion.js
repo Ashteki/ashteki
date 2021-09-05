@@ -17,7 +17,7 @@ class EmperorLion extends Card {
             then: {
                 alwaysTriggers: true,
                 target: {
-                    activePromptTitle: 'Choose a Law',
+                    activePromptTitle: 'You may choose a Law to play',
                     optional: true,
                     location: 'hand',
                     controller: 'self',

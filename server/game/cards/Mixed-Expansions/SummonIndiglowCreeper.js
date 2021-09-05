@@ -22,8 +22,8 @@ class SummonIndiglowCreeper extends Card {
                 condition: () => this.focus >= 1,
                 gameAction: ability.actions.addStatusToken({
                     promptForSelect: {
-			            optional: true,
-			            activePromptTitle: 'Choose a unit to add 1 status token to',
+                        optional: true,
+                        activePromptTitle: 'Choose a unit to add 1 status token to',
                         cardType: BattlefieldTypes,
                         controller: 'self'
                     }
