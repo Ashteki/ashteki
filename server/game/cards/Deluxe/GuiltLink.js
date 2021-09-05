@@ -33,6 +33,8 @@ class GuiltLink extends Card {
                 gameAction: ability.actions.destroy()
             },
             then: {
+                // To Do: Technically a player could select themselves if they wanted
+                // to clear 2 units from their battlefield, so there should be a target player
                 gameAction: ability.actions.chosenDestroy({
                     player: this.controller.opponent
                 })

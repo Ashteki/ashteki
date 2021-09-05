@@ -12,7 +12,7 @@ class SympathyPain extends Card {
                     event.context.player === context.player.opponent &&
                     event.card.damage < event.card.life
             },
-            effect: 'deal 2 damage to oppponents unit or phoenixborn',
+            effect: "deal 2 damage to oppponent's unit or phoenixborn",
             target: {
                 cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
                 controller: 'opponent',
