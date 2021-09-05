@@ -7,6 +7,7 @@ class EssenceDruid extends Card {
             title: 'Spell Recall',
             target: {
                 activePromptTitle: 'Choose a ready spell to return to your hand',
+                optional: true,
                 cardType: CardType.ReadySpell,
                 location: 'discard',
                 controller: 'self',

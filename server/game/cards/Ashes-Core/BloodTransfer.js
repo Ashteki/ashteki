@@ -24,6 +24,7 @@ class BloodTransfer extends Card {
                 },
                 second: {
                     activePromptTitle: 'Choose a card to heal',
+                    optional: true,
                     dependsOn: 'first',
                     controller: 'self',
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
