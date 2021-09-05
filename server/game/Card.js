@@ -159,7 +159,7 @@ class Card extends PlayableObject {
      * @param ability - object containing limits, costs, effects, and game actions
      */
     // eslint-disable-next-line no-unused-vars
-    setupCardAbilities(ability) { }
+    setupCardAbilities(ability) {}
 
     // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
@@ -260,7 +260,8 @@ class Card extends PlayableObject {
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
-                        event.attackingPlayer === context.source.controller && event.battles.length >= 3
+                        event.attackingPlayer === context.source.controller &&
+                        event.battles.length >= 3
                     );
                 }
             },
@@ -317,6 +318,29 @@ class Card extends PlayableObject {
                             event.triggeringEvent.damageEvent.fightEvent &&
                             event.triggeringEvent.damageEvent.damageSource === context.source &&
                             event.triggeringEvent.damageEvent.fightEvent.attacker === context.source
+                    }
+                },
+                properties
+            )
+        );
+    }
+
+    afterDestroyedDefending(properties) {
+        // NOTE: this is not AFTER Destroy ==> forcedReaction to destroy.
+        // This has to happen before the onCardLeavesPlay because when a card is moved the event
+        // listeners are removed from the game - so a card like iron Rhino can't overkill if it is
+        // destroyed in the simultaneous damage.
+        return this.forcedInterrupt(
+            Object.assign(
+                {
+                    when: {
+                        onCardLeavesPlay: (event, context) =>
+                            event.triggeringEvent &&
+                            event.triggeringEvent.name === 'onCardDestroyed' &&
+                            event.triggeringEvent.damageEvent &&
+                            event.triggeringEvent.damageEvent.fightEvent &&
+                            event.triggeringEvent.damageEvent.fightEvent.attacker.controller ===
+                                context.player.opponent //opponent attacked
                     }
                 },
                 properties
@@ -518,8 +542,8 @@ class Card extends PlayableObject {
         return !this.tokens
             ? 0
             : Object.keys(this.tokens)
-                .map((key) => this.tokens[key])
-                .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                  .map((key) => this.tokens[key])
+                  .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     }
 
     removeAllTokens() {
@@ -1078,7 +1102,7 @@ class Card extends PlayableObject {
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
                 isController &&
-                //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target 
+                //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target
                 // and properties when interrupted mid-resolution
                 activePlayer.promptState.promptTitle === 'Play phase' &&
                 this.getLegalActions(activePlayer).length > 0
