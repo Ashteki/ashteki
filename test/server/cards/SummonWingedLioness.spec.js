@@ -20,8 +20,6 @@ describe('Summon Winged Lioness', function () {
         this.player1.clickPrompt('Summon Winged Lioness');
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
-        this.player1.clickCard(this.player1.archives[0]);
-        expect(this.player1).toHaveDefaultPrompt();
         expect(this.wingedLioness.location).toBe('play area');
     });
 });
