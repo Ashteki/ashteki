@@ -7,6 +7,7 @@ class CoalRoarkwin extends Card {
             cost: [ability.costs.sideAction(), ability.costs.chosenDiscard()],
             target: {
                 // target a Unit, or if no units then the pb is valid
+                activePromptTitle: 'Choose a target to Slash',
                 cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
                 cardCondition: (card) => {
                     return (
