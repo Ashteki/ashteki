@@ -35,7 +35,7 @@ class StandardBearer extends Card {
                 optional: true,
                 cardType: BattlefieldTypes,
                 controller: 'self',
-                cardCondition: (card, context) => card !== context.source,
+                cardCondition: (card, context) => card !== context.source && card.isAttacker,
                 gameAction: ability.actions.cardLastingEffect({
                     duration: 'untilEndOfTurn',
                     effect: ability.effects.modifyAttack(1)

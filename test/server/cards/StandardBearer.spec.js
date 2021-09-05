@@ -18,13 +18,14 @@ describe('standard bearer', function () {
             this.standardBearer.tokens.status = 4;
         });
 
-        it('adds 1 to a unit for each status', function () {
+        it('adds 1 to an attacking unit for each status', function () {
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.coalRoarkwin); // target
             this.player1.clickCard(this.standardBearer);
             this.player1.clickCard(this.timeHopper);
             this.player1.clickCard(this.mistSpirit);
             this.player1.clickPrompt('Done'); // done for attackers
+            expect(this.player1).not.toBeAbleToSelect(this.ironWorker); // cannot select attacking units
             this.player1.clickCard(this.mistSpirit);
             this.player1.clickCard(this.timeHopper);
             this.player1.clickDone();
