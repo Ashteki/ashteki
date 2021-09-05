@@ -23,13 +23,15 @@ class EmberootLizard extends Card {
                     optional: true,
                     cardCondition: (card, context) => card !== context.source,
                     activePromptTitle: 'Ignite',
+                    waitingPromptTitle: 'Ignite: waiting for opponent',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({
-                        amount: 1
+                        amount: 1,
+                        showMessage: true
                     })
                 }
             },
-            effect: 'increase its attack value by 1'
+            effect: 'increase its attack value by 1 and may deal damage'
         });
     }
 }
