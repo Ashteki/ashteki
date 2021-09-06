@@ -5,7 +5,7 @@ class HolyKnight extends Card {
         // magic armour
         this.persistentEffect({
             condition: () => !this.exhausted,
-            effect: ability.effects.spellGuard()
+            effect: ability.effects.cannotBeSpellTarget()
         });
     }
 }
