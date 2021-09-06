@@ -28,7 +28,8 @@ class PlayableObject extends EffectSource {
 
     getPersistentEffects(ignoreBlank = false) {
         if (this.isBlank() && !ignoreBlank) {
-            return this.abilities.keywordPersistentEffects;
+            return this.abilities.persistentEffects.filter((pe) => pe.unblankable);
+            // return this.abilities.keywordPersistentEffects;
         }
 
         let persistentEffects = this.abilities.persistentEffects;
