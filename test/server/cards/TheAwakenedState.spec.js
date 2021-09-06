@@ -5,7 +5,7 @@ describe('Awakened State', function () {
                 player1: {
                     phoenixborn: 'orrick-gilstream',
                     inPlay: ['hammer-knight'],
-                    spellboard: ['frost-bite', 'concentration'],
+                    spellboard: ['concentration', 'concentration'],
                     dicepool: ['natural', 'natural', 'time', 'charm'],
                     archives: ['the-awakened-state']
                 },
@@ -39,13 +39,14 @@ describe('Awakened State', function () {
             expect(this.sariaGuideman.damage).toBe(1);
         });
     });
+
     describe('without enemy units', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'orrick-gilstream',
                     inPlay: ['hammer-knight'],
-                    spellboard: ['frost-bite', 'concentration'],
+                    spellboard: ['concentration', 'concentration'],
                     dicepool: ['natural', 'natural', 'time', 'charm'],
                     archives: ['the-awakened-state']
                 },
