@@ -24,7 +24,7 @@ class Concentration extends Card {
                 })
             ],
             then: {
-                condition: (context) => context.player.phoenixborn.status >= 7,
+                condition: (context) => context.source.focus >= 1 && context.player.phoenixborn.status >= 7,
                 gameAction: ability.actions.attachToPb((context) => ({
                     upgrade: context.player.archives.find((c) => c.id === 'the-awakened-state'),
                     target: context.player.phoenixborn

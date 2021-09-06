@@ -1,5 +1,5 @@
 describe('Concentration', function () {
-    describe('Action', function () {
+    describe('Action when not focussed', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -8,7 +8,47 @@ describe('Concentration', function () {
                     dicepool: ['natural', 'time', 'charm', 'charm', 'time'],
                     spellboard: ['concentration'],
                     hand: ['iron-worker'],
-                    archives: ['the-awakened-state']
+                    archives: ['the-awakened-state'],
+                    deck: ['anchornaut']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    dicepool: ['natural'],
+                    inPlay: ['iron-worker'],
+                    spellboard: ['chant-of-revenge']
+                }
+            });
+
+            this.orrickGilstream.tokens.status = 7;
+        });
+
+        it('dont attach awakened state to orrick', function () {
+            expect(this.orrickGilstream.status).toBe(7);
+            this.player1.clickCard(this.concentration);
+            this.player1.clickPrompt('Concentration');
+            this.player1.clickPrompt('main');
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            this.player1.clickDone();
+            this.player1.clickDone(); // choose exhausted dice
+            expect(this.orrickGilstream.upgrades.length).toBe(0);
+            expect(this.player1.hand.length).toBe(2);
+            expect(this.orrickGilstream.status).toBe(8);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
+    describe('Action when focussed', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'orrick-gilstream',
+                    inPlay: ['hammer-knight', 'anchornaut'],
+                    dicepool: ['natural', 'time', 'charm', 'charm', 'time'],
+                    spellboard: ['concentration', 'concentration'],
+                    hand: ['iron-worker'],
+                    archives: ['the-awakened-state'],
+                    deck: ['anchornaut']
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
