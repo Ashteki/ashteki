@@ -69,6 +69,7 @@ class SelectDiePrompt extends UiPrompt {
             new EffectSource(game);
         this.promptTitle = this.promptTitle || this.source.name;
         this.levelState = {};
+        this.exhaustState = {};
 
         this.properties = properties;
         this.context =
@@ -89,6 +90,7 @@ class SelectDiePrompt extends UiPrompt {
         this.selector = properties.selector || DieSelector.for(this.properties);
         this.selectedDice = properties.selectedDice || [];
         this.initLevelState(this.selectedDice);
+        this.initExhaustState(this.selectedDice);
 
         this.revealTargets = properties.revealTargets;
         this.revealFunc = null;
@@ -96,6 +98,7 @@ class SelectDiePrompt extends UiPrompt {
         this.choosingPlayer.setSelectedDice(this.selectedDice);
         this.owner = properties.owner;
         this.cycleLevels = properties.cycleLevels;
+        this.unexhaust = properties.unexhaust;
         this.sort = properties.sort;
         this.preventAuto = properties.preventAuto;
     }
@@ -103,6 +106,12 @@ class SelectDiePrompt extends UiPrompt {
     initLevelState(selectedDice) {
         selectedDice.forEach((d) => {
             this.levelState[d.uuid] = d.level;
+        });
+    }
+
+    initExhaustState(selectedDice) {
+        selectedDice.forEach((d) => {
+            this.exhaustState[d.uuid] = d.exhausted;
         });
     }
 
@@ -123,12 +132,12 @@ class SelectDiePrompt extends UiPrompt {
     getDiceReq() {
         return this.properties.format
             ? this.properties.format.map((f) => {
-                  if (Array.isArray(f)) {
-                      return [f[0].getSummary(), f[1].getSummary()];
-                  } else {
-                      return f.getSummary();
-                  }
-              })
+                if (Array.isArray(f)) {
+                    return [f[0].getSummary(), f[1].getSummary()];
+                } else {
+                    return f.getSummary();
+                }
+            })
             : [];
     }
 
@@ -236,7 +245,7 @@ class SelectDiePrompt extends UiPrompt {
     }
 
     checkDieCondition(die) {
-        // Always allow a card to be unselected
+        // Always allow a die to be unselected
         if (this.selectedDice.includes(die)) {
             return true;
         }
@@ -259,14 +268,19 @@ class SelectDiePrompt extends UiPrompt {
         if (!this.selectedDice.includes(die)) {
             this.selectedDice.push(die);
             this.levelState[die.uuid] = die.level;
+            this.exhaustState[die.uuid] = die.exhausted;
             // set to power / basic on add.
             if (this.cycleLevels) {
                 die.level = die.owner === this.choosingPlayer ? Level.Power : Level.Basic;
+            }
+            if (this.unexhaust) {
+                die.exhausted = false;
             }
         } else {
             // remove the die if we're dropping off the bottom
             if (this.removalCheck(die)) {
                 die.level = this.levelState[die.uuid];
+                die.exhausted = this.exhaustState[die.uuid];
                 this.selectedDice = _.reject(this.selectedDice, (c) => c === die);
             } else {
                 // cycle the die before we check for removal
