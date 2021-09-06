@@ -1,5 +1,81 @@
 [
   {
+    "precon_id": 24,
+    "name": "The Messengers of Peace",
+    "phoenixborn": [
+      {
+        "id": "orrick-gilstream",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "captivate",
+        "count": 3
+      },
+      {
+        "id": "concentration",
+        "count": 3
+      },
+      {
+        "id": "fate-reflection",
+        "count": 3
+      },
+      {
+        "id": "flock-shepherd",
+        "count": 3
+      },
+      {
+        "id": "generosity",
+        "count": 3
+      },
+      {
+        "id": "recollect",
+        "count": 3
+      },
+      {
+        "id": "rile-the-meek",
+        "count": 3
+      },
+      {
+        "id": "summon-ash-spirit",
+        "count": 3
+      },
+      {
+        "id": "summon-ruby-cobra",
+        "count": 3
+      },
+      {
+        "id": "sunshield-sentry",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "ash-spirit",
+        "count": 3
+      },
+      {
+        "id": "ruby-cobra",
+        "count": 3
+      },
+      {
+        "id": "the-awakened-state",
+        "count": 1
+      }
+    ]
+  },
+  {
     "precon_id": 23,
     "name": "The Gorrenrock Survivors",
     "phoenixborn": [
