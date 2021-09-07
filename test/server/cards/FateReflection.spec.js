@@ -20,7 +20,7 @@ describe('Fate Reflection reaction spell', function () {
     });
 
     it('can be played when a unit takes damage', function () {
-        expect(this.ironWorker.tokens.damage).toBeUndefined;
+        expect(this.ironWorker.damage).toBe(0);
 
         this.player1.clickCard(this.anchornaut);
         this.player1.clickPrompt('Play This Ally');
@@ -35,12 +35,12 @@ describe('Fate Reflection reaction spell', function () {
         expect(this.fateReflection.location).toBe('discard');
         expect(this.player2.hand.length).toBe(0);
 
-        expect(this.hammerKnight.tokens.damage).toBe(1); // apply correct damage
-        expect(this.ironWorker.tokens.damage).toBeUndefined;
+        expect(this.hammerKnight.damage).toBe(1); // apply correct damage
+        expect(this.ironWorker.damage).toBe(0);
     });
 
     it('can be played when a unit takes Water Blast damage', function () {
-        expect(this.ironWorker.tokens.damage).toBeUndefined;
+        expect(this.ironWorker.damage).toBe(0);
 
         this.player1.clickCard(this.aradelSummergaard);
         this.player1.clickPrompt('Water Blast');
@@ -54,7 +54,7 @@ describe('Fate Reflection reaction spell', function () {
         expect(this.fateReflection.location).toBe('discard');
         expect(this.player2.hand.length).toBe(0);
 
-        expect(this.hammerKnight.tokens.damage).toBe(2); // apply correct damage
-        expect(this.ironWorker.tokens.damage).toBeUndefined;
+        expect(this.hammerKnight.damage).toBe(2); // apply correct damage
+        expect(this.ironWorker.damage).toBe(0);
     });
 });
