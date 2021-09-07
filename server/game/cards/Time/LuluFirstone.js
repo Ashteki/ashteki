@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType, Level, Magic } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 

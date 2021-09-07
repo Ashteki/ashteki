@@ -18,7 +18,7 @@ describe('Strange Copy reaction spell', function () {
     });
 
     it('copies base attack value iron rhino', function () {
-        expect(this.fluteMage.tokens.damage).toBeUndefined;
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
 
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.fluteMage); // target
@@ -45,7 +45,7 @@ describe('Strange Copy reaction spell', function () {
     });
 
     it('copies X attack value - silver snake', function () {
-        expect(this.fluteMage.tokens.damage).toBeUndefined;
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
 
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.fluteMage); // target
@@ -71,7 +71,7 @@ describe('Strange Copy reaction spell', function () {
     });
 
     it('Bug report - sal and FBB counter damage', function () {
-        expect(this.fluteMage.tokens.damage).toBeUndefined;
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
 
         this.player1.clickAttack(this.coalRoarkwin);
         this.player1.clickCard(this.frostbackBear); // single attacker

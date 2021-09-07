@@ -1,12 +1,11 @@
-const { Level, Magic, Location } = require('../../../constants.js');
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
 class SummonSilverSnake extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            location: 'spellboard',
-            effect: ability.effects.spellGuard()
+        this.spellGuard({
+            location: 'spellboard'
         });
 
         this.action({

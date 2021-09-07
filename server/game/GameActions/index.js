@@ -3,6 +3,7 @@ module.exports = {
     AddTokenAction: require('./AddTokenAction'),
     AllocateDamageAction: require('./AllocateDamageAction'),
     AttachAction: require('./AttachAction'),
+    AttachToPbAction: require('./AttachToPbAction'),
     AttachDieAction: require('./AttachDieAction'),
     DetachDieAction: require('./DetachDieAction'),
     ChangeEventAction: require('./ChangeEventAction'),

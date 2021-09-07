@@ -48,4 +48,36 @@ describe('Silver Snake', function () {
             expect(this.silverSnake.status).toBe(6);
         });
     });
+
+    describe('Silver snake with reflections in the water', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['mist-spirit'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
+                    hand: ['reflections-in-the-water']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['silver-snake'],
+                    hand: ['mist-typhoon'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
+                }
+            });
+
+            this.silverSnake.tokens.status = 3;
+            this.game.checkGameState(true);
+        });
+
+        it('does not affect attack value', function () {
+            expect(this.silverSnake.attack).toBe(3);
+            this.player1.play(this.reflectionsInTheWater);
+            this.player1.clickDie(3);
+            this.player1.clickCard(this.silverSnake);
+
+            expect(this.silverSnake.upgrades.length).toBe(1);
+            expect(this.silverSnake.attack).toBe(3);
+        });
+    });
 });

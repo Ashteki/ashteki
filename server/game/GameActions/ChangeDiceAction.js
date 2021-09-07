@@ -11,6 +11,8 @@ class ChangeDiceAction extends PlayerAction {
     setDefaultProperties() {
         this.numDice = 1;
         this.owner = 'self';
+        this.dieCondition = undefined;
+        this.unexhaust = false;
     }
 
     defaultTargets(context) {
@@ -29,10 +31,13 @@ class ChangeDiceAction extends PlayerAction {
             owner: this.owner,
             cycleLevels: true,
             sort: true,
-            preventAuto: true
+            preventAuto: true,
+            dieCondition: this.dieCondition,
+            unexhaust: this.unexhaust
         };
         return super.createEvent('onChangeDice', params, (event) => {
-            let playerPhrase = ' of your dice'; // self by default
+            let playerPhrase = ' of your';
+            playerPhrase += this.unexhaust ? ' exhausted dice' : ' dice'; // self by default
             if (event.owner === 'opponent') {
                 playerPhrase = " of your opponent's dice";
             } else if (event.owner === 'any') {
