@@ -10,7 +10,10 @@ class MoveCardAction extends CardGameAction {
     setup() {
         super.setup();
         this.name = 'move';
-        this.effectMsg = 'move {0}';
+        this.effectMsg = 'move {0} to {1}';
+        this.effectArgs = () => {
+            return this.destination;
+        }
     }
 
     canAffect(card, context) {
