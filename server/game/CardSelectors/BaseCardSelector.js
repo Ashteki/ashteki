@@ -85,19 +85,32 @@ class BaseCardSelector {
             return false;
         }
 
-        if (
-            this.checkTarget &&
-            (!card.checkRestrictions('target', context) ||
-                (context.player === card.controller.opponent &&
-                    // concealed
-                    (card.anyEffect('concealed') ||
-                        // spell guard
-                        (context.source.isSpell && card.anyEffect('spellGuard')) ||
-                        // lightning speed / no reactions can target
-                        (context.source.type === CardType.ReactionSpell &&
-                            card.anyEffect('cannotBeReactionTarget')))))
-        ) {
-            return false;
+        if (this.checkTarget) {
+            if (!card.checkRestrictions('target', context)) {
+                return false;
+            }
+            if (context.player === card.controller.opponent) {
+                if (context.source.isSpell && card.anyEffect('cannotBeSpellTarget')) {
+                    return false;
+                }
+                if (context.source.type === 'die' && card.anyEffect('cannotBeDicePowerTarget')) {
+                    return false;
+                }
+                //abilities
+                if (
+                    context.source.location === 'play area' &&
+                    card.anyEffect('cannotBeAbilityTarget')
+                ) {
+                    return false;
+                }
+                // lightning speed / no reactions can target
+                if (
+                    context.source.type === CardType.ReactionSpell &&
+                    card.anyEffect('cannotBeReactionTarget')
+                ) {
+                    return false;
+                }
+            }
         }
 
         if (this.controller === 'self' && card.controller !== context.player) {

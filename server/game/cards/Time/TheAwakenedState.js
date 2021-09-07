@@ -3,8 +3,7 @@ const Card = require('../../Card.js');
 
 class TheAwakenedState extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            effect: ability.effects.spellGuard(),
+        this.spellGuard({
             match: this
         });
 
@@ -22,7 +21,7 @@ class TheAwakenedState extends Card {
                         promptForSelect: {
                             controller: 'opponent',
                             activePromptTitle: 'Deal 1 damage',
-                            cardType: BattlefieldTypes,
+                            cardType: BattlefieldTypes
                         }
                     }),
                     ability.actions.dealDamage((context) => ({

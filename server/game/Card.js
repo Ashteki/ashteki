@@ -848,10 +848,25 @@ class Card extends PlayableObject {
         });
     }
 
-    concealed() {
+    spellGuard(properties = {}) {
         this.persistentEffect({
-            condition: () => !this.exhausted,
-            effect: AbilityDsl.effects.concealed()
+            effect: [
+                AbilityDsl.effects.cannotBeSpellTarget(),
+                AbilityDsl.effects.cannotBeAffectedBySpells()
+            ],
+            ...properties
+        });
+    }
+
+    concealed(properties = { condition: () => !this.exhausted }) {
+        this.persistentEffect({
+            effect: [
+                AbilityDsl.effects.cannotBeSpellTarget(),
+                AbilityDsl.effects.cannotBeAbilityTarget(),
+                AbilityDsl.effects.cannotBeDicePowerTarget(),
+                AbilityDsl.effects.cannotBeAttackTarget()
+            ],
+            ...properties
         });
     }
 
