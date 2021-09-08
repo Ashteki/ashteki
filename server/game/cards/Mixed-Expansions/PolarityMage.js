@@ -19,7 +19,7 @@ class PolarityMage extends Card {
                     'Discard from Play': ability.actions.discard({
                         promptForSelect: {
                             optional: true,
-                            CardType: UpgradeCardTypes,
+                            cardType: UpgradeCardTypes,
                             controller: 'self'
                         }
                     })
