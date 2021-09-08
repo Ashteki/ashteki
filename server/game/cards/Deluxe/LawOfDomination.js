@@ -11,12 +11,12 @@ class LawOfDomination extends Card {
                 theirs: {
                     player: 'opponent',
                     controller: 'opponent',
-                    CardType: BattlefieldTypes,
+                    cardType: BattlefieldTypes,
                     ignoreTargetCheck: true
                 },
                 mine: {
                     controller: 'self',
-                    CardType: BattlefieldTypes,
+                    cardType: BattlefieldTypes,
                     gameAction: [
                         ability.actions.dealDamage((context) => ({
                             target: context.targets.theirs,

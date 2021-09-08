@@ -760,6 +760,154 @@
     ]
   },
   {
+    "precon_id": 14,
+    "name": "The Goddess of Ishra",
+    "phoenixborn": [
+      {
+        "id": "astrea",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 5
+      },
+      {
+        "magic": "divine",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "royal-charm",
+        "count": 3
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 3
+      },
+      {
+        "id": "summon-steadfast-guardian",
+        "count": 3
+      },
+      {
+        "id": "summon-weeping-spirit",
+        "count": 3
+      },
+      {
+        "id": "kneel",
+        "count": 3
+      },
+      {
+        "id": "mark-of-the-goddess",
+        "count": 3
+      },
+      {
+        "id": "imperial-ninja",
+        "count": 3
+      },
+      {
+        "id": "sun-sister",
+        "count": 3
+      },
+      {
+        "id": "call-to-action",
+        "count": 3
+      },
+      {
+        "id": "devotion",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "light-bringer",
+        "count": 2
+      },
+      {
+        "id": "steadfast-guardian",
+        "count": 1
+      },
+      {
+        "id": "weeping-spirit",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "precon_id": 13,
+    "name": "The Masters of Gravity",
+    "phoenixborn": [
+      {
+        "id": "echo-greystorm",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 5
+      },
+      {
+        "magic": "sympathy",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "changing-winds",
+        "count": 3
+      },
+      {
+        "id": "gravity-training",
+        "count": 3
+      },
+      {
+        "id": "law-of-fear",
+        "count": 3
+      },
+      {
+        "id": "summon-mirror-spirit",
+        "count": 3
+      },
+      {
+        "id": "chaos-gravity",
+        "count": 3
+      },
+      {
+        "id": "enlightenment",
+        "count": 3
+      },
+      {
+        "id": "light-swordsman",
+        "count": 3
+      },
+      {
+        "id": "polarity-mage",
+        "count": 3
+      },
+      {
+        "id": "sonic-swordsman",
+        "count": 3
+      },
+      {
+        "id": "holy-relics",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "enhanced-strength",
+        "count": 3
+      },
+      {
+        "id": "mirror-spirit",
+        "count": 3
+      }
+    ]
+  },
+  {
     "precon_id": 12,
     "name": "The Song of Soaksend",
     "phoenixborn": [
