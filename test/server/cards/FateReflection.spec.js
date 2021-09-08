@@ -57,4 +57,14 @@ describe('Fate Reflection reaction spell', function () {
         expect(this.hammerKnight.damage).toBe(2); // apply correct damage
         expect(this.ironWorker.damage).toBe(0);
     });
+
+    it("can not be played when an opponent's unit takes  damage", function () {
+        expect(this.ironWorker.damage).toBe(0);
+
+        this.player1.clickCard(this.aradelSummergaard);
+        this.player1.clickPrompt('Water Blast');
+        this.player1.clickCard(this.hammerKnight);
+
+        expect(this.player2).toHavePrompt('Waiting For Opponent');
+    });
 });
