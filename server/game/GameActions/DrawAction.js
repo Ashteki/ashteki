@@ -7,6 +7,7 @@ class DrawAction extends PlayerAction {
         this.bonus = false;
         this.damageIfEmpty = false;
         this.singleCopy = false;
+        this.showMessage = false;
     }
 
     setup() {
@@ -33,7 +34,7 @@ class DrawAction extends PlayerAction {
             amount = this.amount;
         }
 
-        if (this.refill && amount > 0) {
+        if (this.showMessage || (this.refill && amount > 0)) {
             context.game.addMessage(
                 '{0} draws {1} {2}{3}',
                 player,
