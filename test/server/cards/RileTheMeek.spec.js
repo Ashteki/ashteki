@@ -39,4 +39,15 @@ describe('Rile the Meek', function () {
         expect(this.seasideRaven.location).toBe('play area');
         expect(this.seasideRaven.damage).toBe(1);
     });
+
+    it('lets you skip pings', function () {
+        setup.bind(this)(['frostback-bear', 'three-eyed-owl', 'ash-spirit', 'gilder']); //3 total damage
+        this.player1.play(this.rileTheMeek);
+        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
+        this.player1.clickCard(this.mistSpirit);
+        expect(this.mistSpirit.location).toBe('archives');
+        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
+        this.player1.clickPrompt('Done');
+        expect(this.player1).toHaveDefaultPrompt();
+    });
 });
