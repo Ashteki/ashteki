@@ -5,7 +5,7 @@ class AncestorSpirit extends Card {
         this.entersPlay({
             may: 'draw a card',
             title: 'Guidance',
-            gameAction: ability.actions.draw({ terrifying: 1 }),
+            gameAction: ability.actions.draw({ amount: 1 }),
             then: {
                 target: {
                     activePromptTitle: 'Guidance',
