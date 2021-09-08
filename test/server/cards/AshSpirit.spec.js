@@ -42,7 +42,7 @@ describe('AshSpirit', function () {
             expect(this.hammerKnight.location).toBe('play area');
         });
 
-        it('triggers when destroyed in attack. Destroy hammer knight but still trigger aftershock', function () {
+        it('triggers when destroyed in attack. Destroy attacker but still trigger after-destroy effects of attacker', function () {
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.ashSpirit);
             this.player1.clickCard(this.hammerKnight);
@@ -74,6 +74,22 @@ describe('AshSpirit', function () {
             expect(this.hammerKnight.location).toBe('discard');
             expect(this.ashSpirit.location).toBe('archives');
             expect(this.livingDoll.damage).toBe(1);
+        });
+
+        it('does not trigger when a different unit is killed', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.livingDoll);
+            this.player1.clickCard(this.hammerKnight);
+
+            this.player2.clickPrompt('Done'); // no blocker
+            this.player2.clickPrompt('No'); // no counter
+
+            expect(this.player1).toHavePrompt('Aftershock 1');
+            this.player1.clickCard(this.ashSpirit);
+
+            expect(this.ashSpirit.location).toBe('play area');
+            expect(this.ashSpirit.damage).toBe(1);
+            expect(this.hammerKnight.location).toBe('play area');
         });
     });
     describe('smolder', function () {

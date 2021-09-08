@@ -335,6 +335,7 @@ class Card extends PlayableObject {
                 {
                     when: {
                         onCardLeavesPlay: (event, context) =>
+                            event.card === context.source &&
                             event.triggeringEvent &&
                             event.triggeringEvent.name === 'onCardDestroyed' &&
                             event.triggeringEvent.damageEvent &&
