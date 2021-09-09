@@ -40,7 +40,7 @@ describe('Redirect reaction spell', function () {
         expect(this.mistSpirit.tokens.damage).toBeUndefined;
     });
 
-    it('can be played when a phoenixborn takes Water Blast damage', function () {
+    it('can be played when a phoenixborn takes One Hundred Blades damage', function () {
         expect(this.hammerKnight.tokens.damage).toBeUndefined;
 
         this.player1.play(this.oneHundredBlades);
