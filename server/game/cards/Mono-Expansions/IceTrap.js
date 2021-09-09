@@ -11,7 +11,10 @@ class IceTrap extends Card {
                     !event.card.anyEffect('cannotBeSpellTarget') &&
                     !event.card.anyEffect('cannotBeReactionTarget')
             },
-            gameAction: ability.actions.destroy((context) => ({ target: context.event.card }))
+            target: {
+                autoTarget: (context) => context.event.card,
+                gameAction: ability.actions.destroy()
+            }
         });
     }
 }
