@@ -21,7 +21,7 @@ class SummonOrchidDove extends Card {
             }),
             then: {
                 alwaysTriggers: true,
-                may: 'deal 1 damage to opponents PB',
+                may: "deal 1 damage to opponent's PB",
                 condition: (context) =>
                     this.focus >= 2 && context.player.opponent.deck.length === 0,
                 gameAction: ability.actions.dealDamage((context) => ({

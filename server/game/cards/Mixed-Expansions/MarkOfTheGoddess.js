@@ -9,14 +9,14 @@ class MarkOfTheGoddess extends Card {
             messageArgs: (context) => [context.player, context.source],
             targets: {
                 source: {
-                    activePromptTitle: "Select an opponent's card for attack value",
+                    activePromptTitle: "Choose an opponent's card for attack value",
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
                     cardCondition: (card) => !card.exhausted
                 },
                 victim: {
                     dependsOn: 'source',
-                    activePromptTitle: "Select another opponent's card to deal damage to",
+                    activePromptTitle: "Choose another opponent's card to deal damage to",
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                     cardCondition: (card, context) =>
                         card !== context.targets.source &&
