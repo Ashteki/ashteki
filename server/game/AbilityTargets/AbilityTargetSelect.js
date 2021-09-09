@@ -104,7 +104,7 @@ class AbilityTargetSelect {
             player = player.opponent;
         }
 
-        let promptTitle = this.properties.activePromptTitle || 'Select one';
+        let activePromptTitle = this.properties.activePromptTitle || 'Select one';
         let choices = Object.keys(this.properties.choices).filter((key) =>
             this.isChoiceLegal(key, context)
         );
@@ -139,8 +139,9 @@ class AbilityTargetSelect {
             }
 
             context.game.promptWithHandlerMenu(player, {
+                promptTitle: this.properties.title,
                 waitingPromptTitle: waitingPromptTitle,
-                activePromptTitle: promptTitle,
+                activePromptTitle: activePromptTitle,
                 context: context,
                 source: this.properties.source || context.source,
                 choices: choices,

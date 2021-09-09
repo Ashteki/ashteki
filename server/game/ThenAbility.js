@@ -59,6 +59,7 @@ class ThenAbility extends BaseAbility {
                 may = may(context);
             }
             this.game.promptWithHandlerMenu(context.player, {
+                promptTitle: this.properties.title || this.title,
                 activePromptTitle: 'Do you wish to ' + may + '?',
                 context: context,
                 choices: ['Yes', 'No'],

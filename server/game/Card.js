@@ -159,7 +159,7 @@ class Card extends PlayableObject {
      * @param ability - object containing limits, costs, effects, and game actions
      */
     // eslint-disable-next-line no-unused-vars
-    setupCardAbilities(ability) {}
+    setupCardAbilities(ability) { }
 
     // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
@@ -257,6 +257,8 @@ class Card extends PlayableObject {
 
     groupTactics(properties) {
         return this.forcedReaction({
+            title: 'Group Tactics',
+            may: 'add 1 to this units attack',
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
@@ -341,7 +343,7 @@ class Card extends PlayableObject {
                             event.triggeringEvent.damageEvent &&
                             event.triggeringEvent.damageEvent.fightEvent &&
                             event.triggeringEvent.damageEvent.fightEvent.attacker.controller ===
-                                context.player.opponent //opponent attacked
+                            context.player.opponent //opponent attacked
                     }
                 },
                 properties
@@ -543,8 +545,8 @@ class Card extends PlayableObject {
         return !this.tokens
             ? 0
             : Object.keys(this.tokens)
-                  .map((key) => this.tokens[key])
-                  .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                .map((key) => this.tokens[key])
+                .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     }
 
     removeAllTokens() {

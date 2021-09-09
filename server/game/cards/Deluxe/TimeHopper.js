@@ -6,6 +6,7 @@ class TimeHopper extends Card {
         this.entersPlay({
             target: {
                 optional: true,
+                activePromptTitle: 'Choose a card to add a status token to',
                 cardType: BattlefieldTypes,
                 cardCondition: (card, context) => card !== context.source,
                 gameAction: ability.actions.addStatusToken()
