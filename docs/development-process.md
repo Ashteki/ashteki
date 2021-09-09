@@ -21,7 +21,7 @@ npm test
 ```
 from the repository root directory in a terminal prompt on your computer, or from inside VScode terminal will perform functional tests. 
 
-If you are running ashteki using a Docker container, stopping and starting Docker will allow you to confirm user functionality further by running a test game. Changes to .js or config files should only require Docker to start and stop. Some changes such as updating the precon deck data will require a rebuild from your local repository before the Docker container will update them:
+If you are running ashteki using a Docker container, stopping and starting Docker will allow you to confirm user functionality further by running a test game. Changes to .js or config files should only require Docker to start and stop. Some changes may require a rebuild from your local repository before the Docker container will update them:
 ```
 docker-compose build
 ```
@@ -30,6 +30,7 @@ After rebuilding, you will need to open separate terminals, navigate to the repo
 docker-compose exec lobby node server/scripts/ashes/importdata
 docker-compose exec lobby node server/scripts/ashes/importprecons
 ```
+These commands import card data, and precons respectively. They can be run from the command line at any time to delete and recreate the data.
 
 ### Committing Changes and Pull Requests
 

@@ -45,6 +45,7 @@ In another terminal, navigate to the repository and run the following commands:
 docker-compose exec lobby node server/scripts/ashes/importdata
 docker-compose exec lobby node server/scripts/ashes/importprecons
 ```
+These commands import card data, and precons respectively. They can be run from the command line at any time to delete and recreate the data.
 
 ### Non Docker
 
