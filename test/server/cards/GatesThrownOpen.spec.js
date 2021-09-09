@@ -1,4 +1,4 @@
-describe('law of fear', function () {
+describe('Gates Thrown Open', function () {
     beforeEach(function () {
         this.setupTest({
             player1: {
@@ -21,7 +21,7 @@ describe('law of fear', function () {
         }
     });
 
-    it('reduces attack of units in battle', function () {
+    it('removes an exhaustion from a ready spell in each spellboard slot', function () {
         expect(this.empower.exhausted).toBe(true);
         expect(this.summonIronRhino.exhausted).toBe(true);
         expect(this.player1.spellboard[0].exhausted).toBe(true);
