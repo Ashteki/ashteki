@@ -20,14 +20,10 @@ describe('Surprise ability', function () {
             player2: {
                 phoenixborn: 'saria-guideman',
                 dicepool: [
-                    'natural',
-                    'natural',
-                    'charm',
-                    'charm',
-                    'natural',
-                    'natural',
-                    'charm',
-                    'charm'
+                    'time',
+                    'divine',
+                    'sympathy',
+                    'ceremonial'
                 ],
                 hand: ['sympathy-pain'],
                 inPlay: ['flute-mage']
