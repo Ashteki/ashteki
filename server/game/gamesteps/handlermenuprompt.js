@@ -33,7 +33,7 @@ class HandlerMenuPrompt extends UiPrompt {
             this.source ||
             (properties.context && properties.context.source) ||
             new EffectSource(game);
-        this.promptTitle = this.promptTitle || this.source.name;
+        this.promptTitle = properties.promptTitle || this.promptTitle || this.source.name;
 
         if (!properties.waitingPromptTitle) {
             properties.waitingPromptTitle = 'Waiting for opponent';

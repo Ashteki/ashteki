@@ -16,6 +16,8 @@ class SummonTimeHopper extends Card {
                 conjuration: 'time-hopper'
             }),
             then: {
+                title: 'Summon Time Hopper: Focus 1',
+                may: 'summon an additional time hopper',
                 condition: (context) =>
                     context.source.focus > 0 &&
                     context.player.unitsInPlay.some(

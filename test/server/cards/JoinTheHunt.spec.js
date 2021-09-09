@@ -29,6 +29,7 @@ describe('Join the Hunt', function () {
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickCard(this.anchornaut);
             this.player1.clickPrompt('Done');
+            this.player1.clickYes();
 
             expect(this.mistSpirit.attack).toBe(3);
         });
@@ -73,6 +74,7 @@ describe('Join the Hunt', function () {
             this.player2.clickCard(this.hammerKnight);
             this.player2.clickCard(this.anchornaut);
             this.player2.clickPrompt('Done');
+            this.player2.clickYes();
 
             expect(this.bloodPuppet.attack).toBe(2);
         });

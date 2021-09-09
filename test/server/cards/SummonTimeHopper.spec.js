@@ -53,6 +53,9 @@ describe('Summon Time Hopper', function () {
             this.player1.clickPrompt('Summon Time Hopper');
             // add a status token
             this.player1.clickDone();
+            // add a second? focus may prompt
+            this.player1.clickYes();
+            // add a status token
             this.player1.clickDone();
 
             expect(this.player1.inPlay.length).toBe(3);
