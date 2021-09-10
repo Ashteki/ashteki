@@ -12,12 +12,12 @@ const DeckStatus = ({ status }) => {
 
     let statusName;
     let className = classNames('deck-status', {
-        invalid: !status.basicRules || !status.hasConjurations || !status.tenDice,
+        invalid: !status.basicRules || !status.hasConjurations || !status.tenDice || !status.uniques,
         conjurations: !status.hasConjurations,
-        valid: status.basicRules && status.hasConjurations && status.tenDice
+        valid: status.basicRules && status.hasConjurations && status.tenDice && status.uniques
     });
 
-    if (!status.basicRules || !status.hasConjurations || !status.tenDice) {
+    if (!status.basicRules || !status.hasConjurations || !status.tenDice || !status.uniques) {
         statusName = t('Invalid');
     } else if (status.usageLevel === 1 && !status.verified) {
         statusName = t('Used');
