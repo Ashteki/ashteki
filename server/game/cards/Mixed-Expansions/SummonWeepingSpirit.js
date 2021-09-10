@@ -37,7 +37,7 @@ class SummonWeepingSpirit extends Card {
                 condition: () => this.focus > 0,
                 target: {
                     optional: true,
-                    activePromptTitle: 'Select a card to remove from the game',
+                    activePromptTitle: 'Choose a card to remove from the game',
                     location: 'discard',
                     controller: 'opponent',
                     gameAction: ability.actions.purge()
