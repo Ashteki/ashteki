@@ -59,12 +59,14 @@ describe('Flock Shepherd', function () {
     });
 
     describe('gather', function () {
-        it('adds 2 to the attack of units with 0 attack', function () {
+        it('lets you add 2 to the attack of units with 0 attack', function () {
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.coalRoarkwin);
             this.player1.clickCard(this.frostbackBear);
             this.player1.clickCard(this.beastMage);
             this.player1.clickPrompt('Done');
+
+            this.player2.clickCard(this.flockShepherd);
 
             expect(this.ashSpirit.attack).toBe(2);
             expect(this.gilder.attack).toBe(2);
@@ -89,11 +91,35 @@ describe('Flock Shepherd', function () {
             this.player1.clickCard(this.beastMage);
             this.player1.clickPrompt('Done');
 
+            expect(this.player2).not.toBeAbleToSelect(this.flockShepherd);
+            expect(this.player2).not.toBeAbleToSelect(this.ashSpirit);
+            expect(this.player2).not.toBeAbleToSelect(this.gilder);
+            expect(this.player2).toBeAbleToSelect(this.hammerKnight);
+
+            expect(this.ashSpirit.attack).toBe(0);
+            expect(this.gilder.attack).toBe(0);
+        });
+
+        it('allows you not to buff', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.coalRoarkwin);
+            this.player1.clickCard(this.frostbackBear);
+            this.player1.clickCard(this.beastMage);
+            this.player1.clickPrompt('Done');
+
+            expect(this.player2).toBeAbleToSelect(this.flockShepherd);
+            expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
+
+            this.player2.clickPrompt('Pass');
+
             expect(this.ashSpirit.attack).toBe(0);
             expect(this.gilder.attack).toBe(0);
 
+            //defenders
+            expect(this.player2).not.toBeAbleToSelect(this.flockShepherd);
             expect(this.player2).not.toBeAbleToSelect(this.ashSpirit);
             expect(this.player2).not.toBeAbleToSelect(this.gilder);
+            expect(this.player2).toBeAbleToSelect(this.hammerKnight);
         });
     });
 });
