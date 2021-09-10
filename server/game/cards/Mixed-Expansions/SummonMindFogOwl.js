@@ -27,6 +27,7 @@ class SummonMindFogOwl extends Card {
                 target: {
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
+                    optional: true,
                     cardCondition: (card) => !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
                     gameAction: ability.actions.attachDie((context) => ({
                         upgradeDie: context.preThenEvent.context.costs.returnDice.find(

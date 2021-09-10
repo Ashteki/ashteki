@@ -1,5 +1,6 @@
 import React from 'react';
-import toRegex from 'path-to-regexp';
+const { pathToRegexp } = require('path-to-regexp');
+
 import queryString from 'query-string-es5';
 
 import routes from './routes';
@@ -13,7 +14,7 @@ class Router {
 
     matchUri(path, uri) {
         const keys = [];
-        const pattern = toRegex(path, keys);
+        const pattern = pathToRegexp(path, keys);
         const match = pattern.exec(uri);
 
         if (!match) {
