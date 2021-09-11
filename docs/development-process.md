@@ -25,11 +25,7 @@ If you are running ashteki using a Docker container, stopping and starting Docke
 ```
 docker-compose build
 ```
-<<<<<<< HEAD
-After rebuilding, you will need to start the Docker container, then open separate terminals, navigate to the repository and run the following commands:
-=======
 After rebuilding, you will need to open separate terminals, navigate to the repository and run the following commands:
->>>>>>> 5ec848c85f935d6ad0f6000edb31d6fb5f07b20e
 ```
 docker-compose exec lobby node server/scripts/ashes/importdata
 docker-compose exec lobby node server/scripts/ashes/importprecons
