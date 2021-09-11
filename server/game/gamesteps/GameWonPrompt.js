@@ -20,9 +20,9 @@ class GameWonPrompt extends AllPlayerPrompt {
                 values: { player: this.winner.name }
             },
             buttons: [
-                { command: 'leavegame', arg: 'leavegame', text: 'Leave' }
-                // { arg: 'rematch', text: 'Rematch' },
-                // { arg: 'rematch-swap', text: 'Rematch: Swap Decks' }
+                { command: 'leavegame', arg: 'leavegame', text: 'Leave' },
+                { arg: 'rematch', text: 'Rematch' },
+                { arg: 'rematch-swap', text: 'Rematch: Swap Decks' }
             ]
         };
     }

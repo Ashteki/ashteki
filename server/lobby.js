@@ -770,10 +770,19 @@ class Lobby {
                 let hasConjurations = this.checkConjurations(deck);
                 let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
+                let uniques =
+                    !hasPhoenixborn ||
+                    deck.cards.filter(
+                        (c) =>
+                            c.card.phoenixborn &&
+                            c.card.phoenixborn !== deck.phoenixborn[0].card.name
+                    ).length === 0;
+
                 deck.status = {
                     basicRules: hasPhoenixborn && cardCount === 30,
                     hasConjurations: hasConjurations,
                     tenDice: tenDice,
+                    uniques: uniques,
                     notVerified: !deck.verified,
                     extendedStatus: [],
                     noUnreleasedCards: true,

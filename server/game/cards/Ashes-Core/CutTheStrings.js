@@ -26,7 +26,7 @@ class CutTheStrings extends Card {
             then: {
                 target: {
                     optional: true,
-                    activePromptTitle: 'Choose an alteration',
+                    activePromptTitle: 'Choose an alteration to discard',
                     cardType: UpgradeCardTypes,
                     gameAction: ability.actions.discard()
                 }

@@ -33,6 +33,7 @@ class Card extends PlayableObject {
         this.playCost = cardData.cost ? parseCosts(cardData.cost) : [];
         this.magicCost = this.getMagicCost(cardData);
         this.conjurations = cardData.conjurations || [];
+        this.phoenixborn = cardData.phoenixborn;
 
         this.tokens = {};
         this.flags = {};
@@ -1154,7 +1155,8 @@ class Card extends PlayableObject {
             isAttacker: this.isAttacker,
             isDefender: this.isDefender,
             isConjuration: ConjuredCardTypes.includes(this.type),
-            conjurations: this.conjurations //?? .map((c) => c.stub)
+            conjurations: this.conjurations, //?? .map((c) => c.stub),
+            phoenixborn: this.phoenixborn
         };
 
         return Object.assign(state, selectionState);

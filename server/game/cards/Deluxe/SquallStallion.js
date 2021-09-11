@@ -19,7 +19,7 @@ class SquallStallion extends Card {
             cost: [ability.costs.sideAction()],
             targets: {
                 myCard: {
-                    activePromptTitle: 'Select a card to return to your deck',
+                    activePromptTitle: 'Choose a card to return to your deck',
                     controller: 'self',
                     location: 'hand',
                     optional: true

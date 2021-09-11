@@ -6,11 +6,12 @@ import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import './DeckStatusSummary.scss';
 
 const DeckStatusSummary = ({ status }) => {
-    let { flagged, verified, basicRules, hasConjurations, tenDice } = status;
+    let { flagged, verified, basicRules, hasConjurations, tenDice, uniques } = status;
     let items = [
         { title: 'Basic rules (deck size)', value: basicRules },
         { title: 'Conjurations included', value: hasConjurations },
-        { title: 'Ten dice', value: tenDice }
+        { title: 'Ten dice', value: tenDice },
+        { title: 'Phoenixborn unique cards', value: uniques }
     ];
     if (verified) {
         items.push({ title: 'Deck verified', value: true });

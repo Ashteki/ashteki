@@ -16,7 +16,7 @@ class FlockShepherd extends Card {
         });
 
         //gather
-        this.forcedReaction({
+        this.reaction({
             when: {
                 onAttackersDeclared: (event, context) =>
                     event.attackingPlayer === context.source.owner.opponent

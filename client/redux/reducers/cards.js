@@ -32,7 +32,8 @@ function processDecks(decks, state) {
                 count: card.count,
                 card: c,
                 id: card.id,
-                conjurations: c.conjurations
+                conjurations: c.conjurations,
+                phoenixborn: c.phoenixborn
             };
         });
 
@@ -44,10 +45,17 @@ function processDecks(decks, state) {
         let hasConjurations = checkConjurations(deck);
         let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
+        let uniques =
+            !hasPhoenixborn ||
+            deck.cards.filter(
+                (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
+            ).length === 0;
+
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
         deck.status = {
             basicRules: hasPhoenixborn && cardCount === 30,
             hasConjurations: hasConjurations,
+            uniques: uniques,
             tenDice: tenDice,
             flagged: !!deck.flagged,
             verified: !!deck.verified,

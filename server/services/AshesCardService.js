@@ -36,7 +36,8 @@ class AshesCardService {
                             type: card.type,
                             stub: card.stub,
                             id: card.stub,
-                            conjurations: card.conjurations
+                            conjurations: card.conjurations,
+                            phoenixborn: card.phoenixborn
                         };
                     } else {
                         cards[card.stub] = card;
