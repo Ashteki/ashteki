@@ -17,7 +17,7 @@ class ChainedCreations extends Card {
                     cardType: CardType.ReadySpell,
                     cardCondition: (card, context) =>
                         card.conjurations.some((c) => c.stub === context.preThenEvent.card.id),
-                    gameAction: ability.actions.exhaust()
+                    gameAction: ability.actions.exhaust({ showMessage: true })
                 }
             }
         });

@@ -1,10 +1,14 @@
 const CardGameAction = require('./CardGameAction');
 
 class ExhaustAction extends CardGameAction {
+    setDefaultProperties() {
+        this.showMessage = false;
+    }
+
     setup() {
         this.name = 'exhaust';
         this.targetType = ['Ally', 'Ready Spell', 'Conjuration', 'Phoenixborn'];
-        this.effectMsg = 'exhausts {0}';
+        this.effectMsg = 'exhaust {0}';
     }
 
     canAffect(card, context) {
@@ -18,6 +22,9 @@ class ExhaustAction extends CardGameAction {
     getEvent(card, context) {
         return super.createEvent('onCardExhausted', { card: card, context: context }, () => {
             card.exhaust();
+            if (this.showMessage) {
+                context.game.addMessage('{0} becomes exhausted', card);
+            }
             if (card.isAttacker) {
                 context.game.attackState.removeFromBattle(card);
             }

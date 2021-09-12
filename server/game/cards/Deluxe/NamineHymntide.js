@@ -15,7 +15,8 @@ class NamineHymntide extends Card {
             then: {
                 may: 'exhaust both Phoenixborn',
                 gameAction: ability.actions.exhaust((context) => ({
-                    target: [context.player.phoenixborn, context.player.opponent.phoenixborn]
+                    target: [context.player.phoenixborn, context.player.opponent.phoenixborn],
+                    showMessage: true
                 }))
             }
         });

@@ -10,7 +10,10 @@ class Choke extends Card {
                 cardType: CardType.Phoenixborn,
                 controller: 'opponent',
                 cardCondition: (card) => !card.exhausted,
-                gameAction: [ability.actions.dealDamage(), ability.actions.exhaust()]
+                gameAction: [
+                    ability.actions.dealDamage(),
+                    ability.actions.exhaust({ showMessage: true })
+                ]
             }
         });
     }

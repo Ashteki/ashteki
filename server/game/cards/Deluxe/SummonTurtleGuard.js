@@ -24,7 +24,9 @@ class SummonTurtleGuard extends Card {
         });
 
         this.action({
-            condition: (context) => context.source.focus,
+            // To do: only offer this option if opponent has an unexhausted, targetable unit
+            condition: (context) => context.source.focus &&
+                context.player.unitsInPlay.some((c) => c.id === 'turtle-guard' && !c.exhausted),
             title: 'Focus Without Summon',
             cost: this.getTurtleCost(ability),
             location: 'spellboard',
@@ -67,10 +69,12 @@ class SummonTurtleGuard extends Card {
             alwaysTriggers: true,
             gameAction: ability.actions.sequential([
                 ability.actions.exhaust({
-                    target: context.targets.first
+                    target: context.targets.first,
+                    showMessage: true
                 }),
                 ability.actions.exhaust({
-                    target: context.targets.second
+                    target: context.targets.second,
+                    showMessage: true
                 })
             ])
         })
