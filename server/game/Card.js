@@ -247,7 +247,7 @@ class Card extends PlayableObject {
     groupTactics(properties) {
         return this.forcedReaction({
             title: 'Group Tactics',
-            may: 'add 1 to this units attack',
+            may: 'add ' + properties.amount + " to this unit's attack",
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
