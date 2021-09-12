@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class FalseDemon extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
-            effect: 'deal 1 damage to a target exhausted unit',
+            effect: 'deal 1 damage to {0}',
             target: {
                 optional: true,
                 activePromptTitle: 'Nightmare 1',
