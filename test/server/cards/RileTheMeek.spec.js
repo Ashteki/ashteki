@@ -27,7 +27,7 @@ describe('Rile the Meek', function () {
         expect(this.player1).toHaveDefaultPrompt();
     });
 
-    it('pings once for each unit that is unexhausted and 0 attack', function () {
+    it('pings once for each unit that is unexhausted and 0 printed attack', function () {
         setup.bind(this)(['frostback-bear', 'three-eyed-owl', 'ash-spirit', 'gilder']);
         this.ashSpirit.tokens.exhaustion = 1; //2 total damage
         this.player1.play(this.rileTheMeek);
@@ -38,6 +38,15 @@ describe('Rile the Meek', function () {
         this.player1.clickCard(this.seasideRaven);
         expect(this.seasideRaven.location).toBe('play area');
         expect(this.seasideRaven.damage).toBe(1);
+    });
+
+    it('ignores printed values of X', function () {
+        setup.bind(this)(['frostback-bear', 'three-eyed-owl', 'squall-stallion']); //1 total dmg
+        this.player1.play(this.rileTheMeek);
+        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
+        this.player1.clickCard(this.mistSpirit);
+        expect(this.mistSpirit.location).toBe('archives');
+        expect(this.player1).toHaveDefaultPrompt();
     });
 
     it('lets you skip pings', function () {

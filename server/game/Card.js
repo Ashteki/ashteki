@@ -58,21 +58,9 @@ class Card extends PlayableObject {
         this.childCards = [];
         this.clonedNeighbors = null;
 
-        this.printedAttack = cardData.attack
-            ? typeof cardData.attack === 'string'
-                ? 0
-                : cardData.attack
-            : 0;
-        this.printedLife = cardData.life
-            ? typeof cardData.life === 'string'
-                ? 0
-                : cardData.life
-            : 0;
-        this.printedRecover = cardData.recover
-            ? typeof cardData.recover === 'string'
-                ? 0
-                : cardData.recover
-            : 0;
+        this.printedAttack = cardData.attack || 0;
+        this.printedLife = cardData.life || 0;
+        this.printedRecover = cardData.recover || 0;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
 
@@ -160,7 +148,7 @@ class Card extends PlayableObject {
      * @param ability - object containing limits, costs, effects, and game actions
      */
     // eslint-disable-next-line no-unused-vars
-    setupCardAbilities(ability) { }
+    setupCardAbilities(ability) {}
 
     // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
@@ -259,7 +247,7 @@ class Card extends PlayableObject {
     groupTactics(properties) {
         return this.forcedReaction({
             title: 'Group Tactics',
-            may: 'add 1 to this units attack',
+            may: 'add ' + properties.amount + " to this unit's attack",
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
@@ -344,7 +332,7 @@ class Card extends PlayableObject {
                             event.triggeringEvent.damageEvent &&
                             event.triggeringEvent.damageEvent.fightEvent &&
                             event.triggeringEvent.damageEvent.fightEvent.attacker.controller ===
-                            context.player.opponent //opponent attacked
+                                context.player.opponent //opponent attacked
                     }
                 },
                 properties
@@ -546,8 +534,8 @@ class Card extends PlayableObject {
         return !this.tokens
             ? 0
             : Object.keys(this.tokens)
-                .map((key) => this.tokens[key])
-                .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                  .map((key) => this.tokens[key])
+                  .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     }
 
     removeAllTokens() {
@@ -650,9 +638,15 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedAttackEffect = this.mostRecentEffect('setPrintedAttack');
-        const printedAttack = copyEffect
+        let printedAttack = copyEffect
             ? copyEffect.attack // use calculated value of attack - e.g. for SilverSnake X attack
             : printedAttackEffect || this.printedAttack;
+
+        //if the printed value is X, use 0
+        if (typeof printedAttack === 'string') {
+            printedAttack = 0;
+        }
+
         return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
     }
 
@@ -667,7 +661,13 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedLifeEffect = this.mostRecentEffect('setPrintedLife');
-        const printedLife = copyEffect ? copyEffect.life : printedLifeEffect || this.printedLife;
+        let printedLife = copyEffect ? copyEffect.life : printedLifeEffect || this.printedLife;
+
+        //if the printed value is X, use 0
+        if (typeof printedLife === 'string') {
+            printedLife = 0;
+        }
+
         return Math.max(0, printedLife + this.sumEffects('modifyLife'));
     }
 
@@ -686,9 +686,14 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedRecoverEffect = this.mostRecentEffect('setPrintedRecover');
-        const printedRecover = copyEffect
+        let printedRecover = copyEffect
             ? copyEffect.recover
             : printedRecoverEffect || this.printedRecover;
+
+        //if the printed value is X, use 0
+        if (typeof printedRecover === 'string') {
+            printedRecover = 0;
+        }
 
         return Math.max(0, printedRecover + this.sumEffects('modifyRecover'));
     }

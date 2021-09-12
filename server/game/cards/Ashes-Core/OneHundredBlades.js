@@ -5,7 +5,7 @@ class OneHundredBlades extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'One Hundred Blades',
-            effect: "deal 1 damage to all opponent's units, and phoenixborn",
+            effect: "deal 1 damage to {0} and all opponent's units",
             target: {
                 cardType: CardType.Phoenixborn,
                 gameAction: ability.actions.dealDamage()
