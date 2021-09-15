@@ -14,7 +14,7 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
         this.prevention = properties.prevention || prevention; // override if passed in
 
         this.promptTitle = properties.promptTitle || 'Extra card draw';
-        this.menuTitle = properties.menuTitle || 'Choose how many';
+        this.menuTitle = properties.menuTitle || 'Choose how many to draw';
         this.remainderDamages = properties.remainderDamages || false;
         this.bid = {};
         this.remainder = {};
@@ -38,7 +38,13 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
             this.game.raiseEvent('unnamedEvent', {}, () => {
                 for (const player of this.game.getPlayers()) {
                     // draw cards - damage if unable
-                    let message = '{0} draws {1} extra card';
+                    let message = '';
+                    if (this.bid[player.uuid] > 0) {
+                        message += '{0} draws {1} extra card';
+                    }
+                    if (this.bid[player.uuid] > 1) {
+                        message += 's';
+                    }
                     if (this.remainderDamages && this.remainder[player.uuid] > 0) {
                         message = message + ' and takes {2} damage';
                     }

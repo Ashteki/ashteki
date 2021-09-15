@@ -48,8 +48,11 @@ class RemoveTokenAction extends CardGameAction {
                 card.removeToken(event.type, event.amount);
                 if (this.showMessage) {
                     context.game.addMessage(
-                        `{0} removes {1} {2} tokens from {3}`,
+                        event.amount == 1
+                            ? `{0} uses {1} to remove {2} {3} token from {4}`
+                            : `{0} uses {1} to remove {2} {3} tokens from {4}`,
                         context.player,
+                        context.source,
                         this.all ? 'all' : event.amount,
                         event.type,
                         event.card

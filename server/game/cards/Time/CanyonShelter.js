@@ -8,7 +8,8 @@ class CanyonShelter extends Card {
             title: 'Shelter Unit',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
-            condition: (context) => context.player.cardsInPlay.filter((c) => c.exhausted).length > 0,
+            condition: (context) =>
+                context.player.cardsInPlay.filter((c) => c.exhausted).length > 0,
             target: {
                 controller: 'self',
                 cardType: BattlefieldTypes,
@@ -38,7 +39,13 @@ class CanyonShelter extends Card {
                     activePromptTitle: 'Choose a card to return to play',
                     cards: context.source.childCards
                 }
-            }))
+            })),
+            then: {
+                target: {
+                    gameAction: ability.actions.addStatusToken(),
+                    autoTarget: (context) => context.preThenEvent.card
+                }
+            }
         });
     }
 }

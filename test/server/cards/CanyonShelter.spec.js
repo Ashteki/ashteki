@@ -17,15 +17,15 @@ describe('Canyon Shelter', function () {
                 }
             });
 
-            this.anchornaut.tokens.exhaustion = 1;
+            this.hammerKnight.tokens.exhaustion = 1;
         });
 
-        it('place unit under card, return to battle', function () {
+        it('place unit under card, return to battle, add status token', function () {
             this.player1.clickCard(this.canyonShelter);
             this.player1.clickPrompt('Shelter Unit');
-            this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.hammerKnight);
 
-            expect(this.anchornaut.location).toBe('purged');
+            expect(this.hammerKnight.location).toBe('purged');
             expect(this.canyonShelter.childCards.length).toBe(1);
             this.player1.actions.main = false;
             this.canyonShelter.tokens.exhaustion = 0;
@@ -34,8 +34,9 @@ describe('Canyon Shelter', function () {
             expect(this.canyonShelter.childCards.length).toBe(1);
             this.player1.clickCard(this.canyonShelter);
             this.player1.clickPrompt('Return Unit');
-            this.player1.clickPrompt('Anchornaut');
-            expect(this.anchornaut.location).toBe('play area');
+            this.player1.clickPrompt('Hammer Knight');
+            expect(this.hammerKnight.location).toBe('play area');
+            expect(this.hammerKnight.status).toBe(1);
         });
     });
 });
