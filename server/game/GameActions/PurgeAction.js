@@ -3,6 +3,7 @@ const CardGameAction = require('./CardGameAction');
 class PurgeAction extends CardGameAction {
     setDefaultProperties() {
         this.reveal = true;
+        this.showMessage = false;
     }
 
     setup() {
@@ -19,6 +20,9 @@ class PurgeAction extends CardGameAction {
                 );
             } else {
                 card.owner.moveCard(card, 'purged');
+            }
+            if (this.showMessage) {
+                context.game.addMessage('{0} is removed from game', card);
             }
         });
     }

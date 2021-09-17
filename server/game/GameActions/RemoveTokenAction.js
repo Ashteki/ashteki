@@ -4,12 +4,12 @@ class RemoveTokenAction extends CardGameAction {
     constructor(propertyFactory, type = 'status') {
         super(propertyFactory);
         this.type = type;
-        this.showMessage = false;
     }
 
     setDefaultProperties() {
         this.amount = 1;
         this.all = false;
+        this.showMessage = false;
     }
 
     setup() {

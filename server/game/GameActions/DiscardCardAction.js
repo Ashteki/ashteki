@@ -1,6 +1,10 @@
 const CardGameAction = require('./CardGameAction');
 
 class DiscardCardAction extends CardGameAction {
+    setDefaultProperties() {
+        this.showMessage = false;
+    }
+
     setup() {
         super.setup();
         this.name = 'discard';
@@ -26,7 +30,7 @@ class DiscardCardAction extends CardGameAction {
                 }
                 card.owner.moveCard(card, card.discardLocation);
 
-                if (event.showMessage) {
+                if (event.showMessage || this.showMessage) {
                     const discardingPlayer = this.player || context.player;
                     context.game.addMessage('{0} discards {1}', discardingPlayer, card);
                 }

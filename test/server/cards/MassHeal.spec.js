@@ -49,6 +49,8 @@ describe('Mass Heal action spell', function () {
         this.player1.clickCard(this.massHeal);
         this.player1.clickPrompt('Play this action');
 
+        this.player1.clickPrompt('Remove wounds from all units');
+
         expect(this.hammerKnight.damage).toBe(0);
         expect(this.silverSnake.damage).toBe(0);
         expect(this.aradelSummergaard.damage).toBe(1);
