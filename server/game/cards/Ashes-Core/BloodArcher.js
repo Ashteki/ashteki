@@ -13,7 +13,7 @@ class BloodArcher extends Card {
                 target: {
                     activePromptTitle: 'Blood Shot',
                     cardType: ['Ally', 'Conjuration'],
-                    gameAction: ability.actions.dealDamage({ amount: 1 })
+                    gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
                 }
             }
         });

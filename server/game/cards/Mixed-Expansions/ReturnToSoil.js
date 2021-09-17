@@ -18,7 +18,7 @@ class ReturnToSoil extends Card {
                         controller: 'opponent',
                         mode: 'upTo',
                         numCards: 2,
-                        gameAction: ability.actions.purge()
+                        gameAction: ability.actions.purge({ showMessage: true })
                     }
                 }
             }

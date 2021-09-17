@@ -29,7 +29,8 @@ class BloodTransfer extends Card {
                     controller: 'self',
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                     gameAction: ability.actions.removeDamage((context) => ({
-                        amount: context.targets.second.type === CardType.Phoenixborn ? 1 : 2
+                        amount: context.targets.second.type === CardType.Phoenixborn ? 1 : 2,
+                        showMessage: true
                     }))
                 }
             }
