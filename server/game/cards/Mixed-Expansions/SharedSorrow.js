@@ -20,7 +20,7 @@ class SharedSorrow extends Card {
                     controller: 'self',
                     cardCondition: (card, context) =>
                         card.magicCost === context.targets.discard.magicCost,
-                    gameAction: ability.actions.moveCard({ destination: 'hand' })
+                    gameAction: ability.actions.moveCard({ destination: 'hand', showMessage: true })
                 }
             },
             then: {
@@ -30,7 +30,8 @@ class SharedSorrow extends Card {
                     gameAction: ability.actions.dealDamage((context) => ({
                         amount:
                             context.preThenEvent.context.targets.discard &&
-                            context.preThenEvent.context.targets.discard.magicCost
+                            context.preThenEvent.context.targets.discard.magicCost,
+                        showMessage: true
                     }))
                 }
             }
