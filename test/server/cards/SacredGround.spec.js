@@ -37,5 +37,19 @@ describe('Sacred Ground', function () {
             expect(this.blueJaguar.armor).toBe(0);
             expect(this.hammerKnight.armor).toBe(0);
         });
+
+        it('should work across round boundaries', function () {
+            this.player1.clickCard(this.sacredGround);
+            this.player1.clickPrompt('Sacred Ground');
+
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            this.player1.clickDone(); //pin dice
+
+            expect(this.mistSpirit.armor).toBe(1);
+            expect(this.blueJaguar.armor).toBe(1);
+            expect(this.hammerKnight.armor).toBe(0);
+        });
     });
 });
