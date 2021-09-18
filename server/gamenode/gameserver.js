@@ -183,12 +183,14 @@ class GameServer {
         );
         for (const game of staleGames) {
             logger.info(`closed finished game ${game.id} due to inactivity`);
+            logger.info(JSON.stringify(game.getSaveState()));
             this.closeGame(game);
         }
 
         const emptyGames = Object.values(this.games).filter((game) => game.isEmpty());
         for (const game of emptyGames) {
             logger.info(`closed empty game ${game.id}`);
+            logger.info(JSON.stringify(game.getSaveState()));
             this.closeGame(game);
         }
     }
@@ -422,7 +424,7 @@ class GameServer {
         player.connectionSucceeded = true;
 
         if (player.disconnectedAt) {
-            logger.info(`user '${socket.user.username} reconnected to game`);
+            logger.info(`user '${socket.user.username} reconnected to game ${game.id}`);
             game.reconnect(socket, player.name);
         }
 
@@ -446,7 +448,9 @@ class GameServer {
             return;
         }
 
-        logger.info(`user '${socket.user.username}' disconnected from a game: ${reason}`);
+        logger.info(
+            `user '${socket.user.username}' disconnected from a game ${game.id}: ${reason}`
+        );
 
         let player = game.playersAndSpectators[socket.user.username];
         if (player.id !== socket.id) {
