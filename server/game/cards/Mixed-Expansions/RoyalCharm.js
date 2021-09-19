@@ -48,6 +48,10 @@ class RoyalCharm extends Card {
                 }
             }
         });
+
+        this.persistentEffect({
+            effect: ability.effects.preventAutoDice()
+        })
     }
 
     getUseActionChoices(card) {
