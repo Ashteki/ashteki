@@ -72,6 +72,8 @@ class Game extends EventEmitter {
         this.swap = details.swap;
         this.timeLimit = new TimeLimit(this);
         this.useGameTimeLimit = details.useGameTimeLimit;
+        this.triggerSuddenDeath = false;
+        this.suddenDeath = false;
 
         this.cardsUsed = [];
         this.cardsPlayed = [];
@@ -840,12 +842,13 @@ class Game extends EventEmitter {
     }
 
     checkForTimeExpired() {
-        if (this.timeLimit.isTimeLimitReached && !this.finishedAt) {
+        if (!this.triggerSuddenDeath && this.timeLimit.isTimeLimitReached && !this.finishedAt) {
+            this.triggerSuddenDeath = true;
             this.addAlert(
-                'success',
-                'The game has ended because the timer has expired.  Timed wins are not currently implemented'
+                'warning',
+                'The allowed game time has ended. The game will enter SUDDEN DEATH mode at the beginning of the next first player turn'
             );
-            this.finishedAt = new Date();
+            // this.finishedAt = new Date();
         }
     }
 
@@ -871,6 +874,10 @@ class Game extends EventEmitter {
 
     beginTurn() {
         this.raiseEvent('onBeginTurn', { player: this.activePlayer });
+        if (this.triggerSuddenDeath && this.activePlayer === this.roundFirstPlayer) {
+            this.triggerSuddenDeath = false;
+            this.suddenDeath = true;
+        }
     }
 
     /*
@@ -1071,7 +1078,9 @@ class Game extends EventEmitter {
         if (!player) {
             return;
         }
-
+        if (!this.winner) {
+            this.concede(playerName);
+        }
         this.addAlert('info', '{0} has left the game', player);
 
         this.jsonForUsers[player.name] = undefined;
@@ -1282,12 +1291,16 @@ class Game extends EventEmitter {
      */
     getSaveState() {
         let players = this.getPlayers().map((player) => {
-            return {
+            const p = {
                 deck: player.phoenixborn.name,
                 name: player.name,
                 turn: player.turn,
                 wins: player.wins
             };
+            if (player.disconnectedAt) {
+                p.disconnectedAt = player.disconnectedAt;
+            }
+            return p;
         });
 
         return {

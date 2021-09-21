@@ -34,10 +34,10 @@ class TimeLimit {
                 moment().diff(this.timeLimitStartedAt)
             );
             if (differenceBetweenStartOfTimerAndNow.asSeconds() / 60 >= this.timeLimitInMinutes) {
-                this.game.addAlert(
-                    'warning',
-                    'Time up.  The game will end after the current round has finished'
-                );
+                // this.game.addAlert(
+                //     'warning',
+                //     );
+                //     'Time up!  The game will enter SUDDEN DEATH mode at the beginning of the next first player turn'
                 this.isTimeLimitReached = true;
                 this.timeLimitStarted = false;
                 this.game.timeExpired();
