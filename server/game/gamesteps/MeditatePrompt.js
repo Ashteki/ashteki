@@ -216,7 +216,13 @@ class MeditatePrompt extends UiPrompt {
         }
 
         if (arg === 'done') {
-            this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
+            if (this.count > 0) {
+                this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
+            }
+            // If they didn't meditate at all, recover the side action
+            if (this.count == 0) {
+                this.context.player.actions.side += 1;
+            }
 
             player.sortDice();
 
