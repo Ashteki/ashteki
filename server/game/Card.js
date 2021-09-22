@@ -212,10 +212,13 @@ class Card extends PlayableObject {
     ambush(amount) {
         return this.entersPlay({
             title: 'Ambush ' + amount,
-            effect: 'deal ' + amount + ' damage to a target phoenixborn',
-            gameAction: AbilityDsl.actions.dealDamage((context) => ({
-                target: context.player.opponent.phoenixborn
-            }))
+            effect: 'deal ' + amount + ' damage to a phoenixborn',
+            target: {
+                activePromptTitle: 'Ambush ' + amount + ': Choose a Phoenixborn',
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true }),
+                cardType: 'Phoenixborn',
+                optional: true
+            }
         });
     }
 

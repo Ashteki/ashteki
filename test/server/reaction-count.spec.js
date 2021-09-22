@@ -160,6 +160,7 @@ describe('Reactions', function () {
         it('Allow one reaction spell per player', function () {
             this.player1.clickCard(this.fireArcher);
             this.player1.clickPrompt('Play this Ally');
+            this.player1.clickCard(this.rinNorthfell);
             expect(this.player1).toHavePrompt('Any reactions to Fire Archer being played?');
             expect(this.player1).toBeAbleToSelect(this.iceTrap);
 

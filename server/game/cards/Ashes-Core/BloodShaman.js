@@ -12,6 +12,7 @@ class BloodShaman extends Card {
                 target: context.source.owner.phoenixborn
             })),
             then: {
+                alwaysTriggers: true,
                 target: {
                     toSelect: 'die',
                     gameAction: ability.actions.raiseDie({ showMessage: true })
