@@ -196,9 +196,10 @@ class MeditatePrompt extends UiPrompt {
             );
             // this.choosingPlayer.discardSelectedCards();
             this.game.addMessage(
-                '{0} meditates {1} to gain a {2}',
+                '{0} meditates {1} from their {2} to gain a {3}',
                 this.choosingPlayer,
                 cards,
+                cards[0].location,
                 dice
             );
             if (!this.firstTopOfDeck && this.isTopDeck) {
