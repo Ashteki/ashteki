@@ -147,6 +147,7 @@ class Die extends PlayableObject {
                     title: 'Ceremonial Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
+                        activePromptTitle: 'Choose an ally to return to hand',
                         controller: 'self',
                         cardType: 'Ally',
                         location: 'discard',
@@ -172,7 +173,7 @@ class Die extends PlayableObject {
                         owner: 'opponent',
                         gameAction: this.game.actions.lowerDie()
                     },
-                    message: '{0} uses {1} to lower up to 2 opponent dice',
+                    message: "{0} uses {1} to lower {2} in opponent's dice pool",
                     changeDie: true
                 });
             case 'natural':
@@ -180,6 +181,7 @@ class Die extends PlayableObject {
                     title: 'Natural Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
+                        activePromptTitle: 'Choose a unit to deal 1 damage to',
                         cardType: ['Ally', 'Conjuration'],
                         gameAction: this.game.actions.dealDamage({ amount: 1 })
                     },
@@ -190,6 +192,7 @@ class Die extends PlayableObject {
                     title: 'Charm Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
+                        activePromptTitle: 'Choose a unit to place Charm power die on',
                         cardType: ['Ally', 'Conjuration'],
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
@@ -206,6 +209,7 @@ class Die extends PlayableObject {
                     title: 'Divine Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
+                        activePromptTitle: 'Choose a unit to place Divine power die on',
                         cardType: ['Ally', 'Conjuration'],
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Divine),

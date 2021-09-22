@@ -8,6 +8,7 @@ class RevivalPact extends Card {
             target: {
                 mode: 'upTo',
                 numCards: 3,
+                activePromptTitle: 'Choose up to 3 allies',
                 controller: 'self',
                 cardType: CardType.Ally,
                 location: 'discard',

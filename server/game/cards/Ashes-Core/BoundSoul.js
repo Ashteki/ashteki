@@ -5,13 +5,14 @@ class BoundSoul extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
+                // Currently: Choose a ally
+                activePromptTitle: 'Choose an ally',
                 controller: 'self',
                 location: Location.Discard,
                 cardType: CardType.Ally,
                 gameAction: ability.actions.moveCard({
                     destination: Location.Hand,
-                    shuffle: true,
-                    message: true
+                    shuffle: true
                 })
             }
         });
