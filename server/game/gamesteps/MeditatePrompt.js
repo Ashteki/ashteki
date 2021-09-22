@@ -102,6 +102,10 @@ class MeditatePrompt extends UiPrompt {
             buttons.push({ text: 'Stop meditating', arg: 'done' });
         }
 
+        if (this.count === 0) {
+            buttons.push({ text: 'Cancel', arg: 'done' });
+        }
+
         return {
             selectCard: !this.cardSelected,
             selectDie: this.cardSelected,
