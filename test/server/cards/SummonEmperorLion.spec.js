@@ -6,7 +6,8 @@ describe('Summon Emperor Lion', function () {
                 spellboard: ['summon-emperor-lion'],
                 dicepool: ['divine', 'divine', 'illusion', 'natural', 'divine', 'divine'],
                 archives: ['emperor-lion'],
-                deck: ['law-of-sight']
+                deck: ['law-of-sight', 'open-memories', 'open-memories', 'open-memories'],
+                hand: ['law-of-grace']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -21,7 +22,8 @@ describe('Summon Emperor Lion', function () {
         this.player1.clickPrompt('Summon Emperor Lion');
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
-        this.player1.clickPrompt('Done');
+        this.player1.clickPrompt('Done'); // don't tutor a law
+        this.player1.clickPrompt('Done'); // don't play a law
         expect(this.player1).toHaveDefaultPrompt();
         expect(this.emperorLion.location).toBe('play area');
     });
@@ -55,6 +57,21 @@ describe('Summon Emperor Lion', function () {
         this.player1.clickPrompt('Done');
         expect(this.lawOfSight.location).toBe('spellboard');
         this.player1.clickPrompt('No'); // law of sight prompt to draw up to 2
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('should allow law card to be played if law tutor is skipped', function () {
+        // fudge to check action cost is ignored when playing law
+        this.player1.actions.side = false;
+        expect(this.player1.deck.length).toBe(4); // 3 OM plus one law
+
+        this.player1.clickCard(this.summonEmperorLion);
+        this.player1.clickPrompt('Summon Emperor Lion');
+        this.player1.clickDie(2);
+        this.player1.clickPrompt('Done');
+        this.player1.clickPrompt('Done'); // don't tutor a law
+        this.player1.clickCard(this.lawOfGrace);
+        expect(this.lawOfGrace.location).toBe('spellboard');
         expect(this.player1).toHaveDefaultPrompt();
     });
 });

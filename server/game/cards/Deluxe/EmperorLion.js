@@ -13,24 +13,23 @@ class EmperorLion extends Card {
                     ability.actions.reveal(),
                     ability.actions.moveCard({ destination: 'hand' })
                 ]
+            }
+        });
+        this.entersPlay({
+            target: {
+                activePromptTitle: 'You may choose a Law to play',
+                optional: true,
+                location: 'hand',
+                controller: 'self',
+                cardCondition: (card) => card.name.startsWith('Law '),
+                gameAction: ability.actions.playCard((context) => ({
+                    target: context.target,
+                    ignoreActionCost: true
+                }))
             },
             then: {
                 alwaysTriggers: true,
-                target: {
-                    activePromptTitle: 'You may choose a Law to play',
-                    optional: true,
-                    location: 'hand',
-                    controller: 'self',
-                    cardCondition: (card) => card.name.startsWith('Law '),
-                    gameAction: ability.actions.playCard((context) => ({
-                        target: context.target,
-                        ignoreActionCost: true
-                    }))
-                },
-                then: {
-                    alwaysTriggers: true,
-                    gameAction: ability.actions.shuffleDeck()
-                }
+                gameAction: ability.actions.shuffleDeck()
             }
         });
     }
