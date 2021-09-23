@@ -492,13 +492,13 @@ class Card extends PlayableObject {
         var flags = {};
         if (this.location === 'play area' || this.location === 'spellboard') {
             const attack = this.getAttack();
-            if (this.printedAttack !== attack) flags.attack = attack;
+            if (this.hasModifiedAttack()) flags.attack = attack;
 
             const life = this.getLife();
-            if (this.printedLife !== life) flags.life = life;
+            if (this.hasModifiedLife()) flags.life = life;
 
             const recover = this.getRecover();
-            if (this.printedRecover !== recover) flags.recover = recover;
+            if (this.hasModifiedRecover()) flags.recover = recover;
 
             const focus = this.focus;
             if (focus > 0) flags.spellfocus = focus;
@@ -653,6 +653,15 @@ class Card extends PlayableObject {
         return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
     }
 
+    hasModifiedAttack() {
+        return (
+            this.anyEffect('setAttack') ||
+            this.anyEffect('copyCard') ||
+            this.anyEffect('setPrintedAttack') ||
+            this.anyEffect('modifyAttack')
+        );
+    }
+
     getCopyAttack(copyEffect) {
         // use calculated value of attack - e.g. for SilverSnake X attack
         return typeof copyEffect.printedAttack === 'string'
@@ -681,6 +690,15 @@ class Card extends PlayableObject {
         }
 
         return Math.max(0, printedLife + this.sumEffects('modifyLife'));
+    }
+
+    hasModifiedLife() {
+        return (
+            this.anyEffect('setLife') ||
+            this.anyEffect('copyCard') ||
+            this.anyEffect('setPrintedLife') ||
+            this.anyEffect('modifyLife')
+        );
     }
 
     getCopyLife(copyEffect) {
@@ -715,6 +733,15 @@ class Card extends PlayableObject {
         }
 
         return Math.max(0, printedRecover + this.sumEffects('modifyRecover'));
+    }
+
+    hasModifiedRecover() {
+        return (
+            this.anyEffect('setRecover') ||
+            this.anyEffect('copyCard') ||
+            this.anyEffect('setPrintedRecover') ||
+            this.anyEffect('modifyRecover')
+        );
     }
 
     getCopyRecover(copyEffect) {
