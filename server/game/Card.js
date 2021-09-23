@@ -148,7 +148,7 @@ class Card extends PlayableObject {
      * @param ability - object containing limits, costs, effects, and game actions
      */
     // eslint-disable-next-line no-unused-vars
-    setupCardAbilities(ability) {}
+    setupCardAbilities(ability) { }
 
     // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
@@ -335,7 +335,7 @@ class Card extends PlayableObject {
                             event.triggeringEvent.damageEvent &&
                             event.triggeringEvent.damageEvent.fightEvent &&
                             event.triggeringEvent.damageEvent.fightEvent.attacker.controller ===
-                                context.player.opponent //opponent attacked
+                            context.player.opponent //opponent attacked
                     }
                 },
                 properties
@@ -537,8 +537,8 @@ class Card extends PlayableObject {
         return !this.tokens
             ? 0
             : Object.keys(this.tokens)
-                  .map((key) => this.tokens[key])
-                  .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                .map((key) => this.tokens[key])
+                .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     }
 
     removeAllTokens() {
@@ -642,7 +642,7 @@ class Card extends PlayableObject {
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedAttackEffect = this.mostRecentEffect('setPrintedAttack');
         let printedAttack = copyEffect
-            ? copyEffect.attack // use calculated value of attack - e.g. for SilverSnake X attack
+            ? this.getCopyAttack(copyEffect)
             : printedAttackEffect || this.printedAttack;
 
         //if the printed value is X, use 0
@@ -651,6 +651,13 @@ class Card extends PlayableObject {
         }
 
         return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
+    }
+
+    getCopyAttack(copyEffect) {
+        // use calculated value of attack - e.g. for SilverSnake X attack
+        return typeof copyEffect.printedAttack === 'string'
+            ? copyEffect.attack
+            : copyEffect.getAttack(true);
     }
 
     getLife(printed = false) {
@@ -664,7 +671,9 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedLifeEffect = this.mostRecentEffect('setPrintedLife');
-        let printedLife = copyEffect ? copyEffect.life : printedLifeEffect || this.printedLife;
+        let printedLife = copyEffect
+            ? this.getCopyLife(copyEffect)
+            : printedLifeEffect || this.printedLife;
 
         //if the printed value is X, use 0
         if (typeof printedLife === 'string') {
@@ -672,6 +681,13 @@ class Card extends PlayableObject {
         }
 
         return Math.max(0, printedLife + this.sumEffects('modifyLife'));
+    }
+
+    getCopyLife(copyEffect) {
+        // use calculated value of life if x
+        return typeof copyEffect.printedLife === 'string'
+            ? copyEffect.life
+            : copyEffect.getLife(true);
     }
 
     get recover() {
@@ -699,6 +715,13 @@ class Card extends PlayableObject {
         }
 
         return Math.max(0, printedRecover + this.sumEffects('modifyRecover'));
+    }
+
+    getCopyRecover(copyEffect) {
+        // use calculated value of Recover if x
+        return typeof copyEffect.printedRecover === 'string'
+            ? copyEffect.recover
+            : copyEffect.getRecover(true);
     }
 
     getBattlefield(printed = false) {
