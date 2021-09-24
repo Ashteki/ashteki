@@ -21,8 +21,8 @@ class AbilityResolver extends BaseStepWithPipeline {
             new SimpleStep(this.game, () => this.resolveCosts()),
             new SimpleStep(this.game, () => this.payCosts()),
             new SimpleStep(this.game, () => this.resolveTargets()),
+            new SimpleStep(this.game, () => this.checkForCancel()),
             new SimpleStep(this.game, () => this.initiateAbility()),
-            // new SimpleStep(this.game, () => this.executeHandler()),
             new SimpleStep(this.game, () => this.raiseResolvedEvent())
         ]);
     }
@@ -68,14 +68,6 @@ class AbilityResolver extends BaseStepWithPipeline {
         }
     }
 
-    checkForCancel() {
-        if (this.cancelled) {
-            return;
-        }
-
-        this.cancelled = this.targetResults.cancelled;
-    }
-
     payCosts() {
         if (this.cancelled) {
             return;
@@ -95,6 +87,30 @@ class AbilityResolver extends BaseStepWithPipeline {
         }
 
         this.targetResults = this.context.ability.resolveTargets(this.context);
+    }
+
+    checkForCancel() {
+        if (this.cancelled) {
+            return;
+        }
+
+        this.cancelled = this.targetResults.cancelled;
+
+        if (!this.costResults.cancelled && this.cancelled) {
+            this.refundCosts();
+        }
+    }
+
+    refundCosts() {
+        this.costResults.events.forEach((event) => {
+            if (event.resolved) {
+                if (event.name === 'onDiceSpent') {
+                    event.dice.forEach((die) => {
+                        die.ready();
+                    });
+                }
+            }
+        })
     }
 
     initiateAbility() {
