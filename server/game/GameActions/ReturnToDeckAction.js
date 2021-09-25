@@ -52,12 +52,11 @@ class ReturnToDeckAction extends CardGameAction {
             { card: card, context: context, deckLength: deckLength },
             (event) => {
                 const message = this.shuffle
-                    ? '{0} shuffles a card back into their deck'
-                    : (this.reveal
-                        ? '{0} returns {1} to the {2} of their deck'
-                        : '{0} returns a card to the {2} of their deck');
+                    ? "{0} shuffles {1} back into owner's deck"
+                    : "{0} returns {1} to the {2} of owner's deck";
                 const dest = this.bottom ? 'bottom' : 'top';
-                event.context.game.addMessage(message, event.context.player, event.card, dest);
+                const cardDescription = this.reveal ? event.card : 'a card';
+                event.context.game.addMessage(message, event.context.player, cardDescription, dest);
                 card.owner.moveCard(card, destinationPile, { bottom: this.bottom });
                 let cardsByOwner = this.target.filter((c) => c.owner === card.owner);
                 if (

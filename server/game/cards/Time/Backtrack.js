@@ -5,6 +5,7 @@ class Backtrack extends Card {
     setupCardAbilities(ability) {
         this.reaction({
             title: 'Backtrack',
+            effect: "return {0} to owner's hand",
             when: {
                 // opponent declares attackers
                 onAttackersDeclared: (event, context) =>
@@ -15,10 +16,7 @@ class Backtrack extends Card {
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.isAttacker && card.type === CardType.Ally,
                 controller: 'opponent',
-                gameAction: [
-                    ability.actions.removeFromBattle(),
-                    ability.actions.returnToHand()
-                ]
+                gameAction: [ability.actions.removeFromBattle(), ability.actions.returnToHand()]
             }
         });
     }

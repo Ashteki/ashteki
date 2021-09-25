@@ -41,7 +41,8 @@ class Anguish extends Card {
                                     mode: 'upTo',
                                     numDice: 2,
                                     owner: 'opponent'
-                                }
+                                },
+                                showMessage: true
                             }),
                             falseGameAction: ability.actions.addDamageToken((context) => ({
                                 target: context.player.opponent.phoenixborn,

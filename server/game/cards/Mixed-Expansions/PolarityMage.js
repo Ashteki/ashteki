@@ -14,14 +14,16 @@ class PolarityMage extends Card {
                             location: 'discard',
                             cardType: [CardType.ConjuredAlteration, CardType.Upgrade]
                         },
-                        destination: 'hand'
+                        destination: 'hand',
+                        showMessage: true
                     }),
                     'Discard from Play': ability.actions.discard({
                         promptForSelect: {
                             optional: true,
                             cardType: UpgradeCardTypes,
                             controller: 'self'
-                        }
+                        },
+                        showMessage: true
                     })
                 }
             })

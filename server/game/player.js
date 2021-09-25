@@ -32,6 +32,7 @@ class Player extends GameObject {
         this.diceHistory = [];
 
         this.clock = ClockSelector.for(this, clockdetails);
+        this.disconnectedAt = undefined;
 
         this.maxLimited = 1;
         this.limitedPlayed = 0;
@@ -300,6 +301,33 @@ class Player extends GameObject {
         this.actions = { main: true, side: 1 };
         this.limitedPlayed = 0; // reset for my turn
         this.game.addAlert('startofturn', `Turn ${this.turn} - {0}`, this);
+        if (this.game.suddenDeath) {
+            this.doSuddenDeathDiscard();
+        }
+    }
+
+    doSuddenDeathDiscard() {
+        const discardAmount = Math.min(this.deck.length, 2);
+        const woundAmount = 2 - discardAmount;
+        this.game.addMessage('SUDDEN DEATH!');
+        if (discardAmount > 0) {
+            GameActions.discardTopOfDeck({ amount: discardAmount }).resolve(
+                this,
+                this.game.getFrameworkContext()
+            );
+        }
+
+        if (woundAmount > 0) {
+            this.game.addMessage(
+                '{0} receives {1} sudden death damage',
+                this.phoenixborn,
+                woundAmount
+            );
+            GameActions.addDamageToken({ amount: woundAmount }).resolve(
+                this.phoenixborn,
+                this.game.getFrameworkContext()
+            );
+        }
     }
 
     endTurn() {

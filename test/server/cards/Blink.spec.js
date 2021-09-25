@@ -52,6 +52,8 @@ describe('Blink action spell', function () {
         this.player1.endTurn();
         expect(this.fireArcher.location).toBe('play area');
         // enters play ability
+        expect(this.coalRoarkwin.damage).toBe(0);
+        this.player2.clickCard(this.coalRoarkwin);
         expect(this.coalRoarkwin.damage).toBe(1);
     });
 });

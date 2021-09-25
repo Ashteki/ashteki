@@ -14,7 +14,8 @@ class BloodChains extends Card {
                 target: {
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.addExhaustionToken((context) => ({
-                        amount: context.preThenEvent.clone.damage > 0 ? 2 : 1
+                        amount: context.preThenEvent.clone.damage > 0 ? 2 : 1,
+                        showMessage: true
                     }))
                 }
             }

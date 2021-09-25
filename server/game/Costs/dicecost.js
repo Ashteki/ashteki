@@ -22,6 +22,7 @@ class DiceCost {
         let chosenDice = Dice.matchDice(context.player.dice, nonBasics);
         if (
             !context.source.preventAutoDice &&
+            !context.player.anyEffect('preventAutoDice') &&
             chosenDice.length == Dice.getRequiredCount(this.getDiceReq(context))
         ) {
             context.costs.returnDice = chosenDice;

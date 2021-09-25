@@ -333,8 +333,16 @@
     right: 2px;
 }
 
+.Spell .recover { 
+    background-color: rgb(103, 102, 104);
+    position: relative;
+    left: 2px;
+}
+
 .spellfocus { 
     background-color: rgba(201, 0, 167, 0.9);
+    position: absolute;
+    left: 2px;
 }
 
 .darkbg {

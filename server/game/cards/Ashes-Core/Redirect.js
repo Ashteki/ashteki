@@ -12,6 +12,7 @@ class Redirect extends Card {
             condition: (context) => context.player.unitsInPlay.length > 0,
             effect: 'redirect the damage',
             target: {
+                showCancel: true,
                 cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: ability.actions.changeEvent((context) => ({

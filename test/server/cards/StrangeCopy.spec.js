@@ -4,8 +4,9 @@ describe('Strange Copy reaction spell', function () {
             player1: {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['silver-snake', 'iron-worker', 'iron-rhino', 'frostback-bear'],
-                dicepool: ['natural', 'natural', 'charm', 'charm'],
-                archives: ['butterfly-monk']
+                dicepool: ['natural', 'natural', 'charm', 'charm', 'divine', 'divine'],
+                archives: ['butterfly-monk'],
+                hand: ['holy-relics']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -40,6 +41,39 @@ describe('Strange Copy reaction spell', function () {
         expect(this.fluteMage.attack).toBe(7);
         expect(this.fluteMage.life).toBe(4);
         expect(this.fluteMage.recover).toBe(0);
+
+        // add further tests for abilities etc
+    });
+
+    it('copies base attack value without alterations', function () {
+        expect(this.fluteMage.tokens.damage).toBeUndefined();
+
+        this.player1.play(this.holyRelics, this.ironWorker);
+        expect(this.ironWorker.attack).toBe(4);
+        this.player1.actions.main = true; // BODGE
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickCard(this.ironWorker); // single attacker
+
+        expect(this.player2).toBeAbleToSelect(this.strangeCopy);
+
+        this.player2.clickCard(this.strangeCopy); // guard with pb
+        this.player2.clickDie(0);
+
+        this.player2.clickCard(this.fluteMage); // my unit
+
+        expect(this.player2).not.toBeAbleToSelect(this.fluteMage);
+        expect(this.player2).toBeAbleToSelect(this.ironWorker);
+        this.player2.clickCard(this.ironWorker); // unit to copy
+
+        // card played
+        expect(this.strangeCopy.location).toBe('discard');
+
+        // copies selected unit values WITHOUT alterations
+        expect(this.fluteMage.attack).toBe(2);
+        expect(this.fluteMage.life).toBe(2);
+        expect(this.fluteMage.recover).toBe(1);
 
         // add further tests for abilities etc
     });

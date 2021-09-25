@@ -24,7 +24,8 @@ class SmallSacrifice extends Card {
                     activePromptTitle: "Choose an opponent's unit",
                     dependsOn: 'first',
                     controller: 'opponent',
-                    cardType: BattlefieldTypes
+                    cardType: BattlefieldTypes,
+                    optional: true
                 },
                 tokenChoice: {
                     dependsOn: 'second',
@@ -40,18 +41,22 @@ class SmallSacrifice extends Card {
                     condition: () => this.chosenType === 'exhaust',
                     trueGameAction: ability.actions.sequential([
                         ability.actions.exhaust({
-                            target: context.targets.first
+                            target: context.targets.first,
+                            showMessage: true
                         }),
                         ability.actions.exhaust({
-                            target: context.targets.second
+                            target: context.targets.second,
+                            showMessage: true
                         })
                     ]),
                     falseGameAction: ability.actions.sequential([
                         ability.actions.dealDamage({
-                            target: context.targets.first
+                            target: context.targets.first,
+                            showMessage: true
                         }),
                         ability.actions.dealDamage({
-                            target: context.targets.second
+                            target: context.targets.second,
+                            showMessage: true
                         })
                     ])
                 })
