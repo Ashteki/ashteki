@@ -5,6 +5,8 @@ const Actions = {
     addDamageToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'damage'),
     addExhaustionToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
+    addGravityFluxToken: (propertyFactory) =>
+        new GameActions.AddTokenAction(propertyFactory, 'gravityFlux'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory, type) => new GameActions.AddTokenAction(propertyFactory, type),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
@@ -18,6 +20,7 @@ const Actions = {
     discard: (propertyFactory) => new GameActions.DiscardCardAction(propertyFactory),
     destroy: (propertyFactory) => new GameActions.DestroyAction(propertyFactory),
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
+    exhaustGravityFlux: (propertyFactory) => new GameActions.ExhaustGravityFluxAction(propertyFactory),
     heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
     moveCard: (propertyFactory) => new GameActions.MoveCardAction(propertyFactory), // destination, switch = false, shuffle = false
     moveOnBattleline: (propertyFactory) => new GameActions.MoveOnBattlelineAction(propertyFactory),

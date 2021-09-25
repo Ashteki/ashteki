@@ -30,14 +30,12 @@ describe('chaos gravity spell', function () {
         this.hammerKnight.tokens.exhaustion = 1;
     });
 
-    it('damages all units in play plus one', function () {
+    it('affects multiple units', function () {
         this.player1.clickCard(this.chaosGravity);
         this.player1.clickPrompt('Play this action');
         this.player1.clickDie(2);
         this.player1.clickDie(0);
-        // no click of dice - preselected
         this.player1.clickPrompt('Done');
-        // one damage plus 2 lions used
         expect(this.player1).toHavePrompt('Choose a unit to exhaust');
         this.player1.clickCard(this.silverSnake);
         expect(this.silverSnake.exhausted).toBe(true);
