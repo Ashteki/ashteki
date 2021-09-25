@@ -48,6 +48,14 @@ class CanyonShelter extends Card {
             }
         });
     }
+
+    getRecover() {
+        return this.childCards.length;
+    }
+
+    hasModifiedRecover() {
+        return this.getRecover() > 0;
+    }
 }
 
 CanyonShelter.id = 'canyon-shelter';

@@ -23,7 +23,7 @@ class MemoryTheft extends Card {
                             showMessage: true,
                             player: context.player.opponent
                         }),
-                        Damage: ability.actions.dealDamage({
+                        Damage: ability.actions.addDamageToken({
                             amount: 1,
                             target: context.player.opponent.phoenixborn,
                             showMessage: true
