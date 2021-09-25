@@ -10,7 +10,7 @@ class SummonIronRhino extends Card {
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dynamicDice((context) => {
-                    return [new DiceCount(6 - context.source.focus, Level.Basic)];
+                    return [context.source.focus <= 2 ? new DiceCount(6 - context.source.focus, Level.Basic): new DiceCount(4, Level.Basic)];
                 })
             ],
             location: 'spellboard',
