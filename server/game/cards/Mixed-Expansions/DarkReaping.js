@@ -11,14 +11,10 @@ class DarkReaping extends Card {
                 gameAction: ability.actions.destroy()
             },
             then: {
-                target: {
-                    toSelect: 'die',
-                    dieCondition: (d) => !d.exhausted,
-                    mode: 'upTo',
+                gameAction: ability.actions.changeDice({
                     numDice: 5,
-                    owner: 'self',
-                    gameAction: ability.actions.setDieLevel({ level: 'power' }) //todo: choice
-                }
+                    owner: 'self'
+                })
             }
         });
     }
