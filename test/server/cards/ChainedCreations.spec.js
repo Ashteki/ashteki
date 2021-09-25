@@ -10,8 +10,13 @@ describe('Chained Creations', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['masked-wolf', 'iron-worker', 'iron-rhino'],
-                    spellboard: ['empower', 'summon-masked-wolf', 'summon-iron-rhino']
+                    inPlay: ['masked-wolf', 'iron-worker', 'iron-rhino', 'salamander-monk-spirit'],
+                    spellboard: [
+                        'empower',
+                        'summon-masked-wolf',
+                        'summon-iron-rhino',
+                        'summon-salamander-monk'
+                    ]
                 }
             });
         });
@@ -29,6 +34,16 @@ describe('Chained Creations', function () {
             this.player1.clickCard(this.summonMaskedWolf); // exhaust
 
             expect(this.summonMaskedWolf.exhausted).toBe(true);
+        });
+
+        it('destroys Monk Spirit and cannot exhaust ready spell', function () {
+            this.player1.clickCard(this.chainedCreations); // play card
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.salamanderMonkSpirit); // destroy
+            expect(this.player1).not.toBeAbleToSelect(this.summonSalamanderMonk);
         });
 
         it('damage unit and NOT exhaust ready spell', function () {
