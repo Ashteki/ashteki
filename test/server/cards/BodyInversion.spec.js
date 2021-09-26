@@ -76,7 +76,7 @@ describe('Body Inversion', function () {
         expect(this.frostFang.life).toBe(5);
     });
 
-    it('interation with silver snake', function () {
+    it('interaction with silver snake', function () {
         this.player1.clickCard(this.crimsonBomber);
         this.player1.clickPrompt('Detonate 3');
         this.player1.clickPrompt('Done');
@@ -101,7 +101,19 @@ describe('Body Inversion', function () {
         expect(this.silverSnake.life).toBe(4);
     });
 
-    it('interation with silver snake and crystal shield', function () {
+    it('interaction with silver snake with no status tokens', function () {
+        expect(this.silverSnake.status).toBe(0);
+
+        this.player1.endTurn();
+
+        this.player2.clickCard('body-inversion', 'any', 'self');
+        this.player2.clickPrompt('Body Inversion a unit');
+        this.player2.clickCard(this.silverSnake);
+
+        expect(this.silverSnake.location).toBe('archives');
+    });
+
+    it('interaction with silver snake and crystal shield', function () {
         this.player1.clickCard(this.crimsonBomber);
         this.player1.clickPrompt('Detonate 3');
         this.player1.clickPrompt('Done');
