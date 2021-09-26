@@ -9,33 +9,45 @@ describe('Flock Shepherd', function () {
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['flock-shepherd', 'ash-spirit', 'gilder', 'hammer-knight']
+                inPlay: [
+                    'flock-shepherd',
+                    'ash-spirit',
+                    'gilder',
+                    'hammer-knight',
+                    'squall-stallion'
+                ]
             }
         });
     });
 
     describe('protect', function () {
-        it('prevents spells from targeting 0 attack units with spells', function () {
+        it('prevents spells from targeting 0 printed attack units with spells (not printed attack X)', function () {
             this.player1.play(this.steadyGaze);
             expect(this.player1).not.toBeAbleToSelect(this.ashSpirit);
+            expect(this.player1).not.toBeAbleToSelect(this.gilder);
             expect(this.player1).toBeAbleToSelect(this.flockShepherd);
             expect(this.player1).toBeAbleToSelect(this.hammerKnight);
+            expect(this.player1).toBeAbleToSelect(this.squallStallion);
         });
 
-        it('prevents dice powers from targeting 0 attack units with spells', function () {
+        it('prevents dice powers from targeting 0 printed attack units with spells (not printed attack X)', function () {
             this.player1.clickDie(0);
             this.player1.clickPrompt('Charm Dice Power');
             expect(this.player1).not.toBeAbleToSelect(this.ashSpirit);
+            expect(this.player1).not.toBeAbleToSelect(this.gilder);
             expect(this.player1).toBeAbleToSelect(this.flockShepherd);
             expect(this.player1).toBeAbleToSelect(this.hammerKnight);
+            expect(this.player1).toBeAbleToSelect(this.squallStallion);
         });
 
-        it('prevents abilities from targeting 0 attack units with spells', function () {
+        it('prevents abilities from targeting 0 printed attack units with spells (not printed attack X)', function () {
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('Water Blast');
             expect(this.player1).not.toBeAbleToSelect(this.ashSpirit);
+            expect(this.player1).not.toBeAbleToSelect(this.gilder);
             expect(this.player1).toBeAbleToSelect(this.flockShepherd);
             expect(this.player1).toBeAbleToSelect(this.hammerKnight);
+            expect(this.player1).toBeAbleToSelect(this.squallStallion);
         });
 
         it('does not prevent attacks', function () {
@@ -59,7 +71,7 @@ describe('Flock Shepherd', function () {
     });
 
     describe('gather', function () {
-        it('lets you add 2 to the attack of units with 0 attack', function () {
+        it('lets you add 2 to the attack of units with 0 printed attack (not printed attack X)', function () {
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.coalRoarkwin);
             this.player1.clickCard(this.frostbackBear);
@@ -72,6 +84,7 @@ describe('Flock Shepherd', function () {
             expect(this.gilder.attack).toBe(2);
             expect(this.flockShepherd.attack).toBe(1); //not buffed
             expect(this.hammerKnight.attack).toBe(3); //not buffed
+            expect(this.squallStallion.attack).toBe(0); //not buffed
 
             this.player2.clickCard(this.ashSpirit);
             this.player2.clickCard(this.frostbackBear);
@@ -82,7 +95,7 @@ describe('Flock Shepherd', function () {
             this.player2.clickPrompt('Done');
         });
 
-        it('does not buff attack when exhausted ', function () {
+        it('does not buff attack when exhausted', function () {
             this.flockShepherd.tokens.exhaustion = 1;
 
             this.player1.clickPrompt('Attack');

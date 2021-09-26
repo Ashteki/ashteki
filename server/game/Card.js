@@ -58,21 +58,9 @@ class Card extends PlayableObject {
         this.childCards = [];
         this.clonedNeighbors = null;
 
-        this.printedAttack = cardData.attack
-            ? typeof cardData.attack === 'string'
-                ? 0
-                : cardData.attack
-            : 0;
-        this.printedLife = cardData.life
-            ? typeof cardData.life === 'string'
-                ? 0
-                : cardData.life
-            : 0;
-        this.printedRecover = cardData.recover
-            ? typeof cardData.recover === 'string'
-                ? 0
-                : cardData.recover
-            : 0;
+        this.printedAttack = cardData.attack || 0;
+        this.printedLife = cardData.life || 0;
+        this.printedRecover = cardData.recover || 0;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
 
@@ -224,10 +212,13 @@ class Card extends PlayableObject {
     ambush(amount) {
         return this.entersPlay({
             title: 'Ambush ' + amount,
-            effect: 'deal ' + amount + ' damage to a target phoenixborn',
-            gameAction: AbilityDsl.actions.dealDamage((context) => ({
-                target: context.player.opponent.phoenixborn
-            }))
+            effect: 'deal ' + amount + ' damage to a phoenixborn',
+            target: {
+                activePromptTitle: 'Ambush ' + amount + ': Choose a Phoenixborn',
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true }),
+                cardType: 'Phoenixborn',
+                optional: true
+            }
         });
     }
 
@@ -259,7 +250,7 @@ class Card extends PlayableObject {
     groupTactics(properties) {
         return this.forcedReaction({
             title: 'Group Tactics',
-            may: 'add 1 to this units attack',
+            may: 'add ' + properties.amount + " to this unit's attack",
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
@@ -501,13 +492,13 @@ class Card extends PlayableObject {
         var flags = {};
         if (this.location === 'play area' || this.location === 'spellboard') {
             const attack = this.getAttack();
-            if (this.printedAttack !== attack) flags.attack = attack;
+            if (this.hasModifiedAttack()) flags.attack = attack;
 
             const life = this.getLife();
-            if (this.printedLife !== life) flags.life = life;
+            if (this.hasModifiedLife()) flags.life = life;
 
             const recover = this.getRecover();
-            if (this.printedRecover !== recover) flags.recover = recover;
+            if (this.hasModifiedRecover()) flags.recover = recover;
 
             const focus = this.focus;
             if (focus > 0) flags.spellfocus = focus;
@@ -650,10 +641,32 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedAttackEffect = this.mostRecentEffect('setPrintedAttack');
-        const printedAttack = copyEffect
-            ? copyEffect.attack // use calculated value of attack - e.g. for SilverSnake X attack
+        let printedAttack = copyEffect
+            ? this.getCopyAttack(copyEffect)
             : printedAttackEffect || this.printedAttack;
+
+        //if the printed value is X, use 0
+        if (typeof printedAttack === 'string') {
+            printedAttack = 0;
+        }
+
         return Math.max(0, printedAttack + this.sumEffects('modifyAttack'));
+    }
+
+    hasModifiedAttack() {
+        return (
+            this.anyEffect('setAttack') ||
+            this.anyEffect('copyCard') ||
+            this.anyEffect('setPrintedAttack') ||
+            this.anyEffect('modifyAttack')
+        );
+    }
+
+    getCopyAttack(copyEffect) {
+        // use calculated value of attack - e.g. for SilverSnake X attack
+        return typeof copyEffect.printedAttack === 'string'
+            ? copyEffect.attack
+            : copyEffect.getAttack(true);
     }
 
     getLife(printed = false) {
@@ -667,8 +680,32 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedLifeEffect = this.mostRecentEffect('setPrintedLife');
-        const printedLife = copyEffect ? copyEffect.life : printedLifeEffect || this.printedLife;
+        let printedLife = copyEffect
+            ? this.getCopyLife(copyEffect)
+            : printedLifeEffect || this.printedLife;
+
+        //if the printed value is X, use 0
+        if (typeof printedLife === 'string') {
+            printedLife = 0;
+        }
+
         return Math.max(0, printedLife + this.sumEffects('modifyLife'));
+    }
+
+    hasModifiedLife() {
+        return (
+            this.anyEffect('setLife') ||
+            this.anyEffect('copyCard') ||
+            this.anyEffect('setPrintedLife') ||
+            this.anyEffect('modifyLife')
+        );
+    }
+
+    getCopyLife(copyEffect) {
+        // use calculated value of life if x
+        return typeof copyEffect.printedLife === 'string'
+            ? copyEffect.life
+            : copyEffect.getLife(true);
     }
 
     get recover() {
@@ -686,11 +723,32 @@ class Card extends PlayableObject {
 
         const copyEffect = this.mostRecentEffect('copyCard');
         const printedRecoverEffect = this.mostRecentEffect('setPrintedRecover');
-        const printedRecover = copyEffect
+        let printedRecover = copyEffect
             ? copyEffect.recover
             : printedRecoverEffect || this.printedRecover;
 
+        //if the printed value is X, use 0
+        if (typeof printedRecover === 'string') {
+            printedRecover = 0;
+        }
+
         return Math.max(0, printedRecover + this.sumEffects('modifyRecover'));
+    }
+
+    hasModifiedRecover() {
+        return (
+            this.anyEffect('setRecover') ||
+            this.anyEffect('copyCard') ||
+            this.anyEffect('setPrintedRecover') ||
+            this.anyEffect('modifyRecover')
+        );
+    }
+
+    getCopyRecover(copyEffect) {
+        // use calculated value of Recover if x
+        return typeof copyEffect.printedRecover === 'string'
+            ? copyEffect.recover
+            : copyEffect.getRecover(true);
     }
 
     getBattlefield(printed = false) {

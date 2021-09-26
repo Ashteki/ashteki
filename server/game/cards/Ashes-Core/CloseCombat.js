@@ -21,13 +21,17 @@ class CloseCombat extends Card {
                 }
             },
             gameAction: ability.actions.chooseAction((context) => ({
-                // activePromptTitle: 'Choose one:',
+                activePromptTitle: 'Choose effect for your unit:',
                 target: context.targets.myChar,
                 choices: {
                     Wound: ability.actions.addDamageToken({
                         target: context.targets.myChar
                     }),
                     Exhaust: ability.actions.addExhaustionToken({ target: context.targets.myChar })
+                },
+                messages: {
+                    Wound: '{0} chooses to add 1 wound to {1}',
+                    Exhaust: '{0} chooses to add 1 exhaustion token to {1}'
                 }
             }))
         });

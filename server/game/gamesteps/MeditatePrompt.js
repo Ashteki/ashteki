@@ -102,6 +102,10 @@ class MeditatePrompt extends UiPrompt {
             buttons.push({ text: 'Stop meditating', arg: 'done' });
         }
 
+        if (this.count === 0) {
+            buttons.push({ text: 'Cancel', arg: 'done' });
+        }
+
         return {
             selectCard: !this.cardSelected,
             selectDie: this.cardSelected,
@@ -196,9 +200,10 @@ class MeditatePrompt extends UiPrompt {
             );
             // this.choosingPlayer.discardSelectedCards();
             this.game.addMessage(
-                '{0} meditates {1} to gain a {2}',
+                '{0} meditates {1} from their {2} to gain a {3}',
                 this.choosingPlayer,
                 cards,
+                cards[0].location,
                 dice
             );
             if (!this.firstTopOfDeck && this.isTopDeck) {
@@ -216,7 +221,13 @@ class MeditatePrompt extends UiPrompt {
         }
 
         if (arg === 'done') {
-            this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
+            if (this.count > 0) {
+                this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
+            }
+            // If they didn't meditate at all, recover the side action
+            if (this.count == 0) {
+                this.context.player.actions.side += 1;
+            }
 
             player.sortDice();
 

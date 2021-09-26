@@ -124,7 +124,8 @@ const Effects = {
     additionalDraw: (amount) => EffectBuilder.player.flexible('additionalDraw', amount),
     playerCannot: (type, condition) =>
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
-    skipStep: (step) => EffectBuilder.player.static('skipStep', step)
+    skipStep: (step) => EffectBuilder.player.static('skipStep', step),
+    preventAutoDice: () => EffectBuilder.player.static('preventAutoDice')
 };
 
 module.exports = Effects;

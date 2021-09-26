@@ -4,12 +4,16 @@ const Card = require('../../Card.js');
 class BoundSoul extends Card {
     setupCardAbilities(ability) {
         this.play({
-            effect: 'return an ally from discard to hand',
             target: {
+                // Currently: Choose a ally
+                activePromptTitle: 'Choose an ally',
                 controller: 'self',
                 location: Location.Discard,
                 cardType: CardType.Ally,
-                gameAction: ability.actions.moveCard({ destination: Location.Hand, shuffle: true })
+                gameAction: ability.actions.moveCard({
+                    destination: Location.Hand,
+                    shuffle: true
+                })
             }
         });
     }

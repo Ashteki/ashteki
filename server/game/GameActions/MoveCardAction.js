@@ -1,3 +1,4 @@
+const { ContextReplacementPlugin } = require('webpack');
 const { Location } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
@@ -5,6 +6,7 @@ class MoveCardAction extends CardGameAction {
     setDefaultProperties() {
         this.destination = '';
         this.shuffle = false;
+        this.showMessage = false;
     }
 
     setup() {
@@ -13,7 +15,7 @@ class MoveCardAction extends CardGameAction {
         this.effectMsg = 'move {0} to {1}';
         this.effectArgs = () => {
             return this.destination;
-        }
+        };
     }
 
     canAffect(card, context) {
@@ -29,18 +31,31 @@ class MoveCardAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent('onMoveCard', { card: card, context: context }, () => {
-            let origin = card.location;
-            context.player.moveCard(card, this.destination);
-            if (
-                this.shuffle &&
-                this.target.findIndex((c) => c === card) === this.target.length - 1
-            ) {
-                if (this.destination === Location.Deck || origin === Location.Deck) {
-                    context.player.shuffleDeck();
+        return super.createEvent(
+            'onMoveCard',
+            { card: card, context: context, showMessage: this.showMessage },
+            () => {
+                let origin = card.location;
+                context.player.moveCard(card, this.destination);
+                if (
+                    this.shuffle &&
+                    this.target.findIndex((c) => c === card) === this.target.length - 1
+                ) {
+                    if (this.destination === Location.Deck || origin === Location.Deck) {
+                        context.player.shuffleDeck();
+                    }
+                }
+
+                if (this.showMessage) {
+                    context.game.addMessage(
+                        '{0} moves {1} to their {2}',
+                        context.player,
+                        card,
+                        this.destination
+                    );
                 }
             }
-        });
+        );
     }
 }
 

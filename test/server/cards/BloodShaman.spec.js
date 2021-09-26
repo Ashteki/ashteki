@@ -47,6 +47,19 @@ describe('Blood Shaman', function () {
         expect(this.player1.dicepool[0].level).toBe('power');
     });
 
+    it('triggers dice choice when PB is undamaged', function () {
+        this.aradelSummergaard.tokens.damage = 0;
+        expect(this.player1.dicepool[0].level).toBe('class');
+        this.player1.play(this.moltenGold);
+        this.player1.clickCard(this.bloodShaman);
+
+        expect(this.player1).toHavePrompt('Choose a die');
+        this.player1.clickDie(0);
+
+        expect(this.aradelSummergaard.damage).toBe(0);
+        expect(this.player1.dicepool[0].level).toBe('power');
+    });
+
     it('triggers when exhausted', function () {
         this.bloodShaman.tokens.exhaustion = 1;
 

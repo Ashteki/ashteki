@@ -15,7 +15,7 @@ class Earthquake extends Card {
                 })
             },
             then: {
-                message: '{1} deals 1 extra damage to all other units',
+                message: '{1} deals 1 damage to all other units',
                 gameAction: ability.actions.dealDamage((context) => ({
                     amount: 1,
                     target: context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card)

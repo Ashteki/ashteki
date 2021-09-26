@@ -5,7 +5,7 @@ class SunshieldSentry extends Card {
     setupCardAbilities(ability) {
         this.alert();
 
-        this.reaction({
+        this.interrupt({
             title: 'Deflect',
             when: {
                 onDefendersDeclared: (event, context) => {

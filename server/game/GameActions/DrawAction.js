@@ -13,7 +13,10 @@ class DrawAction extends PlayerAction {
     setup() {
         super.setup();
         this.name = 'draw';
-        this.effectMsg = 'draw ' + this.amount + ' cards';
+        this.effectMsg = 'draw ' + this.amount + ' card';
+        if (this.amount > 1) {
+            this.effectMsg += 's';
+        }
     }
 
     canAffect(player, context) {

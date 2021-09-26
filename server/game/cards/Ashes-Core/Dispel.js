@@ -10,12 +10,15 @@ class Dispel extends Card {
                         amount: 2,
                         promptForSelect: {
                             cardCondition: (card) => card.status > 0
-                        }
+                        },
+                        showMessage: true
                     }),
                     'Return alteration': ability.actions.returnToDeck({
                         promptForSelect: {
                             cardType: UpgradeCardTypes
-                        }
+                        },
+                        reveal: true,
+                        showMessage: true
                     })
                 }
             }))
