@@ -15,19 +15,21 @@ class ChaosGravity extends Card {
                 optional: true,
                 targets: {
                     from: {
-                        activePromptTitle: 'Choose an exhausted unit',
+                        activePromptTitle: 'Choose a unit to move exhaustion from',
                         cardType: BattlefieldTypes
                     },
                     to: {
                         dependsOn: 'from',
-                        activePromptTitle: 'Choose a target unit',
+                        activePromptTitle: 'Choose a unit to move exhaustion to',
                         cardType: BattlefieldTypes,
                         cardCondition: (card, context) =>
                             card.controller === context.targets.from.controller,
                         gameAction: ability.actions.moveToken((context) => ({
                             from: context.targets.from,
                             to: context.targets.to,
-                            type: 'exhaustion'
+                            // Assumption: normally the player would want to move an exhaustion token in preference to a gravityFlux exhaustion token
+                            type: context.targets.from.hasToken('exhaustion') ? 'exhaustion':
+                                context.targets.from.hasToken('gravityFlux') ? 'gravityFlux': 'exhaustion'
                         }))
                     }
                 },
@@ -37,7 +39,7 @@ class ChaosGravity extends Card {
                     alwaysTriggers: true,
                     optional: true,
                     target: {
-                        activePromptTitle: 'Choose an exhausted unit',
+                        activePromptTitle: 'Choose a unit to remove exhaustion from',
                         cardType: BattlefieldTypes,
                         gameAction: ability.actions.removeExhaustion()
                     },

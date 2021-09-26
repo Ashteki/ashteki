@@ -8,15 +8,21 @@ class EchoGreystorm extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             target: {
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.exhaust({
-                    postHandler: (context) => {
-                        context.game.addAlert(
-                            'danger',
-                            'Gravity flux exhaustion token must be removed using MANUAL MODE'
-                        );
-                    }
-                })
+                gameAction: ability.actions.exhaustGravityFlux()
             }
+        });
+        this.forcedInterrupt({
+            autoResolve: true,
+            title: 'Remove Gravity Flux Tokens', // I need to remove the effect message
+            inexhaustible: true,
+            when: {
+                onTurnEnded: () => true
+            },
+            gameAction: ability.actions.removeToken((context) => ({
+                all: true,
+                type: 'gravityFlux',
+                target: context.game.cardsInPlay.filter((card) => card.hasToken('gravityFlux'))
+            }))
         });
     }
 }

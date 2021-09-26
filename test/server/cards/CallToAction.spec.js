@@ -50,7 +50,7 @@ describe('Call to action reaction', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
-                    phoenixborn: 'coal-roarkwin',
+                    phoenixborn: 'echo-greystorm',
                     inPlay: ['frostback-bear', 'iron-worker']
                 },
                 player2: {
@@ -91,6 +91,28 @@ describe('Call to action reaction', function () {
             expect(this.aradelSummergaard.damage).toBe(0); // no damage
             expect(this.frostbackBear.damage).toBe(2);
         });
-    });
 
+        it('can remove Gravity Flux exhaustion token', function () {
+            expect(this.frostbackBear.damage).toBe(0);
+            expect(this.sunSister.exhausted).toBe(true);
+
+            this.player1.clickCard(this.echoGreystorm);
+            this.player1.clickPrompt('Gravity Flux');
+            this.player1.clickCard(this.nightshadeSwallow);
+
+            expect(this.nightshadeSwallow.tokens.gravityFlux).toBe(1);
+
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.aradelSummergaard); // target pb
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickPrompt('Done'); // end attacker choice
+
+            // reaction
+            this.player2.clickCard(this.callToAction);
+            this.player2.clickCard(this.nightshadeSwallow);
+            expect(this.nightshadeSwallow.exhausted).toBe(false);
+            expect(this.player2).toHavePrompt('Choose a blocker');
+            expect(this.player2).toBeAbleToSelect(this.nightshadeSwallow);
+        });
+    });
 });

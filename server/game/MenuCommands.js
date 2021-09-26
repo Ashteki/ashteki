@@ -27,6 +27,14 @@ class MenuCommands {
                 game.addAlert('danger', '{0} removes a status from {1}', player, card);
                 card.removeToken('status', 1);
                 break;
+            case 'addGravityFlux':
+                game.addAlert('danger', '{0} adds gravity flux exhaustion to {1}', player, card);
+                card.addToken('gravityFlux', 1);
+                break;
+            case 'remGravityFlux':
+                game.addAlert('danger', '{0} removes gravity flux exhaustion from {1}', player, card);
+                card.removeToken('gravityFlux', 1);
+                break;
             case 'control':
                 if (player.opponent) {
                     game.addAlert(

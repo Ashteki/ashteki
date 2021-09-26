@@ -77,7 +77,9 @@ class Card extends PlayableObject {
             { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
             { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
             { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
-            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' }
+            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
+            { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
+            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' }
         ];
         if (this.type === CardType.Phoenixborn) {
             this.menu.push({ command: 'guarded', text: 'toggle guarded', menu: 'main' });
@@ -812,8 +814,16 @@ class Card extends PlayableObject {
         return this.hasToken('exhaustion') ? this.tokens.exhaustion : 0;
     }
 
+    get exhaustionGravityFlux() {
+        return this.hasToken('gravityFlux') ? this.tokens.exhaustionGravityFlux : 0;
+    }
+
     get exhausted() {
-        return this.hasToken('exhaustion') || this.anyEffect('exhausted');
+        return (
+            this.hasToken('exhaustion') ||
+            this.anyEffect('exhausted') ||
+            this.hasToken('gravityFlux')
+        );
     }
 
     get damage() {
@@ -826,6 +836,14 @@ class Card extends PlayableObject {
 
     unExhaust() {
         this.clearToken('exhaustion');
+    }
+
+    exhaustGravityFlux() {
+        this.addToken('gravityFlux');
+    }
+
+    unExhaustGravityFlux() {
+        this.clearToken('gravityFlux');
     }
 
     ready() {

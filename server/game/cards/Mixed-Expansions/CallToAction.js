@@ -15,7 +15,11 @@ class CallToAction extends Card {
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.exhausted,
                 controller: 'self',
-                gameAction: ability.actions.removeExhaustion()
+                // Assumption: normally the player would want to remove an exhaustion token in preference to a gravityFlux exhaustion token
+                gameAction: ability.actions.removeToken((context) => ({
+                    type: context.target.hasToken('exhaustion') ? 'exhaustion' :
+                    context.target.hasToken('gravityFlux') ? 'gravityFlux': 'exhaustion'
+                }))
             }
         });
     }

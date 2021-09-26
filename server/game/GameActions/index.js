@@ -19,6 +19,7 @@ module.exports = {
     DiscardTopOfDeckAction: require('./DiscardTopOfDeckAction'),
     DrawAction: require('./DrawAction'),
     ExhaustAction: require('./ExhaustAction'),
+    ExhaustGravityFluxAction: require('./ExhaustGravityFluxAction'),
     HealAction: require('./HealAction'),
     JointGameAction: require('./JointGameAction'),
     LastingEffectAction: require('./LastingEffectAction'),
