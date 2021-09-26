@@ -5782,14 +5782,6 @@
                 {
                     "name": "Indiglow Creeper",
                     "stub": "indiglow-creeper"
-                },
-                {
-                    "name": "Luminous Seedling",
-                    "stub": "luminous-seedling"
-                },
-                {
-                    "name": "Brilliant Thorn",
-                    "stub": "brilliant-thorn"
                 }
             ]
         },
@@ -6110,10 +6102,6 @@
                 {
                     "name": "Salamander Monk",
                     "stub": "salamander-monk"
-                },
-                {
-                    "name": "Salamander Monk Spirit",
-                    "stub": "salamander-monk-spirit"
                 }
             ]
         },
