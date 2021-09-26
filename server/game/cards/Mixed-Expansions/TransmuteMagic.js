@@ -30,7 +30,7 @@ class TransmuteMagic extends Card {
                 })),
                 ability.actions.setDieLevel((context) => ({
                     target: context.targets.inactive,
-                    level: Level.Power
+                    level: Level.Power // to do: add options to change dice to alternative sides
                 }))
             ],
             then: {

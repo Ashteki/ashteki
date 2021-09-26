@@ -6,14 +6,10 @@ class HiddenPower extends Card {
             effect: 'Draw a card and change 5 dice',
             gameAction: ability.actions.draw(),
             then: {
-                target: {
-                    toSelect: 'die',
-                    dieCondition: (d) => !d.exhausted,
-                    mode: 'upTo',
+                gameAction: ability.actions.changeDice({
                     numDice: 5,
-                    owner: 'self',
-                    gameAction: ability.actions.setDieLevel({ level: 'power' }) //todo: choice
-                }
+                    owner: 'self'
+                })
             }
         });
     }

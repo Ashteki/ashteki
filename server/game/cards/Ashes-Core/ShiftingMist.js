@@ -6,14 +6,10 @@ class ShiftingMist extends Card {
             title: 'Shifting Mist',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
-            target: {
-                toSelect: 'die',
-                mode: 'upTo',
+            gameAction: ability.actions.changeDice({
                 numDice: 2,
-                owner: 'self',
-                dieCondition: (die) => !die.exhausted,
-                gameAction: ability.actions.setDieLevel({ level: 'power' })
-            }
+                owner: 'self'
+            })
         });
     }
 }

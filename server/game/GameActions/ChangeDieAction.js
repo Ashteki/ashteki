@@ -6,6 +6,10 @@ class ChangeDieAction extends DiceGameAction {
         this.change = change;
     }
 
+    setDefaultProperties() {
+        this.showMessage = false;
+    }
+
     setup() {
         super.setup();
         // this.name = this.change + 'Die';
@@ -14,6 +18,14 @@ class ChangeDieAction extends DiceGameAction {
     }
 
     getEvent(die, context) {
+        if (this.showMessage) {
+            if (this.change == 'lower') {
+                context.game.addMessage('{0} lowers a {1} die', context.player, die);
+            }
+            if (this.change == 'raise') {
+                context.game.addMessage('{0} raises a {1} die', context.player, die);
+            }
+        }
         return super.createEvent('onDieChange', { die: die, context: context }, () =>
             this.change == 'raise' ? die.raise() : die.lower()
         );
