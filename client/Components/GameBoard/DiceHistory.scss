@@ -1,3 +1,16 @@
 .dice-history td{
     text-align: center;
 }
+
+.cardHistoryRow{
+    display: flex;
+
+}
+.cardHistoryRow div{
+    margin-left: 3px;
+}
+
+.ch-rowlabel{
+    width: 30px;
+    text-align: center;
+}

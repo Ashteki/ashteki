@@ -29,6 +29,7 @@ class Player extends GameObject {
         this.firstFiveChosen = false;
         this.recoveryDicePinned = false;
         this.pinnedDice = [];
+        this.firstFive = [];
         this.diceHistory = [];
 
         this.clock = ClockSelector.for(this, clockdetails);
@@ -724,6 +725,10 @@ class Player extends GameObject {
         };
     }
 
+    recordHand() {
+        this.firstFive = this.hand.map((c) => c.getShortSummary());
+    }
+
     /**
      * This information is passed to the UI
      * @param {Player} activePlayer
@@ -765,7 +770,6 @@ class Player extends GameObject {
             wins: this.wins,
             dice: this.getSummaryForDiceList(this.dice, activePlayer),
             diceCounts: this.diceCounts,
-            diceHistory: this.diceHistory,
             actions: this.actions,
             phoenixborn: this.phoenixborn.getSummary(activePlayer),
             firstPlayer: this.firstPlayer
@@ -783,6 +787,8 @@ class Player extends GameObject {
                 return 0;
             });
             state.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer, true);
+            state.firstFive = this.firstFive;
+            state.diceHistory = this.diceHistory;
         }
 
         if (this.isTopCardShown()) {

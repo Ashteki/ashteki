@@ -10,7 +10,8 @@ import {
     faCopy,
     faWrench,
     faCogs,
-    faComment
+    faComment,
+    faHistory
 } from '@fortawesome/free-solid-svg-icons';
 import { Badge } from 'react-bootstrap';
 
@@ -196,10 +197,11 @@ export class PlayerStats extends React.Component {
                 {this.props.showMessages && (
                     <div className='state chat-status'>
                         <div className='state'>
-                            <a href='#' onClick={this.props.onDiceHistoryClick} className='pl-1'>
-                                <span className='phg-basic-magic die' title='Dice history'>
-                                    {' '}
-                                </span>
+                            <a href='#' className='pr-1 pl-1'>
+                                <FontAwesomeIcon
+                                    icon={faHistory}
+                                    onClick={this.props.onDiceHistoryClick}
+                                ></FontAwesomeIcon>
                             </a>
                         </div>
                         <div className='state'>

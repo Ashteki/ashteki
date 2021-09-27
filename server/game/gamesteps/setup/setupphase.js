@@ -33,6 +33,7 @@ class SetupPhase extends Phase {
     startGame() {
         _.each(this.game.getPlayers(), (player) => {
             player.readyToStart = true;
+            player.recordHand();
         });
         this.game.raiseEvent('onGameStarted');
     }
