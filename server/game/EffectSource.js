@@ -39,17 +39,6 @@ class EffectSource extends GameObject {
         );
     }
 
-    // until MY next turn
-    untilNextTurn(propertyFactory) {
-        let properties = propertyFactory(AbilityDsl);
-        return this.addEffectToEngine(
-            Object.assign(
-                { duration: 'untilNextTurn', location: 'any', turnDuration: 2 },
-                properties
-            )
-        );
-    }
-
     /**
      * Applies a lasting effect which lasts until an event contained in the
      * `until` property for the effect has occurred.

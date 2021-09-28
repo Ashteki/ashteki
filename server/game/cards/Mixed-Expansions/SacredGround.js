@@ -8,8 +8,10 @@ class SacredGround extends Card {
             location: 'spellboard',
             gameAction: ability.actions.cardLastingEffect((context) => ({
                 target: context.player.unitsInPlay,
-                duration: 'untilNextTurn',
-                effect: ability.effects.modifyArmor(1)
+                effect: ability.effects.modifyArmor(1),
+                until: {
+                    onBeginTurn: (event) => event.player === context.player
+                }
             }))
         });
     }
