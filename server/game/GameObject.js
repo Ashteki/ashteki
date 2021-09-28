@@ -43,8 +43,12 @@ class GameObject {
         return filteredEffects.reduce((total, effect) => total + effect.getValue(this), 0);
     }
 
-    anyEffect(type) {
-        return this.effects.filter((effect) => effect.type === type).length > 0;
+    // any active effects
+    anyEffect(type, context = null) {
+        return (
+            this.effects.filter((effect) => effect.type === type && effect.checkContext(context))
+                .length > 0
+        );
     }
 
     mostRecentEffect(type) {

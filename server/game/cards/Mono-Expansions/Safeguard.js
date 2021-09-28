@@ -8,7 +8,10 @@ class Safeguard extends Card {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 controller: 'self',
                 gameAction: ability.actions.cardLastingEffect((context) => ({
-                    effect: ability.effects.preventAllDamage(this),
+                    effect: ability.effects.preventAllDamage(
+                        this,
+                        (context, effectContext) => context.source.controller === effectContext.player.opponent
+                    ),
                     until: {
                         onBeginTurn: (event) => event.player === context.player
                     }

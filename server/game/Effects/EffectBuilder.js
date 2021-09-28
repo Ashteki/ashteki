@@ -8,8 +8,8 @@ const DetachedEffect = require('./DetachedEffect');
 
 const EffectBuilder = {
     card: {
-        static: (type, value) => (game, source, props) =>
-            new CardEffect(game, source, props, new StaticEffect(type, value)),
+        static: (type, value, contextFunc) => (game, source, props) =>
+            new CardEffect(game, source, props, new StaticEffect(type, value, contextFunc)),
         dynamic: (type, value) => (game, source, props) =>
             new CardEffect(game, source, props, new DynamicEffect(type, value)),
         detached: (type, value) => (game, source, props) =>

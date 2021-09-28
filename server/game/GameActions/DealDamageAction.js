@@ -76,7 +76,7 @@ class DealDamageAction extends CardGameAction {
             !(this.unpreventable || params.damageSource.anyEffect('unpreventable'));
 
         if (params.preventable) {
-            if (card.anyEffect('preventAllDamage')) {
+            if (card.anyEffect('preventAllDamage', context)) {
                 let preventer = card.getEffects('preventAllDamage')[0];
                 context.game.addMessage('{0} prevents damage to {1}', preventer, card);
 
@@ -91,7 +91,6 @@ class DealDamageAction extends CardGameAction {
                 let preventAmount = card.sumEffects('preventNonAttackDamage');
                 params.amount = params.amount - preventAmount;
             }
-
         }
 
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {

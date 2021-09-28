@@ -13,7 +13,7 @@ const binaryCardEffects = [
 ];
 
 class StaticEffect {
-    constructor(type = '', value) {
+    constructor(type = '', value, contextFunc) {
         this.type = type;
         if (value instanceof EffectValue) {
             this.value = value;
@@ -21,6 +21,7 @@ class StaticEffect {
             this.value = new EffectValue(value);
         }
 
+        this.contextFunc = contextFunc;
         this.context = null;
         this.duration = '';
     }
@@ -61,6 +62,11 @@ class StaticEffect {
         }
 
         return true;
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    checkContext(eventContext) {
+        return this.contextFunc ? this.contextFunc(eventContext, this.context) : true;
     }
 
     hasLongerDuration(effect) {

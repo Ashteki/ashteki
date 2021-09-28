@@ -75,7 +75,7 @@ const Effects = {
     preventBlock: () => EffectBuilder.card.static('preventBlock'),
     preventDamage: (amount) => EffectBuilder.card.static('preventDamage', amount),
     preventNonAttackDamage: (amount) => EffectBuilder.card.static('preventNonAttackDamage', amount),
-    preventAllDamage: (shield) => EffectBuilder.card.static('preventAllDamage', shield),
+    preventAllDamage: (shield, contextFunc) => EffectBuilder.card.static('preventAllDamage', shield, contextFunc),
     cannotBeGuarded: () => EffectBuilder.card.static('cannotBeGuarded'),
 
     // Player effects
