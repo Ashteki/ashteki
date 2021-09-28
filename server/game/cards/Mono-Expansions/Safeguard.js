@@ -10,7 +10,7 @@ class Safeguard extends Card {
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     effect: ability.effects.preventAllDamage(
                         this,
-                        (context, effectContext) => context.source.controller === effectContext.player.opponent
+                        (context, effectContext) => context.player === effectContext.player.opponent
                     ),
                     until: {
                         onBeginTurn: (event) => event.player === context.player

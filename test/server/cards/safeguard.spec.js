@@ -33,6 +33,22 @@ describe('Safeguard', function () {
         expect(this.mistSpirit.location).toBe('play area');
     });
 
+    it('prevents damage from opponents attack', function () {
+        expect(this.mistSpirit.damage).toBe(0);
+
+        this.player1.clickCard(this.safeguard);
+        this.player1.clickPrompt('Play this action');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.mistSpirit);
+        this.player1.endTurn();
+        this.player2.clickAttack(this.mistSpirit);
+        this.player2.clickCard(this.hammerKnight);
+        this.player1.clickDone();
+        this.player1.clickYes();
+        expect(this.mistSpirit.damage).toBe(0);
+        expect(this.mistSpirit.location).toBe('play area');
+    });
+
     it('does not prevent damage from own action spell', function () {
         expect(this.mistSpirit.damage).toBe(0);
 
