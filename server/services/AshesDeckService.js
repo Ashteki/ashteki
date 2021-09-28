@@ -48,7 +48,7 @@ class AshesDeckService {
         }
         const searchFields = { username: userName };
         if (nameSearch !== '') {
-            searchFields.name = { $regex: nameSearch };
+            searchFields.name = { $regex: nameSearch, $options: 'i' };
         }
         return await this.decks.find(searchFields, {
             sort: { lastUpdated: -1 },
