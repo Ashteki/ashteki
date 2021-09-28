@@ -25,7 +25,10 @@ class FirstFivePrompt extends AllPlayerPrompt {
         return {
             selectCard: true,
             menuTitle: 'Choose your first five',
-            buttons: [{ text: 'Start the Game', arg: 'done' }],
+            buttons: [
+                { text: 'Start the Game', arg: 'done' },
+                { text: 'Clear first five', arg: 'clear' }
+            ],
             promptTitle: 'First Five'
         };
     }
@@ -45,13 +48,27 @@ class FirstFivePrompt extends AllPlayerPrompt {
         ) {
             // add
             this.selectedCards[player.name].push(card);
+            if (card.location == 'deck') {
+                player.moveCard(card, 'hand');
+            }
+            this.selectableCards[player.name] = this.selectableCards[player.name].filter(
+                (c) => c.name !== card.name
+            );
+            this.selectableCards[player.name].push(card);
         } else {
             // remove it
             this.selectedCards[player.name] = this.selectedCards[player.name].filter(
                 (c) => c !== card
             );
+            if (card.location == 'hand') {
+                player.moveCard(card, 'deck');
+            }
+            for (const c of player.deck.filter((c) => c.name == card.name)) {
+                this.selectableCards[player.name].push(c);
+            }
         }
         player.setSelectedCards(this.selectedCards[player.name]);
+        player.setSelectableCards(this.selectableCards[player.name]);
     }
 
     highlightSelectableCards() {
@@ -67,7 +84,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
     }
 
     cardCondition(card) {
-        return card.location === 'deck';
+        return card.location === 'deck' || card.location === 'hand';
     }
 
     waitingPrompt() {
@@ -75,9 +92,20 @@ class FirstFivePrompt extends AllPlayerPrompt {
     }
 
     menuCommand(player, arg) {
+        if (arg === 'clear') {
+            for (const card of this.selectedCards[player.name]) {
+                player.moveCard(card, 'deck');
+            }
+            this.selectedCards[player.name] = [];
+            player.setSelectedCards(this.selectedCards[player.name]);
+            this.selectableCards[player.name] = player.deck;
+            player.setSelectableCards(this.selectableCards[player.name]);
+        }
         if (arg === 'done') {
             for (const card of this.selectedCards[player.name]) {
-                player.moveCard(card, 'hand');
+                if (card.location != 'hand') {
+                    player.moveCard(card, 'hand');
+                }
             }
 
             this.game.addMessage('{0} has chosen their first five', player);
