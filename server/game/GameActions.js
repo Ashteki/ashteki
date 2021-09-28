@@ -59,9 +59,6 @@ const Actions = {
     draw: (propertyFactory) => new GameActions.DrawAction(propertyFactory), // amount = 1
     forRemainderOfTurn: (propertyFactory) =>
         new GameActions.LastingEffectAction(propertyFactory, 1),
-    untilNextTurn: (propertyFactory) => new GameActions.LastingEffectAction(propertyFactory, 2),
-    untilEndOfMyNextTurn: (propertyFactory) =>
-        new GameActions.LastingEffectAction(propertyFactory, 3),
     lastingEffect: (propertyFactory) => new GameActions.LastingEffectAction(propertyFactory),
     rearrangeCards: (propertyFactory) => new GameActions.RearrangeCardsAction(propertyFactory),
     filterDeck: (propertyFactory) => new GameActions.FilterDeckAction(propertyFactory),

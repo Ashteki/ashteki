@@ -11,12 +11,15 @@ class SpectralAssassin extends Card {
                     return event.battles.some((b) => b.attacker === context.source);
                 }
             },
-            gameAction: ability.actions.forRemainderOfTurn({
+            gameAction: ability.actions.lastingEffect({
                 targetController: 'opponent',
                 effect: ability.effects.playerCannot(
                     'play',
                     (context) => context.source.type === CardType.ReactionSpell
-                )
+                ),
+                until: {
+                    onTurnEnded: () => true
+                }
             })
         });
     }

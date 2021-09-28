@@ -1205,7 +1205,7 @@ class Game extends EventEmitter {
     }
 
     raiseEndTurnEvent() {
-        this.raiseEvent('onTurnEnded', {}, () => {
+        this.raiseEvent('onTurnEnded', { player: this.activePlayer }, () => {
             this.endTurn();
         });
     }
