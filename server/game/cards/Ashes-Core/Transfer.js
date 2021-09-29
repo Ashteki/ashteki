@@ -8,6 +8,7 @@ class Transfer extends Card {
             title: 'Transfer',
             targets: {
                 tokenBoy: {
+                    ignoreTargetCheck: true,
                     activePromptTitle: 'Choose a card with tokens',
                     controller: 'any',
                     cardCondition: (card) =>
@@ -21,6 +22,8 @@ class Transfer extends Card {
                     handler: (option) => (this.chosenType = option.value)
                 },
                 receiver: {
+                    ignoreTargetCheck: true,
+
                     activePromptTitle: 'Choose a card to receive the token',
                     dependsOn: 'amount',
                     cardCondition: (card, context) =>

@@ -1,4 +1,5 @@
 const { BattlefieldTypes } = require('../../../constants.js');
+const AbilityTargetCard = require('../../AbilityTargets/AbilityTargetCard.js');
 const Card = require('../../Card.js');
 
 class GoldenVeil extends Card {
@@ -12,6 +13,12 @@ class GoldenVeil extends Card {
                         : Object.values(event.context.targets);
                     return (
                         event.context.player === context.player.opponent &&
+                        event.context.ability.targets.some(
+                            (t) =>
+                                t instanceof AbilityTargetCard &&
+                                t.properties.controller !== 'self' &&
+                                !t.properties.ignoreTargetCheck
+                        ) &&
                         subjects.some(
                             (t) =>
                                 t.controller === context.player && BattlefieldTypes.includes(t.type)

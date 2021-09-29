@@ -12,13 +12,13 @@ describe('law of Domination', function () {
                     phoenixborn: 'rin-northfell',
                     inPlay: ['hammer-knight', 'holy-knight'],
                     spellboard: [],
-                    hand: ['rins-fury'],
-                    dicepool: ['natural', 'natural']
+                    hand: ['rins-fury', 'golden-veil'],
+                    dicepool: ['natural', 'natural', 'charm']
                 }
             });
         });
 
-        it('makes two units deal damage to each other without targetting', function () {
+        it('makes two units deal damage to each other without targetting - no GV prompt', function () {
             this.player1.clickCard(this.lawOfDomination);
             this.player1.clickPrompt('Play this ready spell');
             expect(this.player2).toHavePrompt('choose a card');
@@ -30,6 +30,7 @@ describe('law of Domination', function () {
             expect(this.player1).toBeAbleToSelect(this.ironWorker);
             expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
             this.player1.clickCard(this.ironWorker);
+            expect(this.player1).toHaveDefaultPrompt(); // no GV trigger
         });
     });
 
