@@ -148,6 +148,10 @@ class MeditatePrompt extends UiPrompt {
             return false;
         }
 
+        if (die.owner !== this.choosingPlayer) {
+            return false;
+        }
+
         return this.selectDie(die);
     }
 
@@ -224,8 +228,9 @@ class MeditatePrompt extends UiPrompt {
             if (this.count > 0) {
                 this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
             }
-            // If they didn't meditate at all, recover the side action
+            // If they didn't meditate at all, recover the side action and reset the die
             if (this.count == 0) {
+                this.resetDice();
                 this.context.player.actions.side += 1;
             }
 
