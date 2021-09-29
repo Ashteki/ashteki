@@ -5,7 +5,8 @@ describe('Hypnotize', function () {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['iron-worker'],
                 spellboard: ['hypnotize'],
-                dicepool: ['charm', 'charm']
+                dicepool: ['charm', 'charm', 'illusion'],
+                hand: ['reflections-in-the-water']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
