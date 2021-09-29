@@ -11,6 +11,7 @@ class LawOfGrace extends Card {
         });
 
         this.persistentEffect({
+            condition: () => !this.exhausted,
             targetController: 'Any',
             match: (card) => card.type === CardType.Phoenixborn,
             effect: ability.effects.preventNonAttackDamage(1)

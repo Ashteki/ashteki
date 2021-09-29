@@ -54,9 +54,8 @@ describe('law of Assurance', function () {
                     hand: ['call-upon-the-realms']
                 },
                 player2: {
-                    phoenixborn: 'rin-northfell',
+                    phoenixborn: 'noah-redmoon',
                     inPlay: ['hammer-knight'],
-                    hand: ['rins-fury'],
                     dicepool: ['illusion', 'illusion']
                 }
             });
@@ -93,6 +92,28 @@ describe('law of Assurance', function () {
         it('does not stop own dice being changed by ChangeDiceAction', function () {
             this.player1.clickCard(this.callUponTheRealms);
             expect(this.player1).toHavePromptButton('Play this action');
+        });
+
+        it('stops taking effect when the law is exhausted', function () {
+            this.player1.endTurn();
+            this.player2.clickCard(this.noahRedmoon);
+            this.player2.clickPrompt('Shadow Target');
+            this.player2.clickDie(1);
+            this.player2.clickCard(this.lawOfAssurance);
+
+            this.player2.clickPrompt('Attack');
+            this.player2.clickCard(this.coalRoarkwin);
+            this.player2.clickCard(this.hammerKnight);
+            this.player2.clickPrompt('Done');
+            this.player1.clickPrompt('Done');
+            this.player2.endTurn();
+
+            this.player1.clickCard(this.magicSyphon);
+            this.player1.clickPrompt('Magic Syphon');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('done');
+            expect(this.player1).toBeAbleToSelectDie(this.player1.dicepool[0]);
+            expect(this.player1).toBeAbleToSelectDie(this.player2.dicepool[0]);
         });
     });
 });

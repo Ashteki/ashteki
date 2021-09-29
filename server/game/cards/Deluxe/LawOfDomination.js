@@ -34,6 +34,7 @@ class LawOfDomination extends Card {
         });
 
         this.persistentEffect({
+            condition: () => !this.exhausted,
             targetController: 'Any',
             effect: ability.effects.playerCannot('preventFightDamage')
         });

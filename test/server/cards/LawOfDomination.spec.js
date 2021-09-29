@@ -95,4 +95,33 @@ describe('law of Domination', function () {
             expect(this.frostFang.location).toBe('discard');
         });
     });
+
+    describe('in play yet exhausted, counter', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['frost-fang'],
+                    dicepool: ['divine', 'natural'],
+                    hand: ['freezing-blast'],
+                    spellboard: ['law-of-domination']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['mist-spirit', 'iron-worker'],
+                    dicepool: ['natural', 'natural']
+                }
+            });
+            this.lawOfDomination.tokens.exhaustion = 1;
+        });
+
+        it("doesn't stop fight damage from being prevented", function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.frostFang);
+            this.player2.clickPrompt('Done');
+            this.player2.clickPrompt('Yes');
+            expect(this.frostFang.location).not.toBe('discard');
+        });
+    });
 });
