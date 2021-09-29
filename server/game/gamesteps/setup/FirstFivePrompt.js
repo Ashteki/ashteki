@@ -62,9 +62,10 @@ class FirstFivePrompt extends AllPlayerPrompt {
             );
             if (card.location == 'hand') {
                 player.moveCard(card, 'deck');
-            }
-            for (const c of player.deck.filter((c) => c.name == card.name)) {
-                this.selectableCards[player.name].push(c);
+
+                for (const c of player.deck.filter((c) => c.name == card.name)) {
+                    this.selectableCards[player.name].push(c);
+                }
             }
         }
         player.setSelectedCards(this.selectedCards[player.name]);
