@@ -68,19 +68,17 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
 
                     // after draw, and damage if unable then deal damage for the remainder
                     if (this.remainderDamages && this.remainder[player.uuid] > 0) {
-                        const sourceController = this.source ? this.source.controller : null;
-                        this.game.actions
-                            .dealDamage({
-                                amount: this.remainder[player.uuid],
-                                target: player.phoenixborn
-                            })
-                            .resolve(player, this.game.getFrameworkContext(sourceController));
+                        for (let i = 0; i < this.remainder[player.uuid]; i++) {
+                            const sourceController = this.source ? this.source.controller : null;
+                            this.game.actions
+                                .dealDamage({
+                                    amount: 1,
+                                    target: player.phoenixborn
+                                })
+                                .resolve(player, this.game.getFrameworkContext(sourceController));
 
-                        this.game.addMessage(
-                            '{0} receives {1} damage',
-                            player.phoenixborn,
-                            this.remainder[player.uuid]
-                        );
+                            this.game.addMessage('{0} receives 1 damage', player.phoenixborn);
+                        }
                     }
                 }
             });
