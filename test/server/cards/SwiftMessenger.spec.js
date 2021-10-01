@@ -4,10 +4,11 @@ describe('Swift Messenger', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['mist-spirit', 'iron-worker'],
-                    spellboard: ['summon-butterfly-monk'],
+                    inPlay: ['mist-spirit', 'iron-worker', 'salamander-monk'],
+                    spellboard: ['summon-butterfly-monk', 'summon-salamander-monk'],
                     hand: ['beast-tamer'],
-                    dicepool: ['charm', 'charm']
+                    dicepool: ['charm', 'charm', 'sympathy'],
+                    archives: ['salamander-monk-spirit']
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
@@ -42,6 +43,20 @@ describe('Swift Messenger', function () {
             expect(this.swiftMessenger.location).toBe('play area');
             expect(this.player2.player.limitedPlayed).toBe(0);
             expect(this.player2).toHaveDefaultPrompt();
+        });
+
+        it("does not use a main action when played as reaction on controller's turn", function () {
+            this.player1.endTurn();
+            this.player2.clickDie(0);
+            this.player2.clickPrompt('Natural Dice Power');
+            this.player2.clickCard(this.salamanderMonk);
+            expect(this.player2).toHavePrompt(
+                'Any Reactions to Salamander Monk Spirit being played?'
+            );
+            expect(this.player2).toBeAbleToSelect(this.swiftMessenger);
+            this.player2.clickCard(this.swiftMessenger);
+            expect(this.swiftMessenger.location).toBe('play area');
+            expect(this.player2.actions.main).toBe(true);
         });
     });
 
