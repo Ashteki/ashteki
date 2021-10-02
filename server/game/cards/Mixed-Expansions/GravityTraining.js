@@ -17,23 +17,13 @@ class GravityTraining extends Card {
                     ]
                 ])
             ],
-            targets: {
-                unit: {
-                    cardType: BattlefieldTypes,
-                    controller: 'self',
-                    cardCondition: (card) => card.exhausted
-                },
-                conj: {
-                    dependsOn: 'unit',
-                    controller: 'self',
-                    cardType: CardType.ConjuredAlteration,
-                    cardCondition: (card) => card.id === 'enhanced-strength',
-                    location: 'archives',
-                    gameAction: ability.actions.attach((context) => ({
-                        upgrade: context.targets.conj,
-                        target: context.targets.unit
-                    }))
-                }
+            target: {
+                cardType: BattlefieldTypes,
+                controller: 'self',
+                cardCondition: (card) => card.exhausted,
+                gameAction: ability.actions.attachConjuredAlteration({
+                    conjuredAlteration: 'enhanced-strength'
+                })
             }
         });
     }

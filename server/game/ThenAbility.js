@@ -71,14 +71,10 @@ class ThenAbility extends BaseAbility {
     }
 
     executeHandler(context) {
-        this.displayMessageAndExecuteHandler(context);
-
-        this.game.queueSimpleStep(() => this.game.checkGameState());
-    }
-
-    displayMessageAndExecuteHandler(context) {
         this.displayMessage(context);
         this.handler(context);
+
+        this.game.queueSimpleStep(() => this.game.checkGameState());
     }
 
     executeGameActionPrehandlers(context) {

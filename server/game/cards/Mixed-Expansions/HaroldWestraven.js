@@ -6,21 +6,11 @@ class HaroldWestraven extends Card {
         this.action({
             title: 'Mark Prey',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
-            targets: {
-                unit: {
-                    cardType: BattlefieldTypes
-                },
-                conj: {
-                    dependsOn: 'unit',
-                    controller: 'self',
-                    cardType: CardType.ConjuredAlteration,
-                    cardCondition: (card) => card.id === 'hunters-mark',
-                    location: 'archives',
-                    gameAction: ability.actions.attach((context) => ({
-                        upgrade: context.targets.conj,
-                        target: context.targets.unit
-                    }))
-                }
+            target: {
+                cardType: BattlefieldTypes,
+                gameAction: ability.actions.attachConjuredAlteration({
+                    conjuredAlteration: 'hunters-mark'
+                })
             }
         });
     }

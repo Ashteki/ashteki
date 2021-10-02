@@ -10,6 +10,7 @@ const Actions = {
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory, type) => new GameActions.AddTokenAction(propertyFactory, type),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
+    attachConjuredAlteration: (propertyFactory) => new GameActions.AttachConjuredAlterationAction(propertyFactory), // upgrade
     attachToPb: (propertyFactory) => new GameActions.AttachToPbAction(propertyFactory), // upgrade
     attachDie: (propertyFactory) => new GameActions.AttachDieAction(propertyFactory), // upgradeDie
     detachDie: (propertyFactory) => new GameActions.DetachDieAction(propertyFactory), // die, card

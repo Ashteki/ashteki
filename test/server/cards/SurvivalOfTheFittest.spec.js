@@ -27,7 +27,6 @@ describe('Survival of the Fittest', function () {
         this.player1.clickPrompt('Bolster');
         this.player1.clickDie(0);
         this.player1.clickCard(this.ironWorker);
-        this.player1.clickCard(this.spark);
         this.player1.actions.main = false;
         this.player1.endTurn();
         this.player2.endTurn();

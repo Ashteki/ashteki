@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType, Level } = require('../../../constants.js');
+const { BattlefieldTypes, Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -11,23 +11,15 @@ class LuluFirststone extends Card {
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
-            targets: {
-                unit: {
-                    cardType: BattlefieldTypes,
-                    controller: 'self',
-                    gameAction: ability.actions.addStatusToken()
-                },
-                conj: {
-                    dependsOn: 'unit',
-                    controller: 'self',
-                    cardType: CardType.ConjuredAlteration,
-                    cardCondition: (card) => card.id === 'spark',
-                    location: 'archives',
-                    gameAction: ability.actions.attach((context) => ({
-                        upgrade: context.targets.conj,
-                        target: context.targets.unit
-                    }))
-                }
+            target: {
+                cardType: BattlefieldTypes,
+                controller: 'self',
+                gameAction: [
+                    ability.actions.addStatusToken(),
+                    ability.actions.attachConjuredAlteration({
+                        conjuredAlteration: 'spark'
+                    })
+                ]
             }
         });
     }
