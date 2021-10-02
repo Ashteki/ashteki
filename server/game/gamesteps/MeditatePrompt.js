@@ -29,6 +29,7 @@ class MeditatePrompt extends UiPrompt {
 
         this.count = 0;
         this.levelState = {};
+        this.choosingPlayer.clearSelectedCards();
     }
 
     get cardSelected() {

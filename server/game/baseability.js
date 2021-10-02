@@ -223,7 +223,11 @@ class BaseAbility {
 
     resolveCosts(context, results) {
         // for (let cost of this.getCosts(context, results.playCosts, results.triggerCosts)) {
-        for (let cost of this.cost) {
+        let costs = this.cost;
+        if (context.ignoreActionCost) {
+            costs = costs.filter((c) => !(c instanceof ActionCost));
+        }
+        for (let cost of costs) {
             context.game.queueSimpleStep(() => {
                 if (!results.cancelled) {
                     // if (cost.addEventsToArray) {
