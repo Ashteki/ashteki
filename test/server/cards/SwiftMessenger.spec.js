@@ -1,3 +1,5 @@
+const { TypeaheadInputSingle } = require("react-bootstrap-typeahead");
+
 describe('Swift Messenger', function () {
     describe('Swift Messenger in hand', function () {
         beforeEach(function () {
@@ -78,6 +80,44 @@ describe('Swift Messenger', function () {
             expect(this.swiftMessenger.location).toBe('play area');
             expect(this.player2.dicepool[0].exhausted).toBe(true);
             expect(this.player2.player.limitedPlayed).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
+
+    describe('Swift Messenger on my turn', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['mist-spirit', 'iron-worker'],
+                    spellboard: ['summon-butterfly-monk'],
+                    hand: ['swift-messenger', 'beast-tamer'],
+                    dicepool: ['natural', 'natural', 'illusion', 'time', 'ceremonial', 'time']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['salamander-monk'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'illusion', 'illusion', 'ceremonial', 'time'],
+                    hand: [],
+                    archives: ['sleeping-widow', 'salamander-monk-spirit']
+                }
+            });
+        });
+
+        it('reaction to play after opponent unit enters play', function () {
+            expect(this.player1.actions.main).toBe(true);
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Natural Dice Power');
+            this.player1.clickCard(this.salamanderMonk);
+            expect(this.player1).toBeAbleToSelect(this.swiftMessenger);
+
+            this.player1.clickCard(this.swiftMessenger);
+
+            expect(this.swiftMessenger.location).toBe('play area');
+            expect(this.player1.actions.main).toBe(true);
+            expect(this.player1.player.limitedPlayed).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
