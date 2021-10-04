@@ -401,7 +401,7 @@ class Player extends GameObject {
         let display = 'a card';
         if (
             (!card.facedown && source !== 'hand') ||
-            ['play area', 'spellboard', 'discard', 'purged'].includes(target)
+            ['play area', 'spellboard', 'discard', 'purged', 'archives'].includes(target)
         ) {
             display = card;
         }

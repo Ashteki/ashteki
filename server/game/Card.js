@@ -70,7 +70,7 @@ class Card extends PlayableObject {
         this.locale = cardData.locale;
 
         this.menu = [
-            { command: 'tokens', text: 'Modify Tokens', menu: 'main' },
+            { command: 'tokens', text: 'Modify tokens', menu: 'main' },
             { command: 'main', text: 'Back', menu: 'tokens' },
             { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
             { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
@@ -82,8 +82,9 @@ class Card extends PlayableObject {
             { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' }
         ];
         if (this.type === CardType.Phoenixborn) {
-            this.menu.push({ command: 'guarded', text: 'toggle guarded', menu: 'main' });
-        } else {
+            this.menu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
+        }
+        if (BattlefieldTypes.includes(this.type)) {
             this.menu.push({ command: 'control', text: 'Give control', menu: 'main' });
         }
 
@@ -476,9 +477,9 @@ class Card extends PlayableObject {
             return [{ command: 'reveal', text: 'Reveal', menu: 'main' }];
         }
 
-        menu.push({ command: 'click', text: 'Select Card', menu: 'main' });
+        menu.push({ command: 'click', text: 'Select card', menu: 'main' });
         if (this.dieUpgrades.length) {
-            menu.push({ command: 'detachDie', text: 'Remove Die', menu: 'main' });
+            menu.push({ command: 'detachDie', text: 'Remove die', menu: 'main' });
         }
         if (UpgradeCardTypes.includes(this.type)) {
             menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
