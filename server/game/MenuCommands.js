@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../constants');
 const GameActions = require('./GameActions');
 
 class MenuCommands {
@@ -36,7 +37,9 @@ class MenuCommands {
                 card.removeToken('gravityFlux', 1);
                 break;
             case 'control':
-                if (player.opponent) {
+                if (card.controller != player.opponent) {
+                    game.takeControl(player.opponent, card);
+                    card.setDefaultController(player.opponent);
                     game.addAlert(
                         'danger',
                         '{0} gives {1} control of {2}',
@@ -44,7 +47,6 @@ class MenuCommands {
                         player.opponent,
                         card
                     );
-                    card.setDefaultController(player.opponent);
                 }
 
                 break;
