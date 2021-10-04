@@ -1,5 +1,6 @@
 const DiceGameAction = require('./DiceGameAction');
 
+// set a die to a specific level
 class SetDieLevelAction extends DiceGameAction {
     setDefaultProperties() {
         this.level = 'class';

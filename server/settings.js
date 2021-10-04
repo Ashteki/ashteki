@@ -5,7 +5,7 @@ const defaultOptionSettings = {
 
 const defaultSettings = {
     cardSize: 'normal',
-    background: 'Brobnar'
+    background: 'ashesreborn'
 };
 
 function getUserWithDefaultsSet(user) {

@@ -990,9 +990,6 @@ class Game extends EventEmitter {
         return new AbilityContext({ game: this, player: player });
     }
 
-    checkAlpha() {
-        return this.cardsPlayed.length === 0;
-    }
 
     /**
      * Changes the controller of a card in play to the passed player, and cleans
@@ -1007,24 +1004,7 @@ class Game extends EventEmitter {
 
         this.raiseEvent('onTakeControl', { player, card });
         card.controller.removeCardFromPile(card);
-        card.controller = player;
-        if (BattlefieldTypes.includes(card.type) && player.unitsInPlay.length > 0) {
-            let handlers = [
-                () => player.cardsInPlay.unshift(card),
-                () => player.cardsInPlay.push(card)
-            ];
-            this.promptWithHandlerMenu(this.activePlayer, {
-                activePromptTitle: {
-                    text: 'Choose which flank {{card}} should be placed on',
-                    values: { card: card.name }
-                },
-                source: card,
-                choices: ['Left', 'Right'],
-                handlers: handlers
-            });
-        } else {
-            player.cardsInPlay.push(card);
-        }
+        player.cardsInPlay.push(card);
 
         card.updateEffectContexts();
         this.queueSimpleStep(() => this.checkGameState(true));

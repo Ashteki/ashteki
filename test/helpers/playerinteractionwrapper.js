@@ -560,9 +560,9 @@ class PlayerInteractionWrapper {
         }
     }
 
-    useAction(card, omni = false) {
+    useAction(card) {
         this.clickCard(card);
-        this.clickPrompt("Use this card's " + (omni ? 'Omni' : 'Action') + ' ability');
+        this.clickPrompt("Use this card's ability");
     }
 
     playUpgrade(upgrade, target) {

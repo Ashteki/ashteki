@@ -56,7 +56,6 @@ class Card extends PlayableObject {
         this.dieUpgrades = [];
 
         this.childCards = [];
-        this.clonedNeighbors = null;
 
         this.printedAttack = cardData.attack || 0;
         this.printedLife = cardData.life || 0;
@@ -165,32 +164,6 @@ class Card extends PlayableObject {
                 }))
             })
         );
-
-        // // Hazardous
-        // this.abilities.keywordReactions.push(
-        //     this.interrupt({
-        //         title: 'Hazardous',
-        //         printedAbility: false,
-        //         when: {
-        //             onFight: (event, context) => event.card === context.source
-        //         },
-        //         gameAction: ability.actions.dealDamage((context) => ({
-        //             amount: context.source.getKeywordValue('hazardous'),
-        //             target: context.event.attacker,
-        //             damageSource: context.source,
-        //             damageType: 'hazardous'
-        //         }))
-        //     })
-        // );
-        // // Taunt
-        // this.abilities.keywordPersistentEffects.push(
-        //     this.persistentEffect({
-        //         condition: () => !!this.getKeywordValue('taunt') && this.type === 'Ally',
-        //         printedAbility: false,
-        //         match: (card) => this.neighbors.includes(card) && !card.getKeywordValue('taunt'),
-        //         effect: ability.effects.cardCannot('attackDueToTaunt')
-        //     })
-        // );
     }
 
     /**
@@ -373,11 +346,6 @@ class Card extends PlayableObject {
         );
     }
 
-    omni(properties) {
-        properties.omni = true;
-        return this.action(properties);
-    }
-
     action(properties) {
         const action = new CardAction(this.game, this, properties);
         if (action.printedAbility) {
@@ -424,7 +392,6 @@ class Card extends PlayableObject {
     }
 
     endRound() {
-        this.elusiveUsed = false;
         this.usedGuardThisRound = false;
     }
 
@@ -570,10 +537,6 @@ class Card extends PlayableObject {
         }
     }
 
-    readiesDuringReadyPhase() {
-        return !this.anyEffect('doesNotReady');
-    }
-
     hasKeyword(keyword) {
         return !!this.getKeywordValue(keyword);
     }
@@ -604,7 +567,6 @@ class Card extends PlayableObject {
         clone.controller = this.controller;
         clone.location = this.location;
         clone.parent = this.parent;
-        clone.clonedNeighbors = this.neighbors;
         clone.modifiedAttack = this.getAttack();
         clone.modifiedLife = this.getLife();
         clone.modifiedBattlefield = this.getBattlefield();
@@ -805,10 +767,6 @@ class Card extends PlayableObject {
 
     get status() {
         return this.hasToken('status') ? this.tokens.status : 0;
-    }
-
-    get warded() {
-        return this.hasToken('ward');
     }
 
     get exhaustion() {
@@ -1100,64 +1058,8 @@ class Card extends PlayableObject {
         return this.owner;
     }
 
-    isOnFlank(flank) {
-        if (this.type !== 'Ally') {
-            return false;
-        }
-
-        let position = this.controller.unitsInPlay.indexOf(this);
-        if (flank === 'left') {
-            return (
-                (this.anyEffect('consideredAsFlank') || this.neighbors.length < 2) && position === 0
-            );
-        } else if (flank === 'right') {
-            return (
-                (this.anyEffect('consideredAsFlank') || this.neighbors.length < 2) &&
-                position === this.controller.unitsInPlay.length - 1
-            );
-        }
-
-        return this.anyEffect('consideredAsFlank') || this.neighbors.length < 2;
-    }
-
-    isInCenter() {
-        let creatures = this.controller.unitsInPlay;
-        if (creatures.length % 2 === 0) {
-            return false;
-        }
-
-        let mid = Math.floor(creatures.length / 2);
-        let centerCreature = creatures[mid];
-
-        return this === centerCreature;
-    }
-
     get isInPlay() {
         return this.type === CardType.Phoenixborn || this.controller.unitsInPlay.includes(this);
-    }
-
-    get neighbors() {
-        if (this.type !== 'Ally') {
-            return [];
-        } else if (this.clonedNeighbors) {
-            return this.clonedNeighbors;
-        }
-
-        let creatures = this.controller.unitsInPlay;
-        let index = creatures.indexOf(this);
-        let neighbors = [];
-
-        if (index < 0) {
-            return neighbors;
-        } else if (index > 0) {
-            neighbors.push(creatures[index - 1]);
-        }
-
-        if (index < creatures.length - 1) {
-            neighbors.push(creatures[index + 1]);
-        }
-
-        return neighbors;
     }
 
     isLimited() {

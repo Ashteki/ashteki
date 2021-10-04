@@ -3,7 +3,7 @@ describe('Secret Door', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['crimson-bomber'],
+                inPlay: ['crimson-bomber', 'mist-spirit'],
                 spellboard: ['secret-door'],
                 dicepool: ['illusion']
             },
@@ -17,11 +17,13 @@ describe('Secret Door', function () {
     it('unit should be unblockable', function () {
         this.player1.clickCard(this.secretDoor);
         this.player1.clickPrompt('Secret Door a unit');
-        this.player1.clickCard(this.crimsonBomber);
+        expect(this.player1).not.toBeAbleToSelect(this.crimsonBomber);
+        expect(this.player1).toBeAbleToSelect(this.mistSpirit);
+        this.player1.clickCard(this.mistSpirit);
 
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.coalRoarkwin);
-        this.player1.clickCard(this.crimsonBomber);
+        this.player1.clickCard(this.mistSpirit);
         this.player1.clickPrompt('Done');
         expect(this.player2).toHavePrompt('Waiting for opponent'); // defender didn't get option to block
     });
@@ -29,7 +31,7 @@ describe('Secret Door', function () {
     it('unit should be guardable', function () {
         this.player1.clickCard(this.secretDoor);
         this.player1.clickPrompt('Secret Door a unit');
-        this.player1.clickCard(this.crimsonBomber);
+        this.player1.clickCard(this.mistSpirit);
 
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.hammerKnight);

@@ -5,7 +5,6 @@ class LickWounds extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
-                controller: 'self',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 gameAction: [
                     ability.actions.removeDamage({ amount: 2 }),
