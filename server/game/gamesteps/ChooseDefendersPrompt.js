@@ -162,7 +162,11 @@ class ChooseDefendersPrompt extends UiPrompt {
         } else {
             if (card.isAttacker && this.selectedCard) {
                 // check validity
-                if (card.anyEffect('unseen') && !this.attack.checkUnseen()) {
+                if (card.anyEffect('unseen') && !this.attack.checkUnseen() && !this.selectedCard.isDefender) { 
+                    return false;
+                }
+
+                if (!this.selectedCard.canBlock(card)) {
                     return false;
                 }
 
