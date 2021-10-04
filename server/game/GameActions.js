@@ -10,7 +10,8 @@ const Actions = {
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory, type) => new GameActions.AddTokenAction(propertyFactory, type),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
-    attachConjuredAlteration: (propertyFactory) => new GameActions.AttachConjuredAlterationAction(propertyFactory), // upgrade
+    attachConjuredAlteration: (propertyFactory) =>
+        new GameActions.AttachConjuredAlterationAction(propertyFactory), // upgrade
     attachToPb: (propertyFactory) => new GameActions.AttachToPbAction(propertyFactory), // upgrade
     attachDie: (propertyFactory) => new GameActions.AttachDieAction(propertyFactory), // upgradeDie
     cardLastingEffect: (propertyFactory) =>
@@ -21,7 +22,8 @@ const Actions = {
     detachDie: (propertyFactory) => new GameActions.DetachDieAction(propertyFactory), // die, card
     discard: (propertyFactory) => new GameActions.DiscardCardAction(propertyFactory),
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
-    exhaustGravityFlux: (propertyFactory) => new GameActions.ExhaustGravityFluxAction(propertyFactory),
+    exhaustGravityFlux: (propertyFactory) =>
+        new GameActions.ExhaustGravityFluxAction(propertyFactory),
     heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
     moveCard: (propertyFactory) => new GameActions.MoveCardAction(propertyFactory), // destination, switch = false, shuffle = false
     moveToBottom: (propertyFactory) => new GameActions.MoveToBottomAction(propertyFactory),
@@ -38,14 +40,14 @@ const Actions = {
         new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
     removeFromBattle: (propertyFactory) => new GameActions.RemoveFromBattleAction(propertyFactory),
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
-    removeToken: (propertyFactory, type) => new GameActions.RemoveTokenAction(propertyFactory, type),
+    removeToken: (propertyFactory, type) =>
+        new GameActions.RemoveTokenAction(propertyFactory, type),
     resolveAbility: (propertyFactory) => new GameActions.ResolveAbilityAction(propertyFactory), // ability
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
-    swap: (propertyFactory) => new GameActions.SwapAction(propertyFactory), // origin
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
 
     // dice actions
@@ -87,15 +89,13 @@ const Actions = {
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),
     allocateDamage: (propertyFactory) => new GameActions.AllocateDamageAction(propertyFactory),
     changeEvent: (propertyFactory) => new GameActions.ChangeEventAction(propertyFactory),
-    
     chooseAction: (propertyFactory) => new GameActions.ChooseGameAction(propertyFactory), // choices, activePromptTitle = 'Select one'
     conditional: (propertyFactory) => new GameActions.ConditionalAction(propertyFactory),
     jointAction: (gameActions) => new GameActions.JointGameAction(gameActions), // takes an array of gameActions, not a propertyFactory
     preventDamage: (propertyFactory) => new GameActions.PreventDamageAction(propertyFactory),
     resolveBattle: (propertyFactory) => new GameActions.ResolveBattleAction(propertyFactory), // battle
     sequential: (gameActions) => new GameActions.SequentialAction(gameActions), // takes an array of gameActions, not a propertyFactory
-    sequentialForEach: (propertyFactory) =>
-        new GameActions.SequentialForEachAction(propertyFactory)
+    sequentialForEach: (propertyFactory) => new GameActions.SequentialForEachAction(propertyFactory)
 };
 
 module.exports = Actions;
