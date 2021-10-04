@@ -8,7 +8,6 @@ class OutOfTheMist extends Card {
             target: {
                 activePromptTitle: 'Choose a target',
                 cardType: ['Ally', 'Conjuration'],
-                controller: 'opponent',
                 gameAction: ability.actions.dealDamage((context) => ({
                     amount: context.player.unitsInPlay.length
                 }))
