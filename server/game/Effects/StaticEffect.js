@@ -1,16 +1,6 @@
 const EffectValue = require('./EffectValue');
 
-const binaryCardEffects = [
-    'blank',
-    'canBeSeenWhenFacedown',
-    'cannotParticipateAsAttacker',
-    'cannotParticipateAsDefender',
-    'canPlayFromOwn',
-    'abilityRestrictions',
-    'doesNotBow',
-    'doesNotReady',
-    'showTopConflictCard'
-];
+const binaryCardEffects = ['blank', 'abilityRestrictions'];
 
 class StaticEffect {
     constructor(type = '', value, contextFunc) {

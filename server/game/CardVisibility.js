@@ -28,7 +28,7 @@ class CardVisibility {
     }
 
     isEffectRule(card) {
-        return card.getEffects('visbileIn').some((effect) => effect === card.location);
+        return card.getEffects('visibleIn').some((effect) => effect === card.location);
     }
 
     isControllerRule(card, player) {

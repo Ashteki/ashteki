@@ -34,9 +34,8 @@ class CardAction extends CardAbility {
         this.abilityType = 'action';
         this.title =
             properties.title ||
-            "Use this card's " + (properties.omni ? 'Omni' : 'Action') + ' ability';
+            "Use this card's ability";
         this.condition = properties.condition;
-        this.omni = !!properties.omni;
         if (!this.properties.inexhaustible) {
             this.cost = this.cost.concat(Costs.use());
         }

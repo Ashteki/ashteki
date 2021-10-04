@@ -62,7 +62,7 @@ class EventWindow extends BaseStepWithPipeline {
     executeHandler() {
         const events = this.event.getSimultaneousEvents();
         for (let event of events) {
-            // need to checkCondition here to ensure the event won't fizzle due to another event's resolution (e.g. double honoring an ordinary character with YR etc.)
+            // need to checkCondition here to ensure the event won't fizzle due to another event's resolution
             event.checkCondition();
             if (!event.cancelled) {
                 event.executeHandler();
