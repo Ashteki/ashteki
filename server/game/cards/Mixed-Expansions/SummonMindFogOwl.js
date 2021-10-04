@@ -25,6 +25,7 @@ class SummonMindFogOwl extends Card {
                     context.source.focus > 0 &&
                     context.preThenEvent.context.costs.returnDice.some((d) => d.level === 'power'),
                 target: {
+                    activePromptTitle: 'Focus: Choose target for Charm power die',
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
                     optional: true,
