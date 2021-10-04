@@ -95,6 +95,33 @@ describe('unseen', function () {
 
             expect(this.player1).toHaveDefaultPrompt();
         });
+
+        it("doesn't let a player change blockers to work around unseen", function () {
+            this.player1.clickAttack(this.coalRoarkwin);
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.mindFogOwl);
+            this.player1.clickDone();
+            expect(this.player2).toHavePrompt('Choose a blocker');
+
+            this.player2.clickCard(this.anchornaut);
+            expect(this.player2).not.toBeAbleToSelect(this.mindFogOwl);
+            expect(this.player2).toBeAbleToSelect(this.ironWorker);
+
+            this.player2.clickCard(this.mindFogOwl);
+            expect(
+                this.game.attackState.battles.some((b) => b.attacker === this.mindFogOwl && b.guard)
+            ).toBe(false);
+
+            this.player2.clickCard(this.ironWorker);
+
+            this.player2.clickCard(this.anchornaut);
+            // you should not be able to reassign the anchornaut to block the owl
+            expect(this.player2).not.toBeAbleToSelect(this.mindFogOwl);
+            this.player2.clickCard(this.mindFogOwl);
+            expect(
+                this.game.attackState.battles.some((b) => b.attacker === this.mindFogOwl && b.guard)
+            ).toBe(false);
+        });
     });
 
     describe('must interact with terrifying', function () {
