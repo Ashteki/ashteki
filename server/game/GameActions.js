@@ -82,7 +82,6 @@ const Actions = {
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
     spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
-    steal: (propertyFactory) => new GameActions.StealAction(propertyFactory), // amount = 1
     summon: (propertyFactory) => new GameActions.SummonAction(propertyFactory),
 
     // meta actions
