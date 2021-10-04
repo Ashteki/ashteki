@@ -463,8 +463,7 @@ class Game extends EventEmitter {
     }
 
     /**
-     * Check to see if either player has won/lost the game due to honor (NB: this
-     * function doesn't check to see if a conquest victory has been achieved)
+     * Check to see if either player has won/lost the game due to damage
      */
     checkWinCondition() {
         for (const player of this.getPlayers()) {
@@ -989,7 +988,6 @@ class Game extends EventEmitter {
     getFrameworkContext(player = null) {
         return new AbilityContext({ game: this, player: player });
     }
-
 
     /**
      * Changes the controller of a card in play to the passed player, and cleans
