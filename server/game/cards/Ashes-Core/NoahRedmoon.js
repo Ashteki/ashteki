@@ -12,7 +12,8 @@ class NoahRedmoon extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
             target: {
-                // target a ready spell, or if no units then the pb is valid
+                // target a ready spell
+                // (though technically the ability targets a PB so it should be able to be vanished)
                 cardType: [CardType.ReadySpell],
                 cardCondition: (card) => !card.exhausted,
                 controller: 'opponent',

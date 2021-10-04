@@ -17,6 +17,7 @@ class HuntingWeapons extends Card {
                         optional: true,
                         activePromptTitle: 'Choose a unit to damage',
                         cardType: BattlefieldTypes,
+                        controller: 'opponent',
                         gameAction: ability.actions.dealDamage({
                             amount: 1
                         })

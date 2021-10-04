@@ -6,7 +6,6 @@ class ToShadows extends Card {
         this.play({
             target: {
                 activePromptTitle: 'Choose an exhausted unit to discard',
-                player: 'any',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.exhausted,
                 gameAction: ability.actions.discard()

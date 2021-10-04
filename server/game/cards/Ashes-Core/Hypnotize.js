@@ -14,6 +14,7 @@ class Hypnotize extends Card {
             ],
             target: {
                 cardType: ['Ally', 'Conjuration'],
+                controller: 'self',
                 gameAction: ability.actions.cardLastingEffect({
                     duration: 'untilEndOfTurn',
                     effect: ability.effects.gainAbility('persistentEffect', {
