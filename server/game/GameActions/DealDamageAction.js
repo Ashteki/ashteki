@@ -19,11 +19,7 @@ class DealDamageAction extends CardGameAction {
     setup() {
         this.targetType = ['Ally', 'Conjuration', 'Phoenixborn'];
         this.name = 'damage';
-        this.effectMsg =
-            'deal ' +
-            (this.amount ? this.amount + ' ' : '') +
-            'damage to {0}' +
-            (this.splash ? ' and ' + this.splash + ' to their neighbors' : '');
+        this.effectMsg = 'deal ' + (this.amount ? this.amount + ' ' : '') + 'damage to {0}';
     }
 
     canAffect(card, context) {

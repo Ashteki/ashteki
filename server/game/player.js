@@ -689,10 +689,6 @@ class Player extends GameObject {
         return this.unitsInPlay.some((c) => c.canAttack());
     }
 
-    isTopCardShown() {
-        return this.anyEffect('showTopConflictCard');
-    }
-
     spendMainAction() {
         this.actions.main = false;
     }
@@ -706,7 +702,7 @@ class Player extends GameObject {
     }
 
     get maxHandSize() {
-        return 5 + this.sumEffects('modifyHandSize');
+        return 5;
     }
 
     getAdditionalCosts(context) {
@@ -789,10 +785,6 @@ class Player extends GameObject {
             state.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer, true);
             state.firstFive = this.firstFive;
             state.diceHistory = this.diceHistory;
-        }
-
-        if (this.isTopCardShown()) {
-            state.deckTopCard = this.deck[0].getSummary(activePlayer);
         }
 
         if (this.clock) {

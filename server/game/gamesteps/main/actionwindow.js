@@ -115,7 +115,7 @@ class ActionWindow extends UiPrompt {
         }
 
         if (choice === 'attack') {
-            // start a fight action.
+            // start an attack action.
             this.game.promptForSelect(this.game.activePlayer, {
                 mode: 'single',
                 activePromptTitle: 'Select a target to attack',
