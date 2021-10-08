@@ -6,8 +6,10 @@ class Transfer extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Transfer',
+            targetsPlayer: true,
             targets: {
                 tokenBoy: {
+                    targetsPlayer: true,
                     ignoreTargetCheck: true,
                     activePromptTitle: 'Choose a card with tokens',
                     controller: 'any',
@@ -23,7 +25,6 @@ class Transfer extends Card {
                 },
                 receiver: {
                     ignoreTargetCheck: true,
-
                     activePromptTitle: 'Choose a card to receive the token',
                     dependsOn: 'amount',
                     cardCondition: (card, context) =>
