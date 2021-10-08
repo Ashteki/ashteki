@@ -39,6 +39,21 @@ describe('Meditate', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
+        it('Simple meditate topofdeck, die change is optional', function () {
+            const cardCount = this.player1.deck.length;
+            this.player1.clickPrompt('Meditate');
+            const target = this.player1.dicepool[0];
+            expect(target.level).toBe('basic');
+
+            this.player1.clickPrompt('Choose top Of Deck');
+
+            this.player1.clickPrompt('Skip die change');
+            expect(this.player1.deck.length).toBe(cardCount - 1);
+            this.player1.clickPrompt('Stop meditating');
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
         it('Meditate topofdeck, cycle die to class side', function () {
             this.player1.clickPrompt('Meditate');
             const target = this.player1.dicepool[0];
