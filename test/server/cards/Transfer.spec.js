@@ -12,7 +12,9 @@ describe('Transfer actions spell', function () {
                 player2: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit', 'stormwind-sniper', 'holy-knight'],
-                    spellboard: ['empower', 'summon-mist-spirit']
+                    spellboard: ['empower', 'summon-mist-spirit'],
+                    dicepool: ['illusion'],
+                    hand: ['vanish']
                 }
             });
             this.ironWorker.tokens.status = 2;
@@ -22,7 +24,7 @@ describe('Transfer actions spell', function () {
             this.summonMistSpirit.tokens.exhaustion = 1;
         });
 
-        it('should move 1 chosen token type between cards', function () {
+        it('should move 1 chosen token type between my cards', function () {
             expect(this.ironWorker.tokens.status).toBe(2);
             expect(this.chantOfRevenge.tokens.status).toBeUndefined();
 
@@ -49,7 +51,7 @@ describe('Transfer actions spell', function () {
             expect(this.chantOfRevenge.tokens.status).toBe(1);
         });
 
-        it('can move 1 chosen token to a concealed unit', function () {
+        it('can move 1 chosen token to an enemy concealed unit - triggers vanish', function () {
             expect(this.blueJaguar.exhausted).toBe(true);
             expect(this.stormwindSniper.exhausted).toBe(false);
 
@@ -62,6 +64,8 @@ describe('Transfer actions spell', function () {
             this.player1.clickPrompt('Exhaustion');
 
             this.player1.clickCard(this.stormwindSniper);
+
+            this.player2.clickPass();
 
             expect(this.blueJaguar.exhausted).toBe(false);
             expect(this.stormwindSniper.exhausted).toBe(true);
@@ -80,6 +84,8 @@ describe('Transfer actions spell', function () {
             this.player1.clickPrompt('Exhaustion');
 
             this.player1.clickCard(this.holyKnight);
+
+            this.player2.clickPass();
 
             expect(this.blueJaguar.exhausted).toBe(false);
             expect(this.holyKnight.exhausted).toBe(true);

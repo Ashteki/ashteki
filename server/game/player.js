@@ -432,11 +432,11 @@ class Player extends GameObject {
         const legalLocations = {
             'Action Spell': [...cardLocations, 'being played'],
             'Alteration Spell': [...cardLocations, 'being played', 'play area'],
-            'Ready Spell': [...cardLocations, 'spellboard'],
+            'Ready Spell': [...cardLocations, 'spellboard'], // To do: The Awakened State is a ready spell that starts in archives
             'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],
-            Conjuration: [...cardLocations, 'play area', 'archives'],
-            'Conjured Alteration Spell': [...cardLocations, 'play area', 'archives']
+            Conjuration: ['play area', 'archives'], // Conjurations should have limited legal locations
+            'Conjured Alteration Spell': ['play area', 'archives'] // Conjured alteration spells should have limited legal locations
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);
@@ -458,7 +458,7 @@ class Player extends GameObject {
     }
 
     /**
-     * Moves a card from one location to another. This involves removing in from the list it's currently in, calling DrawCard.move (which changes
+     * Moves a card from one location to another. This involves removing it from the list it's currently in, calling DrawCard.move (which changes
      * its location property), and then adding it to the list it should now be in
      * @param card
      * @param {String} targetLocation
@@ -512,12 +512,6 @@ class Player extends GameObject {
             // not in/out of play, and not mine
             card.owner.moveCard(card, targetLocation, options);
             return;
-        } else if (card.location === 'archives' && card.controller !== card.owner) {
-            // card is in archives, and it's not mine?
-            //todo: can we remove this? i don't think it applies to ashes
-            card.controller = card.owner;
-            targetLocation = 'hand';
-            targetPile = this.getSourceList(targetLocation);
         } else {
             card.controller = card.owner;
         }

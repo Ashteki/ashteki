@@ -93,7 +93,9 @@ class MeditatePrompt extends UiPrompt {
             mnuText = 'Confirm chosen side for this die, or click again to change side / remove';
             buttons.push({ text: 'Confirm', arg: 'set' });
         } else {
-            if (!this.cardSelected && this.choosingPlayer.deck.length > 0) {
+            if (this.cardSelected) {
+                buttons.push({ text: 'Skip die change', arg: 'skipDie' });
+            } else if (this.choosingPlayer.deck.length > 0) {
                 buttons.push({ text: 'Choose top of deck', arg: 'top' });
             }
         }
@@ -196,21 +198,21 @@ class MeditatePrompt extends UiPrompt {
             return this.selectCard(this.choosingPlayer.deck[0]);
         }
 
-        if (arg === 'set') {
+        if (arg === 'set' || arg === 'skipDie') {
             const cards = [...this.choosingPlayer.selectedCards];
             const dice = [...this.choosingPlayer.selectedDice];
             GameActions.discard().resolve(
                 this.choosingPlayer.selectedCards,
                 this.game.getFrameworkContext(player)
             );
-            // this.choosingPlayer.discardSelectedCards();
-            this.game.addMessage(
-                '{0} meditates {1} from their {2} to gain a {3}',
-                this.choosingPlayer,
-                cards,
-                cards[0].location,
-                dice
-            );
+
+            let messageFormat = '{0} meditates {1} from their {2}';
+            const messageArgs = [this.choosingPlayer, cards, cards[0].location];
+            if (dice.length) {
+                messageFormat = messageFormat + ' to gain a {3}';
+                messageArgs.push(dice);
+            }
+            this.game.addMessage(messageFormat, ...messageArgs);
             if (!this.firstTopOfDeck && this.isTopDeck) {
                 this.firstTopOfDeck = this.choosingPlayer.selectedCards[0]; // should only be 1
             }
