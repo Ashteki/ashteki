@@ -14,7 +14,7 @@ class CardMenu extends React.Component {
     }
 
     onMenuItemClick(menuItem) {
-        if (['main', 'tokens'].includes(menuItem.command)) {
+        if (['main', 'tokens', 'moves'].includes(menuItem.command)) {
             this.setState({ submenu: menuItem.command });
         } else {
             if (this.props.onMenuItemClick) {

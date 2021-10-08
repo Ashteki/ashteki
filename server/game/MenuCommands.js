@@ -36,6 +36,45 @@ class MenuCommands {
                 game.addAlert('danger', '{0} removes gravity flux exhaustion from {1}', player, card);
                 card.removeToken('gravityFlux', 1);
                 break;
+            // I can't click on cards in my Discard pile in manual mode and receive a menu
+            // In manual mode, I can't click on cards in hand and receive a menu (drag & drop required)
+            case 'moveHand':
+                if (
+                    card.controller != player.opponent &&
+                    ((card.location === 'play area' && card.type != 'phoenixborn') ||
+                        card.location === 'spellboard' ||
+                        card.location === 'discard')
+                ) {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to their hand', player, card, card.location);
+                    card.owner.moveCard(card, 'hand');
+                }
+                break;
+            case 'moveDiscard':
+                if (
+                    card.controller != player.opponent &&
+                    ((card.location === 'play area' && card.type != 'phoenixborn') ||
+                        card.location === 'spellboard' ||
+                        card.location === 'hand')
+                ) {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to their discard pile', player, card, card.location);
+                    card.owner.moveCard(card, 'discard');
+                }
+                break;
+            case 'movePlay':
+                if (
+                    card.controller != player.opponent &&
+                    (card.location === 'hand' || card.location === 'discard')
+                ) {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to play', player, card, card.location);
+                    card.owner.moveCard(card, 'play area');
+                }
+                break;
+            case 'moveConjuration':
+                if (card.controller != player.opponent && card.location === 'play area') {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to their conjuration pile', player, card, card.location);
+                    card.owner.moveCard(card, 'archives');
+                }
+                break;
             case 'control':
                 if (card.controller != player.opponent) {
                     game.takeControl(player.opponent, card);
