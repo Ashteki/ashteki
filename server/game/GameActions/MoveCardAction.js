@@ -20,8 +20,9 @@ class MoveCardAction extends CardGameAction {
 
     canAffect(card, context) {
         if (
-            card.location === 'play area' ||
-            card.location === 'spellboard' ||
+            // 5H4Z: I don't know why move card tried not to affect play area or spellboard
+            /*card.location === 'play area' || 
+            card.location === 'spellboard' ||*/
             !card.controller.getSourceList(this.destination)
         ) {
             return false;

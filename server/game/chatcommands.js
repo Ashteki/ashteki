@@ -9,22 +9,25 @@ class ChatCommands {
     constructor(game) {
         this.game = game;
         this.commands = {
-            '/add-card': this.addCard,
-            '/cancel-prompt': this.cancelPrompt,
-            '/conj': this.moveConjuration,
+            '/addcard': this.addCard, // hidden option (that is, not in About.jsx)
+            '/cancelprompt': this.cancelPrompt,
+            '/conj': this.moveConjuration, // hidden option
             '/conjuration': this.moveConjuration,
-            '/disconnectme': this.disconnectMe,
+            '/disconnectme': this.disconnectMe, // hidden option
             '/draw': this.draw,
             '/discard': this.discard,
-            '/discardtopofdeck': this.discardtopofdeck,
+            '/discardfromdeck': this.discardtopofdeck,
+            '/givecontrol': this.giveControl,
             '/manual': this.manual,
-            '/modify-clock': this.modifyClock,
-            '/mute-spectators': this.muteSpectators,
+            '/move': this.moveCard,
+            '/modifyclock': this.modifyClock, // hidden option
+            '/mutespectators': this.muteSpectators, // hidden option
             '/purge': this.purgeCard,
             '/rematch': this.rematch,
+            '/reveal': this.reveal,
             '/shuffle': this.shuffle,
-            '/stop-clocks': this.stopClocks,
-            '/start-clocks': this.startClocks,
+            '/stopclocks': this.stopClocks, // hidden option
+            '/startclocks': this.startClocks, // hidden option
             '/token': this.setToken
         };
         this.tokens = ['damage', 'exhaust', 'status'];
@@ -79,13 +82,127 @@ class ChatCommands {
 
         this.game.addAlert(
             'danger',
-            '{0} uses the /add-card command to add {1} to their {2}',
+            '{0} uses the /addcard command to add {1} to their {2}',
             player,
             preparedCard,
             location
         );
 
         return true;
+    }
+
+    giveControl(player) {
+        this.game.promptForSelect(player, {
+            location: 'play area',
+            cardType: ['Ally', 'Conjuration'],
+            controller: 'self',
+            activePromptTitle: 'Select a card',
+            onSelect: (player, card) => {
+                this.game.addAlert(
+                    'danger',
+                    '{0} gives {1} control of {2}',
+                    player,
+                    player.opponent,
+                    card
+                );
+                this.game.takeControl(player.opponent, card);
+                card.setDefaultController(player.opponent);
+                return true;
+            }
+        });
+    }
+
+    moveCard(player, args) {
+        if (args[1] === 'play') {
+            this.game.promptForSelect(player, {
+                location: ['archives', 'hand', 'purged'],
+                cardType: ['Ally', 'Conjuration'],
+                controller: 'self',
+                activePromptTitle: 'Select a card to move into play',
+                onSelect: (player, card) => {
+                    this.game.addAlert('danger', '{0} manually moves {1} from {2} to play', player, card, card.location);
+                    GameActions.moveCard({
+                        destination: 'play area'
+                    }).resolve(card, this.game.getFrameworkContext(player));
+                    return true;
+                }
+            });
+        }
+        if (args[1] === 'spellboard') {
+            this.game.promptForSelect(player, {
+                location: ['archives', 'discard', 'hand', 'purged'],
+                cardType: ['Ready Spell'],
+                controller: 'self',
+                activePromptTitle: 'Select a card to move onto spellboard',
+                onSelect: (player, card) => {
+                    this.game.addAlert('danger', '{0} manually moves {1} from {2} to spellboard', player, card, card.location);
+                    GameActions.moveCard({
+                        destination: 'spellboard'
+                    }).resolve(card, this.game.getFrameworkContext(player));
+                    return true;
+                }
+            });
+        }
+        if (args[1] === 'discard') {
+            this.game.promptForSelect(player, {
+                location: ['hand', 'play area', 'spellboard'],
+                cardType: ['Action Spell', 'Ally', 'Alteration Spell', 'Reaction Spell', 'Ready Spell'], 
+                controller: 'self',
+                activePromptTitle: 'Select a card to move to discard',
+                onSelect: (player, card) => {
+                    this.game.addAlert('danger', '{0} manually moves {1} from {2} to discard', player, card, card.location);
+                    GameActions.moveCard({
+                        destination: 'discard'
+                    }).resolve(card, this.game.getFrameworkContext(player));
+                    return true;
+                }
+            });
+        }
+        if (args[1] === 'deck') {
+            this.game.promptForSelect(player, {
+                location: ['discard', 'hand', 'play area', 'spellboard'],
+                cardType: ['Action Spell', 'Ally', 'Alteration Spell', 'Reaction Spell', 'Ready Spell'],
+                controller: 'self',
+                activePromptTitle: 'Select a card to move to your deck',
+                onSelect: (player, card) => {
+                    this.game.addAlert('danger', '{0} manually moves {1} from {2} to their deck', player, card, card.location);
+                    GameActions.moveCard({
+                        destination: 'deck'
+                    }).resolve(card, this.game.getFrameworkContext(player));
+                    return true;
+                }
+            });
+        }
+        if (args[1] === 'hand') {
+            this.game.promptForSelect(player, {
+                location: ['discard', 'play area', 'spellboard'],
+                cardType: ['Ally', 'Ready Spell', 'Alteration'],
+                controller: 'self',
+                activePromptTitle: 'Select a card to move to your hand',
+                onSelect: (player, card) => {
+                    this.game.addAlert('danger', '{0} manually moves {1} from {2} to their hand', player, card, card.location);
+                    GameActions.moveCard({
+                        destination: 'hand'
+                    }).resolve(card, this.game.getFrameworkContext(player));
+                    return true;
+                }
+            });
+        }
+        if (args[1] === 'conjuration') {
+            this.game.promptForSelect(player, {
+                location: ['play area'],
+                cardType: ['Conjuration', 'Conjured Alteration Spell'],
+                controller: 'self',
+                activePromptTitle: 'Select a card to move to conjuration pile',
+                onSelect: (player, card) => {
+                    this.game.addAlert('danger', '{0} moves {1} from {2} to their conjuration pile', player, card, card.location);
+                    GameActions.moveCard({
+                        destination: 'archives'
+                    }).resolve(card, this.game.getFrameworkContext(player));
+                    return true;
+                }
+            });
+        }
     }
 
     spendAction(player, args) {
@@ -184,7 +301,7 @@ class ChatCommands {
         }
 
         this.game.promptForSelect(player, {
-            activePromptTitle: 'Select a card',
+            activePromptTitle: 'Select a card set token count',
             waitingPromptTitle: 'Waiting for opponent to set token',
             cardCondition: (card) =>
                 (card.location === 'play area' || card.location === 'spellboard') &&
@@ -194,7 +311,7 @@ class ChatCommands {
                 card.addToken(token, num - numTokens);
                 this.game.addAlert(
                     'danger',
-                    '{0} uses the /token command to set the {1} token count of {2} to {3}',
+                    '{0} manually sets the {1} token count of {2} to {3}',
                     p,
                     token,
                     card,
@@ -207,7 +324,7 @@ class ChatCommands {
 
     reveal(player) {
         this.game.promptForSelect(player, {
-            activePromptTitle: 'Select a card',
+            activePromptTitle: 'Select a card to reveal',
             cardCondition: (card) => card.facedown && card.controller === player,
             onSelect: (player, card) => {
                 card.facedown = false;
@@ -222,7 +339,7 @@ class ChatCommands {
             location: 'archives',
             cardType: CardType.Conjuration,
             controller: 'self',
-            activePromptTitle: 'Select a card',
+            activePromptTitle: 'Select a conjuration to move to play',
             onSelect: (player, card) => {
                 this.game.addAlert('danger', '{0} manually moves {1} into play', player, card);
                 GameActions.moveCard({

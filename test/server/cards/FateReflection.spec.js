@@ -3,7 +3,7 @@ describe('Fate Reflection reaction spell', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['flute-mage', 'hammer-knight'],
+                inPlay: ['flute-mage', 'hammer-knight', 'squall-stallion'],
                 spellboard: [],
                 hand: ['anchornaut'],
                 dicepool: ['natural', 'natural', 'charm', 'charm']
@@ -55,6 +55,8 @@ describe('Fate Reflection reaction spell', function () {
         );
         this.player2.clickCard(this.fateReflection); // click fate reflection to play as reaction
         this.player2.clickDie(4);
+        // check for squall stallion / lightning speed
+        expect(this.player2).not.toBeAbleToSelect(this.squallStallion);
         this.player2.clickCard(this.hammerKnight); // deal damage to hammerKnight
 
         expect(this.fateReflection.location).toBe('discard');
