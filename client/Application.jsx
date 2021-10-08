@@ -167,9 +167,6 @@ class Application extends React.Component {
                         </ErrorBoundary>
                     </Container>
                 </div>
-                <div className='keyforge-font' style={{ zIndex: -999 }}>
-                    &nbsp;
-                </div>
             </div>
         );
     }
