@@ -1,4 +1,5 @@
 const { CardType } = require('../../../constants.js');
+const AbilityTargetCard = require('../../AbilityTargets/AbilityTargetCard.js');
 const Card = require('../../Card.js');
 
 class Vanish extends Card {
@@ -9,15 +10,7 @@ class Vanish extends Card {
                 onAbilityInitiated: (event, context) =>
                     event.context.player === context.player.opponent &&
                     // it's targetting my phoenixborn
-                    (Object.values(event.context.targets).some(
-                        (t) => t.controller === context.player && t.type === CardType.Phoenixborn
-                    ) ||
-                        // it's targetting me as a player
-                        event.context.ability.gameAction.some(
-                            (g) =>
-                                g.targetType.some((tt) => tt === 'player') &&
-                                g.target.some((t) => t === context.player)
-                        ))
+                    (this.targetsPhoenixborn(event, context) || this.targetsPlayer(event, context))
             },
             effect: 'cancel the {1} ability',
             effectArgs: (context) => context.event.context.ability.title,
@@ -26,6 +19,35 @@ class Vanish extends Card {
                 cancel: true
             }))
         });
+    }
+
+    targetsPhoenixborn(event, context) {
+        return Object.values(event.context.targets).some(
+            (t) => t.controller === context.player && t.type === CardType.Phoenixborn
+        );
+    }
+
+    targetsPlayer(event, context) {
+        // explicit targetting via gameAction target property
+        if (
+            event.context.ability.gameAction.some(
+                (g) =>
+                    g.targetType.some((tt) => tt === 'player') &&
+                    g.target.some((t) => t === context.player)
+            )
+        )
+            return true;
+
+        // implicit flag when targetting a card - transfer does this for convenience
+        const triggeringTargets = event.context.ability.targets.filter(
+            (t) => t instanceof AbilityTargetCard && t.properties.targetsPlayer
+        );
+        return triggeringTargets.some(
+            (t) => event.context.targets[t.name].controller === context.player
+        );
+        // return Object.values(event.context.targets).some(
+        //     (t) => t.controller === context.player && t.type === CardType.Phoenixborn
+        // )
     }
 }
 
