@@ -76,8 +76,10 @@ class AbilityTargetCard {
         }
 
         if (this.properties.autoTarget) {
-            const autoTargets = this.properties.autoTarget(context);
-            this.setSelectedCard(context, autoTargets);
+            const autoTarget = this.properties.autoTarget(context);
+            if (this.selector.canTarget(autoTarget, context)) {
+                this.setSelectedCard(context, autoTarget);
+            }
             return;
         }
 
