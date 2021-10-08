@@ -64,13 +64,14 @@ class Card extends PlayableObject {
         this.printedSpellboard = cardData.spellboard;
 
         this.moribund = false;
-        // this.isFighting = false;
 
         this.locale = cardData.locale;
 
         this.menu = [
             { command: 'tokens', text: 'Modify tokens', menu: 'main' },
+            { command: 'moves', text: 'Move', menu: 'main' },
             { command: 'main', text: 'Back', menu: 'tokens' },
+            { command: 'main', text: 'Back', menu: 'moves' },
             { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
             { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
             { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
@@ -78,8 +79,14 @@ class Card extends PlayableObject {
             { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
             { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
             { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
-            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' }
+            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' },
+            { command: 'moveHand', text: 'Move to hand', menu: 'moves' },
+            { command: 'moveDiscard', text: 'Move to discard', menu: 'moves' },
+            { command: 'movePlay', text: 'Move to play area', menu: 'moves' }
         ];
+        if (ConjuredCardTypes.includes(this.type)) {
+            this.menu.push({ command: 'moveConjuration', text: 'Move to conjuration pile', menu: 'moves' });
+        }
         if (this.type === CardType.Phoenixborn) {
             this.menu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
         }
@@ -435,7 +442,11 @@ class Card extends PlayableObject {
         if (
             !this.menu.length ||
             !this.game.manualMode ||
-            (this.location !== 'play area' && this.location !== 'spellboard')
+            (this.location !== 'play area' &&
+                this.location !== 'spellboard' &&
+                this.location !== 'hand' &&
+                this.location !== 'discard' &&
+                this.location !== 'archives')
         ) {
             return undefined;
         }
@@ -451,7 +462,13 @@ class Card extends PlayableObject {
         if (UpgradeCardTypes.includes(this.type)) {
             menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
         }
-        if (this.location === 'play area' || this.location === 'spellboard') {
+        if (
+            this.location === 'play area' ||
+            this.location === 'spellboard' ||
+            this.location === 'hand' ||
+            this.location === 'discard' ||
+            this.location === 'archives'
+        ) {
             menu = menu.concat(this.menu);
         }
 

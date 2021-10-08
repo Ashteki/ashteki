@@ -66,29 +66,29 @@ class About extends React.Component {
                     </p>
                     <ul>
                         <li>
-                            /cancel-prompt -{' '}
+                            /cancelprompt -{' '}
                             <Trans i18nKey='howtoplay.cmd.cancelprompt'>
                                 Clear the current prompt and resume the game flow. Use with caution
                                 and only when the prompt is &apos;stuck&apos; and you are unable to
                                 continue
                             </Trans>
                         </li>
+                        <li>/conjuration - Choose a conjuration to put into play</li>
                         <li>/discard x - Prompts to choose x cards to discard from your hand</li>
                         <li>
-                            /discardtopofdeck x -{' '}
-                            <Trans i18nKey='howtoplay.cmd.discardtopofdeck'>
-                                Discards x cards from the top of your deck
+                            /discardfromdeck x -{' '}
+                            <Trans i18nKey='howtoplay.cmd.discardfromdeck'>
+                                Discard x cards from the top of your deck
                             </Trans>
                         </li>
                         <li>
                             /draw x -{' '}
                             <Trans i18nKey='howtoplay.cmd.draw'>
-                                Draws x cards from your deck to your hand
+                                Draw x cards from your deck to your hand
                             </Trans>
                         </li>
-                        <li>/conjuration - Choose a conjuration to put into play</li>
                         <li>
-                            /give-control -{' '}
+                            /givecontrol -{' '}
                             <Trans i18nKey='howtoplay.cmd.givecontrol'>
                                 Give control of a card to your opponent. Use with caution
                             </Trans>
@@ -96,18 +96,31 @@ class About extends React.Component {
                         <li>
                             /manual -{' '}
                             <Trans i18nKey='howtoplay.cmd.manual'>
-                                Activate or deactivate manual mode (see above).
+                                Deactivate manual mode (see above)
+                            </Trans>
+                        </li>
+                        <li>
+                            /move x -{' '}
+                            <Trans i18nKey='howtoplay.cmd.move'>
+                                Move a card to play, spellboard, deck, discard, hand or conjuration (pile)
                             </Trans>
                         </li>
                         <li>/purge - Choose a card to remove from the game.</li>
                         <li>
                             /rematch -{' '}
                             <Trans i18nKey='howtoplay.cmd.rematch'>
-                                Start over a new game with the current opponent.
+                                Start over a new game with the current opponent
                             </Trans>
                         </li>
                         <li>
-                            /token x y - Choose a card and change the number of tokens of type x to y
+                            /reveal - Reveal a face down card
+                        </li>
+                        <li>
+                            /shuffle -{' '}
+                            <Trans i18nKey='howtoplay.cmd.shuffle'>Shuffle your deck</Trans>
+                        </li>
+                        <li>
+                            /token x y - Choose a card and change the number of tokens of type x (damage, exhaust or status) to y
                         </li>
                     </ul>
                     <h3>Meaning of Username Colors</h3>
