@@ -37,6 +37,7 @@ describe('Copycat', function () {
             this.player1.clickDie(0);
             this.player1.clickDie(1);
             this.player1.clickDone();
+            this.player1.clickCard(this.maeoniViper);
             this.player2.clickPrompt('Damage');
             // second part
             this.player2.clickPrompt('Take 2 Damage');
@@ -46,6 +47,7 @@ describe('Copycat', function () {
             this.player2.clickCard(this.copycat);
             this.player2.clickDie(0);
 
+            this.player2.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('Damage');
             this.player1.clickPrompt('Take 2 Damage');
 

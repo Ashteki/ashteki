@@ -18,6 +18,7 @@ describe('Anguish', function () {
 
         it('discard damages opponents pb on empty hand', function () {
             expect(this.rinNorthfell.damage).toBe(0);
+            expect(this.player2.hand.length).toBe(0);
 
             this.player1.clickCard(this.anguish);
             this.player1.clickPrompt('Play this action');

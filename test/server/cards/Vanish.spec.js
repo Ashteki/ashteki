@@ -90,7 +90,8 @@ describe('Vanish', function () {
             this.player1.clickDone();
             this.player1.clickCard(this.rinNorthfell);
 
-            expect(this.player2).toHavePrompt('Any Reactions to anguish?');
+            expect(this.player2).toHavePrompt('Any Reactions to anguish targetting rin northfell?');
+            expect(this.player2).toBeAbleToSelect(this.vanish);
             this.player2.clickCard(this.vanish);
 
             expect(this.rinNorthfell.damage).toBe(0);
