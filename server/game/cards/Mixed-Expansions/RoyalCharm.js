@@ -17,10 +17,14 @@ class RoyalCharm extends Card {
             title: 'Royal Charm',
             location: 'spellboard',
             target: {
-                activePromptTitle: 'Place die on Royal Charm?',
+                activePromptTitle: 'Choose exhausted power die to place on Royal Charm',
+                waitingPromptTitle: 'Waiting for opponent to choose a die to place on Royal Charm',
                 optional: true,
                 toSelect: 'die',
-                dieCondition: (die, context) => context.event.dice.includes(die),
+                dieCondition: (die, context) =>
+                    context.event.dice.includes(die) &&
+                    die.level === Level.Power &&
+                    [Magic.Charm, Magic.Divine].includes(die.magic),
                 gameAction: this.game.actions.attachDie((context) => ({
                     target: context.source,
                     upgradeDie: context.target
