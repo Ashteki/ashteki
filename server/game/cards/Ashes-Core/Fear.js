@@ -13,7 +13,8 @@ class Fear extends Card {
             then: {
                 gameAction: ability.actions.removeDamage((context) => ({
                     amount: context.preThenEvent.context.target.recover,
-                    target: context.source.owner.phoenixborn
+                    target: context.source.owner.phoenixborn,
+                    showMessage: true
                 })),
                 then: {
                     alwaysTriggers: true,
