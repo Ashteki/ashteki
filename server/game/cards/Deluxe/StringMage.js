@@ -17,9 +17,9 @@ class StringMage extends Card {
                 amount: {
                     activePromptTitle: 'Choose a token type',
                     dependsOn: 'tokenBoy',
-                    mode: 'options',
-                    options: (context) => this.getTokenOptions(context.targets.tokenBoy),
-                    handler: (option) => (this.chosenType = option.value)
+                    mode: 'select',
+                    choices: (context) => this.getTokenOptions(context.targets.tokenBoy),
+                    choiceHandler: (option) => (this.chosenType = option.value)
                 },
                 receiver: {
                     activePromptTitle: 'Choose a card to receive the token',
@@ -44,7 +44,7 @@ class StringMage extends Card {
     getTokenOptions(card) {
         return Object.keys(card.tokens)
             .filter((t) => ['status', 'damage'].includes(t))
-            .map((t) => ({ name: capitalize(t), value: t }));
+            .map((t) => ({ text: capitalize(t), value: t }));
     }
 }
 

@@ -34,7 +34,7 @@ describe('String Mage ability', function () {
         expect(this.player1).toHavePromptButton('Damage');
         expect(this.player1).toHavePromptButton('Status');
 
-        this.player1.clickPrompt('Status');
+        this.player1.clickPrompt('status');
         expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
         expect(this.player1).toHavePrompt('Choose a card to receive the token');
 
