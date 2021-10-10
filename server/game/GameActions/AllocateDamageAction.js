@@ -7,7 +7,7 @@ class AllocateDamageAction extends GameAction {
         this.cardCondition = () => true;
         this.damageStep = 1;
         this.numSteps = 0;
-        this.splash = 0;
+        //this.splash = 0;
         this.controller = 'any';
     }
 
@@ -20,7 +20,7 @@ class AllocateDamageAction extends GameAction {
                 new AllocateDamagePrompt(context.game, {
                     damageStep: this.damageStep,
                     numSteps: this.numSteps,
-                    splash: this.splash,
+                    //splash: this.splash,
                     selector: this.getSelector(),
                     context: context,
                     onSelect: (cardDamage) => {

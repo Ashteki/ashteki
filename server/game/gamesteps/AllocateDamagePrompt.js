@@ -84,13 +84,13 @@ class AllocateDamagePrompt extends UiPrompt {
         if (!this.cardDamage[card.uuid]) {
             this.cardDamage[card.uuid] = {
                 damage: this.properties.damageStep,
-                splash: 0
+                //splash: 0
             };
         } else {
             this.cardDamage[card.uuid].damage += this.properties.damageStep;
         }
 
-        if (this.properties.splash) {
+        /*if (this.properties.splash) {
             for (let neighbor of card.neighbors) {
                 if (!this.cardDamage[neighbor.uuid]) {
                     this.cardDamage[neighbor.uuid] = {
@@ -101,7 +101,7 @@ class AllocateDamagePrompt extends UiPrompt {
                     this.cardDamage[neighbor.uuid].splash += this.properties.splash;
                 }
             }
-        }
+        }*/
         return true;
     }
 
