@@ -180,8 +180,7 @@ describe('Copycat', function () {
         });
     });
 
-
-    describe('copy Open Memories', function () {
+    describe('copies actions', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -189,11 +188,11 @@ describe('Copycat', function () {
                     inPlay: ['hammer-knight', 'blood-archer'],
                     dicepool: ['natural', 'natural', 'illusion', 'charm', 'charm'],
                     deck: ['molten-gold', 'redirect', 'out-of-the-mist', 'cover'],
-                    hand: ['open-memories']
+                    hand: ['open-memories', 'phoenix-barrage']
                 },
                 player2: {
                     phoenixborn: 'maeoni-viper',
-                    inPlay: ['glow-finch'],
+                    inPlay: ['glow-finch', 'silver-snake', 'false-demon'],
                     hand: ['copycat', 'dispel'],
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
                     deck: ['anchornaut', 'iron-worker', 'purge', 'one-hundred-blades']
@@ -201,7 +200,7 @@ describe('Copycat', function () {
             });
         });
 
-        it('check only triggers once (bug reported, not found)', function () {
+        it('check Open Memories only triggers once (bug reported, not found)', function () {
             this.player1.play(this.openMemories);
             this.player1.clickDie(0);
             this.player1.clickDone();
@@ -213,6 +212,26 @@ describe('Copycat', function () {
             this.player2.clickCard(this.ironWorker);
             expect(this.ironWorker.location).toBe('hand');
             expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('Phoenix Barrage triggers completely', function () {
+            this.player1.play(this.phoenixBarrage);
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            this.player1.clickDie(2);
+            this.player1.clickDone();
+            this.player1.clickCard(this.silverSnake);
+            this.player1.clickCard(this.falseDemon);
+            this.player1.clickCard(this.maeoniViper);
+
+            this.player2.clickCard(this.copycat);
+            this.player2.clickDie(0);
+            this.player2.clickCard(this.hammerKnight);
+            this.player2.clickCard(this.bloodArcher);
+            this.player2.clickCard(this.coalRoarkwin);
+            expect(this.hammerKnight.damage).toBe(2);
+            expect(this.bloodArcher.damage).toBe(2);
+            expect(this.coalRoarkwin.damage).toBe(2);
         });
     });
 
