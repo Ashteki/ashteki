@@ -56,10 +56,6 @@ describe('String Mage ability', function () {
         expect(this.player1).toHavePrompt('Choose a unit with wound or status tokens');
 
         this.player1.clickCard(this.stringMage);
-        expect(this.player1).toHavePrompt('Choose a token type');
-        expect(this.player1).toHavePromptButton('Damage');
-
-        this.player1.clickPrompt('Damage');
         expect(this.player1).toBeAbleToSelect(this.anchornaut);
         expect(this.player1).toBeAbleToSelect(this.ironWorker); // other player
         expect(this.player1).not.toBeAbleToSelect(this.empower); // not a unit
@@ -83,10 +79,6 @@ describe('String Mage ability', function () {
         expect(this.player1).toHavePrompt('Choose a unit with wound or status tokens');
 
         this.player1.clickCard(this.stringMage);
-        expect(this.player1).toHavePrompt('Choose a token type');
-        expect(this.player1).toHavePromptButton('Damage');
-
-        this.player1.clickPrompt('Damage');
         expect(this.player1).toBeAbleToSelect(this.anchornaut);
         expect(this.player1).toBeAbleToSelect(this.ironWorker); // other player
         expect(this.player1).not.toBeAbleToSelect(this.empower); // not a unit
@@ -97,4 +89,29 @@ describe('String Mage ability', function () {
         expect(this.ironWorker.location).toBe('discard');
         expect(this.stringMage.damage).toBe(0);
     });
+
+    it('automate when only one choice', function () {
+        this.ironWorker.tokens.damage = 0;
+        this.stringMage.tokens.damage = 1;
+
+        this.player1.clickCard(this.stringMage);
+        this.player1.clickPrompt('Exchange Link');
+        expect(this.player1).toBeAbleToSelect(this.stringMage); // my string mage
+        expect(this.player1).toBeAbleToSelect(this.ironWorker); // other player
+        expect(this.player1).not.toBeAbleToSelect(this.empower); // not a unit
+        expect(this.player1).not.toBeAbleToSelect(this.anchornaut); // no tokens
+        expect(this.player1).toHavePrompt('Choose a unit with wound or status tokens');
+
+        this.player1.clickCard(this.stringMage);
+        expect(this.player1).toBeAbleToSelect(this.anchornaut);
+        expect(this.player1).toBeAbleToSelect(this.ironWorker); // other player
+        expect(this.player1).not.toBeAbleToSelect(this.empower); // not a unit
+        expect(this.player1).not.toBeAbleToSelect(this.stringMage); // my string mage
+        expect(this.player1).toHavePrompt('Choose a card to receive the token');
+
+        this.player1.clickCard(this.ironWorker);
+        expect(this.ironWorker.damage).toBe(1);
+        expect(this.stringMage.damage).toBe(0);
+    });
+
 });

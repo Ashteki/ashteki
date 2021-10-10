@@ -61,8 +61,6 @@ describe('Transfer actions spell', function () {
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.blueJaguar);
 
-            this.player1.clickPrompt('Exhaustion');
-
             this.player1.clickCard(this.stormwindSniper);
 
             this.player2.clickPass();
@@ -81,7 +79,7 @@ describe('Transfer actions spell', function () {
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.blueJaguar);
 
-            this.player1.clickPrompt('Exhaustion');
+            // this.player1.clickPrompt('Exhaustion');
 
             this.player1.clickCard(this.holyKnight);
 
@@ -126,7 +124,7 @@ describe('Transfer actions spell', function () {
             this.player1.clickPrompt('Done');
 
             this.player1.clickCard(this.blueJaguar);
-            this.player1.clickPrompt('Status');
+            // this.player1.clickPrompt('Status');
 
             this.player1.clickCard(this.mistSpirit);
             expect(this.player1).toHaveDefaultPrompt();

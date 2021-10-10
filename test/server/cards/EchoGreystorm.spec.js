@@ -68,6 +68,8 @@ describe('Echo Greystorm', function () {
 
     it('places gravity flux token which can move with transfer', function () {
         expect(this.fluteMage.tokens.gravityFlux).toBeUndefined();
+        this.fluteMage.tokens.status = 1; //  maintain choice
+
         this.player1.clickCard(this.echoGreystorm);
         this.player1.clickPrompt('Gravity Flux');
         this.player1.clickCard(this.fluteMage);

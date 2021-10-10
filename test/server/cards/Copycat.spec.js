@@ -259,7 +259,7 @@ describe('Copycat', function () {
             this.player2.clickCard(this.copycat);
             this.player2.clickDie(0);
             this.player2.clickCard(this.summonMistSpirit);
-            this.player2.clickPrompt('Exhaustion');
+            // this.player2.clickPrompt('Exhaustion');
             this.player2.clickCard(this.empower);
             expect(this.summonMistSpirit.exhausted).toBe(false);
             expect(this.empower.exhausted).toBe(true);
