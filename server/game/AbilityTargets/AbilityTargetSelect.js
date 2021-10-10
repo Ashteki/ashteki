@@ -5,12 +5,14 @@ class AbilityTargetSelect {
     constructor(name, properties, ability) {
         this.name = name;
         this.properties = properties;
-        for (const key of Object.keys(properties.choices)) {
-            if (
-                typeof properties.choices[key] !== 'function' &&
-                !Array.isArray(properties.choices[key])
-            ) {
-                properties.choices[key] = [properties.choices[key]];
+        if (!this.properties.choiceHandler) {
+            for (const key of Object.keys(properties.choices)) {
+                if (
+                    typeof properties.choices[key] !== 'function' &&
+                    !Array.isArray(properties.choices[key])
+                ) {
+                    properties.choices[key] = [properties.choices[key]];
+                }
             }
         }
 
@@ -63,6 +65,10 @@ class AbilityTargetSelect {
             return choice(contextCopy);
         }
 
+        if (this.properties.choiceHandler) {
+            return true;
+        }
+
         return choice.some((gameAction) => gameAction.hasLegalTarget(contextCopy));
     }
 
@@ -105,9 +111,15 @@ class AbilityTargetSelect {
         }
 
         let activePromptTitle = this.properties.activePromptTitle || 'Select one';
-        let choices = Object.keys(this.properties.choices).filter((key) =>
-            this.isChoiceLegal(key, context)
-        );
+
+        let choices = [];
+        if (this.properties.choiceHandler) {
+            choices = this.properties.choices;
+        } else {
+            choices = Object.keys(this.properties.choices).filter((key) =>
+                this.isChoiceLegal(key, context)
+            );
+        }
         let handlers = _.map(choices, (choice) => {
             return () => {
                 context.selects[this.name] = new SelectChoice(choice);
@@ -145,7 +157,8 @@ class AbilityTargetSelect {
                 context: context,
                 source: this.properties.source || context.source,
                 choices: choices,
-                handlers: handlers
+                handlers: handlers,
+                choiceHandler: this.properties.choiceHandler
             });
         }
     }
