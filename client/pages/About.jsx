@@ -105,16 +105,18 @@ class About extends React.Component {
                                 Move a card to play, spellboard, deck, discard, hand or conjuration (pile)
                             </Trans>
                         </li>
-                        <li>/purge - Choose a card to remove from the game.</li>
+                        <li>
+                            /passactive - Spend your main action and pass the active turn to your
+                            opponent
+                        </li>
+                        <li>/purge - Choose a card to remove from the game</li>
                         <li>
                             /rematch -{' '}
                             <Trans i18nKey='howtoplay.cmd.rematch'>
                                 Start over a new game with the current opponent
                             </Trans>
                         </li>
-                        <li>
-                            /reveal - Reveal a face down card
-                        </li>
+                        <li>/reveal - Reveal a face down card</li>
                         <li>
                             /shuffle -{' '}
                             <Trans i18nKey='howtoplay.cmd.shuffle'>Shuffle your deck</Trans>

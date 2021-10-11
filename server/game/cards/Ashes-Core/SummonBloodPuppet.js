@@ -12,25 +12,18 @@ class SummonBloodPuppet extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
             location: 'spellboard',
-            targets: {
-                first: {
-                    mode: 'options',
-                    activePromptTitle: "Which player's battlefield?",
-                    options: [
-                        { name: 'Mine', value: false },
-                        { name: "Opponent's", value: true }
-                    ],
-                    handler: (option) => (this.chosenValue = option.value)
-                },
-                conjuration: {
-                    dependsOn: 'first',
-                    controller: 'self',
-                    cardType: 'Conjuration',
-                    cardCondition: (card) => card.id === 'blood-puppet',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay(() => ({
-                        opponentControls: this.chosenValue
-                    }))
+            target: {
+                mode: 'select',
+                activePromptTitle: "Which player's battlefield?",
+                choices: {
+                    Mine: this.game.actions.summon({
+                        conjuration: 'blood-puppet',
+                        opponentControls: false
+                    }),
+                    "Opponent's": this.game.actions.summon({
+                        conjuration: 'blood-puppet',
+                        opponentControls: true
+                    })
                 }
             }
         });

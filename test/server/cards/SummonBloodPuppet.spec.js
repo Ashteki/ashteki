@@ -23,7 +23,6 @@ describe('Summon Blood Puppet', function () {
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('Summon Blood Puppet');
             this.player1.clickPrompt('Mine');
-            this.player1.clickCard(this.bloodPuppet);
 
             // Blood puppet is now on the battlefield
             expect(this.player1.inPlay.length).toBe(1);
@@ -45,7 +44,6 @@ describe('Summon Blood Puppet', function () {
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('Summon Blood Puppet');
             this.player1.clickPrompt("Opponent's");
-            this.player1.clickCard(this.bloodPuppet);
 
             // Blood puppet is now on the battlefield
             expect(this.player1.inPlay.length).toBe(0);
@@ -94,7 +92,6 @@ describe('Summon Blood Puppet', function () {
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('Summon Blood Puppet');
             this.player1.clickPrompt("Opponent's");
-            this.player1.clickCard(this.bloodPuppet);
 
             // Blood puppet is now on the battlefield
             expect(this.player1.inPlay.length).toBe(0);

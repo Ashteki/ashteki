@@ -19,6 +19,10 @@ class Copycat extends Card {
         let result = context.event.context.ability;
         if (context.event.context.preThenEvent) {
             result = context.event.context.preThenEvent.context.ability;
+            // This next step aims to deal with effect then effect then effect (e.g. Phoenix Barrage)
+            if (context.event.context.preThenEvent.context.preThenEvent) {
+                result = context.event.context.preThenEvent.context.preThenEvent.context.ability;
+            }
         }
         return result;
     }

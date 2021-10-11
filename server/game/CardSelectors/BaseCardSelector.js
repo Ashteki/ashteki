@@ -105,7 +105,7 @@ class BaseCardSelector {
                 }
                 // lightning speed / no reactions can target
                 if (
-                    context.source.type === CardType.ReactionSpell &&
+                    (context.source.type === CardType.ReactionSpell || context.playedAsReaction) &&
                     card.anyEffect('cannotBeReactionTarget')
                 ) {
                     return false;

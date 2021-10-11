@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import CardImage from './CardImage';
+import Die from './Die';
 
 import './CardZoom.scss';
 
@@ -12,6 +13,14 @@ const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
     }
 
     const renderSimpleCard = (card) => {
+        if (card.type === 'die') {
+            return (
+                <div className='x-large cardlog-die mb-2'>
+                    <Die key={'cld-' + card.uuid} die={card} />
+                </div>
+            )
+        }
+
         if (!card.id || !show) return '';
 
         return (

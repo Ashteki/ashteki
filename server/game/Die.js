@@ -58,6 +58,15 @@ class Die extends PlayableObject {
         return Object.assign(state, selectionState);
     }
 
+    getShortSummary() {
+        return Object.assign(super.getShortSummary(), {
+            uuid: this.uuid,
+            magic: this.magic,
+            level: this.level,
+            type: this.getType()
+        });
+    }
+
     getMenu() {
         var menu = [];
 

@@ -29,10 +29,10 @@ class SmallSacrifice extends Card {
                 },
                 tokenChoice: {
                     dependsOn: 'second',
-                    mode: 'options',
+                    mode: 'select',
                     activePromptTitle: 'Choose an action',
-                    options: (context) => this.getSacrificeOptions(context.targets),
-                    handler: (option) => (this.chosenType = option.value)
+                    choices: (context) => this.getSacrificeOptions(context.targets),
+                    choiceHandler: (choice) => (this.chosenType = choice.value)
                 }
             },
             then: (context) => ({
@@ -70,7 +70,7 @@ class SmallSacrifice extends Card {
         if (this.focus && ![targets.first, targets.second].some((t) => t.exhausted)) {
             choices.push('exhaust');
         }
-        return choices.map((t) => ({ name: capitalize(t), value: t }));
+        return choices.map((t) => ({ text: capitalize(t), value: t }));
     }
 }
 

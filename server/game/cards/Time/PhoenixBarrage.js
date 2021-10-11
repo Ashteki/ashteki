@@ -16,7 +16,8 @@ class PhoenixBarrage extends Card {
                     activePromptTitle: 'Choose a second unit to damage',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({
-                        amount: 2
+                        amount: 2,
+                        showMessage: true
                     })
                 },
                 then: {
@@ -24,7 +25,8 @@ class PhoenixBarrage extends Card {
                         activePromptTitle: 'Choose a phoenixborn to damage',
                         cardType: CardType.Phoenixborn,
                         gameAction: ability.actions.dealDamage({
-                            amount: 2
+                            amount: 2,
+                            showMessage: true
                         })
                     }
                 }

@@ -8,13 +8,13 @@ class MirrorSpirit extends Card {
 
         this.entersPlay({
             target: {
-                mode: 'options',
+                mode: 'select',
                 activePromptTitle: "Reflect Sorrow: Choose which player's units",
-                options: [
-                    { name: 'Mine', value: false },
-                    { name: "Opponent's", value: true }
+                choices: [
+                    { text: 'Mine', value: false },
+                    { text: "Opponent's", value: true }
                 ],
-                handler: (option) => (this.chosenValue = option.value)
+                choiceHandler: (option) => (this.chosenValue = option.value)
             },
             gameAction: ability.actions.addStatusToken((context) => ({
                 target: context.source,

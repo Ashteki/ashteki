@@ -22,16 +22,12 @@ class SummonCerasaurusMount extends Card {
                 gameAction: ability.actions.purge()
             },
             then: {
-                target: {
-                    controller: 'self',
-                    cardType: 'Conjuration',
-                    cardCondition: (card) => card.id === 'cerasaurus-mount',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
-                },
+                gameAction: ability.actions.summon({
+                    conjuration: 'cerasaurus-mount'
+                }),
                 then: {
                     gameAction: ability.actions.placeUnder((context) => ({
-                        parent: context.preThenEvent.card,
+                        parent: context.preThenEvent.cards[0],
                         target: context.preThenEvent.context.preThenEvent.card,
                         facedown: true
                     }))
