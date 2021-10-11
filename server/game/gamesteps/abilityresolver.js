@@ -146,6 +146,10 @@ class AbilityResolver extends BaseStepWithPipeline {
             }
         }
 
+        if (this.context.source.type === 'die') {
+            this.context.game.diePowerUsed(this.context.source);
+        }
+
         this.game.raiseEvent(
             'onAbilityInitiated',
             {

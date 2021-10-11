@@ -19,9 +19,9 @@ class Transfer extends Card {
                 amount: {
                     activePromptTitle: 'Choose a type',
                     dependsOn: 'tokenBoy',
-                    mode: 'options',
-                    options: (context) => this.getTokenOptions(context.targets.tokenBoy),
-                    handler: (option) => (this.chosenType = option.value)
+                    mode: 'select',
+                    choices: (context) => this.getTokenOptions(context.targets.tokenBoy),
+                    choiceHandler: (option) => (this.chosenType = option.value)
                 },
                 receiver: {
                     ignoreTargetCheck: true,
@@ -42,7 +42,7 @@ class Transfer extends Card {
     }
 
     getTokenOptions(card) {
-        return Object.keys(card.tokens).map((t) => ({ name: capitalize(t), value: t }));
+        return Object.keys(card.tokens).map((t) => ({ text: capitalize(t), value: t }));
     }
 }
 

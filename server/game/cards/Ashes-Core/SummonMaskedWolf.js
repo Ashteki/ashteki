@@ -14,22 +14,17 @@ class SummonMaskedWolf extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
             ],
             location: 'spellboard',
-            target: {
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'masked-wolf',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay({
-                    postHandler: (context) => {
-                        if (
-                            context.source.focus > 0 &&
-                            context.costs.returnDice.some((d) => d.level === 'power')
-                        ) {
-                            context.player.actions.side += 1;
-                        }
+            gameAction: ability.actions.summon({
+                conjuration: 'masked-wolf',
+                postHandler: (context) => {
+                    if (
+                        context.source.focus > 0 &&
+                        context.costs.returnDice.some((d) => d.level === 'power')
+                    ) {
+                        context.player.actions.side += 1;
                     }
-                })
-            }
+                }
+            })
         });
     }
 }

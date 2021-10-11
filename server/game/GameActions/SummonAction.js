@@ -4,6 +4,7 @@ class SummonAction extends PlayerAction {
     setDefaultProperties() {
         this.count = 1;
         this.conjuration = null;
+        this.opponentControls = false;
         // this.amount = 1;
     }
 
@@ -30,11 +31,16 @@ class SummonAction extends PlayerAction {
     }
 
     getEvent(player, context) {
-        const summonEvent = super.createEvent('onSummon', { player: player, context: context });
+        const summonEvent = super.createEvent('onSummon', {
+            player: player,
+            context: context,
+            cards: this.cards
+        });
         if (this.cards && this.cards.length) {
             const gameAction = context.game.actions.putIntoPlay({
                 target: this.cards,
-                showMessage: true
+                showMessage: true,
+                opponentControls: this.opponentControls
             });
             for (let event of gameAction.getEventArray(context)) {
                 summonEvent.addChildEvent(event);

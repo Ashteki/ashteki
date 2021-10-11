@@ -18,12 +18,14 @@ describe('Anguish', function () {
 
         it('discard damages opponents pb on empty hand', function () {
             expect(this.rinNorthfell.damage).toBe(0);
+            expect(this.player2.hand.length).toBe(0);
 
             this.player1.clickCard(this.anguish);
             this.player1.clickPrompt('Play this action');
             this.player1.clickDie(2);
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.rinNorthfell);
             this.player2.clickPrompt('Discard');
 
             expect(this.rinNorthfell.damage).toBe(2);
@@ -37,6 +39,7 @@ describe('Anguish', function () {
             this.player1.clickDie(2);
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.rinNorthfell);
             this.player2.clickPrompt('Damage');
 
             expect(this.rinNorthfell.damage).toBe(2);
@@ -50,6 +53,7 @@ describe('Anguish', function () {
             this.player1.clickDie(2);
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.rinNorthfell);
             this.player2.clickPrompt('Damage');
             // second part
             this.player2.clickPrompt('Take 2 Damage');
@@ -68,6 +72,7 @@ describe('Anguish', function () {
             this.player1.clickDie(2);
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.rinNorthfell);
             this.player2.clickPrompt('Damage');
             // second part
             this.player2.clickPrompt('Exhaust 2 Dice');
@@ -105,6 +110,8 @@ describe('Anguish', function () {
             this.player1.clickDie(2);
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.rinNorthfell);
+
             this.player2.clickPrompt('Discard');
             this.player2.clickPrompt('Exhaust 2 Dice');
             this.player1.clickOpponentDie(0);

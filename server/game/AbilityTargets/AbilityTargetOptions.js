@@ -32,7 +32,7 @@ class AbilityTargetOptions {
         return !!this.properties.dependsOn || this.hasLegalTarget(context);
     }
 
-    resetGameActions() {}
+    resetGameActions() { }
 
     hasLegalTarget(context) {
         return !!this.getOptions(context).length;
@@ -67,13 +67,19 @@ class AbilityTargetOptions {
 
         let promptTitle = this.properties.activePromptTitle || 'Choose an option';
 
-        context.game.promptWithOptionsMenu(player, {
-            activePromptTitle: promptTitle,
-            waitingPromptTitle: 'Waiting for opponent',
-            source: this.properties.source || context.source,
-            options: this.getOptions(context),
-            optionsHandler: (option) => (context.option = this.handler(option))
-        });
+        const myOptions = this.getOptions(context);
+
+        if (myOptions.length === 1) {
+            context.option = this.handler(myOptions[0]);
+        } else {
+            context.game.promptWithOptionsMenu(player, {
+                activePromptTitle: promptTitle,
+                waitingPromptTitle: 'Waiting for opponent',
+                source: this.properties.source || context.source,
+                options: myOptions,
+                optionsHandler: (option) => (context.option = this.handler(option))
+            });
+        }
     }
 
     defaultHandler = (option) => option;

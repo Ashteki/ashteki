@@ -18,9 +18,14 @@ describe('Canyon Shelter', function () {
             });
 
             this.hammerKnight.tokens.exhaustion = 1;
+            this.hammerKnight.tokens.damage = 1;
         });
 
         it('place unit under card, return to battle, add status token', function () {
+            // poor HK is hurt and exhausted
+            expect(this.hammerKnight.exhausted).toBe(true);
+            expect(this.hammerKnight.damage).toBe(1);
+
             this.player1.clickCard(this.canyonShelter);
             this.player1.clickPrompt('Shelter Unit');
             this.player1.clickCard(this.hammerKnight);
@@ -35,8 +40,11 @@ describe('Canyon Shelter', function () {
             this.player1.clickCard(this.canyonShelter);
             this.player1.clickPrompt('Return Unit');
             this.player1.clickPrompt('Hammer Knight');
+            // HK returns without tokens, then gets a status token
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.hammerKnight.status).toBe(1);
+            expect(this.hammerKnight.exhausted).toBe(false);
+            expect(this.hammerKnight.damage).toBe(0);
         });
     });
 });

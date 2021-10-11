@@ -8,7 +8,8 @@ class TransmuteMagic extends Card {
             targets: {
                 inactive: {
                     toSelect: 'die',
-                    mode: 'unlimited',
+                    mode: 'upTo',
+                    numDice: (context) => context.player.dice.filter((d) => !d.exhausted).length,
                     owner: 'self',
                     dieCondition: (die) => die.exhausted
                 },

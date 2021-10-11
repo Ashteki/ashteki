@@ -115,6 +115,10 @@ class Game extends EventEmitter {
         this.cardsPlayed.push(card);
     }
 
+    diePowerUsed(die) {
+        this.cardsPlayed.push(die);
+    }
+
     cardPlayed(card) {
         if (this.lastCardPlayed !== card) {
             this.cardsPlayed.push(card);

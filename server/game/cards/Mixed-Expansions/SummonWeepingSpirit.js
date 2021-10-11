@@ -12,25 +12,18 @@ class SummonWeepingSpirit extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Charm)])
             ],
             location: 'spellboard',
-            targets: {
-                first: {
-                    mode: 'options',
-                    activePromptTitle: "Which player's battlefield?",
-                    options: [
-                        { name: 'Mine', value: false },
-                        { name: "Opponent's", value: true }
-                    ],
-                    handler: (option) => (this.chosenValue = option.value)
-                },
-                conjuration: {
-                    dependsOn: 'first',
-                    controller: 'self',
-                    cardType: 'Conjuration',
-                    cardCondition: (card) => card.id === 'weeping-spirit',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay(() => ({
-                        opponentControls: this.chosenValue
-                    }))
+            target: {
+                mode: 'select',
+                activePromptTitle: "Which player's battlefield?",
+                choices: {
+                    Mine: this.game.actions.summon({
+                        conjuration: 'weeping-spirit',
+                        opponentControls: false
+                    }),
+                    "Opponent's": this.game.actions.summon({
+                        conjuration: 'weeping-spirit',
+                        opponentControls: true
+                    })
                 }
             },
             then: {

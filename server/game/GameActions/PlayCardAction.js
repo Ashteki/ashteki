@@ -4,6 +4,7 @@ class PlayCardAction extends CardGameAction {
     constructor(propertyFactory) {
         super(propertyFactory);
         this.ignoreActionCost = false;
+        this.playedAsReaction = undefined;
     }
 
     setDefaultProperties() {
@@ -70,6 +71,9 @@ class PlayCardAction extends CardGameAction {
                     let actionContext = action.createContext(context.player);
                     if (this.ignoreActionCost) {
                         actionContext.ignoreActionCost = true;
+                    }
+                    if (this.playedAsReaction) {
+                        actionContext.playedAsReaction = true;
                     }
                     context.game.resolveAbility(actionContext);
                 });

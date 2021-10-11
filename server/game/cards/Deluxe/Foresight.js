@@ -7,13 +7,13 @@ class Foresight extends Card {
             location: 'spellboard',
             cost: [ability.costs.mainAction(), ability.costs.exhaust()],
             target: {
-                mode: 'options',
+                mode: 'select',
                 activePromptTitle: "Foresight: Choose a player's deck",
-                options: [
-                    { name: 'Mine', value: false },
-                    { name: "Opponent's", value: true }
+                choices: [
+                    { text: 'Mine', value: false },
+                    { text: "Opponent's", value: true }
                 ],
-                handler: (option) => (this.chosenValue = option.value)
+                choiceHandler: (option) => (this.chosenValue = option.value)
             },
             gameAction: ability.actions.rearrangeCards((context) => ({
                 amount: 2,

@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const { capitalize } = require('../../util.js');
 const AbilityContext = require('../AbilityContext.js');
 const EffectSource = require('../EffectSource.js');
 const UiPrompt = require('./uiprompt.js');
