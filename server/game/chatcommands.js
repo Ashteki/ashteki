@@ -22,6 +22,7 @@ class ChatCommands {
             '/move': this.moveCard,
             '/modifyclock': this.modifyClock, // hidden option
             '/mutespectators': this.muteSpectators, // hidden option
+            '/passactive': this.passActiveTurn, //hidden option
             '/purge': this.purgeCard,
             '/rematch': this.rematch,
             '/reveal': this.reveal,
@@ -227,6 +228,19 @@ class ChatCommands {
             : Object.keys(player.actions).filter((action) => player.actions[action])[0];
         this.game.addAlert('danger', '{0} sets their {1} action to unspent', player, actionType);
         player.actions[actionType] = true;
+    }
+
+    passActiveTurn(player) {
+        if (player === this.game.activePlayer) {
+            this.spendAction(player, ['', 'main']);
+            this.game.addAlert(
+                'danger',
+                '{0} passes the active turn to {1}',
+                player,
+                player.opponent
+            );
+            this.game.endTurn();
+        }
     }
 
     startClocks(player) {

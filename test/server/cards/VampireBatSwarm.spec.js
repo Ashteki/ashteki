@@ -21,7 +21,7 @@ describe('Vampire Bat Swarm', function () {
             this.player1.clickCard(this.stringMage);
             this.player1.clickPrompt('Exchange Link');
             this.player1.clickCard(this.stringMage);
-            this.player1.clickPrompt('Damage');
+            // this.player1.clickPrompt('Damage');
             this.player1.clickCard(this.vampireBatSwarm);
             // on destroy choices...
             expect(this.player2).toHavePrompt('Activate Swarm?: select dice');

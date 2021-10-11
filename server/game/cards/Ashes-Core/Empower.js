@@ -37,11 +37,12 @@ class Empower extends Card {
                     amount: {
                         dependsOn: 'tokenBoy',
                         activePromptTitle: 'How many tokens?',
-                        mode: 'options',
-                        options: (context) =>
-                            context.targets.tokenBoy &&
-                            this.getValueOptions(context.targets.tokenBoy.tokens.status),
-                        handler: (option) => (this.chosenValue = option.value)
+                        mode: 'select',
+                        choices: (context) =>
+                            context.targets.tokenBoy
+                                ? this.getValueOptions(context.targets.tokenBoy.tokens.status)
+                                : [],
+                        choiceHandler: (option) => (this.chosenValue = option.value)
                     }
                 },
                 then: (preThenContext) => ({
@@ -69,7 +70,7 @@ class Empower extends Card {
     getValueOptions(maxValue) {
         let values = [];
         for (let i = 0; i <= maxValue; i++) {
-            values.push({ name: '' + i, value: i });
+            values.push({ text: '' + i, value: i });
         }
         return values;
     }

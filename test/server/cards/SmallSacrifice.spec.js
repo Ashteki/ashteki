@@ -24,8 +24,6 @@ describe('Small sacrifice', function () {
         this.player1.clickPrompt('Small Sacrifice');
         this.player1.clickCard(this.ironWorker);
         this.player1.clickCard(this.blueJaguar);
-        expect(this.player1.promptState.buttons.length).toBe(1);
-        this.player1.clickPrompt('Damage');
 
         expect(this.ironWorker.tokens.damage).toBe(1);
         expect(this.blueJaguar.tokens.damage).toBe(1);

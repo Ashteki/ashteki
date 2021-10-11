@@ -36,7 +36,7 @@ describe('Summon Sleeping Widows bugreport', function () {
         this.player1.clickPrompt('Small Sacrifice');
         this.player1.clickCard(this.maskedWolf);
         this.player1.clickCard(this.ironWorker);
-        this.player1.clickPrompt('Damage');
+        // this.player1.clickPrompt('Damage');
         expect(this.maskedWolf.location).toBe('archives');
         expect(this.player1).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player1.clickCard(this.summonSleepingWidows);
@@ -51,7 +51,7 @@ describe('Summon Sleeping Widows bugreport', function () {
         this.player1.clickPrompt('Small Sacrifice');
         this.player1.clickCard(this.maskedWolf);
         this.player1.clickCard(this.anchornaut);
-        this.player1.clickPrompt('Damage');
+        // this.player1.clickPrompt('Damage');
         expect(this.maskedWolf.location).toBe('archives');
         expect(this.player1).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
         this.player1.clickCard(this.summonSleepingWidows);

@@ -8,13 +8,13 @@ class RimeaCareworn extends Card {
             title: 'Visions',
             cost: ability.costs.sideAction(),
             target: {
-                mode: 'options',
+                mode: 'select',
                 activePromptTitle: "Visions: Choose a player's deck",
-                options: [
-                    { name: 'Mine', value: false },
-                    { name: "Opponent's", value: true }
+                choices: [
+                    { text: 'Mine', value: false },
+                    { text: "Opponent's", value: true }
                 ],
-                handler: (option) => (this.chosenValue = option.value)
+                choiceHandler: (option) => (this.chosenValue = option.value)
             },
             gameAction: ability.actions.rearrangeCards((context) => ({
                 target: this.chosenValue ? context.player.opponent : context.player,

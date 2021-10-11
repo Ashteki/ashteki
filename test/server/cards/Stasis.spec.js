@@ -3,7 +3,7 @@ describe('Stasis In Hand', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['mist-spirit', 'iron-worker'],
+                inPlay: ['mist-spirit', 'iron-worker', 'squall-stallion'],
                 spellboard: ['summon-butterfly-monk']
             },
             player2: {
@@ -39,6 +39,8 @@ describe('Stasis In Hand', function () {
         expect(this.mistSpirit.location).toBe('play area'); // not killed yet
 
         this.player2.clickCard(this.stasis);
+        expect(this.player2).toBeAbleToSelect(this.mistSpirit);
+        expect(this.player2).not.toBeAbleToSelect(this.squallStallion);
         this.player2.clickCard(this.mistSpirit);
 
         expect(this.stasis.parent).toBe(this.mistSpirit);

@@ -5,12 +5,14 @@ class AbilityTargetSelect {
     constructor(name, properties, ability) {
         this.name = name;
         this.properties = properties;
-        for (const key of Object.keys(properties.choices)) {
-            if (
-                typeof properties.choices[key] !== 'function' &&
-                !Array.isArray(properties.choices[key])
-            ) {
-                properties.choices[key] = [properties.choices[key]];
+        if (!this.properties.choiceHandler) {
+            for (const key of Object.keys(properties.choices)) {
+                if (
+                    typeof properties.choices[key] !== 'function' &&
+                    !Array.isArray(properties.choices[key])
+                ) {
+                    properties.choices[key] = [properties.choices[key]];
+                }
             }
         }
 
@@ -35,7 +37,10 @@ class AbilityTargetSelect {
     }
 
     hasLegalTarget(context) {
-        let keys = Object.keys(this.properties.choices);
+        let keys = [];
+        if (typeof this.properties.choices === 'function') {
+            keys = this.properties.choices(context);
+        } else keys = Object.keys(this.properties.choices);
         return keys.some((key) => this.isChoiceLegal(key, context));
     }
 
@@ -63,11 +68,15 @@ class AbilityTargetSelect {
             return choice(contextCopy);
         }
 
+        if (this.properties.choiceHandler) {
+            return true;
+        }
+
         return choice.some((gameAction) => gameAction.hasLegalTarget(contextCopy));
     }
 
     getGameAction(context) {
-        if (!context.selects[this.name]) {
+        if (!context.selects[this.name] || typeof this.properties.choices === 'function') {
             return [];
         }
 
@@ -105,9 +114,17 @@ class AbilityTargetSelect {
         }
 
         let activePromptTitle = this.properties.activePromptTitle || 'Select one';
-        let choices = Object.keys(this.properties.choices).filter((key) =>
-            this.isChoiceLegal(key, context)
-        );
+
+        let choices = [];
+        if (typeof this.properties.choices === 'function') {
+            choices = this.properties.choices(context);
+        } else if (this.properties.choiceHandler) {
+            choices = this.properties.choices;
+        } else {
+            choices = Object.keys(this.properties.choices).filter((key) =>
+                this.isChoiceLegal(key, context)
+            );
+        }
         let handlers = _.map(choices, (choice) => {
             return () => {
                 context.selects[this.name] = new SelectChoice(choice);
@@ -126,7 +143,9 @@ class AbilityTargetSelect {
             handlers.push(() => (targetResults.cancelled = true));
         }
 
-        if (handlers.length === 1) {
+        if (choices.length === 1 && this.properties.choiceHandler) {
+            this.properties.choiceHandler(choices[0]);
+        } else if (handlers.length === 1) {
             handlers[0]();
         } else if (handlers.length > 1) {
             let waitingPromptTitle = '';
@@ -145,7 +164,8 @@ class AbilityTargetSelect {
                 context: context,
                 source: this.properties.source || context.source,
                 choices: choices,
-                handlers: handlers
+                handlers: handlers,
+                choiceHandler: this.properties.choiceHandler
             });
         }
     }

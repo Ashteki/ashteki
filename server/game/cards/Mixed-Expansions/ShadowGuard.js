@@ -14,7 +14,8 @@ class ShadowGuard extends Card {
             gameAction: ability.actions.playCard(() => ({
                 target: this,
                 ignoreActionCost: true,
-                isLimited: true
+                isLimited: true,
+                playedAsReaction: true
             }))
         });
     }

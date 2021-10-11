@@ -45,9 +45,6 @@ class Vanish extends Card {
         return triggeringTargets.some(
             (t) => event.context.targets[t.name].controller === context.player
         );
-        // return Object.values(event.context.targets).some(
-        //     (t) => t.controller === context.player && t.type === CardType.Phoenixborn
-        // )
     }
 }
 
