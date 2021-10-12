@@ -110,7 +110,7 @@ class AbilityResolver extends BaseStepWithPipeline {
                     });
                 }
             }
-        })
+        });
     }
 
     initiateAbility() {
