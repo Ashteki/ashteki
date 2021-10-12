@@ -116,7 +116,7 @@ class AbilityResolver extends BaseStepWithPipeline {
                     event.player.actions.side += 1;
                 }
             }
-        })
+        });
     }
 
     initiateAbility() {

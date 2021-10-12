@@ -124,7 +124,7 @@ class Player extends GameObject {
     }
 
     /**
-     * Returns an Array of all characters and upgrades matching the predicate controlled by this player
+     * Returns an Array of all units and upgrades matching the predicate controlled by this player
      * @param {Function} predicate  - DrawCard => Boolean
      */
     filterCardsInPlay(predicate) {
@@ -134,7 +134,7 @@ class Player extends GameObject {
     }
 
     /**
-     * Returns the total number of characters and upgrades controlled by this player which match the passed predicate
+     * Returns the total number of units and upgrades controlled by this player which match the passed predicate
      * @param {Function} predicate - DrawCard => Int
      */
     getNumberOfCardsInPlay(predicate) {
@@ -165,7 +165,7 @@ class Player extends GameObject {
     }
 
     /**
-     * Draws the passed number of cards from the top of the deck into this players hand, shuffling if necessary
+     * Draws the passed number of cards from the top of the deck into this players hand
      * @param {number} numCards
      */
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
@@ -192,18 +192,6 @@ class Player extends GameObject {
                 this.game.getFrameworkContext()
             );
         }
-    }
-
-    /**
-     * Called when one of the players decks runs out of cards, removing 5 honor and shuffling the discard pile back into the deck
-     */
-    deckRanOutOfCards() {
-        this.game.addMessage("{0}'s deck has run out of cards, so they shuffle", this);
-        for (let card of this.discard) {
-            this.moveCard(card, 'deck');
-        }
-
-        this.shuffleDeck();
     }
 
     isSpellboardFull(spellToAdd) {
@@ -435,8 +423,8 @@ class Player extends GameObject {
             'Ready Spell': [...cardLocations, 'spellboard'], // To do: The Awakened State is a ready spell that starts in archives
             'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],
-            Conjuration: ['play area', 'archives'], // Conjurations should have limited legal locations
-            'Conjured Alteration Spell': ['play area', 'archives'] // Conjured alteration spells should have limited legal locations
+            Conjuration: ['play area', 'archives'],
+            'Conjured Alteration Spell': ['play area', 'archives']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);
@@ -458,8 +446,8 @@ class Player extends GameObject {
     }
 
     /**
-     * Moves a card from one location to another. This involves removing it from the list it's currently in, calling DrawCard.move (which changes
-     * its location property), and then adding it to the list it should now be in
+     * Moves a card from one location to another. This involves removing it from the list it's currently in, calling DrawCard.move 
+     * (which changes its location property), and then adding it to the list it should now be in
      * @param card
      * @param {String} targetLocation
      * @param {Object} options
@@ -689,10 +677,6 @@ class Player extends GameObject {
 
     spendSideAction() {
         this.actions.side -= 1;
-    }
-
-    isHaunted() {
-        return this.discard.length >= 10;
     }
 
     get maxHandSize() {
