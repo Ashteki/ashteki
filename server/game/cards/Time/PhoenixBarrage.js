@@ -12,6 +12,7 @@ class PhoenixBarrage extends Card {
                 })
             },
             then: {
+                alwaysTriggers: true,
                 target: {
                     activePromptTitle: 'Choose a second unit to damage',
                     cardType: BattlefieldTypes,
@@ -21,6 +22,7 @@ class PhoenixBarrage extends Card {
                     })
                 },
                 then: {
+                    alwaysTriggers: true,
                     target: {
                         activePromptTitle: 'Choose a phoenixborn to damage',
                         cardType: CardType.Phoenixborn,
