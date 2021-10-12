@@ -160,6 +160,7 @@ class Die extends PlayableObject {
                         controller: 'self',
                         cardType: 'Ally',
                         location: 'discard',
+                        showCancel: true,
                         gameAction: this.game.actions.moveCard({ destination: 'hand' })
                     },
                     then: {
@@ -179,6 +180,7 @@ class Die extends PlayableObject {
                         toSelect: 'die',
                         mode: 'upTo',
                         numDice: 2,
+                        showCancel: true,
                         owner: 'opponent',
                         gameAction: this.game.actions.lowerDie()
                     },
@@ -191,6 +193,7 @@ class Die extends PlayableObject {
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         activePromptTitle: 'Choose a unit to deal 1 damage to',
+                        showCancel: true,
                         cardType: ['Ally', 'Conjuration'],
                         gameAction: this.game.actions.dealDamage({ amount: 1 })
                     },
@@ -206,6 +209,7 @@ class Die extends PlayableObject {
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
                         controller: 'opponent',
+                        showCancel: true,
                         gameAction: this.game.actions.attachDie((context) => ({
                             upgradeDie: context.source
                         }))
@@ -223,6 +227,7 @@ class Die extends PlayableObject {
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Divine),
                         controller: 'self',
+                        showCancel: true,
                         gameAction: this.game.actions.attachDie({ upgradeDie: this })
                     },
                     message: '{0} attaches {1} to {2}',
@@ -271,6 +276,7 @@ class Die extends PlayableObject {
                         activePromptTitle: 'Select a card to add a status token to',
                         controller: 'self',
                         cardType: BattlefieldTypes,
+                        showCancel: true,
                         gameAction: this.game.actions.addStatusToken()
                     },
                     then: {

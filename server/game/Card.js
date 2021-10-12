@@ -164,6 +164,7 @@ class Card extends PlayableObject {
         // Overkill
         this.abilities.keywordReactions.push(
             this.afterDestroysFighting({
+                condition: (context) => context.source.getKeywordValue('overkill'),
                 autoResolve: true,
                 gameAction: ability.actions.dealDamage((context) => ({
                     amount: context.source.getKeywordValue('overkill'),

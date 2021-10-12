@@ -34,4 +34,14 @@ describe('Time Dice Power', function () {
 
         this.player1.endTurn();
     });
+
+    it('can be cancelled in first target', function () {
+        this.player1.clickDie(0);
+        this.player1.clickPrompt('Time Dice Power');
+        this.player1.clickPrompt('Cancel');
+        expect(this.player1.actions.side).toBe(1);
+        expect(this.player1.dicepool[0].exhausted).toBe(false);
+
+        expect(this.player1).toHaveDefaultPrompt();
+    });
 });
