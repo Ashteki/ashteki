@@ -109,6 +109,12 @@ class AbilityResolver extends BaseStepWithPipeline {
                         die.ready();
                     });
                 }
+                if (event.name === 'onDieExhausted') {
+                    event.die.ready();
+                }
+                if (event.name === 'onSpendSideAction') {
+                    event.player.actions.side += 1;
+                }
             }
         })
     }
