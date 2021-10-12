@@ -8,7 +8,6 @@ class DealDamageAction extends CardGameAction {
         this.fightEvent = null;
         this.damageSource = null;
         this.damageType = 'card effect';
-        this.splash = 0;
         this.purge = false;
         this.ignoreArmor = false;
         this.bonus = false;
@@ -32,21 +31,6 @@ class DealDamageAction extends CardGameAction {
     }
 
     getEventArray(context) {
-        if (this.splash) {
-            return this.target
-                .filter((card) => this.canAffect(card, context))
-                .reduce(
-                    (array, card) =>
-                        array.concat(
-                            this.getEvent(card, context),
-                            card.neighbors.map((neighbor) =>
-                                this.getEvent(neighbor, context, this.splash)
-                            )
-                        ),
-                    []
-                );
-        }
-
         return super.getEventArray(context);
     }
 
