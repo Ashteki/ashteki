@@ -23,9 +23,10 @@ class DealDamageAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        if (this.amount === 0 || (!this.amount && this.amountForCard(card, context) === 0)) {
-            return false;
-        }
+        // removed so that units can deal 0 damage to each other (for law of domination)
+        // if (this.amount === 0 || (!this.amount && this.amountForCard(card, context) === 0)) {
+        //     return false;
+        // }
 
         return card.location === 'play area' && super.canAffect(card, context);
     }
