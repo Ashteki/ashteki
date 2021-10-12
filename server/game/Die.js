@@ -280,6 +280,7 @@ class Die extends PlayableObject {
                         gameAction: this.game.actions.addStatusToken()
                     },
                     then: {
+                        alwaysTriggers: true,
                         target: {
                             activePromptTitle: 'Select a card to remove a status token from',
                             optional: true,
