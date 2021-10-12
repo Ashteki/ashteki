@@ -1,15 +1,15 @@
 const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const { checkTarget } = require('../../targetting.js');
 
 class IceTrap extends Card {
     setupCardAbilities(ability) {
         this.reaction({
             when: {
-                onCardEntersPlay: (event) =>
+                onCardEntersPlay: (event, context) =>
                     BattlefieldTypes.includes(event.card.type) &&
                     event.card.life <= 2 &&
-                    !event.card.anyEffect('cannotBeSpellTarget') &&
-                    !event.card.anyEffect('cannotBeReactionTarget')
+                    checkTarget(event.card, context)
             },
             target: {
                 autoTarget: (context) => context.event.card,

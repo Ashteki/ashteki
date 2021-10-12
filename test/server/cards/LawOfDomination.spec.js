@@ -4,13 +4,13 @@ describe('law of Domination', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['mist-spirit', 'iron-worker'],
+                    inPlay: ['mist-spirit', 'iron-worker', 'ash-spirit'],
                     dicepool: ['divine', 'divine', 'charm', 'charm', 'natural', 'natural'],
                     hand: ['law-of-domination', 'freezing-blast']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    inPlay: ['hammer-knight', 'holy-knight'],
+                    inPlay: ['hammer-knight', 'holy-knight', 'anchornaut'],
                     spellboard: [],
                     hand: ['rins-fury', 'golden-veil'],
                     dicepool: ['natural', 'natural', 'charm']
@@ -30,6 +30,14 @@ describe('law of Domination', function () {
             expect(this.player1).toBeAbleToSelect(this.ironWorker);
             expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
             this.player1.clickCard(this.ironWorker);
+            expect(this.player1).toHaveDefaultPrompt(); // no GV trigger
+        });
+
+        it('two attack 0 units deal damage to each other', function () {
+            this.player1.clickCard(this.lawOfDomination);
+            this.player1.clickPrompt('Play this ready spell');
+            this.player2.clickCard(this.anchornaut);
+            this.player1.clickCard(this.ashSpirit);
             expect(this.player1).toHaveDefaultPrompt(); // no GV trigger
         });
     });

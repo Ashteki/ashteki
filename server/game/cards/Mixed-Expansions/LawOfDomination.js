@@ -15,6 +15,7 @@ class LawOfDomination extends Card {
                     ignoreTargetCheck: true
                 },
                 mine: {
+                    dependsOn: 'theirs',
                     controller: 'self',
                     cardType: BattlefieldTypes,
                     gameAction: [
