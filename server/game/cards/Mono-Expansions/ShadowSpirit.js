@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class ShadowSpirit extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.forcedReaction({
             title: 'Trickery 1',
             when: {
                 onAttackersDeclared: (event, context) => {
@@ -11,6 +11,8 @@ class ShadowSpirit extends Card {
                 }
             },
             target: {
+                activePromptTitle: 'Choose a die to lower',
+                optional: true,
                 toSelect: 'die',
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
