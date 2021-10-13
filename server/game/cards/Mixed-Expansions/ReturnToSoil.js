@@ -14,6 +14,8 @@ class ReturnToSoil extends Card {
                 gameAction: ability.actions.discardTopOfDeck(),
                 then: {
                     target: {
+                        cardCondition: (card, context) =>
+                            card !== context.preThenEvent.context.preThenEvent.context.target,
                         location: 'discard',
                         controller: 'opponent',
                         mode: 'upTo',
