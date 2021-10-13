@@ -69,6 +69,7 @@ class ResolveBattleAction extends GameAction {
 
                 let damageEvent;
                 if (
+                    defenderParams.amount > 0 &&
                     // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
                     event.defenderTarget === event.attacker &&
                     event.battle.counter &&

@@ -83,24 +83,10 @@ class AllocateDamagePrompt extends UiPrompt {
     selectCard(card) {
         if (!this.cardDamage[card.uuid]) {
             this.cardDamage[card.uuid] = {
-                damage: this.properties.damageStep,
-                splash: 0
+                damage: this.properties.damageStep
             };
         } else {
             this.cardDamage[card.uuid].damage += this.properties.damageStep;
-        }
-
-        if (this.properties.splash) {
-            for (let neighbor of card.neighbors) {
-                if (!this.cardDamage[neighbor.uuid]) {
-                    this.cardDamage[neighbor.uuid] = {
-                        damage: 0,
-                        splash: this.properties.splash
-                    };
-                } else {
-                    this.cardDamage[neighbor.uuid].splash += this.properties.splash;
-                }
-            }
         }
         return true;
     }

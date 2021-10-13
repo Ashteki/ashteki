@@ -277,20 +277,18 @@ class Die extends PlayableObject {
                         controller: 'self',
                         cardType: BattlefieldTypes,
                         showCancel: true,
-                        gameAction: this.game.actions.addStatusToken()
+                        gameAction: this.game.actions.addStatusToken({ showMessage: true })
                     },
                     then: {
+                        alwaysTriggers: true,
                         target: {
                             activePromptTitle: 'Select a card to remove a status token from',
                             optional: true,
-                            controller: 'opponent',
                             cardType: [...BattlefieldTypes, CardType.ReadySpell],
                             cardCondition: (card) => card.status > 0,
-                            gameAction: this.game.actions.removeStatus()
-                        },
-                        message: '{0} then removes 1 status token from {2}'
-                    },
-                    message: '{0} uses {1} to add 1 status token to {2}'
+                            gameAction: this.game.actions.removeStatus({ showMessage: true })
+                        }
+                    }
                 });
         }
     }
