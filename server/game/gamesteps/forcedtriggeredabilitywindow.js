@@ -49,7 +49,11 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     filterChoices() {
         if (this.choices.length === 0) return true;
 
-        const myChoices = this.choices.filter(c => c.player === this.currentPlayer);
+        let myChoices = this.choices;
+        if (this.game.betweenTurns || this.game.betweenRounds) {
+            myChoices = this.choices.filter((c) => c.player === this.currentPlayer);
+        }
+
         // Processes the choices left for this window, return true to end the window
         if (myChoices.length === 0 || this.pressedDone) {
             if (this.currentPlayer === this.game.activePlayer) {
