@@ -88,7 +88,10 @@ class ResolveBattleAction extends GameAction {
                 }
 
                 // if attacker CAN dealFightDamage
-                if (event.attacker.checkRestrictions('dealFightDamage')) {
+                if (
+                    event.attacker.checkRestrictions('dealFightDamage') &&
+                    attackerParams.amount > 0
+                ) {
                     let attackerDamageEvent = context.game.actions
                         .dealDamage(attackerParams)
                         .getEvent(event.attackerTarget, event.context);

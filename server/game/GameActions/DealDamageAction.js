@@ -4,7 +4,6 @@ const CardGameAction = require('./CardGameAction');
 class DealDamageAction extends CardGameAction {
     setDefaultProperties() {
         this.amount = 1;
-        this.amountForCard = () => 1;
         this.fightEvent = null;
         this.damageSource = null;
         this.damageType = 'card effect';
@@ -22,11 +21,6 @@ class DealDamageAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        // removed so that units can deal 0 damage to each other (for law of domination)
-        // if (this.amount === 0 || (!this.amount && this.amountForCard(card, context) === 0)) {
-        //     return false;
-        // }
-
         return card.location === 'play area' && super.canAffect(card, context);
     }
 
@@ -34,7 +28,7 @@ class DealDamageAction extends CardGameAction {
         return super.getEventArray(context);
     }
 
-    getEvent(card, context, amount = this.amount || this.amountForCard(card, context)) {
+    getEvent(card, context, amount = this.amount) {
         const params = {
             card: card,
             context: context,
