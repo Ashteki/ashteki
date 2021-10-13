@@ -8,7 +8,7 @@ describe('Unit attacks', function () {
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['flute-mage'],
+                inPlay: ['flute-mage', 'gilder'],
                 spellboard: [],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 hand: ['anchornaut']
@@ -106,6 +106,25 @@ describe('Unit attacks', function () {
         expect(this.blueJaguar.tokens.damage).toBe(this.fluteMage.attack);
         expect(this.fluteMage.exhausted).toBe(true);
         expect(this.blueJaguar.exhausted).toBe(true);
+    });
+
+    it('countering unit with 0 attack deals no damage', function () {
+        expect(this.gilder.damage).toBe(0);
+        expect(this.mistSpirit.damage).toBe(0);
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.gilder); // target
+        this.player1.clickCard(this.mistSpirit); // single attacker
+
+        this.player2.clickPrompt('Done'); // no guard
+        this.player2.clickPrompt('Yes'); // DO counter
+
+        expect(this.gilder.damage).toBe(this.mistSpirit.attack);
+        expect(this.mistSpirit.damage).toBe(this.gilder.attack);
+        // not killed by gilder - attack 0
+        expect(this.mistSpirit.location).toBe('play area');
+        expect(this.gilder.exhausted).toBe(true);
+        expect(this.mistSpirit.exhausted).toBe(true);
     });
 
     it('simultaneous damage dealt from destroyed attacker', function () {

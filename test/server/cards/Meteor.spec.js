@@ -18,6 +18,20 @@ describe('Meteor action spell', function () {
         this.player1.dicepool[0].level = 'class';
     });
 
+    it('damages all units in play', function () {
+        this.player1.dicepool[1].level = 'class';
+        this.player1.dicepool[2].level = 'class';
+
+        this.player1.clickCard(this.meteor);
+        this.player1.clickPrompt('Play this action');
+        // no click of dice - preselected
+        this.player1.clickPrompt('Done');
+        // one damage
+        expect(this.hammerKnight.damage).toBe(1);
+        expect(this.silverSnake.damage).toBe(1);
+        expect(this.mistSpirit.location).toBe('archives');
+    });
+
     it('damages all units in play plus one', function () {
         this.player1.clickCard(this.meteor);
         this.player1.clickPrompt('Play this action');
