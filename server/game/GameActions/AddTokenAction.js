@@ -32,11 +32,17 @@ class AddTokenAction extends CardGameAction {
             (tokenEvent) => {
                 if (this.showMessage) {
                     context.game.addMessage(
-                        '{0} places ' + this.amount + ' ' + this.type + ' on {1}',
+                        tokenEvent.amount == 1
+                            ? `{0} uses {1} to place {2} {3} token on {4}`
+                            : `{0} uses {1} to place {2} {3} tokens on {4}`,
                         context.player,
+                        context.source,
+                        tokenEvent.amount,
+                        tokenEvent.type,
                         tokenEvent.card
                     );
                 }
+
                 card.addToken(this.type, this.amount);
 
                 if (this.type === 'damage') {
