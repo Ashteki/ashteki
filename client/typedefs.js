@@ -48,7 +48,7 @@
 
 /**
  * @typedef PendingPlayer
- * @property {PendingDeck} deck The deck this pplayer has selected
+ * @property {PendingDeck} deck The deck this player has selected
  * @property {string} id The player's unique id
  * @property {boolean} left Whether this player has left the game
  * @property {string} name The name of the player
