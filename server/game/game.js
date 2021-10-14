@@ -861,6 +861,8 @@ class Game extends EventEmitter {
      */
     beginRound() {
         this.round++;
+        this.betweenRounds = false;
+
         this.addAlert('startofround', `Round ${this.round}`);
 
         this.raiseEvent('onBeginRound');
@@ -876,6 +878,7 @@ class Game extends EventEmitter {
     }
 
     beginTurn() {
+        this.betweenTurns = false;
         this.raiseEvent('onBeginTurn', { player: this.activePlayer });
         if (this.triggerSuddenDeath && this.activePlayer === this.roundFirstPlayer) {
             this.triggerSuddenDeath = false;
@@ -1202,6 +1205,7 @@ class Game extends EventEmitter {
     }
 
     endTurn() {
+        this.betweenTurns = true;
         this.activePlayer.endTurn();
         this.cardsDiscarded = [];
         this.effectsUsed = [];
@@ -1218,6 +1222,7 @@ class Game extends EventEmitter {
     }
 
     endRound() {
+        this.betweenRounds = true;
         this.getPlayers().forEach((player) => player.endRound());
         this.cardsPlayed = [];
         this.cardsDiscarded = [];

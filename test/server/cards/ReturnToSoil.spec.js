@@ -9,7 +9,7 @@ describe('Return to soil action spell', function () {
             },
             player2: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['silver-snake', 'mist-spirit'],
+                inPlay: ['silver-snake', 'mist-spirit', 'fire-archer'],
                 spellboard: [],
                 deck: ['summon-gilder', 'empower', 'purge'],
                 discard: ['molten-gold']
@@ -41,5 +41,17 @@ describe('Return to soil action spell', function () {
 
         expect(this.moltenGold.location).toBe('purged');
         expect(this.player2.player.purged.length).toBe(2);
+    });
+
+    it('deals damage, destroys, discard ToD, then purge cannot select unit just discarded', function () {
+        this.player1.clickCard(this.returnToSoil);
+        this.player1.clickPrompt('Play this action');
+
+        this.player1.clickCard(this.fireArcher);
+        expect(this.fireArcher.location).toBe('discard');
+        expect(this.player1).not.toHaveDefaultPrompt();
+
+        expect(this.player2.discard.length).toBe(3);
+        expect(this.player1).not.toBeAbleToSelect(this.fireArcher);
     });
 });

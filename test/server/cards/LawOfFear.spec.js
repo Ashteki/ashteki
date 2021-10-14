@@ -33,6 +33,25 @@ describe('law of fear', function () {
             this.player2.clickYes();
 
             expect(this.ironWorker.location).toBe('discard');
+            expect(this.hammerKnight.damage).toBe(1);
+        });
+
+        it("attack zero units don't deal damage", function () {
+            this.player1.clickCard(this.lawOfFear);
+
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.hammerKnight); // target
+            this.player1.clickCard(this.mistSpirit); // single attacker
+
+            expect(this.hammerKnight.attack).toBe(3); // not changed
+            expect(this.mistSpirit.attack).toBe(0); // reduced
+            expect(this.ironWorker.attack).toBe(2); // not changed
+
+            this.player2.clickDone();
+            this.player2.clickYes();
+
+            expect(this.mistSpirit.location).toBe('archives');
+            expect(this.hammerKnight.damage).toBe(0);
         });
     });
 });
