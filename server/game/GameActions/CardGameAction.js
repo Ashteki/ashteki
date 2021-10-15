@@ -43,7 +43,7 @@ class CardGameAction extends GameAction {
             this.canAffect(card, context) && condition(card, context);
 
         return CardSelector.for(
-            Object.assign({}, this.promptForSelect, { cardCondition: cardCondition })
+            Object.assign({}, this.promptForSelect, { cardCondition: cardCondition, targets: true })
         );
     }
 

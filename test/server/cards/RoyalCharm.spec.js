@@ -27,6 +27,8 @@ describe('Royal Charm', function () {
             // choose die for royal charm
             this.player1.clickDie(2);
 
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.royalCharm.hasModifiedAttack()).toBe(false);
             this.player1.clickCard(this.royalCharm);
             this.player1.clickPrompt('Use Die');
             this.player1.clickDieUpgrade(this.royalCharm, 0);

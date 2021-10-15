@@ -638,10 +638,11 @@ class Card extends PlayableObject {
 
     hasModifiedAttack() {
         return (
-            this.anyEffect('setAttack') ||
-            this.anyEffect('copyCard') ||
-            this.anyEffect('setPrintedAttack') ||
-            this.anyEffect('modifyAttack')
+            BattlefieldTypes.includes(this.type) &&
+            (this.anyEffect('setAttack') ||
+                this.anyEffect('copyCard') ||
+                this.anyEffect('setPrintedAttack') ||
+                this.anyEffect('modifyAttack'))
         );
     }
 
@@ -677,10 +678,11 @@ class Card extends PlayableObject {
 
     hasModifiedLife() {
         return (
-            this.anyEffect('setLife') ||
-            this.anyEffect('copyCard') ||
-            this.anyEffect('setPrintedLife') ||
-            this.anyEffect('modifyLife')
+            BattlefieldTypes.includes(this.type) &&
+            (this.anyEffect('setLife') ||
+                this.anyEffect('copyCard') ||
+                this.anyEffect('setPrintedLife') ||
+                this.anyEffect('modifyLife'))
         );
     }
 
@@ -720,10 +722,11 @@ class Card extends PlayableObject {
 
     hasModifiedRecover() {
         return (
-            this.anyEffect('setRecover') ||
-            this.anyEffect('copyCard') ||
-            this.anyEffect('setPrintedRecover') ||
-            this.anyEffect('modifyRecover')
+            BattlefieldTypes.includes(this.type) &&
+            (this.anyEffect('setRecover') ||
+                this.anyEffect('copyCard') ||
+                this.anyEffect('setPrintedRecover') ||
+                this.anyEffect('modifyRecover'))
         );
     }
 
