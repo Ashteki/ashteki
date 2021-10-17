@@ -9,7 +9,7 @@ class EnchantedViolinist extends Card {
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
+                gameAction: ability.actions.dealDamage({ amount: 1})
             },
             then: {
                 condition: (context) => context.preThenEvent.destroyEvent,
