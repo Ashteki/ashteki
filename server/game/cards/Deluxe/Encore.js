@@ -3,6 +3,7 @@ const Card = require('../../Card.js');
 class Encore extends Card {
     setupCardAbilities(ability) {
         this.play({
+            shortMessage: true,
             title: 'Encore',
             targets: {
                 myCard: {

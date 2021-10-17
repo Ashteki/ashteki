@@ -15,8 +15,7 @@ class NewIdeas extends Card {
                 })
             },
             then: {
-                gameAction: ability.actions.draw({ amount: 3 }),
-                message: '{0} draws 3 cards'
+                gameAction: ability.actions.draw({ amount: 3, showMessage: true })
             }
         });
     }

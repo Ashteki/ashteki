@@ -6,11 +6,10 @@ class EnchantedViolinist extends Card {
         this.action({
             title: 'Song of Sorrow',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
-            effect: 'deal 1 damage',
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({ amount: 1 })
+                gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
             },
             then: {
                 condition: (context) => context.preThenEvent.destroyEvent,
