@@ -15,17 +15,15 @@ describe('Blink action spell', function () {
         });
     });
 
-    it('removes unit from play then returns at end of turn', function () {
-        expect(this.ironWorker.damage).toBe(0);
-
+    it('removes conjuration from play then returns at end of turn', function () {
         this.player1.play(this.blink);
         this.player1.clickDie(0);
-        this.player1.clickCard(this.ironWorker);
+        this.player1.clickCard(this.mistSpirit);
 
-        expect(this.ironWorker.location).toBe('purged');
+        expect(this.mistSpirit.location).toBe('purged');
 
         this.player1.endTurn();
-        expect(this.ironWorker.location).toBe('play area');
+        expect(this.mistSpirit.location).toBe('play area');
     });
 
     it('should allow enters play triggers', function () {
