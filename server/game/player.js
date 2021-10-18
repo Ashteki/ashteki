@@ -423,7 +423,7 @@ class Player extends GameObject {
             'Ready Spell': [...cardLocations, 'spellboard'], // To do: The Awakened State is a ready spell that starts in archives
             'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],
-            Conjuration: ['play area', 'archives'],
+            Conjuration: ['play area', 'archives', 'purged'],
             'Conjured Alteration Spell': ['play area', 'archives']
         };
 
