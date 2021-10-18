@@ -50,7 +50,7 @@
     "dependencies": {
         "@babel/cli": "^7.13.14",
         "@babel/core": "^7.15.8",
-        "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+        "@babel/plugin-proposal-object-rest-spread": "^7.15.6",
         "@babel/plugin-transform-object-assign": "^7.12.13",
         "@babel/polyfill": "^7.12.1",
         "@babel/preset-env": "^7.13.12",
