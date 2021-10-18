@@ -98,7 +98,7 @@
         "merge-images": "^1.2.0",
         "mini-css-extract-plugin": "^0.8.2",
         "moment": "^2.29.1",
-        "monk": "^7.3.3",
+        "monk": "^7.3.4",
         "node-noop": "^1.0.0",
         "node-sass": "^4.14.1",
         "passport": "^0.4.1",
