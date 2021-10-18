@@ -239,7 +239,7 @@ class ChatCommands {
                 player,
                 player.opponent
             );
-            this.game.endTurn();
+            this.game.raiseEndTurnEvent(); //not endTurn directly as this would miss end of turn triggers
         }
     }
 
