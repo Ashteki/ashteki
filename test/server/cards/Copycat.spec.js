@@ -145,6 +145,7 @@ describe('Copycat', function () {
             expect(this.odetteDiamondcrest.damage).toBe(2);
         });
     });
+
     describe('reaction to brennen ability', function () {
         beforeEach(function () {
             this.setupTest({
@@ -178,6 +179,18 @@ describe('Copycat', function () {
             expect(this.ironWorker.location).toBe('discard');
             expect(this.brennenBlackcloud.damage).toBe(2);
         });
+
+        /*it("only triggers once after brennen's ability", function () {
+            this.player1.clickCard(this.brennenBlackcloud);
+            this.player1.clickPrompt('Spirit Burn');
+            this.player1.clickCard(this.bloodArcher);
+            this.player1.clickCard(this.maeoniViper);
+            expect(this.player2).toHavePrompt('Any Reactions?');
+
+            this.player2.clickPrompt('Pass');
+            expect(this.player2).not.toHavePrompt('Any Reactions?'); // failing
+            expect(this.player2).not.toBeAbleToSelect(this.copycat); // failing
+        });*/
     });
 
     describe('copies actions', function () {

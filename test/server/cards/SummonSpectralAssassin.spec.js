@@ -17,7 +17,7 @@ describe('Summon Spectral Assassin', function () {
             });
         });
 
-        it('place ally i control to hand, place SA, draw card', function () {
+        it('return ally I control to hand, place SA, draw card', function () {
             const handSize = this.player1.hand.length;
             this.player1.play(this.summonSpectralAssassin);
             this.player1.clickDie(0);
@@ -32,33 +32,33 @@ describe('Summon Spectral Assassin', function () {
         });
     });
 
-    // describe('No allies, just draw', function () {
-    //     beforeEach(function () {
-    //         this.setupTest({
-    //             player1: {
-    //                 phoenixborn: 'aradel-summergaard',
-    //                 hand: ['summon-spectral-assassin'],
-    //                 dicepool: ['charm', 'divine', 'illusion'],
-    //                 archives: ['spectral-assassin'],
-    //                 inPlay: []
-    //             },
-    //             player2: {
-    //                 phoenixborn: 'coal-roarkwin',
-    //                 inPlay: ['hammer-knight'],
-    //                 spellboard: []
-    //             }
-    //         });
-    //     });
+    /*describe('No allies', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    hand: ['summon-spectral-assassin'],
+                    dicepool: ['charm', 'divine', 'illusion'],
+                    archives: ['spectral-assassin'],
+                    inPlay: []
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: []
+                }
+            });
+        });
 
-    //     it('place ally i control to hand, place SA, draw card', function () {
-    //         const handSize = this.player1.hand.length;
-    //         this.player1.play(this.summonSpectralAssassin);
-    //         this.player1.clickDie(0);
-    //         this.player1.clickPrompt('Done');
-    //         this.player1.clickYes(); // draw a card
-    //         expect(this.player1).toHaveDefaultPrompt();
-    //         expect(this.spectralAssassin.location).toBe('archives');
-    //         expect(this.player1.hand.length).toBe(handSize); // -1 play, +1 draw
-    //     });
-    // });
+        it('just draw', function () {
+            const handSize = this.player1.hand.length;
+            this.player1.play(this.summonSpectralAssassin);
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+            this.player1.clickYes(); // draw a card
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.spectralAssassin.location).toBe('archives');
+            expect(this.player1.hand.length).toBe(handSize); // -1 play, +1 draw
+        });
+    });*/
 });
