@@ -17,7 +17,7 @@ class SummonNightshadeSwallow extends Card {
             }),
             then: {
                 alwaysTriggers: true,
-                may: 'force opponent to discard?',
+                may: 'force your opponent to discard the top card of their deck',
                 condition: (context) =>
                     this.focus &&
                     context.player.dice.filter((d) => !d.exhausted).length <

@@ -4,20 +4,16 @@ const Card = require('../../Card.js');
 class SummonSpectralAssassin extends Card {
     setupCardAbilities(ability) {
         this.play({
-            title: 'Summon Spectral Asssassin',
+            title: 'Summon Spectral Assassin',
             target: {
                 controller: 'self',
                 cardType: CardType.Ally,
                 gameAction: ability.actions.returnToHand()
             },
             then: {
-                target: {
-                    controller: 'self',
-                    cardType: CardType.Conjuration,
-                    cardCondition: (card) => card.id === 'spectral-assassin',
-                    location: 'archives',
-                    gameAction: ability.actions.putIntoPlay({ showMessage: true })
-                },
+                gameAction: ability.actions.summon({
+                    conjuration: 'spectral-assassin'
+                }),
                 then: {
                     alwaysTriggers: true,
                     may: 'draw a card',
