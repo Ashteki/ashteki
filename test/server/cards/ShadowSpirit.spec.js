@@ -12,13 +12,12 @@ describe('Shadow Spirit', function () {
         });
     });
 
-    it('should place a shadow spirit into play', function () {
+    it('should spin down a die when attacking', function () {
         expect(this.player2.dicepool[0].level).toBe('power');
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.coalRoarkwin);
         this.player1.clickCard(this.shadowSpirit);
         this.player1.clickPrompt('Done');
-        this.player1.clickCard(this.shadowSpirit);
         this.player1.clickOpponentDie(0);
         expect(this.player2.dicepool[0].level).toBe('class');
     });
