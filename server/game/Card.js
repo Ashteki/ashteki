@@ -162,16 +162,43 @@ class Card extends PlayableObject {
     // eslint-disable-next-line no-unused-vars
     setupKeywordAbilities(ability) {
         // Overkill
-        this.abilities.keywordReactions.push(
-            this.afterDestroysFighting({
-                condition: (context) => context.source.getKeywordValue('overkill'),
-                autoResolve: true,
-                gameAction: ability.actions.dealDamage((context) => ({
-                    amount: context.source.getKeywordValue('overkill'),
-                    target: context.player.opponent.phoenixborn
-                }))
-            })
-        );
+        if (BattlefieldTypes.includes(this.type)) {
+            this.abilities.keywordReactions.push(
+                this.afterDestroysFighting({
+                    title: 'overkill',
+                    condition: (context) => context.source.getKeywordValue('overkill'),
+                    autoResolve: true,
+                    gameAction: ability.actions.dealDamage((context) => ({
+                        amount: context.source.getKeywordValue('overkill'),
+                        target: context.player.opponent.phoenixborn
+                    }))
+                })
+            );
+        }
+
+        // Hunt
+        if (BattlefieldTypes.includes(this.type)) {
+            this.abilities.keywordReactions.push(
+                this.reaction({
+                    title: 'Hunt',
+                    condition: (context) => context.source.getKeywordValue('Hunt'),
+                    when: {
+                        onAttackersDeclared: (event, context) => {
+                            return event.battles.some((b) => b.attacker === context.source);
+                        }
+                    },
+                    target: {
+                        optional: true,
+                        activePromptTitle: 'Choose a unit to damage',
+                        cardType: BattlefieldTypes,
+                        controller: 'opponent',
+                        gameAction: ability.actions.dealDamage((context) => ({
+                            amount: context.source.getKeywordValue('hunt')
+                        }))
+                    }
+                })
+            );
+        }
     }
 
     /**
