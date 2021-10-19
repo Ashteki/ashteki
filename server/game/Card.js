@@ -159,7 +159,10 @@ class Card extends PlayableObject {
     // eslint-disable-next-line no-unused-vars
     setupCardAbilities(ability) { }
 
-    // eslint-disable-next-line no-unused-vars
+
+    // These are ACQUIRED triggered abilities that are NUMERIC and therefore need to stack
+    // They are set up here to prevent multiple gainAbility triggers
+    // acquired abilities that are not reactions etc do not need to setup here.
     setupKeywordAbilities(ability) {
         // Overkill
         if (BattlefieldTypes.includes(this.type)) {
@@ -196,6 +199,31 @@ class Card extends PlayableObject {
                             amount: context.source.getKeywordValue('hunt')
                         }))
                     }
+                })
+            );
+        }
+
+        if (BattlefieldTypes.includes(this.type)) {
+            this.abilities.keywordReactions.push(
+                this.forcedReaction({
+                    title: 'Group Tactics',
+                    condition: (context) => context.source.getKeywordValue('grouptactics'),
+                    may: (context) => 'add ' + context.source.getKeywordValue('grouptactics') + " to this unit's attack",
+                    when: {
+                        onAttackersDeclared: (event, context) => {
+                            return (
+                                event.attackingPlayer === context.source.controller &&
+                                event.battles.length >= 3
+                            );
+                        }
+                    },
+                    gameAction: AbilityDsl.actions.cardLastingEffect((context) => ({
+                        target: this,
+                        effect: AbilityDsl.effects.modifyAttack(context.source.getKeywordValue('grouptactics')),
+                        duration: 'untilEndOfTurn'
+                    })),
+                    effect: 'increase its attack value by {0}',
+                    effectArgs: (context) => context.source.getKeywordValue('grouptactics')
                 })
             );
         }
@@ -255,27 +283,6 @@ class Card extends PlayableObject {
                 onRoundEnded: () => true
             },
             gameAction: AbilityDsl.actions.destroy()
-        });
-    }
-
-    groupTactics(properties) {
-        return this.forcedReaction({
-            title: 'Group Tactics',
-            may: 'add ' + properties.amount + " to this unit's attack",
-            when: {
-                onAttackersDeclared: (event, context) => {
-                    return (
-                        event.attackingPlayer === context.source.controller &&
-                        event.battles.length >= 3
-                    );
-                }
-            },
-            gameAction: AbilityDsl.actions.cardLastingEffect(() => ({
-                target: this,
-                effect: AbilityDsl.effects.modifyAttack(properties.amount),
-                duration: 'untilEndOfTurn'
-            })),
-            effect: 'increase its attack value by ' + properties.amount
         });
     }
 

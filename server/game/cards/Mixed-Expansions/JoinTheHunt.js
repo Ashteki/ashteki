@@ -12,9 +12,7 @@ class JoinTheHunt extends Card {
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.cardLastingEffect(() => ({
                     duration: 'untilEndOfTurn',
-                    effect: ability.effects.gainAbility('groupTactics', {
-                        amount: 2
-                    })
+                    effect: ability.effects.addKeyword({ grouptactics: 2 })
                 }))
             }
         });
