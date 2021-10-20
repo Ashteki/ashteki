@@ -29,7 +29,6 @@ class PlayableObject extends EffectSource {
     getPersistentEffects(ignoreBlank = false) {
         if (this.isBlank() && !ignoreBlank) {
             return this.abilities.persistentEffects.filter((pe) => pe.unblankable);
-            // return this.abilities.keywordPersistentEffects;
         }
 
         let persistentEffects = this.abilities.persistentEffects;
@@ -77,7 +76,7 @@ class PlayableObject extends EffectSource {
 
     getReactions(ignoreBlank = false) {
         if (this.isBlank() && !ignoreBlank) {
-            return this.abilities.keywordReactions;
+            return [];
         }
 
         const TriggeredAbilityTypes = [
