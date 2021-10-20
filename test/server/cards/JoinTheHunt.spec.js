@@ -23,6 +23,7 @@ describe('Join the Hunt', function () {
             this.player1.clickCard(this.joinTheHunt); // play card
             this.player1.clickPrompt('Join the hunt');
             this.player1.clickCard(this.mistSpirit);
+            expect(this.mistSpirit.hasKeyword('grouptactics')).toBe(true);
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.coalRoarkwin);
             this.player1.clickCard(this.mistSpirit);
@@ -77,6 +78,42 @@ describe('Join the Hunt', function () {
             this.player2.clickYes();
 
             expect(this.bloodPuppet.attack).toBe(2);
+        });
+    });
+
+    describe('on a unit with group tactics', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['mist-spirit', 'raptor-hatchling', 'anchornaut'],
+                    dicepool: ['divine', 'illusion', 'sympathy', 'charm'],
+                    spellboard: ['join-the-hunt'],
+                    hand: ['close-combat']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['iron-worker'],
+                    spellboard: ['summon-iron-rhino'],
+                    hand: ['molten-gold'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm']
+                }
+            });
+        });
+
+        it('gives group tactics 2 to myunit', function () {
+            this.player1.clickCard(this.joinTheHunt); // play card
+            this.player1.clickPrompt('Join the hunt');
+            this.player1.clickCard(this.raptorHatchling);
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.coalRoarkwin);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.raptorHatchling);
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickPrompt('Done');
+            this.player1.clickYes();
+
+            expect(this.raptorHatchling.attack).toBe(4);
         });
     });
 });

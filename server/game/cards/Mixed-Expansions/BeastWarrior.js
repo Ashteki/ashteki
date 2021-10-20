@@ -1,8 +1,10 @@
 const Card = require('../../Card.js');
 
 class BeastWarrior extends Card {
-    setupCardAbilities() {
-        this.groupTactics({ amount: 1 });
+    setupCardAbilities(ability) {
+        this.persistentEffect({
+            effect: ability.effects.addKeyword({ grouptactics: 1 })
+        });
 
         this.transform({ amount: 1 });
     }
