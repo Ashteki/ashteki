@@ -36,6 +36,10 @@ class MenuCommands {
                 game.addAlert('danger', '{0} removes gravity flux exhaustion from {1}', player, card);
                 card.removeToken('gravityFlux', 1);
                 break;
+            case 'remEffects':
+                game.addAlert('danger', '{0} removes temporary effects from {1}', player, card);
+                card.removeLastingEffects();
+                break;
             // I can't click on cards in my Discard pile in manual mode and receive a menu
             // In manual mode, I can't click on cards in hand and receive a menu (drag & drop required)
             case 'moveHand':
@@ -87,7 +91,6 @@ class MenuCommands {
                         card
                     );
                 }
-
                 break;
             case 'guarded':
                 card.usedGuardThisRound = !card.usedGuardThisRound;
@@ -98,7 +101,6 @@ class MenuCommands {
                     card,
                     card.usedGuardThisRound ? 'true' : 'false'
                 );
-
                 break;
             case 'detachDie':
                 if (card.dieUpgrades.length === 1) {
@@ -112,7 +114,6 @@ class MenuCommands {
                     );
                     return true;
                 }
-
                 break;
             case 'attach':
                 game.promptForSelect(player, {
@@ -129,7 +130,6 @@ class MenuCommands {
                         return true;
                     }
                 });
-
                 break;
         }
     }

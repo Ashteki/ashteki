@@ -25,6 +25,7 @@ class ChatCommands {
             '/passactive': this.passActiveTurn, //hidden option
             '/purge': this.purgeCard,
             '/rematch': this.rematch,
+            '/removeeffects': this.removeEffects,
             '/reveal': this.reveal,
             '/shuffle': this.shuffle,
             '/stopclocks': this.stopClocks, // hidden option
@@ -204,6 +205,20 @@ class ChatCommands {
                 }
             });
         }
+    }
+
+    removeEffects(player) {
+        this.game.promptForSelect(player, {
+            location: ['play area'],
+            cardType: ['Ally', 'Conjuration'],
+            controller: 'self',
+            activePromptTitle: 'Select a card to remove effects from',
+            onSelect: (player, card) => {
+                this.game.addAlert('danger', '{0} removes temporary effects from {1}', player, card);
+                card.removeLastingEffects();
+                return true;
+            }
+        });
     }
 
     spendAction(player, args) {
