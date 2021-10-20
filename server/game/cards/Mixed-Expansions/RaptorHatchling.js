@@ -1,8 +1,10 @@
 const Card = require('../../Card.js');
 
 class RaptorHatchling extends Card {
-    setupCardAbilities() {
-        this.groupTactics({ amount: 2 });
+    setupCardAbilities(ability) {
+        this.persistentEffect({
+            effect: ability.effects.addKeyword({ grouptactics: 2 })
+        });
     }
 }
 

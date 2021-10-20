@@ -1,29 +1,10 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class HuntingWeapons extends Card {
     setupCardAbilities(ability) {
         this.whileAttached({
-            effect: [
-                ability.effects.modifyAttack(1),
-                ability.effects.gainAbility('reaction', {
-                    title: 'Hunt 1',
-                    when: {
-                        onAttackersDeclared: (event, context) => {
-                            return event.battles.some((b) => b.attacker === context.source);
-                        }
-                    },
-                    target: {
-                        optional: true,
-                        activePromptTitle: 'Choose a unit to damage',
-                        cardType: BattlefieldTypes,
-                        controller: 'opponent',
-                        gameAction: ability.actions.dealDamage({
-                            amount: 1
-                        })
-                    }
-                })
-            ]
+            effect: [ability.effects.modifyAttack(1), ability.effects.addKeyword({ hunt: 1 })]
         });
     }
 
