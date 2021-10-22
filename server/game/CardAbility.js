@@ -1,5 +1,6 @@
 const { CardType } = require('../constants');
 const AbilityLimit = require('./abilitylimit');
+const PlayCardAction = require('./GameActions/PlayCardAction');
 const ThenAbility = require('./ThenAbility');
 
 class CardAbility extends ThenAbility {
@@ -30,8 +31,7 @@ class CardAbility extends ThenAbility {
         }
         if (
             !this.card.checkRestrictions('triggerAbilities', context) ||
-            (this.card.type === CardType.ReactionSpell &&
-                !context.player.checkRestrictions('play', context))
+            (this.isCardPlayed() && !context.player.checkRestrictions('play', context))
         ) {
             return 'cannotTrigger';
         }
@@ -40,7 +40,7 @@ class CardAbility extends ThenAbility {
             return 'limit';
         }
 
-        if (this.isCardPlayed() && this.card.isLimited() && !context.player.canPlayLimited()) {
+        if (this.card.isLimited() && !context.player.canPlayLimited()) {
             return 'limited';
         }
 
@@ -48,7 +48,10 @@ class CardAbility extends ThenAbility {
     }
 
     isCardPlayed() {
-        return this.card.type === CardType.ReactionSpell;
+        return (
+            this.card.type === CardType.ReactionSpell ||
+            this.gameAction.some((ga) => ga instanceof PlayCardAction)
+        );
     }
 
     addMessage(messageArgs) {
