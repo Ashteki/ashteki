@@ -116,6 +116,12 @@ class About extends React.Component {
                                 Start over a new game with the current opponent
                             </Trans>
                         </li>
+                        <li>
+                            /removeeffects -{' '}
+                            <Trans i18nKey='howtoplay.cmd.removeeffects'>
+                                Remove temporary effects from a card in play
+                            </Trans>
+                        </li>
                         <li>/reveal - Reveal a face down card</li>
                         <li>
                             /shuffle -{' '}
