@@ -7,6 +7,7 @@ import news from './news';
 import api from './api';
 import admin from './admin';
 import user from './user';
+import stats from './stats';
 import account from './account';
 import lobby from './lobby';
 import { reducer as toastrReducer } from 'react-redux-toastr';
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     admin,
     user,
     account,
-    lobby
+    lobby,
+    stats
 });
 
 export default rootReducer;
