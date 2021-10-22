@@ -72,7 +72,7 @@ class Stats extends React.Component {
                                 </td>
                                 <td style={{ 'white-space': 'nowrap' }}>{stat.wins}</td>
                                 <td style={{ 'white-space': 'nowrap' }}>{stat.losses}</td>
-                                <td style={{ 'white-space': 'nowrap' }}>{stat.wins}</td>
+                                <td style={{ 'white-space': 'nowrap' }}>{stat.total}</td>
                                 <td style={{ 'white-space': 'nowrap' }}>{stat.winRate}%</td>
                             </tr>
                         );
