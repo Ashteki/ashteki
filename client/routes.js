@@ -8,7 +8,8 @@ import Lobby from './pages/Lobby';
 import Decks from './pages/Decks';
 import AddDeck from './pages/AddDeck';
 import EditDeck from './pages/EditDeck';
-//import Matches from './pages/Matches';
+// import Matches from './pages/Matches';
+import Stats from './pages/Stats';
 import ImportDeck from './Components/Decks/ImportDeck';
 import About from './pages/About';
 import Security from './pages/Security.jsx';
@@ -45,7 +46,8 @@ const routes = [
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
-    //{ path: '/matches', action: () => <Matches key='matches' /> },
+    // { path: '/matches', action: () => <Matches key='matches' /> },
+    { path: '/stats', action: () => <Stats key='stats' /> },
     { path: '/news', action: () => <NewsAdmin key='newsadmin' />, permission: 'canEditNews' },
     {
         path: '/play',

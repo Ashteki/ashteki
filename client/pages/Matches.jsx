@@ -59,34 +59,34 @@ class Matches extends React.Component {
         } else {
             let matches = this.props.games
                 ? this.props.games.map((game) => {
-                      var startedAt = moment(game.startedAt);
-                      var finishedAt = moment(game.finishedAt);
-                      var duration = moment.duration(finishedAt.diff(startedAt));
+                    var startedAt = moment(game.startedAt);
+                    var finishedAt = moment(game.finishedAt);
+                    var duration = moment.duration(finishedAt.diff(startedAt));
 
-                      var myKeys = this.computeKeys(game.players[0]);
-                      var oppKeys = this.computeKeys(game.players[1]);
+                    var myKeys = this.computeKeys(game.players[0]);
+                    var oppKeys = this.computeKeys(game.players[1]);
 
-                      return (
-                          <tr key={game.gameId}>
-                              <td>{game.decks[0].name}</td>
-                              <td style={{ 'white-space': 'nowrap' }}>{game.players[1].name}</td>
-                              <td>{game.decks[1].name}</td>
-                              <td>{this.computeWinner(game)}</td>
-                              <td style={{ 'white-space': 'nowrap' }}>{t(game.winReason)}</td>
-                              <td style={{ 'white-space': 'nowrap' }}>
-                                  {myKeys} x {oppKeys}
-                              </td>
-                              <td style={{ 'white-space': 'nowrap' }}>{t(game.gameType)}</td>
-                              <td style={{ 'white-space': 'nowrap' }}>{t(game.gameFormat)}</td>
-                              <td style={{ 'white-space': 'nowrap' }}>
-                                  {moment(game.startedAt).format('YYYY-MM-DD HH:mm')}
-                              </td>
-                              <td style={{ 'white-space': 'nowrap' }}>
-                                  {duration.get('minutes')}m {duration.get('seconds')}s
-                              </td>
-                          </tr>
-                      );
-                  })
+                    return (
+                        <tr key={game.gameId}>
+                            <td>0 name</td>
+                            <td style={{ 'white-space': 'nowrap' }}>{game.players[1].name}</td>
+                            <td>1 name</td>
+                            <td>{this.computeWinner(game)}</td>
+                            <td style={{ 'white-space': 'nowrap' }}>{t(game.winReason)}</td>
+                            <td style={{ 'white-space': 'nowrap' }}>
+                                {myKeys} x {oppKeys}
+                            </td>
+                            <td style={{ 'white-space': 'nowrap' }}>{t(game.gameType)}</td>
+                            <td style={{ 'white-space': 'nowrap' }}>{t(game.gameFormat)}</td>
+                            <td style={{ 'white-space': 'nowrap' }}>
+                                {moment(game.startedAt).format('YYYY-MM-DD HH:mm')}
+                            </td>
+                            <td style={{ 'white-space': 'nowrap' }}>
+                                {duration.get('minutes')}m {duration.get('seconds')}s
+                            </td>
+                        </tr>
+                    );
+                })
                 : null;
 
             let table =
@@ -166,9 +166,7 @@ function mapStateToProps(state) {
             state.games.games.filter(
                 (game) =>
                     game.players &&
-                    game.players.length === 2 &&
-                    game.decks &&
-                    game.decks.length === 2
+                    game.players.length === 2
             ),
         loading: state.api.loading
     };
