@@ -82,7 +82,8 @@ class Card extends PlayableObject {
             { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' },
             { command: 'moveHand', text: 'Move to hand', menu: 'moves' },
             { command: 'moveDiscard', text: 'Move to discard', menu: 'moves' },
-            { command: 'movePlay', text: 'Move to play area', menu: 'moves' }
+            { command: 'movePlay', text: 'Move to play area', menu: 'moves' },
+            { command: 'remEffects', text: 'Remove temporary effects', menu: 'main' }
         ];
         if (ConjuredCardTypes.includes(this.type)) {
             this.menu.push({ command: 'moveConjuration', text: 'Move to conjuration pile', menu: 'moves' });

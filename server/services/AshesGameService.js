@@ -47,63 +47,73 @@ class GameService {
     }
 
     async findByUserName(username) {
-        let games = await this.games.aggregate([
-            {
-                $lookup: {
-                    from: 'decks',
-                    localField: 'players.deck',
-                    foreignField: 'identity',
-                    as: 'decks'
+        return this.games
+            .find(
+                {
+                    'players.name': username
+                },
+                {
+                    sort: {
+                        finishedAt: -1
+                    }
                 }
-            },
-            {
-                $match: {
-                    $and: [
-                        {
-                            'players.name': username
-                        },
-                        {
-                            'players.deck': {
-                                $ne: null
-                            }
+            )
+            .then((games) => {
+                // Make sure position zero is always the given username
+                games.forEach((game) => {
+                    if (game.players && game.players[0] && game.players[1]) {
+                        if (game.players[1].name === username) {
+                            let opponent = game.players[0];
+                            game.players[0] = game.players[1];
+                            game.players[1] = opponent;
                         }
-                    ]
-                }
-            },
-            {
-                $sort: {
-                    finishedAt: -1
-                }
-            },
-            {
-                $limit: 30
-            }
-        ]);
+                    }
+                });
 
-        // Make sure position zero is always the given username
-        games.forEach((game) => {
-            if (
-                game.players &&
-                game.players[0] &&
-                game.players[1] &&
-                game.decks[0] &&
-                game.decks[1]
-            ) {
-                if (game.players[1].name === username) {
-                    let opponent = game.players[0];
-                    game.players[0] = game.players[1];
-                    game.players[1] = opponent;
-                }
+                return games;
+            });
+    }
 
-                if (game.players[0].deck === game.decks[1].identity) {
-                    let oppDeck = game.decks[0];
-                    game.decks[0] = game.decks[1];
-                    game.decks[1] = oppDeck;
+    async getStatsByUserName(username) {
+        return this.games
+            .find(
+                {
+                    'players.name': username
+                },
+                {
+                    sort: {
+                        finishedAt: -1
+                    }
                 }
-            }
-        });
+            )
+            .then((games) => {
+                let pbs = {};
+                games.forEach((game) => {
+                    if (game.players && game.players[0] && game.players[1]) {
+                        // which pb?
+                        let phoenixborn =
+                            game.players[0].name === username
+                                ? game.players[0].deck
+                                : game.players[1].deck;
 
-        return games;
+                        // have we got a record?
+                        if (!pbs[phoenixborn])
+                            pbs[phoenixborn] = { name: phoenixborn, wins: 0, losses: 0 };
+
+                        // increment the record win/loss
+                        if (game.winner === username) {
+                            pbs[phoenixborn].wins++;
+                        } else {
+                            pbs[phoenixborn].losses++;
+                        }
+                    }
+                });
+                Object.values(pbs).forEach((stat) => {
+                    stat.total = stat.wins + stat.losses;
+                    stat.winRate = Math.round((stat.wins / stat.total) * 100);
+                });
+                return pbs;
+            });
     }
 }
 
