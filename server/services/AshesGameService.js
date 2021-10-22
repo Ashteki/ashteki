@@ -79,7 +79,7 @@ class GameService {
             .find(
                 {
                     'players.name': username,
-                    'players.deck': { $ne: null }
+                    'players.deck': { $exists: true }
                 },
                 {
                     sort: {
