@@ -531,7 +531,7 @@ module.exports.init = function (server, options) {
             if (isSupporter !== req.user.permissions.isSupporter) {
                 if (!req.user.permissions.keepsSupporterWithNoPatreon) {
                     userDetails.permissions.isSupporter = req.user.permissions.isSupporter = isSupporter;
-                    await userService.setSupporterStatus(user.id, isSupporter);
+                    await userService.setSupporterStatus(user, isSupporter);
                 }
             }
 
@@ -1101,11 +1101,11 @@ module.exports.init = function (server, options) {
 
             try {
                 if (status === 'pledged' && !user.permissions.isSupporter) {
-                    await userService.setSupporterStatus(user.id, true);
+                    await userService.setSupporterStatus(user, true);
                     // eslint-disable-next-line require-atomic-updates
                     user.permissions.isSupporter = req.user.permissions.isSupporter = true;
                 } else if (status !== 'pledged' && user.permissions.isSupporter) {
-                    await userService.setSupporterStatus(user.id, false);
+                    await userService.setSupporterStatus(user, false);
                     // eslint-disable-next-line require-atomic-updates
                     user.permissions.isSupporter = req.user.permissions.isSupporter = false;
                 }
