@@ -1,5 +1,6 @@
 const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const TriggeredAbility = require('../../triggeredability.js');
 
 class LawOfSight extends Card {
     setupCardAbilities(ability) {
@@ -17,7 +18,7 @@ class LawOfSight extends Card {
             targetController: 'Any',
             effect: ability.effects.playerCannot(
                 'play',
-                (context) => context.source.type === CardType.ReactionSpell
+                (context) => context.source.type === CardType.ReactionSpell || context.ability instanceof TriggeredAbility
             )
         });
 
