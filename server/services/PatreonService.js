@@ -18,6 +18,7 @@ class PatreonService {
         let patreonApiClient = patreonAPI(user.patreon.access_token);
 
         try {
+            logger.info('getting patreon status for %s', user.username)
             response = await patreonApiClient('/current_user', {
                 fields: {
                     pledge: [
@@ -39,10 +40,15 @@ class PatreonService {
 
         let { id } = response.rawJson.data;
         let pUser = response.store.find('user', id);
+        logger.info('patreon response for %s: %s', user.username, response.rawJson);
 
         if (!pUser || !pUser.pledges || pUser.pledges.length === 0) {
+            logger.info('patreon linked for %s', user.username);
+
             return 'linked';
         }
+
+        logger.info('patreon pledged for %s', user.username);
 
         return 'pledged';
     }
