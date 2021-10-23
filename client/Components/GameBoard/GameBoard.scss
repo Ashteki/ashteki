@@ -64,6 +64,19 @@
     justify-content: flex-end;
 }
 
+.timer-log-area {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: flex-end;
+}
+
+.timer h1 {
+    position:absolute;
+    left:8px;
+    bottom:0px;
+}
+
 .play-area {
     overflow-x: auto;
 }

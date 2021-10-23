@@ -40,7 +40,7 @@ class TimeLimitClock extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='timer'>
                 <h1>{this.state.timeLeft}</h1>
             </div>
         );
