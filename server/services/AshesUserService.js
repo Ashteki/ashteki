@@ -109,27 +109,10 @@ class UserService extends EventEmitter {
             });
     }
 
-    async getPermissions(userId) {
-        return await this.roles
-            .find({ userId: userId })
-            .then((permissions) => {
-                if (permissions) {
-                    return this.mapPermissions(permissions);
-                } else {
-                    return {};
-                }
-            })
-            .catch((err) => {
-                logger.error('Failed to lookup permissions for user', err);
-                return {};
-            });
-    }
-
     async getUserById(id) {
         let user = await this.users.findOne({ _id: id });
         user.tokens = await this.getRefreshTokens(id);
         user.blocklist = await this.getBlocklist(id);
-        // user.permissions = await this.getPermissions(user);
 
         return new User(user);
     }
@@ -333,141 +316,23 @@ class UserService extends EventEmitter {
         this.refreshTokens.remove({ expiry: { $lte: new Date() } });
     }
 
-    async setSupporterStatus(userId, isSupporter) {
-        const supporterRoleName = 'Supporter';
-        let supporterRoles = this.roles.find({ userId: userId, Name: supporterRoleName });
-        let isExistingSupporter = supporterRoles && supporterRoles.length > 0;
+    async setSupporterStatus(user, isSupporter) {
+        logger.info(
+            'entering: setSupporterStatus username:%s isSupporter:%s',
+            user.username,
+            isSupporter
+        );
 
-        if (isExistingSupporter && !isSupporter) {
-            try {
-                this.roles.remove({ userId: userId, Name: supporterRoleName });
-            } catch (err) {
-                logger.error('Failed to remove supporter status', err);
+        return this.users
+            .update(
+                { username: user.username },
+                { $set: { 'user.permissions.isSupporter': isSupporter } }
+            )
+            .catch((err) => {
+                logger.error('Error setting patreon supporter status: ', err);
 
-                throw new Error('Failed to remove supporter status');
-            }
-        } else if (!isExistingSupporter && isSupporter) {
-            try {
-                this.roles.insert({ userId: userId, Name: supporterRoleName });
-            } catch (err) {
-                logger.error('Failed to add supporter status', err);
-
-                throw new Error('Failed to add supporter status');
-            }
-        }
-    }
-
-    permissionToRole(permission) {
-        switch (permission) {
-            case 'canManageUsers':
-                return 1; //'UserManager';
-            case 'canManageBanlist':
-                return 2; // 'BanListManager';
-            case 'canEditNews':
-                return 3; //'NewsManager';
-            case 'canManageGames':
-                return 4; // 'GameManager';
-            case 'canManageMotd':
-                return 5; // 'MotdManager';
-            case 'canManagePermissions':
-                return 6; // 'PermissionsManager';
-            case 'canManageNodes':
-                return 7; // 'NodeManager';
-            case 'canModerateChat':
-                return 8; // 'ChatManager';
-            case 'canVerifyDecks':
-                return 9; // 'DeckVerifier';
-            case 'isAdmin':
-                return 10; // 'Admin';
-            case 'isSupporter':
-                return 11; // 'Supporter';
-            case 'isContributor':
-                return 12; // 'Contributor';
-            case 'canManageTournaments':
-                return 13; // 'TournamentManager'
-            case 'isWinner':
-                return 14; // 'TournamentWinner'
-            case 'isPreviousWinner':
-                return 15; // 'TournamentPreviousWinner'
-            case 'keepsSupporterWithNoPatreon':
-                return 16; // 'KeepSupporterStatus'
-        }
-    }
-
-    mapPermissions(permissions) {
-        let ret = {
-            canEditNews: false,
-            canManageUsers: false,
-            canManagePermissions: false,
-            canManageGames: false,
-            canManageNodes: false,
-            canModerateChat: false,
-            canVerifyDecks: false,
-            canManageBanlist: false,
-            canManageMotd: false,
-            canManageTournaments: false,
-            isAdmin: false,
-            isContributor: false,
-            isSupporter: false,
-            isWinner: false,
-            isPreviousWinner: false,
-            keepsSupporterWithNoPatreon: false
-        };
-
-        for (let permission of permissions) {
-            switch (permission.Name) {
-                case 'NewsManager':
-                    ret.canEditNews = true;
-                    break;
-                case 'UserManager':
-                    ret.canManageUsers = true;
-                    break;
-                case 'PermissionsManager':
-                    ret.canManagePermissions = true;
-                    break;
-                case 'GameManager':
-                    ret.canManageGames = true;
-                    break;
-                case 'NodeManager':
-                    ret.canManageNodes = true;
-                    break;
-                case 'ChatManager':
-                    ret.canModerateChat = true;
-                    break;
-                case 'DeckVerifier':
-                    ret.canVerifyDecks = true;
-                    break;
-                case 'BanListManager':
-                    ret.canManageBanlist = true;
-                    break;
-                case 'MotdManager':
-                    ret.canManageMotd = true;
-                    break;
-                case 'Admin':
-                    ret.isAdmin = true;
-                    break;
-                case 'Supporter':
-                    ret.isSupporter = true;
-                    break;
-                case 'Contributor':
-                    ret.isContributor = true;
-                    break;
-                case 'TournamentManager':
-                    ret.canManageTournaments = true;
-                    break;
-                case 'TournamentWinner':
-                    ret.isWinner = true;
-                    break;
-                case 'PreviousTournamentWinner':
-                    ret.isPreviousWinner = true;
-                    break;
-                case 'KeepSupporterStatus':
-                    ret.keepsSupporterWithNoPatreon = true;
-                    break;
-            }
-        }
-
-        return ret;
+                throw new Error('Error setting patreon supporter status');
+            });
     }
 }
 

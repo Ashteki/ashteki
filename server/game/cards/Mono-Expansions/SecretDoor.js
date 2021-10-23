@@ -13,7 +13,7 @@ class SecretDoor extends Card {
             ],
             location: 'spellboard',
             target: {
-                cardCondition: (card, context) => card !== context.source && card.printedLife == 1,
+                cardCondition: (card, context) => card !== context.source && card.life == 1,
                 controller: 'self',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.cardLastingEffect(() => ({
