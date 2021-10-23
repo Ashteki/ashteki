@@ -43,6 +43,18 @@ class Stats extends React.Component {
         }
     }
 
+    statRow(pbid, stat) {
+        return (
+            <tr key={'stat-' + pbid}>
+                <td style={{ 'white-space': 'nowrap' }}>{stat.name}</td>
+                <td style={{ 'white-space': 'nowrap' }}>{stat.wins}</td>
+                <td style={{ 'white-space': 'nowrap' }}>{stat.losses}</td>
+                <td style={{ 'white-space': 'nowrap' }}>{stat.total}</td>
+                <td style={{ 'white-space': 'nowrap' }}>{stat.winRate}%</td>
+            </tr>
+        );
+    }
+
     render() {
         let t = this.props.t;
         let content = null;
@@ -65,25 +77,31 @@ class Stats extends React.Component {
                             .replaceAll(' ', '-')
                             .replaceAll(',', '')
                             .toLowerCase();
-                        return (
-                            <tr key={'stat-' + pbid}>
-                                <td style={{ 'white-space': 'nowrap' }}>
-                                    {stat.name}
-                                </td>
-                                <td style={{ 'white-space': 'nowrap' }}>{stat.wins}</td>
-                                <td style={{ 'white-space': 'nowrap' }}>{stat.losses}</td>
-                                <td style={{ 'white-space': 'nowrap' }}>{stat.total}</td>
-                                <td style={{ 'white-space': 'nowrap' }}>{stat.winRate}%</td>
-                            </tr>
-                        );
+                        return this.statRow(pbid, stat);
                     });
+
+                if (statisticRows.length > 0) {
+                    const totalStat = Object.values(this.props.stats).reduce(
+                        (agg, current) => {
+                            agg.wins += current.wins;
+                            agg.losses += current.losses;
+
+                            return agg;
+                        },
+                        { name: 'Total', wins: 0, losses: 0 }
+                    );
+                    totalStat.total = totalStat.wins + totalStat.losses;
+                    totalStat.winRate = Math.round((totalStat.wins / totalStat.total) * 100);
+
+                    statisticRows.push(this.statRow('total', totalStat));
+                }
             }
 
             let table =
                 statisticRows.length === 0 ? (
                     <div>You have no recorded matches.</div>
                 ) : (
-                    <table className='table table-striped'>
+                    <table className='table table-striped table-totals'>
                         <thead>
                             <tr>
                                 <th>

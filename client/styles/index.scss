@@ -163,6 +163,9 @@ a {
     background-color: theme-color('primary');
 }
 
+.table-totals tbody tr:last-child {
+    font-weight: bold;
+}
 .bg {
     background-image: url('~assets/img/bgs/ashesreborn.png');
 
