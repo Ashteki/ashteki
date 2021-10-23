@@ -78,7 +78,8 @@ class GameService {
         return this.games
             .find(
                 {
-                    'players.name': username
+                    'players.name': username,
+                    'players.deck': { $ne: null }
                 },
                 {
                     sort: {

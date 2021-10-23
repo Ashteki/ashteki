@@ -161,6 +161,12 @@ class TriggeredAbility extends CardAbility {
             }
         }
 
+        // can this card be played as a reaction spell
+        if (this.isCardPlayed() && !context.player.checkRestrictions('play', context)) {
+            return 'cannotPlay';
+        }
+
+        // no reactions out of playerturns phase
         if (
             (this.card.type === CardType.ReactionSpell ||
                 this.abilityType === AbilityType.Reaction) &&
