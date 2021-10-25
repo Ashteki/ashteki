@@ -52,6 +52,7 @@ describe('Summon Fallen', function () {
         });
 
         it('should place 2 fallen into play', function () {
+            expect(this.player1.inPlay.length).toBe(0);
             this.player1.clickCard(this.summonFallen);
             this.player1.clickPrompt('Summon Fallen');
             this.player1.clickCard(this.player1.spellboard[0]);
