@@ -26,6 +26,8 @@ class SummonFallen extends Card {
             ],
             condition: (context) => context.player.spellboard.some((s) => s.status > 0),
             target: {
+                activePromptTitle:
+                    'Choose which Summon Fallen books to remove a status token from',
                 mode: 'upTo',
                 numCards: 3,
                 cardCondition: (card) => card.id === 'summon-fallen' && card.status > 0,
