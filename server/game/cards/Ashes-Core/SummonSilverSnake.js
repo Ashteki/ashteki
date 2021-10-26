@@ -25,7 +25,7 @@ class SummonSilverSnake extends Card {
             then: {
                 gameAction: ability.actions.addStatusToken((context) => ({
                     amount: Math.min(context.source.focus, 2),
-                    target: context.preThenEvent.childEvent.card
+                    target: context.preThenEvent.cards
                 }))
             }
         });
