@@ -199,7 +199,7 @@ async function processCustomBackground(newUser, user) {
 
     let fileData;
     try {
-        fileData = await processImage(newUser.customBackground, 700, 410);
+        fileData = await processImage(newUser.customBackground, 2100, 1230);
     } catch (err) {
         logger.error(err);
         return null;
