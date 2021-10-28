@@ -12,21 +12,21 @@ class MassHeal extends Card {
                         (d) => d.magic === Magic.Divine && d.level !== Level.Basic && !d.exhausted
                     )
                 ) {
-                    choices['Heal your units and PB'] = ability.actions.removeDamage({
+                    choices['Remove a wound from your units and PB'] = ability.actions.removeDamage({
                         amount: 1,
                         target: [context.player.phoenixborn, ...context.player.unitsInPlay]
                     });
                 }
-                choices['Remove wounds from all units'] = ability.actions.removeDamage({
+                choices['Remove a wound from all units'] = ability.actions.removeDamage({
                     amount: 1,
                     target: context.game.unitsInPlay
                 });
                 return {
                     choices: choices,
                     messages: {
-                        'Heal your units and PB':
-                            '{0} chooses to heal 1 wound from their units and PB',
-                        'Remove wounds from all units': '{0} chooses to heal 1 wound from all units'
+                        'Remove a wound from your units and PB':
+                            '{0} removes 1 wound from their units and PB',
+                        'Remove a wound from all units': '{0} removes 1 wound from all units'
                     }
                 };
             })

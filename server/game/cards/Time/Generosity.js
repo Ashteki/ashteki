@@ -50,7 +50,7 @@ class Generosity extends Card {
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                     controller,
                     player,
-                    message: '{0} heals 2 damage from {1}',
+                    message: '{0} removes 2 wounds from {1}',
                     messageArgs: (card) => [player, card]
                 }
             }),

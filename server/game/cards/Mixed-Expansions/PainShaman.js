@@ -12,7 +12,7 @@ class PainShaman extends Card {
             },
             then: {
                 target: {
-                    activePromptTitle: 'Choose a unit or Phoenixborn to heal',
+                    activePromptTitle: 'Choose a unit or Phoenixborn to remove a wound from',
                     cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
                     optional: true,
                     gameAction: ability.actions.removeDamage({
