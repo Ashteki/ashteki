@@ -8,6 +8,7 @@ class RallyTheTroops extends Card {
                 mode: 'unlimited',
                 cardCondition: (card) => card.exhausted,
                 cardType: 'Ally',
+                controller: 'self',
                 gameAction: ability.actions.returnToHand()
             },
             then: (context) => ({
