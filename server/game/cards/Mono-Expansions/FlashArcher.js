@@ -8,12 +8,12 @@ class FlashArcher extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             target: {
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.dealDamage({ amount: 1 })
+                gameAction: ability.actions.dealDamage()
             },
             then: {
                 target: {
                     cardType: BattlefieldTypes,
-                    gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true }),
+                    gameAction: ability.actions.dealDamage({ showMessage: true }),
                     optional: true
                 }
             }

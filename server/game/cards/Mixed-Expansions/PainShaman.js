@@ -8,9 +8,7 @@ class PainShaman extends Card {
                 optional: true,
                 activePromptTitle: 'Choose a unit to damage',
                 cardType: ['Ally', 'Conjuration'],
-                gameAction: ability.actions.dealDamage({
-                    amount: 1
-                })
+                gameAction: ability.actions.dealDamage()
             },
             then: {
                 target: {
@@ -18,7 +16,6 @@ class PainShaman extends Card {
                     cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
                     optional: true,
                     gameAction: ability.actions.removeDamage({
-                        amount: 1,
                         showMessage: true
                     })
                 }

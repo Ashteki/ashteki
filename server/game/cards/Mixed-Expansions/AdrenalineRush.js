@@ -9,7 +9,7 @@ class AdrenalineRush extends Card {
                 cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: [
-                    ability.actions.dealDamage({ amount: 1 }),
+                    ability.actions.dealDamage(),
                     ability.actions.removeExhaustion({ amount: 1 })
                 ]
             }

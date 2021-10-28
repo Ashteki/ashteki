@@ -195,7 +195,7 @@ class Die extends PlayableObject {
                         activePromptTitle: 'Choose a unit to deal 1 damage to',
                         showCancel: true,
                         cardType: ['Ally', 'Conjuration'],
-                        gameAction: this.game.actions.dealDamage({ amount: 1 })
+                        gameAction: this.game.actions.dealDamage()
                     },
                     message: '{0} uses {1} to deal 1 damage to {2}'
                 });

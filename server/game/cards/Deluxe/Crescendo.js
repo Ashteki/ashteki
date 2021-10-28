@@ -14,7 +14,7 @@ class Crescendo extends Card {
                 activePromptTitle: 'Choose a unit to receive 1 damage',
                 cardType: BattlefieldTypes,
                 controller: 'self',
-                gameAction: ability.actions.dealDamage({ amount: 1 })
+                gameAction: ability.actions.dealDamage()
             },
             then: {
                 target: {

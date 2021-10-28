@@ -18,7 +18,7 @@ class OneHundredBlades extends Card {
                 })),
                 then: {
                     alwaysTriggers: true,
-                    gameAction: ability.actions.draw({ amount: 1 })
+                    gameAction: ability.actions.draw()
                 }
             }
         });
