@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class HammerKnight extends Card {
     setupCardAbilities(ability) {
@@ -10,7 +11,7 @@ class HammerKnight extends Card {
                 optional: true,
                 activePromptTitle: 'Aftershock 1',
                 waitingPromptTitle: 'Aftershock 1: waiting for opponent',
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 cardCondition: (card, context) => card !== context.event.card,
                 gameAction: ability.actions.dealDamage({ amount: 1 })
             }

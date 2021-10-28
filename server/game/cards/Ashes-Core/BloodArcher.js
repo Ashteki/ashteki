@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class BloodArcher extends Card {
     setupCardAbilities(ability) {
@@ -12,7 +13,7 @@ class BloodArcher extends Card {
             then: {
                 target: {
                     activePromptTitle: 'Blood Shot',
-                    cardType: ['Ally', 'Conjuration'],
+                    cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
                 }
             }

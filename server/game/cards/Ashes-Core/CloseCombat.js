@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class CloseCombat extends Card {
     setupCardAbilities(ability) {
@@ -6,14 +7,14 @@ class CloseCombat extends Card {
             targets: {
                 myChar: {
                     activePromptTitle: 'Select a card for attack value',
-                    cardType: ['Ally', 'Conjuration'],
+                    cardType: BattlefieldTypes,
                     controller: 'self',
                     cardCondition: (card) => !card.exhausted
                 },
                 oppChar: {
                     dependsOn: 'myChar',
                     activePromptTitle: 'Choose a unit to damage',
-                    cardType: ['Ally', 'Conjuration'],
+                    cardType: BattlefieldTypes,
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
                         amount: context.targets.myChar.attack

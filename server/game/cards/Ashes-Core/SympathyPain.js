@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 
 class SympathyPain extends Card {
     setupCardAbilities(ability) {
@@ -14,7 +15,7 @@ class SympathyPain extends Card {
             },
             effect: "deal 2 damage to oppponent's unit or phoenixborn",
             target: {
-                cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
+                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 controller: 'opponent',
                 gameAction: ability.actions.dealDamage({ amount: 2 })
             }

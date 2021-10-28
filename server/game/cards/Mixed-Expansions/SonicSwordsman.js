@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class SonicSwordsman extends Card {
     setupCardAbilities(ability) {
@@ -9,7 +10,7 @@ class SonicSwordsman extends Card {
                 optional: true,
                 activePromptTitle: 'Sonic Pulse 1',
                 waitingPromptTitle: 'Sonic Pulse 1: waiting for opponent',
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.exhaust()
             }
         });

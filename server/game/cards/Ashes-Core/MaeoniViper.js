@@ -1,4 +1,4 @@
-const { Level } = require('../../../constants.js');
+const { BattlefieldTypes, Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -17,14 +17,14 @@ class MaeoniViper extends Card {
             targets: {
                 myChar: {
                     activePromptTitle: 'Choose an unexhausted unit.',
-                    cardType: ['Ally', 'Conjuration'],
+                    cardType: BattlefieldTypes,
                     controller: 'self',
                     cardCondition: (card) => !card.exhausted
                 },
                 oppChar: {
                     dependsOn: 'myChar',
                     activePromptTitle: 'Choose a unit to damage',
-                    cardType: ['Ally', 'Conjuration'],
+                    cardType: BattlefieldTypes,
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
                         amount: context.targets.myChar.attack
