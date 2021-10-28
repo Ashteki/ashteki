@@ -1,4 +1,4 @@
-const { Level, Magic } = require('../../../constants.js');
+const { BattlefieldTypes, Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -13,7 +13,7 @@ class BodyInversion extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
             ],
             target: {
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
                     effect: [

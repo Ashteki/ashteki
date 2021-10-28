@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class HuntMaster extends Card {
     setupCardAbilities(ability) {
@@ -15,7 +16,7 @@ class HuntMaster extends Card {
             title: 'Guide 1',
             cost: [ability.costs.sideAction(), ability.costs.loseStatus()],
             target: {
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 controller: 'self',
                 cardCondition: (card, context) => card !== context.source,
                 gameAction: ability.actions.cardLastingEffect({
