@@ -5,7 +5,6 @@ class BloodArcher extends Card {
         this.action({
             title: 'Blood Shot',
             cost: [ability.costs.sideAction()],
-            effect: 'deal 1 damage to a unit',
             gameAction: ability.actions.addDamageToken((context) => ({
                 target: context.source
             })),
