@@ -19,9 +19,9 @@ class DrainVitality extends Card {
             },
             then: {
                 target: {
-                    activePromptTitle: 'Choose a card to remove damage',
+                    activePromptTitle: 'Choose a card to remove a wound',
                     cardType: BattlefieldTypes,
-                    gameAction: ability.actions.removeDamage()
+                    gameAction: ability.actions.removeDamage({ showMessage: true })
                 }
             }
         });
@@ -41,7 +41,7 @@ class DrainVitality extends Card {
             then: {
                 target: {
                     cardType: BattlefieldTypes,
-                    gameAction: ability.actions.addStatusToken()
+                    gameAction: ability.actions.addStatusToken({ showMessage: true })
                 }
             }
         });

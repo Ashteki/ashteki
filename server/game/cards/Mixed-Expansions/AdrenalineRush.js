@@ -10,7 +10,10 @@ class AdrenalineRush extends Card {
                 controller: 'self',
                 gameAction: [
                     ability.actions.dealDamage(),
-                    ability.actions.removeExhaustion({ amount: 1 })
+                    ability.actions.removeExhaustion({
+                        amount: 1,
+                        showMessage: true
+                    })
                 ]
             }
         });

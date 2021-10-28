@@ -5,7 +5,7 @@ class LivingDoll extends Card {
         this.action({
             title: 'Pain Link',
             cost: [ability.costs.sideAction()],
-            effect: "move 1 damage to opponent's phoenixborn",
+            effect: "move 1 wound to opponent's phoenixborn",
             condition: (context) => context.source.damage > 0,
             gameAction: [
                 ability.actions.removeDamage((context) => ({
