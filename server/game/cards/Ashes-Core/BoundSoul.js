@@ -6,7 +6,6 @@ class BoundSoul extends Card {
         this.play({
             target: {
                 // Currently: Choose a ally
-                activePromptTitle: 'Choose an ally',
                 controller: 'self',
                 location: Location.Discard,
                 cardType: CardType.Ally,
