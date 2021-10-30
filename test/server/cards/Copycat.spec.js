@@ -38,9 +38,10 @@ describe('Copycat', function () {
             this.player1.clickDie(1);
             this.player1.clickDone();
             this.player1.clickCard(this.maeoniViper);
-            this.player2.clickPrompt('Damage');
+            //first part
+            this.player2.clickPrompt('Take 2 wounds');
             // second part
-            this.player2.clickPrompt('Take 2 Damage');
+            this.player2.clickPrompt('Take 2 wounds');
 
             expect(this.maeoniViper.damage).toBe(4);
 
@@ -48,8 +49,10 @@ describe('Copycat', function () {
             this.player2.clickDie(0);
 
             this.player2.clickCard(this.aradelSummergaard);
-            this.player1.clickPrompt('Damage');
-            this.player1.clickPrompt('Take 2 Damage');
+            //first part
+            this.player1.clickPrompt('Take 2 wounds');
+            // second part
+            this.player1.clickPrompt('Take 2 wounds');
 
             expect(this.aradelSummergaard.damage).toBe(4);
         });

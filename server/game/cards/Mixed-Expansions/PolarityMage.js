@@ -7,7 +7,7 @@ class PolarityMage extends Card {
             title: 'Give and Take',
             gameAction: ability.actions.chooseAction({
                 choices: {
-                    'Return to Hand': ability.actions.moveCard({
+                    'Return to hand': ability.actions.moveCard({
                         promptForSelect: {
                             optional: true,
                             controller: 'self',
@@ -17,7 +17,7 @@ class PolarityMage extends Card {
                         destination: 'hand',
                         showMessage: true
                     }),
-                    'Discard from Play': ability.actions.discard({
+                    'Discard from play': ability.actions.discard({
                         promptForSelect: {
                             optional: true,
                             cardType: UpgradeCardTypes,
