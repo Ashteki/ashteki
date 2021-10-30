@@ -23,7 +23,7 @@ class Anguish extends Card {
                                 showMessage: true
                             })
                         }),
-                        Damage: ability.actions.addDamageToken((context) => ({
+                        'Take 2 wounds': ability.actions.addDamageToken((context) => ({
                             target: context.target,
                             amount: 2,
                             showMessage: true
@@ -56,7 +56,7 @@ class Anguish extends Card {
                                 showMessage: true
                             }))
                         }),
-                        'Take 2 Damage': ability.actions.addDamageToken((context) => ({
+                        'Take 2 wounds': ability.actions.addDamageToken((context) => ({
                             target: context.preThenEvent.context.target,
                             amount: 2,
                             showMessage: true

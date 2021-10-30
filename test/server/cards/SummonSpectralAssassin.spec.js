@@ -24,7 +24,7 @@ describe('Summon Spectral Assassin', function () {
             this.player1.clickDie(0);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.ironWorker); // place in hand
-            this.player1.clickPrompt('SummonAndDraw'); // summon and draw
+            this.player1.clickPrompt('Summon and draw'); // summon and draw
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.spectralAssassin.location).toBe('play area');
             expect(this.ironWorker.location).toBe('hand');
@@ -37,7 +37,7 @@ describe('Summon Spectral Assassin', function () {
             this.player1.clickDie(0);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.ironWorker); // place in hand
-            this.player1.clickPrompt('SummonOnly'); // summon and draw
+            this.player1.clickPrompt('Summon only'); // summon and draw
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.spectralAssassin.location).toBe('play area');
             expect(this.ironWorker.location).toBe('hand');
@@ -69,7 +69,7 @@ describe('Summon Spectral Assassin', function () {
             this.player1.play(this.summonSpectralAssassin);
             this.player1.clickDie(0);
             this.player1.clickPrompt('Done');
-            this.player1.clickPrompt('Draw'); // draw a card
+            this.player1.clickPrompt('Draw only'); // draw a card
             this.player1.clickPrompt('1'); // draw 1 card
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.spectralAssassin.location).toBe('archives');
@@ -81,7 +81,7 @@ describe('Summon Spectral Assassin', function () {
             this.player1.play(this.summonSpectralAssassin);
             this.player1.clickDie(0);
             this.player1.clickPrompt('Done');
-            this.player1.clickPrompt('Draw'); // draw a card
+            this.player1.clickPrompt('Draw only'); // draw a card
             this.player1.clickPrompt('0'); // draw 0 cards
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.spectralAssassin.location).toBe('archives');

@@ -21,16 +21,16 @@ class SummonSpectralAssassin extends Card {
     }
     getChoices(ability, context) {
         const choices = {
-            SummonAndDraw: [
+            'Summon and draw': [
                 ability.actions.summon({
                     conjuration: 'spectral-assassin'
                 }),
                 ability.actions.draw({ showMessage: true })
             ],
-            SummonOnly: ability.actions.summon({
+            'Summon only': ability.actions.summon({
                 conjuration: 'spectral-assassin'
             }),
-            Draw: ability.actions.playerChosenAmountDraw((context) => ({
+            'Draw only': ability.actions.playerChosenAmountDraw((context) => ({
                 target: context.player,
                 amount: 1,
                 showMessage: true
@@ -38,10 +38,10 @@ class SummonSpectralAssassin extends Card {
         };
 
         if (context && context.preThenEvent) {
-            delete choices.Draw;
+            delete choices['Draw only'];
         } else {
-            delete choices.SummonAndDraw;
-            delete choices.SummonOnly;
+            delete choices['Summon and draw'];
+            delete choices['Summon only'];
         }
 
         return choices;
