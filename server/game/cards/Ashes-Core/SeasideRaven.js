@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class SeasideRaven extends Card {
     setupCardAbilities(ability) {
@@ -7,7 +8,7 @@ class SeasideRaven extends Card {
             target: {
                 optional: true,
                 activePromptTitle: 'Prey 2',
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 controller: 'any',
                 cardCondition: (card) => card.life <= 2,
                 gameAction: ability.actions.destroy()

@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 
 class ButterflyMonk extends Card {
     setupCardAbilities(ability) {
@@ -10,7 +11,7 @@ class ButterflyMonk extends Card {
                 optional: true,
                 cardCondition: (card, context) => card !== context.source,
                 activePromptTitle: 'Mend 1',
-                cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
+                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 gameAction: ability.actions.removeDamage()
             }
         });
