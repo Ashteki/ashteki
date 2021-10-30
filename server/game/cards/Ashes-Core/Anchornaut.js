@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class Anchornaut extends Card {
     setupCardAbilities(ability) {
@@ -9,7 +10,7 @@ class Anchornaut extends Card {
                 optional: true,
                 cardCondition: (card, context) => card !== context.source,
                 activePromptTitle: 'Throw 1',
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage({
                     amount: 1
                 })

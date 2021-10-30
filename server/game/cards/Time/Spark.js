@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants.js');
 
 class Spark extends Card {
     setupCardAbilities(ability) {
@@ -11,7 +12,7 @@ class Spark extends Card {
             title: 'Spark',
             cost: [ability.costs.mainAction()],
             target: {
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 controller: 'any',
                 gameAction: [
                     ability.actions.discard({ target: this }),

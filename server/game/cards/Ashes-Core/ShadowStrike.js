@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes } = require('../../../constants');
 
 class ShadowStrike extends Card {
     setupCardAbilities(ability) {
@@ -12,7 +13,7 @@ class ShadowStrike extends Card {
             },
             effect: 'deal 3 damage to a non-attacker',
             target: {
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 controller: 'opponent',
                 cardCondition: (card, context) => this.notAttacking(card, context.event.battles),
                 gameAction: ability.actions.dealDamage({ amount: 3 })

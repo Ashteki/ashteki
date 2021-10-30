@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 
 class PainShaman extends Card {
     setupCardAbilities(ability) {
@@ -7,13 +8,13 @@ class PainShaman extends Card {
             target: {
                 optional: true,
                 activePromptTitle: 'Choose a unit to damage',
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage()
             },
             then: {
                 target: {
                     activePromptTitle: 'Choose a unit or Phoenixborn to remove a wound from',
-                    cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
+                    cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                     optional: true,
                     gameAction: ability.actions.removeDamage({
                         showMessage: true
