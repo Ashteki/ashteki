@@ -31,7 +31,7 @@ class RimeaCareworn extends Card {
                             ? context.player.opponent.deck[0]
                             : context.player.deck[0]
                     })),
-                    ability.actions.exhaust()
+                    ability.actions.exhaust({ showMessage: true })
                 ],
                 message: '{0} moves 1 card from the top of their deck to the bottom',
                 messageArgs: (context) => [context.player]

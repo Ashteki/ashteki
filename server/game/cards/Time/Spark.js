@@ -16,7 +16,7 @@ class Spark extends Card {
                 controller: 'any',
                 gameAction: [
                     ability.actions.discard({ target: this }),
-                    ability.actions.dealDamage({ amount: 1 })
+                    ability.actions.dealDamage({ showMessage: true })
                 ]
             }
         });

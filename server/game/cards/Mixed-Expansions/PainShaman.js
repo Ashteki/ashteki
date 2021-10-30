@@ -9,17 +9,14 @@ class PainShaman extends Card {
                 optional: true,
                 activePromptTitle: 'Choose a unit to damage',
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.dealDamage({
-                    amount: 1
-                })
+                gameAction: ability.actions.dealDamage()
             },
             then: {
                 target: {
-                    activePromptTitle: 'Choose a unit or Phoenixborn to heal',
+                    activePromptTitle: 'Choose a unit or Phoenixborn to remove a wound from',
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                     optional: true,
                     gameAction: ability.actions.removeDamage({
-                        amount: 1,
                         showMessage: true
                     })
                 }

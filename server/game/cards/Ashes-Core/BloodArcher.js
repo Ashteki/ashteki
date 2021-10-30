@@ -6,7 +6,6 @@ class BloodArcher extends Card {
         this.action({
             title: 'Blood Shot',
             cost: [ability.costs.sideAction()],
-            effect: 'deal 1 damage to a unit',
             gameAction: ability.actions.addDamageToken((context) => ({
                 target: context.source
             })),
@@ -14,7 +13,7 @@ class BloodArcher extends Card {
                 target: {
                     activePromptTitle: 'Blood Shot',
                     cardType: BattlefieldTypes,
-                    gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
+                    gameAction: ability.actions.dealDamage({ showMessage: true })
                 }
             }
         });

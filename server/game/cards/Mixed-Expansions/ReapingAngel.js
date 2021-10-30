@@ -19,7 +19,7 @@ class ReapingAngel extends Card {
         });
 
         this.entersPlay({
-            may: 'remove a discarded ally from the game to heal 1 phoenixborn wound',
+            may: 'remove a discarded ally from the game to remove 1 phoenixborn wound',
             target: {
                 activePromptTitle: 'Choose an ally to remove from the game',
                 optional: true,
