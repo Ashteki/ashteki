@@ -12,8 +12,11 @@ class SingleCardSelector extends BaseCardSelector {
         if (this.cardType.length === 1) {
             if (UpgradeCardTypes.includes(this.cardType[0])) {
                 return 'Choose an Alteration Spell';
+            } else if (this.cardType[0] === 'Ally') {
+                return 'Choose an ally';
+            } else {
+                return 'Choose a ' + this.cardType[0];
             }
-            return 'Choose a ' + this.cardType[0];
         }
 
         return 'Choose a card';
