@@ -5,7 +5,6 @@ class BoundSoul extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
-                // Currently: Choose a ally
                 controller: 'self',
                 location: Location.Discard,
                 cardType: CardType.Ally,
