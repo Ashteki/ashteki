@@ -1,12 +1,12 @@
 describe('Vanish', function () {
-    describe('Vanish', function () {
+    describe('', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'maeoni-viper',
                     inPlay: ['enchanted-violinist'],
                     dicepool: ['ceremonial', 'natural', 'natural', 'charm'],
-                    hand: ['molten-gold', 'one-hundred-blades']
+                    hand: ['molten-gold', 'one-hundred-blades', 'phoenix-barrage']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
@@ -53,18 +53,42 @@ describe('Vanish', function () {
             this.player1.clickCard(this.mistSpirit);
             expect(this.mistSpirit.location).toBe('archives');
 
-            expect(this.player2).toHavePrompt(
-                'Any Reactions to Song of Sorrow targetting mist spirit?'
-            );
+            //expect(this.player2).toHavePrompt(
+            //    'Any Reactions to Song of Sorrow targetting mist spirit?'
+            //);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Enchanted Violinist?');
+
             this.player2.clickCard(this.vanish);
 
             expect(this.rinNorthfell.damage).toBe(0);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.player2.hand.length).toBe(handSize - 1);
         });
+
+        it('cancels Phoenix Barrage part 3', function () {
+            this.player1.play(this.phoenixBarrage);
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            this.player1.clickDie(2);
+            this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.hammerKnight);
+            //this.player1.clickCard(this.mistSpirit);
+            //expect(this.mistSpirit.location).toBe('archives');
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.rinNorthfell);
+
+            expect(this.player2).toHavePrompt(
+                'Any Reactions to Phoenix Barrage targetting Rin Northfell?'
+            );
+            this.player2.clickCard(this.vanish);
+
+            expect(this.rinNorthfell.damage).toBe(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 
-    describe('Vanish', function () {
+    describe('', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {

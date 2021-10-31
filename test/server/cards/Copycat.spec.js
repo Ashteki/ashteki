@@ -240,6 +240,10 @@ describe('Copycat', function () {
             this.player1.clickCard(this.falseDemon);
             this.player1.clickCard(this.maeoniViper);
 
+            expect(this.player2).toHavePrompt(
+                'Any Reactions?' //menuTitle Any Reactions? for Copycat
+            );
+
             this.player2.clickCard(this.copycat);
             this.player2.clickDie(0);
             this.player2.clickCard(this.hammerKnight);

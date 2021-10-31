@@ -28,9 +28,10 @@ const AbilityTypeToWord = {
 
 function GetTargettingTitlePhrase(event, player) {
     let myEvent = event;
-    if (event.context.preThenEvent && event.context.preThenEvent.name !== 'unnamedEvent') {
-        myEvent = event.context.preThenEvent;
-    }
+    //if (event.context.preThenEvent && event.context.preThenEvent.name !== 'unnamedEvent') { // original
+    //if (event.context.preThenEvent && event.context.preThenEvent.name !== 'unnamedEvent' && event.context.preThenEvent.context.ability.abilityType === 'action') { //Update only for Song of Sorrow and similar card abilities
+    //    myEvent = event.context.preThenEvent;
+    //}
     const abilityTitle = myEvent.context.ability.title || myEvent.context.source.name;
     // are there any of the players units / pb to name drop
     let targetList = '';
