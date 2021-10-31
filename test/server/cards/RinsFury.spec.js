@@ -94,9 +94,12 @@ describe('rins fury reaction spell', function () {
         expect(this.rinsFury.location).toBe('discard');
         expect(this.player2.hand.length).toBe(0);
 
-        // attacker destroyed
+        // attacker isn't destroyed
         expect(this.squallStallion.location).toBe('play area');
         expect(this.squallStallion.damage).toBe(0);
+
+        // defender isn't destroyed (Squall Stallion bug #766 with Rin's Fury)
+        expect(this.hammerKnight.location).toBe('play area');
         expect(this.hammerKnight.damage).toBe(0);
     });
 
@@ -118,9 +121,12 @@ describe('rins fury reaction spell', function () {
         expect(this.rinsFury.location).toBe('discard');
         expect(this.player2.hand.length).toBe(0);
 
-        // attacker destroyed
+        // attacker isn't destroyed
         expect(this.stormwindSniper.location).toBe('play area');
         expect(this.stormwindSniper.damage).toBe(0);
+
+        // defender isn't destroyed (Squall Stallion bug #766 with Rin's Fury)
+        expect(this.hammerKnight.location).toBe('play area');
         expect(this.hammerKnight.damage).toBe(0);
     });
 });
