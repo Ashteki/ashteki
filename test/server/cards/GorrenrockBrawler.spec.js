@@ -47,7 +47,7 @@ describe('Gorrenrock Brawler', function () {
                     hand: ['iron-worker']
                 },
                 player2: {
-                    phoenixborn: 'rin-northfell',
+                    phoenixborn: 'brennen-blackcloud',
                     dicepool: ['ceremonial', 'time', 'charm', 'charm'],
                     hand: ['molten-gold'],
                     inPlay: ['flute-mage', 'dread-wraith']
@@ -82,6 +82,24 @@ describe('Gorrenrock Brawler', function () {
             this.player1.clickCard(this.dreadWraith);
             expect(this.gorrenrockBrawler.status).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it("doesn't add status when brawler was attacker and unit dies subsequent turn", function () {
+            expect(this.gorrenrockBrawler.status).toBe(0);
+            this.player1.clickAttack(this.dreadWraith);
+            this.player1.clickCard(this.gorrenrockBrawler);
+            this.player2.clickDone(); // no guard
+            this.player2.clickYes();
+            expect(this.gorrenrockBrawler.damage).toBe(1);
+            expect(this.dreadWraith.damage).toBe(4);
+
+            this.player1.endTurn();
+            this.player2.clickCard(this.brennenBlackcloud);
+            this.player2.clickPrompt('Spirit Burn');
+            this.player2.clickCard(this.dreadWraith); // destroy my Dread Wraith
+            this.player2.clickCard(this.aradelSummergaard); // deal 2 damage to Aradel
+            expect(this.gorrenrockBrawler.status).toBe(0);
+            expect(this.player2).toHaveDefaultPrompt();
         });
     });
 
