@@ -48,8 +48,8 @@ describe('Gorrenrock Brawler', function () {
                 },
                 player2: {
                     phoenixborn: 'brennen-blackcloud',
-                    dicepool: ['ceremonial', 'time', 'charm', 'charm'],
-                    hand: ['molten-gold'],
+                    dicepool: ['ceremonial', 'time', 'charm', 'charm', 'illusion'],
+                    hand: ['molten-gold', 'strange-copy'],
                     inPlay: ['flute-mage', 'dread-wraith']
                 }
             });
@@ -59,6 +59,7 @@ describe('Gorrenrock Brawler', function () {
             expect(this.gorrenrockBrawler.status).toBe(0);
             this.player1.clickAttack(this.fluteMage);
             this.player1.clickCard(this.gorrenrockBrawler);
+            this.player2.clickPrompt('Pass'); // no strange copy
             this.player2.clickDone(); // no guard
             this.player2.clickYes();
 
@@ -72,6 +73,7 @@ describe('Gorrenrock Brawler', function () {
             expect(this.gorrenrockBrawler.status).toBe(0);
             this.player1.clickAttack(this.dreadWraith);
             this.player1.clickCard(this.gorrenrockBrawler);
+            this.player2.clickPrompt('Pass'); // no strange copy
             this.player2.clickDone(); // no guard
             this.player2.clickYes();
             expect(this.gorrenrockBrawler.damage).toBe(1);
@@ -84,10 +86,27 @@ describe('Gorrenrock Brawler', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
+        it('adds status when brawler was attacker and unit dies at end of turn', function () {
+            expect(this.gorrenrockBrawler.status).toBe(0);
+            this.player1.clickAttack(this.fluteMage);
+            this.player1.clickCard(this.gorrenrockBrawler);
+            this.player2.clickCard(this.strangeCopy); // strange copy
+            this.player2.clickDie(4);
+            this.player2.clickCard(this.fluteMage);
+            this.player2.clickCard(this.gorrenrockBrawler);
+            this.player2.clickDone(); // no guard
+            this.player2.clickYes();
+
+            this.player1.endTurn();
+
+            expect(this.gorrenrockBrawler.status).toBe(1); // flute mage dies after strange copy ends - failing
+        });
+
         it("doesn't add status when brawler was attacker and unit dies subsequent turn", function () {
             expect(this.gorrenrockBrawler.status).toBe(0);
             this.player1.clickAttack(this.dreadWraith);
             this.player1.clickCard(this.gorrenrockBrawler);
+            this.player2.clickPrompt('Pass'); // no strange copy
             this.player2.clickDone(); // no guard
             this.player2.clickYes();
             expect(this.gorrenrockBrawler.damage).toBe(1);

@@ -879,6 +879,12 @@ class Game extends EventEmitter {
 
     beginTurn() {
         this.betweenTurns = false;
+        // Would be better to have this refresh during endTurn, but couldn't work out how to ensure reset after other endTurn effects
+        this.cardsInPlay.forEach((c) => {
+            c.wasAttacker = false;
+            c.wasDefender = false;
+        });
+
         this.raiseEvent('onBeginTurn', { player: this.activePlayer });
         if (this.triggerSuddenDeath && this.activePlayer === this.roundFirstPlayer) {
             this.triggerSuddenDeath = false;
