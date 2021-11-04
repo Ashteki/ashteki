@@ -57,7 +57,9 @@ describe('Vanish', function () {
             //    'Any Reactions to Song of Sorrow targetting mist spirit?'
             //);
 
-            expect(this.player2).toHavePrompt('Any Reactions to Enchanted Violinist?');
+            expect(this.player2).toHavePrompt(
+                'Any Reactions to Enchanted Violinist targetting you?'
+            );
 
             this.player2.clickCard(this.vanish);
 
