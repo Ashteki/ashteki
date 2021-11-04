@@ -39,6 +39,12 @@ function GetTargettingTitlePhrase(event, player) {
         (t) => t.controller === player &&
             [CardType.Phoenixborn, ...BattlefieldTypes].includes(t.type)
     );
+    if (
+        !targets.length &&
+        myEvent.context.ability.gameAction.length &&
+        myEvent.context.ability.gameAction[0].targetType.includes('player')) {
+        targets.push({ name: 'you' });
+    }
     if (targets && targets.length) {
         targetList = targets.length > 1
             ? ' targetting multiple units'
