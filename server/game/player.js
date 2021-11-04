@@ -279,8 +279,6 @@ class Player extends GameObject {
     beginTurn() {
         this.cardsInPlay.forEach((c) => {
             c.new = false;
-            c.wasAttacker = false;
-            c.wasDefender = false;
 
             c.upgrades.forEach((u) => (u.new = false));
         });
@@ -325,6 +323,11 @@ class Player extends GameObject {
             this.game.addAlert('info', '{0} PASSES their main action', this);
         }
         this.limitedPlayed = 0; // reset for opponent's turn
+        this.cardsInPlay.forEach((c) => {
+            c.new = false;
+
+            c.upgrades.forEach((u) => (u.new = false));
+        });
     }
 
     endRound() {
