@@ -326,7 +326,7 @@ class UserService extends EventEmitter {
         return this.users
             .update(
                 { username: user.username },
-                { $set: { 'user.permissions.isSupporter': isSupporter } }
+                { $set: { 'permissions.isSupporter': isSupporter } }
             )
             .catch((err) => {
                 logger.error('Error setting patreon supporter status: ', err);

@@ -509,8 +509,9 @@ module.exports.init = function (server, options) {
         wrapAsync(async (req, res) => {
             let user = await userService.getFullUserByUsername(req.user.username);
             let userDetails = user.getWireSafeDetails();
-            let isSupporter = false;
+            let patreonSupporter = false;
 
+            // if patreon is linked, then update details
             if (user.patreon && user.patreon.refresh_token) {
                 userDetails.patreon = await patreonService.getPatreonStatusForUser(user);
 
@@ -525,13 +526,15 @@ module.exports.init = function (server, options) {
             }
 
             if (userDetails.patreon === 'pledged') {
-                isSupporter = true;
+                patreonSupporter = true;
             }
 
-            if (isSupporter !== req.user.permissions.isSupporter) {
-                if (!req.user.permissions.keepsSupporterWithNoPatreon) {
-                    userDetails.permissions.isSupporter = req.user.permissions.isSupporter = isSupporter;
-                    await userService.setSupporterStatus(user, isSupporter);
+            // should only trigger if supporter status does not reflect permission set
+            const changed = patreonSupporter !== !!user.permissions.isSupporter;
+            if (changed) {
+                if (!user.permissions.keepsSupporterWithNoPatreon) {
+                    userDetails.permissions.isSupporter = patreonSupporter;
+                    await userService.setSupporterStatus(user, patreonSupporter);
                 }
             }
 
