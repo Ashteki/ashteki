@@ -8,7 +8,7 @@ class LickWounds extends Card {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 gameAction: [
                     ability.actions.removeDamage({ amount: 2 }),
-                    ability.actions.removeExhaustion()
+                    ability.actions.removeExhaustion({ showMessage: true })
                 ]
             }
         });

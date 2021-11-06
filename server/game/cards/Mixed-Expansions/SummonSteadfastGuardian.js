@@ -21,14 +21,19 @@ class SummonSteadfastGuardian extends Card {
             then: {
                 condition: () => this.focus > 0,
                 target: {
+                    activePromptTitle:
+                        'Focus 1: Choose your Steadfast Guardian to remove all damage and exhaustion',
                     controller: 'self',
                     cardCondition: (card) => card.id === 'steadfast-guardian',
+                    optional: true,
                     gameAction: [
                         ability.actions.removeDamage({
-                            all: true
+                            all: true,
+                            showMessage: true
                         }),
                         ability.actions.removeExhaustion({
-                            all: true
+                            all: true,
+                            showMessage: true
                         })
                     ]
                 }

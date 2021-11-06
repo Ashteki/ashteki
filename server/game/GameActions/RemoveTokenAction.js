@@ -16,7 +16,13 @@ class RemoveTokenAction extends CardGameAction {
         this.name = 'removeToken';
         this.targetType = ['Conjuration', 'Ally', 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
 
-        let type = this.type === 'status' ? 'status token' : this.type;
+        let type = this.type;
+        if (this.type === 'status') {
+            type = 'status token';
+        }
+        if (this.type === 'damage') {
+            type = 'wound';
+        }
         if (!this.all && this.amount > 1) {
             type += 's';
         }
@@ -54,7 +60,7 @@ class RemoveTokenAction extends CardGameAction {
                         context.player,
                         context.source,
                         this.all ? 'all' : event.amount,
-                        event.type,
+                        event.type == 'damage' ? 'wound' : event.type,
                         event.card
                     );
                 }

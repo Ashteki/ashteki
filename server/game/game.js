@@ -879,6 +879,12 @@ class Game extends EventEmitter {
 
     beginTurn() {
         this.betweenTurns = false;
+        // Would be better to have this refresh during endTurn, but couldn't work out how to ensure reset after other endTurn effects
+        this.cardsInPlay.forEach((c) => {
+            c.wasAttacker = false;
+            c.wasDefender = false;
+        });
+
         this.raiseEvent('onBeginTurn', { player: this.activePlayer });
         if (this.triggerSuddenDeath && this.activePlayer === this.roundFirstPlayer) {
             this.triggerSuddenDeath = false;
@@ -906,7 +912,7 @@ class Game extends EventEmitter {
     }
 
     /*
-     * Resolves a card ability or ring effect
+     * Resolves a card ability
      * @param {AbilityContext} context - see AbilityContext
      * @returns {undefined}
      */
@@ -947,7 +953,7 @@ class Game extends EventEmitter {
 
     /**
      * Creates an EventWindow which will open windows for each kind of triggered
-     * ability which can respond any passed events, and execute their handlers.
+     * ability which can respond to any passed events, and execute their handlers.
      * @param event
      * @returns {EventWindow}
      */

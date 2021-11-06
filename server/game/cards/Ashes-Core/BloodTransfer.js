@@ -23,7 +23,7 @@ class BloodTransfer extends Card {
                     gameAction: ability.actions.dealDamage({ amount: 2 })
                 },
                 second: {
-                    activePromptTitle: 'Choose a card to heal',
+                    activePromptTitle: 'Choose a card to remove a wound from',
                     optional: true,
                     dependsOn: 'first',
                     controller: 'self',

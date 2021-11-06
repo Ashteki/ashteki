@@ -40,7 +40,7 @@ describe('Anguish', function () {
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.rinNorthfell);
-            this.player2.clickPrompt('Damage');
+            this.player2.clickPrompt('Take 2 wounds');
 
             expect(this.rinNorthfell.damage).toBe(2);
         });
@@ -54,9 +54,10 @@ describe('Anguish', function () {
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.rinNorthfell);
-            this.player2.clickPrompt('Damage');
+            //first part
+            this.player2.clickPrompt('Take 2 wounds');
             // second part
-            this.player2.clickPrompt('Take 2 Damage');
+            this.player2.clickPrompt('Take 2 wounds');
 
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.rinNorthfell.damage).toBe(4);
@@ -73,9 +74,9 @@ describe('Anguish', function () {
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.rinNorthfell);
-            this.player2.clickPrompt('Damage');
+            this.player2.clickPrompt('Take 2 wounds');
             // second part
-            this.player2.clickPrompt('Exhaust 2 Dice');
+            this.player2.clickPrompt('Exhaust 2 dice');
             // can't so damage taken
             expect(this.rinNorthfell.damage).toBe(4);
             expect(this.player1).toHaveDefaultPrompt();

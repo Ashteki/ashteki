@@ -4,17 +4,28 @@ class AddTokenAction extends CardGameAction {
     constructor(propertyFactory, type = 'damage') {
         super(propertyFactory);
         this.type = type;
-        this.showMessage = false;
     }
 
     setDefaultProperties() {
         this.amount = 1;
+        this.showMessage = false;
     }
 
     setup() {
         this.name = 'addToken';
         this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
-        this.effectMsg = 'place ' + this.amount + ' ' + this.type + ' on {0}';
+
+        let type = this.type;
+        if (this.type === 'status') {
+            type = 'status token';
+        }
+        if (this.type === 'damage') {
+            type = 'wound';
+        }
+        if (this.amount > 1) {
+            type += 's';
+        }
+        this.effectMsg = 'place ' + this.amount + ' ' + type + ' on {0}';
     }
 
     canAffect(card, context) {
@@ -38,7 +49,7 @@ class AddTokenAction extends CardGameAction {
                         context.player,
                         context.source,
                         tokenEvent.amount,
-                        tokenEvent.type,
+                        tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
                         tokenEvent.card
                     );
                 }

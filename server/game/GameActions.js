@@ -24,7 +24,7 @@ const Actions = {
     exhaust: (propertyFactory) => new GameActions.ExhaustAction(propertyFactory),
     exhaustGravityFlux: (propertyFactory) =>
         new GameActions.ExhaustGravityFluxAction(propertyFactory),
-    heal: (propertyFactory) => new GameActions.HealAction(propertyFactory),
+    heal: (propertyFactory) => new GameActions.HealAction(propertyFactory), // unused - removeDamage is used instead
     moveCard: (propertyFactory) => new GameActions.MoveCardAction(propertyFactory), // destination, switch = false, shuffle = false
     moveToBottom: (propertyFactory) => new GameActions.MoveToBottomAction(propertyFactory),
     moveToken: (propertyFactory) => new GameActions.MoveTokenAction(propertyFactory),

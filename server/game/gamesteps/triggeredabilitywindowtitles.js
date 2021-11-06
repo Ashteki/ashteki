@@ -28,9 +28,10 @@ const AbilityTypeToWord = {
 
 function GetTargettingTitlePhrase(event, player) {
     let myEvent = event;
-    if (event.context.preThenEvent && event.context.preThenEvent.name !== 'unnamedEvent') {
-        myEvent = event.context.preThenEvent;
-    }
+    //if (event.context.preThenEvent && event.context.preThenEvent.name !== 'unnamedEvent') { // original
+    //if (event.context.preThenEvent && event.context.preThenEvent.name !== 'unnamedEvent' && event.context.preThenEvent.context.ability.abilityType === 'action') { //Update only for Song of Sorrow and similar card abilities
+    //    myEvent = event.context.preThenEvent;
+    //}
     const abilityTitle = myEvent.context.ability.title || myEvent.context.source.name;
     // are there any of the players units / pb to name drop
     let targetList = '';
@@ -38,6 +39,12 @@ function GetTargettingTitlePhrase(event, player) {
         (t) => t.controller === player &&
             [CardType.Phoenixborn, ...BattlefieldTypes].includes(t.type)
     );
+    if (
+        !targets.length &&
+        myEvent.context.ability.gameAction.length &&
+        myEvent.context.ability.gameAction[0].targetType.includes('player')) {
+        targets.push({ name: 'you' });
+    }
     if (targets && targets.length) {
         targetList = targets.length > 1
             ? ' targetting multiple units'

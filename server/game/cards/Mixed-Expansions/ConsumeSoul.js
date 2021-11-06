@@ -18,7 +18,8 @@ class ConsumeSoul extends Card {
                     amount: 2
                 })),
                 ability.actions.removeExhaustion((context) => ({
-                    target: context.player.phoenixborn
+                    target: context.player.phoenixborn,
+                    showMessage: true
                 }))
             ]
         });

@@ -11,16 +11,40 @@ class SummonSpectralAssassin extends Card {
                 gameAction: ability.actions.returnToHand()
             },
             then: {
-                gameAction: ability.actions.summon({
-                    conjuration: 'spectral-assassin'
-                }),
-                then: {
-                    alwaysTriggers: true,
-                    may: 'draw a card',
-                    gameAction: ability.actions.draw({ showMessage: true })
-                }
+                alwaysTriggers: true,
+                gameAction: ability.actions.chooseAction((context) => ({
+                    target: context.player,
+                    choices: this.getChoices(ability, context)
+                }))
             }
         });
+    }
+    getChoices(ability, context) {
+        const choices = {
+            'Summon and draw': [
+                ability.actions.summon({
+                    conjuration: 'spectral-assassin'
+                }),
+                ability.actions.draw({ showMessage: true })
+            ],
+            'Summon only': ability.actions.summon({
+                conjuration: 'spectral-assassin'
+            }),
+            'Draw only': ability.actions.playerChosenAmountDraw((context) => ({
+                target: context.player,
+                amount: 1,
+                showMessage: true
+            }))
+        };
+
+        if (context && context.preThenEvent) {
+            delete choices['Draw only'];
+        } else {
+            delete choices['Summon and draw'];
+            delete choices['Summon only'];
+        }
+
+        return choices;
     }
 }
 
