@@ -7,16 +7,17 @@ class RallyTheTroops extends Card {
             target: {
                 mode: 'unlimited',
                 cardCondition: (card) => card.exhausted,
+                cardType: 'Ally',
+                controller: 'self',
                 gameAction: ability.actions.returnToHand()
             },
             then: (context) => ({
                 gameAction: ability.actions.removeDamage({
                     target: context.player.phoenixborn,
-                    amount: context.target.length
+                    amount: context.target.length,
+                    showMessage: true
                 })
-            }),
-            effect: 'return {1} exhausted allies to hand and heal {1} wounds from {2}',
-            effectArgs: (context) => [context.target.length, context.player.phoenixborn]
+            })
         });
     }
 }

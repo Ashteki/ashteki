@@ -1,4 +1,4 @@
-const { Level, Magic } = require('../../../constants.js');
+const { BattlefieldTypes, Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -13,7 +13,7 @@ class Hypnotize extends Card {
                 ability.costs.dice([new DiceCount(2, Level.Class, Magic.Charm)])
             ],
             target: {
-                cardType: ['Ally', 'Conjuration'],
+                cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: ability.actions.cardLastingEffect({
                     duration: 'untilEndOfTurn',

@@ -18,6 +18,7 @@ class TheAwakenedState extends Card {
                 gameAction: [
                     ability.actions.dealDamage({
                         amount: 1,
+                        showMessage: true,
                         promptForSelect: {
                             controller: 'opponent',
                             activePromptTitle: 'Deal 1 damage',
@@ -26,6 +27,7 @@ class TheAwakenedState extends Card {
                     }),
                     ability.actions.dealDamage((context) => ({
                         amount: 1,
+                        showMessage: true,
                         target: context.player.opponent.phoenixborn
                     }))
                 ]

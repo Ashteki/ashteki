@@ -1,4 +1,5 @@
 const Card = require('../../Card.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 
 class CoalRoarkwin extends Card {
     setupCardAbilities(ability) {
@@ -8,14 +9,14 @@ class CoalRoarkwin extends Card {
             target: {
                 // target a Unit, or if no units then the pb is valid
                 activePromptTitle: 'Choose a target to Slash',
-                cardType: ['Ally', 'Conjuration', 'Phoenixborn'],
+                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 cardCondition: (card) => {
                     return (
-                        ['Ally', 'Conjuration'].includes(card.type) ||
+                        BattlefieldTypes.includes(card.type) ||
                         card.controller.cardsInPlay.length == 0 // implies the cardtype is pb
                     );
                 },
-                gameAction: ability.actions.dealDamage({ amount: 1 })
+                gameAction: ability.actions.dealDamage()
             }
         });
     }

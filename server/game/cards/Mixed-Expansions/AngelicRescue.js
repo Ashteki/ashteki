@@ -22,7 +22,7 @@ class AngelicRescue extends Card {
                     all: true
                 })
             }),
-            message: '{0} plays {1} to prevent all damage to {2} then removes all wounds',
+            message: '{0} plays {1} to prevent all damage to {2} then removes all wounds from that unit',
             messageArgs: (context) => [context.player, context.source, context.event.card]
         });
     }

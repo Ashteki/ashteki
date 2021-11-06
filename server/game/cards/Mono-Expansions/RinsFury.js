@@ -20,6 +20,7 @@ class RinsFury extends Card {
                 target: {
                     cardType: BattlefieldTypes,
                     autoTarget: () => context.event.damageSource,
+                    controller: 'opponent',
                     gameAction: ability.actions.destroy()
                 }
             })

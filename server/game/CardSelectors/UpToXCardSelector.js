@@ -19,9 +19,15 @@ class UpToXCardSelector extends BaseCardSelector {
     defaultActivePromptTitle(context) {
         let numCards = this.getNumCards(context);
         if (this.cardType.length === 1) {
-            return numCards === 1
-                ? 'Choose a ' + this.cardType[0]
-                : { text: `Choose {{amount}} ${this.cardType[0]}s`, values: { amount: numCards } };
+            if (this.cardType[0] === 'Ally') {
+                return numCards === 1
+                    ? 'Choose an ally'
+                    : { text: `Choose {{amount}} allies`, values: { amount: numCards } };
+            } else {
+                return numCards === 1
+                    ? 'Choose a ' + this.cardType[0]
+                    : { text: `Choose {{amount}} ${this.cardType[0]}s`, values: { amount: numCards } };
+            }
         }
 
         return numCards === 1

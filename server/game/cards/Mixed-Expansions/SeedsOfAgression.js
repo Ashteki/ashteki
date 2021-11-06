@@ -6,13 +6,13 @@ class SeedsOfAggression extends Card {
         this.play({
             targets: {
                 myUnit: {
-                    activePromptTitle: 'Choose a Unit',
+                    activePromptTitle: 'Choose a unit',
                     cardType: BattlefieldTypes,
                     controller: 'self'
                 },
                 theirs: {
                     dependsOn: 'myUnit',
-                    activePromptTitle: "Choose an opponent's Unit",
+                    activePromptTitle: "Choose an opponent's unit",
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
                     gameAction: [
@@ -22,7 +22,8 @@ class SeedsOfAggression extends Card {
                         })),
                         ability.actions.dealDamage((context) => ({
                             target: context.targets.myUnit,
-                            amount: context.targets.theirs.attack
+                            amount: context.targets.theirs.attack,
+                            showMessage: true
                         }))
                     ]
                 }
