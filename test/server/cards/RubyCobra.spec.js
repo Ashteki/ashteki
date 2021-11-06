@@ -18,7 +18,7 @@ describe('Ruby Cobra', function () {
             });
         });
 
-        it('restrict attack from charm dice bearer', function () {
+        it('increases cobra attack and forces opponent discard', function () {
             expect(this.player2.discard.length).toBe(0);
             this.player1.clickAttack(this.aradelSummergaard);
             this.player1.clickCard(this.rubyCobra);
@@ -63,6 +63,22 @@ describe('Ruby Cobra', function () {
             this.player2.clickAttack(this.rubyCobra);
             expect(this.player2).toBeAbleToSelect(this.hammerKnight);
             expect(this.player2).not.toBeAbleToSelect(this.ironWorker);
+        });
+
+        it("doesn't restrict attack from charm dice bearer when exhausted", function () {
+            this.rubyCobra.tokens.exhaustion = 1; // cobra is exhausted
+
+            // attach die
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Charm Dice Power');
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.dieUpgrades.length).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+            this.player1.endTurn();
+
+            this.player2.clickAttack(this.rubyCobra);
+            expect(this.player2).toBeAbleToSelect(this.hammerKnight);
+            expect(this.player2).toBeAbleToSelect(this.ironWorker);
         });
     });
 });

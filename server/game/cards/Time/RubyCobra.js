@@ -23,7 +23,10 @@ class RubyCobra extends Card {
         });
 
         this.persistentEffect({
-            condition: (context) => context.game.attackState && context.game.attackState.target === context.source,
+            condition: (context) =>
+                !context.source.exhausted &&
+                context.game.attackState &&
+                context.game.attackState.target === context.source,
             targetController: 'Any',
             match: (card) => card.hasCharmDie,
             effect: ability.effects.cardCannot('attack')
