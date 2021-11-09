@@ -28,6 +28,8 @@ class AttackState {
                 if (b.target === card) {
                     card.isDefender = false;
                     b.target = null;
+                    this.battles = this.battles.filter((bf) => bf !== b);
+                    return;
                 }
 
                 // can remove guards / blockers
@@ -47,6 +49,7 @@ class AttackState {
     }
 
     pruneBattles() {
+        // remove battles where attacker is exhausted
         this.battles
             .filter((b) => b.attacker.exhausted && !b.resolved)
             .forEach((b) => {
