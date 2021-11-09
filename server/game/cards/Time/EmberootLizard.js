@@ -22,7 +22,7 @@ class EmberootLizard extends Card {
                 target: {
                     optional: true,
                     cardCondition: (card, context) => card !== context.source,
-                    activePromptTitle: 'Ignite',
+                    activePromptTitle: 'Ignite: choose a unit to deal 1 damage to',
                     waitingPromptTitle: 'Ignite: waiting for opponent',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({

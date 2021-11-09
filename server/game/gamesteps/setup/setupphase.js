@@ -1,3 +1,4 @@
+const moment = require('moment');
 const _ = require('underscore');
 const Phase = require('../phase.js');
 const SimpleStep = require('../simplestep.js');
@@ -36,6 +37,10 @@ class SetupPhase extends Phase {
             player.recordHand();
         });
         this.game.raiseEvent('onGameStarted');
+        this.game.addMessage(
+            'Game started at: {0}',
+            moment(this.game.startedAt).format('DD-MM-yy hh:mm')
+        );
     }
 }
 
