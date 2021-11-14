@@ -16,7 +16,7 @@ class ParticleShield extends Card {
             })),
             then: {
                 alwaysTriggers: true,
-                gameAction: ability.actions.draw()
+                gameAction: ability.actions.draw({ showMessage: true })
             }
         });
     }

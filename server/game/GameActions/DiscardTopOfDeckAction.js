@@ -17,7 +17,9 @@ class DiscardTopOfDeckAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        return this.amount === 0 ? false : super.canAffect(player, context);
+        if (this.amount === 0 || player.deck.length === 0) {
+            return false;
+        } else return super.canAffect(player, context);
     }
 
     getEvent(player, context) {
