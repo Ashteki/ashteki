@@ -13,7 +13,6 @@ class OneHundredBlades extends Card {
             then: {
                 alwaysTriggers: true,
                 gameAction: ability.actions.dealDamage((context) => ({
-                    amount: 1,
                     target: context.player.opponent.unitsInPlay
                 })),
                 then: {
