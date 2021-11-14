@@ -11,7 +11,6 @@ class FalseDemon extends Card {
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.exhausted,
                 gameAction: ability.actions.dealDamage({
-                    amount: 1,
                     message: true
                 })
             }

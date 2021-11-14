@@ -11,9 +11,7 @@ class Anchornaut extends Card {
                 cardCondition: (card, context) => card !== context.source,
                 activePromptTitle: 'Throw 1',
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.dealDamage({
-                    amount: 1
-                })
+                gameAction: ability.actions.dealDamage()
             }
         });
     }
