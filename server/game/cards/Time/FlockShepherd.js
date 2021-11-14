@@ -26,7 +26,7 @@ class FlockShepherd extends Card {
                 effect: AbilityDsl.effects.modifyAttack(2),
                 duration: 'untilEndOfTurn'
             })),
-            effect: 'increase the attack attack value of units with a printed attack of 0 by 2'
+            effect: 'increase the attack value of their 0 printed attack units by 2'
         });
     }
 }

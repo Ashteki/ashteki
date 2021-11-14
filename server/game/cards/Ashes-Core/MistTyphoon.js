@@ -12,7 +12,7 @@ class MistTyphoon extends Card {
             then: {
                 alwaysTriggers: true,
                 may: 'draw a card',
-                gameAction: ability.actions.draw()
+                gameAction: ability.actions.draw({ showMessage: true })
             }
         });
     }
