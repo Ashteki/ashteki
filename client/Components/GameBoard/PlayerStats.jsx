@@ -106,6 +106,18 @@ export class PlayerStats extends React.Component {
             </div>
         )
     }
+    renderLifeRemaining() {
+        const lifeValue = 17;// this.props.lifeRemaining;
+        let lifeClass = classNames('action', 'life-remaining');
+        return (
+            <div className='state'>
+                <span key={`action-side`} className={lifeClass}>
+                    {lifeValue}
+
+                </span>
+            </div>
+        );
+    }
 
     renderMainAction() {
         const actionValue = this.props.actions['main'];
@@ -185,6 +197,7 @@ export class PlayerStats extends React.Component {
         return (
             <div className={statsClass}>
                 {playerAvatar}
+                {this.renderLifeRemaining()}
                 {this.renderActions()}
                 {firstPlayerToken}
                 {this.props.activePlayer && (
