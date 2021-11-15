@@ -17,7 +17,6 @@ class Cover extends Card {
             then: (context) => ({
                 gameAction: ability.actions.dealDamage({
                     target: context.event.damageSource,
-                    amount: 1,
                     showMessage: true
                 })
             })

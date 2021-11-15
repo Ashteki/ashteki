@@ -17,7 +17,7 @@ class Concentration extends Card {
                 ability.actions.addStatusToken((context) => ({
                     target: context.player.phoenixborn
                 })),
-                ability.actions.draw(),
+                ability.actions.draw({ showMessage: true }),
                 ability.actions.changeDice({
                     dieCondition: (d) => d.exhausted,
                     unexhaust: true

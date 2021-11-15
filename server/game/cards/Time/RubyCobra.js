@@ -19,7 +19,7 @@ class RubyCobra extends Card {
             then: {
                 gameAction: ability.actions.discardTopOfDeck()
             },
-            effect: "increase its attack value by 1, and then discard opponent's top of deck"
+            effect: 'increase its attack value by 1'
         });
 
         this.persistentEffect({
