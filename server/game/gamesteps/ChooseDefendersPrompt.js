@@ -149,7 +149,8 @@ class ChooseDefendersPrompt extends UiPrompt {
             this.selectMyCard(card);
             if (!this.attack.isPBAttack) {
                 this.attack.setGuard(this.selectedCard);
-                this.game.addMessage(
+                this.game.addAlert(
+                    'info',
                     '{0} uses {1} to guard',
                     this.choosingPlayer,
                     this.selectedCard
