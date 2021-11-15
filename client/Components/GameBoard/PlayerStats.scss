@@ -108,7 +108,18 @@
 .life-remaining{
     color:red;
     font-weight: bold;
+    min-width:30px;
 }
+.life-red{
+    color:red;
+}
+.life-orange{
+    color:orange;
+}
+.life-green{
+    color:green;
+}
+
 
 .chat-status {
     position: absolute;
