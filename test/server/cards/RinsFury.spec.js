@@ -8,7 +8,8 @@ describe('rins fury reaction spell', function () {
                     'iron-worker',
                     'fallen',
                     'squall-stallion',
-                    'stormwind-sniper'
+                    'stormwind-sniper',
+                    'shadow-hound'
                 ],
                 spellboard: [],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
@@ -74,6 +75,10 @@ describe('rins fury reaction spell', function () {
         // attacker destroyed
         expect(this.fallen.location).toBe('archives');
         expect(this.hammerKnight.damage).toBe(1);
+
+        // check no random unit death (bug #819)
+        expect(this.player1.player.unitsInPlay.length).toBe(5);
+        expect(this.player2.player.unitsInPlay.length).toBe(1);
     });
 
     it('Squall Stallion damage is prevented, but cannot destroy', function () {
@@ -101,6 +106,10 @@ describe('rins fury reaction spell', function () {
         // defender isn't destroyed (Squall Stallion bug #766 with Rin's Fury)
         expect(this.hammerKnight.location).toBe('play area');
         expect(this.hammerKnight.damage).toBe(0);
+
+        // check no random unit death (bug #819)
+        expect(this.player1.player.unitsInPlay.length).toBe(6);
+        expect(this.player2.player.unitsInPlay.length).toBe(1);
     });
 
     it('Stormwind Sniper damage is prevented, but cannot destroy', function () {
@@ -112,7 +121,7 @@ describe('rins fury reaction spell', function () {
         this.player2.clickPrompt('No'); // no counter
 
         expect(this.player2).toBeAbleToSelect(this.rinsFury);
-        this.player2.clickCard(this.rinsFury); // click cover to play as reaction
+        this.player2.clickCard(this.rinsFury); // click card to play as reaction
         this.player2.clickDie(0);
         this.player2.clickDie(1);
         this.player2.clickPrompt('Done');
@@ -128,5 +137,40 @@ describe('rins fury reaction spell', function () {
         // defender isn't destroyed (Squall Stallion bug #766 with Rin's Fury)
         expect(this.hammerKnight.location).toBe('play area');
         expect(this.hammerKnight.damage).toBe(0);
+
+        // check no random unit death (bug #819)
+        expect(this.player1.player.unitsInPlay.length).toBe(6);
+        expect(this.player2.player.unitsInPlay.length).toBe(1);
+    });
+
+    it('Shadow Hound damage is prevented, but cannot destroy', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.hammerKnight); // target
+        this.player1.clickCard(this.shadowHound); // single attacker
+
+        //this.player2.clickPrompt('Done'); // no guard - can't guard Shadow Hound
+        this.player2.clickPrompt('No'); // no counter
+
+        expect(this.player2).toBeAbleToSelect(this.rinsFury);
+        this.player2.clickCard(this.rinsFury); // click card to play as reaction
+        this.player2.clickDie(0);
+        this.player2.clickDie(1);
+        this.player2.clickPrompt('Done');
+
+        // card played
+        expect(this.rinsFury.location).toBe('discard');
+        expect(this.player2.hand.length).toBe(0);
+
+        // attacker isn't destroyed
+        expect(this.shadowHound.location).toBe('play area');
+        expect(this.shadowHound.damage).toBe(0);
+
+        // defender isn't destroyed (Squall Stallion bug #766 with Rin's Fury)
+        expect(this.hammerKnight.location).toBe('play area');
+        expect(this.hammerKnight.damage).toBe(0);
+
+        // check no random unit death (bug #819)
+        expect(this.player1.player.unitsInPlay.length).toBe(6);
+        expect(this.player2.player.unitsInPlay.length).toBe(1);
     });
 });

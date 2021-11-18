@@ -79,8 +79,9 @@ class AbilityTargetCard {
             const autoTarget = this.properties.autoTarget(context);
             if (this.selector.canTarget(autoTarget, context)) {
                 this.setSelectedCard(context, autoTarget);
+                return;
             }
-            return;
+            // return; // moved this up, which at least prompts the user to select a card when autotargeting fails
         }
 
         if (this.random) {
