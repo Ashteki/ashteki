@@ -107,6 +107,30 @@ export class PlayerStats extends React.Component {
         )
     }
 
+    renderLifeRemaining() {
+        const pbLife = this.props.phoenixborn.life;
+        let pbDamage = this.props.phoenixborn.tokens.damage
+            ? this.props.phoenixborn.tokens.damage
+            : 0;
+        const lifeValue = Math.max(0, pbLife - pbDamage);
+        let lifeClass = 'life-green';
+        if (lifeValue <= 10) {
+            lifeClass = 'life-orange';
+        }
+        if (lifeValue <= 5) {
+            lifeClass = 'life-red';
+        }
+
+        let classes = classNames('action', 'life-remaining', lifeClass);
+        return (
+            <div className='state'>
+                <span key={`action-side`} className={classes}>
+                    {lifeValue}
+                </span>
+            </div>
+        );
+    }
+
     renderMainAction() {
         const actionValue = this.props.actions['main'];
         let actionClass = classNames('action', actionValue ? '' : 'exhausted');
@@ -185,6 +209,7 @@ export class PlayerStats extends React.Component {
         return (
             <div className={statsClass}>
                 {playerAvatar}
+                {this.renderLifeRemaining()}
                 {this.renderActions()}
                 {firstPlayerToken}
                 {this.props.activePlayer && (
@@ -284,7 +309,8 @@ PlayerStats.propTypes = {
     actions: PropTypes.object,
     firstPlayer: PropTypes.bool,
     diceHistory: PropTypes.array,
-    onDiceHistoryClick: PropTypes.func
+    onDiceHistoryClick: PropTypes.func,
+    phoenixborn: PropTypes.object
 };
 
 export default withTranslation()(PlayerStats);

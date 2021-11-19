@@ -412,6 +412,7 @@ export class GameBoard extends React.Component {
                         activePlayer={otherPlayer.activePlayer}
                         actions={otherPlayer.actions}
                         firstPlayer={otherPlayer.firstPlayer}
+                        phoenixborn={otherPlayer.phoenixborn}
                     />
                 </div>
                 <div className='main-window'>
@@ -495,6 +496,7 @@ export class GameBoard extends React.Component {
                         actions={thisPlayer.actions}
                         firstPlayer={thisPlayer.firstPlayer}
                         onDiceHistoryClick={this.onDiceHistoryClick}
+                        phoenixborn={thisPlayer.phoenixborn}
                     />
                 </div>
             </div>
