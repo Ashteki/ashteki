@@ -18,6 +18,7 @@ describe('mirror spirit enters play', function () {
         });
 
         this.gilder.tokens.exhaustion = 1;
+        this.gilder.tokens.gravityFlux = 1;
         this.mistSpirit.tokens.exhaustion = 2;
         this.ironWorker.tokens.exhaustion = 1;
     });
@@ -30,7 +31,7 @@ describe('mirror spirit enters play', function () {
         this.player1.clickCard(this.mirrorSpirit);
 
         this.player1.clickPrompt("Opponent's");
-        expect(this.mirrorSpirit.status).toBe(1);
+        expect(this.mirrorSpirit.status).toBe(2);
     });
 
     it('gets status tokens equal to exhaustion tokens (mine)', function () {
