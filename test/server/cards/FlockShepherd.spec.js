@@ -136,3 +136,31 @@ describe('Flock Shepherd', function () {
         });
     });
 });
+
+describe('Flock Shepherd vs hammer knight', function () {
+    beforeEach(function () {
+        this.setupTest({
+            player1: {
+                phoenixborn: 'aradel-summergaard',
+                inPlay: ['hammer-knight'],
+                dicepool: ['charm', 'divine', 'natural', 'illusion', 'illusion'],
+                hand: ['steady-gaze']
+            },
+            player2: {
+                phoenixborn: 'coal-roarkwin',
+                inPlay: ['flock-shepherd', 'gilder', 'squall-stallion']
+            }
+        });
+    });
+
+    it('does not protect vs aftershock if shepherd is destroyed', function () {
+        this.player1.clickAttack(this.flockShepherd);
+        this.player1.clickCard(this.hammerKnight);
+        this.player2.clickPass(); // FS reaction
+        this.player2.clickDone(); // guard
+        this.player2.clickYes(); // counter
+        this.player1.clickCard(this.gilder);
+        expect(this.gilder.damage).toBe(1);
+        expect(this.flockShepherd.location).toBe('discard');
+    });
+});
