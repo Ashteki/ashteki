@@ -25,7 +25,12 @@ class MirrorSpirit extends Card {
 
     getTokenCount(context) {
         const player = this.chosenValue ? context.player.opponent : context.player;
-        return player.unitsInPlay.reduce((acc, u) => acc + u.exhaustion, 0);
+        const exhaustionTotal = player.unitsInPlay.reduce((acc, u) => acc + u.exhaustion, 0);
+        const gravityFluxExhaustionTotal = player.unitsInPlay.reduce(
+            (acc, u) => acc + u.exhaustionGravityFlux,
+            0
+        );
+        return exhaustionTotal + gravityFluxExhaustionTotal;
     }
 }
 
