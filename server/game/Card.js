@@ -830,7 +830,7 @@ class Card extends PlayableObject {
     }
 
     get exhaustionGravityFlux() {
-        return this.hasToken('gravityFlux') ? this.tokens.exhaustionGravityFlux : 0;
+        return this.hasToken('gravityFlux') ? this.tokens.gravityFlux : 0;
     }
 
     get exhausted() {

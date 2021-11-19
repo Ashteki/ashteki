@@ -79,6 +79,8 @@ class AbilityTargetCard {
             const autoTarget = this.properties.autoTarget(context);
             if (this.selector.canTarget(autoTarget, context)) {
                 this.setSelectedCard(context, autoTarget);
+            } else {
+                targetResults.cancelled = true;
             }
             return;
         }
