@@ -55,6 +55,8 @@ class AttackFlow extends BaseStepWithPipeline {
         this.game.checkGameState(true);
         this.game.promptForSelect(this.attackingPlayer, {
             activePromptTitle: this.isPBAttack ? 'Select attackers' : 'Select an attacker',
+            waitingPromptTitle: 'Waiting for opponent to select attackers',
+            promptTitle: 'Attack',
             source: this.target,
             controller: 'self',
             cardType: BattlefieldTypes,
