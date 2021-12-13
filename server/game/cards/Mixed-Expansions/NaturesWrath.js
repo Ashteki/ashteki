@@ -5,8 +5,8 @@ class NaturesWrath extends Card {
         this.play({
             title: "Nature's Wrath",
             effect: 'deal 1 damage to all units',
-            gameAction: ability.actions.aoeDamage((context) => ({
-                amount: 1,
+            gameAction: ability.actions.orderedAoE((context) => ({
+                gameAction: ability.actions.dealDamage(),
                 cards: context.game.unitsInPlay,
                 promptTitle: "Nature's Wrath"
             }))

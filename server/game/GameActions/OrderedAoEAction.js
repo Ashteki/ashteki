@@ -1,11 +1,11 @@
 const { BattlefieldTypes } = require('../../constants');
 const PlayerAction = require('./PlayerAction');
 
-class AoEDealDamageAction extends PlayerAction {
+class OrderedAoEAction extends PlayerAction {
     setup() {
         super.setup();
         this.amount = 1;
-        this.name = 'AoEDamage';
+        this.name = 'OrderedAoE';
         this.cards = {};
     }
 
@@ -25,14 +25,14 @@ class AoEDealDamageAction extends PlayerAction {
 
     promptForRemainingCards(context) {
         context.game.promptForSelect(context.player, {
-            activePromptTitle: 'Choose a card to affect',
+            activePromptTitle: 'Choose order of AoE actions',
             waitingPromptTitle: 'Waiting for opponent to order AoE actions',
             // eslint-disable-next-line no-undef
             cardType: BattlefieldTypes,
             cardCondition: (card) => this.cards.includes(card),
             context: context,
             onSelect: (player, card) => {
-                context.game.actions.dealDamage().resolve(card, context);
+                this.propertyCache.gameAction.resolve(card, context);
                 this.cards = this.cards.filter((c) => c !== card);
                 if (this.cards.length) {
                     this.promptForRemainingCards(context);
@@ -43,4 +43,4 @@ class AoEDealDamageAction extends PlayerAction {
     }
 }
 
-module.exports = AoEDealDamageAction;
+module.exports = OrderedAoEAction;

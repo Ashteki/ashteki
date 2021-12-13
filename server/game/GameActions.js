@@ -49,7 +49,7 @@ const Actions = {
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
-    aoeDamage: (propertyFactory) => new GameActions.AoEDealDamageAction(propertyFactory),
+    orderedAoE: (propertyFactory) => new GameActions.OrderedAoEAction(propertyFactory),
 
     // dice actions
     changeDice: (propertyFactory) => new GameActions.ChangeDiceAction(propertyFactory),
