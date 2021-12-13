@@ -119,6 +119,7 @@ class ActionWindow extends UiPrompt {
             this.game.promptForSelect(this.game.activePlayer, {
                 mode: 'single',
                 activePromptTitle: 'Select a target to attack',
+                promptTitle: 'Attack',
                 controller: 'opponent',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),

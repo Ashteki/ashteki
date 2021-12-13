@@ -6,7 +6,7 @@ class FlockShepherd extends Card {
     setupCardAbilities(ability) {
         //protect
         this.persistentEffect({
-            condition: () => !this.exhausted,
+            condition: () => !this.exhausted && !this.moribund,
             match: (card) => BattlefieldTypes.includes(card.type) && card.printedAttack === 0,
             effect: [
                 ability.effects.cannotBeDicePowerTarget(),

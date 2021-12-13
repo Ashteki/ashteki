@@ -58,6 +58,8 @@ describe('Safeguard', function () {
         this.player1.clickCard(this.mistSpirit);
         this.player1.clickCard(this.naturesWrath);
         this.player1.clickPrompt('Play this action');
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.mistSpirit);
 
         expect(this.hammerKnight.damage).toBe(1);
         expect(this.mistSpirit.location).toBe('archives');

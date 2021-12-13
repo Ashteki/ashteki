@@ -20,6 +20,7 @@ class Concentration extends Card {
                 ability.actions.draw({ showMessage: true }),
                 ability.actions.changeDice({
                     dieCondition: (d) => d.exhausted,
+                    owner: 'self',
                     unexhaust: true
                 })
             ],
