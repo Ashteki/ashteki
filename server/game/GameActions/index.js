@@ -71,6 +71,7 @@ module.exports = {
     SpendMainAction: require('./SpendMainAction'),
     SpendSideAction: require('./SpendSideAction'),
     SummonAction: require('./SummonAction'),
-    UseAction: require('./UseAction')
+    UseAction: require('./UseAction'),
+    OrderedAoEAction: require('./OrderedAoEAction')
     //UseDieAction
 };

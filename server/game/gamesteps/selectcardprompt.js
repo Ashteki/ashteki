@@ -61,6 +61,10 @@ class SelectCardPrompt extends UiPrompt {
             }
         }
 
+        if (properties.promptTitle) {
+            this.promptTitle = properties.promptTitle;
+        }
+
         this.source =
             this.source ||
             (properties.context && properties.context.source) ||
@@ -192,7 +196,19 @@ class SelectCardPrompt extends UiPrompt {
     }
 
     waitingPrompt() {
-        return { menuTitle: this.properties.waitingPromptTitle || 'Waiting for opponent' };
+        const result = {
+            menuTitle: this.properties.waitingPromptTitle || 'Waiting for opponent',
+            promptTitle: this.promptTitle
+        };
+        if (this.source && this.source.controller !== this.choosingPlayer) {
+            result.controls = [
+                {
+                    type: 'targeting',
+                    source: this.source.getShortSummary()
+                }
+            ];
+        }
+        return result;
     }
 
     onCardClicked(player, card) {
