@@ -7,6 +7,7 @@ class OrderedAoEAction extends PlayerAction {
         this.amount = 1;
         this.name = 'OrderedAoE';
         this.cards = {};
+        this.promptTitle = '';
     }
 
     defaultTargets(context) {
@@ -27,6 +28,7 @@ class OrderedAoEAction extends PlayerAction {
         context.game.promptForSelect(context.player, {
             activePromptTitle: 'Choose order of AoE actions',
             waitingPromptTitle: 'Waiting for opponent to order AoE actions',
+            promptTitle: this.propertyCache.promptTitle,
             // eslint-disable-next-line no-undef
             cardType: BattlefieldTypes,
             cardCondition: (card) => this.cards.includes(card),
