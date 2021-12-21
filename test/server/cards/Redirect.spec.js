@@ -72,6 +72,8 @@ describe('Redirect reaction spell', function () {
         expect(this.redirect.location).toBe('discard');
         expect(this.player2.hand.length).toBe(0);
 
+        this.player1.clickCard(this.fluteMage);
+        this.player1.clickCard(this.hammerKnight);
         expect(this.hammerKnight.damage).toBe(2);
         expect(this.coalRoarkwin.tokens.damage).toBeUndefined;
     });
