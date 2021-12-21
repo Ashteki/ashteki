@@ -8,6 +8,7 @@ class Earthquake extends Card {
         this.play({
             title: 'Earthquake',
             target: {
+                activePromptTitle: 'Choose a unit to deal 4 damage to',
                 effect: 'deal 4 damage to {1}',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage({
@@ -16,8 +17,13 @@ class Earthquake extends Card {
             },
             then: {
                 message: '{1} deals 1 damage to all other units',
-                gameAction: ability.actions.dealDamage((context) => ({
-                    target: context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card)
+                // gameAction: ability.actions.dealDamage((context) => ({
+                //     target: context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card)
+                // }))
+                gameAction: ability.actions.orderedAoE((context) => ({
+                    gameAction: ability.actions.dealDamage(),
+                    cards: context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card),
+                    promptTitle: 'Earthquake'
                 }))
             }
         });
