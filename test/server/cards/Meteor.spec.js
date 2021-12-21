@@ -26,7 +26,10 @@ describe('Meteor action spell', function () {
         this.player1.clickPrompt('Play this action');
         // no click of dice - preselected
         this.player1.clickPrompt('Done');
-        // one damage
+        // one damage ordered by player
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.silverSnake);
+        this.player1.clickCard(this.mistSpirit);
         expect(this.hammerKnight.damage).toBe(1);
         expect(this.silverSnake.damage).toBe(1);
         expect(this.mistSpirit.location).toBe('archives');
@@ -37,7 +40,15 @@ describe('Meteor action spell', function () {
         this.player1.clickPrompt('Play this action');
         // no click of dice - preselected
         this.player1.clickPrompt('Done');
-        // one damage plus 2 lions used
+        // one damage
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.silverSnake);
+        this.player1.clickCard(this.mistSpirit);
+        // additional 1 lion
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.silverSnake);
+        this.player1.clickCard(this.mistSpirit);
+
         expect(this.hammerKnight.damage).toBe(2);
         expect(this.silverSnake.damage).toBe(2);
         expect(this.mistSpirit.location).toBe('archives');
@@ -49,7 +60,14 @@ describe('Meteor action spell', function () {
         this.player1.clickDie(0); // remove class
         this.player1.clickDie(2); // add power
         this.player1.clickPrompt('Done');
-        // one damage plus 2 lions used
+        // one damage
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.silverSnake);
+        this.player1.clickCard(this.mistSpirit);
+        // two lions damage
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.silverSnake);
+        this.player1.clickCard(this.mistSpirit);
         expect(this.hammerKnight.damage).toBe(3);
         expect(this.silverSnake.damage).toBe(3);
         expect(this.mistSpirit.location).toBe('archives');
