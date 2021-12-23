@@ -174,7 +174,7 @@ class MeditatePrompt extends UiPrompt {
 
         if (!this.choosingPlayer.selectedDice.includes(die)) {
             this.choosingPlayer.setSelectedDice([die]);
-            this.prevDie = die.level; //When I tried =die, prevDie changed as the die level changed
+            this.prevDie = die.clone(); //When I tried =die, prevDie changed as the die level changed
             this.levelState[die.uuid] = die.level;
             die.level = Level.Power;
         } else {
@@ -220,9 +220,7 @@ class MeditatePrompt extends UiPrompt {
 
             if (dice.length) {
                 messageFormat = messageFormat + ' to change from {3} to {4}';
-                messageArgs.push(this.prevDie, dice); //this says the word "basic" or "class"
-                //messageArgs.push(this.levelState[dice], dice); //this doesn't populate {3}
-                //messageArgs.push(this.levelState[die.uuid], dice); //this failed dramatically
+                messageArgs.push(this.prevDie, dice);
             }
             this.game.addMessage(messageFormat, ...messageArgs);
             if (!this.firstTopOfDeck && this.isTopDeck) {
