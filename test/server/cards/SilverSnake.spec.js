@@ -44,6 +44,10 @@ describe('Silver Snake', function () {
         it('triggers multiple times on multiple deaths', function () {
             this.player1.clickCard(this.mistTyphoon);
             this.player1.clickPrompt('Play this Action');
+            this.player1.clickCard(this.bloodArcher);
+            this.player1.clickCard(this.player2.inPlay[3]);
+            this.player1.clickCard(this.player2.inPlay[2]);
+            this.player1.clickCard(this.player2.inPlay[1]);
             expect(this.bloodArcher.location).toBe('play area');
             expect(this.silverSnake.status).toBe(6);
         });

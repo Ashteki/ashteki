@@ -10,10 +10,12 @@ class FinalCry extends Card {
                     BattlefieldTypes.includes(event.card.type) // it's a unit
             },
             effect: "deal 2 damage to opponent's phoenixborn",
-            gameAction: ability.actions.dealDamage((context) => ({
-                amount: 2,
-                target: context.player.opponent.phoenixborn
-            }))
+            target: {
+                autoTarget: (context) => context.player.opponent.phoenixborn,
+                gameAction: ability.actions.dealDamage({
+                    amount: 2
+                })
+            }
         });
     }
 }
