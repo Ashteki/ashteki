@@ -24,6 +24,10 @@ class Die extends PlayableObject {
         ];
     }
 
+    clone() {
+        return new Die(this.owner, this.magic, this.level);
+    }
+
     get type() {
         return 'die';
     }
