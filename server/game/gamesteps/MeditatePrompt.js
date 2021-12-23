@@ -29,6 +29,7 @@ class MeditatePrompt extends UiPrompt {
 
         this.count = 0;
         this.levelState = {};
+        this.prevDie = {};
         this.choosingPlayer.clearSelectedCards();
     }
 
@@ -173,6 +174,7 @@ class MeditatePrompt extends UiPrompt {
 
         if (!this.choosingPlayer.selectedDice.includes(die)) {
             this.choosingPlayer.setSelectedDice([die]);
+            this.prevDie = die.level; //When I tried =die, prevDie changed as the die level changed
             this.levelState[die.uuid] = die.level;
             die.level = Level.Power;
         } else {
@@ -206,11 +208,21 @@ class MeditatePrompt extends UiPrompt {
                 this.game.getFrameworkContext(player)
             );
 
-            let messageFormat = '{0} meditates {1} from their {2}';
-            const messageArgs = [this.choosingPlayer, cards, cards[0].location];
+            let messageFormat = '{0} meditates {1}';
+            const messageArgs = [this.choosingPlayer, cards];
+            if (cards[0]) {
+                messageFormat = messageFormat + ' from their {2}';
+                messageArgs.push(cards[0].location);
+            } else {
+                messageFormat = messageFormat + ' from {2}';
+                messageArgs.push('an unknown location');
+            }
+
             if (dice.length) {
-                messageFormat = messageFormat + ' to gain a {3}';
-                messageArgs.push(dice);
+                messageFormat = messageFormat + ' to change from {3} to {4}';
+                messageArgs.push(this.prevDie, dice); //this says the word "basic" or "class"
+                //messageArgs.push(this.levelState[dice], dice); //this doesn't populate {3}
+                //messageArgs.push(this.levelState[die.uuid], dice); //this failed dramatically
             }
             this.game.addMessage(messageFormat, ...messageArgs);
             if (!this.firstTopOfDeck && this.isTopDeck) {
