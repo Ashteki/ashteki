@@ -99,6 +99,15 @@ describe('Salamander Monk', function () {
             expect(this.salamanderMonk.location).toBe('play area');
             this.player1.play(this.meteor);
             this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.salamanderMonk);
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.ironWorker);
+            // meteor 2
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.salamanderMonkSpirit);
+            this.player1.clickCard(this.ironWorker);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.salamanderMonk.location).toBe('archives');
             expect(this.salamanderMonkSpirit.location).toBe('archives');

@@ -49,7 +49,8 @@ describe('Golden Veil', function () {
 
             expect(this.player2).not.toHavePrompt('Any Reactions to mist Typhoon?');
             expect(this.player2).not.toBeAbleToSelect(this.goldenVeil);
-
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.stringMage);
             this.player1.clickYes(); // draw a card
             expect(this.hammerKnight.damage).toBe(1);
             expect(this.hammerKnight.location).toBe('play area');

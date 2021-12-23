@@ -124,5 +124,48 @@ describe('Vanish', function () {
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.player2.hand.length).toBe(handSize - 1);
         });
+
+    });
+
+    describe('interaction with final cry', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'leo-sunshadow',
+                    inPlay: ['butterfly-monk'],
+                    dicepool: ['ceremonial', 'ceremonial', 'ceremonial', 'natural', 'natural', 'charm'],
+                    hand: ['final-cry', 'blood-chains'],
+                    spellboard: []
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['emperor-lion'],
+                    dicepool: ['charm', 'natural', 'illusion'],
+                    hand: ['vanish']
+                }
+            });
+
+            this.leoSunshadow.damage = 1;
+        });
+
+        it('FC should trigger vanish', function () {
+            this.player1.clickCard(this.bloodChains);
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickCard(this.butterflyMonk); // destroy my unit
+            this.player1.clickCard(this.leoSunshadow);
+            expect(this.leoSunshadow.damage).toBe(0);
+
+            // reaction
+            this.player1.clickCard(this.finalCry);
+
+            expect(this.player2).toHavePrompt('Any Reactions to final cry targetting rin northfell?');
+            expect(this.player2).toBeAbleToSelect(this.vanish);
+            this.player2.clickCard(this.vanish);
+
+            expect(this.rinNorthfell.damage).toBe(0);
+            this.player1.clickCard(this.emperorLion); // BC exhaust
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 });
