@@ -58,4 +58,61 @@ describe('End of round event', function () {
             expect(this.brilliantThorn.location).toBe('archives');
         });
     });
+
+    describe('fleeting vs admonisher as first player', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'jessa-na-ni',
+                    dicepool: ['natural', 'divine', 'divine', 'natural'],
+                    spellboard: ['law-of-grace']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['admonisher'],
+                    spellboard: [],
+                    archives: []
+                }
+            });
+        });
+
+        it('fleeting should trigger first and player1 is damaged', function () {
+            expect(this.game.roundFirstPlayer.name).toBe(this.player1.name);
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.clickDone(); // keep dice
+
+            expect(this.lawOfGrace.location).toBe('discard');
+            expect(this.jessaNaNi.damage).toBe(1);
+            expect(this.game.roundFirstPlayer.name).toBe(this.player2.name);
+        });
+    });
+
+    describe('fleeting vs admonisher as second player', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'jessa-na-ni',
+                    dicepool: ['natural', 'divine', 'divine', 'natural'],
+                    inPlay: ['admonisher'],
+                    spellboard: []
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    spellboard: ['law-of-grace']
+                }
+            });
+        });
+
+        it('fleeting should trigger second and player1 is NOT damaged', function () {
+            expect(this.game.roundFirstPlayer.name).toBe(this.player1.name);
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.clickDone(); // keep dice
+
+            expect(this.lawOfGrace.location).toBe('discard');
+            expect(this.coalRoarkwin.damage).toBe(0); // because admonisher should have triggered before fleeting
+            expect(this.game.roundFirstPlayer.name).toBe(this.player2.name);
+        });
+    });
 });
