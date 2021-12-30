@@ -4,9 +4,11 @@ const ConfigService = require('../services/ConfigService');
 const AshesDeckService = require('../services/AshesDeckService.js');
 const { wrapAsync } = require('../util.js');
 const logger = require('../log.js');
+const AshesGameService = require('../services/AshesGameService');
 const configService = new ConfigService();
 
 const deckService = new AshesDeckService(configService);
+const gameService = new AshesGameService(configService);
 
 module.exports.init = function (server) {
     server.get(
@@ -61,8 +63,30 @@ module.exports.init = function (server) {
                     deck.usageLevel = 0;
                     deck.usageCount = undefined;
 
+                    deck.played = 0;
+                    deck.wins = 0;
+                    deck.winRate = 0;
                     return deck;
                 });
+
+                await gameService.findByUserName(req.user.username).then((games) => {
+                    games.forEach((game) => {
+                        const player = game.players.find(p => p.name === req.user.username);
+                        if (player && player.deckid) {
+                            const deck = decks.find((d) => d._id.toString() === player.deckid);
+                            if (deck) {
+                                deck.played++;
+                                if (game.winner === req.user.username) {
+                                    deck.wins++;
+                                }
+                                deck.winRate = Math.round(deck.wins / deck.played * 100);
+                            }
+                        }
+                    });
+                })
+                    .catch(error => {
+                        console.log(error);
+                    });
             }
 
             res.send({ success: true, numDecks: numDecks, decks: decks });
