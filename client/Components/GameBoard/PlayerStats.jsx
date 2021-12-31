@@ -136,14 +136,15 @@ export class PlayerStats extends React.Component {
         let actionClass = classNames('action', actionValue ? '' : 'exhausted');
         let diceFont = `phg-main-action`;
         return (
-            <span
+            <a
+                href='#'
                 key={`action-main`}
                 className={actionClass}
                 onClick={this.toggleAction.bind(this, 'main')}
+                title='main action'
             >
-                <span className={diceFont} title={`main action`}></span>
-            </span>
-
+                <span className={diceFont}></span>
+            </a>
         );
     }
 

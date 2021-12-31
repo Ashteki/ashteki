@@ -1287,6 +1287,7 @@ class Game extends EventEmitter {
         let players = this.getPlayers().map((player) => {
             const p = {
                 deck: player.phoenixborn.name,
+                deckid: player.deckData._id,
                 name: player.name,
                 turn: player.turn,
                 wins: player.wins

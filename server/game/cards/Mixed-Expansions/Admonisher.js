@@ -10,7 +10,8 @@ class Admonisher extends Card {
             when: {
                 onRoundEnded: () => true
             },
-            gameAction: ability.actions.addDamageToken((context) => ({
+            gameAction: ability.actions.dealDamage((context) => ({
+                amount: 1,
                 target: context.player.opponent.phoenixborn
             }))
         });

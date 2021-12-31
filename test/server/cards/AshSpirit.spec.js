@@ -66,7 +66,7 @@ describe('AshSpirit', function () {
             this.player2.clickCard(this.maeoniViper); // guard
 
             this.player2.clickCard(this.redirect); // click redirect to play as reaction
-            this.player2.clickCard(this.ashSpirit); // redirect damage to hammerKnight
+            this.player2.clickCard(this.ashSpirit); // redirect damage to ash spirit
 
             expect(this.player1).toHavePrompt('Aftershock 1');
             this.player1.clickCard(this.livingDoll);

@@ -22,9 +22,9 @@ class ChosenExhaustAction extends PlayerAction {
                         this.amount === 1
                             ? 'Choose a card to exhaust'
                             : {
-                                  text: 'Choose {{amount}} cards to exhaust',
-                                  values: { amount: this.amount }
-                              },
+                                text: 'Choose {{amount}} cards to exhaust',
+                                values: { amount: this.amount }
+                            },
                     context: context,
                     mode: 'exactly',
                     numCards: this.amount,
@@ -32,7 +32,7 @@ class ChosenExhaustAction extends PlayerAction {
                     cardCondition: this.cardCondition,
                     controller: player === context.player ? 'self' : 'opponent',
                     onSelect: (player, cards) => {
-                        context.game.addMessage('{0} discards {1}', player, cards);
+                        context.game.addMessage('{0} exhausts {1}', player, cards);
                         context.game.actions.exhaust().resolve(cards, context);
                         return true;
                     }
