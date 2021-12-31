@@ -16,7 +16,7 @@ if(_.size(args) < 2) {
 }
 */
 
-let start = new Date('2021-01-01T00:00:01');
+let start = new Date('2022-01-01T00:00:01');
 let end = new Date();
 //console.info('Running stats between', args[0], 'and', args[1]);
 console.info('Running stats between', start, 'and', end);
