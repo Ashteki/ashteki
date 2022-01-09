@@ -285,17 +285,24 @@ const Card = ({
         return '';
     };
     const getEffectIcons = (card) => {
-        let effects =
-            card.effects &&
-            card.effects.map((effectName) => {
-                let pbImage = effectUrl(effectName);
-                return (
-                    <div className={'effect effect-' + effectName} key={'effect-' + effectName}>
-                        <img src={pbImage} title={effectName} />
-                    </div>
-                );
-            });
-        return effects;
+        // let effects =
+        //     card.effects &&
+        //     card.effects.map((effectName) => {
+        //         let pbImage = effectUrl(effectName);
+        //         return (
+        //             <div className={'effect effect-' + effectName} key={'effect-' + effectName}>
+        //                 <img src={pbImage} title={effectName} />
+        //             </div>
+        //         );
+        //     });
+        // return effects;
+        if (card.acquiredEffect) {
+            let img = '/img/exclamation.png';
+
+            return (<div className={'effect effect-acquired'} key={'effect-acquired'}>
+                <img src={img} title='acquired effect' />
+            </div>)
+        }
     }
 
     const getCard = () => {
