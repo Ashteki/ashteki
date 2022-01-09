@@ -1,0 +1,18 @@
+@import '../../styles/variables';
+@import '../../styles/colours';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.cardlog-wrapper {
+    width:210px;
+    display:flex;   
+}
+
+.last-card {
+    border-radius: 6.25%;
+    overflow: hidden;
+    max-width: 130px;
+    max-height: 182px;
+    position: absolute;
+    bottom: 0px;
+}
