@@ -50,6 +50,7 @@ class Application extends React.Component {
 
         this.props.loadCards();
         this.props.loadStandaloneDecks();
+        this.props.loadAdventuringPartyDecks();
 
         $(document).ajaxError((event, xhr) => {
             if (xhr.status === 403) {
@@ -181,6 +182,7 @@ Application.propTypes = {
     loadPacks: PropTypes.func,
     loadRestrictedList: PropTypes.func,
     loadStandaloneDecks: PropTypes.func,
+    loadAdventuringPartyDecks: PropTypes.func,
     navigate: PropTypes.func,
     path: PropTypes.string,
     setAuthTokens: PropTypes.func,

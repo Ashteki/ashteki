@@ -29,6 +29,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/adventuringparty-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(2);
+            } catch (err) {
+                logger.error('Failed to get precon 2 decks', err);
+
+                throw new Error('Failed to get precon 2 decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/decks/:id',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {

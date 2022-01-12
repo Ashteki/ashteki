@@ -24,3 +24,12 @@
 .close {
     color: white;
 }
+
+.react-tabs__tab {
+    background-color:#333;
+    border-radius: 5px 5px 0 0;
+}
+
+.react-tabs__tab--selected {
+    background-color: white;
+}

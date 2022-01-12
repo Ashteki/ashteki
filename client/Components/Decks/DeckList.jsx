@@ -10,7 +10,12 @@ import debounce from 'lodash.debounce';
 import $ from 'jquery';
 
 import Phoenixborn from './Phoenixborn';
-import { loadDecks, selectDeck, loadStandaloneDecks } from '../../redux/actions';
+import {
+    loadDecks,
+    selectDeck,
+    loadStandaloneDecks,
+    loadAdventuringPartyDecks
+} from '../../redux/actions';
 
 import './DeckList.scss';
 
@@ -77,7 +82,7 @@ import './DeckList.scss';
 /**
  * @param {DeckListProps} props
  */
-const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
+const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     const { t } = useTranslation();
     const [pagingDetails, setPagingDetails] = useState({
         pageSize: 10,
@@ -89,15 +94,28 @@ const DeckList = ({ onDeckSelected, standaloneDecks = false }) => {
     const nameFilter = useRef(null);
     const dispatch = useDispatch();
 
+    const getDecks = (state) => {
+        switch (standaloneDecks) {
+            case 1:
+                return state.cards.standaloneDecks;
+            case 2:
+                return state.cards.adventuringPartyDecks;
+            default:
+                return state.cards.decks;
+        }
+    }
+
     const { decks, numDecks, selectedDeck } = useSelector((state) => ({
-        decks: standaloneDecks ? state.cards.standaloneDecks : state.cards.decks,
+        decks: getDecks(state),
         numDecks: state.cards.numDecks,
         selectedDeck: standaloneDecks ? null : state.cards.selectedDeck
     }));
 
     useEffect(() => {
-        if (standaloneDecks) {
+        if (standaloneDecks == 1) {
             dispatch(loadStandaloneDecks());
+        } else if (standaloneDecks == 2) {
+            dispatch(loadAdventuringPartyDecks());
         } else {
             dispatch(loadDecks(pagingDetails));
         }

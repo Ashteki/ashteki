@@ -21,6 +21,7 @@ class ImportPrecons {
             this.cards = await this.cardService.getAllCards();
 
             for (let deck of this.loadDecks()) {
+                deck.preconGroup = 1;
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
                     console.log('Importing', deck.name);
@@ -29,6 +30,21 @@ class ImportPrecons {
             }
 
             console.log('Done importing precon decks');
+            console.log('----------');
+
+            for (let deck of this.loadAPDecks()) {
+                deck.preconGroup = 2;
+
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing AP decks');
+            console.log('----------');
+
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -36,6 +52,12 @@ class ImportPrecons {
 
     loadDecks() {
         let file = 'precon-core.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadAPDecks() {
+        let file = 'precon-aparty.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }

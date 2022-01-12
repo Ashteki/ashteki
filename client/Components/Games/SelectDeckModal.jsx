@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 
 import DeckList from '../Decks/DeckList.jsx';
-
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import './SelectDeckModal.scss';
 
 const SelectDeckModal = ({ onClose, onDeckSelected }) => {
-    const standaloneDecks = useSelector((state) => state.cards.standaloneDecks);
     const { t } = useTranslation();
 
     return (
@@ -19,15 +19,23 @@ const SelectDeckModal = ({ onClose, onDeckSelected }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        <DeckList onDeckSelected={onDeckSelected} />
-                        {standaloneDecks && standaloneDecks.length !== 0 && (
-                            <div>
-                                <h4 className='deck-list-header'>
-                                    <Trans>Or choose a standalone deck</Trans>:
-                                </h4>
-                                <DeckList standaloneDecks onDeckSelected={onDeckSelected} />
-                            </div>
-                        )}
+                        <Tabs>
+                            <TabList>
+                                <Tab>My Decks</Tab>
+                                <Tab>Pre-con Decks</Tab>
+                                <Tab>Adventuring Party</Tab>
+                            </TabList>
+
+                            <TabPanel>
+                                <DeckList onDeckSelected={onDeckSelected} />
+                            </TabPanel>
+                            <TabPanel>
+                                <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
+                            </TabPanel>
+                            <TabPanel>
+                                <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
+                            </TabPanel>
+                        </Tabs>
                     </div>
                 </Modal.Body>
             </Modal>
