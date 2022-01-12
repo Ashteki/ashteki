@@ -131,3 +131,14 @@ export function loadStandaloneDecks() {
         }
     };
 }
+
+export function loadAdventuringPartyDecks() {
+    return {
+        types: ['LOAD_ADVENTURINGPARTY_DECKS', 'ADVENTURINGPARTY_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/adventuringparty-decks',
+            type: 'GET'
+        }
+    };
+}

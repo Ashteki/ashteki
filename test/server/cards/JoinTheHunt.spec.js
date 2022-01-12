@@ -33,6 +33,40 @@ describe('Join the Hunt', function () {
             this.player1.clickYes();
 
             expect(this.mistSpirit.attack).toBe(3);
+            // check opponent can block GT unit
+            this.player2.clickCard(this.ironWorker);
+            this.player2.clickCard(this.mistSpirit);
+            this.player2.clickDone();
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.anchornaut);
+            expect(this.ironWorker.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('block other check', function () {
+            this.player1.clickCard(this.joinTheHunt); // play card
+            this.player1.clickPrompt('Join the hunt');
+            this.player1.clickCard(this.mistSpirit);
+            expect(this.mistSpirit.hasKeyword('grouptactics')).toBe(true);
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.coalRoarkwin);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickPrompt('Done');
+            this.player1.clickYes();
+
+            expect(this.mistSpirit.attack).toBe(3);
+            // check opponent can block non-GT unit
+            this.player2.clickCard(this.ironWorker);
+            this.player2.clickCard(this.anchornaut);
+            this.player2.clickDone();
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.anchornaut);
+            expect(this.anchornaut.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 

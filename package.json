@@ -132,6 +132,7 @@
         "react-redux": "^7.2.5",
         "react-redux-toastr": "^7.6.5",
         "react-select": "^4.3.0",
+        "react-tabs": "^3.2.3",
         "react-transition-group": "^4.4.1",
         "redis": "^3.1.1",
         "redux": "^4.1.1",
@@ -186,8 +187,8 @@
         "ts-node": "^8.10.2",
         "typescript": "^3.9.9",
         "url-loader": "^4.1.1",
+        "webpack-dev-middleware": "^3.7.2",
         "webpack-dev-server": "^3.11.2",
-        "webpack-hot-middleware": "^2.25.1",
-        "webpack-dev-middleware": "^3.7.2"
+        "webpack-hot-middleware": "^2.25.1"
     }
 }

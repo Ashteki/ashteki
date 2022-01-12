@@ -27,8 +27,8 @@ class AshesDeckService {
         });
     }
 
-    getPreconDecks() {
-        return this.preconDecks.find({}, { sort: { precon_id: 1 } });
+    getPreconDecks(preconGroup = 1) {
+        return this.preconDecks.find({ 'precon_group': preconGroup }, { sort: { precon_id: 1 } });
     }
 
     async findByUserName(userName, options, applyLimit = true) {
@@ -131,7 +131,10 @@ class AshesDeckService {
             lastUpdated: new Date()
         };
         if (isPrecon) {
-            properties = Object.assign(properties, { precon_id: deck.precon_id });
+            properties = Object.assign(properties, {
+                precon_id: deck.precon_id,
+                precon_group: deck.preconGroup
+            });
         } else {
             properties = Object.assign(properties, { username: deck.username });
         }

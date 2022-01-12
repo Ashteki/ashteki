@@ -15,22 +15,23 @@ class TheAwakenedState extends Card {
                 target: context.player.phoenixborn
             })),
             then: {
-                gameAction: [
-                    ability.actions.dealDamage({
+                target: {
+                    controller: 'opponent',
+                    activePromptTitle: 'Deal 1 damage',
+                    cardType: BattlefieldTypes,
+                    gameAction: ability.actions.dealDamage({
                         amount: 1,
-                        showMessage: true,
-                        promptForSelect: {
-                            controller: 'opponent',
-                            activePromptTitle: 'Deal 1 damage',
-                            cardType: BattlefieldTypes
-                        }
-                    }),
-                    ability.actions.dealDamage((context) => ({
+                        showMessage: true
+                    })
+                },
+                then: {
+                    alwaysTriggers: true,
+                    gameAction: ability.actions.dealDamage((context) => ({
                         amount: 1,
                         showMessage: true,
                         target: context.player.opponent.phoenixborn
                     }))
-                ]
+                }
             }
         });
     }

@@ -1,0 +1,642 @@
+[
+  {
+    "precon_id": 101,
+    "name": "The Warrior | Xander Dinos",
+    "phoenixborn": [
+      {
+        "id": "xander-heartsblood",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 4
+      },
+      {
+        "magic": "divine",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "anchornaut",
+        "count": 3
+      },
+      {
+        "id": "blood-chains",
+        "count": 1
+      },
+      {
+        "id": "earthquake",
+        "count": 3
+      },
+      {
+        "id": "enlightenment",
+        "count": 2
+      },
+      {
+        "id": "fester",
+        "count": 2
+      },
+      {
+        "id": "fire-archer",
+        "count": 2
+      },
+      {
+        "id": "hammer-knight",
+        "count": 3
+      },
+      {
+        "id": "ice-trap",
+        "count": 2
+      },
+      {
+        "id": "iron-worker",
+        "count": 1
+      },
+      {
+        "id": "power-through",
+        "count": 2
+      },
+      {
+        "id": "raptor-herder",
+        "count": 2
+      },
+      {
+        "id": "root-armor",
+        "count": 1
+      },
+      {
+        "id": "strengthen",
+        "count": 1
+      },
+      {
+        "id": "summon-archasaurus-mount",
+        "count": 3
+      },
+      {
+        "id": "summon-cerasaurus-mount",
+        "count": 1
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "archasaurus-mount",
+        "count": 1
+      },
+      {
+        "id": "cerasaurus-mount",
+        "count": 2
+      },
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "raptor-hatchling",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 102,
+    "name": "The Summoner | 4-Book Fiona",
+    "phoenixborn": [
+      {
+        "id": "fiona-mercywind",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 4
+      },
+      {
+        "magic": "sympathy",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "beast-mage",
+        "count": 2
+      },
+      {
+        "id": "crescendo",
+        "count": 3
+      },
+      {
+        "id": "essence-druid",
+        "count": 2
+      },
+      {
+        "id": "exhortation",
+        "count": 3
+      },
+      {
+        "id": "magic-syphon",
+        "count": 1
+      },
+      {
+        "id": "massive-growth",
+        "count": 3
+      },
+      {
+        "id": "mind-maze",
+        "count": 3
+      },
+      {
+        "id": "molten-gold",
+        "count": 2
+      },
+      {
+        "id": "natures-wrath",
+        "count": 1
+      },
+      {
+        "id": "polarity-mage",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 2
+      },
+      {
+        "id": "river-skald",
+        "count": 1
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 1
+      },
+      {
+        "id": "summon-mind-fog-owl",
+        "count": 1
+      },
+      {
+        "id": "summon-salamander-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "mind-fog-owl",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk-spirit",
+        "count": 3
+      },
+      {
+        "id": "three-eyed-owl",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 103,
+    "name": "The Necromancer | Brennen Burn",
+    "phoenixborn": [
+      {
+        "id": "brennen-blackcloud",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 6
+      },
+      {
+        "magic": "divine",
+        "count": 1
+      },
+      {
+        "magic": "sympathy",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "blood-chains",
+        "count": 2
+      },
+      {
+        "id": "chant-of-revenge",
+        "count": 3
+      },
+      {
+        "id": "choke",
+        "count": 2
+      },
+      {
+        "id": "crimson-bomber",
+        "count": 2
+      },
+      {
+        "id": "fester",
+        "count": 1
+      },
+      {
+        "id": "final-cry",
+        "count": 2
+      },
+      {
+        "id": "fire-archer",
+        "count": 1
+      },
+      {
+        "id": "grave-knight",
+        "count": 2
+      },
+      {
+        "id": "master-vampire",
+        "count": 2
+      },
+      {
+        "id": "power-through",
+        "count": 1
+      },
+      {
+        "id": "psychic-vampire",
+        "count": 1
+      },
+      {
+        "id": "reclaim-soul",
+        "count": 3
+      },
+      {
+        "id": "rising-horde",
+        "count": 2
+      },
+      {
+        "id": "summon-salamander-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 2
+      },
+      {
+        "id": "summon-vampire-bat-swarm",
+        "count": 1
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "fallen",
+        "count": 7
+      },
+      {
+        "id": "salamander-monk",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk-spirit",
+        "count": 3
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
+      },
+      {
+        "id": "vampire-bat-swarm",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 104,
+    "name": "The Druid | Jericho Token Ramp",
+    "phoenixborn": [
+      {
+        "id": "jericho-reborn",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "natural",
+        "count": 3
+      },
+      {
+        "magic": "sympathy",
+        "count": 3
+      },
+      {
+        "magic": "time",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "blink",
+        "count": 3
+      },
+      {
+        "id": "close-combat",
+        "count": 2
+      },
+      {
+        "id": "explosive-growth",
+        "count": 3
+      },
+      {
+        "id": "flash-strike",
+        "count": 3
+      },
+      {
+        "id": "flute-mage",
+        "count": 2
+      },
+      {
+        "id": "hunt-master",
+        "count": 3
+      },
+      {
+        "id": "molten-gold",
+        "count": 1
+      },
+      {
+        "id": "natures-wrath",
+        "count": 2
+      },
+      {
+        "id": "outmatch",
+        "count": 2
+      },
+      {
+        "id": "raptor-herder",
+        "count": 1
+      },
+      {
+        "id": "seeds-of-aggression",
+        "count": 3
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "summon-squall-stallion",
+        "count": 1
+      },
+      {
+        "id": "summon-turtle-guard",
+        "count": 1
+      },
+      {
+        "id": "swift-messenger",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "panther-spirit",
+        "count": 3
+      },
+      {
+        "id": "raptor-hatchling",
+        "count": 3
+      },
+      {
+        "id": "squall-stallion",
+        "count": 2
+      },
+      {
+        "id": "turtle-guard",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 105,
+    "name": "The Rogue | Harold Control",
+    "phoenixborn": [
+      {
+        "id": "harold-westraven",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 4
+      },
+      {
+        "magic": "divine",
+        "count": 2
+      },
+      {
+        "magic": "sympathy",
+        "count": 4
+      }
+    ],
+    "cards": [
+      {
+        "id": "adrenaline-rush",
+        "count": 3
+      },
+      {
+        "id": "battle-seer",
+        "count": 3
+      },
+      {
+        "id": "chained-creations",
+        "count": 2
+      },
+      {
+        "id": "consume-soul",
+        "count": 2
+      },
+      {
+        "id": "particle-shield",
+        "count": 3
+      },
+      {
+        "id": "river-skald",
+        "count": 2
+      },
+      {
+        "id": "shadow-guard",
+        "count": 2
+      },
+      {
+        "id": "shared-sorrow",
+        "count": 2
+      },
+      {
+        "id": "shepherd-of-lost-souls",
+        "count": 1
+      },
+      {
+        "id": "sonic-swordsman",
+        "count": 3
+      },
+      {
+        "id": "steady-gaze",
+        "count": 1
+      },
+      {
+        "id": "summon-ancestor-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-shadow-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-winged-lioness",
+        "count": 1
+      },
+      {
+        "id": "to-shadows",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "ancestor-spirit",
+        "count": 2
+      },
+      {
+        "id": "hunters-mark",
+        "count": 1
+      },
+      {
+        "id": "shadow-spirit",
+        "count": 3
+      },
+      {
+        "id": "winged-lioness",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "precon_id": 106,
+    "name": "The Paladin | Odette Armor",
+    "phoenixborn": [
+      {
+        "id": "odette-diamondcrest",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 2
+      },
+      {
+        "magic": "divine",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "celestial-knight",
+        "count": 3
+      },
+      {
+        "id": "fade-away",
+        "count": 3
+      },
+      {
+        "id": "figures-in-the-fog",
+        "count": 3
+      },
+      {
+        "id": "frost-bite",
+        "count": 1
+      },
+      {
+        "id": "heal",
+        "count": 3
+      },
+      {
+        "id": "hollow",
+        "count": 3
+      },
+      {
+        "id": "holy-knight",
+        "count": 2
+      },
+      {
+        "id": "meteor",
+        "count": 3
+      },
+      {
+        "id": "root-armor",
+        "count": 2
+      },
+      {
+        "id": "shepherd-of-lost-souls",
+        "count": 2
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1
+      },
+      {
+        "id": "sword-of-virtue",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      },
+      {
+        "id": "light-bringer",
+        "count": 2
+      }
+    ]
+  }
+]
