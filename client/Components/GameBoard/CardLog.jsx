@@ -4,7 +4,7 @@ import CardImage from './CardImage';
 import Die from './Die';
 
 import './CardZoom.scss';
-import './CardLog.scss';
+import './Cardlog.scss';
 
 const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
     const [show, setShow] = useState(true);
