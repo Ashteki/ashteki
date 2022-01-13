@@ -492,6 +492,8 @@ class Game extends EventEmitter {
         this.setWins(winner.name, winner.wins ? winner.wins + 1 : 1);
         this.winner = winner;
         this.finishedAt = new Date();
+        this.stopClocks();
+        this.timeLimit.stopTimer();
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
 
