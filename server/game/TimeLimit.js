@@ -28,6 +28,12 @@ class TimeLimit {
         }
     }
 
+    stopTimer() {
+        this.timeLimitStarted = false;
+        this.timeLimitStartedAt = new Date();
+        this.timer = null;
+    }
+
     checkForTimeLimitReached() {
         if (this.game.useGameTimeLimit && !this.isTimeLimitReached) {
             let differenceBetweenStartOfTimerAndNow = moment.duration(
