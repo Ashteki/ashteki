@@ -437,7 +437,6 @@ export class GameBoard extends React.Component {
                     <div className='right-side'>
                         <div className='prompt-area'>
                             <div className='timer-log-area'>
-                                {this.getTimer()}
 
                                 <CardLog
                                     cards={this.props.currentGame.cardLog}
@@ -460,7 +459,9 @@ export class GameBoard extends React.Component {
                                     user={this.props.user}
                                     phase={thisPlayer.phase}
                                 />
+                                {this.getTimer()}
                             </div>
+
                         </div>
                         {this.state.showMessages && (
                             <div className='gamechat'>
