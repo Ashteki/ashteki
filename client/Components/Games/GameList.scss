@@ -28,15 +28,9 @@
     display: flex;
     align-items: center;
     flex: 1;
-    flex-direction: column;
-
     .gamelist-button {
         height: 34px;
         width: 122px;
-    }
-
-    img {
-        height: 20px;
     }
 }
 
@@ -134,4 +128,10 @@
     height: 1.5em;
     width: 1.5em;
     filter: invert(90%);
+}
+
+.game-list-deck-image img.pb-image {
+    margin-left:5px;
+    margin-right: 5px;;
+    width: 40px;
 }

@@ -17,6 +17,7 @@ import ShowHandIcon from '../../assets/img/ShowHandIcon.png';
 import SealedIcon from '../../assets/img/sealed.png';
 import ReversalIcon from '../../assets/img/reversal.png';
 import AdaptiveIcon from '../../assets/img/adaptive.png';
+import Phoenixborn from '../decks/Phoenixborn';
 
 import './GameList.scss';
 
@@ -91,10 +92,17 @@ class GameList extends React.Component {
         return true;
     }
 
-    getPlayerCards(player, firstPlayer) {
+    getPlayerCards(player, firstPlayer, gameStarted) {
+        const pbCard =
+            gameStarted && player.deck ? (
+                <div className='game-list-deck-image'>
+                    <Phoenixborn pbStub={player.deck.pbStub} />
+                </div>
+            ) : null;
         if (firstPlayer) {
             return (
                 <div className='game-faction-row first-player'>
+                    {pbCard}
                     {this.getPlayerNameAndAvatar(player, firstPlayer)}
                 </div>
             );
@@ -103,6 +111,7 @@ class GameList extends React.Component {
         return (
             <div className='game-faction-row other-player'>
                 {this.getPlayerNameAndAvatar(player, firstPlayer)}
+                {pbCard}
             </div>
         );
     }
@@ -146,7 +155,7 @@ class GameList extends React.Component {
 
             let retPlayer = (
                 <div key={player.name} className={classes}>
-                    <div>{this.getPlayerCards(player, firstPlayer)}</div>
+                    <div>{this.getPlayerCards(player, firstPlayer, game.started)}</div>
                 </div>
             );
 

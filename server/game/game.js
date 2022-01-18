@@ -1370,17 +1370,19 @@ class Game extends EventEmitter {
         let playerSummaries = {};
 
         for (const player of this.getPlayers()) {
-            let deck = undefined;
+            let deck = {};
             if (player.left) {
                 continue;
             }
 
-            if (activePlayerName === player.name && player.deck) {
-                deck = { name: player.deck.name, selected: player.deck.selected };
-            } else if (player.deck) {
-                deck = { selected: player.deck.selected };
-            } else {
-                deck = {};
+            if (player.deck) {
+                deck = {
+                    selected: player.deck.selected,
+                    name: null
+                };
+                if (activePlayerName === player.name) {
+                    deck.name = player.deck.name;
+                }
             }
 
             playerSummaries[player.name] = {

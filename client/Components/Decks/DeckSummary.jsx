@@ -114,19 +114,19 @@ const DeckSummary = ({ deck }) => {
                         <Col xs='7'>
                             <span>Losses</span>
                         </Col>
-                        <Col xs='5'>{deck.losses}</Col>
+                        <Col xs='5'>{deck.played - deck.wins}</Col>
                     </Row>
                     <Row>
                         <Col xs='7'>
                             <span>Total</span>
                         </Col>
-                        <Col xs='5'>{parseInt(deck.wins) + parseInt(deck.losses)}</Col>
+                        <Col xs='5'>{parseInt(deck.played)}</Col>
                     </Row>
                     <Row>
                         <Col xs='7'>
                             <span>Win Rate</span>
                         </Col>
-                        <Col xs='5'>{deck.winRate?.toFixed(2)}%</Col>
+                        <Col xs='5'>{deck.winRate?.toFixed(0)}%</Col>
                     </Row>
                     <Row>
                         <Col xs='12'>
