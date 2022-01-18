@@ -313,23 +313,22 @@ class PendingGame {
         let playersInGame = _.filter(this.players, (player) => !player.left);
 
         _.each(playersInGame, (player) => {
-            let deck;
-
-            if (activePlayer === player.name && player.deck && this.gameFormat !== 'sealed') {
+            let deck = {};
+            if (player.deck) {
                 deck = {
-                    name: player.deck.name,
                     selected: player.deck.selected,
-                    status: player.deck.status
+                    status: player.deck.status,
+                    name: null,
+                    pbStub: player.deck.phoenixborn[0]?.card.stub
                 };
-            } else if (player.deck) {
-                deck = { selected: player.deck.selected, status: player.deck.status };
-            } else {
-                deck = {};
+                if (activePlayer === player.name) {
+                    deck.name = player.deck.name;
+                }
             }
 
             playerSummaries[player.name] = {
                 avatar: player.user.avatar,
-                deck: activePlayer ? deck : {},
+                deck: deck,
                 id: player.id,
                 left: player.left,
                 name: player.name,

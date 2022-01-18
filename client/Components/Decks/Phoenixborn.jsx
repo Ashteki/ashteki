@@ -10,7 +10,7 @@ const Phoenixborn = ({ pbStub }) => {
     return (
         <div>
             <img
-                className='img-fluid'
+                className='img-fluid pb-image'
                 src={pbImage}
                 onMouseMove={(event) => {
                     let y = event.clientY;
