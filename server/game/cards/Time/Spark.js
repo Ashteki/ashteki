@@ -11,13 +11,13 @@ class Spark extends Card {
             inexhaustible: true,
             title: 'Spark',
             cost: [ability.costs.mainAction()],
-            target: {
-                cardType: BattlefieldTypes,
-                controller: 'any',
-                gameAction: [
-                    ability.actions.discard({ target: this }),
-                    ability.actions.dealDamage({ showMessage: true })
-                ]
+            gameAction: ability.actions.discard({ target: this }),
+            then: {
+                target: {
+                    cardType: BattlefieldTypes,
+                    controller: 'any',
+                    gameAction: ability.actions.dealDamage({ showMessage: true }),
+                }
             }
         });
     }
