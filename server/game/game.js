@@ -1099,7 +1099,7 @@ class Game extends EventEmitter {
 
         this.addAlert(
             'info',
-            '{0} has disconnected.  The game will wait up to 30 seconds for them to reconnect',
+            "{0} has disconnected. They can reconnect as long as you DON'T REFRESH.",
             player
         );
 
