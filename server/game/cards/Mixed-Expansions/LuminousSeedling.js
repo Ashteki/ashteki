@@ -13,15 +13,10 @@ class LuminousSeedling extends Card {
                 ability.costs.loseStatus(2),
                 ability.costs.destroy()
             ],
-            target: {
-                mode: 'upTo',
-                numCards: 2,
-                controller: 'self',
-                cardType: 'Conjuration',
-                cardCondition: (card) => card.id === 'brilliant-thorn',
-                location: 'archives',
-                gameAction: ability.actions.putIntoPlay()
-            }
+            gameAction: ability.actions.summon({
+                conjuration: 'brilliant-thorn',
+                count: 2
+            })
         });
     }
 }
