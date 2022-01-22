@@ -17,7 +17,8 @@ import ShowHandIcon from '../../assets/img/ShowHandIcon.png';
 import SealedIcon from '../../assets/img/sealed.png';
 import ReversalIcon from '../../assets/img/reversal.png';
 import AdaptiveIcon from '../../assets/img/adaptive.png';
-import Phoenixborn from '../decks/Phoenixborn';
+import Phoenixborn from '../Decks/Phoenixborn';
+// ref error comment
 
 import './GameList.scss';
 

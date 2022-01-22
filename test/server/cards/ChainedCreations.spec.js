@@ -44,6 +44,8 @@ describe('Chained Creations', function () {
 
             this.player1.clickCard(this.salamanderMonkSpirit); // destroy
             expect(this.player1).not.toBeAbleToSelect(this.summonSalamanderMonk);
+            this.player1.clickCard(this.summonSalamanderMonk);
+            expect(this.summonSalamanderMonk.exhausted).toBe(false);
         });
 
         it('damage unit and NOT exhaust ready spell', function () {
