@@ -1,18 +1,20 @@
 const UiPrompt = require('../uiprompt');
 
 class FirstPlayerSelection extends UiPrompt {
-    constructor(game) {
+    constructor(game, properties) {
         super(game);
         this.previousWinner = game.previousWinner;
         this.clickedButton = false;
         this.players = game.getPlayers();
         this.firstPlayer = null;
+        this.properties = properties;
     }
 
     activePrompt() {
+        const title = `You rolled ${this.properties.player1Basics} basics.\nYour opponent rolled ${this.properties.player2Basics}. \nWho will go first?`
         return {
             promptTitle: 'First Player',
-            menuTitle: 'Who will go first?',
+            menuTitle: title,
             buttons: this.players.map((player) => ({ arg: player.name, text: player.name }))
         };
     }

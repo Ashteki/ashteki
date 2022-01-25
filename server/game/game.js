@@ -791,7 +791,12 @@ class Game extends EventEmitter {
                 '{0} rolled the most basics so will choose first player',
                 this.activePlayer
             );
-            this.queueStep(new FirstPlayerSelection(this));
+            this.queueStep(
+                new FirstPlayerSelection(this, {
+                    player1Basics: basicCountPlayer0,
+                    player2Basics: basicCountPlayer1
+                })
+            );
         } else {
             const newFirstPlayer =
                 this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
