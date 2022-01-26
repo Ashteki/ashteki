@@ -2,6 +2,7 @@ const _ = require('underscore');
 const monk = require('monk');
 
 const logger = require('../log.js');
+const moment = require('moment');
 
 class GameService {
     constructor(configService) {
@@ -74,19 +75,21 @@ class GameService {
             });
     }
 
-    async getStatsByUserName(username) {
+    async getStatsByUserName(username, mon) {
+        const findSpec = {
+            'players.name': username,
+            'players.deck': { $ne: null }
+        };
+        if (mon && mon > 0) {
+            const fromDate = moment().subtract(mon, 'months');
+            findSpec.startedAt = { $gt: fromDate.toDate() };
+        }
         return this.games
-            .find(
-                {
-                    'players.name': username,
-                    'players.deck': { $ne: null }
-                },
-                {
-                    sort: {
-                        finishedAt: -1
-                    }
+            .find(findSpec, {
+                sort: {
+                    finishedAt: -1
                 }
-            )
+            })
             .then((games) => {
                 let pbs = {};
                 games.forEach((game) => {
