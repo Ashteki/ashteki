@@ -95,7 +95,7 @@ const DeckSummary = ({ deck }) => {
 
     var cardsToRender = getCardsToRender();
     var diceToRender = getDiceToRender();
-    var phoenixbornStub = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].id : '';
+    var phoenixbornStub = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].card.imageStub : '';
 
     return (
         <Col xs='12' className='deck-summary'>

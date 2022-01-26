@@ -9,20 +9,22 @@ import * as actions from '../redux/actions';
 import { withTranslation, Trans } from 'react-i18next';
 
 class Stats extends React.Component {
-    componentDidMount() {
-        this.props.loadUserStats();
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedTerm: 0
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    computeKeys(player) {
-        if (player.keys === null || player.keys === undefined) {
-            return 0;
-        }
+    handleChange(event) {
+        this.setState({ selectedTerm: event.target.value }, () => {
+            this.props.loadUserStats(this.state.selectedTerm);
+        });
+    }
 
-        if (!isNaN(player.keys)) {
-            return player.keys;
-        }
-
-        return player.keys.yellow + player.keys.blue + player.keys.red;
+    componentDidMount() {
+        this.props.loadUserStats(this.state.selectedTerm);
     }
 
     computeWinner(game) {
@@ -58,6 +60,18 @@ class Stats extends React.Component {
     render() {
         let t = this.props.t;
         let content = null;
+        const dropdown = (
+            <select
+                className='form-control'
+                value={this.state.selectedTerm}
+                onChange={this.handleChange}
+            >
+                <option value='0'>All games</option>
+                <option value='1'>Last 1 month</option>
+                <option value='3'>Last 3 months</option>
+                <option value='12'>Last 12 months</option>
+            </select>
+        )
 
         if (this.props.apiLoading) {
             content = (
@@ -126,8 +140,14 @@ class Stats extends React.Component {
                 );
 
             content = (
-                <div className='profile full-height'>
-                    <Panel title={t('Stats')}>{table}</Panel>
+                <div>
+                    <div className='profile full-height'>
+                        <Panel title={t('Stats')}>
+                            <div>{dropdown}</div>
+
+                            {table}
+                        </Panel>
+                    </div>
                 </div>
             );
         }

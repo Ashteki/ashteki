@@ -5,7 +5,7 @@ const GameActions = require('./GameActions');
 class GameObject {
     constructor(game) {
         this.game = game;
-        this.image = '';
+        this.imageStub = '';
         this.id = '';
         this.facedown = false;
         this.uuid = uuid.v1();
@@ -93,7 +93,7 @@ class GameObject {
     getShortSummary() {
         return {
             id: this.id,
-            image: this.image,
+            imageStub: this.imageStub,
             label: this.name,
             name: this.name,
             facedown: this.facedown,

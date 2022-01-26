@@ -11,7 +11,10 @@ module.exports.init = function (server) {
         '/api/stats',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            let stats = await gameService.getStatsByUserName(req.user.username);
+            let stats = await gameService.getStatsByUserName(
+                req.user.username,
+                req.query.months
+            );
             res.send({ success: true, stats: stats });
         })
     );

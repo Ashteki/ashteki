@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Phoenixborn.scss';
 import { imageUrl } from '../../util';
 
+// pbStub should be the imageStub from the card as loaded by AshesCardService
 const Phoenixborn = ({ pbStub }) => {
     let pbImage = imageUrl(pbStub);
     const [imageZoom, setImageZoom] = useState(false);

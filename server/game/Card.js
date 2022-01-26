@@ -27,7 +27,8 @@ class Card extends PlayableObject {
 
         this.id = cardData.stub;
         this.printedName = cardData.name;
-        this.image = cardData.image;
+        // this is the default imageStub for the card - this can be overridden by alt arts later
+        this.imageStub = cardData.stub;
         this.printedType = cardData.type;
 
         this.playCost = cardData.cost ? parseCosts(cardData.cost) : [];
@@ -1152,7 +1153,7 @@ class Card extends PlayableObject {
 
         let state = {
             id: this.id,
-            image: this.image,
+            imageStub: this.imageStub,
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
                 isController &&
