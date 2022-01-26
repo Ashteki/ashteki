@@ -175,8 +175,12 @@ export class PlayerStats extends React.Component {
             !this.props.clockState || this.props.clockState.mode === 'off' ? null : (
                 <div className='state clock-frame'>
                     <Clock
-                        secondsLeft={this.props.clockState.timeLeft} mode={this.props.clockState.mode} stateId={this.props.clockState.stateId}
-                        periods={this.props.clockState.periods} mainTime={this.props.clockState.mainTime} timePeriod={this.props.clockState.timePeriod}
+                        secondsLeft={this.props.clockState.timeLeft}
+                        mode={this.props.clockState.mode}
+                        stateId={this.props.clockState.stateId}
+                        periods={this.props.clockState.periods}
+                        mainTime={this.props.clockState.mainTime}
+                        timePeriod={this.props.clockState.timePeriod}
                     />
                     {/* <ClockPopup
                     mainTime={this.props.clockState.mainTime} periods={this.props.clockState.periods} timePeriod={this.props.clockState.timePeriod}
