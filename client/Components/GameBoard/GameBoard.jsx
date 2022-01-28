@@ -134,13 +134,13 @@ export class GameBoard extends React.Component {
     }
 
     getTimer() {
-        let timeLimitClock = null;
+        let clocks = [];
         if (
             this.props.currentGame.useGameTimeLimit &&
             // this.props.currentGame.clockType !== 'chess' &&
             this.props.currentGame.gameTimeLimitStarted
         ) {
-            timeLimitClock = (
+            clocks.push(
                 <TimeLimitClock
                     timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
                     timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
@@ -149,7 +149,7 @@ export class GameBoard extends React.Component {
             );
         }
 
-        return timeLimitClock;
+        return clocks;
     }
 
     onCommand(command, arg, uuid, method) {
