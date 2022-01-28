@@ -52,8 +52,11 @@ function processDecks(decks, state) {
             ).length === 0;
 
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
+        const legalToPlay =
+            hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
         deck.status = {
             basicRules: hasPhoenixborn && cardCount === 30,
+            legalToPlay: legalToPlay,
             hasConjurations: hasConjurations,
             uniques: uniques,
             tenDice: tenDice,
