@@ -781,11 +781,15 @@ class Game extends EventEmitter {
                 this.reRollPlayerDice();
                 i++;
             }
-            const basicCountPlayer0 = Dice.countBasic(players[0].dice);
-            const basicCountPlayer1 = Dice.countBasic(players[1].dice);
-            this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCountPlayer0);
-            this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCountPlayer1);
-            this.activePlayer = basicCountPlayer0 > basicCountPlayer1 ? players[0] : players[1];
+            const basicCounts = [
+                Dice.countBasic(players[0].dice),
+                Dice.countBasic(players[1].dice)
+            ];
+            this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCounts[0]);
+            this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCounts[1]);
+            const activeIndex = basicCounts[0] > basicCounts[1] ? 0 : 1;
+            this.activePlayer = players[activeIndex];
+
             this.addAlert(
                 'info',
                 '{0} rolled the most basics so will choose first player',
@@ -793,8 +797,8 @@ class Game extends EventEmitter {
             );
             this.queueStep(
                 new FirstPlayerSelection(this, {
-                    player1Basics: basicCountPlayer0,
-                    player2Basics: basicCountPlayer1
+                    activeBasics: basicCounts[activeIndex],
+                    opponentBasics: basicCounts[1 - activeIndex]
                 })
             );
         } else {
