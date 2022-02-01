@@ -4,6 +4,8 @@ import CardImage from '../GameBoard/CardImage';
 import Phoenixborn from './Phoenixborn';
 import Die from '../GameBoard/Die';
 import DeckStatus from './DeckStatus';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import './DeckSummary.scss';
 
@@ -58,6 +60,11 @@ const DeckSummary = ({ deck }) => {
                         >
                             {card.card.name}
                         </span>
+                        &nbsp;
+                        <FontAwesomeIcon
+                            icon={card.card.isChained ? faLink : null}
+                            title='This card is on the chained list'
+                        />
                     </div>
                 );
                 count += parseInt(card.count);

@@ -44,6 +44,10 @@ class AshesCardService {
                         cards[card.stub] = card;
                     }
                 });
+                const chains = this.getChainedList();
+                chains.forEach((c) => {
+                    cards[c].isChained = true;
+                });
 
                 return cards;
             })
@@ -56,6 +60,10 @@ class AshesCardService {
         return this.packs.find({}).catch((err) => {
             logger.info(err);
         });
+    }
+
+    getChainedList() {
+        return ['summon-shining-hydra', 'massive-growth', 'exhortation', 'river-skald'];
     }
 }
 
