@@ -29,6 +29,7 @@ const CardPile = ({
     orientation = 'vertical',
     popupLocation = 'bottom',
     popupMenu,
+    showChains,
     size,
     source,
     title
@@ -128,6 +129,7 @@ const CardPile = ({
                     onTouchMove={onTouchMove}
                     popupLocation={popupLocation}
                     popupMenu={popupMenu}
+                    showChains={showChains}
                     size={size}
                     source={source}
                     title={title}

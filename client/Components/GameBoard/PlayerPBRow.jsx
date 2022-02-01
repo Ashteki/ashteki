@@ -68,6 +68,7 @@ const PlayerPBRow = ({
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
             onMenuItemClick={onMenuItemClick}
+            showChains={true}
             source='spellboard'
             title={t('Spellboard')}
             cardSize={cardSize}

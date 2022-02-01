@@ -24,6 +24,7 @@ class Card extends PlayableObject {
         this.setDefaultController(owner);
 
         this.cardData = cardData;
+        this.isChained = cardData.isChained;
 
         this.id = cardData.stub;
         this.printedName = cardData.name;
@@ -1129,6 +1130,7 @@ class Card extends PlayableObject {
         // Include card specific information useful for UI rendering
         result.locale = this.locale;
         result.location = this.location;
+        result.isChained = this.isChained;
         return result;
     }
 
@@ -1192,6 +1194,7 @@ class Card extends PlayableObject {
             isAttacker: this.isAttacker,
             isDefender: this.isDefender,
             isConjuration: ConjuredCardTypes.includes(this.type),
+            isChained: this.isChained,
             conjurations: this.conjurations, //?? .map((c) => c.stub),
             phoenixborn: this.phoenixborn
         };
