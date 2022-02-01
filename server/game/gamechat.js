@@ -90,6 +90,7 @@ class GameChat {
                         returnedFraments.push({
                             name: arg.name,
                             id: arg.id,
+                            imageStub: arg.imageStub,
                             label: arg.name,
                             type: arg.getType(),
                             argType: 'card'
