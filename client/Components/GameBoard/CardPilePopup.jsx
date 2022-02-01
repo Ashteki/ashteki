@@ -18,6 +18,7 @@ const CardPilePopup = ({
     onTouchMove,
     popupLocation,
     popupMenu,
+    showChains,
     size,
     source,
     title
@@ -33,6 +34,7 @@ const CardPilePopup = ({
         onCardMouseOut: onMouseOut,
         onCardMouseOver: onMouseOver,
         onTouchMove: onTouchMove,
+        showChains: showChains,
         size: size,
         source: source
     };

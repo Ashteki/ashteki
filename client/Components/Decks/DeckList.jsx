@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 import $ from 'jquery';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import Phoenixborn from './Phoenixborn';
 import {
@@ -215,7 +217,23 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 getFilter: (filter) => {
                     nameFilter.current = filter;
                 }
-            })
+            }),
+            formatter: (item, row) => {
+                const hasChained = row.cards.some((c) => c.card.isChained);
+                const icon = hasChained ? (
+                    <FontAwesomeIcon
+                        icon={hasChained ? faLink : null}
+                        title='This deck contains chained cards'
+                    />
+                ) : null;
+                const output = (
+                    <>
+                        <span>{item}</span>&nbsp;
+                        {icon}
+                    </>
+                );
+                return output;
+            }
         },
         {
             dataField: 'lastUpdated',

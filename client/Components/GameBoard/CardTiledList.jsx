@@ -21,6 +21,7 @@ function CardTiledList(props) {
                     onMouseOver={props.onCardMouseOver}
                     onTouchMove={props.onTouchMove}
                     orientation='vertical'
+                    showChains={props.showChains}
                     size={props.size}
                     source={props.source}
                 />

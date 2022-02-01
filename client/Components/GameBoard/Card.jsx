@@ -10,6 +10,8 @@ import { ItemTypes, UpgradeCardTypes } from '../../constants';
 import SquishableCardPanel from './SquishableCardPanel';
 import spellback from '../../assets/img/cardback-spell.png';
 import conjback from '../../assets/img/cardback-conjuration.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import Die from './Die';
 
@@ -27,6 +29,7 @@ const Card = ({
     onMouseOut,
     onMouseOver,
     orientation = 'vertical',
+    showChains,
     side,
     size,
     source,
@@ -247,6 +250,17 @@ const Card = ({
         return '';
     };
 
+    const getChainIcon = (card) => {
+        if (card.isChained) {
+            return (
+                <div className='card-chain-icon'>
+                    <FontAwesomeIcon icon={card.isChained ? faLink : null} />
+                </div>
+            );
+        }
+        return '';
+    }
+
     const getCard = () => {
         if (!card) {
             return <div />;
@@ -286,6 +300,7 @@ const Card = ({
         let image = card ? (
             <div className={imageClass}>
                 <CardImage card={card} cardBack={cardBack} />
+                {getChainIcon(card)}
                 {getBoostedFlags(card)}
             </div>
         ) : null;

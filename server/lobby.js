@@ -778,8 +778,12 @@ class Lobby {
                             c.card.phoenixborn !== deck.phoenixborn[0].card.name
                     ).length === 0;
 
+                const legalToPlay =
+                    hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
+
                 deck.status = {
                     basicRules: hasPhoenixborn && cardCount === 30,
+                    legalToPlay: legalToPlay,
                     hasConjurations: hasConjurations,
                     tenDice: tenDice,
                     uniques: uniques,

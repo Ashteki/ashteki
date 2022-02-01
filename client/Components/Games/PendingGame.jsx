@@ -58,7 +58,7 @@ const PendingGame = () => {
             let promise = notification.current?.play();
 
             if (promise !== undefined) {
-                promise.catch(() => {}).then(() => {});
+                promise.catch(() => { }).then(() => { });
             }
 
             let otherPlayer = Object.values(currentGame.players).find(
@@ -114,7 +114,7 @@ const PendingGame = () => {
 
         if (
             !Object.values(currentGame.players).every((player) => {
-                return !!player.deck.selected;
+                return !!player.deck.selected && !!player.deck.status.legalToPlay;
             })
         ) {
             return false;
@@ -228,8 +228,8 @@ const PendingGame = () => {
                             if (
                                 messageRef.current.scrollTop >=
                                 messageRef.current.scrollHeight -
-                                    messageRef.current.offsetHeight -
-                                    20
+                                messageRef.current.offsetHeight -
+                                20
                             ) {
                                 setCanScroll(true);
                             } else {

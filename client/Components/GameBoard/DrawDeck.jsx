@@ -17,7 +17,8 @@ const DrawDeck = (props) => {
         onShuffleClick,
         showDeck,
         spectating,
-        cardCount
+        cardCount,
+        showChains
     } = props;
 
     let drawDeckPopupMenu = showDeck
@@ -38,6 +39,7 @@ const DrawDeck = (props) => {
             popupMenu={drawDeckPopupMenu}
             source='deck'
             title={t('Draw')}
+            showChains={showChains}
         />
     );
 
