@@ -18,7 +18,7 @@ import './PendingGamePlayer.scss';
 /**
  * @param {PendingGamePlayersProps} props
  */
-const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
+const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky }) => {
     const { t } = useTranslation();
 
     let firstPlayer = true;
@@ -34,6 +34,7 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
 
                 if (player && player.deck && player.deck.selected && isSealed) {
                     deck = <span className='deck-selection'>Sealed Deck Selected</span>;
+
                 } else if (player && player.deck && player.deck.selected) {
                     if (playerIsMe) {
                         deck = (
@@ -52,9 +53,14 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
                     status = <DeckStatus status={player.deck.status} />;
                 } else if (player && playerIsMe && !isSealed) {
                     selectLink = (
-                        <Button onClick={onSelectDeck}>
-                            <Trans>Select Deck</Trans>
-                        </Button>
+                        <>
+                            <Button onClick={onSelectDeck}>
+                                <Trans>Select Deck</Trans>
+                            </Button>
+                            <Button onClick={onFeelingLucky}>
+                                <Trans>I&apos;m Feeling Lucky!</Trans>
+                            </Button>
+                        </>
                     );
                 } else if (isSealed) {
                     selectLink = (

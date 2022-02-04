@@ -209,6 +209,9 @@ const PendingGame = () => {
                 currentGame={currentGame}
                 user={user}
                 onSelectDeck={() => setShowModal(true)}
+                onFeelingLucky={() => {
+                    dispatch(sendSocketMessage('selectdeck', currentGame.id, -1, false));
+                }}
             />
             <Panel
                 title={t('Spectators({{users}})', {
