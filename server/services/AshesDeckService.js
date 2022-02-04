@@ -1,6 +1,8 @@
 const logger = require('../log.js');
 const monk = require('monk');
 const util = require('../util.js');
+const DeckForge = require('./generator/deckForge.js');
+const Carousel = require('./generator/carousel.js');
 
 class AshesDeckService {
     constructor(configService, db) {
@@ -162,6 +164,18 @@ class AshesDeckService {
         const userDecks = await this.findByUserName(user.username, options, false);
         //todo: handle options
         return userDecks ? userDecks.length : 0;
+    }
+
+    getRandomDeck(cards) {
+        // get a carousel dice spread
+        const caro = new Carousel().getCarousel();
+        console.log(
+            'carousel: ' + caro.pb.name + ' (' + caro.dice.map((dObj) => dObj.magic).join(',') + ')'
+        );
+
+        const deck = new DeckForge(cards).createDeck(caro.pb.stub, caro.dice);
+        deck.name = 'Feeling Lucky';
+        return deck;
     }
 }
 

@@ -69,7 +69,7 @@ class Lobby {
 
     async init() {
         // pre cache card list so the first user to the site doesn't have a slowdown
-        await this.cardService.getAllCards();
+        this.cards = await this.cardService.getAllCards();
     }
 
     // External methods
@@ -360,7 +360,6 @@ class Lobby {
         socket.registerEvent('clearsessions', this.onClearSessions.bind(this));
         socket.registerEvent('connectfailed', this.onConnectFailed.bind(this));
         socket.registerEvent('getnodestatus', this.onGetNodeStatus.bind(this));
-        socket.registerEvent('getsealeddeck', this.onGetSealedDeck.bind(this));
         socket.registerEvent('joingame', this.onJoinGame.bind(this));
         socket.registerEvent('leavegame', this.onLeaveGame.bind(this));
         socket.registerEvent('lobbychat', this.onLobbyChat.bind(this));
@@ -690,122 +689,89 @@ class Lobby {
         }
     }
 
-    onGetSealedDeck(socket, gameId) {
+    async onSelectDeck(socket, gameId, deckId, isStandalone) {
         let game = this.games[gameId];
         if (!game) {
             return;
         }
 
-        Promise.all([
-            this.cardService.getAllCards(),
-            this.deckService.getSealedDeck(game.expansions)
-        ])
-            .then((results) => {
-                let [cards, deck] = results;
+        // get cards (need this for random deck generation)
+        const cards = await this.cardService.getAllCards();
+        try {
+            const deck = isStandalone
+                ? await this.deckService.getPreconDeckById(deckId)
+                : deckId === -1
+                    ? this.deckService.getRandomDeck(cards)
+                    : await this.deckService.getById(deckId);
 
-                // add card prototypes to deckdata cardcount
-                for (let card of deck.cards) {
-                    card.card = cards[card.id];
-                }
+            // return Promise.all([
+            //     isStandalone
+            //         ? this.deckService.getPreconDeckById(deckId)
+            //         : deckId === -1
+            //             ? this.deckService.getRandomDeck()
+            //             : this.deckService.getById(deckId)
+            // ])
+            //     .then((results) => {
+            //         let [cards, deck] = results;
 
-                deck.status = {
-                    basicRules: true,
-                    conjurations: true,
-                    extendedStatus: [],
-                    flagged: false,
-                    noUnreleasedCards: true,
-                    officialRole: true,
-                    usageLevel: 0,
-                    verified: true
-                };
+            // add drawdeck card prototypes to deckdata cardcount
+            for (let card of deck.cards) {
+                card.card = cards[card.id];
+            }
+            let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
 
-                game.selectDeck(socket.user.username, deck);
+            // add conjuration card prototypes to deckdata cardcount
+            for (let conj of deck.conjurations) {
+                conj.card = cards[conj.id];
+            }
 
-                this.sendGameState(game);
-            })
-            .catch((err) => {
-                logger.info(err);
+            let hasPhoenixborn = false;
+            // add phoenixborn card prototypes to deckdata cardcount
+            for (let pb of deck.phoenixborn) {
+                pb.card = cards[pb.id];
+                hasPhoenixborn = true;
+            }
 
-                return;
-            });
-    }
+            if (isStandalone) {
+                deck.verified = true;
+            }
 
-    onSelectDeck(socket, gameId, deckId, isStandalone) {
-        let game = this.games[gameId];
-        if (!game) {
+            let hasConjurations = this.checkConjurations(deck);
+            let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
+
+            let uniques =
+                !hasPhoenixborn ||
+                deck.cards.filter(
+                    (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
+                ).length === 0;
+
+            const legalToPlay =
+                hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
+
+            deck.status = {
+                basicRules: hasPhoenixborn && cardCount === 30,
+                legalToPlay: legalToPlay,
+                hasConjurations: hasConjurations,
+                tenDice: tenDice,
+                uniques: uniques,
+                notVerified: !deck.verified,
+                extendedStatus: [],
+                noUnreleasedCards: true,
+                officialRole: true,
+                usageLevel: 0,
+                verified: !!deck.verified
+            };
+
+            deck.usageCount = 0;
+
+            game.selectDeck(socket.user.username, deck);
+
+            this.sendGameState(game);
+        } catch (err) {
+            logger.info(err);
+
             return;
         }
-
-        return Promise.all([
-            this.cardService.getAllCards(),
-            isStandalone
-                ? this.deckService.getPreconDeckById(deckId)
-                : this.deckService.getById(deckId)
-        ])
-            .then((results) => {
-                let [cards, deck] = results;
-
-                // add drawdeck card prototypes to deckdata cardcount
-                for (let card of deck.cards) {
-                    card.card = cards[card.id];
-                }
-                let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
-
-                // add conjuration card prototypes to deckdata cardcount
-                for (let conj of deck.conjurations) {
-                    conj.card = cards[conj.id];
-                }
-
-                let hasPhoenixborn = false;
-                // add phoenixborn card prototypes to deckdata cardcount
-                for (let pb of deck.phoenixborn) {
-                    pb.card = cards[pb.id];
-                    hasPhoenixborn = true;
-                }
-
-                if (isStandalone) {
-                    deck.verified = true;
-                }
-
-                let hasConjurations = this.checkConjurations(deck);
-                let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
-
-                let uniques =
-                    !hasPhoenixborn ||
-                    deck.cards.filter(
-                        (c) =>
-                            c.card.phoenixborn &&
-                            c.card.phoenixborn !== deck.phoenixborn[0].card.name
-                    ).length === 0;
-
-                const legalToPlay =
-                    hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
-
-                deck.status = {
-                    basicRules: hasPhoenixborn && cardCount === 30,
-                    legalToPlay: legalToPlay,
-                    hasConjurations: hasConjurations,
-                    tenDice: tenDice,
-                    uniques: uniques,
-                    notVerified: !deck.verified,
-                    extendedStatus: [],
-                    noUnreleasedCards: true,
-                    officialRole: true,
-                    usageLevel: 0,
-                    verified: !!deck.verified
-                };
-
-                deck.usageCount = 0;
-
-                game.selectDeck(socket.user.username, deck);
-
-                this.sendGameState(game);
-            })
-            .catch((err) => {
-                logger.info(err);
-
-                return;
-            });
     }
 
     checkConjurations(deck) {
