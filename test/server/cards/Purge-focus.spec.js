@@ -20,6 +20,7 @@ describe('Purge with focus', function () {
         let oppDeck = this.player2.deck.length;
         this.player1.clickCard(this.purge);
         this.player1.clickPrompt('Purge');
+        this.player1.clickPrompt("opponent's");
         expect(this.player2.deck.length).toBe(oppDeck - 1);
 
         this.player1.clickDie(1);
@@ -30,6 +31,7 @@ describe('Purge with focus', function () {
         let oppDeck = this.player2.deck.length;
         this.player1.clickCard(this.purge);
         this.player1.clickPrompt('Purge');
+        this.player1.clickPrompt("opponent's");
         expect(this.player2.deck.length).toBe(oppDeck - 1);
 
         this.player1.clickPrompt('Cancel');
