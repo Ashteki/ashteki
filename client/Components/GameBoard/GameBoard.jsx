@@ -53,6 +53,7 @@ export class GameBoard extends React.Component {
         this.onMouseOut = this.onMouseOut.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onCardClick = this.onCardClick.bind(this);
+        this.onCardAltClick = this.onCardAltClick.bind(this);
         this.onDieClick = this.onDieClick.bind(this);
         this.handleDrawPopupChange = this.handleDrawPopupChange.bind(this);
         this.onDragDrop = this.onDragDrop.bind(this);

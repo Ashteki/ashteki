@@ -50,7 +50,7 @@ class AshesCardService {
                 });
 
                 // test data
-                cards['hammer-knight'].altArts = ['hammer-knight', 'xander-heartsblood'];
+                cards['hammer-knight'].altArts = ['hammer-knight', 'xander-heartsblood', 'mist-spirit'];
                 return cards;
             })
             .catch((err) => {

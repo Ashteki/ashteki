@@ -365,12 +365,18 @@ class Game extends EventEmitter {
 
         let card = this.findAnyCardInAnyList(cardId);
 
-        if (!card) {
+        if (!card || !card.altArts || !card.altArts.length) {
             return;
         }
 
         // Cycle the alt art for the card and this player
-
+        const count = card.altArts.length;
+        const index = card.altArts.indexOf(card.imageStub);
+        let newIndex = 0;
+        if (index !== count - 1) {
+            newIndex = index + 1;
+        }
+        card.imageStub = card.altArts[newIndex];
     }
 
     /**

@@ -12,7 +12,6 @@ import spellback from '../../assets/img/cardback-spell.png';
 import conjback from '../../assets/img/cardback-conjuration.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
 import Die from './Die';
 
 import './Card.scss';
@@ -42,7 +41,6 @@ const Card = ({
         [size]: size !== 'normal'
     };
     const [showMenu, setShowMenu] = useState(false);
-    const dispatch = useDispatch();
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
         item: { card: card, source: source, type: ItemTypes.CARD },
