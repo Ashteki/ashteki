@@ -9,6 +9,7 @@ import {
     faEyeSlash,
     faCopy,
     faWrench,
+    faList,
     faCogs,
     faComment,
     faHistory
@@ -222,7 +223,7 @@ export class PlayerStats extends React.Component {
                 {this.props.showMessages && (
                     <div className='state chat-status'>
                         <div className='state'>
-                            <a href='#' className='pr-1 pl-1'>
+                            <a href='#' className='pr-1 pl-1' title='Show dice/card history'>
                                 <FontAwesomeIcon
                                     icon={faHistory}
                                     onClick={this.props.onDiceHistoryClick}
@@ -230,34 +231,34 @@ export class PlayerStats extends React.Component {
                             </a>
                         </div>
                         <div className='state'>
-                            <a href='#' className='pr-1 pl-1'>
+                            <a href='#' className='pr-1 pl-1' title='Mute spectators'>
                                 <FontAwesomeIcon
                                     icon={this.props.muteSpectators ? faEyeSlash : faEye}
                                     onClick={this.props.onMuteClick}
                                 ></FontAwesomeIcon>
                             </a>
                         </div>
-                        <div className='state'>
-                            <a href='#' className='pr-1 pl-1'>
-                                <FontAwesomeIcon
-                                    icon={faCopy}
-                                    onClick={this.writeChatToClipboard.bind(this)}
-                                ></FontAwesomeIcon>
-                            </a>
-                        </div>
                         {this.props.showManualMode && (
-                            <div className='state'>
-                                <a
-                                    href='#'
-                                    className={this.props.manualModeEnabled ? 'text-danger' : ''}
-                                    onClick={this.props.onManualModeClick}
-                                >
-                                    <FontAwesomeIcon icon={faWrench}></FontAwesomeIcon>
-                                    <span className='ml-1'>
-                                        <Trans>Manual Mode</Trans>
-                                    </span>
-                                </a>
-                            </div>
+                            <>
+                                <div className='state'>
+                                    <a
+                                        href='#'
+                                        className={this.props.manualModeEnabled ? 'text-danger' : ''}
+                                        onClick={this.props.onManualModeClick}
+                                    >
+                                        <FontAwesomeIcon icon={faWrench}></FontAwesomeIcon>
+                                        <span className='ml-1'>
+                                            <Trans>Manual Mode</Trans>
+                                        </span>
+                                    </a>&nbsp;
+                                    <a href='#' className='pr-1 pl-1' title='Show manual command list'>
+                                        <FontAwesomeIcon
+                                            icon={faList}
+                                            onClick={this.props.onManualCommandsClick}
+                                        />
+                                    </a>
+                                </div>
+                            </>
                         )}
                         <div className='state'>
                             <a
@@ -271,8 +272,21 @@ export class PlayerStats extends React.Component {
                                 </span>
                             </a>
                         </div>
+                        <div className='state'>
+                            <a href='#' className='pr-1 pl-1' title='Copy chat to clipboard'>
+                                <FontAwesomeIcon
+                                    icon={faCopy}
+                                    onClick={this.writeChatToClipboard.bind(this)}
+                                ></FontAwesomeIcon>
+                            </a>
+                        </div>
                         <div>
-                            <a href='#' onClick={this.props.onMessagesClick} className='pl-1'>
+                            <a
+                                href='#'
+                                onClick={this.props.onMessagesClick}
+                                className='pl-1'
+                                title='Toggle chat'
+                            >
                                 <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
                                 {this.props.numMessages > 0 && (
                                     <Badge variant='danger'>{this.props.numMessages}</Badge>
@@ -311,6 +325,7 @@ PlayerStats.propTypes = {
     firstPlayer: PropTypes.bool,
     diceHistory: PropTypes.array,
     onDiceHistoryClick: PropTypes.func,
+    onManualCommandsClick: PropTypes.func,
     phoenixborn: PropTypes.object
 };
 

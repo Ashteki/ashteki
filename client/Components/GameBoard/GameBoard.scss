@@ -162,3 +162,12 @@
     background-color: rgba(theme-color('secondary'), 0.4);
     cursor: pointer;
 }
+
+.info-panel{
+    font-size:1.1em;
+    z-index: 999;
+}
+.info-panel .manual-commands{
+    padding:15px;
+    max-width: 800px;
+}

@@ -21,6 +21,8 @@ import * as actions from '../../redux/actions';
 import './GameBoard.scss';
 import PlayerPBRow from './PlayerPBRow';
 import { imageUrl } from '../../util';
+import ManualCommands from '../../pages/ManualCommands';
+import MovablePanel from './MovablePanel';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -61,6 +63,7 @@ export class GameBoard extends React.Component {
         this.onSettingsClick = this.onSettingsClick.bind(this);
         this.onMessagesClick = this.onMessagesClick.bind(this);
         this.onDiceHistoryClick = this.onDiceHistoryClick.bind(this);
+        this.onManualCommandsClick = this.onManualCommandsClick.bind(this);
         this.onManualModeClick = this.onManualModeClick.bind(this);
         this.onMuteClick = this.onMuteClick.bind(this);
 
@@ -70,6 +73,7 @@ export class GameBoard extends React.Component {
             showCardMenu: {},
             showMessages: true,
             showDiceHistory: false,
+            showManualCommands: false,
             lastMessageCount: 0,
             newMessages: 0,
             showModal: false
@@ -186,6 +190,10 @@ export class GameBoard extends React.Component {
     onManualModeClick(event) {
         event.preventDefault();
         this.props.sendGameMessage('toggleManualMode');
+    }
+
+    onManualCommandsClick() {
+        this.setState({ showManualCommands: !this.state.showManualCommands });
     }
 
     defaultPlayerInfo(source) {
@@ -424,6 +432,18 @@ export class GameBoard extends React.Component {
                             card={cardToZoom}
                         />
                     )}
+                    {this.state.showManualCommands && (
+                        <div className='info-panel'>
+                            <MovablePanel
+                                title='Manual Commands'
+                                name='Manual'
+                                onCloseClick={this.onManualCommandsClick}
+                                side='bottom'
+                            >
+                                <ManualCommands />
+                            </MovablePanel>
+                        </div>
+                    )}
                     {this.state.showDiceHistory && (
                         <div>
                             <DiceHistory
@@ -497,6 +517,7 @@ export class GameBoard extends React.Component {
                         actions={thisPlayer.actions}
                         firstPlayer={thisPlayer.firstPlayer}
                         onDiceHistoryClick={this.onDiceHistoryClick}
+                        onManualCommandsClick={this.onManualCommandsClick}
                         phoenixborn={thisPlayer.phoenixborn}
                     />
                 </div>
