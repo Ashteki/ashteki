@@ -20,7 +20,17 @@ describe('Purge unfocussed', function () {
         let oppDeck = this.player2.deck.length;
         this.player1.clickCard(this.purge);
         this.player1.clickPrompt('Purge');
+        this.player1.clickPrompt("opponent's");
 
         expect(this.player2.deck.length).toBe(oppDeck - 1);
+    });
+
+    it('discards own topofdeck', function () {
+        let myDeck = this.player1.deck.length;
+        this.player1.clickCard(this.purge);
+        this.player1.clickPrompt('Purge');
+        this.player1.clickPrompt('Mine');
+
+        expect(this.player1.deck.length).toBe(myDeck - 1);
     });
 });

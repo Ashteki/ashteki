@@ -6,17 +6,31 @@ class Purge extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Purge',
+            location: 'spellboard',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Charm)])
             ],
-            location: 'spellboard',
-            gameAction: ability.actions.discardTopOfDeck({ player: this.controller.opponent }),
+            target: {
+                mode: 'select',
+                activePromptTitle: "Purge: Choose which player's deck",
+                choices: [
+                    { text: 'Mine', value: false },
+                    { text: "Opponent's", value: true }
+                ],
+                choiceHandler: (option) => (this.chosenValue = option.value)
+            },
+            gameAction: ability.actions.discardTopOfDeck((context) => ({
+                target: this.chosenValue ? context.player.opponent : context.player
+            })),
             then: {
                 condition: (context) => context.source.focus > 0,
+                activePromptTitle: 'Purge: Activate focus 1 ability?',
                 cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
-                gameAction: ability.actions.discardTopOfDeck({ player: this.controller.opponent })
+                gameAction: ability.actions.discardTopOfDeck((context) => ({
+                    target: this.chosenValue ? context.player.opponent : context.player
+                }))
             }
         });
     }
