@@ -239,26 +239,24 @@ export class PlayerStats extends React.Component {
                             </a>
                         </div>
                         {this.props.showManualMode && (
-                            <>
-                                <div className='state'>
-                                    <a
-                                        href='#'
-                                        className={this.props.manualModeEnabled ? 'text-danger' : ''}
-                                        onClick={this.props.onManualModeClick}
-                                    >
-                                        <FontAwesomeIcon icon={faWrench}></FontAwesomeIcon>
-                                        <span className='ml-1'>
-                                            <Trans>Manual Mode</Trans>
-                                        </span>
-                                    </a>&nbsp;
-                                    <a href='#' className='pr-1 pl-1' title='Show manual command list'>
-                                        <FontAwesomeIcon
-                                            icon={faList}
-                                            onClick={this.props.onManualCommandsClick}
-                                        />
-                                    </a>
-                                </div>
-                            </>
+                            <div className='state'>
+                                <a
+                                    href='#'
+                                    className={this.props.manualModeEnabled ? 'text-danger' : ''}
+                                    onClick={this.props.onManualModeClick}
+                                >
+                                    <FontAwesomeIcon icon={faWrench}></FontAwesomeIcon>
+                                    <span className='ml-1'>
+                                        <Trans>Manual Mode</Trans>
+                                    </span>
+                                </a>&nbsp;
+                                <a href='#' className='pr-1 pl-1' title='Show manual command list'>
+                                    <FontAwesomeIcon
+                                        icon={faList}
+                                        onClick={this.props.onManualCommandsClick}
+                                    />
+                                </a>
+                            </div>
                         )}
                         <div className='state'>
                             <a

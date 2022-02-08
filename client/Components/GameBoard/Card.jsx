@@ -254,12 +254,12 @@ const Card = ({
         if (card.isChained) {
             return (
                 <div className='card-chain-icon'>
-                    <FontAwesomeIcon icon={card.isChained ? faLink : null} />
+                    <FontAwesomeIcon icon={faLink} />
                 </div>
             );
         }
         return '';
-    }
+    };
 
     const getCard = () => {
         if (!card) {
