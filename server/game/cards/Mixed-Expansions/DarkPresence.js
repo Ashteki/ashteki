@@ -8,6 +8,7 @@ class DarkPresence extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
             target: {
+                activePromptTitle: 'Choose a unit to gain Terrifying 1',
                 controller: 'self',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.cardLastingEffect({
@@ -20,6 +21,7 @@ class DarkPresence extends Card {
                 condition: () => this.focus > 0,
                 target: {
                     optional: true,
+                    activePromptTitle: 'Choose a unit to have attack reduced by 1',
                     controller: 'opponent',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.cardLastingEffect({
