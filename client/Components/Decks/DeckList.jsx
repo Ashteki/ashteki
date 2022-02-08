@@ -221,10 +221,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             formatter: (item, row) => {
                 const hasChained = row.cards.some((c) => c.card.isChained);
                 const icon = hasChained ? (
-                    <FontAwesomeIcon
-                        icon={hasChained ? faLink : null}
-                        title='This deck contains chained cards'
-                    />
+                    <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
                 ) : null;
                 const output = (
                     <>
