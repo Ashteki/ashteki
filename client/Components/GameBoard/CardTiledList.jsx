@@ -17,10 +17,12 @@ function CardTiledList(props) {
                     disableMouseOver={props.disableMouseOver}
                     key={index}
                     onClick={props.onCardClick}
+                    onAltClick={props.onCardAltClick}
                     onMouseOut={props.onCardMouseOut}
                     onMouseOver={props.onCardMouseOver}
                     onTouchMove={props.onTouchMove}
                     orientation='vertical'
+                    showAltIcon={props.showAltIcon}
                     showChains={props.showChains}
                     size={props.size}
                     source={props.source}

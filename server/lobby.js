@@ -704,16 +704,6 @@ class Lobby {
                     ? this.deckService.getRandomDeck(cards)
                     : await this.deckService.getById(deckId);
 
-            // return Promise.all([
-            //     isStandalone
-            //         ? this.deckService.getPreconDeckById(deckId)
-            //         : deckId === -1
-            //             ? this.deckService.getRandomDeck()
-            //             : this.deckService.getById(deckId)
-            // ])
-            //     .then((results) => {
-            //         let [cards, deck] = results;
-
             // add drawdeck card prototypes to deckdata cardcount
             for (let card of deck.cards) {
                 card.card = cards[card.id];

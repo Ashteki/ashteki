@@ -150,18 +150,23 @@ describe('unseen', function () {
             expect(this.player2).not.toBeAbleToSelect(this.mindFogOwl);
             expect(this.player2).not.toBeAbleToSelect(this.frostbackBear);
 
+            // try to block MFO with anchornaut
             this.player2.clickCard(this.mindFogOwl);
             expect(
                 this.game.attackState.battles.some((b) => b.attacker === this.mindFogOwl && b.guard)
             ).toBe(false);
 
+            // block FBB first with IW
             this.player2.clickCard(this.ironWorker);
             this.player2.clickCard(this.frostbackBear);
             expect(
-                this.game.attackState.battles.some((b) => b.attacker === this.frostbackBear && b.guard)
+                this.game.attackState.battles.some(
+                    (b) => b.attacker === this.frostbackBear && b.guard
+                )
             ).toBe(true);
 
             // now you can block the owl
+            this.player2.clickCard(this.sunshieldSentry);
             expect(this.player2).toBeAbleToSelect(this.mindFogOwl);
             this.player2.clickCard(this.mindFogOwl);
             this.player2.clickDone();

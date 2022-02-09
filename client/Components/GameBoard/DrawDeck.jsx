@@ -39,6 +39,7 @@ const DrawDeck = (props) => {
             popupMenu={drawDeckPopupMenu}
             source='deck'
             title={t('Draw')}
+            showAltIcon={true}
             showChains={showChains}
         />
     );

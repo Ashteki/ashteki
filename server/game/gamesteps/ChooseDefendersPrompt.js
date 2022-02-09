@@ -10,14 +10,14 @@ class ChooseDefendersPrompt extends UiPrompt {
         this.choosingPlayer = attack.defendingPlayer;
         this.context = {
             game: game,
-            player: game.activePlayer // defender here?
+            player: attack.defendingPlayer
         };
         this.menuTitleText = attack.isPBAttack ? 'Choose a blocker' : 'Choose a guard?';
 
         this.myCardSelector = new SingleCardSelector({
             // source: this.attack.battle.attacker,
             location: ['play area'],
-            controller: this.attack.defendingPlayer,
+            controller: 'self',
             cardType: [...BattlefieldTypes, CardType.Phoenixborn],
             cardCondition: (card) => {
                 return this.availableToBlockOrGuard(card);
@@ -163,11 +163,11 @@ class ChooseDefendersPrompt extends UiPrompt {
         } else {
             if (card.isAttacker && this.selectedCard) {
                 // check validity
-                if (card.anyEffect('unseen') && !this.attack.checkUnseen()) { 
+                if (card.anyEffect('unseen') && !this.attack.checkUnseen()) {
                     return false;
                 }
 
-                if (card.anyEffect('unseen') && this.attack.checkUnseen() && this.selectedCard.isDefender) { 
+                if (card.anyEffect('unseen') && this.attack.checkUnseen() && this.selectedCard.isDefender) {
                     return false;
                 }
 

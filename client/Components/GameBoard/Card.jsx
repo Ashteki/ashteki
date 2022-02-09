@@ -12,7 +12,6 @@ import spellback from '../../assets/img/cardback-spell.png';
 import conjback from '../../assets/img/cardback-conjuration.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
-
 import Die from './Die';
 
 import './Card.scss';
@@ -24,12 +23,13 @@ const Card = ({
     className,
     disableMouseOver,
     onClick,
+    onAltClick,
     onDieClick,
     onMenuItemClick,
     onMouseOut,
     onMouseOver,
     orientation = 'vertical',
-    showChains,
+    showAltIcon,
     side,
     size,
     source,
@@ -261,6 +261,19 @@ const Card = ({
         return '';
     };
 
+    const getAltIcon = (card) => {
+        if (showAltIcon && card.altArts) {
+            return (
+                <div className='card-alt-icon'>
+                    <button className=''
+                        onClick={() => onAltClick(card)}
+                    >Alt</button>
+                </div>
+            );
+        }
+        return '';
+    };
+
     const getCard = () => {
         if (!card) {
             return <div />;
@@ -374,6 +387,8 @@ const Card = ({
     if (wrapped) {
         return (
             <div className={'card-wrapper'} style={style}>
+                {getAltIcon(card)}
+
                 {getCard()}
                 {getupgrades()}
                 {renderUnderneathCards()}

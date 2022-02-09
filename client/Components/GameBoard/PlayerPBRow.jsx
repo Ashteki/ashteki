@@ -17,6 +17,7 @@ const PlayerPBRow = ({
     manualMode,
     numDeckCards,
     onCardClick,
+    onCardAltClick,
     onDieClick,
     onDragDrop,
     onMouseOver,
@@ -83,6 +84,7 @@ const PlayerPBRow = ({
             isMe={isMe}
             manualMode={manualMode}
             numDeckCards={numDeckCards}
+            onCardAltClick={onCardAltClick}
             onPopupChange={onDrawPopupChange}
             onShuffleClick={onShuffleClick}
             showDeck={showDeck}

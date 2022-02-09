@@ -20,6 +20,7 @@ const CardPile = ({
     hiddenTopCard,
     manualMode,
     onCardClick,
+    onCardAltClick,
     onDragDrop,
     onMenuItemClick,
     onMouseOut,
@@ -29,6 +30,7 @@ const CardPile = ({
     orientation = 'vertical',
     popupLocation = 'bottom',
     popupMenu,
+    showAltIcon,
     showChains,
     size,
     source,
@@ -112,13 +114,16 @@ const CardPile = ({
                     disableMouseOver={disableMouseOver}
                     manualMode={manualMode}
                     onCardClick={(card) => {
+                        // auto close
                         if (closeOnClick) {
                             updatePopupVisibility(false);
                             setManualPopup(false);
                         }
 
+                        // call handler
                         onCardClick && onCardClick(card);
                     }}
+                    onCardAltClick={onCardAltClick}
                     onCloseClick={() => {
                         updatePopupVisibility(!showPopup);
                         setManualPopup(!showPopup);
@@ -129,6 +134,7 @@ const CardPile = ({
                     onTouchMove={onTouchMove}
                     popupLocation={popupLocation}
                     popupMenu={popupMenu}
+                    showAltIcon={showAltIcon}
                     showChains={showChains}
                     size={size}
                     source={source}
