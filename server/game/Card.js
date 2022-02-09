@@ -25,7 +25,14 @@ class Card extends PlayableObject {
 
         this.cardData = cardData;
         this.isChained = cardData.isChained;
-        this.altArts = cardData.altArts;
+        if (owner.user.altArts) {
+            if (
+                owner.user.altArts[this.cardData.stub] &&
+                owner.user.altArts[this.cardData.stub].length
+            ) {
+                this.altArts = [cardData.stub, ...owner.user.altArts[this.cardData.stub]];
+            }
+        }
 
         this.id = cardData.stub;
         this.printedName = cardData.name;

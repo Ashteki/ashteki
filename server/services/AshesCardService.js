@@ -49,8 +49,6 @@ class AshesCardService {
                     cards[c].isChained = true;
                 });
 
-                // test data
-                cards['hammer-knight'].altArts = ['hammer-knight', 'xander-heartsblood', 'mist-spirit'];
                 return cards;
             })
             .catch((err) => {
