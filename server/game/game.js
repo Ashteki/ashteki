@@ -352,6 +352,28 @@ class Game extends EventEmitter {
     }
 
     /**
+     * This function is called from the client whenever a card is clicked
+     * @param {String} sourcePlayer - name of the clicking player
+     * @param {String} cardId - uuid of the card clicked
+     */
+    cardAltClicked(sourcePlayer, cardId) {
+        let player = this.getPlayerByName(sourcePlayer);
+
+        if (!player) {
+            return;
+        }
+
+        let card = this.findAnyCardInAnyList(cardId);
+
+        if (!card) {
+            return;
+        }
+
+        // Cycle the alt art for the card and this player
+
+    }
+
+    /**
      * This function is called from the client whenever a die is clicked
      * @param {String} sourcePlayer - name of the clicking player
      * @param {String} dieId - uuid of the die clicked

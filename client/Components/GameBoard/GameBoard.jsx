@@ -104,6 +104,10 @@ export class GameBoard extends React.Component {
         this.props.sendGameMessage('cardClicked', card.uuid);
     }
 
+    onCardAltClick(card) {
+        this.props.sendGameMessage('cardAltClicked', card.uuid);
+    }
+
     onDieClick(die) {
         this.props.sendGameMessage('dieClicked', die.uuid);
     }
@@ -313,6 +317,7 @@ export class GameBoard extends React.Component {
                         manualMode={this.props.currentGame.manualMode}
                         numDeckCards={thisPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
+                        onCardAltClick={this.onCardAltClick}
                         onDieClick={this.onDieClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}

@@ -367,3 +367,10 @@
     left:5px;
     z-index: $layer-cards + 10;;
 }
+
+.card-alt-icon{
+    position:absolute;
+    top:0px;
+    right:5px;
+    z-index:5000;
+}
