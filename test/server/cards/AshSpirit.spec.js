@@ -4,7 +4,7 @@ describe('AshSpirit', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['seaside-raven', 'hammer-knight'],
+                    inPlay: ['seaside-raven', 'hammer-knight', 'iron-rhino'],
                     dicepool: ['natural']
                 },
                 player2: {
@@ -58,6 +58,21 @@ describe('AshSpirit', function () {
             expect(this.livingDoll.damage).toBe(1);
         });
 
+        it('triggers when destroyed in attack. Destroy attacker but still trigger overkill effects of attacker', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.ashSpirit);
+            this.player1.clickCard(this.ironRhino);
+
+            this.player2.clickPrompt('Done'); // no blocker
+            this.player2.clickPrompt('No'); // no counter
+
+            this.player2.clickPrompt('Pass'); // no redirect from overkill damage
+
+            expect(this.ironRhino.location).toBe('archives');
+            expect(this.ashSpirit.location).toBe('archives');
+            expect(this.maeoniViper.damage).toBe(2); // overkill 2 damage from iron rhino
+        });
+
         it('triggers when redirect to ash spirit', function () {
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.livingDoll);
@@ -92,6 +107,37 @@ describe('AshSpirit', function () {
             expect(this.hammerKnight.location).toBe('play area');
         });
     });
+
+    describe('to ash cerasaurus mount bug report', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['seaside-raven', 'hammer-knight', 'cerasaurus-mount'],
+                    dicepool: ['natural']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['ash-spirit', 'living-doll'],
+                    dicepool: ['charm']
+                }
+            });
+        });
+
+        it('triggers when destroyed in attack. Destroy attacker but still trigger overkill effects of attacker', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.ashSpirit);
+            this.player1.clickCard(this.cerasaurusMount);
+
+            this.player2.clickPrompt('Done'); // no blocker
+            this.player2.clickPrompt('No'); // no counter
+
+            expect(this.cerasaurusMount.location).toBe('archives');
+            expect(this.ashSpirit.location).toBe('archives');
+            expect(this.maeoniViper.damage).toBe(1); // overkill 2 damage from iron rhino
+        });
+    });
+
     describe('smolder', function () {
         beforeEach(function () {
             this.setupTest({
