@@ -1,43 +1,19 @@
 import React, { useState } from 'react';
 import CardMenu from './CardMenu';
-import classNames from 'classnames';
 
 import './Die.scss';
+import DieIcon from './DieIcon';
 
 const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMouseOver }) => {
     const [showDieMenu, setShowDieMenu] = useState(false);
 
-    let diceFont = 'phg-basic-magic';
     let description = die.magic ? die.magic + ' basic' : 'basic die';
-
     if (die.magic && die.level && die.level !== 'basic') {
-        diceFont = `phg-${die.magic}-${die.level}`;
         description = `${die.magic} ${die.level}`;
     }
     if (die.exhausted) {
         description = 'Exhausted ' + description;
     }
-
-    const colorClass = die.location === 'dicepool' && die.exhausted ? 'exhausted' : die.magic;
-    const readerSpan = <span className='sr-only'>{description}</span>;
-    const getStatusClass = () => {
-        if (!die) {
-            return undefined;
-        }
-
-        if (die.selected) {
-            return 'selected';
-        } else if (die.selectable) {
-            return 'selectable';
-        } else if (die.new) {
-            return 'new';
-        }
-
-        return undefined;
-    };
-
-    let statusClass = getStatusClass();
-    let dieClass = classNames('die', statusClass, colorClass);
 
     const clickEvent = (event, die) => {
         event.preventDefault();
@@ -74,18 +50,22 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
     };
 
     return (
-        <div className='die-frame'>
-            <span
-                className={dieClass}
-                onClick={(ev) => clickEvent(ev, die)}
-                onMouseOver={!disableMouseOver && onMouseOver ? () => onMouseOver(die) : undefined}
-                onMouseOut={!disableMouseOver ? onMouseOut : undefined}
-            >
-                <span aria-hidden='true' className={diceFont} title={description} />
-                {readerSpan}
-            </span>
+        <a className='die-frame'
+
+            // key={die.uuid}
+            href='#0'
+            onClick={(ev) => clickEvent(ev, die)}
+            aria-label={description}
+        >
+            <DieIcon
+                die={die}
+                disableMouseOver={disableMouseOver}
+                onMouseOver={onMouseOver}
+                onMouseOut={onMouseOut}
+            />
             {renderMenu() ? <CardMenu menu={die.menu} onMenuItemClick={onMenuClick} /> : null}
-        </div>
+        </a>
+        // </div >
     );
 };
 

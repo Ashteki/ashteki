@@ -14,7 +14,7 @@ import './CardImage.scss';
  * @param {CardImageProps} props
  */
 const CardImage = ({ card, cardBack }) => {
-    let imgPath = card.facedown ? cardBack : imageUrl(card.imageStub);
+    let imgPath = card.facedown ? cardBack : imageUrl(card.imageStub || card.id);
 
     return (
         <>

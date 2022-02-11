@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import CardImage from '../GameBoard/CardImage';
 import Phoenixborn from './Phoenixborn';
-import Die from '../GameBoard/Die';
 import DeckStatus from './DeckStatus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import './DeckSummary.scss';
+import DieIcon from '../GameBoard/DieIcon';
 
 const DeckSummary = ({ deck }) => {
     let [zoomCard, setZoomCard] = useState(null);
@@ -88,7 +88,7 @@ const DeckSummary = ({ deck }) => {
         if (deck.dicepool) {
             deck.dicepool.forEach((diceCount) => {
                 for (let i = 0; i < diceCount.count; i++) {
-                    diceToRender.push(<Die die={{ magic: diceCount.magic, level: 'power' }} />);
+                    diceToRender.push(<DieIcon die={{ magic: diceCount.magic, level: 'power' }} />);
                 }
             });
         }
