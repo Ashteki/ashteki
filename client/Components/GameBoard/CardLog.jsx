@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import CardImage from './CardImage';
-import Die from './Die';
 
 import './CardZoom.scss';
 import './Cardlog.scss';
+import DieIcon from './DieIcon';
 
 const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
     const [show, setShow] = useState(true);
@@ -19,7 +19,7 @@ const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
         if (card.type === 'die') {
             return (
                 <div className='x-large cardlog-die mb-2'>
-                    <Die key={'cld-' + card.uuid} die={card} />
+                    <DieIcon key={'cld-' + card.uuid} die={card} />
                 </div>
             )
         }
@@ -41,7 +41,7 @@ const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
         if (card.type === 'die') {
             return (
                 <div className='x-large cardlog-die mb-2'>
-                    <Die key={'cld-' + card.uuid} die={card} />
+                    <DieIcon key={'cld-' + card.uuid} die={card} />
                 </div>
             )
         }

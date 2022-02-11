@@ -72,6 +72,8 @@ a {
 
         &:focus {
             background-color: transparent;
+            // outline: 1px solid red;
+            box-shadow: 0 0 0 0.1rem rgba(200, 200, 200, 0.75);
         }
 
         &:active {
@@ -91,7 +93,7 @@ a {
         background-image: url('~assets/img/button-primary-hover.png');
     }
 
-    &:focus:active {
+    &:focus {
         background-image: url('~assets/img/button-primary-hover.png');
     }
 }
@@ -103,7 +105,7 @@ a {
         background-image: url('~assets/img/button-orange-hover.png');
     }
 
-    &:focus:active {
+    &:focus {
         background-image: url('~assets/img/button-orange-hover.png');
     }
 }
@@ -116,7 +118,7 @@ a {
             background-image: url('~assets/img/button-orange-hover.png');
         }
 
-        &:focus:active {
+        &:focus {
             background-image: url('~assets/img/button-orange-hover.png');
         }
     }
@@ -130,7 +132,7 @@ a {
             background-image: url('~assets/img/button-red-hover.png');
         }
 
-        &:focus:active {
+        &:focus {
             background-image: url('~assets/img/button-red-hover.png');
         }
     }

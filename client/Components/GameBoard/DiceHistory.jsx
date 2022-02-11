@@ -1,9 +1,9 @@
 import React from 'react';
 import './DiceBox.scss';
 import MovablePanel from './MovablePanel';
-import Die from './Die';
 import './DiceHistory.scss';
 import CardImage from './CardImage';
+import DieIcon from './DieIcon';
 
 const DiceHistory = ({ firstFive, diceHistory, onCloseClick, side }) => {
     return (
@@ -45,7 +45,7 @@ const DiceHistory = ({ firstFive, diceHistory, onCloseClick, side }) => {
                                 <td>{index}</td>
                                 {dh.map(
                                     (d, i) => (
-                                        <td><Die die={d} /></td>
+                                        <td><DieIcon die={d} /></td>
                                     )
                                 )}
                             </tr>
