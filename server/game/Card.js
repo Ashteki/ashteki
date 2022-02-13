@@ -1052,7 +1052,7 @@ class Card extends PlayableObject {
             return (
                 BattlefieldTypes.includes(this.type) &&
                 !this.exhausted &&
-                this.anyEffect('canGuard') &&
+                !attacker.anyEffect('canGuard') &&
                 this.checkGigantic(attacker) &&
                 this.checkTerrifying(attacker) &&
                 !attacker.anyEffect('bypass') &&
