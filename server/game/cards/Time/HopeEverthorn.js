@@ -21,15 +21,18 @@ class HopeEverthorn extends Card {
                 conjuration: context.target.id,
                 showMessage: true
             })),
-            then: { //Probably need a visual indicator for the duplicate
-                gameAction: ability.actions.cardLastingEffect((context) => ({
-                    target: context.preThenEvent.card, // Not sure how to target the previous card
-                    duration: 'untilEndOfTurn',
-                    effect: ability.effects.gainAbility('persistentEffect', {
-                        effect: ability.effects.destroyAtEndOfTurn()
+            //TODO: need a visual indicator for the duplicate so we know which one will be destroyed at end of turn
+            then: (thenContext) => ({
+                gameAction: ability.actions.lastingEffect({
+                    when: {
+                        onTurnEnded: () => true
+                    },
+                    gameAction: ability.actions.destroy({
+                        //target: thenContext.target // This runs but doesn't destroy the unit in my test. It looks like this should kill the original
+                        target: thenContext.cards // This runs but doesn't destroy the unit in my test.
                     })
-                }))
-            }
+                })
+            })
         });
     }
 }
