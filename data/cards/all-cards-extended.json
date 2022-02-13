@@ -5760,7 +5760,7 @@
             "magicCost": {
                 "basic": 1
             },
-            "text": "[[side]] - 1 [[natural:class]] - 1 [[divine:class]]: Remove an unexhausted ally you control from play. If you do, place a [[Cerasaurus Mount]] conjuration onto your battlefield and place that ally face down under that unit.",
+            "text": "[[side]] - [[exhaust]] - 1 [[natural:class]] - 1 [[divine:class]]: Remove an unexhausted ally you control from play. If you do, place a [[Cerasaurus Mount]] conjuration onto your battlefield and place that ally face down under that unit.",
             "conjurations": [
                 {
                     "name": "Cerasaurus Mount",
