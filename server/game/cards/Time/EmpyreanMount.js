@@ -1,3 +1,4 @@
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class EmpyreanMount extends Card {
@@ -8,25 +9,30 @@ class EmpyreanMount extends Card {
         this.forcedReaction({
             when: {
                 onAttackersDeclared: (event, context) => {
-                    // I'm the attacker
-                    return event.battles.some(
-                        (b) => b.attacker === context.source && this.attack.isPBAttack // Not sure about second conditional
-                    );
+                    // I'm the attacker and the target is a Phoenixborn
+                    return (b) =>
+                        b.attacker === context.source && b.target.type === CardType.Phoenixborn;
                 }
             },
             target: {
-                activePromptTitle: 'Choose a unit to force block',
+                activePromptTitle: 'Choose a unit to force it to block',
                 optional: true,
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                cardCondition: (card, context) => card !== context.source,
-                gameAction: (context) => [
-                    ability.actions.cardLastingEffect({
-                        effect: ability.effects.forceBlock(), //Yet to define where this effect takes place
-                        duration: 'untilEndOfTurn'
-                    }),
-                    this.attack.setBlockerForAttacker(context.card, context.source)
-                ]
+                cardCondition: (card, context) =>
+                    card !== context.source && card.canBlock(context.source),
+                gameAction: ability.actions.cardLastingEffect({
+                    effect: ability.effects.forceBlock(), //Yet to define where this effect takes place. The trick is locking the attacker and blocker together
+                    duration: 'untilEndOfTurn'
+                }),
+                then: {
+                    gameAction: (context) => {
+                        this.attack.setBlockerForAttacker(
+                            context.preThenEvent.target,
+                            context.source
+                        );
+                    }
+                }
             }
         });
     }

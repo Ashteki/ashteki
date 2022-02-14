@@ -92,7 +92,8 @@ class ChooseDefendersPrompt extends UiPrompt {
         return (
             !attacker.anyEffect('preventblock') &&
             // !this.battles.some((b) => b.guard == card) &&
-            card.canBlock(attacker)
+            card.canBlock(attacker) &&
+            !card.anyEffect('forceBlock')
         );
     }
 
