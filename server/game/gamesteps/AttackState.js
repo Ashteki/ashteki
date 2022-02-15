@@ -108,6 +108,12 @@ class AttackState {
         return state;
     }
 
+    checkForceBlock() {
+        return !this.battles.some(
+            (b) => b.guard.anyEffect('forceBlock', b.attacker) && !b.attacker
+        );
+    }
+
     checkUnseen() {
         return !this.battles.some((b) => !b.attacker.anyEffect('unseen') && !b.guard);
     }

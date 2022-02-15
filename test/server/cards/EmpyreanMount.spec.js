@@ -22,7 +22,7 @@ describe('Empyrean Mount', function () {
         it('forces unit to block', function () {
             this.player1.clickPrompt('Attack');
 
-            this.player1.clickCard(this.aradelSummergaard); // target
+            this.player1.clickCard(this.aradelSummergaard); // target PB
             this.player1.clickCard(this.empyreanMount); // attacker
             this.player1.clickCard(this.fireArcher); //attacker
 
@@ -34,7 +34,7 @@ describe('Empyrean Mount', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
             expect(this.player2).toBeAbleToSelect(this.hammerKnight);
             this.player2.clickCard(this.hammerKnight);
-            //expect(this.player2).not.toBeAbleToSelect(this.empyreanMount);
+            //expect(this.player2).not.toBeAbleToSelect(this.empyreanMount); //failing
         });
     });
 });

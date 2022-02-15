@@ -21,10 +21,11 @@ class EmpyreanMount extends Card {
                 controller: 'opponent',
                 cardCondition: (card, context) =>
                     card !== context.source && card.canBlock(context.source),
-                gameAction: ability.actions.cardLastingEffect({
-                    effect: ability.effects.forceBlock(), //Yet to define where this effect takes place. The trick is locking the attacker and blocker together
+                gameAction: ability.actions.cardLastingEffect((context) => ({
+                    effect: ability.effects.forceBlock(context.source), //TODO: Use this effect to lock the attacker and blocker together
                     duration: 'untilEndOfTurn'
-                }),
+                })),
+                //TODO: Not sure if the following is working correctly. Perhaps this could occur at the start of ChooseDefendersPrompt?
                 then: {
                     gameAction: (context) => {
                         this.attack.setBlockerForAttacker(
