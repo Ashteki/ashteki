@@ -63,4 +63,54 @@ describe('Chained Creations', function () {
             expect(this.summonMaskedWolf.exhausted).toBe(false);
         });
     });
+
+    describe('vs Vampire bat swarm', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['mist-spirit', 'blue-jaguar'],
+                    dicepool: ['natural', 'divine', 'charm', 'charm'],
+                    hand: ['chained-creations']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['masked-wolf', 'iron-worker', 'iron-rhino', 'vampire-bat-swarm'],
+                    spellboard: [
+                        'empower',
+                        'summon-masked-wolf',
+                        'summon-iron-rhino',
+                        'summon-vampire-bat-swarm'
+                    ],
+                    dicepool: ['ceremonial']
+                }
+            });
+        });
+
+        it('destroys VBS, no respawn, and exhaust ready spell', function () {
+            this.player1.clickCard(this.chainedCreations); // play card
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.vampireBatSwarm); // destroy
+            this.player2.clickPrompt('Cancel');
+            this.player1.clickCard(this.summonVampireBatSwarm); // exhaust
+
+            expect(this.summonVampireBatSwarm.exhausted).toBe(true);
+        });
+
+        it('destroys unit, respawn, and exhaust ready spell', function () {
+            this.player1.clickCard(this.chainedCreations); // play card
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.vampireBatSwarm); // destroy
+            this.player2.clickDie(0);
+            this.player1.clickCard(this.summonVampireBatSwarm); // exhaust
+
+            expect(this.summonVampireBatSwarm.exhausted).toBe(true);
+        });
+    });
 });
