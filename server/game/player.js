@@ -755,9 +755,9 @@ class Player extends GameObject {
         if (isActivePlayer) {
             let sortedDeck = this.deck.slice();
             sortedDeck.sort((a, b) => {
-                if (a.id < b.id) {
+                if (a.type + a.id < b.type + b.id) {
                     return -1;
-                } else if (a.id > b.id) {
+                } else if (a.type + a.id > b.type + b.id) {
                     return 1;
                 }
 
