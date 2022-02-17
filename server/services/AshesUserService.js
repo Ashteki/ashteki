@@ -16,7 +16,7 @@ class UserService extends EventEmitter {
         this.users = db.get('users');
         this.refreshTokens = db.get('refresh_tokens');
         this.roles = db.get('roles');
-        this.blocklist = db.get('block_list');
+        this.blockList = db.get('block_list');
     }
 
     async getAllUsers() {
@@ -49,7 +49,7 @@ class UserService extends EventEmitter {
         }
         if (user) {
             user.tokens = await this.getRefreshTokens(user._id.toString());
-            user.blocklist = await this.getBlocklist(user._id.toString());
+            user.blockList = await this.getBlocklist(user._id.toString());
             return new User(user);
         } else return;
     }
@@ -95,11 +95,11 @@ class UserService extends EventEmitter {
     }
 
     async getBlocklist(userId) {
-        return await this.blocklist
+        return await this.blockList
             .find({ userId: userId })
             .then((entries) => {
                 if (entries) {
-                    return entries;
+                    return entries.map((e) => e.entry);
                 } else {
                     return [];
                 }
@@ -112,7 +112,7 @@ class UserService extends EventEmitter {
     async getUserById(id) {
         let user = await this.users.findOne({ _id: id });
         user.tokens = await this.getRefreshTokens(id);
-        user.blocklist = await this.getBlocklist(id);
+        user.blockList = await this.getBlocklist(id);
 
         return new User(user);
     }
@@ -155,7 +155,7 @@ class UserService extends EventEmitter {
 
     async addBlocklistEntry(user, entry) {
         try {
-            this.blocklist.insert({ userId: user.id, entry: entry });
+            this.blockList.insert({ userId: user.id, entry: entry });
         } catch (err) {
             logger.warn('Failed to add blocklist entry', err);
 
@@ -165,7 +165,7 @@ class UserService extends EventEmitter {
 
     async deleteBlocklistEntry(user, entry) {
         try {
-            this.blocklist.remove({ userId: user.id, entry: entry });
+            this.blockList.remove({ userId: user.id, entry: entry });
         } catch (err) {
             logger.warn('Failed to remove blocklist entry', err);
 
