@@ -27,6 +27,7 @@ class AttackState {
                 // can remove unit target
                 if (b.target === card) {
                     card.isDefender = false;
+                    b.attacker.isAttacker = false;
                     b.target = null;
                     this.battles = this.battles.filter((bf) => bf !== b);
                     return;
