@@ -28,8 +28,7 @@ class HopeEverthorn extends Card {
                         onTurnEnded: () => true
                     },
                     gameAction: ability.actions.destroy({
-                        // target: thenContext.cards
-                        target: thenContext.summoned // This runs but doesn't destroy the unit in my test. It looks like this should kill the original
+                        target: thenContext.summoned
                     })
                 })
             })

@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RaywardKnight extends Card {
@@ -6,9 +6,8 @@ class RaywardKnight extends Card {
         this.entersPlay({
             title: 'To Arms',
             target: {
-                mode: 'upTo',
-                numCards: 1,
                 activePromptTitle: 'Choose up to 1 ally to shuffle into your deck',
+                optional: true,
                 controller: 'self',
                 cardType: CardType.Ally,
                 location: 'discard',
@@ -19,8 +18,23 @@ class RaywardKnight extends Card {
                 gameAction: ability.actions.shuffleDeck()
             }
         });
-
-        //Charge
+        //TODO: Charge
+        this.action({
+            title: 'Charge',
+            cost: [ability.costs.sideAction()],
+            target: {
+                activePromptTitle: 'Select a target to attack',
+                promptTitle: 'Attack',
+                controller: 'opponent',
+                cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),
+                //mode: 'select',
+                //numCards: 1,
+                cardType: BattlefieldTypes,
+                onSelect: (card) => {
+                    this.game.initiateUnitAttack(card); //Attack is being initiated, but I need a way to force Attacker to be Rayward Knight
+                }
+            }
+        });
     }
 }
 
