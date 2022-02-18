@@ -47,7 +47,7 @@ describe('Summon Mind Fog Owl', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['hammer-knight'],
+                    inPlay: ['hammer-knight', 'holy-knight'],
                     spellboard: []
                 }
             });
@@ -64,6 +64,20 @@ describe('Summon Mind Fog Owl', function () {
             this.player1.clickCard(this.hammerKnight);
             expect(this.hammerKnight.attack).toBe(2);
             expect(this.hammerKnight.dieUpgrades.length).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('BUG: can resolve a charm die if power used, targetting holy knight', function () {
+            this.player1.clickCard(this.summonMindFogOwl);
+            this.player1.clickPrompt('Summon Mind Fog Owl');
+            this.player1.clickDie(2);
+            this.player1.clickPrompt('Done');
+            expect(this.mindFogOwl.location).toBe('play area');
+            expect(this.player1).not.toHaveDefaultPrompt();
+
+            this.player1.clickCard(this.holyKnight);
+            expect(this.holyKnight.attack).toBe(2);
+            expect(this.holyKnight.dieUpgrades.length).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });

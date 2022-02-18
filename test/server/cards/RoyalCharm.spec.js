@@ -32,7 +32,6 @@ describe('Royal Charm', function () {
             this.player1.clickCard(this.royalCharm);
             this.player1.clickPrompt('Use Die');
             this.player1.clickDieUpgrade(this.royalCharm, 0);
-            this.player1.clickPrompt('Charm Dice Power');
             this.player1.clickCard(this.hammerKnight);
             expect(this.hammerKnight.dieUpgrades.length).toBe(1);
             expect(this.hammerKnight.attack).toBe(2);
@@ -52,7 +51,6 @@ describe('Royal Charm', function () {
             this.player1.clickCard(this.royalCharm);
             this.player1.clickPrompt('Use Die');
             this.player1.clickDieUpgrade(this.royalCharm, 0);
-            this.player1.clickPrompt('Charm Dice Power');
             this.player1.clickCard(this.holyKnight);
             expect(this.holyKnight.dieUpgrades.length).toBe(1);
             expect(this.holyKnight.attack).toBe(2);

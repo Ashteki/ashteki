@@ -1,4 +1,4 @@
-const { Level, Magic, BattlefieldTypes } = require('../../../constants.js');
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RoyalCharm extends Card {
@@ -39,24 +39,13 @@ class RoyalCharm extends Card {
             target: {
                 toSelect: 'die',
                 from: (context) => context.source.dieUpgrades,
-                gameAction: this.game.actions.useDie((context) => ({
-                    ignoreAllCost: true
-                }))
+                gameAction: this.game.actions.resolveDieAbility()
             }
         });
 
         this.persistentEffect({
             effect: ability.effects.preventAutoDice()
         });
-    }
-
-    getUseActionChoices(card) {
-        let result = {};
-        card.dieUpgrades.forEach((d) => {
-            result[d.magic] = () => true;
-        });
-
-        return result;
     }
 }
 
