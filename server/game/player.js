@@ -7,7 +7,7 @@ const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes } = require('../constants');
+const { BattlefieldTypes, CardType } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -755,9 +755,11 @@ class Player extends GameObject {
         if (isActivePlayer) {
             let sortedDeck = this.deck.slice();
             sortedDeck.sort((a, b) => {
-                if (a.type + a.id < b.type + b.id) {
+                const typeValueA = this.getTypeValue(a.type);
+                const typeValueB = this.getTypeValue(b.type);
+                if (typeValueA + a.id < typeValueB + b.id) {
                     return -1;
-                } else if (a.type + a.id > b.type + b.id) {
+                } else if (typeValueA + a.id > typeValueB + b.id) {
                     return 1;
                 }
 
@@ -773,6 +775,25 @@ class Player extends GameObject {
         }
 
         return _.extend(state, promptState);
+    }
+
+    getTypeValue(cardType) {
+        switch (cardType) {
+            case CardType.ReadySpell:
+                return '100';
+            case CardType.Ally:
+                return '200';
+            case CardType.Upgrade:
+            case CardType.ConjuredAlteration:
+                return '300';
+            case CardType.ActionSpell:
+                return '400';
+            case CardType.ReactionSpell:
+                return '500';
+            default:
+                return 600;
+        }
+        // Ready => Ally => Alteration => Action => Reaction
     }
 }
 
