@@ -36,26 +36,18 @@ class RoyalCharm extends Card {
             title: 'Use Die',
             condition: (context) => context.source.dieUpgrades.length > 0,
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
-            targets: {
-                die: {
-                    toSelect: 'die',
-                    from: (context) => context.source.dieUpgrades
-                },
-                host: {
-                    dependsOn: 'die',
-                    cardType: BattlefieldTypes,
-                    cardCondition: (card, context) =>
-                        !card.dieUpgrades.some((d) => d.magic === context.targets.die.magic),
-                    gameAction: this.game.actions.attachDie((context) => ({
-                        upgradeDie: context.targets.die
-                    }))
-                }
+            target: {
+                toSelect: 'die',
+                from: (context) => context.source.dieUpgrades,
+                gameAction: this.game.actions.useDie((context) => ({
+                    ignoreAllCost: true
+                }))
             }
         });
 
         this.persistentEffect({
             effect: ability.effects.preventAutoDice()
-        })
+        });
     }
 
     getUseActionChoices(card) {
