@@ -370,7 +370,12 @@
 
 .card-alt-icon{
     position:absolute;
-    top:0px;
-    right:5px;
-    z-index:5000;
+    bottom:5px;
+    z-index:500;
+    margin-left:5px
+}
+
+.card-alt-icon button{
+    background-color: lightsteelblue;
+    border-radius: 4px;
 }
