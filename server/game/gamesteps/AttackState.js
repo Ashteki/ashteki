@@ -20,15 +20,22 @@ class AttackState {
         );
     }
 
-    removeFromBattle(card, includeResolved = false) {
+    removeFromBattle(card, includeResolved = false, damageSource = null) {
         this.battles
             .filter((b) => includeResolved || !b.resolved)
             .forEach((b) => {
-                // can remove unit target
-                if (b.target === card) {
+                // can remove target during a unit attack
+                if (b.target === card) { // unit attack - remove target
+                    // reset statuses
                     card.isDefender = false;
                     b.attacker.isAttacker = false;
+                    // remove target
                     b.target = null;
+                    // exhaust attacker if it was source of the removal (e.g. emberoot lizard)
+                    if (damageSource && b.attacker === damageSource) {
+                        b.attacker.exhaust();
+                    }
+                    // prune battle from attack
                     this.battles = this.battles.filter((bf) => bf !== b);
                     return;
                 }
