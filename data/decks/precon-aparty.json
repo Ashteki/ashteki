@@ -638,5 +638,637 @@
         "count": 2
       }
     ]
+  },
+  {
+    "precon_id": 107,
+    "name": "The Samurai | Adventuring Party II",
+    "phoenixborn": [
+      {
+        "id": "echo-greystorm",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 4
+      },
+      {
+        "magic": "divine",
+        "count": 3
+      },
+      {
+        "magic": "sympathy",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "battle-seer",
+        "count": 3
+      },
+      {
+        "id": "chaos-gravity",
+        "count": 3
+      },
+      {
+        "id": "figures-in-the-fog",
+        "count": 3
+      },
+      {
+        "id": "gates-thrown-open",
+        "count": 1
+      },
+      {
+        "id": "light-swordsman",
+        "count": 2
+      },
+      {
+        "id": "meteor",
+        "count": 2
+      },
+      {
+        "id": "revival-pact",
+        "count": 1
+      },
+      {
+        "id": "rose-fire-dancer",
+        "count": 2
+      },
+      {
+        "id": "shadow-guard",
+        "count": 2
+      },
+      {
+        "id": "shadow-strike",
+        "count": 2
+      },
+      {
+        "id": "sonic-swordsman",
+        "count": 3
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 1
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1
+      },
+      {
+        "id": "summon-salamander-monk",
+        "count": 1
+      },
+      {
+        "id": "to-shadows",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "false-demon",
+        "count": 2
+      },
+      {
+        "id": "light-bringer",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk-spirit",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 108,
+    "name": "The Bard | Adventuring Party II",
+    "phoenixborn": [
+      {
+        "id": "leo-sunshadow",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 2
+      },
+      {
+        "magic": "charm",
+        "count": 5
+      },
+      {
+        "magic": "sympathy",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "amplify",
+        "count": 3
+      },
+      {
+        "id": "anguish",
+        "count": 3
+      },
+      {
+        "id": "blood-chains",
+        "count": 3
+      },
+      {
+        "id": "crescendo",
+        "count": 3
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 2
+      },
+      {
+        "id": "essence-druid",
+        "count": 2
+      },
+      {
+        "id": "flock-shepherd",
+        "count": 1
+      },
+      {
+        "id": "flute-mage",
+        "count": 1
+      },
+      {
+        "id": "generosity",
+        "count": 2
+      },
+      {
+        "id": "master-vampire",
+        "count": 2
+      },
+      {
+        "id": "rile-the-meek",
+        "count": 3
+      },
+      {
+        "id": "river-skald",
+        "count": 2
+      },
+      {
+        "id": "summon-ruby-cobra",
+        "count": 1
+      },
+      {
+        "id": "summon-salamander-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "glow-finch",
+        "count": 1
+      },
+      {
+        "id": "ruby-cobra",
+        "count": 3
+      },
+      {
+        "id": "salamander-monk",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk-spirit",
+        "count": 3
+      },
+      {
+        "id": "three-eyed-owl",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 109,
+    "name": "The Dreadlord | Adventuring Party II",
+    "phoenixborn": [
+      {
+        "id": "coal-roarkwin",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 6
+      },
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "illusion",
+        "count": 1
+      },
+      {
+        "magic": "time",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "abundance",
+        "count": 1
+      },
+      {
+        "id": "chant-of-revenge",
+        "count": 3
+      },
+      {
+        "id": "crimson-bomber",
+        "count": 1
+      },
+      {
+        "id": "fester",
+        "count": 3
+      },
+      {
+        "id": "final-cry",
+        "count": 2
+      },
+      {
+        "id": "fire-archer",
+        "count": 3
+      },
+      {
+        "id": "one-hundred-blades",
+        "count": 3
+      },
+      {
+        "id": "open-memories",
+        "count": 1
+      },
+      {
+        "id": "psychic-vampire",
+        "count": 1
+      },
+      {
+        "id": "reclaim-soul",
+        "count": 2
+      },
+      {
+        "id": "recollect",
+        "count": 1
+      },
+      {
+        "id": "standard-bearer",
+        "count": 2
+      },
+      {
+        "id": "stormwind-sniper",
+        "count": 2
+      },
+      {
+        "id": "summon-fallen",
+        "count": 3
+      },
+      {
+        "id": "swift-messenger",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "fallen",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "precon_id": 110,
+    "name": "The Scout | Adventuring Party II",
+    "phoenixborn": [
+      {
+        "id": "lulu-firststone",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 2
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      },
+      {
+        "magic": "sympathy",
+        "count": 1
+      }
+    ],
+    "cards": [
+      {
+        "id": "anchornaut",
+        "count": 3
+      },
+      {
+        "id": "exhortation",
+        "count": 2
+      },
+      {
+        "id": "gates-thrown-open",
+        "count": 2
+      },
+      {
+        "id": "ice-trap",
+        "count": 2
+      },
+      {
+        "id": "inflame",
+        "count": 2
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 3
+      },
+      {
+        "id": "molten-gold",
+        "count": 2
+      },
+      {
+        "id": "phoenix-barrage",
+        "count": 3
+      },
+      {
+        "id": "raptor-herder",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 2
+      },
+      {
+        "id": "summon-emberoot-lizard",
+        "count": 1
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 1
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "summon-mind-fog-owl",
+        "count": 1
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "emberoot-lizard",
+        "count": 3
+      },
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "mind-fog-owl",
+        "count": 2
+      },
+      {
+        "id": "raptor-hatchling",
+        "count": 3
+      },
+      {
+        "id": "spark",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 111,
+    "name": "The Shaman | Adventuring Party II",
+    "phoenixborn": [
+      {
+        "id": "koji-wolfcub",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 4
+      },
+      {
+        "magic": "sympathy",
+        "count": 2
+      },
+      {
+        "magic": "time",
+        "count": 4
+      }
+    ],
+    "cards": [
+      {
+        "id": "close-combat",
+        "count": 2
+      },
+      {
+        "id": "explosive-growth",
+        "count": 3
+      },
+      {
+        "id": "flash-strike",
+        "count": 3
+      },
+      {
+        "id": "generosity",
+        "count": 1
+      },
+      {
+        "id": "gorrenrock-brawler",
+        "count": 2
+      },
+      {
+        "id": "hunt-master",
+        "count": 3
+      },
+      {
+        "id": "lick-wounds",
+        "count": 2
+      },
+      {
+        "id": "pain-shaman",
+        "count": 2
+      },
+      {
+        "id": "seeds-of-aggression",
+        "count": 3
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 1
+      },
+      {
+        "id": "summon-omen-bringer",
+        "count": 1
+      },
+      {
+        "id": "summon-time-hopper",
+        "count": 3
+      },
+      {
+        "id": "survival-of-the-fittest",
+        "count": 2
+      },
+      {
+        "id": "swift-messenger",
+        "count": 1
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "omen-bringer",
+        "count": 2
+      },
+      {
+        "id": "panther-spirit",
+        "count": 3
+      },
+      {
+        "id": "time-hopper",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "precon_id": 112,
+    "name": "The Monk | Adventuring Party II",
+    "phoenixborn": [
+      {
+        "id": "orrick-gilstream",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 3
+      },
+      {
+        "magic": "divine",
+        "count": 2
+      },
+      {
+        "magic": "time",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "backtrack",
+        "count": 2
+      },
+      {
+        "id": "chained-creations",
+        "count": 2
+      },
+      {
+        "id": "choke",
+        "count": 2
+      },
+      {
+        "id": "concentration",
+        "count": 3
+      },
+      {
+        "id": "fate-reflection",
+        "count": 2
+      },
+      {
+        "id": "grave-knight",
+        "count": 2
+      },
+      {
+        "id": "hammer-knight",
+        "count": 3
+      },
+      {
+        "id": "heal",
+        "count": 2
+      },
+      {
+        "id": "natures-wrath",
+        "count": 2
+      },
+      {
+        "id": "shepherd-of-lost-souls",
+        "count": 2
+      },
+      {
+        "id": "small-sacrifice",
+        "count": 3
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 3
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1
+      },
+      {
+        "id": "summon-turtle-guard",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      },
+      {
+        "id": "light-bringer",
+        "count": 2
+      },
+      {
+        "id": "the-awakened-state",
+        "count": 1
+      },
+      {
+        "id": "turtle-guard",
+        "count": 2
+      }
+    ]
   }
 ]
