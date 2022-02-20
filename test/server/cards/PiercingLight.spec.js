@@ -1,5 +1,5 @@
-describe('Rayward Recruit ', function () {
-    describe('Enters play effect', function () {
+describe('Piercing Light Ready Spell ', function () {
+    describe('In play effect', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -7,7 +7,8 @@ describe('Rayward Recruit ', function () {
                     inPlay: ['mist-spirit'],
                     dicepool: ['divine', 'charm'],
                     hand: ['rayward-recruit'],
-                    discard: ['hammer-knight']
+                    discard: ['hammer-knight'],
+                    spellboard: ['piercing-light']
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
@@ -18,16 +19,18 @@ describe('Rayward Recruit ', function () {
             });
         });
 
-        it('Armed allows divine die buff', function () {
+        it('Grants overkill to all divine buffed units', function () {
+            // buff a unit
             this.player1.clickCard(this.raywardRecruit);
             this.player1.clickPrompt('Play this Ally');
             expect(this.raywardRecruit.location).toBe('play area');
-            expect(this.player1).not.toBeAbleToSelectDie(this.player1.dicepool[1]);
-
-            expect(this.player1).toHavePrompt('Choose a die');
             this.player1.clickDie(0);
             this.player1.clickCard(this.raywardRecruit);
             expect(this.raywardRecruit.attack).toBe(1);
+
+            // check for overkill
+            expect(this.raywardRecruit.hasKeyword('overkill')).toBe(true);
+            expect(this.raywardRecruit.getKeywordValue('overkill')).toBe(1);
         });
     });
 });

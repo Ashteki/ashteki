@@ -8,7 +8,7 @@ class RaywardRecruit extends Card {
             target: {
                 toSelect: 'die',
                 owner: 'self',
-                condition: (die) => die.type === Magic.Divine && die.exhausted,
+                dieCondition: (die) => die.magic === Magic.Divine && die.exhausted,
                 gameAction: ability.actions.resolveDieAbility()
             }
         });
