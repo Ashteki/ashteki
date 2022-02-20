@@ -1034,8 +1034,6 @@ module.exports.init = function (server, options) {
                 return;
             }
 
-            user = user.getDetails();
-
             if (!req.params.entry) {
                 return res.send({ success: false, message: 'Parameter "entry" is required' });
             }

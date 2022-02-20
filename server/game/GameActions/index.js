@@ -58,6 +58,7 @@ module.exports = {
     RerollDiceAction: require('./RerollDiceAction'),
     RerollDieAction: require('./RerollDieAction'),
     ResolveAbilityAction: require('./ResolveAbilityAction'),
+    ResolveDieAbilityAction: require('./ResolveDieAbilityAction'),
     ResolveBattleAction: require('./ResolveBattleAction'),
     ReturnToDeckAction: require('./ReturnToDeckAction'),
     ReturnToHandAction: require('./ReturnToHandAction'),
@@ -72,6 +73,6 @@ module.exports = {
     SpendSideAction: require('./SpendSideAction'),
     SummonAction: require('./SummonAction'),
     UseAction: require('./UseAction'),
+    UseDieAction: require('./UseDieAction'),
     OrderedAoEAction: require('./OrderedAoEAction')
-    //UseDieAction
 };

@@ -92,8 +92,8 @@ class Die extends PlayableObject {
         return menu;
     }
 
-    use(player) {
-        let legalActions = this.getLegalActions(player);
+    use(player, ignoredRequirements = []) {
+        let legalActions = this.getLegalActions(player, ignoredRequirements);
 
         if (legalActions.length === 0) {
             return false;

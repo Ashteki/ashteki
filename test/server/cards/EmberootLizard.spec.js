@@ -13,7 +13,7 @@ describe('Ignite ability', function () {
                 phoenixborn: 'saria-guideman',
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 hand: ['sympathy-pain'],
-                inPlay: ['flute-mage']
+                inPlay: ['flute-mage', 'mist-spirit']
             }
         });
     });
@@ -38,5 +38,21 @@ describe('Ignite ability', function () {
         expect(this.fluteMage.damage).toBe(1); // ping
 
         expect(this.player1).toHavePrompt('waiting for opponent to guard');
+    });
+
+    it('Exhausts when it pings and destroys its own target', function () {
+        this.emberootLizard.tokens.status = 1;
+
+        this.player1.clickAttack(this.mistSpirit);
+        this.player1.clickCard(this.emberootLizard);
+
+        expect(this.player1).not.toHavePrompt('waiting for opponent to guard');
+        expect(this.emberootLizard.attack).toBe(1); // +1 attack
+
+        this.player1.clickCard(this.mistSpirit);
+        expect(this.mistSpirit.location).toBe('archives'); // ping
+
+        expect(this.emberootLizard.exhausted).toBe(true);
+        expect(this.player1).toHaveDefaultPrompt();
     });
 });

@@ -59,7 +59,10 @@ const Actions = {
     readyDie: (propertyFactory) => new GameActions.ReadyDieAction(propertyFactory),
     rerollDice: (propertyFactory) => new GameActions.RerollDiceAction(propertyFactory),
     rerollDie: (propertyFactory) => new GameActions.RerollDieAction(propertyFactory),
+    resolveDieAbility: (propertyFactory) =>
+        new GameActions.ResolveDieAbilityAction(propertyFactory),
     setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),
+    useDie: (propertyFactory) => new GameActions.UseDieAction(propertyFactory),
 
     // player actions
     addSideAction: (propertyFactory) => new GameActions.AddSideAction(propertyFactory),

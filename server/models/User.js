@@ -147,7 +147,8 @@ class User {
             email: this.userData.email,
             settings: this.userData.settings,
             permissions: this.userData.permissions,
-            verified: this.userData.verified
+            verified: this.userData.verified,
+            blockList: this.userData.blockList
         };
 
         user = Settings.getUserWithDefaultsSet(user);
