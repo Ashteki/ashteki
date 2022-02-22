@@ -3,7 +3,11 @@ class Carousel {
         this.pbs = [];
     }
 
-    getCarousel(pbStub = null) {
+    getCoalOff() {
+        return this.getCarousel('coal-roarkwin', 7);
+    }
+
+    getCarousel(pbStub = null, diceTypes = 3) {
         if (this.pbs.length === 0) {
             this.pbs.push(...this.getPBs());
         }
@@ -28,7 +32,7 @@ class Carousel {
         }
 
         const d = [];
-        for (let j = 0; j < 3; j++) {
+        for (let j = 0; j < diceTypes; j++) {
             const dIndex = Math.floor(Math.random() * dice.length);
             d[j] = dice[dIndex];
             dice = dice.filter((d) => d !== dice[dIndex]);

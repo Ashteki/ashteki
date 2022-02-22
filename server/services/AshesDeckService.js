@@ -177,6 +177,21 @@ class AshesDeckService {
         deck.name = 'Feeling Lucky';
         return deck;
     }
+
+    getCoalOffDeck(cards) {
+        // get a carousel definition
+        const caro = new Carousel().getCoalOff();
+        console.log(
+            'carousel: ' + caro.pb.name + ' (' + caro.dice.map((dObj) => dObj.magic).join(',') + ')'
+        );
+
+        const deck = new DeckForge(cards).createDeck('coal-roarkwin', caro.dice, {
+            maxCardCount: 1,
+            noExtras: true
+        });
+        deck.name = 'Coal Off!';
+        return deck;
+    }
 }
 
 module.exports = AshesDeckService;
