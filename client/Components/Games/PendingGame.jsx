@@ -212,6 +212,9 @@ const PendingGame = () => {
                 onFeelingLucky={() => {
                     dispatch(sendSocketMessage('selectdeck', currentGame.id, -1, false));
                 }}
+                onCoalOff={() => {
+                    dispatch(sendSocketMessage('selectdeck', currentGame.id, -2, false));
+                }}
             />
             <Panel
                 title={t('Spectators({{users}})', {

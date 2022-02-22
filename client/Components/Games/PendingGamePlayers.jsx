@@ -18,7 +18,7 @@ import './PendingGamePlayer.scss';
 /**
  * @param {PendingGamePlayersProps} props
  */
-const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky }) => {
+const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky, onCoalOff }) => {
     const { t } = useTranslation();
 
     let firstPlayer = true;
@@ -59,6 +59,9 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky })
                             </Button>
                             <Button onClick={onFeelingLucky}>
                                 <Trans>I&apos;m Feeling Lucky!</Trans>
+                            </Button>
+                            <Button onClick={onCoalOff}>
+                                <Trans>Coal Off!</Trans>
                             </Button>
                         </>
                     );

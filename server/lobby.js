@@ -698,11 +698,21 @@ class Lobby {
         // get cards (need this for random deck generation)
         const cards = await this.cardService.getAllCards();
         try {
-            const deck = isStandalone
-                ? await this.deckService.getPreconDeckById(deckId)
-                : deckId === -1
-                    ? this.deckService.getRandomDeck(cards)
-                    : await this.deckService.getById(deckId);
+            let deck = null;
+            if (isStandalone) {
+                deck = await this.deckService.getPreconDeckById(deckId);
+            } else {
+                switch (deckId) {
+                    case -2: // coaloff!
+                        deck = this.deckService.getCoalOffDeck(cards);
+                        break;
+                    case -1: // rando
+                        deck = this.deckService.getRandomDeck(cards);
+                        break;
+                    default:
+                        deck = await this.deckService.getById(deckId);
+                }
+            }
 
             // add drawdeck card prototypes to deckdata cardcount
             for (let card of deck.cards) {
