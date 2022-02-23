@@ -39,6 +39,7 @@ class Card extends PlayableObject {
         // this is the default imageStub for the card - this can be overridden by alt arts later
         this.imageStub = cardData.stub;
         this.printedType = cardData.type;
+        this.index = 0;
 
         this.playCost = cardData.cost ? parseCosts(cardData.cost) : [];
         this.magicCost = this.getMagicCost(cardData);
@@ -1140,6 +1141,7 @@ class Card extends PlayableObject {
         result.location = this.location;
         result.isChained = this.isChained;
         result.altArts = this.altArts;
+        result.index = this.index;
         return result;
     }
 
@@ -1164,6 +1166,7 @@ class Card extends PlayableObject {
 
         let state = {
             id: this.id,
+            index: this.index,
             imageStub: this.imageStub,
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&

@@ -15,9 +15,10 @@ import './CardImage.scss';
  */
 const CardImage = ({ card, cardBack }) => {
     let imgPath = card.facedown ? cardBack : imageUrl(card.imageStub || card.id);
-
+    const cardIndex = card.index ? <div className='card-index'>{card.index}</div> : null;
     return (
         <>
+            {cardIndex}
             <img className='img-fluid' src={imgPath} />
         </>
     );

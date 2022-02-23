@@ -75,6 +75,7 @@ class Game extends EventEmitter {
         this.triggerSuddenDeath = false;
         this.suddenDeath = false;
 
+        this.cardIndex = 0;
         this.cardsUsed = [];
         this.cardsPlayed = [];
         this.cardsDiscarded = [];
@@ -109,6 +110,11 @@ class Game extends EventEmitter {
         this.router = options.router;
 
         this.attackState = null;
+    }
+
+    getCardIndex() {
+        this.cardIndex++;
+        return this.cardIndex;
     }
 
     cardUsed(card) {

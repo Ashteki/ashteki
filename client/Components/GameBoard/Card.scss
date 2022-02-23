@@ -372,10 +372,24 @@
     position:absolute;
     bottom:5px;
     z-index:500;
-    margin-left:5px
+    margin-left:5px;
 }
 
 .card-alt-icon button{
     background-color: lightsteelblue;
     border-radius: 4px;
+}
+
+.card-index{
+    background-color: #777;// theme-color('primary');
+    border:1.3pt solid #FFF;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 0.8em;
+    margin-left:2px;
+    min-width: 20px;
+    position:absolute;
+    text-align: center;
+    top:2px;
+    z-index:500;
 }
