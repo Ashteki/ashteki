@@ -496,6 +496,9 @@ class Player extends GameObject {
             card.controller = this;
         } else if (targetLocation === 'play area' || targetLocation === 'spellboard') {
             // into play
+            if (targetLocation === 'play area' && !card.index) {
+                card.index = this.game.getCardIndex();
+            }
             if (options.myControl) {
                 card.setDefaultController(this);
             }
