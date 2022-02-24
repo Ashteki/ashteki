@@ -5,19 +5,16 @@ const GameService = require('./services/AshesGameService.js');
 const ConfigService = require('./services/ConfigService.js');
 
 let gameService = new GameService(new ConfigService());
-/*
-let args = process.argv.slice(2);
 
-if(_.size(args) < 2) {
-    console.error('Must provide start and end date');
-
-    db.close();
-    return;
-}
-*/
 
 let start = new Date('2022-01-01T00:00:01');
 let end = new Date();
+
+let args = process.argv.slice(2);
+if (args.length === 2) {
+    start = new Date(args[0]);
+    end = new Date(args[1]);
+}
 //console.info('Running stats between', args[0], 'and', args[1]);
 console.info('Running stats between', start, 'and', end);
 
