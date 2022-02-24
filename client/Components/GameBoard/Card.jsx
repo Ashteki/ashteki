@@ -117,12 +117,22 @@ const Card = ({
     };
 
     const getupgrades = () => {
-        if (!['full deck', 'play area'].includes(source) || !card.upgrades) {
+        if (!['full deck', 'play area', 'spellboard'].includes(source)) {
+            return null;
+        }
+
+        if (['full deck', 'play area'].includes(source) && !card.upgrades) {
+            return null;
+        }
+        if ('spellboard' === source && !card.childCards) {
             return null;
         }
 
         let index = 1;
-        let upgrades = card.upgrades.map((upgrade) => {
+        const cardsToRender = 'spellboard' === source
+            ? card.childCards
+            : card.upgrades;
+        let upgrades = cardsToRender.map((upgrade) => {
             let returnedupgrade = (
                 <Card
                     key={upgrade.uuid}
@@ -154,7 +164,7 @@ const Card = ({
         // are being placed underneath the current card. In the future there may
         // be other types of cards in this array and it should be filtered.
         let underneathCards = card.childCards;
-        if (!underneathCards || underneathCards.length === 0) {
+        if (!underneathCards || underneathCards.length === 0 || card.location === 'spellboard') {
             return;
         }
 
@@ -332,7 +342,7 @@ const Card = ({
                     tabIndex={0}
                     className={cardClass}
                     onMouseOver={
-                        !disableMouseOver && !isFacedown() && onMouseOver
+                        !disableMouseOver && (!isFacedown() || !card.parent) && onMouseOver
                             ? () => onMouseOver(card)
                             : undefined
                     }

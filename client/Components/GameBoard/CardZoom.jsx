@@ -5,7 +5,7 @@ import CardImage from './CardImage';
 import './CardZoom.scss';
 
 const CardZoom = ({ card, cardName }) => {
-    if (!card) {
+    if (!card || !card.id) {
         return null;
     }
 
@@ -22,7 +22,7 @@ const CardZoom = ({ card, cardName }) => {
                     ) : (
                         <div className='card-zoomed shadow'>
                             <span className='card-name'>{cardName}</span>
-                            <CardImage card={card} />
+                            <CardImage card={card} override={true} />
                         </div>
                     )}
                 </div>
