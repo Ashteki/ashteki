@@ -19,6 +19,7 @@ describe('Flash Strike', function () {
 
         this.mistSpirit.tokens.status = 1;
         this.timeHopper.tokens.status = 1;
+        this.fluteMage.tokens.status = 1;
     });
 
     it('reaction on guard choice - unit attack', function () {
@@ -33,6 +34,7 @@ describe('Flash Strike', function () {
         expect(this.player1).toBeAbleToSelect(this.mistSpirit);
         expect(this.player1).toBeAbleToSelect(this.timeHopper);
         expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
+        expect(this.player1).not.toBeAbleToSelect(this.fluteMage);
 
         this.player1.clickCard(this.mistSpirit);
 

@@ -9,6 +9,7 @@ class FlashStrike extends Card {
                     event.attack.attackingPlayer === context.source.owner
             },
             target: {
+                controller: 'self',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.status >= 1,
                 gameAction: ability.actions.cardLastingEffect(() => ({
