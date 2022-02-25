@@ -1070,8 +1070,8 @@
             "text": "Choose an unexhausted unit you control. Deal damage to another target unit equal to the chosen unit's attack value. Then, place 1 wound token or 1 exhaustion token on the chosen unit you control."
         },
         {
-            "name": "Cloudburst Griffon",
-            "stub": "cloudburst-griffon",
+            "name": "Cloudburst Gryphon",
+            "stub": "cloudburst-gryphon",
             "type": "Conjuration",
             "release": {
                 "name": "The Queen of Lightning",
@@ -1458,7 +1458,7 @@
             },
             "placement": "Discard",
             "cost": [
-                "1 [[time:power]]",
+                "1 [[time:power]]"
             ],
             "dice": [
                 "time"
@@ -5893,8 +5893,8 @@
             ]
         },
         {
-            "name": "Summon Cloudburst Griffon",
-            "stub": "summon-cloudburst-griffon",
+            "name": "Summon Cloudburst Gryphon",
+            "stub": "summon-cloudburst-gryphon",
             "type": "Ready Spell",
             "release": {
                 "name": "The Queen of Lightning",
@@ -5908,11 +5908,11 @@
                 "divine",
                 "time"
             ],
-            "text": "[[main]] - [[exhaust]] - 1 [[illusion:divine]] - 1 [[time:class]]: Place a [[Cloudburst Griffon]] conjuration onto your battlefield.",
+            "text": "[[main]] - [[exhaust]] - 1 [[illusion:divine]] - 1 [[time:class]]: Place a [[Cloudburst Gryphon]] conjuration onto your battlefield.",
             "conjurations": [
                 {
-                    "name": "Cloudburst Griffon",
-                    "stub": "cloudburst-griffon"
+                    "name": "Cloudburst Gryphon",
+                    "stub": "cloudburst-gryphon"
                 }
             ]
         },
