@@ -74,6 +74,7 @@ const PlayerRow = ({
             onCardClick={onCardClick}
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
+            rotateHeader={true}
             source='hand'
             title={t('Hand')}
             cardSize={cardSize}

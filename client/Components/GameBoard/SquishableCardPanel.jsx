@@ -124,10 +124,12 @@ class SquishableCardPanel extends React.Component {
             height: dimensions.height + 'px'
         };
 
+        let panelHeaderStyle = this.props.rotateHeader ? 'panel-header-rotated' : 'panel-header';
+
         return (
             <div className={className} style={style}>
                 {this.props.title && (
-                    <h3 className='panel-header'>{`${this.props.title} (${cards.length})`}</h3>
+                    <h3 className={panelHeaderStyle}>{`${this.props.title} (${cards.length})`}</h3>
                 )}
                 {cards}
             </div>

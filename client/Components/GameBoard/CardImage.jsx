@@ -15,7 +15,12 @@ import './CardImage.scss';
  */
 const CardImage = ({ card, cardBack, override }) => {
     let imgPath = card.facedown && !override ? cardBack : imageUrl(card.imageStub || card.id);
-    const cardIndex = card.index && !card.facedown ? <div className='card-index'>{card.index}</div> : null;
+    const cardIndex =
+        card.index && !card.facedown ? (
+            <div className='card-index' aria-hidden='true'>
+                {card.index}
+            </div>
+        ) : null;
     return (
         <>
             {cardIndex}
