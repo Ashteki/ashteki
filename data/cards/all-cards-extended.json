@@ -1,5 +1,5 @@
 {
-    "count": 341,
+    "count": 345,
     "results": [
         {
             "name": "Abundance",
@@ -1458,7 +1458,7 @@
             },
             "placement": "Discard",
             "cost": [
-                "1 [[time:power]]",
+                "1 [[time:power]]"
             ],
             "dice": [
                 "time"
@@ -5908,7 +5908,7 @@
                 "divine",
                 "time"
             ],
-            "text": "[[main]] - [[exhaust]] - 1 [[illusion:divine]] - 1 [[time:class]]: Place a [[Cloudburst Griffon]] conjuration onto your battlefield.",
+            "text": "[[main]] - [[exhaust]] - 1 [[divine:class]] - 1 [[time:class]]: Place a [[Cloudburst Griffon]] conjuration onto your battlefield.",
             "conjurations": [
                 {
                     "name": "Cloudburst Griffon",
