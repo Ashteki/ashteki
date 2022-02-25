@@ -1067,6 +1067,7 @@ class Lobby {
             syncGame.gamePrivate = game.gamePrivate;
             syncGame.gameType = game.gameType;
             syncGame.id = game.id;
+            syncGame.label = game.label;
             syncGame.node = this.router.workers[nodeName];
             syncGame.password = game.password;
             syncGame.started = game.started;

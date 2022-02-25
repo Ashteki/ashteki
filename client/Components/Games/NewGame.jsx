@@ -56,6 +56,7 @@ const NewGame = ({
                 t(`Game name must be less than ${GameNameMaxLength} characters`)
             ),
         password: yup.string().optional(),
+        label: yup.string().optional(),
         gameTimeLimit: yup
             .number()
             .min(10, t('Games must be at least 10 minutes long'))
@@ -67,6 +68,7 @@ const NewGame = ({
     const initialValues = {
         name: `${username}'s game`,
         password: '',
+        label: '',
         allowSpectators: true,
         gameFormat: 'normal',
         gameType: defaultGameType || 'casual',
@@ -185,13 +187,21 @@ const NewGame = ({
                         {!tournament && <GameTypes formProps={formProps} />}
                         {!quickJoin && (
                             <Row>
-                                <Form.Group as={Col} sm={8}>
+                                <Form.Group as={Col} sm={6}>
                                     <Form.Label>{t('Password')}</Form.Label>
                                     <Form.Control
                                         type='text'
                                         placeholder={t('Enter a password')}
                                         autoComplete='off'
                                         {...getStandardControlProps(formProps, 'password')}
+                                    />
+                                </Form.Group>
+                                <Form.Group as={Col} sm={6}>
+                                    <Form.Label>{t('Label (for tournaments)')}</Form.Label>
+                                    <Form.Control
+                                        type='text'
+                                        placeholder={t('Enter a label')}
+                                        {...getStandardControlProps(formProps, 'label')}
                                     />
                                 </Form.Group>
                             </Row>
