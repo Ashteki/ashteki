@@ -329,6 +329,7 @@ const Card = ({
                 {getDragFrame(image)}
                 {getCardOrdering()}
                 <div
+                    tabIndex={0}
                     className={cardClass}
                     onMouseOver={
                         !disableMouseOver && !isFacedown() && onMouseOver

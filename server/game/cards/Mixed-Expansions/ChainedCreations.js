@@ -10,7 +10,7 @@ class ChainedCreations extends Card {
                 gameAction: ability.actions.dealDamage({ amount: 2 })
             },
             then: {
-                condition: (context) => context.preThenEvent.card.location === 'archives', // destroyed it
+                condition: (context) => context.preThenEvent.destroyEvent, // destroyed it
                 target: {
                     controller: 'opponent',
                     location: 'spellboard',

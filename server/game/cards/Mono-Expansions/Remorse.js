@@ -10,6 +10,7 @@ class Remorse extends Card {
             // effect: 'force {0} to discard 2 cards from the top of their deck',
             gameAction: ability.actions.discardTopOfDeck({ amount: 2 }),
             then: {
+                alwaysTriggers: true,
                 condition: (context) => context.player.opponent.deck.length === 0,
                 gameAction: ability.actions.dealDamage((context) => ({
                     amount: 2,

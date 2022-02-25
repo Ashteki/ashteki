@@ -1,4 +1,4 @@
-const { Level, Magic, BattlefieldTypes } = require('../../../constants.js');
+const { Level, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -24,18 +24,11 @@ class SummonMindFogOwl extends Card {
                 condition: (context) =>
                     context.source.focus > 0 &&
                     context.preThenEvent.context.costs.returnDice.some((d) => d.level === 'power'),
-                target: {
-                    activePromptTitle: 'Focus: Choose target for Charm power die',
-                    cardType: BattlefieldTypes,
-                    controller: 'opponent',
-                    optional: true,
-                    cardCondition: (card) => !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
-                    gameAction: ability.actions.attachDie((context) => ({
-                        upgradeDie: context.preThenEvent.context.costs.returnDice.find(
-                            (d) => d.level === 'power'
-                        )
-                    }))
-                }
+                gameAction: this.game.actions.resolveDieAbility((context) => ({
+                    target: context.preThenEvent.context.costs.returnDice.find(
+                        (d) => d.level === 'power'
+                    )
+                }))
             }
         });
     }
