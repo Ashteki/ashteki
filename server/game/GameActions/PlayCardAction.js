@@ -5,6 +5,7 @@ class PlayCardAction extends CardGameAction {
         super(propertyFactory);
         this.ignoreActionCost = false;
         this.playedAsReaction = undefined;
+        this.ignoreDiceCost = false;
     }
 
     setDefaultProperties() {
@@ -36,13 +37,21 @@ class PlayCardAction extends CardGameAction {
         if (this.ignoreActionCost) {
             ignores.push('actionCost');
         }
+        if (this.ignoreDiceCost) {
+            ignores.push('diceCost');
+        }
         return ignores;
     }
 
     getEvent(card, context) {
         return super.createEvent(
             'unnamedEvent',
-            { card: card, context: context, ignoreActionCost: this.ignoreActionCost },
+            {
+                card: card,
+                context: context,
+                ignoreActionCost: this.ignoreActionCost,
+                ignoreDiceCost: this.ignoreDiceCost
+            },
             () => {
                 let playActions = card.getActions(this.location).filter((action) => {
                     if (action.title.includes('Play')) {
@@ -71,6 +80,9 @@ class PlayCardAction extends CardGameAction {
                     let actionContext = action.createContext(context.player);
                     if (this.ignoreActionCost) {
                         actionContext.ignoreActionCost = true;
+                    }
+                    if (this.ignoreDiceCost) {
+                        actionContext.ignoreDiceCost = true;
                     }
                     if (this.playedAsReaction) {
                         actionContext.playedAsReaction = true;
