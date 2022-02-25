@@ -69,6 +69,7 @@ const PlayerPBRow = ({
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
             onMenuItemClick={onMenuItemClick}
+            rotateHeader={true}
             showChains={true}
             source='spellboard'
             title={t('Spellboard')}
