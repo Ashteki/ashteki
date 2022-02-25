@@ -130,7 +130,8 @@ class AshesDeckService {
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,
-            lastUpdated: new Date()
+            lastUpdated: new Date(),
+            created: new Date()
         };
         if (isPrecon) {
             properties = Object.assign(properties, {

@@ -57,6 +57,7 @@ class Game extends EventEmitter {
         this.gameTimeLimit = details.gameTimeLimit;
         this.gameType = details.gameType;
         this.id = details.id;
+        this.label = details.label;
         this.manualMode = false;
         this.muteSpectators = details.muteSpectators;
         this.name = details.name;
@@ -1335,7 +1336,8 @@ class Game extends EventEmitter {
                 deckid: player.deckData._id,
                 name: player.name,
                 turn: player.turn,
-                wins: player.wins
+                wins: player.wins,
+                wounds: player.phoenixborn.damage
             };
             if (player.disconnectedAt) {
                 p.disconnectedAt = player.disconnectedAt;
@@ -1346,6 +1348,7 @@ class Game extends EventEmitter {
         return {
             id: this.savedGameId,
             gameFormat: this.gameFormat,
+            label: this.label,
             gameId: this.id,
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
@@ -1384,6 +1387,7 @@ class Game extends EventEmitter {
                 gameTimeLimitStartedAt: this.timeLimit.timeLimitStartedAt,
                 gameTimeLimitTime: this.timeLimit.timeLimitInMinutes,
                 id: this.id,
+                label: this.label,
                 manualMode: this.manualMode,
                 messages: this.gameChat.messages,
                 muteSpectators: this.muteSpectators,
@@ -1449,6 +1453,7 @@ class Game extends EventEmitter {
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
             id: this.id,
+            label: this.label,
             manualMode: this.manualMode,
             messages: this.gameChat.messages,
             muteSpectators: this.muteSpectators,

@@ -17,6 +17,7 @@ class PendingGame {
         this.gameTimeLimit = details.gameTimeLimit;
         this.gameType = details.gameType;
         this.id = uuid.v1();
+        this.label = details.label;
         this.muteSpectators = details.muteSpectators;
         this.name = details.name;
         this.node = {};
@@ -70,6 +71,7 @@ class PendingGame {
             gamePrivate: this.gamePrivate,
             gameId: this.id,
             gameType: this.gameType,
+            label: this.label,
             players: players,
             previousWinner: this.previousWinner,
             startedAt: this.createdAt,
@@ -347,6 +349,7 @@ class PendingGame {
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
             id: this.id,
+            label: this.label,
             messages: activePlayer ? this.gameChat.messages : undefined,
             muteSpectators: this.muteSpectators,
             name: this.name,
@@ -400,6 +403,7 @@ class PendingGame {
             gameTimeLimit: this.gameTimeLimit,
             gameType: this.gameType,
             id: this.id,
+            label: this.label,
             muteSpectators: this.muteSpectators,
             name: this.name,
             needsPassword: !!this.password,
