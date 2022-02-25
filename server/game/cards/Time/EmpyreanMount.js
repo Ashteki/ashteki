@@ -25,7 +25,8 @@ class EmpyreanMount extends Card {
                     effect: ability.effects.forceBlock(context.source), //TODO: Use this effect to lock the attacker and blocker together
                     duration: 'untilEndOfTurn'
                 })),
-                //TODO: Not sure if the following is working correctly. Perhaps this could occur at the start of ChooseDefendersPrompt?
+                //TODO: Not sure if the following is working correctly. I am trying to use the AttackState function to start the units off in battle
+                // Perhaps this could occur at the start of ChooseDefendersPrompt?
                 then: {
                     gameAction: (context) => {
                         this.attack.setBlockerForAttacker(
