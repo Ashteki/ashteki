@@ -1070,6 +1070,21 @@
             "text": "Choose an unexhausted unit you control. Deal damage to another target unit equal to the chosen unit's attack value. Then, place 1 wound token or 1 exhaustion token on the chosen unit you control."
         },
         {
+            "name": "Cloudburst Griffon",
+            "stub": "cloudburst-griffon",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "text": "Quick Strike: While this unit is attacking, it deals its damage before units in battle with it.",
+            "attack": 3,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
+        },
+        {
             "name": "Coal Roarkwin",
             "stub": "coal-roarkwin",
             "type": "Phoenixborn",
@@ -1237,6 +1252,33 @@
             "attack": 3,
             "life": 2,
             "recover": 0
+        },
+        {
+            "name": "Crystal Archer",
+            "stub": "crystal-archer",
+            "type": "Ally",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[divine:class]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "divine",
+                "time"
+            ],
+            "magicCost": {
+                "divine:class": 1,
+                "time:class": 1
+            },
+            "text": "Preemptive Shot 1: When this unit is declared as an attacker, blocker, or guard, you may deal 1 damage to a target unit an opponent controls.",
+            "attack": 2,
+            "life": 2,
+            "recover": 1
         },
         {
             "name": "Crystal Armor",
@@ -1407,6 +1449,26 @@
             "spellboard": 3
         },
         {
+            "name": "Disengage",
+            "stub": "disengage",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]",
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "You may play this spell after an opponent declares blockers. Choose an attacking ally you control that is blocked. It is no longer attacking. Place 1 exhaustion token on the target unit that was blocking the chosen ally."
+        },
+        {
             "name": "Dispel",
             "stub": "dispel",
             "type": "Action Spell",
@@ -1465,6 +1527,51 @@
             "life": 6,
             "recover": 0,
             "copies": 2
+        },
+        {
+            "name": "Dream Fracture",
+            "stub": "dream-fracture",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            },
+            "text": "[[main]] - [[exhaust]]: Choose a target opponent that has 1 or more dice in their active pool. Lower 1 die in their active pool one level. Then, deal 1 damage to their target Phoenixborn if they have no dice on their power side in their active pool."
+        },
+        {
+            "name": "Dreamlock Mage",
+            "stub": "dreamlock-mage",
+            "type": "Ally",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "2 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 2
+            },
+            "text": "Restrict 1: [[side]]: Lower 1 die on its power side in a target opponent's active pool one level.",
+            "attack": 2,
+            "life": 3,
+            "recover": 1
         },
         {
             "name": "Earthquake",
@@ -2969,6 +3076,23 @@
             "attack": 2,
             "life": 2,
             "recover": 1
+        },
+        {
+            "name": "Keepsake",
+            "stub": "keepsake",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "text": "After 1 or more dice in an opponent’s active pool are re-rolled, lowered in level, or changed to a side of your choice, place 1 status token on this spell for each affected die, without exceeding four on this spell.\n\n[[main]], 1 [[illusion:class]]: Discard this spell. Deal damage to a target unit equal to the number of status tokens that were on this spell."
         },
         {
             "name": "Kneel",
@@ -5765,6 +5889,30 @@
                 {
                     "name": "Cerasaurus Mount",
                     "stub": "cerasaurus-mount"
+                }
+            ]
+        },
+        {
+            "name": "Summon Cloudburst Griffon",
+            "stub": "summon-cloudburst-griffon",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "divine",
+                "time"
+            ],
+            "text": "[[main]] - [[exhaust]] - 1 [[illusion:divine]] - 1 [[time:class]]: Place a [[Cloudburst Griffon]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Cloudburst Griffon",
+                    "stub": "cloudburst-griffon"
                 }
             ]
         },
