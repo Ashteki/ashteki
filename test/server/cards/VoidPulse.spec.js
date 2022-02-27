@@ -41,13 +41,42 @@ describe('Void pulse', function () {
             this.player1.clickOpponentDie(0);
             this.player1.clickOpponentDie(1);
 
-            this.player1.clickDone(); // Finishes all card effects
+            this.player1.clickDone(); // finishes all card effects
 
             expect(this.player2.dicepool[0].level).toBe('basic');
             expect(this.player2.dicepool[1].level).toBe('basic');
 
             expect(this.voidPulse.location).toBe('discard');
             expect(this.sonicSwordsman.location).toBe('discard');
+        });
+
+        it("deals damage and doesn't triggers additional benefits when unit is not destroyed", function () {
+            let myDeck = this.player1.deck.length;
+
+            this.player1.clickAttack(this.rinNorthfell);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.salamanderMonk);
+            this.player1.clickDone();
+
+            this.player1.clickCard(this.voidPulse);
+            this.player1.clickDie(0);
+
+            this.player1.clickCard(this.sonicSwordsman); // damage sonic swordsman
+
+            this.player2.clickDone(); // no blockers
+
+            expect(this.player1.deck.length).toBe(myDeck); // didn't draw 2 cards
+
+            // try change dice
+            this.player1.clickOpponentDie(0);
+            this.player1.clickOpponentDie(1);
+
+            // dice didn't change
+            expect(this.player2.dicepool[0].level).toBe('power');
+            expect(this.player2.dicepool[1].level).toBe('power');
+
+            expect(this.voidPulse.location).toBe('discard');
+            expect(this.sonicSwordsman.damage).toBe(2);
         });
     });
 });
