@@ -15,22 +15,28 @@ class VoidPulse extends Card {
                 activePromptTitle: 'Choose a unit to receive damage',
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({
-                    amount: this.game.attackState.battles.length // X = the number of attackers. Need to test
-                })
+                gameAction: ability.actions.dealDamage((context) => ({
+                    amount: this.getAttackers(context) // X = the number of attackers
+                }))
             },
             then: {
                 condition: (context) => context.preThenEvent.destroyEvent,
-                gameAction: [
-                    ability.actions.draw({ amount: 2 }),
-                    // TODO: this needs restricting to a single player
-                    ability.actions.changeDice((context) => ({
+                gameAction: ability.actions.draw({ amount: 2 }),
+                // TODO: this needs restricting to a single player, and should target that player.
+                then: (context) => ({
+                    alwaysTriggers: true,
+                    gameAction: ability.actions.changeDice({
                         numDice: 2,
                         owner: context.player.checkRestrictions('changeOpponentsDice') ? 'any' : 'self'
-                    }))
-                ]
+                    })
+                })
             }
         });
+    }
+
+    getAttackers(context) {
+        const attackers = context.player.unitsInPlay.filter((c) => c.isAttacker).length;
+        return attackers;
     }
 }
 
