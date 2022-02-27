@@ -16,7 +16,6 @@ describe('Empyrean Mount', function () {
                     spellboard: ['summon-butterfly-monk']
                 }
             });
-            //this.hammerKnight.tokens.exhaustion = 1;
         });
 
         it('forces unit to block', function () {
@@ -34,7 +33,7 @@ describe('Empyrean Mount', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
             expect(this.player2).toBeAbleToSelect(this.hammerKnight);
             this.player2.clickCard(this.hammerKnight);
-            //expect(this.player2).not.toBeAbleToSelect(this.empyreanMount); //failing
+            //expect(this.player2).not.toBeAbleToSelect(this.empyreanMount); //failing, as yet to implement
         });
     });
 });

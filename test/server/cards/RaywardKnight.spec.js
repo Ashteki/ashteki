@@ -59,7 +59,7 @@ describe('Rayward Knight ', function () {
             //this.player1.clickCard(this.raywardKnight); // Shouldn't need to declare the attacker; it should be implicit from the function
             this.player1.clickPrompt('Done');
 
-            this.player2.clickPrompt('Done'); // no guard
+            this.player2.clickPrompt('Done'); // no guard. This test currently fails here, with Waiting for Opponent
             this.player2.clickPrompt('No'); // no counter
 
             expect(this.ironWorker.location).toBe('discard');
