@@ -14,7 +14,7 @@ class FoxSpirit extends Card {
             },
             gameAction: ability.actions.cardLastingEffect({
                 duration: 'untilEndOfTurn',
-                target: 'self',
+                target: 'self', //target: context.source,
                 effect: ability.effects.modifyAttack(2)
             })
         });
