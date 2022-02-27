@@ -18,7 +18,6 @@ class RaywardKnight extends Card {
                 gameAction: ability.actions.shuffleDeck()
             }
         });
-
         this.action({
             title: 'Charge',
             cost: [ability.costs.sideAction()],
@@ -30,9 +29,9 @@ class RaywardKnight extends Card {
                 //mode: 'select',
                 //numCards: 1,
                 cardType: BattlefieldTypes,
-                onSelect: (card) => {
-                    this.game.initiateUnitAttack(card); //Attack is being initiated
-                    //TODO: I need a way to force Attacker to be Rayward Knight, as this happens in AttackFlow
+                onSelect: (player, card) => {
+                    this.game.initiateUnitAttack(card, this);
+                    return true;
                 }
             }
         });

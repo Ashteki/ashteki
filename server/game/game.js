@@ -1302,8 +1302,8 @@ class Game extends EventEmitter {
         this.pipeline.continue();
     }
 
-    initiateUnitAttack(target) {
-        this.queueStep(new AttackFlow(this, target));
+    initiateUnitAttack(target, attacker = null) {
+        this.queueStep(new AttackFlow(this, target, attacker));
     }
 
     initiatePBAttack(target) {
