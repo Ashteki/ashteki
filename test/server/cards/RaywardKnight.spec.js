@@ -58,7 +58,7 @@ describe('Rayward Knight ', function () {
             this.player1.clickCard(this.ironWorker); // attack Iron Worker
             // no need to declare the attacker;
 
-            this.player2.clickPrompt('Done'); // no guard. This test currently fails here, with Waiting for Opponent
+            this.player2.clickPrompt('Done'); // no guard
             this.player2.clickPrompt('No'); // no counter
 
             expect(this.ironWorker.location).toBe('discard');
