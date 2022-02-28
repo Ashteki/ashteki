@@ -101,6 +101,7 @@ class AshesDeckService {
         }
 
         let newDeck = this.parseAshesLiveDeckResponse(user, deckResponse);
+        newDeck.ashesLiveUuid = deck.uuid;
 
         let response = await this.create(newDeck);
 
@@ -119,7 +120,8 @@ class AshesDeckService {
             ],
             dicepool: ashesDeck.dice.map((d) => ({ magic: d.name, count: d.count })),
             cards: ashesDeck.cards.map((c) => ({ id: c.stub, count: c.count })),
-            conjurations: ashesDeck.conjurations.map((c) => ({ id: c.stub, count: c.count }))
+            conjurations: ashesDeck.conjurations.map((c) => ({ id: c.stub, count: c.count })),
+            ashesLiveModified: ashesDeck.modified
         };
     }
 
@@ -131,7 +133,9 @@ class AshesDeckService {
             cards: deck.cards,
             conjurations: deck.conjurations,
             lastUpdated: new Date(),
-            created: new Date()
+            created: new Date(),
+            ashesLiveUuid: deck.ashesLiveUuid,
+            ashesLiveModified: deck.ashesLiveModified
         };
         if (isPrecon) {
             properties = Object.assign(properties, {
