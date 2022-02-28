@@ -18,14 +18,25 @@ describe('Dream Fracture', function () {
     });
 
     it("changes one of my opponent's dice", function () {
-        this.player1.clickCard(this.dreamFracture); // Moving the condition up to the top level results in the ability to click this card to disappear
+        this.player1.clickCard(this.dreamFracture);
         this.player1.clickPrompt('Dream Fracture');
-
         this.player1.clickOpponentDie(0);
-        //this.player1.clickPrompt('Done');
-        expect(this.player2.dicepool[0].level).toBe('class');
 
+        expect(this.player2.dicepool[0].level).toBe('class');
         expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it("changes one of my opponent's dice and deals a damage if opponent has no power dice", function () {
+        this.player2.dicepool[0].exhaust();
+        this.player1.clickCard(this.dreamFracture);
+        this.player1.clickPrompt('Dream Fracture');
+        this.player1.clickOpponentDie(1);
+
+        expect(this.player2.dicepool[1].level).toBe('class');
+
+        this.player1.clickCard(this.rinNorthfell); // deal a damage to opposing PB
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.rinNorthfell.tokens.damage).toBe(1);
     });
 
     it("doesn't work if all my opponent's dice are exhausted", function () {
@@ -34,12 +45,6 @@ describe('Dream Fracture', function () {
         expect(this.player2.dicepool[0].exhausted).toBe(true);
         expect(this.player2.dicepool[1].exhausted).toBe(true);
 
-        this.player1.clickCard(this.dreamFracture);
-        this.player1.clickPrompt('Dream Fracture');
-
-        //this.player1.clickOpponentDie(0);
-        //expect(this.player2.dicepool[0].level).toBe('power'); // didn't change die
-
-        expect(this.player1).toHaveDefaultPrompt(); // Currently this is testing false as the condition on target doesn't restrict
+        expect(this.player1).not.toBeAbleToSelect(this.dreamFracture);
     });
 });
