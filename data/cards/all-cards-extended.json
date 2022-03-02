@@ -507,6 +507,12 @@
                 "[[side]]",
                 "1 [[divine:class]]"
             ],
+            "dice": [
+                "divine"
+            ],
+            "magicCost": {
+                "divine:class": 1
+            },
             "text": "Choose up to 3 divine dice in your exhausted pool and resolve their dice powers without paying their costs."
         },
         {
@@ -1507,7 +1513,7 @@
             ],
             "magicCost": {
                 "basic": 1,
-                "time:class": 1
+                "illusion:class": 1
             },
             "text": "You may play this spell after a conjuration you control with a life value of 1 is destroyed as a result of an attack, spell, ability, or dice power an opponent controls. Place 2 copies of that conjuration onto your battlefield."
         },
@@ -4605,6 +4611,10 @@
             "cost": [
                 "[[main]]"
             ],
+            "dice": [
+                "illusion",
+                "time"
+            ],
             "text": "After you pay for a dice power using a [[time:power]] or [[illusion:power]], you may place that die and 1 exhaustion token on this spell if it has no dice on it.\n\n* You may use dice on this spell to pay the cost of reactions. You may place any dice on this spell in your exhausted pool at the end of the round."
         },
         {
@@ -5964,7 +5974,7 @@
                 "divine",
                 "time"
             ],
-            "text": "[[main]] - [[exhaust]] - 1 [[illusion:divine]] - 1 [[time:class]]: Place a [[Cloudburst Gryphon]] conjuration onto your battlefield.",
+            "text": "[[main]] - [[exhaust]] - 1 [[divine:class]] - 1 [[time:class]]: Place a [[Cloudburst Gryphon]] conjuration onto your battlefield.",
             "conjurations": [
                 {
                     "name": "Cloudburst Gryphon",
@@ -6110,6 +6120,9 @@
             "dice": [
                 "illusion"
             ],
+            "magicCost": {
+                "basic": 1
+            },
             "text": "[[main]] - [[exhaust]] - 1 [[illusion:class]]: Place a [[Fox Spirit]] conjuration onto your battlefield.\n\nFocus 1: You may change the activation cost of this spell to [[side]] - [[exhaust]] - 1 [[illusion:class]].",
             "conjurations": [
                 {
