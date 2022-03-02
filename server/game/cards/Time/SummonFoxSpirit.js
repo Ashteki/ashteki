@@ -4,10 +4,25 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonFoxSpirit extends Card {
     setupCardAbilities(ability) {
+        // would prefer to just vary the cost, but had trouble incorporating card focus into the array
         this.action({
             title: 'Summon Fox Spirit',
+            condition: () => this.focus == 0,
             cost: [
-                this.focus > 0 ? ability.costs.chosenAction() : ability.costs.mainAction(),
+                ability.costs.mainAction(),
+                ability.costs.exhaust(),
+                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
+            ],
+            location: 'spellboard',
+            gameAction: ability.actions.summon({
+                conjuration: 'fox-spirit'
+            })
+        });
+        this.action({
+            title: 'Summon Fox Spirit',
+            condition: () => this.focus > 0,
+            cost: [
+                ability.costs.chosenAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
             ],
