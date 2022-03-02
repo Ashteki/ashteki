@@ -1,5 +1,5 @@
 describe('Summon Fox Spirit', function () {
-    describe('Action when not focussed', function () {
+    describe('Action when not focused', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -7,7 +7,6 @@ describe('Summon Fox Spirit', function () {
                     inPlay: ['hammer-knight', 'anchornaut'],
                     dicepool: ['natural', 'time', 'charm', 'charm', 'time', 'illusion'],
                     spellboard: ['summon-fox-spirit'],
-                    hand: ['iron-worker'],
                     archives: ['fox-spirit'],
                     deck: ['anchornaut']
                 },
@@ -27,11 +26,11 @@ describe('Summon Fox Spirit', function () {
             //don't require action type selection
             expect(this.foxSpirit.location).toBe('play area');
             expect(this.player1.actions.main).toBe(false);
-            expect(this.player1).toHavePrompt('Choose a die to raise');
+            expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
         });
     });
 
-    describe('Action when focussed', function () {
+    describe('Action when focused', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -39,7 +38,6 @@ describe('Summon Fox Spirit', function () {
                     inPlay: ['hammer-knight', 'anchornaut'],
                     dicepool: ['natural', 'time', 'charm', 'charm', 'time', 'illusion'],
                     spellboard: ['summon-fox-spirit', 'summon-fox-spirit'],
-                    hand: ['iron-worker'],
                     archives: ['fox-spirit'],
                     deck: ['anchornaut']
                 },
@@ -50,6 +48,7 @@ describe('Summon Fox Spirit', function () {
                     spellboard: ['chant-of-revenge']
                 }
             });
+            this.ironWorker.tokens.exhaustion = 1;
         });
 
         it('choice of main action', function () {
@@ -60,7 +59,7 @@ describe('Summon Fox Spirit', function () {
             expect(this.player1.actions.main).toBe(false);
             expect(this.player1.actions.side).toBe(1);
             expect(this.foxSpirit.location).toBe('play area');
-            expect(this.player1).toHavePrompt('Choose a die to raise');
+            expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
         });
 
         it('choice of side action', function () {
@@ -71,7 +70,13 @@ describe('Summon Fox Spirit', function () {
             expect(this.player1.actions.main).toBe(true);
             expect(this.player1.actions.side).toBe(0);
             expect(this.foxSpirit.location).toBe('play area');
-            expect(this.player1).toHavePrompt('Choose a die to raise');
+            expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.foxSpirit);
+
+            expect(this.foxSpirit.attack).toBe(3); // Pounce
         });
     });
 });

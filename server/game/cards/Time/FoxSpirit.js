@@ -22,11 +22,11 @@ class FoxSpirit extends Card {
                     );
                 }
             },
-            gameAction: ability.actions.cardLastingEffect({
+            gameAction: ability.actions.cardLastingEffect((context) => ({
                 duration: 'untilEndOfTurn',
-                target: 'self', //target: context.source,
+                target: context.source,
                 effect: ability.effects.modifyAttack(2)
-            })
+            }))
         });
     }
 }
