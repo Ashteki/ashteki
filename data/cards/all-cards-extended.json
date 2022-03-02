@@ -1,5 +1,5 @@
 {
-    "count": 345,
+    "count": 348,
     "results": [
         {
             "name": "Abundance",
@@ -1490,6 +1490,28 @@
             "text": "Remove 2 status tokens from a target card or choose a target alteration spell. If that alteration spell is a conjured alteration spell, return it to its owner's conjuration pile. Otherwise, shuffle it into its owner's draw pile."
         },
         {
+            "name": "Double Down",
+            "stub": "double-down",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[illusion:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "time:class": 1
+            },
+            "text": "You may play this spell after a conjuration you control with a life value of 1 is destroyed as a result of an attack, spell, ability, or dice power an opponent controls. Place 2 copies of that conjuration onto your battlefield."
+        },
+        {
             "name": "Drain Vitality",
             "stub": "drain-vitality",
             "type": "Ready Spell",
@@ -1750,6 +1772,26 @@
                 "divine:class": 1
             },
             "text": "Remove 1 exhaustion token from a target card."
+        },
+        {
+            "name": "Ensnare",
+            "stub": "ensnare",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "You may play this spell after an opponent declares a guard. Deal 2 damage to that target guarding unit or Phoenixborn."
         },
         {
             "name": "Essence Druid",
@@ -4550,6 +4592,20 @@
             },
             "text": "* Fleeting: Discard this card at the end of this round.",
             "attack": "-3"
+        },
+        {
+            "name": "Reimagine",
+            "stub": "reimagine",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "text": "After you pay for a dice power using a [[time:power]] or [[illusion:power]], you may place that die and 1 exhaustion token on this spell if it has no dice on it.\n\n* You may use dice on this spell to pay the cost of reactions. You may place any dice on this spell in your exhausted pool at the end of the round."
         },
         {
             "name": "Reinforce",
