@@ -1306,7 +1306,7 @@
             "magicCost": {
                 "divine:class": 1
             },
-            "text": "~ Swift: After an opponent declares attackers, you may play this spell from your hand by paying 1 [[time:power]] instead of its play cost.",
+            "text": "~ After an opponent declares attackers, you may play this spell from your hand by paying 1 [[time:power]] instead of its play cost.",
             "attack": "+1",
             "life": "+1",
             "recover": "+1"
@@ -1446,10 +1446,16 @@
             "stub": "dimona-odinstar",
             "type": "Phoenixborn",
             "release": {
-                "name": "The Queen of Lightning",
-                "stub": "the-queen-of-lightning"
+              "name": "The Queen of Lightning",
+              "stub": "the-queen-of-lightning"
             },
-            "text": "Promote: [[main]] - [[exhaust]] - 2 [[basic]]: Remove an exhausted ally you control from play. If you do, place an [[Empyrial Mount]] conjuration onto your battlefield and place that ally face down under that unit.",
+            "text": "Promote: [[main]] - [[exhaust]] - 2 [[basic]]: Remove an exhausted ally you control from play. If you do, place an [[Empyrean Mount]] conjuration onto your battlefield and place that ally face down under that unit.",
+            "conjurations": [
+              {
+                "name": "Empyrean Mount",
+                "stub": "empyrean-mount"
+              }
+            ],
             "battlefield": 7,
             "life": 16,
             "spellboard": 3
@@ -1506,13 +1512,14 @@
             "placement": "Discard",
             "cost": [
                 "1 [[illusion:class]]",
-                "1 [[basic]]"
+                "1 [[time:class]]"
             ],
             "dice": [
-                "illusion"
+                "illusion",
+                "time"
             ],
             "magicCost": {
-                "basic": 1,
+                "time:class": 1,
                 "illusion:class": 1
             },
             "text": "You may play this spell after a conjuration you control with a life value of 1 is destroyed as a result of an attack, spell, ability, or dice power an opponent controls. Place 2 copies of that conjuration onto your battlefield."
@@ -1789,13 +1796,13 @@
             },
             "placement": "Discard",
             "cost": [
-                "1 [[time:power]]"
+                "1 [[illusion:power]]"
             ],
             "dice": [
-                "time"
+                "illusion"
             ],
             "magicCost": {
-                "time:power": 1
+                "illusion:power": 1
             },
             "text": "You may play this spell after an opponent declares a guard. Deal 2 damage to that target guarding unit or Phoenixborn."
         },
@@ -4378,7 +4385,7 @@
             "magicCost": {
                 "basic": 3
             },
-            "text": "To Arms: When this unit comes into play, you may search your discard pile for an ally and shuffle it into your draw pile.\n\nCharge:[[side]]: Take an Attack action, targetting a unit and declaring this unit as the attacker.",
+            "text": "To Arms: When this unit comes into play, you may search your discard pile for an ally and shuffle it into your draw pile.\n\nCharge:[[side]]: Take an Attack action, targeting a unit and declaring this unit as the attacker.",
             "phoenixborn": "Dimona Odinstar",
             "attack": 3,
             "life": 3,
@@ -4394,7 +4401,7 @@
             },
             "placement": "Battlefield",
             "cost": [
-                "[[side]]",
+                "[[main]]",
                 "1 [[divine:class]]"
             ],
             "dice": [
@@ -4611,7 +4618,7 @@
             "cost": [
                 "[[main]]"
             ],
-            "dice": [
+            "altDice": [
                 "illusion",
                 "time"
             ],
@@ -7451,7 +7458,7 @@
                 "stub": "the-artist-of-dreams"
             },
             "placement": "Battlefield",
-            "text": "Opportunist 1: When this unit comes into play, if you have a [[time:power]] in your active pool, place 1 status token on this unit.\n\n*Bequest X: When this unit is destroyed, you may draw X cards. X = the number of status tokens on this unit.",
+            "text": "Opportunist 1: When this unit comes into play, if you have a [[time:power]] in your active pool, place 1 status token on this unit.\n\n* Bequest X: When this unit is destroyed, you may draw X cards.\n\n* X = the number of status tokens on this unit.",
             "attack": "X",
             "life": 1,
             "recover": 0,
