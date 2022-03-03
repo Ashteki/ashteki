@@ -1,5 +1,3 @@
-const { textChangeRangeIsUnchanged } = require("typescript");
-
 describe('Summon Wishing Wing', function () {
     describe('when not focused', function () {
         beforeEach(function () {
