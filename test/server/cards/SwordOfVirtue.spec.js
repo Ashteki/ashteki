@@ -32,7 +32,7 @@ describe('Sword of Virtue action spell', function () {
         expect(this.ironRhino.damage).toBe(0);
     });
 
-    it('should remove chosen upgrade', function () {
+    it('should destroy a unit', function () {
         this.player1.clickCard(this.swordOfVirtue);
         this.player1.clickPrompt('Play this action');
         this.player1.clickDie(2);

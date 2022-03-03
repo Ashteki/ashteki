@@ -46,7 +46,7 @@ describe('Rayward Knight ', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['frost-fang', 'iron-worker'],
                     dicepool: ['illusion', 'natural'],
-                    hand: ['particle-shield', 'safeguard']
+                    hand: ['safeguard']
                 }
             });
         });
@@ -56,14 +56,14 @@ describe('Rayward Knight ', function () {
             this.player1.clickPrompt('Charge');
 
             this.player1.clickCard(this.ironWorker); // attack Iron Worker
-            //this.player1.clickCard(this.raywardKnight); // Shouldn't need to declare the attacker; it should be implicit from the function
-            this.player1.clickPrompt('Done');
+            // no need to declare the attacker;
 
             this.player2.clickPrompt('Done'); // no guard
             this.player2.clickPrompt('No'); // no counter
 
             expect(this.ironWorker.location).toBe('discard');
             expect(this.raywardKnight.tokens.damage).toBeUndefined();
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
