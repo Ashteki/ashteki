@@ -48,6 +48,7 @@ const Actions = {
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
+    setBlocker: (propertyFactory) => new GameActions.SetBlockerAction(propertyFactory),
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     orderedAoE: (propertyFactory) => new GameActions.OrderedAoEAction(propertyFactory),
 

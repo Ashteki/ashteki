@@ -33,7 +33,18 @@ describe('Empyrean Mount', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
             expect(this.player2).toBeAbleToSelect(this.hammerKnight);
             this.player2.clickCard(this.hammerKnight);
-            //expect(this.player2).not.toBeAbleToSelect(this.empyreanMount); //failing, as yet to implement
+            // EM and chosen unit are in battle together
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
+
+            // player2 cannot swap out chosen blocker
+            expect(this.player2).not.toBeAbleToSelect(this.empyreanMount);
+            this.player2.clickCard(this.empyreanMount);
+
+            // reset button does not clear chosen blocker
+            this.player2.clickPrompt('Clear');
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
         });
     });
 });

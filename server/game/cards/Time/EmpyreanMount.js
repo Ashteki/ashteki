@@ -21,14 +21,15 @@ class EmpyreanMount extends Card {
                 controller: 'opponent',
                 cardCondition: (card, context) =>
                     card !== context.source && card.canBlock(context.source),
-                gameAction: ability.actions.cardLastingEffect((context) => ({
-                    effect: ability.effects.forceBlock(context.source), //TODO: Use this effect to lock the attacker and blocker together
-                    duration: 'untilEndOfTurn'
-                })),
-                //TODO: Fix the following. I am trying to use the AttackState function to start the units off in battle
-                then: (context) => {
-                    this.attack.setBlockerForAttacker(context.preThenEvent.target, context.source);
-                }
+                gameAction: [
+                    ability.actions.cardLastingEffect((context) => ({
+                        effect: ability.effects.forceBlock(context.source), //TODO: Use this effect to lock the attacker and blocker together
+                        duration: 'untilEndOfTurn'
+                    })),
+                    ability.actions.setBlocker((context) => ({
+                        attacker: context.source
+                    }))
+                ]
             }
         });
     }

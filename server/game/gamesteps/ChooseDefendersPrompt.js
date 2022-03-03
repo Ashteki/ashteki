@@ -62,7 +62,14 @@ class ChooseDefendersPrompt extends UiPrompt {
     highlightAttackers() {
         const allNonUnseenBlocked = this.attack.checkUnseen();
         const legalChoices = this.attack.battles
-            .filter((b) => !b.attacker.anyEffect('unseen') || (allNonUnseenBlocked && !this.selectedCard.isDefender))
+            .filter(
+                (b) =>
+                    // Not unseen
+                    (!b.attacker.anyEffect('unseen') ||
+                        (allNonUnseenBlocked && !this.selectedCard.isDefender)) &&
+                    // Not a forceBlock defender
+                    (!b.guard || !b.guard.anyEffect('forceBlock'))
+            )
             .map((b) => b.attacker)
             .filter((a) => this.selectedCard.canBlock(a));
         this.choosingPlayer.setSelectableCards(legalChoices);
