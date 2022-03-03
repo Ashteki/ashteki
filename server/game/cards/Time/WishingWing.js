@@ -3,6 +3,11 @@ const Card = require('../../Card.js');
 
 class WishingWing extends Card {
     setupCardAbilities(ability) {
+        this.persistentEffect({
+            unblankable: true,
+            effect: [ability.effects.setPrintedAttack(() => this.status)]
+        });
+
         this.entersPlay({
             condition: (context) =>
                 context.player.dice.some(
