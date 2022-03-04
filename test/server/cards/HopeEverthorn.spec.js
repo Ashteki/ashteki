@@ -28,6 +28,8 @@ describe('Hope Everthorn', function () {
             this.player1.clickCard(firstHound);
 
             expect(this.player1.archives.length).toBe(0);
+            expect(firstHound.tokens.duplicate).toBeUndefined();
+            expect(secondHound.tokens.duplicate).toBe(1); //check duplicate token applied
 
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.aradelSummergaard);
@@ -46,8 +48,8 @@ describe('Hope Everthorn', function () {
 
             expect(firstHound.location).toBe('play area');
             expect(secondHound.location).toBe('archives');
-            expect(this.player1.inPlay.length).toBe(1); // failing: still 2
-            expect(this.player1.archives.length).toBe(1); // failing: still 0
+            expect(this.player1.inPlay.length).toBe(1);
+            expect(this.player1.archives.length).toBe(1);
         });
     });
 });

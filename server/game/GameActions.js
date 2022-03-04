@@ -3,6 +3,8 @@ const GameActions = require('./GameActions/index');
 const Actions = {
     // card actions
     addDamageToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'damage'),
+    addDuplicateToken: (propertyFactory) =>
+        new GameActions.AddTokenAction(propertyFactory, 'duplicate'),
     addExhaustionToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addGravityFluxToken: (propertyFactory) =>
