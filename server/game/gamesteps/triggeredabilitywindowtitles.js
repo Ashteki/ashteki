@@ -3,6 +3,7 @@ const { AbilityType, CardType, BattlefieldTypes } = require('../../constants');
 
 const EventToTitleFunc = {
     onAttackersDeclared: () => 'attackers being declared',
+    onDefendersDeclared: () => 'defenders being declared',
     // onCardPlayed: (event) => event.card.name + ' being played',
     onCardEntersPlay: (event) => event.card.name + ' being played',
     onAbilityInitiated: GetTargettingTitlePhrase,
