@@ -1,5 +1,149 @@
 [
   {
+    "precon_id": 26,
+    "name": "The Artist of Dreams",
+    "phoenixborn": [
+      {
+        "id": "hope-everthorn",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "double-down",
+        "count": 3
+      },
+      {
+        "id": "dream-fracture",
+        "count": 3
+      },
+      {
+        "id": "dreamlock-mage",
+        "count": 3
+      },
+      {
+        "id": "ensnare",
+        "count": 3
+      },
+      {
+        "id": "keepsake",
+        "count": 3
+      },
+      {
+        "id": "realm-walker",
+        "count": 3
+      },
+      {
+        "id": "reimagine",
+        "count": 3
+      },
+      {
+        "id": "summon-fox-spirit",
+        "count": 3
+      },
+      {
+        "id": "summon-wishing-wing",
+        "count": 3
+      },
+      {
+        "id": "void-pulse",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "fox-spirit",
+        "count": 3
+      },
+      {
+        "id": "wishing-wing",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 25,
+    "name": "The Queen of Lightning",
+    "phoenixborn": [
+      {
+        "id": "dimona-odinstar",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "adept-duelist",
+        "count": 3
+      },
+      {
+        "id": "blessing-of-lightning",
+        "count": 3
+      },
+      {
+        "id": "crystal-archer",
+        "count": 3
+      },
+      {
+        "id": "crystal-armor",
+        "count": 3
+      },
+      {
+        "id": "disengage",
+        "count": 3
+      },
+      {
+        "id": "piercing-light",
+        "count": 3
+      },
+      {
+        "id": "rayward-knight",
+        "count": 3
+      },
+      {
+        "id": "rayward-recruit",
+        "count": 3
+      },
+      {
+        "id": "reinforce",
+        "count": 3
+      },
+      {
+        "id": "summon-cloudburst-gryphon",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "cloudburst-gryphon",
+        "count": 2
+      },
+      {
+        "id": "empyrean-mount",
+        "count": 3
+      }
+    ]
+  },
+  {
     "precon_id": 24,
     "name": "The Messengers of Peace",
     "phoenixborn": [
