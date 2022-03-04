@@ -16,7 +16,7 @@ describe('card attributes', function () {
         });
     });
 
-    it('should deal 1 damage to a target unit', function () {
+    it('check magic costs', function () {
         expect(this.summonButterflyMonk.magicCost).toBe(0);
         expect(this.riverSkald.magicCost).toBe(2);
         expect(this.anchornaut.magicCost).toBe(1);

@@ -85,6 +85,8 @@ class AttackState {
 
     clearAllBlockers() {
         this.battles.forEach((b) => {
+            //Can't remove Forced block
+            if (b.guard?.anyEffect('forceBlock')) return;
             if (b.guard) b.guard.isDefender = false;
             b.guard = null;
         });
@@ -112,6 +114,12 @@ class AttackState {
         };
 
         return state;
+    }
+
+    checkForceBlock() {
+        return !this.battles.some(
+            (b) => b.guard.anyEffect('forceBlock', b.attacker) && !b.attacker
+        );
     }
 
     checkUnseen() {

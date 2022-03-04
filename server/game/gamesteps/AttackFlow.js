@@ -7,7 +7,7 @@ const ChooseDefendersPrompt = require('./ChooseDefendersPrompt');
 const SimpleStep = require('./simplestep');
 
 class AttackFlow extends BaseStepWithPipeline {
-    constructor(game, target = null) {
+    constructor(game, target = null, attackers = null) {
         super(game);
         this.target = target;
         this.isPBAttack = target.type === CardType.Phoenixborn;
@@ -16,8 +16,18 @@ class AttackFlow extends BaseStepWithPipeline {
         game.setAttackState(new AttackState(this.target, this.attackingPlayer));
 
         let steps = [];
+        if (attackers) {
+            let attackerArray = attackers;
+            // add an attacker and skip the declare attackers
+            if (!Array.isArray(attackers)) {
+                attackerArray = [attackers];
+            }
+            this.assignAttackers(attackerArray);
+        } else {
+            steps.push(new SimpleStep(this.game, () => this.declareAttackers()));
+        }
+
         steps = steps.concat([
-            new SimpleStep(this.game, () => this.declareAttackers()),
             new SimpleStep(this.game, () => this.game.attackState.pruneBattles()),
             new ChooseDefendersPrompt(this.game, this.attack),
             new SimpleStep(this.game, () =>
@@ -73,36 +83,7 @@ class AttackFlow extends BaseStepWithPipeline {
                 }
 
                 if (cards.length > 0) {
-                    this.game.addAlert(
-                        'danger',
-                        '{0} attacks {1} with {2}',
-                        this.attackingPlayer,
-                        this.target,
-                        cards
-                    );
-
-                    cards.forEach((c) => {
-                        this.attack.battles.push({
-                            attacker: c,
-                            target: this.target,
-                            guard: null,
-                            counter: false,
-                            resolved: false
-                        });
-                        c.isAttacker = true;
-                        c.wasAttacker = true;
-                    });
-
-                    const costEvent = Costs.mainAction().payEvent(
-                        this.game.getFrameworkContext(this.attackingPlayer)
-                    );
-                    this.game.openEventWindow(costEvent);
-
-                    const params = {
-                        attackingPlayer: this.attackingPlayer,
-                        battles: this.attack.battles
-                    };
-                    this.game.raiseEvent('onAttackersDeclared', params);
+                    this.assignAttackers(cards);
                 }
                 return true;
             },
@@ -111,6 +92,39 @@ class AttackFlow extends BaseStepWithPipeline {
                 return true;
             }
         });
+    }
+
+    assignAttackers(cards) {
+        this.game.addAlert(
+            'danger',
+            '{0} attacks {1} with {2}',
+            this.attackingPlayer,
+            this.target,
+            cards
+        );
+
+        cards.forEach((c) => {
+            this.attack.battles.push({
+                attacker: c,
+                target: this.target,
+                guard: null,
+                counter: false,
+                resolved: false
+            });
+            c.isAttacker = true;
+            c.wasAttacker = true;
+        });
+
+        const costEvent = Costs.mainAction().payEvent(
+            this.game.getFrameworkContext(this.attackingPlayer)
+        );
+        this.game.openEventWindow(costEvent);
+
+        const params = {
+            attackingPlayer: this.attackingPlayer,
+            battles: this.attack.battles
+        };
+        this.game.raiseEvent('onAttackersDeclared', params);
     }
 }
 

@@ -44,6 +44,12 @@ class HandlerMenuPrompt extends UiPrompt {
         this.context =
             properties.context ||
             new AbilityContext({ game: game, player: player, source: this.source });
+
+        if (properties.cards && properties.condition) {
+            this.cardCondition = properties.condition;
+        }
+
+        this.optional = properties.optional;
     }
 
     activeCondition(player) {
@@ -58,7 +64,11 @@ class HandlerMenuPrompt extends UiPrompt {
                 let values = {
                     card: card.name
                 };
-                return { text: text, arg: card.uuid, card: card, values: values };
+                const button = { text: text, arg: card.uuid, card: card, values: values };
+                if (this.cardCondition) {
+                    button.disabled = !this.cardCondition(card);
+                }
+                return button;
             });
         }
 
@@ -71,6 +81,10 @@ class HandlerMenuPrompt extends UiPrompt {
                 return { text: choice, arg: index };
             })
         );
+
+        if (this.optional) {
+            buttons.push({ text: 'Done', arg: 'done' });
+        }
 
         return {
             menuTitle: this.properties.activePromptTitle || 'Select one',
@@ -114,6 +128,11 @@ class HandlerMenuPrompt extends UiPrompt {
     }
 
     menuCommand(player, arg) {
+        if (arg === 'done') {
+            this.complete();
+            return true;
+        }
+
         if (_.isString(arg)) {
             let card = _.find(this.properties.cards, (card) => card.uuid === arg);
             if (card && this.properties.cardHandler) {

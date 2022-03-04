@@ -62,7 +62,14 @@ class ChooseDefendersPrompt extends UiPrompt {
     highlightAttackers() {
         const allNonUnseenBlocked = this.attack.checkUnseen();
         const legalChoices = this.attack.battles
-            .filter((b) => !b.attacker.anyEffect('unseen') || (allNonUnseenBlocked && !this.selectedCard.isDefender))
+            .filter(
+                (b) =>
+                    // Not unseen
+                    (!b.attacker.anyEffect('unseen') ||
+                        (allNonUnseenBlocked && !this.selectedCard.isDefender)) &&
+                    // Not a forceBlock defender
+                    (!b.guard || !b.guard.anyEffect('forceBlock'))
+            )
             .map((b) => b.attacker)
             .filter((a) => this.selectedCard.canBlock(a));
         this.choosingPlayer.setSelectableCards(legalChoices);
@@ -92,7 +99,8 @@ class ChooseDefendersPrompt extends UiPrompt {
         return (
             !attacker.anyEffect('preventblock') &&
             // !this.battles.some((b) => b.guard == card) &&
-            card.canBlock(attacker)
+            card.canBlock(attacker) &&
+            !card.anyEffect('forceBlock') // try to not reassign forced blockers
         );
     }
 
@@ -168,6 +176,16 @@ class ChooseDefendersPrompt extends UiPrompt {
                 }
 
                 if (card.anyEffect('unseen') && this.attack.checkUnseen() && this.selectedCard.isDefender) {
+                    return false;
+                }
+
+                // can't reassign a blocker that is in a forceBlock
+                if (this.selectedCard.anyEffect('forceBlock')) {
+                    return false;
+                }
+
+                // can't assign a new blocker to a battle with a forceBlock
+                if (this.battles.some((b) => b.guard && b.guard.anyEffect('forceBlock', card))) {
                     return false;
                 }
 

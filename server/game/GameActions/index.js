@@ -68,6 +68,7 @@ module.exports = {
     SequentialForEachAction: require('./SequentialForEachAction'),
     SetDieLevelAction: require('./SetDieLevelAction'),
     SetGuardedAction: require('./SetGuardedAction'),
+    SetBlockerAction: require('./SetBlockerAction'),
     ShuffleDeckAction: require('./ShuffleDeckAction'),
     SpendMainAction: require('./SpendMainAction'),
     SpendSideAction: require('./SpendSideAction'),
