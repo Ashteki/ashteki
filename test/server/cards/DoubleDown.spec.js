@@ -72,4 +72,53 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
         });
     });
+    // The following is failing as onDestroyed already has the conjuration in the archives
+    /*describe('triggers respecting summon limits', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
+                    archives: [],
+                    hand: ['molten-gold', 'crimson-bomber']
+                },
+                player2: {
+                    phoenixborn: 'leo-sunshadow',
+                    inPlay: ['glow-finch', 'butterfly-monk'],
+                    spellboard: ['summon-shadow-spirit'],
+                    hand: ['double-down'],
+                    dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
+                    archives: ['butterfly-monk']
+                }
+            });
+        });
+
+        it('cannot place unit that is not in conjuration pile', function () {
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(this.glowFinch);
+            //Last Request 2
+            this.player2.clickPrompt('Yes');
+
+            expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
+            this.player2.clickCard(this.doubleDown);
+
+            expect(this.player2.inPlay.length).toBe(1);
+        });
+
+        it('can only place one unit if that is all that is in conjuration pile', function () {
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(this.butterflyMonk);
+            //Mend 1
+            this.player2.clickCard(this.leoSunshadow);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Butterfly Monk being destroyed?');
+            this.player2.clickCard(this.doubleDown);
+
+            expect(this.player2.inPlay.length).toBe(2);
+        });
+    });*/
 });

@@ -21,16 +21,20 @@ class HopeEverthorn extends Card {
                 conjuration: context.target.id,
                 showMessage: true
             })),
-            //TODO: need a visual indicator for the duplicate so we know which one will be destroyed at end of turn
             then: (thenContext) => ({
-                gameAction: ability.actions.lastingEffect({
-                    when: {
-                        onTurnEnded: () => true
-                    },
-                    gameAction: ability.actions.destroy({
+                gameAction: [
+                    ability.actions.addDuplicateToken({
                         target: thenContext.summoned
+                    }),
+                    ability.actions.lastingEffect({
+                        when: {
+                            onTurnEnded: () => true
+                        },
+                        gameAction: ability.actions.destroy({
+                            target: thenContext.summoned
+                        })
                     })
-                })
+                ]
             })
         });
     }
