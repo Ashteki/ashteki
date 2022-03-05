@@ -73,7 +73,7 @@ describe('Double Down', function () {
         });
     });
     // The following is failing as onDestroyed already has the conjuration in the archives
-    /*describe('triggers respecting summon limits', function () {
+    describe('triggers respecting summon limits', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -105,7 +105,7 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
             this.player2.clickCard(this.doubleDown);
 
-            expect(this.player2.inPlay.length).toBe(1);
+            expect(this.player2.inPlay.length).toBe(2); // PB plus Iron Worker
         });
 
         it('can only place one unit if that is all that is in conjuration pile', function () {
@@ -118,7 +118,7 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Butterfly Monk being destroyed?');
             this.player2.clickCard(this.doubleDown);
 
-            expect(this.player2.inPlay.length).toBe(2);
+            expect(this.player2.inPlay.length).toBe(3); // PB plus Iron Worker plus Butterfly Monk
         });
-    });*/
+    });
 });
