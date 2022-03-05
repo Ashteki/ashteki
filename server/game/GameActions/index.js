@@ -54,6 +54,7 @@ module.exports = {
     RecoverAction: require('./RecoverAction'),
     RemoveAllTokensAction: require('./RemoveAllTokensAction'),
     RemoveFromBattleAction: require('./RemoveFromBattleAction'),
+    RemoveAttackerAction: require('./RemoveAttackerAction'),
     RemoveTokenAction: require('./RemoveTokenAction'),
     RerollDiceAction: require('./RerollDiceAction'),
     RerollDieAction: require('./RerollDieAction'),

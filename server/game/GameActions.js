@@ -41,6 +41,7 @@ const Actions = {
     removeExhaustion: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
     removeFromBattle: (propertyFactory) => new GameActions.RemoveFromBattleAction(propertyFactory),
+    removeAttacker: (propertyFactory) => new GameActions.RemoveAttackerAction(propertyFactory),
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
     removeToken: (propertyFactory, type) =>
         new GameActions.RemoveTokenAction(propertyFactory, type),

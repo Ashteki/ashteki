@@ -48,12 +48,30 @@ class AttackState {
 
                 // can remove attackers (whole battle)
                 if (b.attacker === card) {
-                    card.isAttacker = false;
-                    b.attacker = null;
-                    this.battles = this.battles.filter((bf) => bf !== b);
+                    this.removeAttacker(card, b);
                     return;
                 }
             });
+    }
+
+    removeAttacker(card, battle, exhaustDefender) {
+        // are we given the battle?
+        let bat = battle
+            ? battle
+            : this.battles.filter((b) => !b.resolved).find((b) => b.attacker === card);
+        if (!bat) {
+            return;
+        }
+
+        // remove attacker status
+        card.isAttacker = false;
+        bat.attacker = null;
+
+        if (exhaustDefender) {
+            bat.guard.exhaust();
+        }
+        // trim battle
+        this.battles = this.battles.filter((bf) => bf !== bat);
     }
 
     pruneBattles() {
