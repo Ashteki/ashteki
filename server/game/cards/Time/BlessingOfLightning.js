@@ -5,6 +5,8 @@ class BlessingOfLightning extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
+                activePromptTitle:
+                    'Choose up to 3 exhausted Divine dice to resolve their dice power',
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 3,
