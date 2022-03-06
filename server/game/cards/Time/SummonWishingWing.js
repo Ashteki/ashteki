@@ -22,7 +22,8 @@ class SummonWishingWing extends Card {
             then: {
                 condition: (context) => context.source.focus >= 2,
                 gameAction: ability.actions.addStatusToken((context) => ({
-                    target: context.preThenEvent.cards
+                    target: context.preThenEvent.cards,
+                    showMessage: true
                 }))
             }
         });

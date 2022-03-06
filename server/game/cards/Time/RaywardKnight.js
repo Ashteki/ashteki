@@ -6,7 +6,7 @@ class RaywardKnight extends Card {
         this.entersPlay({
             title: 'To Arms',
             target: {
-                activePromptTitle: 'Choose up to 1 ally to shuffle into your deck',
+                activePromptTitle: 'Choose an ally to shuffle into your deck',
                 optional: true,
                 controller: 'self',
                 cardType: CardType.Ally,
