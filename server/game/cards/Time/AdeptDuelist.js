@@ -17,7 +17,7 @@ class AdeptDuelist extends Card {
                 optional: true,
                 activePromptTitle: 'Choose an alteration to discard',
                 cardType: UpgradeCardTypes,
-                // controller: 'opponent',
+                controller: 'opponent',
                 // condition: (card) => BattlefieldTypes.includes(card.parent.type),
                 gameAction: ability.actions.discard()
             }
