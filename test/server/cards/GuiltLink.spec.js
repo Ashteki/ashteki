@@ -4,7 +4,7 @@ describe('Guilt link', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['iron-worker'],
+                    inPlay: ['iron-worker', 'iron-rhino'],
                     dicepool: ['natural', 'illusion', 'charm', 'charm', 'natural', 'natural'],
                     hand: ['molten-gold', 'one-hundred-blades']
                 },
@@ -47,6 +47,19 @@ describe('Guilt link', function () {
             this.player1.clickPrompt('Done');
             this.player2.clickPrompt('Done'); // no blocker
             expect(this.guiltLink.status).toBe(0);
+        });
+
+        it('no status token on overkill', function () {
+            expect(this.guiltLink.status).toBe(0);
+
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.ironRhino);
+            this.player2.clickPrompt('Done'); // no blocker
+            this.player2.clickYes(); // counter
+            expect(this.coalRoarkwin.damage).toBe(2);
+            expect(this.guiltLink.status).toBe(0);
+            expect(this.player1).toHaveDefaultPrompt();
         });
 
         it('no status token on Action Spell', function () {
