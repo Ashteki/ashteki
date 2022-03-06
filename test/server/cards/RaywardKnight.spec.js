@@ -27,7 +27,7 @@ describe('Rayward Knight ', function () {
             this.player1.clickDone();
             expect(this.raywardKnight.location).toBe('play area');
 
-            expect(this.player1).toHavePrompt('Choose up to 1 ally to shuffle into your deck');
+            expect(this.player1).toHavePrompt('Choose an ally to shuffle into your deck');
 
             this.player1.clickCard(this.hammerKnight); // in discard
             expect(this.hammerKnight.location).not.toBe('discard');

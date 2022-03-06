@@ -24,7 +24,6 @@ describe('Rayward Recruit ', function () {
             expect(this.raywardRecruit.location).toBe('play area');
             expect(this.player1).not.toBeAbleToSelectDie(this.player1.dicepool[1]);
 
-            expect(this.player1).toHavePrompt('Choose a die');
             this.player1.clickDie(0);
             this.player1.clickCard(this.raywardRecruit);
             expect(this.raywardRecruit.attack).toBe(1);
