@@ -20,7 +20,14 @@ const Costs = {
     }),
     exhaustDie: () => ({
         canPay: (context) => !context.source.exhausted,
-        payEvent: (context) => context.game.actions.exhaustDie().getEvent(context.source, context)
+        payEvent: (context) =>
+            context.game.getEvent(
+                'onDiePowerSpent',
+                { die: context.source, player: context.player },
+                () => {
+                    context.game.actions.exhaustDie().getEvent(context.source, context);
+                }
+            )
     }),
     use: () => ({
         // exhausted game objects can't be used

@@ -164,6 +164,13 @@ class Player extends GameObject {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
     }
 
+    getSpendableDice() {
+        const spendableUpgrades = this.cardsInPlay
+            .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades)
+            .reduce((agg, card) => agg.push(card.dieUpgrades), []);
+        return this.dice;//.concat(spendableUpgrades);
+    }
+
     /**
      * Draws the passed number of cards from the top of the deck into this players hand
      * @param {number} numCards

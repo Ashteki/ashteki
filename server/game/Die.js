@@ -339,6 +339,10 @@ class Die extends PlayableObject {
 
     setupAbilities() {
         switch (this.magic) {
+            case 'illusion':
+            case 'time':
+                this.attachable = true;
+                break;
             case 'charm':
                 this.attachable = true;
                 this.whileAttached({
