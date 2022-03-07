@@ -23,6 +23,7 @@ const SelectDeckModal = ({ onClose, onDeckSelected }) => {
                             <TabList>
                                 <Tab>My Decks</Tab>
                                 <Tab>Pre-con Decks</Tab>
+                                <Tab>Building Basics</Tab>
                                 <Tab>Adventuring Party</Tab>
                             </TabList>
 
@@ -31,6 +32,9 @@ const SelectDeckModal = ({ onClose, onDeckSelected }) => {
                             </TabPanel>
                             <TabPanel>
                                 <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
+                            </TabPanel>
+                            <TabPanel>
+                                <DeckList standaloneDecks={3} onDeckSelected={onDeckSelected} />
                             </TabPanel>
                             <TabPanel>
                                 <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
