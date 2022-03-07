@@ -33,6 +33,7 @@ describe('Reimagine', function () {
             expect(this.ironWorker.status).toBe(1);
             // this.player1.clickCard(this.reimagine);
             expect(this.reimagine.dieUpgrades.length).toBe(1);
+            expect(this.reimagine.exhausted).toBe(true);
         });
     });
 });
