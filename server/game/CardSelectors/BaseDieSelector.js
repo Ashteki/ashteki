@@ -18,12 +18,12 @@ class BaseDieSelector {
         }
 
         if (this.owner === 'self') {
-            return context.player.dice;
+            return context.player.getSpendableDice();
         } else if (this.owner === 'opponent') {
-            return context.player.opponent.dice;
+            return context.player.opponent.getSpendableDice();
         }
 
-        return context.player.dice.concat(context.player.opponent.dice);
+        return context.player.getSpendableDice().concat(context.player.opponent.getSpendableDice());
     }
 
     canTarget(die, context) {

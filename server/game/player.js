@@ -49,6 +49,7 @@ class Player extends GameObject {
         this.dice = [];
         this.diceCounts = [];
         this.firstPlayer = false;
+        this.left = false;
     }
 
     get name() {
@@ -165,9 +166,10 @@ class Player extends GameObject {
     }
 
     getSpendableDice() {
-        const spendableUpgrades = this.cardsInPlay
+        // this assumes all spendable dice are on ready spells
+        const spendableUpgrades = this.spellboard
             .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades)
-            .reduce((agg, card) => agg.push(card.dieUpgrades), []);
+            .reduce((agg, card) => agg.concat(card.dieUpgrades), []);
         return this.dice.concat(spendableUpgrades);
     }
 

@@ -5,6 +5,7 @@ class AttachDieAction extends DiceGameAction {
     setDefaultProperties() {
         this.upgradeDie = null;
         this.upgradeChosenOnResolution = false;
+        this.unexhaust = false;
     }
 
     setup() {
@@ -51,7 +52,12 @@ class AttachDieAction extends DiceGameAction {
     getEvent(targetCard, context) {
         return super.createEvent(
             'onDieAttached',
-            { die: this.upgradeDie, parent: targetCard, context: context },
+            {
+                die: this.upgradeDie,
+                parent: targetCard,
+                context: context,
+                unexhaust: this.unexhaust
+            },
             (event) => {
                 if (event.die.location === 'play area') {
                     event.die.parent.removeDieAttachment(event.die);
@@ -66,6 +72,9 @@ class AttachDieAction extends DiceGameAction {
                 if (event.die.owner !== event.context.player) {
                     event.die.owner = event.context.player;
                     event.die.updateEffectContexts();
+                }
+                if (event.die.parent.canSpendDieUpgrades) {
+                    event.die.ready();
                 }
             }
         );

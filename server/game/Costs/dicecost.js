@@ -8,7 +8,7 @@ class DiceCost {
     }
 
     canPay(context) {
-        return Dice.canMatch(context.player.dice, this.getDiceReq(context));
+        return Dice.canMatch(context.player.getSpendableDice(), this.getDiceReq(context));
     }
 
     // eslint-disable-next-line no-unused-vars

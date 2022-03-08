@@ -4,7 +4,6 @@ const Card = require('../../Card.js');
 class Reimagine extends Card {
     setupCardAbilities(ability) {
         this.forcedReaction({
-            // autoResolve: true,
             when: {
                 onDiePowerSpent: (event, context) =>
                     event.player === context.player &&
@@ -24,20 +23,13 @@ class Reimagine extends Card {
             ]
         });
 
-        this.action({
-            title: 'Use Die',
-            condition: (context) => context.source.dieUpgrades.length > 0,
-            cost: [ability.costs.sideAction(), ability.costs.exhaust()],
-            target: {
-                toSelect: 'die',
-                from: (context) => context.source.dieUpgrades,
-                gameAction: this.game.actions.resolveDieAbility()
-            }
-        });
-
         this.persistentEffect({
             effect: ability.effects.preventAutoDice()
         });
+    }
+
+    get canSpendDieUpgrades() {
+        return true;
     }
 }
 
