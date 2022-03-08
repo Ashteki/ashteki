@@ -16,13 +16,13 @@ class RerollDiceAction extends DiceGameAction {
     getEventArray(context) {
         return [
             super.createEvent(
-                'unnamedEvent',
-                { dice: context.target, context: context },
+                'onDiceRerolled',
+                { dice: context.target, context: context, diceOwner: context.target[0].owner },
                 (event) => {
                     event.dice.forEach(d => {
                         d.level = Dice.getRandomDieLevel();
                     });
-                    context.game.addMessage('{0} rolls {1}', event.dice[0].owner, event.dice);
+                    context.game.addMessage('{0} rolls {1}', event.diceOwner, event.dice);
                 }
             )
         ];
