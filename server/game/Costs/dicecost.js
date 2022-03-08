@@ -8,7 +8,7 @@ class DiceCost {
     }
 
     canPay(context) {
-        return Dice.canMatch(context.player.getSpendableDice(), this.getDiceReq(context));
+        return Dice.canMatch(context.player.getSpendableDice(context), this.getDiceReq(context));
     }
 
     // eslint-disable-next-line no-unused-vars
@@ -83,6 +83,13 @@ class DiceCost {
         const exhaustEvents = context.game.actions
             .exhaustDie({ target: context.costs.returnDice })
             .getEventArray(context);
+        // spent dice are placed in the dice pool (removed from cards)
+        context.costs.returnDice.forEach((die) => {
+            if (die.parent) {
+                payEvent.addChildEvent(context.game.actions.detachDie().getEvent(die, context))
+            }
+        });
+
         for (let event of exhaustEvents) {
             payEvent.addChildEvent(event);
         }

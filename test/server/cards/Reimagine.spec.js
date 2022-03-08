@@ -4,7 +4,7 @@ describe('Reimagine', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    hand: ['rose-fire-dancer', 'ensnare'],
+                    hand: ['rose-fire-dancer', 'ensnare', 'hidden-power'],
                     spellboard: ['reimagine'],
                     dicepool: ['illusion', 'time'],
                     archives: ['butterfly-monk'],
@@ -25,7 +25,7 @@ describe('Reimagine', function () {
         */
 
         it('use time power dice, to place on card', function () {
-            this.player1.clickDie(2);
+            this.player1.clickDie(1);
             this.player1.clickPrompt('Time Dice Power');
             this.player1.clickYes();
             this.player1.clickCard(this.ironWorker);
@@ -38,6 +38,7 @@ describe('Reimagine', function () {
 
         it('spend hosted dice on a reaction', function () {
             // set up
+            const targetDie = this.player1.dicepool[0];
             this.player1.clickDie(0);
             this.player1.clickPrompt('Illusion Dice Power');
             this.player1.clickYes();
@@ -45,6 +46,7 @@ describe('Reimagine', function () {
             this.player1.clickDone();
             expect(this.reimagine.dieUpgrades.length).toBe(1);
             expect(this.reimagine.exhausted).toBe(true);
+            expect(targetDie.exhausted).toBe(false); // hosted die is ready
 
             // use as reaction payment
             this.player1.clickAttack(this.holyKnight);
@@ -52,7 +54,30 @@ describe('Reimagine', function () {
             this.player2.clickCard(this.coalRoarkwin); // guard
             expect(this.player1).not.toHaveDefaultPrompt();
             this.player1.clickCard(this.ensnare);
+            this.player1.clickDieUpgrade(this.reimagine, 0);
+            expect(this.coalRoarkwin.damage).toBe(2 + 2); // IW damage plus ensnsare damage
+            expect(targetDie.exhausted).toBe(true); // hosted die is spent
+            expect(targetDie.location).toBe('dicepool');
+        });
+
+        it('cannot spend hosted dice on action spell', function () {
+            // set up
+            const targetDie = this.player1.dicepool[0];
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Illusion Dice Power');
+            this.player1.clickYes();
+            this.player1.clickOpponentDie(0);
             this.player1.clickDone();
+            expect(this.reimagine.dieUpgrades.length).toBe(1);
+            expect(this.reimagine.exhausted).toBe(true);
+            expect(targetDie.exhausted).toBe(false); // hosted die is ready
+
+            expect(this.player1).toHaveDefaultPrompt();
+
+            // cannot spend on action spell
+            expect(this.player1).not.toBeAbleToSelect(this.hiddenPower);
+            this.player1.clickCard(this.hiddenPower);
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });

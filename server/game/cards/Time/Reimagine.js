@@ -1,4 +1,4 @@
-const { Level, Magic } = require('../../../constants.js');
+const { Level, Magic, CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Reimagine extends Card {
@@ -28,8 +28,8 @@ class Reimagine extends Card {
         });
     }
 
-    get canSpendDieUpgrades() {
-        return true;
+    canSpendDieUpgrades(context) {
+        return context.source?.type === CardType.ReactionSpell || context.playedAsReaction;
     }
 }
 

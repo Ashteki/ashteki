@@ -44,7 +44,8 @@ describe('more playcost parsing', function () {
         ];
         const p = {
             dice: playerDice,
-            actions: { main: true, side: true }
+            actions: { main: true, side: true },
+            getSpendableDice: () => playerDice
         };
         const canpay = diceCosts[0].canPay({ player: p });
         expect(canpay).toBe(true);

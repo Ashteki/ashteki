@@ -165,10 +165,10 @@ class Player extends GameObject {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
     }
 
-    getSpendableDice() {
+    getSpendableDice(context) {
         // this assumes all spendable dice are on ready spells
         const spendableUpgrades = this.spellboard
-            .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades)
+            .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades(context))
             .reduce((agg, card) => agg.concat(card.dieUpgrades), []);
         return this.dice.concat(spendableUpgrades);
     }

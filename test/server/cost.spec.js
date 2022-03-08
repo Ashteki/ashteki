@@ -102,7 +102,10 @@ describe('playcost parsing', function () {
             { uuid: '4', magic: 'ceremonial', level: 'class' },
             { uuid: '5', magic: 'ceremonial', level: 'power' }
         ];
-        const p = { dice: playerDice };
+        const p = {
+            dice: playerDice,
+            getSpendableDice: () => playerDice
+        };
         const canpay = diceCosts[0].canPay({ player: p });
         expect(canpay).toBe(true);
     });
