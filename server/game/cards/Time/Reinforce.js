@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class Reinforce extends Card {
     setupCardAbilities(ability) {
-        this.play({
+        this.action({
             title: 'Reinforce',
             gameAction: [
                 ability.actions.moveCard((context) => ({
