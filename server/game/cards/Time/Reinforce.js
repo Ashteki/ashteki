@@ -5,6 +5,7 @@ class Reinforce extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Reinforce',
+            cost: [ability.costs.mainAction(), ability.costs.exhaust()],
             gameAction: [
                 ability.actions.moveCard((context) => ({
                     showMessage: true,
