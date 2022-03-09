@@ -7,12 +7,13 @@ const ChooseDefendersPrompt = require('./ChooseDefendersPrompt');
 const SimpleStep = require('./simplestep');
 
 class AttackFlow extends BaseStepWithPipeline {
-    constructor(game, target = null, attackers = null) {
+    constructor(game, target = null, attackers = null, ignoreMainCost = false) {
         super(game);
         this.target = target;
         this.isPBAttack = target.type === CardType.Phoenixborn;
         this.attackingPlayer = this.game.activePlayer;
         this.defendingPlayer = target.controller;
+        this.ignoreMainCost = ignoreMainCost;
         game.setAttackState(new AttackState(this.target, this.attackingPlayer));
 
         let steps = [];
@@ -115,10 +116,12 @@ class AttackFlow extends BaseStepWithPipeline {
             c.wasAttacker = true;
         });
 
-        const costEvent = Costs.mainAction().payEvent(
-            this.game.getFrameworkContext(this.attackingPlayer)
-        );
-        this.game.openEventWindow(costEvent);
+        if (!this.ignoreMainCost) {
+            const costEvent = Costs.mainAction().payEvent(
+                this.game.getFrameworkContext(this.attackingPlayer)
+            );
+            this.game.openEventWindow(costEvent);
+        }
 
         const params = {
             attackingPlayer: this.attackingPlayer,

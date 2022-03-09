@@ -30,7 +30,7 @@ class RaywardKnight extends Card {
                 //numCards: 1,
                 cardType: BattlefieldTypes,
                 onSelect: (player, card) => {
-                    this.game.initiateUnitAttack(card, this);
+                    this.game.initiateUnitAttack(card, this, true);
                     return true;
                 }
             }
