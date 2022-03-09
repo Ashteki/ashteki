@@ -1,4 +1,4 @@
-const { BattlefieldTypes, UpgradeCardTypes } = require('../../../constants.js');
+const { UpgradeCardTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class AdeptDuelist extends Card {

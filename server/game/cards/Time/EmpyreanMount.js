@@ -10,8 +10,10 @@ class EmpyreanMount extends Card {
             when: {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker and the target is a Phoenixborn
-                    return (b) =>
-                        b.attacker === context.source && b.target.type === CardType.Phoenixborn;
+                    return event.battles.some(
+                        (b) =>
+                            b.attacker === context.source && b.target.type === CardType.Phoenixborn
+                    );
                 }
             },
             target: {
