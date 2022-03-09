@@ -10,7 +10,15 @@ class Keepsake extends Card {
             when: {
                 onDiceRerolled: (event, context) => event.diceOwner === context.player.opponent,
                 onDieChange: (event, context) =>
-                    event.diceOwner === context.player.opponent && event.change === 'lower'
+                    event.diceOwner === context.player.opponent && event.change === 'lower',
+                onChangeDice: (event, context) => {
+                    // I'm changing the dice
+                    return (
+                        event.player === context.player &&
+                        event.owner !== 'self' &&
+                        event.context.changedDice.some((d) => d.owner === context.player.opponent)
+                    );
+                }
             },
             gameAction: ability.actions.addStatusToken((context) => ({
                 amount: this.getTokenAmount(context),
@@ -43,7 +51,22 @@ class Keepsake extends Card {
         });
     }
     getTokenAmount(context) {
-        let amount = context.event.dice ? context.event.dice.length : 1;
+        let amount = 0;
+        switch (context.event.name) {
+            case 'onChangeDice':
+                amount = context.event.context.changedDice.filter(
+                    (d) => d.owner === context.player.opponent
+                ).length;
+                break;
+            case 'onDiceRerolled':
+                amount = context.event.dice.length;
+                break;
+            case 'onDieChange':
+                amount = 1;
+                break;
+            default:
+                throw new Error('dice event not recognised by keepsake');
+        }
         if (amount + this.status > 4) {
             amount = 4 - this.status;
         }

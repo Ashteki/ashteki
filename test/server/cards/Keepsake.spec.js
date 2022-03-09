@@ -5,8 +5,8 @@ describe('Keepsake', function () {
                 player1: {
                     phoenixborn: 'victoria-glassfire',
                     inPlay: ['mist-spirit', 'blue-jaguar', 'anchornaut'],
-                    dicepool: ['divine', 'illusion', 'charm', 'charm'],
-                    spellboard: ['keepsake'],
+                    dicepool: ['divine', 'illusion', 'charm', 'sympathy'],
+                    spellboard: ['keepsake', 'magic-syphon'],
                     hand: ['close-combat'],
                     archives: ['spark']
                 },
@@ -44,6 +44,20 @@ describe('Keepsake', function () {
             expect(this.player2.dicepool[0].level).toBe('class');
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.keepsake.status).toBe(2);
+        });
+
+        it('dice changed by magic syphon', function () {
+            this.player1.clickCard(this.magicSyphon);
+            this.player1.clickPrompt('Magic Syphon');
+            this.player1.clickDie(0);
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+            this.player1.clickOpponentDie(0);
+            this.player1.clickDone();
+
+            expect(this.player2.dicepool[0].level).toBe('basic');
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.keepsake.status).toBe(1);
         });
     });
 

@@ -46,6 +46,10 @@ class ChangeDiceAction extends PlayerAction {
             const props = Object.assign(
                 {
                     onSelect: (player, dice) => {
+                        if (!context.changedDice) {
+                            context.changedDice = [];
+                        }
+                        context.changedDice.push(dice);
                         context.game.addMessage('{0} changes dice levels: {1}', player, dice);
                         return true;
                     },
