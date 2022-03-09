@@ -143,6 +143,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                 [
                     'onAddToken',
                     'onAttackersDeclared',
+                    'onDefendersDeclared',
                     // 'onAbilityResolved', (copycat)
                     'onCardEntersPlay',
                     'onCardDestroyed'

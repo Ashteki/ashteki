@@ -18,9 +18,17 @@ const Costs = {
         canPay: (context) => context.player.cardsInPlay.includes(context.source),
         payEvent: (context) => context.game.actions.destroy().getEvent(context.source, context)
     }),
+    // this is the cost to execute a dice power - not to spend the dice (see diceCost)
     exhaustDie: () => ({
         canPay: (context) => !context.source.exhausted,
-        payEvent: (context) => context.game.actions.exhaustDie().getEvent(context.source, context)
+        payEvent: (context) => {
+            const event = context.game.getEvent('onDiePowerSpent', {
+                die: context.source,
+                player: context.player
+            });
+            event.addSubEvent(context.game.actions.exhaustDie().getEvent(context.source, context));
+            return event;
+        }
     }),
     use: () => ({
         // exhausted game objects can't be used

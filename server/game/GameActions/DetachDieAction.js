@@ -3,46 +3,40 @@ const DiceGameAction = require('./DiceGameAction');
 class DetachDieAction extends DiceGameAction {
     setDefaultProperties() {
         this.die = null;
-        this.card = null;
-        this.upgradeChosenOnResolution = false;
     }
 
     setup() {
         super.setup();
         this.name = 'detachDie';
-
-        this.effectMsg = 'detach {1} from {0}';
-        this.effectArgs = () => {
-            return this.die;
-        };
     }
 
-    // attaching to a card, can this card have a dice attached.
-    canAffect(card, context) {
+    // this is a bit awkward - detachDieAction is used as a card interrupt in reimagine end/round
+    // it is overridden by direct set targets when used in dicecost
+    defaultTargets(context) {
+        return context.source.dieUpgrades;
+    }
+
+    canAffect(die, context) {
         // only valid in the play area
-        if (!context || !context.player || !card || card.location !== 'play area') {
+        if (!context || !context.player || !die || die.location !== 'play area' || !die.parent) {
             return false;
-        } else if (this.upgradeChosenOnResolution) {
-            return super.canAffect(card, context);
         }
 
-        return super.canAffect(card, context);
+        return super.canAffect(die, context);
     }
 
     checkEventCondition(event) {
-        return this.canAffect(event.parent, event.context);
+        return this.canAffect(event.die, event.context);
     }
 
-    getEvent(targetCard, context) {
-        return super.createEvent(
-            'onDieDetached',
-            { die: this.die, parent: this.card, context: context },
-            (event) => {
-                event.die.parent.removeDieAttachment(event.die);
-                event.die.owner.dice.push(event.die);
-                event.die.moveTo('dicepool');
-            }
-        );
+    getEvent(die, context) {
+        return super.createEvent('onDieDetached', { die: die, context: context }, (event) => {
+            event.die.parent.removeDieAttachment(event.die);
+            event.die.exhaust();
+            event.die.parent = null;
+            event.die.owner.dice.push(event.die);
+            event.die.moveTo('dicepool');
+        });
     }
 }
 

@@ -1,5 +1,5 @@
 {
-    "count": 325,
+    "count": 351,
     "results": [
         {
             "name": "Abundance",
@@ -42,6 +42,32 @@
                 "time:class": 1
             },
             "text": "Draw 1 card. Change 2 dice in your active pool to a side of your choice. You may take up to 2 additional side actions this turn."
+        },
+        {
+            "name": "Adept Duelist",
+            "stub": "adept-duelist",
+            "type": "Ally",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "time:class": 1
+            },
+            "text": "Stalk: This unit cannot be guarded against.\n\nDisarm: When this unit is declared as an attacker, you may discard a target alteration spell attached to a unit an opponent controls.",
+            "attack": 2,
+            "life": 1,
+            "recover": 1
         },
         {
             "name": "Admonisher",
@@ -467,6 +493,27 @@
             "attack": 1,
             "life": 1,
             "recover": 1
+        },
+        {
+            "name": "Blessing of Lightning",
+            "stub": "blessing-of-lightning",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[divine:class]]"
+            ],
+            "dice": [
+                "divine"
+            ],
+            "magicCost": {
+                "divine:class": 1
+            },
+            "text": "Choose up to 3 divine dice in your exhausted pool and resolve their dice powers without paying their costs."
         },
         {
             "name": "Blink",
@@ -914,7 +961,7 @@
             "text": "After an ally you control is destroyed, place 1 status token on this spell if it has no status tokens on it.\n\n[[side]] - [[exhaust]]: Remove 1 status token from this spell to deal 1 damage to a target Phoenixborn."
         },
         {
-            "name": "Chant Of Sacrifice",
+            "name": "Chant of Sacrifice",
             "stub": "chant-of-sacrifice",
             "type": "Ready Spell",
             "release": {
@@ -1027,6 +1074,21 @@
                 "natural:power": 1
             },
             "text": "Choose an unexhausted unit you control. Deal damage to another target unit equal to the chosen unit's attack value. Then, place 1 wound token or 1 exhaustion token on the chosen unit you control."
+        },
+        {
+            "name": "Cloudburst Gryphon",
+            "stub": "cloudburst-gryphon",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "text": "Quick Strike: While this unit is attacking, it deals its damage before units in battle with it.",
+            "attack": 3,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
         },
         {
             "name": "Coal Roarkwin",
@@ -1198,6 +1260,58 @@
             "recover": 0
         },
         {
+            "name": "Crystal Archer",
+            "stub": "crystal-archer",
+            "type": "Ally",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[divine:class]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "divine",
+                "time"
+            ],
+            "magicCost": {
+                "divine:class": 1,
+                "time:class": 1
+            },
+            "text": "Preemptive Shot 1: When this unit is declared as an attacker, blocker, or guard, you may deal 1 damage to a target unit an opponent controls.",
+            "attack": 2,
+            "life": 2,
+            "recover": 1
+        },
+        {
+            "name": "Crystal Armor",
+            "stub": "crystal-armor",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[divine:class]]"
+            ],
+            "dice": [
+                "divine",
+                "time"
+            ],
+            "magicCost": {
+                "divine:class": 1
+            },
+            "text": "~ After an opponent declares attackers, you may play this spell from your hand by paying 1 [[time:power]] instead of its play cost.",
+            "attack": "+1",
+            "life": "+1",
+            "recover": "+1"
+        },
+        {
             "name": "Crystal Shield",
             "stub": "crystal-shield",
             "type": "Alteration Spell",
@@ -1328,6 +1442,45 @@
             "recover": "+1"
         },
         {
+            "name": "Dimona Odinstar",
+            "stub": "dimona-odinstar",
+            "type": "Phoenixborn",
+            "release": {
+              "name": "The Queen of Lightning",
+              "stub": "the-queen-of-lightning"
+            },
+            "text": "Promote: [[main]] - [[exhaust]] - 2 [[basic]]: Remove an exhausted ally you control from play. If you do, place an [[Empyrean Mount]] conjuration onto your battlefield and place that ally face down under that unit.",
+            "conjurations": [
+              {
+                "name": "Empyrean Mount",
+                "stub": "empyrean-mount"
+              }
+            ],
+            "battlefield": 7,
+            "life": 16,
+            "spellboard": 3
+        },
+        {
+            "name": "Disengage",
+            "stub": "disengage",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "You may play this spell after an opponent declares blockers. Choose an attacking ally you control that is blocked. It is no longer attacking. Place 1 exhaustion token on the target unit that was blocking the chosen ally."
+        },
+        {
             "name": "Dispel",
             "stub": "dispel",
             "type": "Action Spell",
@@ -1347,6 +1500,29 @@
                 "basic": 1
             },
             "text": "Remove 2 status tokens from a target card or choose a target alteration spell. If that alteration spell is a conjured alteration spell, return it to its owner's conjuration pile. Otherwise, shuffle it into its owner's draw pile."
+        },
+        {
+            "name": "Double Down",
+            "stub": "double-down",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[illusion:class]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "illusion",
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1,
+                "illusion:class": 1
+            },
+            "text": "You may play this spell after a conjuration you control with a life value of 1 is destroyed as a result of an attack, spell, ability, or dice power an opponent controls. Place 2 copies of that conjuration onto your battlefield."
         },
         {
             "name": "Drain Vitality",
@@ -1386,6 +1562,51 @@
             "life": 6,
             "recover": 0,
             "copies": 2
+        },
+        {
+            "name": "Dream Fracture",
+            "stub": "dream-fracture",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            },
+            "text": "[[main]] - [[exhaust]]: Choose a target opponent that has 1 or more dice in their active pool. Lower 1 die in their active pool one level. Then, deal 1 damage to their target Phoenixborn if they have no dice on their power side in their active pool."
+        },
+        {
+            "name": "Dreamlock Mage",
+            "stub": "dreamlock-mage",
+            "type": "Ally",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "2 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 2
+            },
+            "text": "Restrict 1: [[side]]: Lower 1 die on its power side in a target opponent's active pool one level.",
+            "attack": 2,
+            "life": 3,
+            "recover": 1
         },
         {
             "name": "Earthquake",
@@ -1474,6 +1695,22 @@
             "text": "[[main]] - [[exhaust]] - 1 [[natural:class]] or 1 [[sympathy:class]]: Place 1 status token on a target unit you control.\n\nFocus 1: Then, you may remove any number of status tokens from a unit you control. Deal damage to a target unit equal to the number of status tokens removed."
         },
         {
+            "name": "Empyrean Mount",
+            "stub": "empyrean-mount",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "text": "Battlemaster: When this unit is declared as an attacker, you may choose a target unit an opponent controls. That unit must block this unit, if able.\n\n* Dismount: When this unit is destroyed, place any allies you own underneath this unit into your hand.",
+            "phoenixborn": "Dimona Odinstar",
+            "attack": 3,
+            "life": 3,
+            "recover": 3,
+            "copies": 3
+        },
+        {
             "name": "Enchanted Violinist",
             "stub": "enchanted-violinist",
             "type": "Ally",
@@ -1548,6 +1785,26 @@
                 "divine:class": 1
             },
             "text": "Remove 1 exhaustion token from a target card."
+        },
+        {
+            "name": "Ensnare",
+            "stub": "ensnare",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[illusion:power]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:power": 1
+            },
+            "text": "You may play this spell after an opponent declares a guard. Deal 2 damage to that target guarding unit or Phoenixborn."
         },
         {
             "name": "Essence Druid",
@@ -1982,6 +2239,21 @@
                 "time:class": 1
             },
             "text": "During the draw cards step, you may draw 1 additional card.\n\n[[main]] - [[exhaust]]: Look at the top 2 cards of a target player's draw pile. Place 1 of those cards on the bottom of that draw pile, and the place the other card on the top of that draw pile."
+        },
+        {
+            "name": "Fox Spirit",
+            "stub": "fox-spirit",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Battlefield",
+            "text": "Keen 1: When this unit comes into play, you may raise 1 die in your active pool one level.\n\nPounce 2: When this unit is declared as an attacker, add 2 to its attack value for the remainder of the turn if it is targeting an exhausted unit.",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
         },
         {
             "name": "Freezing Blast",
@@ -2471,6 +2743,19 @@
             "copies": 1
         },
         {
+            "name": "Hope Everthorn",
+            "stub": "hope-everthorn",
+            "type": "Phoenixborn",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "text": "Duplicate: [[side]] - [[exhaust]] - 1 [[basic]]: Choose a conjuration you control with a life value of 1. Place a copy of that conjuration onto your battlefield. At the end of this turn, destroy that copy",
+            "battlefield": 6,
+            "life": 17,
+            "spellboard": 5
+        },
+        {
             "name": "Hunting Weapons",
             "stub": "hunting-weapons",
             "type": "Alteration Spell",
@@ -2846,6 +3131,23 @@
             "attack": 2,
             "life": 2,
             "recover": 1
+        },
+        {
+            "name": "Keepsake",
+            "stub": "keepsake",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "text": "After 1 or more dice in an opponent’s active pool are re-rolled, lowered in level, or changed to a side of your choice, place 1 status token on this spell for each affected die, without exceeding four on this spell.\n\n[[main]], 1 [[illusion:class]]: Discard this spell. Deal damage to a target unit equal to the number of status tokens that were on this spell."
         },
         {
             "name": "Kneel",
@@ -3855,6 +4157,27 @@
             "phoenixborn": "Lulu Firststone"
         },
         {
+            "name": "Piercing Light",
+            "stub": "piercing-light",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[divine:power]]"
+            ],
+            "dice": [
+                "divine"
+            ],
+            "magicCost": {
+                "divine:power": 1
+            },
+            "text": "All units you control with a divine die on them have the following ability:\n\nOverkill 1: After this unit destroys a unit an opponent controls by attacking, deal 1 damage to that opponent's target Phoenixborn."
+        },
+        {
             "name": "Polarity Mage",
             "stub": "polarity-mage",
             "type": "Ally",
@@ -4044,6 +4367,84 @@
             "recover": 1
         },
         {
+            "name": "Rayward Knight",
+            "stub": "rayward-knight",
+            "type": "Ally",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "3 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 3
+            },
+            "text": "To Arms: When this unit comes into play, you may search your discard pile for an ally and shuffle it into your draw pile.\n\nCharge:[[side]]: Take an Attack action, targeting a unit and declaring this unit as the attacker.",
+            "phoenixborn": "Dimona Odinstar",
+            "attack": 3,
+            "life": 3,
+            "recover": 3
+        },
+        {
+            "name": "Rayward Recruit",
+            "stub": "rayward-recruit",
+            "type": "Ally",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[divine:class]]"
+            ],
+            "dice": [
+                "divine"
+            ],
+            "magicCost": {
+                "divine:class": 1
+            },
+            "text": "Armed: When this unit comes into play, you may choose a divine die in your exhausted pool and resolve its dice power without paying its cost.",
+            "attack": 0,
+            "life": 2,
+            "recover": 1
+        },
+        {
+            "name": "Realm Walker",
+            "stub": "realm-walker",
+            "type": "Ally",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:power]]",
+                "1 [[time:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "illusion",
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "illusion:power": 1,
+                "time:class": 1
+            },
+            "text": "Isolate 1: When this unit is declared as an attacker, choose a target opponent to place 1 exhaustion token onto an unexhausted unit of their choice that they control.",
+            "attack": 3,
+            "life": 3,
+            "recover": 2
+        },
+        {
             "name": "Reaping Angel",
             "stub": "reaping-angel",
             "type": "Ally",
@@ -4204,6 +4605,45 @@
             },
             "text": "* Fleeting: Discard this card at the end of this round.",
             "attack": "-3"
+        },
+        {
+            "name": "Reimagine",
+            "stub": "reimagine",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "altDice": [
+                "illusion",
+                "time"
+            ],
+            "text": "After you pay for a dice power using a [[time:power]] or [[illusion:power]], you may place that die and 1 exhaustion token on this spell if it has no dice on it.\n\n* You may use dice on this spell to pay the cost of reactions. You may place any dice on this spell in your exhausted pool at the end of the round."
+        },
+        {
+            "name": "Reinforce",
+            "stub": "reinforce",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "[[main]] - [[exhaust]]: Look at the top 5 cards of your draw pile. You may reveal an ally or alteration spell and place it into your hand. Shuffle your draw pile. You may immediately play the revealed card, without paying any main or side action costs."
         },
         {
             "name": "Remorse",
@@ -5517,11 +5957,35 @@
             "magicCost": {
                 "basic": 1
             },
-            "text": "[[side]] - 1 [[natural:class]] - 1 [[divine:class]]: Remove an unexhausted ally you control from play. If you do, place a [[Cerasaurus Mount]] conjuration onto your battlefield and place that ally face down under that unit.",
+            "text": "[[side]] - [[exhaust]] - 1 [[natural:class]] - 1 [[divine:class]]: Remove an unexhausted ally you control from play. If you do, place a [[Cerasaurus Mount]] conjuration onto your battlefield and place that ally face down under that unit.",
             "conjurations": [
                 {
                     "name": "Cerasaurus Mount",
                     "stub": "cerasaurus-mount"
+                }
+            ]
+        },
+        {
+            "name": "Summon Cloudburst Gryphon",
+            "stub": "summon-cloudburst-gryphon",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Queen of Lightning",
+                "stub": "the-queen-of-lightning"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "divine",
+                "time"
+            ],
+            "text": "[[main]] - [[exhaust]] - 1 [[divine:class]] - 1 [[time:class]]: Place a [[Cloudburst Gryphon]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Cloudburst Gryphon",
+                    "stub": "cloudburst-gryphon"
                 }
             ]
         },
@@ -5644,6 +6108,33 @@
                 {
                     "name": "False Demon",
                     "stub": "false-demon"
+                }
+            ]
+        },
+        {
+            "name": "Summon Fox Spirit",
+            "stub": "summon-fox-spirit",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[illusion:class]]: Place a [[Fox Spirit]] conjuration onto your battlefield.\n\nFocus 1: You may change the activation cost of this spell to [[side]] - [[exhaust]] - 1 [[illusion:class]].",
+            "conjurations": [
+                {
+                    "name": "Fox Spirit",
+                    "stub": "fox-spirit"
                 }
             ]
         },
@@ -6486,6 +6977,29 @@
             ]
         },
         {
+            "name": "Summon Wishing Wing",
+            "stub": "summon-wishing-wing",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "text": "[[main]] - [[exhaust]] - 1 [[time:class]]: Place a [[Wishing Wing]] conjuration onto your battlefield.\n\nFocus 2: Then place 1 status token on that [[Wishing Wing]].",
+            "conjurations": [
+                {
+                    "name": "Wishing Wing",
+                    "stub": "wishing-wing"
+                }
+            ]
+        },
+        {
             "name": "Sunshield Sentry",
             "stub": "sunshield-sentry",
             "type": "Ally",
@@ -6885,6 +7399,27 @@
             "spellboard": 5
         },
         {
+            "name": "Void Pulse",
+            "stub": "void-pulse",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "You may play this spell after you declare attackers. Deal damage to a target unit an opponent controls equal to the number of attacking units. If that destroys the unit, after it is destroyed, draw 2 cards, and then change 2 dice in a target player's active pool to a side of your choice.",
+            "phoenixborn": "Hope Everthorn"
+        },
+        {
             "name": "Weeping Spirit",
             "stub": "weeping-spirit",
             "type": "Conjuration",
@@ -6913,6 +7448,21 @@
             "life": 2,
             "recover": 1,
             "copies": 4
+        },
+        {
+            "name": "Wishing Wing",
+            "stub": "wishing-wing",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Artist of Dreams",
+                "stub": "the-artist-of-dreams"
+            },
+            "placement": "Battlefield",
+            "text": "Opportunist 1: When this unit comes into play, if you have a [[time:power]] in your active pool, place 1 status token on this unit.\n\n* Bequest X: When this unit is destroyed, you may draw X cards.\n\n* X = the number of status tokens on this unit.",
+            "attack": "X",
+            "life": 1,
+            "recover": 0,
+            "copies": 3
         },
         {
             "name": "Xander Heartsblood",

@@ -28,6 +28,7 @@ class SummonAction extends PlayerAction {
             .filter((c) => c.id === this.conjuration)
             .slice(0, this.count);
         // this.effectArgs = [this.cards];
+        context.summoned = this.cards;
     }
 
     getEvent(player, context) {

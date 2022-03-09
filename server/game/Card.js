@@ -892,6 +892,10 @@ class Card extends PlayableObject {
         return this.anyEffect('canPlayAsUpgrade') || UpgradeCardTypes.includes(this.type);
     }
 
+    canSpendDieUpgrades(context) {
+        return false;
+    }
+
     use(player) {
         let legalActions = this.getLegalActions(player);
 

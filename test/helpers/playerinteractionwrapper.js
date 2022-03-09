@@ -386,7 +386,7 @@ class PlayerInteractionWrapper {
         this.clickPrompt('No');
     }
 
-    clickPrompt(text) {
+    clickPrompt(text, overrideDisabledCheck) {
         text = text.toString();
         var currentPrompt = this.player.currentPrompt();
         var promptButton = _.find(currentPrompt.buttons, (button) => {
@@ -404,12 +404,14 @@ class PlayerInteractionWrapper {
             );
         }
 
-        this.game.menuButton(
-            this.player.name,
-            promptButton.arg,
-            promptButton.uuid,
-            promptButton.method
-        );
+        if (!promptButton.disabled || overrideDisabledCheck) {
+            this.game.menuButton(
+                this.player.name,
+                promptButton.arg,
+                promptButton.uuid,
+                promptButton.method
+            );
+        }
         this.game.continue();
         this.checkUnserializableGameState();
     }

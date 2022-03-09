@@ -109,6 +109,9 @@ class AbilityResolver extends BaseStepWithPipeline {
                         die.ready();
                     });
                 }
+                if (event.name === 'onDiePowerSpent') {
+                    event.die.ready();
+                }
                 if (event.name === 'onDieExhausted') {
                     event.die.ready();
                 }

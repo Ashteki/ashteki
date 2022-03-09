@@ -43,7 +43,8 @@ class LastingEffectAction extends GameAction {
                     preferActionPromptMessage: this.preferActionPromptMessage,
                     multipleTrigger: this.multipleTrigger,
                     context: context,
-                    triggeredAbilityType: this.triggeredAbilityType
+                    triggeredAbilityType: this.triggeredAbilityType,
+                    inexhaustible: true
                 })
             ];
         }

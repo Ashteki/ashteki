@@ -3,6 +3,8 @@ const GameActions = require('./GameActions/index');
 const Actions = {
     // card actions
     addDamageToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'damage'),
+    addDuplicateToken: (propertyFactory) =>
+        new GameActions.AddTokenAction(propertyFactory, 'duplicate'),
     addExhaustionToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addGravityFluxToken: (propertyFactory) =>
@@ -39,6 +41,7 @@ const Actions = {
     removeExhaustion: (propertyFactory) =>
         new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
     removeFromBattle: (propertyFactory) => new GameActions.RemoveFromBattleAction(propertyFactory),
+    removeAttacker: (propertyFactory) => new GameActions.RemoveAttackerAction(propertyFactory),
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
     removeToken: (propertyFactory, type) =>
         new GameActions.RemoveTokenAction(propertyFactory, type),
@@ -48,6 +51,7 @@ const Actions = {
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
+    setBlocker: (propertyFactory) => new GameActions.SetBlockerAction(propertyFactory),
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     orderedAoE: (propertyFactory) => new GameActions.OrderedAoEAction(propertyFactory),
 

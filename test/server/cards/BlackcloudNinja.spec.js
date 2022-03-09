@@ -27,7 +27,7 @@ describe('Blackcloud Ninja reaction', function () {
         this.player1.clickPrompt('Done'); // end attacker select
 
         expect(this.player1).toBeAbleToSelect(this.blackcloudNinja);
-        this.player1.clickCard(this.blackcloudNinja); // redirect damage to hammerKnight
+        this.player1.clickCard(this.blackcloudNinja); // activate Blackcloud Ninja ability
 
         expect(this.player2).toBeAbleToSelect(this.summonButterflyMonk);
         expect(this.player2).not.toBeAbleToSelect(this.empower);

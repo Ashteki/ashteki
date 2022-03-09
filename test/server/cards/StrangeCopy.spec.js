@@ -52,7 +52,7 @@ describe('Strange Copy reaction spell', function () {
         expect(this.ironWorker.attack).toBe(4);
         this.player1.actions.main = true; // BODGE
 
-        this.player1.clickPrompt('Attack');
+        this.player1.clickPrompt('Attack', true);
         this.player1.clickCard(this.fluteMage); // target
         this.player1.clickCard(this.ironWorker); // single attacker
 

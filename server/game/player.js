@@ -49,6 +49,7 @@ class Player extends GameObject {
         this.dice = [];
         this.diceCounts = [];
         this.firstPlayer = false;
+        this.left = false;
     }
 
     get name() {
@@ -162,6 +163,14 @@ class Player extends GameObject {
 
     get unitsInPlay() {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
+    }
+
+    getSpendableDice(context) {
+        // this assumes all spendable dice are on ready spells
+        const spendableUpgrades = this.spellboard
+            .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades(context))
+            .reduce((agg, card) => agg.concat(card.dieUpgrades), []);
+        return this.dice.concat(spendableUpgrades);
     }
 
     /**

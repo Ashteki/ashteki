@@ -28,6 +28,7 @@ describe('Flash Strike', function () {
         this.player1.clickCard(this.mistSpirit); // single attacker
         this.player2.clickDone(); // no guard
 
+        expect(this.player1).toHavePrompt('Any Reactions to defenders being declared?');
         this.player1.clickCard(this.flashStrike);
 
         //needs status tokens

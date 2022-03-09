@@ -4,6 +4,7 @@ const AbilityTargetSelect = require('./AbilityTargets/AbilityTargetSelect');
 const AbilityTargetOptions = require('./AbilityTargets/AbilityTargetOptions');
 const AbilityTargetDie = require('./AbilityTargets/AbilityTargetDie');
 const ActionCost = require('./Costs/actioncost');
+const DiceCost = require('./Costs/dicecost');
 
 /**
  * Base class representing an ability that can be done by the player. This
@@ -143,6 +144,9 @@ class BaseAbility {
         if (ignoredRequirements.includes('actionCost')) {
             cost = cost.filter((c) => !(c instanceof ActionCost));
         }
+        if (ignoredRequirements.includes('diceCost')) {
+            cost = cost.filter((c) => !(c instanceof DiceCost));
+        }
         return cost.every((cost) => cost.canPay(context));
     }
 
@@ -226,6 +230,9 @@ class BaseAbility {
         let costs = this.cost;
         if (context.ignoreActionCost) {
             costs = costs.filter((c) => !(c instanceof ActionCost));
+        }
+        if (context.ignoreDiceCost) {
+            costs = costs.filter((c) => !(c instanceof DiceCost));
         }
         for (let cost of costs) {
             context.game.queueSimpleStep(() => {

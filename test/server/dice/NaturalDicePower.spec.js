@@ -20,6 +20,7 @@ describe('Natural Dice Power', function () {
         this.player1.clickPrompt('Natural Dice Power');
         this.player1.clickCard(this.ironWorker);
         expect(this.ironWorker.damage).toBe(1);
+        expect(this.player1.dicepool[0].exhausted).toBe(true);
 
         expect(this.player1).toHaveDefaultPrompt();
     });
