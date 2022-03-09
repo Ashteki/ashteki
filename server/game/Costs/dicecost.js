@@ -86,7 +86,7 @@ class DiceCost {
         // spent dice are placed in the dice pool (removed from cards)
         context.costs.returnDice.forEach((die) => {
             if (die.parent) {
-                payEvent.addChildEvent(context.game.actions.detachDie().getEvent(die, context))
+                payEvent.addChildEvent(context.game.actions.detachDie().getEvent(die, context));
             }
         });
 

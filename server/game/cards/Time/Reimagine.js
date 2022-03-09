@@ -23,6 +23,17 @@ class Reimagine extends Card {
             ]
         });
 
+        this.forcedInterrupt({
+            title: 'Reimagine',
+            when: {
+                onRoundEnded: () => this.dieUpgrades
+            },
+            may: 'return dice to your exhausted pool',
+            gameAction: ability.actions.detachDie((context) => ({
+                die: context.source.dieUpgrades
+            }))
+        });
+
         this.persistentEffect({
             effect: ability.effects.preventAutoDice()
         });

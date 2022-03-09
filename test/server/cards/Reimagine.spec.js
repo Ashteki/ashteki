@@ -36,6 +36,31 @@ describe('Reimagine', function () {
             expect(this.reimagine.exhausted).toBe(true);
         });
 
+        it('end of round return dice prompt', function () {
+            const targetDie = this.player1.dicepool[1];
+
+            this.player1.clickDie(1);
+            this.player1.clickPrompt('Time Dice Power');
+            this.player1.clickYes();
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickDone();
+            expect(this.ironWorker.status).toBe(1);
+            // this.player1.clickCard(this.reimagine);
+            expect(this.reimagine.dieUpgrades.length).toBe(1);
+            expect(this.reimagine.exhausted).toBe(true);
+            expect(targetDie.location).toBe('play area');
+
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            this.player1.clickDone();
+            this.player2.clickDone();
+            // return dice prompt
+            this.player1.clickYes();
+            expect(targetDie.location).toBe('dicepool');
+            // at this point it is next round, so all dice are active and cannot test for move to exhausted pool
+        });
+
         it('spend hosted dice on a reaction', function () {
             // set up
             const targetDie = this.player1.dicepool[0];
