@@ -170,12 +170,18 @@ class ChooseDefendersPrompt extends UiPrompt {
             }
         } else {
             if (card.isAttacker && this.selectedCard) {
+                // assign my blocker
+
                 // check validity
                 if (card.anyEffect('unseen') && !this.attack.checkUnseen()) {
                     return false;
                 }
 
-                if (card.anyEffect('unseen') && this.attack.checkUnseen() && this.selectedCard.isDefender) {
+                if (
+                    card.anyEffect('unseen') &&
+                    this.attack.checkUnseen() &&
+                    this.selectedCard.isDefender
+                ) {
                     return false;
                 }
 
@@ -184,8 +190,9 @@ class ChooseDefendersPrompt extends UiPrompt {
                     return false;
                 }
 
-                // can't assign a new blocker to a battle with a forceBlock
-                if (this.battles.some((b) => b.guard && b.guard.anyEffect('forceBlock', card))) {
+                const battle = this.battles.find((b) => b.attacker === card);
+                // can't assign a new blocker to a battle with a forceBlock guard
+                if (battle.guard && battle.guard.anyEffect('forceBlock', card)) {
                     return false;
                 }
 

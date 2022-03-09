@@ -64,6 +64,7 @@ describe('Rayward Knight ', function () {
             expect(this.ironWorker.location).toBe('discard');
             expect(this.raywardKnight.tokens.damage).toBeUndefined();
             expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.actions.main).toBe(true);
         });
     });
 });
