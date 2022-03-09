@@ -46,6 +46,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/buildingbasics-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(3);
+            } catch (err) {
+                logger.error('Failed to get precon 3 decks', err);
+
+                throw new Error('Failed to get precon 3 decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/decks/:id',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {

@@ -1,0 +1,555 @@
+[
+  {
+    "precon_id": 201,
+    "name": "Death by 100 Cuts and Hammer Knights",
+    "phoenixborn": [
+      {
+        "id": "coal-roarkwin",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 4
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "natural",
+        "count": 4
+      }
+    ],
+    "cards": [
+      {
+        "id": "anchornaut",
+        "count": 3
+      },
+      {
+        "id": "chant-of-revenge",
+        "count": 3
+      },
+      {
+        "id": "hammer-knight",
+        "count": 3
+      },
+      {
+        "id": "hidden-power",
+        "count": 3
+      },
+      {
+        "id": "iron-worker",
+        "count": 3
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 3
+      },
+      {
+        "id": "molten-gold",
+        "count": 3
+      },
+      {
+        "id": "one-hundred-blades",
+        "count": 3
+      },
+      {
+        "id": "strengthen",
+        "count": 1
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-mist-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      },
+      {
+        "id": "mist-spirit",
+        "count": 10
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "precon_id": 202,
+    "name": "The Puppet of My Puppet Must Be a Friend, Right?",
+    "phoenixborn": [
+      {
+        "id": "jessa-na-ni",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 5
+      },
+      {
+        "magic": "charm",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "blood-archer",
+        "count": 3
+      },
+      {
+        "id": "blood-shaman",
+        "count": 2
+      },
+      {
+        "id": "call-upon-the-realms",
+        "count": 3
+      },
+      {
+        "id": "cover",
+        "count": 2
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 2
+      },
+      {
+        "id": "fear",
+        "count": 3
+      },
+      {
+        "id": "final-cry",
+        "count": 2
+      },
+      {
+        "id": "golden-veil",
+        "count": 1
+      },
+      {
+        "id": "living-doll",
+        "count": 2
+      },
+      {
+        "id": "redirect",
+        "count": 2
+      },
+      {
+        "id": "small-sacrifice",
+        "count": 3
+      },
+      {
+        "id": "summon-blood-puppet",
+        "count": 2
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blood-puppet",
+        "count": 5
+      },
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "three-eyed-owl",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 203,
+    "name": "Aradel Loves Rhinos",
+    "phoenixborn": [
+      {
+        "id": "aradel-summergaard",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "illusion",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 4
+      }
+    ],
+    "cards": [
+      {
+        "id": "resummon",
+        "count": 1
+      },
+      {
+        "id": "summon-blue-jaguar",
+        "count": 1
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-iron-rhino",
+        "count": 3
+      },
+      {
+        "id": "hammer-knight",
+        "count": 3
+      },
+      {
+        "id": "iron-worker",
+        "count": 3
+      },
+      {
+        "id": "root-armor",
+        "count": 3
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 3
+      },
+      {
+        "id": "out-of-the-mist",
+        "count": 3
+      },
+      {
+        "id": "steady-gaze",
+        "count": 3
+      },
+      {
+        "id": "final-cry",
+        "count": 3
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blue-jaguar",
+        "count": 2
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
+      },
+      {
+        "id": "iron-rhino",
+        "count": 1
+      },
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 204,
+    "name": "Raven on Repeat",
+    "phoenixborn": [
+      {
+        "id": "saria-guideman",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 5
+      },
+      {
+        "magic": "illusion",
+        "count": 3
+      },
+      {
+        "magic": "ceremonial",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-seaside-raven",
+        "count": 1
+      },
+      {
+        "id": "resummon",
+        "count": 2
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 3
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 2
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 3
+      },
+      {
+        "id": "stormwind-sniper",
+        "count": 2
+      },
+      {
+        "id": "hidden-power",
+        "count": 3
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 3
+      },
+      {
+        "id": "fade-away",
+        "count": 3
+      },
+      {
+        "id": "strange-copy",
+        "count": 2
+      },
+      {
+        "id": "shadow-strike",
+        "count": 1
+      },
+      {
+        "id": "undying-heart",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "three-eyed-owl",
+        "count": 3
+      },
+      {
+        "id": "false-demon",
+        "count": 2
+      },
+      {
+        "id": "seaside-raven",
+        "count": 1
+      }
+    ],
+    "lastUpdated": {
+      "$date": "2022-03-07T13:07:09.138Z"
+    },
+    "created": {
+      "$date": "2022-03-07T13:02:27.998Z"
+    },
+    "ashesLiveUuid": null,
+    "ashesLiveModified": null,
+    "username": "dijon"
+  },
+  {
+    "precon_id": 205,
+    "name": "Snake and Bake",
+    "phoenixborn": [
+      {
+        "id": "maeoni-viper",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 3
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-silver-snake",
+        "count": 3
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "shifting-mist",
+        "count": 2
+      },
+      {
+        "id": "empower",
+        "count": 3
+      },
+      {
+        "id": "close-combat",
+        "count": 3
+      },
+      {
+        "id": "golden-veil",
+        "count": 3
+      },
+      {
+        "id": "massive-growth",
+        "count": 3
+      },
+      {
+        "id": "open-memories",
+        "count": 1
+      },
+      {
+        "id": "anchornaut",
+        "count": 3
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 3
+      },
+      {
+        "id": "refresh",
+        "count": 3
+      },
+      {
+        "id": "root-armor",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "silver-snake",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 206,
+    "name": "Stripes and Snipes",
+    "phoenixborn": [
+      {
+        "id": "noah-redmoon",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "charm",
+        "count": 3
+      },
+      {
+        "magic": "illusion",
+        "count": 4
+      }
+    ],
+    "cards": [
+      {
+        "id": "abundance",
+        "count": 3
+      },
+      {
+        "id": "blood-archer",
+        "count": 3
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 2
+      },
+      {
+        "id": "fade-away",
+        "count": 2
+      },
+      {
+        "id": "hidden-power",
+        "count": 3
+      },
+      {
+        "id": "iron-worker",
+        "count": 2
+      },
+      {
+        "id": "redirect",
+        "count": 2
+      },
+      {
+        "id": "shifting-mist",
+        "count": 1
+      },
+      {
+        "id": "stormwind-sniper",
+        "count": 3
+      },
+      {
+        "id": "summon-masked-wolf",
+        "count": 3
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 2
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 2
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "masked-wolf",
+        "count": 5
+      },
+      {
+        "id": "three-eyed-owl",
+        "count": 3
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
+      }
+    ]
+  }
+]

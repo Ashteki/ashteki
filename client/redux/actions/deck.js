@@ -142,3 +142,14 @@ export function loadAdventuringPartyDecks() {
         }
     };
 }
+
+export function loadBuildingBasicsDecks() {
+    return {
+        types: ['LOAD_BUILDINGBASICS_DECKS', 'BUILDINGBASICS_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/buildingbasics-decks',
+            type: 'GET'
+        }
+    };
+}

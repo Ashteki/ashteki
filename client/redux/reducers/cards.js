@@ -146,6 +146,16 @@ export default function (state = { decks: [], cards: {} }, action) {
             });
 
             return newState;
+        case 'BUILDINGBASICS_DECKS_LOADED':
+            if (action.response.decks) {
+                processDecks(action.response.decks, state);
+            }
+
+            newState = Object.assign({}, state, {
+                buildingBasicsDecks: action.response.decks
+            });
+
+            return newState;
         case 'REQUEST_DECK':
             return Object.assign({}, state, {
                 deckSaved: false,
