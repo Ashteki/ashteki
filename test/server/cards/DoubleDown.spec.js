@@ -12,7 +12,7 @@ describe('Double Down', function () {
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    inPlay: ['shadow-spirit', 'hammer-knight'],
+                    inPlay: ['shadow-spirit', 'hammer-knight', 'mist-spirit'],
                     spellboard: ['summon-shadow-spirit'],
                     hand: ['double-down'],
                     dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
@@ -21,7 +21,9 @@ describe('Double Down', function () {
             });
         });
 
-        it('ability triggers on PB damage', function () {
+        it('ability triggers on PB ability damage', function () {
+            expect(this.player2.inPlay.length).toBe(3);
+
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
             this.player1.clickCard(this.shadowSpirit);
@@ -29,21 +31,22 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
             this.player2.clickCard(this.doubleDown);
 
-            expect(this.player2.inPlay.length).toBe(3);
+            expect(this.player2.inPlay.length).toBe(4); // initial 3 -1 destroyed, + 2 from DD
         });
 
         it("ability doesn't trigger on counter", function () {
             this.player1.endTurn();
             this.player2.clickAttack(this.ironWorker);
-            this.player2.clickCard(this.shadowSpirit);
+            this.player2.clickCard(this.mistSpirit);
             this.player2.clickOpponentDie(0);
 
             this.player1.clickDone(); // No guard
             this.player1.clickYes(); // Counter
 
-            expect(this.player2).not.toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
-            expect(this.ironWorker.location).toBe('discard');
-            expect(this.shadowSpirit.location).toBe('archives');
+            expect(this.player2).toHaveDefaultPrompt();
+            expect(this.ironWorker.location).toBe('play area');
+            expect(this.mistSpirit.location).toBe('archives');
+            expect(this.player2.inPlay.length).toBe(2);
         });
 
         it('ability triggers on dice power', function () {
@@ -52,6 +55,7 @@ describe('Double Down', function () {
             this.player1.clickCard(this.shadowSpirit);
 
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
+            expect(this.player2).toBeAbleToSelect(this.doubleDown);
         });
 
         it('ability triggers on molten gold', function () {
@@ -59,6 +63,7 @@ describe('Double Down', function () {
             this.player1.clickCard(this.shadowSpirit);
 
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
+            expect(this.player2).toBeAbleToSelect(this.doubleDown);
         });
 
         it('ability triggers on crimson bomber', function () {
@@ -70,6 +75,7 @@ describe('Double Down', function () {
             this.player1.clickDone();
 
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
+            expect(this.player2).toBeAbleToSelect(this.doubleDown);
         });
     });
     // The following is failing as onDestroyed already has the conjuration in the archives
