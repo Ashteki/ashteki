@@ -12,13 +12,9 @@ class DoubleDown extends Card {
                     event.clone.controller === context.source.owner &&
                     (context.event.context.source.controller ===
                         context.source.controller.opponent ||
-                        // damageEvent from opponent
-                        (context.event.damageEvent &&
-                            context.event.damageEvent.damageSource.controller ===
-                                context.source.controller.opponent) ||
+                        // ignoring damage event also appears
                         (context.event.tokenEvent &&
-                            context.event.tokenEvent.context.player ===
-                                context.source.controller.opponent))
+                            context.event.tokenEvent.context.player === context.source.controller.opponent))
             },
             gameAction: ability.actions.summon((context) => ({
                 conjuration: context.event.card.id,
