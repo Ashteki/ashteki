@@ -104,6 +104,16 @@ class DealDamageAction extends CardGameAction {
                 }
             );
 
+            // quickstrike in a fight skips counter damage
+            if (
+                // this is an attacking damage event
+                damageDealtEvent === damageDealtEvent?.fightEvent?.attackerDamageEvent &&
+                damageDealtEvent?.fightEvent?.attacker?.attacksFirst() &&
+                this.damageWillDestroyTarget(damageDealtEvent.amount, damageDealtEvent.card)
+            ) {
+                damageDealtEvent.fightEvent.counterDamageEvent.cancel();
+            }
+
             if (damageDealtEvent.ignoreArmor || !damageDealtEvent.preventable) {
                 damageDealtEvent.addSubEvent(damageAppliedEvent);
             } else {
@@ -132,6 +142,14 @@ class DealDamageAction extends CardGameAction {
                 armorPreventEvent.openReactionWindow = true;
             }
         });
+    }
+
+    damageWillDestroyTarget(attackerAmount, target) {
+        let amountReceived = attackerAmount;
+        if (target.anyEffect('multiplyDamage')) {
+            amountReceived = amountReceived * target.sumEffects('multiplyDamage');
+        }
+        return amountReceived + target.damage - target.armor >= target.life;
     }
 }
 
