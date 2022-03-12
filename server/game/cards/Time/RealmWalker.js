@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class RealmWalker extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.forcedReaction({
             title: 'Isolate 1',
             when: {
                 onAttackersDeclared: (event, context) => {
@@ -16,7 +16,8 @@ class RealmWalker extends Card {
                 target: context.player.opponent,
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => !card.exhausted
-            }))
+            })),
+            effect: 'force their opponent to exhaust a unit'
         });
     }
 }
