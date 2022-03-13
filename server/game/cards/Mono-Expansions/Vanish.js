@@ -39,19 +39,28 @@ class Vanish extends Card {
         )
             return true;
 
-        // explicit targetting via gameAction owner property - this is for ChangeDice & ChangeDie triggers
+        // explicit targetting via gameAction owner property for ChangeDice triggers
         if (
             event.context.ability.gameAction.some(
-                (g) => g.owner === 'opponent' && (g.name === 'changeDice' || g.name === 'changeDie')
+                (g) => g.owner === 'opponent' && g.name === 'changeDice'
+            )
+        )
+            return true;
+
+        // implicit flag when targetting a die - used for lowerdie
+        if (
+            event.context.ability.targets.some(
+                (t) =>
+                    t instanceof AbilityTargetDie &&
+                    t.properties.targetsPlayer &&
+                    t.properties.owner === 'opponent'
             )
         )
             return true;
 
         // implicit flag when targetting a card - transfer does this for convenience
         const triggeringTargets = event.context.ability.targets.filter(
-            (t) =>
-                (t instanceof AbilityTargetCard || t instanceof AbilityTargetDie) &&
-                t.properties.targetsPlayer
+            (t) => t instanceof AbilityTargetCard && t.properties.targetsPlayer
         );
         return triggeringTargets.some(
             (t) => event.context.targets[t.name].controller === context.player

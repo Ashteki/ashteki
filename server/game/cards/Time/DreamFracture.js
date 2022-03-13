@@ -1,4 +1,3 @@
-const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class DreamFracture extends Card {
@@ -12,6 +11,7 @@ class DreamFracture extends Card {
             location: 'spellboard',
             //todo: this isn't right - need to target a player then select from their dice
             target: {
+                targetsPlayer: true,
                 activePromptTitle: 'Choose a die to lower',
                 toSelect: 'die',
                 owner: 'opponent',
@@ -20,11 +20,10 @@ class DreamFracture extends Card {
             then: {
                 condition: (context) =>
                     !context.player.opponent.dice.some((d) => d.level === 'power' && !d.exhausted),
-                target: {
-                    cardType: CardType.Phoenixborn,
-                    controller: 'opponent',
-                    gameAction: ability.actions.dealDamage({ showMessage: true })
-                }
+                gameAction: ability.actions.dealDamage((context) => ({
+                    target: context.player.opponent.phoenixborn,
+                    showMessage: true
+                }))
             }
         });
     }

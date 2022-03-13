@@ -5,6 +5,7 @@ class Hollow extends Card {
         this.entersPlay({
             title: 'Hex 2',
             target: {
+                targetsPlayer: true,
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 2,

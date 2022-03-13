@@ -95,7 +95,7 @@ describe('Vanish', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'leo-sunshadow',
-                    inPlay: ['enchanted-violinist'],
+                    inPlay: ['enchanted-violinist', 'dreamlock-mage'],
                     spellboard: ['magic-syphon'],
                     dicepool: ['ceremonial', 'natural', 'natural', 'charm', 'illusion'],
                     hand: ['anguish', 'one-hundred-blades']
@@ -140,14 +140,27 @@ describe('Vanish', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('should cancel illusion power', function () {
-            this.player1.clickDie(4);
-            this.player1.clickPrompt('Illusion Dice Power');
-            //this.player1.clickOpponentDie(1);
-            //this.player1.clickOpponentDie(2);
-            expect(this.player2).toHavePrompt('Any Reactions to Illusion Dice Power targetting you?');
+        it('should cancel dreamlock mage power', function () {
+            this.player1.clickCard(this.dreamlockMage);
+            this.player1.clickPrompt('Restrict 1');
+            this.player1.clickOpponentDie(1);
+            expect(this.player2).toHavePrompt('Any Reactions to Restrict 1?');
             this.player2.clickCard(this.vanish);
             expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player2.dicepool[1].level).toBe('power');
+        });
+
+        it('should cancel illusion die power', function () {
+            this.player1.clickDie(4);
+            this.player1.clickPrompt('Illusion Dice Power');
+            this.player1.clickOpponentDie(1);
+            this.player1.clickOpponentDie(2);
+            this.player1.clickPrompt('Done');
+            expect(this.player2).toHavePrompt('Any Reactions to Illusion Dice Power?');
+            this.player2.clickCard(this.vanish);
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player2.dicepool[1].level).toBe('power');
+            expect(this.player2.dicepool[2].level).toBe('power');
         });
     });
 

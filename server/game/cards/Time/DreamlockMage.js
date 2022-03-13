@@ -7,8 +7,9 @@ class DreamlockMage extends Card {
             title: 'Restrict 1',
             cost: [ability.costs.sideAction()],
             target: {
+                targetsPlayer: true,
                 toSelect: 'die',
-                dieCondition: (die) => die.level === Level.Power,
+                dieCondition: (die) => die.level === Level.Power && !die.exhausted,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             }
