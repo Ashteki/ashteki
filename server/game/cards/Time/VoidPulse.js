@@ -23,13 +23,25 @@ class VoidPulse extends Card {
                 condition: (context) => context.preThenEvent.destroyEvent,
                 gameAction: ability.actions.draw({ amount: 2 }),
                 // TODO: this needs restricting to a single player, and should target that player.
-                then: (context) => ({
-                    alwaysTriggers: true,
-                    gameAction: ability.actions.changeDice({
-                        numDice: 2,
-                        owner: context.player.checkRestrictions('changeOpponentsDice') ? 'any' : 'self'
-                    })
-                })
+                then: {
+                    target: {
+                        mode: 'select',
+                        activePromptTitle: "Void Pulse: Choose which player's dice pool to affect",
+                        choices: (context) => this.getPlayerOptions(context),
+                        choiceHandler: (choice) => (this.chosenValue = choice.value)
+                    },
+                    then: {
+                        alwaysTriggers: true,
+                        gameAction: ability.actions.changeDice((context) => ({
+                            numDice: 2,
+                            owner:
+                                this.chosenValue === context.player.opponent.name
+                                    ? 'opponent'
+                                    : 'self',
+                            dieCondition: (die) => !die.exhausted
+                        }))
+                    }
+                }
             }
         });
     }
@@ -37,6 +49,15 @@ class VoidPulse extends Card {
     getAttackers(context) {
         const attackers = context.player.unitsInPlay.filter((c) => c.isAttacker).length;
         return attackers;
+    }
+
+    getPlayerOptions(context) {
+        let choices = [context.player.name];
+
+        if (context.player.checkRestrictions('changeOpponentsDice')) {
+            choices.push(context.player.opponent.name);
+        }
+        return choices.map((t) => ({ text: t, value: t }));
     }
 }
 

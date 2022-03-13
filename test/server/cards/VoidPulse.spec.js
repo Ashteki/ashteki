@@ -11,7 +11,7 @@ describe('Void pulse', function () {
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    dicepool: ['ceremonial', 'time', 'charm', 'charm'],
+                    dicepool: ['ceremonial', 'charm', 'charm', 'time'],
                     hand: ['molten-gold'],
                     inPlay: ['mist-spirit', 'sonic-swordsman']
                 }
@@ -38,13 +38,14 @@ describe('Void pulse', function () {
 
             expect(this.player1.deck.length).toBe(myDeck - 2); // drew 2 cards
             // change dice
+            this.player1.clickPrompt('player2');
             this.player1.clickOpponentDie(0);
-            this.player1.clickOpponentDie(1);
+            this.player1.clickOpponentDie(3); // This is to avoid the duplicate charm dice, which tend to cause havoc with reordering
 
-            this.player1.clickDone(); // finishes all card effects
+            this.player1.clickDone(); // finish all card effects
 
             expect(this.player2.dicepool[0].level).toBe('basic');
-            expect(this.player2.dicepool[1].level).toBe('basic');
+            expect(this.player2.dicepool[3].level).toBe('basic');
 
             expect(this.voidPulse.location).toBe('discard');
             expect(this.sonicSwordsman.location).toBe('discard');
