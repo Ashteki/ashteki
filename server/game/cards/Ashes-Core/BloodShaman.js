@@ -15,6 +15,7 @@ class BloodShaman extends Card {
                 alwaysTriggers: true,
                 target: {
                     toSelect: 'die',
+                    dieCondition: (die) => !die.exhausted,
                     owner: 'self',
                     gameAction: ability.actions.raiseDie({ showMessage: true })
                 }
