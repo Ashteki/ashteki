@@ -33,12 +33,12 @@ class VoidPulse extends Card {
                     then: {
                         alwaysTriggers: true,
                         gameAction: ability.actions.changeDice((context) => ({
+                            dieCondition: (die) => !die.exhausted,
                             numDice: 2,
                             owner:
                                 this.chosenValue === context.player.opponent.name
                                     ? 'opponent'
-                                    : 'self',
-                            dieCondition: (die) => !die.exhausted
+                                    : 'self'
                         }))
                     }
                 }

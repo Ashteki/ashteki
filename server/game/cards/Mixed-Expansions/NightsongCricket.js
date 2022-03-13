@@ -13,6 +13,7 @@ class NightsongCricket extends Card {
             then: {
                 alwaysTriggers: true,
                 gameAction: ability.actions.changeDice((context) => ({
+                    dieCondition: (die) => !die.exhausted,
                     owner: this.chosenValue === context.player.opponent.name ? 'opponent' : 'self'
                 }))
             }

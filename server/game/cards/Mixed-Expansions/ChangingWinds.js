@@ -38,6 +38,7 @@ class ChangingWinds extends Card {
             gameAction: ability.actions.draw(),
             then: {
                 gameAction: ability.actions.changeDice({
+                    dieCondition: (die) => !die.exhausted,
                     owner: 'self'
                 })
             }

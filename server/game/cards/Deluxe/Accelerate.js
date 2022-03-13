@@ -8,6 +8,7 @@ class Accelerate extends Card {
             gameAction: [
                 ability.actions.draw(),
                 ability.actions.changeDice({
+                    dieCondition: (die) => !die.exhausted,
                     numDice: 2,
                     owner: 'self'
                 }),

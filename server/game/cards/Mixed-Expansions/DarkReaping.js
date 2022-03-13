@@ -12,6 +12,7 @@ class DarkReaping extends Card {
             },
             then: {
                 gameAction: ability.actions.changeDice({
+                    dieCondition: (die) => !die.exhausted,
                     numDice: 5,
                     owner: 'self'
                 })

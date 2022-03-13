@@ -7,6 +7,7 @@ class ShiftingMist extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
             gameAction: ability.actions.changeDice({
+                dieCondition: (die) => !die.exhausted,
                 numDice: 2,
                 owner: 'self'
             })

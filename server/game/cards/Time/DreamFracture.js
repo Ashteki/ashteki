@@ -9,11 +9,11 @@ class DreamFracture extends Card {
             title: 'Dream Fracture',
             cost: [ability.costs.mainAction(), ability.costs.exhaust()],
             location: 'spellboard',
-            //todo: this isn't right - need to target a player then select from their dice
             target: {
                 targetsPlayer: true,
                 activePromptTitle: 'Choose a die to lower',
                 toSelect: 'die',
+                dieCondition: (die) => !die.exhausted,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             },

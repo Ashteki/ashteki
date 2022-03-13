@@ -7,9 +7,11 @@ class MagicSyphon extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
             gameAction: ability.actions.changeDice({
+                dieCondition: (die) => !die.exhausted,
                 owner: 'self'
             }),
             then: {
+                alwaysTriggers: true,
                 target: {
                     mode: 'select',
                     activePromptTitle: "Magic Syphon: Choose which player's dice pool to affect",
@@ -19,6 +21,7 @@ class MagicSyphon extends Card {
                 then: {
                     alwaysTriggers: true,
                     gameAction: ability.actions.changeDice((context) => ({
+                        dieCondition: (die) => !die.exhausted,
                         owner:
                             this.chosenValue === context.player.opponent.name ? 'opponent' : 'self'
                     }))
