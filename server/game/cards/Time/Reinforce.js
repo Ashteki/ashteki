@@ -19,6 +19,7 @@ class Reinforce extends Card {
                 })),
                 ability.actions.shuffleDeck()
             ],
+            effect: 'look at the top 5 cards of their deck',
             then: {
                 may: 'play the card you drew?',
                 condition: (context) => context.preThenEvent && context.preThenEvent.card,

@@ -26,14 +26,13 @@ class RaywardKnight extends Card {
                 promptTitle: 'Attack',
                 controller: 'opponent',
                 cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),
-                //mode: 'select',
-                //numCards: 1,
                 cardType: BattlefieldTypes,
                 onSelect: (player, card) => {
                     this.game.initiateUnitAttack(card, this, true);
                     return true;
                 }
-            }
+            },
+            effect: 'charge'
         });
     }
 }
