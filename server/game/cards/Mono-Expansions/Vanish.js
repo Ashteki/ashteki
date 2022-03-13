@@ -1,5 +1,6 @@
 const { CardType } = require('../../../constants.js');
 const AbilityTargetCard = require('../../AbilityTargets/AbilityTargetCard.js');
+const AbilityTargetDie = require('../../AbilityTargets/AbilityTargetDie.js');
 const Card = require('../../Card.js');
 
 class Vanish extends Card {
@@ -38,9 +39,19 @@ class Vanish extends Card {
         )
             return true;
 
+        // explicit targetting via gameAction owner property - this is for ChangeDice & ChangeDie triggers
+        if (
+            event.context.ability.gameAction.some(
+                (g) => g.owner === 'opponent' && (g.name === 'changeDice' || g.name === 'changeDie')
+            )
+        )
+            return true;
+
         // implicit flag when targetting a card - transfer does this for convenience
         const triggeringTargets = event.context.ability.targets.filter(
-            (t) => t instanceof AbilityTargetCard && t.properties.targetsPlayer
+            (t) =>
+                (t instanceof AbilityTargetCard || t instanceof AbilityTargetDie) &&
+                t.properties.targetsPlayer
         );
         return triggeringTargets.some(
             (t) => event.context.targets[t.name].controller === context.player

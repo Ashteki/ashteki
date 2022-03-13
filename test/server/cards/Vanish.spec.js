@@ -96,7 +96,8 @@ describe('Vanish', function () {
                 player1: {
                     phoenixborn: 'leo-sunshadow',
                     inPlay: ['enchanted-violinist'],
-                    dicepool: ['ceremonial', 'natural', 'natural', 'charm'],
+                    spellboard: ['magic-syphon'],
+                    dicepool: ['ceremonial', 'natural', 'natural', 'charm', 'illusion'],
                     hand: ['anguish', 'one-hundred-blades']
                 },
                 player2: {
@@ -125,6 +126,29 @@ describe('Vanish', function () {
             expect(this.player2.hand.length).toBe(handSize - 1);
         });
 
+        it('should cancel magic syphon', function () {
+            this.player1.clickCard(this.magicSyphon);
+            this.player1.clickPrompt('Magic Syphon');
+
+            this.player1.clickDie(1);
+            this.player1.clickDie(1);
+            expect(this.player1.dicepool[1].level).toBe('class');
+            this.player1.clickPrompt('Done');
+            this.player1.clickPrompt('player2');
+            expect(this.player2).toHavePrompt('Any Reactions to magic syphon targetting you?');
+            this.player2.clickCard(this.vanish);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('should cancel illusion power', function () {
+            this.player1.clickDie(4);
+            this.player1.clickPrompt('Illusion Dice Power');
+            //this.player1.clickOpponentDie(1);
+            //this.player1.clickOpponentDie(2);
+            expect(this.player2).toHavePrompt('Any Reactions to Illusion Dice Power targetting you?');
+            this.player2.clickCard(this.vanish);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 
     describe('interaction with final cry', function () {

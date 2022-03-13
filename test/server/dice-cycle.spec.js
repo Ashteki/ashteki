@@ -60,6 +60,7 @@ describe('Dice cycle', function () {
         expect(this.mistSpirit.location).toBe('archives');
         expect(target.level).toBe('power');
 
+        this.player2.clickPrompt('player1');
         this.player2.clickOpponentDie(0);
         expect(target.level).toBe('basic');
         expect(this.player2.player.selectedDice.length).toBe(1);

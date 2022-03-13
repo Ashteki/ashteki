@@ -4,10 +4,18 @@ class NightsongCricket extends Card {
     setupCardAbilities(ability) {
         this.destroyed({
             title: 'Polyphony',
-            gameAction: ability.actions.changeDice({
-                numDice: 1,
-                owner: 'any'
-            })
+            target: {
+                mode: 'select',
+                activePromptTitle: "Nightsong Cricket: Choose which player's dice pool to affect",
+                choices: (context) => this.getPlayerOptions(context),
+                choiceHandler: (choice) => (this.chosenValue = choice.value)
+            },
+            then: {
+                alwaysTriggers: true,
+                gameAction: ability.actions.changeDice((context) => ({
+                    owner: this.chosenValue === context.player.opponent.name ? 'opponent' : 'self'
+                }))
+            }
         });
 
         this.destroyed({
@@ -36,6 +44,15 @@ class NightsongCricket extends Card {
                 }
             }
         });
+    }
+
+    getPlayerOptions(context) {
+        let choices = [context.player.name];
+
+        if (context.player.checkRestrictions('changeOpponentsDice')) {
+            choices.push(context.player.opponent.name);
+        }
+        return choices.map((t) => ({ text: t, value: t }));
     }
 }
 
