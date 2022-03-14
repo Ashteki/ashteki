@@ -19,7 +19,10 @@ class FoxSpirit extends Card {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker
                     return event.battles.some(
-                        (b) => b.attacker === context.source && b.target.exhausted
+                        (b) =>
+                            b.attacker === context.source &&
+                            b.target.exhausted &&
+                            b.target.type != 'Phoenixborn'
                     );
                 }
             },
