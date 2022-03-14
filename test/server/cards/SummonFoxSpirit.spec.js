@@ -26,7 +26,7 @@ describe('Summon Fox Spirit', function () {
             //don't require action type selection
             expect(this.foxSpirit.location).toBe('play area');
             expect(this.player1.actions.main).toBe(false);
-            expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
+            expect(this.player1).not.toHavePrompt('Choose a die to raise'); // Keen 1 doesn't trigger when only power dice
         });
     });
 
@@ -49,6 +49,7 @@ describe('Summon Fox Spirit', function () {
                 }
             });
             this.ironWorker.tokens.exhaustion = 1;
+            this.player1.dicepool[3].level = 'basic';
         });
 
         it('choice of main action', function () {
@@ -71,7 +72,7 @@ describe('Summon Fox Spirit', function () {
             expect(this.player1.actions.side).toBe(0);
             expect(this.foxSpirit.location).toBe('play area');
             expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
-            this.player1.clickDie(0);
+            this.player1.clickDie(3);
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.ironWorker);
             this.player1.clickCard(this.foxSpirit);
