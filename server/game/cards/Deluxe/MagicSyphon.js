@@ -7,18 +7,36 @@ class MagicSyphon extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
             gameAction: ability.actions.changeDice({
-                numDice: 1,
+                dieCondition: (die) => !die.exhausted,
                 owner: 'self'
             }),
             then: {
-                //todo: this isn't right - need to target a player then select from their dice
                 alwaysTriggers: true,
-                gameAction: ability.actions.changeDice((context) => ({
-                    numDice: 1,
-                    owner: context.player.checkRestrictions('changeOpponentsDice') ? 'any' : 'self'
-                }))
+                target: {
+                    mode: 'select',
+                    activePromptTitle: "Magic Syphon: Choose which player's dice pool to affect",
+                    choices: (context) => this.getPlayerOptions(context),
+                    choiceHandler: (choice) => (this.chosenValue = choice.value)
+                },
+                then: {
+                    alwaysTriggers: true,
+                    gameAction: ability.actions.changeDice((context) => ({
+                        dieCondition: (die) => !die.exhausted,
+                        owner:
+                            this.chosenValue === context.player.opponent.name ? 'opponent' : 'self'
+                    }))
+                }
             }
         });
+    }
+
+    getPlayerOptions(context) {
+        let choices = [context.player.name];
+
+        if (context.player.checkRestrictions('changeOpponentsDice')) {
+            choices.push(context.player.opponent.name);
+        }
+        return choices.map((t) => ({ text: t, value: t }));
     }
 }
 

@@ -8,6 +8,7 @@ class FoxSpirit extends Card {
                 activePromptTitle: 'Choose a die to raise',
                 optional: true,
                 toSelect: 'die',
+                dieCondition: (die) => !die.exhausted,
                 owner: 'self',
                 gameAction: ability.actions.raiseDie()
             }

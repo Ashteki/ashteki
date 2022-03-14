@@ -55,29 +55,30 @@ describe('Dice cycle', function () {
 
         this.player2.clickCard(this.mistSpirit); // destroy
 
-        const target = this.player1.dicepool[0];
+        const target = this.player1.dicepool[2];
 
         expect(this.mistSpirit.location).toBe('archives');
         expect(target.level).toBe('power');
 
-        this.player2.clickOpponentDie(0);
+        this.player2.clickPrompt('player1');
+        this.player2.clickOpponentDie(2);
         expect(target.level).toBe('basic');
         expect(this.player2.player.selectedDice.length).toBe(1);
 
-        this.player2.clickOpponentDie(0);
+        this.player2.clickOpponentDie(2);
         expect(target.level).toBe('class');
         expect(this.player2.player.selectedDice.length).toBe(1);
 
-        this.player2.clickOpponentDie(0);
+        this.player2.clickOpponentDie(2);
         expect(target.level).toBe('power');
         expect(this.player2.player.selectedDice.length).toBe(1);
 
-        this.player2.clickOpponentDie(0);
+        this.player2.clickOpponentDie(2);
         expect(target.level).toBe('power');
         expect(this.player2.player.selectedDice.length).toBe(0);
 
-        this.player2.clickOpponentDie(0); // add as basic
-        this.player2.clickOpponentDie(0); // increase to class
+        this.player2.clickOpponentDie(2); // add as basic
+        this.player2.clickOpponentDie(2); // increase to class
         this.player2.clickPrompt('Done');
         expect(target.level).toBe('class');
     });

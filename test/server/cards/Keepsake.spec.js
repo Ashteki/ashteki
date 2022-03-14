@@ -52,10 +52,13 @@ describe('Keepsake', function () {
             this.player1.clickDie(0);
             this.player1.clickDie(0);
             this.player1.clickDone();
-            this.player1.clickOpponentDie(0);
-            this.player1.clickDone();
+            this.player1.clickPrompt('player2');
 
-            expect(this.player2.dicepool[0].level).toBe('basic');
+            this.player1.clickOpponentDie(1);
+            this.player1.clickDone();
+            // Due to re-ordering, should only check die[1] or die[3]
+            expect(this.player2.dicepool[1].level).toBe('basic');
+
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.keepsake.status).toBe(1);
         });

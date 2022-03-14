@@ -5,9 +5,11 @@ class Hollow extends Card {
         this.entersPlay({
             title: 'Hex 2',
             target: {
+                targetsPlayer: true,
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 2,
+                dieCondition: (die) => !die.exhausted,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             },

@@ -29,6 +29,7 @@ describe('Blood Shaman', function () {
         this.player1.clickCard(this.bloodShaman);
 
         expect(this.player1).toHavePrompt('Choose a die');
+        expect(this.player1).not.toBeAbleToSelectDie(this.player2.dicepool[0]);
         this.player1.clickDie(0);
 
         expect(this.aradelSummergaard.damage).toBe(0);
