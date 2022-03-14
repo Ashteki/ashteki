@@ -85,6 +85,8 @@ describe('law of Assurance', function () {
             this.player1.clickPrompt('Magic Syphon');
             this.player1.clickDie(0);
             this.player1.clickPrompt('done');
+            expect(this.player1).not.toHavePromptButton('player2');
+
             expect(this.player1).toBeAbleToSelectDie(this.player1.dicepool[0]);
             expect(this.player1).not.toBeAbleToSelectDie(this.player2.dicepool[0]);
         });
@@ -111,9 +113,10 @@ describe('law of Assurance', function () {
             this.player1.clickCard(this.magicSyphon);
             this.player1.clickPrompt('Magic Syphon');
             this.player1.clickDie(0);
-            this.player1.clickPrompt('done');
-            expect(this.player1).toBeAbleToSelectDie(this.player1.dicepool[0]);
+            this.player1.clickPrompt('Done');
+            this.player1.clickPrompt('player2');
             expect(this.player1).toBeAbleToSelectDie(this.player2.dicepool[0]);
+            expect(this.player1).not.toBeAbleToSelectDie(this.player1.dicepool[1]);
         });
     });
 });

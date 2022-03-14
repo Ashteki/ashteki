@@ -37,14 +37,15 @@ class TransmuteMagic extends Card {
             then: {
                 alwaysTriggers: true,
                 gameAction: ability.actions.changeDice({
-                    numDice: 1,
+                    dieCondition: (die) => !die.exhausted,
                     owner: 'self'
                 }),
                 then: {
                     alwaysTriggers: true,
+                    targetsPlayer: true,
                     condition: (context) => context.player.checkRestrictions('changeOpponentsDice'),
                     gameAction: ability.actions.changeDice({
-                        numDice: 1,
+                        dieCondition: (die) => !die.exhausted,
                         owner: 'opponent'
                     })
                 }

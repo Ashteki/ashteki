@@ -11,9 +11,11 @@ class ShadowSpirit extends Card {
                 }
             },
             target: {
+                targetsPlayer: true,
                 activePromptTitle: 'Choose a die to lower',
                 optional: true,
                 toSelect: 'die',
+                dieCondition: (die) => !die.exhausted,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             }

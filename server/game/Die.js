@@ -181,10 +181,12 @@ class Die extends PlayableObject {
                     title: 'Illusion Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
+                        targetsPlayer: true,
                         toSelect: 'die',
                         mode: 'upTo',
                         numDice: 2,
                         showCancel: true,
+                        dieCondition: (die) => !die.exhausted,
                         owner: 'opponent',
                         gameAction: this.game.actions.lowerDie()
                     },
@@ -340,6 +342,8 @@ class Die extends PlayableObject {
     setupAbilities() {
         switch (this.magic) {
             case 'illusion':
+                this.attachable = true;
+                break;
             case 'time':
                 this.attachable = true;
                 break;

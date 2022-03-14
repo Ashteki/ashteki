@@ -7,6 +7,7 @@ class HiddenPower extends Card {
             gameAction: ability.actions.draw(),
             then: {
                 gameAction: ability.actions.changeDice({
+                    dieCondition: (die) => !die.exhausted,
                     numDice: 5,
                     owner: 'self'
                 })
