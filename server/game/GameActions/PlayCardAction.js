@@ -27,7 +27,8 @@ class PlayCardAction extends CardGameAction {
             .getActions(this.location)
             .filter((action) => action.title.includes('Play'));
         return !!actions.find((action) => {
-            let actionContext = action.createContext(context.player);
+            const actionContext = action.createContext(context.player);
+            actionContext.playedAsReaction = this.playedAsReaction;
             return !action.meetsRequirements(actionContext, this.getIgnoredRequirements());
         });
     }
@@ -56,6 +57,7 @@ class PlayCardAction extends CardGameAction {
                 let playActions = card.getActions(this.location).filter((action) => {
                     if (action.title.includes('Play')) {
                         let newContext = action.createContext(context.player);
+                        newContext.playedAsReaction = this.playedAsReaction;
                         return !action.meetsRequirements(newContext, this.getIgnoredRequirements());
                     } else {
                         return false;

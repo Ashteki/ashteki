@@ -105,4 +105,51 @@ describe('Reimagine', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('spending on reactions from hand', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    hand: ['rose-fire-dancer', 'shadow-guard', 'hidden-power'],
+                    spellboard: ['reimagine'],
+                    dicepool: ['illusion', 'illusion', 'time'],
+                    archives: ['butterfly-monk'],
+                    inPlay: ['mist-spirit', 'iron-worker']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'holy-knight'],
+                    dicepool: ['illusion', 'illusion', 'time', 'time'],
+                    spellboard: []
+                }
+            });
+        });
+
+        it('spend hosted dice on a shadow guard', function () {
+            // set up
+            const targetDie = this.player1.dicepool[0];
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Illusion Dice Power');
+            this.player1.clickYes();
+            this.player1.clickOpponentDie(0);
+            this.player1.clickDone();
+            expect(this.reimagine.dieUpgrades.length).toBe(1);
+            expect(this.reimagine.exhausted).toBe(true);
+            expect(targetDie.exhausted).toBe(false); // hosted die is ready
+
+            this.player1.endTurn();
+
+            // use as reaction payment
+            this.player2.clickAttack(this.ironWorker);
+            this.player2.clickCard(this.holyKnight);
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.shadowGuard);
+            this.player1.clickDieUpgrade(this.reimagine, 0);
+            this.player1.clickDone();
+            expect(this.shadowGuard.location).toBe('play area');
+            expect(targetDie.exhausted).toBe(true); // hosted die is spent
+            expect(targetDie.location).toBe('dicepool');
+        });
+    });
 });
