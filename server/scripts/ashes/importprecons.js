@@ -55,7 +55,7 @@ class ImportPrecons {
                 }
             }
 
-            console.log('Done importing AP decks');
+            console.log('Done importing BB decks');
             console.log('----------');
 
         } catch (err) {

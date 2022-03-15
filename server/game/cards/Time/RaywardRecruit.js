@@ -7,6 +7,7 @@ class RaywardRecruit extends Card {
             title: 'Armed',
             target: {
                 activePromptTitle: 'Choose an exhausted Divine die to resolve its die power',
+                optional: true,
                 toSelect: 'die',
                 owner: 'self',
                 dieCondition: (die) => die.magic === Magic.Divine && die.exhausted,

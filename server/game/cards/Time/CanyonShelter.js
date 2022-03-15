@@ -38,8 +38,10 @@ class CanyonShelter extends Card {
                 promptWithHandlerMenu: {
                     activePromptTitle: 'Choose a card to return to play',
                     cards: context.source.childCards
-                }
+                },
+                showMessage: true
             })),
+            effect: 'return a unit to play with a status token',
             then: {
                 target: {
                     gameAction: ability.actions.addStatusToken(),
