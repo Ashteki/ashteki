@@ -33,8 +33,8 @@ describe('Summon Fox Spirit', function () {
             this.player1.clickCard(this.summonFoxSpirit);
             this.player1.clickPrompt('Summon Fox Spirit');
             expect(this.foxSpirit.location).toBe('play area');
-            expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
-            this.player1.clickDie(0);
+            // no keen 1 as all power sides
+            expect(this.player1).not.toHavePrompt('Choose a die to raise'); // Keen 1
             this.player1.endTurn();
 
             this.player2.clickCard(this.aradelSummergaard);
