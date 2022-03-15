@@ -1,3 +1,4 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class ShadowSpirit extends Card {
@@ -15,7 +16,7 @@ class ShadowSpirit extends Card {
                 activePromptTitle: 'Choose a die to lower',
                 optional: true,
                 toSelect: 'die',
-                dieCondition: (die) => !die.exhausted,
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             }

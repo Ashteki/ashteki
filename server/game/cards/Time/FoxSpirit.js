@@ -1,3 +1,4 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class FoxSpirit extends Card {
@@ -8,7 +9,7 @@ class FoxSpirit extends Card {
                 activePromptTitle: 'Choose a die to raise',
                 optional: true,
                 toSelect: 'die',
-                dieCondition: (die) => !die.exhausted,
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Power,
                 owner: 'self',
                 gameAction: ability.actions.raiseDie()
             }

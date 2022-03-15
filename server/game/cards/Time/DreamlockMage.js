@@ -1,4 +1,4 @@
-const { Level} = require('../../../constants.js');
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class DreamlockMage extends Card {
@@ -13,7 +13,6 @@ class DreamlockMage extends Card {
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             }
-            //message: "{0} uses {1} to lower opponent's power die"
         });
     }
 }

@@ -1,3 +1,4 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class DreamFracture extends Card {
@@ -13,13 +14,16 @@ class DreamFracture extends Card {
                 targetsPlayer: true,
                 activePromptTitle: 'Choose a die to lower',
                 toSelect: 'die',
-                dieCondition: (die) => !die.exhausted,
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             },
             then: {
+                alwaysTriggers: true,
                 condition: (context) =>
-                    !context.player.opponent.dice.some((d) => d.level === 'power' && !d.exhausted),
+                    !context.player.opponent.dice.some(
+                        (d) => d.level === Level.Power && !d.exhausted
+                    ),
                 gameAction: ability.actions.dealDamage((context) => ({
                     target: context.player.opponent.phoenixborn,
                     showMessage: true
