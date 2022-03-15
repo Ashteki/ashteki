@@ -26,7 +26,30 @@ describe('Summon Fox Spirit', function () {
             //don't require action type selection
             expect(this.foxSpirit.location).toBe('play area');
             expect(this.player1.actions.main).toBe(false);
+            expect(this.player1).not.toHavePrompt('Choose a die to raise'); // Keen 1 doesn't trigger when only power dice
+        });
+
+        it("pounce doesn't trigger when attacking exhausting PB", function () {
+            this.player1.clickCard(this.summonFoxSpirit);
+            this.player1.clickPrompt('Summon Fox Spirit');
+            expect(this.foxSpirit.location).toBe('play area');
             expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
+            this.player1.clickDie(0);
+            this.player1.endTurn();
+
+            this.player2.clickCard(this.aradelSummergaard);
+            this.player2.clickPrompt('Water blast');
+            this.player2.clickCard(this.anchornaut);
+            this.player2.endTurn();
+
+            expect(this.aradelSummergaard.tokens.exhaustion).toBe(1);
+
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickCard(this.foxSpirit);
+            this.player1.clickPrompt('Done');
+
+            expect(this.foxSpirit.attack).not.toBe(3); // No Pounce
         });
     });
 
@@ -49,6 +72,7 @@ describe('Summon Fox Spirit', function () {
                 }
             });
             this.ironWorker.tokens.exhaustion = 1;
+            this.player1.dicepool[3].level = 'basic';
         });
 
         it('choice of main action', function () {
@@ -71,7 +95,7 @@ describe('Summon Fox Spirit', function () {
             expect(this.player1.actions.side).toBe(0);
             expect(this.foxSpirit.location).toBe('play area');
             expect(this.player1).toHavePrompt('Choose a die to raise'); // Keen 1
-            this.player1.clickDie(0);
+            this.player1.clickDie(3);
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.ironWorker);
             this.player1.clickCard(this.foxSpirit);

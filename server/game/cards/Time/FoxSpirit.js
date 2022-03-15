@@ -1,3 +1,4 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class FoxSpirit extends Card {
@@ -8,6 +9,7 @@ class FoxSpirit extends Card {
                 activePromptTitle: 'Choose a die to raise',
                 optional: true,
                 toSelect: 'die',
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Power,
                 owner: 'self',
                 gameAction: ability.actions.raiseDie()
             }
@@ -18,7 +20,10 @@ class FoxSpirit extends Card {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker
                     return event.battles.some(
-                        (b) => b.attacker === context.source && b.target.exhausted
+                        (b) =>
+                            b.attacker === context.source &&
+                            b.target.exhausted &&
+                            b.target.type != 'Phoenixborn'
                     );
                 }
             },

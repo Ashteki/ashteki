@@ -10,9 +10,7 @@ class FalseDemon extends Card {
                 activePromptTitle: 'Nightmare 1',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.exhausted,
-                gameAction: ability.actions.dealDamage({
-                    message: true
-                })
+                gameAction: ability.actions.dealDamage()
             }
         });
     }

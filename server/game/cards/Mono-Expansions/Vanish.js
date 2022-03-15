@@ -1,5 +1,6 @@
 const { CardType } = require('../../../constants.js');
 const AbilityTargetCard = require('../../AbilityTargets/AbilityTargetCard.js');
+const AbilityTargetDie = require('../../AbilityTargets/AbilityTargetDie.js');
 const Card = require('../../Card.js');
 
 class Vanish extends Card {
@@ -34,6 +35,25 @@ class Vanish extends Card {
                 (g) =>
                     g.targetType.some((tt) => tt === 'player') &&
                     g.target.some((t) => t === context.player)
+            )
+        )
+            return true;
+
+        // explicit targetting via gameAction owner property for ChangeDice triggers
+        if (
+            event.context.ability.gameAction.some(
+                (g) => g.owner === 'opponent' && g.name === 'changeDice'
+            )
+        )
+            return true;
+
+        // implicit flag when targetting a die - used for lowerdie
+        if (
+            event.context.ability.targets.some(
+                (t) =>
+                    t instanceof AbilityTargetDie &&
+                    t.properties.targetsPlayer &&
+                    t.properties.owner === 'opponent'
             )
         )
             return true;

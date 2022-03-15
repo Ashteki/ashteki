@@ -5,6 +5,7 @@ class CallUponTheRealms extends Card {
         this.play({
             effect: 'change 3 dice in their active pool',
             gameAction: ability.actions.changeDice({
+                dieCondition: (die) => !die.exhausted,
                 numDice: 3,
                 owner: 'self'
             })

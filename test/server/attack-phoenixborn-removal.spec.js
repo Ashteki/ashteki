@@ -108,6 +108,7 @@ describe('Attack Removals', function () {
             this.player2.clickDie(0);
             this.player2.clickDone();
             this.player2.clickCard(this.hammerKnight);
+            this.player2.clickPrompt('player1');
             this.player2.clickDone(); // no dice fixing
 
             expect(this.game.attackState.battles.length).toBe(2);

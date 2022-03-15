@@ -10,7 +10,7 @@ class AradelSummergaard extends Card {
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Natural)])
-            ],    
+            ],
             target: {
                 activePromptTitle: 'Water Blast',
                 cardType: BattlefieldTypes,

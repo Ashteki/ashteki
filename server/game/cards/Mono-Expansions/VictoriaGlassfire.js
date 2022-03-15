@@ -15,12 +15,13 @@ class VictoriaGlassfire extends Card {
             effect: "reroll {1} of their opponent's dice: {2}",
             effectArgs: (context) => [context.target.length, context.target],
             target: {
+                targetsPlayer: true,
                 toSelect: 'die',
                 dieCondition: (d) => !d.exhausted,
                 mode: 'upTo',
                 numDice: 4,
                 owner: 'opponent',
-                gameAction: ability.actions.rerollDice(),
+                gameAction: ability.actions.rerollDice()
             },
             then: (context) => ({
                 target: {

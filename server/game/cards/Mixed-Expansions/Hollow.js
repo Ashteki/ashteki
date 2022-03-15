@@ -1,3 +1,4 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Hollow extends Card {
@@ -5,9 +6,11 @@ class Hollow extends Card {
         this.entersPlay({
             title: 'Hex 2',
             target: {
+                targetsPlayer: true,
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 2,
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             },
