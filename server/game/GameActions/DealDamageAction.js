@@ -109,7 +109,8 @@ class DealDamageAction extends CardGameAction {
                 // this is an attacking damage event
                 damageDealtEvent === damageDealtEvent?.fightEvent?.attackerDamageEvent &&
                 damageDealtEvent?.fightEvent?.attacker?.attacksFirst() &&
-                this.damageWillDestroyTarget(damageDealtEvent.amount, damageDealtEvent.card)
+                this.damageWillDestroyTarget(damageDealtEvent.amount, damageDealtEvent.card) &&
+                damageDealtEvent.fightEvent.counterDamageEvent
             ) {
                 damageDealtEvent.fightEvent.counterDamageEvent.cancel();
             }
