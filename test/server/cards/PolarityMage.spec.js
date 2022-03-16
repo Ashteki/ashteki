@@ -22,7 +22,7 @@ describe('Polarity Mage', function () {
             this.player1.clickCard(this.polarityMage);
             this.player1.clickPrompt('Play this Ally');
             this.player1.clickDie(3);
-            this.player1.clickPrompt('Return to Hand');
+            this.player1.clickPrompt('Return card');
             expect(this.player1).toHavePrompt('Choose a card');
 
             this.player1.clickCard(this.massiveGrowth);
@@ -34,7 +34,7 @@ describe('Polarity Mage', function () {
             this.player1.clickCard(this.polarityMage);
             this.player1.clickPrompt('Play this Ally');
             this.player1.clickDie(3);
-            this.player1.clickPrompt('Return to Hand');
+            this.player1.clickPrompt('Return card');
             expect(this.player1).toHavePrompt('Choose a card');
 
             this.player1.clickDone();
@@ -74,7 +74,7 @@ describe('Polarity Mage', function () {
             this.player1.clickCard(this.polarityMage);
             this.player1.clickPrompt('Play this Ally');
             this.player1.clickDie(2);
-            this.player1.clickPrompt('Discard from Play');
+            this.player1.clickPrompt('Discard card');
             expect(this.player1).toHavePrompt('Choose a card');
 
             this.player1.clickCard(this.massiveGrowth);
@@ -95,7 +95,7 @@ describe('Polarity Mage', function () {
             this.player1.clickCard(this.polarityMage);
             this.player1.clickPrompt('Play this Ally');
             this.player1.clickDie(2);
-            this.player1.clickPrompt('Discard from Play');
+            this.player1.clickPrompt('Discard card');
             expect(this.player1).toHavePrompt('Choose a card');
 
             this.player1.clickDone(); // cancelled
@@ -134,7 +134,7 @@ describe('Polarity Mage', function () {
             this.player2.clickCard(this.polarityMage);
             this.player2.clickPrompt('Play this Ally');
             this.player2.clickDie(2);
-            this.player2.clickPrompt('Discard from Play');
+            this.player2.clickPrompt('Discard card');
             expect(this.player2).toHavePrompt('Choose a card');
 
             this.player2.clickCard(this.deepFreeze);
