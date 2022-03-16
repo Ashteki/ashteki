@@ -114,7 +114,7 @@ describe('During attack on Phoenixborn', function () {
             expect(this.player1).toHavePrompt('Sonic Pulse 1');
             this.player1.clickCard(this.mistSpirit); // sonic pulse target
             expect(this.player1).toHavePrompt('Choose a fight to resolve');
-            /*this.player1.clickCard(this.cloudburstGryphon); // This line results in failure: "TypeError: Cannot read property 'cancel' of undefined"
+            this.player1.clickCard(this.cloudburstGryphon);
 
             expect(this.anchornaut.isInPlay).toBe(false); // killed by sonicswordsman
             expect(this.mistSpirit.isInPlay).toBe(false); // killed by gryphon
@@ -124,7 +124,7 @@ describe('During attack on Phoenixborn', function () {
             expect(this.cloudburstGryphon.damage).toBe(0); // no counter from mist spirit
 
             expect(this.player1).toHaveDefaultPrompt();
-            expect(this.aradelSummergaard.exhausted).toBe(false);*/
+            expect(this.aradelSummergaard.exhausted).toBe(false);
         });
     });
 
