@@ -52,9 +52,10 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
     return (
         <div
             className='die-frame'
-            aria-role='button'
-            aria-label={description}
+            // aria-role='button'
+            // aria-label={description}
             onClick={(ev) => clickEvent(ev, die)}
+        // tabIndex={0}
         >
             <DieIcon
                 die={die}
