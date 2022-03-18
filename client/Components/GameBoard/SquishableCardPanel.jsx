@@ -116,7 +116,8 @@ class SquishableCardPanel extends React.Component {
 
         let className = classNames('squishable-card-panel', this.props.className, {
             [this.props.cardSize]: this.props.cardSize !== 'normal',
-            squish: needsSquish
+            squish: needsSquish,
+            rotated: this.props.rotateHeader
         });
 
         let style = {
@@ -125,11 +126,17 @@ class SquishableCardPanel extends React.Component {
         };
 
         let panelHeaderStyle = this.props.rotateHeader ? 'panel-header-rotated' : 'panel-header';
-
+        let opponentSrText = this.props.side === 'top' ? <span className='sr-only'>Opponent&apos;s</span> : null;
         return (
             <div className={className} style={style}>
                 {this.props.title && (
-                    <h3 className={panelHeaderStyle}>{`${this.props.title} (${cards.length})`}</h3>
+                    <h3 className={panelHeaderStyle}>
+                        {opponentSrText}
+                        {this.props.title}&nbsp;
+                        <span aria-hidden={true}>(</span>
+                        {cards.length}
+                        <span aria-hidden={true}>)</span>
+                    </h3>
                 )}
                 {cards}
             </div>
@@ -153,6 +160,7 @@ SquishableCardPanel.propTypes = {
     onMenuItemClick: PropTypes.func,
     onMouseOut: PropTypes.func,
     onMouseOver: PropTypes.func,
+    side: PropTypes.string,
     source: PropTypes.string,
     t: PropTypes.func,
     title: PropTypes.string,

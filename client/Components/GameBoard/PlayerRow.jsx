@@ -37,10 +37,15 @@ const PlayerRow = ({
         );
     };
 
+    let opponentSrText = side === 'top' ? <span className='sr-only'>Opponent&apos;s</span> : null;
+
     const renderResources = (dice) => {
         return (
             <div className='panel resources card-pile'>
-                <h3 className='panel-header'>Dice</h3>
+                <h3 className='panel-header'>
+                    {opponentSrText}
+                    Dice
+                </h3>
                 <DiceBox
                     dice={dice}
                     size={cardSize}
@@ -78,6 +83,7 @@ const PlayerRow = ({
             source='hand'
             title={t('Hand')}
             cardSize={cardSize}
+            side={side}
         />
     );
 
