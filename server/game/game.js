@@ -1260,6 +1260,8 @@ class Game extends EventEmitter {
     endTurn() {
         this.betweenTurns = true;
         this.activePlayer.endTurn();
+        this.activePlayer.limitedPlayed = 0; // reset reaction count for next turn
+        this.activePlayer.opponent.limitedPlayed = 0; // reset reaction count for next turn
         this.cardsDiscarded = [];
         this.effectsUsed = [];
 
