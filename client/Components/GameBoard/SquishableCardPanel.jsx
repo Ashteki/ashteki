@@ -116,7 +116,8 @@ class SquishableCardPanel extends React.Component {
 
         let className = classNames('squishable-card-panel', this.props.className, {
             [this.props.cardSize]: this.props.cardSize !== 'normal',
-            squish: needsSquish
+            squish: needsSquish,
+            rotated: this.props.rotateHeader
         });
 
         let style = {
@@ -129,7 +130,11 @@ class SquishableCardPanel extends React.Component {
         return (
             <div className={className} style={style}>
                 {this.props.title && (
-                    <h3 className={panelHeaderStyle}>{`${this.props.title} (${cards.length})`}</h3>
+                    <h3 className={panelHeaderStyle}>{this.props.title}&nbsp;
+                        <span aria-hidden={true}>(</span>
+                        {cards.length}
+                        <span aria-hidden={true}>)</span>
+                    </h3>
                 )}
                 {cards}
             </div>

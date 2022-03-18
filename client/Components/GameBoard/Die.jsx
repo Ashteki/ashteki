@@ -50,12 +50,11 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
     };
 
     return (
-        <a className='die-frame'
-
-            // key={die.uuid}
-            href='#0'
-            onClick={(ev) => clickEvent(ev, die)}
+        <div
+            className='die-frame'
+            aria-role='button'
             aria-label={description}
+            onClick={(ev) => clickEvent(ev, die)}
         >
             <DieIcon
                 die={die}
@@ -64,8 +63,7 @@ const Die = ({ die, onClick, onMenuItemClick, disableMouseOver, onMouseOut, onMo
                 onMouseOut={onMouseOut}
             />
             {renderMenu() ? <CardMenu menu={die.menu} onMenuItemClick={onMenuClick} /> : null}
-        </a>
-        // </div >
+        </div>
     );
 };
 

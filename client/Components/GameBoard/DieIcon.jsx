@@ -42,8 +42,10 @@ const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver }) => {
             onMouseOver={!disableMouseOver && onMouseOver ? () => onMouseOver(die) : undefined}
             onMouseOut={!disableMouseOver ? onMouseOut : undefined}
         >
-            <span aria-hidden='true' className={diceFont} title={description} />
-            {readerSpan}
+            <span
+                className={diceFont} title={description} aria-label='Close'
+            />
+            {/* {readerSpan} */}
         </span>
     );
 };
