@@ -295,7 +295,7 @@ class Player extends GameObject {
         this.passedMain = false;
         this.turn += 1;
         this.actions = { main: true, side: 1 };
-        this.limitedPlayed = 0; // reset for my turn
+        //this.limitedPlayed = 0; // reset for my turn - moved to game.js
         this.game.addAlert('startofturn', `Turn ${this.turn} - {0}`, this);
         if (this.game.suddenDeath) {
             this.doSuddenDeathDiscard();
@@ -331,7 +331,7 @@ class Player extends GameObject {
         if (this.passedMain) {
             this.game.addAlert('info', '{0} PASSES their main action', this);
         }
-        this.limitedPlayed = 0; // reset for opponent's turn
+        //this.limitedPlayed = 0; // reset for opponent's turn - moved to game.js
         this.cardsInPlay.forEach((c) => {
             c.new = false;
 
