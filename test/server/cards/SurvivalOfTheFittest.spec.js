@@ -34,6 +34,8 @@ describe('Survival of the Fittest', function () {
         this.player1.play(this.survivalOfTheFittest);
         this.player1.clickDie(3);
         this.player1.clickDone();
+        this.player1.clickCard(this.fluteMage);
+        expect(this.player1).toHaveDefaultPrompt();
 
         // tokens
         expect(this.hammerKnight.location).toBe('play area');
