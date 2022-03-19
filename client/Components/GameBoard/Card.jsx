@@ -375,7 +375,8 @@ const Card = ({
             return undefined;
         }
 
-        if (card.selected) {
+        // location prevents highlighting cards we're about to meditate
+        if (card.selected && card.location !== 'deck') {
             return 'selected';
         } else if (card.selectable) {
             // if (card.isAttacker) return 'attacker-' + side + ' selectable ';
