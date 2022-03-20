@@ -16,7 +16,12 @@ class Keepsake extends Card {
                     return (
                         event.player === context.player &&
                         event.owner !== 'self' &&
-                        event.context.changedDice.some((d) => d.owner === context.player.opponent)
+                        (event.context.changedDice.some(
+                            (d) => d.owner === context.player.opponent
+                        ) ||
+                            event.context.changedDice[0].some(
+                                (d) => d.owner === context.player.opponent
+                            ))
                     );
                 }
             },
@@ -54,9 +59,13 @@ class Keepsake extends Card {
         let amount = 0;
         switch (context.event.name) {
             case 'onChangeDice':
-                amount = context.event.context.changedDice.filter(
-                    (d) => d.owner === context.player.opponent
-                ).length;
+                amount =
+                    context.event.context.changedDice.filter(
+                        (d) => d.owner === context.player.opponent
+                    ).length ||
+                    context.event.context.changedDice[0].filter(
+                        (d) => d.owner === context.player.opponent
+                    ).length;
                 break;
             case 'onDiceRerolled':
                 amount = context.event.dice.length;
