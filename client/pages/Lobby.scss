@@ -32,6 +32,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height:200px;
 
     .card {
         flex: 1;
@@ -70,10 +71,20 @@
     height: 60px;
     border-radius: 5px;
 }
+.ashes-live-textlogo{
+    color: white;
+    // background-color: black;
+    border-radius: 5px;
+    min-width: 60px;
+    font-size: 40px;
+    padding: 0 10px;
+    line-height: 40px;
+}
+
 
 .link-box{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .link-box .caption{
@@ -86,7 +97,17 @@
 
 .link-box-item{
     display: flex;
-    width: 270px;
-    margin-left:10px;
+    // width: 270px;
+    margin:10px;
     color: inherit;
+}
+.link-box-item h3{
+    margin-bottom:4px;
+    color:white;
+}
+.link-box-item p{
+    margin-left:6px;
+}
+.link-box-item ul{
+    padding-left: 20px;
 }

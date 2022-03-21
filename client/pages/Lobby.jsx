@@ -99,44 +99,8 @@ const Lobby = () => {
                     </Col>
                 </div>
             )}
-            <div >
-                <Col sm={{ span: 10, offset: 1 }}>
-                    <Panel>
-                        <div className='link-box'>
-                            <a
-                                className='link-box-item'
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                href='https://discord.gg/UU5bduq'
 
-                            >
-                                <img src={discordTextLogo} className='textlogo' />
-                                <div className='caption'>Join the Ashes Community Discord</div>
-                            </a>
-                            <a
-                                className='link-box-item'
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                href='https://www.patreon.com/ashteki'
-
-                            >
-                                <img src={patreonLogo} className='textlogo' />
-                                <div className='caption'>Support the site</div>
-                            </a>
-                            <a
-                                className='link-box-item'
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                href='https://github.com/danj3000/ashteki/issues'
-                            >
-                                <img src={githubLogo} className='textlogo' />
-                                <div className='caption'>Submit a bug report</div>
-                            </a>
-                        </div>
-                    </Panel>
-                </Col>
-            </div>
-            <div>
+            {/* <div>
                 <Col sm={{ span: 10, offset: 1 }}>
                     <Panel title={t('Latest site news')}>
                         {apiState?.loading ? (
@@ -147,50 +111,126 @@ const Lobby = () => {
                         <NewsComponent news={news} />
                     </Panel>
                 </Col>
-            </div>
-            <Col sm={{ span: 10, offset: 1 }} className='chat-container'>
-                <Panel
-                    title={t('Lobby Chat ({{users}}) online', {
-                        users: users.length
-                    })}
-                >
-                    <div>
-                        <LobbyChat
-                            messages={messages}
-                            isModerator={user?.permissions?.canModerateChat}
-                            onRemoveMessageClick={(messageId) =>
-                                dispatch(removeLobbyMessage(messageId))
-                            }
-                        />
-                    </div>
-                </Panel>
-                <form
-                    className='form form-hozitontal chat-box-container'
-                    onSubmit={(event) => {
-                        event.preventDefault();
-                        sendMessage();
-                    }}
-                >
-                    <div className='form-group'>
-                        <div className='chat-box'>
-                            <Typeahead
-                                disabled={!isLoggedIn}
-                                ref={messageRef}
-                                value={message}
-                                placeholder={t(placeholder)}
-                                labelKey={'name'}
-                                onKeyDown={onKeyPress}
-                                options={users}
-                                onInputChange={(value) => setMessage(value)}
-                                autoFocus
-                                dropup
-                                emptyLabel={''}
-                                minLength={2}
+            </div> */}
+            <Row className='h-100'>
+                <Col sm={{ span: 8 }} className='chat-container'>
+                    <Panel
+                        title={t('Lobby Chat ({{users}}) online', {
+                            users: users.length
+                        })}
+                    >
+                        <div>
+                            <LobbyChat
+                                messages={messages}
+                                isModerator={user?.permissions?.canModerateChat}
+                                onRemoveMessageClick={(messageId) =>
+                                    dispatch(removeLobbyMessage(messageId))
+                                }
                             />
                         </div>
-                    </div>
-                </form>
-            </Col>
+                    </Panel>
+                    <form
+                        className='form form-hozitontal chat-box-container'
+                        onSubmit={(event) => {
+                            event.preventDefault();
+                            sendMessage();
+                        }}
+                    >
+                        <div className='form-group'>
+                            <div className='chat-box'>
+                                <Typeahead
+                                    disabled={!isLoggedIn}
+                                    ref={messageRef}
+                                    value={message}
+                                    placeholder={t(placeholder)}
+                                    labelKey={'name'}
+                                    onKeyDown={onKeyPress}
+                                    options={users}
+                                    onInputChange={(value) => setMessage(value)}
+                                    autoFocus
+                                    dropup
+                                    emptyLabel={''}
+                                    minLength={2}
+                                />
+                            </div>
+                        </div>
+                    </form>
+                </Col>
+                <Col sm={{ span: 4 }}>
+                    <Panel>
+                        <div className='link-box'>
+                            <a
+                                className='link-box-item'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                href='https://discord.gg/UU5bduq'
+
+                            >
+                                <div className='phg-main-action ashes-live-textlogo' />
+                                <div>
+                                    <h3 className='caption'>Ashes.live Deck builder</h3>
+                                    <p>
+                                        The best way to browse cards and build decks. <br /> You can import them into Ashteki when you're ready to play.
+                                    </p>
+                                </div>
+                            </a>
+                            <a
+                                className='link-box-item'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                href='https://discord.gg/UU5bduq'
+
+                            >
+                                <img src={discordTextLogo} className='textlogo' />
+                                <div>
+                                    <h3 className='caption'>Join the Ashes Community Discord</h3>
+                                    <ul>
+                                        <li>Find other players</li>
+                                        <li>Talk strategy</li>
+                                        <li>Get deckbuilding advice</li>
+                                        <li>Join a league or tournament</li>
+                                        <li>Ask rules questions</li>
+                                    </ul>
+                                </div>
+                            </a>
+                            <a
+                                className='link-box-item'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                href='https://www.patreon.com/ashteki'
+
+                            >
+                                <img src={patreonLogo} className='textlogo' />
+                                <div>
+                                    <h3 className='caption'>Support the site</h3>
+                                    <p>
+                                        Ashteki wouldn't be here without support from our amazing
+                                        patrons who pay for hosting the site. If you would like to
+                                        contribute, then click here.
+                                    </p>
+                                </div>
+                            </a>
+                            <a
+                                className='link-box-item'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                href='https://github.com/danj3000/ashteki/issues'
+                            >
+                                <img src={githubLogo} className='textlogo' />
+                                <div>
+                                    <h3 className='caption'>Submit a bug report</h3>
+                                    <p>
+                                        The code for ashteki is hosted in github. You can submit
+                                        feature requests and bug reports directly there, or
+                                        alternatively find us in the ashes discord #software-dev
+                                        channel
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </Panel>
+                </Col>
+            </Row>
         </div >
     );
 };
