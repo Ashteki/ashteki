@@ -62,7 +62,6 @@
         "@sentry/browser": "^6.2.5",
         "@sentry/node": "^6.2.5",
         "@types/jasmine": "^3.5.11",
-        "@types/redis": "^4.0.11",
         "@types/socket.io": "^2.1.13",
         "assets-webpack-plugin": "^6.1.2",
         "bcrypt": "^5.0.1",
