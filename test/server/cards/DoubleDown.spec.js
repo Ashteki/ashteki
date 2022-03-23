@@ -111,7 +111,7 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
             this.player2.clickCard(this.doubleDown);
 
-            expect(this.player2.inPlay.length).toBe(2); // PB plus Iron Worker
+            expect(this.player2.inPlay.length).toBe(2); // PB plus Butterfly Monk
         });
 
         it('can only place one unit if that is all that is in conjuration pile', function () {
@@ -124,7 +124,84 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Butterfly Monk being destroyed?');
             this.player2.clickCard(this.doubleDown);
 
-            expect(this.player2.inPlay.length).toBe(3); // PB plus Iron Worker plus Butterfly Monk
+            expect(this.player2.inPlay.length).toBe(3); // PB plus Glow Finch plus Butterfly Monk
+        });
+    });
+
+    describe('triggers respecting summon limits version 2', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
+                    archives: [],
+                    hand: ['molten-gold', 'crimson-bomber']
+                },
+                player2: {
+                    phoenixborn: 'leo-sunshadow',
+                    inPlay: ['glow-finch', 'butterfly-monk', 'indiglow-creeper'], // Just having IC in play sometimes fails the tests
+                    spellboard: ['summon-shadow-spirit'],
+                    hand: ['double-down'],
+                    dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
+                    archives: [
+                        'butterfly-monk',
+                        'indiglow-creeper',
+                        'indiglow-creeper',
+                        'luminous-seedling',
+                        'luminous-seedling',
+                        'luminous-seedling'
+                    ]
+                }
+            });
+        });
+
+        // With IC, sometimes fails on Couldn't click on "No" for player2, cannot read property 'uuid' of undefined
+        // Once it fails once, this error can get "stuck" and continues the next time this is run, i.e. once IC is removed from the test, sometimes with the error for the next test
+        it('cannot place unit that is not in conjuration pile', function () {
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(this.glowFinch);
+            //Last Request 2
+            this.player2.clickPrompt('Yes');
+
+            expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
+            this.player2.clickCard(this.doubleDown);
+
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.player2.inPlay.length).toBe(3); // PB, Butterfly Monk and Indiglow Creeper
+        });
+
+        // With IC, sometimes fails on Couldn't click on "No" for player2, cannot read property 'uuid' of undefined
+        it('can only place one unit if that is all that is in conjuration pile', function () {
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(this.butterflyMonk);
+            //Mend 1
+            this.player2.clickCard(this.leoSunshadow);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Butterfly Monk being destroyed?');
+            this.player2.clickCard(this.doubleDown);
+
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.player2.inPlay.length).toBe(4); // PB, Glow Finch, Butterfly Monk and Indiglow Creeper
+        });
+
+        it('only places 2 creepers into play', function () {
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(this.indiglowCreeper);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Indiglow Creeper being destroyed?');
+            this.player2.clickCard(this.doubleDown);
+
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.luminousSeedling.location).toBe('play area');
+            expect(this.player2.inPlay.length).toBe(6); // PB, Iron Worker, Glow Finch, 2 Creepers, 1 Seedling - failing with 5, so probably Seedling isn't happening
         });
     });
 });
