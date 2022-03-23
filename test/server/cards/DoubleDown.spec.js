@@ -196,12 +196,12 @@ describe('Double Down', function () {
 
         it('places 2 creepers into play', function () {
             expect(this.player2.inPlay.length).toBe(3); // Glow Finch, Butterfly Monk and Indiglow Creeper
-            const firstCreepers = this.player2.inPlay[2];
-            const secondCreepers = this.player2.archives[1];
-            const thirdCreepers = this.player2.archives[2];
+            const firstCreeper = this.player2.inPlay[2];
+            const secondCreeper = this.player2.archives[1];
+            const thirdCreeper = this.player2.archives[2];
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
-            this.player1.clickCard(firstCreepers);
+            this.player1.clickCard(firstCreeper);
 
             expect(this.player2).toHavePrompt('Any Reactions to Indiglow Creeper being destroyed?');
             this.player2.clickCard(this.doubleDown);
@@ -209,9 +209,9 @@ describe('Double Down', function () {
             expect(this.player1).toHaveDefaultPrompt();
 
             expect(this.luminousSeedling.location).toBe('play area');
-            expect(firstCreepers.location).toBe('archives');
-            expect(secondCreepers.location).toBe('play area');
-            expect(thirdCreepers.location).toBe('play area');
+            expect(firstCreeper.location).toBe('archives');
+            expect(secondCreeper.location).toBe('play area');
+            expect(thirdCreeper.location).toBe('play area');
             expect(this.glowFinch.location).toBe('play area');
             expect(this.butterflyMonk.location).toBe('play area');
             expect(this.player2.inPlay.length).toBe(5); // Butterfly Monk, Glow Finch, 2 Creepers, 1 Seedling
