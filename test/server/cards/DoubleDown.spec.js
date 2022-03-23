@@ -102,6 +102,7 @@ describe('Double Down', function () {
         });
 
         it('cannot place unit that is not in conjuration pile', function () {
+            expect(this.player2.inPlay.length).toBe(2); // Glow Finch and Butterfly Monk
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
             this.player1.clickCard(this.glowFinch);
@@ -111,10 +112,11 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
             this.player2.clickCard(this.doubleDown);
 
-            expect(this.player2.inPlay.length).toBe(2); // PB plus Butterfly Monk
+            expect(this.player2.inPlay.length).toBe(1); // Butterfly Monk - failing with 2
         });
 
         it('can only place one unit if that is all that is in conjuration pile', function () {
+            expect(this.player2.inPlay.length).toBe(2); // Glow Finch and Butterfly Monk
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
             this.player1.clickCard(this.butterflyMonk);
@@ -124,7 +126,7 @@ describe('Double Down', function () {
             expect(this.player2).toHavePrompt('Any Reactions to Butterfly Monk being destroyed?');
             this.player2.clickCard(this.doubleDown);
 
-            expect(this.player2.inPlay.length).toBe(3); // PB plus Glow Finch plus Butterfly Monk
+            expect(this.player2.inPlay.length).toBe(2); // Glow Finch and Butterfly Monk - failing with 3
         });
     });
 
@@ -160,6 +162,7 @@ describe('Double Down', function () {
         // With IC, sometimes fails on Couldn't click on "No" for player2, cannot read property 'uuid' of undefined
         // Once it fails once, this error can get "stuck" and continues the next time this is run, i.e. once IC is removed from the test, sometimes with the error for the next test
         it('cannot place unit that is not in conjuration pile', function () {
+            expect(this.player2.inPlay.length).toBe(3); // Glow Finch, Butterfly Monk and Indiglow Creeper
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
             this.player1.clickCard(this.glowFinch);
@@ -171,11 +174,12 @@ describe('Double Down', function () {
 
             expect(this.player1).toHaveDefaultPrompt();
 
-            expect(this.player2.inPlay.length).toBe(3); // PB, Butterfly Monk and Indiglow Creeper
+            expect(this.player2.inPlay.length).toBe(2); // Butterfly Monk and Indiglow Creeper - failing with 3
         });
 
         // With IC, sometimes fails on Couldn't click on "No" for player2, cannot read property 'uuid' of undefined
         it('can only place one unit if that is all that is in conjuration pile', function () {
+            expect(this.player2.inPlay.length).toBe(3); // Glow Finch, Butterfly Monk and Indiglow Creeper
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
             this.player1.clickCard(this.butterflyMonk);
@@ -187,13 +191,17 @@ describe('Double Down', function () {
 
             expect(this.player1).toHaveDefaultPrompt();
 
-            expect(this.player2.inPlay.length).toBe(4); // PB, Glow Finch, Butterfly Monk and Indiglow Creeper
+            expect(this.player2.inPlay.length).toBe(3); // Glow Finch, Butterfly Monk and Indiglow Creeper - failing with 4
         });
 
-        it('only places 2 creepers into play', function () {
+        it('places 2 creepers into play', function () {
+            expect(this.player2.inPlay.length).toBe(3); // Glow Finch, Butterfly Monk and Indiglow Creeper
+            const firstCreepers = this.player2.inPlay[2];
+            const secondCreepers = this.player2.archives[1];
+            const thirdCreepers = this.player2.archives[2];
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
-            this.player1.clickCard(this.indiglowCreeper);
+            this.player1.clickCard(firstCreepers);
 
             expect(this.player2).toHavePrompt('Any Reactions to Indiglow Creeper being destroyed?');
             this.player2.clickCard(this.doubleDown);
@@ -201,7 +209,12 @@ describe('Double Down', function () {
             expect(this.player1).toHaveDefaultPrompt();
 
             expect(this.luminousSeedling.location).toBe('play area');
-            expect(this.player2.inPlay.length).toBe(6); // PB, Iron Worker, Glow Finch, 2 Creepers, 1 Seedling - failing with 5, so probably Seedling isn't happening
+            expect(firstCreepers.location).toBe('archives');
+            expect(secondCreepers.location).toBe('play area');
+            expect(thirdCreepers.location).toBe('play area');
+            expect(this.glowFinch.location).toBe('play area');
+            expect(this.butterflyMonk.location).toBe('play area');
+            expect(this.player2.inPlay.length).toBe(5); // Butterfly Monk, Glow Finch, 2 Creepers, 1 Seedling
         });
     });
 });
