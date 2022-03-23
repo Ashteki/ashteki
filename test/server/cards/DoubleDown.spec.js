@@ -30,6 +30,7 @@ describe('Double Down', function () {
 
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
             this.player2.clickCard(this.doubleDown);
+            expect(this.player1).toHaveDefaultPrompt();
 
             expect(this.player2.inPlay.length).toBe(4); // initial 3 -1 destroyed, + 2 from DD
         });
@@ -111,6 +112,7 @@ describe('Double Down', function () {
 
             expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
             this.player2.clickCard(this.doubleDown);
+            expect(this.player1).toHaveDefaultPrompt();
 
             expect(this.player2.inPlay.length).toBe(1); // Butterfly Monk - failing with 2
         });
@@ -125,6 +127,7 @@ describe('Double Down', function () {
 
             expect(this.player2).toHavePrompt('Any Reactions to Butterfly Monk being destroyed?');
             this.player2.clickCard(this.doubleDown);
+            expect(this.player1).toHaveDefaultPrompt();
 
             expect(this.player2.inPlay.length).toBe(2); // Glow Finch and Butterfly Monk - failing with 3
         });

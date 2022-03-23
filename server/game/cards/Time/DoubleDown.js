@@ -14,14 +14,20 @@ class DoubleDown extends Card {
                         context.source.controller.opponent ||
                         // ignoring damage event also appears
                         (context.event.tokenEvent &&
-                            context.event.tokenEvent.context.player === context.source.controller.opponent))
+                            context.event.tokenEvent.context.player ===
+                                context.source.controller.opponent))
             },
             gameAction: ability.actions.summon((context) => ({
                 conjuration: context.event.card.id,
-                count: 2,
+                count: this.getConjurationCount(context),
                 showMessage: true
             }))
         });
+    }
+    getConjurationCount(context) {
+        let cards = context.player.archives.filter((c) => c.id === context.event.card.id);
+        // takes into account that the destroyed conjuration is already in the conjuration pile
+        return Math.min(cards.length - 1, 2);
     }
 }
 
