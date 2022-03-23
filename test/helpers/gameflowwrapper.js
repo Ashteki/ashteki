@@ -60,7 +60,7 @@ class GameFlowWrapper {
         this.player2.clickPrompt('Start the Game');
 
         this.player1.clickNo(); // discard
-        // workaround for the the Sleeping Widows with Fallen, Double Down with Indiglow Creeper intermittent failures
+        // workaround for the Sleeping Widows with Fallen, Double Down with Indiglow Creeper intermittent failures
         if (this.player2.hasPrompt('Do you want to discard any cards?')) {
             this.player2.clickNo(); // discard
         }

@@ -1,14 +1,14 @@
 const restrictedList = {
     version: '1.4',
     cards: [
-        'mirumoto-s-fury',
+        /*'mirumoto-s-fury',
         'for-greater-glory',
         'against-the-waves',
         'forged-edict',
         'charge',
         'pathfinder-s-blade',
         'policy-debate',
-        'iron-mine'
+        'iron-mine'*/
     ]
 };
 
