@@ -79,7 +79,7 @@ describe('Double Down', function () {
             expect(this.player2).toBeAbleToSelect(this.doubleDown);
         });
     });
-    // The following is failing as onDestroyed already has the conjuration in the archives
+
     describe('triggers respecting summon limits', function () {
         beforeEach(function () {
             this.setupTest({
@@ -93,60 +93,7 @@ describe('Double Down', function () {
                 },
                 player2: {
                     phoenixborn: 'leo-sunshadow',
-                    inPlay: ['glow-finch', 'butterfly-monk'],
-                    spellboard: ['summon-shadow-spirit'],
-                    hand: ['double-down'],
-                    dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
-                    archives: ['butterfly-monk']
-                }
-            });
-        });
-
-        it('cannot place unit that is not in conjuration pile', function () {
-            expect(this.player2.inPlay.length).toBe(2); // Glow Finch and Butterfly Monk
-            this.player1.clickCard(this.aradelSummergaard);
-            this.player1.clickPrompt('water blast');
-            this.player1.clickCard(this.glowFinch);
-            //Last Request 2
-            this.player2.clickPrompt('Yes');
-
-            expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
-            this.player2.clickCard(this.doubleDown);
-            expect(this.player1).toHaveDefaultPrompt();
-
-            expect(this.player2.inPlay.length).toBe(1); // Butterfly Monk - failing with 2
-        });
-
-        it('can only place one unit if that is all that is in conjuration pile', function () {
-            expect(this.player2.inPlay.length).toBe(2); // Glow Finch and Butterfly Monk
-            this.player1.clickCard(this.aradelSummergaard);
-            this.player1.clickPrompt('water blast');
-            this.player1.clickCard(this.butterflyMonk);
-            //Mend 1
-            this.player2.clickCard(this.leoSunshadow);
-
-            expect(this.player2).toHavePrompt('Any Reactions to Butterfly Monk being destroyed?');
-            this.player2.clickCard(this.doubleDown);
-            expect(this.player1).toHaveDefaultPrompt();
-
-            expect(this.player2.inPlay.length).toBe(2); // Glow Finch and Butterfly Monk - failing with 3
-        });
-    });
-
-    describe('triggers respecting summon limits version 2', function () {
-        beforeEach(function () {
-            this.setupTest({
-                player1: {
-                    phoenixborn: 'aradel-summergaard',
-                    inPlay: ['iron-worker'],
-                    spellboard: [],
-                    dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
-                    archives: [],
-                    hand: ['molten-gold', 'crimson-bomber']
-                },
-                player2: {
-                    phoenixborn: 'leo-sunshadow',
-                    inPlay: ['glow-finch', 'butterfly-monk', 'indiglow-creeper'], // Just having IC in play sometimes fails the tests
+                    inPlay: ['glow-finch', 'butterfly-monk', 'indiglow-creeper'],
                     spellboard: ['summon-shadow-spirit'],
                     hand: ['double-down'],
                     dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
@@ -162,8 +109,6 @@ describe('Double Down', function () {
             });
         });
 
-        // With IC, sometimes fails on Couldn't click on "No" for player2, cannot read property 'uuid' of undefined
-        // Once it fails once, this error can get "stuck" and continues the next time this is run, i.e. once IC is removed from the test, sometimes with the error for the next test
         it('cannot place unit that is not in conjuration pile', function () {
             expect(this.player2.inPlay.length).toBe(3); // Glow Finch, Butterfly Monk and Indiglow Creeper
             this.player1.clickCard(this.aradelSummergaard);
@@ -180,7 +125,6 @@ describe('Double Down', function () {
             expect(this.player2.inPlay.length).toBe(2); // Butterfly Monk and Indiglow Creeper - failing with 3
         });
 
-        // With IC, sometimes fails on Couldn't click on "No" for player2, cannot read property 'uuid' of undefined
         it('can only place one unit if that is all that is in conjuration pile', function () {
             expect(this.player2.inPlay.length).toBe(3); // Glow Finch, Butterfly Monk and Indiglow Creeper
             this.player1.clickCard(this.aradelSummergaard);
@@ -202,6 +146,62 @@ describe('Double Down', function () {
             const firstCreeper = this.player2.inPlay[2];
             const secondCreeper = this.player2.archives[1];
             const thirdCreeper = this.player2.archives[2];
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(firstCreeper);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Indiglow Creeper being destroyed?');
+            this.player2.clickCard(this.doubleDown);
+
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.luminousSeedling.location).toBe('play area');
+            expect(firstCreeper.location).toBe('archives');
+            expect(secondCreeper.location).toBe('play area');
+            expect(thirdCreeper.location).toBe('play area');
+            expect(this.glowFinch.location).toBe('play area');
+            expect(this.butterflyMonk.location).toBe('play area');
+            expect(this.player2.inPlay.length).toBe(5); // Butterfly Monk, Glow Finch, 2 Creepers, 1 Seedling
+        });
+    });
+
+    describe('triggers respecting summon limits with 2 Creepers in play', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
+                    archives: [],
+                    hand: ['molten-gold', 'crimson-bomber']
+                },
+                player2: {
+                    phoenixborn: 'leo-sunshadow',
+                    inPlay: [
+                        'glow-finch',
+                        'butterfly-monk',
+                        'indiglow-creeper',
+                        'indiglow-creeper'
+                    ],
+                    spellboard: ['summon-shadow-spirit'],
+                    hand: ['double-down'],
+                    dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
+                    archives: [
+                        'butterfly-monk',
+                        'indiglow-creeper',
+                        'luminous-seedling',
+                        'luminous-seedling',
+                        'luminous-seedling'
+                    ]
+                }
+            });
+        });
+        it('places 1 creeper into player1', function () {
+            expect(this.player2.inPlay.length).toBe(4); // Glow Finch, Butterfly Monk and 2 Indiglow Creeper
+            const firstCreeper = this.player2.inPlay[2];
+            const secondCreeper = this.player2.inPlay[3];
+            const thirdCreeper = this.player2.archives[1];
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
             this.player1.clickCard(firstCreeper);
