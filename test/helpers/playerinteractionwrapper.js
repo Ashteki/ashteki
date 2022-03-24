@@ -27,7 +27,7 @@ class PlayerInteractionWrapper {
 
     /**
      * Sets the player's hand to contain the specified cards. Moves cards between
-     * hand and conflict deck
+     * hand and deck
      * @param {String|DrawCard)[]} [cards] - a list of card names, ids or objects
      */
     set hand(cards = []) {
@@ -47,7 +47,7 @@ class PlayerInteractionWrapper {
     }
 
     /**
-     * List of objects describing characters in play and any upgrades:
+     * List of objects describing units in play and any upgrades:
      * Either as Object:
      * {
      *    card: String,
@@ -74,15 +74,15 @@ class PlayerInteractionWrapper {
     }
 
     /**
-     * Gets all cards in play for a player
-     * @return {DrawCard[]} - List of player's cards currently in play
+     * Gets all spellboard cards in play for a player
+     * @return {DrawCard[]} - List of player's cards currently in spellboard
      */
     get spellboard() {
         return this.player.spellboard;
     }
 
     /**
-     * List of objects describing characters in spellboard and any upgrades:
+     * List of objects describing cards in spellboard and any upgrades:
      * Either as Object:
      * {
      *    card: String,
@@ -130,8 +130,8 @@ class PlayerInteractionWrapper {
     }
 
     /**
-     * Sets the contents of the conflict discard pile
-     * @param {String[]} newContents - list of names of cards to be put in conflict discard
+     * Sets the contents of the discard pile
+     * @param {String[]} newContents - list of names of cards to be put in discard
      */
     set discard(newContents = []) {
         //  Move cards to the deck
@@ -532,7 +532,7 @@ class PlayerInteractionWrapper {
         console.log(card.getActions().map((action) => [action.title, action.meetsRequirements()]));
     }
 
-    fightWith(creature, target) {
+    /*fightWith(creature, target) {
         if (creature.type !== 'creature' || !this.hasDefaultPrompt()) {
             throw new Error(`${creature.name} cannot fight now`);
         }
@@ -542,7 +542,7 @@ class PlayerInteractionWrapper {
         if (target) {
             this.clickCard(target);
         }
-    }
+    }*/
 
     play(card, target) {
         if (card.type === 'Ally') {
@@ -625,7 +625,7 @@ class PlayerInteractionWrapper {
         }
     }
 
-    forgeKey(color) {
+    /*forgeKey(color) {
         if (this.hasPrompt('Which key would you like to forge?')) {
             this.clickPrompt(color);
         } else {
@@ -643,7 +643,7 @@ class PlayerInteractionWrapper {
 
     getForgedKeys() {
         return this.player.getForgedKeys();
-    }
+    }*/
 
     clearHand() {
         this.player.hand = [];
