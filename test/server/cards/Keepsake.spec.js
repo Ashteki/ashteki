@@ -4,15 +4,15 @@ describe('Keepsake', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'victoria-glassfire',
-                    inPlay: ['mist-spirit', 'blue-jaguar', 'anchornaut'],
+                    inPlay: ['mist-spirit', 'blue-jaguar'],
                     dicepool: ['divine', 'illusion', 'charm', 'sympathy'],
                     spellboard: ['keepsake', 'magic-syphon'],
-                    hand: ['close-combat'],
+                    hand: ['close-combat', 'void-pulse'],
                     archives: ['spark']
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['iron-worker'],
+                    inPlay: ['iron-worker', 'anchornaut'],
                     spellboard: ['summon-iron-rhino'],
                     hand: ['molten-gold'],
                     dicepool: ['natural', 'natural', 'charm', 'charm']
@@ -43,6 +43,25 @@ describe('Keepsake', function () {
             this.player1.clickDone();
             expect(this.player2.dicepool[0].level).toBe('class');
             expect(this.player1).toHaveDefaultPrompt();
+            expect(this.keepsake.status).toBe(2);
+        });
+
+        it('dice lowered by void pulse', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.coalRoarkwin);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.voidPulse);
+            this.player1.clickDie(3);
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickPrompt('player2');
+            this.player1.clickOpponentDie(0);
+            this.player1.clickOpponentDie(1);
+            this.player1.clickDone();
+            expect(this.player2.dicepool[0].level).toBe('basic');
+            expect(this.player2.dicepool[1].level).toBe('basic');
+            expect(this.player1).toHavePrompt('Waiting for opponent to block');
             expect(this.keepsake.status).toBe(2);
         });
 
