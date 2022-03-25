@@ -115,10 +115,10 @@ class About extends React.Component {
                         <Trans>About Stats, Conceding and Leaving Games</Trans>
                     </h3>
                     <p>
-                        Ashteki does not rank and/or match players by skill level in any way. There
+                        Ashteki does not match players by skill level in any way. There
                         are three categories (beginner, casual and competitive) to be chosen when
                         creating a game which gives an indication of what to expect, but it
-                        doesn&apos;t enforce anything. Even though personal stats are not being
+                        doesn&apos;t enforce anything. Even though personal stats are
                         tracked, most players still very much appreciate a formal concede by
                         clicking the ‘Concede’ button and typing ‘gg’ before leaving a game.
                     </p>

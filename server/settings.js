@@ -8,6 +8,8 @@ const defaultSettings = {
     background: 'ashesreborn'
 };
 
+const defaultEloRating = 1500;
+
 function getUserWithDefaultsSet(user) {
     let userToReturn = user;
 
@@ -24,6 +26,14 @@ function getUserWithDefaultsSet(user) {
     userToReturn.permissions = Object.assign({}, userToReturn.permissions);
     if (!userToReturn.blockList) {
         userToReturn.blockList = [];
+    }
+
+    if (userToReturn.casualElo === undefined) {
+        userToReturn.casualElo = defaultEloRating;
+    }
+
+    if (userToReturn.competitiveElo === undefined) {
+        userToReturn.competitiveElo = defaultEloRating;
     }
 
     return userToReturn;

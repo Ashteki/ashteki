@@ -2,6 +2,7 @@ const _ = require('underscore');
 const EventEmitter = require('events');
 const moment = require('moment');
 
+const Card = require('./card')
 const ChatCommands = require('./chatcommands');
 const GameChat = require('./gamechat');
 const EffectEngine = require('./effectengine');
@@ -32,10 +33,11 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
-const { BattlefieldTypes } = require('../constants');
+const { BattlefieldTypes, GameType } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
+const Elo = require('../EloCalculator');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -75,6 +77,8 @@ class Game extends EventEmitter {
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.triggerSuddenDeath = false;
         this.suddenDeath = false;
+        this.trackElo = details.trackElo;
+        // this.expectedScores = {}; // Don't think I need for reconnects/rematches
 
         this.cardIndex = 0;
         this.cardsUsed = [];
@@ -99,6 +103,10 @@ class Game extends EventEmitter {
             );
         });
 
+        if (this.trackElo == true) {
+            this.calculateExpectedResults();
+        }
+
         _.each(details.spectators, (spectator) => {
             this.playersAndSpectators[spectator.user.username] = new Spectator(
                 spectator.id,
@@ -111,6 +119,47 @@ class Game extends EventEmitter {
         this.router = options.router;
 
         this.attackState = null;
+    }
+
+    calculateExpectedResults() {
+        let players = this.getPlayers()
+        let playerA = players[0];
+        let playerB = players[1];
+        playerA.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerA, playerB);
+        playerB.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerB, playerA);
+    }
+
+    getPlayerEloRating(player) {
+        if (this.gameType == GameType.Competitive){
+            return player.user.competitiveElo;
+        }
+        else {
+            return player.user.casualElo;
+        }
+    }
+
+    updatePlayerEloRating(player, newRating) {
+        if (this.gameType == GameType.Competitive){
+            player.user.competitiveElo = newRating;
+        }
+        else {
+            player.user.casualElo = newRating;
+        }
+    }
+
+    updateEloRankings(winner) {
+        let winningPlayer = this.getPlayerByName(winner.name);
+        let losingPlayer = this.getOtherPlayer(winningPlayer);
+        if (winningPlayer) {
+            let oldRating = this.getPlayerEloRating(winningPlayer);
+            let newRating = Elo.EloCalculator.calculateUpdatedRating(oldRating, winningPlayer.expectedScore, Elo.GameResult.Win);
+            this.updatePlayerEloRating(winningPlayer, newRating);
+        }
+        if (losingPlayer) {
+            let oldRating = this.getPlayerEloRating(losingPlayer);
+            let newRating = Elo.EloCalculator.calculateUpdatedRating(oldRating, losingPlayer.expectedScore, Elo.GameResult.Loss);
+            this.updatePlayerEloRating(losingPlayer, newRating);
+        }
     }
 
     getCardIndex() {
@@ -531,6 +580,10 @@ class Game extends EventEmitter {
         this.timeLimit.stopTimer();
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
+        
+        if (this.trackElo) {
+            this.updateEloRankings(winner);
+        }
 
         this.router.gameWon(this, reason, winner);
 

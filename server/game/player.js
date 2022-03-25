@@ -50,6 +50,12 @@ class Player extends GameObject {
         this.diceCounts = [];
         this.firstPlayer = false;
         this.left = false;
+        this.socket = undefined;
+        this.lobbyId = undefined;
+
+        // expected win/lose based on Elo
+        this.expectedScore = undefined;
+        //this.actualScore = undefined;
     }
 
     get name() {

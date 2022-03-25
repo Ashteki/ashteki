@@ -902,7 +902,8 @@ class Lobby {
             showHand: game.showHand,
             spectators: game.allowSpectators,
             swap: oldGame.swap,
-            useGameTimeLimit: game.useGameTimeLimit
+            useGameTimeLimit: game.useGameTimeLimit,
+            trackElo: game.trackElo
         });
         newGame.rematch = true;
         newGame.previousWinner = oldGame.winner;
@@ -1066,6 +1067,7 @@ class Lobby {
             syncGame.gameFormat = game.gameFormat;
             syncGame.gamePrivate = game.gamePrivate;
             syncGame.gameType = game.gameType;
+            syncGame.trackElo = game.trackElo;
             syncGame.id = game.id;
             syncGame.label = game.label;
             syncGame.node = this.router.workers[nodeName];

@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const EventEmitter = require('events');
 const uuid = require('uuid');
 const User = require('../models/User.js');
+const { GameType } = require('../constants');
 
 class UserService extends EventEmitter {
     constructor(configService) {
@@ -153,6 +154,28 @@ class UserService extends EventEmitter {
         });
     }
 
+    async updateElosFromGame(game) {
+        if (game.trackElo) {
+            for (const player of game.players) {
+                this.updateUserElo(player.user);
+            }   
+        }     
+    }
+
+    async updateUserElo(user) {
+        var toSet = {
+            casualElo: user.casualElo,
+            competitiveElo: user.competitiveElo
+        };
+
+        try {
+            this.users.update({ username: user.username }, { $set: toSet });        
+        } catch (error) {
+            logger.error('Error updating user Elo', error);
+            throw new Error('Error updating user Elo');
+        }
+    }
+    
     async addBlocklistEntry(user, entry) {
         try {
             this.blockList.insert({ userId: user.id, entry: entry });

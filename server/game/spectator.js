@@ -7,6 +7,7 @@ class Spectator {
 
         this.buttons = [];
         this.menuTitle = 'Spectator mode';
+        this.lobbyId = undefined;
     }
 
     isSpectator() {

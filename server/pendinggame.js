@@ -31,6 +31,7 @@ class PendingGame {
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.rematch = false;
         this.tournament = details.tournament;
+        this.trackElo = details.trackElo;
     }
 
     // Getters
