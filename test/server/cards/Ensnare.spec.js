@@ -58,4 +58,20 @@ describe('Ensnare reaction spell', function () {
         expect(this.biter.location).toBe('archives'); // 2 damage from Ensnare
         expect(this.fluteMage.location).toBe('discard'); // 2 damage from Iron Worker
     });
+
+    it("can't be played when a unit blocks", function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.coalRoarkwin); // target
+        this.player1.clickCard(this.ironWorker); // single attacker
+        this.player1.clickPrompt('Done');
+
+        this.player2.clickCard(this.biter);
+        this.player2.clickCard(this.ironWorker);
+        this.player2.clickPrompt('Done'); // block with Biter
+
+        expect(this.player1).not.toHavePrompt('Any Reactions to defenders being declared?');
+        this.player1.clickCard(this.ensnare); // click ensnare to play as reaction
+
+        expect(this.ensnare.location).toBe('hand');
+    });
 });

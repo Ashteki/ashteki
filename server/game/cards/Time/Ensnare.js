@@ -6,6 +6,7 @@ class Ensnare extends Card {
             when: {
                 onDefendersDeclared: (event, context) =>
                     event.attack.attackingPlayer === context.source.owner && // my attack
+                    !event.attack.isPBAttack && // attack a unit
                     event.attack.battles.some((b) => b.guard) // guard was declared
             },
             gameAction: ability.actions.dealDamage((context) => ({
