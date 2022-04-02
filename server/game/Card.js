@@ -194,7 +194,7 @@ class Card extends PlayableObject {
         // Hunt
         if (BattlefieldTypes.includes(this.type)) {
             this.abilities.keywordReactions.push(
-                this.reaction({
+                this.forcedReaction({
                     title: 'Hunt',
                     condition: (context) => context.source.getKeywordValue('Hunt'),
                     when: {
