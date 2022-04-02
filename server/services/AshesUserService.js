@@ -154,14 +154,6 @@ class UserService extends EventEmitter {
         });
     }
 
-    async updateElosFromGame(game) {
-        if (game.trackElo) {
-            for (const player of game.players) {
-                this.updateUserElo(player.user);
-            }   
-        }     
-    }
-
     async updateUserElo(user) {
         var toSet = {
             casualElo: user.casualElo,

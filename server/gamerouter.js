@@ -247,8 +247,13 @@ class GameRouter extends EventEmitter {
 
                 break;
             case 'GAMEWIN':
-                this.gameService.update(message.arg.game);
-                this.userService.updateElosFromGame(message.args.game)
+                let game = message.arg.game;
+                this.gameService.update(game);
+                if (game.trackElo) {
+                    for (const player of game.players) {
+                        this.userService.updateUserElo(player.user);   
+                    }     
+                }
                 break;
             case 'REMATCH':
                 this.gameService.update(message.arg.game);

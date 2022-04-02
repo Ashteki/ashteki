@@ -12,6 +12,7 @@ const GameOptions = ({ formProps }) => {
         { name: 'muteSpectators', label: t('Mute spectators') },
         { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
         { name: 'gamePrivate', label: t('Private (requires game link)') },
+        { name: 'trackElo', label: t('Track Elo ratings')}
     ];
 
     return (

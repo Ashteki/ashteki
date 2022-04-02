@@ -7,7 +7,7 @@ const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType } = require('../constants');
+const { BattlefieldTypes, CardType, GameType } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -55,7 +55,6 @@ class Player extends GameObject {
 
         // expected win/lose based on Elo
         this.expectedScore = undefined;
-        //this.actualScore = undefined;
     }
 
     get name() {
@@ -812,6 +811,24 @@ class Player extends GameObject {
                 return 600;
         }
         // Ready => Ally => Alteration => Action => Reaction
+    }
+
+    getPlayerEloRating(gameType) {
+        if (gameType == GameType.Competitive){
+            return this.user.competitiveElo;
+        }
+        else {
+            return this.user.casualElo;
+        }
+    }
+
+    updatePlayerEloRating(gameType, newRating) {
+        if (gameType == GameType.Competitive){
+            this.user.competitiveElo = newRating;
+        }
+        else {
+            this.user.casualElo = newRating;
+        }
     }
 }
 
