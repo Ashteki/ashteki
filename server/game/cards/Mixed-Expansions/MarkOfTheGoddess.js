@@ -18,10 +18,14 @@ class MarkOfTheGoddess extends Card {
                     dependsOn: 'source',
                     activePromptTitle: "Choose another opponent's card to deal damage to",
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
-                    cardCondition: (card, context) =>
-                        card !== context.targets.source &&
-                        (card.cardType != CardType.Phoenixborn ||
-                            card.controller.unitsInPlay.filter((c) => !c.exhausted).length === 1),
+                    cardCondition: (card, context) => {
+                        return (
+                            card != context.targets.source &&
+                            (BattlefieldTypes.includes(card.type) ||
+                                card.controller.unitsInPlay.filter((c) => !c.exhausted).length ===
+                                    1)
+                        );
+                    },
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
                         amount: context.targets.source.attack,
