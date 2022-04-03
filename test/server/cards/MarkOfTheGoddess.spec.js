@@ -26,6 +26,14 @@ describe('Mark of the Goddess played', function () {
 
             expect(this.anchornaut.location).toBe('discard');
         });
+
+        it('may not deal attack damage to opposing PB if other unexhausted units exist', function () {
+            this.player1.clickCard(this.markOfTheGoddess); // play card
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.ironWorker); // choose iw for 2 damage
+            expect(this.player1).not.toBeAbleToSelect(this.coalRoarkwin);
+        });
     });
 
     describe('No other unexhausted choice', function () {
