@@ -15,7 +15,7 @@ const RankFactors = {
 class EloCalculator {
 
     static calculateExpectedScore(playerARating, playerBRating) {
-        return 1/(1 + 10^((playerBRating-playerARating)/400));
+        return 1/(1 + Math.pow(10,(playerBRating-playerARating)/400));
     }
 
     static calculateUpdatedRating(playerRating, expectedScore, playerResult) {        
@@ -25,7 +25,7 @@ class EloCalculator {
     static getKFactor(rating) {
         // The k-factor is the maximum possible adjustment
         // to a player's rating based on their current rating.
-        if (rating < RankFactors.Beginner[0])
+        if (rating < RankFactors.Beginner[1])
             return RankFactors.Beginner[2];
         else if (rating >= RankFactors.Advanced[0] && rating <= RankFactors.Advanced[1])
             return RankFactors.Advanced[2];

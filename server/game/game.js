@@ -125,8 +125,10 @@ class Game extends EventEmitter {
         let players = this.getPlayers()
         let playerA = players[0];
         let playerB = players[1];
-        playerA.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerA, playerB);
-        playerB.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerB, playerA);
+        let playerARating = playerA.getPlayerEloRating(this.gameType);
+        let playerBRating = playerB.getPlayerEloRating(this.gameType);
+        playerA.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerARating, playerBRating);
+        playerB.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerBRating, playerARating);
     }
 
 
