@@ -12,6 +12,9 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
         <div>
             <Form>
                 <Panel title={t('Game Settings')}>
+                    <div className='advice'>
+                        Note: Changes made here will only affect the current game.
+                    </div>
                     <Form.Row>
                         <Form.Check
                             id='orderForcedAbilities'
@@ -34,7 +37,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             }
                         />
 
-                        <div className='fullWidth'>
+                        <div className='bluffTimer'>
                             Bluff Timer (seconds):
                             <RangeSlider
                                 name='gameOptions.bluffTimer'
@@ -52,7 +55,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     </Form.Row>
                 </Panel>
             </Form>
-        </div>
+        </div >
     );
 };
 
