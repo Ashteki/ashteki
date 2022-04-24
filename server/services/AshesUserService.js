@@ -156,8 +156,7 @@ class UserService extends EventEmitter {
 
     async updateUserElo(user) {
         var toSet = {
-            casualElo: user.casualElo,
-            competitiveElo: user.competitiveElo
+            elo: user.elo,
         };
 
         try {

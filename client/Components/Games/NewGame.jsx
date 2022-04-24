@@ -75,7 +75,7 @@ const NewGame = ({
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
         gamePrivate: defaultPrivate,
-        trackElo: false,
+        trackElo: true,
         mm: true
     };
 
