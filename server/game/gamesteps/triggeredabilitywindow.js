@@ -102,7 +102,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         if (
             player.hand.length === 0 || // no cards in hand
             !player.canPlayLimited() || // reaction used already
-            !(player.user.settings.bluffTimer > 0) || // no setting configured
+            !(player.user.settings.optionSettings.bluffTimer > 0) || // no setting configured
             !BluffAbilityTypes.includes(this.abilityType) // skip forced stuff
         ) {
             return false;

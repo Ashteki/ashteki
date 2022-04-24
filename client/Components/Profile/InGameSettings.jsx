@@ -2,21 +2,22 @@ import React from 'react';
 import Panel from '../Site/Panel';
 import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import RangeSlider from 'react-bootstrap-range-slider';
 
 /**
  * @typedef { import('./Profile').ProfileDetails } ProfileDetails
  */
 
 /**
- * @typedef KeyforgeGameSettingsProps
+ * @typedef InGameSettingsProps
  * @property {import('formik').FormikProps<ProfileDetails>} formProps
  * @property {User} user
  */
 
 /**
- * @param {KeyforgeGameSettingsProps} props
+ * @param {InGameSettingsProps} props
  */
-const KeyforgeGameSettings = ({ formProps }) => {
+const InGameSettings = ({ formProps }) => {
     const { t } = useTranslation();
 
     return (
@@ -40,9 +41,10 @@ const KeyforgeGameSettings = ({ formProps }) => {
                     onChange={formProps.handleChange}
                     onBlur={formProps.handleBlur}
                 />
+
             </Form.Row>
         </Panel>
     );
 };
 
-export default KeyforgeGameSettings;
+export default InGameSettings;

@@ -352,7 +352,9 @@ module.exports.init = function (server, options) {
                 cardSize: 'normal',
                 avatar: req.body.username,
                 customBackground: null,
-                bluffTimer: 0
+                optionSettings: {
+                    bluffTimer: 0
+                }
             };
 
             if (configService.getValueForSection('lobby', 'requireActivation')) {

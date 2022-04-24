@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import Panel from '../Site/Panel';
 import { Form } from 'react-bootstrap';
+import RangeSlider from 'react-bootstrap-range-slider';
 
 const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
     const { t } = useTranslation();
@@ -32,6 +33,22 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                                 onOptionSettingToggle('confirmOneClick', event.target.checked)
                             }
                         />
+
+                        <div className='fullWidth'>
+                            Bluff Timer (seconds):
+                            <RangeSlider
+                                name='gameOptions.bluffTimer'
+                                label='Bluff Timer'
+                                min='0'
+                                max='10'
+                                tooltip='on'
+                                value={optionSettings.bluffTimer}
+                                onChange={(event) =>
+                                    onOptionSettingToggle('bluffTimer', event.target.value)
+                                }
+                            />
+                        </div>
+                        <br />
                     </Form.Row>
                 </Panel>
             </Form>

@@ -72,9 +72,9 @@
 }
 
 .timer h1 {
-    position:absolute;
-    left:8px;
-    bottom:0px;
+    position: absolute;
+    left: 8px;
+    bottom: 0px;
 }
 
 .play-area {
@@ -139,35 +139,40 @@
     width: 210px;
     justify-content: space-between;
     margin-right: 5px;
-    bottom:0px;
+    bottom: 0px;
 }
 
-.inset-pane > div {
+.inset-pane>div {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.card-log{
+.card-log {
     display: flex;
     flex-direction: column;
     padding: 5px;
     margin-left: auto;
     width: $keyteki-card-width + 10;
-    overflow:unset;
+    overflow: unset;
 }
 
-.card-log-arrow{
+.card-log-arrow {
     text-align: center;
     background-color: rgba(theme-color('secondary'), 0.4);
     cursor: pointer;
 }
 
-.info-panel{
-    font-size:1.1em;
+.info-panel {
+    font-size: 1.1em;
     z-index: 999;
 }
-.info-panel .manual-commands{
-    padding:15px;
+
+.info-panel .manual-commands {
+    padding: 15px;
     max-width: 800px;
+}
+
+.fullWidth {
+    width: 100%;
 }
