@@ -23,7 +23,8 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky, o
 
     let firstPlayer = true;
     return (
-        <Panel title={t('Players')}>
+        <div title={t('Players')}>
+            <h3>Players</h3>
             {Object.values(currentGame.players).map((player) => {
                 const playerIsMe = player && player.name === user?.username;
                 const isSealed = currentGame.gameFormat === 'sealed';
@@ -93,7 +94,7 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky, o
                     </div>
                 );
             })}
-        </Panel>
+        </div>
     );
 };
 

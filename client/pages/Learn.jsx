@@ -13,7 +13,7 @@ class LearnToPlay extends React.Component {
             <Col className='full-height' xs='12'>
                 <Panel>
                     {/* <h1>Learn to Play</h1> */}
-                    <h2>Getting Started with Ashes Reborn</h2>
+                    <h2>Learn to play Ashes Reborn</h2>
                     <div className='flex-container-row'>
                         <div className='learn-video'>
                             <h3>Watch it Played with Rodney</h3>
@@ -40,12 +40,36 @@ class LearnToPlay extends React.Component {
                             ></iframe>
                         </div>
                     </div>
-                    <h2>Getting Started with Ashteki</h2>
+                    <h3>Articles</h3>
+                    <ul>
+                        <li>IG intro?</li>
+                    </ul>
+
+                    <h2>Get Started with Ashteki</h2>
                     <p>would be nice to have a video series here</p>
-                    <h3>Your first game</h3>
-                    <h3>Manual Mode</h3>
-                    <h3>Manual Mode</h3>
-                    <div>tbd...</div>
+                    <ul>
+                        <li>Your first game (TC video?)</li>
+                        <li>Some other nuggets that are awesome</li>
+                        <li>Manual Mode explained (text from help page?)</li>
+                    </ul>
+
+                    <h2>Diving Deeper</h2>
+                    <div className='flex-container-row'>
+                        <div className='three-column-item'>
+                            <h3>Deck Building</h3>
+                            <li>IG Article</li>
+                            <li>CT Video</li>
+                        </div>
+                        <div className='three-column-item'>
+                            <h3>Adventuring Party Decks</h3>
+                            <li>link to article</li>
+
+                        </div>
+                        <div className='three-column-item'>
+                            <h3>Get Competitive</h3>
+                            <li>Shufflebus links / videos</li>
+                        </div>
+                    </div>
                 </Panel>
             </Col>
         );
