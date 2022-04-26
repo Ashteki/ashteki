@@ -35,46 +35,10 @@ export class PlayerStats extends React.Component {
         this.props.sendGameMessage('changeStat', type, direction === 'up' ? 1 : -1);
     }
 
-    getStatValueOrDefault(stat) {
-        if (!this.props.stats) {
-            return 0;
-        }
-
-        return this.props.stats[stat] || 0;
-    }
-
     toggleAction(actionType) {
         if (this.props.showControls) {
             this.props.sendGameMessage('modifyAction', actionType, this.props.actions[actionType]);
         }
-    }
-
-    getButton(stat, name, statToSet = stat) {
-        return (
-            <div className='state' title={name}>
-                {this.props.showControls ? (
-                    <a
-                        href='#'
-                        className='btn-stat'
-                        onClick={this.sendUpdate.bind(this, statToSet, 'down')}
-                    >
-                        <img src={Minus} title='-' alt='-' />
-                    </a>
-                ) : null}
-                <div className={`stat-image ${stat}`}>
-                    <div className='stat-value'>{this.getStatValueOrDefault(stat)}</div>
-                </div>
-                {this.props.showControls ? (
-                    <a
-                        href='#'
-                        className='btn-stat'
-                        onClick={this.sendUpdate.bind(this, statToSet, 'up')}
-                    >
-                        <img src={Plus} title='+' alt='+' />
-                    </a>
-                ) : null}
-            </div>
-        );
     }
 
     onSettingsClick(event) {

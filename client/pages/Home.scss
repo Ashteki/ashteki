@@ -32,6 +32,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 200px;
 
     .card {
         flex: 1;
@@ -42,6 +43,12 @@
 .flex-container {
     display: flex;
     flex-direction: column;
+}
+
+.flex-container-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
 }
 
@@ -58,35 +65,109 @@
     right: 15px;
 }
 
-.textlogo{
+.textlogo {
     // background-color: #7289DA;
     background-color: rgba(0, 0, 0, 0.5);
     height: 60px;
     border-radius: 5px;
 }
-.discord-textlogo{
+
+.bookTextlogo {
+    height: 60px;
+    padding: 10px;
+}
+
+.cardsTextlogo {
+    height: 60px;
+    padding: 5px;
+}
+
+.discord-textlogo {
     background-color: #7289DA;
     // background-color: black;
     height: 60px;
     border-radius: 5px;
 }
 
-.link-box{
-    display: flex;
-    flex-direction: row;
+.ashes-live-textlogo {
+    color: white;
+    // background-color: black;
+    border-radius: 5px;
+    min-width: 60px;
+    font-size: 40px;
+    padding: 0 10px;
+    line-height: 40px;
+    vertical-align: middle;
 }
 
-.link-box .caption{
+.link-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.link-box .caption {
     padding: 5px;
 }
 
-.link-box img{
-    display:inline-block;
+.link-box img {
+    display: inline-block;
 }
 
-.link-box-item{
-    display: flex;
-    width: 270px;
-    margin-left:10px;
+.link-box-item {
+    // margin: 10px;
     color: inherit;
+}
+
+.link-box-item p {
+    margin-left: 6px;
+}
+
+.link-box-item ul {
+    padding-left: 20px;
+}
+
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.learn-video {
+    width: 33%;
+}
+
+.two-column {
+    columns: 2;
+    width: 100%;
+}
+
+.three-column-item {
+    width: 32%;
+
+}
+
+.three-column-item p {
+    padding: 5px 15px 5px 0;
+
+}
+
+.three-column-item li {
+    padding: 0px 10px;
+}
+
+.lobby-content h2 {
+    margin-bottom: 4px;
+    color: white;
+    font-size: 1.9em;
+    font-weight: 400;
+}
+
+.lobby-content h3 {
+    color: white;
+    font-weight: 400;
+}
+
+.lobby-content p {
+    margin-bottom: 0px;
 }

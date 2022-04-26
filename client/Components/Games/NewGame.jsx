@@ -208,7 +208,7 @@ const NewGame = ({
                         )}
                         <div className='text-center newgame-buttons'>
                             <Button variant='success' type='submit'>
-                                <Trans>Start</Trans>
+                                <Trans>Create</Trans>
                             </Button>
                             <Button
                                 variant='primary'

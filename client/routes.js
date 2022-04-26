@@ -4,14 +4,14 @@ import React from 'react';
 import Login from './pages/LoginContainer';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
-import Lobby from './pages/Lobby';
+import Home from './pages/Home';
 import Decks from './pages/Decks';
 import AddDeck from './pages/AddDeck';
 import EditDeck from './pages/EditDeck';
 // import Matches from './pages/Matches';
 import Stats from './pages/Stats';
 import ImportDeck from './Components/Decks/ImportDeck';
-import About from './pages/About';
+import Learn from './pages/Learn';
 import Security from './pages/Security.jsx';
 import Activation from './pages/Activation';
 import ForgotPassword from './pages/ForgotPassword';
@@ -24,13 +24,11 @@ import GameLobby from './Components/Games/GameLobby';
 import GameBoard from './Components/GameBoard/GameBoard.jsx';
 import BlockList from './pages/BlockList';
 import NodesAdmin from './pages/NodesAdmin';
-import Privacy from './pages/Privacy';
 import BanlistAdmin from './pages/BanlistAdmin';
 import Patreon from './pages/Patreon';
 
 const routes = [
-    { path: '/', action: () => <Lobby key='lobby' /> },
-    { path: '/about', action: () => <About key='about' /> },
+    { path: '/', action: () => <Home key='lobby' /> },
     {
         path: '/activation',
         action: (context) => (
@@ -44,6 +42,7 @@ const routes = [
 
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
+    { path: '/learntoplay', action: () => <Learn key='learn' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
     // { path: '/matches', action: () => <Matches key='matches' /> },
@@ -73,7 +72,6 @@ const routes = [
     { path: '/security', action: () => <Security key='security' /> },
     { path: '/users', action: () => <UserAdmin key='useradmin' />, permission: 'canManageUsers' },
     { path: '/nodes', action: () => <NodesAdmin key='nodesadmin' />, permission: 'canManageNodes' },
-    { path: '/privacy', action: () => <Privacy key='privacy' /> },
     {
         path: '/banlist',
         action: () => <BanlistAdmin key='banlist' permission='canManageBanlist' />

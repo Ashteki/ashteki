@@ -35,7 +35,7 @@ body {
 }
 
 a {
-    color: theme-color('secondary');
+    color: skyblue;
 
     &:hover {
         color: theme-color('info');
@@ -168,6 +168,7 @@ a {
 .table-totals tbody tr:last-child {
     font-weight: bold;
 }
+
 .bg {
     background-image: url('~assets/img/bgs/ashesreborn.png');
 
@@ -219,6 +220,7 @@ h3 {
 .rrt-button {
     color: white;
 }
+
 .rrt-button:hover {
     color: theme-color(dark) !important;
 }
@@ -246,16 +248,16 @@ pre {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .form-horizontal {
-  .form-group {
-    margin-left: 0;
-    margin-right: 0;
-  }
+    .form-group {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }

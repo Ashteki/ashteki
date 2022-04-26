@@ -8,7 +8,7 @@ describe('Double Down', function () {
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
                     archives: [],
-                    hand: ['molten-gold', 'crimson-bomber']
+                    hand: ['molten-gold', 'crimson-bomber', 'natures-wrath']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
@@ -77,6 +77,26 @@ describe('Double Down', function () {
 
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
             expect(this.player2).toBeAbleToSelect(this.doubleDown);
+        });
+
+        it('ability triggers on AoE - natures wrath', function () {
+            expect(this.player2.inPlay.length).toBe(3);
+            this.player1.play(this.naturesWrath);
+            this.player1.clickCard(this.shadowSpirit);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
+            expect(this.player2).toBeAbleToSelect(this.doubleDown);
+            this.player2.clickCard(this.doubleDown);
+            // killed 1 SS, summoned 2...
+            expect(this.player2.inPlay.length).toBe(4);
+
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.player2.inPlay[2]); // new shadowSpirit
+            expect(this.player2.inPlay[2].damage).toBe(0);
+            this.player1.clickCard(this.mistSpirit);
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 

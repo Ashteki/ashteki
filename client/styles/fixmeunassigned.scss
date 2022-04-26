@@ -9,7 +9,7 @@
 }
 
 .panel {
-    box-shadow: 1px 1px 2px  theme-color('primary') !important;
+    box-shadow: 1px 1px 2px theme-color('border') !important;
 
     .panel-heading {
         font-weight: normal;
@@ -46,8 +46,8 @@
     margin-bottom: 0;
 
     transform: rotate(90deg);
-    transform-origin: 0 0 ;
-      
+    transform-origin: 0 0;
+
 }
 
 .drop-target {

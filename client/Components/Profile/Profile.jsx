@@ -9,7 +9,7 @@ import Panel from '../Site/Panel';
 
 import ProfileMain from './ProfileMain';
 import ProfileBackground from './ProfileBackground';
-import KeyforgeGameSettings from './KeyforgeGameSettings';
+import InGameSettings from './InGameSettings';
 import ProfileCardSize from './ProfileCardSize';
 import BlankBg from '../../assets/img/bgs/blank.png';
 import AshesRebornBg from '../../assets/img/bgs/ashesreborn.png';
@@ -71,7 +71,8 @@ const initialValues = {
     },
     gameOptions: {
         confirmOneClick: false,
-        orderForcedAbilities: false
+        orderForcedAbilities: false,
+        bluffTimer: 0
     }
 };
 
@@ -85,7 +86,7 @@ const Profile = ({ onSubmit, isLoading }) => {
     const [localCardSize, setCardSize] = useState(user?.settings.cardSize);
     const [customBg, setCustomBg] = useState(null);
     const topRowRef = useRef(null);
-    const [bluffTimer, setBluffTimer] = useState(user?.settings.bluffTimer || 0);
+    const [bluffTimer, setBluffTimer] = useState(user?.settings.optionSettings.bluffTimer || 0);
 
     const backgrounds = [{ name: 'none', label: t('none'), imageUrl: BlankBg }];
     const cardSizes = [
@@ -173,7 +174,7 @@ const Profile = ({ onSubmit, isLoading }) => {
                 }
 
                 if (bluffTimer) {
-                    submitValues.settings.bluffTimer = bluffTimer;
+                    submitValues.settings.optionSettings.bluffTimer = bluffTimer;
                 }
 
                 onSubmit(submitValues);
@@ -222,7 +223,8 @@ const Profile = ({ onSubmit, isLoading }) => {
                             />
                         </Col>
                         <Col sm='6'>
-                            <KeyforgeGameSettings formProps={formProps} user={user} />
+                            <InGameSettings formProps={formProps} user={user} />
+
                             <Panel title='Bluff timer'>
                                 <RangeSlider
                                     min='0'

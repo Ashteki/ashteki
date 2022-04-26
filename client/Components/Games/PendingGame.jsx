@@ -204,65 +204,64 @@ const PendingGame = () => {
                     </ReactClipboard>
                 </div>
                 <div className='game-status'>{getGameStatus()}</div>
-            </Panel>
-            <PendingGamePlayers
-                currentGame={currentGame}
-                user={user}
-                onSelectDeck={() => setShowModal(true)}
-                onFeelingLucky={() => {
-                    dispatch(sendSocketMessage('selectdeck', currentGame.id, -1, false));
-                }}
-                onCoalOff={() => {
-                    dispatch(sendSocketMessage('selectdeck', currentGame.id, -2, false));
-                }}
-            />
-            <Panel
-                title={t('Spectators({{users}})', {
-                    users: currentGame.spectators.length
-                })}
-            >
-                {currentGame.spectators.map((spectator) => {
-                    return <div key={spectator.name}>{spectator.name}</div>;
-                })}
-            </Panel>
-            <Panel title={t('Chat')}>
-                <div
-                    className='message-list'
-                    ref={messageRef}
-                    onScroll={() => {
-                        setTimeout(() => {
-                            if (
-                                messageRef.current.scrollTop >=
-                                messageRef.current.scrollHeight -
-                                messageRef.current.offsetHeight -
-                                20
-                            ) {
-                                setCanScroll(true);
-                            } else {
-                                setCanScroll(false);
-                            }
-                        }, 500);
+                <PendingGamePlayers
+                    currentGame={currentGame}
+                    user={user}
+                    onSelectDeck={() => setShowModal(true)}
+                    onFeelingLucky={() => {
+                        dispatch(sendSocketMessage('selectdeck', currentGame.id, -1, false));
                     }}
-                >
-                    <Messages messages={currentGame.messages} />
+                    onCoalOff={() => {
+                        dispatch(sendSocketMessage('selectdeck', currentGame.id, -2, false));
+                    }}
+                />
+
+                <h3>Spectators ({currentGame.spectators.length})</h3>
+                <div className='spectator-list'>
+                    {currentGame.spectators.map((spectator) => {
+                        return <div key={spectator.name}>{spectator.name}</div>;
+                    })}
                 </div>
-                <Form>
-                    <Form.Group>
-                        <Form.Control
-                            type='text'
-                            placeholder={t('Enter a message...')}
-                            value={message}
-                            onKeyPress={(event) => {
-                                if (event.key === 'Enter') {
-                                    sendMessage();
-                                    event.preventDefault();
+                <div>
+                    <div
+                        className='message-list'
+                        ref={messageRef}
+                        onScroll={() => {
+                            setTimeout(() => {
+                                if (
+                                    messageRef.current.scrollTop >=
+                                    messageRef.current.scrollHeight -
+                                    messageRef.current.offsetHeight -
+                                    20
+                                ) {
+                                    setCanScroll(true);
+                                } else {
+                                    setCanScroll(false);
                                 }
-                            }}
-                            onChange={(event) => setMessage(event.target.value)}
-                        ></Form.Control>
-                    </Form.Group>
-                </Form>
+                            }, 500);
+                        }}
+                    >
+                        <Messages messages={currentGame.messages} />
+                    </div>
+                    <Form>
+                        <Form.Group>
+                            <Form.Control
+                                type='text'
+                                placeholder={t('Enter a message...')}
+                                value={message}
+                                onKeyPress={(event) => {
+                                    if (event.key === 'Enter') {
+                                        sendMessage();
+                                        event.preventDefault();
+                                    }
+                                }}
+                                onChange={(event) => setMessage(event.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
+                    </Form>
+                </div>
             </Panel>
+
             {showModal && (
                 <SelectDeckModal
                     onClose={() => setShowModal(false)}

@@ -135,12 +135,12 @@ const Navigation = (props) => {
         <Navbar bg='dark' variant='dark' className='navbar-sm' fixed='top'>
             <Nav>
                 <Link href='/'>
-                    <Nav.Link>{t('Chat')}</Nav.Link>
+                    <Nav.Link>{t('Home')}</Nav.Link>
                 </Link>
                 {renderMenuItems(LeftMenu)}
             </Nav>
             <Navbar.Collapse id='navbar' className='justify-content-end'>
-                <Nav className='ml-auto pr-md-5'>
+                <Nav className='ml-auto pr-md-6'>
                     <GameContextMenu />
                     {numGames}
                     {!currentGame && (
@@ -161,7 +161,15 @@ const Navigation = (props) => {
                     )}
                     {renderMenuItems(RightMenu)}
                     <ProfileDropdown menu={ProfileMenu} user={props.user} />
+
+                    <Nav.Link
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        href='https://www.patreon.com/ashteki'>
+                        <span className='patreon-link'>Patreon</span>
+                    </Nav.Link>
                 </Nav>
+
             </Navbar.Collapse>
         </Navbar>
     );

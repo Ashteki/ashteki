@@ -17,4 +17,9 @@
             border-color: theme-color('primary');
         }
     }
+
+    &.border-border {
+        box-shadow: 1px 1px 1px theme-color('border') !important;
+
+    }
 }
