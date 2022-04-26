@@ -55,7 +55,7 @@ const Panel = ({ type = PanelType.Primary, title, titleClass, children }) => {
             retType = 'danger';
             break;
         default:
-            retType = 'primary';
+            retType = 'border';
             break;
     }
 

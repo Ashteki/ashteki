@@ -2,16 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import { Col } from 'react-bootstrap';
-import './Learn.scss';
+import './Home.scss';
 
 import Panel from '../Components/Site/Panel';
 
 class LearnToPlay extends React.Component {
     render() {
-
         return (
-            <Col className='full-height' xs='12'>
-                <Panel>
+            <Col className='full-height lobby-content' xs='12'>
+                <Panel type='lobby'>
                     {/* <h1>Learn to Play</h1> */}
                     <h2>Learn to play Ashes Reborn</h2>
                     <div className='flex-container-row'>
