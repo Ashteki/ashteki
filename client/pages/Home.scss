@@ -134,7 +134,7 @@
 }
 
 .learn-video {
-    width: 50%;
+    width: 33%;
 }
 
 .two-column {
@@ -144,6 +144,16 @@
 
 .three-column-item {
     width: 32%;
+
+}
+
+.three-column-item p {
+    padding: 5px 15px 5px 0;
+
+}
+
+.three-column-item li {
+    padding: 0px 10px;
 }
 
 .lobby-content h2 {
@@ -160,15 +170,4 @@
 
 .lobby-content p {
     margin-bottom: 0px;
-}
-
-.flex-container-row {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.learn-video {
-    width: 50%;
 }

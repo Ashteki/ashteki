@@ -3,7 +3,7 @@ import './Home.scss';
 import Link from '../Components/Navigation/Link';
 import Panel from '../Components/Site/Panel';
 import bookLogo from '../assets/img/open-book-svgrepo-com.svg';
-import cardsLogo from '../assets/img/showHandIcon.png';
+import cardsLogo from '../assets/img/ShowHandIcon.png';
 import discordTextLogo from '../assets/img/discord-logo-white.svg';
 
 const Home = () => {
@@ -24,7 +24,7 @@ const Home = () => {
                     </Link>
                 </Panel>
                 <Panel type='lobby' className='link-box'>
-                    <Link className='link-box-item lobby-content' href='/learn-to-play' key='learn-link'>
+                    <Link className='link-box-item lobby-content' href='/learntoplay' key='learn-link'>
                         <div>
                             <h2>
                                 <img src={bookLogo} className='bookTextlogo' />

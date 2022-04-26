@@ -42,7 +42,7 @@ const routes = [
 
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
-    { path: '/learn-to-play', action: () => <Learn key='learn' /> },
+    { path: '/learntoplay', action: () => <Learn key='learn' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
     // { path: '/matches', action: () => <Matches key='matches' /> },
