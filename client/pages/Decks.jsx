@@ -46,9 +46,19 @@ const DecksComponent = () => {
                             <Link className='btn btn-primary' href='/decks/add'>
                                 New Deck
                             </Link>
-                            <Link className='btn btn-primary' href='/decks/import'>
+                            <Link className='btn btn-secondary' href='/decks/import'>
                                 Import Deck
                             </Link>
+                        </Col>
+                        <Col>
+                            Precon decks are built into the site. You don&apos;t need to create a
+                            copy here. For a better pre-constructed experience why not try one of
+                            the{' '}
+                            <a href='https://jaysonsethlindley.medium.com/adventuring-party-six-constructed-ashes-decks-from-one-collection-1a2e6a2d3260'>
+                                Adventuring Party
+                            </a>{' '}
+                            decks? When you join a game and select your deck you can click the
+                            Adventuring Party tab for the full list.
                         </Col>
                         <DeckList />
                     </Panel>

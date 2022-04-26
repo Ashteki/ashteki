@@ -12,17 +12,9 @@
  * @type {MenuItem[]} The list of menu items for the left side menu
  */
 export const LeftMenu = [
+    { path: '/learntoplay', title: 'Learn to Play' },
     { path: '/decks', title: 'Decks', showOnlyWhenLoggedIn: true },
-    // { path: '/matches', title: 'Matches', showOnlyWhenLoggedIn: true },
-    { path: '/stats', title: 'Stats', showOnlyWhenLoggedIn: true },
     { path: '/play', title: 'Play' },
-    {
-        title: 'Help',
-        childItems: [
-            { path: '/about', title: 'About' },
-            { path: '/privacy', title: 'Privacy Policy' }
-        ]
-    },
     {
         title: 'Admin',
         showOnlyWhenLoggedIn: true,
@@ -49,6 +41,8 @@ export const RightMenu = [
  */
 export const ProfileMenu = [
     { title: 'Profile', path: '/profile' },
+    { title: 'Stats', path: '/stats' },
+
     { title: 'Security', path: '/security' },
     { title: 'Block List', path: '/blocklist' },
     { title: 'Logout', path: '/logout' }

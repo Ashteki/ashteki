@@ -1,8 +1,7 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Modal } from 'react-bootstrap';
-
+import igcircle from '../../assets/img/igcircle.png';
 import DeckList from '../Decks/DeckList.jsx';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -22,9 +21,16 @@ const SelectDeckModal = ({ onClose, onDeckSelected }) => {
                         <Tabs>
                             <TabList>
                                 <Tab>My Decks</Tab>
-                                <Tab>Pre-con Decks</Tab>
+                                <Tab>Pre-cons</Tab>
                                 <Tab>Building Basics</Tab>
-                                <Tab>Adventuring Party</Tab>
+                                <Tab style={{ backgroundColor: 'skyblue', color: '#333' }}>
+                                    <img
+                                        src={igcircle}
+                                        alt='Adventuring Party'
+                                        height='22'
+                                        width='22'
+                                    />{' '}Adventuring Party
+                                </Tab>
                             </TabList>
 
                             <TabPanel>
