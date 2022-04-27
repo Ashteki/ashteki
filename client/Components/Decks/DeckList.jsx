@@ -283,7 +283,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                     <Form>
                         <Form.Row>
                             <Form.Group as={Col} controlId='formGridName'>
-                                <Form.Label>{t('Name')}</Form.Label>
                                 <Form.Control
                                     name='name'
                                     type='text'

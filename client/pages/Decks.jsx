@@ -41,24 +41,18 @@ const DecksComponent = () => {
             </Col>
             <Row>
                 <Col lg={6} className='full-height'>
-                    <Panel title={t('Your decks')}>
+                    <Panel title={t('My decks')}>
                         <Col className='text-center'>
                             <Link className='btn btn-primary' href='/decks/add'>
                                 New Deck
                             </Link>
                             <Link className='btn btn-secondary' href='/decks/import'>
-                                Import Deck
+                                Import a Deck
                             </Link>
                         </Col>
                         <Col>
-                            Precon decks are built into the site. You don&apos;t need to create a
-                            copy here. For a better pre-constructed experience why not try one of
-                            the{' '}
-                            <a href='https://jaysonsethlindley.medium.com/adventuring-party-six-constructed-ashes-decks-from-one-collection-1a2e6a2d3260'>
-                                Adventuring Party
-                            </a>{' '}
-                            decks? When you join a game and select your deck you can click the
-                            Adventuring Party tab for the full list.
+                            Precon and Adventuring Party decks are built-in. You don&apos;t need to
+                            create them here.
                         </Col>
                         <DeckList />
                     </Panel>

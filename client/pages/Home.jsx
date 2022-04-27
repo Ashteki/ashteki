@@ -18,7 +18,7 @@ const Home = () => {
                                 Play Now
                             </h2>
                             <p>
-                                You can jump into a game straight away. Precons and Adventuring Party decks are built-in for all users.
+                                You can jump into a game straight away. Precons and Adventuring Party decks are built in for all users.
                             </p>
                         </div>
                     </Link>
@@ -37,25 +37,21 @@ const Home = () => {
                         </div>
                     </Link>
                 </Panel>
+
                 <Panel type='lobby' className='link-box'>
-                    <a
-                        className='link-box-item lobby-content'
-                        href='http://ashes.live'
-                        key='ashes-live-link'
-                    >
+                    <a className='link-box-item lobby-content' href='/decks' key='mydecks-link'>
                         <div>
                             <h2>
                                 <img src={cardsLogo} className='cardsTextlogo' />
                                 Build a deck
                             </h2>
                             <p>
-                                You can build a deck here on ashteki, but for the best deckbuilding
-                                experience and to find other decks <br />for inspiration go to ashes.live.
-                                You can then import those decks into ashteki.
+                                When you move beyond the built-in decks you can create your own here, or import from ashes.live
                             </p>
                         </div>
                     </a>
                 </Panel>
+
                 <Panel type='lobby'>
                     <a
                         className='link-box-item lobby-content'

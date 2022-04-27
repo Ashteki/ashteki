@@ -151,7 +151,7 @@ const GameLobby = ({ gameId }) => {
                             {games.length === 0 ? (
                                 <AlertPanel type='info'>
                                     {t(
-                                        'No games are currently in progress. Click the buttons above to start one.'
+                                        'No games are currently in progress. Click the button above to start one.'
                                     )}
                                 </AlertPanel>
                             ) : (
