@@ -12,9 +12,9 @@
  * @type {MenuItem[]} The list of menu items for the left side menu
  */
 export const LeftMenu = [
-    { path: '/learntoplay', title: 'Learn to Play' },
-    { path: '/decks', title: 'Decks', showOnlyWhenLoggedIn: true },
     { path: '/play', title: 'Play' },
+    { path: '/learntoplay', title: 'Learn to Play' },
+    { path: '/decks', title: 'My Decks', showOnlyWhenLoggedIn: true },
     {
         title: 'Admin',
         showOnlyWhenLoggedIn: true,

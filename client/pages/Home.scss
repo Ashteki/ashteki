@@ -100,9 +100,10 @@
     vertical-align: middle;
 }
 
-.link-box {
-    display: flex;
-    flex-direction: column;
+.link-box {}
+
+.link-box-half {
+    width: 50%;
 }
 
 .link-box .caption {

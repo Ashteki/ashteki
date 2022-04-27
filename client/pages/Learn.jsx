@@ -40,6 +40,14 @@ class LearnToPlay extends React.Component {
                         </div>
                         <div className='learn-video'>
                             <h3>Articles</h3>
+                            <p>Plaid Hat Games&apos;&nbsp;
+                                <a href='https://www.plaidhatgames.com/board-games/ashes-rise-phoenixborn/'>
+                                    Official Ashes Reborn page
+                                </a>
+                                &nbsp;has rules, FAQs, reference cards, and many other resources.
+                                The following articles are also good introductions written by
+                                members of the community.
+                            </p>
                             <ul>
                                 <li>
                                     <a href='https://jaysonsethlindley.medium.com/phoenix-rising-a-new-player-guide-to-ashes-reborn-c93c9d5d981e'>
@@ -51,11 +59,10 @@ class LearnToPlay extends React.Component {
                                         A Beginners Guide to Ashes Reborn
                                     </a>
                                 </li>
+
                             </ul>
                         </div>
-
                     </div>
-
 
                     <h2>Get Started with Ashteki</h2>
                     <p>
@@ -97,12 +104,12 @@ class LearnToPlay extends React.Component {
                         <div className='three-column-item'>
                             <h3>Get Competitive</h3>
                             <p>
-                                The Shufflebus team run regular competitions, stream via twitch
+                                The Shuffle Bus team run regular competitions, stream via twitch
                                 every week (more than once!), and host articles on their website.
                             </p>
                             <li>
-                                <a href='https://theshufflebus.com/shuffle-busted-a-competitive-ashes-primer/'>
-                                    Shufflebus Competitive Primer
+                                <a href='https://theshufflebus.com/ashes-reborn-online-op/'>
+                                    Ashes Reborn Online Organized Play
                                 </a>
                             </li>
                         </div>
