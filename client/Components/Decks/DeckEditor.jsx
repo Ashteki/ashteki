@@ -5,6 +5,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Form, Col, Row } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
+import Link from '../../Components/Navigation/Link';
 
 import TextArea from '../Form/TextArea.jsx';
 
@@ -36,9 +37,9 @@ class InnerDeckEditor extends React.Component {
                 cardList += this.getCardListEntry(card.count, card.card);
             });
 
-            _.each(this.props.deck.conjurations, (card) => {
-                cardList += this.getCardListEntry(card.count, card.card);
-            });
+            // _.each(this.props.deck.conjurations, (card) => {
+            //     cardList += this.getCardListEntry(card.count, card.card);
+            // });
 
             this.setState({ cardList: cardList });
         }
@@ -149,12 +150,13 @@ class InnerDeckEditor extends React.Component {
             let num = parseInt(line.substr(0, index));
             let cardName = line.substr(index, line.length);
 
-            let card = _.find(this.props.cards, function (card) {
-                return card.name.toLowerCase() === cardName.toLowerCase();
-            });
+            let card = this.getCard(cardName);
 
             if (card) {
-                this.addCard(card, num);
+                const isConjuration = card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell';
+                if (!isConjuration) {
+                    this.addCard(card, num);
+                }
             }
         });
 
@@ -162,6 +164,12 @@ class InnerDeckEditor extends React.Component {
 
         this.setState({ cardList: event.target.value, deck: deck });
         this.props.updateDeck(deck);
+    }
+
+    getCard(cardName) {
+        return _.find(this.props.cards, function (card) {
+            return card.name.toLowerCase() === cardName.toLowerCase();
+        });
     }
 
     onDiceListChange(event) {
@@ -258,14 +266,25 @@ class InnerDeckEditor extends React.Component {
             list = cards;
         }
 
-        if (list[card.id]) {
-            list[card.id].count += number;
+        const entry = list.find(c => c.id === card.stub);
+        if (entry) {
+            entry.count += number;
         } else {
             list.push({
                 count: number,
                 card: card,
                 id: card.stub,
                 conjurations: card.conjurations
+            });
+        }
+        if (card.conjurations) {
+            card.conjurations.forEach((conj) => {
+                if (!deck.conjurations.some((c) => c.id === conj.stub)) {
+                    var c = this.getCard(conj.name);
+                    if (c) {
+                        this.addCard(c, c.copies);
+                    }
+                }
             });
         }
     }
@@ -388,11 +407,14 @@ class InnerDeckEditor extends React.Component {
                                 // eslint-disable-next-line react/no-string-refs
                                 ref='submit'
                                 type='submit'
-                                className='btn btn-primary'
+                                className='btn btn-success'
                                 onClick={this.onSaveClick.bind(this)}
                             >
                                 Save Deck
                             </button>
+                            <Link className='btn btn-primary' href='/decks'>
+                                Cancel
+                            </Link>
                         </div>
                     </div>
                 </Form>
