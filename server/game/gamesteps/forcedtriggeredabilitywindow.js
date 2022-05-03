@@ -14,7 +14,17 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         this.eventWindow = window;
         this.eventsToExclude = eventsToExclude;
         this.abilityType = abilityType; // forcedInterrupt / forcedReaction etc.
-        this.currentPlayer = this.game.activePlayer; // active player chooses first
+
+        this.currentPlayer = this.game.betweenRounds
+            ? this.game.roundFirstPlayer // first player chooses first between rounds (p13)
+            : this.game.activePlayer; // active player chooses first within rounds
+
+        // record who went first, and who second
+        if (this.currentPlayer) {
+            this.firstPlayer = this.currentPlayer;
+            this.secondPlayer = this.currentPlayer.opponent;
+        }
+
         this.resolvedAbilities = [];
         this.pressedDone = false;
     }
@@ -48,16 +58,13 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
 
     filterChoices() {
         if (this.choices.length === 0) return true;
+        let myChoices = this.choices.filter((c) => c.player === this.currentPlayer);
 
-        let myChoices = this.choices;
-        if (this.game.betweenTurns || this.game.betweenRounds) {
-            myChoices = this.choices.filter((c) => c.player === this.currentPlayer);
-        }
-
-        // Processes the choices left for this window, return true to end the window
+        // No choices left, or player pressed 'done'
         if (myChoices.length === 0 || this.pressedDone) {
-            if (this.currentPlayer === this.game.activePlayer) {
-                this.currentPlayer = this.currentPlayer.opponent;
+            // flip players
+            if (this.currentPlayer === this.firstPlayer) {
+                this.currentPlayer = this.secondPlayer;
                 return this.filterChoices();
             }
             return true;

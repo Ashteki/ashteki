@@ -16,17 +16,17 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         //     player.resetTimerAtEndOfRound = true;
         // }
 
-        if (this.SecondPlayerActive()) {
+        if (this.secondPlayerActive()) {
             this.complete = true;
         } else {
-            this.currentPlayer = this.currentPlayer.opponent;
+            this.currentPlayer = this.secondPlayer;
         }
 
         return true;
     }
 
-    SecondPlayerActive() {
-        return this.currentPlayer === this.game.activePlayer.opponent;
+    secondPlayerActive() {
+        return this.currentPlayer === this.secondPlayer;
     }
 
     addChoice(context) {
@@ -81,10 +81,6 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
         );
         this.promptBetweenSources(this.choices);
         return false;
-    }
-
-    resolveAbility(context) {
-        super.resolveAbility(context);
     }
 
     getPromptForSelectProperties(player) {

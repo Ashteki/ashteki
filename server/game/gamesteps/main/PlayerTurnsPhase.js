@@ -22,6 +22,7 @@ class PlayerTurnsPhase extends Phase {
         if (this.game.activePlayer.passedMain && this.game.activePlayer.opponent.passedMain) {
             this.game.addAlert('info', 'Both players passed their main action.');
         } else {
+            this.game.switchActivePlayer();
             this.queueStep(new SimpleStep(this.game, () => this.beginTurn()));
         }
     }
