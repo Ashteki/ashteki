@@ -689,7 +689,7 @@ class Lobby {
         }
     }
 
-    async onSelectDeck(socket, gameId, deckId, isStandalone) {
+    async onSelectDeck(socket, gameId, deckId, isStandalone, chooseForMeType) {
         let game = this.games[gameId];
         if (!game) {
             return;
@@ -706,8 +706,11 @@ class Lobby {
                     case -2: // coaloff!
                         deck = this.deckService.getCoalOffDeck(cards);
                         break;
-                    case -1: // rando
-                        deck = this.deckService.getRandomDeck(cards);
+                    case -1: // random choice 
+                        deck = await this.deckService.getRandomChoice(
+                            socket.user,
+                            chooseForMeType
+                        );
                         break;
                     default:
                         deck = await this.deckService.getById(deckId);

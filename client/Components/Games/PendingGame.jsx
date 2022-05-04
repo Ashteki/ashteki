@@ -208,9 +208,6 @@ const PendingGame = () => {
                     currentGame={currentGame}
                     user={user}
                     onSelectDeck={() => setShowModal(true)}
-                    onFeelingLucky={() => {
-                        dispatch(sendSocketMessage('selectdeck', currentGame.id, -1, false));
-                    }}
                     onCoalOff={() => {
                         dispatch(sendSocketMessage('selectdeck', currentGame.id, -2, false));
                     }}
@@ -273,6 +270,18 @@ const PendingGame = () => {
                                 currentGame.id,
                                 deck._id,
                                 !!deck.precon_id
+                            )
+                        );
+                    }}
+                    onChooseForMe={(deckType) => {
+                        setShowModal(false);
+                        dispatch(
+                            sendSocketMessage(
+                                'selectdeck',
+                                currentGame.id,
+                                -1,
+                                0,
+                                deckType
                             )
                         );
                     }}
