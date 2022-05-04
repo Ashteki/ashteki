@@ -62,7 +62,6 @@ import './DeckList.scss';
  * @property {string} uuid The unique identifier of the deck
  * @property {number} wins The number of wins this deck has had
  * @property {number} winRate The win rate of the deck
- * @property {number} usageLevel The usage level of the deck
  */
 
 /**

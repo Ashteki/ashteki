@@ -129,20 +129,6 @@ const GameLobby = ({ gameId }) => {
                                         );
                                     })}
                                 </Row>
-                                <Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='switch'
-                                            id='onlyShowNew'
-                                            label={t('Only show new games')}
-                                            inline
-                                            onChange={(event) => {
-                                                onFilterChecked('onlyShowNew', event.target.checked);
-                                            }}
-                                            checked={currentFilter['onlyShowNew']}
-                                        ></Form.Check>
-                                    </Col>
-                                </Row>
                             </Panel>
                         </Col>
                     </Row>
