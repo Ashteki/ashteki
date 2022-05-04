@@ -171,6 +171,24 @@ class AshesDeckService {
         return userDecks ? userDecks.length : 0;
     }
 
+    async getRandomChoice(user, deckType) {
+        // this should choose a deck for the player
+        let decks = [];
+        switch (deckType) {
+            case 0:
+                // get my decks and choose one 
+                decks = await this.findByUserName(user.username, null, false);
+
+                break;
+            default:
+                // get precondecks then choose one
+                decks = await this.getPreconDecks(deckType);
+                break;
+        }
+        const i = Math.floor(Math.random() * decks.length);
+        return decks[i];
+    }
+
     getRandomDeck(cards) {
         // get a carousel dice spread
         const caro = new Carousel().getCarousel();

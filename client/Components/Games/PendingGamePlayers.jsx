@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 
-import Panel from '../Site/Panel';
 import DeckStatus from '../Decks/DeckStatus';
 import Avatar from '../Site/Avatar';
 
@@ -18,7 +17,7 @@ import './PendingGamePlayer.scss';
 /**
  * @param {PendingGamePlayersProps} props
  */
-const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky, onCoalOff }) => {
+const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
     const { t } = useTranslation();
 
     let firstPlayer = true;
@@ -57,9 +56,6 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onFeelingLucky, o
                         <>
                             <Button onClick={onSelectDeck}>
                                 <Trans>Select Deck</Trans>
-                            </Button>
-                            <Button onClick={onFeelingLucky}>
-                                <Trans>I&apos;m Feeling Lucky!</Trans>
                             </Button>
                             <Button onClick={onCoalOff}>
                                 <Trans>Coal Off!</Trans>

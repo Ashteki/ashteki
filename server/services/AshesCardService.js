@@ -38,7 +38,8 @@ class AshesCardService {
                             imageStub: card.stub,
                             id: card.stub,
                             conjurations: card.conjurations,
-                            phoenixborn: card.phoenixborn
+                            phoenixborn: card.phoenixborn,
+                            copies: card.copies
                         };
                     } else {
                         cards[card.stub] = card;

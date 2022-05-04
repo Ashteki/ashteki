@@ -1246,9 +1246,16 @@ class Game extends EventEmitter {
     }
 
     raiseEndRoundEvent() {
+        this.betweenRounds = true;
         this.raiseEvent('onRoundEnded', {}, () => {
             this.endRound();
         });
+    }
+
+    switchActivePlayer() {
+        if (this.activePlayer.opponent) {
+            this.activePlayer = this.activePlayer.opponent;
+        }
     }
 
     raiseEndTurnEvent() {
@@ -1269,15 +1276,10 @@ class Game extends EventEmitter {
             card.endTurn();
         }
 
-        if (this.activePlayer.opponent) {
-            this.activePlayer = this.activePlayer.opponent;
-        }
-
         this.checkForTimeExpired();
     }
 
     endRound() {
-        this.betweenRounds = true;
         this.getPlayers().forEach((player) => player.endRound());
         this.cardsPlayed = [];
         this.cardsDiscarded = [];

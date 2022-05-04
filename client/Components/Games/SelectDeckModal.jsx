@@ -1,13 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import igcircle from '../../assets/img/igcircle.png';
 import DeckList from '../Decks/DeckList.jsx';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './SelectDeckModal.scss';
 
-const SelectDeckModal = ({ onClose, onDeckSelected }) => {
+const SelectDeckModal = ({ onClose, onDeckSelected, onChooseForMe }) => {
     const { t } = useTranslation();
 
     return (
@@ -34,15 +34,27 @@ const SelectDeckModal = ({ onClose, onDeckSelected }) => {
                             </TabList>
 
                             <TabPanel>
+                                <Button onClick={() => onChooseForMe(0)}>
+                                    Choose for me
+                                </Button>
                                 <DeckList onDeckSelected={onDeckSelected} />
                             </TabPanel>
                             <TabPanel>
+                                <Button onClick={() => onChooseForMe(1)}>
+                                    Choose for me
+                                </Button>
                                 <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
                             </TabPanel>
                             <TabPanel>
+                                <Button onClick={() => onChooseForMe(3)}>
+                                    Choose for me
+                                </Button>
                                 <DeckList standaloneDecks={3} onDeckSelected={onDeckSelected} />
                             </TabPanel>
                             <TabPanel>
+                                <Button onClick={() => onChooseForMe(2)}>
+                                    Choose for me
+                                </Button>
                                 <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
                             </TabPanel>
                         </Tabs>

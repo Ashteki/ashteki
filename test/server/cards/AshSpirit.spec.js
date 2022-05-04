@@ -221,4 +221,149 @@ describe('AshSpirit', function () {
             expect(this.player2).not.toHavePrompt('Ash Spirit');
         });
     });
+
+    describe('BUG: ash spirit smolder vs law of grace as FIRST PLAYER', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'maeoni-viper',
+                    deck: [],
+                    spellboard: ['summon-ash-spirit'],
+                    archives: ['ash-spirit'],
+                    hand: [
+                        // 6 cards to prevent fatigue damage
+                        'blood-transfer',
+                        'massive-growth',
+                        'massive-growth',
+                        'massive-growth',
+                        'kneel',
+                        'kneel'
+                    ],
+                    inPlay: ['ash-spirit'],
+                    dicepool: ['time']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    deck: [],
+                    spellboard: ['law-of-grace'],
+                    hand: ['massive-growth', 'massive-growth', 'kneel', 'kneel', 'kneel']
+                }
+            });
+        });
+
+        it('as ACTIVE player, no damage', function () {
+            expect(this.aradelSummergaard.damage).toBe(0);
+            expect(this.game.roundFirstPlayer.name).toBe(this.player1.name);
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            // the round ends with player 2 as the ACTIVE player, but FIRST PLAYER matters for end of Round
+            this.player1.clickPrompt('Done'); // recovery phase -  pin dice
+            expect(this.game.activePlayer.name).toBe(this.player2.name);
+            // end of round
+            expect(this.lawOfGrace.location).toBe('spellboard');
+            this.player1.clickCard(this.maeoniViper); // smolder prompt - choose aradel
+
+            // prepare phase discard cards prompt
+            this.player1.clickPrompt('No');
+            this.player2.clickPrompt('No');
+
+            expect(this.player2).toHaveDefaultPrompt();
+            expect(this.aradelSummergaard.damage).toBe(0);
+        });
+
+        it('as NOT ACTIVE player no damage', function () {
+            expect(this.aradelSummergaard.damage).toBe(0);
+            this.player1.play(this.bloodTransfer);
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.endTurn();
+
+            // the round ends with player 1 as the ACTIVE player
+            this.player1.clickPrompt('Done'); // recovery phase -  pin dice
+            expect(this.game.activePlayer.name).toBe(this.player1.name);
+            // end of round
+            expect(this.lawOfGrace.location).toBe('spellboard');
+            this.player1.clickCard(this.maeoniViper); // smolder prompt - choose aradel
+
+            // prepare phase discard cards prompt
+            this.player1.clickPrompt('No');
+            this.player2.clickPrompt('No');
+
+            expect(this.player2).toHaveDefaultPrompt();
+            expect(this.aradelSummergaard.damage).toBe(0);
+        });
+    });
+
+    describe('BUG: ash spirit smolder vs law of grace NOT FIRST PLAYER', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    deck: [],
+                    spellboard: ['law-of-grace'],
+                    hand: [ // 6 cards to prevent fatigue damage
+                        'blood-transfer',
+                        'massive-growth',
+                        'massive-growth',
+                        'kneel',
+                        'kneel',
+                        'kneel'
+                    ]
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    deck: [],
+                    spellboard: ['summon-ash-spirit'],
+                    archives: ['ash-spirit'],
+                    hand: ['massive-growth', 'massive-growth', 'massive-growth', 'kneel', 'kneel'],
+                    inPlay: ['ash-spirit'],
+                    dicepool: ['time']
+                }
+            });
+        });
+
+        it('as ACTIVE player', function () {
+            expect(this.aradelSummergaard.damage).toBe(0);
+            expect(this.game.roundFirstPlayer.name).toBe(this.player1.name);
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            // the round ends with player 2 as the ACTIVE player, but FIRST PLAYER matters for end of Round
+            this.player2.clickPrompt('Done'); // recovery phase -  pin dice
+            expect(this.game.activePlayer.name).toBe(this.player2.name);
+            // end of round
+            expect(this.lawOfGrace.location).toBe('discard');
+            this.player2.clickCard(this.aradelSummergaard); // smolder prompt - choose aradel
+
+            // prepare phase discard cards prompt
+            this.player2.clickPrompt('No');
+            this.player1.clickPrompt('No');
+
+            expect(this.player2).toHaveDefaultPrompt(); // because they're first player now
+            expect(this.aradelSummergaard.damage).toBe(1);
+        });
+
+        it('as NOT ACTIVE player', function () {
+            expect(this.aradelSummergaard.damage).toBe(0);
+            this.player1.play(this.bloodTransfer);
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.endTurn();
+
+            // the round ends with player 1 as the ACTIVE player
+            this.player2.clickPrompt('Done'); // recovery phase -  pin dice
+            expect(this.game.activePlayer.name).toBe(this.player1.name);
+            // end of round
+            expect(this.lawOfGrace.location).toBe('discard');
+            this.player2.clickCard(this.aradelSummergaard); // smolder prompt - choose aradel
+
+            // prepare phase discard cards prompt
+            this.player2.clickPrompt('No');
+            this.player1.clickPrompt('No');
+
+            expect(this.player2).toHaveDefaultPrompt();
+            expect(this.aradelSummergaard.damage).toBe(1);
+        });
+    });
 });
