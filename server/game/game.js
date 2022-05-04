@@ -1091,8 +1091,11 @@ class Game extends EventEmitter {
         this.getPlayers().forEach((p) => (p.limitedPlayed = 0)); // reset reaction count for next turn
 
         this.raiseEvent('onBeginTurn', { player: this.activePlayer });
-        if (this.triggerSuddenDeath && this.activePlayer === this.roundFirstPlayer) {
-            this.triggerSuddenDeath = false;
+        if (
+            this.triggerSuddenDeath &&
+            this.activePlayer === this.roundFirstPlayer &&
+            !this.suddenDeath
+        ) {
             this.suddenDeath = true;
         }
     }
