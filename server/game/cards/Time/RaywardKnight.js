@@ -19,6 +19,8 @@ class RaywardKnight extends Card {
             }
         });
         this.action({
+            preferActionPromptMessage: true,
+
             title: 'Charge',
             cost: [ability.costs.sideAction()],
             target: {
@@ -28,11 +30,12 @@ class RaywardKnight extends Card {
                 cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),
                 cardType: BattlefieldTypes,
                 onSelect: (player, card) => {
+                    this.game.addAlert('danger', '{0} uses {1} to charge!', player, this);
+
                     this.game.initiateUnitAttack(card, this, true);
                     return true;
                 }
-            },
-            effect: 'charge'
+            }
         });
     }
 }
