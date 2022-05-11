@@ -4,10 +4,6 @@ const Card = require('../../Card.js');
 class Purify extends Card {
     setupCardAbilities(ability) {
         this.play({
-            condition: (context) =>
-                context.player.opponent.unitsInPlay.some(
-                    (card) => card.type === CardType.Conjuration
-                ),
             title: 'Purify',
             target: {
                 activePromptTitle: 'Choose an ally to return to hand',
@@ -16,6 +12,10 @@ class Purify extends Card {
                 gameAction: ability.actions.returnToHand()
             },
             then: {
+                condition: (context) =>
+                    context.player.opponent.unitsInPlay.some(
+                        (card) => card.type === CardType.Conjuration
+                    ),
                 target: {
                     activePromptTitle: 'Choose a conjuration to destroy',
                     controller: 'opponent',
