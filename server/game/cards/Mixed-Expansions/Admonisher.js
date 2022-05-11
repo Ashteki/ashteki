@@ -10,10 +10,12 @@ class Admonisher extends Card {
             when: {
                 onRoundEnded: () => true
             },
-            gameAction: ability.actions.dealDamage((context) => ({
-                amount: 1,
-                target: context.player.opponent.phoenixborn
-            }))
+            target: {
+                autoTarget: (context) => context.player.opponent.phoenixborn,
+                gameAction: ability.actions.dealDamage({
+                    amount: 1
+                })
+            }
         });
     }
 }

@@ -26,11 +26,13 @@ class TheAwakenedState extends Card {
                 },
                 then: {
                     alwaysTriggers: true,
-                    gameAction: ability.actions.dealDamage((context) => ({
-                        amount: 1,
-                        showMessage: true,
-                        target: context.player.opponent.phoenixborn
-                    }))
+                    target: {
+                        autoTarget: (context) => context.player.opponent.phoenixborn,
+                        gameAction: ability.actions.dealDamage({
+                            amount: 1,
+                            showMessage: true
+                        })
+                    }
                 }
             }
         });
