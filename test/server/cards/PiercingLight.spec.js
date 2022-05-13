@@ -4,7 +4,7 @@ describe('Piercing Light Ready Spell ', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'dimona-odinstar',
-                    inPlay: ['mist-spirit'],
+                    inPlay: ['flute-mage'],
                     dicepool: ['divine', 'charm'],
                     hand: ['rayward-recruit'],
                     discard: ['hammer-knight'],
@@ -12,9 +12,9 @@ describe('Piercing Light Ready Spell ', function () {
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['frost-fang', 'iron-worker'],
+                    inPlay: ['frost-fang', 'iron-worker', 'mist-spirit'],
                     dicepool: ['illusion', 'natural'],
-                    hand: ['particle-shield', 'safeguard']
+                    hand: ['safeguard']
                 }
             });
         });
@@ -31,6 +31,27 @@ describe('Piercing Light Ready Spell ', function () {
             // check for overkill
             expect(this.raywardRecruit.hasKeyword('overkill')).toBe(true);
             expect(this.raywardRecruit.getKeywordValue('overkill')).toBe(1);
+        });
+
+        it('buffed unit overkill works as normal', function () {
+            // buff a unit
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Divine Dice Power');
+            this.player1.clickCard(this.fluteMage);
+            expect(this.fluteMage.attack).toBe(2);
+
+            // check for overkill
+            expect(this.fluteMage.hasKeyword('overkill')).toBe(true);
+            expect(this.fluteMage.getKeywordValue('overkill')).toBe(1);
+
+            this.player1.clickAttack(this.ironWorker);
+            this.player1.clickCard(this.fluteMage);
+            this.player2.clickDone(); // PB guard
+            this.player2.clickYes(); // counter
+
+            expect(this.fluteMage.location).toBe('discard');
+            expect(this.ironWorker.location).toBe('discard');
+            expect(this.aradelSummergaard.damage).toBe(1);
         });
     });
 });
