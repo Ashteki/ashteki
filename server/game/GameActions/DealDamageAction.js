@@ -140,7 +140,7 @@ class DealDamageAction extends CardGameAction {
                     }
                 );
                 damageDealtEvent.addSubEvent(armorPreventEvent);
-                armorPreventEvent.openReactionWindow = true;
+                armorPreventEvent.openReactionWindow = false;
             }
         });
     }
