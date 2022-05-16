@@ -12,11 +12,13 @@ class Remorse extends Card {
             then: {
                 alwaysTriggers: true,
                 condition: (context) => context.player.opponent.deck.length === 0,
-                gameAction: ability.actions.dealDamage((context) => ({
-                    amount: 2,
-                    showMessage: true,
-                    target: context.player.opponent.phoenixborn
-                }))
+                target: {
+                    autoTarget: (context) => context.player.opponent.phoenixborn,
+                    gameAction: ability.actions.dealDamage({
+                        amount: 2,
+                        showMessage: true
+                    })
+                }
             }
         });
     }

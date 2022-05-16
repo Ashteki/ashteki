@@ -38,10 +38,6 @@
     &.invalid {
         background: theme-color('danger');
     }
-
-    &.not-verified {
-        background: theme-color('info');
-    }
 }
 
 .popover-body {

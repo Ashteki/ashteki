@@ -205,4 +205,42 @@ describe('Vanish', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+
+    describe('vs Jessa Screams', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'jessa-na-ni',
+                    inPlay: ['enchanted-violinist'],
+                    dicepool: ['ceremonial', 'natural', 'natural', 'charm', 'illusion'],
+                    hand: ['fear', 'one-hundred-blades']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight', 'mist-spirit'],
+                    dicepool: ['charm', 'natural', 'illusion'],
+                    hand: ['vanish', 'anchornaut']
+                }
+            });
+        });
+
+        it('should cancel screams', function () {
+            const handSize = this.player2.hand.length;
+            this.player1.play(this.fear);
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.enchantedViolinist);
+            this.player1.clickCard(this.jessaNaNi);
+            this.player1.clickDie(1);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Screams of the Departed targetting rin northfell?');
+            expect(this.player2).toBeAbleToSelect(this.vanish);
+            this.player2.clickCard(this.vanish);
+
+            this.player1.clickCard(this.mistSpirit);
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.rinNorthfell.damage).toBe(0);
+            expect(this.player2.hand.length).toBe(handSize - 1);
+        });
+    });
 });

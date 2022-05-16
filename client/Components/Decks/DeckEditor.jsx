@@ -355,7 +355,7 @@ class InnerDeckEditor extends React.Component {
                     </Form.Group>
                     <h4>
                         You can type card names and quantities into the box below, or add them using
-                        this lookup box. DON&apos;T FORGET to add your CONJURATIONS!
+                        this lookup box.
                     </h4>
 
                     <Form.Group as={Row} controlId='cardLookup'>

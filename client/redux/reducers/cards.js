@@ -60,12 +60,8 @@ function processDecks(decks, state) {
             hasConjurations: hasConjurations,
             uniques: uniques,
             tenDice: tenDice,
-            flagged: !!deck.flagged,
-            verified: !!deck.verified,
-            usageLevel: deck.usageLevel,
             noUnreleasedCards: true,
-            officialRole: true,
-            extendedStatus: []
+            officialRole: true
         };
     }
 }

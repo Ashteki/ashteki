@@ -735,10 +735,6 @@ class Lobby {
                 hasPhoenixborn = true;
             }
 
-            if (isStandalone) {
-                deck.verified = true;
-            }
-
             let hasConjurations = this.checkConjurations(deck);
             let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
@@ -757,15 +753,9 @@ class Lobby {
                 hasConjurations: hasConjurations,
                 tenDice: tenDice,
                 uniques: uniques,
-                notVerified: !deck.verified,
-                extendedStatus: [],
                 noUnreleasedCards: true,
-                officialRole: true,
-                usageLevel: 0,
-                verified: !!deck.verified
+                officialRole: true
             };
-
-            deck.usageCount = 0;
 
             game.selectDeck(socket.user.username, deck);
 

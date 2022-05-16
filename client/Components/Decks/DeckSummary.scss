@@ -24,6 +24,15 @@
 
 .deck-summary {
     margin-top: 15px;
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+        margin: 4px 0;
+    }
 }
 
 .decklist-card-zoom {
@@ -43,14 +52,14 @@
     margin: 5px 5px 5px 0;
     padding: 10px;
     border: 1px solid rgba(71, 58, 56, 0.65);
-    
-  }
 
-.flex{
+}
+
+.flex {
     display: flex;
     flex-wrap: wrap;
- }
-  
+}
+
 .card-group-title {
     background-color: theme-color('primary');
     color: white;
@@ -62,14 +71,14 @@
     text-align: center;
     position: relative;
     top: 5px;
-  }
+}
 
 .cards-no-break {
-    width:50%
+    width: 50%
 }
 
 .cards {
     flex-flow: row wrap;
     display: flex;
-    width:100%;
+    width: 100%;
 }

@@ -94,9 +94,6 @@ module.exports.init = function (server) {
             if (numDecks > 0) {
                 const rawDecks = await deckService.findByUserName(req.user.username, req.query);
                 decks = rawDecks.map((deck) => {
-                    deck.usageLevel = 0;
-                    deck.usageCount = undefined;
-
                     deck.played = 0;
                     deck.wins = 0;
                     deck.winRate = 0;

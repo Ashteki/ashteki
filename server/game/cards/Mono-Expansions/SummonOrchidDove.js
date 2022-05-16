@@ -24,9 +24,12 @@ class SummonOrchidDove extends Card {
                 may: "deal 1 damage to opponent's PB",
                 condition: (context) =>
                     this.focus >= 2 && context.player.opponent.deck.length === 0,
-                gameAction: ability.actions.dealDamage((context) => ({
-                    target: context.player.opponent.phoenixborn
-                })),
+                target: {
+                    autoTarget: (context) => context.player.opponent.phoenixborn,
+                    gameAction: ability.actions.dealDamage({
+                        amount: 1
+                    })
+                },
                 message: '{0} uses {1} to deal 1 damage to {3}',
                 messageArgs: (context) => context.player.opponent.phoenixborn
             }

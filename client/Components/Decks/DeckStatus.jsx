@@ -19,12 +19,6 @@ const DeckStatus = ({ status }) => {
 
     if (!status.basicRules || !status.hasConjurations || !status.tenDice || !status.uniques) {
         statusName = t('Invalid');
-    } else if (status.usageLevel === 1 && !status.verified) {
-        statusName = t('Used');
-    } else if (status.usageLevel === 2 && !status.verified) {
-        statusName = t('Popular');
-    } else if (status.usageLevel === 3 && !status.verified) {
-        statusName = t('Notorious');
     } else {
         statusName = t('Valid');
     }
@@ -34,13 +28,6 @@ const DeckStatus = ({ status }) => {
             <Popover.Content>
                 <div>
                     <DeckStatusSummary status={status} />
-                    {status.extendedStatus && status.extendedStatus.length !== 0 && (
-                        <ul className='deck-status-errors'>
-                            {status.extendedStatus.map((error, index) => (
-                                <li key={index}>{error}</li>
-                            ))}
-                        </ul>
-                    )}
                 </div>
             </Popover.Content>
         </Popover>

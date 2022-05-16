@@ -5,6 +5,7 @@ import Phoenixborn from './Phoenixborn';
 import DeckStatus from './DeckStatus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import DeckStatusSummary from './DeckStatusSummary';
 
 import './DeckSummary.scss';
 import DieIcon from '../GameBoard/DieIcon';
@@ -110,33 +111,28 @@ const DeckSummary = ({ deck }) => {
                 <Col xs='2' sm='3'>
                     <Phoenixborn pbStub={phoenixbornStub} />
                 </Col>
-                <Col xs='8' sm='5'>
+                <Col xs='10' sm='9'>
+                    <table style={{ width: '100%' }}>
+                        <tr>
+                            <th>Win</th>
+                            <th>Loss</th>
+                            <th>Total</th>
+                            <th>Win Rate</th>
+                        </tr>
+                        <tr>
+                            <td>{deck.wins}</td>
+                            <td>{deck.played - deck.wins}</td>
+                            <td>{parseInt(deck.played)}</td>
+                            <td>{deck.winRate?.toFixed(0)}%</td>
+                        </tr>
+                    </table>
+
                     <Row>
-                        <Col xs='7'>
-                            <span>Wins</span>
+                        <Col xs='8'>
+                            <DeckStatusSummary status={deck.status} />
+
                         </Col>
-                        <Col xs='5'>{deck.wins}</Col>
-                    </Row>
-                    <Row>
-                        <Col xs='7'>
-                            <span>Losses</span>
-                        </Col>
-                        <Col xs='5'>{deck.played - deck.wins}</Col>
-                    </Row>
-                    <Row>
-                        <Col xs='7'>
-                            <span>Total</span>
-                        </Col>
-                        <Col xs='5'>{parseInt(deck.played)}</Col>
-                    </Row>
-                    <Row>
-                        <Col xs='7'>
-                            <span>Win Rate</span>
-                        </Col>
-                        <Col xs='5'>{deck.winRate?.toFixed(0)}%</Col>
-                    </Row>
-                    <Row>
-                        <Col xs='12'>
+                        <Col xs='4'>
                             <DeckStatus status={deck.status} />
                         </Col>
                     </Row>

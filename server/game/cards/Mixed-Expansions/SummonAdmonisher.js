@@ -22,10 +22,13 @@ class SummonAdmonisher extends Card {
                     (!context.preThenEvent.childEvent ||
                         (context.preThenEvent.childEvent.name === 'onCardEntersPlay' &&
                             context.preThenEvent.childEvent.cancelled)),
-                gameAction: ability.actions.dealDamage((context) => ({
-                    target: context.player.opponent.phoenixborn,
-                    showMessage: true
-                }))
+                target: {
+                    autoTarget: (context) => context.player.opponent.phoenixborn,
+                    gameAction: ability.actions.dealDamage({
+                        amount: 1,
+                        showMessage: true
+                    })
+                }
             }
         });
     }
