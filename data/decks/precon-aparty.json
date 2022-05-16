@@ -1,7 +1,7 @@
 [
   {
     "precon_id": 101,
-    "name": "The Warrior | Xander Dinos",
+    "name": "The Warrior | Adventuring Party 1",
     "phoenixborn": [
       {
         "id": "xander-heartsblood",
@@ -36,10 +36,6 @@
         "count": 3
       },
       {
-        "id": "enlightenment",
-        "count": 2
-      },
-      {
         "id": "fester",
         "count": 2
       },
@@ -56,7 +52,11 @@
         "count": 2
       },
       {
-        "id": "iron-worker",
+        "id": "inflame",
+        "count": 2
+      },
+      {
+        "id": "polarity-mage",
         "count": 1
       },
       {
@@ -69,15 +69,11 @@
       },
       {
         "id": "root-armor",
-        "count": 1
-      },
-      {
-        "id": "strengthen",
-        "count": 1
+        "count": 2
       },
       {
         "id": "summon-archasaurus-mount",
-        "count": 3
+        "count": 2
       },
       {
         "id": "summon-cerasaurus-mount",
@@ -85,6 +81,10 @@
       },
       {
         "id": "summon-frostback-bear",
+        "count": 1
+      },
+      {
+        "id": "summon-winged-lioness",
         "count": 1
       }
     ],
@@ -104,12 +104,16 @@
       {
         "id": "raptor-hatchling",
         "count": 3
+      },
+      {
+        "id": "winged-lioness",
+        "count": 4
       }
     ]
   },
   {
     "precon_id": 102,
-    "name": "The Summoner | 4-Book Fiona",
+    "name": "The Summoner | Adventuring Party 1",
     "phoenixborn": [
       {
         "id": "fiona-mercywind",
@@ -119,11 +123,11 @@
     "dicepool": [
       {
         "magic": "charm",
-        "count": 3
+        "count": 4
       },
       {
         "magic": "natural",
-        "count": 4
+        "count": 3
       },
       {
         "magic": "sympathy",
@@ -132,11 +136,11 @@
     ],
     "cards": [
       {
-        "id": "beast-mage",
+        "id": "crescendo",
         "count": 2
       },
       {
-        "id": "crescendo",
+        "id": "enchanted-violinist",
         "count": 3
       },
       {
@@ -145,15 +149,15 @@
       },
       {
         "id": "exhortation",
-        "count": 3
+        "count": 2
       },
       {
-        "id": "magic-syphon",
-        "count": 1
+        "id": "generosity",
+        "count": 2
       },
       {
         "id": "massive-growth",
-        "count": 3
+        "count": 2
       },
       {
         "id": "mind-maze",
@@ -169,15 +173,11 @@
       },
       {
         "id": "polarity-mage",
-        "count": 3
+        "count": 2
       },
       {
         "id": "redirect",
         "count": 2
-      },
-      {
-        "id": "river-skald",
-        "count": 1
       },
       {
         "id": "summon-frostback-bear",
@@ -185,6 +185,10 @@
       },
       {
         "id": "summon-mind-fog-owl",
+        "count": 3
+      },
+      {
+        "id": "summon-ruby-cobra",
         "count": 1
       },
       {
@@ -206,6 +210,10 @@
         "count": 2
       },
       {
+        "id": "ruby-cobra",
+        "count": 3
+      },
+      {
         "id": "salamander-monk",
         "count": 2
       },
@@ -221,7 +229,7 @@
   },
   {
     "precon_id": 103,
-    "name": "The Necromancer | Brennen Burn",
+    "name": "The Necromancer | Adventuring Party 1",
     "phoenixborn": [
       {
         "id": "brennen-blackcloud",
@@ -265,7 +273,7 @@
       },
       {
         "id": "final-cry",
-        "count": 2
+        "count": 3
       },
       {
         "id": "fire-archer",
@@ -280,20 +288,16 @@
         "count": 2
       },
       {
-        "id": "power-through",
-        "count": 1
+        "id": "psychic-vampire",
+        "count": 2
       },
       {
-        "id": "psychic-vampire",
+        "id": "raptor-herder",
         "count": 1
       },
       {
         "id": "reclaim-soul",
         "count": 3
-      },
-      {
-        "id": "rising-horde",
-        "count": 2
       },
       {
         "id": "summon-salamander-monk",
@@ -314,8 +318,8 @@
     ],
     "conjurations": [
       {
-        "id": "fallen",
-        "count": 7
+        "id": "raptor-hatchling",
+        "count": 3
       },
       {
         "id": "salamander-monk",
@@ -337,7 +341,7 @@
   },
   {
     "precon_id": 104,
-    "name": "The Druid | Jericho Token Ramp",
+    "name": "The Druid | Adventuring Party 1",
     "phoenixborn": [
       {
         "id": "jericho-reborn",
@@ -368,19 +372,19 @@
         "count": 3
       },
       {
-        "id": "close-combat",
-        "count": 2
-      },
-      {
         "id": "explosive-growth",
         "count": 3
       },
       {
         "id": "flash-strike",
-        "count": 3
+        "count": 2
       },
       {
-        "id": "flute-mage",
+        "id": "fate-reflection",
+        "count": 2
+      },
+      {
+        "id": "golden-veil",
         "count": 2
       },
       {
@@ -388,24 +392,20 @@
         "count": 3
       },
       {
-        "id": "molten-gold",
-        "count": 1
+        "id": "invigorate",
+        "count": 2
       },
       {
         "id": "natures-wrath",
         "count": 2
       },
       {
-        "id": "outmatch",
+        "id": "river-skald",
         "count": 2
       },
       {
-        "id": "raptor-herder",
-        "count": 1
-      },
-      {
         "id": "seeds-of-aggression",
-        "count": 3
+        "count": 2
       },
       {
         "id": "summon-gilder",
@@ -416,8 +416,8 @@
         "count": 1
       },
       {
-        "id": "summon-turtle-guard",
-        "count": 1
+        "id": "summon-wishing-wing",
+        "count": 3
       },
       {
         "id": "swift-messenger",
@@ -434,22 +434,18 @@
         "count": 3
       },
       {
-        "id": "raptor-hatchling",
-        "count": 3
-      },
-      {
         "id": "squall-stallion",
         "count": 2
       },
       {
-        "id": "turtle-guard",
-        "count": 2
+        "id": "wishing-wing",
+        "count": 3
       }
     ]
   },
   {
     "precon_id": 105,
-    "name": "The Rogue | Harold Control",
+    "name": "The Rogue | Adventuring Party 1",
     "phoenixborn": [
       {
         "id": "harold-westraven",
@@ -459,21 +455,25 @@
     "dicepool": [
       {
         "magic": "illusion",
-        "count": 4
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 1
       },
       {
         "magic": "divine",
-        "count": 2
+        "count": 3
       },
       {
         "magic": "sympathy",
-        "count": 4
+        "count": 3
       }
     ],
     "cards": [
       {
         "id": "adrenaline-rush",
-        "count": 3
+        "count": 2
       },
       {
         "id": "battle-seer",
@@ -485,6 +485,14 @@
       },
       {
         "id": "consume-soul",
+        "count": 3
+      },
+      {
+        "id": "gates-thrown-open",
+        "count": 1
+      },
+      {
+        "id": "mist-typhoon",
         "count": 2
       },
       {
@@ -500,10 +508,6 @@
         "count": 2
       },
       {
-        "id": "shared-sorrow",
-        "count": 2
-      },
-      {
         "id": "shepherd-of-lost-souls",
         "count": 1
       },
@@ -512,11 +516,15 @@
         "count": 3
       },
       {
-        "id": "steady-gaze",
+        "id": "summon-ancestor-spirit",
         "count": 1
       },
       {
-        "id": "summon-ancestor-spirit",
+        "id": "summon-false-demon",
+        "count": 1
+      },
+      {
+        "id": "summon-light-bringer",
         "count": 1
       },
       {
@@ -524,17 +532,17 @@
         "count": 1
       },
       {
-        "id": "summon-winged-lioness",
-        "count": 1
-      },
-      {
         "id": "to-shadows",
-        "count": 3
+        "count": 2
       }
     ],
     "conjurations": [
       {
         "id": "ancestor-spirit",
+        "count": 2
+      },
+      {
+        "id": "false-demon",
         "count": 2
       },
       {
@@ -546,14 +554,14 @@
         "count": 3
       },
       {
-        "id": "winged-lioness",
-        "count": 4
+        "id": "light-bringer",
+        "count": 2
       }
     ]
   },
   {
     "precon_id": 106,
-    "name": "The Paladin | Odette Armor",
+    "name": "The Paladin | Adventuring Party 1",
     "phoenixborn": [
       {
         "id": "odette-diamondcrest",
@@ -576,32 +584,36 @@
     ],
     "cards": [
       {
+        "id": "blessing-of-lightning",
+        "count": 2
+      },
+      {
         "id": "celestial-knight",
         "count": 3
       },
       {
         "id": "fade-away",
-        "count": 3
+        "count": 2
       },
       {
         "id": "figures-in-the-fog",
-        "count": 3
+        "count": 2
       },
       {
         "id": "frost-bite",
-        "count": 1
+        "count": 3
       },
       {
         "id": "heal",
-        "count": 3
+        "count": 2
       },
       {
         "id": "hollow",
-        "count": 3
+        "count": 2
       },
       {
         "id": "holy-knight",
-        "count": 2
+        "count": 3
       },
       {
         "id": "meteor",
@@ -609,7 +621,7 @@
       },
       {
         "id": "root-armor",
-        "count": 2
+        "count": 1
       },
       {
         "id": "shepherd-of-lost-souls",
@@ -1268,6 +1280,666 @@
       {
         "id": "turtle-guard",
         "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 131,
+    "name": "The Warlock | Adventuring Party 3",
+    "phoenixborn": [
+      {
+        "id": "hope-everthorn",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "natural",
+        "count": 3
+      },
+      {
+        "magic": "sympathy",
+        "count": 3
+      },
+      {
+        "magic": "time",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "beast-warrior",
+        "count": 2
+      },
+      {
+        "id": "explosive-growth",
+        "count": 3
+      },
+      {
+        "id": "flash-strike",
+        "count": 2
+      },
+      {
+        "id": "generosity",
+        "count": 3
+      },
+      {
+        "id": "guilt-link",
+        "count": 1
+      },
+      {
+        "id": "hunt-master",
+        "count": 2
+      },
+      {
+        "id": "raptor-herder",
+        "count": 1
+      },
+      {
+        "id": "seeds-of-aggression",
+        "count": 3
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "summon-indiglow-creeper",
+        "count": 3
+      },
+      {
+        "id": "summon-time-hopper",
+        "count": 3
+      },
+      {
+        "id": "summon-wishing-wing",
+        "count": 1
+      },
+      {
+        "id": "survival-of-the-fittest",
+        "count": 2
+      },
+      {
+        "id": "void-pulse",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "brilliant-thorn",
+        "count": 6
+      },
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "indiglow-creeper",
+        "count": 3
+      },
+      {
+        "id": "luminous-seedling",
+        "count": 3
+      },
+      {
+        "id": "panther-spirit",
+        "count": 3
+      },
+      {
+        "id": "raptor-hatchling",
+        "count": 3
+      },
+      {
+        "id": "time-hopper",
+        "count": 4
+      },
+      {
+        "id": "wishing-wing",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 132,
+    "name": "The Warden | Adventuring Party 3",
+    "phoenixborn": [
+      {
+        "id": "rin-northfell",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 2
+      },
+      {
+        "magic": "natural",
+        "count": 2
+      },
+      {
+        "magic": "divine",
+        "count": 4
+      },
+      {
+        "magic": "time",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "blessing-of-lightning",
+        "count": 3
+      },
+      {
+        "id": "call-upon-the-realms",
+        "count": 2
+      },
+      {
+        "id": "crystal-archer",
+        "count": 2
+      },
+      {
+        "id": "disengage",
+        "count": 2
+      },
+      {
+        "id": "fester",
+        "count": 3
+      },
+      {
+        "id": "fire-archer",
+        "count": 2
+      },
+      {
+        "id": "grave-knight",
+        "count": 1
+      },
+      {
+        "id": "hammer-knight",
+        "count": 3
+      },
+      {
+        "id": "piercing-light",
+        "count": 3
+      },
+      {
+        "id": "power-through",
+        "count": 2
+      },
+      {
+        "id": "rayward-recruit",
+        "count": 2
+      },
+      {
+        "id": "rins-fury",
+        "count": 2
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-cloudburst-gryphon",
+        "count": 1
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      },
+      {
+        "id": "cloudburst-gryphon",
+        "count": 2
+      },
+      {
+        "id": "ice-buff",
+        "count": 5
+      },
+      {
+        "id": "light-bringer",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 133,
+    "name": "The Scholar | Adventuring Party 3",
+    "phoenixborn": [
+      {
+        "id": "saria-guideman",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 3
+      },
+      {
+        "magic": "illusion",
+        "count": 3
+      },
+      {
+        "magic": "divine",
+        "count": 3
+      },
+      {
+        "magic": "sympathy",
+        "count": 1
+      }
+    ],
+    "cards": [
+      {
+        "id": "abundance",
+        "count": 3
+      },
+      {
+        "id": "dreamlock-mage",
+        "count": 2
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 2
+      },
+      {
+        "id": "essence-druid",
+        "count": 2
+      },
+      {
+        "id": "fate-reflection",
+        "count": 2
+      },
+      {
+        "id": "heal",
+        "count": 3
+      },
+      {
+        "id": "hollow",
+        "count": 2
+      },
+      {
+        "id": "kneel",
+        "count": 3
+      },
+      {
+        "id": "meteor",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 1
+      },
+      {
+        "id": "sonic-swordsman",
+        "count": 2
+      },
+      {
+        "id": "summon-orchid-dove",
+        "count": 3
+      },
+      {
+        "id": "summon-ruby-cobra",
+        "count": 1
+      },
+      {
+        "id": "summon-seaside-raven",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "orchid-dove",
+        "count": 3
+      },
+      {
+        "id": "ruby-cobra",
+        "count": 3
+      },
+      {
+        "id": "seaside-raven",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 134,
+    "name": "The Witch | Adventuring Party 3",
+    "phoenixborn": [
+      {
+        "id": "jessa-na-ni",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 4
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "sympathy",
+        "count": 4
+      }
+    ],
+    "cards": [
+      {
+        "id": "anchornaut",
+        "count": 2
+      },
+      {
+        "id": "chant-of-revenge",
+        "count": 3
+      },
+      {
+        "id": "choke",
+        "count": 2
+      },
+      {
+        "id": "crimson-bomber",
+        "count": 1
+      },
+      {
+        "id": "ensnare",
+        "count": 1
+      },
+      {
+        "id": "fear",
+        "count": 3
+      },
+      {
+        "id": "final-cry",
+        "count": 3
+      },
+      {
+        "id": "fire-archer",
+        "count": 1
+      },
+      {
+        "id": "iron-worker",
+        "count": 2
+      },
+      {
+        "id": "master-vampire",
+        "count": 3
+      },
+      {
+        "id": "reclaim-soul",
+        "count": 3
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 1
+      },
+      {
+        "id": "summon-salamander-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-vampire-bat-swarm",
+        "count": 1
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "false-demon",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk-spirit",
+        "count": 3
+      },
+      {
+        "id": "vampire-bat-swarm",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 135,
+    "name": "The Sage | Adventuring Party 3",
+    "phoenixborn": [
+      {
+        "id": "namine-hymntide",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 4
+      },
+      {
+        "magic": "sympathy",
+        "count": 2
+      },
+      {
+        "magic": "time",
+        "count": 1
+      }
+    ],
+    "cards": [
+      {
+        "id": "battle-seer",
+        "count": 2
+      },
+      {
+        "id": "call-upon-the-realms",
+        "count": 1
+      },
+      {
+        "id": "crescendo",
+        "count": 2
+      },
+      {
+        "id": "double-down",
+        "count": 2
+      },
+      {
+        "id": "encore",
+        "count": 3
+      },
+      {
+        "id": "ensnare",
+        "count": 2
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 2
+      },
+      {
+        "id": "molten-gold",
+        "count": 3
+      },
+      {
+        "id": "particle-shield",
+        "count": 2
+      },
+      {
+        "id": "realm-walker",
+        "count": 2
+      },
+      {
+        "id": "rose-fire-dancer",
+        "count": 2
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 1
+      },
+      {
+        "id": "summon-fox-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 1
+      },
+      {
+        "id": "summon-salamander-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-shadow-spirit",
+        "count": 1
+      },
+      {
+        "id": "to-shadows",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "false-demon",
+        "count": 2
+      },
+      {
+        "id": "fox-spirit",
+        "count": 3
+      },
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk",
+        "count": 2
+      },
+      {
+        "id": "salamander-monk-spirit",
+        "count": 3
+      },
+      {
+        "id": "shadow-spirit",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 136,
+    "name": "The Crusader | Adventuring Party 3",
+    "phoenixborn": [
+      {
+        "id": "dimona-odinstar",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 5
+      },
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "natural",
+        "count": 2
+      },
+      {
+        "magic": "divine",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "anchornaut",
+        "count": 1
+      },
+      {
+        "id": "blood-chains",
+        "count": 3
+      },
+      {
+        "id": "crimson-bomber",
+        "count": 2
+      },
+      {
+        "id": "frost-bite",
+        "count": 3
+      },
+      {
+        "id": "immortal-commander",
+        "count": 2
+      },
+      {
+        "id": "natures-wrath",
+        "count": 3
+      },
+      {
+        "id": "open-memories",
+        "count": 1
+      },
+      {
+        "id": "psychic-vampire",
+        "count": 2
+      },
+      {
+        "id": "raptor-herder",
+        "count": 2
+      },
+      {
+        "id": "rayward-knight",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 2
+      },
+      {
+        "id": "shepherd-of-lost-souls",
+        "count": 2
+      },
+      {
+        "id": "summon-fallen",
+        "count": 3
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "empyrean-mount",
+        "count": 3
+      },
+      {
+        "id": "fallen",
+        "count": 7
+      },
+      {
+        "id": "raptor-hatchling",
+        "count": 3
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
       }
     ]
   }
