@@ -36,6 +36,25 @@ describe('Chained Creations', function () {
             expect(this.summonMaskedWolf.exhausted).toBe(true);
         });
 
+        it('destroys unit and can exhaust an exhausted ready spell', function () {
+            this.summonMaskedWolf.tokens.exhaustion = 1;
+            expect(this.summonMaskedWolf.exhausted).toBe(true);
+
+            this.player1.clickCard(this.chainedCreations); // play card
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.maskedWolf); // destroy
+            expect(this.player1).toBeAbleToSelect(this.summonMaskedWolf);
+            expect(this.player1).not.toBeAbleToSelect(this.empower);
+            expect(this.player1).not.toBeAbleToSelect(this.summonIronRhino);
+            this.player1.clickCard(this.summonMaskedWolf); // exhaust
+
+            expect(this.summonMaskedWolf.tokens.exhaustion).toBe(2);
+        });
+
+
         it('destroys Monk Spirit and cannot exhaust ready spell', function () {
             this.player1.clickCard(this.chainedCreations); // play card
             this.player1.clickPrompt('Play this action');

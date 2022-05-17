@@ -94,6 +94,11 @@ class LearnToPlay extends React.Component {
                                     Adventuring Party 2
                                 </a>
                             </li>
+                            <li>
+                                <a href='https://jaysonsethlindley.medium.com/adventuring-party-3-a-further-six-constructed-ashes-decks-from-one-collection-bb0d20319ac3'>
+                                    Adventuring Party 3
+                                </a>
+                            </li>
                         </div>
                         <div className='three-column-item'>
                             <h3>Deck Building</h3>
