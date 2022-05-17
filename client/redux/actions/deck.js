@@ -79,7 +79,8 @@ export function saveDeck(deck) {
         phoenixborn: formatCards(deck.phoenixborn),
         cards: formatCards(deck.cards),
         conjurations: formatCards(deck.conjurations),
-        dicepool: deck.dicepool
+        dicepool: deck.dicepool,
+        notes: deck.notes
     });
 
     return {

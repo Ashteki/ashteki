@@ -4,7 +4,7 @@
 @import '~bootstrap/scss/variables';
 
 .deck-cards {
-    padding-top: 15px;
+    // padding-top: 15px;
 }
 
 .deck-card-link {
@@ -52,7 +52,10 @@
     margin: 5px 5px 5px 0;
     padding: 10px;
     border: 1px solid rgba(71, 58, 56, 0.65);
+}
 
+.deck-notes {
+    width: 100%;
 }
 
 .flex {

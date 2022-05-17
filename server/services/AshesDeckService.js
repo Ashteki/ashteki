@@ -121,6 +121,7 @@ class AshesDeckService {
             dicepool: ashesDeck.dice.map((d) => ({ magic: d.name, count: d.count })),
             cards: ashesDeck.cards.map((c) => ({ id: c.stub, count: c.count })),
             conjurations: ashesDeck.conjurations.map((c) => ({ id: c.stub, count: c.count })),
+            notes: ashesDeck.description,
             ashesLiveModified: ashesDeck.modified
         };
     }
@@ -132,6 +133,7 @@ class AshesDeckService {
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,
+            notes: deck.notes,
             lastUpdated: new Date(),
             created: new Date(),
             ashesLiveUuid: deck.ashesLiveUuid,
@@ -155,6 +157,7 @@ class AshesDeckService {
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,
+            notes: deck.notes,
             lastUpdated: new Date()
         };
 

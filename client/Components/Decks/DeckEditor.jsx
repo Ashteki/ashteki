@@ -18,6 +18,7 @@ class InnerDeckEditor extends React.Component {
         this.state = {
             cardList: '',
             diceList: '',
+            notes: '',
             deck: this.copyDeck(props.deck),
             numberToAdd: 1,
             validation: {
@@ -70,6 +71,7 @@ class InnerDeckEditor extends React.Component {
             cards: deck.cards,
             conjurations: deck.conjurations,
             status: deck.status,
+            notes: deck.notes,
             dicepool: deck.dicepool
         };
     }
@@ -390,7 +392,7 @@ class InnerDeckEditor extends React.Component {
                     </Row>
                     <TextArea
                         label='Cards'
-                        rows='8'
+                        rows='4'
                         value={this.state.cardList}
                         onChange={this.onCardListChange.bind(this)}
                     />
@@ -401,6 +403,13 @@ class InnerDeckEditor extends React.Component {
                         value={this.state.diceList}
                         onChange={this.onDiceListChange.bind(this)}
                     />
+                    <TextArea
+                        label='Notes'
+                        rows='4'
+                        value={this.state.deck.notes}
+                        onChange={this.onChange.bind(this, 'notes')}
+                    />
+
                     <div className='form-group'>
                         <div className='col-sm-offset-3 col-sm-8'>
                             <button

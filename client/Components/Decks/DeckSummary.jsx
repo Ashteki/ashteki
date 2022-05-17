@@ -95,8 +95,8 @@ const DeckSummary = ({ deck }) => {
         }
         return (
             <div>
-                <div className='card-group-title'>Dice</div>
-                <div className='deck-card-group flex'> {diceToRender}</div>
+                {/* <div className='card-group-title'>Dice</div> */}
+                <div className='flex'> {diceToRender}</div>
             </div>
         );
     };
@@ -138,6 +138,9 @@ const DeckSummary = ({ deck }) => {
                     </Row>
                 </Col>
             </Row>
+            <Row>
+                <div className='large'>{diceToRender}</div>
+            </Row>
             <Row className='deck-cards'>
                 {zoomCard && (
                     <div
@@ -152,8 +155,11 @@ const DeckSummary = ({ deck }) => {
                 <div className='cards'>{cardsToRender}</div>
             </Row>
             <Row>
-                <div className='large'>{diceToRender}</div>
+                <div className='deck-card-group deck-notes'>
+                    {deck.notes}
+                </div>
             </Row>
+
         </Col>
     );
 };
