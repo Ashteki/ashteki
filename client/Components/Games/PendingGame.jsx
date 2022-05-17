@@ -18,9 +18,14 @@ import { useEffect } from 'react';
 
 function showNotification(notification) {
     if (window.Notification && Notification.permission === 'granted') {
-        let windowNotification = new Notification('Ashes Reborn Online', notification);
+        try {
+            let windowNotification = new Notification('Ashes Reborn Online', notification);
 
-        setTimeout(() => windowNotification.close(), 5000);
+            setTimeout(() => windowNotification.close(), 5000);
+        } catch (error) {
+            // console.warn('Error calling new Notification()');
+            return false;
+        }
     }
 }
 
