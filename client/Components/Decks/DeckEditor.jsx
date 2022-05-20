@@ -5,10 +5,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Form, Col, Row } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import Link from '../../Components/Navigation/Link';
-
 import TextArea from '../Form/TextArea.jsx';
-
 import * as actions from '../../redux/actions';
 
 class InnerDeckEditor extends React.Component {
@@ -26,6 +23,12 @@ class InnerDeckEditor extends React.Component {
                 cardToAdd: ''
             }
         };
+    }
+
+    handleCancelClick() {
+        this.props.navigate('/decks');
+
+        return;
     }
 
     componentDidMount() {
@@ -94,6 +97,7 @@ class InnerDeckEditor extends React.Component {
         } else deck.phoenixborn[0] = pb;
         this.pbid = pb.id;
 
+        this.rebuildConjurations(deck);
         this.setState({ deck: deck });
         this.props.updateDeck(deck);
     }
@@ -120,7 +124,7 @@ class InnerDeckEditor extends React.Component {
         let cardList = this.state.cardList;
         cardList += this.getCardListEntry(this.state.numberToAdd, this.state.cardToAdd);
 
-        this.addCard(this.state.cardToAdd, parseInt(this.state.numberToAdd));
+        this.addCard(this.state.cardToAdd, parseInt(this.state.numberToAdd, deck));
         this.setState({ cardList: cardList });
         let deck = this.state.deck;
 
@@ -157,11 +161,12 @@ class InnerDeckEditor extends React.Component {
             if (card) {
                 const isConjuration = card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell';
                 if (!isConjuration) {
-                    this.addCard(card, num);
+                    this.addCard(card, num, deck);
                 }
             }
         });
 
+        this.addConjurations(deck.phoenixborn[0], deck);
         deck = this.copyDeck(deck);
 
         this.setState({ cardList: event.target.value, deck: deck });
@@ -252,8 +257,7 @@ class InnerDeckEditor extends React.Component {
         return isValid ? mgc : '';
     }
 
-    addCard(card, number) {
-        let deck = this.copyDeck(this.state.deck);
+    addCard(card, number, deck) {
         let phoenixborn = deck.phoenixborn;
         let conjurations = deck.conjurations;
         let cards = deck.cards;
@@ -279,16 +283,27 @@ class InnerDeckEditor extends React.Component {
                 conjurations: card.conjurations
             });
         }
+        this.addConjurations(card, deck);
+    }
+
+    addConjurations(card, deck) {
         if (card.conjurations) {
             card.conjurations.forEach((conj) => {
                 if (!deck.conjurations.some((c) => c.id === conj.stub)) {
                     var c = this.getCard(conj.name);
                     if (c) {
-                        this.addCard(c, c.copies);
+                        this.addCard(c, c.copies, deck);
                     }
                 }
             });
         }
+    }
+
+    rebuildConjurations(deck) {
+        deck.conjurations = [];
+
+        this.addConjurations(deck.phoenixborn[0], deck);
+        deck.cards.forEach((c) => this.addConjurations(c, deck));
     }
 
     onSaveClick(event) {
@@ -421,9 +436,9 @@ class InnerDeckEditor extends React.Component {
                             >
                                 Save Deck
                             </button>
-                            <Link className='btn btn-primary' href='/decks'>
+                            <button className='btn btn-primary' onClick={this.handleCancelClick.bind(this)}>
                                 Cancel
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </Form>
@@ -438,6 +453,7 @@ InnerDeckEditor.propTypes = {
     deck: PropTypes.object,
     loading: PropTypes.bool,
     mode: PropTypes.string,
+    navigate: PropTypes.func,
     onDeckSave: PropTypes.func,
     updateDeck: PropTypes.func
 };

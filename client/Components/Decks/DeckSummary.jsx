@@ -41,6 +41,10 @@ const DeckSummary = ({ deck }) => {
             let count = 0;
 
             cardList.forEach((card) => {
+                let chainedIcon = null;
+                if (card.card.isChained) {
+                    let chainedIcon = <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
+                }
                 cards.push(
                     <div key={card.card.id}>
                         <span>{card.count + 'x '}</span>
@@ -62,10 +66,7 @@ const DeckSummary = ({ deck }) => {
                             {card.card.name}
                         </span>
                         &nbsp;
-                        <FontAwesomeIcon
-                            icon={card.card.isChained ? faLink : null}
-                            title='This card is on the chained list'
-                        />
+                        {chainedIcon}
                     </div>
                 );
                 count += parseInt(card.count);
