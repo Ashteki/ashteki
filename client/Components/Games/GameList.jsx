@@ -14,9 +14,6 @@ import AlertPanel from '../Site/AlertPanel';
 import * as actions from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
 import ShowHandIcon from '../../assets/img/ShowHandIcon.png';
-import SealedIcon from '../../assets/img/sealed.png';
-import ReversalIcon from '../../assets/img/reversal.png';
-import AdaptiveIcon from '../../assets/img/adaptive.png';
 import Phoenixborn from '../Decks/Phoenixborn';
 // ref error comment
 
@@ -198,10 +195,6 @@ class GameList extends React.Component {
                 continue;
             }
 
-            // if (!this.props.gameFilter[game.gameFormat]) {
-            //     continue;
-            // }
-
             let players = this.getPlayers(game);
 
             let isAdmin = this.props.user && this.props.user.permissions.canManageGames;
@@ -241,30 +234,6 @@ class GameList extends React.Component {
                                         src={TimeLimitIcon}
                                         className='game-list-icon'
                                         alt={t('Time limit used')}
-                                    />
-                                )}
-                                {game.gameFormat === 'sealed' && (
-                                    <img
-                                        src={SealedIcon}
-                                        className='game-list-icon'
-                                        alt={t('Sealed game format')}
-                                        title={t('Sealed game format')}
-                                    />
-                                )}
-                                {game.gameFormat === 'reversal' && (
-                                    <img
-                                        src={ReversalIcon}
-                                        className='game-list-icon'
-                                        alt={t('Reversal game format')}
-                                        title={t('Reversal game format')}
-                                    />
-                                )}
-                                {game.gameFormat === 'adaptive-bo1' && (
-                                    <img
-                                        src={AdaptiveIcon}
-                                        className='game-list-icon'
-                                        alt={t('Adaptive (Best of 1) game format')}
-                                        title={t('Adaptive (Best of 1) game format')}
                                     />
                                 )}
                             </span>

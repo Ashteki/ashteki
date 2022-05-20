@@ -248,7 +248,6 @@ export class GameBoard extends React.Component {
                         deckData={otherPlayer.deckData}
                         discard={otherPlayer.cardPiles.discard}
                         drawDeck={otherPlayer.cardPiles.deck}
-                        gameFormat={this.props.currentGame.gameFormat}
                         isMe={false}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}
@@ -312,7 +311,6 @@ export class GameBoard extends React.Component {
                         deckData={thisPlayer.deckData}
                         discard={thisPlayer.cardPiles.discard}
                         drawDeck={thisPlayer.cardPiles.deck}
-                        gameFormat={this.props.currentGame.gameFormat}
                         isMe={!spectating}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}

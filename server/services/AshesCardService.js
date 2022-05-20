@@ -64,7 +64,15 @@ class AshesCardService {
     }
 
     getChainedList() {
-        return ['summon-shining-hydra', 'massive-growth', 'exhortation', 'river-skald'];
+        return [
+            'explosive-growth',
+            'exhortation',
+            'massive-growth',
+            'psychic-vampire',
+            'river-skald',
+            'summon-shining-hydra',
+            'three-eyed-owl'
+        ];
     }
 }
 

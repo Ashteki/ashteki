@@ -95,13 +95,6 @@ const PendingGame = () => {
         connecting
     ]);
 
-    useEffect(() => {
-        if (currentGame && currentGame.gameFormat === 'sealed') {
-            dispatch(sendSocketMessage('getsealeddeck', currentGame.id));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     if (!currentGame) {
         return null;
     }

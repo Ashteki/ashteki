@@ -77,7 +77,6 @@ class Matches extends React.Component {
                                 {myKeys} x {oppKeys}
                             </td>
                             <td style={{ 'white-space': 'nowrap' }}>{t(game.gameType)}</td>
-                            <td style={{ 'white-space': 'nowrap' }}>{t(game.gameFormat)}</td>
                             <td style={{ 'white-space': 'nowrap' }}>
                                 {moment(game.startedAt).format('YYYY-MM-DD HH:mm')}
                             </td>

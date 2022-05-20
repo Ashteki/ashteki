@@ -153,7 +153,7 @@ const GameLobby = ({ gameId }) => {
             </Col>
             <Col md='6'>
                 <div ref={topRef}>
-                    {newGame && <NewGame quickJoin={false} />}
+                    {newGame && <NewGame />}
                     {currentGame?.started === false && <PendingGame />}
                     {passwordGame && <PasswordGame />}
                 </div>

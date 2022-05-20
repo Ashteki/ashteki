@@ -490,35 +490,6 @@ class Lobby {
             }
         }
 
-        if (gameDetails.quickJoin) {
-            let sortedGames = sortBy(Object.values(this.games), (game) => game.createdAt);
-            let gameToJoin = sortedGames.find(
-                (game) =>
-                    !game.started &&
-                    game.gameType === gameDetails.gameType &&
-                    game.gameFormat === gameDetails.gameFormat &&
-                    Object.values(game.players).length < 2 &&
-                    !game.password &&
-                    !game.gamePrivate
-            );
-
-            if (gameToJoin) {
-                let message = gameToJoin.join(socket.id, socket.user);
-                if (message) {
-                    socket.send('passworderror', message);
-
-                    return;
-                }
-
-                socket.joinChannel(gameToJoin.id);
-
-                this.sendGameState(gameToJoin);
-                this.broadcastGameMessage('updategame', gameToJoin);
-
-                return;
-            }
-        }
-
         let game = new PendingGame(socket.user, gameDetails);
         game.newGame(socket.id, socket.user, gameDetails.password, true);
         socket.joinChannel(game.id);
@@ -889,7 +860,6 @@ class Lobby {
 
         let newGame = new PendingGame(game.owner, {
             adaptive: game.adaptive,
-            gameFormat: game.gameFormat,
             gameTimeLimit: game.gameTimeLimit,
             gameType: game.gameType,
             showHand: game.showHand,
@@ -1056,7 +1026,6 @@ class Lobby {
             });
             syncGame.adaptive = game.adaptive;
             syncGame.createdAt = game.startedAt;
-            syncGame.gameFormat = game.gameFormat;
             syncGame.gamePrivate = game.gamePrivate;
             syncGame.gameType = game.gameType;
             syncGame.id = game.id;
