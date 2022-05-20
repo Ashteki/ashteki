@@ -76,7 +76,8 @@ describe('Piercing Light Ready Spell ', function () {
             });
         });
 
-        it('buffed unit overkill works as normal', function () {
+        it('buffed unit overkill vs FALLEN', function () {
+            // fallen are the culprits here
             // buff a unit
             this.player1.clickDie(0);
             this.player1.clickPrompt('Divine Dice Power');

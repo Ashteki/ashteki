@@ -68,6 +68,12 @@ class DealDamageAction extends CardGameAction {
             }
         }
 
+        // Armour and Unpreventable damage (e.g. fallen)
+        if (params.preventable && !params.ignoreArmor) {
+            const damagePrevented = amount <= card.armor ? amount : card.armor;
+            params.amount -= damagePrevented;
+        }
+
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {
             let damageAppliedParams = {
                 amount: damageDealtEvent.amount,
@@ -103,6 +109,7 @@ class DealDamageAction extends CardGameAction {
                     }
                 }
             );
+            damageDealtEvent.addSubEvent(damageAppliedEvent);
 
             // quickstrike in a fight skips counter damage
             if (
@@ -113,34 +120,6 @@ class DealDamageAction extends CardGameAction {
                 damageDealtEvent.fightEvent.counterDamageEvent
             ) {
                 damageDealtEvent.fightEvent.counterDamageEvent.cancel();
-            }
-
-            if (damageDealtEvent.ignoreArmor || !damageDealtEvent.preventable) {
-                damageDealtEvent.addSubEvent(damageAppliedEvent);
-            } else {
-                let armorPreventParams = {
-                    card: damageDealtEvent.card,
-                    context: damageDealtEvent.context,
-                    amount: damageDealtEvent.amount,
-                    noGameStateCheck: true
-                };
-                let armorPreventEvent = super.createEvent(
-                    'onDamagePreventedByArmor',
-                    armorPreventParams,
-                    (event) => {
-                        if (amount <= event.card.armor) {
-                            event.damagePrevented = event.amount;
-                        } else {
-                            event.damagePrevented = event.card.armor;
-                        }
-
-                        damageAppliedEvent.amount -= event.damagePrevented;
-                        damageDealtEvent.amount -= event.damagePrevented;
-                        damageDealtEvent.addSubEvent(damageAppliedEvent);
-                    }
-                );
-                damageDealtEvent.addSubEvent(armorPreventEvent);
-                armorPreventEvent.openReactionWindow = false;
             }
         });
     }
