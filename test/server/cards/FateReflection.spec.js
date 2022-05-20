@@ -5,8 +5,8 @@ describe('Fate Reflection reaction spell', function () {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['flute-mage', 'hammer-knight', 'squall-stallion'],
                 spellboard: [],
-                hand: ['anchornaut'],
-                dicepool: ['natural', 'natural', 'charm', 'charm']
+                hand: ['anchornaut', 'seeds-of-aggression'],
+                dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -78,6 +78,19 @@ describe('Fate Reflection reaction spell', function () {
         expect(this.player2).not.toHavePrompt(
             'Any Reactions to Hammer Knight receiving 1 damage from Anchornaut?'
         );
+        expect(this.player2).not.toBeAbleToSelect(this.fateReflection);
+    });
+
+    it('cannot be played against seeds of aggression', function () {
+        expect(this.ironWorker.damage).toBe(0);
+
+        this.player1.play(this.seedsOfAggression);
+        this.player1.clickDie(3);
+        this.player1.clickDie(4);
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.ironWorker);
+
+        // expect no interrupts
         expect(this.player2).not.toBeAbleToSelect(this.fateReflection);
     });
 });
