@@ -41,6 +41,10 @@ const DeckSummary = ({ deck }) => {
             let count = 0;
 
             cardList.forEach((card) => {
+                let chainedIcon = null;
+                if (card.card.isChained) {
+                    let chainedIcon = <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
+                }
                 cards.push(
                     <div key={card.card.id}>
                         <span>{card.count + 'x '}</span>
@@ -62,10 +66,7 @@ const DeckSummary = ({ deck }) => {
                             {card.card.name}
                         </span>
                         &nbsp;
-                        <FontAwesomeIcon
-                            icon={card.card.isChained ? faLink : null}
-                            title='This card is on the chained list'
-                        />
+                        {chainedIcon}
                     </div>
                 );
                 count += parseInt(card.count);
@@ -95,8 +96,8 @@ const DeckSummary = ({ deck }) => {
         }
         return (
             <div>
-                <div className='card-group-title'>Dice</div>
-                <div className='deck-card-group flex'> {diceToRender}</div>
+                {/* <div className='card-group-title'>Dice</div> */}
+                <div className='flex'> {diceToRender}</div>
             </div>
         );
     };
@@ -138,6 +139,9 @@ const DeckSummary = ({ deck }) => {
                     </Row>
                 </Col>
             </Row>
+            <Row>
+                <div className='large'>{diceToRender}</div>
+            </Row>
             <Row className='deck-cards'>
                 {zoomCard && (
                     <div
@@ -152,8 +156,11 @@ const DeckSummary = ({ deck }) => {
                 <div className='cards'>{cardsToRender}</div>
             </Row>
             <Row>
-                <div className='large'>{diceToRender}</div>
+                <div className='deck-card-group deck-notes'>
+                    {deck.notes}
+                </div>
             </Row>
+
         </Col>
     );
 };

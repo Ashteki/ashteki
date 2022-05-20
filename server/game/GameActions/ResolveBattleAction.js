@@ -78,15 +78,6 @@ class ResolveBattleAction extends GameAction {
                         .dealDamage(attackerParams)
                         .getEvent(event.attackerTarget, event.context);
 
-                    // if there's a guard then trigger the onGuardDamageEvent
-                    // if (this.battle.guard) {
-                    //     let guardEvent = context.game.getEvent('onGuardDamage', {
-                    //         guard: this.battle.guard
-                    //     });
-                    //     guardEvent.addChildEvent(attackerDamageEvent);
-                    //     attackerDamageEvent = guardEvent;
-                    // }
-
                     event.attackerDamageEvent = attackerDamageEvent;
                     damageEvent = attackerDamageEvent;
                 }
@@ -96,11 +87,6 @@ class ResolveBattleAction extends GameAction {
                     // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
                     event.defenderTarget === event.attacker &&
                     event.battle.counter &&
-                    // don't counter damage if the attacker strikes first and the damage will destroy the defender
-                    // !(
-                    //     event.attacker.attacksFirst() &&
-                    //     this.damageWillDestroyTarget(attackerAmount, event.attackerTarget)
-                    // ) &&
                     event.card.checkRestrictions('dealFightDamage') && // declared target can deal damage
                     event.attackerTarget.checkRestrictions('dealFightDamageWhenDefending') // or defender can't deal damage when defending
                 ) {
@@ -119,7 +105,7 @@ class ResolveBattleAction extends GameAction {
 
                 // If anyone is getting damaged...
                 if (damageEvent) {
-                    context.game.openEventWindow(damageEvent); // ?? err...
+                    context.game.openEventWindow(damageEvent);
                 }
 
                 this.battle.resolved = true;

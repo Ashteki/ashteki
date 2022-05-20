@@ -26,16 +26,12 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
             <h3>Players</h3>
             {Object.values(currentGame.players).map((player) => {
                 const playerIsMe = player && player.name === user?.username;
-                const isSealed = currentGame.gameFormat === 'sealed';
 
                 let deck = null;
                 let selectLink = null;
                 let status = null;
 
-                if (player && player.deck && player.deck.selected && isSealed) {
-                    deck = <span className='deck-selection'>Sealed Deck Selected</span>;
-
-                } else if (player && player.deck && player.deck.selected) {
+                if (player && player.deck && player.deck.selected) {
                     if (playerIsMe) {
                         deck = (
                             <span className='deck-selection clickable' onClick={onSelectDeck}>
@@ -51,7 +47,7 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                     }
 
                     status = <DeckStatus status={player.deck.status} />;
-                } else if (player && playerIsMe && !isSealed) {
+                } else if (player && playerIsMe) {
                     selectLink = (
                         <>
                             <Button onClick={onSelectDeck}>
@@ -61,12 +57,6 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                                 <Trans>Coal Off!</Trans>
                             </Button>
                         </>
-                    );
-                } else if (isSealed) {
-                    selectLink = (
-                        <span>
-                            <Trans>Sealed deck loading...</Trans>
-                        </span>
                     );
                 }
 

@@ -26,10 +26,6 @@
  */
 
 /**
- * @typedef {'normal' | 'sealed'| 'reversal' | 'adaptive-bo1'} GameFormat
- */
-
-/**
  * @typedef {'casual' | 'beginner'| 'competitive' | 'adaptive-bo1'} GameType
  */
 
@@ -62,7 +58,6 @@
  * @property {boolean} adaptive Whether or not this game is adaptive
  * @property {boolean} allowSpectators Whether or not spectators are allowed to join
  * @property {Date} createdAt When the game was created
- * @property {GameFormat} gameFormat The format of the game
  * @property {boolean} gamePrivate Whether or not the game is private
  * @property {GameType} gameType The type of game
  * @property {string} id The game id guid

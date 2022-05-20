@@ -8,7 +8,6 @@ import * as yup from 'yup';
 import Panel from '../Site/Panel';
 import AlertPanel from '../Site/AlertPanel';
 import GameOptions from './GameOptions';
-import GameFormats from './GameFormats';
 import GameTypes from './GameTypes';
 import { getStandardControlProps } from '../../util';
 import { cancelNewGame, sendSocketMessage } from '../../redux/actions';
@@ -19,7 +18,6 @@ const GameNameMaxLength = 64;
 
 /**
  * @typedef NewGameProps
- * @property {boolean} [quickJoin] The new game is quick join
  * @property {any} [tournament] Whether or not we're operating under the tournament UI
  * @property {import("../../typedefs").GameType} [defaultGameType] The default game type to use
  * @property {number} [defaultTimeLimit] The default time limit to use
@@ -33,7 +31,6 @@ const GameNameMaxLength = 64;
  * @param {NewGameProps} props
  */
 const NewGame = ({
-    quickJoin,
     tournament,
     defaultGameType,
     defaultPrivate,
@@ -61,7 +58,6 @@ const NewGame = ({
             .number()
             .min(10, t('Games must be at least 10 minutes long'))
             .max(120, t('Games must be less than 2 hours')),
-        gameFormat: yup.string().required(),
         gameType: yup.string().required()
     });
 
@@ -70,7 +66,6 @@ const NewGame = ({
         password: '',
         label: '',
         allowSpectators: true,
-        gameFormat: 'normal',
         gameType: defaultGameType || 'casual',
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
@@ -90,7 +85,7 @@ const NewGame = ({
     }
 
     return (
-        <Panel title={t(quickJoin ? 'Quick Join' : 'New game')}>
+        <Panel title={t('New game')}>
             <Formik
                 validationSchema={schema}
                 onSubmit={(values) => {
@@ -121,7 +116,6 @@ const NewGame = ({
                             wc: values.wc,
                             mm: values.mm
                         };
-                        values.quickJoin = quickJoin;
 
                         dispatch(sendSocketMessage('newgame', values));
                     }
@@ -133,33 +127,11 @@ const NewGame = ({
                         onSubmit={(event) => {
                             event.preventDefault();
 
-                            if (
-                                formProps.values.gameFormat === 'sealed' &&
-                                !formProps.values.aoa &&
-                                !formProps.values.cota &&
-                                !formProps.values.wc &&
-                                !formProps.values.mm
-                            ) {
-                                formProps.setFieldError(
-                                    'gameFormat',
-                                    t('You must select at least one expansion')
-                                );
-
-                                return;
-                            }
-
                             formProps.handleSubmit(event);
                         }}
                     >
-                        {quickJoin && (
-                            <AlertPanel
-                                type='info'
-                                message={t(
-                                    "Select the type of game you'd like to play and either you'll join the next one available, or one will be created for you with default options."
-                                )}
-                            />
-                        )}
-                        {!quickJoin && (
+
+                        {(
                             <>
                                 {!tournament && (
                                     <Form.Row>
@@ -183,9 +155,8 @@ const NewGame = ({
                                 <GameOptions formProps={formProps} />
                             </>
                         )}
-                        <GameFormats formProps={formProps} />
                         {!tournament && <GameTypes formProps={formProps} />}
-                        {!quickJoin && (
+                        {(
                             <Row>
                                 <Form.Group as={Col} sm={6}>
                                     <Form.Label>{t('Password')}</Form.Label>

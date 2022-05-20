@@ -52,7 +52,6 @@ class Game extends EventEmitter {
         this.currentPhase = '';
         this.effectEngine = new EffectEngine(this);
         this.gameChat = new GameChat(this);
-        this.gameFormat = details.gameFormat;
         this.gamePrivate = details.gamePrivate;
         this.gameTimeLimit = details.gameTimeLimit;
         this.gameType = details.gameType;
@@ -1351,7 +1350,6 @@ class Game extends EventEmitter {
 
         return {
             id: this.savedGameId,
-            gameFormat: this.gameFormat,
             label: this.label,
             gameId: this.id,
             gamePrivate: this.gamePrivate,
@@ -1385,7 +1383,6 @@ class Game extends EventEmitter {
                 adaptive: this.adaptive,
                 cancelPromptUsed: this.cancelPromptUsed,
                 cardLog: this.cardsPlayed.map((c) => c.getShortSummary()),
-                gameFormat: this.gameFormat,
                 gamePrivate: this.gamePrivate,
                 gameTimeLimitStarted: this.timeLimit.timeLimitStarted,
                 gameTimeLimitStartedAt: this.timeLimit.timeLimitStartedAt,
@@ -1453,7 +1450,6 @@ class Game extends EventEmitter {
             adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
-            gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
             id: this.id,
