@@ -133,7 +133,8 @@ describe('Fate Reflection', function () {
             expect(this.mistSpirit.location).toBe('archives');
             expect(this.fateReflection.location).toBe('discard');
             expect(this.player2.hand.length).toBe(0);
-            expect(this.player1).toHaveDefaultPrompt();
+            // does not get stuck on first resolution targets
+            expect(this.player1).toHavePrompt('Meteor II');
         });
     });
 });
