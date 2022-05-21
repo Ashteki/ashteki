@@ -31,6 +31,7 @@ class OrderedAoEAction extends PlayerAction {
             promptTitle: this.propertyCache.promptTitle,
             // eslint-disable-next-line no-undef
             cardType: BattlefieldTypes,
+            location: ['play area'],
             cardCondition: (card) => this.cards.includes(card),
             context: context,
             onSelect: (player, card) => {

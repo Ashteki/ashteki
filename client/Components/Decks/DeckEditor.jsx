@@ -124,9 +124,9 @@ class InnerDeckEditor extends React.Component {
         let cardList = this.state.cardList;
         cardList += this.getCardListEntry(this.state.numberToAdd, this.state.cardToAdd);
 
-        this.addCard(this.state.cardToAdd, parseInt(this.state.numberToAdd, deck));
-        this.setState({ cardList: cardList });
         let deck = this.state.deck;
+        this.addCard(this.state.cardToAdd, parseInt(this.state.numberToAdd), deck);
+        this.setState({ cardList: cardList });
 
         deck = this.copyDeck(deck);
 

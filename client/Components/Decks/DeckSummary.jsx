@@ -43,7 +43,7 @@ const DeckSummary = ({ deck }) => {
             cardList.forEach((card) => {
                 let chainedIcon = null;
                 if (card.card.isChained) {
-                    let chainedIcon = <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
+                    chainedIcon = <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
                 }
                 cards.push(
                     <div key={card.card.id}>

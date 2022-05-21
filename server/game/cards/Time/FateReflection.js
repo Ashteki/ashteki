@@ -9,7 +9,8 @@ class FateReflection extends Card {
                     event.context.player === context.player.opponent && // opponent action
                     BattlefieldTypes.includes(event.card.type) && // it's a unit
                     event.card.controller === context.player && // it's one of my units
-                    !event.fightEvent // not a fight
+                    !event.fightEvent && // not a fight
+                    event.sourceType !== 'unit'
             },
             gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,

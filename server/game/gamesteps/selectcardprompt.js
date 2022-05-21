@@ -131,6 +131,11 @@ class SelectCardPrompt extends UiPrompt {
     }
 
     continue() {
+        if (!this.selector.hasEnoughTargets(this.context)) {
+            this.properties.onCancel(this.choosingPlayer);
+            this.complete();
+            return true;
+        }
         if (!this.isComplete()) {
             this.highlightSelectableCards();
         }
