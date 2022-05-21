@@ -31,14 +31,19 @@ class OrderedAoEAction extends PlayerAction {
             promptTitle: this.propertyCache.promptTitle,
             // eslint-disable-next-line no-undef
             cardType: BattlefieldTypes,
+            location: ['play area'],
             cardCondition: (card) => this.cards.includes(card),
             context: context,
             onSelect: (player, card) => {
-                this.propertyCache.gameAction.resolve(card, context);
-                this.cards = this.cards.filter((c) => c !== card);
-                if (this.cards.length) {
-                    this.promptForRemainingCards(context);
-                }
+                const step = this.propertyCache.gameAction.resolve(card, context);
+                const e = context.game.getEvent('unnamedevent', {}, () => {
+                    this.cards = this.cards.filter((c) => c !== card);
+                    if (this.cards.length) {
+                        this.promptForRemainingCards(context);
+                    }
+                });
+
+                step.event.addSubEvent(e);
                 return true;
             }
         });
