@@ -6,6 +6,7 @@ class MistTyphoon extends Card {
             title: 'Mist Typhoon',
             effect: "deal 1 damage to all opponent's units",
             target: {
+                ignoreTargetCheck: true,
                 autoTarget: (context) => context.player.opponent.unitsInPlay,
                 gameAction: ability.actions.orderedAoE({
                     gameAction: ability.actions.dealDamage(),

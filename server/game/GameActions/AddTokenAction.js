@@ -58,10 +58,15 @@ class AddTokenAction extends CardGameAction {
 
                 if (this.type === 'damage') {
                     tokenEvent.noGameStateCheck = true;
+                    // tokenEvent.parentEvent.noGameStateCheck = true;
                     // tokenEvent.openReactionWindow = true;
 
+                    if (tokenEvent.card.tokens.damage >= tokenEvent.card.life) {
+                        // mark this card not to be destroyed by the main game state check loop
+                        tokenEvent.card.skipDestroyCheck = true;
+                    }
                     let killerEvent = super.createEvent(
-                        'unnamedEvent',
+                        'killerEvent',
                         {
                             amount: tokenEvent.amount,
                             card: tokenEvent.card,

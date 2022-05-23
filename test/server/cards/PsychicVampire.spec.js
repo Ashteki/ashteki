@@ -73,12 +73,16 @@ describe('psychic vampire', function () {
             this.player1.clickCard(this.psychicVampire);
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickDone();
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.psychicVampire);
+
             this.player1.clickCard(this.ironWorker); // discard
 
-            expect(this.player1).toHaveDefaultPrompt();
             expect(this.psychicVampire.location).toBe('discard');
+            expect(this.ironWorker.location).toBe('discard');
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.hammerKnight.damage).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 

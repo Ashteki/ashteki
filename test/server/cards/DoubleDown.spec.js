@@ -68,12 +68,15 @@ describe('Double Down', function () {
         });
 
         it('ability triggers on crimson bomber', function () {
+            const shadowSpirit = this.player2.inPlay[0];
             this.player1.play(this.crimsonBomber);
             this.player1.clickCard(this.crimsonBomber);
             this.player1.clickPrompt('Detonate 3');
-            this.player1.clickCard(this.shadowSpirit);
+            this.player1.clickCard(shadowSpirit);
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickDone();
+            this.player1.clickCard(shadowSpirit);
+            this.player1.clickCard(this.hammerKnight);
 
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
             expect(this.player2).toBeAbleToSelect(this.doubleDown);
