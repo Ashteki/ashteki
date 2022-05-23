@@ -5,13 +5,15 @@ class SurvivalOfTheFittest extends Card {
         this.play({
             title: 'Survival of the Fittest',
             effect: 'destroy all units without tokens or alterations',
-            gameAction: ability.actions.orderedAoE((context) => ({
-                gameAction: ability.actions.destroy(),
-                cards: context.game.unitsInPlay.filter(
+            target: {
+                autoTarget: (context) => context.game.unitsInPlay.filter(
                     (card) => card.upgrades.length === 0 && !card.hasAnyTokens()
                 ),
-                promptTitle: 'Survival of the Fittest'
-            }))
+                gameAction: ability.actions.orderedAoE({
+                    gameAction: ability.actions.destroy(),
+                    promptTitle: 'Survival of the Fittest'
+                })
+            }
         });
     }
 }

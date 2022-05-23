@@ -5,14 +5,13 @@ class MistTyphoon extends Card {
         this.play({
             title: 'Mist Typhoon',
             effect: "deal 1 damage to all opponent's units",
-            // gameAction: ability.actions.dealDamage((context) => ({
-            //     target: context.player.opponent.unitsInPlay
-            // }))
-            gameAction: ability.actions.orderedAoE((context) => ({
-                gameAction: ability.actions.dealDamage(),
-                cards: context.player.opponent.unitsInPlay,
-                promptTitle: 'Mist Typhoon'
-            })),
+            target: {
+                autoTarget: (context) => context.player.opponent.unitsInPlay,
+                gameAction: ability.actions.orderedAoE({
+                    gameAction: ability.actions.dealDamage(),
+                    promptTitle: 'Mist Typhoon'
+                })
+            },
             then: {
                 alwaysTriggers: true,
                 may: 'draw a card',

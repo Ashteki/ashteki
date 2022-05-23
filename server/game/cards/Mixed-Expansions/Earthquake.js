@@ -17,14 +17,15 @@ class Earthquake extends Card {
             },
             then: {
                 message: '{1} deals 1 damage to all other units',
-                // gameAction: ability.actions.dealDamage((context) => ({
-                //     target: context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card)
-                // }))
-                gameAction: ability.actions.orderedAoE((context) => ({
-                    gameAction: ability.actions.dealDamage(),
-                    cards: context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card),
-                    promptTitle: 'Earthquake'
-                }))
+                target: {
+                    autoTarget: (context) =>
+                        context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card),
+
+                    gameAction: ability.actions.orderedAoE({
+                        gameAction: ability.actions.dealDamage(),
+                        promptTitle: 'Earthquake'
+                    })
+                }
             }
         });
     }

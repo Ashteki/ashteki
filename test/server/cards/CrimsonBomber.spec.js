@@ -24,6 +24,12 @@ describe('Crimson Bomber detonate ability', function () {
         this.player1.clickCard(this.hammerKnight);
         this.player1.clickDone();
 
+        expect(this.player1).toHavePrompt('Choose order of AoE actions');
+        this.player1.clickCard(this.ironWorker);
+        this.player1.clickCard(this.anchornaut);
+        this.player1.clickCard(this.hammerKnight);
+
+        expect(this.player1).toHaveDefaultPrompt();
         expect(this.anchornaut.location).toBe('discard');
         expect(this.ironWorker.damage).toBe(1);
         expect(this.hammerKnight.damage).toBe(1);
