@@ -17,7 +17,7 @@ describe('Disengage', function () {
         });
     });
 
-    it('reaction on defender choice - unit attack', function () {
+    it('reaction on defender choice - pb attack', function () {
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.coalRoarkwin); // target
         this.player1.clickCard(this.ironWorker); // ALLY attacker
@@ -40,6 +40,15 @@ describe('Disengage', function () {
         expect(this.ironWorker.location).toBe('play area');
         expect(this.ironWorker.damage).toBe(0);
         expect(this.ironWorker.exhausted).toBe(false);
+
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('no reaction on unit attack', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickCard(this.ironWorker); // ALLY attacker
+        this.player2.clickCard(this.coalRoarkwin); // guard
 
         expect(this.player1).toHaveDefaultPrompt();
     });

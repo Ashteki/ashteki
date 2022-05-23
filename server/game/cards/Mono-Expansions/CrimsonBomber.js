@@ -10,7 +10,11 @@ class CrimsonBomber extends Card {
                 mode: 'upTo',
                 numCards: 3,
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.addDamageToken()
+                gameAction: ability.actions.orderedAoE((context) => ({
+                    gameAction: ability.actions.addDamageToken(),
+                    cards: context.target,
+                    promptTitle: 'Crimson Bomber'
+                }))
             }
         });
     }

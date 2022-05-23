@@ -1226,7 +1226,8 @@ class Game extends EventEmitter {
                 (card) =>
                     BattlefieldTypes.includes(card.type) &&
                     (card.life <= 0 || card.tokens.damage >= card.life) &&
-                    !card.moribund
+                    !card.moribund &&
+                    !card.skipDestroyCheck
             );
             if (creaturesToDestroy.length > 0) {
                 this.actions.destroy().resolve(creaturesToDestroy, this.getFrameworkContext());

@@ -77,7 +77,9 @@ class AbilityTargetCard {
 
         if (this.properties.autoTarget) {
             const autoTarget = this.properties.autoTarget(context);
-            if (this.selector.canTarget(autoTarget, context)) {
+            let checkArray = Array.isArray(autoTarget) ? autoTarget : [autoTarget];
+            const allTargetsValid = checkArray.every((t) => this.selector.canTarget(t, context));
+            if (allTargetsValid) {
                 this.setSelectedCard(context, autoTarget);
             } else {
                 targetResults.cancelled = true;

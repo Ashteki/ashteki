@@ -1,7 +1,8 @@
 const { BattlefieldTypes } = require('../../constants');
-const PlayerAction = require('./PlayerAction');
+const GameAction = require('./GameAction');
+// const CardGameAction = require('./CardGameAction');
 
-class OrderedAoEAction extends PlayerAction {
+class OrderedAoEAction extends GameAction {
     setup() {
         super.setup();
         this.amount = 1;
@@ -10,18 +11,22 @@ class OrderedAoEAction extends PlayerAction {
         this.promptTitle = '';
     }
 
-    defaultTargets(context) {
-        return context.player;
+    hasLegalTarget(context) {
+        return true;
+        // this.update(context);
+        // return this.gameAction.hasLegalTarget(context);
     }
 
-    getEvent(player2, context) {
-        return super.createEvent('unnamedEvent', { player: context.player }, () => {
-            this.cards = this.propertyCache.cards;
+    getEventArray(context) {
+        return [
+            super.createEvent('unnamedEvent', { player: context.player }, () => {
+                this.cards = this.target;
 
-            if (this.cards.length > 0) {
-                this.promptForRemainingCards(context);
-            }
-        });
+                if (this.cards.length > 0) {
+                    this.promptForRemainingCards(context);
+                }
+            })
+        ];
     }
 
     promptForRemainingCards(context) {

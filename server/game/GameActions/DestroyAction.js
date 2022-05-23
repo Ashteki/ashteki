@@ -18,7 +18,7 @@ class DestroyAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        return !card.moribund && card.location === 'play area' && super.canAffect(card, context);
+        return card.location === 'play area' && super.canAffect(card, context);
     }
 
     checkEventCondition(event) {
@@ -47,6 +47,7 @@ class DestroyAction extends CardGameAction {
             }
             event.context.game.addMessage(message, card);
             event.card.moribund = true;
+            event.card.skipDestroyCheck = false;
             if (event.card.isAttacker || event.card.isDefender) {
                 context.game.attackState.removeFromBattle(
                     event.card,

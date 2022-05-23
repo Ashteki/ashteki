@@ -6,16 +6,17 @@ class DoubleDown extends Card {
         this.reaction({
             when: {
                 onCardDestroyed: (event, context) =>
+                    // a 1-life conjuration that I control
                     event.card.type === CardType.Conjuration &&
                     event.card.life === 1 &&
                     // check the clone because ondestroyed resets controller to owner (blood puppet)
                     event.clone.controller === context.source.owner &&
-                    (context.event.context.source.controller ===
-                        context.source.controller.opponent ||
+                    // destroyed as a result of an event that my opponent controls
+                    (context.event.context.source.controller === context.source.controller.opponent ||
                         // ignoring damage event also appears
                         (context.event.tokenEvent &&
                             context.event.tokenEvent.context.player ===
-                                context.source.controller.opponent))
+                            context.source.controller.opponent))
             },
             gameAction: ability.actions.summon((context) => ({
                 conjuration: context.event.card.id,

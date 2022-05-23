@@ -6,15 +6,15 @@ class Heal extends Card {
         this.play({
             target: {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
-                gameAction: ability.actions.removeDamage((context) =>
-                    context.target.type === CardType.Phoenixborn
-                        ? {
-                              amount: 2
-                          }
-                        : {
-                              all: true
-                          }
-                )
+                gameAction: ability.actions.removeDamage((context) => {
+                    let amount = 2;
+                    if (BattlefieldTypes.includes(context.target.type)) {
+                        amount = context.target.damage;
+                    }
+                    return {
+                        amount: amount
+                    };
+                })
             }
         });
     }

@@ -12,14 +12,13 @@ class OneHundredBlades extends Card {
             },
             then: {
                 alwaysTriggers: true,
-                // gameAction: ability.actions.dealDamage((context) => ({
-                //     target: context.player.opponent.unitsInPlay
-                // })),
-                gameAction: ability.actions.orderedAoE((context) => ({
-                    gameAction: ability.actions.dealDamage(),
-                    cards: context.player.opponent.unitsInPlay,
-                    promptTitle: 'One Hundred Blades'
-                })),
+                target: {
+                    autoTarget: (context) => context.player.opponent.unitsInPlay,
+                    gameAction: ability.actions.orderedAoE({
+                        gameAction: ability.actions.dealDamage(),
+                        promptTitle: 'One Hundred Blades'
+                    })
+                },
                 then: {
                     alwaysTriggers: true,
                     gameAction: ability.actions.draw()
