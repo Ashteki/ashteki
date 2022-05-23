@@ -6,6 +6,8 @@ class Disengage extends Card {
         this.reaction({
             when: {
                 onDefendersDeclared: (event, context) =>
+                    // not for unit attacks
+                    event.attack.isPBAttack &&
                     // when opponent declares blockers
                     event.attack.attackingPlayer === context.source.owner &&
                     event.attack.battles.some(
