@@ -11,7 +11,7 @@ class CrimsonBomber extends Card {
                 numCards: 3,
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.orderedAoE((context) => ({
-                    gameAction: ability.actions.addDamageToken(),
+                    gameAction: ability.actions.addDamageToken({ showMessage: true }),
                     cards: context.target,
                     promptTitle: 'Crimson Bomber'
                 }))

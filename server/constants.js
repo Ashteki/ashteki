@@ -24,6 +24,7 @@ const BattlefieldTypes = [CardType.Ally, CardType.Conjuration];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [CardType.Conjuration, CardType.ConjuredAlteration];
 const EffectLocations = ['play area', 'spellboard'];
+const DamageDealingLocations = ['play area', 'being played', 'spellboard'];
 
 const AbilityType = {
     Action: 'action', // not used
@@ -64,5 +65,6 @@ module.exports = {
     Magic,
     Level,
     EffectLocations,
-    BluffAbilityTypes
+    BluffAbilityTypes,
+    DamageDealingLocations
 };

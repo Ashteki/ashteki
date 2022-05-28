@@ -8,7 +8,7 @@ class NaturesWrath extends Card {
             target: {
                 autoTarget: (context) => context.game.unitsInPlay,
                 gameAction: ability.actions.orderedAoE({
-                    gameAction: ability.actions.dealDamage(),
+                    gameAction: ability.actions.dealDamage({ showMessage: true }),
                     promptTitle: "Nature's Wrath"
                 })
             }

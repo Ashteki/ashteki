@@ -5,11 +5,11 @@ class RinsFury extends Card {
     setupCardAbilities(ability) {
         this.interrupt({
             when: {
-                onDamageDealt: (event, context) =>
-                    event.context.player === context.player.opponent &&
-                    BattlefieldTypes.includes(event.card.type) &&
-                    event.fightEvent &&
-                    event.damageSource.owner === context.player.opponent
+                onDamageApplied: (event, context) =>
+                    event.damageEvent.context.player === context.player.opponent &&
+                    BattlefieldTypes.includes(event.damageEvent.card.type) &&
+                    event.damageEvent.fightEvent &&
+                    event.damageEvent.damageSource.owner === context.player.opponent
             },
             gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,
@@ -19,7 +19,7 @@ class RinsFury extends Card {
                 alwaysTriggers: true,
                 target: {
                     cardType: BattlefieldTypes,
-                    autoTarget: () => context.event.damageSource,
+                    autoTarget: () => context.event.damageEvent.damageSource,
                     controller: 'opponent',
                     gameAction: ability.actions.destroy()
                 }

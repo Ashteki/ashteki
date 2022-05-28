@@ -22,7 +22,7 @@ class Earthquake extends Card {
                         context.game.unitsInPlay.filter((c) => c !== context.preThenEvent.card),
 
                     gameAction: ability.actions.orderedAoE({
-                        gameAction: ability.actions.dealDamage(),
+                        gameAction: ability.actions.dealDamage({ showMessage: true }),
                         promptTitle: 'Earthquake'
                     })
                 }

@@ -46,7 +46,7 @@ class ResolveBattleAction extends GameAction {
                 let defenderParams = {
                     amount: defenderAmount,
                     fightEvent: event,
-                    damageSource: event.card,
+                    damageSource: event.attackerTarget,
                     showMessage: true
                 };
 
@@ -82,7 +82,13 @@ class ResolveBattleAction extends GameAction {
                     damageEvent = attackerDamageEvent;
                 }
 
+                let counterDamageEvent;
                 if (
+                    // quickstrike in a fight skips counter damage
+                    // !(
+                    //     event.attacker?.attacksFirst() &&
+                    //     this.damageWillDestroyTarget(attackerAmount, event.card)
+                    // ) &&
                     defenderParams.amount > 0 &&
                     // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
                     event.defenderTarget === event.attacker &&
@@ -91,16 +97,16 @@ class ResolveBattleAction extends GameAction {
                     event.attackerTarget.checkRestrictions('dealFightDamageWhenDefending') // or defender can't deal damage when defending
                 ) {
                     // Counter damage event
-                    const counterDamageEvent = context.game.actions
+                    counterDamageEvent = context.game.actions
                         .dealDamage(defenderParams)
                         .getEvent(event.defenderTarget, event.context);
 
                     event.counterDamageEvent = counterDamageEvent;
-                    if (damageEvent) {
-                        damageEvent.addChildEvent(counterDamageEvent);
-                    } else {
-                        damageEvent = counterDamageEvent;
-                    }
+                    // if (damageEvent) {
+                    //     damageEvent.addChildEvent(counterDamageEvent);
+                    // } else {
+                    //     damageEvent = counterDamageEvent;
+                    // }
                 }
 
                 // If anyone is getting damaged...
@@ -108,18 +114,30 @@ class ResolveBattleAction extends GameAction {
                     context.game.openEventWindow(damageEvent);
                 }
 
+                if (counterDamageEvent) {
+                    if (event.attacker.attacksFirst() || !damageEvent) {
+                        // add as second event
+                        context.game.openEventWindow(counterDamageEvent);
+                    } else {
+                        // add as child event for sim. resolution
+                        if (damageEvent) {
+                            damageEvent.addChildEvent(counterDamageEvent);
+                        }
+                    }
+                }
+
                 this.battle.resolved = true;
             })
         );
     }
 
-    // damageWillDestroyTarget(attackerAmount, target) {
-    //     let amountReceived = attackerAmount;
-    //     if (target.anyEffect('multiplyDamage')) {
-    //         amountReceived = amountReceived * target.sumEffects('multiplyDamage');
-    //     }
-    //     return amountReceived + target.damage - target.armor >= target.life;
-    // }
+    damageWillDestroyTarget(attackerAmount, target) {
+        let amountReceived = attackerAmount;
+        if (target.anyEffect('multiplyDamage')) {
+            amountReceived = amountReceived * target.sumEffects('multiplyDamage');
+        }
+        return amountReceived + target.damage - target.armor >= target.life;
+    }
 
     getEventArray() {
         return this.events;

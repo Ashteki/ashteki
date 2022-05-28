@@ -7,7 +7,7 @@ class ParticleShield extends Card {
             when: {
                 onDamageDealt: (event, context) =>
                     BattlefieldTypes.includes(event.card.type) &&
-                    event.card.controller == context.player
+                    event.card.controller === context.player
             },
             effect: 'prevent 1 damage and draw a card',
             gameAction: ability.actions.preventDamage((context) => ({

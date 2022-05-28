@@ -8,6 +8,7 @@ const EventToTitleFunc = {
     onCardEntersPlay: (event) => event.card.name + ' being played',
     onAbilityInitiated: GetTargettingTitlePhrase,
     onCardAbilityInitiated: (event) => 'the effects of ' + event.card.name,
+    onDamageApplied: (event) => event.card.name + ' receiving ' + event.amount + ' damage',
     onDamageDealt: (event) =>
         event.card.name + ' receiving ' + event.amount + ' damage from ' + event.damageSource.name,
     onCardDestroyed: (event) => event.card.name + ' being destroyed',

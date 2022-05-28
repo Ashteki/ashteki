@@ -4,6 +4,7 @@ class CardVisibility {
     constructor(game) {
         this.game = game;
         this.rules = [
+            (card) => this.isSpellRevealed(card),
             (card) => this.isPublicRule(card),
             (card) => this.isEffectRule(card),
             (card, player) => this.isControllerRule(card, player),
@@ -41,6 +42,15 @@ class CardVisibility {
             player.isSpectator() &&
             ['hand', 'archives'].includes(card.location)
         );
+    }
+
+    isSpellRevealed(card) {
+        const revealedCards = [
+            card.controller.phoenixborn,
+            ...card.controller.cardsInPlay,
+            ...card.controller.spellboard
+        ];
+        return revealedCards.some((spell) => spell.conjurations.some((c) => c.stub === card.id));
     }
 }
 
