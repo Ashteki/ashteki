@@ -42,7 +42,6 @@ const placeholderPlayer = {
     },
     title: null,
     user: null,
-    deckData: {},
     dice: []
 };
 
@@ -245,7 +244,6 @@ export class GameBoard extends React.Component {
                 <div className='player-home-row'>
                     <PlayerPBRow
                         cardSize={this.props.user.settings.cardSize}
-                        deckData={otherPlayer.deckData}
                         discard={otherPlayer.cardPiles.discard}
                         drawDeck={otherPlayer.cardPiles.deck}
                         isMe={false}
@@ -308,7 +306,6 @@ export class GameBoard extends React.Component {
                 <div className='player-home-row our-side'>
                     <PlayerPBRow
                         cardSize={this.props.user.settings.cardSize}
-                        deckData={thisPlayer.deckData}
                         discard={thisPlayer.cardPiles.discard}
                         drawDeck={thisPlayer.cardPiles.deck}
                         isMe={!spectating}
