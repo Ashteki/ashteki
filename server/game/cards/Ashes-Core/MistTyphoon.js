@@ -9,7 +9,7 @@ class MistTyphoon extends Card {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => context.player.opponent.unitsInPlay,
                 gameAction: ability.actions.orderedAoE({
-                    gameAction: ability.actions.dealDamage(),
+                    gameAction: ability.actions.dealDamage({ showMessage: true }),
                     promptTitle: 'Mist Typhoon'
                 })
             },

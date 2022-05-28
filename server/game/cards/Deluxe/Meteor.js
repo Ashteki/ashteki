@@ -11,7 +11,7 @@ class Meteor extends Card {
             target: {
                 autoTarget: (context) => context.game.unitsInPlay,
                 gameAction: ability.actions.orderedAoE({
-                    gameAction: ability.actions.dealDamage(),
+                    gameAction: ability.actions.dealDamage({ showMessage: true }),
                     promptTitle: 'Meteor'
                 })
             },
@@ -27,7 +27,8 @@ class Meteor extends Card {
                             autoTarget: (context) => context.game.unitsInPlay,
                             gameAction: ability.actions.orderedAoE({
                                 gameAction: ability.actions.dealDamage({
-                                    amount: numLions
+                                    amount: numLions,
+                                    showMessage: true
                                 }),
                                 promptTitle: 'Meteor II'
                             })
