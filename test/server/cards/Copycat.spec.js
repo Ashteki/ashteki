@@ -57,7 +57,7 @@ describe('Copycat', function () {
             expect(this.aradelSummergaard.damage).toBe(4);
         });
 
-        it('copy pb ablity (water blast)', function () {
+        it('copy pb ability (water blast)', function () {
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.ironWorker);

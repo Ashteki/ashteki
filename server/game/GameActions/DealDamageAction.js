@@ -1,4 +1,4 @@
-// const Card = require('../Card');
+const { CardType, DamageDealingLocations, BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class DealDamageAction extends CardGameAction {
@@ -76,6 +76,8 @@ class DealDamageAction extends CardGameAction {
             params.amount -= damagePrevented;
         }
 
+        params.condition = (event) => this.canDealDamage(event.damageSource);
+
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {
             let damageAppliedParams = {
                 amount: damageDealtEvent.amount,
@@ -83,7 +85,8 @@ class DealDamageAction extends CardGameAction {
                 context: damageDealtEvent.context,
                 condition: (event) => event.amount > 0,
                 noGameStateCheck: true,
-                damageEvent: damageDealtEvent
+                damageEvent: damageDealtEvent,
+                preventable: damageDealtEvent.preventable
             };
             let damageAppliedEvent = super.createEvent(
                 'onDamageApplied',
@@ -112,26 +115,19 @@ class DealDamageAction extends CardGameAction {
                 }
             );
             damageDealtEvent.addSubEvent(damageAppliedEvent);
-
-            // quickstrike in a fight skips counter damage
-            if (
-                // this is an attacking damage event
-                damageDealtEvent === damageDealtEvent?.fightEvent?.attackerDamageEvent &&
-                damageDealtEvent?.fightEvent?.attacker?.attacksFirst() &&
-                this.damageWillDestroyTarget(damageDealtEvent.amount, damageDealtEvent.card) &&
-                damageDealtEvent.fightEvent.counterDamageEvent
-            ) {
-                damageDealtEvent.fightEvent.counterDamageEvent.cancel();
-            }
         });
     }
 
-    damageWillDestroyTarget(attackerAmount, target) {
-        let amountReceived = attackerAmount;
-        if (target.anyEffect('multiplyDamage')) {
-            amountReceived = amountReceived * target.sumEffects('multiplyDamage');
-        }
-        return amountReceived + target.damage - target.armor >= target.life;
+    canDealDamage(source) {
+        return (
+            // it's not a card effect
+            !Object.values(CardType).includes(source.type) ||
+            // it's not a unit in the wrong place
+            !(
+                BattlefieldTypes.includes(source.type) &&
+                !DamageDealingLocations.includes(source.location)
+            )
+        );
     }
 }
 

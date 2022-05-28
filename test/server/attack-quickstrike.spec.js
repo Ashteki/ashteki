@@ -137,4 +137,40 @@ describe('Quick Strike', function () {
             expect(this.particleShield.location).toBe('discard');
         });
     });
+
+
+    describe('BUG: 1011 QS vs particle shield part 2', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['seaside-raven', 'cloudburst-gryphon'],
+                    hand: ['particle-shield'],
+                    dicepool: ['natural', 'illusion', 'charm', 'charm'],
+                    spellboard: ['summon-butterfly-monk']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['butterfly-monk', 'iron-rhino'],
+                    spellboard: [],
+                    dicepool: ['natural', 'illusion', 'charm', 'charm'],
+                    hand: ['anchornaut']
+                }
+            });
+        });
+
+        it('particle shield for player1 should not trigger', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.butterflyMonk);
+            this.player1.clickCard(this.cloudburstGryphon);
+            this.player2.clickDone();
+            this.player2.clickYes();
+            // butterfly monk should be dead.
+            this.player2.clickCard(this.ironRhino); // Mend 1
+            expect(this.butterflyMonk.location).toBe('archives');
+
+            expect(this.cloudburstGryphon.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });
