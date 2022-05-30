@@ -393,4 +393,16 @@
     text-align: center;
     top:2px;
     z-index:500;
+.effects{
+    position: absolute;
+    top: 1px;
+    display:flex;
+}
+
+.effect {
+    height: 18px;
+    width:18px;
+    margin-left: 1px;
+     z-index: 999;
+
 }

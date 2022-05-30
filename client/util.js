@@ -12,6 +12,10 @@ export function imageUrl(cardStub) {
     return `https://cdn.ashes.live/images/cards/${cardStub}.jpg`;
 }
 
+export function effectUrl(effect) {
+    return `/effects/${effect}.svg`;
+}
+
 export function tryParseJSON(jsonString) {
     try {
         var retObject = JSON.parse(jsonString);
