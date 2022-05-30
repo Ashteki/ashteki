@@ -166,7 +166,7 @@ class InnerDeckEditor extends React.Component {
             }
         });
 
-        this.addConjurations(deck.phoenixborn[0], deck);
+        this.addConjurations(deck.phoenixborn[0].card, deck);
         deck = this.copyDeck(deck);
 
         this.setState({ cardList: event.target.value, deck: deck });

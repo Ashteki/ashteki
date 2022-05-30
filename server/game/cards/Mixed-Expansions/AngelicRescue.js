@@ -5,11 +5,11 @@ class AngelicRescue extends Card {
     setupCardAbilities(ability) {
         this.interrupt({
             when: {
-                onDamageDealt: (event, context) =>
+                onDamageApplied: (event, context) =>
                     event.context.player === context.player.opponent && // opponent action
                     BattlefieldTypes.includes(event.card.type) && // it's a unit
                     event.card.controller === context.player && // it's one of my units
-                    !event.fightEvent // not a fight
+                    !event.damageEvent.fightEvent // not a fight
             },
             gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,

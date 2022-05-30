@@ -4,11 +4,11 @@ class Cover extends Card {
     setupCardAbilities(ability) {
         this.interrupt({
             when: {
-                onDamageDealt: (event, context) =>
+                onDamageApplied: (event, context) =>
                     event.context.player === context.player.opponent &&
                     event.card === context.player.phoenixborn &&
-                    event.fightEvent &&
-                    event.fightEvent.battle.guard === context.player.phoenixborn
+                    event.damageEvent.fightEvent &&
+                    event.damageEvent.fightEvent.battle.guard === context.player.phoenixborn
             },
             gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,
@@ -16,7 +16,7 @@ class Cover extends Card {
             })),
             then: (context) => ({
                 gameAction: ability.actions.dealDamage({
-                    target: context.event.damageSource,
+                    target: context.event.damageEvent.damageSource,
                     showMessage: true
                 })
             })

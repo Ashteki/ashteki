@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import 'jquery-migrate';
 import { useDrag } from 'react-dnd';
+import { effectUrl } from '../../util';
 
 import CardMenu from './CardMenu';
 import CardCounters from './CardCounters';
@@ -69,6 +70,16 @@ const Card = ({
     const getCountersForCard = (card) => {
         let counters = [];
         let needsFade = UpgradeCardTypes.includes(card.type) && !['full deck'].includes(source);
+        if (card.acquiredEffects?.length) {
+            card.acquiredEffects.forEach((e) => {
+                counters.push({
+                    name: e,
+                    count: 1,
+                    fade: needsFade,
+                    showValue: false
+                });
+            });
+        }
         if (card.armor > 0) {
             counters.push({
                 name: 'armor',
@@ -282,6 +293,20 @@ const Card = ({
             );
         }
         return '';
+    };
+    const getEffectIcons = (card) => {
+        let effects =
+            card.effects &&
+            card.effects.map((effectName) => {
+                let imgUrl = effectUrl(effectName);
+                return (
+                    <div className={'effect effect-' + effectName} key={'effect-' + effectName}>
+                        <img src={imgUrl} title={effectName} />
+                    </div>
+                );
+            });
+
+        return effects;
     };
 
     const getCard = () => {

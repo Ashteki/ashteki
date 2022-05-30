@@ -8,7 +8,14 @@ const EventToTitleFunc = {
     onCardEntersPlay: (event) => event.card.name + ' being played',
     onAbilityInitiated: GetTargettingTitlePhrase,
     onCardAbilityInitiated: (event) => 'the effects of ' + event.card.name,
-    onDamageApplied: (event) => event.card.name + ' receiving ' + event.amount + ' damage',
+    onDamageApplied: (event) => {
+        let output = event.card.name + ' receiving ' + event.amount + ' damage';
+        if (event.damageSource) {
+            output += ' from ' + event.damageSource.name;
+        }
+        return output;
+    },
+    // Don't use onDamageDealt for interrupts - use onDamageApplied instead. (quickstrike reasons)
     onDamageDealt: (event) =>
         event.card.name + ' receiving ' + event.amount + ' damage from ' + event.damageSource.name,
     onCardDestroyed: (event) => event.card.name + ' being destroyed',
