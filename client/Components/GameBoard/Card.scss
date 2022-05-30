@@ -394,3 +394,22 @@
     top:2px;
     z-index:500;
 }
+
+.effects{
+    position: absolute;
+    top: 1px;
+    display:flex;
+    width:100%;
+}
+
+.effect {
+    height: 18px;
+    width:18px;
+    margin-left: 1px;
+     z-index: 999;
+    margin:auto;
+}
+
+.effect-acquired img{
+    width:100%;
+}

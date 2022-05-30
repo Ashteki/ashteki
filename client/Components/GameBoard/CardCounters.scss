@@ -31,6 +31,7 @@
     // flex-wrap: wrap;
     z-index: $layer-cards + 1;
 }
+
 .game-card.vertical .counters {
     flex-direction: column;
 
@@ -107,4 +108,24 @@
 
 .status {
     background-image: url('~assets/img/status.png');
+}
+
+.preventAllDamage {
+    background-image: url('~assets/img/safeguard.png');
+}
+
+.terrifying {
+    background-image: url('~assets/img/terrifying.png');
+}
+
+.overkill {
+    background-image: url('~assets/img/overkill.png');
+}
+
+.bypass {
+    background-image: url('~assets/img/hypnotize.png');
+}
+
+.quickStrike {
+    background-image: url('~assets/img/lightning.png');
 }

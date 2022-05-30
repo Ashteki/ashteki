@@ -540,6 +540,20 @@ class Card extends PlayableObject {
         return flags;
     }
 
+    getAqcuiredEffects() {
+        const acquiredEffects = this.effects.filter((e) => e.context.source != this);
+        const simpleTypes = ['preventAllDamage', 'bypass', 'quickStrike'];
+        const simpleNames = acquiredEffects
+            .filter((e) => simpleTypes.includes(e.type))
+            .map((e) => e.type);
+        const keywords = acquiredEffects
+            .filter((e) => e.type === 'addKeyword')
+            .map((e) => Object.keys(e.getValue())[0]);
+        // const gainedAbilities = acquiredEffects
+        //     .filter((e) => e.type === 'gainAbility');
+        return simpleNames.concat(keywords);
+    }
+
     checkRestrictions(actionType, context = null) {
         return (
             super.checkRestrictions(actionType, context) &&
@@ -1161,7 +1175,6 @@ class Card extends PlayableObject {
                 facedown: true,
                 uuid: this.uuid,
                 tokens: this.tokens,
-                flags: this.getFlags(),
                 armor: this.armor,
                 isConjuration: ConjuredCardTypes.includes(this.type),
                 ...selectionState
@@ -1202,6 +1215,7 @@ class Card extends PlayableObject {
                 return die.getSummary(activePlayer);
             }),
             flags: this.getFlags(),
+            acquiredEffects: this.getAqcuiredEffects(),
             armor: this.armor,
             life: this.life,
             guarded: this.usedGuardThisRound,
