@@ -540,20 +540,18 @@ class Card extends PlayableObject {
         return flags;
     }
 
-    getEffectSummary() {
-        var effects = [];
-        if (this.hasKeyword('terrifying')) {
-            effects.push('terrifying');
-        }
-        if (this.hasKeyword('overkill')) {
-            effects.push('overkill');
-        }
-
-        return effects;
-    }
-
-    hasAcquiredEffect() {
-        return this.effects.some(e => e.context.source !== this);
+    getAqcuiredEffects() {
+        const acquiredEffects = this.effects.filter((e) => e.context.source != this);
+        const simpleTypes = ['preventAllDamage', 'bypass', 'quickStrike'];
+        const simpleNames = acquiredEffects
+            .filter((e) => simpleTypes.includes(e.type))
+            .map((e) => e.type);
+        const keywords = acquiredEffects
+            .filter((e) => e.type === 'addKeyword')
+            .map((e) => Object.keys(e.getValue())[0]);
+        // const gainedAbilities = acquiredEffects
+        //     .filter((e) => e.type === 'gainAbility');
+        return simpleNames.concat(keywords);
     }
 
     checkRestrictions(actionType, context = null) {
@@ -1217,8 +1215,7 @@ class Card extends PlayableObject {
                 return die.getSummary(activePlayer);
             }),
             flags: this.getFlags(),
-            effects: this.getEffectSummary(),
-            acquiredEffect: this.hasAcquiredEffect(),
+            acquiredEffects: this.getAqcuiredEffects(),
             armor: this.armor,
             life: this.life,
             guarded: this.usedGuardThisRound,

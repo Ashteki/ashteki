@@ -70,6 +70,16 @@ const Card = ({
     const getCountersForCard = (card) => {
         let counters = [];
         let needsFade = UpgradeCardTypes.includes(card.type) && !['full deck'].includes(source);
+        if (card.acquiredEffects?.length) {
+            card.acquiredEffects.forEach((e) => {
+                counters.push({
+                    name: e,
+                    count: 1,
+                    fade: needsFade,
+                    showValue: false
+                });
+            });
+        }
         if (card.armor > 0) {
             counters.push({
                 name: 'armor',
@@ -296,16 +306,6 @@ const Card = ({
                 );
             });
 
-        if (card.acquiredEffect) {
-            let img = '/effects/exclamation.png';
-
-            effects.push(
-                <div className={'effect effect-acquired'} key={'effect-acquired'}>
-                    <img src={img} title='acquired effect' />
-                </div>
-            );
-        }
-
         return effects;
     };
 
@@ -349,7 +349,6 @@ const Card = ({
             <div className={imageClass}>
                 <CardImage card={card} cardBack={cardBack} />
                 {getChainIcon(card)}
-                <div className='effects'>{getEffectIcons(card)}</div>
                 {getBoostedFlags(card)}
             </div>
         ) : null;
