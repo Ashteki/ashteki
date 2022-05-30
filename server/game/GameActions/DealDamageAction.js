@@ -79,15 +79,11 @@ class DealDamageAction extends CardGameAction {
         params.condition = (event) => this.canDealDamage(event.damageSource);
 
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {
-            let damageAppliedParams = {
-                amount: damageDealtEvent.amount,
-                card: damageDealtEvent.card,
-                context: damageDealtEvent.context,
+            let damageAppliedParams = Object.assign(params, {
                 condition: (event) => event.amount > 0,
-                noGameStateCheck: true,
                 damageEvent: damageDealtEvent,
-                preventable: damageDealtEvent.preventable
-            };
+                noGameStateCheck: true
+            });
             let damageAppliedEvent = super.createEvent(
                 'onDamageApplied',
                 damageAppliedParams,

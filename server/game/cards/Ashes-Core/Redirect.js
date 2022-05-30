@@ -7,7 +7,7 @@ class Redirect extends Card {
         this.interrupt({
             // if card is phoenixborn, and unit is in play, do damage to that unit instead
             when: {
-                onDamageDealt: (event, context) => event.card == context.player.phoenixborn
+                onDamageApplied: (event, context) => event.card == context.player.phoenixborn
             },
             condition: (context) => context.player.unitsInPlay.length > 0,
             effect: 'redirect the damage',

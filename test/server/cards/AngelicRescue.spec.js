@@ -28,9 +28,6 @@ describe('Angelic Rescue reaction spell', function () {
         this.player1.clickCard(this.ironWorker); // target
 
         // any interrupts?
-        expect(this.player2).toHavePrompt(
-            'Any Reactions to Iron Worker receiving 1 damage from Anchornaut?'
-        );
         this.player2.clickCard(this.angelicRescue); // click angelic rescue to play as reaction
         this.player2.clickDie(4);
 

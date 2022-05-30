@@ -145,7 +145,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                     'onCardDestroyed'
                 ].includes(event.name)) ||
             (this.abilityType === 'interrupt' &&
-                ['onAbilityInitiated', 'onDamageDealt'].includes(event.name))
+                ['onAbilityInitiated', 'onDamageApplied'].includes(event.name))
         );
     }
 

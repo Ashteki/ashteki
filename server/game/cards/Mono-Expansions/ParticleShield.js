@@ -5,7 +5,7 @@ class ParticleShield extends Card {
     setupCardAbilities(ability) {
         this.interrupt({
             when: {
-                onDamageDealt: (event, context) =>
+                onDamageApplied: (event, context) =>
                     BattlefieldTypes.includes(event.card.type) &&
                     event.card.controller === context.player
             },
