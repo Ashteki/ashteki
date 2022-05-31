@@ -548,7 +548,10 @@ class Card extends PlayableObject {
             .map((e) => ({ effect: e.type, source: e.context.source.name }));
         const keywords = acquiredEffects
             .filter((e) => e.type === 'addKeyword')
-            .map((e) => Object.keys(e.getValue())[0]);
+            .map((e) => {
+                const value = Object.keys(e.getValue())[0];
+                return { effect: value, source: value };
+            });
         // const gainedAbilities = acquiredEffects
         //     .filter((e) => e.type === 'gainAbility');
         return simpleNames.concat(keywords);
