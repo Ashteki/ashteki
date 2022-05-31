@@ -77,18 +77,9 @@ class DeckForge {
         this.setDiceCounts(dice, deckCards);
 
         const conjurationCounts = [];
-        deckCards.concat(pbData).forEach(c => {
+        deckCards.concat(pbData).forEach((c) => {
             if (c.conjurations) {
-                c.conjurations.forEach(conj => {
-                    const cc = conjurationCounts.find(co => co.id === conj.stub);
-                    if (!cc) {
-                        conjurationCounts.push({
-                            id: conj.stub,
-                            card: conj,
-                            count: 0
-                        });
-                    }
-                });
+                this.addConjurations(c, conjurationCounts);
             }
         });
         conjurationCounts.forEach((cc) => {
@@ -110,6 +101,23 @@ class DeckForge {
             ],
             dicepool: dice
         };
+    }
+
+    addConjurations(c, conjurationCounts) {
+        c.conjurations.forEach((conj) => {
+            const cc = conjurationCounts.find(co => co.id === conj.stub);
+            if (!cc) {
+                conjurationCounts.push({
+                    id: conj.stub,
+                    card: conj,
+                    count: 0
+                });
+            }
+            const conjuration = this.getCard(conj.stub);
+            if (conjuration.conjurations) {
+                this.addConjurations(conjuration, conjurationCounts);
+            }
+        });
     }
 
     setDiceCounts(dice, deckCards) {
