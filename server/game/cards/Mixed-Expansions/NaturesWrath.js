@@ -6,6 +6,7 @@ class NaturesWrath extends Card {
             title: "Nature's Wrath",
             effect: 'deal 1 damage to all units',
             target: {
+                ignoreTargetCheck: true,
                 autoTarget: (context) => context.game.unitsInPlay,
                 gameAction: ability.actions.orderedAoE({
                     gameAction: ability.actions.dealDamage({ showMessage: true }),

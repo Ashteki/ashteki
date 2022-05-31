@@ -9,6 +9,7 @@ class Meteor extends Card {
             title: 'Meteor',
             effect: 'deal 1 damage to all units',
             target: {
+                ignoreTargetCheck: true,
                 autoTarget: (context) => context.game.unitsInPlay,
                 gameAction: ability.actions.orderedAoE({
                     gameAction: ability.actions.dealDamage({ showMessage: true }),
@@ -24,6 +25,7 @@ class Meteor extends Card {
                         messageArgs: [diceCost, numLions],
 
                         target: {
+                            ignoreTargetCheck: true,
                             autoTarget: (context) => context.game.unitsInPlay,
                             gameAction: ability.actions.orderedAoE({
                                 gameAction: ability.actions.dealDamage({
