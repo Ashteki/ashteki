@@ -73,7 +73,8 @@ const Card = ({
         if (card.acquiredEffects?.length) {
             card.acquiredEffects.forEach((e) => {
                 counters.push({
-                    name: e,
+                    icon: e.effect,
+                    name: e.source,
                     count: 1,
                     fade: needsFade,
                     showValue: false
@@ -293,20 +294,6 @@ const Card = ({
             );
         }
         return '';
-    };
-    const getEffectIcons = (card) => {
-        let effects =
-            card.effects &&
-            card.effects.map((effectName) => {
-                let imgUrl = effectUrl(effectName);
-                return (
-                    <div className={'effect effect-' + effectName} key={'effect-' + effectName}>
-                        <img src={imgUrl} title={effectName} />
-                    </div>
-                );
-            });
-
-        return effects;
     };
 
     const getCard = () => {
