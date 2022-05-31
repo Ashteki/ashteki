@@ -545,7 +545,7 @@ class Card extends PlayableObject {
         const simpleTypes = ['preventAllDamage', 'bypass', 'quickStrike'];
         const simpleNames = acquiredEffects
             .filter((e) => simpleTypes.includes(e.type))
-            .map((e) => e.type);
+            .map((e) => ({ effect: e.type, source: e.context.source.name }));
         const keywords = acquiredEffects
             .filter((e) => e.type === 'addKeyword')
             .map((e) => Object.keys(e.getValue())[0]);
