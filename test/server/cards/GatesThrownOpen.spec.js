@@ -29,6 +29,12 @@ describe('Gates Thrown Open', function () {
         this.player1.play(this.gatesThrownOpen);
 
         // unexhaust one copy of each exhausted spell
+        expect(this.player1).toBeAbleToSelect(this.player1.spellboard[0]);
+        this.player1.clickCard(this.player1.spellboard[0]);
+        expect(this.player1).not.toBeAbleToSelect(this.player1.spellboard[1]);
+        this.player1.clickCard(this.empower);
+        this.player1.clickCard(this.summonIronRhino);
+
         expect(this.empower.exhausted).toBe(false);
         expect(this.summonIronRhino.exhausted).toBe(false);
         expect(this.player1.spellboard[0].exhausted).toBe(false);
