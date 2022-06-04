@@ -16,7 +16,14 @@ describe('Golden Veil', function () {
                         'sympathy',
                         'divine'
                     ],
-                    hand: ['molten-gold', 'fade-away', 'river-skald', 'mist-typhoon', 'kneel']
+                    hand: [
+                        'molten-gold',
+                        'fade-away',
+                        'river-skald',
+                        'mist-typhoon',
+                        'kneel',
+                        'natures-wrath'
+                    ]
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
@@ -49,8 +56,6 @@ describe('Golden Veil', function () {
 
             expect(this.player2).not.toHavePrompt('Any Reactions to mist Typhoon?');
             expect(this.player2).not.toBeAbleToSelect(this.goldenVeil);
-            this.player1.clickCard(this.hammerKnight);
-            this.player1.clickCard(this.stringMage);
             // order
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickCard(this.stringMage);
@@ -60,6 +65,26 @@ describe('Golden Veil', function () {
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.mistTyphoon.location).toBe('discard');
+        });
+
+
+        it('cannot cancel natures wrath AoE - no target', function () {
+            this.player1.clickCard(this.naturesWrath);
+            this.player1.clickPrompt('Play this action');
+
+            expect(this.player2).not.toHavePrompt('Any Reactions to mist Typhoon?');
+            expect(this.player2).not.toBeAbleToSelect(this.goldenVeil);
+            // order
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.stringMage);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.crimsonBomber);
+
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.hammerKnight.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.naturesWrath.location).toBe('discard');
         });
 
         it('cannot cancel kneel - no target', function () {

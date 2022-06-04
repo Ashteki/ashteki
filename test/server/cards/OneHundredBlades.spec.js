@@ -49,10 +49,10 @@ describe('One Hundred Blades', function () {
                     archives: ['spark']
                 },
                 player2: {
-                    phoenixborn: 'aradel-summergaard',
+                    phoenixborn: 'hope-everthorn',
                     dicepool: ['natural', 'natural', 'ceremonial', 'charm'],
                     hand: ['sympathy-pain'],
-                    inPlay: ['mist-spirit', 'anchornaut']
+                    inPlay: ['mist-spirit', 'shadow-hound']
                 }
             });
         });
@@ -63,17 +63,17 @@ describe('One Hundred Blades', function () {
             this.player1.clickDie(2);
             this.player1.clickDone();
             // pb
-            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickCard(this.hopeEverthorn);
             // sp reaction
             this.player2.clickCard(this.sympathyPain);
             this.player2.clickDie(3);
             this.player2.clickCard(this.coalRoarkwin);
             expect(this.coalRoarkwin.damage).toBe(2);
             // units
-            this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.shadowHound);
             this.player1.clickCard(this.mistSpirit);
             expect(this.hammerKnight.location).toBe('play area');
-            expect(this.anchornaut.location).toBe('discard');
+            expect(this.shadowHound.location).toBe('archives');
             expect(this.ironWorker.location).toBe('play area');
             expect(this.mistSpirit.location).toBe('archives');
             expect(this.player1).toHaveDefaultPrompt();
