@@ -31,6 +31,8 @@ class ChosenUnexhaustAction extends PlayerAction {
     promptForRemainingCards(context) {
         context.game.promptForSelect(context.player, {
             activePromptTitle: this.activePromptTitle,
+            mode: 'upTo',
+            numCards: this.amount,
             context: context,
             cardType: this.cardType,
             cardCondition: (card) => {
