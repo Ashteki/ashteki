@@ -74,6 +74,7 @@ const Actions = {
     chosenDestroy: (propertyFactory) => new GameActions.ChosenDestroyAction(propertyFactory),
     chosenDiscard: (propertyFactory) => new GameActions.ChosenDiscardAction(propertyFactory), // amount = 1
     chosenExhaust: (propertyFactory) => new GameActions.ChosenExhaustAction(propertyFactory), // amount = 1
+    chosenUnexhaust: (propertyFactory) => new GameActions.ChosenUnexhaustAction(propertyFactory),
     discardAtRandom: (propertyFactory) => new GameActions.RandomDiscardAction(propertyFactory), // amount = 1
     discardTopOfDeck: (propertyFactory) => new GameActions.DiscardTopOfDeckAction(propertyFactory), // amount = 1
     draw: (propertyFactory) => new GameActions.DrawAction(propertyFactory), // amount = 1
