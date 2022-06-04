@@ -224,7 +224,7 @@ const PendingGame = () => {
                         onScroll={() => {
                             setTimeout(() => {
                                 if (
-                                    messageRef.current.scrollTop >=
+                                    messageRef.current?.scrollTop >=
                                     messageRef.current.scrollHeight -
                                     messageRef.current.offsetHeight -
                                     20

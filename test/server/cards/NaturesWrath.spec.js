@@ -107,4 +107,64 @@ describe('Natures Wrath', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('BUG: AoE damage failing vs shadow hound', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'lulu-firststone',
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'time', 'charm'],
+                    hand: ['natures-wrath'],
+                    archives: ['spark']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    dicepool: ['natural', 'natural', 'ceremonial', 'charm'],
+                    hand: [],
+                    inPlay: ['frostback-bear', 'shadow-hound']
+                }
+            });
+        });
+
+        it('Wrath works as expected', function () {
+            this.player1.play(this.naturesWrath);
+            this.player1.clickCard(this.shadowHound);
+            this.player1.clickCard(this.frostbackBear);
+            expect(this.frostbackBear.damage).toBe(1);
+            expect(this.frostbackBear.location).toBe('play area');
+            expect(this.shadowHound.location).toBe('archives');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
+    describe('BUG report: AoE damage failing vs flock shepherd', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'lulu-firststone',
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'time', 'charm'],
+                    hand: ['natures-wrath'],
+                    archives: ['spark']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    dicepool: ['natural', 'natural', 'ceremonial', 'charm'],
+                    hand: [],
+                    inPlay: ['flock-shepherd', 'admonisher']
+                }
+            });
+        });
+
+        it('should resolve as expected', function () {
+            this.player1.play(this.naturesWrath);
+            this.player1.clickCard(this.admonisher);
+            this.player1.clickCard(this.flockShepherd);
+            expect(this.flockShepherd.damage).toBe(1);
+            expect(this.flockShepherd.location).toBe('play area');
+            expect(this.admonisher.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });
