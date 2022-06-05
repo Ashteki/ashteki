@@ -34,7 +34,7 @@ describe('Gates Thrown Open', function () {
         expect(this.player1).not.toBeAbleToSelect(this.player1.spellboard[1]);
         this.player1.clickCard(this.empower);
         this.player1.clickCard(this.summonIronRhino);
-
+        this.player1.clickDone();
         expect(this.empower.exhausted).toBe(false);
         expect(this.summonIronRhino.exhausted).toBe(false);
         expect(this.player1.spellboard[0].exhausted).toBe(false);

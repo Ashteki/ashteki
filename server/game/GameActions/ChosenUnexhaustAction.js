@@ -5,7 +5,7 @@ class ChosenUnexhaustAction extends PlayerAction {
         this.amount = 1;
         this.cardType = 'any';
         this.unique = true; // choose a single of each (by name)
-        this.activePromptTitle = 'Choose a card to remove an exhaustion token from';
+        // this.activePromptTitle = 'Choose a card to remove an exhaustion token from';
     }
 
     setup() {
@@ -31,25 +31,20 @@ class ChosenUnexhaustAction extends PlayerAction {
     promptForRemainingCards(context) {
         context.game.promptForSelect(context.player, {
             activePromptTitle: this.activePromptTitle,
-            mode: 'upTo',
+            mode: 'exactly',
             numCards: this.amount,
             context: context,
             cardType: this.cardType,
+            unique: true,
             cardCondition: (card) => {
                 return (
                     // card is exhausted
-                    card.exhausted &&
-                    // has not been chosen already
-                    !(this.unique && this.cards.some((c) => c.name === card.name))
+                    card.exhausted
                 );
             },
             controller: context.player === context.player ? 'self' : 'opponent',
-            onSelect: (player, card) => {
-                //TODO: unselect card if already selected
-                this.cards.push(card);
-                if (this.cards.length < this.amount) {
-                    this.promptForRemainingCards(context);
-                }
+            onSelect: (player, cards) => {
+                this.cards = cards;
                 return true;
             }
         });
