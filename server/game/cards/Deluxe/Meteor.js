@@ -8,6 +8,8 @@ class Meteor extends Card {
         this.play({
             title: 'Meteor',
             effect: 'deal 1 damage to all units',
+            message: '{0} spends {1} on meteor',
+            messageArgs: (context) => [context.player, context.event.context.costs.returnDice],
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => context.game.unitsInPlay,
