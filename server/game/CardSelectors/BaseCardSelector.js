@@ -11,7 +11,8 @@ class BaseCardSelector {
 
         if (!Array.isArray(properties.cardType)) {
             this.cardType = [properties.cardType];
-        }
+        };
+        this.unique = properties.unique;
     }
 
     buildLocation(property) {
@@ -101,6 +102,13 @@ class BaseCardSelector {
 
         if (!this.location.includes('any') && !this.location.includes(card.location)) {
             return false;
+        }
+
+        if (this.unique) {
+            const selection = context.player.selectedCards;
+            if (selection.some((c) => c.name === card.name)) {
+                return false;
+            }
         }
 
         return (

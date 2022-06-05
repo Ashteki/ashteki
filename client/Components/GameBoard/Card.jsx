@@ -322,7 +322,7 @@ const Card = ({
                     !card.isAttacker &&
                     !card.isDefender &&
                     card.canPlay,
-                unselectable: card.unselectable,
+                unselectable: !card.selected && card.unselectable,
                 dragging: isDragging,
                 controlled: card.controlled,
                 attacker: card.isAttacker,

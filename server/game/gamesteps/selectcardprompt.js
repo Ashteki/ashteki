@@ -131,7 +131,10 @@ class SelectCardPrompt extends UiPrompt {
     }
 
     continue() {
-        if (!this.selector.hasEnoughTargets(this.context)) {
+        if (
+            !this.selector.hasEnoughSelected(this.choosingPlayer.selectedCards) &&
+            !this.selector.hasEnoughTargets(this.context)
+        ) {
             this.properties.onCancel(this.choosingPlayer);
             this.complete();
             return true;
@@ -233,8 +236,9 @@ class SelectCardPrompt extends UiPrompt {
             this.selector.automaticFireOnSelect(this.context) &&
             this.selector.hasReachedLimit(this.selectedCards, this.context)
         ) {
-            this.fireOnSelect();
+            return this.fireOnSelect();
         }
+        return false;
     }
 
     checkCardCondition(card) {
