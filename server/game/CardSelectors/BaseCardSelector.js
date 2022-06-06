@@ -11,7 +11,7 @@ class BaseCardSelector {
 
         if (!Array.isArray(properties.cardType)) {
             this.cardType = [properties.cardType];
-        };
+        }
         this.unique = properties.unique;
     }
 
