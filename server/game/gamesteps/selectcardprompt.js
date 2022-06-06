@@ -131,6 +131,7 @@ class SelectCardPrompt extends UiPrompt {
     }
 
     continue() {
+        // not enough targets to continue - cancel the prompt
         if (
             !this.selector.hasEnoughSelected(this.choosingPlayer.selectedCards) &&
             !this.selector.hasEnoughTargets(this.context)
@@ -139,11 +140,25 @@ class SelectCardPrompt extends UiPrompt {
             this.complete();
             return true;
         }
+
+        // auto-select cards if appropriate
+        if (this.properties.unique && !this.choosingPlayer.selectedCards.length) {
+            this.attemptAutoSelection();
+        }
+
         if (!this.isComplete()) {
             this.highlightSelectableCards();
         }
 
         return super.continue();
+    }
+
+    attemptAutoSelection() {
+        const legalTargets = this.selector.getAllLegalTargets(this.context);
+        if (legalTargets.length === this.selector.numCards) {
+            legalTargets.forEach((t) => this.selectCard(t));
+            return this.fireOnSelect();
+        }
     }
 
     highlightSelectableCards() {
