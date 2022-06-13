@@ -20,6 +20,7 @@ class ChatCommands {
             '/givecontrol': this.giveControl,
             '/manual': this.manual,
             '/move': this.moveCard,
+            '/moveto': this.moveCard,
             '/modifyclock': this.modifyClock, // hidden option
             '/mutespectators': this.muteSpectators, // hidden option
             '/passactive': this.passActiveTurn, //hidden option
@@ -117,7 +118,7 @@ class ChatCommands {
     moveCard(player, args) {
         if (args[1] === 'play') {
             this.game.promptForSelect(player, {
-                location: ['archives', 'hand', 'purged'],
+                location: ['archives', 'hand', 'purged', 'discard'],
                 cardType: ['Ally', 'Conjuration'],
                 controller: 'self',
                 activePromptTitle: 'Select a card to move into play',
@@ -147,8 +148,14 @@ class ChatCommands {
         }
         if (args[1] === 'discard') {
             this.game.promptForSelect(player, {
-                location: ['hand', 'play area', 'spellboard'],
-                cardType: ['Action Spell', 'Ally', 'Alteration Spell', 'Reaction Spell', 'Ready Spell'], 
+                location: ['hand', 'play area', 'spellboard', 'purged'],
+                cardType: [
+                    'Action Spell',
+                    'Ally',
+                    'Alteration Spell',
+                    'Reaction Spell',
+                    'Ready Spell'
+                ],
                 controller: 'self',
                 activePromptTitle: 'Select a card to move to discard',
                 onSelect: (player, card) => {
@@ -162,8 +169,14 @@ class ChatCommands {
         }
         if (args[1] === 'deck') {
             this.game.promptForSelect(player, {
-                location: ['discard', 'hand', 'play area', 'spellboard'],
-                cardType: ['Action Spell', 'Ally', 'Alteration Spell', 'Reaction Spell', 'Ready Spell'],
+                location: ['discard', 'hand', 'play area', 'spellboard', 'purged'],
+                cardType: [
+                    'Action Spell',
+                    'Ally',
+                    'Alteration Spell',
+                    'Reaction Spell',
+                    'Ready Spell'
+                ],
                 controller: 'self',
                 activePromptTitle: 'Select a card to move to your deck',
                 onSelect: (player, card) => {
@@ -177,8 +190,14 @@ class ChatCommands {
         }
         if (args[1] === 'hand') {
             this.game.promptForSelect(player, {
-                location: ['discard', 'play area', 'spellboard'],
-                cardType: ['Ally', 'Ready Spell', 'Alteration'],
+                location: ['discard', 'play area', 'spellboard', 'purged'],
+                cardType: [
+                    'Action Spell',
+                    'Ally',
+                    'Alteration Spell',
+                    'Reaction Spell',
+                    'Ready Spell'
+                ],
                 controller: 'self',
                 activePromptTitle: 'Select a card to move to your hand',
                 onSelect: (player, card) => {
@@ -192,7 +211,7 @@ class ChatCommands {
         }
         if (args[1] === 'conjuration') {
             this.game.promptForSelect(player, {
-                location: ['play area'],
+                location: ['play area', 'purged'],
                 cardType: ['Conjuration', 'Conjured Alteration Spell'],
                 controller: 'self',
                 activePromptTitle: 'Select a card to move to conjuration pile',
