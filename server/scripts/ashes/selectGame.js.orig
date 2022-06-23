@@ -5,11 +5,16 @@ let db = monk(mongoUrl);
 console.log('selecting game: ' + process.argv[2]);
 const collection = db.get('games');
 collection
-    .find({ 'players.name': process.argv[2] })
+    .find({ id: process.argv[2] })
     .then((result) => {
+<<<<<<< HEAD
+        console.log(result.players);
+
+        console.log(result);
+=======
         result.forEach(game => {
             console.log(game);
         })
-        // console.log(result);
+>>>>>>> master
     })
     .then(() => db.close());
