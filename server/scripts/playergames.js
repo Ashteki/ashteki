@@ -5,7 +5,7 @@ let db = monk(mongoUrl);
 console.log('selecting game: ' + process.argv[2]);
 const collection = db.get('games');
 collection
-    .find({ 'player.name': process.argv[2] })
+    .find({ 'players.name': process.argv[2] })
     .then((result) => {
         console.log(result);
     })
