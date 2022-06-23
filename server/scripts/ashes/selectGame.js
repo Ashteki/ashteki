@@ -7,6 +7,8 @@ const collection = db.get('games');
 collection
     .find({ id: process.argv[2] })
     .then((result) => {
+        console.log(result.players);
+
         console.log(result);
     })
     .then(() => db.close());
