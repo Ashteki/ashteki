@@ -36,6 +36,16 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                                 onOptionSettingToggle('confirmOneClick', event.target.checked)
                             }
                         />
+                        <Form.Check
+                            id='leftPrompt'
+                            name='gameOptions.leftPrompt'
+                            label={t('Show the prompt area on left')}
+                            type='switch'
+                            checked={optionSettings.leftPrompt}
+                            onChange={(event) =>
+                                onOptionSettingToggle('leftPrompt', event.target.checked)
+                            }
+                        />
 
                         <div className='bluffTimer'>
                             Bluff Timer (seconds):
