@@ -425,6 +425,8 @@ export class GameBoard extends React.Component {
                     />
                 </div>
                 <div className='main-window'>
+                    {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
+
                     {this.renderBoard(thisPlayer, otherPlayer)}
                     {cardToZoom && (
                         <CardZoom
@@ -456,34 +458,8 @@ export class GameBoard extends React.Component {
                         </div>
                     )}
                     <div className='right-side'>
-                        <div className='prompt-area'>
-                            <div className='timer-log-area'>
+                        {!thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
 
-                                <CardLog
-                                    cards={this.props.currentGame.cardLog}
-                                    onMouseOut={this.onMouseOut}
-                                    onMouseOver={this.onMouseOver}
-                                />
-                            </div>
-                            <div className='inset-pane'>
-                                <ActivePlayerPrompt
-                                    cards={this.props.cards}
-                                    buttons={thisPlayer.buttons}
-                                    controls={thisPlayer.controls}
-                                    diceReq={thisPlayer.diceReq}
-                                    promptText={thisPlayer.menuTitle}
-                                    promptTitle={thisPlayer.promptTitle}
-                                    onButtonClick={this.onCommand}
-                                    onMouseOver={this.onMouseOver}
-                                    onMouseOut={this.onMouseOut}
-                                    onTimerExpired={this.onTimerExpired.bind(this)}
-                                    user={thisPlayer.user} // use thisplayer user to read latest game optionSettings like BluffTimer
-                                    phase={thisPlayer.phase}
-                                />
-                                {this.getTimer()}
-                            </div>
-
-                        </div>
                         {this.state.showMessages && (
                             <div className='gamechat'>
                                 <GameChat
@@ -525,6 +501,35 @@ export class GameBoard extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    getPromptArea(thisPlayer) {
+        return <div className='prompt-area panel'>
+            <div className='timer-log-area'>
+
+                <CardLog
+                    cards={this.props.currentGame.cardLog}
+                    onMouseOut={this.onMouseOut}
+                    onMouseOver={this.onMouseOver} />
+            </div>
+            <div className='inset-pane'>
+                <ActivePlayerPrompt
+                    cards={this.props.cards}
+                    buttons={thisPlayer.buttons}
+                    controls={thisPlayer.controls}
+                    diceReq={thisPlayer.diceReq}
+                    promptText={thisPlayer.menuTitle}
+                    promptTitle={thisPlayer.promptTitle}
+                    onButtonClick={this.onCommand}
+                    onMouseOver={this.onMouseOver}
+                    onMouseOut={this.onMouseOut}
+                    onTimerExpired={this.onTimerExpired.bind(this)}
+                    user={thisPlayer.user} // use thisplayer user to read latest game optionSettings like BluffTimer
+                    phase={thisPlayer.phase} />
+                {this.getTimer()}
+            </div>
+
+        </div>;
     }
 }
 
