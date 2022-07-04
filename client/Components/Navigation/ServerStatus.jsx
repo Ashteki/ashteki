@@ -14,6 +14,7 @@ const ServerStatus = (props) => {
     let toolTip = `${serverType} is`;
     let pingText;
     let icon = faCheckCircle;
+    let splash = null;
 
     if (connected) {
         className += ' text-success';
@@ -59,6 +60,7 @@ const ServerStatus = (props) => {
                 <span className='text-danger'>{t('Disconnected')}</span>
             </React.Fragment>
         );
+        splash = <div className='disconnect-splash panel'><span className='text-danger'>Disconnected!</span></div>
     }
 
     return (
@@ -67,6 +69,7 @@ const ServerStatus = (props) => {
             <span className={className}>
                 <FontAwesomeIcon icon={icon} title={t(toolTip)} />
             </span>
+            {splash}
         </li>
     );
 };
