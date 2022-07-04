@@ -12,6 +12,7 @@ const ManualCommands = () => {
                 smoother gameplay experience:
             </p>
             <ul>
+                <li>/attach - attach an alteration spell to one of your units</li>
                 <li>
                     /cancelprompt -{' '}
                     <Trans i18nKey='howtoplay.cmd.cancelprompt'>
@@ -62,6 +63,9 @@ const ManualCommands = () => {
                     <Trans i18nKey='howtoplay.cmd.rematch'>
                         Start over a new game with the current opponent
                     </Trans>
+                </li>
+                <li>
+                    /remove - choose an alteration spell on one of your units to return to your hand
                 </li>
                 <li>
                     /removeeffects -{' '}
