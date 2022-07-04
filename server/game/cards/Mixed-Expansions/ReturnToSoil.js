@@ -6,6 +6,7 @@ class ReturnToSoil extends Card {
         this.play({
             title: 'Return to Soil',
             target: {
+                activePromptTitle: 'Choose a unit to damage',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage()
             },
@@ -19,12 +20,13 @@ class ReturnToSoil extends Card {
                 })),
                 then: {
                     target: {
+                        activePromptTitle: 'Choose 2 cards to remove from the game',
                         cardCondition: (card, context) =>
                             card !== context.preThenEvent.context.preThenEvent.context.target,
                         location: 'discard',
                         controller: (context) =>
                             context.preThenEvent.context.preThenEvent.clone.controller ===
-                            context.player.opponent
+                                context.player.opponent
                                 ? 'opponent'
                                 : 'self',
                         mode: 'upTo',

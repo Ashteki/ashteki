@@ -92,11 +92,16 @@ class BaseCardSelector {
             }
         }
 
-        if (this.controller === 'self' && card.controller !== context.player) {
+        let controller = this.controller;
+        if (typeof this.controller === 'function') {
+            controller = this.controller(context);
+        }
+
+        if (controller === 'self' && card.controller !== context.player) {
             return false;
         }
 
-        if (this.controller === 'opponent' && card.controller !== context.player.opponent) {
+        if (controller === 'opponent' && card.controller !== context.player.opponent) {
             return false;
         }
 
