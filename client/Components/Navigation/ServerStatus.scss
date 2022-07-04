@@ -6,3 +6,13 @@
         padding-right: 5px !important;
     }
 }
+
+.disconnect-splash {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    border: 1pt dashed red;
+}
