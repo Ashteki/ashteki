@@ -3,13 +3,14 @@ const GameActions = require('./GameActions');
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const Deck = require('./deck');
 const RematchPrompt = require('./gamesteps/RematchPrompt');
-const { CardType } = require('../constants');
+const { CardType, UpgradeCardTypes, BattlefieldTypes } = require('../constants');
 
 class ChatCommands {
     constructor(game) {
         this.game = game;
         this.commands = {
             '/addcard': this.addCard, // hidden option (that is, not in About.jsx)
+            '/attach': this.attachCard,
             '/cancelprompt': this.cancelPrompt,
             '/conj': this.moveConjuration, // hidden option
             '/conjuration': this.moveConjuration,
@@ -26,6 +27,7 @@ class ChatCommands {
             '/passactive': this.passActiveTurn, //hidden option
             '/purge': this.purgeCard,
             '/rematch': this.rematch,
+            '/remove': this.removeAttachment,
             '/removeeffects': this.removeEffects,
             '/reveal': this.reveal,
             '/shuffle': this.shuffle,
@@ -393,6 +395,57 @@ class ChatCommands {
                 GameActions.moveCard({
                     destination: 'play area'
                 }).resolve(card, this.game.getFrameworkContext(player));
+                return true;
+            }
+        });
+    }
+
+    attachCard(player) {
+        this.game.promptForSelect(player, {
+            mode: 'exactly',
+            numCards: 2,
+            controller: 'self',
+            location: ['play area', 'hand'],
+            activePromptTitle: 'Select the alteration and target card',
+            cardType: [...UpgradeCardTypes, ...BattlefieldTypes],
+            onSelect: (player, cards) => {
+                // validate selection
+
+                let upgrade = cards.find((c) => UpgradeCardTypes.includes(c.type));
+                let card = cards.find((c) => BattlefieldTypes.includes(c.type));
+                if (!(card && upgrade)) {
+                    return false;
+                }
+                // attach
+                this.game.addAlert(
+                    'danger',
+                    '{0} manually attaches {1} to {2}',
+                    player,
+                    upgrade,
+                    card
+                );
+                GameActions.attach({
+                    target: card,
+                    upgrade: upgrade
+                }).resolve(upgrade, this.game.getFrameworkContext(player));
+                return true;
+            }
+        });
+    }
+
+    removeAttachment(player) {
+        this.game.promptForSelect(player, {
+            controller: 'self',
+            cardType: [CardType.ConjuredAlteration, CardType.Upgrade],
+            activePromptTitle: 'Select an alteration to return to your hand',
+            onSelect: (player, card) => {
+                this.game.addAlert(
+                    'danger',
+                    '{0} manually returns {1} to their hand',
+                    player,
+                    card
+                );
+                GameActions.returnToHand().resolve(card, this.game.getFrameworkContext(player));
                 return true;
             }
         });
