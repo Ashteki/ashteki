@@ -87,7 +87,7 @@ class Game extends EventEmitter {
 
         this.cardData = options.cardData || [];
 
-        this.cardVisibility = new CardVisibility(this);
+        this.cardVisibility = new CardVisibility(this.showHand);
 
         _.each(details.players, (player) => {
             this.playersAndSpectators[player.user.username] = new Player(

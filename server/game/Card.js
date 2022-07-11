@@ -1177,8 +1177,8 @@ class Card extends PlayableObject {
                 location: this.location,
                 facedown: true,
                 uuid: this.uuid,
-                tokens: this.tokens,
-                armor: this.armor,
+                // tokens: this.tokens,
+                // armor: this.armor,
                 isConjuration: ConjuredCardTypes.includes(this.type),
                 ...selectionState
             };
