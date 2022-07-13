@@ -16,12 +16,14 @@ let start = new Date('2022-01-01T00:00:01');
 let end = new Date();
 
 async function doIt(label) {
-    let games = await gameService.getAllGames(start, end);
-    games = games.filter((g) => g.label === label);
+    let games = await gameService.getTaggedGames(label);
+    // games = games.filter((g) => g.label === label);
     console.log('count: ', games.length);
     const results = await Promise.all(games.map(async (game) => await getGameResult(game)));
 
-    console.log(results);
+    results.forEach((r) => {
+        console.log(r);
+    })
 }
 
 async function getPlayer(game, index) {
@@ -33,10 +35,11 @@ async function getPlayer(game, index) {
                 deckId: player.deckid,
                 ashesLiveModified: deck.ashesLiveModified,
                 created: deck.created,
-                lastUpdated: deck.lastUpdated
+                lastUpdated: deck.lastUpdated,
+                checkMe: deck.lastUpdated > deck.created
             } : null;
 
-        console.log(deckAudit);
+        // console.log(deckAudit);
         player.deckAudit = deckAudit;
     }
     return player;

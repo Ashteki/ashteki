@@ -47,6 +47,22 @@ class GameService {
             });
     }
 
+    getTaggedGames(tag) {
+        const findSpec = {
+            label: tag
+        };
+        return this.games
+            .find(findSpec, {
+                sort: {
+                    finishedAt: -1
+                }
+            })
+            .catch((err) => {
+                logger.error('Unable to get all games tagged ', tag, err);
+                throw new Error('Unable to get tagged games');
+            });
+    }
+
     async findByUserName(username) {
         return this.games
             .find(
