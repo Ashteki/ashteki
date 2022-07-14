@@ -1170,15 +1170,15 @@ class Card extends PlayableObject {
         let isController = activePlayer === this.controller;
         let selectionState = activePlayer.getCardSelectionState(this);
 
-        if (!this.game.isCardVisible(this, activePlayer)) {
+        if (!this.game.isCardVisible(this, activePlayer) && !this.game.isCardPublic(this)) {
             return {
                 cardback: this.owner.deckData.cardback,
                 controller: this.controller.name,
                 location: this.location,
                 facedown: true,
                 uuid: this.uuid,
-                tokens: this.tokens,
-                armor: this.armor,
+                // tokens: this.tokens,
+                // armor: this.armor,
                 isConjuration: ConjuredCardTypes.includes(this.type),
                 ...selectionState
             };
