@@ -254,6 +254,10 @@ class Game extends EventEmitter {
         return this.cardVisibility.isVisible(card, player);
     }
 
+    isCardPublic(card) {
+        return this.cardVisibility.isOpenInformation(card);
+    }
+
     /**
      * Returns the card (i.e. character) with matching uuid from either players
      * 'in play' area.

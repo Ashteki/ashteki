@@ -16,6 +16,10 @@ class CardVisibility {
         return this.rules.some((rule) => rule(card, player));
     }
 
+    isOpenInformation(card) {
+        return OpenInformationLocations.includes(card.location);
+    }
+
     addRule(rule) {
         this.rules.push(rule);
     }
