@@ -346,6 +346,8 @@ const Card = ({
                 ))
                 : null;
 
+        const mouseOverAllowed = !disableMouseOver
+            && (!isFacedown() || !card.parent) && onMouseOver;
         return (
             <div className='card-frame' ref={drag}>
                 {getDragFrame(image)}
@@ -353,11 +355,7 @@ const Card = ({
                 <div
                     tabIndex={0}
                     className={cardClass}
-                    onMouseOver={
-                        !disableMouseOver && (!isFacedown() || !card.parent) && onMouseOver
-                            ? () => onMouseOver(card)
-                            : undefined
-                    }
+                    onMouseOver={mouseOverAllowed ? () => onMouseOver(card) : undefined}
                     onMouseOut={!disableMouseOver && !isFacedown() ? onMouseOut : undefined}
                     onClick={(event) => onCardClicked(event, card)}
                 >
