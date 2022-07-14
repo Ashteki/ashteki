@@ -128,9 +128,10 @@ class LearnToPlay extends React.Component {
                         </div>
                         <div className='three-column-item'>
                             <h3>Deck Building</h3>
-                            <p>Learn the mystic art of deckbuilding for Ashes Reborn from this article from ImpossibleGerman and video from ChaosTheory </p>
+                            <p>Learn the mystic art of deckbuilding for Ashes Reborn: </p>
                             <li><a href='https://jaysonsethlindley.medium.com/colorful-cubes-foundations-of-deckbuilding-in-ashes-reborn-c49cd1abbe29'>Colorful Cubes: A Guide To Magic Types and Deckbuilding in Ashes Reborn</a></li>
                             <li><a href='https://youtu.be/xUHvDIzFrO0'>Ashes Reborn Deckbuilding Guide</a></li>
+                            <li><a href='https://paroxysmbydesign.com/?page_id=153'>Hard 30 Essays by clu</a></li>
                         </div>
                         <div className='three-column-item'>
                             <h3>Get Competitive</h3>
