@@ -223,6 +223,8 @@ describe('Light Bringer in play', function () {
         });
 
         it('does not stop opponent playing main actions spell', function () {
+            expect(this.player1.player.anyEffect('mustAttack')).toBe(true); // LB lasting effect
+
             this.player1.clickCard(this.callUponTheRealms);
             expect(this.player1).not.toHaveDefaultPrompt();
             expect(this.player1).toHavePrompt('Call upon the realms');

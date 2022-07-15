@@ -243,4 +243,34 @@ describe('Vanish', function () {
             expect(this.player2.hand.length).toBe(handSize - 1);
         });
     });
+
+    describe('vs Light Bringer', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'jessa-na-ni',
+                    inPlay: ['enchanted-violinist'],
+                    dicepool: ['ceremonial', 'natural', 'divine', 'charm', 'illusion'],
+                    hand: ['fear', 'one-hundred-blades'],
+                    spellboard: ['summon-light-bringer'],
+                    archives: ['light-bringer']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight', 'mist-spirit'],
+                    dicepool: ['charm', 'natural', 'illusion'],
+                    hand: ['vanish', 'anchornaut']
+                }
+            });
+        });
+
+        it('interaction with lightbringer effect should trigger vanish', function () {
+            this.player1.clickCard(this.summonLightBringer);
+            this.player1.clickPrompt('Summon Light Bringer');
+
+            expect(this.player2).toBeAbleToSelect(this.vanish);
+            this.player2.clickCard(this.vanish);
+            expect(this.player1.player.anyEffect('mustAttack')).toBe(false); // No LB lasting effect
+        });
+    });
 });
