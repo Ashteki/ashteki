@@ -62,20 +62,46 @@ class LearnToPlay extends React.Component {
 
                             </ul>
                         </div>
+                        <div>
+
+                        </div>
                     </div>
 
-                    <h2>Get Started with Ashteki</h2>
-                    <p>
-                        We have plans for this section, but nothing to enjoy yet. Part 3 of the Team
-                        Covenant video series linked above shows how easy it is to get up to speed,
-                        but soon we also hope to have links to:
-                    </p>
+                    <h2>Get Started</h2>
                     <ul>
-                        <li>Setting up a game</li>
-                        <li>Using the deckbuilder</li>
-                        <li>Importing a deck from ashes.live</li>
-                        <li>Manual Mode explained</li>
-                        <li>And more besides...</li>
+                        <li>
+                            Practise against an AI opponent on{' '}
+                            <a href='http://felttable.com/ashes'>Felt Table</a>
+                        </li>
+                        <li>
+                            Try out the <b>Building Basics</b> decks - These great starter decks use
+                            just the core set, and are built into ashteki. There are 3 pairs:
+                            <ul>
+                                <li>
+                                    <a href='https://www.plaidhatgames.com/news/2020/11/04/building-basics-rise-phoenixborn/'>
+                                        Jessa vs Coal
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='https://www.plaidhatgames.com/news/2020/12/02/building-basics-master-set-noah/'>
+                                        Noah
+                                    </a>{' '}
+                                    vs{' '}
+                                    <a href='https://www.plaidhatgames.com/news/2020/12/09/building-basics-master-set-maeoni/'>
+                                        Maeoni
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='https://www.plaidhatgames.com/news/2020/11/18/building-basics-master-set-saria/'>
+                                        Saria
+                                    </a>{' '}
+                                    vs{' '}
+                                    <a href='https://www.plaidhatgames.com/news/2020/11/11/building-basics-master-set-aradel/'>
+                                        Aradel
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <br />
 
@@ -102,9 +128,10 @@ class LearnToPlay extends React.Component {
                         </div>
                         <div className='three-column-item'>
                             <h3>Deck Building</h3>
-                            <p>Learn the mystic art of deckbuilding for Ashes Reborn from this Article from ImpossibleGerman and video from ChaosTheory </p>
+                            <p>Learn the mystic art of deckbuilding for Ashes Reborn: </p>
                             <li><a href='https://jaysonsethlindley.medium.com/colorful-cubes-foundations-of-deckbuilding-in-ashes-reborn-c49cd1abbe29'>Colorful Cubes: A Guide To Magic Types and Deckbuilding in Ashes Reborn</a></li>
                             <li><a href='https://youtu.be/xUHvDIzFrO0'>Ashes Reborn Deckbuilding Guide</a></li>
+                            <li><a href='https://paroxysmbydesign.com/?page_id=153'>Hard 30 Essays by clu</a></li>
                         </div>
                         <div className='three-column-item'>
                             <h3>Get Competitive</h3>
@@ -112,11 +139,14 @@ class LearnToPlay extends React.Component {
                                 The Shuffle Bus team run regular competitions, stream via twitch
                                 every week (more than once!), and host articles on their website.
                             </p>
+
                             <li>
                                 <a href='https://theshufflebus.com/ashes-reborn-online-op/'>
                                     Ashes Reborn Online Organized Play
                                 </a>
-                            </li>
+                            </li><br />
+                            <h3>Articles</h3>
+                            <li><a href='https://jaysonsethlindley.medium.com/the-big-ones-the-best-ashes-reborn-decks-and-why-they-kept-winning-3d6a579a39e' >What are the best decks in Ashes?</a></li>
                         </div>
                     </div>
                 </Panel>
