@@ -244,7 +244,6 @@ describe('Vanish', function () {
         });
     });
 
-
     describe('vs Light Bringer', function () {
         beforeEach(function () {
             this.setupTest({
@@ -269,9 +268,9 @@ describe('Vanish', function () {
             this.player1.clickCard(this.summonLightBringer);
             this.player1.clickPrompt('Summon Light Bringer');
 
-            this.player1.clickDie(0);
             expect(this.player2).toBeAbleToSelect(this.vanish);
             this.player2.clickCard(this.vanish);
+            expect(this.player1.player.anyEffect('mustAttack')).toBe(false); // No LB lasting effect
         });
     });
 });
