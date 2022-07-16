@@ -29,12 +29,14 @@ describe('Light Bringer in play', function () {
             this.player1.endTurn();
             this.player2.clickCard(this.summonLightBringer);
             this.player2.clickPrompt('Summon Light Bringer');
-            this.player2.clickCard(this.lightBringer);
+            // this.player2.clickPrompt('Opponent');
+
             this.player2.endTurn();
         });
 
         it('stops opponent playing main actions', function () {
             expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.player.anyEffect('mustAttack')).toBe(true);
 
             this.player1.clickCard(this.callUponTheRealms);
             expect(this.player1).toHaveDefaultPrompt();

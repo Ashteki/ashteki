@@ -273,4 +273,35 @@ describe('Vanish', function () {
             expect(this.player1.player.anyEffect('mustAttack')).toBe(false); // No LB lasting effect
         });
     });
+
+    describe('vs Sarias Hearts Pull', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'saria-guideman',
+                    inPlay: ['enchanted-violinist'],
+                    dicepool: ['ceremonial', 'natural', 'divine', 'charm', 'illusion'],
+                    hand: ['fear', 'one-hundred-blades']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight', 'mist-spirit'],
+                    dicepool: ['charm', 'natural', 'illusion'],
+                    hand: ['vanish', 'anchornaut']
+                }
+            });
+        });
+
+        it('hearts pull should trigger vanish', function () {
+            const deckSize = this.player2.deck.length;
+            expect(deckSize).toBeGreaterThan(0);
+            this.player1.clickCard(this.sariaGuideman);
+            this.player1.clickPrompt("Heart's Pull");
+            this.player1.clickYes();
+            expect(this.player2).toBeAbleToSelect(this.vanish);
+            this.player2.clickCard(this.vanish);
+
+            expect(this.player1.deck.length).toBe(deckSize);
+        });
+    });
 });
