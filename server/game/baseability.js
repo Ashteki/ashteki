@@ -5,6 +5,7 @@ const AbilityTargetOptions = require('./AbilityTargets/AbilityTargetOptions');
 const AbilityTargetDie = require('./AbilityTargets/AbilityTargetDie');
 const ActionCost = require('./Costs/actioncost');
 const DiceCost = require('./Costs/dicecost');
+const AbilityTargetPlayer = require('./AbilityTargets/AbilityTargetPlayer');
 
 /**
  * Base class representing an ability that can be done by the player. This
@@ -73,9 +74,16 @@ class BaseAbility {
             properties.gameAction = [];
         }
 
-        if (properties.toSelect && properties.toSelect === 'die') {
-            return new AbilityTargetDie(name, properties, this);
+        if (properties.toSelect) {
+            switch (properties.toSelect) {
+                case 'die':
+                    return new AbilityTargetDie(name, properties, this);
+
+                case 'player':
+                    return new AbilityTargetPlayer(name, properties, this);
+            }
         }
+
 
         if (properties.mode === 'select') {
             return new AbilityTargetSelect(name, properties, this);

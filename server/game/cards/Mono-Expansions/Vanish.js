@@ -29,6 +29,10 @@ class Vanish extends Card {
     }
 
     targetsPlayer(event, context) {
+        if (event.context.target === context.player) {
+            return true;
+        }
+
         // explicit targetting via gameAction target property
         if (
             event.context.ability.gameAction.some(
