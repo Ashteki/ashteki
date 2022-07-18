@@ -43,10 +43,6 @@ class Vanish extends Card {
         )
             return true;
 
-        // explicit targetting via gameAction targetController property
-        if (event.context.ability.gameAction.some((g) => g.targetController === 'opponent'))
-            return true;
-
         // explicit targetting via gameAction owner property for ChangeDice triggers
         if (
             event.context.ability.gameAction.some(
