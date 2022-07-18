@@ -245,7 +245,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 fontSize: '0.7rem'
             },
             align: 'center',
-            text: t('Added'),
+            text: t('Updated'),
             sort: !standaloneDecks,
             /**
              * @param {Date} cell
@@ -255,7 +255,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         {
             dataField: 'winRate',
             align: 'center',
-            text: t('Win %'),
+            text: t('Win Rate'),
             headerStyle: {
                 width: '18%'
             },
@@ -267,7 +267,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             /**
              * @param {number} cell
              */
-            formatter: (cell) => `${cell}%`
+            formatter: (item, row) => `${item} (${row.wins})%`
         }
     ];
 
