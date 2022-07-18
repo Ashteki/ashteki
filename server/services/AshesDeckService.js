@@ -53,7 +53,7 @@ class AshesDeckService {
             searchFields.name = { $regex: nameSearch, $options: 'i' };
         }
         return await this.decks.find(searchFields, {
-            sort: { lastUpdated: -1 },
+            // sort: { [options.sort]: options.sortDir == 'desc' ? -1 : 1 },
             skip: skip,
             limit: limit
         });
