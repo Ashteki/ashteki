@@ -54,8 +54,8 @@ class AshesDeckService {
         }
         return await this.decks.find(searchFields, {
             // sort: { [options.sort]: options.sortDir == 'desc' ? -1 : 1 },
-            skip: skip,
-            limit: limit
+            // skip: skip,
+            // limit: limit
         });
     }
 
