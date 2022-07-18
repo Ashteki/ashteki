@@ -197,12 +197,12 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
 
     const columns = [
         {
-            dataField: 'none',
+            dataField: 'pb',
             headerStyle: {
-                width: '12%'
+                width: '13%'
             },
-            text: t('Id'),
-            sort: false,
+            text: 'Pb',
+            sort: !standaloneDecks,
             // eslint-disable-next-line react/display-name
             formatter: (_, row) => (
                 <div className='deck-image'>

@@ -97,27 +97,45 @@ module.exports.init = function (server) {
                     deck.played = 0;
                     deck.wins = 0;
                     deck.winRate = 0;
+                    deck.pb = deck.phoenixborn[0].id;
                     return deck;
                 });
 
-                await gameService.findByUserName(req.user.username).then((games) => {
-                    games.forEach((game) => {
-                        const player = game.players.find(p => p.name === req.user.username);
-                        if (player && player.deckid) {
-                            const deck = decks.find((d) => d._id.toString() === player.deckid);
-                            if (deck) {
-                                deck.played++;
-                                if (game.winner === req.user.username) {
-                                    deck.wins++;
+                await gameService
+                    .findByUserName(req.user.username)
+                    .then((games) => {
+                        games.forEach((game) => {
+                            const player = game.players.find(p => p.name === req.user.username);
+                            if (player && player.deckid) {
+                                const deck = decks.find((d) => d._id.toString() === player.deckid);
+                                if (deck) {
+                                    deck.played++;
+                                    if (game.winner === req.user.username) {
+                                        deck.wins++;
+                                    }
+                                    deck.winRate = Math.round(deck.wins / deck.played * 100);
                                 }
-                                deck.winRate = Math.round(deck.wins / deck.played * 100);
                             }
-                        }
-                    });
-                })
-                    .catch(error => {
+                        });
+                    })
+                    .catch((error) => {
                         console.log(error);
                     });
+
+                decks = decks.sort((a, b) => {
+                    const sort = req.query.sort;
+                    const dirMultiplier = req.query.sortDir === 'desc' ? -1 : 1;
+
+                    switch (sort) {
+                        case 'name':
+                            return (
+                                dirMultiplier *
+                                (a[sort].toLowerCase() < b[sort].toLowerCase() ? -1 : 1)
+                            );
+                        default:
+                            return dirMultiplier * (a[sort] < b[sort] ? -1 : 1);
+                    }
+                });
             }
 
             res.send({ success: true, numDecks: numDecks, decks: decks });
