@@ -304,4 +304,36 @@ describe('Vanish', function () {
             expect(this.player1.deck.length).toBe(deckSize);
         });
     });
+
+    describe('BUG: vs Group Tactics', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'saria-guideman',
+                    inPlay: ['enchanted-violinist', 'raptor-hatchling', 'mist-spirit'],
+                    dicepool: ['ceremonial', 'natural', 'divine', 'charm', 'illusion'],
+                    hand: ['fear', 'one-hundred-blades']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight'],
+                    dicepool: ['charm', 'natural', 'illusion'],
+                    hand: ['vanish', 'anchornaut']
+                }
+            });
+        });
+
+        it('GT should not trigger vanish', function () {
+            this.player1.clickAttack(this.rinNorthfell);
+
+            this.player1.clickCard(this.enchantedViolinist);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.raptorHatchling);
+            this.player1.clickDone();
+            this.player1.clickYes();
+            expect(this.player2).not.toBeAbleToSelect(this.vanish);
+            //this.player2.clickCard(this.vanish);
+            expect(this.player2).toHavePrompt('Choose a blocker');
+        });
+    });
 });
