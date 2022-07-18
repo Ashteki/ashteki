@@ -122,6 +122,9 @@ module.exports.init = function (server) {
                         console.log(error);
                     });
 
+                const limit = req.query.pageSize * 1;
+                const skip = limit * (req.query.page - 1);
+
                 decks = decks.sort((a, b) => {
                     const sort = req.query.sort;
                     const dirMultiplier = req.query.sortDir === 'desc' ? -1 : 1;
@@ -135,7 +138,8 @@ module.exports.init = function (server) {
                         default:
                             return dirMultiplier * (a[sort] < b[sort] ? -1 : 1);
                     }
-                });
+                })
+                    .slice(skip, skip + limit);
             }
 
             res.send({ success: true, numDecks: numDecks, decks: decks });
