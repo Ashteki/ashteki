@@ -2,7 +2,6 @@ export * from './cards';
 export * from './game';
 export * from './lobby';
 export * from './misc';
-export * from './news';
 export * from './socket';
 export * from './deck';
 export * from './admin';

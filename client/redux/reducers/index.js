@@ -3,7 +3,6 @@ import navigation from './navigation';
 import auth from './auth';
 import cards from './cards';
 import games from './games';
-import news from './news';
 import api from './api';
 import admin from './admin';
 import user from './user';
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
     auth,
     cards,
     games,
-    news,
     toastr: toastrReducer,
     api,
     admin,

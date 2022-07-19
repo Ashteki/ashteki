@@ -34,7 +34,6 @@ const defaultPermissions = {
 };
 
 const permissions = [
-    { name: 'canEditNews', label: 'News Editor' },
     { name: 'canManageUsers', label: 'User Manager' },
     { name: 'canManagePermissions', label: 'Permissions Manager' },
     { name: 'canManageGames', label: 'Games Manager' },

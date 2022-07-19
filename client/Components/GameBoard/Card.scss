@@ -87,7 +87,7 @@
 .card-name {
     font-size: 10px;
     line-height: 14px;
-    width:100%;
+    width: 100%;
 }
 
 @keyframes glowing {
@@ -95,10 +95,12 @@
         background-color: #749a02;
         box-shadow: 0 0 9px #333;
     }
+
     50% {
         background-color: #91bd09;
         box-shadow: 0 0 18px #91bd09;
     }
+
     to {
         background-color: #749a02;
         box-shadow: 0 0 9px #333;
@@ -128,10 +130,10 @@
     overflow: hidden;
     z-index: $layer-cards;
 
-    &:hover{
+    &:hover {
         z-index: 200;
     }
-    
+
     &.small {
         &.vertical {
             height: $keyteki-card-sm-height;
@@ -204,9 +206,9 @@
         box-shadow: 0 0 1px 2px red;
     }
 
-    &.saved {
-        box-shadow: 0 0 1px 2px green;
-    }
+    // &.saved {
+    //     box-shadow: 0 0 1px 2px green;
+    // }
 
     &.selected {
         box-shadow: 0 0 1px 4px theme-color('secondary');
@@ -217,26 +219,28 @@
     }
 
     &.new {
-        box-shadow: 0 0 0px 2px rgb(255,215,0);
-        animation: new-card 1s cubic-bezier(0.5,1,0.5,1) forwards;
+        box-shadow: 0 0 0px 2px rgb(255, 215, 0);
+        animation: new-card 1s cubic-bezier(0.5, 1, 0.5, 1) forwards;
     }
 
     &.controlled {
         box-shadow: $controlledBox;
     }
 
-    &.attacker{
+    &.attacker {
         border: 2px solid red;
     }
-    &.defender{
+
+    &.defender {
         border: 2px solid blue;
     }
 
-    &.combat-top{
-        margin-top:15px;
+    &.combat-top {
+        margin-top: 15px;
     }
-    &.combat-bottom{
-        margin-top:-15px;
+
+    &.combat-bottom {
+        margin-top: -15px;
     }
 }
 
@@ -311,7 +315,7 @@
 .flag {
     z-index: 10;
     padding: 0;
-    text-align: center;  
+    text-align: center;
     line-height: 20px;
     font-size: 11px;
     height: 20px;
@@ -324,23 +328,23 @@
     left: 2px;
 }
 
-.life { 
+.life {
     background-color: rgba(0, 141, 0, 0.9);
 }
 
-.recover { 
+.recover {
     background-color: rgba(0, 0, 201, 0.9);
     position: absolute;
     right: 2px;
 }
 
-.Spell .recover { 
+.Spell .recover {
     background-color: rgb(103, 102, 104);
     position: relative;
     left: 2px;
 }
 
-.spellfocus { 
+.spellfocus {
     background-color: rgba(201, 0, 167, 0.9);
     position: absolute;
     left: 2px;
@@ -355,61 +359,62 @@
 .flags {
     position: absolute;
     bottom: -2px;
-    height:24px;
-    display:flex;
+    height: 24px;
+    display: flex;
     justify-content: center;
-    width:100%;
+    width: 100%;
 }
 
-.card-chain-icon{
-    color:red;
-    position:absolute;
-    top:0px;
-    left:5px;
-    z-index: $layer-cards + 10;;
+.card-chain-icon {
+    color: red;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    z-index: $layer-cards + 10;
+    ;
 }
 
-.card-alt-icon{
-    position:absolute;
-    bottom:5px;
-    z-index:500;
-    margin-left:5px;
+.card-alt-icon {
+    position: absolute;
+    bottom: 5px;
+    z-index: 500;
+    margin-left: 5px;
 }
 
-.card-alt-icon button{
+.card-alt-icon button {
     background-color: lightsteelblue;
     border-radius: 4px;
 }
 
-.card-index{
-    background-color: #777;// theme-color('primary');
-    border:1.3pt solid #FFF;
+.card-index {
+    background-color: #777; // theme-color('primary');
+    border: 1.3pt solid #FFF;
     border-radius: 10px;
     color: #FFF;
     font-size: 0.8em;
-    margin-left:2px;
+    margin-left: 2px;
     min-width: 20px;
-    position:absolute;
+    position: absolute;
     text-align: center;
-    top:2px;
-    z-index:500;
+    top: 2px;
+    z-index: 500;
 }
 
-.effects{
+.effects {
     position: absolute;
     top: 1px;
-    display:flex;
-    width:100%;
+    display: flex;
+    width: 100%;
 }
 
 .effect {
     height: 18px;
-    width:18px;
+    width: 18px;
     margin-left: 1px;
-     z-index: 999;
-    margin:auto;
+    z-index: 999;
+    margin: auto;
 }
 
-.effect-acquired img{
-    width:100%;
+.effect-acquired img {
+    width: 100%;
 }

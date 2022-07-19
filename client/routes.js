@@ -18,7 +18,6 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import UserAdmin from './pages/UserAdmin';
 import Profile from './pages/Profile';
-import NewsAdmin from './pages/NewsAdmin';
 import MotdAdmin from './pages/MotdAdmin';
 import GameLobby from './Components/Games/GameLobby';
 import GameBoard from './Components/GameBoard/GameBoard.jsx';
@@ -47,7 +46,6 @@ const routes = [
     { path: '/logout', action: () => <Logout key='logout' /> },
     // { path: '/matches', action: () => <Matches key='matches' /> },
     { path: '/stats', action: () => <Stats key='stats' /> },
-    { path: '/news', action: () => <NewsAdmin key='newsadmin' />, permission: 'canEditNews' },
     {
         path: '/play',
         action: (context) =>
