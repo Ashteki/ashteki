@@ -1,0 +1,14 @@
+@import '../../styles/variables';
+
+.dice-rack .die {
+    margin: 2px;
+    height: 22px;
+    width: 22px;
+}
+
+.dice-rack .die.exhausted {
+    color: #777;
+    border: 1px solid #777;
+    background-color: transparent;
+
+}
