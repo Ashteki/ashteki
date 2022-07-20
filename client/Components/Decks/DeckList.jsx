@@ -271,7 +271,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
              * @param {number} cell
              */
             formatter: (item, row) => {
-                const output = <span>{item}%<br />({row.wins} games)</span>;
+                const output = <span>{item}%<br />({row.played} games)</span>;
                 return output;
             }
         }
