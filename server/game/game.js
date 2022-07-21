@@ -935,6 +935,8 @@ class Game extends EventEmitter {
             c.wasDefender = false;
         });
 
+        this.getPlayers().forEach((p) => (p.limitedPlayed = 0)); // reset reaction count for next turn
+
         this.raiseEvent('onBeginTurn', { player: this.activePlayer });
         if (this.triggerSuddenDeath && this.activePlayer === this.roundFirstPlayer) {
             this.triggerSuddenDeath = false;
@@ -1271,8 +1273,6 @@ class Game extends EventEmitter {
     endTurn() {
         this.betweenTurns = true;
         this.activePlayer.endTurn();
-        this.activePlayer.limitedPlayed = 0; // reset reaction count for next turn
-        this.activePlayer.opponent.limitedPlayed = 0; // reset reaction count for next turn
         this.cardsDiscarded = [];
         this.effectsUsed = [];
 

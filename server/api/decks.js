@@ -5,6 +5,7 @@ const AshesDeckService = require('../services/AshesDeckService.js');
 const { wrapAsync } = require('../util.js');
 const logger = require('../log.js');
 const AshesGameService = require('../services/AshesGameService');
+const { orderedAoE } = require('../game/GameActions');
 const configService = new ConfigService();
 
 const deckService = new AshesDeckService(configService);
@@ -125,26 +126,30 @@ module.exports.init = function (server) {
                 const limit = req.query.pageSize * 1;
                 const skip = limit * (req.query.page - 1);
 
-                decks = decks.sort((a, b) => {
-                    const sort = req.query.sort;
-                    const dirMultiplier = req.query.sortDir === 'desc' ? -1 : 1;
+                decks = decks
+                    .sort((a, b) => {
+                        const sort = req.query.sort;
+                        const dirMultiplier = req.query.sortDir === 'desc' ? -1 : 1;
 
-                    switch (sort) {
-                        case 'name':
-                            return (
-                                dirMultiplier *
-                                (a[sort].toLowerCase() < b[sort].toLowerCase() ? -1 : 1)
-                            );
-                        default:
-                            return dirMultiplier * (a[sort] < b[sort] ? -1 : 1);
-                    }
-                })
+                        switch (sort) {
+                            case 'name':
+                                return (
+                                    dirMultiplier *
+                                    (a[sort].toLowerCase() < b[sort].toLowerCase() ? -1 : 1)
+                                );
+                            case 'winRate':
+                                return dirMultiplier * getWinrateOrder(a, b);
+                            default:
+                                return dirMultiplier * (a[sort] < b[sort] ? -1 : 1);
+                        }
+                    })
                     .slice(skip, skip + limit);
             }
 
             res.send({ success: true, numDecks: numDecks, decks: decks });
         })
     );
+
 
     server.post(
         '/api/decks',
@@ -231,3 +236,13 @@ module.exports.init = function (server) {
         })
     );
 };
+
+function getWinrateOrder(a, b) {
+    if (a.winRate < b.winRate) return -1;
+    if (a.winRate > b.winRate) return 1;
+    if (a.winRate === b.winRate) {
+        if (a.played < b.played) return -1;
+        else return 1;
+    }
+}
+

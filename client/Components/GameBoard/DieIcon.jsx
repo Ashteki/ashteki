@@ -3,16 +3,22 @@ import classNames from 'classnames';
 
 import './Die.scss';
 
-const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver }) => {
+const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver, simpleText }) => {
     let diceFont = 'phg-basic-magic';
+    const simpleDesc = die.magic;
     let description = die.magic ? die.magic + ' basic' : 'basic die';
 
     if (die.magic && die.level && die.level !== 'basic') {
         diceFont = `phg-${die.magic}-${die.level}`;
         description = `${die.magic} ${die.level}`;
     }
+
     if (die.exhausted) {
         description = 'Exhausted ' + description;
+    }
+
+    if (simpleText) {
+        description = simpleDesc;
     }
 
     const colorClass = die.location === 'dicepool' && die.exhausted ? 'exhausted' : die.magic;

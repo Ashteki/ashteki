@@ -128,14 +128,15 @@ describe('Summon Sleeping Widows', function () {
 
             expect(this.player1).toHavePrompt('Any reactions to Shadow Spirit being destroyed?');
             this.player1.clickCard(this.summonSleepingWidows);
-            expect(this.player1.player.limitedPlayed).toBe(1);
+            // we're now in the next player's turn and limits are reset
+            expect(this.player1.player.limitedPlayed).toBe(0);
 
             this.player2.clickDie(0);
             this.player2.clickPrompt('Natural Dice Power');
             this.player2.clickCard(this.sleepingWidow);
-            //expect(this.player1.player.limitedPlayed).toBe(0);
+            expect(this.player1.player.limitedPlayed).toBe(0);
 
-            //expect(this.player1).toHavePrompt('Any reactions to Sleeping Widow being destroyed?'); // Failing as reaction already used?
+            expect(this.player1).toHavePrompt('Any reactions to Sleeping Widow being destroyed?'); // Failing as reaction already used?
         });
     });
 });

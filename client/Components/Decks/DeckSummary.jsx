@@ -43,7 +43,9 @@ const DeckSummary = ({ deck }) => {
             cardList.forEach((card) => {
                 let chainedIcon = null;
                 if (card.card.isChained) {
-                    chainedIcon = <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
+                    chainedIcon = (
+                        <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
+                    );
                 }
                 cards.push(
                     <div key={card.card.id}>
@@ -88,15 +90,18 @@ const DeckSummary = ({ deck }) => {
     const getDiceToRender = () => {
         const diceToRender = [];
         if (deck.dicepool) {
-            deck.dicepool.forEach((diceCount) => {
-                for (let i = 0; i < diceCount.count; i++) {
-                    diceToRender.push(<DieIcon die={{ magic: diceCount.magic, level: 'power' }} />);
-                }
-            });
+            deck.dicepool
+                .sort((a, b) => (a.magic < b.magic ? -1 : 1))
+                .forEach((diceCount) => {
+                    for (let i = 0; i < diceCount.count; i++) {
+                        diceToRender.push(
+                            <DieIcon die={{ magic: diceCount.magic, level: 'power' }} />
+                        );
+                    }
+                });
         }
         return (
             <div>
-                {/* <div className='card-group-title'>Dice</div> */}
                 <div className='flex'> {diceToRender}</div>
             </div>
         );

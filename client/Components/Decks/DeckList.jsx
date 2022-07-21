@@ -21,6 +21,7 @@ import {
 } from '../../redux/actions';
 
 import './DeckList.scss';
+import DiceRack from './DiceRack';
 
 /**
  * @typedef CardLanguage
@@ -227,10 +228,12 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 const icon = hasChained ? (
                     <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
                 ) : null;
+                const dice = <DiceRack dice={row.dicepool} />;
                 const output = (
                     <>
                         <span>{item}</span>&nbsp;
-                        {icon}
+                        {icon}<br />
+                        {dice}
                     </>
                 );
                 return output;
@@ -245,7 +248,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 fontSize: '0.7rem'
             },
             align: 'center',
-            text: t('Added'),
+            text: t('Updated'),
             sort: !standaloneDecks,
             /**
              * @param {Date} cell
@@ -255,7 +258,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         {
             dataField: 'winRate',
             align: 'center',
-            text: t('Win %'),
+            text: t('Win Rate'),
             headerStyle: {
                 width: '18%'
             },
@@ -267,13 +270,17 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             /**
              * @param {number} cell
              */
-            formatter: (cell) => `${cell}%`
+            formatter: (item, row) => {
+                const output = <span>{item}%<br />({row.played} games)</span>;
+                return output;
+            }
         }
     ];
 
     let onNameChange = debounce((event) => {
         nameFilter.current(event.target.value);
     }, 500);
+
 
     return (
         <div className='deck-list'>
@@ -303,6 +310,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                     hover
                     keyField='_id'
                     data={decks}
+                    escape='false'
                     columns={columns}
                     selectRow={selectRow}
                     rowEvents={rowEvents}
