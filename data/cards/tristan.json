@@ -1,0 +1,28 @@
+{
+    "results": [
+        {
+            "name": "Tristan Darkwater",
+            "stub": "tristan-darkwater",
+            "type": "Phoenixborn",
+            "battlefield": 9,
+            "life": 17,
+            "spellboard": 3
+        },
+        {
+            "name": "Tsunami Shot",
+            "stub": "tsunami-shot",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            }
+        }
+    ]
+}
