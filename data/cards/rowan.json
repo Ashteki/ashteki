@@ -1,0 +1,29 @@
+{
+    "results": [
+        {
+            "name": "Rowan Umberend",
+            "stub": "rowan-umberend",
+            "type": "Phoenixborn",
+            "battlefield": 5,
+            "life": 18,
+            "spellboard": 5
+        },
+        {
+            "name": "Discovery",
+            "stub": "discovery",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            }
+        }
+    ]
+}
