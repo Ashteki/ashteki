@@ -5,9 +5,9 @@ describe('Hope Everthorn', function () {
                 player1: {
                     phoenixborn: 'hope-everthorn',
                     inPlay: ['shadow-hound'],
-                    dicepool: ['natural', 'natural', 'charm', 'charm', 'illusion'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'illusion', 'ceremonial'],
                     spellboard: ['summon-shadow-spirit'],
-                    hand: [],
+                    hand: ['final-cry'],
                     archives: ['shadow-hound']
                 },
                 player2: {
@@ -42,8 +42,18 @@ describe('Hope Everthorn', function () {
             this.player1.clickCard(this.player1.player.unitsInPlay[0]); //resolve fights in order
             this.player1.clickCard(this.player1.player.unitsInPlay[1]); //resolve fights in order
 
-            this.player1.endTurn();
+            expect(this.player1.player.limitedPlayed).toBe(0);
+            expect(this.player2.player.limitedPlayed).toBe(0);
 
+            this.player1.endTurn();
+            // reactions on turn end
+            this.player1.clickCard(this.finalCry);
+            this.player1.clickCard(this.fluteMage);
+            // then reaction count should reset
+            expect(this.player1.player.limitedPlayed).toBe(0);
+            expect(this.player2.player.limitedPlayed).toBe(0);
+
+            // then it's the new turn
             expect(this.player2).toHaveDefaultPrompt();
 
             expect(firstHound.location).toBe('play area');

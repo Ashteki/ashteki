@@ -4,23 +4,24 @@ describe('Reactions', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'brennen-blackcloud',
-                    inPlay: ['fire-archer'],
+                    inPlay: ['fire-archer', 'mist-spirit'],
                     dicepool: [
                         'ceremonial',
                         'ceremonial',
                         'ceremonial',
                         'ceremonial',
+                        'natural',
                         'illusion',
                         'charm',
                         'charm'
                     ],
                     spellboard: [],
-                    hand: ['summon-sleeping-widows', 'final-cry'],
+                    hand: ['summon-sleeping-widows', 'final-cry', 'blood-chains'],
                     archives: ['sleeping-widow', 'sleeping-widow']
                 },
                 player2: {
                     phoenixborn: 'jessa-na-ni',
-                    inPlay: ['anchornaut', 'mist-spirit'],
+                    inPlay: ['anchornaut', 'iron-worker'],
                     spellboard: [],
                     dicepool: [
                         'charm',
@@ -36,22 +37,34 @@ describe('Reactions', function () {
             });
         });
 
-        it('Only allow one reaction', function () {
-            this.player1.clickCard(this.brennenBlackcloud);
-            this.player1.clickPrompt('Spirit Burn');
-            this.player1.clickCard(this.fireArcher);
-            expect(this.fireArcher.location).toBe('discard');
-
-            this.player1.clickCard(this.jessaNaNi);
+        it('Allow only one reaction', function () {
+            // brennen blood chains fire archer, plays reaction, then pings own mist spirit without reaction prompt 
+            this.player1.play(this.bloodChains);
+            this.player1.clickCard(this.fireArcher); // destroy a unit
+            // reaction p1
             expect(this.player1).toHavePrompt('Any reactions to Fire Archer being destroyed?');
-
             this.player1.clickCard(this.summonSleepingWidows);
-            expect(this.player1.inPlay.length).toBe(2);
-            expect(this.player1.discard.length).toBe(2); // summonSleepingWidows and fire archer
+            expect(this.player1.inPlay.length).toBe(3); // widows
+            expect(this.player1.player.limitedPlayed).toBe(1);
+            expect(this.player2.player.limitedPlayed).toBe(0);
+
             expect(this.player1).not.toHavePrompt('Any reactions to Fire Archer being destroyed?');
             expect(this.player2).toHavePrompt('Any reactions to Fire Archer being destroyed?'); // jessa reaction
-
             this.player2.clickPrompt('Pass');
+            // blood chains target
+            this.player1.clickCard(this.anchornaut);
+            expect(this.fireArcher.location).toBe('discard');
+
+            expect(this.player1).toHaveDefaultPrompt();
+            this.player1.clickDie(4); // natural
+            this.player1.clickPrompt('Natural dice power');
+            this.player1.clickCard(this.mistSpirit);
+            expect(this.player1).not.toHavePrompt('Any reactions to Mist Spirit being destroyed?');
+            expect(this.player2).toHavePrompt('Any reactions to Mist Spirit being destroyed?'); // jessa reaction
+            this.player2.clickPrompt('Pass');
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.player.limitedPlayed).toBe(1);
+            expect(this.player2.player.limitedPlayed).toBe(0);
         });
 
         it('reaction count resets each turn', function () {
@@ -68,12 +81,19 @@ describe('Reactions', function () {
 
             this.player2.clickPrompt('Pass');
             this.player1.clickCard(this.jessaNaNi);
+            expect(this.player1.player.limitedPlayed).toBe(1);
+            expect(this.player2.player.limitedPlayed).toBe(0);
+
             this.player1.endTurn();
+
+            expect(this.player1.player.limitedPlayed).toBe(0);
+            expect(this.player2.player.limitedPlayed).toBe(0);
+
             this.player2.clickCard(this.moltenGold);
             this.player2.clickPrompt('Play this action');
             this.player2.clickCard(this.sleepingWidow);
+            expect(this.sleepingWidow.location).toBe('archives');
             expect(this.player2).toHavePrompt('Any reactions to Sleeping Widow being destroyed?');
-
             this.player2.clickPrompt('Pass');
             expect(this.player1).toHavePrompt('Any reactions to Sleeping Widow being destroyed?');
         });
