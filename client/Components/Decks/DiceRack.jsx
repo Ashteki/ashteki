@@ -18,7 +18,11 @@ const DiceRack = ({ dice }) => {
         return <DieIcon key={'cld-' + d.uuid} die={d} simpleText='true' />;
     });
 
-    return <div className='dice-rack'>{output}</div>;
+    return (
+        <div className='dice-rack' aria-hidden='true'>
+            {output}
+        </div>
+    );
 };
 
 export default DiceRack;
