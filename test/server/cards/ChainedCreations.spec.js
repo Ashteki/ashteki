@@ -113,7 +113,7 @@ describe('Chained Creations', function () {
             this.player1.clickPrompt('Done');
 
             this.player1.clickCard(this.vampireBatSwarm); // destroy
-            this.player2.clickPrompt('Cancel');
+            this.player2.clickPrompt('No');
             this.player1.clickCard(this.summonVampireBatSwarm); // exhaust
 
             expect(this.summonVampireBatSwarm.exhausted).toBe(true);
@@ -126,7 +126,7 @@ describe('Chained Creations', function () {
             this.player1.clickPrompt('Done');
 
             this.player1.clickCard(this.vampireBatSwarm); // destroy
-            this.player2.clickDie(0);
+            this.player2.clickYes(); // swarm
             this.player1.clickCard(this.summonVampireBatSwarm); // exhaust
 
             expect(this.summonVampireBatSwarm.exhausted).toBe(true);

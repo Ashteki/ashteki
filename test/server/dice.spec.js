@@ -128,7 +128,7 @@ describe('dice matching', function () {
         expect(chosenDice[1].magic).toBe('charm');
     });
 
-    it('should match parallel to first dice where both available', function () {
+    it('should not match parallel where both available', function () {
         const dice = [
             { uuid: '3', magic: 'charm', level: 'class' },
             { uuid: '2', magic: 'illusion', level: 'class' },
@@ -145,18 +145,40 @@ describe('dice matching', function () {
 
         let chosenDice = Dice.matchDice(dice, diceReq);
 
-        expect(chosenDice.length).toBe(2);
-        // non-parallel first
+        expect(chosenDice.length).toBe(1);
+        // non-parallel chosen
         expect(chosenDice[0].level).toBe('class');
         expect(chosenDice[0].magic).toBe('ceremonial');
-        expect(chosenDice[1].level).toBe('class');
-        expect(chosenDice[1].magic).toBe('illusion');
     });
 
-    it('should match parallel and basic - chaos gravity test', function () {
+    it('should not match parallel and basic with both parallels available', function () {
         const dice = [
             { uuid: '3', magic: 'divine', level: 'power' },
             { uuid: '2', magic: 'divine', level: 'class' },
+            { uuid: '5', magic: 'sympathy', level: 'class' },
+            { uuid: '6', magic: 'sympathy', level: 'class' },
+            { uuid: '7', magic: 'charm', level: 'basic' },
+            { uuid: '8', magic: 'ceremonial', level: 'basic' }
+        ];
+        // parallel cost should match charm class die
+        const diceReq = [
+            [
+                new DiceCount(1, Level.Class, Magic.Sympathy),
+                new DiceCount(1, Level.Class, Magic.Divine)
+            ],
+            new DiceCount(1, Level.Basic)
+        ];
+
+        let matchedDice = Dice.matchDice(dice, diceReq);
+
+        expect(matchedDice.length).toBe(1);
+        // basic only
+        expect(matchedDice[0].level).toBe('basic');
+        expect(matchedDice[0].magic).toBe('charm');
+    });
+
+    it('should match parallel and basic with one parallel available', function () {
+        const dice = [
             { uuid: '5', magic: 'sympathy', level: 'class' },
             { uuid: '6', magic: 'sympathy', level: 'class' },
             { uuid: '7', magic: 'charm', level: 'basic' },

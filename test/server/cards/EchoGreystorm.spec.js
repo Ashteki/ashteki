@@ -5,7 +5,7 @@ describe('Echo Greystorm', function () {
                 phoenixborn: 'echo-greystorm',
                 inPlay: ['hammer-knight'],
                 spellboard: [],
-                dicepool: ['time', 'natural', 'charm', 'charm', 'sympathy'],
+                dicepool: ['time', 'natural', 'charm', 'charm', 'sympathy', 'divine'],
                 hand: ['cover', 'molten-gold', 'chaos-gravity', 'transfer'],
                 deck: ['golden-veil', 'choke', 'fester', 'abundance', 'raptor-herder']
             },

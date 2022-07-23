@@ -24,8 +24,8 @@ describe('Vampire Bat Swarm', function () {
             // this.player1.clickPrompt('Damage');
             this.player1.clickCard(this.vampireBatSwarm);
             // on destroy choices...
-            expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
-            this.player2.clickDie(1);
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
             expect(this.vampireBatSwarm.exhausted).toBe(false);
@@ -40,8 +40,8 @@ describe('Vampire Bat Swarm', function () {
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.vampireBatSwarm);
             // on destroy choices...
-            expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
-            this.player2.clickDie(1);
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
             expect(this.vampireBatSwarm.exhausted).toBe(false);
@@ -56,8 +56,8 @@ describe('Vampire Bat Swarm', function () {
             this.player1.clickPrompt('natural dice power');
             this.player1.clickCard(this.vampireBatSwarm);
             // on destroy choices...
-            expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
-            this.player2.clickDie(1);
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
             expect(this.vampireBatSwarm.exhausted).toBe(false);
@@ -74,8 +74,8 @@ describe('Vampire Bat Swarm', function () {
             this.player2.clickDone();
             this.player2.clickYes();
             // on destroy choices...
-            expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
-            this.player2.clickDie(1);
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
             expect(this.vampireBatSwarm.exhausted).toBe(false);
@@ -94,8 +94,8 @@ describe('Vampire Bat Swarm', function () {
             this.player2.clickDone();
 
             // on destroy choices...
-            expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
-            this.player2.clickDie(1);
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
             expect(this.vampireBatSwarm.exhausted).toBe(false);
@@ -110,8 +110,8 @@ describe('Vampire Bat Swarm', function () {
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.vampireBatSwarm);
             // on destroy choices...
-            expect(this.player2).toHavePrompt('Activate Swarm?: select dice');
-            this.player2.clickPrompt('Cancel');
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickNo();
             expect(this.vampireBatSwarm.location).toBe('archives');
             expect(this.aradelSummergaard.exhausted).toBe(true);
             expect(this.maeoniViper.exhausted).toBe(false);
@@ -143,8 +143,8 @@ describe('Vampire Bat Swarm', function () {
             this.player2.clickDone(); // guard
             this.player2.clickYes(); // counter
             // on destroy choices...
-            expect(this.player1).toHavePrompt('Activate Swarm?: select dice');
-            this.player1.clickDie(1);
+            expect(this.player1).toHavePrompt('Do you wish to activate Swarm?');
+            this.player1.clickYes();
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
             expect(this.vampireBatSwarm.exhausted).toBe(false);
@@ -159,8 +159,8 @@ describe('Vampire Bat Swarm', function () {
             this.player1.clickDie(0);
             this.player1.clickCard(this.vampireBatSwarm);
             // on destroy choices...
-            expect(this.player1).toHavePrompt('Activate Swarm?: select dice');
-            this.player1.clickDie(1);
+            expect(this.player1).toHavePrompt('Do you wish to activate Swarm?');
+            this.player1.clickYes();
 
             this.player1.clickCard(this.ironWorker);
 

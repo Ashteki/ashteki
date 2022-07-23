@@ -17,8 +17,13 @@ class DiceCost {
     }
 
     resolve(context, result) {
-        const nonParallels = this.getDiceReq(context).filter((r) => !Array.isArray(r));
-        const nonBasics = nonParallels.filter((r) => r.level !== 'basic');
+        //TODO: change here to match parallels and non-basics
+        // const nonParallels = this.getDiceReq(context).filter((r) => !Array.isArray(r));
+        // const nonBasics = nonParallels.filter((r) => r.level !== 'basic');
+        const nonBasics = this.getDiceReq(context).filter(
+            (r) => Array.isArray(r) || r.level !== 'basic'
+        );
+
         let chosenDice = Dice.matchDice(context.player.dice, nonBasics);
         if (
             !context.source.preventAutoDice &&
