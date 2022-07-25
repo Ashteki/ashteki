@@ -94,6 +94,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         sortDir: 'desc',
         filter: []
     });
+    const pbFilter = useRef(null);
     const nameFilter = useRef(null);
     const dispatch = useDispatch();
 
@@ -110,10 +111,11 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         }
     };
 
-    const { decks, numDecks, selectedDeck } = useSelector((state) => ({
+    const { decks, numDecks, selectedDeck, allCards } = useSelector((state) => ({
         decks: getDecks(state),
         numDecks: state.cards.numDecks,
-        selectedDeck: standaloneDecks ? null : state.cards.selectedDeck
+        selectedDeck: standaloneDecks ? null : state.cards.selectedDeck,
+        allCards: state.cards.cards
     }));
 
     useEffect(() => {
@@ -196,6 +198,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         setPagingDetails(newPageData);
     };
 
+
     const columns = [
         {
             dataField: 'pb',
@@ -204,8 +207,13 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             },
             text: 'Pb',
             sort: !standaloneDecks,
+            filter: textFilter({
+                getFilter: (filter) => {
+                    pbFilter.current = filter;
+                }
+            }),
             // eslint-disable-next-line react/display-name
-            formatter: (_, row) => (
+            formatter: (pb, row) => (
                 <div className='deck-image'>
                     <Phoenixborn pbStub={row.phoenixborn[0]?.card.imageStub} />
                 </div>
@@ -281,6 +289,17 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         nameFilter.current(event.target.value);
     }, 500);
 
+    let onPbChange = debounce((event) => {
+        pbFilter.current(event.target.value);
+    }, 500);
+
+    let phoenixbornCards = [];
+    for (let c in allCards) {
+        if (allCards[c].type == 'Phoenixborn') {
+            phoenixbornCards.push(allCards[c]);
+        }
+    }
+    phoenixbornCards.sort((a, b) => (a.name < b.name ? -1 : 1));
 
     return (
         <div className='deck-list'>
@@ -298,6 +317,28 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                                     }}
                                     placeholder={t('Filter by name')}
                                 />
+                            </Form.Group>
+                            <Form.Group as={Col} controlId='phoenixborn'>
+                                <Form.Control
+                                    as='select'
+                                    onChange={(event) => {
+                                        event.persist();
+                                        onPbChange(event);
+                                    }}
+                                    // value={this.pbid}
+                                    placeholder={'Filter by PB'}
+                                >
+                                    <option key='-1' value=''>
+                                        All Phoenixborn
+                                    </option>
+                                    {phoenixbornCards.map((c, index) => {
+                                        return (
+                                            <option key={index} value={c.stub}>
+                                                {c.name}
+                                            </option>
+                                        );
+                                    })}
+                                </Form.Control>
                             </Form.Group>
                         </Form.Row>
                     </Form>

@@ -56,7 +56,7 @@ class Dice {
 
     // can diceReq be matched from the collection of dice?
     static canMatch(dice, diceReq) {
-        const matchedDice = this.matchDice(dice, diceReq);
+        const matchedDice = this.matchDice(dice, diceReq, true);
         // matched length == number of dice askedfor
         const expectedCount = Dice.getRequiredCount(diceReq);
         return matchedDice.length == expectedCount;
@@ -73,7 +73,7 @@ class Dice {
         }, 0);
     }
 
-    static matchDice(dice, diceReq) {
+    static matchDice(dice, diceReq, matchFirstParallel) {
         const availableDice = [...dice];
         const matchedDice = [];
         // sort dice basic -> class -> power so .find() will use class over power dice.
@@ -93,6 +93,11 @@ class Dice {
             });
         // there should only be one parallel dice cost, but anyway...
         parallels.forEach((p) => {
+            if (!matchFirstParallel && p.every((p) => Dice.findDie(availableDice, p))) {
+                // there's more than one type match, so exit
+                return;
+            }
+
             for (const item of p) {
                 if (Dice.findADie(availableDice, item, matchedDice)) return;
             }

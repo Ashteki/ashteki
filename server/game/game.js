@@ -361,6 +361,21 @@ class Game extends EventEmitter {
         this.pipeline.handleCardClicked(player, card);
     }
 
+    pileClicked(sourcePlayer, source) {
+        let player = this.getPlayerByName(sourcePlayer);
+
+        if (!player) {
+            return;
+        }
+
+        if (!source) {
+            return;
+        }
+
+        // Check to see if the current step in the pipeline is waiting for input
+        this.pipeline.handleCardPileClicked(player, source);
+    }
+
     /**
      * This function is called from the client whenever a card is clicked
      * @param {String} sourcePlayer - name of the clicking player

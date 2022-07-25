@@ -7,6 +7,7 @@ class VampireBatSwarm extends Card {
         this.persistentEffect({
             effect: ability.effects.addKeyword({ grouptactics: 1 })
         });
+
         this.forcedInterrupt({
             autoResolve: true,
             when: {
@@ -15,14 +16,14 @@ class VampireBatSwarm extends Card {
                     event.triggeringEvent.name === 'onCardDestroyed' &&
                     event.card === context.source
             },
+            may: 'activate Swarm',
             cost: ability.costs.dice(
                 [
                     [
                         new DiceCount(1, Level.Class, Magic.Ceremonial),
                         new DiceCount(1, Level.Class, Magic.Sympathy)
                     ]
-                ],
-                'Activate Swarm?'
+                ]
             ),
             gameAction: [
                 ability.actions.removeFromBattle((context) => ({

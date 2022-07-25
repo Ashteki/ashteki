@@ -58,6 +58,7 @@ export class GameBoard extends React.Component {
         this.onDragDrop = this.onDragDrop.bind(this);
         this.onCommand = this.onCommand.bind(this);
         this.onShuffleClick = this.onShuffleClick.bind(this);
+        this.onPileClick = this.onPileClick.bind(this);
         this.onMenuItemClick = this.onMenuItemClick.bind(this);
         this.sendChatMessage = this.sendChatMessage.bind(this);
         this.onSettingsClick = this.onSettingsClick.bind(this);
@@ -122,6 +123,10 @@ export class GameBoard extends React.Component {
 
     onShuffleClick() {
         this.props.sendGameMessage('shuffleDeck');
+    }
+
+    onPileClick(source) {
+        this.props.sendGameMessage('pileClicked', source);
     }
 
     onDragDrop(card, source, target) {
@@ -253,7 +258,7 @@ export class GameBoard extends React.Component {
                         onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
-                        player={2}
+                        player={otherPlayer}
                         side='top'
                         spells={otherPlayer.cardPiles.spells}
                         spectating={spectating}
@@ -318,11 +323,12 @@ export class GameBoard extends React.Component {
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         onMenuItemClick={this.onMenuItemClick}
-                        player={1}
+                        player={thisPlayer}
                         side='bottom'
                         spells={thisPlayer.cardPiles.spells}
                         spectating={spectating}
                         onDrawPopupChange={this.handleDrawPopupChange}
+                        onPileClick={this.onPileClick}
                         onShuffleClick={this.onShuffleClick}
                         onDragDrop={this.onDragDrop}
                         phoenixborn={thisPlayer.phoenixborn}

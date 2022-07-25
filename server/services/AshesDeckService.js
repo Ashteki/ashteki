@@ -35,6 +35,7 @@ class AshesDeckService {
 
     async findByUserName(userName, options, applyLimit = true) {
         let nameSearch = '';
+        let pbSearch = '';
         let limit = 0;
         let skip = 0;
         if (options && applyLimit) {
@@ -46,11 +47,17 @@ class AshesDeckService {
                 if (filterObject.name === 'name') {
                     nameSearch = filterObject.value;
                 }
+                if (filterObject.name === 'pb') {
+                    pbSearch = filterObject.value;
+                }
             }
         }
         const searchFields = { username: userName };
         if (nameSearch !== '') {
             searchFields.name = { $regex: nameSearch, $options: 'i' };
+        }
+        if (pbSearch !== '') {
+            searchFields['phoenixborn.id'] = { $regex: pbSearch, $options: 'i' };
         }
         return await this.decks.find(searchFields, {
             // sort: { [options.sort]: options.sortDir == 'desc' ? -1 : 1 },
