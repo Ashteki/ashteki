@@ -25,9 +25,11 @@ const CardPile = ({
     onMenuItemClick,
     onMouseOut,
     onMouseOver,
+    onPileClick,
     onPopupChange,
     onTouchMove,
     orientation = 'vertical',
+    player,
     popupLocation = 'bottom',
     popupMenu,
     showAltIcon,
@@ -76,6 +78,10 @@ const CardPile = ({
         topCard = { facedown: true };
     }
 
+    const onPileClicked = () => {
+        onPileClick && onPileClick(source);
+    };
+
     return (
         <div
             className={classNameStr}
@@ -97,8 +103,12 @@ const CardPile = ({
                     onMouseOut={onMouseOut}
                     disableMouseOver={hiddenTopCard}
                     onClick={() => {
-                        updatePopupVisibility(!showPopup);
-                        setManualPopup(!showPopup);
+                        if (player.canSelectDeck) {
+                            onPileClicked();
+                        } else {
+                            updatePopupVisibility(!showPopup);
+                            setManualPopup(!showPopup);
+                        }
                     }}
                     onMenuItemClick={onMenuItemClick}
                     orientation={cardOrientation}

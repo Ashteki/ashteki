@@ -22,11 +22,13 @@ const PlayerPBRow = ({
     onDragDrop,
     onMouseOver,
     onMouseOut,
+    player,
     side,
     spells,
     spectating,
     onDrawPopupChange,
     onShuffleClick,
+    onPileClick,
     showDeck,
     phoenixborn,
     onMenuItemClick
@@ -86,8 +88,10 @@ const PlayerPBRow = ({
             manualMode={manualMode}
             numDeckCards={numDeckCards}
             onCardAltClick={onCardAltClick}
+            onPileClick={onPileClick}
             onPopupChange={onDrawPopupChange}
             onShuffleClick={onShuffleClick}
+            player={player}
             showDeck={showDeck}
             spectating={spectating}
             cardBackUrl={spellback}

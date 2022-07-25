@@ -11,6 +11,7 @@ class PlayerPromptState {
         this.buttons = [];
         this.controls = [];
         this.diceReq = [];
+        this.canSelectDeck = false;
 
         this.selectableCards = [];
         this.selectableDice = [];
@@ -58,6 +59,7 @@ class PlayerPromptState {
         this.cardDamage = prompt.cardDamage || {};
         this.menuTitle = prompt.menuTitle || '';
         this.promptTitle = prompt.promptTitle;
+        this.canSelectDeck = prompt.canSelectDeck || false;
         this.buttons = _.map(prompt.buttons || [], (button) => {
             if (button.card) {
                 let card = button.card;
@@ -81,6 +83,7 @@ class PlayerPromptState {
         this.menuTitle = '';
         this.buttons = [];
         this.controls = [];
+        this.canSelectDeck = false;
     }
 
     getCardSelectionState(card) {
@@ -110,7 +113,8 @@ class PlayerPromptState {
             promptTitle: this.promptTitle,
             buttons: this.buttons,
             controls: this.controls,
-            diceReq: this.diceReq
+            diceReq: this.diceReq,
+            canSelectDeck: this.canSelectDeck
         };
     }
 }

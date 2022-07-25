@@ -26,7 +26,7 @@ class MeditatePrompt extends UiPrompt {
             // can't meditate bound cards from spellboard (hand is ok)
             cardCondition: (card) => !(card.location === 'spellboard' && card.anyEffect('bound'))
         });
-
+        this.canSelectDeck = true;
         this.count = 0;
         this.levelState = {};
         this.prevDie = {};
@@ -113,6 +113,7 @@ class MeditatePrompt extends UiPrompt {
         return {
             selectCard: !this.cardSelected,
             selectDie: this.cardSelected,
+            canSelectDeck: this.canSelectDeck,
             // selectOrder: false,
             menuTitle: {
                 text: mnuText
@@ -137,6 +138,18 @@ class MeditatePrompt extends UiPrompt {
         }
 
         return this.selectCard(card);
+    }
+
+    onCardPileClicked(player, source) {
+        if (player !== this.choosingPlayer) {
+            return false;
+        }
+
+        if (source !== 'deck') {
+            return false;
+        }
+
+        return this.menuCommand(player, 'top');
     }
 
     onDieClicked(player, die) {

@@ -3,9 +3,13 @@ class BaseStep {
         this.game = game;
     }
 
-    continue() {}
+    continue() { }
 
     onCardClicked() {
+        return false;
+    }
+
+    onCardPileClicked() {
         return false;
     }
 
