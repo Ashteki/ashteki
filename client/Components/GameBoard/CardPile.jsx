@@ -103,7 +103,7 @@ const CardPile = ({
                     onMouseOut={onMouseOut}
                     disableMouseOver={hiddenTopCard}
                     onClick={() => {
-                        if (player.canSelectDeck) {
+                        if (player && player.canSelectDeck) {
                             onPileClicked();
                         } else {
                             updatePopupVisibility(!showPopup);
