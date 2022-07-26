@@ -36,6 +36,7 @@ const { BattlefieldTypes } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
+const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -714,6 +715,10 @@ class Game extends EventEmitter {
         this.queueStep(new MeditatePrompt(this));
     }
 
+    promptForSuddenDeathDiscard() {
+        this.queueStep(new SuddenDeathDiscardPrompt(this));
+    }
+
     promptForDiceChange(player, properties) {
         this.promptForDieSelect(player, properties);
     }
@@ -911,13 +916,16 @@ class Game extends EventEmitter {
 
     checkForTimeExpired() {
         if (!this.triggerSuddenDeath && this.timeLimit.isTimeLimitReached && !this.finishedAt) {
-            this.triggerSuddenDeath = true;
-            this.addAlert(
-                'warning',
-                'The allowed game time has ended. The game will enter SUDDEN DEATH mode at the beginning of the next first player turn'
-            );
-            // this.finishedAt = new Date();
+            this.activateSuddenDeath();
         }
+    }
+
+    activateSuddenDeath() {
+        this.triggerSuddenDeath = true;
+        this.addAlert(
+            'warning',
+            'The allowed game time has ended. The game will enter SUDDEN DEATH mode at the beginning of the next first player turn'
+        );
     }
 
     /*

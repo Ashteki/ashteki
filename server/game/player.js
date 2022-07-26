@@ -303,27 +303,7 @@ class Player extends GameObject {
     }
 
     doSuddenDeathDiscard() {
-        const discardAmount = Math.min(this.deck.length, 2);
-        const woundAmount = 2 - discardAmount;
-        this.game.addMessage('SUDDEN DEATH!');
-        if (discardAmount > 0) {
-            GameActions.discardTopOfDeck({ amount: discardAmount }).resolve(
-                this,
-                this.game.getFrameworkContext()
-            );
-        }
-
-        if (woundAmount > 0) {
-            this.game.addMessage(
-                '{0} receives {1} sudden death damage',
-                this.phoenixborn,
-                woundAmount
-            );
-            GameActions.addDamageToken({ amount: woundAmount }).resolve(
-                this.phoenixborn,
-                this.game.getFrameworkContext()
-            );
-        }
+        this.game.promptForSuddenDeathDiscard();
     }
 
     endTurn() {

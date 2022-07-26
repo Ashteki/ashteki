@@ -31,6 +31,7 @@ class ChatCommands {
             '/removeeffects': this.removeEffects,
             '/reveal': this.reveal,
             '/shuffle': this.shuffle,
+            '/suddendeath': this.suddenDeath,
             '/stopclocks': this.stopClocks, // hidden option
             '/startclocks': this.startClocks, // hidden option
             '/token': this.setToken
@@ -334,6 +335,10 @@ class ChatCommands {
     shuffle(player) {
         this.game.addAlert('danger', '{0} is shuffling their deck', player);
         player.shuffleDeck();
+    }
+
+    suddenDeath() {
+        this.game.activateSuddenDeath();
     }
 
     cancelPrompt(player) {
