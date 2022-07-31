@@ -24,6 +24,208 @@
             "magicCost": {
                 "basic": 1
             }
+        },
+        {
+            "name": "Chant of Hostility",
+            "stub": "chant-of-hostility",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
+        },
+        {
+            "name": "Chant of Erosion",
+            "stub": "chant-of-erosion",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
+        },
+        {
+            "name": "Erosion",
+            "stub": "erosion",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit",
+            "attack": "-1",
+            "recover": "-1",
+            "copies": 3
+        },
+        {
+            "name": "Ritualist",
+            "stub": "ritualist",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
+            "name": "Red Raindrop",
+            "stub": "red-raindrop",
+            "type": "Conjured Alteration Spell",
+            "placement": "Phoenixborn",
+            "copies": 3
+        },
+        {
+            "name": "Knowledge Seeker",
+            "stub": "knowledge-seeker",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "time:class": 1
+            },
+            "attack": 2,
+            "life": 2,
+            "recover": 1
+        },
+        {
+            "name": "Excavate",
+            "stub": "excavate",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[time:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "time:class": 1
+            }
+        },
+        {
+            "name": "Rapture",
+            "stub": "rapture",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "time:class": 1
+            }
+        },
+        {
+            "name": "Summon Ruin Dweller",
+            "stub": "summon-ruin-dweller",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "ceremonial",
+                "time"
+            ],
+            "conjurations": [
+                {
+                    "name": "Ruin Dweller",
+                    "stub": "ruin-dweller"
+                }
+            ]
+        },
+        {
+            "name": "Ruin Dweller",
+            "stub": "ruin-dweller",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Crypt Guardian",
+            "stub": "crypt-guardian",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:power]]",
+                "1 [[time:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "ceremonial",
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "time:class": 1,
+                "ceremonial:power": 1
+            },
+            "attack": 2,
+            "life": 4,
+            "recover": 1
+        },
+        {
+            "name": "Reborn Chimera",
+            "stub": "reborn-chimera",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 4,
+            "life": 4,
+            "recover": 0,
+            "copies": 1
+        },
+        {
+            "name": "Era's End",
+            "stub": "eras-end",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            }
         }
     ]
 }
