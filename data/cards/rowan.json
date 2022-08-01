@@ -58,8 +58,8 @@
             }
         },
         {
-            "name": "Erosion",
-            "stub": "erosion",
+            "name": "Eroding",
+            "stub": "eroding",
             "type": "Conjured Alteration Spell",
             "placement": "Unit",
             "attack": "-1",
