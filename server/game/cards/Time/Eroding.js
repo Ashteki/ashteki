@@ -22,20 +22,6 @@ class Eroding extends Card {
                 }))
             ]
         });
-
-        // this.action({
-        //     inexhaustible: true,
-        //     title: 'Spark',
-        //     cost: [ability.costs.mainAction()],
-        //     gameAction: ability.actions.discard({ target: this }),
-        //     then: {
-        //         target: {
-        //             cardType: BattlefieldTypes,
-        //             controller: 'any',
-        //             gameAction: ability.actions.dealDamage({ showMessage: true }),
-        //         }
-        //     }
-        // });
     }
 }
 
