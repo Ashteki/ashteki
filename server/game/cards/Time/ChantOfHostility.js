@@ -22,6 +22,7 @@ class ChantOfHostility extends Card {
             location: 'spellboard',
             cost: [ability.costs.sideAction(), ability.costs.exhaust(), ability.costs.loseStatus()],
             target: {
+                activePromptTitle: 'Choose a unit to add 1 attack to',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.cardLastingEffect(() => ({
                     duration: 'untilEndOfTurn',

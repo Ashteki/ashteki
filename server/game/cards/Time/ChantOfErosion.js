@@ -22,6 +22,7 @@ class ChantOfErosion extends Card {
             location: 'spellboard',
             cost: [ability.costs.mainAction(), ability.costs.exhaust(), ability.costs.loseStatus()],
             target: {
+                activePromptTitle: 'Choose a unit to attach Eroding to',
                 cardType: BattlefieldTypes,
                 controller: 'any',
                 gameAction: ability.actions.attachConjuredAlteration({
