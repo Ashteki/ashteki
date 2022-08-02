@@ -1,27 +1,45 @@
-const { BattlefieldTypes, Level } = require('../../../constants.js');
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
 class RowanUmberend extends Card {
     setupCardAbilities(ability) {
-        // this.action({
-        //     title: 'Bolster',
-        //     cost: [
-        //         ability.costs.sideAction(),
-        //         ability.costs.exhaust(),
-        //         ability.costs.dice([new DiceCount(1, Level.Basic)])
-        //     ],
-        //     target: {
-        //         cardType: BattlefieldTypes,
-        //         controller: 'self',
-        //         gameAction: [
-        //             ability.actions.addStatusToken(),
-        //             ability.actions.attachConjuredAlteration({
-        //                 conjuredAlteration: 'spark'
-        //             })
-        //         ]
-        //     }
-        // });
+        this.reaction({
+            when: {
+                onCardDestroyed: (event, context) =>
+                    event.card.type === 'Ally' && event.card.controller == context.player
+            },
+            gameAction: ability.actions.sequential([
+                ability.actions.discard((context) => ({
+                    target: context.source.childCards
+                })),
+                ability.actions.placeUnder((context) => ({
+                    parent: context.source,
+                    target: context.event.card,
+                    facedown: true
+                }))
+            ])
+        });
+
+        this.action({
+            title: 'Exhume',
+            condition: (context) => context.source.childCards.length > 0,
+            cost: [
+                ability.costs.mainAction(),
+                ability.costs.exhaust(),
+                ability.costs.dice([new DiceCount(1, Level.Basic)])
+            ],
+            effect: 'return a unit to play and then destroy it',
+            gameAction: ability.actions.putIntoPlay((context) => ({
+                target: context.source.childCards,
+                showMessage: true
+            })),
+            then: {
+                gameAction: ability.actions.destroy((context) => ({
+                    target: context.preThenEvent.card
+                }))
+            }
+        });
     }
 }
 

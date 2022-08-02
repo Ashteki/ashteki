@@ -3,23 +3,21 @@ const { BattlefieldTypes, CardType } = require('../../../constants.js');
 
 class RedRaindrop extends Card {
     setupCardAbilities(ability) {
-        // this.whileAttached({
-        //     effect: [ability.effects.modifyAttack(1)]
-        // });
+        this.spellGuard({
+            match: this
+        });
 
-        // this.action({
-        //     inexhaustible: true,
-        //     title: 'Spark',
-        //     cost: [ability.costs.mainAction()],
-        //     gameAction: ability.actions.discard({ target: this }),
-        //     then: {
-        //         target: {
-        //             cardType: BattlefieldTypes,
-        //             controller: 'any',
-        //             gameAction: ability.actions.dealDamage({ showMessage: true }),
-        //         }
-        //     }
-        // });
+        this.interrupt({
+            when: {
+                onRoundEnded: () => true
+            },
+            // target: {
+            //     cardType: BattlefieldTypes,
+            //     gameAction: ability.actions.dealDamage((context) => ({
+            //         target: context.source.parent
+            //     }))
+            // }
+        });
     }
 
     canAttach(card, context) {
