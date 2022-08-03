@@ -863,7 +863,7 @@ class Game extends EventEmitter {
             const newFirstPlayer =
                 this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
             this.setRoundFirstPlayer(newFirstPlayer);
-            this.addAlert('{0} goes first this round', this.activePlayer);
+            this.addMessage('{0} goes first this round', this.activePlayer);
         }
     }
 
