@@ -11,12 +11,20 @@ class RedRaindrop extends Card {
             when: {
                 onRoundEnded: () => true
             },
-            // target: {
-            //     cardType: BattlefieldTypes,
-            //     gameAction: ability.actions.dealDamage((context) => ({
-            //         target: context.source.parent
-            //     }))
-            // }
+            target: {
+                optional: true,
+                cardType: BattlefieldTypes,
+                gameAction: ability.actions.dealDamage()
+            },
+            then: {
+                alwaysTriggers: true,
+                condition: (context) =>
+                    context.source.parent.upgrades.filter((u) => u.id === 'red-raindrop').length ===
+                    3,
+                gameAction: ability.actions.summon({
+                    conjuration: 'reborn-chimera'
+                })
+            }
         });
     }
 
