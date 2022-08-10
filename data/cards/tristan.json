@@ -130,9 +130,9 @@
             "type": "Action Spell",
             "placement": "Discard",
             "cost": [
-                "[[main]]",
-                "1 [[sympathy]]",
-                "1 [[time]]"
+                "[[side]]",
+                "1 [[sympathy:class]]",
+                "1 [[time:class]]"
             ],
             "dice": [
                 "sympathy",
