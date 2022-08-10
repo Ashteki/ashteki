@@ -5,7 +5,6 @@ class RuinDweller extends Card {
     setupCardAbilities(ability) {
         this.afterDestroyedDefending({
             title: 'Blight 1',
-            autoResolve: true,
             target: {
                 cardType: CardType.Phoenixborn,
                 gameAction: ability.actions.dealDamage()
@@ -13,7 +12,6 @@ class RuinDweller extends Card {
         });
 
         this.forcedInterrupt({
-            autoResolve: true,
             title: 'Blight 1',
             when: {
                 onRoundEnded: () => true

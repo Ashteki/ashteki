@@ -8,7 +8,6 @@ class Eroding extends Card {
         });
 
         this.forcedInterrupt({
-            autoResolve: true,
             inexhaustible: true,
             when: {
                 onRoundEnded: () => true

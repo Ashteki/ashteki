@@ -1276,7 +1276,7 @@ class Game extends EventEmitter {
 
     raiseEndRoundEvent() {
         this.betweenRounds = true;
-        this.raiseEvent('onRoundEnded', {}, () => {
+        this.raiseEvent('onRoundEnded', { genuine: true }, () => {
             this.endRound();
         });
     }

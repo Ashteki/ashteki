@@ -6,7 +6,6 @@ class CryptGuardian extends Card {
         this.unitGuard();
 
         this.forcedInterrupt({
-            autoResolve: true,
             title: 'Shackle 1',
             when: {
                 onRoundEnded: () => true

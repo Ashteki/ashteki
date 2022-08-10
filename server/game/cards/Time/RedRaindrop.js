@@ -7,7 +7,7 @@ class RedRaindrop extends Card {
             match: this
         });
 
-        this.interrupt({
+        this.forcedInterrupt({
             when: {
                 onRoundEnded: () => true
             },
