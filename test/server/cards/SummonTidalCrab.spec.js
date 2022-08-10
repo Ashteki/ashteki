@@ -18,11 +18,20 @@ describe('Summon Tidal crab', function () {
         });
     });
 
-    it('normal summon', function () {
+    it('normal summon plus unburden ability', function () {
         this.player1.clickCard(this.summonTidalCrab);
         this.player1.clickPrompt('Summon Tidal Crab');
 
         expect(this.tidalCrab.location).toBe('play area');
         expect(this.tidalCrab.status).toBe(2);
+        expect(this.tidalCrab.attack).toBe(0);
+
+        this.player1.clickCard(this.tidalCrab);
+        this.player1.clickPrompt('Unburden');
+        this.player1.clickCard(this.anchornaut);
+
+        expect(this.tidalCrab.status).toBe(1);
+        expect(this.tidalCrab.attack).toBe(1);
+        expect(this.anchornaut.status).toBe(1);
     });
 });
