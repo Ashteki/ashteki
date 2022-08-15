@@ -628,9 +628,17 @@ class Card extends PlayableObject {
             return 0;
         }
 
-        return this.getEffects('addKeyword').reduce(
-            (total, keywords) => total + (keywords[keyword] ? keywords[keyword] : 0),
-            0
+        let magnifier = this.getEffects('magnify').reduce((total, val) => total + val, 0);
+        if (magnifier === 0) {
+            magnifier = 1;
+        }
+
+        return (
+            magnifier *
+            this.getEffects('addKeyword').reduce(
+                (total, keywords) => total + (keywords[keyword] ? keywords[keyword] : 0),
+                0
+            )
         );
     }
 
