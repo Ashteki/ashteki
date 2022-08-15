@@ -5,7 +5,9 @@ class OrchidDove extends Card {
         this.destroyed({
             title: 'Last Request 1',
             may: 'force your opponent to discard the top card of their deck',
-            gameAction: ability.actions.discardTopOfDeck()
+            gameAction: ability.actions.discardTopOfDeck(() => ({
+                amount: this.getAbilityNumeric(1)
+            }))
         });
     }
 }

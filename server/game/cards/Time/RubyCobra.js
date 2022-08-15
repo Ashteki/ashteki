@@ -13,7 +13,7 @@ class RubyCobra extends Card {
             },
             gameAction: ability.actions.cardLastingEffect(() => ({
                 target: this,
-                effect: ability.effects.modifyAttack(1),
+                effect: ability.effects.modifyAttack(this.getAbilityNumeric(1)),
                 duration: 'untilEndOfTurn'
             })),
             then: {

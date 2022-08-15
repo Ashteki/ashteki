@@ -321,7 +321,9 @@ class Card extends PlayableObject {
                 activePromptTitle: 'Inheritance 1',
                 cardType: BattlefieldTypes,
                 cardCondition: (card, context) => card !== context.source,
-                gameAction: AbilityDsl.actions.addStatusToken()
+                gameAction: AbilityDsl.actions.addStatusToken(() => ({
+                    amount: this.getAbilityNumeric(1)
+                }))
             }
         });
     }

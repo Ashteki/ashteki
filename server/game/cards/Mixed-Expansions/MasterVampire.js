@@ -7,7 +7,8 @@ class MasterVampire extends Card {
         this.afterDestroysFighting({
             autoResolve: true,
             gameAction: ability.actions.removeDamage((context) => ({
-                target: context.player.phoenixborn
+                target: context.player.phoenixborn,
+                amount: this.getAbilityNumeric(1)
             }))
         });
     }

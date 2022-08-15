@@ -13,9 +13,10 @@ class JungleWarrior extends Card {
             target: {
                 activePromptTitle: 'Last Orders 1',
                 optional: true,
-                gameAction: ability.actions.removeExhaustion({
-                    cardType: BattlefieldTypes
-                })
+                gameAction: ability.actions.removeExhaustion(() => ({
+                    cardType: BattlefieldTypes,
+                    amount: this.getAbilityNumeric(1)
+                }))
             }
         });
     }

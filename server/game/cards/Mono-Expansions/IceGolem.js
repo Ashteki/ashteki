@@ -4,7 +4,7 @@ class IceGolem extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
             condition: () => this.upgrades.length > 0,
-            effect: ability.effects.modifyLife(2)
+            effect: ability.effects.modifyLife(this.getAbilityNumeric(2))
         });
     }
 }

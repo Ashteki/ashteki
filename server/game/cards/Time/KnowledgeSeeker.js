@@ -13,7 +13,9 @@ class KnowledgeSeeker extends Card {
             inexhaustible: true,
             optional: true,
             activePromptTitle: 'Bequest 1',
-            gameAction: ability.actions.draw()
+            gameAction: ability.actions.draw(() => ({
+                amount: this.getAbilityNumeric(1)
+            }))
         });
     }
 }

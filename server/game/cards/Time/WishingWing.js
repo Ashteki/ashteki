@@ -22,7 +22,7 @@ class WishingWing extends Card {
             optional: true,
             activePromptTitle: 'Bequest X',
             gameAction: ability.actions.draw((context) => ({
-                amount: context.source.status
+                amount: this.getAbilityNumeric(context.source.status)
             }))
         });
     }

@@ -5,7 +5,7 @@ class SeafoamSnapper extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
             condition: () => this.status > 0,
-            effect: ability.effects.modifyArmor(1)
+            effect: ability.effects.modifyArmor(() => this.getAbilityNumeric(1))
         });
         this.forcedReaction({
             when: {

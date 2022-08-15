@@ -7,7 +7,9 @@ class GlowFinch extends Card {
         this.destroyed({
             title: 'Last Request 2',
             may: 'force your opponent to discard the top 2 cards of their deck',
-            gameAction: ability.actions.discardTopOfDeck({ amount: 2 })
+            gameAction: ability.actions.discardTopOfDeck(() => ({
+                amount: this.getAbilityNumeric(2)
+            }))
         });
     }
 }
