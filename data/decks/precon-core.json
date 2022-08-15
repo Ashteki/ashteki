@@ -1,5 +1,165 @@
 [
   {
+    "precon_id": 28,
+    "name": "The Scholar of Ruin",
+    "phoenixborn": [
+      {
+        "id": "rowan-umberend",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "chant-of-erosion",
+        "count": 3
+      },
+      {
+        "id": "chant-of-hostility",
+        "count": 3
+      },
+      {
+        "id": "crypt-guardian",
+        "count": 3
+      },
+      {
+        "id": "discovery",
+        "count": 3
+      },
+      {
+        "id": "eras-end",
+        "count": 3
+      },
+      {
+        "id": "excavate",
+        "count": 3
+      },
+      {
+        "id": "knowledge-seeker",
+        "count": 3
+      },
+      {
+        "id": "rapture",
+        "count": 3
+      },
+      {
+        "id": "ritualist",
+        "count": 3
+      },
+      {
+        "id": "summon-ruin-dweller",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "eroding",
+        "count": 3
+      },
+      {
+        "id": "reborn-chimera",
+        "count": 1
+      },
+      {
+        "id": "red-raindrop",
+        "count": 3
+      },
+      {
+        "id": "ruin-dweller",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 27,
+    "name": "The Ocean's Guard",
+    "phoenixborn": [
+      {
+        "id": "tristan-darkwater",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "darkwater-hunter",
+        "count": 3
+      },
+      {
+        "id": "oceans-gift",
+        "count": 3
+      },
+      {
+        "id": "stand-still",
+        "count": 3
+      },
+      {
+        "id": "summon-prism-tetra",
+        "count": 3
+      },
+      {
+        "id": "summon-radiant-leviathan",
+        "count": 3
+      },
+      {
+        "id": "summon-seafoam-snapper",
+        "count": 3
+      },
+      {
+        "id": "summon-tidal-crab",
+        "count": 3
+      },
+      {
+        "id": "tidal-shift",
+        "count": 3
+      },
+      {
+        "id": "tsunami-shot",
+        "count": 3
+      },
+      {
+        "id": "wave-crash",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "prism-tetra",
+        "count": 9
+      },
+      {
+        "id": "radiant-leviathan",
+        "count": 1
+      },
+      {
+        "id": "seafoam-snapper",
+        "count": 2
+      },
+      {
+        "id": "tidal-crab",
+        "count": 2
+      }
+    ]
+  },
+  {
     "precon_id": 26,
     "name": "The Artist of Dreams",
     "phoenixborn": [

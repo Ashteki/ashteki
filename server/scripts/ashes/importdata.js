@@ -13,8 +13,8 @@ let totalCards = [];
 
 _.each(files, (file) => {
     let cardData = JSON.parse(fs.readFileSync(dataDirectory + file).toString());
-
-    totalCards = cardData.results;
+    console.log(file);
+    totalCards = totalCards.concat(cardData.results);
 });
 
 _.each(totalCards, (card) => {
