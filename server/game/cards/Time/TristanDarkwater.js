@@ -12,14 +12,16 @@ class TristanDarkwater extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
             target: {
-                mode: 'upTo',
+                mode: 'maxStat',
+                cardStat: (card) => card.life,
+                maxStat: () => 3,
                 numCards: 3,
                 controller: 'self',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => true, // replace with life check
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
-                    effect: ability.effects.magnify((card) => (card.isAttacker ? 2 : 0))
+                    effect: ability.effects.magnify((card) => (card.isAttacker ? 1 : 0))
                 }))
             }
         });
