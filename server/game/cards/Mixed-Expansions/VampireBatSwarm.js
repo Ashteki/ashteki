@@ -4,9 +4,8 @@ const DiceCount = require('../../DiceCount.js');
 
 class VampireBatSwarm extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            effect: ability.effects.addKeyword({ grouptactics: 1 })
-        });
+        this.groupTactics(1);
+
 
         this.forcedInterrupt({
             autoResolve: true,

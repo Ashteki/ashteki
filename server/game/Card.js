@@ -1063,6 +1063,19 @@ class Card extends PlayableObject {
         });
     }
 
+    fearful() {
+        this.persistentEffect({
+            title: 'Fearful',
+            effect: AbilityDsl.effects.cardCannot('block')
+        });
+    }
+
+    groupTactics(amount) {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.addKeyword({ grouptactics: amount })
+        });
+    }
+
     canGuard(attacker) {
         // phoenixborn and not guarded this round
         // OR has Unit Guard keyword / ability.
