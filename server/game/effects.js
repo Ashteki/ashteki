@@ -40,6 +40,7 @@ const Effects = {
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
     limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
+    magnify: (amountFunc) => EffectBuilder.card.dynamic('magnify', amountFunc),
     modifyAttack: (amount) => EffectBuilder.card.flexible('modifyAttack', amount),
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
     modifyRecover: (amount) => EffectBuilder.card.flexible('modifyRecover', amount),

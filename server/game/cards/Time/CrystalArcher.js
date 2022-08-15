@@ -16,10 +16,12 @@ class CrystalArcher extends Card {
             },
             target: {
                 optional: true,
-                activePromptTitle: 'Choose a unit to deal 1 damage to',
+                activePromptTitle: 'Choose a unit to deal damage to',
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage()
+                gameAction: ability.actions.dealDamage(() => ({
+                    amount: this.getAbilityNumeric(1)
+                }))
             }
         });
     }
