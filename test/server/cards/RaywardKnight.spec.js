@@ -33,6 +33,7 @@ describe('Rayward Knight ', function () {
             expect(this.hammerKnight.location).not.toBe('discard');
         });
     });
+
     describe('Charge', function () {
         beforeEach(function () {
             this.setupTest({
@@ -65,6 +66,7 @@ describe('Rayward Knight ', function () {
             expect(this.raywardKnight.tokens.damage).toBeUndefined();
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.player1.actions.main).toBe(true);
+            expect(this.player1.actions.side).toBe(0);
         });
     });
 });
