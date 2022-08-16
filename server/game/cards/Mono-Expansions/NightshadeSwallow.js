@@ -9,7 +9,9 @@ class NightshadeSwallow extends Card {
                 activePromptTitle: 'Pacify 1',
                 cardType: BattlefieldTypes,
                 cardCondition: (card, context) => card !== context.source,
-                gameAction: ability.actions.exhaust()
+                gameAction: ability.actions.exhaust(() => ({
+                    amount: this.getAbilityNumeric(1)
+                }))
             }
         });
     }

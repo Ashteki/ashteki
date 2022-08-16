@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 class CelestialKnight extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            effect: ability.effects.modifyArmor(1)
+            effect: ability.effects.modifyArmor(() => this.getAbilityNumeric(1))
         });
     }
 }

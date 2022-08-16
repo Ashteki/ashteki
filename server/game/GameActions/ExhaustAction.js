@@ -3,6 +3,7 @@ const CardGameAction = require('./CardGameAction');
 class ExhaustAction extends CardGameAction {
     setDefaultProperties() {
         this.showMessage = false;
+        this.amount = 1;
     }
 
     setup() {
@@ -21,7 +22,7 @@ class ExhaustAction extends CardGameAction {
 
     getEvent(card, context) {
         return super.createEvent('onCardExhausted', { card: card, context: context }, () => {
-            card.exhaust();
+            card.exhaust(this.amount);
             if (this.showMessage) {
                 context.game.addMessage('{0} becomes exhausted', card);
             }

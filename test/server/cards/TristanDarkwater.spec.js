@@ -3,9 +3,15 @@ describe('Tristan Darkwater, magnify', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'tristan-darkwater',
-                inPlay: ['prism-tetra', 'raptor-hatchling', 'crystal-archer', 'iron-worker'],
+                inPlay: [
+                    'prism-tetra',
+                    'raptor-hatchling',
+                    'crystal-archer',
+                    'iron-worker',
+                    'nightshade-swallow'
+                ],
                 spellboard: [],
-                dicepool: ['time', 'natural', 'charm', 'charm'],
+                dicepool: ['time', 'natural', 'charm', 'charm', 'natural'],
                 hand: ['cover', 'molten-gold'],
                 deck: ['golden-veil', 'choke', 'fester', 'abundance', 'raptor-herder']
             },
@@ -52,5 +58,23 @@ describe('Tristan Darkwater, magnify', function () {
         this.player1.clickCard(this.ironRhino);
 
         expect(this.ironRhino.damage).toBe(2);
+    });
+
+    it('magnify nightshade swallow', function () {
+        this.player1.clickCard(this.tristanDarkwater);
+        this.player1.clickPrompt('Magnify');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.nightshadeSwallow);
+        this.player1.clickDone();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.hammerKnight);
+        this.player1.clickCard(this.nightshadeSwallow);
+        this.player2.clickDone();
+        this.player2.clickYes();
+
+        this.player1.clickCard(this.ironRhino);
+
+        expect(this.ironRhino.exhaustion).toBe(2);
     });
 });

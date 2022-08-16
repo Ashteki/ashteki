@@ -882,8 +882,8 @@ class Card extends PlayableObject {
         return this.hasToken('damage') ? this.tokens.damage : 0;
     }
 
-    exhaust() {
-        this.addToken('exhaustion');
+    exhaust(amount = 1) {
+        this.addToken('exhaustion', amount);
     }
 
     unExhaust() {
