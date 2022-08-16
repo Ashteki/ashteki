@@ -3,6 +3,7 @@ const PlayerAction = require('./PlayerAction');
 class ChosenExhaustAction extends PlayerAction {
     setDefaultProperties() {
         this.amount = 1;
+        this.tokenCount = 1;
         this.cardType = 'any';
         this.cardCondition = null;
     }
@@ -33,7 +34,11 @@ class ChosenExhaustAction extends PlayerAction {
                     controller: player === context.player ? 'self' : 'opponent',
                     onSelect: (player, cards) => {
                         context.game.addMessage('{0} exhausts {1}', player, cards);
-                        context.game.actions.exhaust().resolve(cards, context);
+                        context.game.actions
+                            .exhaust({
+                                amount: this.tokenCount
+                            })
+                            .resolve(cards, context);
                         return true;
                     }
                 });
