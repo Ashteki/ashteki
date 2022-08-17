@@ -10,6 +10,7 @@ class PreparePhase extends Phase {
             new SimpleStep(game, () => this.determineFirstPlayer()),
             new AllPlayerDiscardPrompt(game),
             new SimpleStep(game, () => this.drawCards()),
+            new SimpleStep(game, () => this.fatigueDamage()),
             new SimpleStep(game, () => this.additionalDraw())
         ]);
     }
@@ -22,23 +23,37 @@ class PreparePhase extends Phase {
         this.game.reRollPlayerDice();
     }
 
-    // refill hand - cause damage in draw phase if unable to draw
     drawCards() {
-        const players = this.game.getPlayers();
-        let loopCount = 0;
-        while (players.some((p) => p.hand.length + loopCount < 5)) {
-            this.doPlayerDraw(this.game.activePlayer, loopCount);
-            this.doPlayerDraw(this.game.activePlayer.opponent, loopCount);
-            loopCount++;
+        const firstPlayer = this.game.roundFirstPlayer;
+        this.game.actions
+            .draw({ refill: true })
+            .resolve(firstPlayer.opponent, this.game.getFrameworkContext());
+    }
+
+    fatigueDamage() {
+        const playerShortfall = [
+            this.getShortfall(this.game.roundFirstPlayer),
+            this.getShortfall(this.game.roundFirstPlayer.opponent)
+        ];
+
+        let z = 0;
+        while (z < 10 && playerShortfall.some((ps) => ps.shortfall > 0)) {
+            for (let i = 0; i < playerShortfall.length; i++) {
+                const shortfall = playerShortfall[i];
+                if (shortfall.shortfall > 0) {
+                    this.game.actions
+                        .addDamageToken({ showMessage: true })
+                        .resolve(shortfall.player.phoenixborn, this.game.getFrameworkContext());
+                    shortfall.shortfall--;
+                }
+            }
+
+            z++;
         }
     }
-    // this is kind of ugly, but it works... :(
-    doPlayerDraw(player, loopCount) {
-        if (player.hand.length + loopCount < 5) {
-            this.game.actions
-                .draw({ damageIfEmpty: true })
-                .resolve(player, this.game.getFrameworkContext());
-        }
+
+    getShortfall(player) {
+        return { player: player, shortfall: 5 - player.hand.length };
     }
 
     additionalDraw() {
