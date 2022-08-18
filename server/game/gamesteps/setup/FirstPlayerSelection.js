@@ -10,12 +10,18 @@ class FirstPlayerSelection extends UiPrompt {
         this.properties = properties;
     }
 
-    activePrompt() {
+    activePrompt(player) {
         const title = `You rolled ${this.properties.activeBasics} basics.\nYour opponent rolled ${this.properties.opponentBasics}. \nWho will go first?`
         return {
             promptTitle: 'First Player',
             menuTitle: title,
-            buttons: this.players.map((player) => ({ arg: player.name, text: player.name }))
+            buttons: this.players.map((p) => {
+                const b = { arg: p.name, text: p.name };
+                if (p === player) {
+                    b.class = 'btn-primary';
+                }
+                return b;
+            })
         };
     }
 

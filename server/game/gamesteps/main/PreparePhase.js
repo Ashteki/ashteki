@@ -27,6 +27,9 @@ class PreparePhase extends Phase {
         const firstPlayer = this.game.roundFirstPlayer;
         this.game.actions
             .draw({ refill: true })
+            .resolve(firstPlayer, this.game.getFrameworkContext());
+        this.game.actions
+            .draw({ refill: true })
             .resolve(firstPlayer.opponent, this.game.getFrameworkContext());
     }
 
@@ -41,9 +44,9 @@ class PreparePhase extends Phase {
             for (let i = 0; i < playerShortfall.length; i++) {
                 const shortfall = playerShortfall[i];
                 if (shortfall.shortfall > 0) {
-                    this.game.actions
-                        .addDamageToken({ showMessage: true })
-                        .resolve(shortfall.player.phoenixborn, this.game.getFrameworkContext());
+                    const pb = shortfall.player.phoenixborn;
+                    this.game.addMessage('{0} receives 1 fatigue damage', pb);
+                    this.game.actions.addDamageToken().resolve(pb, this.game.getFrameworkContext());
                     shortfall.shortfall--;
                 }
             }

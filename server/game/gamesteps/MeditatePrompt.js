@@ -107,7 +107,7 @@ class MeditatePrompt extends UiPrompt {
         }
 
         if (this.count === 0) {
-            buttons.push({ text: 'Cancel', arg: 'done' });
+            buttons.push({ text: 'Cancel', arg: 'cancel' });
         }
 
         return {
@@ -250,7 +250,7 @@ class MeditatePrompt extends UiPrompt {
             return true;
         }
 
-        if (arg === 'done') {
+        if (arg === 'done' || arg === 'cancel') {
             if (this.count > 0) {
                 this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
             }
