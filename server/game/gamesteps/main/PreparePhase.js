@@ -34,24 +34,28 @@ class PreparePhase extends Phase {
     }
 
     fatigueDamage() {
-        const playerShortfall = [
-            this.getShortfall(this.game.roundFirstPlayer),
-            this.getShortfall(this.game.roundFirstPlayer.opponent)
-        ];
+        if (!this.game.disableFatigue) {
+            const playerShortfall = [
+                this.getShortfall(this.game.roundFirstPlayer),
+                this.getShortfall(this.game.roundFirstPlayer.opponent)
+            ];
 
-        let z = 0;
-        while (z < 10 && playerShortfall.some((ps) => ps.shortfall > 0)) {
-            for (let i = 0; i < playerShortfall.length; i++) {
-                const shortfall = playerShortfall[i];
-                if (shortfall.shortfall > 0) {
-                    const pb = shortfall.player.phoenixborn;
-                    this.game.addMessage('{0} receives 1 fatigue damage', pb);
-                    this.game.actions.addDamageToken().resolve(pb, this.game.getFrameworkContext());
-                    shortfall.shortfall--;
+            let z = 0;
+            while (z < 10 && playerShortfall.some((ps) => ps.shortfall > 0)) {
+                for (let i = 0; i < playerShortfall.length; i++) {
+                    const shortfall = playerShortfall[i];
+                    if (shortfall.shortfall > 0) {
+                        const pb = shortfall.player.phoenixborn;
+                        this.game.addMessage('{0} receives 1 fatigue damage', pb);
+                        this.game.actions
+                            .addDamageToken()
+                            .resolve(pb, this.game.getFrameworkContext());
+                        shortfall.shortfall--;
+                    }
                 }
-            }
 
-            z++;
+                z++;
+            }
         }
     }
 
