@@ -321,7 +321,9 @@ class Card extends PlayableObject {
                 activePromptTitle: 'Inheritance 1',
                 cardType: BattlefieldTypes,
                 cardCondition: (card, context) => card !== context.source,
-                gameAction: AbilityDsl.actions.addStatusToken()
+                gameAction: AbilityDsl.actions.addStatusToken(() => ({
+                    amount: this.getAbilityNumeric(1)
+                }))
             }
         });
     }
@@ -628,10 +630,17 @@ class Card extends PlayableObject {
             return 0;
         }
 
-        return this.getEffects('addKeyword').reduce(
+        const value = this.getEffects('addKeyword').reduce(
             (total, keywords) => total + (keywords[keyword] ? keywords[keyword] : 0),
             0
         );
+        const magnifier = value ? this.getMagnifier() : 0;
+
+        return magnifier + value;
+    }
+
+    getMagnifier() {
+        return this.getEffects('magnify').reduce((total, val) => total + val, 0);
     }
 
     exhaustsOnCounter() {
@@ -873,8 +882,8 @@ class Card extends PlayableObject {
         return this.hasToken('damage') ? this.tokens.damage : 0;
     }
 
-    exhaust() {
-        this.addToken('exhaustion');
+    exhaust(amount = 1) {
+        this.addToken('exhaustion', amount);
     }
 
     unExhaust() {
@@ -1009,13 +1018,14 @@ class Card extends PlayableObject {
     }
 
     transform(properties) {
+        const amt = this.getAbilityNumeric(properties.amount);
         return this.persistentEffect({
             condition: () => !this.controller.firstPlayer,
             match: this,
             effect: [
-                AbilityDsl.effects.modifyAttack(properties.amount),
-                AbilityDsl.effects.modifyLife(properties.amount),
-                AbilityDsl.effects.modifyRecover(properties.amount)
+                AbilityDsl.effects.modifyAttack(amt),
+                AbilityDsl.effects.modifyLife(amt),
+                AbilityDsl.effects.modifyRecover(amt)
             ]
         });
     }
@@ -1030,8 +1040,12 @@ class Card extends PlayableObject {
                 BattlefieldTypes.includes(card.type) && // unit
                 (card.isAttacker || card.isDefender) &&
                 this.areBattling(card, context.source, context),
-            effect: AbilityDsl.effects.modifyAttack(-properties.amount)
+            effect: AbilityDsl.effects.modifyAttack(-this.getAbilityNumeric(properties.amount))
         });
+    }
+
+    getAbilityNumeric(input) {
+        return input + this.getMagnifier();
     }
 
     areBattling(card, source, context) {
@@ -1060,6 +1074,19 @@ class Card extends PlayableObject {
     bound() {
         this.persistentEffect({
             effect: AbilityDsl.effects.bound()
+        });
+    }
+
+    fearful() {
+        this.persistentEffect({
+            title: 'Fearful',
+            effect: AbilityDsl.effects.cardCannot('block')
+        });
+    }
+
+    groupTactics(amount) {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.addKeyword({ grouptactics: amount })
         });
     }
 

@@ -15,7 +15,8 @@ class RealmWalker extends Card {
             gameAction: ability.actions.chosenExhaust((context) => ({
                 target: context.player.opponent,
                 cardType: BattlefieldTypes,
-                cardCondition: (card) => !card.exhausted
+                cardCondition: (card) => !card.exhausted,
+                tokenCount: this.getAbilityNumeric(1)
             })),
             effect: 'force their opponent to exhaust a unit'
         });

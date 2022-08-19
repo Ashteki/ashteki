@@ -38,7 +38,7 @@ class StandardBearer extends Card {
                 cardCondition: (card, context) => card !== context.source && card.isAttacker,
                 gameAction: ability.actions.cardLastingEffect({
                     duration: 'untilEndOfTurn',
-                    effect: ability.effects.modifyAttack(1)
+                    effect: ability.effects.modifyAttack(() => this.getAbilityNumeric(1))
                 })
             }
         });

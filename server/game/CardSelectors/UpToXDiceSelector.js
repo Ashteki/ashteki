@@ -24,8 +24,8 @@ class UpToXDiceSelector extends BaseDieSelector {
                 ? this.selectPrefix + ' a die'
                 : this.selectPrefix + " an opponent's die"
             : this.owner === 'self'
-            ? this.selectPrefix + ' up to ' + numDice + ' dice'
-            : this.selectPrefix + ' up to ' + numDice + " of your opponent's dice";
+                ? this.selectPrefix + ' up to ' + numDice + ' dice'
+                : this.selectPrefix + ' up to ' + numDice + " of your opponent's dice";
     }
 
     hasReachedLimit(selectedDice, context) {
@@ -34,6 +34,10 @@ class UpToXDiceSelector extends BaseDieSelector {
 
     hasExceededLimit(selectedDice, context) {
         return selectedDice.length > this.getNumDice(context);
+    }
+
+    automaticFireOnSelect(context) {
+        return this.getNumDice(context) === 1;
     }
 }
 

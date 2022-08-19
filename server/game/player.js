@@ -735,7 +735,7 @@ class Player extends GameObject {
                 avatar: this.user.avatar,
                 faveColor: this.user.faveColor
             },
-            deckData: this.deckData,
+            deckData: isActivePlayer ? this.deckData : null,
             wins: this.wins,
             dice: this.getSummaryForDiceList(this.dice, activePlayer),
             diceCounts: this.diceCounts,

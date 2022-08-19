@@ -52,6 +52,7 @@ class Game extends EventEmitter {
         this.currentEventWindow = null;
         this.currentPhase = '';
         this.effectEngine = new EffectEngine(this);
+        this.disableFatigue = options.disableFatigue;
         this.gameChat = new GameChat(this);
         this.gamePrivate = details.gamePrivate;
         this.gameTimeLimit = details.gameTimeLimit;
@@ -863,7 +864,7 @@ class Game extends EventEmitter {
             const newFirstPlayer =
                 this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
             this.setRoundFirstPlayer(newFirstPlayer);
-            this.addAlert('{0} goes first this round', this.activePlayer);
+            this.addMessage('{0} goes first this round', this.activePlayer);
         }
     }
 
@@ -1276,7 +1277,7 @@ class Game extends EventEmitter {
 
     raiseEndRoundEvent() {
         this.betweenRounds = true;
-        this.raiseEvent('onRoundEnded', {}, () => {
+        this.raiseEvent('onRoundEnded', { genuine: true }, () => {
             this.endRound();
         });
     }

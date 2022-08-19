@@ -22,7 +22,9 @@ class GorrenrockBrawler extends Card {
                     BattlefieldTypes.includes(event.card.type) &&
                     (context.source.wasAttacker || context.source.wasDefender)
             },
-            gameAction: ability.actions.addStatusToken()
+            gameAction: ability.actions.addStatusToken(() => ({
+                amount: this.getAbilityNumeric(1)
+            }))
         });
     }
 }

@@ -96,15 +96,17 @@ class EffectEngine {
         this.newEffect = this.unapplyAndRemove((effect) => effect.duration === 'untilEndOfPhase');
     }
 
-    onRoundEnded() {
-        this.newEffect = this.unapplyAndRemove(
-            (effect) => effect.duration === 'untilEndOfRound' || effect.roundDuration === 1
-        );
-        _.each(this.effects, (effect) => {
-            if (effect.roundDuration > 1) {
-                effect.roundDuration -= 1;
-            }
-        });
+    onRoundEnded(event) {
+        if (this.game.betweenRounds) {
+            this.newEffect = this.unapplyAndRemove(
+                (effect) => effect.duration === 'untilEndOfRound' || effect.roundDuration === 1
+            );
+            _.each(this.effects, (effect) => {
+                if (effect.roundDuration > 1) {
+                    effect.roundDuration -= 1;
+                }
+            });
+        }
     }
 
     onTurnEnded() {

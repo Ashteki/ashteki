@@ -13,10 +13,7 @@ class TimeHopper extends Card {
             }
         });
 
-        this.persistentEffect({
-            title: 'Fearful',
-            effect: ability.effects.cardCannot('block')
-        });
+        this.fearful();
     }
 }
 

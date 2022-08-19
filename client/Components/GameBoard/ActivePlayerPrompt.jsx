@@ -137,10 +137,14 @@ class ActivePlayerPrompt extends React.Component {
                         button.method
                     );
 
+            const btnClass = classNames(
+                'btn prompt-button btn-stretch',
+                button.class ? button.class : 'btn-default'
+            );
             let option = (
                 <button
                     key={button.command + buttonIndex.toString()}
-                    className='btn btn-default prompt-button btn-stretch'
+                    className={btnClass}
                     title={originalButtonText}
                     onClick={clickCallback}
                     onMouseOver={(event) => this.onMouseOver(event, button.card)}

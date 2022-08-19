@@ -34,7 +34,7 @@ const DrawDeck = (props) => {
         <CardPile
             {...props}
             className='draw'
-            disablePopup={(!hasCards && (spectating || !isMe))}
+            disablePopup={!hasCards && (spectating || !isMe)}
             hiddenTopCard={true}
             onPileClick={onPileClick}
             onPopupChange={(event) =>

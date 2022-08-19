@@ -34,7 +34,11 @@ class GameFlowWrapper {
                 }
             ]
         };
-        this.game = new Game(details, { router: gameRouter, cardData: cards });
+        this.game = new Game(details, {
+            router: gameRouter,
+            cardData: cards,
+            disableFatigue: true
+        });
         this.game.started = true;
 
         this.player1 = new PlayerInteractionWrapper(

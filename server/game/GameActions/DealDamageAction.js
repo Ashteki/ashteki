@@ -70,10 +70,11 @@ class DealDamageAction extends CardGameAction {
             }
         }
 
+        let armorPrevented = 0
         // Armour and Unpreventable damage (e.g. fallen)
         if (params.preventable && !params.ignoreArmor) {
-            const damagePrevented = amount <= card.armor ? amount : card.armor;
-            params.amount -= damagePrevented;
+            armorPrevented = amount <= card.armor ? amount : card.armor;
+            params.amount -= armorPrevented;
         }
 
         params.condition = (event) => this.canDealDamage(event.damageSource);
@@ -110,7 +111,26 @@ class DealDamageAction extends CardGameAction {
                     }
                 }
             );
-            damageDealtEvent.addSubEvent(damageAppliedEvent);
+
+            let armorEvent;
+            let armorParams = {
+                card: damageDealtEvent.card,
+                context: damageDealtEvent.context,
+                armorPrevented: armorPrevented,
+                noGameStateCheck: true
+            };
+
+            if (!armorPrevented) {
+                armorEvent = super.createEvent('unnamedEvent', armorParams, (event) => {
+                    event.addSubEvent(damageAppliedEvent);
+                });
+            } else {
+                armorEvent = super.createEvent('onDamagePreventedByArmor', armorParams, (event) => {
+                    event.addSubEvent(damageAppliedEvent);
+                });
+            }
+
+            damageDealtEvent.addSubEvent(armorEvent);
         });
     }
 

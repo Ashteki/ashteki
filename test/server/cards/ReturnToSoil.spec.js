@@ -46,6 +46,24 @@ describe('Return to soil action spell', function () {
         expect(this.player2.player.purged.length).toBe(2);
     });
 
+    it('deals damage, destroys, empty deck still purges 2', function () {
+        this.player2.player.deck = [];
+
+        this.player1.clickCard(this.returnToSoil);
+        this.player1.clickPrompt('Play this action');
+
+        this.player1.clickCard(this.mistSpirit);
+        expect(this.mistSpirit.location).toBe('archives');
+        expect(this.player1).not.toHaveDefaultPrompt();
+
+        expect(this.player2.discard.length).toBe(1); // no extra discard from deck
+        this.player1.clickCard(this.moltenGold);
+        this.player1.clickDone();
+
+        expect(this.moltenGold.location).toBe('purged');
+        expect(this.player2.player.purged.length).toBe(1);
+    });
+
     it('deals damage, destroys, discard ToD, then purge cannot select unit just discarded', function () {
         this.player1.clickCard(this.returnToSoil);
         this.player1.clickPrompt('Play this action');

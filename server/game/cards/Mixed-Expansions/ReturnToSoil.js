@@ -8,7 +8,9 @@ class ReturnToSoil extends Card {
             target: {
                 activePromptTitle: 'Choose a unit to damage',
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.dealDamage()
+                gameAction: ability.actions.dealDamage({
+                    postHandler: (context) => (this.firstTarget = context.target)
+                })
             },
             then: {
                 condition: (context) => context.preThenEvent.destroyEvent,
@@ -19,14 +21,14 @@ class ReturnToSoil extends Card {
                             : context.player
                 })),
                 then: {
+                    alwaysTriggers: true,
                     target: {
                         activePromptTitle: 'Choose 2 cards to remove from the game',
                         cardCondition: (card, context) =>
-                            card !== context.preThenEvent.context.preThenEvent.context.target,
+                            card !== this.firstTarget,
                         location: 'discard',
                         controller: (context) =>
-                            context.preThenEvent.context.preThenEvent.clone.controller ===
-                                context.player.opponent
+                            this.firstTarget.controller === context.player.opponent
                                 ? 'opponent'
                                 : 'self',
                         mode: 'upTo',
