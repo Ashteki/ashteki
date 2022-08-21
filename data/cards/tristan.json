@@ -72,7 +72,7 @@
                 "time"
             ],
             "magicCost": {
-                "basic": 1,
+                "basic": 2,
                 "time:class": 1,
                 "sympathy:power": 1
             },
