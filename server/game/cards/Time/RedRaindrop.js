@@ -12,6 +12,7 @@ class RedRaindrop extends Card {
                 onRoundEnded: () => true
             },
             target: {
+                activePromptTitle: 'Choose a card to deal 1 damage to',
                 optional: true,
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage()
