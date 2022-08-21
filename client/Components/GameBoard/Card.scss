@@ -293,14 +293,14 @@
 }
 
 .underneath {
-    margin-left: 0;
+    margin-left: 15px;
     position: relative;
     z-index: $layer-cards - 1;
 
     margin-top: $underneath-offset - $keyteki-card-height;
 
     &.small {
-        margin-top: $underneath-offset - $keyteki-card-sm-height;
+        margin-top: $underneath-offset-sm - $keyteki-card-sm-height;
     }
 
     &.large {
