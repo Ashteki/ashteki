@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../../constants.js');
+const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Rapture extends Card {
@@ -8,7 +8,7 @@ class Rapture extends Card {
             target: {
                 activePromptTitle: 'Choose a unit to destroy',
                 controller: 'self',
-                cardType: BattlefieldTypes,
+                cardType: CardType.Ally,
                 gameAction: ability.actions.destroy()
             },
             then: {
