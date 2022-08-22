@@ -96,6 +96,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
 
     showBluffPrompt(player) {
         if (
+            this.game.currentPhase !== 'playerturns' || // reactions are only allowed in the player turns phase (not at round end)
             player.hand.length === 0 || // no cards in hand
             !player.canPlayLimited() || // reaction used already
             !(player.user.settings.optionSettings.bluffTimer > 0) || // no setting configured
