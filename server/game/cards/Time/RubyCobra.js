@@ -17,7 +17,9 @@ class RubyCobra extends Card {
                 duration: 'untilEndOfTurn'
             })),
             then: {
-                gameAction: ability.actions.discardTopOfDeck()
+                gameAction: ability.actions.discardTopOfDeck(() => ({
+                    amount: this.getAbilityNumeric(1)
+                }))
             },
             effect: 'increase its attack value by 1'
         });
