@@ -12,12 +12,12 @@ class MassHeal extends Card {
                         (d) => d.magic === Magic.Divine && d.level !== Level.Basic && !d.exhausted
                     )
                 ) {
-                    choices['Remove a wound from your units and PB'] = ability.actions.removeDamage({
+                    choices['Heal PB + Units'] = ability.actions.removeDamage({
                         amount: 1,
                         target: [context.player.phoenixborn, ...context.player.unitsInPlay]
                     });
                 }
-                choices['Remove a wound from all units'] = ability.actions.removeDamage({
+                choices['Heal all units'] = ability.actions.removeDamage({
                     amount: 1,
                     target: context.game.unitsInPlay
                 });
