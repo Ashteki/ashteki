@@ -1,18 +1,18 @@
 import React from 'react';
 
 import CardImage from './CardImage';
+import classNames from 'classnames';
 
 import './CardZoom.scss';
 
-const CardZoom = ({ card, cardName }) => {
+const CardZoom = ({ card, cardName, left }) => {
     if (!card || !card.id) {
         return null;
     }
 
     const size = card.type === 'decklist' ? 'x-large' : 'normal';
-
     return (
-        <div className={`card-zoom ${size} vertical`}>
+        <div className={classNames(`card-zoom`, size, `vertical`, { left: left })}>
             {
                 <div className='card-zoomed shadow'>
                     {card.imageUrl ? (
