@@ -116,6 +116,10 @@ class Card extends PlayableObject {
         this.actsAs = undefined;
     }
 
+    getImageStub() {
+        return this.imageStub;
+    }
+
     get name() {
         const copyEffect = this.mostRecentEffect('copyCard');
         return copyEffect ? copyEffect.printedName : this.printedName;
@@ -1214,7 +1218,7 @@ class Card extends PlayableObject {
         let state = {
             id: this.id,
             index: this.index,
-            imageStub: this.imageStub,
+            imageStub: this.getImageStub(),
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
                 isController &&
