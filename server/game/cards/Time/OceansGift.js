@@ -3,6 +3,10 @@ const Card = require('../../Card.js');
 
 class OceansGift extends Card {
     setupCardAbilities(ability) {
+        this.whileAttached({
+            effect: ability.effects.modifyAttack(1)
+        });
+
         this.forcedReaction({
             when: {
                 onCardAttached: (event, context) => event.card === context.source
