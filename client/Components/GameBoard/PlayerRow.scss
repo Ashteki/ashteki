@@ -7,6 +7,10 @@
     display: flex;
 }
 
+.hand {
+    z-index: 0;
+}
+
 .keys {
     display: flex;
     flex-direction: column;
