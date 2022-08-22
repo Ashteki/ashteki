@@ -11,6 +11,7 @@ class CryptGuardian extends Card {
                 onRoundEnded: () => true
             },
             target: {
+                optional: true,
                 activePromptTitle: 'Choose a unit to exhaust',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => !card.exhausted,
@@ -26,6 +27,7 @@ class CryptGuardian extends Card {
             },
             destroyed: true,
             target: {
+                optional: true,
                 activePromptTitle: 'Choose a unit to exhaust',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => !card.exhausted,
