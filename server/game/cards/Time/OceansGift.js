@@ -3,6 +3,10 @@ const Card = require('../../Card.js');
 
 class OceansGift extends Card {
     setupCardAbilities(ability) {
+        this.whileAttached({
+            effect: ability.effects.modifyAttack(1)
+        });
+
         this.forcedReaction({
             when: {
                 onCardAttached: (event, context) => event.card === context.source
@@ -21,12 +25,13 @@ class OceansGift extends Card {
         this.whileAttached({
             inexhaustible: true,
             effect: [
-                ability.effects.gainAbility('reaction', {
+                ability.effects.gainAbility('forcedReaction', {
                     when: {
                         onAttackersDeclared: (event, context) =>
                             event.attackingPlayer === context.source.controller
                     },
                     target: {
+                        optional: true,
                         title: 'Bestow',
                         activePromptTitle: 'Choose a unit to add 1 status token to',
                         effect: 'add 1 status token',

@@ -40,10 +40,11 @@ describe('Oceans Gift', function () {
         this.player1.clickPrompt('Play this alteration');
         this.player1.clickCard(this.mistSpirit); // attach to ms
 
+        expect(this.mistSpirit.attack).toBe(2);
         expect(this.anchornaut.status).toBe(0);
         this.player1.clickAttack(this.ironWorker);
         this.player1.clickCard(this.mistSpirit);
-        this.player1.clickCard(this.mistSpirit);
+        // this.player1.clickCard(this.mistSpirit); moved to forcedReaction
         this.player1.clickCard(this.anchornaut); // Bestow
         this.player2.clickDone();
         this.player2.clickNo();

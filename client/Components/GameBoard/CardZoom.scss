@@ -14,17 +14,25 @@
         width: $keyteki-card-width * 3;
         height: $keyteki-card-height * 3;
     }
+
     &.normal {
         width: $keyteki-card-width * 4;
         height: $keyteki-card-height * 4;
     }
+
     &.large {
         width: $keyteki-card-width * 5;
         height: $keyteki-card-height * 5;
     }
+
     &.x-large {
         width: $keyteki-card-width * 6;
         height: $keyteki-card-height * 6;
+    }
+
+    &.left {
+        right: auto;
+        left: 5px;
     }
 }
 

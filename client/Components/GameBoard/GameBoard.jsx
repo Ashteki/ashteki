@@ -438,6 +438,7 @@ export class GameBoard extends React.Component {
                         <CardZoom
                             cardName={cardToZoom ? cardToZoom.name : null}
                             card={cardToZoom}
+                            left={thisPlayer.optionSettings.leftPrompt}
                         />
                     )}
                     {this.state.showManualCommands && (
