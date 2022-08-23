@@ -6999,7 +6999,13 @@
             "effectMagicCost": {
                 "sympathy:class": 2
             },
-            "text": "[[main]] - [[exhaust]] - 2 [[sympathy:class]]: Place three [[Prism Tetra]] conjurations onto your battlefield.\n\n**Focus 1:** Until the start of your next turn or the next round, Prism Tetras you control cannot be targeted by spells, abilities, or dice powers an opponent controls."
+            "text": "[[main]] - [[exhaust]] - 2 [[sympathy:class]]: Place three [[Prism Tetra]] conjurations onto your battlefield.\n\n**Focus 1:** Until the start of your next turn or the next round, Prism Tetras you control cannot be targeted by spells, abilities, or dice powers an opponent controls.",
+            "conjurations": [
+                {
+                    "name": "Prism Tetra",
+                    "stub": "prism-tetra"
+                }
+            ]
         },
         {
             "name": "Summon Radiant Leviathan",
