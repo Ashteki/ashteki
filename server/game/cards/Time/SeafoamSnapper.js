@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class SeafoamSnapper extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            condition: () => this.status > 0,
+            condition: () => !this.exhausted && this.status > 0,
             effect: ability.effects.modifyArmor(() => this.getAbilityNumeric(1))
         });
         this.forcedReaction({
