@@ -248,8 +248,8 @@ class GameRouter extends EventEmitter {
                 break;
             case 'GAMEWIN':
                 this.gameService.update(message.arg.game);
-                message.arg.game.players.forEach(player => {
-                    this.userService.incrementGameCount(player);
+                message.arg.game.players.forEach((player) => {
+                    this.userService.incrementGameCount(player.name);
                 });
 
                 this.emit('onGameFinished', message.arg.game.gameId);

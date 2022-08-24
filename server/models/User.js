@@ -18,6 +18,10 @@ class User {
         return this.userData.faveColor;
     }
 
+    get gamesPlayed() {
+        return this.userData.gamesPlayed;
+    }
+
     get username() {
         return this.userData.username;
     }
@@ -148,7 +152,8 @@ class User {
             settings: this.userData.settings,
             permissions: this.userData.permissions,
             verified: this.userData.verified,
-            blockList: this.userData.blockList
+            blockList: this.userData.blockList,
+            gamesPlayed: this.userData.gamesPlayed
         };
 
         user = Settings.getUserWithDefaultsSet(user);
@@ -162,7 +167,8 @@ class User {
             avatar: this.avatar,
             name: this.username,
             role: this.role,
-            faveColor: this.faveColor
+            faveColor: this.faveColor,
+            gamesPlayed: this.gamesPlayed
         };
     }
 

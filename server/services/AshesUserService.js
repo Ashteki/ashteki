@@ -335,9 +335,9 @@ class UserService extends EventEmitter {
             });
     }
 
-    async incrementGameCount(user) {
+    async incrementGameCount(username) {
         return this.users
-            .update({ username: user.username }, { $inc: { gamesPlayed: 1 } })
+            .update({ username: username }, { $inc: { gamesPlayed: 1 } })
             .catch((err) => {
                 logger.error('Error incrementing game count: ', err);
 
