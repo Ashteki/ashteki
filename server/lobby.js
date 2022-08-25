@@ -284,6 +284,12 @@ class Lobby {
         }
     }
 
+    broadcastUserList() {
+        for (let socket of Object.values(this.sockets)) {
+            this.sendUserListFilteredWithBlockList(socket, this.getUserList());
+        }
+    }
+
     sendGameState(game) {
         if (game.started) {
             return;
@@ -853,11 +859,29 @@ class Lobby {
             return;
         }
 
+        // update user list
+        const promises = [];
         for (const p in game.players) {
             const socket = this.socketsByName[game.players[p].name];
             const user = this.users[game.players[p].name];
-            this.onAuthenticated(socket, user);
+
+            promises.push(
+                this.userService
+                    .getUserById(user.id)
+                    .then((dbUser) => {
+                        this.users[dbUser.username] = dbUser;
+                        socket.user = dbUser;
+                    })
+                    .catch((err) => {
+                        logger.error(err);
+                    })
+            );
         }
+
+        Promise.all(promises).then(() => {
+            // broadcast user list
+            this.broadcastUserList();
+        });
     }
 
     onGameRematch(oldGame) {

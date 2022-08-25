@@ -10,8 +10,15 @@ const PlayerName = ({ player }) => {
         userStyle.color = player.faveColor;
     }
 
-    const sprout =
-        player.gamesPlayed < 10 ? <span className='emoji-sprout' title='new player'></span> : null;
+    const getExpLevel = (player) => {
+        if (player.gamesPlayed < 12) {
+            return <span className='emoji-sprout' title='new player'></span>;
+        }
+
+        // could put other emojis in here
+
+        return null;
+    };
 
     return (
         <span>
@@ -19,7 +26,7 @@ const PlayerName = ({ player }) => {
             <span className={userClass} style={userStyle}>
                 {player.name}
             </span>{' '}
-            {sprout}
+            {getExpLevel(player)}
         </span>
     );
 };
