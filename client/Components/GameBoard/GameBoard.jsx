@@ -428,6 +428,7 @@ export class GameBoard extends React.Component {
                         actions={otherPlayer.actions}
                         firstPlayer={otherPlayer.firstPlayer}
                         phoenixborn={otherPlayer.phoenixborn}
+                        player={otherPlayer}
                     />
                 </div>
                 <div className='main-window'>
@@ -497,7 +498,7 @@ export class GameBoard extends React.Component {
                         showManualMode={!spectating}
                         showMessages
                         stats={thisPlayer.stats}
-                        user={thisPlayer.user}
+                        player={thisPlayer}
                         actions={thisPlayer.actions}
                         firstPlayer={thisPlayer.firstPlayer}
                         onDiceHistoryClick={this.onDiceHistoryClick}

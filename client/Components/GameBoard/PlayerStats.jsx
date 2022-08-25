@@ -16,7 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Badge } from 'react-bootstrap';
 
-import Avatar from '../Site/Avatar';
+import PlayerName from '../Site/PlayerName';
 import Minus from '../../assets/img/Minus.png';
 import Plus from '../../assets/img/Plus.png';
 import FirstPlayerImage from '../../assets/img/firstplayer.png';
@@ -146,17 +146,9 @@ export class PlayerStats extends React.Component {
     }
 
     render() {
-        let t = this.props.t;
-        let userStyle = {};
-        if (this.props.user?.faveColor) {
-            userStyle.color = this.props.user.faveColor;
-        }
-        let userClass = 'username' + (this.props.user.role ? ` ${this.props.user.role.toLowerCase()}-role` : '');
-
         let playerAvatar = (
             <div className='state'>
-                <Avatar imgPath={this.props.user?.avatar} />
-                <b className={userClass} style={userStyle}>{this.props.user?.username || t('Noone')}</b>
+                <PlayerName player={this.props.player} />
             </div>
         );
 
@@ -282,7 +274,7 @@ PlayerStats.propTypes = {
     showMessages: PropTypes.bool,
     stats: PropTypes.object,
     t: PropTypes.func,
-    user: PropTypes.object,
+    player: PropTypes.object,
     actions: PropTypes.object,
     firstPlayer: PropTypes.bool,
     diceHistory: PropTypes.array,

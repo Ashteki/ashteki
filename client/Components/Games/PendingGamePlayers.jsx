@@ -3,7 +3,6 @@ import { useTranslation, Trans } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 
 import DeckStatus from '../Decks/DeckStatus';
-import Avatar from '../Site/Avatar';
 
 import './PendingGamePlayer.scss';
 import PlayerName from '../Site/PlayerName';
@@ -61,12 +60,6 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                     );
                 }
 
-                let userClass =
-                    'username' + (player.role ? ` ${player.role.toLowerCase()}-role` : '');
-                let userStyle = {};
-                if (player.faveColor) {
-                    userStyle.color = player.faveColor;
-                }
                 let rowClass = 'player-row';
                 if (firstPlayer) {
                     rowClass += ' mb-2';

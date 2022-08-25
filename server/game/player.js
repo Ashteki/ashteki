@@ -718,6 +718,8 @@ class Player extends GameObject {
             cardback: 'cardback',
             disconnected: !!this.disconnectedAt,
             activePlayer: this.game.activePlayer === this,
+            gamesPlayed: this.user.gamesPlayed ? this.user.gamesPlayed : 0,
+            avatar: this.user.avatar,
             id: this.id,
             left: this.left,
             name: this.name,
