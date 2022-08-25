@@ -4,6 +4,7 @@ const EventEmitter = require('events');
 const logger = require('./log');
 const GameService = require('./services/AshesGameService');
 const { detectBinary } = require('./util');
+const UserService = require('./services/AshesUserService');
 
 class GameRouter extends EventEmitter {
     /**
@@ -14,6 +15,7 @@ class GameRouter extends EventEmitter {
 
         this.workers = {};
         this.gameService = new GameService(configService);
+        this.userService = new UserService(configService);
 
         const redisUrl = process.env.REDIS_URL || configService.getValue('redisUrl');
         this.subscriber = redis.createClient(redisUrl);
@@ -90,8 +92,8 @@ class GameRouter extends EventEmitter {
                 status: worker.disconnceted
                     ? 'disconnected'
                     : worker.disabled
-                    ? 'disabled'
-                    : 'active',
+                        ? 'disabled'
+                        : 'active',
                 version: worker.version
             };
         });
@@ -246,6 +248,12 @@ class GameRouter extends EventEmitter {
                 break;
             case 'GAMEWIN':
                 this.gameService.update(message.arg.game);
+                message.arg.game.players.forEach((player) => {
+                    Promise.resolve(this.userService.incrementGameCount(player.name));
+                });
+
+                this.emit('onGameFinished', message.arg.game.gameId);
+
                 break;
             case 'REMATCH':
                 this.gameService.update(message.arg.game);

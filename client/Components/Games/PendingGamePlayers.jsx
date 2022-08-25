@@ -6,6 +6,7 @@ import DeckStatus from '../Decks/DeckStatus';
 import Avatar from '../Site/Avatar';
 
 import './PendingGamePlayer.scss';
+import PlayerName from '../Site/PlayerName';
 
 /**
  * @typedef PendingGamePlayersProps
@@ -74,8 +75,7 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                 }
                 return (
                     <div className={rowClass} key={player.name}>
-                        <Avatar imgPath={player.avatar} />
-                        <span className={userClass} style={userStyle}>{player.name}</span>
+                        <PlayerName player={player} />
                         {deck} {status} {selectLink}
                     </div>
                 );

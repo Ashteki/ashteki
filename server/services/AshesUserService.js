@@ -334,6 +334,17 @@ class UserService extends EventEmitter {
                 throw new Error('Error setting patreon supporter status');
             });
     }
+
+    async incrementGameCount(username) {
+        return this.users
+            .update({ username: username }, { $inc: { gamesPlayed: 1 } })
+            .catch((err) => {
+                logger.error('Error incrementing game count: ', err);
+
+                throw new Error('Error incrementing game count');
+            });
+
+    }
 }
 
 module.exports = UserService;

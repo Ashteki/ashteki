@@ -30,6 +30,7 @@ class Lobby {
 
         this.router.on('onGameClosed', this.onGameClosed.bind(this));
         this.router.on('onGameRematch', this.onGameRematch.bind(this));
+        this.router.on('onGameFinished', this.onGameFinished.bind(this));
         this.router.on('onPlayerLeft', this.onPlayerLeft.bind(this));
         this.router.on('onWorkerTimedOut', this.onWorkerTimedOut.bind(this));
         this.router.on('onNodeReconnected', this.onNodeReconnected.bind(this));
@@ -37,9 +38,7 @@ class Lobby {
 
         this.userService.on('onBlocklistChanged', this.onBlocklistChanged.bind(this));
 
-        this.io = options.io || new socketio.Server(server, {
-
-        });
+        this.io = options.io || new socketio.Server(server, {});
 
         // this.io.set('heartbeat timeout', 30000);
         this.io.use(this.handshake.bind(this));
@@ -282,6 +281,12 @@ class Lobby {
             }
 
             socket.send(message, user.getShortSummary());
+        }
+    }
+
+    broadcastUserList() {
+        for (let socket of Object.values(this.sockets)) {
+            this.sendUserListFilteredWithBlockList(socket, this.getUserList());
         }
     }
 
@@ -845,6 +850,38 @@ class Lobby {
 
         this.broadcastGameMessage('removegame', game);
         delete this.games[gameId];
+    }
+
+    onGameFinished(gameId) {
+        let game = this.games[gameId];
+
+        if (!game) {
+            return;
+        }
+
+        // update user list
+        const promises = [];
+        for (const p in game.players) {
+            const socket = this.socketsByName[game.players[p].name];
+            const user = this.users[game.players[p].name];
+
+            promises.push(
+                this.userService
+                    .getUserById(user.id)
+                    .then((dbUser) => {
+                        this.users[dbUser.username] = dbUser;
+                        socket.user = dbUser;
+                    })
+                    .catch((err) => {
+                        logger.error(err);
+                    })
+            );
+        }
+
+        Promise.all(promises).then(() => {
+            // broadcast user list
+            this.broadcastUserList();
+        });
     }
 
     onGameRematch(oldGame) {
