@@ -53,7 +53,7 @@ gameService.getAllGames(start, end).then((games) => {
                     }
                 }
             )
-            .then(() => db.close());
     })
+
 
 });
