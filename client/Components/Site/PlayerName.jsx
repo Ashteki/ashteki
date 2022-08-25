@@ -24,7 +24,7 @@ const PlayerName = ({ player }) => {
         <span>
             <Avatar imgPath={player.avatar} />
             <span className={userClass} style={userStyle}>
-                {player.name}
+                {player.name || player.username}
             </span>{' '}
             {getExpLevel(player)}
         </span>

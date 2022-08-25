@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 import Avatar from '../Site/Avatar';
+import PlayerName from '../Site/PlayerName';
+
 import AlertPanel from '../Site/AlertPanel';
 import * as actions from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
@@ -115,30 +117,14 @@ class GameList extends React.Component {
     }
 
     getPlayerNameAndAvatar(player, firstPlayer) {
-        let userClass = 'username' + (player.role ? ` ${player.role.toLowerCase()}-role` : '');
-
         let userStyle = {};
         if (player.faveColor) {
             userStyle.color = player.faveColor;
         }
 
-        if (firstPlayer) {
-            return (
-                <div className='game-player-name'>
-                    <span className='gamelist-avatar'>
-                        <Avatar imgPath={player.avatar} />
-                    </span>
-                    <span className={userClass} style={userStyle}>{player.name}</span>
-                </div>
-            );
-        }
-
         return (
             <div className='game-player-name'>
-                <span className={userClass} style={userStyle}>{player.name}</span>
-                <span className='gamelist-avatar'>
-                    <Avatar imgPath={player.avatar} />
-                </span>
+                <PlayerName player={player} />
             </div>
         );
     }
