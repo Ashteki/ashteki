@@ -11,6 +11,10 @@ class ShuffleDeckAction extends PlayerAction {
         return context.player;
     }
 
+    canAffect(target, context) {
+        return super.canAffect(target, context) && target.deck.length > 0;
+    }
+
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player: player, context: context }, (event) => {
             event.player.shuffleDeck();
