@@ -9,6 +9,7 @@ class Rapture extends Card {
                 activePromptTitle: 'Choose a unit to destroy',
                 controller: 'self',
                 cardType: CardType.Ally,
+                cardCondition: (card) => !card.exhausted,
                 gameAction: ability.actions.destroy()
             },
             then: {

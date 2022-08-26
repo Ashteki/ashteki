@@ -9,6 +9,7 @@ class AddTokenAction extends CardGameAction {
     setDefaultProperties() {
         this.amount = 1;
         this.showMessage = false;
+        this.shortMessage = false;
     }
 
     setup() {
@@ -42,16 +43,28 @@ class AddTokenAction extends CardGameAction {
             { card: card, context: context, amount: this.amount, type: this.type },
             (tokenEvent) => {
                 if (this.showMessage) {
-                    context.game.addMessage(
-                        tokenEvent.amount == 1
-                            ? `{0} uses {1} to place {2} {3} token on {4}`
-                            : `{0} uses {1} to place {2} {3} tokens on {4}`,
-                        context.player,
-                        context.source,
-                        tokenEvent.amount,
-                        tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
-                        tokenEvent.card
-                    );
+                    if (this.shortMessage) {
+                        context.game.addMessage(
+                            tokenEvent.amount == 1
+                                ? `{0} places {1} {2} token on {3}`
+                                : `{0} places {1} {2} tokens on {3}`,
+                            context.player,
+                            tokenEvent.amount,
+                            tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
+                            tokenEvent.card
+                        );
+                    } else {
+                        context.game.addMessage(
+                            tokenEvent.amount == 1
+                                ? `{0} uses {1} to place {2} {3} token on {4}`
+                                : `{0} uses {1} to place {2} {3} tokens on {4}`,
+                            context.player,
+                            context.source,
+                            tokenEvent.amount,
+                            tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
+                            tokenEvent.card
+                        );
+                    }
                 }
 
                 card.addToken(this.type, this.amount);

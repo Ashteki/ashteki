@@ -865,17 +865,19 @@ class Lobby {
             const socket = this.socketsByName[game.players[p].name];
             const user = this.users[game.players[p].name];
 
-            promises.push(
-                this.userService
-                    .getUserById(user.id)
-                    .then((dbUser) => {
-                        this.users[dbUser.username] = dbUser;
-                        socket.user = dbUser;
-                    })
-                    .catch((err) => {
-                        logger.error(err);
-                    })
-            );
+            if (user) {
+                promises.push(
+                    this.userService
+                        .getUserById(user.id)
+                        .then((dbUser) => {
+                            this.users[dbUser.username] = dbUser;
+                            socket.user = dbUser;
+                        })
+                        .catch((err) => {
+                            logger.error(err);
+                        })
+                );
+            }
         }
 
         Promise.all(promises).then(() => {
