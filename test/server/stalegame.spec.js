@@ -15,7 +15,7 @@ describe('stale game check', function () {
                 wins: 0
               },
               { deck: 'Jessa Na Ni', name: 'nmc11', turn: null, wins: 0 }
-            ],
+            ], 
             previousWinner: null,
             startedAt: 2021-09-16T23:29:58.732Z,
             swap: false
