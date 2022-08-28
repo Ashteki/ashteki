@@ -7,8 +7,71 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './SelectDeckModal.scss';
 
-const SelectDeckModal = ({ onClose, onDeckSelected, onChooseForMe }) => {
+const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe }) => {
     const { t } = useTranslation();
+
+    let deckList = null;
+    let setIndex = 0;
+    if (gameFormat === 'constructed') {
+        deckList = (
+            <Tabs>
+                <TabList>
+                    <Tab>My Decks</Tab>
+                    <Tab>Pre-cons</Tab>
+                    <Tab>Building Basics</Tab>
+                    <Tab style={{ backgroundColor: 'skyblue', color: '#333' }}>
+                        <img src={igcircle} alt='Adventuring Party' height='22' width='22' />{' '}
+                        Adventuring Party
+                    </Tab>
+                </TabList>
+
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(0)}>
+                        Choose for me
+                    </Button>
+                    <DeckList onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(1)}>
+                        Choose for me
+                    </Button>
+                    <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(3)}>
+                        Choose for me
+                    </Button>
+                    <DeckList standaloneDecks={3} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(2)}>
+                        Choose for me
+                    </Button>
+                    <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+            </Tabs>
+        );
+    } else {
+
+        switch (gameFormat) {
+            case 'firstadventure':
+                setIndex = 4;
+                break;
+            case 'aparty':
+                setIndex = 2;
+                break;
+            case 'precon':
+                setIndex = 1;
+                break;
+        }
+
+        deckList = (
+            <div>
+                <Button onClick={() => onChooseForMe(setIndex)}>Choose for me</Button>
+                <DeckList standaloneDecks={setIndex} onDeckSelected={onDeckSelected} />
+            </div>
+        );
+    }
 
     return (
         <>
@@ -17,48 +80,7 @@ const SelectDeckModal = ({ onClose, onDeckSelected, onChooseForMe }) => {
                     <Modal.Title>{t('Select Deck')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
-                        <Tabs>
-                            <TabList>
-                                <Tab>My Decks</Tab>
-                                <Tab>Pre-cons</Tab>
-                                <Tab>Building Basics</Tab>
-                                <Tab style={{ backgroundColor: 'skyblue', color: '#333' }}>
-                                    <img
-                                        src={igcircle}
-                                        alt='Adventuring Party'
-                                        height='22'
-                                        width='22'
-                                    />{' '}Adventuring Party
-                                </Tab>
-                            </TabList>
-
-                            <TabPanel>
-                                <Button onClick={() => onChooseForMe(0)}>
-                                    Choose for me
-                                </Button>
-                                <DeckList onDeckSelected={onDeckSelected} />
-                            </TabPanel>
-                            <TabPanel>
-                                <Button onClick={() => onChooseForMe(1)}>
-                                    Choose for me
-                                </Button>
-                                <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
-                            </TabPanel>
-                            <TabPanel>
-                                <Button onClick={() => onChooseForMe(3)}>
-                                    Choose for me
-                                </Button>
-                                <DeckList standaloneDecks={3} onDeckSelected={onDeckSelected} />
-                            </TabPanel>
-                            <TabPanel>
-                                <Button onClick={() => onChooseForMe(2)}>
-                                    Choose for me
-                                </Button>
-                                <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
-                            </TabPanel>
-                        </Tabs>
-                    </div>
+                    <div>{deckList}</div>
                 </Modal.Body>
             </Modal>
         </>

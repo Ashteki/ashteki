@@ -150,6 +150,19 @@ a {
     }
 }
 
+.btn-grey {
+    background-image: url('~assets/img/button-grey.png');
+
+    &:hover {
+        background-image: url('~assets/img/button-grey-hover.png');
+    }
+
+    &:focus:active {
+        background-image: url('~assets/img/button-grey-hover.png');
+    }
+}
+
+
 .btn-stretch {
     background-size: 100% 32px;
 }

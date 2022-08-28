@@ -154,3 +154,14 @@ export function loadBuildingBasicsDecks() {
         }
     };
 }
+
+export function loadFirstAdventureDecks() {
+    return {
+        types: ['LOAD_FIRSTADVENTURE_DECKS', 'FIRSTADVENTURE_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/firstadventure-decks',
+            type: 'GET'
+        }
+    };
+}

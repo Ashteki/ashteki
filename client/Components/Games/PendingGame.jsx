@@ -259,6 +259,7 @@ const PendingGame = () => {
 
             {showModal && (
                 <SelectDeckModal
+                    gameFormat={currentGame.gameFormat}
                     onClose={() => setShowModal(false)}
                     onDeckSelected={(deck) => {
                         setShowModal(false);

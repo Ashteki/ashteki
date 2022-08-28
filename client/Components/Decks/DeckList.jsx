@@ -17,7 +17,8 @@ import {
     selectDeck,
     loadStandaloneDecks,
     loadAdventuringPartyDecks,
-    loadBuildingBasicsDecks
+    loadBuildingBasicsDecks,
+    loadFirstAdventureDecks
 } from '../../redux/actions';
 
 import './DeckList.scss';
@@ -106,6 +107,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 return state.cards.adventuringPartyDecks;
             case 3:
                 return state.cards.buildingBasicsDecks;
+            case 4:
+                return state.cards.firstAdventureDecks;
             default:
                 return state.cards.decks;
         }
@@ -125,6 +128,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             dispatch(loadAdventuringPartyDecks());
         } else if (standaloneDecks == 3) {
             dispatch(loadBuildingBasicsDecks());
+        } else if (standaloneDecks == 4) {
+            dispatch(loadFirstAdventureDecks());
         } else {
             dispatch(loadDecks(pagingDetails));
         }

@@ -58,6 +58,18 @@ class ImportPrecons {
             console.log('Done importing BB decks');
             console.log('----------');
 
+            for (let deck of this.loadFADecks()) {
+                deck.preconGroup = 4;
+
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing FA decks');
+            console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -71,6 +83,12 @@ class ImportPrecons {
 
     loadAPDecks() {
         let file = 'precon-aparty.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadFADecks() {
+        let file = 'first-adventure.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }

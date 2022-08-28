@@ -1,0 +1,202 @@
+[
+  {
+    "precon_id": 301,
+    "name": "Evermist Guardian",
+    "phoenixborn": [
+      {
+        "id": "aradel-summergaard",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "illusion",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "anchornaut",
+        "count": 3
+      },
+      {
+        "id": "call-upon-the-realms",
+        "count": 3
+      },
+      {
+        "id": "fade-away",
+        "count": 3
+      },
+      {
+        "id": "final-cry",
+        "count": 3
+      },
+      {
+        "id": "massive-growth",
+        "count": 3
+      },
+      {
+        "id": "molten-gold",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 3
+      },
+      {
+        "id": "rose-fire-dancer",
+        "count": 3
+      },
+      {
+        "id": "summon-blue-jaguar",
+        "count": 1
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 1
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "summon-mist-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blue-jaguar",
+        "count": 2
+      },
+      {
+        "id": "false-demon",
+        "count": 2
+      },
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "mist-spirit",
+        "count": 10
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "precon_id": 302,
+    "name": "Lady of the Lighthouse",
+    "phoenixborn": [
+      {
+        "id": "saria-guideman",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 2
+      },
+      {
+        "magic": "charm",
+        "count": 4
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "natural",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "abundance",
+        "count": 3
+      },
+      {
+        "id": "blood-archer",
+        "count": 1
+      },
+      {
+        "id": "close-combat",
+        "count": 3
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 3
+      },
+      {
+        "id": "golden-veil",
+        "count": 2
+      },
+      {
+        "id": "hammer-knight",
+        "count": 3
+      },
+      {
+        "id": "iron-worker",
+        "count": 2
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 3
+      },
+      {
+        "id": "stormwind-sniper",
+        "count": 2
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 1
+      },
+      {
+        "id": "summon-seaside-raven",
+        "count": 1
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 3
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      },
+      {
+        "id": "seaside-raven",
+        "count": 1
+      },
+      {
+        "id": "three-eyed-owl",
+        "count": 3
+      }
+    ]
+  }
+]

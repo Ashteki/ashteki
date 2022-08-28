@@ -30,6 +30,14 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                 let deck = null;
                 let selectLink = null;
                 let status = null;
+                let coalOffButton = null;
+                if (currentGame.gameFormat === 'constructed') {
+                    coalOffButton = (
+                        <Button onClick={onCoalOff} className='btn-grey'>
+                            <Trans>Coal Off!</Trans>
+                        </Button>
+                    );
+                }
 
                 if (player && player.deck && player.deck.selected) {
                     if (playerIsMe) {
@@ -39,11 +47,11 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                             </span>
                         );
                     } else {
-                        deck = (
-                            <span className='deck-selection'>
-                                <Trans>Deck Selected</Trans>
-                            </span>
-                        );
+                        const deckName =
+                            currentGame.gameFormat === 'firstadventure'
+                                ? player.deck.name
+                                : 'Deck Selected';
+                        deck = <span className='deck-selection'>{deckName}</span>;
                     }
 
                     status = <DeckStatus status={player.deck.status} />;
@@ -53,9 +61,8 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                             <Button onClick={onSelectDeck}>
                                 <Trans>Select Deck</Trans>
                             </Button>
-                            <Button onClick={onCoalOff}>
-                                <Trans>Coal Off!</Trans>
-                            </Button>
+
+                            {coalOffButton}
                         </>
                     );
                 }

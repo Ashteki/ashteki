@@ -9,8 +9,9 @@ import { Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 
-import Avatar from '../Site/Avatar';
 import PlayerName from '../Site/PlayerName';
+import SealedIcon from '../../assets/img/sealed.png';
+import { getFormatLabel } from '../../util';
 
 import AlertPanel from '../Site/AlertPanel';
 import * as actions from '../../redux/actions';
@@ -181,6 +182,11 @@ class GameList extends React.Component {
                 continue;
             }
 
+            // filter copied from keyteki but not completely used here
+            // if (!this.props.gameFilter[game.gameFormat]) {
+            //     continue;
+            // }
+
             let players = this.getPlayers(game);
 
             let isAdmin = this.props.user && this.props.user.permissions.canManageGames;
@@ -201,9 +207,10 @@ class GameList extends React.Component {
                     <hr />
                     <div className={rowClass}>
                         <div className='game-header-row'>
+                            [{getFormatLabel(game.gameFormat)}]{' '}
                             <span className='game-title'>
                                 <b>{game.name}</b>
-                            </span>
+                            </span>{' '}
                             <span className='game-time'>{`[${formattedTime}]`}</span>
                             <span className='game-icons'>
                                 {game.showHand && (
