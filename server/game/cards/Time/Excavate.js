@@ -12,7 +12,7 @@ class Excavate extends Card {
                 target: {
                     activePromptTitle: 'Choose a card to place in your hand',
                     cardCondition: (card, context) =>
-                        card !== context.preThenEvent.context.discardedCards,
+                        context.preThenEvent.context.discardedCards.includes(card),
                     location: 'discard',
                     controller: 'self',
                     gameAction: ability.actions.returnToHand({

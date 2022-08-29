@@ -39,6 +39,7 @@ describe('Excavate action spell', function () {
         this.player1.clickDone();
 
         expect(this.player1.discard.length).toBe(4);
+        expect(this.player1).not.toBeAbleToSelect(this.raptorHerder);
         this.player1.clickCard(this.kneel);
         expect(this.kneel.location).toBe('hand');
 
