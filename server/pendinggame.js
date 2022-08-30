@@ -12,6 +12,7 @@ class PendingGame {
         this.createdAt = new Date();
         this.expansions = details.expansions;
         this.gameChat = new GameChat(this);
+        this.gameFormat = details.gameFormat;
         this.gamePrivate = !!details.gamePrivate;
         this.gameTimeLimit = details.gameTimeLimit;
         this.gameType = details.gameType;
@@ -66,6 +67,7 @@ class PendingGame {
         return {
             id: this.id,
             expansions: this.expansions,
+            gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
             gameId: this.id,
             gameType: this.gameType,
@@ -321,7 +323,7 @@ class PendingGame {
                     name: null,
                     pbStub: player.deck.phoenixborn[0]?.card.stub
                 };
-                if (activePlayer === player.name) {
+                if (activePlayer === player.name || this.gameFormat === 'firstadventure') {
                     deck.name = player.deck.name;
                 }
             }
@@ -344,6 +346,7 @@ class PendingGame {
             adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
+            gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
             id: this.id,
@@ -396,6 +399,7 @@ class PendingGame {
             adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
+            gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
             gameTimeLimit: this.gameTimeLimit,
             gameType: this.gameType,

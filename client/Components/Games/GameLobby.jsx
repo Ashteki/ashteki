@@ -85,81 +85,57 @@ const GameLobby = ({ gameId }) => {
         }
     }, [currentGame, dispatch, gameId, games]);
 
-    return (<>
-        <Row>
-            <Col md='6' >
-                <Panel title={t('Current Games')}>
-                    {!user && (
-                        <div className='text-center'>
-                            <AlertPanel type='warning'>
-                                {t('Please log in to be able to start a new game')}
-                            </AlertPanel>
-                        </div>
-                    )}
-                    <Row className='game-buttons'>
-                        <Col sm={4} lg={3}>
-                            <Button
-                                disabled={!user}
-                                variant='primary'
-                                onClick={() => dispatch(startNewGame())}
-                            >
-                                <Trans>New Game</Trans>
-                            </Button>
-                        </Col>
-                        <Col sm={8} lg={9}>
-                            <Panel type='primary'>
-                                <Row>
-                                    {filters.map((filter) => {
-                                        return (
-                                            <Col key={filter.name} >
-                                                <Form.Check
-                                                    type='switch'
-                                                    id={filter.name}
-                                                    label={filter.label}
-                                                    inline
-                                                    onChange={(event) => {
-                                                        onFilterChecked(
-                                                            filter.name,
-                                                            event.target.checked
-                                                        );
-                                                    }}
-                                                    checked={currentFilter[filter.name]}
-                                                ></Form.Check>
-                                            </Col>
-                                        );
-                                    })}
-                                </Row>
-                            </Panel>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs='12' className='text-center'>
-                            {games.length === 0 ? (
-                                <AlertPanel type='info'>
-                                    {t(
-                                        'No games are currently in progress. Click the button above to start one.'
-                                    )}
+    return (
+        <>
+            <Row>
+                <Col md='6' >
+                    <Panel title={t('Current Games')}>
+                        {!user && (
+                            <div className='text-center'>
+                                <AlertPanel type='warning'>
+                                    {t('Please log in to be able to start a new game')}
                                 </AlertPanel>
-                            ) : (
-                                <GameList
-                                    games={games}
-                                    gameFilter={currentFilter}
-                                    onJoinOrWatchClick={() => topRef.current.scrollIntoView(false)}
-                                />
-                            )}
-                        </Col>
-                    </Row>
-                </Panel>
-            </Col>
-            <Col md='6'>
-                <div ref={topRef}>
-                    {newGame && <NewGame />}
-                    {currentGame?.started === false && <PendingGame />}
-                    {passwordGame && <PasswordGame />}
-                </div>
-            </Col>
-        </Row>
-    </>
+                            </div>
+                        )}
+                        <Row className='game-buttons'>
+                            <Col xs='12'>
+                                <Button
+                                    disabled={!user}
+                                    variant='primary'
+                                    onClick={() => dispatch(startNewGame())}
+                                >
+                                    <Trans>New Game</Trans>
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs='12' className='text-center'>
+                                {games.length === 0 ? (
+                                    <AlertPanel type='info'>
+                                        {t(
+                                            'No games are currently in progress. Click the button above to start one.'
+                                        )}
+                                    </AlertPanel>
+                                ) : (
+                                    <GameList
+                                        games={games}
+                                        gameFilter={currentFilter}
+                                        onJoinOrWatchClick={() => topRef.current.scrollIntoView(false)}
+                                    />
+                                )}
+                            </Col>
+                        </Row>
+                    </Panel>
+                </Col>
+                <Col md='6'>
+                    <div ref={topRef}>
+                        {newGame && <NewGame />}
+                        {currentGame?.started === false && <PendingGame />}
+                        {passwordGame && <PasswordGame />}
+                    </div>
+                </Col>
+            </Row>
+        </>
     );
 };
 

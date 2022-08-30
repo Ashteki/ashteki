@@ -7,6 +7,8 @@ import * as yup from 'yup';
 
 import Panel from '../Site/Panel';
 import AlertPanel from '../Site/AlertPanel';
+import GameFormats from './GameFormats';
+
 import GameOptions from './GameOptions';
 import GameTypes from './GameTypes';
 import { getStandardControlProps } from '../../util';
@@ -67,6 +69,7 @@ const NewGame = ({
         label: '',
         allowSpectators: true,
         gameType: defaultGameType || 'casual',
+        gameFormat: 'constructed',
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
         gamePrivate: defaultPrivate,
@@ -152,6 +155,7 @@ const NewGame = ({
                                         </Form.Group>
                                     </Form.Row>
                                 )}
+                                <GameFormats formProps={formProps} />
                                 <GameOptions formProps={formProps} />
                             </>
                         )}

@@ -34,7 +34,7 @@ const PanelType = Object.freeze({
 /**
  * @param {PanelProps} props
  */
-const Panel = ({ type = PanelType.Primary, title, titleClass, children }) => {
+const Panel = ({ type = PanelType.Primary, title, titleClass, children, cardClass }) => {
     /** @type {PanelType} */
     let retType;
 
@@ -60,7 +60,7 @@ const Panel = ({ type = PanelType.Primary, title, titleClass, children }) => {
     }
 
     return (
-        <Card border={retType} bg='dark'>
+        <Card border={retType} bg='dark' className={cardClass}>
             {title && <Card.Header className={`${titleClass} text-center`}>{title}</Card.Header>}
             <Card.Body>{children}</Card.Body>
         </Card>

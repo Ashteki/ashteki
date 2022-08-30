@@ -900,6 +900,7 @@ class Lobby {
         let newGame = new PendingGame(game.owner, {
             adaptive: game.adaptive,
             gameTimeLimit: game.gameTimeLimit,
+            gameFormat: game.gameFormat,
             gameType: game.gameType,
             showHand: game.showHand,
             spectators: game.allowSpectators,
@@ -1065,6 +1066,7 @@ class Lobby {
             });
             syncGame.adaptive = game.adaptive;
             syncGame.createdAt = game.startedAt;
+            syncGame.gameFormat = game.gameFormat;
             syncGame.gamePrivate = game.gamePrivate;
             syncGame.gameType = game.gameType;
             syncGame.id = game.id;
