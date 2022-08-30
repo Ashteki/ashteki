@@ -31,6 +31,15 @@ describe('Copycat', function () {
             expect(this.hammerKnight.damage).toBe(3);
         });
 
+        it('skip action spell (MG)', function () {
+            this.player1.clickCard(this.moltenGold);
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickCard(this.ironWorker);
+
+            this.player2.clickPass();
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
         it('copy anguish (bug report)', function () {
             this.player1.clickCard(this.anguish);
             this.player1.clickPrompt('Play this action');
@@ -68,6 +77,15 @@ describe('Copycat', function () {
             this.player2.clickCard(this.hammerKnight);
             expect(this.hammerKnight.location).toBe('play area');
             expect(this.hammerKnight.damage).toBe(2);
+        });
+
+        it('skip copy pb ability (water blast)', function () {
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('Water Blast');
+            this.player1.clickCard(this.ironWorker);
+
+            this.player2.clickPass();
+            expect(this.player1).toHaveDefaultPrompt();
         });
 
         it('not triggered by unit ablity (blood archer)', function () {

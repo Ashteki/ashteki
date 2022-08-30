@@ -7,7 +7,9 @@ class Copycat extends Card {
             when: {
                 onAbilityResolved: (event, context) =>
                     event.context.source.controller !== context.source.owner &&
-                    [CardType.ActionSpell, CardType.Phoenixborn].includes(event.context.source.type)
+                    ((event.context.source.type === CardType.ActionSpell &&
+                        event.context.event?.name === 'onCardPlayed') ||
+                        CardType.Phoenixborn === event.context.source.type)
             },
             gameAction: ability.actions.resolveAbility((context) => ({
                 ability: this.getAbility(context)
