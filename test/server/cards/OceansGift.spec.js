@@ -52,4 +52,21 @@ describe('Oceans Gift', function () {
         expect(this.anchornaut.status).toBe(1);
         expect(this.player1).toHaveDefaultPrompt();
     });
+
+    it('when not declared as an attacker', function () {
+        this.player1.clickCard(this.oceansGift);
+        this.player1.clickPrompt('Play this alteration');
+        this.player1.clickCard(this.mistSpirit); // attach to ms
+
+        expect(this.mistSpirit.attack).toBe(2);
+        expect(this.anchornaut.status).toBe(0);
+        this.player1.clickAttack(this.ironWorker);
+        this.player1.clickCard(this.anchornaut);
+        expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+        this.player2.clickDone();
+        this.player2.clickNo();
+
+        expect(this.anchornaut.status).toBe(0);
+        expect(this.player1).toHaveDefaultPrompt();
+    });
 });
