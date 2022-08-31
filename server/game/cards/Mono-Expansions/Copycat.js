@@ -1,5 +1,6 @@
 const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const TriggeredAbilityContext = require('../../TriggeredAbilityContext.js');
 
 class Copycat extends Card {
     setupCardAbilities(ability) {
@@ -7,9 +8,16 @@ class Copycat extends Card {
             when: {
                 onAbilityResolved: (event, context) =>
                     event.context.source.controller !== context.source.owner &&
-                    ((event.context.source.type === CardType.ActionSpell &&
-                        event.context.event?.name === 'onCardPlayed') ||
-                        CardType.Phoenixborn === event.context.source.type)
+                    // only trigger on the 'outermost' ability completion
+                    !event.context.preThenEvent &&
+                    (
+                        (event.context.source.type === CardType.ActionSpell &&
+                            // ignore the playaction resolution events
+                            event.context.event?.name === 'onCardPlayed') ||
+                        (CardType.Phoenixborn === event.context.source.type &&
+                            // don't copy PB reactions like Jessa screams
+                            !(event.context instanceof TriggeredAbilityContext))
+                    )
             },
             gameAction: ability.actions.resolveAbility((context) => ({
                 ability: this.getAbility(context)

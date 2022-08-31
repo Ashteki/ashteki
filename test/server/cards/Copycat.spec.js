@@ -88,7 +88,7 @@ describe('Copycat', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('not triggered by unit ablity (blood archer)', function () {
+        it('not triggered by unit ability (blood archer)', function () {
             this.player1.clickCard(this.bloodArcher);
             this.player1.clickPrompt('Blood Shot');
             this.player1.clickCard(this.ironWorker);
@@ -129,6 +129,16 @@ describe('Copycat', function () {
             this.player2.clickCard(this.hammerKnight);
             expect(this.hammerKnight.damage).toBe(1);
             expect(this.coalRoarkwin.damage).toBe(0);
+        });
+
+        it('skip copy pb ability (coal)', function () {
+            this.player1.clickCard(this.coalRoarkwin);
+            this.player1.clickPrompt('Slash');
+            this.player1.clickCard(this.redirect); // discard
+            this.player1.clickCard(this.ironWorker);
+
+            this.player2.clickPass();
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 
@@ -201,7 +211,7 @@ describe('Copycat', function () {
             expect(this.brennenBlackcloud.damage).toBe(2);
         });
 
-        /*it("only triggers once after brennen's ability", function () {
+        it("only triggers once after brennen's ability", function () {
             this.player1.clickCard(this.brennenBlackcloud);
             this.player1.clickPrompt('Spirit Burn');
             this.player1.clickCard(this.bloodArcher);
@@ -209,9 +219,43 @@ describe('Copycat', function () {
             expect(this.player2).toHavePrompt('Any Reactions?');
 
             this.player2.clickPrompt('Pass');
-            expect(this.player2).not.toHavePrompt('Any Reactions?'); // failing
-            expect(this.player2).not.toBeAbleToSelect(this.copycat); // failing
-        });*/
+            expect(this.player2).not.toHavePrompt('Any Reactions?');
+            expect(this.player2).not.toBeAbleToSelect(this.copycat);
+        });
+    });
+
+    describe('reaction to Jessa Scream', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'victoria-glassfire',
+                    inPlay: ['glow-finch', 'iron-worker'],
+                    hand: ['copycat', 'dispel'],
+                    dicepool: ['natural', 'natural', 'illusion', 'charm', 'charm']
+                },
+                player2: {
+                    phoenixborn: 'jessa-na-ni',
+                    inPlay: ['hammer-knight', 'blood-archer', 'anchornaut'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'ceremonial', 'charm'],
+                    hand: ['molten-gold', 'out-of-the-mist', 'cover'],
+                    deck: ['molten-gold', 'redirect', 'out-of-the-mist', 'cover']
+                }
+            });
+        });
+
+        it('should not be able to copy screams', function () {
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Natural Dice Power');
+            this.player1.clickCard(this.anchornaut);
+            // scream
+            this.player2.clickCard(this.jessaNaNi);
+            this.player2.clickDie(0);
+
+            expect(this.anchornaut.location).toBe('discard');
+            expect(this.victoriaGlassfire.damage).toBe(1); // from screams
+            expect(this.player1).not.toHavePrompt('Any Reactions?');
+            expect(this.player1).not.toBeAbleToSelect(this.copycat);
+        });
     });
 
     describe('copies actions', function () {
