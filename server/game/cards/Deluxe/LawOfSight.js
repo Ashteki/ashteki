@@ -18,7 +18,8 @@ class LawOfSight extends Card {
             targetController: 'Any',
             effect: ability.effects.playerCannot(
                 'play',
-                (context) => context.source.type === CardType.ReactionSpell || context.ability instanceof TriggeredAbility
+                (context) => context.source.type === CardType.ReactionSpell ||
+                    context.source.reactionSpellInHand
             )
         });
 

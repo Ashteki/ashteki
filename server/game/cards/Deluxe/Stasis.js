@@ -1,6 +1,10 @@
 const Card = require('../../Card.js');
 
 class Stasis extends Card {
+    get reactionSpellInHand() {
+        return true;
+    }
+
     setupCardAbilities(ability) {
         this.reaction({
             isLimited: true,

@@ -73,4 +73,31 @@ describe('law of sight', function () {
             expect(this.player1).toBeAbleToSelect(this.summonGilder);
         });
     });
+
+    describe('in Play reaction checks', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['mist-spirit', 'iron-worker'],
+                    dicepool: ['divine', 'divine', 'charm', 'charm', 'natural', 'natural'],
+                    spellboard: ['law-of-sight', 'summon-gilder'],
+                    hand: ['freezing-blast']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight'],
+                    hand: ['shadow-guard'],
+                    dicepool: ['natural', 'natural', 'illusion', 'illusion']
+                }
+            });
+        });
+
+        it('does not prevent shadow guard being played as a reaction', function () {
+            this.player1.clickAttack(this.hammerKnight);
+            this.player1.clickCard(this.ironWorker);
+
+            expect(this.player2).toBeAbleToSelect(this.shadowGuard);
+        });
+    });
 });
