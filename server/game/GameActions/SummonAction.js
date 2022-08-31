@@ -49,6 +49,10 @@ class SummonAction extends PlayerAction {
         }
         return summonEvent;
     }
+
+    canAffect(target, context) {
+        return this.cards && this.cards.length && super.canAffect(target, context);
+    }
 }
 
 module.exports = SummonAction;

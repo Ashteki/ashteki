@@ -27,4 +27,33 @@ describe('Summon Butterfly Monk', function () {
             expect(this.player1.inPlay.length).toBe(1);
         });
     });
+
+    describe('Summon with empty archives', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['butterfly-monk'],
+                    spellboard: ['summon-butterfly-monk'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    archives: []
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: []
+                }
+            });
+        });
+
+        it('triggers but no monk', function () {
+            expect(this.player1.dicepool[0].exhausted).toBe(false);
+            this.player1.clickCard(this.summonButterflyMonk);
+            this.player1.clickPrompt('Summon Butterfly Monk');
+
+            // check spellboard is still just 1
+            expect(this.player1.dicepool[0].exhausted).toBe(true);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

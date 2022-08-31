@@ -19,13 +19,19 @@ class CardAbility extends ThenAbility {
         }
     }
 
+    clone() {
+        const props = this.properties;
+        props.printedAbility = false;
+        return new CardAbility(this.game, this.card, props);
+    }
+
     isInValidLocation(context) {
         return this.card.type === CardType.ReactionSpell
             ? context.player.isCardInPlayableLocation(context.source, 'play')
             : this.location.includes(this.card.location);
     }
 
-    meetsRequirements(context) {
+    meetsRequirements(context, ignoredRequirements = []) {
         if (this.card.isBlank() && this.printedAbility) {
             return 'blank';
         }
@@ -44,7 +50,7 @@ class CardAbility extends ThenAbility {
             return 'limited';
         }
 
-        return super.meetsRequirements(context);
+        return super.meetsRequirements(context, ignoredRequirements);
     }
 
     isCardPlayed() {

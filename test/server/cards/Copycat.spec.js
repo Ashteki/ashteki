@@ -177,6 +177,37 @@ describe('Copycat', function () {
         });
     });
 
+    describe('reaction to leo summon glow finch', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'leo-sunshadow',
+                    inPlay: ['hammer-knight', 'blood-archer'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
+                    hand: ['molten-gold', 'out-of-the-mist', 'cover'],
+                    deck: ['molten-gold', 'out-of-the-mist', 'cover'],
+                    archives: ['glow-finch']
+                },
+                player2: {
+                    phoenixborn: 'victoria-glassfire',
+                    inPlay: ['iron-worker'],
+                    hand: ['copycat'],
+                    dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
+                }
+            });
+        });
+
+        it('no offer to summon glow finch because no conjuration', function () {
+            this.player1.clickCard(this.leoSunshadow); // use ability
+            this.player1.clickPrompt('Summon Glow Finch');
+            this.player1.clickDie(0);
+            expect(this.glowFinch.location).toBe('play area');
+
+            expect(this.player2).not.toHavePrompt('Any Reactions?');
+            expect(this.player2).not.toBeAbleToSelect(this.copycat);
+        });
+    });
+
     describe('reaction to brennen ability', function () {
         beforeEach(function () {
             this.setupTest({
@@ -202,6 +233,7 @@ describe('Copycat', function () {
             this.player1.clickCard(this.bloodArcher);
             this.player1.clickCard(this.maeoniViper);
             expect(this.maeoniViper.damage).toBe(2);
+            expect(this.player2).toHavePrompt('Any Reactions?');
 
             this.player2.clickCard(this.copycat);
             this.player2.clickDie(0);

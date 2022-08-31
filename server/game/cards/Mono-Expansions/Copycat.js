@@ -16,8 +16,10 @@ class Copycat extends Card {
                             event.context.event?.name === 'onCardPlayed') ||
                         (CardType.Phoenixborn === event.context.source.type &&
                             // don't copy PB reactions like Jessa screams
-                            !(event.context instanceof TriggeredAbilityContext))
-                    )
+                            !(event.context instanceof TriggeredAbilityContext) &&
+                            event.context.ability
+                                .clone()
+                                .meetsRequirements(context, ['allCost']) === '')) // this returns '' if ok
             },
             gameAction: ability.actions.resolveAbility((context) => ({
                 ability: this.getAbility(context)
@@ -34,7 +36,7 @@ class Copycat extends Card {
                 result = context.event.context.preThenEvent.context.preThenEvent.context.ability;
             }
         }
-        return result;
+        return result.clone();
     }
 }
 
