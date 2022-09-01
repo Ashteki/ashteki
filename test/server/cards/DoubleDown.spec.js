@@ -140,8 +140,9 @@ describe('Double Down', function () {
             //Last Request 2
             this.player2.clickPrompt('Yes');
 
-            expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
-            this.player2.clickCard(this.doubleDown);
+            // cannot trigger summonAction reaction without cards in archives 
+            // expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
+            // this.player2.clickCard(this.doubleDown);
 
             expect(this.player1).toHaveDefaultPrompt();
 
