@@ -13,7 +13,7 @@ describe('standard trigger', function () {
                     'charm'
                 ],
                 spellboard: ['chant-of-revenge'],
-                hand: ['summon-sleeping-widows']
+                hand: ['final-cry']
             },
             player2: {
                 phoenixborn: 'leo-sunshadow',

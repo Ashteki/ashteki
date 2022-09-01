@@ -19,7 +19,7 @@ class SummonAdmonisher extends Card {
                 alwaysTriggers: true,
                 condition: (context) =>
                     context.source.focus > 0 &&
-                    (!context.preThenEvent.childEvent ||
+                    (!context.preThenEvent?.childEvent ||
                         (context.preThenEvent.childEvent.name === 'onCardEntersPlay' &&
                             context.preThenEvent.childEvent.cancelled)),
                 target: {
