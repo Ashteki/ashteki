@@ -264,6 +264,13 @@ export default function (state = { decks: [], cards: {} }, action) {
 
             return newState;
 
+        case Decks.DeckResynced:
+            newState = Object.assign({}, state, {
+                deckReload: !state.deckReload
+            });
+
+            return newState;
+
         case 'DECK_DELETED':
             newState = Object.assign({}, state, {
                 deckDeleted: true
