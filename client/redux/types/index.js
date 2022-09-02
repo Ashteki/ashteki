@@ -18,7 +18,9 @@ export const Decks = Object.freeze({
     RequestDecks: 'REQUEST_DECKS',
     DecksReceived: 'DECKS_RECEIVED',
     ImportDeck: 'IMPORT_DECK',
-    DeckImported: 'DECK_IMPORTED'
+    DeckImported: 'DECK_IMPORTED',
+    ResyncDeck: 'RESYNC_DECK',
+    DeckResynced: 'DECK_RESYNCED'
 });
 
 export const UserAction = Object.freeze({

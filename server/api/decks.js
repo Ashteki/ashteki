@@ -5,7 +5,6 @@ const AshesDeckService = require('../services/AshesDeckService.js');
 const { wrapAsync } = require('../util.js');
 const logger = require('../log.js');
 const AshesGameService = require('../services/AshesGameService');
-const { orderedAoE } = require('../game/GameActions');
 const configService = new ConfigService();
 
 const deckService = new AshesDeckService(configService);
@@ -181,6 +180,7 @@ module.exports.init = function (server) {
                 await deckService.create(deck);
                 res.send({ success: true });
             } else {
+                // this is an import/update request
                 let deck = Object.assign({}, { uuid: req.body.uuid, username: req.user.username });
                 let savedDeck;
 
