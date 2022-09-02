@@ -1942,5 +1942,804 @@
         "count": 6
       }
     ]
+  },
+  {
+    "precon_id": 141,
+    "name": "The Beastmaster | Adventuring Party 4",
+    "phoenixborn": [
+      {
+        "id": "aradel-summergaard",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 1
+      },
+      {
+        "magic": "divine",
+        "count": 2
+      },
+      {
+        "magic": "sympathy",
+        "count": 2
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "excavate",
+        "count": 2
+      },
+      {
+        "id": "explosive-growth",
+        "count": 1
+      },
+      {
+        "id": "flash-strike",
+        "count": 3
+      },
+      {
+        "id": "heal",
+        "count": 3
+      },
+      {
+        "id": "oceans-gift",
+        "count": 3
+      },
+      {
+        "id": "polarity-mage",
+        "count": 3
+      },
+      {
+        "id": "power-through",
+        "count": 2
+      },
+      {
+        "id": "rayward-recruit",
+        "count": 1
+      },
+      {
+        "id": "standard-bearer",
+        "count": 2
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1
+      },
+      {
+        "id": "summon-radiant-leviathan",
+        "count": 1
+      },
+      {
+        "id": "summon-seafoam-snapper",
+        "count": 1
+      },
+      {
+        "id": "summon-tidal-crab",
+        "count": 1
+      },
+      {
+        "id": "summon-wishing-wing",
+        "count": 1
+      },
+      {
+        "id": "survival-of-the-fittest",
+        "count": 1
+      },
+      {
+        "id": "tidal-shift",
+        "count": 2
+      },
+      {
+        "id": "wave-crash",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "light-bringer",
+        "count": 2
+      },
+      {
+        "id": "prism-tetra",
+        "count": 9
+      },
+      {
+        "id": "radiant-leviathan",
+        "count": 1
+      },
+      {
+        "id": "seafoam-snapper",
+        "count": 2
+      },
+      {
+        "id": "tidal-crab",
+        "count": 2
+      },
+      {
+        "id": "wishing-wing",
+        "count": 3
+      }
+    ],
+    "notes": "https://jaysonsethlindley.medium.com/adventuring-party-4-seven-constructed-ashes-decks-from-one-collection-75842c7d4a3a"
+  },
+  {
+    "precon_id": 142,
+    "name": "The Cultist | Adventuring Party 4",
+    "phoenixborn": [
+      {
+        "id": "rowan-umberend",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "sympathy",
+        "count": 2
+      },
+      {
+        "magic": "time",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "abundance",
+        "count": 3
+      },
+      {
+        "id": "call-upon-the-realms",
+        "count": 2
+      },
+      {
+        "id": "discovery",
+        "count": 3
+      },
+      {
+        "id": "eras-end",
+        "count": 1
+      },
+      {
+        "id": "final-cry",
+        "count": 2
+      },
+      {
+        "id": "fire-archer",
+        "count": 2
+      },
+      {
+        "id": "generosity",
+        "count": 3
+      },
+      {
+        "id": "knowledge-seeker",
+        "count": 1
+      },
+      {
+        "id": "rising-horde",
+        "count": 2
+      },
+      {
+        "id": "seeds-of-aggression",
+        "count": 2
+      },
+      {
+        "id": "shared-sorrow",
+        "count": 2
+      },
+      {
+        "id": "summon-ancestor-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 1
+      },
+      {
+        "id": "summon-ruin-dweller",
+        "count": 1
+      },
+      {
+        "id": "summon-turtle-guard",
+        "count": 1
+      },
+      {
+        "id": "swift-messenger",
+        "count": 1
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "ancestor-spirit",
+        "count": 2
+      },
+      {
+        "id": "fallen",
+        "count": 7
+      },
+      {
+        "id": "false-demon",
+        "count": 2
+      },
+      {
+        "id": "reborn-chimera",
+        "count": 1
+      },
+      {
+        "id": "red-raindrop",
+        "count": 3
+      },
+      {
+        "id": "ruin-dweller",
+        "count": 2
+      },
+      {
+        "id": "turtle-guard",
+        "count": 2
+      }
+    ],
+    "notes": "https://jaysonsethlindley.medium.com/adventuring-party-4-seven-constructed-ashes-decks-from-one-collection-75842c7d4a3a"
+  },
+  {
+    "precon_id": 143,
+    "name": "The Archer | Adventuring Party 4",
+    "phoenixborn": [
+      {
+        "id": "tristan-darkwater",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 2
+      },
+      {
+        "magic": "natural",
+        "count": 4
+      },
+      {
+        "magic": "divine",
+        "count": 1
+      },
+      {
+        "magic": "sympathy",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "beast-warrior",
+        "count": 2
+      },
+      {
+        "id": "crescendo",
+        "count": 2
+      },
+      {
+        "id": "enchanted-violinist",
+        "count": 3
+      },
+      {
+        "id": "hunt-master",
+        "count": 3
+      },
+      {
+        "id": "ice-trap",
+        "count": 3
+      },
+      {
+        "id": "molten-gold",
+        "count": 3
+      },
+      {
+        "id": "natures-wrath",
+        "count": 1
+      },
+      {
+        "id": "rile-the-meek",
+        "count": 3
+      },
+      {
+        "id": "sonic-swordsman",
+        "count": 3
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 1
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "summon-prism-tetra",
+        "count": 1
+      },
+      {
+        "id": "summon-ruby-cobra",
+        "count": 1
+      },
+      {
+        "id": "tsunami-shot",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "panther-spirit",
+        "count": 3
+      },
+      {
+        "id": "prism-tetra",
+        "count": 9
+      },
+      {
+        "id": "ruby-cobra",
+        "count": 3
+      }
+    ],
+    "notes": "https://jaysonsethlindley.medium.com/adventuring-party-4-seven-constructed-ashes-decks-from-one-collection-75842c7d4a3a"
+  },
+  {
+    "precon_id": 144,
+    "name": "The Assassin | Adventuring Party 4",
+    "phoenixborn": [
+      {
+        "id": "james-endersight",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 4
+      },
+      {
+        "magic": "charm",
+        "count": 2
+      },
+      {
+        "magic": "natural",
+        "count": 4
+      }
+    ],
+    "cards": [
+      {
+        "id": "anchornaut",
+        "count": 3
+      },
+      {
+        "id": "choke",
+        "count": 2
+      },
+      {
+        "id": "fester",
+        "count": 2
+      },
+      {
+        "id": "final-cry",
+        "count": 1
+      },
+      {
+        "id": "fire-archer",
+        "count": 1
+      },
+      {
+        "id": "frost-fang",
+        "count": 1
+      },
+      {
+        "id": "hammer-knight",
+        "count": 2
+      },
+      {
+        "id": "massive-growth",
+        "count": 2
+      },
+      {
+        "id": "raptor-herder",
+        "count": 3
+      },
+      {
+        "id": "rapture",
+        "count": 2
+      },
+      {
+        "id": "summon-frostback-bear",
+        "count": 1
+      },
+      {
+        "id": "summon-gilder",
+        "count": 1
+      },
+      {
+        "id": "summon-mind-fog-owl",
+        "count": 3
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 3
+      },
+      {
+        "id": "sympathy-pain",
+        "count": 1
+      },
+      {
+        "id": "vengeance",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "frostback-bear",
+        "count": 2
+      },
+      {
+        "id": "gilder",
+        "count": 2
+      },
+      {
+        "id": "mind-fog-owl",
+        "count": 2
+      },
+      {
+        "id": "raptor-hatchling",
+        "count": 3
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6
+      }
+    ],
+    "notes": "https://jaysonsethlindley.medium.com/adventuring-party-4-seven-constructed-ashes-decks-from-one-collection-75842c7d4a3a"
+  },
+  {
+    "precon_id": 145,
+    "name": "The Tempest | Adventuring Party 4",
+    "phoenixborn": [
+      {
+        "id": "sembali-grimtongue",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 3
+      },
+      {
+        "magic": "divine",
+        "count": 4
+      },
+      {
+        "magic": "time",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "angelic-rescue",
+        "count": 1
+      },
+      {
+        "id": "backtrack",
+        "count": 2
+      },
+      {
+        "id": "celestial-knight",
+        "count": 2
+      },
+      {
+        "id": "chained-creations",
+        "count": 1
+      },
+      {
+        "id": "crystal-archer",
+        "count": 2
+      },
+      {
+        "id": "crystal-armor",
+        "count": 2
+      },
+      {
+        "id": "excavate",
+        "count": 1
+      },
+      {
+        "id": "fate-reflection",
+        "count": 2
+      },
+      {
+        "id": "figures-in-the-fog",
+        "count": 1
+      },
+      {
+        "id": "meteor",
+        "count": 2
+      },
+      {
+        "id": "purify",
+        "count": 3
+      },
+      {
+        "id": "realm-walker",
+        "count": 3
+      },
+      {
+        "id": "rose-fire-dancer",
+        "count": 2
+      },
+      {
+        "id": "shepherd-of-lost-souls",
+        "count": 3
+      },
+      {
+        "id": "summon-cloudburst-gryphon",
+        "count": 1
+      },
+      {
+        "id": "summon-fox-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "cloudburst-gryphon",
+        "count": 2
+      },
+      {
+        "id": "fox-spirit",
+        "count": 3
+      },
+      {
+        "id": "light-bringer",
+        "count": 2
+      }
+    ],
+    "notes": "https://jaysonsethlindley.medium.com/adventuring-party-4-seven-constructed-ashes-decks-from-one-collection-75842c7d4a3a"
+  },
+  {
+    "precon_id": 146,
+    "name": "The Enchantress | Adventuring Party 4",
+    "phoenixborn": [
+      {
+        "id": "maeoni-viper",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "charm",
+        "count": 3
+      },
+      {
+        "magic": "natural",
+        "count": 1
+      },
+      {
+        "magic": "time",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "amplify",
+        "count": 2
+      },
+      {
+        "id": "blood-archer",
+        "count": 2
+      },
+      {
+        "id": "blood-chains",
+        "count": 2
+      },
+      {
+        "id": "crypt-guardian",
+        "count": 3
+      },
+      {
+        "id": "eras-end",
+        "count": 2
+      },
+      {
+        "id": "fate-reflection",
+        "count": 1
+      },
+      {
+        "id": "frost-bite",
+        "count": 3
+      },
+      {
+        "id": "golden-veil",
+        "count": 3
+      },
+      {
+        "id": "hypnotize",
+        "count": 1
+      },
+      {
+        "id": "natures-wrath",
+        "count": 2
+      },
+      {
+        "id": "reclaim-soul",
+        "count": 2
+      },
+      {
+        "id": "recollect",
+        "count": 1
+      },
+      {
+        "id": "return-to-soil",
+        "count": 1
+      },
+      {
+        "id": "summon-ruby-cobra",
+        "count": 1
+      },
+      {
+        "id": "summon-ruin-dweller",
+        "count": 1
+      },
+      {
+        "id": "summon-silver-snake",
+        "count": 1
+      },
+      {
+        "id": "sunshield-sentry",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "ruby-cobra",
+        "count": 3
+      },
+      {
+        "id": "ruin-dweller",
+        "count": 2
+      },
+      {
+        "id": "silver-snake",
+        "count": 1
+      }
+    ],
+    "notes": "https://jaysonsethlindley.medium.com/adventuring-party-4-seven-constructed-ashes-decks-from-one-collection-75842c7d4a3a"
+  },
+  {
+    "precon_id": 147,
+    "name": "The Illusionist | Adventuring Party 4",
+    "phoenixborn": [
+      {
+        "id": "victoria-glassfire",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 2
+      },
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "illusion",
+        "count": 5
+      },
+      {
+        "magic": "sympathy",
+        "count": 2
+      }
+    ],
+    "cards": [
+      {
+        "id": "chant-of-erosion",
+        "count": 2
+      },
+      {
+        "id": "copycat",
+        "count": 2
+      },
+      {
+        "id": "dream-fracture",
+        "count": 3
+      },
+      {
+        "id": "dreamlock-mage",
+        "count": 2
+      },
+      {
+        "id": "essence-druid",
+        "count": 2
+      },
+      {
+        "id": "gates-thrown-open",
+        "count": 3
+      },
+      {
+        "id": "hollow",
+        "count": 2
+      },
+      {
+        "id": "keepsake",
+        "count": 3
+      },
+      {
+        "id": "particle-shield",
+        "count": 3
+      },
+      {
+        "id": "psychic-vampire",
+        "count": 1
+      },
+      {
+        "id": "ritualist",
+        "count": 1
+      },
+      {
+        "id": "summon-ancestor-spirit",
+        "count": 1
+      },
+      {
+        "id": "summon-shadow-spirit",
+        "count": 3
+      },
+      {
+        "id": "to-shadows",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "ancestor-spirit",
+        "count": 2
+      },
+      {
+        "id": "eroding",
+        "count": 3
+      },
+      {
+        "id": "shadow-spirit",
+        "count": 3
+      }
+    ],
+    "notes": "https://jaysonsethlindley.medium.com/adventuring-party-4-seven-constructed-ashes-decks-from-one-collection-75842c7d4a3a"
   }
 ]
