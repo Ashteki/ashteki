@@ -93,9 +93,9 @@ class GameList extends React.Component {
         return true;
     }
 
-    getPlayerCards(player, firstPlayer, gameStarted) {
+    getPlayerCards(player, firstPlayer, gameStarted, showPhoenixborn) {
         const pbCard =
-            gameStarted && player.deck ? (
+            gameStarted && showPhoenixborn && player.deck ? (
                 <div className='game-list-deck-image'>
                     <Phoenixborn pbStub={player.deck.pbStub} />
                 </div>
@@ -140,7 +140,14 @@ class GameList extends React.Component {
 
             let retPlayer = (
                 <div key={player.name} className={classes}>
-                    <div>{this.getPlayerCards(player, firstPlayer, game.started)}</div>
+                    <div>
+                        {this.getPlayerCards(
+                            player,
+                            firstPlayer,
+                            game.started,
+                            this.canWatch(game)
+                        )}
+                    </div>
                 </div>
             );
 
