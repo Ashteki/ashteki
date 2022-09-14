@@ -33,6 +33,21 @@ describe('Piercing Light Ready Spell ', function () {
             expect(this.raywardRecruit.getKeywordValue('overkill')).toBe(1);
         });
 
+        it('no overkill to all divine buffed units when exhausted', function () {
+            this.piercingLight.tokens.exhaustion = 1;
+
+            // buff a unit
+            this.player1.clickCard(this.raywardRecruit);
+            this.player1.clickPrompt('Play this Ally');
+            expect(this.raywardRecruit.location).toBe('play area');
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.raywardRecruit);
+            expect(this.raywardRecruit.attack).toBe(1);
+
+            // check for overkill
+            expect(this.raywardRecruit.hasKeyword('overkill')).toBe(false);
+        });
+
         it('buffed unit overkill works as normal', function () {
             // buff a unit
             this.player1.clickDie(0);

@@ -4,6 +4,7 @@ const Card = require('../../Card.js');
 class PiercingLight extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
+            condition: () => !this.exhausted,
             match: (card) => card.dieUpgrades.some((die) => die.magic === Magic.Divine),
             effect: ability.effects.addKeyword({ overkill: 1 })
         });
