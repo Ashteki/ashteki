@@ -23,10 +23,12 @@ class SummonMindFogOwl extends Card {
             then: {
                 condition: (context) =>
                     context.source.focus > 0 &&
-                    context.preThenEvent.context.costs.returnDice.some((d) => d.level === 'power'),
+                    context.preThenEvent.context.costs.returnDice.some(
+                        (d) => d.level === Level.Power && d.magic === Magic.Charm
+                    ),
                 gameAction: this.game.actions.resolveDieAbility((context) => ({
                     target: context.preThenEvent.context.costs.returnDice.find(
-                        (d) => d.level === 'power'
+                        (d) => d.level === Level.Power && d.magic === Magic.Charm
                     )
                 }))
             }

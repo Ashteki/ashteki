@@ -110,6 +110,22 @@ export function importDeck(deck) {
     };
 }
 
+export function resyncDeck(deck) {
+    let str = JSON.stringify({
+        uuid: deck.ashesLiveUuid
+    });
+
+    return {
+        types: [Decks.ResyncDeck, Decks.DeckResynced],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/decks/',
+            type: 'POST',
+            data: str
+        }
+    };
+}
+
 function formatCards(cards) {
     return cards.map((card) => {
         return { id: card.id, count: card.count || 1 };

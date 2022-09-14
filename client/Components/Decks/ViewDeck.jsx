@@ -5,8 +5,10 @@ import { ButtonGroup, Col } from 'react-bootstrap';
 import ConfirmButton from '../Form/ConfirmButton';
 import DeckSummary from './DeckSummary';
 import Panel from '../Site/Panel';
-import { deleteDeck, navigate } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
+import { deleteDeck, navigate, clearApiStatus, resyncDeck } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import ApiStatus from '../Site/ApiStatus';
+import { Decks } from '../../redux/types';
 
 /**
  * @typedef ViewDeckProps
@@ -25,8 +27,43 @@ const ViewDeck = ({ deck }) => {
     const handleEditClick = () => {
         dispatch(navigate('/decks/edit'));
     };
+    const handleUpdateClick = () => {
+        dispatch(resyncDeck(deck));
+    };
 
-    return (
+    const apiState = useSelector((state) => {
+        const retState = state.api[Decks.ResyncDeck];
+
+        if (retState && retState.success) {
+            retState.message = 'Deck updated successfully';
+
+            setTimeout(() => {
+                dispatch(clearApiStatus(Decks.ResyncDeck));
+            }, 1000);
+        }
+
+        return retState;
+    });
+    let deleteButton = null;
+    if (deck._id) {
+        deleteButton = (
+            <ConfirmButton onClick={handleDeleteClick}>
+                <Trans>Delete</Trans>
+            </ConfirmButton>
+        );
+    }
+
+    let updateButton = null;
+    if (deck.ashesLiveUuid) {
+        updateButton = <button className='btn btn-secondary' onClick={handleUpdateClick}>Update</button>;
+    }
+
+    return (<>
+        <ApiStatus
+            state={apiState}
+            onClose={() => dispatch(clearApiStatus(Decks.ResyncDeck))}
+        />
+
         <Panel title={deck?.name}>
             <Col xs={12} className='text-center'>
                 <ButtonGroup>
@@ -34,13 +71,13 @@ const ViewDeck = ({ deck }) => {
                         Edit
                     </button>
 
-                    <ConfirmButton onClick={handleDeleteClick}>
-                        <Trans>Delete</Trans>
-                    </ConfirmButton>
+                    {deleteButton}
+                    {updateButton}
                 </ButtonGroup>
             </Col>
             <DeckSummary deck={deck} />
         </Panel>
+    </>
     );
 };
 

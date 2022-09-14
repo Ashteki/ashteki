@@ -95,6 +95,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         sortDir: 'desc',
         filter: []
     });
+
     const pbFilter = useRef(null);
     const nameFilter = useRef(null);
     const dispatch = useDispatch();
@@ -114,11 +115,12 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         }
     };
 
-    const { decks, numDecks, selectedDeck, allCards } = useSelector((state) => ({
+    const { decks, numDecks, selectedDeck, allCards, deckReload } = useSelector((state) => ({
         decks: getDecks(state),
         numDecks: state.cards.numDecks,
         selectedDeck: standaloneDecks ? null : state.cards.selectedDeck,
-        allCards: state.cards.cards
+        allCards: state.cards.cards,
+        deckReload: state.cards.deckReload
     }));
 
     useEffect(() => {
@@ -135,7 +137,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         }
 
         $('.filter-label').parent().parent().hide();
-    }, [pagingDetails, dispatch, standaloneDecks]);
+    }, [pagingDetails, dispatch, standaloneDecks, deckReload]);
 
     const selectRow = {
         mode: 'radio',

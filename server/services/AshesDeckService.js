@@ -22,6 +22,13 @@ class AshesDeckService {
         });
     }
 
+    getByAshesLiveUuid(id) {
+        return this.decks.findOne({ ashesLiveUuid: id }).catch((err) => {
+            logger.error('Unable to fetch deck', err);
+            throw new Error('Unable to fetch deck ' + id);
+        });
+    }
+
     getPreconDeckById(id) {
         return this.preconDecks.findOne({ _id: id }).catch((err) => {
             logger.error('Unable to fetch precon deck', err);
@@ -110,26 +117,35 @@ class AshesDeckService {
         let newDeck = this.parseAshesLiveDeckResponse(user, deckResponse);
         newDeck.ashesLiveUuid = deck.uuid;
 
-        let response = await this.create(newDeck);
+        // is this an update
+        let response = await this.getByAshesLiveUuid(deck.uuid);
+        if (response) {
+            // update the deck data
+            response = Object.assign(response, newDeck);
+            // save the deck
+            this.update(response);
+        } else {
+            response = await this.create(newDeck);
+        }
 
         return this.getById(response._id);
     }
 
-    parseAshesLiveDeckResponse(user, ashesDeck) {
+    parseAshesLiveDeckResponse(user, ashesLiveDeck) {
         return {
             username: user.username,
-            name: ashesDeck.title,
+            name: ashesLiveDeck.title,
             phoenixborn: [
                 {
-                    id: ashesDeck.phoenixborn.stub,
+                    id: ashesLiveDeck.phoenixborn.stub,
                     count: 1
                 }
             ],
-            dicepool: ashesDeck.dice.map((d) => ({ magic: d.name, count: d.count })),
-            cards: ashesDeck.cards.map((c) => ({ id: c.stub, count: c.count })),
-            conjurations: ashesDeck.conjurations.map((c) => ({ id: c.stub, count: c.count })),
-            notes: ashesDeck.description,
-            ashesLiveModified: ashesDeck.modified
+            dicepool: ashesLiveDeck.dice.map((d) => ({ magic: d.name, count: d.count })),
+            cards: ashesLiveDeck.cards.map((c) => ({ id: c.stub, count: c.count })),
+            conjurations: ashesLiveDeck.conjurations.map((c) => ({ id: c.stub, count: c.count })),
+            notes: ashesLiveDeck.description,
+            ashesLiveModified: ashesLiveDeck.modified
         };
     }
 
@@ -159,16 +175,17 @@ class AshesDeckService {
 
     update(deck) {
         let properties = {
-            name: deck.deckName,
+            name: deck.deckName || deck.name,
             phoenixborn: deck.phoenixborn,
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,
             notes: deck.notes,
+            ashesLiveModified: deck.ashesLiveModified,
             lastUpdated: new Date()
         };
 
-        return this.decks.update({ _id: deck.id }, { $set: properties });
+        return this.decks.update({ _id: deck.id || deck._id }, { $set: properties });
     }
 
     delete(id) {

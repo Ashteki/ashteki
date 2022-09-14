@@ -52,12 +52,19 @@ describe('Summon Prism Tetra', function () {
             expect(this.player1.actions.main).toBe(true);
             this.player1.clickCard(this.summonPrismTetra);
             this.player1.clickPrompt('Summon Prism Tetra');
-            //don't require action type selection
+            this.player1.endTurn();
+
             expect(this.prismTetra.location).toBe('play area');
             expect(this.player1.inPlay.length).toBe(3);
             expect(this.prismTetra.anyEffect('cannotBeSpellTarget')).toBe(true);
             expect(this.prismTetra.anyEffect('cannotBeAbilityTarget')).toBe(true);
             expect(this.prismTetra.anyEffect('cannotBeDicePowerTarget')).toBe(true);
+
+            this.player2.endTurn();
+            expect(this.prismTetra.anyEffect('cannotBeSpellTarget')).toBe(false);
+            expect(this.prismTetra.anyEffect('cannotBeAbilityTarget')).toBe(false);
+            expect(this.prismTetra.anyEffect('cannotBeDicePowerTarget')).toBe(false);
+
         });
     });
 });

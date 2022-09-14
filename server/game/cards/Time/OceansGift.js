@@ -1,4 +1,4 @@
-const { Level } = require('../../../constants.js');
+const { Level, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class OceansGift extends Card {
@@ -36,6 +36,7 @@ class OceansGift extends Card {
                         title: 'Bestow',
                         activePromptTitle: 'Choose a unit to add 1 status token to',
                         effect: 'add 1 status token',
+                        cardType: BattlefieldTypes,
                         gameAction: ability.actions.addStatusToken()
                     }
                 })

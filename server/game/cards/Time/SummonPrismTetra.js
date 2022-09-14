@@ -24,7 +24,10 @@ class SummonPrismTetra extends Card {
                 condition: (context) => context.source.focus >= 1,
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     target: context.preThenEvent.cards,
-                    duration: 'untilEndOfTurn',
+                    until: {
+                        onBeginTurn: (event) => event.player === context.player,
+                        onBeginRound: () => true
+                    },
                     effect: [
                         ability.effects.cannotBeSpellTarget(),
                         ability.effects.cannotBeAbilityTarget(),
