@@ -6,7 +6,6 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import Panel from '../Site/Panel';
-import AlertPanel from '../Site/AlertPanel';
 import GameFormats from './GameFormats';
 
 import GameOptions from './GameOptions';
@@ -97,12 +96,6 @@ const NewGame = ({
                             dispatch(
                                 sendSocketMessage('newgame', {
                                     ...values,
-                                    expansions: {
-                                        aoa: values.aoa,
-                                        cota: values.cota,
-                                        wc: values.wc,
-                                        mm: values.mm
-                                    },
                                     name: `${getParticipantName(
                                         match.player1_id
                                     )} vs ${getParticipantName(match.player2_id)}`,
@@ -113,13 +106,6 @@ const NewGame = ({
                             onClosed(true);
                         }
                     } else {
-                        values.expansions = {
-                            aoa: values.aoa,
-                            cota: values.cota,
-                            wc: values.wc,
-                            mm: values.mm
-                        };
-
                         dispatch(sendSocketMessage('newgame', values));
                     }
                 }}
@@ -129,12 +115,10 @@ const NewGame = ({
                     <Form
                         onSubmit={(event) => {
                             event.preventDefault();
-
                             formProps.handleSubmit(event);
                         }}
                     >
-
-                        {(
+                        {
                             <>
                                 {!tournament && (
                                     <Form.Row>
@@ -158,9 +142,9 @@ const NewGame = ({
                                 <GameFormats formProps={formProps} />
                                 <GameOptions formProps={formProps} />
                             </>
-                        )}
+                        }
                         {!tournament && <GameTypes formProps={formProps} />}
-                        {(
+                        {
                             <Row>
                                 <Form.Group as={Col} sm={6}>
                                     <Form.Label>{t('Password')}</Form.Label>
@@ -180,7 +164,7 @@ const NewGame = ({
                                     />
                                 </Form.Group>
                             </Row>
-                        )}
+                        }
                         <div className='text-center newgame-buttons'>
                             <Button variant='success' type='submit'>
                                 <Trans>Create</Trans>

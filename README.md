@@ -25,9 +25,11 @@ If you're not coding inclined, then just playing games on the site, and reportin
 
 ### X Y Z doesn't work
 
-As of writing the Reborn set up to and including Lulu and Orrick has been implemented, so any cards from later expansions may load, but won't trigger any automatic ablities. You may be able to use manual mode, but hopefully you won't have to for long. If there's anything you can't do that you need to be able to do, let me know by raising an issue. Likewise if there's a bug, a crash, or anything amiss then let me know by raising an issue on github or visiting the Ashes discord server.
+If there's anything you can't do that you need to be able to do, let me know by raising an issue. Likewise if there's a bug, a crash, or anything amiss then let me know by raising an issue on github or visiting the Ashes discord server.
 
 ## Development
+
+This is an overview that *should* work, but get in touch as soon as you run into any hiccups because this page hasn't be reviewed in ages.
 
 ### Docker
 
