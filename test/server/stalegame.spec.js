@@ -3,7 +3,6 @@ describe('stale game check', function () {
     const badGame = `{
             _id: 6143d3e5edf69e002e440d81,
             id: '01d1d0c0-1746-11ec-9457-2d537a559f37',
-            expansions: { mm: true },
             gamePrivate: false,
             gameId: '01d1d0c0-1746-11ec-9457-2d537a559f37',
             gameType: 'competitive',

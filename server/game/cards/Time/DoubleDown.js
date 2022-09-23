@@ -27,8 +27,12 @@ class DoubleDown extends Card {
     }
     getConjurationCount(context) {
         let cards = context.player.archives.filter((c) => c.id === context.event.card.id);
-        // takes into account that the destroyed conjuration is already in the conjuration pile
-        return Math.min(cards.length - 1, 2);
+        // take into account that the destroyed conjuration is already in the conjuration pile
+        let cardCount = cards.length;
+        if (context.event.card.location === 'archives') {
+            cardCount--;
+        }
+        return Math.min(cardCount, 2);
     }
 }
 

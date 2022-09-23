@@ -10,7 +10,6 @@ class PendingGame {
         this.adaptive = details.adaptive;
         this.allowSpectators = details.allowSpectators;
         this.createdAt = new Date();
-        this.expansions = details.expansions;
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;
         this.gamePrivate = !!details.gamePrivate;
@@ -66,7 +65,6 @@ class PendingGame {
 
         return {
             id: this.id,
-            expansions: this.expansions,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
             gameId: this.id,

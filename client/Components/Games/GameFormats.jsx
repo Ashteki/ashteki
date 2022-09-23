@@ -2,7 +2,6 @@ import React from 'react';
 import { Trans } from 'react-i18next';
 import { Form, Col } from 'react-bootstrap';
 import { gameFormats } from '../../util';
-import faImage from '../../assets/img/first-adventure.png';
 
 import './GameFormats.scss';
 
