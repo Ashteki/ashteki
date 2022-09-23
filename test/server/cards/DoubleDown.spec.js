@@ -244,4 +244,39 @@ describe('Double Down', function () {
             expect(this.player2.inPlay.length).toBe(5); // Butterfly Monk, Glow Finch, 2 Creepers, 1 Seedling
         });
     });
+
+    describe('vs VBS', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
+                    archives: [],
+                    hand: ['molten-gold', 'crimson-bomber', 'natures-wrath']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['vampire-bat-swarm', 'hammer-knight', 'mist-spirit'],
+                    spellboard: ['summon-shadow-spirit'],
+                    hand: ['double-down'],
+                    dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
+                    archives: ['vampire-bat-swarm', 'vampire-bat-swarm']
+                }
+            });
+        });
+
+        it('should allow resurrection of VBS', function () {
+            expect(this.player2.inPlay.length).toBe(3);
+
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(this.vampireBatSwarm);
+            this.player2.clickYes();
+            expect(this.player2.inPlay.length).toBe(3); // resurrected VBS
+            this.player2.clickCard(this.doubleDown);
+            expect(this.player2.inPlay.length).toBe(5); // added 2 VBS
+        });
+    });
 });
