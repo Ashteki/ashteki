@@ -112,7 +112,8 @@ export function importDeck(deck) {
 
 export function resyncDeck(deck) {
     let str = JSON.stringify({
-        uuid: deck.ashesLiveUuid
+        uuid: deck.ashesLiveUuid,
+        resync: true
     });
 
     return {

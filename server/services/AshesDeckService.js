@@ -89,7 +89,7 @@ class AshesDeckService {
         return this.decks.insert(properties);
     }
 
-    async import(user, deck) {
+    async import(user, deck, resync = false) {
         let deckResponse;
 
         try {
@@ -118,9 +118,10 @@ class AshesDeckService {
         newDeck.ashesLiveUuid = deck.uuid;
 
         // is this an update
-        let response = await this.getByAshesLiveUuid(deck.uuid);
-        if (response) {
+        let response;
+        if (resync) {
             // update the deck data
+            response = await this.getByAshesLiveUuid(deck.uuid);
             response = Object.assign(response, newDeck);
             // save the deck
             this.update(response);
