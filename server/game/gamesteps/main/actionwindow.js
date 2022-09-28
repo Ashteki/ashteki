@@ -141,15 +141,17 @@ class ActionWindow extends UiPrompt {
                 return true;
             }
 
-            let cards = player.cardsInPlay.concat(player.hand);
-            if (
-                player.actions.main &&
-                cards.some((card) => card.getLegalActions(player).length > 0)
-            ) {
+            if (player.actions.main) {
+                let passPrompt = 'Pass your main action?';
+                let yesChoice = { text: 'Yes' };
+                if (player.opponent.passedMain) {
+                    passPrompt += ' This will end the round.';
+                    yesChoice.className = 'btn-danger';
+                }
                 this.game.promptWithHandlerMenu(player, {
                     source: 'End Turn',
-                    activePromptTitle: 'Pass your main action?',
-                    choices: ['Yes', 'No'],
+                    activePromptTitle: passPrompt,
+                    choices: [yesChoice, 'No'],
                     handlers: [() => this.endActionWindow(), () => true]
                 });
             } else {
