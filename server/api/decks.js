@@ -185,7 +185,7 @@ module.exports.init = function (server) {
                 let savedDeck;
 
                 try {
-                    savedDeck = await deckService.import(req.user, deck);
+                    savedDeck = await deckService.import(req.user, deck, req.body.resync);
                 } catch (error) {
                     return res.send({
                         success: false,
