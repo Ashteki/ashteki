@@ -90,9 +90,29 @@ class AshesDeckService {
     }
 
     async import(user, deck, resync = false) {
-        let deckResponse;
+        let deckResponse = await this.getAshesLiveDeck(deck, resync);
 
+        let newDeck = this.parseAshesLiveDeckResponse(user, deckResponse);
+        newDeck.ashesLiveUuid = deck.uuid;
+
+        // is this an update
+        let response;
+        if (resync) {
+            // update the deck data
+            response = await this.getById(deck.id);
+            response = Object.assign(response, newDeck);
+            // save the deck
+            this.update(response);
+        } else {
+            response = await this.create(newDeck);
+        }
+
+        return this.getById(response._id);
+    }
+
+    async getAshesLiveDeck(deck, resync) {
         try {
+            // get by uuid (private share, or snapshot)
             let response = await util.httpRequest(
                 `https://api.ashes.live/v2/decks/shared/${deck.uuid}`
             );
@@ -103,33 +123,34 @@ class AshesDeckService {
                 throw new Error('Invalid response from api. Please try again later.');
             }
 
-            deckResponse = JSON.parse(response);
+            let deckResponse = JSON.parse(response);
+
+            if (resync && deckResponse.is_snapshot && deckResponse.source_id) {
+                const sourceDeckId = deckResponse.source_id;
+                // get latest published deck by deck id
+                response = await util.httpRequest(
+                    `https://api.ashes.live/v2/decks/${sourceDeckId}`
+                );
+
+                if (response[0] === '<') {
+                    logger.error('Deck failed to import by id: %s %s', sourceDeckId, response);
+
+                    throw new Error('Invalid response from api. Please try again later.');
+                }
+
+                deckResponse = JSON.parse(response).deck;
+            }
+
+            if (!deckResponse || !deckResponse.cards) {
+                throw new Error('Invalid response from Api - no cards. Please try again later.');
+            }
+
+            return deckResponse;
         } catch (error) {
             logger.error(`Unable to import deck ${deck.uuid}`, error);
 
             throw new Error('Invalid response from Api. Please try again later.');
         }
-
-        if (!deckResponse || !deckResponse.cards) {
-            throw new Error('Invalid response from Api. Please try again later.');
-        }
-
-        let newDeck = this.parseAshesLiveDeckResponse(user, deckResponse);
-        newDeck.ashesLiveUuid = deck.uuid;
-
-        // is this an update
-        let response;
-        if (resync) {
-            // update the deck data
-            response = await this.getByAshesLiveUuid(deck.uuid);
-            response = Object.assign(response, newDeck);
-            // save the deck
-            this.update(response);
-        } else {
-            response = await this.create(newDeck);
-        }
-
-        return this.getById(response._id);
     }
 
     parseAshesLiveDeckResponse(user, ashesLiveDeck) {

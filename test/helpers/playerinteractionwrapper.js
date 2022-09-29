@@ -489,7 +489,7 @@ class PlayerInteractionWrapper {
         }
 
         this.clickPrompt('End Turn');
-        if (this.currentPrompt().menuTitle === 'Pass your main action?') {
+        if (this.currentPrompt().menuTitle.startsWith('Pass your main action?')) {
             this.clickPrompt('Yes');
         }
     }

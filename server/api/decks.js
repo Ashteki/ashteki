@@ -181,7 +181,10 @@ module.exports.init = function (server) {
                 res.send({ success: true });
             } else {
                 // this is an import/update request
-                let deck = Object.assign({}, { uuid: req.body.uuid, username: req.user.username });
+                let deck = Object.assign(
+                    {},
+                    { id: req.body.deckId, uuid: req.body.uuid, username: req.user.username }
+                );
                 let savedDeck;
 
                 try {
