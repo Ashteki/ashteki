@@ -33,7 +33,7 @@ describe('Hypnotize', function () {
 
         expect(this.ironWorker.anyEffect('bypass')).toBe(true);
 
-        this.player1.clickPrompt('End Turn');
+        this.player1.endTurn();
 
         expect(this.ironWorker.anyEffect('bypass')).toBe(false);
     });
