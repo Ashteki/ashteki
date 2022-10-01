@@ -73,17 +73,23 @@ export class PlayerStats extends React.Component {
     }
 
     renderLifeRemaining() {
-        const pbLife = this.props.phoenixborn.life;
-        let pbDamage = this.props.phoenixborn.tokens.damage
-            ? this.props.phoenixborn.tokens.damage
-            : 0;
-        const lifeValue = Math.max(0, pbLife - pbDamage);
+        const pb = this.props.phoenixborn;
+        let pbDamage = 0;
         let lifeClass = 'life-green';
-        if (lifeValue <= 10) {
-            lifeClass = 'life-orange';
-        }
-        if (lifeValue <= 5) {
-            lifeClass = 'life-red';
+        let lifeValue = 0;
+
+        if (pb) {
+            const pbLife = pb.life;
+            pbDamage = this.props.phoenixborn.tokens.damage
+                ? this.props.phoenixborn.tokens.damage
+                : 0;
+            lifeValue = Math.max(0, pbLife - pbDamage);
+            if (lifeValue <= 10) {
+                lifeClass = 'life-orange';
+            }
+            if (lifeValue <= 5) {
+                lifeClass = 'life-red';
+            }
         }
 
         let classes = classNames('action', 'life-remaining', lifeClass);
