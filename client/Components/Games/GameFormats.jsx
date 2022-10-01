@@ -1,18 +1,11 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 import { Form, Col } from 'react-bootstrap';
-
+import { gameFormats } from '../../util';
 import './GameFormats.scss';
 import GameFormatInfo from './GameFormatInfo';
 
 const GameFormats = ({ formProps }) => {
-    const gameFormats = [
-        { name: 'firstadventure', label: 'First Adventure' },
-        { name: 'aparty', label: 'Adventuring Party' },
-        { name: 'precon', label: 'Precon' },
-        { name: 'constructed', label: 'Constructed' }
-    ];
-
     return (
         <>
             <Form.Row>

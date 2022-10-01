@@ -61,6 +61,13 @@ export const getStandardControlProps = (formProps, controlName) => ({
     isInvalid: formProps.touched[controlName] && !!formProps.errors[controlName]
 });
 
+export const gameFormats = [
+    { name: 'firstadventure', label: 'First Adventure' },
+    { name: 'aparty', label: 'Adventuring Party' },
+    { name: 'precon', label: 'Precon' },
+    { name: 'constructed', label: 'Constructed' }
+];
+
 export const getFormatLabel = (name) => {
     const format = gameFormats.find(f => f.name === name);
     return format?.label;

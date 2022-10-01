@@ -12,6 +12,7 @@ import { startGame, leaveGame, sendSocketMessage } from '../../redux/actions';
 import PendingGamePlayers from './PendingGamePlayers';
 import ChargeMp3 from '../../assets/sound/charge.mp3';
 import ChargeOgg from '../../assets/sound/charge.ogg';
+import { getFormatLabel } from '../../util';
 
 import './PendingGame.scss';
 import { useEffect } from 'react';
@@ -202,6 +203,10 @@ const PendingGame = () => {
                     </ReactClipboard>
                 </div>
                 <div className='game-status'>{getGameStatus()}</div>
+                <h3>
+                    Format: <span className='unbold'>{getFormatLabel(currentGame.gameFormat)}</span>
+                </h3>
+
                 <PendingGamePlayers
                     currentGame={currentGame}
                     user={user}

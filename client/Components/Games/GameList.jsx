@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 import PlayerName from '../Site/PlayerName';
-import SealedIcon from '../../assets/img/sealed.png';
 import { getFormatLabel } from '../../util';
 
 import AlertPanel from '../Site/AlertPanel';
