@@ -1,11 +1,18 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 import { Form, Col } from 'react-bootstrap';
-import { gameFormats } from '../../util';
 
 import './GameFormats.scss';
+import GameFormatInfo from './GameFormatInfo';
 
 const GameFormats = ({ formProps }) => {
+    const gameFormats = [
+        { name: 'firstadventure', label: 'First Adventure' },
+        { name: 'aparty', label: 'Adventuring Party' },
+        { name: 'precon', label: 'Precon' },
+        { name: 'constructed', label: 'Constructed' }
+    ];
+
     return (
         <>
             <Form.Row>
@@ -15,6 +22,7 @@ const GameFormats = ({ formProps }) => {
                 <Form.Group as={Col}>
                     {gameFormats.map((format) => (
                         <Form.Check
+                            className='game-format'
                             name='gameFormat'
                             key={format.name}
                             type='radio'
@@ -34,6 +42,12 @@ const GameFormats = ({ formProps }) => {
                     </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
+            <Form.Row>
+                <Col xs={12}>
+                    <GameFormatInfo gameType={formProps.values.gameFormat} />
+                </Col>
+            </Form.Row>
+
         </>
     );
 };
