@@ -121,10 +121,12 @@ class GameService {
                             pbs[phoenixborn] = { name: phoenixborn, wins: 0, losses: 0 };
 
                         // increment the record win/loss
-                        if (game.winner === username) {
-                            pbs[phoenixborn].wins++;
-                        } else {
-                            pbs[phoenixborn].losses++;
+                        if (game.winReason !== 'Agreement') {
+                            if (game.winner === username) {
+                                pbs[phoenixborn].wins++;
+                            } else {
+                                pbs[phoenixborn].losses++;
+                            }
                         }
                     }
                 });

@@ -859,7 +859,7 @@ class Lobby {
             return;
         }
 
-        // update user list
+        // refresh the userlist with the latest player record (with game count incremented) 
         const promises = [];
         for (const p in game.players) {
             const socket = this.socketsByName[game.players[p].name];
