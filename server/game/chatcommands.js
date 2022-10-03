@@ -4,6 +4,7 @@ const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const Deck = require('./deck');
 const RematchPrompt = require('./gamesteps/RematchPrompt');
 const { CardType, UpgradeCardTypes, BattlefieldTypes } = require('../constants');
+const EndGamePrompt = require('./gamesteps/EndGamePrompt');
 
 class ChatCommands {
     constructor(game) {
@@ -19,6 +20,7 @@ class ChatCommands {
             '/discard': this.discard,
             '/discardfromdeck': this.discardtopofdeck,
             '/givecontrol': this.giveControl,
+            '/endgame': this.endgame,
             '/manual': this.manual,
             '/move': this.moveCard,
             '/moveto': this.moveCard,
@@ -485,6 +487,11 @@ class ChatCommands {
             this.game.addAlert('danger', '{0} is attempting to switch manual mode on', player);
             this.game.queueStep(new ManualModePrompt(this.game, player));
         }
+    }
+
+    endgame(player) {
+        this.game.addAlert('danger', '{0} is wants to end the game without loss', player);
+        this.game.queueStep(new EndGamePrompt(this.game, player));
     }
 
     muteSpectators(player) {

@@ -13,12 +13,20 @@ class GameWonPrompt extends AllPlayerPrompt {
     }
 
     activePrompt() {
-        return {
-            promptTitle: 'Game Won',
-            menuTitle: {
+        let menuTitle = {
+            text: 'The game has ended',
+            values: []
+        };
+        if (this.winner) {
+            menuTitle = {
                 text: '{{player}} has won the game!',
                 values: { player: this.winner.name }
-            },
+            };
+        }
+
+        return {
+            promptTitle: 'Game Won',
+            menuTitle: menuTitle,
             buttons: [
                 { command: 'leavegame', arg: 'leavegame', text: 'Leave' },
                 { arg: 'rematch', text: 'Rematch' },
