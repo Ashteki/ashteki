@@ -3,6 +3,7 @@ const CardGameAction = require('./CardGameAction');
 class ReturnToHandAction extends CardGameAction {
     setDefaultProperties() {
         this.location = ['play area', 'spellboard'];
+        this.showMessage = false;
     }
 
     setup() {
@@ -33,7 +34,16 @@ class ReturnToHandAction extends CardGameAction {
         return super.createEvent(
             eventName,
             { card: card, player: card.owner, context: context },
-            (event) => event.player.moveCard(event.card, 'hand')
+            (event) => {
+                event.player.moveCard(event.card, 'hand')
+                if (this.showMessage) {
+                    context.game.addMessage(
+                        "{0} is returned to {1}'s hand",
+                        event.card,
+                        event.player
+                    );
+                }
+            }
         );
     }
 }
