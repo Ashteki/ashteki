@@ -23,6 +23,7 @@ import PlayerPBRow from './PlayerPBRow';
 import { imageUrl } from '../../util';
 import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
+import CardInspector from './CardInspector';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -510,33 +511,41 @@ export class GameBoard extends React.Component {
         );
     }
 
-    getPromptArea(thisPlayer) {
-        return <div className='prompt-area panel'>
+    getCardLog() {
+        return (
             <div className='timer-log-area'>
-
                 <CardLog
                     cards={this.props.currentGame.cardLog}
                     onMouseOut={this.onMouseOut}
-                    onMouseOver={this.onMouseOver} />
-            </div>
-            <div className='inset-pane'>
-                <ActivePlayerPrompt
-                    cards={this.props.cards}
-                    buttons={thisPlayer.buttons}
-                    controls={thisPlayer.controls}
-                    diceReq={thisPlayer.diceReq}
-                    promptText={thisPlayer.menuTitle}
-                    promptTitle={thisPlayer.promptTitle}
-                    onButtonClick={this.onCommand}
                     onMouseOver={this.onMouseOver}
-                    onMouseOut={this.onMouseOut}
-                    onTimerExpired={this.onTimerExpired.bind(this)}
-                    user={thisPlayer.user} // use thisplayer user to read latest game optionSettings like BluffTimer
-                    phase={thisPlayer.phase} />
-                {this.getTimer()}
+                />
             </div>
+        );
+    }
 
-        </div>;
+    getPromptArea(thisPlayer) {
+        const logArea = this.props.inspectionCard ? <CardInspector /> : this.getCardLog();
+        return (
+            <div className='prompt-area panel'>
+                <div>{logArea}</div>
+                <div className='inset-pane'>
+                    <ActivePlayerPrompt
+                        cards={this.props.cards}
+                        buttons={thisPlayer.buttons}
+                        controls={thisPlayer.controls}
+                        diceReq={thisPlayer.diceReq}
+                        promptText={thisPlayer.menuTitle}
+                        promptTitle={thisPlayer.promptTitle}
+                        onButtonClick={this.onCommand}
+                        onMouseOver={this.onMouseOver}
+                        onMouseOut={this.onMouseOut}
+                        onTimerExpired={this.onTimerExpired.bind(this)}
+                        user={thisPlayer.user} // use thisplayer user to read latest game optionSettings like BluffTimer
+                        phase={thisPlayer.phase} />
+                    {this.getTimer()}
+                </div>
+            </div>
+        );
     }
 }
 
@@ -564,6 +573,7 @@ GameBoard.propTypes = {
 function mapStateToProps(state) {
     return {
         cardToZoom: state.cards.zoomCard,
+        inspectionCard: state.ingame.inspectionCard,
         cards: state.cards.cards,
         currentGame: state.lobby.currentGame,
         packs: state.cards.packs,

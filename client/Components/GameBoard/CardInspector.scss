@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+@import '../../styles/colours';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.card-inspector {
+    position: relative;
+    width: 210px;
+}
+
+.simple-card {
+    border-radius: 6.25%;
+    overflow: hidden;
+    // max-width: 130px;
+    // max-height: 182px;
+
+}
+
+.inspector-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}

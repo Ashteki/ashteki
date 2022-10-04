@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+
 import classNames from 'classnames';
 import 'jquery-migrate';
 import { useDrag } from 'react-dnd';
-import { effectUrl } from '../../util';
 
 import CardMenu from './CardMenu';
 import CardCounters from './CardCounters';
@@ -16,6 +17,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import Die from './Die';
 
 import './Card.scss';
+import { inspectCard } from '../../redux/actions';
 
 const Card = ({
     canDrag,
@@ -42,6 +44,7 @@ const Card = ({
         [size]: size !== 'normal'
     };
     const [showMenu, setShowMenu] = useState(false);
+    const dispatch = useDispatch();
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
         item: { card: card, source: source, type: ItemTypes.CARD },
@@ -63,7 +66,7 @@ const Card = ({
             setShowMenu(!showMenu);
             return;
         }
-
+        dispatch(inspectCard(card));
         onClick && onClick(card);
     };
 
