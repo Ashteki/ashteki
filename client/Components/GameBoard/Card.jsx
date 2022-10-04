@@ -17,7 +17,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import Die from './Die';
 
 import './Card.scss';
-import { inspectCard } from '../../redux/actions';
+import { inspectCard, sendGameMessage } from '../../redux/actions';
 
 const Card = ({
     canDrag,
@@ -66,7 +66,7 @@ const Card = ({
             setShowMenu(!showMenu);
             return;
         }
-        dispatch(inspectCard(card));
+        dispatch(sendGameMessage('inspectCard', card.uuid));
         onClick && onClick(card);
     };
 

@@ -9,7 +9,6 @@ import user from './user';
 import stats from './stats';
 import account from './account';
 import lobby from './lobby';
-import ingame from './ingame';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
@@ -23,8 +22,7 @@ const rootReducer = combineReducers({
     user,
     account,
     lobby,
-    stats,
-    ingame
+    stats
 });
 
 export default rootReducer;

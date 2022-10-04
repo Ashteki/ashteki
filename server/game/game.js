@@ -592,6 +592,29 @@ class Game extends EventEmitter {
         }
     }
 
+    inspectCard(playerName, cardId) {
+        const player = this.getPlayerByName(playerName);
+        const card = this.findAnyCardInAnyList(cardId);
+        if (!player || !card) {
+            return;
+        }
+        player.inspectCard(card);
+    }
+
+    closeInspector(playerName) {
+        const player = this.getPlayerByName(playerName);
+        if (!player) {
+            return;
+        }
+        player.clearInspector();
+        this.checkGameState(true);
+    }
+
+    modifyCardToken(playerName, uuid, tokenType, increment) {
+        const card = this.findAnyCardInAnyList(uuid);
+        card.addToken(tokenType, increment);
+    }
+
     modifyAction(playerName, actionType, unspent) {
         let player = this.getPlayerByName(playerName);
         if (!player) {

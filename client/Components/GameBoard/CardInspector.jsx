@@ -1,16 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { clearInspector } from '../../redux/actions';
+import { sendGameMessage } from '../../redux/actions';
 import CardImage from './CardImage';
 import './CardInspector.scss';
 import Minus from '../../assets/img/Minus.png';
 import Plus from '../../assets/img/Plus.png';
 import Counter from './Counter';
 
-const CardInspector = () => {
+const CardInspector = ({ card }) => {
     const dispatch = useDispatch();
-    const card = useSelector((state) => state.ingame.inspectionCard);
     if (!card || !card.id) {
         return null;
     }
@@ -26,26 +24,30 @@ const CardInspector = () => {
                 <a
                     href='#'
                     className='btn-stat'
-                // onClick={this.sendUpdate.bind(this, 'side', 'down')}
+                    onClick={() =>
+                        dispatch(sendGameMessage('modifyCardToken', card.uuid, 'damage', -1))
+                    }
                 >
                     <img src={Minus} title='- side' alt='-' />
                 </a>
 
-                <span key={`inspector-damage`} >
-                    {card.damage}
-                </span>
+                <span key={`inspector-damage`}> {card.damage} </span>
                 <Counter name='damage' showValue={true} value={card.tokens.damage || '0'} />
                 <a
                     href='#'
                     className='btn-stat'
-                // onClick={this.sendUpdate.bind(this, 'side', 'up')}
+                    onClick={() =>
+                        dispatch(sendGameMessage('modifyCardToken', card.uuid, 'damage', 1))
+                    }
                 >
                     <img src={Plus} title='+ side' alt='+' />
                 </a>
             </div>
 
-
-            <button className='btn btn-primary' onClick={() => dispatch(clearInspector())}>
+            <button
+                className='btn btn-primary'
+                onClick={() => dispatch(sendGameMessage('closeInspector'))}
+            >
                 Close
             </button>
         </div>

@@ -524,7 +524,11 @@ export class GameBoard extends React.Component {
     }
 
     getPromptArea(thisPlayer) {
-        const logArea = this.props.inspectionCard ? <CardInspector /> : this.getCardLog();
+        const logArea = thisPlayer.inspectionCard ? (
+            <CardInspector card={thisPlayer.inspectionCard} />
+        ) : (
+            this.getCardLog()
+        );
         return (
             <div className='prompt-area panel'>
                 <div>{logArea}</div>
@@ -573,7 +577,6 @@ GameBoard.propTypes = {
 function mapStateToProps(state) {
     return {
         cardToZoom: state.cards.zoomCard,
-        inspectionCard: state.ingame.inspectionCard,
         cards: state.cards.cards,
         currentGame: state.lobby.currentGame,
         packs: state.cards.packs,
