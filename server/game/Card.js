@@ -509,6 +509,7 @@ class Card extends PlayableObject {
         }
 
         menu.push({ command: 'click', text: 'Select card', menu: 'main' });
+        menu.push({ command: 'inspect', text: 'Inspect card', menu: 'main' });
         if (this.dieUpgrades.length) {
             menu.push({ command: 'detachDie', text: 'Remove die', menu: 'main' });
         }
@@ -580,6 +581,9 @@ class Card extends PlayableObject {
         }
 
         this.tokens[type] += number;
+        if (this.tokens[type] <= 0) {
+            this.tokens[type] = undefined;
+        }
     }
 
     hasToken(type) {

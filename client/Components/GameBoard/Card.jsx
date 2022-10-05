@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import 'jquery-migrate';
@@ -17,7 +17,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import Die from './Die';
 
 import './Card.scss';
-import { inspectCard, sendGameMessage } from '../../redux/actions';
+import { sendGameMessage } from '../../redux/actions';
 
 const Card = ({
     canDrag,
@@ -45,6 +45,7 @@ const Card = ({
     };
     const [showMenu, setShowMenu] = useState(false);
     const dispatch = useDispatch();
+    const manualMode = useSelector((state) => state.lobby.currentGame?.manualMode);
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
         item: { card: card, source: source, type: ItemTypes.CARD },
@@ -59,14 +60,21 @@ const Card = ({
         return source === 'play area' || source === 'spellboard';
     };
 
+    // const isAllowedInspector = () => {
+    //     return manualMode && (source === 'play area' || source === 'spellboard');
+    // };
+
     const onCardClicked = (event, card) => {
         event.preventDefault();
         event.stopPropagation();
+        // if (isAllowedInspector()) {
+        //     dispatch(sendGameMessage('inspectCard', card.uuid));
+        // }
         if (isAllowedMenuSource() && card.menu && card.menu.length !== 0) {
             setShowMenu(!showMenu);
             return;
         }
-        dispatch(sendGameMessage('inspectCard', card.uuid));
+
         onClick && onClick(card);
     };
 

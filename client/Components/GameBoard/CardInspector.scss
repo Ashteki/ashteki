@@ -4,11 +4,15 @@
 @import '~bootstrap/scss/variables';
 
 .card-inspector {
-    position: relative;
+    position: absolute !important;
+    top: 40px;
     width: 210px;
+    z-index: $layer-top;
+    background-color: #000 !important;
 }
 
 .simple-card {
+    position: relative;
     border-radius: 6.25%;
     overflow: hidden;
     // max-width: 130px;
@@ -20,5 +24,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 35px;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
 }

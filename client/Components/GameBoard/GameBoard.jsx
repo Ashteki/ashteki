@@ -436,7 +436,7 @@ export class GameBoard extends React.Component {
                     {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
 
                     {this.renderBoard(thisPlayer, otherPlayer)}
-                    {cardToZoom && (
+                    {!thisPlayer.inspectionCard && cardToZoom && (
                         <CardZoom
                             cardName={cardToZoom ? cardToZoom.name : null}
                             card={cardToZoom}
@@ -527,11 +527,11 @@ export class GameBoard extends React.Component {
         const logArea = thisPlayer.inspectionCard ? (
             <CardInspector card={thisPlayer.inspectionCard} />
         ) : (
-            this.getCardLog()
+            <div>{this.getCardLog()}</div>
         );
         return (
             <div className='prompt-area panel'>
-                <div>{logArea}</div>
+                {logArea}
                 <div className='inset-pane'>
                     <ActivePlayerPrompt
                         cards={this.props.cards}

@@ -469,6 +469,9 @@ class Game extends EventEmitter {
                 this.cardClicked(sourcePlayer, sourceId);
                 return;
             }
+            if (menuItem.command === 'inspect') {
+                this.inspectCard(sourcePlayer, sourceId);
+            }
             MenuCommands.cardMenuClick(menuItem, this, player, card);
         } else if (die) {
             if (menuItem.command === 'click') {
@@ -598,6 +601,10 @@ class Game extends EventEmitter {
         if (!player || !card) {
             return;
         }
+        // must close the inspector before showing another card
+        if (player.inspectionCard) {
+            return;
+        }
         player.inspectCard(card);
     }
 
@@ -613,6 +620,14 @@ class Game extends EventEmitter {
     modifyCardToken(playerName, uuid, tokenType, increment) {
         const card = this.findAnyCardInAnyList(uuid);
         card.addToken(tokenType, increment);
+        const player = this.getPlayerByName(playerName);
+        let addRemove = 'adds';
+        let toFrom = 'to';
+        if (increment < 0) {
+            addRemove = 'removes';
+            toFrom = 'from';
+        }
+        this.addAlert('danger', `{0} ${addRemove} 1 {1} ${toFrom} {2}`, player, tokenType, card);
     }
 
     modifyAction(playerName, actionType, unspent) {
