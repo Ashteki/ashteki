@@ -52,7 +52,7 @@
 }
 
 .right-side {
-    position: relative;
+    // position: relative;
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -138,7 +138,7 @@
     flex-direction: column;
     width: 210px;
     justify-content: space-between;
-    margin-right: 5px;
+    margin-right: 10px;
     bottom: 0px;
 }
 

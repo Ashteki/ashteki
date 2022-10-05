@@ -45,6 +45,7 @@ class Player extends GameObject {
         this.optionSettings = user.settings.optionSettings;
 
         this.promptState = new PlayerPromptState(this);
+        this.inspectionCard = null;
 
         this.dice = [];
         this.diceCounts = [];
@@ -698,6 +699,14 @@ class Player extends GameObject {
         this.firstFive = this.hand.map((c) => c.getShortSummary());
     }
 
+    inspectCard(card) {
+        this.inspectionCard = card;
+    }
+
+    clearInspector() {
+        this.inspectionCard = null;
+    }
+
     /**
      * This information is passed to the UI
      * @param {Player} activePlayer
@@ -762,6 +771,7 @@ class Player extends GameObject {
             state.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer, true);
             state.firstFive = this.firstFive;
             state.diceHistory = this.diceHistory;
+            state.inspectionCard = this.inspectionCard?.getSummary(activePlayer);
         }
 
         if (this.clock) {
