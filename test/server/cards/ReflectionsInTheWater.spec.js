@@ -57,4 +57,40 @@ describe('Reflections In the Water', function () {
             expect(this.ironWorker.attack).toBe(4);
         });
     });
+
+    describe('blanking effects vs root armor', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker'],
+                    spellboard: ['hypnotize', 'strengthen'],
+                    dicepool: ['charm', 'natural', 'illusion'],
+                    hand: ['root-armor']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'iron-rhino'],
+                    spellboard: [],
+                    dicepool: ['charm', 'charm', 'illusion'],
+                    hand: ['reflections-in-the-water']
+                }
+            });
+        });
+
+        it('reflections in the water blanks ability but not stat buff', function () {
+            this.player1.play(this.rootArmor, this.ironWorker);
+            expect(this.ironWorker.life).toBe(3);
+            expect(this.ironWorker.armor).toBe(1);
+
+            this.player1.endTurn();
+            this.player2.play(this.reflectionsInTheWater);
+            this.player2.clickDie(2);
+            this.player2.clickCard(this.ironWorker);
+            expect(this.ironWorker.upgrades.length).toBe(2);
+            expect(this.ironWorker.life).toBe(3);
+            expect(this.ironWorker.isBlank()).toBe(true);
+            expect(this.ironWorker.armor).toBe(0);
+        });
+    });
 });

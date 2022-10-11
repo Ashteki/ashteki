@@ -7,7 +7,8 @@ import DeckEditor from '../Components/Decks/DeckEditor';
 import AlertPanel from '../Components/Site/AlertPanel';
 import { Col, Row } from 'react-bootstrap';
 import Panel from '../Components/Site/Panel';
-import ViewDeck from '../Components/Decks/ViewDeck.jsx';
+// import ViewDeck from '../Components/Decks/ViewDeck.jsx';
+import DeckSummary from '../Components/Decks/DeckSummary';
 
 export class InnerAddDeck extends React.Component {
     constructor(props) {
@@ -49,7 +50,11 @@ export class InnerAddDeck extends React.Component {
                                 <DeckEditor mode='Add' onDeckSave={this.onAddDeck} />
                             </Panel>
                         </Col>
-                        <Col lg={6}>{<ViewDeck deck={this.props.deck} />}</Col>
+                        <Col lg={6}>
+                            <Panel title={this.props.deck?.name}>
+                                <DeckSummary deck={this.props.deck} />
+                            </Panel>
+                        </Col>
                     </Row>
                 </div>
             );

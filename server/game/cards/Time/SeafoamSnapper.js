@@ -18,7 +18,6 @@ class SeafoamSnapper extends Card {
             title: 'Hungry 1',
             effect: 'destroy {0}',
             target: {
-                optional: true,
                 activePromptTitle: 'Choose a conjuration to destroy',
                 cardType: CardType.Conjuration,
                 controller: 'self',
