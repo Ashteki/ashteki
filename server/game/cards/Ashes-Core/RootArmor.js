@@ -3,7 +3,12 @@ const Card = require('../../Card.js');
 class RootArmor extends Card {
     setupCardAbilities(ability) {
         this.whileAttached({
-            effect: [ability.effects.modifyLife(1), ability.effects.modifyArmor(1)]
+            effect: ability.effects.modifyLife(1)
+        });
+
+        this.whileAttached({
+            condition: () => !this.parent.isBlank(),
+            effect: ability.effects.modifyArmor(1)
         });
     }
 }
