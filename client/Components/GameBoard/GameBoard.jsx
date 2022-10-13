@@ -24,6 +24,7 @@ import { imageUrl } from '../../util';
 import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
+import WinLoseSplash from './WinLoseSplash';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -434,8 +435,8 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='main-window'>
                     {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
-
                     {this.renderBoard(thisPlayer, otherPlayer)}
+                    {this.props.currentGame.winner && <WinLoseSplash />}
                     {!thisPlayer.inspectionCard && cardToZoom && (
                         <CardZoom
                             cardName={cardToZoom ? cardToZoom.name : null}
