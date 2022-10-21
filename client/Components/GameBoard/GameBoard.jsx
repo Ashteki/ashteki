@@ -436,7 +436,9 @@ export class GameBoard extends React.Component {
                 <div className='main-window'>
                     {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
                     {this.renderBoard(thisPlayer, otherPlayer)}
-                    {this.props.currentGame.winner && <WinLoseSplash />}
+                    {this.props.currentGame.winner && (
+                        <WinLoseSplash game={this.props.currentGame} />
+                    )}
                     {!thisPlayer.inspectionCard && cardToZoom && (
                         <CardZoom
                             cardName={cardToZoom ? cardToZoom.name : null}
