@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Excavate extends Card {
@@ -23,6 +24,7 @@ class Excavate extends Card {
                 then: {
                     alwaysTriggers: true,
                     target: {
+                        cardType: BattlefieldTypes,
                         activePromptTitle: 'Choose a unit to deal 3 damage to',
                         gameAction: ability.actions.dealDamage({
                             amount: 3
