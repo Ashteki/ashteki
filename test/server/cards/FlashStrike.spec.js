@@ -22,6 +22,16 @@ describe('Flash Strike', function () {
         this.fluteMage.tokens.status = 1;
     });
 
+    it('No reaction on attack cancel', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.coalRoarkwin); // target
+        this.player1.clickCard(this.mistSpirit); // single attacker
+        this.player1.clickPrompt('Cancel');
+
+        expect(this.player1).not.toHavePrompt('Any Reactions to defenders being declared?');
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
     it('reaction on guard choice - unit attack', function () {
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.fluteMage); // target
