@@ -15,7 +15,7 @@ class AbilityTargetPlayer {
         //         }
         //     }
         // }
-        this.choices = ['Opponent', 'Me'];
+        this.choices = properties.choices || ['Opponent', 'Me'];
 
 
         this.dependentTarget = null;

@@ -13,18 +13,12 @@ class SummonBloodPuppet extends Card {
             ],
             location: 'spellboard',
             target: {
-                mode: 'select',
+                toSelect: 'player',
                 activePromptTitle: "Which player's battlefield?",
-                choices: {
-                    Mine: this.game.actions.summon({
-                        conjuration: 'blood-puppet',
-                        opponentControls: false
-                    }),
-                    "Opponent's": this.game.actions.summon({
-                        conjuration: 'blood-puppet',
-                        opponentControls: true
-                    })
-                }
+                choices: ["Opponent's", 'Mine'],
+                gameAction: this.game.actions.summon({
+                    conjuration: 'blood-puppet'
+                })
             }
         });
     }

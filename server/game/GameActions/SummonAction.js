@@ -4,7 +4,7 @@ class SummonAction extends PlayerAction {
     setDefaultProperties() {
         this.count = 1;
         this.conjuration = null;
-        this.opponentControls = false;
+        // this.opponentControls = false;
         // this.amount = 1;
     }
 
@@ -41,7 +41,7 @@ class SummonAction extends PlayerAction {
             const gameAction = context.game.actions.putIntoPlay({
                 target: this.cards,
                 showMessage: true,
-                opponentControls: this.opponentControls
+                opponentControls: context.target?.name === player.opponent.name
             });
             for (let event of gameAction.getEventArray(context)) {
                 summonEvent.addChildEvent(event);

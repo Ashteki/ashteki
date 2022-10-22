@@ -95,7 +95,7 @@ describe('Join the Hunt', function () {
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('summon blood puppet');
             this.player1.clickPrompt("Opponent's");
-            this.player1.clickCard(this.bloodPuppet);
+            // this.player1.clickCard(this.bloodPuppet);
             expect(this.bloodPuppet.location).toBe('play area');
             expect(this.bloodPuppet.controller.name).toBe(this.player2.name);
             this.player1.endTurn();

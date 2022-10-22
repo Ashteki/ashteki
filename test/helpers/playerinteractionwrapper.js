@@ -404,6 +404,25 @@ class PlayerInteractionWrapper {
             );
         }
 
+        this.clickButton(promptButton, overrideDisabledCheck);
+    }
+
+    clickPromptButton(index, overrideDisabledCheck) {
+        var currentPrompt = this.player.currentPrompt();
+        var promptButton = currentPrompt.buttons[index];
+
+        if (!promptButton) {
+            throw new Error(
+                // eslint-disable-next-line prettier/prettier
+                `Couldn't click on button "${index}" for ${this.player.name
+                }. Current prompt is:\n${this.formatPrompt()}`
+            );
+        }
+
+        this.clickButton(promptButton, overrideDisabledCheck);
+    }
+
+    clickButton(promptButton, overrideDisabledCheck) {
         if (!promptButton.disabled || overrideDisabledCheck) {
             this.game.menuButton(
                 this.player.name,
@@ -565,6 +584,11 @@ class PlayerInteractionWrapper {
     useAction(card) {
         this.clickCard(card);
         this.clickPrompt("Use this card's ability");
+    }
+
+    useAbility(card) {
+        this.clickCard(card);
+        this.clickPromptButton(0);
     }
 
     playUpgrade(upgrade, target) {
