@@ -19,6 +19,7 @@ class SummonSteadfastGuardian extends Card {
                 conjuration: 'steadfast-guardian'
             }),
             then: {
+                alwaysTriggers: true,
                 condition: () => this.focus > 0,
                 target: {
                     activePromptTitle:
