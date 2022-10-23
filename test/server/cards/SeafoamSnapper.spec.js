@@ -110,4 +110,36 @@ describe('Seafoam Snapper', function () {
             expect(this.seafoamSnapper.status).toBe(0);
         });
     });
+
+    describe('Tough vs Fighting Spirit', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'orrick-gilstream',
+                    inPlay: ['flute-mage', 'iron-worker'],
+                    dicepool: ['sympathy', 'charm', 'charm', 'time', 'illusion'],
+                    spellboard: ['summon-seafoam-snapper'],
+                    deck: ['anchornaut']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    dicepool: ['natural'],
+                    inPlay: ['hammer-knight', 'anchornaut', 'seafoam-snapper'],
+                    spellboard: ['chant-of-revenge', 'fighting-spirit']
+                }
+            });
+        });
+
+        it('dies with status tokens should not trigger Fighting Spirit', function () {
+            this.seafoamSnapper.tokens.status = 1;
+            this.player1.clickAttack(this.seafoamSnapper);
+            this.player1.clickCard(this.ironWorker);
+            this.player2.clickDone();
+            this.player2.clickNo();
+
+            expect(this.seafoamSnapper.location).toBe('archives');
+            expect(this.fightingSpirit.status).toBe(0);
+        });
+    });
+
 });

@@ -7,7 +7,7 @@ class SeafoamSnapper extends Card {
             condition: () => !this.exhausted && this.status > 0,
             effect: ability.effects.modifyArmor(() => this.getAbilityNumeric(1))
         });
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onDamagePreventedByArmor: (event, context) => event.card === context.source
             },

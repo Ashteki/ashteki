@@ -96,9 +96,10 @@ describe('Vanish', function () {
                 player1: {
                     phoenixborn: 'leo-sunshadow',
                     inPlay: ['enchanted-violinist', 'dreamlock-mage'],
-                    spellboard: ['magic-syphon'],
+                    spellboard: ['magic-syphon', 'summon-blood-puppet'],
                     dicepool: ['ceremonial', 'natural', 'natural', 'charm', 'illusion'],
-                    hand: ['anguish', 'one-hundred-blades']
+                    hand: ['anguish', 'one-hundred-blades'],
+                    archives: ['blood-puppet']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
@@ -107,6 +108,21 @@ describe('Vanish', function () {
                     hand: ['vanish', 'anchornaut']
                 }
             });
+        });
+
+        it('should cancel blood puppet', function () {
+            expect(this.player1.dicepool[0].exhausted).toBe(false);
+            this.player1.useAbility(this.summonBloodPuppet);
+            this.player1.clickPrompt("Opponent's");
+
+            expect(this.player2).toHavePrompt('Any Reactions to summon blood puppet?');
+            expect(this.player2).toBeAbleToSelect(this.vanish);
+            this.player2.clickCard(this.vanish);
+
+            // summon is cancelled
+            expect(this.bloodPuppet.location).toBe('archives');
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.dicepool[0].exhausted).toBe(true); // dice still spent
         });
 
         it('should cancel anguish', function () {
