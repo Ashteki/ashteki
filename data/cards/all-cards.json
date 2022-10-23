@@ -7028,6 +7028,7 @@
             ],
             "magicCost": {
                 "basic": 2,
+                "time:class": 1,
                 "sympathy:power": 1
             },
             "text": "Place a [[Radiant Leviathan]] conjuration onto your battlefield. Place 1 status token on it for each other conjuration you control.",
