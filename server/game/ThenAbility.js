@@ -3,11 +3,8 @@ const BaseAbility = require('./baseability.js');
 
 class ThenAbility extends BaseAbility {
     constructor(game, card, properties) {
-        super(properties);
-
-        this.game = game;
+        super(properties, game);
         this.card = card;
-        this.properties = properties;
         this.condition = properties.condition || (() => true);
         this.alwaysTriggers = properties.alwaysTriggers;
         this.handler = properties.handler || this.executeGameActionPrehandlers;

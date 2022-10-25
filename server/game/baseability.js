@@ -18,18 +18,9 @@ const AbilityTargetPlayer = require('./AbilityTargets/AbilityTargetPlayer');
  * ability is generated from.
  */
 class BaseAbility {
-    /**
-     * Creates an ability.
-     *
-     * @param {Object} properties - An object with ability related properties.
-     * @param {Object|Array} [properties.cost] - optional property that specifies
-     * the cost for the ability. Can either be a cost object or an array of cost
-     * objects.
-     * @param {Object} [properties.target] - optional property that specifies
-     * the target of the ability.
-     * @param {Array} [properties.gameAction] - optional array of game actions
-     */
-    constructor(properties) {
+    constructor(properties, game) {
+        this.properties = properties;
+        this.game = game;
         this.gameAction = properties.gameAction || [];
         this.abilityType = '';
         this.printedAbility = false;
@@ -140,6 +131,26 @@ class BaseAbility {
 
     resolveMayClause() {
         return;
+    }
+
+    checkWarnings(context, results) {
+        if (this.properties.warnIf && this.properties.warning) {
+            let warn = false;
+            let warnIf = this.properties.warnIf;
+            if (typeof warnIf === 'function') {
+                warn = warnIf(context);
+            }
+
+            if (warn) {
+                this.game.promptWithHandlerMenu(context.player, {
+                    promptTitle: this.properties.title,
+                    activePromptTitle: this.properties.warning + '\nDo you want to continue?',
+                    context: context,
+                    choices: ['Yes', 'No'],
+                    handlers: [() => true, () => (results.cancelled = true)]
+                });
+            }
+        }
     }
 
     /**

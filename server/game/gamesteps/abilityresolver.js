@@ -11,6 +11,7 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.targetResults = {};
         this.costResults = this.getCostResults();
         this.mayResult = { cancelled: false };
+        this.warningsResult = { cancelled: false };
         this.initialise();
     }
 
@@ -18,6 +19,7 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.pipeline.initialise([
             new SimpleStep(this.game, () => this.createSnapshot()),
             new SimpleStep(this.game, () => this.resolveMayClause()),
+            new SimpleStep(this.game, () => this.checkWarnings()),
             new SimpleStep(this.game, () => this.resolveCosts()),
             new SimpleStep(this.game, () => this.payCosts()),
             new SimpleStep(this.game, () => this.resolveTargets()),
@@ -47,6 +49,14 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.context.ability.resolveMayClause(this.context, this.mayResult);
 
         if (this.mayResult.cancelled) {
+            this.cancelled = true;
+        }
+    }
+
+    checkWarnings() {
+        this.context.ability.checkWarnings(this.context, this.warningsResult);
+
+        if (this.warningsResult.cancelled) {
             this.cancelled = true;
         }
     }
