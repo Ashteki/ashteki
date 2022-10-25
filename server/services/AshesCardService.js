@@ -71,7 +71,8 @@ class AshesCardService {
             'psychic-vampire',
             'river-skald',
             'summon-shining-hydra',
-            'three-eyed-owl'
+            'three-eyed-owl',
+            'summon-sleeping-widows'
         ];
     }
 }
