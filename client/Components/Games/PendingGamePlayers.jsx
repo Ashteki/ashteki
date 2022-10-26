@@ -6,6 +6,7 @@ import DeckStatus from '../Decks/DeckStatus';
 
 import './PendingGamePlayer.scss';
 import PlayerName from '../Site/PlayerName';
+import classNames from 'classnames';
 
 /**
  * @typedef PendingGamePlayersProps
@@ -17,7 +18,7 @@ import PlayerName from '../Site/PlayerName';
 /**
  * @param {PendingGamePlayersProps} props
  */
-const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
+const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
     const { t } = useTranslation();
 
     let firstPlayer = true;
@@ -30,19 +31,17 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                 let deck = null;
                 let selectLink = null;
                 let status = null;
-                let coalOffButton = null;
-                if (currentGame.gameFormat === 'constructed') {
-                    coalOffButton = (
-                        <Button onClick={onCoalOff} className='btn-grey'>
-                            <Trans>Coal Off!</Trans>
-                        </Button>
-                    );
+                let clickClasses = classNames('deck-selection', {
+                    clickable: currentGame.gameFormat !== 'coaloff'
+                });
+                let clickHandler = onSelectDeck;
+                if (currentGame.gameFormat === 'coaloff') {
+                    clickHandler = () => true;
                 }
-
                 if (player && player.deck && player.deck.selected) {
                     if (playerIsMe) {
                         deck = (
-                            <span className='deck-selection clickable' onClick={onSelectDeck}>
+                            <span className={clickClasses} onClick={clickHandler}>
                                 {player.deck.name}
                             </span>
                         );
@@ -61,8 +60,6 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck, onCoalOff }) => {
                             <Button onClick={onSelectDeck}>
                                 <Trans>Select Deck</Trans>
                             </Button>
-
-                            {coalOffButton}
                         </>
                     );
                 }
