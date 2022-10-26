@@ -211,9 +211,6 @@ const PendingGame = () => {
                     currentGame={currentGame}
                     user={user}
                     onSelectDeck={() => setShowModal(true)}
-                    onCoalOff={() => {
-                        dispatch(sendSocketMessage('selectdeck', currentGame.id, -2, false));
-                    }}
                 />
 
                 <h3>Spectators ({currentGame.spectators.length})</h3>

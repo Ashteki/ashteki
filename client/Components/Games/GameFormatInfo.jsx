@@ -47,6 +47,13 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
                     the most optimised competitive decks get to shine.
                 </AlertPanel>
             );
+        case 'coaloff':
+            return (
+                <AlertPanel type='info'>
+                    <strong>Coal Off!</strong> Both players take Coal Roarkwin and a deck of 30
+                    random cards. Yes, this is a fun format.
+                </AlertPanel>
+            );
     }
 };
 
