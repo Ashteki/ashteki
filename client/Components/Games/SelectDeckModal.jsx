@@ -19,7 +19,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe })
                     <Tab>My Decks</Tab>
                     <Tab>Pre-cons</Tab>
                     <Tab>Building Basics</Tab>
-                    <Tab style={{ backgroundColor: 'skyblue', color: '#333' }}>
+                    <Tab style={{ backgroundColor: 'rgb(0, 153, 255)', color: '#FFF' }}>
                         <img src={igcircle} alt='Adventuring Party' height='22' width='22' />{' '}
                         Adventuring Party
                     </Tab>

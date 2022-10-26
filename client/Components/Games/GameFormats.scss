@@ -4,11 +4,41 @@
 }
 
 .game-format {
-    font-size: 1.1em;
+    // font-size: 1.1em;
+    padding: 4px 6px;
+    border-radius: 8px;
+    color: white;
+    margin-right: 8px;
 
+    &.firstadventure {
+        background-color: rgb(72, 162, 89);
+    }
+
+    &.aparty {
+        background-color: rgb(0, 153, 255);
+    }
+
+    &.precon {
+        background-color: rgb(169, 45, 45);
+    }
+
+    &.constructed {
+        background-color: aliceblue;
+        color: black;
+    }
 }
 
 .format-info-link {
     color: #4593b8;
     text-decoration: underline;
+}
+
+.img-game-format {
+    width: 150px;
+
+}
+
+.format-item {
+    width: 33%;
+    display: inline-block;
 }
