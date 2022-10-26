@@ -4,6 +4,7 @@ import { Form, Col } from 'react-bootstrap';
 import { gameFormats } from '../../util';
 import './GameFormats.scss';
 import GameFormatInfo from './GameFormatInfo';
+import classNames from 'classnames';
 
 const GameFormats = ({ formProps }) => {
     return (
@@ -13,23 +14,24 @@ const GameFormats = ({ formProps }) => {
                     <Trans>Format</Trans>
                 </Col>
                 <Form.Group as={Col}>
-                    {gameFormats.map((format) => (
-                        <Form.Check
-                            className='game-format'
-                            name='gameFormat'
-                            key={format.name}
-                            type='radio'
-                            id={format.name}
-                            label={format.label}
-                            inline
-                            onChange={formProps.handleChange}
-                            value={format.name}
-                            checked={formProps.values.gameFormat === format.name}
-                        >
-                            {/* <img className='img-fluid' src={faImage} /> */}
+                    {gameFormats.map((format) => {
+                        const checkClasses = classNames('game-format', format.name);
 
-                        </Form.Check>
-                    ))}
+                        return (
+                            <Form.Check
+                                className={checkClasses}
+                                name='gameFormat'
+                                key={format.name}
+                                type='radio'
+                                id={format.name}
+                                label={format.label}
+                                inline
+                                onChange={formProps.handleChange}
+                                value={format.name}
+                                checked={formProps.values.gameFormat === format.name}
+                            />
+                        );
+                    })}
                     <Form.Control.Feedback type='invalid'>
                         {formProps.errors.gameFormat}
                     </Form.Control.Feedback>
