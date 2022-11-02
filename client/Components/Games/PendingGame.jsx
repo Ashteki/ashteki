@@ -16,6 +16,7 @@ import { getFormatLabel } from '../../util';
 
 import './PendingGame.scss';
 import { useEffect } from 'react';
+import GameFormatInfo from './GameFormatInfo';
 
 function showNotification(notification) {
     if (window.Notification && Notification.permission === 'granted') {
@@ -206,6 +207,10 @@ const PendingGame = () => {
                 <h3>
                     Format: <span className='unbold'>{getFormatLabel(currentGame.gameFormat)}</span>
                 </h3>
+                <div>
+                    <GameFormatInfo gameType={currentGame.gameFormat} />
+                </div>
+
 
                 <PendingGamePlayers
                     currentGame={currentGame}

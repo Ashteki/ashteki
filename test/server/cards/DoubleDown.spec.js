@@ -5,24 +5,24 @@ describe('Double Down', function () {
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['iron-worker'],
-                    spellboard: [],
+                    spellboard: ['summon-gilder'],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
-                    archives: [],
+                    archives: ['gilder'],
                     hand: ['molten-gold', 'crimson-bomber', 'natures-wrath']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
-                    inPlay: ['shadow-spirit', 'hammer-knight', 'mist-spirit'],
+                    inPlay: ['shadow-spirit', 'hammer-knight', 'mist-spirit', 'light-bringer'],
                     spellboard: ['summon-shadow-spirit'],
                     hand: ['double-down'],
                     dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
-                    archives: ['shadow-spirit', 'shadow-spirit']
+                    archives: ['shadow-spirit', 'shadow-spirit', 'light-bringer']
                 }
             });
         });
 
         it('ability triggers on PB ability damage', function () {
-            expect(this.player2.inPlay.length).toBe(3);
+            expect(this.player2.inPlay.length).toBe(4);
 
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('water blast');
@@ -32,7 +32,7 @@ describe('Double Down', function () {
             this.player2.clickCard(this.doubleDown);
             expect(this.player1).toHaveDefaultPrompt();
 
-            expect(this.player2.inPlay.length).toBe(4); // initial 3 -1 destroyed, + 2 from DD
+            expect(this.player2.inPlay.length).toBe(5); // initial 3 -1 destroyed, + 2 from DD
         });
 
         it("ability doesn't trigger on counter", function () {
@@ -47,7 +47,7 @@ describe('Double Down', function () {
             expect(this.player2).toHaveDefaultPrompt();
             expect(this.ironWorker.location).toBe('play area');
             expect(this.mistSpirit.location).toBe('archives');
-            expect(this.player2.inPlay.length).toBe(2);
+            expect(this.player2.inPlay.length).toBe(3);
         });
 
         it('ability triggers on dice power', function () {
@@ -57,6 +57,25 @@ describe('Double Down', function () {
 
             expect(this.player2).toHavePrompt('Any Reactions to Shadow Spirit being destroyed?');
             expect(this.player2).toBeAbleToSelect(this.doubleDown);
+        });
+
+        it('ability triggers light bringer enter play effect', function () {
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('natural dice power');
+            this.player1.clickCard(this.lightBringer);
+
+            expect(this.player2).toHavePrompt('Any Reactions to Light Bringer being destroyed?');
+            expect(this.player2).toBeAbleToSelect(this.doubleDown);
+
+            this.player2.clickCard(this.doubleDown);
+            this.player1.endTurn();
+            this.player2.actions.main = false; // fudge to prevent end of round
+            this.player2.endTurn();
+            // check player1 cannot take other main action;
+            this.player1.clickCard(this.summonGilder); // spellboard
+            expect(this.player1).toHaveDefaultPrompt();
+            this.player1.clickAttack(this.rinNorthfell);
+            expect(this.player1).not.toHaveDefaultPrompt();
         });
 
         it('ability triggers on molten gold', function () {
@@ -83,7 +102,7 @@ describe('Double Down', function () {
         });
 
         it('ability triggers on AoE - natures wrath', function () {
-            expect(this.player2.inPlay.length).toBe(3);
+            expect(this.player2.inPlay.length).toBe(4);
             this.player1.play(this.naturesWrath);
             this.player1.clickCard(this.shadowSpirit);
 
@@ -91,7 +110,7 @@ describe('Double Down', function () {
             expect(this.player2).toBeAbleToSelect(this.doubleDown);
             this.player2.clickCard(this.doubleDown);
             // killed 1 SS, summoned 2...
-            expect(this.player2.inPlay.length).toBe(4);
+            expect(this.player2.inPlay.length).toBe(5);
 
             this.player1.clickCard(this.ironWorker);
             this.player1.clickCard(this.hammerKnight);
