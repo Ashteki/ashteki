@@ -14,6 +14,7 @@ import { getStandardControlProps } from '../../util';
 import { cancelNewGame, sendSocketMessage } from '../../redux/actions';
 
 import './NewGame.scss';
+import { turn } from 'core-js/library/js/array';
 
 const GameNameMaxLength = 64;
 
@@ -72,6 +73,7 @@ const NewGame = ({
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
         gamePrivate: defaultPrivate,
+        trackElo: false,
         mm: true
     };
 

@@ -368,7 +368,8 @@ class PendingGame {
                     avatar: spectator.user.avatar
                 };
             }),
-            useGameTimeLimit: this.useGameTimeLimit
+            useGameTimeLimit: this.useGameTimeLimit,
+            trackElo: this.trackElo
         };
     }
 
@@ -414,7 +415,8 @@ class PendingGame {
             spectators,
             started: this.started,
             swap: this.swap,
-            useGameTimeLimit: this.useGameTimeLimit
+            useGameTimeLimit: this.useGameTimeLimit,
+            trackElo: this.trackElo
         };
     }
 }

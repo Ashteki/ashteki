@@ -59,6 +59,7 @@
  * @property {boolean} allowSpectators Whether or not spectators are allowed to join
  * @property {Date} createdAt When the game was created
  * @property {boolean} gamePrivate Whether or not the game is private
+ * @property {boolean} trackElo Whether player Elo ratings are to be updated at game end
  * @property {GameType} gameType The type of game
  * @property {string} id The game id guid
  * @property {any[]} messages The game chat messages

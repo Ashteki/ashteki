@@ -33,7 +33,7 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
-const { BattlefieldTypes, GameType } = require('../constants');
+const { BattlefieldTypes } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
@@ -131,36 +131,20 @@ class Game extends EventEmitter {
         playerB.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerB, playerA);
     }
 
-    getPlayerEloRating(player) {
-        if (this.gameType == GameType.Competitive){
-            return player.user.competitiveElo;
-        }
-        else {
-            return player.user.casualElo;
-        }
-    }
 
-    updatePlayerEloRating(player, newRating) {
-        if (this.gameType == GameType.Competitive){
-            player.user.competitiveElo = newRating;
-        }
-        else {
-            player.user.casualElo = newRating;
-        }
-    }
 
     updateEloRankings(winner) {
         let winningPlayer = this.getPlayerByName(winner.name);
         let losingPlayer = this.getOtherPlayer(winningPlayer);
         if (winningPlayer) {
-            let oldRating = this.getPlayerEloRating(winningPlayer);
+            let oldRating = winningPlayer.getPlayerEloRating(this.gameType);
             let newRating = Elo.EloCalculator.calculateUpdatedRating(oldRating, winningPlayer.expectedScore, Elo.GameResult.Win);
-            this.updatePlayerEloRating(winningPlayer, newRating);
+            winningPlayer.updatePlayerEloRating(this.gameType, newRating);
         }
         if (losingPlayer) {
-            let oldRating = this.getPlayerEloRating(losingPlayer);
+            let oldRating = losingPlayer.getPlayerEloRating(this.gameType);
             let newRating = Elo.EloCalculator.calculateUpdatedRating(oldRating, losingPlayer.expectedScore, Elo.GameResult.Loss);
-            this.updatePlayerEloRating(losingPlayer, newRating);
+            losingPlayer.updatePlayerEloRating(this.gameType, newRating);
         }
     }
 
@@ -1604,7 +1588,8 @@ class Game extends EventEmitter {
             started: this.started,
             startedAt: this.startedAt,
             swap: this.swap,
-            winner: this.winner ? this.winner.name : undefined
+            winner: this.winner ? this.winner.name : undefined,
+            trackElo: this.trackElo
         };
     }
 }
