@@ -806,21 +806,11 @@ class Player extends GameObject {
     }
 
     getPlayerEloRating(gameType) {
-        if (gameType == GameType.Competitive){
-            return this.user.competitiveElo;
-        }
-        else {
-            return this.user.casualElo;
-        }
+        return this.user.elo;
     }
 
     updatePlayerEloRating(gameType, newRating) {
-        if (gameType == GameType.Competitive){
-            this.user.competitiveElo = newRating;
-        }
-        else {
-            this.user.casualElo = newRating;
-        }
+        this.user.elo = newRating;
     }
 }
 

@@ -30,12 +30,8 @@ function getUserWithDefaultsSet(user) {
         userToReturn.blockList = [];
     }
 
-    if (userToReturn.casualElo === undefined) {
-        userToReturn.casualElo = defaultEloRating;
-    }
-
-    if (userToReturn.competitiveElo === undefined) {
-        userToReturn.competitiveElo = defaultEloRating;
+    if (userToReturn.elo === undefined) {
+        userToReturn.elo = defaultEloRating;
     }
 
     return userToReturn;

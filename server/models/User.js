@@ -134,20 +134,12 @@ class User {
         this.userData.patreon = value;
     }
 
-    get casualElo() {
-        return this.userData.casualElo;
+    get elo() {
+        return this.userData.elo;
     }
 
-    set casualElo(value) {
-        this.userData.casualElo = value;
-    }
-
-    get competitiveElo() {
-        return this.userData.competitiveElo;
-    }
-
-    set competitiveElo(value) {
-        this.userData.competitiveElo = value;
+    set elo(value) {
+        this.userData.elo = value;
     }
 
     block(otherUser) {
@@ -170,8 +162,7 @@ class User {
             verified: this.userData.verified,
             blockList: this.userData.blockList,
             gamesPlayed: this.userData.gamesPlayed,
-            casualElo: this.userData.casualElo,
-            competitiveElo: this.userData.competitiveElo
+            elo: this.userData.elo
         };
 
         user = Settings.getUserWithDefaultsSet(user);
@@ -186,9 +177,8 @@ class User {
             name: this.username,
             role: this.role,
             faveColor: this.faveColor,
-            gamesPlayed: this.gamesPlayed,
-            casualElo: this.userData.casualElo,
-            competitiveElo: this.userData.competitiveElo
+            elo: this.userData.elo,
+            gamesPlayed: this.gamesPlayed
         };
     }
 

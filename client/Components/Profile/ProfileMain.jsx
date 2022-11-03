@@ -137,6 +137,12 @@ const ProfileMain = ({ user, formProps }) => {
                         )}
                     </div>
                 </Form.Group>
+                <Form.Group as={Col} md='3'>
+                    <Form.Label>{t('Elo Rating')}</Form.Label>
+                    <div>
+                        {user?.elo}
+                    </div>
+                </Form.Group>
             </Form.Row>
             <Form.Row>
                 <Form.Group as={Col} md='6' controlId='formGridPassword'>
