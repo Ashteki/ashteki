@@ -134,6 +134,22 @@ class User {
         this.userData.patreon = value;
     }
 
+    get casualElo() {
+        return this.userData.casualElo;
+    }
+
+    set casualElo(value) {
+        this.userData.casualElo = value;
+    }
+
+    get competitiveElo() {
+        return this.userData.competitiveElo;
+    }
+
+    set competitiveElo(value) {
+        this.userData.competitiveElo = value;
+    }
+
     block(otherUser) {
         this.userData.blockList = this.userData.blockList || [];
         this.userData.blockList.push(otherUser.username.toLowerCase());
@@ -153,7 +169,9 @@ class User {
             permissions: this.userData.permissions,
             verified: this.userData.verified,
             blockList: this.userData.blockList,
-            gamesPlayed: this.userData.gamesPlayed
+            gamesPlayed: this.userData.gamesPlayed,
+            casualElo: this.userData.casualElo,
+            competitiveElo: this.userData.competitiveElo
         };
 
         user = Settings.getUserWithDefaultsSet(user);
@@ -168,7 +186,9 @@ class User {
             name: this.username,
             role: this.role,
             faveColor: this.faveColor,
-            gamesPlayed: this.gamesPlayed
+            gamesPlayed: this.gamesPlayed,
+            casualElo: this.userData.casualElo,
+            competitiveElo: this.userData.competitiveElo
         };
     }
 

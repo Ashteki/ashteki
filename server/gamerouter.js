@@ -3,6 +3,7 @@ const EventEmitter = require('events');
 
 const logger = require('./log');
 const GameService = require('./services/AshesGameService');
+const UserService = require('./services/AshesUserService');
 const { detectBinary } = require('./util');
 const UserService = require('./services/AshesUserService');
 
@@ -248,6 +249,7 @@ class GameRouter extends EventEmitter {
                 break;
             case 'GAMEWIN':
                 this.gameService.update(message.arg.game);
+                this.userService.updateElosFromGame(message.args.game)
                 message.arg.game.players.forEach((player) => {
                     Promise.resolve(this.userService.incrementGameCount(player.name));
                 });

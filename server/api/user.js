@@ -46,6 +46,7 @@ module.exports.init = function (server) {
                 linkedAccounts:
                     linkedAccounts &&
                     linkedAccounts
+                        // @ts-ignore
                         .map((account) => account.username)
                         .filter((name) => name !== user.username)
             });
