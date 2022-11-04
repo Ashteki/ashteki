@@ -1,6 +1,6 @@
 const _ = require('underscore');
-const GameService = require('../../services/AshesGameService.js');
-const ConfigService = require('../../services/ConfigService.js');
+const GameService = require('../services/AshesGameService.js');
+const ConfigService = require('../services/ConfigService.js');
 const monk = require('monk');
 const mongoUrl = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/ashteki';
 

@@ -44,8 +44,8 @@ docker-compose up
 In another terminal, navigate to the repository and run the following commands:
 
 ```
-docker-compose exec lobby node server/scripts/ashes/importdata
-docker-compose exec lobby node server/scripts/ashes/importprecons
+docker-compose exec lobby node server/scripts/importdata
+docker-compose exec lobby node server/scripts/importprecons
 ```
 These commands import card data, and precons respectively. They can be run from the command line at any time to delete and recreate the data.
 
@@ -84,8 +84,8 @@ Create config/local.json5 and put something like the following in it:
 Run the following commands:
 
 ```
-node server/scripts/ashes/importdata
-node server/scripts/ashes/importprecons
+node server/scripts/importdata
+node server/scripts/importprecons
 node .
 node server/gamenode
 ```
@@ -106,7 +106,7 @@ using an incognito window.
 These users will be normal (non-admin) users. To escalate a user to
 the admin role you can run
 ```
-node server/scripts/ashes/makeSuperuser <username>
+node server/scripts/makeSuperuser <username>
 ```
 
 This is not required for testing in-game functionality.
