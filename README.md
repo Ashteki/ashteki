@@ -54,9 +54,11 @@ These commands import card data, and precons respectively. They can be run from 
 #### Required Software
 
 -   Git
--   Node.js 8
+-   Node.js 16
 -   mongodb
 -   Redis
+
+The best way to install node is using nvm (node version manager)
 
 Clone the repository, then run the following commands:
 
@@ -73,7 +75,8 @@ Create config/local.json5 and put something like the following in it:
     redisUrl: 'redis://127.0.0.1',
 
     gameNode: {
-        hostname: 'localhost'
+        hostname: 'localhost',
+        origin: '*'
     }
 }
 ```
