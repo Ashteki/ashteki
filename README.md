@@ -90,9 +90,10 @@ node .
 node server/gamenode
 ```
 
-There are two executable components and you'll need to configure/run both to run a local server. First is the lobby server and then there are game nodes. The default configurations assume you are running postgres locally on the default port. If you need to change any configurations, edit `config/default.json5` or create a `config/local.json5` configuration that overrides any desired settings.
+There are two executable components and you'll need to configure/run both to run a local server. First is the lobby server and then there are game nodes. If you need to change any configurations, edit `config/default.json5` or create a `config/local.json5` configuration that overrides any desired settings.
 
-To download all supported languages (not needed if you're running just a test / dev server):
+### Hybrid!
+If the above docker solution works for you then that's great, but I had a few troubles with hot reloading front end changes. I run mongodb and redis as docker containers, and then run the node services (lobby and gamenodes) locally in windows.
 
 ### Running and Testing
 
