@@ -3,9 +3,9 @@ const EventEmitter = require('events');
 
 const logger = require('./log');
 const GameService = require('./services/AshesGameService');
-const UserService = require('./services/AshesUserService');
 const { detectBinary } = require('./util');
 const UserService = require('./services/AshesUserService');
+const { EloCalculator } = require('./EloCalculator');
 
 class GameRouter extends EventEmitter {
     /**
@@ -249,12 +249,42 @@ class GameRouter extends EventEmitter {
                 break;
             case 'GAMEWIN':
                 let game = message.arg.game;
+                // final save for game state
                 this.gameService.update(game);
+
+                // update player / user elo stats
                 if (game.trackElo) {
+                    let winningPlayer = this.getNamedProperty(game.players, game.winner);
+                    let losingPlayer = this.getOtherProperty(winningPlayer);
+                    // calculate expected outcome
+                    const elo = new EloCalculator();
+
+                    // calculate actual 
+                    if (winningPlayer) {
+                        let oldRating = winningPlayer.eloRating;
+                        let newRating = this.calculateUpdatedRating(
+                            oldRating,
+                            winningPlayer.expectedScore,
+                            GameResult.Win
+                        );
+                        winningPlayer.eloRating = newRating;
+                    }
+                    if (losingPlayer) {
+                        let oldRating = losingPlayer.eloRating;
+                        let newRating = this.calculateUpdatedRating(
+                            oldRating,
+                            losingPlayer.expectedScore,
+                            GameResult.Loss
+                        );
+                        losingPlayer.eloRating = newRating;
+                    }
+
+
                     for (const player of game.players) {
-                        this.userService.updateUserElo(player.user);   
-                    }     
+                        this.userService.updateUserElo(player.user);
+                    }
                 }
+                // increment player game counts
                 message.arg.game.players.forEach((player) => {
                     Promise.resolve(this.userService.incrementGameCount(player.name));
                 });
@@ -297,6 +327,13 @@ class GameRouter extends EventEmitter {
         if (worker) {
             worker.lastMessage = new Date();
         }
+    }
+
+    getNamedProperty(object, key) {
+        return object[key];
+    }
+    getOtherProperty(object, key) {
+        return Object.entries(object).find((k) => k === key);
     }
 
     // Internal methods

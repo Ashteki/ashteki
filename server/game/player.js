@@ -805,11 +805,11 @@ class Player extends GameObject {
         // Ready => Ally => Alteration => Action => Reaction
     }
 
-    getPlayerEloRating(gameType) {
+    get eloRating() {
         return this.user.elo;
     }
 
-    updatePlayerEloRating(gameType, newRating) {
+    set eloRating(newRating) {
         this.user.elo = newRating;
     }
 }

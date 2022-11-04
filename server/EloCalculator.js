@@ -14,15 +14,15 @@ const RankFactors = {
 
 class EloCalculator {
 
-    static calculateExpectedScore(playerARating, playerBRating) {
-        return 1/(1 + Math.pow(10,(playerBRating-playerARating)/400));
+    calculateExpectedScore(playerARating, playerBRating) {
+        return 1 / (1 + Math.pow(10, (playerBRating - playerARating) / 400));
     }
 
-    static calculateUpdatedRating(playerRating, expectedScore, playerResult) {        
+    calculateUpdatedRating(playerRating, expectedScore, playerResult) {
         return playerRating + this.getKFactor(playerRating) * (playerResult - expectedScore);
     }
 
-    static getKFactor(rating) {
+    getKFactor(rating) {
         // The k-factor is the maximum possible adjustment
         // to a player's rating based on their current rating.
         if (rating < RankFactors.Beginner[1])
@@ -32,6 +32,16 @@ class EloCalculator {
         else
             return RankFactors.Pro[2];
     }
+
+    calculateExpectedResults(players) {
+        let playerA = players[0];
+        let playerB = players[1];
+        let playerARating = playerA.eloRating;
+        let playerBRating = playerB.eloRating;
+        playerA.expectedScore = this.calculateExpectedScore(playerARating, playerBRating);
+        playerB.expectedScore = this.calculateExpectedScore(playerBRating, playerARating);
+    }
+
 }
 
 module.exports = {

@@ -156,17 +156,17 @@ class UserService extends EventEmitter {
 
     async updateUserElo(user) {
         var toSet = {
-            elo: user.elo,
+            elo: user.elo
         };
 
         try {
-            this.users.update({ username: user.username }, { $set: toSet });        
+            this.users.update({ username: user.username }, { $set: toSet });
         } catch (error) {
             logger.error('Error updating user Elo', error);
             throw new Error('Error updating user Elo');
         }
     }
-    
+
     async addBlocklistEntry(user, entry) {
         try {
             this.blockList.insert({ userId: user.id, entry: entry });

@@ -12,6 +12,7 @@ const Game = require('../game/game');
 const Socket = require('../socket');
 const ConfigService = require('../services/ConfigService');
 const version = require('../../version');
+const { EloCalculator } = require('../EloCalculator');
 
 class GameServer {
     constructor() {
@@ -321,6 +322,11 @@ class GameServer {
         game.initialise();
         if (pendingGame.rematch) {
             game.addAlert('info', 'The rematch is ready');
+        }
+
+        if (pendingGame.trackElo) {
+            const eloCalculator = new EloCalculator();
+            eloCalculator.calculateExpectedResults(game.getPlayers());
         }
     }
 

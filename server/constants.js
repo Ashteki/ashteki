@@ -73,5 +73,6 @@ module.exports = {
     Level,
     EffectLocations,
     BluffAbilityTypes,
+    DamageDealingLocations,
     GameType
 };

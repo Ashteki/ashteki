@@ -10,8 +10,8 @@ const GameOptions = ({ formProps }) => {
         { name: 'allowSpectators', label: t('Allow spectators') },
         { name: 'showHand', label: t('Show hands to spectators') },
         { name: 'muteSpectators', label: t('Mute spectators') },
-        { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' }
-        { name: 'trackElo', label: t('Track Elo ratings')}
+        { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
+        { name: 'trackElo', label: t('Track Elo ratings') }
     ];
 
     return (

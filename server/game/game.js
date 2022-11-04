@@ -38,12 +38,11 @@ const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
-const Elo = require('../EloCalculator');
+const { EloCalculator } = require('../EloCalculator');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
-
         this.adaptive = { selection: [], biddingWinner: '' };
         this.allowSpectators = details.allowSpectators;
         this.cancelPromptUsed = false;
@@ -91,10 +90,12 @@ class Game extends EventEmitter {
         this.gameFirstPlayer = null;
         this.roundFirstPlayer = null;
         this.jsonForUsers = {};
+        this.router = options.router;
 
         this.cardData = options.cardData || [];
 
         this.cardVisibility = new CardVisibility(this.showHand);
+        this.attackState = null;
 
         _.each(details.players, (player) => {
             this.playersAndSpectators[player.user.username] = new Player(
@@ -105,10 +106,6 @@ class Game extends EventEmitter {
             );
         });
 
-        if (this.trackElo == true) {
-            this.calculateExpectedResults();
-        }
-
         _.each(details.spectators, (spectator) => {
             this.playersAndSpectators[spectator.user.username] = new Spectator(
                 spectator.id,
@@ -117,37 +114,6 @@ class Game extends EventEmitter {
         });
 
         this.setMaxListeners(0);
-
-        this.router = options.router;
-
-        this.attackState = null;
-    }
-
-    calculateExpectedResults() {
-        let players = this.getPlayers()
-        let playerA = players[0];
-        let playerB = players[1];
-        let playerARating = playerA.getPlayerEloRating(this.gameType);
-        let playerBRating = playerB.getPlayerEloRating(this.gameType);
-        playerA.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerARating, playerBRating);
-        playerB.expectedScore = Elo.EloCalculator.calculateExpectedScore(playerBRating, playerARating);
-    }
-
-
-
-    updateEloRankings(winner) {
-        let winningPlayer = this.getPlayerByName(winner.name);
-        let losingPlayer = this.getOtherPlayer(winningPlayer);
-        if (winningPlayer) {
-            let oldRating = winningPlayer.getPlayerEloRating(this.gameType);
-            let newRating = Elo.EloCalculator.calculateUpdatedRating(oldRating, winningPlayer.expectedScore, Elo.GameResult.Win);
-            winningPlayer.updatePlayerEloRating(this.gameType, newRating);
-        }
-        if (losingPlayer) {
-            let oldRating = losingPlayer.getPlayerEloRating(this.gameType);
-            let newRating = Elo.EloCalculator.calculateUpdatedRating(oldRating, losingPlayer.expectedScore, Elo.GameResult.Loss);
-            losingPlayer.updatePlayerEloRating(this.gameType, newRating);
-        }
     }
 
     getCardIndex() {
@@ -586,6 +552,7 @@ class Game extends EventEmitter {
         this.setWins(winner.name, winner.wins ? winner.wins + 1 : 1);
         this.winner = winner;
 
+
         this.recordGameEnd(reason);
 
         this.router.gameWon(this, reason, winner);
@@ -598,10 +565,6 @@ class Game extends EventEmitter {
         this.timeLimit.stopTimer();
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
-        
-        if (this.trackElo) {
-            this.updateEloRankings(winner);
-        }
     }
 
     /**
