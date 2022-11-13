@@ -184,15 +184,6 @@ class GameList extends React.Component {
         let t = this.props.t;
 
         for (const game of games) {
-            // if (this.props.gameFilter.onlyShowNew && game.started) {
-            //     continue;
-            // }
-
-            // filter copied from keyteki but not completely used here
-            // if (!this.props.gameFilter[game.gameFormat]) {
-            //     continue;
-            // }
-
             let players = this.getPlayers(game);
 
             let isAdmin = this.props.user && this.props.user.permissions.canManageGames;
@@ -263,9 +254,6 @@ class GameList extends React.Component {
 
         let gameHeaderClass = 'game-header';
         switch (gameType) {
-            case 'beginner':
-                gameHeaderClass += ' badge-success';
-                break;
             case 'casual':
                 gameHeaderClass += ' badge-warning';
                 break;
@@ -298,7 +286,7 @@ class GameList extends React.Component {
 
         let gameList = [];
 
-        for (const gameType of ['beginner', 'casual', 'competitive']) {
+        for (const gameType of ['casual', 'competitive']) {
             // if (this.props.gameFilter[gameType] && groupedGames[gameType]) {
             if (groupedGames[gameType]) {
                 gameList.push(this.getGamesForType(gameType, groupedGames[gameType]));

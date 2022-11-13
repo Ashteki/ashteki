@@ -6,6 +6,7 @@ const EventEmitter = require('events');
 const uuid = require('uuid');
 const User = require('../models/User.js');
 const { GameType } = require('../constants');
+const { EloCalculator } = require('../EloCalculator.js');
 
 class UserService extends EventEmitter {
     constructor(configService) {
@@ -27,6 +28,7 @@ class UserService extends EventEmitter {
         });
     }
     async getUserByUsername(username) {
+        logger.debug('getting user %s', username);
         return this.users
             .find({
                 username: {
@@ -43,11 +45,13 @@ class UserService extends EventEmitter {
             });
     }
 
+    // fetch user by username / email address
     async getFullUserByUsername(username) {
         let user = await this.getUserByUsername(username);
         if (!user) {
             user = await this.getUserByEmail(username);
         }
+
         if (user) {
             user.tokens = await this.getRefreshTokens(user._id.toString());
             user.blockList = await this.getBlocklist(user._id.toString());
@@ -154,11 +158,31 @@ class UserService extends EventEmitter {
         });
     }
 
+    async recordEloResult(players, winner) {
+        for (const player of players) {
+            player.user = await this.getUserByUsername(player.name);
+            if (!player.user) {
+                logger.error('cannot find user: ', player.name);
+            }
+            logger.info(`player elo: ${player.name}, old: ${player.user.eloRating}`);
+        }
+
+        const eloCalculator = new EloCalculator();
+        eloCalculator.calculateExpectedResults(players);
+        eloCalculator.calculateNewResults(players, winner);
+
+        // save user elo
+        for (const player of players) {
+            logger.info(`player elo: ${player.name}, new: ${player.user.eloRating}`);
+
+            await this.updateUserElo(player.user);
+        }
+    }
+
     async updateUserElo(user) {
         var toSet = {
-            elo: user.elo
+            eloRating: user.eloRating
         };
-
         try {
             this.users.update({ username: user.username }, { $set: toSet });
         } catch (error) {

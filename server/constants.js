@@ -55,11 +55,10 @@ const Level = {
 };
 
 const GameType = {
-    Beginner: 'beginner',
     Casual: 'casual',
     Competitive: 'competitive',
     Adaptive: 'adaptive-bo1'
-}
+};
 
 module.exports = {
     Constants,

@@ -26,7 +26,7 @@
  */
 
 /**
- * @typedef {'casual' | 'beginner'| 'competitive' | 'adaptive-bo1'} GameType
+ * @typedef {'casual' | 'competitive'} GameType
  */
 
 /**

@@ -6,14 +6,14 @@ const GameResult = {
 };
 
 const RankFactors = {
-    // [lowerlimit, upperlimit, k-factor]
-    Beginner: [0, 2100, 32],
-    Advanced: [2100, 2400, 24],
-    Pro: [2400, 5000, 16]
-}
+    Beginner: { lower: 0, upper: 2100, kFactor: 32 },
+    Advanced: { lower: 2100, upper: 2400, kFactor: 24 },
+    Pro: { lower: 2400, upper: 5000, kFactor: 16 }
+};
+
+const defaultElo = 1500;
 
 class EloCalculator {
-
     calculateExpectedScore(playerARating, playerBRating) {
         return 1 / (1 + Math.pow(10, (playerBRating - playerARating) / 400));
     }
@@ -25,26 +25,35 @@ class EloCalculator {
     getKFactor(rating) {
         // The k-factor is the maximum possible adjustment
         // to a player's rating based on their current rating.
-        if (rating < RankFactors.Beginner[1])
-            return RankFactors.Beginner[2];
-        else if (rating >= RankFactors.Advanced[0] && rating <= RankFactors.Advanced[1])
-            return RankFactors.Advanced[2];
+        if (rating < RankFactors.Beginner.upper)
+            return RankFactors.Beginner.kFactor;
+        else if (rating >= RankFactors.Advanced.lower && rating <= RankFactors.Advanced.upper)
+            return RankFactors.Advanced.kFactor;
         else
-            return RankFactors.Pro[2];
+            return RankFactors.Pro.kFactor;
     }
 
     calculateExpectedResults(players) {
         let playerA = players[0];
         let playerB = players[1];
-        let playerARating = playerA.eloRating;
-        let playerBRating = playerB.eloRating;
+        let playerARating = playerA.user.eloRating || defaultElo;
+        let playerBRating = playerB.user.eloRating || defaultElo;
         playerA.expectedScore = this.calculateExpectedScore(playerARating, playerBRating);
         playerB.expectedScore = this.calculateExpectedScore(playerBRating, playerARating);
     }
 
+    calculateNewResults(players, winner) {
+        for (const p of players) {
+            let newRating = this.calculateUpdatedRating(
+                p.eloRating || defaultElo,
+                p.expectedScore,
+                p.name === winner ? GameResult.Win : GameResult.Loss
+            );
+            p.user.eloRating = newRating;
+        }
+    }
 }
 
 module.exports = {
-    EloCalculator,
-    GameResult
+    EloCalculator
 };

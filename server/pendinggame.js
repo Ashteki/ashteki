@@ -30,7 +30,7 @@ class PendingGame {
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.rematch = false;
         this.tournament = details.tournament;
-        this.trackElo = details.trackElo;
+        // this.trackElo = details.trackElo;
     }
 
     // Getters
@@ -337,7 +337,8 @@ class PendingGame {
                 role: player.user.role,
                 wins: player.wins,
                 faveColor: player.user.faveColor,
-                gamesPlayed: player.user.gamesPlayed ? player.user.gamesPlayed : 0
+                gamesPlayed: player.user.gamesPlayed ? player.user.gamesPlayed : 0,
+                eloRating: player.user.eloRating
             };
         });
 
@@ -368,8 +369,8 @@ class PendingGame {
                     avatar: spectator.user.avatar
                 };
             }),
-            useGameTimeLimit: this.useGameTimeLimit,
-            trackElo: this.trackElo
+            useGameTimeLimit: this.useGameTimeLimit
+            // trackElo: this.trackElo
         };
     }
 
@@ -415,8 +416,8 @@ class PendingGame {
             spectators,
             started: this.started,
             swap: this.swap,
-            useGameTimeLimit: this.useGameTimeLimit,
-            trackElo: this.trackElo
+            useGameTimeLimit: this.useGameTimeLimit
+            // trackElo: this.trackElo
         };
     }
 }

@@ -323,11 +323,6 @@ class GameServer {
         if (pendingGame.rematch) {
             game.addAlert('info', 'The rematch is ready');
         }
-
-        if (pendingGame.trackElo) {
-            const eloCalculator = new EloCalculator();
-            eloCalculator.calculateExpectedResults(game.getPlayers());
-        }
     }
 
     /**

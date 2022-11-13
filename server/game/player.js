@@ -749,7 +749,8 @@ class Player extends GameObject {
                 settings: this.user.settings,
                 role: this.user.role,
                 avatar: this.user.avatar,
-                faveColor: this.user.faveColor
+                faveColor: this.user.faveColor,
+                eloRating: this.user.eloRating
             },
             deckData: isActivePlayer ? this.deckData : null,
             wins: this.wins,
@@ -803,14 +804,6 @@ class Player extends GameObject {
                 return 600;
         }
         // Ready => Ally => Alteration => Action => Reaction
-    }
-
-    get eloRating() {
-        return this.user.elo;
-    }
-
-    set eloRating(newRating) {
-        this.user.elo = newRating;
     }
 }
 

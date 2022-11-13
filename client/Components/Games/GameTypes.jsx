@@ -6,7 +6,6 @@ const GameTypes = ({ formProps }) => {
     const { t } = useTranslation();
 
     let types = [
-        { name: 'beginner', label: t('Beginner') },
         { name: 'casual', label: t('Casual') },
         { name: 'competitive', label: t('Competitive') }
     ];

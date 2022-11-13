@@ -1,11 +1,10 @@
 const redis = require('redis');
 const EventEmitter = require('events');
-
 const logger = require('./log');
 const GameService = require('./services/AshesGameService');
 const { detectBinary } = require('./util');
 const UserService = require('./services/AshesUserService');
-const { EloCalculator } = require('./EloCalculator');
+const { GameType } = require('./constants');
 
 class GameRouter extends EventEmitter {
     /**
@@ -252,38 +251,13 @@ class GameRouter extends EventEmitter {
                 // final save for game state
                 this.gameService.update(game);
 
-                // update player / user elo stats
-                if (game.trackElo) {
-                    let winningPlayer = this.getNamedProperty(game.players, game.winner);
-                    let losingPlayer = this.getOtherProperty(winningPlayer);
-                    // calculate expected outcome
-                    const elo = new EloCalculator();
-
-                    // calculate actual 
-                    if (winningPlayer) {
-                        let oldRating = winningPlayer.eloRating;
-                        let newRating = this.calculateUpdatedRating(
-                            oldRating,
-                            winningPlayer.expectedScore,
-                            GameResult.Win
-                        );
-                        winningPlayer.eloRating = newRating;
-                    }
-                    if (losingPlayer) {
-                        let oldRating = losingPlayer.eloRating;
-                        let newRating = this.calculateUpdatedRating(
-                            oldRating,
-                            losingPlayer.expectedScore,
-                            GameResult.Loss
-                        );
-                        losingPlayer.eloRating = newRating;
-                    }
-
-
-                    for (const player of game.players) {
-                        this.userService.updateUserElo(player.user);
-                    }
+                // do elo update
+                try {
+                    this.doEloUpdate(game);
+                } catch (error) {
+                    logger.error('unable to update elo ratings:', message.arg.game.gameId);
                 }
+
                 // increment player game counts
                 message.arg.game.players.forEach((player) => {
                     Promise.resolve(this.userService.incrementGameCount(player.name));
@@ -329,11 +303,18 @@ class GameRouter extends EventEmitter {
         }
     }
 
+    async doEloUpdate(game) {
+        // update player / user elo stats
+        if (game.gameType === GameType.Competitive) {
+            this.userService.recordEloResult(game.players, game.winner);
+        }
+    }
+
     getNamedProperty(object, key) {
         return object[key];
     }
     getOtherProperty(object, key) {
-        return Object.entries(object).find((k) => k === key);
+        return Object.entries(object).find(([k, v]) => k !== key)[1];
     }
 
     // Internal methods

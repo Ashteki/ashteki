@@ -78,7 +78,7 @@ class Game extends EventEmitter {
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.triggerSuddenDeath = false;
         this.suddenDeath = false;
-        this.trackElo = details.trackElo;
+        // this.trackElo = details.trackElo;
         // this.expectedScores = {}; // Don't think I need for reconnects/rematches
 
         this.cardIndex = 0;
@@ -1554,7 +1554,7 @@ class Game extends EventEmitter {
             startedAt: this.startedAt,
             swap: this.swap,
             winner: this.winner ? this.winner.name : undefined,
-            trackElo: this.trackElo
+            // trackElo: this.trackElo
         };
     }
 }
