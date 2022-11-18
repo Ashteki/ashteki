@@ -42,6 +42,10 @@ const ProfileMain = ({ user, formProps }) => {
     const callbackUrl = `${window.location.origin}/patreon`;
     const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${PatreonClientId}&redirect_uri=${callbackUrl}`;
 
+    let eloRating = '(calibrating)';
+    if (user.gamesPlayed > 20) {
+        eloRating = user?.eloRating ? Math.round(user.eloRating) : '';
+    };
     return (
         <Panel title={t('Profile')}>
             <Form.Row>
@@ -139,7 +143,8 @@ const ProfileMain = ({ user, formProps }) => {
                 </Form.Group>
                 <Form.Group as={Col} md='3'>
                     <Form.Label>{t('Elo Rating')}</Form.Label>
-                    <div>{user?.eloRating ? Math.round(user.eloRating) : ''}</div>
+                    <div>{eloRating}</div>
+
                 </Form.Group>
             </Form.Row>
             <Form.Row>
