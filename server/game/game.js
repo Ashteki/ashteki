@@ -2,7 +2,6 @@ const _ = require('underscore');
 const EventEmitter = require('events');
 const moment = require('moment');
 
-const Card = require('./card')
 const ChatCommands = require('./chatcommands');
 const GameChat = require('./gamechat');
 const EffectEngine = require('./effectengine');
