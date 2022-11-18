@@ -20,7 +20,9 @@ userService
         console.info('' + _.size(users), 'total users');
 
         _.each(users, (user) => {
-            console.info('%s | %s', user.username, user.eloRating);
+            if (user.eloRating) {
+                console.info('%s | %s', user.username, user.eloRating);
+            }
         });
 
         console.info('' + _.size(users), 'total users');
