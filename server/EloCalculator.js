@@ -38,9 +38,9 @@ class EloCalculator {
     calculateExpectedResults(players) {
         let playerA = players[0];
         let playerB = players[1];
-        let playerARating = playerA.user.eloRating || defaultElo;
+        let playerARating = playerA?.user.eloRating || defaultElo;
 
-        let playerBRating = playerB.user.eloRating || defaultElo;
+        let playerBRating = playerB?.user.eloRating || defaultElo;
         playerA.expectedScore = this.calculateExpectedScore(playerARating, playerBRating);
         logger.info('playerA expected score %s', playerA.expectedScore);
         playerB.expectedScore = this.calculateExpectedScore(playerBRating, playerARating);
@@ -50,7 +50,7 @@ class EloCalculator {
     calculateNewResults(players, winner) {
         for (const p of players) {
             let newRating = this.calculateUpdatedRating(
-                p.user.eloRating || defaultElo,
+                p.user?.eloRating || defaultElo,
                 p.expectedScore,
                 p.name === winner ? GameResult.Win : GameResult.Loss
             );

@@ -159,10 +159,15 @@ class UserService extends EventEmitter {
     }
 
     async recordEloResult(players, winner) {
+        if (players.length < 2) {
+            return;
+        }
+
         for (const player of players) {
             player.user = await this.getUserByUsername(player.name);
             if (!player.user) {
                 logger.error('cannot find user: ', player.name);
+                return;
             }
             logger.info(`player elo: ${player.name}, old: ${player.user.eloRating}`);
         }
