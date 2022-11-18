@@ -1,4 +1,3 @@
-const logger = require('../log.js');
 const GameService = require('../services/AshesGameService.js');
 const ConfigService = require('../services/ConfigService.js');
 

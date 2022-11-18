@@ -1,3 +1,5 @@
+const logger = require("./log");
+
 // For details on Elo calculation, refer to https://en.wikipedia.org/wiki/Elo_rating_system
 const GameResult = {
     Win: 1,
@@ -37,15 +39,18 @@ class EloCalculator {
         let playerA = players[0];
         let playerB = players[1];
         let playerARating = playerA.user.eloRating || defaultElo;
+
         let playerBRating = playerB.user.eloRating || defaultElo;
         playerA.expectedScore = this.calculateExpectedScore(playerARating, playerBRating);
+        logger.info('playerA expected score %s', playerA.expectedScore);
         playerB.expectedScore = this.calculateExpectedScore(playerBRating, playerARating);
+        logger.info('playerB expected score %s', playerB.expectedScore);
     }
 
     calculateNewResults(players, winner) {
         for (const p of players) {
             let newRating = this.calculateUpdatedRating(
-                p.eloRating || defaultElo,
+                p.user.eloRating || defaultElo,
                 p.expectedScore,
                 p.name === winner ? GameResult.Win : GameResult.Loss
             );
