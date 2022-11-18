@@ -134,6 +134,14 @@ class User {
         this.userData.patreon = value;
     }
 
+    get eloRating() {
+        return this.userData.eloRating;
+    }
+
+    set eloRating(value) {
+        this.userData.eloRating = value;
+    }
+
     block(otherUser) {
         this.userData.blockList = this.userData.blockList || [];
         this.userData.blockList.push(otherUser.username.toLowerCase());
@@ -153,7 +161,8 @@ class User {
             permissions: this.userData.permissions,
             verified: this.userData.verified,
             blockList: this.userData.blockList,
-            gamesPlayed: this.userData.gamesPlayed
+            gamesPlayed: this.userData.gamesPlayed,
+            eloRating: this.userData.eloRating
         };
 
         user = Settings.getUserWithDefaultsSet(user);
@@ -168,6 +177,7 @@ class User {
             name: this.username,
             role: this.role,
             faveColor: this.faveColor,
+            eloRating: this.userData.eloRating,
             gamesPlayed: this.gamesPlayed
         };
     }

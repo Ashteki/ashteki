@@ -2,6 +2,7 @@ const _ = require('underscore');
 const EventEmitter = require('events');
 const moment = require('moment');
 
+const Card = require('./card')
 const ChatCommands = require('./chatcommands');
 const GameChat = require('./gamechat');
 const EffectEngine = require('./effectengine');
@@ -37,11 +38,11 @@ const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
+const { EloCalculator } = require('../EloCalculator');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
-
         this.adaptive = { selection: [], biddingWinner: '' };
         this.allowSpectators = details.allowSpectators;
         this.cancelPromptUsed = false;
@@ -77,6 +78,8 @@ class Game extends EventEmitter {
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.triggerSuddenDeath = false;
         this.suddenDeath = false;
+        // this.trackElo = details.trackElo;
+        // this.expectedScores = {}; // Don't think I need for reconnects/rematches
 
         this.cardIndex = 0;
         this.cardsUsed = [];
@@ -87,10 +90,12 @@ class Game extends EventEmitter {
         this.gameFirstPlayer = null;
         this.roundFirstPlayer = null;
         this.jsonForUsers = {};
+        this.router = options.router;
 
         this.cardData = options.cardData || [];
 
         this.cardVisibility = new CardVisibility(this.showHand);
+        this.attackState = null;
 
         _.each(details.players, (player) => {
             this.playersAndSpectators[player.user.username] = new Player(
@@ -109,10 +114,6 @@ class Game extends EventEmitter {
         });
 
         this.setMaxListeners(0);
-
-        this.router = options.router;
-
-        this.attackState = null;
     }
 
     getCardIndex() {
@@ -550,6 +551,7 @@ class Game extends EventEmitter {
         this.addAlert('success', '{0} has won the game', winner);
         this.setWins(winner.name, winner.wins ? winner.wins + 1 : 1);
         this.winner = winner;
+
 
         this.recordGameEnd(reason);
 
@@ -1551,7 +1553,8 @@ class Game extends EventEmitter {
             started: this.started,
             startedAt: this.startedAt,
             swap: this.swap,
-            winner: this.winner ? this.winner.name : undefined
+            winner: this.winner ? this.winner.name : undefined,
+            // trackElo: this.trackElo
         };
     }
 }

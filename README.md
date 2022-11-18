@@ -44,8 +44,8 @@ docker-compose up
 In another terminal, navigate to the repository and run the following commands:
 
 ```
-docker-compose exec lobby node server/scripts/ashes/importdata
-docker-compose exec lobby node server/scripts/ashes/importprecons
+docker-compose exec lobby node server/scripts/importdata
+docker-compose exec lobby node server/scripts/importprecons
 ```
 These commands import card data, and precons respectively. They can be run from the command line at any time to delete and recreate the data.
 
@@ -54,9 +54,11 @@ These commands import card data, and precons respectively. They can be run from 
 #### Required Software
 
 -   Git
--   Node.js 8
+-   Node.js 16
 -   mongodb
 -   Redis
+
+The best way to install node is using nvm (node version manager)
 
 Clone the repository, then run the following commands:
 
@@ -73,7 +75,8 @@ Create config/local.json5 and put something like the following in it:
     redisUrl: 'redis://127.0.0.1',
 
     gameNode: {
-        hostname: 'localhost'
+        hostname: 'localhost',
+        origin: '*'
     }
 }
 ```
@@ -81,15 +84,16 @@ Create config/local.json5 and put something like the following in it:
 Run the following commands:
 
 ```
-node server/scripts/ashes/importdata
-node server/scripts/ashes/importprecons
+node server/scripts/importdata
+node server/scripts/importprecons
 node .
 node server/gamenode
 ```
 
-There are two executable components and you'll need to configure/run both to run a local server. First is the lobby server and then there are game nodes. The default configurations assume you are running postgres locally on the default port. If you need to change any configurations, edit `config/default.json5` or create a `config/local.json5` configuration that overrides any desired settings.
+There are two executable components and you'll need to configure/run both to run a local server. First is the lobby server and then there are game nodes. If you need to change any configurations, edit `config/default.json5` or create a `config/local.json5` configuration that overrides any desired settings.
 
-To download all supported languages (not needed if you're running just a test / dev server):
+### Hybrid!
+If the above docker solution works for you then that's great, but I had a few troubles with hot reloading front end changes. I run mongodb and redis as docker containers, and then run the node services (lobby and gamenodes) locally in windows.
 
 ### Running and Testing
 
@@ -103,7 +107,7 @@ using an incognito window.
 These users will be normal (non-admin) users. To escalate a user to
 the admin role you can run
 ```
-node server/scripts/ashes/makeSuperuser <username>
+node server/scripts/makeSuperuser <username>
 ```
 
 This is not required for testing in-game functionality.

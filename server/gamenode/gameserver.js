@@ -12,6 +12,7 @@ const Game = require('../game/game');
 const Socket = require('../socket');
 const ConfigService = require('../services/ConfigService');
 const version = require('../../version');
+const { EloCalculator } = require('../EloCalculator');
 
 class GameServer {
     constructor() {

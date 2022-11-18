@@ -20,7 +20,6 @@ const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const filters = [
-        { name: 'beginner', label: t('Beginner') },
         { name: 'casual', label: t('Casual') },
         { name: 'competitive', label: t('Competitive') }
     ];

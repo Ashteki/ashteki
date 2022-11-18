@@ -54,6 +54,12 @@ const Level = {
     Power: 'power'
 };
 
+const GameType = {
+    Casual: 'casual',
+    Competitive: 'competitive',
+    Adaptive: 'adaptive-bo1'
+};
+
 module.exports = {
     Constants,
     CardType,
@@ -66,5 +72,6 @@ module.exports = {
     Level,
     EffectLocations,
     BluffAbilityTypes,
-    DamageDealingLocations
+    DamageDealingLocations,
+    GameType
 };

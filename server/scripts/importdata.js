@@ -1,7 +1,7 @@
 const fs = require('fs');
 const _ = require('underscore');
-const AshesCardService = require('../../services/AshesCardService');
-const ConfigService = require('../../services/ConfigService');
+const AshesCardService = require('../services/AshesCardService');
+const ConfigService = require('../services/ConfigService');
 
 let cardService = new AshesCardService(new ConfigService());
 const dataDirectory = 'data/cards/';

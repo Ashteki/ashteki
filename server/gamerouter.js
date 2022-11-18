@@ -1,10 +1,10 @@
 const redis = require('redis');
 const EventEmitter = require('events');
-
 const logger = require('./log');
 const GameService = require('./services/AshesGameService');
 const { detectBinary } = require('./util');
 const UserService = require('./services/AshesUserService');
+const { GameType } = require('./constants');
 
 class GameRouter extends EventEmitter {
     /**
@@ -247,7 +247,18 @@ class GameRouter extends EventEmitter {
 
                 break;
             case 'GAMEWIN':
-                this.gameService.update(message.arg.game);
+                let game = message.arg.game;
+                // final save for game state
+                this.gameService.update(game);
+
+                // do elo update
+                try {
+                    this.doEloUpdate(game);
+                } catch (error) {
+                    logger.error('unable to update elo ratings:', message.arg.game.gameId);
+                }
+
+                // increment player game counts
                 message.arg.game.players.forEach((player) => {
                     Promise.resolve(this.userService.incrementGameCount(player.name));
                 });
@@ -290,6 +301,20 @@ class GameRouter extends EventEmitter {
         if (worker) {
             worker.lastMessage = new Date();
         }
+    }
+
+    async doEloUpdate(game) {
+        // update player / user elo stats
+        if (game.gameType === GameType.Competitive) {
+            this.userService.recordEloResult(game.players, game.winner);
+        }
+    }
+
+    getNamedProperty(object, key) {
+        return object[key];
+    }
+    getOtherProperty(object, key) {
+        return Object.entries(object).find(([k, v]) => k !== key)[1];
     }
 
     // Internal methods

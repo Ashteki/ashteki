@@ -23,7 +23,7 @@ const prettyJson = format.printf((info) => {
 });
 
 const logger = createLogger({
-    // level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+    level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
     format: format.combine(
         format.timestamp(),
         format.errors({ stack: true }),

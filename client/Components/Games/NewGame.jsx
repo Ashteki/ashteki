@@ -71,8 +71,7 @@ const NewGame = ({
         gameFormat: 'constructed',
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
-        gamePrivate: defaultPrivate,
-        mm: true
+        gamePrivate: defaultPrivate
     };
 
     if (!lobbySocket) {

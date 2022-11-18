@@ -7,7 +7,7 @@ const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType } = require('../constants');
+const { BattlefieldTypes, CardType, GameType } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -51,6 +51,11 @@ class Player extends GameObject {
         this.diceCounts = [];
         this.firstPlayer = false;
         this.left = false;
+        this.socket = undefined;
+        this.lobbyId = undefined;
+
+        // expected win/lose based on Elo
+        this.expectedScore = undefined;
     }
 
     get name() {
@@ -744,7 +749,8 @@ class Player extends GameObject {
                 settings: this.user.settings,
                 role: this.user.role,
                 avatar: this.user.avatar,
-                faveColor: this.user.faveColor
+                faveColor: this.user.faveColor,
+                eloRating: this.user.eloRating
             },
             deckData: isActivePlayer ? this.deckData : null,
             wins: this.wins,
