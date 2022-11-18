@@ -159,6 +159,10 @@ class UserService extends EventEmitter {
     }
 
     async recordEloResult(players, winner) {
+        if (players.length < 2) {
+            return;
+        }
+
         for (const player of players) {
             player.user = await this.getUserByUsername(player.name);
             if (!player.user) {
