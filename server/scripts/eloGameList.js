@@ -18,8 +18,8 @@ gameService
                     '%s | %s | %s | %s',
                     game.gameId,
                     game.players[0].name,
-                    game.players[1].name
-                    game.winner,
+                    game.players[1].name,
+                    game.winner
                 );
             }
         }
