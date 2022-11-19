@@ -94,6 +94,10 @@ class Player extends GameObject {
         this.clock.stop();
     }
 
+    resetClock() {
+        this.clock.reset();
+    }
+
     /**
      * Checks whether a card with a uuid matching the passed card is in the passed Array
      * @param {Array} list

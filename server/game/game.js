@@ -95,13 +95,18 @@ class Game extends EventEmitter {
 
         this.cardVisibility = new CardVisibility(this.showHand);
         this.attackState = null;
-
+        const clockDetails = { type: 'none', time: 0 };
+        if (details.useGameTimeLimit) {
+            clockDetails.type = details.clockType;
+            clockDetails.time = details.gameTimeLimit;
+        }
         _.each(details.players, (player) => {
             this.playersAndSpectators[player.user.username] = new Player(
                 player.id,
                 player.user,
                 this.owner === player.user.username,
-                this
+                this,
+                clockDetails
             );
         });
 
@@ -340,6 +345,10 @@ class Game extends EventEmitter {
 
     stopClocks() {
         _.each(this.getPlayers(), (player) => player.stopClock());
+    }
+
+    resetClocks() {
+        _.each(this.getPlayers(), (player) => player.resetClock());
     }
 
     /**

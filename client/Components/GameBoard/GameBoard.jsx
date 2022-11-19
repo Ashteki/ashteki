@@ -137,6 +137,7 @@ export class GameBoard extends React.Component {
         let timeLimitClock = null;
         if (
             this.props.currentGame.useGameTimeLimit &&
+            this.props.currentGame.clockType !== 'clock' &&
             this.props.currentGame.gameTimeLimitStarted
         ) {
             timeLimitClock = (
@@ -429,6 +430,7 @@ export class GameBoard extends React.Component {
                         firstPlayer={otherPlayer.firstPlayer}
                         phoenixborn={otherPlayer.phoenixborn}
                         player={otherPlayer}
+                        clockState={otherPlayer.clock}
                     />
                 </div>
                 <div className='main-window'>
@@ -502,6 +504,7 @@ export class GameBoard extends React.Component {
                         onDiceHistoryClick={this.onDiceHistoryClick}
                         onManualCommandsClick={this.onManualCommandsClick}
                         phoenixborn={thisPlayer.phoenixborn}
+                        clockState={thisPlayer.clock}
                     />
                 </div>
             </div>
