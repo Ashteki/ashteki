@@ -135,19 +135,19 @@ export class GameBoard extends React.Component {
 
     getTimer() {
         let timeLimitClock = null;
-        if (
-            this.props.currentGame.useGameTimeLimit &&
-            this.props.currentGame.clockType !== 'clock' &&
-            this.props.currentGame.gameTimeLimitStarted
-        ) {
-            timeLimitClock = (
-                <TimeLimitClock
-                    timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
-                    timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
-                    timeLimit={this.props.currentGame.gameTimeLimitTime}
-                />
-            );
-        }
+        // if (
+        //     this.props.currentGame.useGameTimeLimit &&
+        //     this.props.currentGame.clockType !== 'chess' &&
+        //     this.props.currentGame.gameTimeLimitStarted
+        // ) {
+        //     timeLimitClock = (
+        //         <TimeLimitClock
+        //             timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
+        //             timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
+        //             timeLimit={this.props.currentGame.gameTimeLimitTime}
+        //         />
+        //     );
+        // }
 
         return timeLimitClock;
     }

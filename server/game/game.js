@@ -100,6 +100,7 @@ class Game extends EventEmitter {
             clockDetails.type = details.clockType;
             clockDetails.time = details.gameTimeLimit;
         }
+        this.clockType = details.clockType;
         _.each(details.players, (player) => {
             this.playersAndSpectators[player.user.username] = new Player(
                 player.id,
@@ -1566,6 +1567,7 @@ class Game extends EventEmitter {
                 attack: this.attackState ? this.attackState.getSummary() : null,
                 swap: this.swap,
                 useGameTimeLimit: this.useGameTimeLimit,
+                clockType: this.clockType,
                 winner: this.winner ? this.winner.name : undefined
             };
         }

@@ -15,9 +15,21 @@ const GameOptions = ({ formProps }) => {
     ];
 
     let clockType = [
-        { name: 'shared', label: t('Shared') },
+        { name: 'timer', label: t('Shared') },
         { name: 'chess', label: t('Chess Clock') }
     ];
+
+    const defaultTime = {
+        timer: '50',
+        chess: '30',
+        hourglass: '15',
+        byoyomi: '0'
+    };
+
+    const onClockChange = (value, setFieldValue) => {
+        setFieldValue("clockType", value);
+        setFieldValue("gameTimeLimit", defaultTime[value]);
+    }
 
     return (
         <>
@@ -62,7 +74,10 @@ const GameOptions = ({ formProps }) => {
                                 id={type.name}
                                 label={type.label}
                                 inline
-                                onChange={formProps.handleChange}
+                                onChange={(e) => {
+                                    formProps.handleChange(e);
+                                    onClockChange(type.name, formProps.setFieldValue);
+                                }}
                                 value={type.name}
                                 checked={formProps.values.clockType === type.name}
                             ></Form.Check>

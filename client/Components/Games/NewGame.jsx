@@ -71,7 +71,7 @@ const NewGame = ({
         gameFormat: 'constructed',
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
-        clockType: 'shared',
+        clockType: 'none',
         gamePrivate: defaultPrivate
     };
 
