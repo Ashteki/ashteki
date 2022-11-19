@@ -22,7 +22,13 @@ class Disengage extends Card {
                     // a blocked ally
                     (battle) => battle.attacker === card && battle.guard
                 ),
-                gameAction: ability.actions.removeAttacker({ exhaustDefender: true })
+                gameAction: ability.actions.removeAttacker()
+            },
+            then: {
+                target: {
+                    autoTarget: (context) => context.preThenEvent.context.defender,
+                    gameAction: ability.actions.exhaust()
+                }
             }
         });
     }

@@ -54,7 +54,7 @@ class AttackState {
             });
     }
 
-    removeAttacker(card, battle, exhaustDefender) {
+    removeAttacker(card, battle) {
         // are we given the battle?
         let bat = battle
             ? battle
@@ -66,12 +66,12 @@ class AttackState {
         // remove attacker status
         card.isAttacker = false;
         bat.attacker = null;
+        const def = bat.guard;
 
-        if (exhaustDefender) {
-            bat.guard.exhaust();
-        }
         // trim battle
         this.battles = this.battles.filter((bf) => bf !== bat);
+
+        return def;
     }
 
     pruneBattles() {
