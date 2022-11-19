@@ -28,6 +28,7 @@
     display: flex;
     align-items: center;
     flex: 1;
+
     .gamelist-button {
         height: 34px;
         width: 122px;
@@ -62,6 +63,10 @@
     color: white;
 }
 
+.cap {
+    text-transform: capitalize;
+}
+
 .first-player {
     .game-player-name {
         margin-right: 5px;
@@ -94,6 +99,7 @@
 .house-icons {
     display: flex;
     margin-top: 4px;
+
     img {
         height: 21px;
     }
@@ -131,7 +137,8 @@
 }
 
 .game-list-deck-image img.pb-image {
-    margin-left:5px;
-    margin-right: 5px;;
+    margin-left: 5px;
+    margin-right: 5px;
+    ;
     width: 40px;
 }

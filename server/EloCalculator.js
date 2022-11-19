@@ -21,7 +21,8 @@ class EloCalculator {
     }
 
     calculateUpdatedRating(playerRating, expectedScore, playerResult) {
-        return playerRating + this.getKFactor(playerRating) * (playerResult - expectedScore);
+        const newValue = playerRating + this.getKFactor(playerRating) * (playerResult - expectedScore);
+        return Math.round(newValue);
     }
 
     getKFactor(rating) {

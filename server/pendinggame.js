@@ -349,6 +349,7 @@ class PendingGame {
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
+            gameTimeLimit: this.gameTimeLimit,
             id: this.id,
             label: this.label,
             messages: activePlayer ? this.gameChat.messages : undefined,

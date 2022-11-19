@@ -5,7 +5,6 @@ class RemoveAttackerAction extends CardGameAction {
     constructor(propertyFactory) {
         super(propertyFactory);
         this.effectMsg = '{0} is removed from the battle';
-        this.exhaustDefender = false;
     }
 
     setup() {
@@ -21,13 +20,9 @@ class RemoveAttackerAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent(
-            'unnamedEvent',
-            { card: card, context: context, exhaustDefender: this.exhaustDefender },
-            (event) => {
-                context.game.attackState.removeAttacker(card, null, event.exhaustDefender);
-            }
-        );
+        return super.createEvent('unnamedEvent', { card: card, context: context }, (event) => {
+            event.context.defender = context.game.attackState.removeAttacker(card, null);
+        });
     }
 }
 

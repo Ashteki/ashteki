@@ -21,4 +21,14 @@ describe('Blood Archer', function () {
         expect(this.bloodArcher.exhaustion).toBe(0);
         expect(this.fluteMage.damage).toBe(1);
     });
+
+    it('use blood shot when it destroys self', function () {
+        this.bloodArcher.tokens.damage = 2;
+        this.player1.clickCard(this.bloodArcher);
+        this.player1.clickPrompt('Blood Shot');
+        this.player1.clickCard(this.fluteMage);
+
+        expect(this.bloodArcher.location).toBe('discard');
+        expect(this.fluteMage.damage).toBe(1);
+    });
 });

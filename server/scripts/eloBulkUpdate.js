@@ -14,6 +14,8 @@ let args = process.argv.slice(2);
 gameService
     .getAllGames(start, end)
     .then(async (games) => {
+        games.sort((a, b) => a.finishedAt < b.finishedAt);
+
         console.info(games.length, 'total games');
         for (const game of games) {
             if (game.winner && (game.gameType === 'competitive' || args[0] === 'all')) {

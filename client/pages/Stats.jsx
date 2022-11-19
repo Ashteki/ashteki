@@ -12,19 +12,29 @@ class Stats extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTerm: 0
+            selectedTerm: 0,
+            gameType: null
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+    }
+
+    loadUserStats() {
+        this.props.loadUserStats(this.state.selectedTerm, this.state.gameType);
     }
 
     handleChange(event) {
         this.setState({ selectedTerm: event.target.value }, () => {
-            this.props.loadUserStats(this.state.selectedTerm);
+            this.loadUserStats();
         });
     }
-
+    handleTypeChange(event) {
+        this.setState({ gameType: event.target.value }, () => {
+            this.loadUserStats();
+        });
+    }
     componentDidMount() {
-        this.props.loadUserStats(this.state.selectedTerm);
+        this.loadUserStats();
     }
 
     computeWinner(game) {
@@ -70,6 +80,18 @@ class Stats extends React.Component {
                 <option value='1'>Last 1 month</option>
                 <option value='3'>Last 3 months</option>
                 <option value='12'>Last 12 months</option>
+            </select>
+        )
+
+        const gtDropdown = (
+            <select
+                className='form-control'
+                value={this.state.gameType}
+                onChange={this.handleTypeChange}
+            >
+                <option value=''>All Types</option>
+                <option value='competitive'>Competitive</option>
+                <option value='casual'>Casual</option>
             </select>
         )
 
@@ -143,7 +165,8 @@ class Stats extends React.Component {
                 <div>
                     <div className='profile full-height'>
                         <Panel title={t('Stats')}>
-                            <div>{dropdown}</div>
+                            <div className='col-md-6 inline'>{dropdown}</div>
+                            <div className='col-md-6 inline'>{gtDropdown}</div>
 
                             {table}
                         </Panel>

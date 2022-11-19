@@ -13,7 +13,8 @@ module.exports.init = function (server) {
         wrapAsync(async function (req, res) {
             let stats = await gameService.getStatsByUserName(
                 req.user.username,
-                req.query.months
+                req.query.months,
+                req.query.gameType
             );
             res.send({ success: true, stats: stats });
         })
