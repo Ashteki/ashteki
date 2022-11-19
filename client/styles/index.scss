@@ -266,6 +266,8 @@ pre {
     -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+
 }
 
 .form-horizontal {
@@ -273,4 +275,10 @@ pre {
         margin-left: 0;
         margin-right: 0;
     }
+}
+
+.inline {
+
+    display: inline-block;
+
 }

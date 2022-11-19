@@ -1,4 +1,4 @@
-export function loadUserStats(months) {
+export function loadUserStats(months, gameType) {
     return {
         types: ['REQUEST_USERSTATS', 'RECEIVE_USERSTATS'],
         shouldCallAPI: () => true,
@@ -6,7 +6,8 @@ export function loadUserStats(months) {
             url: '/api/stats',
             data:
             {
-                months: months
+                months: months,
+                gameType: gameType
             },
             cache: false
         }
