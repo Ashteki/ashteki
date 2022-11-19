@@ -14,6 +14,11 @@ const GameOptions = ({ formProps }) => {
         // { name: 'trackElo', label: t('Track Elo ratings') }
     ];
 
+    let clockType = [
+        { name: 'shared', label: t('Shared') },
+        { name: 'chess', label: t('Chess Clock') }
+    ];
+
     return (
         <>
             <Form.Group>
@@ -48,6 +53,21 @@ const GameOptions = ({ formProps }) => {
                         <Form.Control.Feedback type='invalid'>
                             {formProps.errors.gameTimeLimit}
                         </Form.Control.Feedback>
+
+                        {clockType.map((type) => (
+                            <Form.Check
+                                name='clockType'
+                                key={type.name}
+                                type='radio'
+                                id={type.name}
+                                label={type.label}
+                                inline
+                                onChange={formProps.handleChange}
+                                value={type.name}
+                                checked={formProps.values.clockType === type.name}
+                            ></Form.Check>
+                        ))}
+
                     </Form.Group>
                 </Form.Row>
             )}
