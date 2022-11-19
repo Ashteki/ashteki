@@ -24,7 +24,7 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
     let firstPlayer = true;
     return (
         <div title={t('Players')}>
-            <h3>Players</h3>
+            <h3>Players:</h3>
             {Object.values(currentGame.players).map((player) => {
                 const playerIsMe = player && player.name === user?.username;
 

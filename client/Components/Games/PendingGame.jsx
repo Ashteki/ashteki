@@ -169,6 +169,26 @@ const PendingGame = () => {
         setMessage('');
     };
 
+    let gameLabel = null;
+    let timelimit = null;
+
+    if (currentGame.gameType === 'competitive') {
+        gameLabel = (
+            <h3>
+                Label: <span className='unbold'>{currentGame.label}</span>
+            </h3>
+        );
+
+        timelimit = (
+            <h3>
+                Time Limit:{' '}
+                <span className='unbold'>
+                    {currentGame.useGameTimeLimit ? currentGame.gameTimeLimit : 'None'}
+                </span>
+            </h3>
+        );
+    }
+
     return (
         <>
             <audio ref={notification}>
@@ -205,12 +225,17 @@ const PendingGame = () => {
                 </div>
                 <div className='game-status'>{getGameStatus()}</div>
                 <h3>
-                    Format: <span className='unbold'>{getFormatLabel(currentGame.gameFormat)}</span>
+                    Format: <span className='unbold cap'>{getFormatLabel(currentGame.gameFormat)}</span>
                 </h3>
                 <div>
                     <GameFormatInfo gameType={currentGame.gameFormat} />
                 </div>
+                <h3>
+                    Type: <span className='unbold cap'>{currentGame.gameType}</span>
+                </h3>
 
+                {timelimit}
+                {gameLabel}
 
                 <PendingGamePlayers
                     currentGame={currentGame}
