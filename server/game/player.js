@@ -316,7 +316,7 @@ class Player extends GameObject {
         this.actions = { main: true, side: 1 };
         //this.limitedPlayed = 0; // reset for my turn - moved to game.js
         this.game.addAlert('startofturn', `Turn ${this.turn} - {0}`, this);
-        if (this.game.suddenDeath) {
+        if (this.clock.timeLeft <= 0) {
             this.doSuddenDeathDiscard();
         }
     }

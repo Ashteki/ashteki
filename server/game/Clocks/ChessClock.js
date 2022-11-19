@@ -19,9 +19,9 @@ class ChessClock extends Clock {
 
     timeRanOut() {
         this.player.game.addMessage("{0}'s clock has run out", this.player);
-        if (this.player.opponent && this.player.opponent.clock.timeLeft > 0) {
-            this.player.game.recordWinner(this.player.opponent, 'clock');
-        }
+        // if (this.player.opponent && this.player.opponent.clock.timeLeft > 0) {
+        //     this.player.game.recordWinner(this.player.opponent, 'clock');
+        // }
     }
 }
 
