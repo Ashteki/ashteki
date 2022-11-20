@@ -16,7 +16,7 @@ gameService
         games.sort((a, b) => a.finishedAt < b.finishedAt);
         console.log('game label | count');
         for (const game of games) {
-            if (game.label) {
+            if (game.label && game.gameType === 'casual') {
                 if (!gameLabels[game.label]) {
                     gameLabels[game.label] = 1;
                 } else {
