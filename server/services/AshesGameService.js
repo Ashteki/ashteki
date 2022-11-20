@@ -94,7 +94,8 @@ class GameService {
     async getStatsByUserName(username, mon, gameType) {
         const findSpec = {
             'players.name': username,
-            'players.deck': { $ne: null }
+            'players.deck': { $ne: null },
+            gameType: { $ne: 'beginner' }
         };
         if (mon && mon > 0) {
             const fromDate = moment().subtract(mon, 'months');
