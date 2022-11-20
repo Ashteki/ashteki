@@ -11,9 +11,9 @@ const collection = db.get('games');
 collection
     .find({
         gameType: 'casual',
-        label: { $ne: '' }
+        label: { $exists: true, $nin: ['', null] }
     })
     .then((result) => {
-        console.log(result.length);
+        console.log(result);
     })
     .then(() => db.close());
