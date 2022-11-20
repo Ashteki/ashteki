@@ -8,22 +8,26 @@ let end = new Date();
 console.log('Games between', start, 'and', end);
 let args = process.argv.slice(2);
 
-const gameLabels = [];
+const gameLabels = {};
 
 gameService
     .getAllGames(start, end)
     .then(async (games) => {
         games.sort((a, b) => a.finishedAt < b.finishedAt);
-        console.log('game labels');
+        console.log('game label | count');
         for (const game of games) {
             if (game.label) {
-                if (!gameLabels.includes(game.label)) {
-                    gameLabels.push(game.label);
+                if (!gameLabels[game.label]) {
+                    gameLabels[game.label] = 1;
+                } else {
+                    gameLabels[game.label]++;
                 }
             }
         }
 
-        gameLabels.forEach((label) => console.log(label));
+        for (const property in gameLabels) {
+            console.log(`${property}|${gameLabels[property]}`);
+        }
     })
     .catch((error) => {
         console.log(error);
