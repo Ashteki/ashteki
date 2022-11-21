@@ -4,11 +4,12 @@ const DiceCount = require('../../DiceCount.js');
 
 class RowanUmberend extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.forcedReaction({
             when: {
                 onCardDestroyed: (event, context) =>
                     event.card.type === 'Ally' && event.card.controller == context.player
             },
+            may: (context) => 'conscript the destroyed ' + context.event.card.name,
             gameAction: ability.actions.sequential([
                 ability.actions.discard((context) => ({
                     target: context.source.childCards

@@ -22,8 +22,9 @@ describe('Rowan Umberend', function () {
         this.player2.clickPrompt('Done'); // no guard
         this.player2.clickPrompt('No'); // no counter
         expect(this.anchornaut.location).toBe('discard');
-        expect(this.player2).toBeAbleToSelect(this.rowanUmberend);
-        this.player2.clickCard(this.rowanUmberend);
+        // expect(this.player2).toBeAbleToSelect(this.rowanUmberend);
+        // this.player2.clickCard(this.rowanUmberend);
+        this.player2.clickYes();
         expect(this.rowanUmberend.childCards.length).toBe(1);
         this.player1.endTurn();
         this.player2.clickCard(this.rowanUmberend);
