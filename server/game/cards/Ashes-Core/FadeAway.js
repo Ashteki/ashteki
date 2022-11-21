@@ -8,15 +8,17 @@ class FadeAway extends Card {
             when: {
                 onRoundEnded: () => true
             },
-            gameAction: ability.actions.conditional((context) => ({
-                trueGameAction: ability.actions.purge({
-                    target: context.source.parent
-                }),
-                falseGameAction: ability.actions.destroy({
-                    target: context.source.parent,
-                    purge: context.source.parent.type === CardType.Ally
-                })
-            }))
+            gameAction: ability.actions.destroy((context) => ({
+                target: context.source.parent
+            })),
+            then: {
+                condition: (context) =>
+                    context.preThenEvent.card.type === CardType.Ally &&
+                    context.preThenEvent.card.location === 'discard',
+                gameAction: ability.actions.purge((context) => ({
+                    target: context.preThenEvent.card
+                }))
+            }
         });
     }
 }
