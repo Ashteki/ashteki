@@ -1,6 +1,6 @@
 const _ = require('underscore');
-const UserService = require('../services/AshesUserService.js');
-const ConfigService = require('../services/ConfigService.js');
+const UserService = require('../../services/AshesUserService.js');
+const ConfigService = require('../../services/ConfigService.js');
 
 let userService = new UserService(new ConfigService());
 /*
