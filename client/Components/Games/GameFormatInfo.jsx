@@ -6,9 +6,10 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
         case 'firstadventure':
             return (
                 <AlertPanel type='info'>
-                    <strong>First Adventure</strong> Perfect for new players - A pair of dueling
-                    decks from ImpossibleGerman using Aradel and Saria. First five suggestions, and
-                    more info are in{' '}
+                    <strong>First Adventure</strong> Perfect for new players - This pair of dueling
+                    decks from ImpossibleGerman use Aradel and Saria as Phoenixborn, and are built
+                    entirely using cards from the core set. First five suggestions, and more info
+                    are in{' '}
                     <a
                         className='format-info-link'
                         target='blank'

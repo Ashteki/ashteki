@@ -131,7 +131,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .learn-video {
@@ -171,4 +170,13 @@
 
 .lobby-content p {
     margin-bottom: 0px;
+}
+
+.lobby-row {
+    margin-bottom: 20px;
+
+}
+
+.learn h2 {
+    margin-bottom: 8px;
 }
