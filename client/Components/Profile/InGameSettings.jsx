@@ -49,7 +49,15 @@ const InGameSettings = ({ formProps }) => {
                     onChange={formProps.handleChange}
                     onBlur={formProps.handleBlur}
                 />
-
+                <Form.Check
+                    id='alwaysGroupTactics'
+                    name='gameOptions.alwaysGroupTactics'
+                    label={t('Always trigger Group Tactics without asking')}
+                    type='switch'
+                    checked={formProps.values.gameOptions.alwaysGroupTactics}
+                    onChange={formProps.handleChange}
+                    onBlur={formProps.handleBlur}
+                />
             </Form.Row>
         </Panel>
     );

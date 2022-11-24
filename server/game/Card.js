@@ -225,6 +225,7 @@ class Card extends PlayableObject {
                     title: 'Group Tactics',
                     condition: (context) => context.source.getKeywordValue('grouptactics'),
                     may: (context) => 'add ' + context.source.getKeywordValue('grouptactics') + " to this unit's attack",
+                    skipMay: (context) => context.game.activePlayer.optionSettings.alwaysGroupTactics,
                     when: {
                         onAttackersDeclared: (event, context) => {
                             return (

@@ -2,7 +2,8 @@ const defaultOptionSettings = {
     orderForcedAbilities: false,
     confirmOneClick: true,
     leftPrompt: false,
-    bluffTimer: 0
+    bluffTimer: 0,
+    alwaysGroupTactics: true
 };
 
 const defaultSettings = {

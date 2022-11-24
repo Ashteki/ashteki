@@ -54,6 +54,11 @@ class ThenAbility extends BaseAbility {
 
     resolveMayClause(context, results) {
         if (this.properties.may) {
+            if (this.properties.skipMay) {
+                if (this.properties.skipMay(context)) {
+                    return;
+                }
+            }
             let may = this.properties.may;
             if (typeof may === 'function') {
                 may = may(context);
