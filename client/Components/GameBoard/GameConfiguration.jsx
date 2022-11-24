@@ -26,16 +26,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                                 onOptionSettingToggle('orderForcedAbilities', event.target.checked)
                             }
                         />
-                        <Form.Check
-                            id='confirmOneClick'
-                            name='gameOptions.confirmOneClick'
-                            label={t('Show a prompt when initating 1-click abilities')}
-                            type='switch'
-                            checked={optionSettings.confirmOneClick}
-                            onChange={(event) =>
-                                onOptionSettingToggle('confirmOneClick', event.target.checked)
-                            }
-                        />
+
                         <Form.Check
                             id='leftPrompt'
                             name='gameOptions.leftPrompt'
@@ -46,7 +37,16 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                                 onOptionSettingToggle('leftPrompt', event.target.checked)
                             }
                         />
-
+                        <Form.Check
+                            id='alwaysGroupTactics'
+                            name='gameOptions.alwaysGroupTactics'
+                            label={t('Always trigger Group Tactics without asking')}
+                            type='switch'
+                            checked={optionSettings.alwaysGroupTactics}
+                            onChange={(event) =>
+                                onOptionSettingToggle('alwaysGroupTactics', event.target.checked)
+                            }
+                        />
                         <div className='bluffTimer'>
                             Bluff Timer (seconds):
                             <RangeSlider

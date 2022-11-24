@@ -73,7 +73,8 @@ const initialValues = {
         confirmOneClick: false,
         orderForcedAbilities: false,
         leftPrompt: false,
-        bluffTimer: 0
+        bluffTimer: 0,
+        alwaysGroupTactics: false
     }
 };
 
