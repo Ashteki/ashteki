@@ -242,8 +242,11 @@ beforeEach(function () {
         //Build decks
         this.player1.selectDeck(deckBuilder.customDeck(options.player1));
         this.player2.selectDeck(deckBuilder.customDeck(options.player2));
-        this.player1.player.user.settings.optionSettings.bluffTimer = 0;
-        this.player2.player.user.settings.optionSettings.bluffTimer = 0;
+        this.player1.player.optionSettings.bluffTimer = 0;
+        this.player1.player.optionSettings.alwaysGroupTactics = false;
+
+        this.player2.player.optionSettings.bluffTimer = 0;
+        this.player2.player.optionSettings.alwaysGroupTactics = false;
 
         this.startGame();
         //Player stats
