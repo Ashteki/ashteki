@@ -25,6 +25,7 @@ import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
 import WinLoseSplash from './WinLoseSplash';
+import AlertSplash from './AlertSplash';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -436,8 +437,11 @@ export class GameBoard extends React.Component {
                 <div className='main-window'>
                     {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
                     {this.renderBoard(thisPlayer, otherPlayer)}
-                    {this.props.currentGame.winner && (
+                    {(this.props.currentGame.winner) && (
                         <WinLoseSplash game={this.props.currentGame} />
+                    )}
+                    {(thisPlayer.promptState.showAlert) && (
+                        <AlertSplash promptState={thisPlayer.promptState} />
                     )}
                     {!thisPlayer.inspectionCard && cardToZoom && (
                         <CardZoom
@@ -538,17 +542,14 @@ export class GameBoard extends React.Component {
                 <div className='inset-pane'>
                     <ActivePlayerPrompt
                         cards={this.props.cards}
-                        buttons={thisPlayer.buttons}
-                        controls={thisPlayer.controls}
-                        diceReq={thisPlayer.diceReq}
-                        promptText={thisPlayer.menuTitle}
-                        promptTitle={thisPlayer.promptTitle}
+                        promptState={thisPlayer.promptState}
                         onButtonClick={this.onCommand}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         onTimerExpired={this.onTimerExpired.bind(this)}
                         user={thisPlayer.user} // use thisplayer user to read latest game optionSettings like BluffTimer
-                        phase={thisPlayer.phase} />
+                        phase={thisPlayer.phase}
+                    />
                     {this.getTimer()}
                 </div>
             </div>

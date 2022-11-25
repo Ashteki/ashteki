@@ -24,13 +24,16 @@ const WinLoseSplash = ({ game }) => {
             loser = p;
         }
     }
+
+    const headerMessage = winner?.name + ' ' + 'wins!';
+    const card = winner?.phoenixborn;
     // const winner = game.players[game.winner];
     return (
         <Panel title='Game Over' cardClass={`splash`}>
             <>
-                <CardImage card={winner.phoenixborn} />
+                <CardImage card={card} />
                 <div className='central'>
-                    <h2>{winner.name}{' '}wins!</h2>
+                    <h2>{headerMessage}</h2>
                     <button
                         onClick={onLeaveClick}
                         className='btn prompt-button btn-default'

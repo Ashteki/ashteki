@@ -720,7 +720,7 @@ class Player extends GameObject {
     getState(activePlayer) {
         let isActivePlayer = activePlayer === this;
         let promptState = isActivePlayer ? this.promptState.getState() : {};
-        let state = {
+        let playerState = {
             cardPiles: {
                 archives: this.getSummaryForCardList(this.archives, activePlayer),
                 cardsInPlay: this.getSummaryForCardList(this.cardsInPlay, activePlayer),
@@ -774,17 +774,18 @@ class Player extends GameObject {
 
                 return 0;
             });
-            state.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer, true);
-            state.firstFive = this.firstFive;
-            state.diceHistory = this.diceHistory;
-            state.inspectionCard = this.inspectionCard?.getSummary(activePlayer);
+            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer, true);
+            playerState.firstFive = this.firstFive;
+            playerState.diceHistory = this.diceHistory;
+            playerState.inspectionCard = this.inspectionCard?.getSummary(activePlayer);
         }
 
         if (this.clock) {
-            state.clock = this.clock.getState();
+            playerState.clock = this.clock.getState();
         }
+        playerState.promptState = promptState;
 
-        return _.extend(state, promptState);
+        return _.extend(playerState, promptState);
     }
 
     getTypeValue(cardType) {

@@ -136,9 +136,23 @@
     filter: invert(90%);
 }
 
+.game-list-icon-white {
+    height: 1.5em;
+    width: 1.5em;
+}
+
 .game-list-deck-image img.pb-image {
     margin-left: 5px;
     margin-right: 5px;
     ;
     width: 40px;
+}
+.game-icons {
+    img {
+        margin-right: 3px;
+    }
+
+    svg {
+        margin-right: 3px;
+    }
 }

@@ -15,6 +15,9 @@ import './CardImage.scss';
  * @param {CardImageProps} props
  */
 const CardImage = ({ card, cardBack, override, imgClass }) => {
+    if (!card) {
+        return null;
+    }
     let classes = classNames('img-fluid', imgClass);
 
     let imgPath = card.facedown && !override ? cardBack : imageUrl(card.imageStub || card.id);

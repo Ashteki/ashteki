@@ -213,7 +213,7 @@ class GameList extends React.Component {
                                 {game.showHand && (
                                     <img
                                         src={ShowHandIcon}
-                                        className='game-list-icon'
+                                        className='game-list-icon-white'
                                         alt={t('Show hands to spectators')}
                                         title={t('Show hands to spectators')}
                                     />

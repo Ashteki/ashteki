@@ -227,6 +227,8 @@ const PendingGame = () => {
                 <h3>
                     Format: <span className='unbold cap'>{getFormatLabel(currentGame.gameFormat)}</span>
                 </h3>
+                <h3>
+                </h3>
                 <div>
                     <GameFormatInfo gameType={currentGame.gameFormat} />
                 </div>
