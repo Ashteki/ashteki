@@ -783,8 +783,9 @@ class Game extends EventEmitter {
         const controls = [
             {
                 type: 'targeting',
-                source: context.source.getShortSummary(),
-                targets: [context.event.card.getShortSummary()]
+                source: context.source.getShortSummary()
+                // ,
+                // targets: [context.event.card.getShortSummary()]
             }
         ];
         this.promptWithMenu(
@@ -807,8 +808,9 @@ class Game extends EventEmitter {
                         //     method: 'pass',
                         //     arg: 'pauseRound'
                         // },
-                        { text: 'Pass', method: 'pass' }
-                    ]
+                        { text: 'Ok', method: 'pass' }
+                    ],
+                    timerLength: 5
                 }
             });
     }

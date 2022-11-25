@@ -172,7 +172,8 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                     //     arg: 'pauseRound'
                     // },
                     { text: 'Pass', method: 'pass' }
-                ]
+                ],
+                timerLength: player.optionSettings.bluffTimer
             }
         });
     }

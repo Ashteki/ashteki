@@ -159,7 +159,7 @@ class AbilityResolver extends BaseStepWithPipeline {
             this.game.diePowerUsed(this.context.source);
         }
 
-        if (this.context.source.type === CardType.ReactionSpell) {
+        if (this.context.source.type === CardType.ReactionSpell && !this.context.preThenEvent) {
             this.game.queueUserAlert(this.context);
         }
 
