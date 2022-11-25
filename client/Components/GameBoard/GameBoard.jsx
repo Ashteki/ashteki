@@ -20,12 +20,9 @@ import * as actions from '../../redux/actions';
 
 import './GameBoard.scss';
 import PlayerPBRow from './PlayerPBRow';
-import { imageUrl } from '../../util';
 import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
-import WinLoseSplash from './WinLoseSplash';
-import AlertSplash from './AlertSplash';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -437,12 +434,6 @@ export class GameBoard extends React.Component {
                 <div className='main-window'>
                     {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
                     {this.renderBoard(thisPlayer, otherPlayer)}
-                    {(this.props.currentGame.winner) && (
-                        <WinLoseSplash game={this.props.currentGame} />
-                    )}
-                    {(thisPlayer.promptState.showAlert) && (
-                        <AlertSplash promptState={thisPlayer.promptState} />
-                    )}
                     {!thisPlayer.inspectionCard && cardToZoom && (
                         <CardZoom
                             cardName={cardToZoom ? cardToZoom.name : null}
