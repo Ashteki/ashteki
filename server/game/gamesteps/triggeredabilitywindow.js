@@ -161,7 +161,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                     this.events,
                     player
                 ),
-                controls: this.getPromptControls(this.events),
+                controls: this.game.getPromptControls(this.events),
                 buttons: [
                     { timer: true, method: 'pass' },
                     { text: 'Wait', timerCancel: true },
@@ -172,7 +172,8 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                     //     arg: 'pauseRound'
                     // },
                     { text: 'Pass', method: 'pass' }
-                ]
+                ],
+                timerLength: player.optionSettings.bluffTimer
             }
         });
     }

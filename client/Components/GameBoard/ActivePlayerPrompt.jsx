@@ -107,13 +107,13 @@ class ActivePlayerPrompt extends React.Component {
         let buttons = [];
 
         if (
-            !this.props.buttons ||
-            this.props.controls.some((c) => ['options-select'].includes(c.type))
+            !this.props.promptState.buttons ||
+            this.props.promptState.controls.some((c) => ['options-select'].includes(c.type))
         ) {
             return null;
         }
 
-        for (const button of this.props.buttons) {
+        for (const button of this.props.promptState.buttons) {
             if (button.timer) {
                 this.timerUuid = button.uuid;
                 continue;
@@ -166,17 +166,17 @@ class ActivePlayerPrompt extends React.Component {
 
     onOptionSelected(option) {
         if (this.props.onButtonClick) {
-            let button = this.props.buttons.find((button) => '' + button.arg === option);
+            let button = this.props.promptState.buttons.find((button) => '' + button.arg === option);
             this.props.onButtonClick(button.command, button.arg, button.uuid, button.method);
         }
     }
 
     getControls() {
-        if (!this.props.controls) {
+        if (!this.props.promptState.controls) {
             return null;
         }
 
-        return this.props.controls.map((control) => {
+        return this.props.promptState.controls.map((control) => {
             switch (control.type) {
                 case 'targeting':
                     return (
@@ -190,7 +190,7 @@ class ActivePlayerPrompt extends React.Component {
                 case 'options-select':
                     return (
                         <OptionsSelect
-                            options={this.props.buttons}
+                            options={this.props.promptState.buttons}
                             onOptionSelected={this.onOptionSelected}
                         />
                     );
@@ -199,8 +199,8 @@ class ActivePlayerPrompt extends React.Component {
     }
 
     getDice() {
-        if (!this.props.diceReq) return;
-        let dice = this.props.diceReq.map((dr, index) => this.getDie(dr, index));
+        if (!this.props.promptState.diceReq) return;
+        let dice = this.props.promptState.diceReq.map((dr, index) => this.getDie(dr, index));
 
         return <h4>{dice}</h4>;
     }
@@ -243,14 +243,6 @@ class ActivePlayerPrompt extends React.Component {
         return null;
     }
 
-    // shouldComponentUpdate(newProps, newState) {
-    //     return newProps.phase !== this.props.phase || newProps.promptTitle !== this.props.promptTitle ||
-    //         newProps.title !== this.props.title ||
-    //         !this.buttonsAreEqual(this.props.buttons, newProps.buttons) ||
-    //         newState.showTimer !== this.state.showTimer ||
-    //         newState.timeLeft !== this.state.timeLeft || newState.timerClass !== this.state.timerClass;
-    // }
-
     buttonsAreEqual(oldButtons, newButtons) {
         if (!oldButtons || !newButtons || oldButtons.length !== newButtons.length) {
             return false;
@@ -266,22 +258,22 @@ class ActivePlayerPrompt extends React.Component {
     }
 
     UNSAFE_componentWillUpdate(newProps, newState) {
-        if (_.difference(newProps.buttons, this.props.buttons).length === 0) {
+        if (_.difference(newProps.promptState.buttons, this.props.promptState.buttons).length === 0) {
             return;
         }
 
-        const bluffTimer = newProps.user.settings.optionSettings.bluffTimer;
-        if (!bluffTimer || bluffTimer === 0) {
+        const timerLength = newProps.promptState.timerLength;
+        if (!timerLength || timerLength === 0) {
             return;
         }
 
-        if (_.any(newProps.buttons, (button) => button.timer)) {
+        if (_.any(newProps.promptState.buttons, (button) => button.timer)) {
             if (newState.timerHandle) {
                 return;
             }
 
             this.timer.started = new Date();
-            this.timer.timerTime = bluffTimer;
+            this.timer.timerTime = timerLength;
 
             let handle = setInterval(() => {
                 let now = new Date();
@@ -315,24 +307,24 @@ class ActivePlayerPrompt extends React.Component {
     render() {
         let controlSource = null;
         if (
-            this.props.controls &&
-            this.props.controls.length > 0 &&
-            this.props.controls[0].source
+            this.props.promptState.controls &&
+            this.props.promptState.controls.length > 0 &&
+            this.props.promptState.controls[0].source
         ) {
-            controlSource = this.props.controls[0].source;
+            controlSource = this.props.promptState.controls[0].source;
         }
 
         let promptTitle;
 
-        if (this.props.promptTitle) {
-            let promptTitleText = this.safePromptText(this.props.promptTitle);
+        if (this.props.promptState.promptTitle) {
+            let promptTitleText = this.safePromptText(this.props.promptState.promptTitle);
 
             promptTitle = (
                 <div className='menu-pane-source'>
                     {this.localizedText(
                         controlSource,
                         promptTitleText,
-                        this.props.promptTitle.values
+                        this.props.promptState.promptTitle.values
                     )}
                 </div>
             );
@@ -349,7 +341,7 @@ class ActivePlayerPrompt extends React.Component {
                 </div>);
         }
 
-        let promptText = this.safePromptText(this.props.promptText);
+        let promptText = this.safePromptText(this.props.promptState.menuTitle);
         let promptTexts = [];
 
         if (promptText) {
@@ -357,13 +349,13 @@ class ActivePlayerPrompt extends React.Component {
                 let split = promptText.split('\n');
                 for (let token of split) {
                     promptTexts.push(
-                        this.localizedText(controlSource, token, this.props.promptText.values)
+                        this.localizedText(controlSource, token, this.props.promptState.menuTitle.values)
                     );
                     promptTexts.push(<br />);
                 }
             } else {
                 promptTexts.push(
-                    this.localizedText(controlSource, promptText, this.props.promptText.values)
+                    this.localizedText(controlSource, promptText, this.props.promptState.menuTitle.values)
                 );
             }
         }
@@ -385,10 +377,7 @@ class ActivePlayerPrompt extends React.Component {
 
 ActivePlayerPrompt.displayName = 'ActivePlayerPrompt';
 ActivePlayerPrompt.propTypes = {
-    buttons: PropTypes.array,
     cards: PropTypes.object,
-    controls: PropTypes.array,
-    diceReq: PropTypes.array,
     i18n: PropTypes.object,
     onButtonClick: PropTypes.func,
     onMouseOut: PropTypes.func,
@@ -396,11 +385,8 @@ ActivePlayerPrompt.propTypes = {
     onTimerExpired: PropTypes.func,
     onTitleClick: PropTypes.func,
     phase: PropTypes.string,
-    promptText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    promptTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     socket: PropTypes.object,
-    t: PropTypes.func,
-    user: PropTypes.object
+    t: PropTypes.func
 };
 
 export default withTranslation()(ActivePlayerPrompt);

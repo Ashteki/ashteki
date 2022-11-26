@@ -62,6 +62,21 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             />
                         </div>
                         <br />
+                        <div className='alertTimer'>
+                            Alert Timer (seconds):
+                            <RangeSlider
+                                name='gameOptions.alertTimer'
+                                label='Alert Timer'
+                                min='0'
+                                max='10'
+                                tooltip='on'
+                                value={optionSettings.alertTimer}
+                                onChange={(event) =>
+                                    onOptionSettingToggle('alertTimer', event.target.value)
+                                }
+                            />
+                        </div>
+                        <br />
                     </Form.Row>
                 </Panel>
             </Form>

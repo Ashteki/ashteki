@@ -778,6 +778,76 @@ class Game extends EventEmitter {
         this.queueStep(new ChosenDrawPrompt(this, properties));
     }
 
+    queueUserAlert(context) {
+        const player = context.player.opponent;
+        const controls = [
+            {
+                type: 'targeting',
+                source: context.source.getShortSummary()
+                // ,
+                // targets: [context.event.card.getShortSummary()]
+            }
+        ];
+        const timerLength = player.getAlertTimerSetting();
+        if (timerLength > 0) {
+            this.promptWithMenu(
+                player,
+                { pass: () => true }, // context object to handle 'do nothing' pass
+                {
+                    source: 'Triggered Abilities',
+                    waitingPromptTitle: 'Alerting opponent',
+                    activePrompt: {
+                        showAlert: true,
+                        promptTitle: 'Reaction Played',
+                        menuTitle: context.player.name + ' plays a reaction',
+                        controls: controls,
+                        buttons: [
+                            { timer: true, method: 'pass' },
+                            { text: 'Wait', timerCancel: true },
+                            // {
+                            //     text: "Don't ask again until end of round",
+                            //     timerCancel: true,
+                            //     method: 'pass',
+                            //     arg: 'pauseRound'
+                            // },
+                            { text: 'Ok', method: 'pass' }
+                        ],
+                        timerLength: timerLength
+                    }
+                }
+            );
+        }
+    }
+
+    // from triggered ability window
+    getPromptControls(triggeringEvents) {
+        let map = new Map();
+        for (let event of triggeringEvents) {
+            let src = event.damageSource || (event.context && event.context.source);
+
+            if (event.context && src) {
+                let targets = map.get(event.context.source) || [];
+                if (event.context.target) {
+                    targets = targets.concat(event.context.target);
+                } else if (event.card && event.card !== event.context.source) {
+                    targets = targets.concat(event.card);
+                } else if (event.context.event && event.context.event.card) {
+                    targets = targets.concat(event.context.event.card);
+                } else if (event.card) {
+                    targets = targets.concat(event.card);
+                }
+
+                map.set(src, _.uniq(targets));
+            }
+        }
+
+        return [...map.entries()].map(([source, targets]) => ({
+            type: 'targeting',
+            source: source.getShortSummary(),
+            targets: targets.map((target) => target.getShortSummary())
+        }));
+    }
+
     /**
      * This function is called by the client whenever a player clicks a button
      * in a prompt

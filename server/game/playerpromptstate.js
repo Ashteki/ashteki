@@ -18,6 +18,7 @@ class PlayerPromptState {
         this.cardDamage = {};
         this.selectedCards = [];
         this.selectedDice = [];
+        this.showAlert = false;
     }
 
     setSelectedCards(cards) {
@@ -74,6 +75,8 @@ class PlayerPromptState {
         });
         this.controls = prompt.controls || [];
         this.diceReq = prompt.diceReq || [];
+        this.showAlert = prompt.showAlert || false;
+        this.timerLength = prompt.timerLength;
     }
 
     cancelPrompt() {
@@ -84,6 +87,8 @@ class PlayerPromptState {
         this.buttons = [];
         this.controls = [];
         this.canSelectDeck = false;
+        this.showAlert = false;
+        this.timerLength = 0;
     }
 
     getCardSelectionState(card) {
@@ -114,7 +119,9 @@ class PlayerPromptState {
             buttons: this.buttons,
             controls: this.controls,
             diceReq: this.diceReq,
-            canSelectDeck: this.canSelectDeck
+            canSelectDeck: this.canSelectDeck,
+            showAlert: this.showAlert,
+            timerLength: this.timerLength
         };
     }
 }

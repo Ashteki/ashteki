@@ -163,7 +163,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         );
         return {
             source: 'Triggered Abilities',
-            controls: this.getPromptControls(triggeringEvents),
+            controls: this.game.getPromptControls(triggeringEvents),
             activePromptTitle: TriggeredAbilityWindowTitles.getTitle(
                 this.abilityType,
                 triggeringEvents,
@@ -171,34 +171,6 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
             ),
             waitingPromptTitle: 'Waiting for opponent'
         };
-    }
-
-    getPromptControls(triggeringEvents) {
-        let map = new Map();
-        for (let event of triggeringEvents) {
-            let src = event.damageSource || (event.context && event.context.source);
-
-            if (event.context && src) {
-                let targets = map.get(event.context.source) || [];
-                if (event.context.target) {
-                    targets = targets.concat(event.context.target);
-                } else if (event.card && event.card !== event.context.source) {
-                    targets = targets.concat(event.card);
-                } else if (event.context.event && event.context.event.card) {
-                    targets = targets.concat(event.context.event.card);
-                } else if (event.card) {
-                    targets = targets.concat(event.card);
-                }
-
-                map.set(src, _.uniq(targets));
-            }
-        }
-
-        return [...map.entries()].map(([source, targets]) => ({
-            type: 'targeting',
-            source: source.getShortSummary(),
-            targets: targets.map((target) => target.getShortSummary())
-        }));
     }
 
     promptBetweenAbilities(choices, addBackButton = true) {
