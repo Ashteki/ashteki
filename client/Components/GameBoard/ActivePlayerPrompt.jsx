@@ -386,8 +386,7 @@ ActivePlayerPrompt.propTypes = {
     onTitleClick: PropTypes.func,
     phase: PropTypes.string,
     socket: PropTypes.object,
-    t: PropTypes.func,
-    user: PropTypes.object
+    t: PropTypes.func
 };
 
 export default withTranslation()(ActivePlayerPrompt);

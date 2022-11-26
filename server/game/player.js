@@ -58,6 +58,15 @@ class Player extends GameObject {
         this.expectedScore = undefined;
     }
 
+    getAlertTimerSetting() {
+        let result = 5;
+        if (this.optionSettings.alertTimer !== null) {
+            result = this.optionSettings.alertTimer;
+        }
+
+        return result;
+    }
+
     get name() {
         return this.user.username;
     }

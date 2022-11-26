@@ -3,6 +3,7 @@ const defaultOptionSettings = {
     confirmOneClick: true,
     leftPrompt: false,
     bluffTimer: 0,
+    alertTimer: 5,
     alwaysGroupTactics: true
 };
 

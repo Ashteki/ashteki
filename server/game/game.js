@@ -788,31 +788,35 @@ class Game extends EventEmitter {
                 // targets: [context.event.card.getShortSummary()]
             }
         ];
-        this.promptWithMenu(
-            player,
-            { pass: () => true }, // context object to handle 'do nothing' pass
-            {
-                source: 'Triggered Abilities',
-                waitingPromptTitle: 'Alerting opponent',
-                activePrompt: {
-                    showAlert: true,
-                    promptTitle: 'Reaction Played',
-                    menuTitle: context.player.name + ' plays a reaction',
-                    controls: controls,
-                    buttons: [
-                        { timer: true, method: 'pass' },
-                        { text: 'Wait', timerCancel: true },
-                        // {
-                        //     text: "Don't ask again until end of round",
-                        //     timerCancel: true,
-                        //     method: 'pass',
-                        //     arg: 'pauseRound'
-                        // },
-                        { text: 'Ok', method: 'pass' }
-                    ],
-                    timerLength: 5
+        const timerLength = player.getAlertTimerSetting();
+        if (timerLength > 0) {
+            this.promptWithMenu(
+                player,
+                { pass: () => true }, // context object to handle 'do nothing' pass
+                {
+                    source: 'Triggered Abilities',
+                    waitingPromptTitle: 'Alerting opponent',
+                    activePrompt: {
+                        showAlert: true,
+                        promptTitle: 'Reaction Played',
+                        menuTitle: context.player.name + ' plays a reaction',
+                        controls: controls,
+                        buttons: [
+                            { timer: true, method: 'pass' },
+                            { text: 'Wait', timerCancel: true },
+                            // {
+                            //     text: "Don't ask again until end of round",
+                            //     timerCancel: true,
+                            //     method: 'pass',
+                            //     arg: 'pauseRound'
+                            // },
+                            { text: 'Ok', method: 'pass' }
+                        ],
+                        timerLength: timerLength
+                    }
                 }
-            });
+            );
+        }
     }
 
     // from triggered ability window

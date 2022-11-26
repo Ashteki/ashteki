@@ -74,6 +74,7 @@ const initialValues = {
         orderForcedAbilities: false,
         leftPrompt: false,
         bluffTimer: 0,
+        alertTimer: 5,
         alwaysGroupTactics: false
     }
 };
@@ -89,6 +90,11 @@ const Profile = ({ onSubmit, isLoading }) => {
     const [customBg, setCustomBg] = useState(null);
     const topRowRef = useRef(null);
     const [bluffTimer, setBluffTimer] = useState(user?.settings.optionSettings.bluffTimer || 0);
+    let defaultAlertTimer = 5;
+    if (user?.settings.optionSettings.alertTimer !== null) {
+        defaultAlertTimer = user?.settings.optionSettings.alertTimer;
+    }
+    const [alertTimer, setAlertTimer] = useState(defaultAlertTimer);
 
     const backgrounds = [{ name: 'none', label: t('none'), imageUrl: BlankBg }];
     const cardSizes = [
@@ -179,6 +185,10 @@ const Profile = ({ onSubmit, isLoading }) => {
                     submitValues.settings.optionSettings.bluffTimer = bluffTimer;
                 }
 
+                if (alertTimer) {
+                    submitValues.settings.optionSettings.alertTimer = alertTimer;
+                }
+
                 onSubmit(submitValues);
 
                 topRowRef?.current?.scrollIntoView(false);
@@ -237,7 +247,16 @@ const Profile = ({ onSubmit, isLoading }) => {
                                 />
                                 <br />
                             </Panel>
-                        </Col>
+                            <Panel title='Alert timer'>
+                                <RangeSlider
+                                    min='0'
+                                    max='10'
+                                    tooltip='on'
+                                    value={alertTimer}
+                                    onChange={(event) => setAlertTimer(event.target.value)}
+                                />
+                                <br />
+                            </Panel>                        </Col>
                     </Row>
                     <div className='text-center profile-submit'>
                         <Button variant='primary' type='submit' disabled={isLoading}>

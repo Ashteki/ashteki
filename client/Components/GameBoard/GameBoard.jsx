@@ -484,7 +484,6 @@ export class GameBoard extends React.Component {
                     <PlayerStats
                         {...boundActionCreators}
                         activePlayer={thisPlayer.activePlayer}
-                        bluffTimer={thisPlayer.optionSettings.bluffTimer}
                         manualModeEnabled={manualMode}
                         matchRecord={this.getMatchRecord(thisPlayer, otherPlayer)}
                         muteSpectators={this.props.currentGame.muteSpectators}
@@ -538,7 +537,6 @@ export class GameBoard extends React.Component {
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         onTimerExpired={this.onTimerExpired.bind(this)}
-                        user={thisPlayer.user} // use thisplayer user to read latest game optionSettings like BluffTimer
                         phase={thisPlayer.phase}
                     />
                     {this.getTimer()}

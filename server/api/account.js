@@ -353,7 +353,8 @@ module.exports.init = function (server, options) {
                 avatar: req.body.username,
                 customBackground: null,
                 optionSettings: {
-                    bluffTimer: 0
+                    bluffTimer: 0,
+                    alertTimer: 5
                 }
             };
 
