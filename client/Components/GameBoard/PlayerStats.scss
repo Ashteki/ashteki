@@ -4,7 +4,7 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-@mixin action-colors($text, $background){
+@mixin action-colors($text, $background) {
     color: $text;
     background: $background;
     border-color: $text;
@@ -18,20 +18,21 @@
     // width: 26px;
     padding: 0px 5px;
     text-align: center;
-    display:inline-block;
+    display: inline-block;
     z-index: $layer-cards + 1;
     font-size: 120%;
     border: 1pt solid black;
 }
 
-.action.exhausted{
+.action.exhausted {
     @include action-colors(#CCC, #889);
 }
 
 .player-stats {
     display: flex;
-    background-color: rgba(0,0,0,0.9);
-    color:#EEE;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #EEE;
+
     &.panel {
         margin: 0;
         border-radius: 0;
@@ -42,7 +43,7 @@
     display: flex;
     align-items: center;
 
-    
+
     &.active-player {
         background-color: rgba(green, 0.8);
 
@@ -106,19 +107,22 @@
     line-height: 15px;
 }
 
-.life-remaining{
-    color:red;
+.life-remaining {
+    color: red;
     font-weight: bold;
-    min-width:30px;
+    min-width: 30px;
 }
-.life-red{
-    color:red;
+
+.life-red {
+    color: red;
 }
-.life-orange{
-    color:orange;
+
+.life-orange {
+    color: orange;
 }
-.life-green{
-    color:green;
+
+.life-green {
+    color: green;
 }
 
 
@@ -134,23 +138,7 @@
     width: 22px;
     background-color: transparent;
 }
+
 .btn-stat img {
     vertical-align: text-bottom;
 }
-// .clock--popup {
-//     opacity: 0;
-//     pointer-events: none;
-//     min-width: 300px;
-//     background-color: rgba(0, 0, 0, 0.85);
-//     padding: 10px;
-//     position: relative;
-//     margin-right: -300px;
-//     cursor: pointer;
-//     border: 1px solid rgba(71, 58, 56, 0.65);
-//     z-index: 120;
-// }
-
-// .clock-frame:hover .clock--popup {
-//     opacity: 1;
-//     transition-delay: 0.2s;
-// }

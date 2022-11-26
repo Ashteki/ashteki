@@ -23,6 +23,7 @@ import PlayerPBRow from './PlayerPBRow';
 import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
+import Clock from './Clock';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -133,7 +134,7 @@ export class GameBoard extends React.Component {
         this.props.sendGameMessage('drop', card.uuid, source, target);
     }
 
-    getTimer() {
+    getTimer(player) {
         let clocks = [];
         if (
             this.props.currentGame.useGameTimeLimit &&
@@ -145,6 +146,17 @@ export class GameBoard extends React.Component {
                     timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
                     timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
                     timeLimit={this.props.currentGame.gameTimeLimitTime}
+                />
+            );
+
+            clocks.push(
+                <Clock
+                    secondsLeft={player.clock.timeLeft}
+                    mode={player.clock.mode}
+                    stateId={player.clock.stateId}
+                    periods={player.clock.periods}
+                    mainTime={player.clock.mainTime}
+                    timePeriod={player.clock.timePeriod}
                 />
             );
         }
@@ -542,7 +554,7 @@ export class GameBoard extends React.Component {
                         onTimerExpired={this.onTimerExpired.bind(this)}
                         phase={thisPlayer.phase}
                     />
-                    {this.getTimer()}
+                    {this.getTimer(thisPlayer)}
                 </div>
             </div>
         );

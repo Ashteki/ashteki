@@ -58,12 +58,8 @@ class Clock extends React.Component {
     }
 
     render() {
-        let className = 'player-stats-row state clock';
-        if (this.props.mode !== 'stop') {
-            className += ' clock-active';
-        }
         return (
-            <div className={className}>
+            <>
                 <span>
                     <img
                         src={TimeLimitIcon}
@@ -72,7 +68,7 @@ class Clock extends React.Component {
                     />
                 </span>&nbsp;
                 {this.getFormattedClock()}
-            </div>
+            </>
         );
     }
 }
