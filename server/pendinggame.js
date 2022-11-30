@@ -28,6 +28,7 @@ class PendingGame {
         this.swap = !!details.swap;
         this.rematch = false;
         this.tournament = details.tournament;
+
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.gameTimeLimit = details.gameTimeLimit;
         this.clockType = details.clockType;

@@ -1,27 +1,19 @@
 const moment = require('moment');
 
 class TimeLimit {
-    constructor(game) {
+    constructor(game, timeLimit) {
         this.game = game;
-        this.timeLimitStartType = null;
-        this.timeLimitStarted = false;
-        this.timeLimitStartedAt = null;
-        this.timeLimitInMinutes = null;
+        this.started = false;
+        this.startedAt = null;
+
+        this.timeLimitInMinutes = timeLimit;
         this.isTimeLimitReached = false;
     }
 
-    initialiseTimeLimit(timeLimitStartType, timeLimitInMinutes) {
-        this.timeLimitStartType = timeLimitStartType;
-        this.timeLimitInMinutes = timeLimitInMinutes;
-        if (timeLimitStartType === 'whenSetupFinished') {
-            this.game.on('onGameStarted', () => this.startTimer());
-        }
-    }
-
     startTimer() {
-        if (!this.timeLimitStarted) {
-            this.timeLimitStarted = true;
-            this.timeLimitStartedAt = new Date();
+        if (!this.started) {
+            this.started = true;
+            this.startedAt = new Date();
             this.timer = setInterval(() => {
                 this.checkForTimeLimitReached();
             }, 1000);
@@ -29,15 +21,15 @@ class TimeLimit {
     }
 
     stopTimer() {
-        this.timeLimitStarted = false;
-        this.timeLimitStartedAt = new Date();
+        this.started = false;
+        this.startedAt = new Date();
         this.timer = null;
     }
 
     checkForTimeLimitReached() {
         if (this.game.useGameTimeLimit && !this.isTimeLimitReached) {
             let differenceBetweenStartOfTimerAndNow = moment.duration(
-                moment().diff(this.timeLimitStartedAt)
+                moment().diff(this.startedAt)
             );
             if (differenceBetweenStartOfTimerAndNow.asSeconds() / 60 >= this.timeLimitInMinutes) {
                 // this.game.addAlert(
@@ -45,7 +37,7 @@ class TimeLimit {
                 //     );
                 //     'Time up!  The game will enter SUDDEN DEATH mode at the beginning of the next first player turn'
                 this.isTimeLimitReached = true;
-                this.timeLimitStarted = false;
+                this.started = false;
                 this.game.timeExpired();
             }
         } else if (this.isTimeLimitReached && this.timer) {

@@ -59,16 +59,9 @@ class Clock extends React.Component {
 
     render() {
         return (
-            <>
-                <span>
-                    <img
-                        src={TimeLimitIcon}
-                        className='game-list-icon'
-                        alt={'Time limit used'}
-                    />
-                </span>&nbsp;
+            <span className='clock'>
                 {this.getFormattedClock()}
-            </>
+            </span>
         );
     }
 }

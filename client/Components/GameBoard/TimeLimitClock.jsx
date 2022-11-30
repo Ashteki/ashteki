@@ -28,9 +28,10 @@ class TimeLimitClock extends React.Component {
                     this.props.timeLimit,
                     'minutes'
                 );
-                const difference = endTime.diff(moment());
-                const d = moment.utc(difference);
-                const mins = Math.trunc(difference / 1000 / 60);
+                const timeNow = moment();
+                const secondsLeft = endTime.diff(timeNow);
+                const d = moment.utc(secondsLeft);
+                const mins = Math.trunc(secondsLeft / 1000 / 60);
                 let time = mins + d.format(':ss');
                 this.setState({ timeLeft: time });
             }, 1000);
@@ -41,9 +42,7 @@ class TimeLimitClock extends React.Component {
 
     render() {
         return (
-            <div className='time-limit-clock card bg-dark border-primary'>
-                <h1>{this.state.timeLeft}</h1>
-            </div>
+            <span className='clock'>{this.state.timeLeft}</span>
         );
     }
 }

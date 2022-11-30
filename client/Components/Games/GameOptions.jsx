@@ -2,6 +2,7 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Form, Col } from 'react-bootstrap';
 import { getStandardControlProps } from '../../util';
+import TimeLimitIcon from '../../assets/img/Timelimit.png';
 
 const GameOptions = ({ formProps }) => {
     const { t } = useTranslation();
@@ -55,8 +56,16 @@ const GameOptions = ({ formProps }) => {
             </Form.Group>
             {formProps.values.useGameTimeLimit && (
                 <Form.Row>
-                    <Form.Group as={Col} sm={4}>
-                        <Form.Label>{t('Time Limit')}</Form.Label>
+                    <Form.Group >
+
+                        <Form.Label>                <span>
+                            <img
+                                src={TimeLimitIcon}
+                                className='game-list-icon'
+                                alt={'Time limit used'}
+                            />
+                        </span>&nbsp;
+                            {t('Time Limit')}</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder={t('Enter time limit')}

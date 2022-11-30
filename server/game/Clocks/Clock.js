@@ -68,6 +68,9 @@ class Clock {
     }
 
     getState() {
+        this.updateTimeLeft(Math.floor((Date.now() - this.timerStart) / 1000 + 0.5));
+        this.timerStart = Date.now();
+
         return {
             mode: this.mode,
             timeLeft: this.timeLeft,

@@ -283,11 +283,14 @@ class ChatCommands {
     }
 
     startClocks(player) {
+        this.game.startTimer();
+
         this.game.addAlert('danger', '{0} restarts the timers', player);
         _.each(this.game.getPlayers(), (player) => player.clock.restart());
     }
 
     stopClocks(player) {
+        this.game.stopTimer();
         this.game.addAlert('danger', '{0} stops the timers', player);
         _.each(this.game.getPlayers(), (player) => player.clock.pause());
     }

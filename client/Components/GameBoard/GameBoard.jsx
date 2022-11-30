@@ -137,31 +137,33 @@ export class GameBoard extends React.Component {
     getTimer(player) {
         let clocks = [];
         if (
-            this.props.currentGame.useGameTimeLimit &&
+            this.props.currentGame.useGameTimeLimit
             // this.props.currentGame.clockType !== 'chess' &&
-            this.props.currentGame.gameTimeLimitStarted
+
         ) {
-            clocks.push(
-                <TimeLimitClock
-                    timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
-                    timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
-                    timeLimit={this.props.currentGame.gameTimeLimitTime}
-                />
-            );
-
-            clocks.push(
-                <Clock
-                    secondsLeft={player.clock.timeLeft}
-                    mode={player.clock.mode}
-                    stateId={player.clock.stateId}
-                    periods={player.clock.periods}
-                    mainTime={player.clock.mainTime}
-                    timePeriod={player.clock.timePeriod}
-                />
-            );
+            if (this.props.currentGame.timeLimit && this.props.currentGame.gameTimeLimitStarted) {
+                clocks.push(
+                    <TimeLimitClock
+                        timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
+                        timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
+                        timeLimit={this.props.currentGame.gameTimeLimitTime}
+                    />
+                );
+            }
+            if (player.clock) {
+                clocks.push(
+                    <Clock
+                        secondsLeft={player.clock.timeLeft}
+                        mode={player.clock.mode}
+                        stateId={player.clock.stateId}
+                        periods={player.clock.periods}
+                        mainTime={player.clock.mainTime}
+                        timePeriod={player.clock.timePeriod}
+                    />
+                );
+            }
         }
-
-        return clocks;
+        return <div className='time-limit-clock card bg-dark border-primary'>{clocks}</div>;
     }
 
     onCommand(command, arg, uuid, method) {
