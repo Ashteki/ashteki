@@ -22,7 +22,7 @@ const GameOptions = ({ formProps }) => {
 
     const defaultTime = {
         timer: '50',
-        chess: '30',
+        chess: '15',
         hourglass: '15',
         byoyomi: '0'
     };
