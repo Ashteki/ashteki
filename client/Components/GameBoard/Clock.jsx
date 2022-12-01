@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TimeLimitIcon from '../../assets/img/Timelimit.png';
+import classNames from 'classnames';
+import './Clock.scss';
 
-const formattedSeconds = (sec) => (sec <= 0 ? '-' : '') + Math.floor(Math.abs(sec) / 60) + ':' + ('0' + Math.abs(sec) % 60).slice(-2);
+
+const formattedSeconds = (sec) => (sec < 0 ? '-' : '') + Math.floor(Math.abs(sec) / 60) + ':' + ('0' + Math.abs(sec) % 60).slice(-2);
 
 class Clock extends React.Component {
     constructor() {
@@ -32,37 +34,26 @@ class Clock extends React.Component {
                 this.setState({
                     timeLeft: this.state.timeLeft + (newProps.mode === 'up' ? 1 : -1)
                 });
+                if (this.state.timeLeft < 0) {
+                    this.setState({
+                        timeLeft: 0
+                    });
+                    clearInterval(this.timerHandle);
+
+                }
             }, 1000);
         }
     }
 
     getFormattedClock() {
-        if (!this.state.periods || this.state.timeLeft <= 0) {
-            return formattedSeconds(this.state.timeLeft);
-        }
-        let stage = '';
-        let timeLeftInPeriod = 0;
-        if (this.state.timeLeft > this.state.periods * this.state.timePeriod) {
-            stage = 'M';
-            timeLeftInPeriod = this.state.timeLeft - this.state.periods * this.state.timePeriod;
-        } else {
-            stage = Math.ceil(this.state.timeLeft / this.state.timePeriod);
-            if (stage === 1) {
-                stage = 'SD';
-            }
-            timeLeftInPeriod = this.state.timeLeft % this.state.timePeriod === 0 ?
-                this.state.timePeriod :
-                this.state.timeLeft % this.state.timePeriod;
-        }
-        return `${formattedSeconds(timeLeftInPeriod)} (${stage})`;
+        return formattedSeconds(this.state.timeLeft);
     }
 
     render() {
-        return (
-            <span className='clock'>
-                {this.getFormattedClock()}
-            </span>
-        );
+        let className = classNames('clock', {
+            'expired-timer': this.state.timeLeft <= 0
+        });
+        return <span className={className}>{this.getFormattedClock()}</span>;
     }
 }
 

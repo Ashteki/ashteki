@@ -1,15 +1,11 @@
-const Clock = require('./Clock');
-const Timer = require('./Timer');
+// const Clock = require('./Clock');
+// const Timer = require('./Timer');
 const ChessClock = require('./ChessClock');
-const Hourglass = require('./Hourglass');
-const Byoyomi = require('./Byoyomi');
 
 const typeToClock = {
-    none: (player, time) => new Clock(player, time),
-    timer: (player, time) => new Timer(player, time),
-    chess: (player, time) => new ChessClock(player, time),
-    hourglass: (player, time) => new Hourglass(player, time),
-    byoyomi: (player, time, periods, timePeriod) => new Byoyomi(player, time, periods, timePeriod)
+    none: (player, time) => null, //new Clock(player, time),
+    timer: (player, time) => null, // new Timer(player, time),
+    chess: (player, time) => new ChessClock(player, time)
 };
 
 class ClockSelector {

@@ -138,15 +138,16 @@ export class GameBoard extends React.Component {
         let clocks = [];
         if (
             this.props.currentGame.useGameTimeLimit
-            // this.props.currentGame.clockType !== 'chess' &&
-
         ) {
-            if (this.props.currentGame.timeLimit && this.props.currentGame.gameTimeLimitStarted) {
+            if (
+                this.props.currentGame.gameTimeLimit &&
+                this.props.currentGame.gameTimeLimitStarted
+            ) {
                 clocks.push(
                     <TimeLimitClock
                         timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
                         timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
-                        timeLimit={this.props.currentGame.gameTimeLimitTime}
+                        timeLimit={this.props.currentGame.gameTimeLimit}
                     />
                 );
             }

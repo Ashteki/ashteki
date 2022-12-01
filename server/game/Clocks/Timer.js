@@ -10,7 +10,7 @@ class Timer extends Clock {
     timeRanOut() {
         this.player.game.addAlert(
             'warning',
-            'The allowed game time has ended. The game will enter SUDDEN DEATH mode at the beginning of the next first player turn'
+            'TIMER - The allowed game time has ended. The game will enter SUDDEN DEATH mode at the beginning of the next first player turn'
         );
         // this.player.game.addMessage("The game timerimer has expired", this.player);
     }

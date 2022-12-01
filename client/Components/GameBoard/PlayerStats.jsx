@@ -173,16 +173,18 @@ export class PlayerStats extends React.Component {
 
         let clock =
             !this.props.clockState || this.props.clockState.mode === 'off' ? null : (
-                <div className='state clock-frame'>
-                    <div className='state'>
-                        <Clock
-                            secondsLeft={this.props.clockState.timeLeft}
-                            mode={this.props.clockState.mode}
-                            stateId={this.props.clockState.stateId}
-                            periods={this.props.clockState.periods}
-                            mainTime={this.props.clockState.mainTime}
-                            timePeriod={this.props.clockState.timePeriod}
-                        />
+                <div className='state'>
+                    <div className='state clock-frame'>
+                        <div className='state'>
+                            <Clock
+                                secondsLeft={this.props.clockState.timeLeft}
+                                mode={this.props.clockState.mode}
+                                stateId={this.props.clockState.stateId}
+                                periods={this.props.clockState.periods}
+                                mainTime={this.props.clockState.mainTime}
+                                timePeriod={this.props.clockState.timePeriod}
+                            />
+                        </div>
                     </div>
                 </div>
             );
@@ -193,7 +195,7 @@ export class PlayerStats extends React.Component {
                 {this.renderLifeRemaining()}
                 {this.renderActions()}
                 {firstPlayerToken}
-                <div className='state'>{clock}</div>
+                {clock}
                 {this.props.activePlayer && (
                     <div className='state first-player-state'>
                         <Trans>Active Player</Trans>

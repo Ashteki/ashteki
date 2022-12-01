@@ -72,6 +72,7 @@ class Game extends EventEmitter {
         this.started = false;
         this.swap = details.swap;
         this.triggerSuddenDeath = false;
+        this.suddenDeath = false; // are we in sudden death mode? (mostly tracked in player)
         this.cardIndex = 0;
         this.cardsUsed = [];
         this.cardsPlayed = [];
@@ -1054,7 +1055,8 @@ class Game extends EventEmitter {
             this.timeLimit &&
             this.timeLimit.isTimeLimitReached &&
             // game hasn't finished
-            !this.finishedAt
+            !this.finishedAt &&
+            !this.suddenDeath
         ) {
             this.activateSuddenDeath();
         }
@@ -1585,7 +1587,7 @@ class Game extends EventEmitter {
                 this.timeLimit.checkForTimeLimitReached();
                 result.gameTimeLimitStarted = this.timeLimit.started;
                 result.gameTimeLimitStartedAt = this.timeLimit.startedAt;
-                result.gameTimeLimitTime = this.timeLimit.timeLimitInMinutes;
+                result.gameTimeLimit = this.timeLimit.timeLimitInMinutes;
             }
             return result;
         }

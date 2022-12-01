@@ -86,6 +86,7 @@ class Player extends GameObject {
     }
 
     startClock() {
+        if (!this.clock) return;
         this.clock.start();
         if (this.opponent) {
             this.opponent.clock.opponentStart();
@@ -93,10 +94,12 @@ class Player extends GameObject {
     }
 
     stopClock() {
+        if (!this.clock) return;
         this.clock.stop();
     }
 
     resetClock() {
+        if (!this.clock) return;
         this.clock.reset();
     }
 
