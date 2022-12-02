@@ -18,12 +18,12 @@ class ChessClock extends Clock {
     }
 
     timeRanOut() {
-        this.player.stopClock();
-        this.player.game.addAlert('danger', "{0}'s clock has run out - they will suffer sudden death discards and damage", this.player);
-        this.player.suddenDeath = true;
-        // if (this.player.opponent.clock.timeLeft > 0) {
-        //     this.player.game.recordWinner(this.player.opponent, 'clock');
-        // }
+        // this.player.stopClock();
+        // this.player.game.addAlert('danger', "{0}'s clock has run out - they will suffer sudden death discards and damage", this.player);
+        // this.player.suddenDeath = true;
+        if (this.player.opponent.clock.timeLeft > 0) {
+            this.player.game.recordWinner(this.player.opponent, 'clock');
+        }
     }
 }
 

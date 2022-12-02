@@ -183,6 +183,7 @@ export class PlayerStats extends React.Component {
                                 periods={this.props.clockState.periods}
                                 mainTime={this.props.clockState.mainTime}
                                 timePeriod={this.props.clockState.timePeriod}
+                                winner={this.props.winner}
                             />
                         </div>
                     </div>

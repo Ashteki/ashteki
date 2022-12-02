@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Clock.scss';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 
 const formattedSeconds = (sec) => (sec < 0 ? '-' : '') + Math.floor(Math.abs(sec) / 60) + ':' + ('0' + Math.abs(sec) % 60).slice(-2);
@@ -14,7 +15,13 @@ class Clock extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(newProps) {
-        if (newProps.secondsLeft === 0 || this.stateId === newProps.stateId) {
+        if (this.stateId === newProps.stateId || newProps.secondsLeft === 0) {
+            return;
+        }
+        if (newProps.finishedAt) {
+            if (this.timerHandle) {
+                clearInterval(this.timerHandle);
+            }
             return;
         }
         this.stateId = newProps.stateId;
@@ -39,7 +46,9 @@ class Clock extends React.Component {
                         timeLeft: 0
                     });
                     clearInterval(this.timerHandle);
-
+                }
+                if (newProps.winner) {
+                    clearInterval(this.timerHandle);
                 }
             }, 1000);
         }
@@ -64,7 +73,8 @@ Clock.propTypes = {
     periods: PropTypes.number,
     secondsLeft: PropTypes.number,
     stateId: PropTypes.number,
-    timePeriod: PropTypes.number
+    timePeriod: PropTypes.number,
+    gameFinished: PropTypes.number
 };
 
 export default Clock;
