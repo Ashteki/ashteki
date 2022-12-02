@@ -76,7 +76,6 @@ class Game extends EventEmitter {
         this.timeLimit = new TimeLimit(this);
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.triggerSuddenDeath = false;
-        this.suddenDeath = false;
         // this.trackElo = details.trackElo;
         // this.expectedScores = {}; // Don't think I need for reconnects/rematches
 
@@ -1045,7 +1044,12 @@ class Game extends EventEmitter {
     }
 
     checkForTimeExpired() {
-        if (!this.triggerSuddenDeath && this.timeLimit.isTimeLimitReached && !this.finishedAt) {
+        if (
+            !this.triggerSuddenDeath &&
+            this.timeLimit.isTimeLimitReached &&
+            // game hasn't finished
+            !this.finishedAt
+        ) {
             this.activateSuddenDeath();
         }
     }
@@ -1096,6 +1100,8 @@ class Game extends EventEmitter {
             this.activePlayer === this.roundFirstPlayer &&
             !this.suddenDeath
         ) {
+            this.triggerSuddenDeath = false;
+            this.getPlayers().forEach((p) => (p.suddenDeath = true));
             this.suddenDeath = true;
         }
     }

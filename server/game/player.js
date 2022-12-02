@@ -7,7 +7,7 @@ const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const Dice = require('./dice');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType, GameType } = require('../constants');
+const { BattlefieldTypes, CardType } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -56,6 +56,8 @@ class Player extends GameObject {
 
         // expected win/lose based on Elo
         this.expectedScore = undefined;
+
+        this.suddenDeath = false;
     }
 
     getAlertTimerSetting() {
@@ -316,7 +318,7 @@ class Player extends GameObject {
         this.actions = { main: true, side: 1 };
         //this.limitedPlayed = 0; // reset for my turn - moved to game.js
         this.game.addAlert('startofturn', `Turn ${this.turn} - {0}`, this);
-        if (this.clock.timeLeft <= 0) {
+        if (this.suddenDeath) {
             this.doSuddenDeathDiscard();
         }
     }
