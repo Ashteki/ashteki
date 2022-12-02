@@ -49,22 +49,23 @@ class MoveTokenAction extends CardGameAction {
         );
     }
 
-    getEvent(card, context) {
-        return super.createEvent(
-            'unnamedEvent',
-            {
-                type: this.type,
-                card: card,
-                context: context,
-                from: this.from,
-                to: this.to,
-                amount: this.getAmount(this.from)
-            },
-            (event) => {
-                event.from.removeToken(event.type, event.amount);
-                event.to.addToken(event.type, event.amount);
-            }
+    getEventArray(context) {
+        const amount = this.getAmount(this.from);
+        const events = [];
+
+        events.push(
+            context.game.actions
+                .removeToken({ amount: amount, type: this.type })
+                .getEvent(context.target, context)
         );
+
+        events.push(
+            context.game.actions
+                .addToken({ amount: amount, type: this.type })
+                .getEvent(context.target, context)
+        );
+
+        return events;
     }
 }
 
