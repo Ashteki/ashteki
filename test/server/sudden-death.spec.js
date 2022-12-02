@@ -76,7 +76,6 @@ describe('Sudden Death - OP v2', function () {
                 }
             });
 
-            this.game.suddenDeath = true;
             this.player1.player.deck = [];
             this.player2.player.deck = [];
         });
@@ -153,7 +152,6 @@ describe('Sudden Death - OP v2', function () {
                 }
             });
 
-            this.game.suddenDeath = true;
             this.player2.player.deck = [this.ironWorker];
         });
 
