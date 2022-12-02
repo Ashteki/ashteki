@@ -566,7 +566,6 @@ class Game extends EventEmitter {
         this.setWins(winner.name, winner.wins ? winner.wins + 1 : 1);
         this.winner = winner;
 
-
         this.recordGameEnd(reason);
 
         this.router.gameWon(this, reason, winner);
