@@ -20,7 +20,8 @@ import PlayerName from '../Site/PlayerName';
 import Minus from '../../assets/img/Minus.png';
 import Plus from '../../assets/img/Plus.png';
 import FirstPlayerImage from '../../assets/img/firstplayer.png';
-
+import Clock from './Clock';
+import ClockPopup from './ClockPopup';
 import './PlayerStats.scss';
 
 export class PlayerStats extends React.Component {
@@ -170,18 +171,36 @@ export class PlayerStats extends React.Component {
             ''
         );
 
+        let clock =
+            !this.props.clockState || this.props.clockState.mode === 'off' ? null : (
+                <div className='state'>
+                    <div className='state clock-frame'>
+                        <div className='state'>
+                            <Clock
+                                secondsLeft={this.props.clockState.timeLeft}
+                                mode={this.props.clockState.mode}
+                                stateId={this.props.clockState.stateId}
+                                periods={this.props.clockState.periods}
+                                mainTime={this.props.clockState.mainTime}
+                                timePeriod={this.props.clockState.timePeriod}
+                            />
+                        </div>
+                    </div>
+                </div>
+            );
+
         return (
             <div className={statsClass}>
                 {playerAvatar}
                 {this.renderLifeRemaining()}
                 {this.renderActions()}
                 {firstPlayerToken}
+                {clock}
                 {this.props.activePlayer && (
                     <div className='state first-player-state'>
                         <Trans>Active Player</Trans>
                     </div>
                 )}
-
                 {this.props.showMessages && (
                     <div className='state chat-status'>
                         <div className='state'>

@@ -23,6 +23,7 @@ import PlayerPBRow from './PlayerPBRow';
 import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
+import Clock from './Clock';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -133,22 +134,37 @@ export class GameBoard extends React.Component {
         this.props.sendGameMessage('drop', card.uuid, source, target);
     }
 
-    getTimer() {
-        let timeLimitClock = null;
+    getTimer(player) {
+        let clocks = [];
         if (
-            this.props.currentGame.useGameTimeLimit &&
-            this.props.currentGame.gameTimeLimitStarted
+            this.props.currentGame.useGameTimeLimit
         ) {
-            timeLimitClock = (
-                <TimeLimitClock
-                    timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
-                    timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
-                    timeLimit={this.props.currentGame.gameTimeLimitTime}
-                />
-            );
+            if (
+                this.props.currentGame.gameTimeLimit &&
+                this.props.currentGame.gameTimeLimitStarted
+            ) {
+                clocks.push(
+                    <TimeLimitClock
+                        timeLimitStarted={this.props.currentGame.gameTimeLimitStarted}
+                        timeLimitStartedAt={this.props.currentGame.gameTimeLimitStartedAt}
+                        timeLimit={this.props.currentGame.gameTimeLimit}
+                    />
+                );
+            }
+            if (player.clock) {
+                clocks.push(
+                    <Clock
+                        secondsLeft={player.clock.timeLeft}
+                        mode={player.clock.mode}
+                        stateId={player.clock.stateId}
+                        periods={player.clock.periods}
+                        mainTime={player.clock.mainTime}
+                        timePeriod={player.clock.timePeriod}
+                    />
+                );
+            }
         }
-
-        return timeLimitClock;
+        return <div className='time-limit-clock card bg-dark border-primary'>{clocks}</div>;
     }
 
     onCommand(command, arg, uuid, method) {
@@ -429,6 +445,7 @@ export class GameBoard extends React.Component {
                         firstPlayer={otherPlayer.firstPlayer}
                         phoenixborn={otherPlayer.phoenixborn}
                         player={otherPlayer}
+                        clockState={otherPlayer.clock}
                     />
                 </div>
                 <div className='main-window'>
@@ -502,6 +519,7 @@ export class GameBoard extends React.Component {
                         onDiceHistoryClick={this.onDiceHistoryClick}
                         onManualCommandsClick={this.onManualCommandsClick}
                         phoenixborn={thisPlayer.phoenixborn}
+                        clockState={thisPlayer.clock}
                     />
                 </div>
             </div>
@@ -539,7 +557,7 @@ export class GameBoard extends React.Component {
                         onTimerExpired={this.onTimerExpired.bind(this)}
                         phase={thisPlayer.phase}
                     />
-                    {this.getTimer()}
+                    {this.getTimer(thisPlayer)}
                 </div>
             </div>
         );

@@ -282,21 +282,24 @@ class ChatCommands {
         }
     }
 
-    startClocks(player) {
-        this.game.addAlert('danger', '{0} restarts the timers', player);
-        _.each(this.game.getPlayers(), (player) => player.clock.restart());
-    }
+    // startClocks(player) {
+    //     this.game.startTimer();
 
-    stopClocks(player) {
-        this.game.addAlert('danger', '{0} stops the timers', player);
-        _.each(this.game.getPlayers(), (player) => player.clock.pause());
-    }
+    //     this.game.addAlert('danger', '{0} restarts the timers', player);
+    //     _.each(this.game.getPlayers(), (player) => player.clock.restart());
+    // }
 
-    modifyClock(player, args) {
-        let num = this.getNumberOrDefault(args[1], 60);
-        this.game.addAlert('danger', '{0} adds {1} seconds to their clock', player, num);
-        player.clock.modify(num);
-    }
+    // stopClocks(player) {
+    //     this.game.stopTimer();
+    //     this.game.addAlert('danger', '{0} stops the timers', player);
+    //     _.each(this.game.getPlayers(), (player) => player.clock.pause());
+    // }
+
+    // modifyClock(player, args) {
+    //     let num = this.getNumberOrDefault(args[1], 60);
+    //     this.game.addAlert('danger', '{0} adds {1} seconds to their clock', player, num);
+    //     player.clock.modify(num);
+    // }
 
     draw(player, args) {
         let num = this.getNumberOrDefault(args[1], 1);

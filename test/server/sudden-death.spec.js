@@ -25,10 +25,11 @@ describe('Sudden Death - OP v2', function () {
         it('start of turn causes 2 chosen discard', function () {
             expect(this.player1.deck.length).toBe(3);
             expect(this.player2.deck.length).toBe(3);
-            this.game.suddenDeath = true; // fudge
+            this.game.activateSuddenDeath(); // fudge
+            this.game.roundFirstPlayer = this.player2.player; // fudge
 
             this.player1.endTurn();
-            // sudden death prompt
+            // sudden death prompts
             expect(this.player2).toHavePrompt('Sudden Death');
             expect(this.player2).not.toBeAbleToSelect(this.fluteMage); // discard
             expect(this.player2).toBeAbleToSelect(this.purge); // spellboard
@@ -75,7 +76,6 @@ describe('Sudden Death - OP v2', function () {
                 }
             });
 
-            this.game.suddenDeath = true;
             this.player1.player.deck = [];
             this.player2.player.deck = [];
         });
@@ -83,7 +83,8 @@ describe('Sudden Death - OP v2', function () {
         it('expects discard of cards in hand', function () {
             expect(this.player1.deck.length).toBe(0);
             expect(this.player2.deck.length).toBe(0);
-            this.game.suddenDeath = true; // fudge
+            this.game.activateSuddenDeath(); // fudge
+            this.game.roundFirstPlayer = this.player2.player; // fudge
             this.player1.endTurn();
 
             // sudden death prompt
@@ -105,7 +106,8 @@ describe('Sudden Death - OP v2', function () {
             expect(this.player2.deck.length).toBe(0);
             expect(this.player1.spellboard.length).toBe(2);
 
-            this.game.suddenDeath = true; // fudge
+            this.game.activateSuddenDeath(); // fudge
+            this.game.roundFirstPlayer = this.player2.player; // fudge
             this.player1.endTurn();
 
             // discard from hand
@@ -150,13 +152,13 @@ describe('Sudden Death - OP v2', function () {
                 }
             });
 
-            this.game.suddenDeath = true;
             this.player2.player.deck = [this.ironWorker];
         });
 
         it('start of turn causes 1 discard and 1 damage on partial deck', function () {
             expect(this.player2.deck.length).toBe(1);
-            this.game.suddenDeath = true; // fudge
+            this.game.activateSuddenDeath(); // fudge
+            this.game.roundFirstPlayer = this.player2.player; // fudge
             this.player1.endTurn();
 
             // sudden death prompt

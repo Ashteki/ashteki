@@ -924,8 +924,8 @@ class Lobby {
             showHand: game.showHand,
             spectators: game.allowSpectators,
             swap: oldGame.swap,
-            useGameTimeLimit: game.useGameTimeLimit
-            // trackElo: game.trackElo
+            useGameTimeLimit: game.useGameTimeLimit,
+            clockType: game.clockType
         });
         newGame.rematch = true;
         newGame.previousWinner = oldGame.winner;

@@ -15,6 +15,7 @@ class UiPrompt extends BaseStep {
 
     complete() {
         this.completed = true;
+        this.game.resetClocks();
     }
 
     setPrompt() {
@@ -33,7 +34,7 @@ class UiPrompt extends BaseStep {
     }
 
     // eslint-disable-next-line no-unused-vars
-    activePrompt(player) {}
+    activePrompt(player) { }
 
     addDefaultCommandToButtons(original) {
         var prompt = _.clone(original);
@@ -92,7 +93,7 @@ class UiPrompt extends BaseStep {
     /**
      * Handler that will be called once isComplete() returns true.
      */
-    onCompleted() {}
+    onCompleted() { }
 }
 
 module.exports = UiPrompt;

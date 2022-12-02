@@ -4,6 +4,7 @@ class ChessClock extends Clock {
     constructor(player, time) {
         super(player, time);
         this.mode = 'stop';
+        this.name = 'Chess Clock';
     }
 
     start() {
@@ -17,10 +18,12 @@ class ChessClock extends Clock {
     }
 
     timeRanOut() {
-        this.player.game.addMessage("{0}'s clock has run out", this.player);
-        if (this.player.opponent.clock.timeLeft > 0) {
-            this.player.game.recordWinner(this.player.opponent, 'clock');
-        }
+        this.player.stopClock();
+        this.player.game.addAlert('danger', "{0}'s clock has run out - they will suffer sudden death discards and damage", this.player);
+        this.player.suddenDeath = true;
+        // if (this.player.opponent.clock.timeLeft > 0) {
+        //     this.player.game.recordWinner(this.player.opponent, 'clock');
+        // }
     }
 }
 

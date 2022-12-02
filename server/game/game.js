@@ -37,7 +37,6 @@ const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
-const { EloCalculator } = require('../EloCalculator');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -55,7 +54,6 @@ class Game extends EventEmitter {
         this.disableFatigue = options.disableFatigue;
         this.gameChat = new GameChat(this);
         this.gamePrivate = details.gamePrivate;
-        this.gameTimeLimit = details.gameTimeLimit;
         this.gameFormat = details.gameFormat;
         this.gameType = details.gameType;
         this.id = details.id;
@@ -73,13 +71,8 @@ class Game extends EventEmitter {
         this.showHand = details.showHand;
         this.started = false;
         this.swap = details.swap;
-        this.timeLimit = new TimeLimit(this);
-        this.useGameTimeLimit = details.useGameTimeLimit;
         this.triggerSuddenDeath = false;
-        this.suddenDeath = false;
-        // this.trackElo = details.trackElo;
-        // this.expectedScores = {}; // Don't think I need for reconnects/rematches
-
+        this.suddenDeath = false; // are we in sudden death mode? (mostly tracked in player)
         this.cardIndex = 0;
         this.cardsUsed = [];
         this.cardsPlayed = [];
@@ -90,18 +83,28 @@ class Game extends EventEmitter {
         this.roundFirstPlayer = null;
         this.jsonForUsers = {};
         this.router = options.router;
-
-        this.cardData = options.cardData || [];
-
-        this.cardVisibility = new CardVisibility(this.showHand);
         this.attackState = null;
+        this.cardData = options.cardData || [];
+        this.cardVisibility = new CardVisibility(this.showHand);
 
+        this.useGameTimeLimit = details.useGameTimeLimit;
+        const clockDetails = { type: 'none', time: 0 };
+        if (details.useGameTimeLimit) {
+            if (details.clockType === 'timer') {
+                this.gameTimeLimit = details.gameTimeLimit;
+                this.timeLimit = new TimeLimit(this, this.gameTimeLimit);
+            }
+            clockDetails.type = details.clockType;
+            clockDetails.time = details.gameTimeLimit;
+        }
+        this.clockType = details.clockType;
         _.each(details.players, (player) => {
             this.playersAndSpectators[player.user.username] = new Player(
                 player.id,
                 player.user,
                 this.owner === player.user.username,
-                this
+                this,
+                clockDetails
             );
         });
 
@@ -342,6 +345,18 @@ class Game extends EventEmitter {
         _.each(this.getPlayers(), (player) => player.stopClock());
     }
 
+    resetClocks() {
+        _.each(this.getPlayers(), (player) => player.resetClock());
+    }
+
+    startTimer() {
+        this.timeLimit && this.timeLimit.startTimer();
+    }
+
+    stopTimer() {
+        this.timeLimit && this.timeLimit.stopTimer();
+    }
+
     /**
      * This function is called from the client whenever a card is clicked
      * @param {String} sourcePlayer - name of the clicking player
@@ -561,7 +576,7 @@ class Game extends EventEmitter {
     recordGameEnd(reason) {
         this.finishedAt = new Date();
         this.stopClocks();
-        this.timeLimit.stopTimer();
+        if (this.useGameTimeLimit) this.timeLimit.stopTimer();
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
     }
@@ -919,9 +934,7 @@ class Game extends EventEmitter {
         this.playersAndSpectators = players;
 
         if (this.useGameTimeLimit) {
-            let timeLimitStartType = 'whenSetupFinished';
-            let timeLimitInMinutes = this.gameTimeLimit;
-            this.timeLimit.initialiseTimeLimit(timeLimitStartType, timeLimitInMinutes);
+            this.on('onGameStarted', () => this.timeLimit.startTimer());
         }
 
         for (let player of this.getPlayers()) {
@@ -1034,8 +1047,17 @@ class Game extends EventEmitter {
         );
     }
 
+    // time limit / OP sudden death trigger
     checkForTimeExpired() {
-        if (!this.triggerSuddenDeath && this.timeLimit.isTimeLimitReached && !this.finishedAt) {
+        if (
+            this.useGameTimeLimit &&
+            !this.triggerSuddenDeath &&
+            this.timeLimit &&
+            this.timeLimit.isTimeLimitReached &&
+            // game hasn't finished
+            !this.finishedAt &&
+            !this.suddenDeath
+        ) {
             this.activateSuddenDeath();
         }
     }
@@ -1081,8 +1103,13 @@ class Game extends EventEmitter {
         this.getPlayers().forEach((p) => (p.limitedPlayed = 0)); // reset reaction count for next turn
 
         this.raiseEvent('onBeginTurn', { player: this.activePlayer });
-        if (this.triggerSuddenDeath && this.activePlayer === this.roundFirstPlayer) {
+        if (
+            this.triggerSuddenDeath &&
+            this.activePlayer === this.roundFirstPlayer &&
+            !this.suddenDeath
+        ) {
             this.triggerSuddenDeath = false;
+            this.getPlayers().forEach((p) => (p.suddenDeath = true));
             this.suddenDeath = true;
         }
     }
@@ -1526,17 +1553,12 @@ class Game extends EventEmitter {
                 playerState[player.name] = player.getState(activePlayer);
             }
 
-            this.timeLimit.checkForTimeLimitReached();
-
-            return {
+            const result = {
                 adaptive: this.adaptive,
                 cancelPromptUsed: this.cancelPromptUsed,
                 cardLog: this.cardsPlayed.map((c) => c.getShortSummary()),
                 gameFormat: this.gameFormat,
                 gamePrivate: this.gamePrivate,
-                gameTimeLimitStarted: this.timeLimit.timeLimitStarted,
-                gameTimeLimitStartedAt: this.timeLimit.timeLimitStartedAt,
-                gameTimeLimitTime: this.timeLimit.timeLimitInMinutes,
                 id: this.id,
                 label: this.label,
                 manualMode: this.manualMode,
@@ -1557,8 +1579,17 @@ class Game extends EventEmitter {
                 attack: this.attackState ? this.attackState.getSummary() : null,
                 swap: this.swap,
                 useGameTimeLimit: this.useGameTimeLimit,
+                clockType: this.clockType,
                 winner: this.winner ? this.winner.name : undefined
             };
+
+            if (this.useGameTimeLimit && this.timeLimit) {
+                this.timeLimit.checkForTimeLimitReached();
+                result.gameTimeLimitStarted = this.timeLimit.started;
+                result.gameTimeLimitStartedAt = this.timeLimit.startedAt;
+                result.gameTimeLimit = this.timeLimit.timeLimitInMinutes;
+            }
+            return result;
         }
 
         return this.getSummary(activePlayerName);

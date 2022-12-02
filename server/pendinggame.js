@@ -13,7 +13,6 @@ class PendingGame {
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;
         this.gamePrivate = !!details.gamePrivate;
-        this.gameTimeLimit = details.gameTimeLimit;
         this.gameType = details.gameType;
         this.id = uuid.v1();
         this.label = details.label;
@@ -27,10 +26,12 @@ class PendingGame {
         this.spectators = {};
         this.started = false;
         this.swap = !!details.swap;
-        this.useGameTimeLimit = details.useGameTimeLimit;
         this.rematch = false;
         this.tournament = details.tournament;
-        // this.trackElo = details.trackElo;
+
+        this.useGameTimeLimit = details.useGameTimeLimit;
+        this.gameTimeLimit = details.gameTimeLimit;
+        this.clockType = details.clockType;
     }
 
     // Getters
@@ -417,8 +418,8 @@ class PendingGame {
             spectators,
             started: this.started,
             swap: this.swap,
-            useGameTimeLimit: this.useGameTimeLimit
-            // trackElo: this.trackElo
+            useGameTimeLimit: this.useGameTimeLimit,
+            clockType: this.clockType
         };
     }
 }
