@@ -4,7 +4,7 @@ describe('psychic vampire', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['rose-fire-dancer'],
+                    inPlay: ['rose-fire-dancer', 'string-mage'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'ceremonial'],
                     archives: [],
@@ -18,6 +18,8 @@ describe('psychic vampire', function () {
                     dicepool: ['natural', 'natural']
                 }
             });
+
+            this.stringMage.tokens.damage = 1;
         });
 
         it('ability triggers on PB damage', function () {
@@ -74,6 +76,21 @@ describe('psychic vampire', function () {
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickDone();
             this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.psychicVampire);
+
+            this.player1.clickCard(this.ironWorker); // discard
+
+            expect(this.psychicVampire.location).toBe('discard');
+            expect(this.ironWorker.location).toBe('discard');
+            expect(this.hammerKnight.location).toBe('play area');
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('ability triggers on string mage damage token', function () {
+            this.player1.clickCard(this.stringMage);
+            this.player1.clickPrompt('Exchange Link');
+            this.player1.clickCard(this.stringMage);
             this.player1.clickCard(this.psychicVampire);
 
             this.player1.clickCard(this.ironWorker); // discard

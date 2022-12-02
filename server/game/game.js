@@ -576,7 +576,9 @@ class Game extends EventEmitter {
     recordGameEnd(reason) {
         this.finishedAt = new Date();
         this.stopClocks();
-        if (this.useGameTimeLimit) this.timeLimit.stopTimer();
+        if (this.useGameTimeLimit && this.timeLimit) {
+            this.timeLimit.stopTimer();
+        }
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
     }
@@ -933,8 +935,8 @@ class Game extends EventEmitter {
 
         this.playersAndSpectators = players;
 
-        if (this.useGameTimeLimit) {
-            this.on('onGameStarted', () => this.timeLimit.startTimer());
+        if (this.useGameTimeLimit && this.timeLimit) {
+            this.on('onGameStarted', () => this.timeLimit && this.timeLimit.startTimer());
         }
 
         for (let player of this.getPlayers()) {
