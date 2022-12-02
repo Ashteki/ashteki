@@ -57,7 +57,7 @@ const NewGame = ({
         label: yup.string().optional(),
         gameTimeLimit: yup
             .number()
-            .min(10, t('Games must be at least 10 minutes long'))
+            .min(1, t('Games must be at least 10 minutes long'))
             .max(120, t('Games must be less than 2 hours')),
         gameType: yup.string().required()
     });

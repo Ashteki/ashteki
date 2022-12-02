@@ -160,6 +160,7 @@ export class GameBoard extends React.Component {
                         periods={player.clock.periods}
                         mainTime={player.clock.mainTime}
                         timePeriod={player.clock.timePeriod}
+                        winner={this.props.currentGame.winner}
                     />
                 );
             }
@@ -446,6 +447,7 @@ export class GameBoard extends React.Component {
                         phoenixborn={otherPlayer.phoenixborn}
                         player={otherPlayer}
                         clockState={otherPlayer.clock}
+                        winner={this.props.currentGame.winner}
                     />
                 </div>
                 <div className='main-window'>
@@ -520,6 +522,8 @@ export class GameBoard extends React.Component {
                         onManualCommandsClick={this.onManualCommandsClick}
                         phoenixborn={thisPlayer.phoenixborn}
                         clockState={thisPlayer.clock}
+                        winner={this.props.currentGame.winner}
+
                     />
                 </div>
             </div>
