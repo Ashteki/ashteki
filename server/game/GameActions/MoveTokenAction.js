@@ -55,13 +55,13 @@ class MoveTokenAction extends CardGameAction {
 
         events.push(
             context.game.actions
-                .removeToken({ amount: amount, type: this.type })
+                .removeToken({ amount: amount }, this.type)
                 .getEvent(this.from, context)
         );
 
         events.push(
             context.game.actions
-                .addToken({ amount: amount, type: this.type })
+                .addToken({ amount: amount }, this.type)
                 .getEvent(this.to, context)
         );
 
