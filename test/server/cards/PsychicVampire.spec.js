@@ -98,7 +98,6 @@ describe('psychic vampire', function () {
             expect(this.psychicVampire.location).toBe('discard');
             expect(this.ironWorker.location).toBe('discard');
             expect(this.hammerKnight.location).toBe('play area');
-            expect(this.hammerKnight.damage).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
