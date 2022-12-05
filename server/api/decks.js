@@ -105,7 +105,7 @@ module.exports.init = function (server) {
         '/api/decks',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            let numDecks = await deckService.getNumDecksForUser(req.user, req.query);
+            let numDecks = await deckService.getNumDecksForUser(req.user.username, req.query);
             let decks = [];
 
             if (numDecks > 0) {
@@ -119,7 +119,9 @@ module.exports.init = function (server) {
                 });
 
                 await gameService
-                    .findByUserName(req.user.username)
+                    .findByUserName(req.user.username, {
+                        excludeNonWins: true
+                    })
                     .then((games) => {
                         games.forEach((game) => {
                             const player = game.players.find(p => p.name === req.user.username);

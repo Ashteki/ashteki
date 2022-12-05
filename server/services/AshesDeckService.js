@@ -214,8 +214,8 @@ class AshesDeckService {
         return this.decks.remove({ _id: id });
     }
 
-    async getNumDecksForUser(user, options) {
-        const userDecks = await this.findByUserName(user.username, options, false);
+    async getNumDecksForUser(username, options) {
+        const userDecks = await this.findByUserName(username, options, false);
         //todo: handle options
         return userDecks ? userDecks.length : 0;
     }

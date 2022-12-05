@@ -63,18 +63,21 @@ class GameService {
             });
     }
 
-    async findByUserName(username) {
+    async findByUserName(username, options = {}) {
+        const findSpec = {
+            'players.name': username
+        };
+        if (options.excludeNonWins) {
+            // findSpec.winner = { $exists: true };
+            findSpec.winReason = { $ne: 'Agreement' };
+        }
+
         return this.games
-            .find(
-                {
-                    'players.name': username
-                },
-                {
-                    sort: {
-                        finishedAt: -1
-                    }
+            .find(findSpec, {
+                sort: {
+                    finishedAt: -1
                 }
-            )
+            })
             .then((games) => {
                 // Make sure position zero is always the given username
                 games.forEach((game) => {
