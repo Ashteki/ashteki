@@ -79,7 +79,7 @@ class CardAbility extends ThenAbility {
     ) {
         let messageArgs = previousMessageArgs || [
             context.player,
-            [CardType.ReactionSpell, CardType.ActionSpell].includes(context.source.type)
+            [CardType.ReactionSpell].includes(context.source.type)
                 ? ' plays '
                 : ' uses ',
             context.source
