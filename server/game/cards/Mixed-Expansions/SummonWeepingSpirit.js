@@ -13,18 +13,12 @@ class SummonWeepingSpirit extends Card {
             ],
             location: 'spellboard',
             target: {
-                mode: 'select',
+                toSelect: 'player',
                 activePromptTitle: "Which player's battlefield?",
-                choices: {
-                    Mine: this.game.actions.summon({
-                        conjuration: 'weeping-spirit',
-                        opponentControls: false
-                    }),
-                    "Opponent's": this.game.actions.summon({
-                        conjuration: 'weeping-spirit',
-                        opponentControls: true
-                    })
-                }
+                choices: ["Opponent's", 'Mine'],
+                gameAction: this.game.actions.summon({
+                    conjuration: 'weeping-spirit'
+                })
             },
             then: {
                 condition: () => this.focus > 0,
