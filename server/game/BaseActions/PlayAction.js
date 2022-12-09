@@ -7,6 +7,10 @@ class PlayAction extends BasePlayAction {
         this.title = 'Play this action';
     }
 
+    displayMessage(context) {
+        context.game.addMessage('{0} plays {1}', context.player, context.source);
+    }
+
     executeHandler(context) {
         context.player.moveCard(context.source, 'being played');
         super.executeHandler(context);
