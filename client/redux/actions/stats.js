@@ -13,3 +13,14 @@ export function loadUserStats(months, gameType) {
         }
     };
 }
+
+export function loadEloLadder() {
+    return {
+        types: ['REQUEST_ELOLADDER', 'RECEIVE_ELOLADDER'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/stats/elo',
+            cache: false
+        }
+    };
+}

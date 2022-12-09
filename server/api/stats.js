@@ -1,10 +1,13 @@
 const passport = require('passport');
-
-const GameService = require('../services/AshesGameService.js');
-const ConfigService = require('../services/ConfigService.js');
 const { wrapAsync } = require('../util.js');
 
-let gameService = new GameService(new ConfigService());
+const ConfigService = require('../services/ConfigService.js');
+const GameService = require('../services/AshesGameService.js');
+const UserService = require('../services/AshesUserService');
+
+const configService = new ConfigService();
+const gameService = new GameService(configService);
+const userService = new UserService(new ConfigService());
 
 module.exports.init = function (server) {
     server.get(
@@ -20,4 +23,13 @@ module.exports.init = function (server) {
         })
     );
 
+    server.get(
+        '/api/stats/elo',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            let list = await userService.getAllUsers();
+            list.sort((a, b) => a.eloRating > b.eloRating ? -1 : 1);
+            res.send({ success: true, list: list });
+        })
+    );
 };
