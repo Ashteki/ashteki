@@ -29,10 +29,10 @@ describe('To Shadows', function () {
             expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
             expect(this.player1).not.toBeAbleToSelect(this.mistSpirit);
 
-            this.player1.clickCard(this.enchantedViolinist);
+            this.player1.clickCard(this.anchornaut);
 
             expect(this.toShadows.location).toBe('discard');
-            expect(this.enchantedViolinist.location).toBe('discard');
+            expect(this.anchornaut.location).toBe('discard');
         });
     });
 
@@ -52,13 +52,15 @@ describe('To Shadows', function () {
             });
         });
 
-        it('disard exhausted unit', function () {
+        it('no disard of unexhausted unit', function () {
             this.player1.clickCard(this.toShadows); // play card
             this.player1.clickPrompt('Play this action');
             this.player1.clickDie(0);
 
             expect(this.toShadows.location).toBe('discard');
-            expect(this.enchantedViolinist.location).toBe('discard');
+            expect(this.anchornaut.location).toBe('play area');
+            expect(this.ironWorker.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
