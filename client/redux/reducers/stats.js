@@ -6,6 +6,9 @@ function stats(state = {}, action) {
             newState.stats = action.response.stats;
 
             break;
+        case 'RECEIVE_ELOLADDER':
+            newState.elo = action.response.list;
+            break;
         default:
             return state;
     }

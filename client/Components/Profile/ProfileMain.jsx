@@ -11,6 +11,7 @@ import { unlinkPatreon } from '../../redux/actions';
 import PatreonImage from '../../assets/img/Patreon_Mark_Coral.jpg';
 
 import './ProfileMain.scss';
+import Link from '../Navigation/Link';
 
 /**
  * @typedef { import('./Profile').ProfileDetails } ProfileDetails
@@ -143,7 +144,7 @@ const ProfileMain = ({ user, formProps }) => {
                 </Form.Group>
                 <Form.Group as={Col} md='3'>
                     <Form.Label>{t('Elo Rating')}</Form.Label>
-                    <div>{eloRating}</div>
+                    <div>{eloRating}&nbsp;- <Link href='/elo'>View Elo Leaderboard</Link></div>
 
                 </Form.Group>
             </Form.Row>

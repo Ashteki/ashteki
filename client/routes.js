@@ -25,6 +25,7 @@ import BlockList from './pages/BlockList';
 import NodesAdmin from './pages/NodesAdmin';
 import BanlistAdmin from './pages/BanlistAdmin';
 import Patreon from './pages/Patreon';
+import EloLadder from './pages/EloLadder';
 
 const routes = [
     { path: '/', action: () => <Home key='lobby' /> },
@@ -46,6 +47,7 @@ const routes = [
     { path: '/logout', action: () => <Logout key='logout' /> },
     // { path: '/matches', action: () => <Matches key='matches' /> },
     { path: '/stats', action: () => <Stats key='stats' /> },
+    { path: '/elo', action: () => <EloLadder key='elo' /> },
     {
         path: '/play',
         action: (context) =>
