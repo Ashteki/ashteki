@@ -28,7 +28,8 @@ module.exports.init = function (server) {
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
             let list = await userService.getAllUsers();
-            list.sort((a, b) => a.eloRating > b.eloRating ? -1 : 1);
+            list = list.filter((u) => u.eloRating);
+            list.sort((a, b) => (a.eloRating > b.eloRating ? -1 : 1));
             res.send({ success: true, list: list });
         })
     );

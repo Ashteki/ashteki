@@ -14,7 +14,7 @@ const EloLadder = () => {
 
     const data = useSelector((state) => state.stats.elo);
     const output = data && data.map((d, index) => {
-        return <tr key={d.username}><td>{index + 1}</td><td> {d.username}</td><td>{Math.round(d.eloRating)}</td></tr>;
+        return <tr key={d.username}><td>{index + 1}</td><td> {d.username}</td><td>{d.eloRating}</td></tr>;
     });
 
     return (
