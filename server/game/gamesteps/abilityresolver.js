@@ -47,24 +47,22 @@ class AbilityResolver extends BaseStepWithPipeline {
 
     resolveMayClause() {
         this.context.ability.resolveMayClause(this.context, this.mayResult);
-
-        if (this.mayResult.cancelled) {
-            this.cancelled = true;
-        }
     }
 
     checkWarnings() {
-        this.context.ability.checkWarnings(this.context, this.warningsResult);
-
-        if (this.warningsResult.cancelled) {
+        if (this.cancelled) {
+            return;
+        } else if (this.mayResult.cancelled) {
             this.cancelled = true;
+            return;
         }
+        this.context.ability.checkWarnings(this.context, this.warningsResult);
     }
 
     resolveCosts() {
         if (this.cancelled) {
             return;
-        } else if (this.mayResult.cancelled) {
+        } else if (this.warningsResult.cancelled) {
             this.cancelled = true;
             return;
         }

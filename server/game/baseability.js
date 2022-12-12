@@ -133,23 +133,23 @@ class BaseAbility {
         return;
     }
 
-    checkWarnings(context, results) {
-        if (this.properties.warnIf && this.properties.warning) {
-            let warn = false;
-            let warnIf = this.properties.warnIf;
-            if (typeof warnIf === 'function') {
-                warn = warnIf(context);
-            }
+    /**
+     * override in subclasses to provide a warning function for an ability
+     */
+    getWarnings(context) {
+        return '';
+    }
 
-            if (warn) {
-                this.game.promptWithHandlerMenu(context.player, {
-                    promptTitle: this.properties.title,
-                    activePromptTitle: this.properties.warning + '\nDo you want to continue?',
-                    context: context,
-                    choices: ['Yes', 'No'],
-                    handlers: [() => true, () => (results.cancelled = true)]
-                });
-            }
+    checkWarnings(context, results) {
+        const warning = this.getWarnings(context);
+        if (warning) {
+            context.game.promptWithHandlerMenu(context.player, {
+                promptTitle: 'Warning',
+                activePromptTitle: warning + '\nDo you want to continue?',
+                context: context,
+                choices: ['Yes', 'No'],
+                handlers: [() => true, () => (results.cancelled = true)]
+            });
         }
     }
 

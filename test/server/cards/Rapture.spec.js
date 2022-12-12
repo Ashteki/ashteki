@@ -1,4 +1,4 @@
-describe('Excavate action spell', function () {
+describe('Rapture action spell', function () {
     beforeEach(function () {
         this.setupTest({
             player1: {
@@ -39,5 +39,15 @@ describe('Excavate action spell', function () {
         expect(this.mistSpirit.location).toBe('archives');
         expect(this.fireArcher.location).toBe('discard');
         expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('warn when no unexhausted ally targets', function () {
+        this.anchornaut.exhaust();
+        this.hammerKnight.exhaust();
+        this.player1.play(this.rapture);
+        expect(this.player1).toHavePromptTitle('Warning');
+        this.player1.clickPrompt('No');
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.rapture.location).toBe('hand');
     });
 });

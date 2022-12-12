@@ -4,8 +4,6 @@ const Card = require('../../Card.js');
 class Rapture extends Card {
     setupCardAbilities(ability) {
         this.play({
-            warnIf: true,
-            warning: 'You dont have any unexhausted allies',
             title: 'Rapture',
             target: {
                 activePromptTitle: 'Choose a unit to destroy',
@@ -25,6 +23,16 @@ class Rapture extends Card {
                 }
             }
         });
+    }
+
+    playWarning(context) {
+        const unexhaustedAllies = context.player.unitsInPlay.filter(
+            (u) => u.type === CardType.Ally && !u.exhausted
+        );
+        if (unexhaustedAllies.length === 0) {
+            return 'You dont have any unexhausted allies';
+        }
+        return '';
     }
 }
 
