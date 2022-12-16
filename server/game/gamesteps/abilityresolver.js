@@ -126,6 +126,9 @@ class AbilityResolver extends BaseStepWithPipeline {
                 if (event.name === 'onSpendSideAction') {
                     event.player.actions.side += 1;
                 }
+                if (event.name === 'onCardExhausted') {
+                    event.card.tokens.exhaustion -= 1;
+                }
             }
         });
     }
