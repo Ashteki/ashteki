@@ -365,13 +365,20 @@
     width: 100%;
 }
 
-.card-chain-icon {
+.card-chain-bad {
     color: red;
     position: absolute;
     top: 0px;
     left: 5px;
     z-index: $layer-cards + 10;
-    ;
+}
+
+.card-chain-ok {
+    color: green;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    z-index: $layer-cards + 10;
 }
 
 .card-alt-icon {
