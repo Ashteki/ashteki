@@ -12,7 +12,7 @@ import { startGame, leaveGame, sendSocketMessage } from '../../redux/actions';
 import PendingGamePlayers from './PendingGamePlayers';
 import ChargeMp3 from '../../assets/sound/charge.mp3';
 import ChargeOgg from '../../assets/sound/charge.ogg';
-import { getFormatLabel } from '../../util';
+import { getFormatLabel, getGameTypeLabel } from '../../util';
 
 import './PendingGame.scss';
 import { useEffect } from 'react';
@@ -231,7 +231,7 @@ const PendingGame = () => {
                     <GameFormatInfo gameType={currentGame.gameFormat} />
                 </div>
                 <h3>
-                    Type: <span className='unbold cap'>{currentGame.gameType}</span>
+                    Type: <span className='unbold cap'>{getGameTypeLabel(currentGame.gameType)}</span>
                 </h3>
 
                 {timelimit}

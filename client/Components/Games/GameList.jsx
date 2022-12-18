@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 import PlayerName from '../Site/PlayerName';
-import { getFormatLabel } from '../../util';
+import { getFormatLabel, getGameTypeLabel } from '../../util';
 
 import AlertPanel from '../Site/AlertPanel';
 import * as actions from '../../redux/actions';
@@ -198,13 +198,15 @@ class GameList extends React.Component {
             }
 
             let formattedTime = moment.utc(timeDifference).format('HH:mm');
-
+            const formatBadgeClass = classNames('game-format', game.gameFormat);
             gamesToReturn.push(
                 <div key={game.id}>
                     <hr />
                     <div className={rowClass}>
                         <div className='game-header-row'>
-                            [{getFormatLabel(game.gameFormat)}]{' '}
+                            <span className={formatBadgeClass}>
+                                {getFormatLabel(game.gameFormat)}
+                            </span>
                             <span className='game-title'>
                                 <b>{game.name}</b>
                             </span>{' '}
@@ -265,7 +267,7 @@ class GameList extends React.Component {
         return (
             <div key={gameType}>
                 <div className={gameHeaderClass} key={gameType + 'header'}>
-                    {t(gameType)} ({gamesToReturn.length})
+                    {getGameTypeLabel(gameType)} ({gamesToReturn.length})
                 </div>
                 {gamesToReturn}
             </div>

@@ -8,10 +8,11 @@ import * as yup from 'yup';
 import Panel from '../Site/Panel';
 import GameFormats from './GameFormats';
 
-import GameOptions from './GameOptions';
-import GameTypes from './GameTypes';
+// import GameOptions from './GameOptions';
+// import GameTypes from './GameTypes';
 import { getStandardControlProps } from '../../util';
 import { cancelNewGame, sendSocketMessage } from '../../redux/actions';
+import TimeLimitIcon from '../../assets/img/Timelimit.png';
 
 import './NewGame.scss';
 
@@ -72,8 +73,38 @@ const NewGame = ({
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
         clockType: 'timer',
-        gamePrivate: defaultPrivate
+        gamePrivate: defaultPrivate,
+        ranked: false
     };
+
+    const options = [
+        { name: 'ranked', label: 'Ranked (affects Elo rating)' },
+        { name: 'allowSpectators', label: t('Allow spectators') },
+        { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
+        { name: 'showHand', label: t('Show hands to spectators') },
+    ];
+
+    let clockType = [
+        { name: 'timer', label: t('Shared') },
+        { name: 'chess', label: t('Chess Clock') }
+    ];
+
+    const defaultTime = {
+        timer: '50',
+        chess: '15',
+        hourglass: '15',
+        byoyomi: '0'
+    };
+
+    const onClockChange = (value, setFieldValue) => {
+        setFieldValue("clockType", value);
+        setFieldValue("gameTimeLimit", defaultTime[value]);
+    }
+
+    const onOptionChange = (option, value, setFieldValue) => {
+        // setFieldValue("clockType", value);
+        // setFieldValue("gameTimeLimit", defaultTime[value]);
+    }
 
     if (!lobbySocket) {
         return (
@@ -140,10 +171,73 @@ const NewGame = ({
                                     </Form.Row>
                                 )}
                                 <GameFormats formProps={formProps} />
-                                <GameOptions formProps={formProps} />
+                                <Form.Group>
+                                    <Form.Row>
+                                        <Col xs={12} className='font-weight-bold'>
+                                            <Trans>Options</Trans>
+                                        </Col>
+                                        {options.map((option) => (
+                                            <Col key={option.name} lg='6'>
+                                                <Form.Check
+                                                    type='switch'
+                                                    id={option.name}
+                                                    label={option.label}
+                                                    // inline
+                                                    onChange={(e) => {
+                                                        formProps.handleChange(e);
+                                                        onOptionChange(option.name, e.value, formProps.setFieldValue);
+                                                    }}
+                                                    value='true'
+                                                    checked={formProps.values[option.name]}
+                                                ></Form.Check>
+                                            </Col>
+                                        ))}
+                                    </Form.Row>
+                                </Form.Group>
+                                {formProps.values.useGameTimeLimit && (
+                                    <Form.Row>
+                                        <Form.Group>
+                                            <Form.Label><span>
+                                                <img
+                                                    src={TimeLimitIcon}
+                                                    className='game-list-icon'
+                                                    alt={'Time limit used'}
+                                                />
+                                            </span>&nbsp;
+                                                {t('Time Limit')}</Form.Label>
+                                            <Form.Control
+                                                type='text'
+                                                placeholder={t('Enter time limit')}
+                                                {...getStandardControlProps(formProps, 'gameTimeLimit')}
+                                            />
+                                            <Form.Control.Feedback type='invalid'>
+                                                {formProps.errors.gameTimeLimit}
+                                            </Form.Control.Feedback>
+
+                                            {clockType.map((type) => (
+                                                <Form.Check
+                                                    name='clockType'
+                                                    key={type.name}
+                                                    type='radio'
+                                                    id={type.name}
+                                                    label={type.label}
+                                                    inline
+                                                    onChange={(e) => {
+                                                        formProps.handleChange(e);
+                                                        onClockChange(type.name, formProps.setFieldValue);
+                                                    }}
+                                                    value={type.name}
+                                                    checked={formProps.values.clockType === type.name}
+                                                ></Form.Check>
+                                            ))}
+
+                                        </Form.Group>
+                                    </Form.Row>
+                                )}
+
                             </>
                         }
-                        {!tournament && <GameTypes formProps={formProps} />}
+                        {/* {!tournament && <GameTypes formProps={formProps} />} */}
                         {
                             <Row>
                                 <Form.Group as={Col} sm={6}>

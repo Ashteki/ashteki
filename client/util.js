@@ -61,6 +61,15 @@ export const getStandardControlProps = (formProps, controlName) => ({
     isInvalid: formProps.touched[controlName] && !!formProps.errors[controlName]
 });
 
+export const gameTypes = [
+    { name: 'casual', label: 'Unranked' },
+    { name: 'competitive', label: 'Ranked' }
+];
+export const getGameTypeLabel = (name) => {
+    const type = gameTypes.find(f => f.name === name);
+    return type?.label;
+};
+
 export const gameFormats = [
     { name: 'firstadventure', label: 'First Adventure' },
     { name: 'aparty', label: 'Adventuring Party' },
@@ -72,7 +81,7 @@ export const gameFormats = [
 export const getFormatLabel = (name) => {
     const format = gameFormats.find(f => f.name === name);
     return format?.label;
-}
+};
 
 /**
  * @param {File} file

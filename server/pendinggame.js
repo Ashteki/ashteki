@@ -13,7 +13,8 @@ class PendingGame {
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;
         this.gamePrivate = !!details.gamePrivate;
-        this.gameType = details.gameType;
+        // this.gameType = details.gameType;
+        this.gameType = details.ranked ? 'competitive' : 'casual';
         this.id = uuid.v1();
         this.label = details.label;
         this.muteSpectators = details.muteSpectators;

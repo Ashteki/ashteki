@@ -90,7 +90,7 @@ class Stats extends React.Component {
                 onChange={this.handleTypeChange}
             >
                 <option value=''>All Types</option>
-                <option value='competitive'>Competitive</option>
+                <option value='competitive'>Ranked</option>
                 <option value='casual'>Casual</option>
             </select>
         )

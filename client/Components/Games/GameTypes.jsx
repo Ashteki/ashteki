@@ -1,22 +1,16 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import { Form, Col } from 'react-bootstrap';
+import { gameTypes } from '../../util';
 
 const GameTypes = ({ formProps }) => {
-    const { t } = useTranslation();
-
-    let types = [
-        { name: 'casual', label: t('Casual') },
-        { name: 'competitive', label: t('Competitive') }
-    ];
-
     return (
         <Form.Row>
             <Col xs={12} className='font-weight-bold'>
                 <Trans>Type</Trans>
             </Col>
             <Form.Group as={Col}>
-                {types.map((type) => (
+                {gameTypes.map((type) => (
                     <Form.Check
                         name='gameType'
                         key={type.name}
