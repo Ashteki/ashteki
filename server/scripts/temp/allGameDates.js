@@ -11,15 +11,17 @@ let args = process.argv.slice(2);
 gameService
     .getAllGames(start, end)
     .then(async (games) => {
-        games.sort((a, b) => a.finishedAt < b.finishedAt);
+        games.sort((a, b) => a.startedAt < b.startedAt);
         console.log('datetime | dayofweek | time');
         for (const game of games) {
-            console.log(
-                '%s | %s | %s | %s',
-                game.startedAt,
-                game.startedAt.getDay(),
-                game.startedAt.getTime()
-            );
+            if (game.startedAt) {
+                console.log(
+                    '%s | %s | %s | %s',
+                    game.startedAt,
+                    game.startedAt.getDay(),
+                    game.startedAt.getTime()
+                );
+            }
         }
     })
     .catch((error) => {
