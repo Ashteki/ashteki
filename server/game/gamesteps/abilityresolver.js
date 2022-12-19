@@ -11,6 +11,7 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.targetResults = {};
         this.costResults = this.getCostResults();
         this.mayResult = { cancelled: false };
+        this.warningsResult = { cancelled: false };
         this.initialise();
     }
 
@@ -18,6 +19,7 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.pipeline.initialise([
             new SimpleStep(this.game, () => this.createSnapshot()),
             new SimpleStep(this.game, () => this.resolveMayClause()),
+            new SimpleStep(this.game, () => this.checkWarnings()),
             new SimpleStep(this.game, () => this.resolveCosts()),
             new SimpleStep(this.game, () => this.payCosts()),
             new SimpleStep(this.game, () => this.resolveTargets()),
@@ -45,16 +47,22 @@ class AbilityResolver extends BaseStepWithPipeline {
 
     resolveMayClause() {
         this.context.ability.resolveMayClause(this.context, this.mayResult);
+    }
 
-        if (this.mayResult.cancelled) {
+    checkWarnings() {
+        if (this.cancelled) {
+            return;
+        } else if (this.mayResult.cancelled) {
             this.cancelled = true;
+            return;
         }
+        this.context.ability.checkWarnings(this.context, this.warningsResult);
     }
 
     resolveCosts() {
         if (this.cancelled) {
             return;
-        } else if (this.mayResult.cancelled) {
+        } else if (this.warningsResult.cancelled) {
             this.cancelled = true;
             return;
         }
@@ -117,6 +125,9 @@ class AbilityResolver extends BaseStepWithPipeline {
                 }
                 if (event.name === 'onSpendSideAction') {
                     event.player.actions.side += 1;
+                }
+                if (event.name === 'onCardExhausted') {
+                    event.card.tokens.exhaustion -= 1;
                 }
             }
         });

@@ -33,6 +33,24 @@ var customMatchers = {
         };
     },
 
+    toHavePromptTitle: function () {
+        return {
+            compare: function (actual, expected) {
+                var result = {};
+                var currentPrompt = actual.currentPrompt();
+                result.pass = actual.hasPromptTitle(expected);
+
+                if (result.pass) {
+                    result.message = `Expected ${actual.name} not to have prompt "${expected}" but it did.`;
+                } else {
+                    result.message = `Expected ${actual.name} to have prompt "${expected}" but it had menuTitle "${currentPrompt.menuTitle}" and promptTitle "${currentPrompt.promptTitle}".`;
+                }
+
+                return result;
+            }
+        };
+    },
+
     toHaveDefaultPrompt: function () {
         return {
             compare: function (actual) {

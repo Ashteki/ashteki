@@ -22,6 +22,10 @@ class PlayAction extends BasePlayAction {
             }
         });
     }
+
+    getWarnings(context) {
+        return this.card.playWarning && this.card.playWarning(context);
+    }
 }
 
 module.exports = PlayAction;

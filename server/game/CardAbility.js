@@ -7,6 +7,9 @@ class CardAbility extends ThenAbility {
     constructor(game, card, properties) {
         super(game, card, properties);
 
+        if (properties.getWarnings) {
+            this.getWarnings = properties.getWarnings;
+        }
         this.location = properties.location || ['play area', 'spellboard'];
         this.printedAbility = properties.printedAbility === false ? false : true;
 

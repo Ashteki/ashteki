@@ -26,10 +26,6 @@
  */
 
 /**
- * @typedef {'casual' | 'competitive'} GameType
- */
-
-/**
  * @typedef PendingDeck
  * @property {string} [name] The name of the deck
  * @property {boolean} selected Whether or not a deck is selected

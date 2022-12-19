@@ -28,6 +28,6 @@ const EloLadder = () => {
             </Panel>
         </Col>
     );
-}
+};
 
 export default EloLadder;

@@ -353,6 +353,17 @@ class PlayerInteractionWrapper {
         );
     }
 
+    hasPromptTitle(title) {
+        var currentPrompt = this.currentPrompt();
+        return (
+            !!currentPrompt &&
+            ((currentPrompt.menuTitle &&
+                currentPrompt.menuTitle.toLowerCase() === title.toLowerCase()) ||
+                (currentPrompt.promptTitle &&
+                    currentPrompt.promptTitle.toLowerCase() === title.toLowerCase()))
+        );
+    }
+
     hasDefaultPrompt() {
         return this.hasPrompt('Choose a card to play or use');
     }

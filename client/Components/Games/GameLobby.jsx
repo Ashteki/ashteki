@@ -21,7 +21,7 @@ const GameLobby = ({ gameId }) => {
     const dispatch = useDispatch();
     const filters = [
         { name: 'casual', label: t('Casual') },
-        { name: 'competitive', label: t('Competitive') }
+        { name: 'competitive', label: t('Ranked') }
     ];
     const filterDefaults = {};
 

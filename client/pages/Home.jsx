@@ -17,7 +17,7 @@ const Home = () => {
                                 <span className='phg-main-action ashes-live-textlogo' />
                                 Play Now
                             </h2>
-                            <p>
+                            <p className='d-none d-md-block'>
                                 You can jump into a game straight away. Precons and Adventuring Party decks are built in for all users.
                             </p>
                         </div>
@@ -30,7 +30,7 @@ const Home = () => {
                                 <img src={bookLogo} className='bookTextlogo' />
                                 Learn to Play
                             </h2>
-                            <p>
+                            <p className='d-none d-md-block'>
                                 Check out articles and videos on how to play, how to use Ashteki,
                                 and much more
                             </p>
@@ -45,7 +45,7 @@ const Home = () => {
                                 <img src={cardsLogo} className='cardsTextlogo' />
                                 Build a deck
                             </h2>
-                            <p>
+                            <p className='d-none d-md-block'>
                                 When you move beyond the built-in decks you can create your own here, or import from ashes.live
                             </p>
                         </div>
@@ -64,14 +64,16 @@ const Home = () => {
                                 <img src={discordTextLogo} className='textlogo' />
                                 Join the Ashes Community Discord
                             </h2>
-                            <ul className='two-column'>
-                                <li>Find other players</li>
-                                <li>Talk strategy</li>
-                                <li>Get deckbuilding advice</li>
-                                <li>Join a league or tournament</li>
-                                <li>Ask rules questions</li>
-                                <li>Report a bug</li>
-                            </ul>
+                            <div className='d-none d-sm-block'>
+                                <ul className='two-column'>
+                                    <li>Find other players</li>
+                                    <li>Talk strategy</li>
+                                    <li>Get deckbuilding advice</li>
+                                    <li>Join a league or tournament</li>
+                                    <li>Ask rules questions</li>
+                                    <li>Report a bug</li>
+                                </ul>
+                            </div>
                         </div>
                     </a>
                 </Panel>

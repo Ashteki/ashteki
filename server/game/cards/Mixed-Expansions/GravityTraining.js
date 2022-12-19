@@ -5,6 +5,11 @@ const DiceCount = require('../../DiceCount.js');
 class GravityTraining extends Card {
     setupCardAbilities(ability) {
         this.action({
+            getWarnings: (context) => {
+                if (!context.player.unitsInPlay.some((u) => u.exhausted)) {
+                    return 'You don\'t have any exhausted units'
+                }
+            },
             title: 'Gravity Training',
             cost: [
                 ability.costs.chosenAction(),
@@ -18,6 +23,7 @@ class GravityTraining extends Card {
                 ])
             ],
             target: {
+                showCancel: true,
                 cardType: BattlefieldTypes,
                 controller: 'self',
                 cardCondition: (card) => card.exhausted,

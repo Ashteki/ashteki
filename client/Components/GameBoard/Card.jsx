@@ -45,7 +45,7 @@ const Card = ({
     };
     const [showMenu, setShowMenu] = useState(false);
     const dispatch = useDispatch();
-    const manualMode = useSelector((state) => state.lobby.currentGame?.manualMode);
+    const gameRound = useSelector((state) => state.lobby.currentGame?.round);
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
         item: { card: card, source: source, type: ItemTypes.CARD },
@@ -285,8 +285,9 @@ const Card = ({
 
     const getChainIcon = (card) => {
         if (card.isChained) {
+            const chainClass = gameRound > 1 ? 'card-chain-ok' : 'card-chain-bad';
             return (
-                <div className='card-chain-icon'>
+                <div className={chainClass}>
                     <FontAwesomeIcon icon={faLink} />
                 </div>
             );
