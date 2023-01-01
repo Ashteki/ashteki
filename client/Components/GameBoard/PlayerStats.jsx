@@ -12,7 +12,8 @@ import {
     faList,
     faCogs,
     faComment,
-    faHistory
+    faHistory,
+    faBolt
 } from '@fortawesome/free-solid-svg-icons';
 import { Badge } from 'react-bootstrap';
 
@@ -21,7 +22,6 @@ import Minus from '../../assets/img/Minus.png';
 import Plus from '../../assets/img/Plus.png';
 import FirstPlayerImage from '../../assets/img/firstplayer.png';
 import Clock from './Clock';
-import ClockPopup from './ClockPopup';
 import './PlayerStats.scss';
 
 export class PlayerStats extends React.Component {
@@ -39,6 +39,12 @@ export class PlayerStats extends React.Component {
     toggleAction(actionType) {
         if (this.props.showControls) {
             this.props.sendGameMessage('modifyAction', actionType, this.props.actions[actionType]);
+        }
+    }
+
+    toggleLimited() {
+        if (this.props.showControls) {
+            this.props.sendGameMessage('modifyLimited', this.props.player.limitedPlayed);
         }
     }
 
@@ -62,15 +68,12 @@ export class PlayerStats extends React.Component {
     }
 
     renderActions() {
-        let actionTypes = ['main', 'side'];
-        // let actionOutput =  + this.renderSideAction();
-
         return (
             <div className='state'>
                 {this.renderMainAction()}
                 {this.renderSideAction()}
             </div>
-        )
+        );
     }
 
     renderLifeRemaining() {
@@ -99,6 +102,24 @@ export class PlayerStats extends React.Component {
                 <span key={`action-side`} className={classes}>
                     {lifeValue}
                 </span>
+            </div>
+        );
+    }
+
+    renderLimited() {
+        const value = !this.props.player.limitedPlayed;
+        let actionClass = classNames('action', value ? '' : 'exhausted');
+        return (
+            <div className='state'>
+                <a
+                    href='#'
+                    key='limitedPlayed'
+                    className={actionClass}
+                    onClick={this.toggleLimited.bind(this)}
+                    title='reaction'
+                >
+                    <FontAwesomeIcon icon={faBolt} />
+                </a>
             </div>
         );
     }
@@ -195,6 +216,7 @@ export class PlayerStats extends React.Component {
                 {playerAvatar}
                 {this.renderLifeRemaining()}
                 {this.renderActions()}
+                {this.renderLimited()}
                 {firstPlayerToken}
                 {clock}
                 {this.props.activePlayer && (

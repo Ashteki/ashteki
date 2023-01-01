@@ -5,7 +5,6 @@ const crypto = require('crypto');
 const EventEmitter = require('events');
 const uuid = require('uuid');
 const User = require('../models/User.js');
-const { GameType } = require('../constants');
 const { EloCalculator } = require('../EloCalculator.js');
 
 class UserService extends EventEmitter {

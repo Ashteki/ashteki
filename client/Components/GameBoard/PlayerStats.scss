@@ -4,30 +4,6 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-@mixin action-colors($text, $background) {
-    color: $text;
-    background: $background;
-    border-color: $text;
-}
-
-.action {
-    @include action-colors(#333, #FFF);
-    border-radius: 8px;
-    margin: 5px;
-    // height: 24px;
-    // width: 26px;
-    padding: 0px 5px;
-    text-align: center;
-    display: inline-block;
-    z-index: $layer-cards + 1;
-    font-size: 120%;
-    border: 1pt solid black;
-}
-
-.action.exhausted {
-    @include action-colors(#CCC, #889);
-}
-
 .player-stats {
     display: flex;
     background-color: rgba(0, 0, 0, 0.9);
@@ -85,6 +61,36 @@
         border-radius: 0.25rem;
         border: 1px solid rgba(128, 128, 128, 0.53);
     }
+}
+
+
+@mixin action-colors($text, $background) {
+    color: $text !important;
+    background: $background;
+    border-color: $text;
+
+}
+
+.action {
+    @include action-colors(#333, #FFF);
+    border-radius: 8px;
+    margin: 5px;
+    // height: 24px;
+    // width: 26px;
+    padding: 0px 5px;
+    text-align: center;
+    display: inline-block;
+    z-index: $layer-cards + 1;
+    font-size: 120%;
+    border: 1pt solid black;
+
+    svg {
+        color: #333 !important;
+    }
+}
+
+.action.exhausted {
+    @include action-colors(#CCC, #889);
 }
 
 .stat-image {
