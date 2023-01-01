@@ -775,6 +775,7 @@ class Player extends GameObject {
             dice: this.getSummaryForDiceList(this.dice, activePlayer),
             diceCounts: this.diceCounts,
             actions: this.actions,
+            limitedPlayed: this.limitedPlayed,
             phoenixborn: this.phoenixborn.getSummary(activePlayer),
             firstPlayer: this.firstPlayer
         };

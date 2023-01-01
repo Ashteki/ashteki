@@ -660,6 +660,16 @@ class Game extends EventEmitter {
         }
     }
 
+    // handle game message
+    modifyLimited(playerName, currentValue) {
+        let player = this.getPlayerByName(playerName);
+        if (!player) {
+            return;
+        }
+
+        this.chatCommands.changeLimited(player, !currentValue);
+    }
+
     /**
      * This function is called by the client every time a player enters a chat message
      * @param {String} playerName

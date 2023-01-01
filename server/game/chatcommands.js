@@ -269,6 +269,12 @@ class ChatCommands {
         player.actions[actionType] = true;
     }
 
+    changeLimited(player, newValue) {
+        const description = newValue ? 'used' : 'unused';
+        this.game.addAlert('danger', '{0} sets their reaction flag to {1}', player, description);
+        player.limitedPlayed = newValue;
+    }
+
     passActiveTurn(player) {
         if (player === this.game.activePlayer) {
             this.spendAction(player, ['', 'main']);

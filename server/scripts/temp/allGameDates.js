@@ -15,12 +15,17 @@ gameService
         console.log('datetime | dayofweek | time');
         for (const game of games) {
             if (game.startedAt) {
-                console.log(
-                    '%s | %s | %s | %s',
-                    game.startedAt,
-                    game.startedAt.getDay(),
-                    game.startedAt.getTime()
-                );
+                try {
+                    console.log(
+                        '%s | %s | %s | %s',
+                        game.startedAt,
+                        game.startedAt.getDay(),
+                        game.startedAt.getTime()
+                    );
+                }
+                catch (e) {
+
+                }
             }
         }
     })
