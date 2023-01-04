@@ -922,7 +922,7 @@ class Lobby {
             gameFormat: game.gameFormat,
             gameType: game.gameType,
             showHand: game.showHand,
-            spectators: game.allowSpectators,
+            allowSpectators: game.allowSpectators,
             swap: oldGame.swap,
             useGameTimeLimit: game.useGameTimeLimit,
             clockType: game.clockType
