@@ -38,6 +38,7 @@ class RoyalCharm extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             target: {
                 toSelect: 'die',
+                activePromptTitle: 'Choose which die on Royal Charm to resolve',
                 from: (context) => context.source.dieUpgrades,
                 gameAction: this.game.actions.resolveDieAbility()
             }
