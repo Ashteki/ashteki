@@ -25,6 +25,10 @@ class ActionWindow extends UiPrompt {
 
     onDieClicked(player, die) {
         if (player === this.game.activePlayer && die.owner === player) {
+            if (die.parent) {
+                return this.onCardClicked(player, die.parent);
+            }
+
             if (die.use(player)) {
                 this.game.queueSimpleStep(() => this.checkForPhaseEnding());
                 return true;

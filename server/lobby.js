@@ -1081,7 +1081,7 @@ class Lobby {
             }
 
             let syncGame = new PendingGame(new User(owner.user), {
-                spectators: game.allowSpectators,
+                allowSpectators: game.allowSpectators,
                 name: game.name
             });
             syncGame.adaptive = game.adaptive;
