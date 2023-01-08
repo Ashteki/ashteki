@@ -126,19 +126,6 @@ class LearnToPlay extends React.Component {
                                 </ul>
                             </div>
                             <div>
-                                <h3>Get Competitive</h3>
-                                <p>
-                                    The Shuffle Bus team run regular competitions, stream via twitch
-                                    every week (more than once!), and host articles on their website.
-                                </p>
-                                <ul>
-
-                                    <li>
-                                        <a href='https://theshufflebus.com/ashes-reborn-online-op/'>
-                                            Ashes Reborn Online Organized Play
-                                        </a>
-                                    </li>
-                                </ul>
                                 <h3>Articles</h3>
                                 <ul>
                                     <li><a href='https://jaysonsethlindley.medium.com/the-big-ones-the-best-ashes-reborn-decks-and-why-they-kept-winning-3d6a579a39e' >What are the best decks in Ashes?</a></li>
