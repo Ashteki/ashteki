@@ -123,7 +123,7 @@ const Card = ({
             counters = counters.concat(getCountersForCard(upgrade));
         }
 
-        return counters.filter((counter) => counter.count >= 0);
+        return counters.filter((counter) => counter.count > 0);
     };
 
     const getCardSizeMultiplier = () => {

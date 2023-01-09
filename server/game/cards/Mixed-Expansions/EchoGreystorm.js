@@ -7,6 +7,7 @@ class EchoGreystorm extends Card {
             title: 'Gravity Flux',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             target: {
+                showCancel: true,
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.exhaustGravityFlux()
             }
