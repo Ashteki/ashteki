@@ -16,11 +16,12 @@ describe('Hypnotize', function () {
         });
     });
 
-    it('grants bypass to target', function () {
+    it('grants bypass to target as acquired Effect', function () {
         expect(this.ironWorker.anyEffect('bypass')).toBe(false);
         this.player1.clickCard(this.hypnotize);
         this.player1.clickPrompt('Hypnotize a unit');
         this.player1.clickCard(this.ironWorker);
+        const effects = this.ironWorker.getAcquiredEffects();
 
         expect(this.ironWorker.anyEffect('bypass')).toBe(true);
     });

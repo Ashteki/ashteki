@@ -15,6 +15,7 @@ class SympathyPain extends Card {
             },
             effect: "deal 2 damage to oppponent's unit or phoenixborn",
             target: {
+                activePromptTitle: 'Choose a card to deal 2 damage to',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 controller: 'opponent',
                 gameAction: ability.actions.dealDamage({ amount: 2 })

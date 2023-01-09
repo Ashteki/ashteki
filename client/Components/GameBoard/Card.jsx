@@ -85,7 +85,7 @@ const Card = ({
             card.acquiredEffects.forEach((e) => {
                 counters.push({
                     icon: e.effect,
-                    name: e.source,
+                    name: e.name,
                     count: 1,
                     fade: needsFade,
                     showValue: false
@@ -123,7 +123,7 @@ const Card = ({
             counters = counters.concat(getCountersForCard(upgrade));
         }
 
-        return counters.filter((counter) => counter.count >= 0);
+        return counters.filter((counter) => counter.count > 0);
     };
 
     const getCardSizeMultiplier = () => {

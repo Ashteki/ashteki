@@ -548,17 +548,19 @@ class Card extends PlayableObject {
         return flags;
     }
 
-    getAqcuiredEffects() {
-        const acquiredEffects = this.effects.filter((e) => e.context.source != this);
+    getAcquiredEffects() {
+        const acquiredEffects = this.effects.filter(
+            (e) => e.context.source != this || e.effect.printedAbility === false
+        );
         const simpleTypes = ['preventAllDamage', 'bypass', 'quickStrike'];
         const simpleNames = acquiredEffects
             .filter((e) => simpleTypes.includes(e.type))
-            .map((e) => ({ effect: e.type, source: e.context.source.name }));
+            .map((e) => ({ effect: e.type, source: e.context.source.name, name: e.type }));
         const keywords = acquiredEffects
             .filter((e) => e.type === 'addKeyword')
             .map((e) => {
                 const value = Object.keys(e.getValue())[0];
-                return { effect: value, source: value };
+                return { effect: value, source: value, name: value };
             });
         // const gainedAbilities = acquiredEffects
         //     .filter((e) => e.type === 'gainAbility');
@@ -1254,7 +1256,7 @@ class Card extends PlayableObject {
                 return die.getSummary(activePlayer);
             }),
             flags: this.getFlags(),
-            acquiredEffects: this.getAqcuiredEffects(),
+            acquiredEffects: this.getAcquiredEffects(),
             armor: this.armor,
             life: this.life,
             guarded: this.usedGuardThisRound,

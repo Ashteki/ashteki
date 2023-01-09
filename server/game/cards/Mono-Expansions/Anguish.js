@@ -31,30 +31,35 @@ class Anguish extends Card {
                     }
                 }))
             },
-            then: {
+            then: (context) => this.getSecondClause(ability, context)
+        });
+    }
+
+    getSecondClause(ability, context) {
+        const player = context.target.controller;
+        if (player.dice.filter((d) => !d.exhausted).length < 2) {
+            return {
+                gameAction: ability.actions.addDamageToken((context) => ({
+                    target: context.preThenEvent.context.target,
+                    amount: 2,
+                    showMessage: true
+                }))
+            };
+        }
+
+        return {
+            target: {
+                toSelect: 'die',
+                mode: 'exactly',
+                owner: 'opponent',
+                dieCondition: (die) => !die.exhausted,
+                numDice: 2,
+                announceTargets: true,
                 gameAction: ability.actions.chooseAction((context) => ({
                     player: context.preThenEvent.context.target.controller,
                     choices: {
-                        'Exhaust 2 dice': ability.actions.conditional({
-                            condition: (context) =>
-                                context.preThenEvent.context.target.controller.dice.filter(
-                                    (d) => !d.exhausted
-                                ).length >= 2,
-                            trueGameAction: ability.actions.exhaustDie({
-                                promptForSelect: {
-                                    toSelect: 'die',
-                                    dieCondition: (d) => !d.exhausted,
-                                    mode: 'upTo',
-                                    numDice: 2,
-                                    owner: 'opponent'
-                                },
-                                showMessage: true
-                            }),
-                            falseGameAction: ability.actions.addDamageToken((context) => ({
-                                target: context.preThenEvent.context.target,
-                                amount: 2,
-                                showMessage: true
-                            }))
+                        'Exhaust 2 dice': ability.actions.exhaustDie({
+                            showMessage: true
                         }),
                         'Take 2 wounds': ability.actions.addDamageToken((context) => ({
                             target: context.preThenEvent.context.target,
@@ -64,7 +69,7 @@ class Anguish extends Card {
                     }
                 }))
             }
-        });
+        }
     }
 }
 
