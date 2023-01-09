@@ -18,6 +18,7 @@ class AbilityTargetDie {
             );
             dependsOnTarget.dependentTarget = this;
         }
+        this.announceTargets = properties.announceTargets;
     }
 
     getSelector(properties) {
@@ -72,6 +73,14 @@ class AbilityTargetDie {
         context.targets[this.name] = die;
         if (this.name === 'target') {
             context.target = die;
+        }
+        if (this.announceTargets) {
+            context.game.addAlert(
+                'info',
+                '{0} selected {1} as target',
+                context.player,
+                context.targets[this.name]
+            );
         }
     }
 

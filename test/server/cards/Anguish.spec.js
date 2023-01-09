@@ -11,7 +11,7 @@ describe('Anguish', function () {
                 player2: {
                     phoenixborn: 'rin-northfell',
                     inPlay: ['hammer-knight'],
-                    dicepool: ['natural', 'natural']
+                    dicepool: ['natural', 'time', 'natural']
                 }
             });
         });
@@ -45,7 +45,7 @@ describe('Anguish', function () {
             expect(this.rinNorthfell.damage).toBe(2);
         });
 
-        it('damage followed by damage', function () {
+        it('damage followed by damage choice', function () {
             expect(this.rinNorthfell.damage).toBe(0);
 
             this.player1.clickCard(this.anguish);
@@ -57,13 +57,17 @@ describe('Anguish', function () {
             //first part
             this.player2.clickPrompt('Take 2 wounds');
             // second part
+            this.player1.clickOpponentDie(0);
+            this.player1.clickOpponentDie(1);
+            this.player1.clickDone();
+
             this.player2.clickPrompt('Take 2 wounds');
 
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.rinNorthfell.damage).toBe(4);
         });
 
-        it('damage followed by exhausted dice damage', function () {
+        it('empty hand damage followed by no target dice damage', function () {
             expect(this.rinNorthfell.damage).toBe(0);
             this.player2.dicepool[0].exhaust();
             this.player2.dicepool[1].exhaust();
@@ -76,7 +80,7 @@ describe('Anguish', function () {
             this.player1.clickCard(this.rinNorthfell);
             this.player2.clickPrompt('Take 2 wounds');
             // second part
-            this.player2.clickPrompt('Exhaust 2 dice');
+            // this.player2.clickPrompt('Exhaust 2 dice');
             // can't so damage taken
             expect(this.rinNorthfell.damage).toBe(4);
             expect(this.player1).toHaveDefaultPrompt();
@@ -114,11 +118,11 @@ describe('Anguish', function () {
             this.player1.clickCard(this.rinNorthfell);
 
             this.player2.clickPrompt('Discard');
-            this.player2.clickPrompt('Exhaust 2 Dice');
             this.player1.clickOpponentDie(0);
             this.player1.clickOpponentDie(1);
-
             this.player1.clickPrompt('Done');
+
+            this.player2.clickPrompt('Exhaust 2 Dice');
             expect(this.player2.dicepool[0].exhausted).toBe(true);
             expect(this.player2.dicepool[1].exhausted).toBe(true);
 
