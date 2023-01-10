@@ -50,6 +50,10 @@ describe('Copycat', function () {
             //first part
             this.player2.clickPrompt('Take 2 wounds');
             // second part
+            this.player1.clickOpponentDie(0);
+            this.player1.clickOpponentDie(1);
+            this.player1.clickDone();
+
             this.player2.clickPrompt('Take 2 wounds');
 
             expect(this.maeoniViper.damage).toBe(4);
@@ -61,6 +65,10 @@ describe('Copycat', function () {
             //first part
             this.player1.clickPrompt('Take 2 wounds');
             // second part
+            this.player2.clickOpponentDie(3);
+            this.player2.clickOpponentDie(4);
+            this.player2.clickDone();
+
             this.player1.clickPrompt('Take 2 wounds');
 
             expect(this.aradelSummergaard.damage).toBe(4);

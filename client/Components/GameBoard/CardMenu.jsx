@@ -43,7 +43,12 @@ class CardMenu extends React.Component {
         });
 
         let menuClass = this.props.side == 'bottom' ? 'bottom-menu' : 'menu';
-        return <div className={`panel ${menuClass}`}>{menuItems}</div>;
+        return (
+            <div className={`panel ${menuClass}`}>
+                <div className='menu-title'>{this.props.cardName}</div>
+                {menuItems}
+            </div>
+        );
     }
 }
 
