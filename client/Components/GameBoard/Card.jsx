@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import 'jquery-migrate';
@@ -15,9 +15,7 @@ import conjback from '../../assets/img/cardback-conjuration.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import Die from './Die';
-
 import './Card.scss';
-import { sendGameMessage } from '../../redux/actions';
 
 const Card = ({
     canDrag,
@@ -44,7 +42,7 @@ const Card = ({
         [size]: size !== 'normal'
     };
     const [showMenu, setShowMenu] = useState(false);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const gameRound = useSelector((state) => state.lobby.currentGame?.round);
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
@@ -380,6 +378,7 @@ const Card = ({
                 </div>
                 {shouldShowMenu() && (
                     <CardMenu
+                        cardName={card.name}
                         menu={card.menu}
                         side={side}
                         onMenuItemClick={(menuItem) => {
