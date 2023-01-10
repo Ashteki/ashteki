@@ -131,7 +131,7 @@
     z-index: $layer-cards;
 
     &:hover {
-        z-index: 200;
+        z-index: $layer-card-hover;
     }
 
     &.small {
