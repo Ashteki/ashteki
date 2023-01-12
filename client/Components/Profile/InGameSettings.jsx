@@ -58,7 +58,15 @@ const InGameSettings = ({ formProps }) => {
                     onChange={formProps.handleChange}
                     onBlur={formProps.handleBlur}
                 />
-            </Form.Row>
+                <Form.Check
+                    id='dontIceTrapOwnUnits'
+                    name='gameOptions.dontIceTrapOwnUnits'
+                    label={t("Don't prompt to ice trap my own units")}
+                    type='switch'
+                    checked={formProps.values.gameOptions.dontIceTrapOwnUnits}
+                    onChange={formProps.handleChange}
+                    onBlur={formProps.handleBlur}
+                />            </Form.Row>
         </Panel>
     );
 };
