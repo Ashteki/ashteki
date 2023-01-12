@@ -565,9 +565,9 @@ class Card extends PlayableObject {
         const restrictions = acquiredEffects
             .filter((e) => e.type === 'abilityRestrictions')
             .map((e) => ({
-                effect: e.value.type,
+                effect: 'cannot' + e.value.type,
                 source: e.context.source.name,
-                name: e.value.type
+                name: 'cannot' + e.value.type
             }));
 
         // const gainedAbilities = acquiredEffects
