@@ -13,6 +13,7 @@ class TidalCrab extends Card {
             cost: [ability.costs.sideAction()],
             target: {
                 activePromptTitle: 'Choose a unit to move a status token to',
+                cardCondition: (card, context) => card !== context.source,
                 cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: ability.actions.moveToken((context) => ({
