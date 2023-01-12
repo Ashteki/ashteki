@@ -18,7 +18,13 @@ userService
 
         _.each(users, (user) => {
             if (brief) {
-                console.log(user.username, '|', user.email, '|', user.registered);
+                console.log(
+                    '%s | %s | %d | %d',
+                    user.username,
+                    user.email,
+                    user.registered.getFullYear(),
+                    user.registered.getMonth()
+                );
             } else {
                 console.log(user);
             }
