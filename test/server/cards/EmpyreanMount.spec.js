@@ -53,4 +53,54 @@ describe('Empyrean Mount', function () {
             expect(this.game.attackState.battles[1].guard).toBe(null);
         });
     });
+
+    describe('Battlemaster vs Stasis', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'dimona-odinstar',
+                    inPlay: ['empyrean-mount', 'fire-archer'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    hand: [],
+                    archives: ['empyrean-mount']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['flute-mage', 'hammer-knight'],
+                    spellboard: ['summon-butterfly-monk'],
+                    dicepool: ['time'],
+                    hand: ['stasis']
+                }
+            });
+        });
+
+        it('removal should free up unit to block others', function () {
+            this.player1.clickAttack(this.aradelSummergaard);
+            this.player1.clickCard(this.empyreanMount); // attacker
+            this.player1.clickCard(this.fireArcher); //attacker
+            this.player1.clickPrompt('Done'); // 2 attackers
+
+            this.player1.clickCard(this.fluteMage); // force empyrean mount blocker
+
+            // EM and flute Mage unit are in battle together
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
+
+            // p2 reaction - stasis
+            this.player2.clickCard(this.stasis);
+            this.player2.clickCard(this.empyreanMount); // target
+            expect(this.empyreanMount.isAttacker).toBe(false);
+
+            // can reassign target as blocker
+            this.player2.clickCard(this.fluteMage);
+            this.player2.clickCard(this.fireArcher);
+            expect(this.game.attackState.battles[0].attacker).toBe(this.fireArcher);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
+
+            // reset button clears blocker
+            this.player2.clickPrompt('Clear');
+            expect(this.game.attackState.battles.every((b) => !b.guard));
+        });
+    });
 });

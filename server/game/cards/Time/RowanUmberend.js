@@ -19,7 +19,9 @@ class RowanUmberend extends Card {
                     target: context.event.card,
                     facedown: true
                 }))
-            ])
+            ]),
+            effect: 'conscript {1}',
+            effectArgs: (context) => context.event.card
         });
 
         this.action({

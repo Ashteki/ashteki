@@ -3,16 +3,13 @@ const UserService = require('../../services/AshesUserService.js');
 const ConfigService = require('../../services/ConfigService.js');
 
 let userService = new UserService(new ConfigService());
-/*
+
 let args = process.argv.slice(2);
+let brief = false;
 
-if(_.size(args) < 2) {
-    console.error('Must provide start and end date');
-
-    db.close();
-    return;
+if (_.size(args) > 0) {
+    brief = args[0] === 'brief';
 }
-*/
 
 userService
     .getAllUsers()
@@ -20,7 +17,17 @@ userService
         console.info('' + _.size(users), 'total users');
 
         _.each(users, (user) => {
-            console.info(user);
+            if (brief) {
+                console.log(
+                    '%s | %s | %d | %d',
+                    user.username,
+                    user.email,
+                    user.registered.getFullYear(),
+                    user.registered.getMonth()
+                );
+            } else {
+                console.log(user);
+            }
         });
 
         console.info('' + _.size(users), 'total users');

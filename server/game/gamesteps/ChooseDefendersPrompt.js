@@ -6,7 +6,6 @@ class ChooseDefendersPrompt extends UiPrompt {
     constructor(game, attack) {
         super(game);
         this.attack = attack; // AttackState
-        this.battles = attack.battles; // an array of the fights that are happening
         this.choosingPlayer = attack.defendingPlayer;
         this.context = {
             game: game,
@@ -98,7 +97,6 @@ class ChooseDefendersPrompt extends UiPrompt {
         // guard is used for blockers too
         return (
             !attacker.anyEffect('preventblock') &&
-            // !this.battles.some((b) => b.guard == card) &&
             card.canBlock(attacker) &&
             !card.anyEffect('forceBlock') // try to not reassign forced blockers
         );
@@ -190,7 +188,7 @@ class ChooseDefendersPrompt extends UiPrompt {
                     return false;
                 }
 
-                const battle = this.battles.find((b) => b.attacker === card);
+                const battle = this.attack.battles.find((b) => b.attacker === card);
                 // can't assign a new blocker to a battle with a forceBlock guard
                 if (battle.guard && battle.guard.anyEffect('forceBlock', card)) {
                     return false;

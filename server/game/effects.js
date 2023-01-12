@@ -36,7 +36,12 @@ const Effects = {
     entersPlayUnderOpponentsControl: () =>
         EffectBuilder.card.static('entersPlayUnderOpponentsControl'),
     exhausted: () => EffectBuilder.card.static('exhausted'),
-    forceBlock: (card) => EffectBuilder.card.static('forceBlock', card),
+    forceBlock: (card) =>
+        EffectBuilder.card.static(
+            'forceBlock',
+            card,
+            (context, effectContext) => effectContext.source.isAttacker
+        ),
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
     limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
