@@ -142,7 +142,10 @@ module.exports.init = function (server) {
                     });
 
                 const limit = req.query.pageSize * 1;
-                const skip = limit * (req.query.page - 1);
+                let skip = limit * (req.query.page - 1);
+                if (skip > numDecks) {
+                    skip = 0;
+                }
 
                 decks = decks
                     .sort((a, b) => {
