@@ -263,10 +263,12 @@ beforeEach(function () {
         this.player1.player.optionSettings.bluffTimer = 0;
         this.player1.player.optionSettings.alertTimer = 0;
         this.player1.player.optionSettings.alwaysGroupTactics = false;
+        this.player1.player.optionSettings.dontIceTrapOwnUnits = false;
 
         this.player2.player.optionSettings.bluffTimer = 0;
         this.player2.player.optionSettings.alertTimer = 0;
         this.player2.player.optionSettings.alwaysGroupTactics = false;
+        this.player2.player.optionSettings.dontIceTrapOwnUnits = false;
 
         this.startGame();
         //Player stats

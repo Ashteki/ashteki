@@ -11,8 +11,8 @@ describe('Ice Trap reaction spell', function () {
             player2: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['anchornaut'],
-                dicepool: ['natural', 'natural', 'charm', 'charm'],
-                hand: ['ice-trap']
+                dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial'],
+                hand: ['ice-trap', 'fire-archer']
             }
         });
 
@@ -29,6 +29,25 @@ describe('Ice Trap reaction spell', function () {
         this.player2.clickCard(this.iceTrap); // reaction
 
         expect(this.ironWorker.location).toBe('discard');
+    });
+
+    it('setting to not ice trap own units OFF', function () {
+        this.player1.endTurn();
+        this.player2.play(this.fireArcher);
+        this.player2.clickDone(); // ambush
+        this.player2.clickCard(this.iceTrap); // reaction
+
+        expect(this.fireArcher.location).toBe('discard');
+    });
+
+    it('setting to not ice trap own units ON', function () {
+        this.player2.player.optionSettings.dontIceTrapOwnUnits = true;
+        this.player1.endTurn();
+        this.player2.play(this.fireArcher);
+        this.player2.clickDone(); // ambush
+        this.player2.clickCard(this.iceTrap); // reaction
+
+        expect(this.fireArcher.location).toBe('play area');
     });
 
     it('cannot trap concealed unit - stormwind sniper', function () {

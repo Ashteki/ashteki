@@ -75,7 +75,8 @@ const initialValues = {
         leftPrompt: false,
         bluffTimer: 0,
         alertTimer: 5,
-        alwaysGroupTactics: false
+        alwaysGroupTactics: false,
+        dontIceTrapOwnUnits: true
     }
 };
 

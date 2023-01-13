@@ -47,7 +47,16 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                                 onOptionSettingToggle('alwaysGroupTactics', event.target.checked)
                             }
                         />
-                        <div className='bluffTimer'>
+                        <Form.Check
+                            id='dontIceTrapOwnUnits'
+                            name='gameOptions.dontIceTrapOwnUnits'
+                            label={t("Don't prompt to ice trap my own units")}
+                            type='switch'
+                            checked={optionSettings.dontIceTrapOwnUnits}
+                            onChange={(event) =>
+                                onOptionSettingToggle('dontIceTrapOwnUnits', event.target.checked)
+                            }
+                        />                        <div className='bluffTimer'>
                             Bluff Timer (seconds):
                             <RangeSlider
                                 name='gameOptions.bluffTimer'

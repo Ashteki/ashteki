@@ -562,9 +562,17 @@ class Card extends PlayableObject {
                 const value = Object.keys(e.getValue())[0];
                 return { effect: value, source: value, name: value };
             });
+        const restrictions = acquiredEffects
+            .filter((e) => e.type === 'abilityRestrictions')
+            .map((e) => ({
+                effect: 'cannot' + e.value.type,
+                source: e.context.source.name,
+                name: 'cannot' + e.value.type
+            }));
+
         // const gainedAbilities = acquiredEffects
         //     .filter((e) => e.type === 'gainAbility');
-        return simpleNames.concat(keywords);
+        return simpleNames.concat(keywords).concat(restrictions);
     }
 
     checkRestrictions(actionType, context = null) {
