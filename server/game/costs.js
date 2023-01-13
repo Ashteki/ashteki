@@ -34,7 +34,7 @@ const Costs = {
         // exhausted game objects can't be used
         canPay: (context) => !context.source.exhausted,
         payEvent: (context) =>
-            context.game.getEvent('unnamedEvent', {}, () => {
+            context.game.getEvent('useCardEvent', {}, () => {
                 context.game.cardUsed(context.source);
                 return true;
             })
