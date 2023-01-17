@@ -2,6 +2,8 @@ import React from 'react';
 
 import './Panel.scss';
 import { Card } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 /** 
  * @typedef {'primary'
@@ -34,7 +36,14 @@ const PanelType = Object.freeze({
 /**
  * @param {PanelProps} props
  */
-const Panel = ({ type = PanelType.Primary, title, titleClass, children, cardClass }) => {
+const Panel = ({
+    type = PanelType.Primary,
+    title,
+    titleClass,
+    children,
+    cardClass,
+    onCloseClick
+}) => {
     /** @type {PanelType} */
     let retType;
 
@@ -59,9 +68,20 @@ const Panel = ({ type = PanelType.Primary, title, titleClass, children, cardClas
             break;
     }
 
+    const closeButton = onCloseClick ? (
+        <a className='close-button' onClick={onCloseClick}>
+            <FontAwesomeIcon icon={faTimes} />
+        </a>
+    ) : null;
+
     return (
         <Card border={retType} bg='dark' className={cardClass}>
-            {title && <Card.Header className={`${titleClass} text-center`}>{title}</Card.Header>}
+            {title && <Card.Header className={`${titleClass} text-center`}>{title}
+
+                <span className='float-right'>
+                    {closeButton}
+                </span>
+            </Card.Header>}
             <Card.Body>{children}</Card.Body>
         </Card>
     );

@@ -126,6 +126,9 @@ class Game extends EventEmitter {
     cardUsed(card) {
         this.cardsPlayed.push(card);
     }
+    undoCardUsed() {
+        this.cardsPlayed.pop();
+    }
 
     diePowerUsed(die) {
         this.cardsPlayed.push(die);

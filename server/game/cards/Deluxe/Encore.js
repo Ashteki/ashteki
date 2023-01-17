@@ -10,7 +10,7 @@ class Encore extends Card {
                     activePromptTitle: 'Choose a card to return to your deck',
                     controller: 'self',
                     location: 'discard',
-                    optional: true,
+                    showCancel: true,
                     cardCondition: (card) => card.id !== 'encore'
                 },
                 action: {

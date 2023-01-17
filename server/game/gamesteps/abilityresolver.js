@@ -129,6 +129,9 @@ class AbilityResolver extends BaseStepWithPipeline {
                 if (event.name === 'onCardExhausted') {
                     event.card.tokens.exhaustion -= 1;
                 }
+                if (event.name === 'useCardEvent') {
+                    this.game.undoCardUsed();
+                }
             }
         });
     }

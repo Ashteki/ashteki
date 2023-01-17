@@ -24,6 +24,7 @@ import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
 import Clock from './Clock';
+import WinLoseSplash from './WinLoseSplash';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -68,6 +69,7 @@ export class GameBoard extends React.Component {
         this.onManualCommandsClick = this.onManualCommandsClick.bind(this);
         this.onManualModeClick = this.onManualModeClick.bind(this);
         this.onMuteClick = this.onMuteClick.bind(this);
+        this.onWinSplashCloseClick = this.onWinSplashCloseClick.bind(this);
 
         this.state = {
             cardToZoom: undefined,
@@ -76,6 +78,7 @@ export class GameBoard extends React.Component {
             showMessages: true,
             showDiceHistory: false,
             showManualCommands: false,
+            showWinSplash: true,
             lastMessageCount: 0,
             newMessages: 0,
             showModal: false
@@ -220,6 +223,10 @@ export class GameBoard extends React.Component {
 
     onManualCommandsClick() {
         this.setState({ showManualCommands: !this.state.showManualCommands });
+    }
+
+    onWinSplashCloseClick() {
+        this.setState({ showWinSplash: !this.state.showWinSplash });
     }
 
     defaultPlayerInfo(source) {
@@ -453,6 +460,12 @@ export class GameBoard extends React.Component {
                 <div className='main-window'>
                     {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
                     {this.renderBoard(thisPlayer, otherPlayer)}
+                    {this.state.showWinSplash && this.props.currentGame.winner && (
+                        <WinLoseSplash
+                            game={this.props.currentGame}
+                            onCloseClick={this.onWinSplashCloseClick}
+                        />
+                    )}
                     {!thisPlayer.inspectionCard && cardToZoom && (
                         <CardZoom
                             cardName={cardToZoom ? cardToZoom.name : null}
