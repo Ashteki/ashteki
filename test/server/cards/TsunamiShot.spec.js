@@ -1,4 +1,4 @@
-describe('Phoenix Barrage', function () {
+describe('Tsunami Shot', function () {
     beforeEach(function () {
         this.setupTest({
             player1: {

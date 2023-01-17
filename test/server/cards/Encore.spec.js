@@ -6,7 +6,8 @@ describe('Encore action spell', function () {
                 inPlay: ['iron-worker'],
                 dicepool: ['natural', 'ceremonial', 'charm', 'sympathy'],
                 hand: ['encore'],
-                discard: ['anchornaut', 'encore']
+                discard: ['anchornaut', 'encore'],
+                deck: ['flute-mage']
             },
             player2: {
                 phoenixborn: 'aradel-summergaard',
@@ -40,5 +41,23 @@ describe('Encore action spell', function () {
         expect(this.player1).toBeAbleToSelect(this.anchornaut);
         expect(this.player1.discard[1].name).toBe('Encore');
         expect(this.player1).not.toBeAbleToSelect(this.player1.discard[1]);
+    });
+
+    it('select done on first target then card draw occurs?', function () {
+        expect(this.anchornaut.location).toBe('discard');
+        this.player1.play(this.encore);
+        this.player1.clickPrompt('cancel');
+
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('encore with no discard', function () {
+        this.player1.player.discard = [];
+
+        expect(this.player1.discard.length).toBe(0);
+        this.player1.play(this.encore);
+
+        // draw happens anyway
+        expect(this.fluteMage.location).toBe('hand');
     });
 });
