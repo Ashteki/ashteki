@@ -9,15 +9,15 @@ class OdetteDiamondcrest extends Card {
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'any',
-                gameAction: [
-                    ability.actions.dealDamage({ amount: 2 }),
-                    ability.actions.dealDamage((context) => ({
-                        amount: context.target.attack,
-                        target: context.player.phoenixborn,
-                        showMessage: true
-                    }))
-                ]
-            }
+                gameAction: ability.actions.dealDamage({ amount: 2 })
+            },
+            then: (preThenContext) => ({
+                gameAction: ability.actions.dealDamage({
+                    amount: preThenContext.target.attack,
+                    target: preThenContext.player.phoenixborn,
+                    showMessage: true
+                })
+            })
         });
     }
 }
