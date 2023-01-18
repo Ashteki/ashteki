@@ -19,7 +19,9 @@ class LightBringer extends Card {
                         }
                     }))
                 })
-            }
+            },
+            effect: 'force {1} to attack with their next main action',
+            effectArgs: (context) => context.player.opponent
         });
     }
 }
