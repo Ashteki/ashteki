@@ -16,7 +16,8 @@ gameService
         for (const game of games) {
             if (game.winner && (game.gameType === 'competitive' || args[0] === 'all')) {
                 console.log(
-                    '%s | %s | %s | %s',
+                    '%s | %s | %s | %s | %s',
+                    game.gameId,
                     game.finishedAt,
                     game.players[0].name,
                     game.players[1].name,
