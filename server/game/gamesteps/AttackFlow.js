@@ -100,9 +100,10 @@ class AttackFlow extends BaseStepWithPipeline {
     assignAttackers(cards) {
         this.game.addAlert(
             'danger',
-            '{0} attacks {1} with {2}',
+            '{0} attacks {1} with {2} units: {3}',
             this.attackingPlayer,
             this.target,
+            cards.length,
             cards
         );
 
