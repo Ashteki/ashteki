@@ -552,7 +552,13 @@ class Card extends PlayableObject {
         const acquiredEffects = this.effects.filter(
             (e) => e.context.source != this || e.effect.printedAbility === false
         );
-        const simpleTypes = ['preventAllDamage', 'bypass', 'quickStrike', 'cannotBeAttackTarget'];
+        const simpleTypes = [
+            'preventAllDamage',
+            'bypass',
+            'quickStrike',
+            'cannotBeAttackTarget',
+            'preventBlock'
+        ];
         const simpleNames = acquiredEffects
             .filter((e) => simpleTypes.includes(e.type))
             .map((e) => ({ effect: e.type, source: e.context.source.name, name: e.type }));
