@@ -404,7 +404,7 @@
     position: absolute;
     text-align: center;
     top: 2px;
-    z-index: 500;
+    z-index: $layer-card-index;
 }
 
 .effects {
