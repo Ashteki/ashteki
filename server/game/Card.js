@@ -558,7 +558,8 @@ class Card extends PlayableObject {
             'quickStrike': 'Quick strike',
             'cannotBeAttackTarget': 'Cannot be attack target',
             'cannotBeSpellTarget': 'Protected',
-            'preventBlock': 'Cannot be blocked'
+            'preventBlock': 'Cannot be blocked',
+            'preventGuard': 'Cannot be guarded against'
         };
         const simpleNames = acquiredEffects
             .filter((e) => Object.keys(simpleTypes).includes(e.type))
