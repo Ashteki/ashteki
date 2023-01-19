@@ -16,6 +16,7 @@ class SummonAshSpirit extends Card {
                 conjuration: 'ash-spirit'
             }),
             then: {
+                alwaysTriggers: true,
                 gameAction: ability.actions.draw(),
                 message: '{0} draws 1 card',
                 then: (context) => {

@@ -106,7 +106,7 @@ describe('Summon Ash Spirit', function () {
             expect(this.player1.player.hand.length).toBe(p1HandSize);
         });
 
-        it('empty opponent hand skips prompt', function () {
+        it('empty opponent hand skips prompt and goes straight to discard for opponent', function () {
             this.player2.player.deck = [];
             this.player2.player.hand = [];
 
