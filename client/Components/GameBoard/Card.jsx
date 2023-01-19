@@ -99,7 +99,7 @@ const Card = ({
             });
         }
 
-        if (card.guarded || card.cannotBlock) {
+        if (card.guarded) {
             counters.push({
                 name: 'guarded',
                 count: 1,

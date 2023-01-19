@@ -552,10 +552,22 @@ class Card extends PlayableObject {
         const acquiredEffects = this.effects.filter(
             (e) => e.context.source != this || e.effect.printedAbility === false
         );
-        const simpleTypes = ['preventAllDamage', 'bypass', 'quickStrike', 'cannotBeAttackTarget'];
+        const simpleTypes = {
+            'preventAllDamage': 'Prevent all damage',
+            'bypass': 'Bypass',
+            'quickStrike': 'Quick strike',
+            'cannotBeAttackTarget': 'Cannot be attack target',
+            'cannotBeSpellTarget': 'Protected',
+            'preventBlock': 'Cannot be blocked',
+            'preventGuard': 'Cannot be guarded against'
+        };
         const simpleNames = acquiredEffects
-            .filter((e) => simpleTypes.includes(e.type))
-            .map((e) => ({ effect: e.type, source: e.context.source.name, name: e.type }));
+            .filter((e) => Object.keys(simpleTypes).includes(e.type))
+            .map((e) => ({
+                effect: e.type,
+                source: e.context.source.name,
+                name: simpleTypes[e.type]
+            }));
         const keywords = acquiredEffects
             .filter((e) => e.type === 'addKeyword')
             .map((e) => {
@@ -567,7 +579,7 @@ class Card extends PlayableObject {
             .map((e) => ({
                 effect: 'cannot' + e.value.type,
                 source: e.context.source.name,
-                name: 'cannot' + e.value.type
+                name: 'Cannot ' + e.value.type
             }));
 
         // const gainedAbilities = acquiredEffects
@@ -1268,7 +1280,6 @@ class Card extends PlayableObject {
             armor: this.armor,
             life: this.life,
             guarded: this.usedGuardThisRound,
-            cannotBlock: !this.checkRestrictions('block'),
             uuid: this.uuid,
             isAttacker: this.isAttacker,
             isDefender: this.isDefender,

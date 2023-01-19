@@ -138,6 +138,30 @@
     background-image: url('~assets/img/cannotBeAttackTarget.png');
 }
 
+.cannotBeSpellTarget {
+    background-image: url('~assets/img/cannotBeSpellTarget.png');
+}
+
 .cannotattack {
     background-image: url('~assets/img/cannotAttack.png');
+}
+
+.cannotblock {
+    background-image: url('~assets/img/cannotBlock.png');
+
+}
+
+.cannotguard {
+    background-image: url('~assets/img/guarded.png');
+
+}
+
+.preventBlock {
+    background-image: url('~assets/img/cannotBeBlocked.png');
+
+}
+
+.preventGuard {
+    background-image: url('~assets/img/sembali.png');
+
 }

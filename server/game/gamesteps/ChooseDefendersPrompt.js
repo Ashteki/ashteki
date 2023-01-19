@@ -96,7 +96,7 @@ class ChooseDefendersPrompt extends UiPrompt {
     blockTest(card, attacker) {
         // guard is used for blockers too
         return (
-            !attacker.anyEffect('preventblock') &&
+            !attacker.anyEffect('preventBlock') &&
             card.canBlock(attacker) &&
             !card.anyEffect('forceBlock') // try to not reassign forced blockers
         );
