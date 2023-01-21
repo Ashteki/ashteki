@@ -8,6 +8,11 @@ module.exports = {
         extensions: ['.js', '.jsx'],
         alias: {
             assets: path.resolve('./client/assets')
+        },
+        fallback: {
+            http: require.resolve('stream-http'),
+            https: require.resolve('https-browserify'),
+            util: require.resolve('util')
         }
     },
     plugins: [
@@ -22,11 +27,9 @@ module.exports = {
         })
     ],
     output: {
-        path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
     optimization: {
-        moduleIds: 'hashed',
         runtimeChunk: 'single',
         splitChunks: {
             cacheGroups: {
@@ -57,7 +60,7 @@ module.exports = {
                 type: 'javascript/auto',
                 use: [require.resolve('json-loader')]
             },
-            { test: /\.pug$/, include: path.join(__dirname, 'views'), loaders: ['pug-loader'] }
+            { test: /\.pug$/, include: path.join(__dirname, 'views'), use: ['pug-loader'] }
         ]
     }
 };

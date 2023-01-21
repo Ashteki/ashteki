@@ -6,14 +6,13 @@ module.exports = merge(common, {
     entry: {
         bundle: [
             '@babel/polyfill',
-            'eventsource',
             'react-hot-loader/patch',
             './client/index.jsx',
             'webpack-hot-middleware/client'
         ]
     },
     output: {
-        filename: '[name].[hash].js'
+        filename: '[name].[contenthash].js'
     },
     mode: 'development',
     devtool: 'inline-source-map',
