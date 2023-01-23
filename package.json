@@ -156,7 +156,7 @@
         "@types/node": "^18.0.4",
         "autoprefixer": "^9.8.6",
         "babel-eslint": "^10.1.0",
-        "babel-jest": "^26.6.3",
+        "babel-jest": "^29.3.1",
         "babel-loader": "^8.2.2",
         "body-parser": "^1.18.2",
         "bootstrap-sass": "^3.4.1",
