@@ -69,14 +69,14 @@ var customMatchers = {
         };
     },
 
-    toHavePromptButton: function (util, customEqualityMatchers) {
+    toHavePromptButton: function (util) {
         return {
             compare: function (actual, expected) {
                 var buttons = actual.currentPrompt().buttons;
                 var result = {};
 
                 result.pass = _.any(buttons, (button) =>
-                    util.equals(button.text, expected, customEqualityMatchers)
+                    util.equals(button.text, expected)
                 );
 
                 if (result.pass) {
@@ -90,7 +90,7 @@ var customMatchers = {
             }
         };
     },
-    toHavePromptCardButton: function (util, customEqualityMatchers) {
+    toHavePromptCardButton: function (util) {
         return {
             compare: function (actual, card) {
                 var buttons = actual.currentPrompt().buttons;
@@ -101,7 +101,7 @@ var customMatchers = {
                 }
 
                 result.pass = _.any(buttons, (button) =>
-                    util.equals(button.card ? button.card.id : '', card.id, customEqualityMatchers)
+                    util.equals(button.card ? button.card.id : '', card.id)
                 );
 
                 if (result.pass) {
