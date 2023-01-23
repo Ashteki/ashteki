@@ -6,6 +6,7 @@ const EventEmitter = require('events');
 const uuid = require('uuid');
 const User = require('../models/User.js');
 const { EloCalculator } = require('../EloCalculator.js');
+const { GameType } = require('../constants.js');
 
 class UserService extends EventEmitter {
     constructor(configService) {
@@ -379,9 +380,10 @@ class UserService extends EventEmitter {
             });
     }
 
-    async incrementGameCount(username) {
+    async incrementGameCount(username, ranked) {
+        const rankInc = ranked ? 1 : 0;
         return this.users
-            .update({ username: username }, { $inc: { gamesPlayed: 1 } })
+            .update({ username: username }, { $inc: { gamesPlayed: 1, rankedGamesPlayed: rankInc } })
             .catch((err) => {
                 logger.error('Error incrementing game count: ', err);
 
