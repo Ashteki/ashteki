@@ -10,7 +10,7 @@ function formatObject(...keys) {
         let properties = _.pick(this, ...keys);
         let formattedProperties = _.map(
             _.pairs(properties),
-            ([key, value]) => key + ': ' + jasmine.pp(value)
+            ([key, value]) => key + ': ' + value
         );
         return this.constructor.name + '({ ' + formattedProperties.join(', ') + ' })';
     };
