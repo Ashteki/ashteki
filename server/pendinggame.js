@@ -22,7 +22,6 @@ class PendingGame {
         this.node = {};
         this.owner = owner;
         this.players = {};
-        this.previousWinner = details.previousWinner;
         this.showHand = details.showHand;
         this.spectators = {};
         this.started = false;
@@ -74,7 +73,6 @@ class PendingGame {
             gameType: this.gameType,
             label: this.label,
             players: players,
-            previousWinner: this.previousWinner,
             startedAt: this.createdAt,
             swap: this.swap
         };
@@ -361,7 +359,6 @@ class PendingGame {
             node: this.node ? this.node.identity : undefined,
             owner: this.owner.username,
             players: playerSummaries,
-            previousWinner: this.previousWinner,
             showHand: this.showHand,
             started: this.started,
             swap: this.swap,
@@ -373,7 +370,6 @@ class PendingGame {
                 };
             }),
             useGameTimeLimit: this.useGameTimeLimit
-            // trackElo: this.trackElo
         };
     }
 
@@ -414,7 +410,6 @@ class PendingGame {
             needsPassword: !!this.password,
             owner: this.owner.getDetails(),
             players,
-            previousWinner: this.previousWinner,
             showHand: this.showHand,
             spectators,
             started: this.started,

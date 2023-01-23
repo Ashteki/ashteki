@@ -8,7 +8,6 @@ import './PlayerBoard.scss';
 const PlayerBoard = ({
     active,
     attack,
-    cardBackUrl,
     cardsInPlay,
     phoenixborn,
     cardSize,
@@ -87,7 +86,6 @@ const PlayerBoard = ({
         return (
             <Card
                 key={card.uuid}
-                cardBackUrl={cardBackUrl}
                 canDrag={manualMode}
                 card={card}
                 disableMouseOver={card.facedown && !card.code}

@@ -66,7 +66,6 @@ class Game extends EventEmitter {
         this.pipeline = new GamePipeline();
         this.playStarted = false;
         this.playersAndSpectators = {};
-        this.previousWinner = details.previousWinner;
         this.savedGameId = details.savedGameId;
         this.showHand = details.showHand;
         this.started = false;
@@ -1551,7 +1550,6 @@ class Game extends EventEmitter {
             winReason: this.winReason,
             winner: this.winner ? this.winner.name : undefined,
             swap: this.swap,
-            previousWinner: this.previousWinner
         };
     }
 
@@ -1571,6 +1569,7 @@ class Game extends EventEmitter {
                 adaptive: this.adaptive,
                 cancelPromptUsed: this.cancelPromptUsed,
                 cardLog: this.cardsPlayed.map((c) => c.getShortSummary()),
+                currentPhase: this.currentPhase,
                 gameFormat: this.gameFormat,
                 gamePrivate: this.gamePrivate,
                 id: this.id,
@@ -1581,7 +1580,6 @@ class Game extends EventEmitter {
                 name: this.name,
                 owner: this.owner,
                 players: playerState,
-                previousWinner: this.previousWinner,
                 round: this.round,
                 showHand: this.showHand,
                 spectators: this.getSpectators().map((spectator) => {
@@ -1668,8 +1666,7 @@ class Game extends EventEmitter {
             started: this.started,
             startedAt: this.startedAt,
             swap: this.swap,
-            winner: this.winner ? this.winner.name : undefined,
-            // trackElo: this.trackElo
+            winner: this.winner ? this.winner.name : undefined
         };
     }
 }

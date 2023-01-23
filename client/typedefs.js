@@ -65,7 +65,6 @@
  * @property {string} node The game node this game is hosted on
  * @property {string} owner The owner(creator) of the game
  * @property {{[key: string]: PendingPlayer}} players The players in the game
- * @property {string} previousWinner The player who won the last game
  * @property {boolean} showHand Whether or not to show hands to spectators
  * @property {boolean} started Whether or not this game has started
  * @property {boolean} swap Whether or not this game has had a deck swap

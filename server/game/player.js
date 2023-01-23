@@ -747,7 +747,6 @@ class Player extends GameObject {
                 purged: this.getSummaryForCardList(this.purged, activePlayer),
                 spells: this.getSummaryForCardList(this.spellboard, activePlayer)
             },
-            cardback: 'cardback',
             disconnected: !!this.disconnectedAt,
             activePlayer: this.game.activePlayer === this,
             gamesPlayed: this.user.gamesPlayed ? this.user.gamesPlayed : 0,
@@ -755,10 +754,7 @@ class Player extends GameObject {
             id: this.id,
             left: this.left,
             name: this.name,
-            numDeckCards: this.deck.length,
-            numArchivesCards: this.archives.length,
             optionSettings: this.optionSettings,
-            phase: this.game.currentPhase,
             stats: this.getStats(),
             timerSettings: {},
             user: {

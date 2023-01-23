@@ -3,7 +3,6 @@ const UiPrompt = require('../uiprompt');
 class FirstPlayerSelection extends UiPrompt {
     constructor(game, properties) {
         super(game);
-        this.previousWinner = game.previousWinner;
         this.clickedButton = false;
         this.players = game.getPlayers();
         this.firstPlayer = null;
