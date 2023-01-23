@@ -253,7 +253,7 @@ class GameRouter extends EventEmitter {
 
                 // do elo update
                 try {
-                    this.doEloUpdate(game);
+                    this.doRankedUpdate(game);
                 } catch (error) {
                     logger.error('unable to update elo ratings:', message.arg.game.gameId);
                 }
@@ -303,10 +303,10 @@ class GameRouter extends EventEmitter {
         }
     }
 
-    async doEloUpdate(game) {
+    async doRankedUpdate(game) {
         // update player / user elo stats
         if (game.gameType === GameType.Competitive) {
-            this.userService.recordEloResult(game.players, game.winner);
+            await this.userService.recordRankedResult(game.players, game.winner);
         }
     }
 

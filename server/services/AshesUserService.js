@@ -157,7 +157,7 @@ class UserService extends EventEmitter {
         });
     }
 
-    async recordEloResult(players, winner) {
+    async recordRankedResult(players, winner) {
         if (players.length < 2) {
             return;
         }
@@ -179,13 +179,15 @@ class UserService extends EventEmitter {
         for (const player of players) {
             logger.info(`player elo: ${player.name}, new: ${player.user.eloRating}`);
 
-            await this.updateUserElo(player.user);
+            await this.updateUserRank(player.user);
         }
     }
 
-    async updateUserElo(user) {
+    async updateUserRank(user) {
+        user.lastRankedGame = new Date();
         var toSet = {
-            eloRating: user.eloRating
+            eloRating: user.eloRating,
+            lastRankedGame: user.lastRankedGame
         };
         try {
             this.users.update({ username: user.username }, { $set: toSet });

@@ -21,7 +21,7 @@ gameService
             if (game.winner && (game.gameType === 'competitive' || args[0] === 'all')) {
                 logger.info('game: %s winner: %s', game.gameId, game.winner);
 
-                await userService.recordEloResult(game.players, game.winner);
+                await userService.recordRankedResult(game.players, game.winner);
             }
         }
     })
