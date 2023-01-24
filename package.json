@@ -90,7 +90,7 @@
         "jquery-migrate": "3.3.2",
         "jquery-nearest": "^1.4.0",
         "jquery-validation": "^1.19.3",
-        "jquery-validation-unobtrusive": "^3.2.12",
+        "jquery-validation-unobtrusive": "^4.0.0",
         "jsonwebtoken": "^8.4.0",
         "lodash.debounce": "^4.0.8",
         "merge-images": "^1.2.0",
