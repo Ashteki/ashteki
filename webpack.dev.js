@@ -6,7 +6,7 @@ module.exports = merge(common, {
     entry: {
         bundle: [
             '@babel/polyfill',
-            'react-hot-loader/patch',
+            'react-hot-loader/babel',
             './client/index.jsx',
             'webpack-hot-middleware/client'
         ]
