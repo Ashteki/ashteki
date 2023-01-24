@@ -5,7 +5,6 @@ const common = require('./webpack.common.js');
 module.exports = merge(common, {
     entry: {
         bundle: [
-            '@babel/polyfill',
             'react-hot-loader/babel',
             './client/index.jsx',
             'webpack-hot-middleware/client'
