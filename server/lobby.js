@@ -928,7 +928,6 @@ class Lobby {
             clockType: game.clockType
         });
         newGame.rematch = true;
-        newGame.previousWinner = oldGame.winner;
 
         let owner = game.getPlayerOrSpectator(game.owner.username);
         if (!owner) {

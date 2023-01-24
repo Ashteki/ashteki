@@ -111,6 +111,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                     </a>
                 );
             } else if (fragment.argType === 'card') {
+                const indexLabel = fragment.index > 0 ? ' (' + fragment.index + ')' : '';
                 messages.push(
                     <span
                         key={index++}
@@ -118,7 +119,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         onMouseOver={onCardMouseOver.bind(this, fragment)}
                         onMouseOut={onCardMouseOut.bind(this)}
                     >
-                        {fragment.label}
+                        {fragment.label + indexLabel}
                     </span>
                 );
             } else if (fragment.name && fragment.argType === 'player') {

@@ -4,7 +4,6 @@ import CardPile from './CardPile';
 import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
 import DrawDeck from './DrawDeck';
-import spellback from '../../assets/img/cardback-spell.png';
 import Card from './Card';
 
 import './PlayerRow.scss';
@@ -15,7 +14,6 @@ const PlayerPBRow = ({
     drawDeck,
     isMe,
     manualMode,
-    numDeckCards,
     onCardClick,
     onCardAltClick,
     onDieClick,
@@ -63,7 +61,6 @@ const PlayerPBRow = ({
             className='panel hand'
             groupVisibleCards
             focusDupes={true}
-            cardBackUrl={spellback}
             manualMode={manualMode}
             maxCards={7}
             onCardClick={onCardClick}
@@ -82,11 +79,10 @@ const PlayerPBRow = ({
 
     let drawDeckToRender = (
         <DrawDeck
-            cardCount={numDeckCards}
+            cardCount={drawDeck.length}
             cards={drawDeck}
             isMe={isMe}
             manualMode={manualMode}
-            numDeckCards={numDeckCards}
             onCardAltClick={onCardAltClick}
             onPileClick={onPileClick}
             onPopupChange={onDrawPopupChange}
@@ -94,7 +90,6 @@ const PlayerPBRow = ({
             player={player}
             showDeck={showDeck}
             spectating={spectating}
-            cardBackUrl={spellback}
             {...cardPileProps}
         />
     );

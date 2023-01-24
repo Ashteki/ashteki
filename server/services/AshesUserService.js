@@ -6,6 +6,7 @@ const EventEmitter = require('events');
 const uuid = require('uuid');
 const User = require('../models/User.js');
 const { EloCalculator } = require('../EloCalculator.js');
+const { GameType } = require('../constants.js');
 
 class UserService extends EventEmitter {
     constructor(configService) {
@@ -157,7 +158,7 @@ class UserService extends EventEmitter {
         });
     }
 
-    async recordEloResult(players, winner) {
+    async recordRankedResult(players, winner) {
         if (players.length < 2) {
             return;
         }
@@ -179,13 +180,15 @@ class UserService extends EventEmitter {
         for (const player of players) {
             logger.info(`player elo: ${player.name}, new: ${player.user.eloRating}`);
 
-            await this.updateUserElo(player.user);
+            await this.updateUserRank(player.user);
         }
     }
 
-    async updateUserElo(user) {
+    async updateUserRank(user) {
+        user.lastRankedGame = new Date();
         var toSet = {
-            eloRating: user.eloRating
+            eloRating: user.eloRating,
+            lastRankedGame: user.lastRankedGame
         };
         try {
             this.users.update({ username: user.username }, { $set: toSet });
@@ -377,9 +380,10 @@ class UserService extends EventEmitter {
             });
     }
 
-    async incrementGameCount(username) {
+    async incrementGameCount(username, ranked) {
+        const rankInc = ranked ? 1 : 0;
         return this.users
-            .update({ username: username }, { $inc: { gamesPlayed: 1 } })
+            .update({ username: username }, { $inc: { gamesPlayed: 1, rankedGamesPlayed: rankInc } })
             .catch((err) => {
                 logger.error('Error incrementing game count: ', err);
 

@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 import { useCallback } from 'react';
 
 const CardPile = ({
-    cardBackUrl,
     cards,
     cardCount,
     className,
@@ -95,7 +94,6 @@ const CardPile = ({
             <div className='panel-header'>{headerText}</div>
             {topCard ? (
                 <Card
-                    cardBackUrl={cardBackUrl}
                     canDrag={manualMode}
                     card={topCard}
                     source={source}
@@ -119,7 +117,6 @@ const CardPile = ({
             )}
             {!disablePopup && showPopup && (
                 <CardPilePopup
-                    cardBackUrl={cardBackUrl}
                     cards={cards}
                     disableMouseOver={disableMouseOver}
                     manualMode={manualMode}

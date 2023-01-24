@@ -109,7 +109,7 @@ export function gameSocketConnectFailed() {
     };
 }
 
-export function responseTimeReceived(responseTime) {
+export function gameResponseTimeReceived(responseTime) {
     return {
         type: 'GAME_SOCKET_RESPONSE_TIME_RECEIVED',
         responseTime: responseTime
@@ -178,7 +178,7 @@ export function connectGameSocket(url, name) {
                 // volatile, so the packet will be discarded if the socket is not connected
                 gameSocket.volatile.emit('ping', () => {
                     const latency = Date.now() - start;
-                    dispatch(responseTimeReceived(latency));
+                    dispatch(gameResponseTimeReceived(latency));
                 });
             }
         }, 10000);

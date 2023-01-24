@@ -91,6 +91,7 @@ class GameChat {
                             name: arg.name,
                             id: arg.id,
                             imageStub: arg.imageStub,
+                            index: arg.index,
                             label: arg.name,
                             type: arg.getType(),
                             argType: 'card'

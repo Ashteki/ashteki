@@ -52,7 +52,6 @@ class SquishableCardPanel extends React.Component {
                 <Card
                     key={card.uuid}
                     card={card}
-                    cardBackUrl={this.props.cardBackUrl}
                     disableMouseOver={!card.name}
                     canDrag={this.props.manualMode}
                     onClick={this.props.onCardClick}
@@ -146,7 +145,6 @@ class SquishableCardPanel extends React.Component {
 
 SquishableCardPanel.displayName = 'SquishableCardPanel';
 SquishableCardPanel.propTypes = {
-    cardBackUrl: PropTypes.string,
     cardSize: PropTypes.string,
     cards: PropTypes.array,
     className: PropTypes.string,

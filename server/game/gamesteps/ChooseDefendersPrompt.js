@@ -199,13 +199,13 @@ class ChooseDefendersPrompt extends UiPrompt {
                 }
 
                 this.attack.setBlockerForAttacker(this.selectedCard, card);
-                this.game.addMessage(
-                    '{0} uses {1} to {2} against {3}',
-                    this.choosingPlayer,
-                    this.selectedCard,
-                    this.blockType,
-                    card
-                );
+                // this.game.addMessage(
+                //     '{0} uses {1} to {2} against {3}',
+                //     this.choosingPlayer,
+                //     this.selectedCard,
+                //     this.blockType,
+                //     card
+                // );
                 this.game.checkGameState(true);
                 this.selectedCard = null;
                 this.clearSelection();
@@ -229,6 +229,23 @@ class ChooseDefendersPrompt extends UiPrompt {
             }
 
             this.game.addMessage('{0} has chosen defenders', player);
+            this.attack.battles
+                .sort((a, b) => a.guard ? -1 : 1)
+                .forEach((battle) => {
+                    if (battle.guard) {
+                        this.game.addMessage(
+                            '{0} will {1} against {2}',
+                            battle.guard,
+                            this.blockType,
+                            battle.attacker
+                        );
+                    } else {
+                        this.game.addMessage(
+                            '{0} will be un' + this.blockType + 'ed ',
+                            battle.attacker
+                        );
+                    }
+                });
             this.resetSelections(player);
             this.complete();
             return true;

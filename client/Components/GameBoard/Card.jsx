@@ -20,7 +20,6 @@ import './Card.scss';
 const Card = ({
     canDrag,
     card,
-    cardBackUrl,
     className,
     disableMouseOver,
     onClick,
@@ -37,7 +36,7 @@ const Card = ({
     style,
     wrapped = true
 }) => {
-    const cardBack = cardBackUrl || (card.isConjuration ? conjback : spellback);
+    const cardBack = card.isConjuration ? conjback : spellback;
     const sizeClass = {
         [size]: size !== 'normal'
     };

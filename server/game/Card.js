@@ -1230,7 +1230,6 @@ class Card extends PlayableObject {
 
         if (!this.game.isCardVisible(this, activePlayer) && !this.game.isCardPublic(this)) {
             return {
-                cardback: this.owner.deckData.cardback,
                 controller: this.controller.name,
                 location: this.location,
                 facedown: true,
@@ -1254,7 +1253,6 @@ class Card extends PlayableObject {
                 activePlayer.promptState.promptTitle === 'Play phase' &&
                 this.getLegalActions(activePlayer).length > 0
             ),
-            cardback: this.owner.deckData.cardback,
             childCards: this.childCards.map((card) => {
                 return card.getSummary(activePlayer, hideWhenFaceup);
             }),
@@ -1267,7 +1265,6 @@ class Card extends PlayableObject {
             cardSlot: this.cardSlot,
             label: this.name,
             new: this.new,
-            tokens: this.tokens,
             type: this.getType(),
             upgrades: this.upgrades.map((upgrade) => {
                 return upgrade.getSummary(activePlayer, hideWhenFaceup);
@@ -1275,6 +1272,7 @@ class Card extends PlayableObject {
             dieUpgrades: this.dieUpgrades.map((die) => {
                 return die.getSummary(activePlayer);
             }),
+            tokens: this.tokens,
             flags: this.getFlags(),
             acquiredEffects: this.getAcquiredEffects(),
             armor: this.armor,

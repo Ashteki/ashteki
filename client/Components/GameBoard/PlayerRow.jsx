@@ -5,8 +5,6 @@ import CardPile from './CardPile';
 import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
 import DiceBox from './DiceBox';
-import spellback from '../../assets/img/cardback-spell.png';
-import conjback from '../../assets/img/cardback-conjuration.png';
 import './PlayerRow.scss';
 
 const PlayerRow = ({
@@ -73,7 +71,6 @@ const PlayerRow = ({
             cards={hand}
             className='panel hand'
             groupVisibleCards
-            cardBackUrl={spellback}
             manualMode={manualMode}
             maxCards={5}
             onCardClick={onCardClick}
@@ -94,7 +91,6 @@ const PlayerRow = ({
             source='archives'
             cards={archives}
             hiddenTopCard={true}
-            cardBackUrl={conjback}
             {...cardPileProps}
         />
     );

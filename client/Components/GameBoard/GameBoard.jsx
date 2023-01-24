@@ -37,7 +37,6 @@ const placeholderPlayer = {
     },
     activePlayer: false,
     firstPlayer: false,
-    numDeckCards: 0,
     actions: {
         main: false,
         side: false
@@ -278,7 +277,6 @@ export class GameBoard extends React.Component {
                         isMe={false}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}
-                        numDeckCards={otherPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
@@ -294,7 +292,6 @@ export class GameBoard extends React.Component {
                         {/* opponent board */}
                         <PlayerBoard
                             attack={this.props.currentGame.attack}
-                            cardBackUrl={this.props.player2CardBack}
                             cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
                             phoenixborn={otherPlayer.phoenixborn}
                             onCardClick={this.onCardClick}
@@ -315,7 +312,6 @@ export class GameBoard extends React.Component {
                         >
                             <PlayerBoard
                                 attack={this.props.currentGame.attack}
-                                cardBackUrl={this.props.player1CardBack}
                                 cardsInPlay={thisPlayer.cardPiles.cardsInPlay}
                                 phoenixborn={thisPlayer.phoenixborn}
                                 manualMode={this.props.currentGame.manualMode}
@@ -340,7 +336,6 @@ export class GameBoard extends React.Component {
                         isMe={!spectating}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}
-                        numDeckCards={thisPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onCardAltClick={this.onCardAltClick}
                         onDieClick={this.onDieClick}
@@ -572,7 +567,7 @@ export class GameBoard extends React.Component {
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         onTimerExpired={this.onTimerExpired.bind(this)}
-                        phase={thisPlayer.phase}
+                        phase={this.props.currentGame.currentPhase}
                     />
                     {this.getTimer(thisPlayer)}
                 </div>
@@ -592,8 +587,6 @@ GameBoard.propTypes = {
     i18n: PropTypes.object,
     navigate: PropTypes.func,
     packs: PropTypes.array,
-    player1CardBack: PropTypes.string,
-    player2CardBack: PropTypes.string,
     restrictedList: PropTypes.array,
     sendGameMessage: PropTypes.func,
     socket: PropTypes.object,
@@ -608,8 +601,6 @@ function mapStateToProps(state) {
         cards: state.cards.cards,
         currentGame: state.lobby.currentGame,
         packs: state.cards.packs,
-        player1CardBack: state.cards.player1CardBack,
-        player2CardBack: state.cards.player2CardBack,
         restrictedList: state.cards.restrictedList,
         socket: state.lobby.socket,
         user: state.auth.user
