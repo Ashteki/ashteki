@@ -14,6 +14,7 @@ const PlayerPBRow = ({
     drawDeck,
     isMe,
     manualMode,
+    numDeckCards,
     onCardClick,
     onCardAltClick,
     onDieClick,
@@ -79,7 +80,7 @@ const PlayerPBRow = ({
 
     let drawDeckToRender = (
         <DrawDeck
-            cardCount={drawDeck.length}
+            cardCount={numDeckCards}
             cards={drawDeck}
             isMe={isMe}
             manualMode={manualMode}
