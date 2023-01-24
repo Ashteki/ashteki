@@ -37,6 +37,7 @@ const placeholderPlayer = {
     },
     activePlayer: false,
     firstPlayer: false,
+    numDeckCards: 0,
     actions: {
         main: false,
         side: false
@@ -277,6 +278,7 @@ export class GameBoard extends React.Component {
                         isMe={false}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}
+                        numDeckCards={otherPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
@@ -336,6 +338,7 @@ export class GameBoard extends React.Component {
                         isMe={!spectating}
                         language={this.props.i18n.language}
                         manualMode={this.props.currentGame.manualMode}
+                        numDeckCards={thisPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
                         onCardAltClick={this.onCardAltClick}
                         onDieClick={this.onDieClick}

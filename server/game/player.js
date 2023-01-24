@@ -754,6 +754,7 @@ class Player extends GameObject {
             id: this.id,
             left: this.left,
             name: this.name,
+            numDeckCards: this.deck.length, // used for opponent display when deck not sent
             optionSettings: this.optionSettings,
             stats: this.getStats(),
             timerSettings: {},
