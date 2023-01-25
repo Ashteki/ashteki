@@ -41,6 +41,7 @@ gameService.getAllGames(start, end)
 
                 var playerStat = players[player.name];
                 playerStat.played++;
+                playerStat.latestRanked = game.startedAt;
             });
         });
 
@@ -54,7 +55,8 @@ gameService.getAllGames(start, end)
                     { username: player.name },
                     {
                         $set: {
-                            rankedGamesPlayed: player.played
+                            rankedGamesPlayed: player.played,
+                            lastRankedGame: player.latestRanked
                         }
                     }
                 )
