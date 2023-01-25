@@ -31,7 +31,7 @@ module.exports.init = function (server) {
             dt.setMonth(dt.getMonth() - 1);
 
             let list = await userService.getAllUsers();
-            list = list.filter((u) => u.eloRating && u.lastRankedGame > dt && u.rankedGamesPlayed > 12);
+            list = list.filter((u) => u.eloRating && u.lastRankedGame > dt && u.rankedGamesPlayed >= 12);
             list.sort((a, b) => (a.eloRating > b.eloRating ? -1 : 1));
             res.send({ success: true, list: list });
         })
