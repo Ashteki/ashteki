@@ -40,7 +40,7 @@ const DiceHistory = ({ firstFive, diceHistory, onCloseClick, side }) => {
                             <td></td>
                             <td></td>
                         </tr>
-                        {diceHistory.map((dh, index) => dh && (
+                        {diceHistory && diceHistory.map((dh, index) => dh && (
                             <tr key={'diceRound' + index}>
                                 <td>{index}</td>
                                 {dh.map(

@@ -76,8 +76,6 @@ class Card extends PlayableObject {
 
         this.moribund = false;
 
-        this.locale = cardData.locale;
-
         this.menu = [
             { command: 'tokens', text: 'Modify tokens', menu: 'main' },
             { command: 'moves', text: 'Move', menu: 'main' },
@@ -1216,10 +1214,8 @@ class Card extends PlayableObject {
         let result = super.getShortSummary();
 
         // Include card specific information useful for UI rendering
-        result.locale = this.locale;
         result.location = this.location;
         result.isChained = this.isChained;
-        result.altArts = this.altArts;
         result.index = this.index;
         return result;
     }
@@ -1245,6 +1241,8 @@ class Card extends PlayableObject {
             id: this.id,
             index: this.index,
             imageStub: this.getImageStub(),
+            altArts: this.altArts,
+
             canPlay: !!(
                 activePlayer === this.game.activePlayer &&
                 isController &&

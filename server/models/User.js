@@ -162,7 +162,8 @@ class User {
             verified: this.userData.verified,
             blockList: this.userData.blockList,
             gamesPlayed: this.userData.gamesPlayed,
-            eloRating: this.userData.eloRating
+            eloRating: this.userData.eloRating,
+            altArts: this.userData.altArts
         };
 
         user = Settings.getUserWithDefaultsSet(user);

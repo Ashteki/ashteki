@@ -42,7 +42,6 @@ import DiceRack from './DiceRack';
  * @property {number} expansion
  * @property {string} packCode
  * @property {string[]} keywords
- * @property {{[key: string]: CardLanguage}} locale
  */
 
 /**

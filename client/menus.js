@@ -50,6 +50,7 @@ export const RightMenu = [
 export const ProfileMenu = [
     { title: 'Profile', path: '/profile' },
     { title: 'Stats', path: '/stats' },
+    { title: 'Alt Arts', path: '/alts' },
 
     { title: 'Security', path: '/security' },
     { title: 'Block List', path: '/blocklist' },
