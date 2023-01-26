@@ -44,7 +44,7 @@ const ProfileMain = ({ user, formProps }) => {
     const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${PatreonClientId}&redirect_uri=${callbackUrl}`;
 
     let eloRating = '(calibrating)';
-    if (user.rankedGamesPlayed > 12) {
+    if (user.rankedGamesPlayed >= 12) {
         eloRating = user?.eloRating ? Math.round(user.eloRating) : '';
     };
     return (

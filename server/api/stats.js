@@ -27,11 +27,11 @@ module.exports.init = function (server) {
         '/api/stats/elo',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            const dt = new Date();
-            dt.setMonth(dt.getMonth() - 1);
+            const dtCutoff = new Date();
+            dtCutoff.setMonth(dtCutoff.getMonth() - 3);
 
             let list = await userService.getAllUsers();
-            list = list.filter((u) => u.eloRating && u.lastRankedGame > dt && u.rankedGamesPlayed > 12);
+            list = list.filter((u) => u.eloRating && u.lastRankedGame > dtCutoff && u.rankedGamesPlayed >= 12);
             list.sort((a, b) => (a.eloRating > b.eloRating ? -1 : 1));
             res.send({ success: true, list: list });
         })

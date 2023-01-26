@@ -62,6 +62,7 @@ class ActivePlayerPrompt extends React.Component {
         }
     }
 
+    //TODO: remove this
     localizedText(source, text, values) {
         let { t, i18n } = this.props;
 
@@ -72,30 +73,6 @@ class ActivePlayerPrompt extends React.Component {
 
         if (!text) {
             return '';
-        }
-
-        if (i18n.language !== 'en') {
-            // Avoid locale replacement if language is English
-
-            if (!source || !source.locale || !source.locale[i18n.language]) {
-                // If no source or source does not have locale, simply do the translation
-                return t(text, values);
-            }
-
-            if (values && values.card) {
-                // if there is a {{card}} property in the values, we should use localized source name
-                values.card = source.locale[i18n.language].name;
-                return t(text, values);
-            }
-
-            if (!values) {
-                // if no values, add a 'card' with localized source name and try to find, worst case, the source name
-                // in the text and replace it for i18n interpolation
-                values = { card: source.locale[i18n.language].name };
-                while (text.includes(source.name)) {
-                    text = text.replace(source.name, '{{card}}');
-                }
-            }
         }
 
         return t(text, values);

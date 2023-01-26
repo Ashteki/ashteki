@@ -27,6 +27,7 @@ import BanlistAdmin from './pages/BanlistAdmin';
 import Patreon from './pages/Patreon';
 import EloLadder from './pages/EloLadder';
 import FAQ from './pages/faq';
+import UserAlts from './pages/UserAlts';
 
 const routes = [
     { path: '/', action: () => <Home key='lobby' /> },
@@ -61,6 +62,7 @@ const routes = [
     },
     { path: '/profile', action: () => <Profile key='profile' /> },
     { path: '/register', action: () => <Register key='register' /> },
+    { path: '/alts', action: () => <UserAlts key='altarts' /> },
     {
         path: '/reset-password',
         action: (context) => (
