@@ -5,6 +5,8 @@ import React from 'react';
 import conjurationCardBack from '../../assets/img/cardback-conjuration.png';
 import CardImage from '../GameBoard/CardImage';
 
+import './CardGallery.scss';
+
 function CardGallery({ cards = [] }) {
     const cardList = cards;
     return (
