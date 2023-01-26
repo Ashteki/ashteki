@@ -6,14 +6,16 @@ if (process.argv.length > 3) {
     let db = monk(mongoUrl);
     console.log('updating username: ' + process.argv[2] + ' alts for : ' + process.argv[3]);
     // prepare alts object
-    const alts = process.argv.slice(4);
+    const newAlt = process.argv[4]; // will include multiples
+    console.log(newAlt);
+
     const collection = db.get('users');
     collection
         .update(
             { username: process.argv[2] },
             {
-                $set: {
-                    ['altArts.' + process.argv[3]]: alts
+                $push: {
+                    ['altArts.' + process.argv[3]]: newAlt
                 }
             }
         )
