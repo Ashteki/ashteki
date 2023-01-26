@@ -1,5 +1,6 @@
 .card-gallery {
     display: flex;
+    flex-wrap: wrap;
 
     .gallery-card {
         margin: 10px;
