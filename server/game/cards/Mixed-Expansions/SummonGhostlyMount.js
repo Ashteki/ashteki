@@ -30,14 +30,14 @@ class SummonGhostlyMount extends Card {
                         card.id === 'spectral-charger-mount' ||
                         (this.focus > 1 && card.id === 'nightmare-mount'),
                     location: 'archives',
-                    gameAction: ability.actions.putIntoPlay()
-                },
-                then: {
-                    gameAction: ability.actions.placeUnder((context) => ({
-                        parent: context.preThenEvent.card,
-                        target: context.preThenEvent.context.preThenEvent.card,
-                        facedown: true
-                    }))
+                    gameAction: [
+                        ability.actions.putIntoPlay(),
+                        ability.actions.placeUnder((context) => ({
+                            parent: context.target,
+                            target: context.preThenEvent.card,
+                            facedown: true
+                        }))
+                    ]
                 }
             }
         });
