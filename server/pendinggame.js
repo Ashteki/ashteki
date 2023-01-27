@@ -7,7 +7,6 @@ const logger = require('./log');
 
 class PendingGame {
     constructor(owner, details) {
-        this.adaptive = details.adaptive;
         this.allowSpectators = details.allowSpectators;
         this.createdAt = new Date();
         this.gameChat = new GameChat(this);
@@ -343,7 +342,6 @@ class PendingGame {
         });
 
         return {
-            adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,
@@ -396,7 +394,6 @@ class PendingGame {
         }
 
         return {
-            adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,

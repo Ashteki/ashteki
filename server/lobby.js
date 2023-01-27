@@ -917,7 +917,6 @@ class Lobby {
         delete this.games[gameId];
 
         let newGame = new PendingGame(game.owner, {
-            adaptive: game.adaptive,
             gameTimeLimit: game.gameTimeLimit,
             gameFormat: game.gameFormat,
             gameType: game.gameType,
@@ -1083,7 +1082,6 @@ class Lobby {
                 allowSpectators: game.allowSpectators,
                 name: game.name
             });
-            syncGame.adaptive = game.adaptive;
             syncGame.createdAt = game.startedAt;
             syncGame.gameFormat = game.gameFormat;
             syncGame.gamePrivate = game.gamePrivate;

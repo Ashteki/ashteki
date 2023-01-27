@@ -41,7 +41,6 @@ const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt')
 class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
-        this.adaptive = { selection: [], biddingWinner: '' };
         this.allowSpectators = details.allowSpectators;
         this.cancelPromptUsed = false;
         this.chatCommands = new ChatCommands(this);
@@ -1032,34 +1031,6 @@ class Game extends EventEmitter {
         }
     }
 
-    reInitialisePlayers(swap) {
-        let players = this.getPlayers();
-
-        //adaptive swap
-        if (swap) {
-            const [player1, player2] = Object.keys(players);
-            if (player2) {
-                const deckData = players[player1].deckData;
-                players[player1].deckData = players[player2].deckData;
-                players[player2].deckData = deckData;
-            }
-        }
-
-        this.players = players;
-
-        for (let player of this.getPlayers()) {
-            player.initialise();
-        }
-
-        this.allCards = _.reduce(
-            this.getPlayers(),
-            (cards, player) => {
-                return cards.concat(player.deck, player.archives, player.phoenixborn);
-            },
-            []
-        );
-    }
-
     // time limit / OP sudden death trigger
     checkForTimeExpired() {
         if (
@@ -1566,7 +1537,6 @@ class Game extends EventEmitter {
             }
 
             const result = {
-                adaptive: this.adaptive,
                 cancelPromptUsed: this.cancelPromptUsed,
                 cardLog: this.cardsPlayed.map((c) => c.getShortSummary()),
                 currentPhase: this.currentPhase,
@@ -1641,7 +1611,6 @@ class Game extends EventEmitter {
         }
 
         return {
-            adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,
