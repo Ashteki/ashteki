@@ -84,7 +84,7 @@
         "https-browserify": "^1.0.0",
         "husky": "^6.0.0",
         "i18next": "^22.4.9",
-        "i18next-browser-languagedetector": "^6.1.0",
+        "i18next-browser-languagedetector": "^7.0.1",
         "jquery": "^3.6.0",
         "jquery-migrate": "3.3.2",
         "jquery-nearest": "^1.4.0",
