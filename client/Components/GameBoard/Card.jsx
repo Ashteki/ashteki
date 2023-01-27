@@ -29,7 +29,6 @@ const Card = ({
     onMouseOut,
     onMouseOver,
     orientation = 'vertical',
-    showAltIcon,
     side,
     size,
     source,
@@ -41,8 +40,8 @@ const Card = ({
         [size]: size !== 'normal'
     };
     const [showMenu, setShowMenu] = useState(false);
-    // const dispatch = useDispatch();
     const gameRound = useSelector((state) => state.lobby.currentGame?.round);
+    const showAltIcon = useSelector((state) => state.lobby.currentGame?.round === 0);
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
         item: { card: card, source: source, type: ItemTypes.CARD },

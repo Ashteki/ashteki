@@ -31,7 +31,6 @@ const CardPile = ({
     player,
     popupLocation = 'bottom',
     popupMenu,
-    showAltIcon,
     showChains,
     size,
     source,
@@ -141,7 +140,6 @@ const CardPile = ({
                     onTouchMove={onTouchMove}
                     popupLocation={popupLocation}
                     popupMenu={popupMenu}
-                    showAltIcon={showAltIcon}
                     showChains={showChains}
                     size={size}
                     source={source}
