@@ -174,4 +174,42 @@ describe('Vampire Bat Swarm', function () {
             expect(this.maeoniViper.exhausted).toBe(false);
         });
     });
+
+
+    describe('vs sonic swordsman', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['sonic-swordsman', 'string-mage'],
+                    dicepool: ['natural']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['vampire-bat-swarm', 'living-doll'],
+                    dicepool: ['natural', 'ceremonial']
+                }
+            });
+        });
+
+        it('triggers when destroyed by sonic swordsman', function () {
+            this.player1.clickAttack(this.vampireBatSwarm);
+            this.player1.clickCard(this.sonicSwordsman);
+            this.player2.clickDone(); // guard
+            this.player2.clickYes(); // counter
+            // pulse
+            this.player1.clickCard(this.vampireBatSwarm);
+
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
+            expect(this.vampireBatSwarm.location).toBe('play area');
+            expect(this.vampireBatSwarm.damage).toBe(0);
+            expect(this.vampireBatSwarm.exhausted).toBe(false);
+            expect(this.vampireBatSwarm.isAttacker).toBe(false);
+            expect(this.vampireBatSwarm.isDefender).toBe(false);
+            expect(this.aradelSummergaard.exhausted).toBe(false);
+            expect(this.maeoniViper.exhausted).toBe(false);
+        });
+
+    });
 });
