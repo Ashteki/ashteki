@@ -37,6 +37,7 @@ const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
+const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -917,7 +918,16 @@ class Game extends EventEmitter {
             return;
         }
 
-        this.chatCommands.manual(player);
+        if (this.manualMode) {
+            this.manualMode = false;
+            this.addAlert('danger', '{0} switches manual mode off', player);
+        } else {
+            if (!this.requestingManualMode) {
+                this.addAlert('danger', '{0} is attempting to switch manual mode on', player);
+                this.requestingManualMode = true;
+                this.queueStep(new ManualModePrompt(this, player));
+            }
+        }
     }
 
     toggleMuteSpectators(playerName) {
