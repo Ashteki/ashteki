@@ -15,12 +15,12 @@ const GameCountMenu = () => {
 
     const isSpectating = !currentGame?.players[user?.username];
     const gameCount = games.length;
-    const emptyGame = games.some((g) => Object.values(g.players).length === 1) ? 'empty-game' : '';
+    const emptyGame = games.some((g) => !g.started && Object.values(g.players).length === 1) ? 'empty-game' : '';
     const gameList = games.map((game) => {
         const players = Object.values(game.players);
         const p1Name = players[0].name;
         const p2Name = players.length > 1 ? players[1].name : '??';
-        const classNames = Object.values(game.players).length === 1 ? 'empty-game' : '';
+        const classNames = game.started && Object.values(game.players).length === 1 ? 'empty-game' : '';
 
         return <li key={game.id} className={classNames}>{p1Name} vs {p2Name}</li>;
     });
