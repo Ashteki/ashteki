@@ -10,6 +10,7 @@ import ServerStatus from './ServerStatus';
 import GameContextMenu from './GameContextMenu';
 
 import './Navigation.scss';
+import GameCountMenu from './GameCountMenu';
 
 /**
  * @typedef { import('../../menus').MenuItem } MenuItem
@@ -136,11 +137,7 @@ const Navigation = (props) => {
             <Navbar.Collapse id='navbar' className='justify-content-end'>
                 <Nav className='ml-auto pr-md-6'>
                     <GameContextMenu />
-                    <Link key='games-link' href='/play'>
-                        <Nav.Link >
-                            <span className='patreon-link'>{games?.length} Games</span>
-                        </Nav.Link>
-                    </Link>
+                    <GameCountMenu />
 
                     {!currentGame && (
                         <ServerStatus
