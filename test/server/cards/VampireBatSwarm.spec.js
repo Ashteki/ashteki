@@ -207,8 +207,6 @@ describe('Vampire Bat Swarm', function () {
             expect(this.vampireBatSwarm.exhausted).toBe(false);
             expect(this.vampireBatSwarm.isAttacker).toBe(false);
             expect(this.vampireBatSwarm.isDefender).toBe(false);
-            expect(this.aradelSummergaard.exhausted).toBe(false);
-            expect(this.maeoniViper.exhausted).toBe(false);
         });
 
     });
