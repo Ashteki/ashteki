@@ -25,6 +25,18 @@
             "attack": 1,
             "life": 4,
             "recover": 2
+        },
+        {
+            "name": "Blood Puppeteer",
+            "stub": "blood-puppeteer",
+            "type": "Ally",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:power]]"
+            ],
+            "attack": 1,
+            "life": 1,
+            "recover": 1
         }
     ]
 }
