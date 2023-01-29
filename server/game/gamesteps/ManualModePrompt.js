@@ -45,6 +45,8 @@ class ManualModePrompt extends AllPlayerPrompt {
     }
 
     onCompleted() {
+        this.game.requestingManualMode = false;
+
         if (this.cancelled) {
             return;
         }

@@ -20,6 +20,8 @@ describe('Discovery', function () {
         });
 
         it('deal 1 damage at the end of the round', function () {
+            expect(this.game.isCardVisible(this.rebornChimera, this.player2.player)).toBe(false);
+
             this.player1.play(this.discovery);
             this.player1.clickDie(0);
             this.player1.clickCard(this.purge); // discard cost
@@ -27,6 +29,7 @@ describe('Discovery', function () {
             expect(this.redRaindrop.location).toBe('play area');
             expect(this.rowanUmberend.upgrades.length).toBe(1);
             expect(this.discovery.location).toBe('deck');
+            expect(this.game.isCardVisible(this.rebornChimera, this.player2.player)).toBe(true);
 
             this.player1.endTurn();
             this.player2.endTurn();

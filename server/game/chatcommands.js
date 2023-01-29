@@ -21,7 +21,6 @@ class ChatCommands {
             '/discardfromdeck': this.discardtopofdeck,
             '/givecontrol': this.giveControl,
             '/endgame': this.endgame,
-            '/manual': this.manual,
             '/move': this.moveCard,
             '/moveto': this.moveCard,
             '/modifyclock': this.modifyClock, // hidden option
@@ -486,16 +485,6 @@ class ChatCommands {
 
     disconnectMe(player) {
         player.socket.disconnect();
-    }
-
-    manual(player) {
-        if (this.game.manualMode) {
-            this.game.manualMode = false;
-            this.game.addAlert('danger', '{0} switches manual mode off', player);
-        } else {
-            this.game.addAlert('danger', '{0} is attempting to switch manual mode on', player);
-            this.game.queueStep(new ManualModePrompt(this.game, player));
-        }
     }
 
     endgame(player) {

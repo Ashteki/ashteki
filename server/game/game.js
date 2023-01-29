@@ -37,11 +37,11 @@ const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
+const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
-        this.adaptive = { selection: [], biddingWinner: '' };
         this.allowSpectators = details.allowSpectators;
         this.cancelPromptUsed = false;
         this.chatCommands = new ChatCommands(this);
@@ -918,7 +918,16 @@ class Game extends EventEmitter {
             return;
         }
 
-        this.chatCommands.manual(player);
+        if (this.manualMode) {
+            this.manualMode = false;
+            this.addAlert('danger', '{0} switches manual mode off', player);
+        } else {
+            if (!this.requestingManualMode) {
+                this.addAlert('danger', '{0} is attempting to switch manual mode on', player);
+                this.requestingManualMode = true;
+                this.queueStep(new ManualModePrompt(this, player));
+            }
+        }
     }
 
     toggleMuteSpectators(playerName) {
@@ -1030,34 +1039,6 @@ class Game extends EventEmitter {
         for (let player of this.getPlayers()) {
             player.rerollAllDice(this.round);
         }
-    }
-
-    reInitialisePlayers(swap) {
-        let players = this.getPlayers();
-
-        //adaptive swap
-        if (swap) {
-            const [player1, player2] = Object.keys(players);
-            if (player2) {
-                const deckData = players[player1].deckData;
-                players[player1].deckData = players[player2].deckData;
-                players[player2].deckData = deckData;
-            }
-        }
-
-        this.players = players;
-
-        for (let player of this.getPlayers()) {
-            player.initialise();
-        }
-
-        this.allCards = _.reduce(
-            this.getPlayers(),
-            (cards, player) => {
-                return cards.concat(player.deck, player.archives, player.phoenixborn);
-            },
-            []
-        );
     }
 
     // time limit / OP sudden death trigger
@@ -1566,7 +1547,6 @@ class Game extends EventEmitter {
             }
 
             const result = {
-                adaptive: this.adaptive,
                 cancelPromptUsed: this.cancelPromptUsed,
                 cardLog: this.cardsPlayed.map((c) => c.getShortSummary()),
                 currentPhase: this.currentPhase,
@@ -1641,7 +1621,6 @@ class Game extends EventEmitter {
         }
 
         return {
-            adaptive: this.adaptive,
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,

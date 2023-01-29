@@ -49,6 +49,7 @@ class CardVisibility {
     isSpellRevealed(card) {
         const revealedCards = [
             card.controller.phoenixborn,
+            ...card.controller.phoenixborn.upgrades,
             ...card.controller.cardsInPlay,
             ...card.controller.spellboard
         ];

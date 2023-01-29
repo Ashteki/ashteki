@@ -51,7 +51,6 @@
 
 /**
  * @typedef PendingGame
- * @property {boolean} adaptive Whether or not this game is adaptive
  * @property {boolean} allowSpectators Whether or not spectators are allowed to join
  * @property {Date} createdAt When the game was created
  * @property {boolean} gamePrivate Whether or not the game is private

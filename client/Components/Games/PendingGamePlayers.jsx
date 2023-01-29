@@ -57,7 +57,7 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
                 } else if (player && playerIsMe) {
                     selectLink = (
                         <>
-                            <Button onClick={onSelectDeck}>
+                            <Button onClick={onSelectDeck} className="btn-secondary">
                                 <Trans>Select Deck</Trans>
                             </Button>
                         </>

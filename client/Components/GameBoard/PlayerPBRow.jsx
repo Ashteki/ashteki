@@ -110,6 +110,7 @@ const PlayerPBRow = ({
         identityCard = (
             <Card
                 card={phoenixborn}
+                onAltClick={onCardAltClick}
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
                 onMenuItemClick={onMenuItemClick}
