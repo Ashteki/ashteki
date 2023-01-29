@@ -9,10 +9,22 @@
                 "1 [[ceremonial:class]]",
                 "1 [[basic]]"
             ],
-            "text": "Throw 1: When this unit comes into play, you may deal 1 damage to another target unit.",
             "attack": 2,
             "life": 3,
             "recover": 1
+        },
+        {
+            "name": "Phoenix Attendant",
+            "stub": "phoenix-attendant",
+            "type": "Ally",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]",
+                "1 [[basic]]"
+            ],
+            "attack": 1,
+            "life": 4,
+            "recover": 2
         }
     ]
 }
