@@ -6,6 +6,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import spellback from '../../assets/img/cardback-spell.png';
 
 import './AbilityTargetting.scss';
+import DieIcon from './DieIcon';
 
 class AbilityTargeting extends React.Component {
     onMouseOver(event, card) {
@@ -21,6 +22,13 @@ class AbilityTargeting extends React.Component {
     }
 
     renderSimpleCard(card) {
+        if (card.type === 'die') {
+            return (
+                <div className='target-die x-large  mb-2'>
+                    <DieIcon key={'cld-' + card.uuid} die={card} />
+                </div>
+            );
+        }
         if (!card.id) return '';
 
         let checkCard = card.location === 'deck' ? { facedown: true } : card;

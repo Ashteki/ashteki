@@ -78,6 +78,10 @@ class MeditatePrompt extends UiPrompt {
         return this.choosingPlayer.selectedCards[0];
     }
 
+    get selectedDie() {
+        return this.choosingPlayer.selectedDice[0];
+    }
+
     activePrompt() {
         const buttons = [];
         let mnuText = 'Choose a card to discard';
@@ -90,9 +94,15 @@ class MeditatePrompt extends UiPrompt {
                 targets: []
             });
         }
+
+        if (this.diceSelected || this.cardSelected) {
+            buttons.push({ text: 'Clear selection', arg: 'clear' });
+        }
+
         if (this.diceSelected) {
             mnuText = 'Confirm chosen side for this die, or click again to change side / remove';
-            buttons.push({ text: 'Confirm', arg: 'set' });
+            controls[0].targets.push(this.selectedDie.getShortSummary());
+            buttons.push({ text: 'Confirm', arg: 'set', class: 'btn-success' });
         } else {
             if (this.cardSelected) {
                 buttons.push({ text: 'Skip die change', arg: 'skipDie' });
@@ -100,14 +110,11 @@ class MeditatePrompt extends UiPrompt {
                 buttons.push({ text: 'Choose top of deck', arg: 'top' });
             }
         }
-        if (this.diceSelected || this.cardSelected) {
-            buttons.push({ text: 'Clear selection', arg: 'clear' });
-        } else {
-            buttons.push({ text: 'Stop meditating', arg: 'done' });
-        }
 
         if (this.count === 0) {
-            buttons.push({ text: 'Cancel', arg: 'cancel' });
+            buttons.push({ text: 'Cancel', arg: 'cancel', class: 'btn-grey' });
+        } else {
+            buttons.push({ text: 'Stop meditating', arg: 'done', class: 'btn-grey' });
         }
 
         return {
