@@ -56,7 +56,19 @@ class DestroyAction extends CardGameAction {
                     event.damageEvent && event.damageEvent.context.source
                 );
             }
-
+            event.whenCardDestroyed = context.game.getEvent(
+                'whenCardDestroyed',
+                {
+                    card: event.card,
+                    context: context,
+                    condition: (event) => event.card.location === 'play area',
+                    triggeringEvent: event,
+                    destination: newDestination
+                },
+                () => {
+                    return true;
+                }
+            );
             event.leavesPlayEvent = context.game.getEvent(
                 'onCardLeavesPlay',
                 {
@@ -71,8 +83,9 @@ class DestroyAction extends CardGameAction {
                     leavesPlayEvent.card.removed = true;
                 }
             );
-
-            event.addSubEvent(event.leavesPlayEvent);
+            event.whenCardDestroyed.leavesPlayEvent = event.leavesPlayEvent;
+            event.whenCardDestroyed.addSubEvent(event.leavesPlayEvent);
+            event.addSubEvent(event.whenCardDestroyed);
         });
     }
 }

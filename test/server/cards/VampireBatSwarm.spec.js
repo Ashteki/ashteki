@@ -197,14 +197,14 @@ describe('Vampire Bat Swarm', function () {
             this.player1.clickCard(this.sonicSwordsman);
             this.player2.clickDone(); // guard
             this.player2.clickYes(); // counter
-            // pulse
-            this.player1.clickCard(this.vampireBatSwarm);
 
             expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
             this.player2.clickYes();
+            // pulse
+            this.player1.clickCard(this.vampireBatSwarm);
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
-            expect(this.vampireBatSwarm.exhausted).toBe(false);
+            expect(this.vampireBatSwarm.exhausted).toBe(true);
             expect(this.vampireBatSwarm.isAttacker).toBe(false);
             expect(this.vampireBatSwarm.isDefender).toBe(false);
         });

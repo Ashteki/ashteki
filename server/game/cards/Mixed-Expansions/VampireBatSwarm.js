@@ -10,7 +10,7 @@ class VampireBatSwarm extends Card {
         this.forcedInterrupt({
             autoResolve: true,
             when: {
-                onCardLeavesPlay: (event, context) =>
+                whenCardDestroyed: (event, context) =>
                     event.triggeringEvent &&
                     event.triggeringEvent.name === 'onCardDestroyed' &&
                     event.card === context.source
@@ -31,7 +31,7 @@ class VampireBatSwarm extends Card {
                 })),
                 ability.actions.addEventToWindow((context) => ({
                     subEvent: true,
-                    targetEvent: context.event,
+                    targetEvent: context.event.leavesPlayEvent,
                     eventToAdd: ability.actions
                         .putIntoPlay()
                         .getEvent(context.source, context)
