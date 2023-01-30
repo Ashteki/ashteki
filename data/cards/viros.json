@@ -46,6 +46,15 @@
                 "[[main]]",
                 "1 [[basic]]"
             ]
+        },
+        {
+            "name": "Final Stand",
+            "stub": "final-stand",
+            "type": "Action Spell",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ]
         }
     ]
 }
