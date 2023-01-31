@@ -144,4 +144,42 @@ describe('Jessa Na Ni', function () {
             expect(this.coalRoarkwin.damage).toBe(3);
         });
     });
+
+    describe('Jessa vs Butterfly Monk', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'jessa-na-ni',
+                    inPlay: ['fire-archer'],
+                    dicepool: ['natural', 'illusion', 'charm', 'charm'],
+                    spellboard: [],
+                    hand: []
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut', 'butterfly-monk'],
+                    spellboard: ['summon-iron-rhino'],
+                    dicepool: ['natural', 'illusion', 'ceremonial', 'ceremonial'],
+                    hand: []
+                }
+            });
+
+            this.jessaNaNi.tokens.damage = 2;
+        });
+
+        it('ability triggers after monk mend', function () {
+            this.player1.clickAttack(this.anchornaut);
+            this.player1.clickCard(this.fireArcher);
+            this.player2.clickCard(this.butterflyMonk);
+
+            this.player2.clickCard(this.jessaNaNi);
+            expect(this.anchornaut.location).toBe('play area');
+            // prompt for jessa
+            expect(this.player1).toBeAbleToSelect(this.jessaNaNi);
+            this.player1.clickCard(this.jessaNaNi);
+            this.player1.clickDie(1);
+            expect(this.coalRoarkwin.damage).toBe(1);
+            expect(this.jessaNaNi.damage).toBe(1);
+        });
+    });
 });
