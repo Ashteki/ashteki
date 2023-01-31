@@ -50,10 +50,7 @@ class ErrorBoundary extends React.Component {
                 >
                     <p>{this.props.t(this.props.message)}</p>
                     <p>
-                        <Trans>
-                            There error has been logged, please click anywhere in this red box to
-                            fill out a more detailed report.
-                        </Trans>
+                        The error has been logged. Please report persistent bugs in the discord #software-dev channel.
                     </p>
 
                     {this.props.navigate && (
