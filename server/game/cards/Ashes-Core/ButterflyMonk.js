@@ -10,7 +10,7 @@ class ButterflyMonk extends Card {
             target: {
                 optional: true,
                 cardCondition: (card, context) => card !== context.source,
-                activePromptTitle: 'Mend 1',
+                activePromptTitle: 'Mend 1: Choose a unit or phoenixborn to heal 1 wound',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 gameAction: ability.actions.removeDamage(() => ({
                     amount: this.getAbilityNumeric(1)
