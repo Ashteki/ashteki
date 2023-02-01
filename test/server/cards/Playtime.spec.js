@@ -36,15 +36,18 @@ describe('Playtime', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'james-endersight',
-                    inPlay: ['crystal-archer', 'mist-spirit', 'raptor-herder', 'time-hopper'],
+                    inPlay: ['blood-archer', 'mist-spirit', 'raptor-herder', 'time-hopper'],
                     hand: ['playtime'],
-                    dicepool: ['ceremonial']
+                    dicepool: ['ceremonial'],
+                    archives: ['blood-puppet']
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['hammer-knight', 'iron-rhino']
                 }
             });
+
+            this.hammerKnight.tokens.damage = 1;
         });
 
         it('1 damage to pb', function () {
@@ -55,14 +58,17 @@ describe('Playtime', function () {
 
             this.player1.clickPrompt('Attack');
             this.player1.clickCard(this.aradelSummergaard);
-            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.bloodArcher);
             this.player1.clickDone();
 
             this.player2.clickCard(this.hammerKnight);
-            this.player2.clickCard(this.mistSpirit);
+            this.player2.clickCard(this.bloodArcher);
             this.player2.clickDone();
 
             expect(this.aradelSummergaard.damage).toBe(1);
+
+            // check for blood puppet summon
+            expect(this.bloodPuppet.location).toBe('play area');
         });
     });
 });

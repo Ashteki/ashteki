@@ -25,6 +25,22 @@ class Playtime extends Card {
                 amount: 1
             }))
         });
+
+        this.forcedInterrupt({
+            autoResolve: true,
+            inexhaustible: true,
+            when: {
+                onCardLeavesPlay: (event, context) =>
+                    event.triggeringEvent &&
+                    event.triggeringEvent.name === 'onCardDestroyed' &&
+                    event.card === context.source.parent
+            },
+            targetController: 'any',
+            gameAction: ability.actions.summon((context) => ({
+                conjuration: 'blood-puppet',
+                target: context.source.owner.opponent
+            }))
+        });
     }
 }
 
