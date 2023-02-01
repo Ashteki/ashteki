@@ -37,8 +37,12 @@ const WinLoseSplash = ({ game, onCloseClick }) => {
                 <div className='buttonDiv'>
                     <button
                         onClick={onLeaveClick}
-                        className='btn prompt-button btn-default'
-                    >Leave</button>
+                        className='btn splash-button btn-default'
+                    >Leave Game</button>
+                    <button
+                        onClick={onCloseClick}
+                        className='btn splash-button btn-primary'
+                    >Close</button>
                 </div>
             </div>
             {/* <CardImage card={loser.phoenixborn} imgClass='splash-loser' /> */}
