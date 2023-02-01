@@ -55,6 +55,34 @@
                 "[[main]]",
                 "1 [[basic]]"
             ]
+        },
+        {
+            "name": "Playtime",
+            "stub": "playtime",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]"
+            ]
+        },
+        {
+            "name": "Shadowblade",
+            "stub": "shadowblade",
+            "type": "Reaction Spell",
+            "cost": [
+                "1 [[basic]]"
+            ]
+        },
+        {
+            "name": "Change of Heart",
+            "stub": "change-of-heart",
+            "type": "Alteration Spell",
+            "placement": "Phoenixborn",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ]
         }
     ]
 }
