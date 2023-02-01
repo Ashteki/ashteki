@@ -16,9 +16,18 @@
 
 .game-count-menu {
     position: relative;
+
+    & ul {
+        list-style: inside;
+    }
 }
 
 .empty-game {
     color: darkorange;
     font-weight: bold;
+}
+
+.game-count-list-item {
+    list-style-type: circle;
+
 }

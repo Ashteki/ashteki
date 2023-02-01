@@ -14,15 +14,21 @@ const GameCountMenu = () => {
     const [showPopup, setShowPopup] = useState(false);
 
     const isSpectating = !currentGame?.players[user?.username];
+    if (!isSpectating) {
+        return null;
+    }
     const gameCount = games.length;
     const emptyGame = games.some((g) => !g.started && Object.values(g.players).length === 1) ? 'empty-game' : '';
     const gameList = games.map((game) => {
         const players = Object.values(game.players);
+        if (!players.length) {
+            return null;
+        }
         const p1Name = players[0].name;
         const p2Name = players.length > 1 ? players[1].name : '??';
-        const classNames = game.started && Object.values(game.players).length === 1 ? 'empty-game' : '';
+        const liClass = 'game-count-list-item'
 
-        return <li key={game.id} className={classNames}>{p1Name} vs {p2Name}</li>;
+        return <li key={game.id} className={liClass}>{p1Name} vs {p2Name}</li>;
     });
     const linkClass = classNames('patreon-link', { 'empty-game': emptyGame });
     let gamesPopup = <ul className='games-popup mt-5 absolute-panel'>{gameList}</ul>;
