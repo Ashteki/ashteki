@@ -16,6 +16,7 @@ const {
 } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
+const PlayPbUpgradeAction = require('./BaseActions/PlayPbUpgradeAction.js');
 
 class Card extends PlayableObject {
     constructor(owner, cardData) {
@@ -45,6 +46,7 @@ class Card extends PlayableObject {
         this.magicCost = this.getMagicCost(cardData);
         this.conjurations = cardData.conjurations || [];
         this.phoenixborn = cardData.phoenixborn;
+        this.placement = cardData.placement;
 
         this.tokens = {};
         this.flags = {};
@@ -1218,7 +1220,11 @@ class Card extends PlayableObject {
             }
 
             if (this.canPlayAsUpgrade()) {
-                actions.push(new PlayUpgradeAction(this));
+                if (this.placement === 'Phoenixborn') {
+                    actions.push(new PlayPbUpgradeAction(this));
+                } else {
+                    actions.push(new PlayUpgradeAction(this));
+                }
             }
         }
 

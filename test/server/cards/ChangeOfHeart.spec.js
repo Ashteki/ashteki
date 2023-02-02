@@ -6,7 +6,7 @@ describe('ChangeOfHeart', function () {
                     phoenixborn: 'brennen-blackcloud',
                     inPlay: ['crystal-archer', 'mist-spirit', 'raptor-herder', 'time-hopper'],
                     hand: ['change-of-heart'],
-                    dicepool: ['ceremonial']
+                    dicepool: ['ceremonial', 'ceremonial']
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
@@ -18,19 +18,20 @@ describe('ChangeOfHeart', function () {
         it('pb damage on attack', function () {
             this.player1.play(this.changeOfHeart);
             this.player1.clickDie(0);
-            this.player1.clickCard(this.brennenBlackcloud);
-
             expect(this.brennenBlackcloud.upgrades.length).toBe(1);
 
             this.player1.endTurn();
             this.player2.endTurn();
 
             this.player1.clickCard(this.brennenBlackcloud);
-            this.player1.clickCard(this.crystalArcher);
+            expect(this.player1).not.toHavePromptButton('Spirit Burn');
 
-            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.changeOfHeart);
+            this.player1.clickPrompt('Change of heart');
+            this.player1.clickCard(this.crystalArcher);
+            this.player1.clickCard(this.ironRhino);
             expect(this.crystalArcher.location).toBe('hand');
-            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.ironRhino.damage).toBe(1);
         });
     });
 });
