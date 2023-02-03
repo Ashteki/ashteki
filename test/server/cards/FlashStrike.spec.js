@@ -32,6 +32,54 @@ describe('Flash Strike', function () {
         expect(this.player1).toHaveDefaultPrompt();
     });
 
+    it('prompts for warning if no status token attackers', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickCard(this.ironWorker); // single attacker
+        this.player2.clickDone(); // no guard
+
+        expect(this.player1).toHavePrompt('Any Reactions to defenders being declared?');
+        this.player1.clickCard(this.flashStrike);
+
+        // warning on attackers with no status
+        this.player1.clickYes();
+        this.player1.clickCard(this.mistSpirit);
+
+        expect(this.player1.dicepool[0].exhausted).toBe(true);
+        expect(this.mistSpirit.attack).toBe(3);
+        this.player2.clickPrompt('Yes'); // DO counter
+
+        expect(this.ironWorker.location).toBe('play area');
+        expect(this.ironWorker.exhausted).toBe(true);
+        expect(this.fluteMage.location).toBe('discard');
+
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('cancel after warning', function () {
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage); // target
+        this.player1.clickCard(this.ironWorker); // single attacker
+        this.player2.clickDone(); // no guard
+
+        expect(this.player1).toHavePrompt('Any Reactions to defenders being declared?');
+        this.player1.clickCard(this.flashStrike);
+
+        // warning on attackers with no status
+        this.player1.clickNo();
+        this.player1.clickCard(this.mistSpirit);
+
+        expect(this.player1.dicepool[0].exhausted).toBe(false);
+        expect(this.mistSpirit.attack).toBe(1);
+        this.player2.clickPrompt('Yes'); // DO counter
+
+        expect(this.ironWorker.location).toBe('play area');
+        expect(this.ironWorker.exhausted).toBe(true);
+        expect(this.fluteMage.location).toBe('discard');
+
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
     it('reaction on guard choice - unit attack', function () {
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.fluteMage); // target
