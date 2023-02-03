@@ -82,6 +82,7 @@ const NewGame = ({
         { name: 'allowSpectators', label: t('Allow spectators') },
         { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
         { name: 'showHand', label: t('Show hands to spectators') },
+        { name: 'openHands', label: 'Play with open hands' }
     ];
 
     let clockType = [

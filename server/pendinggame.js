@@ -22,6 +22,7 @@ class PendingGame {
         this.owner = owner;
         this.players = {};
         this.showHand = details.showHand;
+        this.openHands = details.openHands;
         this.spectators = {};
         this.started = false;
         this.swap = !!details.swap;
@@ -358,6 +359,7 @@ class PendingGame {
             owner: this.owner.username,
             players: playerSummaries,
             showHand: this.showHand,
+            openHands: this.openHands,
             started: this.started,
             swap: this.swap,
             spectators: Object.values(this.spectators).map((spectator) => {
@@ -409,6 +411,7 @@ class PendingGame {
             owner: this.owner.getDetails(),
             players,
             showHand: this.showHand,
+            openHands: this.openHands,
             spectators,
             started: this.started,
             swap: this.swap,

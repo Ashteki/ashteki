@@ -67,7 +67,6 @@ class Game extends EventEmitter {
         this.playStarted = false;
         this.playersAndSpectators = {};
         this.savedGameId = details.savedGameId;
-        this.showHand = details.showHand;
         this.started = false;
         this.swap = details.swap;
         this.triggerSuddenDeath = false;
@@ -84,7 +83,9 @@ class Game extends EventEmitter {
         this.router = options.router;
         this.attackState = null;
         this.cardData = options.cardData || [];
-        this.cardVisibility = new CardVisibility(this.showHand);
+        this.showHand = details.showHand;
+        this.openHands = details.openHands;
+        this.cardVisibility = new CardVisibility(this.showHand, this.openHands);
 
         this.useGameTimeLimit = details.useGameTimeLimit;
         const clockDetails = { type: 'none', time: 0 };
@@ -1562,6 +1563,7 @@ class Game extends EventEmitter {
                 players: playerState,
                 round: this.round,
                 showHand: this.showHand,
+                openHands: this.openHands,
                 spectators: this.getSpectators().map((spectator) => {
                     return {
                         id: spectator.id,
@@ -1635,6 +1637,7 @@ class Game extends EventEmitter {
             owner: this.owner,
             players: playerSummaries,
             showHand: this.showHand,
+            openHands: this.openHands,
             spectators: this.getSpectators().map((spectator) => {
                 return {
                     id: spectator.id,

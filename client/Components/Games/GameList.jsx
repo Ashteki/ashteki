@@ -16,6 +16,7 @@ import AlertPanel from '../Site/AlertPanel';
 import * as actions from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
 import ShowHandIcon from '../../assets/img/ShowHandIcon.png';
+import OpenHandsIcon from '../../assets/img/OpenHandsIcon.png';
 import Phoenixborn from '../Decks/Phoenixborn';
 // ref error comment
 
@@ -218,6 +219,13 @@ class GameList extends React.Component {
                                         className='game-list-icon-white'
                                         alt={t('Show hands to spectators')}
                                         title={t('Show hands to spectators')}
+                                    />
+                                )}
+                                {game.openHands && (
+                                    <img
+                                        src={OpenHandsIcon}
+                                        className='game-list-icon-white'
+                                        title={'Play with open hands'}
                                     />
                                 )}
                                 {game.needsPassword && <FontAwesomeIcon icon={faLock} title='Password required' />}
