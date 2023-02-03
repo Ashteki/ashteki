@@ -367,7 +367,8 @@ class PendingGame {
                     avatar: spectator.user.avatar
                 };
             }),
-            useGameTimeLimit: this.useGameTimeLimit
+            useGameTimeLimit: this.useGameTimeLimit,
+            clockType: this.clockType
         };
     }
 
