@@ -1,14 +1,16 @@
 const OpenInformationLocations = ['play area', 'spellboard', 'purged', 'discard'];
 
 class CardVisibility {
-    constructor(showHands) {
+    constructor(showHands, openHands) {
         this.showHands = showHands;
+        this.openHands = openHands;
         this.rules = [
             (card) => this.isSpellRevealed(card),
             (card) => this.isPublicRule(card),
             (card) => this.isEffectRule(card),
             (card, player) => this.isControllerRule(card, player),
-            (card, player) => this.isSpectatorRule(card, player)
+            (card, player) => this.isSpectatorRule(card, player),
+            (card, player) => this.isOpenHandsRule(card, player)
         ];
     }
 
@@ -45,6 +47,13 @@ class CardVisibility {
             this.showHands && player.isSpectator() && ['hand', 'archives'].includes(card.location)
         );
     }
+
+    isOpenHandsRule(card, player) {
+        return (
+            this.openHands && ['hand'].includes(card.location)
+        );
+    }
+
 
     isSpellRevealed(card) {
         const revealedCards = [

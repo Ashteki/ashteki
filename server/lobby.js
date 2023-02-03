@@ -921,6 +921,7 @@ class Lobby {
             gameFormat: game.gameFormat,
             gameType: game.gameType,
             showHand: game.showHand,
+            openHands: game.openHands,
             allowSpectators: game.allowSpectators,
             swap: oldGame.swap,
             useGameTimeLimit: game.useGameTimeLimit,

@@ -303,8 +303,11 @@ class GameServer {
         this.games[pendingGame.id] = game;
 
         game.started = true;
+        logger.info(`starting game: ${game.id}`);
+
         for (let player of Object.values(pendingGame.players)) {
             let playerName = player.name;
+            logger.info(`game player: ${game.id} : ${playerName}`);
             game.setWins(playerName, player.wins);
 
             // rematch swap decks

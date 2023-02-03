@@ -162,6 +162,7 @@ class User {
             verified: this.userData.verified,
             blockList: this.userData.blockList,
             gamesPlayed: this.userData.gamesPlayed,
+            rankedGamesPlayed: this.userData.rankedGamesPlayed,
             eloRating: this.userData.eloRating,
             altArts: this.userData.altArts
         };

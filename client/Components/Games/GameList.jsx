@@ -7,7 +7,7 @@ import moment from 'moment';
 import { withTranslation, Trans } from 'react-i18next';
 import { Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash, faLock, faChessKnight } from '@fortawesome/free-solid-svg-icons';
 
 import PlayerName from '../Site/PlayerName';
 import { getFormatLabel, getGameTypeLabel } from '../../util';
@@ -16,6 +16,7 @@ import AlertPanel from '../Site/AlertPanel';
 import * as actions from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
 import ShowHandIcon from '../../assets/img/ShowHandIcon.png';
+import OpenHandsIcon from '../../assets/img/OpenHandsIcon.png';
 import Phoenixborn from '../Decks/Phoenixborn';
 // ref error comment
 
@@ -220,12 +221,32 @@ class GameList extends React.Component {
                                         title={t('Show hands to spectators')}
                                     />
                                 )}
-                                {game.needsPassword && <FontAwesomeIcon icon={faLock} />}
+                                {game.openHands && (
+                                    <img
+                                        src={OpenHandsIcon}
+                                        className='game-list-icon-white'
+                                        title={'Play with open hands'}
+                                    />
+                                )}
+                                {game.needsPassword && <FontAwesomeIcon icon={faLock} title='Password required' />}
                                 {game.useGameTimeLimit && (
                                     <img
                                         src={TimeLimitIcon}
                                         className='game-list-icon'
                                         alt={t('Time limit used')}
+                                        title={t('Time limit used')}
+                                    />
+                                )}
+                                {game.clockType === 'chess' && (
+                                    <FontAwesomeIcon
+                                        icon={faChessKnight}
+                                        title='Chess Clock'
+                                    />
+                                )}
+                                {!game.allowSpectators && (
+                                    <FontAwesomeIcon
+                                        icon={faEyeSlash}
+                                        title='No spectators'
                                     />
                                 )}
                             </span>
