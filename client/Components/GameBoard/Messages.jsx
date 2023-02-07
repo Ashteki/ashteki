@@ -8,10 +8,6 @@ import AlertPanel from '../Site/AlertPanel';
 import './Messages.scss';
 
 const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
-    const tokens = {
-        // amber: { className: 'icon-amber', imageSrc: AmberImage }
-    };
-
     const owner = useSelector(
         (state) => state.lobby.currentGame.players[state.lobby.currentGame.owner]
     );
@@ -163,68 +159,12 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                     </span>
                 );
             } else {
-                let messageFragment = processKeywords(fragment.toString());
+                let messageFragment = fragment.toString();
                 messages.push(
                     <span key={index++} className='message-fragment'>
                         {messageFragment}
                     </span>
                 );
-            }
-        }
-
-        return messages;
-    };
-
-    const processKeywords = (message) => {
-        let messages = [];
-        let i = 0;
-
-        for (let token of message.split(' ')) {
-            let lowerToken = token.toLowerCase();
-
-            if (tokens[lowerToken]) {
-                let tokenEntry = tokens[lowerToken];
-
-                switch (token) {
-                    case 'amber':
-                        token = 'Æmber';
-                        break;
-                    case 'amber.':
-                        token = 'Æmber.';
-                        break;
-                    case 'forgedkeyblue':
-                        token = 'blue key';
-                        break;
-                    case 'unforgedkeyblue':
-                        token = 'blue key';
-                        break;
-                    case 'unforgedkeyred':
-                        token = 'red key';
-                        break;
-                    case 'unforgedkeyyellow':
-                        token = 'yellow key';
-                        break;
-                    case 'forgedkeyred':
-                        token = 'red key';
-                        break;
-                    case 'forgedkeyyellow':
-                        token = 'yellow key';
-                        break;
-                    default:
-                        break;
-                }
-
-                messages.push(` ${token} `);
-                messages.push(
-                    <img
-                        key={`${token}-${i++}`}
-                        className={tokenEntry.className}
-                        src={tokenEntry.imageSrc}
-                    />
-                );
-                messages.push(' ');
-            } else {
-                messages.push(token + ' ');
             }
         }
 
