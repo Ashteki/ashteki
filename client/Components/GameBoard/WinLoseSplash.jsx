@@ -45,7 +45,6 @@ const WinLoseSplash = ({ game, onCloseClick }) => {
                     >Close</button>
                 </div>
             </div>
-            {/* <CardImage card={loser.phoenixborn} imgClass='splash-loser' /> */}
         </Panel>
     );
 };

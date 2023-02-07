@@ -341,7 +341,7 @@ const Card = ({
         let imageClass = classNames('card-image vertical', sizeClass, {
             exhausted: orientation === 'exhausted' || orientation === 'horizontal'
         });
-        let image = card ? (
+        const image = card ? (
             <div className={imageClass}>
                 <CardImage card={card} cardBack={cardBack} />
                 {getChainIcon(card)}
