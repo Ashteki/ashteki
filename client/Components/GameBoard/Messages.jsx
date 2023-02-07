@@ -119,7 +119,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         onMouseOver={onCardMouseOver.bind(this, fragment)}
                         onMouseOut={onCardMouseOut.bind(this)}
                     >
-                        {fragment.label + indexLabel}
+                        {fragment.name + indexLabel}
                     </span>
                 );
             } else if (fragment.name && fragment.argType === 'player') {
