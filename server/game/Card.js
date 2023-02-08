@@ -513,7 +513,12 @@ class Card extends PlayableObject {
             menu.push({ command: 'detachDie', text: 'Remove die', menu: 'main' });
         }
         if (UpgradeCardTypes.includes(this.type)) {
-            menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
+            if (!this.parent) {
+                menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
+            } else {
+                menu.push({ command: 'moveHand', text: 'Remove', menu: 'main' });
+
+            }
         }
         if (
             this.location === 'play area' ||
