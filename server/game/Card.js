@@ -249,11 +249,8 @@ class Card extends PlayableObject {
      */
 
     /**
-     * @typedef PlayProperties
-     * @property {CardLocation} location The location this effect can trigger from
-     * @property {function(any): boolean} condition An expression that returns whether this effect is allowed to trigger
-     * @property {string} effect The text added to the game log when this effect triggers
-     * @property {function(any): [any]} effectArgs A function that returns the arguments to the effect string
+     * Declares an ability triggered when the card is played
+     * @param {object} properties Object defining the ability
      */
     play(properties) {
         if (this.type === CardType.ActionSpell) {
@@ -405,6 +402,11 @@ class Card extends PlayableObject {
         );
     }
 
+    /**
+     * Creates an action for a card that can be used by the player when clicking
+     * @param {object} properties properties object describing the cost, title, and any then: clause
+     * @returns created CardAction
+     */
     action(properties) {
         const action = new CardAction(this.game, this, properties);
         if (action.printedAbility) {
@@ -412,6 +414,30 @@ class Card extends PlayableObject {
         }
 
         return action;
+    }
+
+    /**
+     * Wrapper method to card.action() to declare a summon ability. Includes a warning if at conjuration limit
+     * @param {string} cardId The 'card-stub' of the conjuration to summon e.g. 'silver-snake'
+     * @param {object} properties properties object describing the cost, title, and any then: clause
+     * @returns CardAction result of call to card.action
+     */
+    summon(cardId, properties) {
+        return this.action(
+            Object.assign(
+                {
+                    gameAction: AbilityDsl.actions.summon({
+                        conjuration: cardId
+                    }),
+                    getWarnings: (context) => {
+                        if (!context.player.archives.some((c) => c.id === cardId)) {
+                            return 'You don\'t have a conjuration to play'
+                        }
+                    }
+                },
+                properties
+            )
+        )
     }
 
     reaction(properties) {

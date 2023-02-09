@@ -46,10 +46,12 @@ describe('Summon Butterfly Monk', function () {
             });
         });
 
-        it('triggers but no monk', function () {
+        it('triggers warning but no monk', function () {
             expect(this.player1.dicepool[0].exhausted).toBe(false);
             this.player1.clickCard(this.summonButterflyMonk);
             this.player1.clickPrompt('Summon Butterfly Monk');
+            expect(this.player1).toHavePrompt('Warning');
+            this.player1.clickYes();
 
             // check spellboard is still just 1
             expect(this.player1.dicepool[0].exhausted).toBe(true);

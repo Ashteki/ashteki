@@ -4,7 +4,7 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonFalseDemon extends Card {
     setupCardAbilities(ability) {
-        this.action({
+        this.summon('false-demon', {
             title: 'Summon False Demon',
             cost: [
                 ability.costs.mainAction(),
@@ -14,10 +14,7 @@ class SummonFalseDemon extends Card {
                     new DiceCount(1, Level.Basic)
                 ])
             ],
-            location: 'spellboard',
-            gameAction: ability.actions.summon({
-                conjuration: 'false-demon'
-            })
+            location: 'spellboard'
         });
     }
 }

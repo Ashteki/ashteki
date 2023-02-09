@@ -68,4 +68,30 @@ describe('Summon Mirror Spirit', function () {
             expect(this.hammerKnight.exhausted).toBe(true);
         });
     });
+
+    describe('without conjurations', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: [],
+                    spellboard: ['summon-mirror-spirit', 'summon-mirror-spirit'],
+                    dicepool: ['sympathy', 'natural', 'natural', 'natural'],
+                    archives: [] // no mirror spirit in archives
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'iron-worker'],
+                    spellboard: []
+                }
+            });
+            this.ironWorker.tokens.exhaustion = 1;
+        });
+
+        it('gives warning', function () {
+            this.player1.clickCard(this.summonMirrorSpirit);
+            this.player1.clickPrompt('Summon Mirror Spirit');
+            expect(this.player1).toHavePrompt('Warning');
+        });
+    });
 });

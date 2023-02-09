@@ -4,7 +4,8 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonWingedLioness extends Card {
     setupCardAbilities(ability) {
-        this.action({
+        this.summon('winged-lioness', {
+            location: 'spellboard',
             title: 'Summon Winged Lioness',
             cost: [
                 ability.costs.mainAction(),
@@ -13,11 +14,7 @@ class SummonWingedLioness extends Card {
                     new DiceCount(1, Level.Class, Magic.Divine),
                     new DiceCount(1, Level.Basic)
                 ])
-            ],
-            location: 'spellboard',
-            gameAction: ability.actions.summon({
-                conjuration: 'winged-lioness'
-            })
+            ]
         });
     }
 }
