@@ -83,6 +83,49 @@
                 "[[main]]",
                 "1 [[basic]]"
             ]
+        },
+        {
+            "name": "Summon Bone Crow",
+            "stub": "summon-bone-crow",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[main]]"
+            ]
+        },
+        {
+            "name": "Bone Crow",
+            "stub": "bone-crow",
+            "type": "Conjuration",
+            "attack": 1,
+            "life": 1,
+            "recover": 0
+        },
+        {
+            "name": "Summon Calamity Golem",
+            "stub": "summon-calamity-golem",
+            "type": "Action Spell",
+            "cost": [
+                "[[main]]",
+                "3 [[ceremonial:class]]"
+            ]
+        },
+        {
+            "name": "Calamity Golem",
+            "stub": "calamity-golem",
+            "type": "Conjuration",
+            "attack": 3,
+            "life": 5,
+            "recover": 0
+        },
+        {
+            "name": "Blood Brawl",
+            "stub": "blood-brawl",
+            "type": "Action Spell",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]"
+            ]
         }
     ]
 }
