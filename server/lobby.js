@@ -14,7 +14,7 @@ const UserService = require('./services/AshesUserService');
 const ConfigService = require('./services/ConfigService');
 const User = require('./models/User');
 const { sortBy } = require('./Array');
-const DummyPlayer = require('./game/dummyplayer.js');
+const DummyUser = require('./game/dummyuser.js');
 
 class Lobby {
     constructor(server, options = {}) {
@@ -468,6 +468,13 @@ class Lobby {
                 return;
             }
         }
+
+        if (game.solo) {
+            const dummy = new DummyUser();
+            game.addPlayer(0, dummy);
+            await this.selectDeck(game, dummy, -1, 0, game.gameFormat)
+        }
+
         this.sendGameState(game);
 
         this.games[game.id] = game;
@@ -599,7 +606,7 @@ class Lobby {
         }
 
         if (game.solo) {
-            game.leave(DummyPlayer.DUMMY_USERNAME);
+            game.leave(DummyUser.DUMMY_USERNAME);
         }
         game.leave(socket.user.username);
         socket.send('cleargamestate');
@@ -640,17 +647,19 @@ class Lobby {
         this.sendGameState(game);
     }
 
-    async selectDeck(game, user, deckId, isStandalone, chooseForMeType) {
+    async selectDeck(game, user, deckId, isPrecon, chooseForMeType) {
         // get cards (need this for random deck generation)
-        const cards = await this.cardService.getAllCards();
+        const cards = this.cards;
         let deck = null;
-        if (isStandalone) {
+        if (isPrecon) {
             deck = await this.deckService.getPreconDeckById(deckId);
+        } else if (game.gameFormat === 'coaloff') {
+            deck = this.deckService.getCoalOffDeck(cards);
+        } else if (game.solo) {
+            deck = await this.deckService.getPreconDeckById('63667c1e0c635022600165a4');
         } else {
             switch (deckId) {
-                case -2: // coaloff!
-                    deck = this.deckService.getCoalOffDeck(cards);
-                    break;
+
                 case -1: // random choice 
                     deck = await this.deckService.getRandomChoice(user, chooseForMeType);
                     break;

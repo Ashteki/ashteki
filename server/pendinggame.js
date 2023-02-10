@@ -4,7 +4,6 @@ const crypto = require('crypto');
 
 const GameChat = require('./game/gamechat.js');
 const logger = require('./log');
-const DummyPlayer = require('./game/dummyplayer.js')
 
 class PendingGame {
     constructor(owner, details) {
@@ -116,9 +115,6 @@ class PendingGame {
 
         if (join) {
             this.addPlayer(id, user);
-            if (this.solo) {
-                this.addPlayer(0, new DummyPlayer());
-            }
         }
     }
 
