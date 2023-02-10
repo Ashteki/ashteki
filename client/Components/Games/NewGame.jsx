@@ -74,7 +74,8 @@ const NewGame = ({
         gameTimeLimit: defaultTimeLimit || 50,
         clockType: 'timer',
         gamePrivate: defaultPrivate,
-        ranked: false
+        ranked: false,
+        solo: false
     };
 
     const options = [
@@ -82,7 +83,8 @@ const NewGame = ({
         { name: 'allowSpectators', label: t('Allow spectators') },
         { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
         { name: 'showHand', label: t('Show hands to spectators') },
-        { name: 'openHands', label: 'Play with open hands' }
+        { name: 'openHands', label: 'Play with open hands' },
+        { name: 'solo', label: 'Play solo' }
     ];
 
     let clockType = [

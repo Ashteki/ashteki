@@ -43,6 +43,7 @@ class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
         this.allowSpectators = details.allowSpectators;
+        this.solo = details.solo;
         this.cancelPromptUsed = false;
         this.chatCommands = new ChatCommands(this);
         this.createdAt = new Date();

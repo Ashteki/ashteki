@@ -4,6 +4,7 @@ const crypto = require('crypto');
 
 const GameChat = require('./game/gamechat.js');
 const logger = require('./log');
+const DummyPlayer = require('./game/dummyplayer.js')
 
 class PendingGame {
     constructor(owner, details) {
@@ -28,6 +29,7 @@ class PendingGame {
         this.swap = !!details.swap;
         this.rematch = false;
         this.tournament = details.tournament;
+        this.solo = details.solo;
 
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.gameTimeLimit = details.gameTimeLimit;
@@ -114,6 +116,9 @@ class PendingGame {
 
         if (join) {
             this.addPlayer(id, user);
+            if (this.solo) {
+                this.addPlayer(0, new DummyPlayer());
+            }
         }
     }
 
@@ -369,6 +374,7 @@ class PendingGame {
                     avatar: spectator.user.avatar
                 };
             }),
+            solo: this.solo,
             useGameTimeLimit: this.useGameTimeLimit,
             clockType: this.clockType
         };
@@ -416,7 +422,8 @@ class PendingGame {
             started: this.started,
             swap: this.swap,
             useGameTimeLimit: this.useGameTimeLimit,
-            clockType: this.clockType
+            clockType: this.clockType,
+            solo: this.solo
         };
     }
 }

@@ -14,6 +14,7 @@ const UserService = require('./services/AshesUserService');
 const ConfigService = require('./services/ConfigService');
 const User = require('./models/User');
 const { sortBy } = require('./Array');
+const DummyPlayer = require('./game/dummyplayer.js');
 
 class Lobby {
     constructor(server, options = {}) {
@@ -597,6 +598,9 @@ class Lobby {
             return;
         }
 
+        if (game.solo) {
+            game.leave(DummyPlayer.DUMMY_USERNAME);
+        }
         game.leave(socket.user.username);
         socket.send('cleargamestate');
         socket.leaveChannel(game.id);
@@ -1009,6 +1013,8 @@ class Lobby {
             syncGame.node = this.router.workers[nodeName];
             syncGame.password = game.password;
             syncGame.started = game.started;
+
+            syncGame.solo = game.solo;
 
             for (let player of Object.values(game.players)) {
                 syncGame.players[player.name] = {
