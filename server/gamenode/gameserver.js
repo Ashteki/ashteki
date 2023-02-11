@@ -12,7 +12,7 @@ const Game = require('../game/game');
 const Socket = require('../socket');
 const ConfigService = require('../services/ConfigService');
 const version = require('../../version');
-const DummyUser = require('../game/dummyuser');
+const DummyUser = require('../models/DummyUser');
 
 class GameServer {
     constructor() {

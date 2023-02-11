@@ -4,6 +4,7 @@ const crypto = require('crypto');
 
 const GameChat = require('./game/gamechat.js');
 const logger = require('./log');
+const PendingPlayer = require('./models/PendingPlayer.js');
 
 class PendingGame {
     constructor(owner, details) {
@@ -90,13 +91,8 @@ class PendingGame {
             return;
         }
 
-        this.players[user.username] = {
-            id: id,
-            name: user.username,
-            owner: this.owner.username === user.username,
-            user: user,
-            wins: 0
-        };
+        const isOwner = this.owner.username === user.username;
+        this.players[user.username] = new PendingPlayer(id, user.username, isOwner, user);
     }
 
     addSpectator(id, user) {

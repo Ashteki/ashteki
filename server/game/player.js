@@ -12,7 +12,10 @@ class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
         super(game);
         this.user = user;
-        this.emailHash = this.user.emailHash;
+        this.role = user.role;
+        this.avatar = user.avatar;
+        this.optionSettings = user.settings.optionSettings;
+
         this.id = id;
         this.owner = owner;
 
@@ -37,11 +40,8 @@ class Player extends GameObject {
         this.maxLimited = 1;
         this.limitedPlayed = 0;
         this.showDeck = false;
-        this.role = user.role;
-        this.avatar = user.avatar;
 
         this.playableLocations = [new PlayableLocation('play', this, 'hand')];
-        this.optionSettings = user.settings.optionSettings;
 
         this.promptState = new PlayerPromptState(this);
         this.inspectionCard = null;
@@ -57,15 +57,6 @@ class Player extends GameObject {
         this.expectedScore = undefined;
 
         this.suddenDeath = false;
-    }
-
-    getAlertTimerSetting() {
-        let result = 5;
-        if (this.optionSettings.alertTimer !== null) {
-            result = this.optionSettings.alertTimer;
-        }
-
-        return result;
     }
 
     get name() {
@@ -100,6 +91,15 @@ class Player extends GameObject {
     resetClock() {
         if (!this.clock) return;
         this.clock.reset();
+    }
+
+    getAlertTimerSetting() {
+        let result = 5;
+        if (this.optionSettings.alertTimer !== null) {
+            result = this.optionSettings.alertTimer;
+        }
+
+        return result;
     }
 
     /**
@@ -652,15 +652,15 @@ class Player extends GameObject {
         this.promptState.clearSelectableDice();
     }
 
-    getSummaryForCardList(list, activePlayer, hideWhenFaceup) {
+    getSummaryForCardList(list, activePlayer) {
         return list.map((card) => {
-            return card.getSummary(activePlayer, hideWhenFaceup);
+            return card.getSummary(activePlayer);
         });
     }
 
-    getSummaryForDiceList(list, activePlayer, hideWhenFaceup) {
+    getSummaryForDiceList(list, activePlayer) {
         return list.map((die) => {
-            return die.getSummary(activePlayer, hideWhenFaceup);
+            return die.getSummary(activePlayer);
         });
     }
 
@@ -735,7 +735,7 @@ class Player extends GameObject {
 
     getState(activePlayer) {
         let isActivePlayer = activePlayer === this;
-        let promptState = isActivePlayer ? this.promptState.getState() : {};
+        let promptState = (isActivePlayer || this.game.solo) ? this.promptState.getState() : {};
         let playerState = {
             cardPiles: {
                 archives: this.getSummaryForCardList(this.archives, activePlayer),
@@ -775,7 +775,7 @@ class Player extends GameObject {
             firstPlayer: this.firstPlayer
         };
 
-        if (isActivePlayer) {
+        if (isActivePlayer || this.game.solo) {
             let sortedDeck = this.deck.slice();
             sortedDeck.sort((a, b) => {
                 const typeValueA = this.getTypeValue(a.type);

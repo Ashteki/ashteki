@@ -1,5 +1,9 @@
-const User = require("../models/User");
+const User = require("./User");
+const PvpFFStrategy = require("../game/solo/PvpFFStrategy");
 
+/**
+ * Dummy user acts as a proxy for LOBBY
+ */
 class DummyUser extends User {
     constructor() {
         super({
@@ -11,6 +15,10 @@ class DummyUser extends User {
     static DUMMY_USERNAME = 'dummy'
     get username() {
         return DummyUser.DUMMY_USERNAME;
+    }
+
+    get isDummy() {
+        return true;
     }
 
     hasUserBlocked() {

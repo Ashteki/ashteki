@@ -38,6 +38,7 @@ const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
+const DummyPlayer = require('./solo/DummyPlayer');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -89,7 +90,7 @@ class Game extends EventEmitter {
         this.cardData = options.cardData || [];
         this.showHand = details.showHand;
         this.openHands = details.openHands;
-        this.cardVisibility = new CardVisibility(this.showHand, this.openHands);
+        this.cardVisibility = new CardVisibility(this.showHand, this.openHands, this.solo);
 
         this.useGameTimeLimit = details.useGameTimeLimit;
         const clockDetails = { type: 'none', time: 0 };
@@ -103,13 +104,8 @@ class Game extends EventEmitter {
         }
         this.clockType = details.clockType;
         _.each(details.players, (player) => {
-            this.playersAndSpectators[player.user.username] = new Player(
-                player.id,
-                player.user,
-                this.owner === player.user.username,
-                this,
-                clockDetails
-            );
+            const newPlayer = this.createPlayer(player, clockDetails);
+            this.playersAndSpectators[player.user.username] = newPlayer;
         });
 
         _.each(details.spectators, (spectator) => {
@@ -120,6 +116,21 @@ class Game extends EventEmitter {
         });
 
         this.setMaxListeners(0);
+    }
+
+    createPlayer(player, clockDetails) {
+        const isOwner = this.owner === player.user.username;
+        if (player.playerType === 'dummy') {
+            return new DummyPlayer(player.id, player.user, isOwner, this, clockDetails)
+        }
+
+        return new Player(
+            player.id,
+            player.user,
+            isOwner,
+            this,
+            clockDetails
+        );
     }
 
     getCardIndex() {
@@ -376,11 +387,11 @@ class Game extends EventEmitter {
 
     /**
      * This function is called from the client whenever a card is clicked
-     * @param {String} sourcePlayer - name of the clicking player
+     * @param {String} username - name of the clicking user
      * @param {String} cardId - uuid of the card clicked
      */
-    cardClicked(sourcePlayer, cardId) {
-        let player = this.getPlayerByName(sourcePlayer);
+    cardClicked(username, cardId) {
+        let player = this.getPlayerByName(username);
 
         if (!player) {
             return;
@@ -892,16 +903,16 @@ class Game extends EventEmitter {
     }
 
     /**
-     * This function is called by the client whenever a player clicks a button
+     * This function is called by the client whenever a user clicks a button
      * in a prompt
-     * @param {String} playerName
+     * @param {String} username
      * @param {String} arg - arg property of the button clicked
      * @param {String} uuid - unique identifier of the prompt clicked
      * @param {String} method - method property of the button clicked
      * @returns {Boolean} this indicates to the server whether the received input is legal or not
      */
-    menuButton(playerName, arg, uuid, method) {
-        let player = this.getPlayerByName(playerName);
+    menuButton(username, arg, uuid, method) {
+        let player = this.getPlayerByName(username);
         if (!player) {
             return false;
         }
@@ -937,6 +948,11 @@ class Game extends EventEmitter {
             this.manualMode = false;
             this.addAlert('danger', '{0} switches manual mode off', player);
         } else {
+            if (this.solo) {
+                this.manualMode = true;
+                this.addAlert('danger', '{0} switches manual mode on', player);
+                return;
+            }
             if (!this.requestingManualMode) {
                 this.addAlert('danger', '{0} is attempting to switch manual mode on', player);
                 this.requestingManualMode = true;
@@ -1560,7 +1576,7 @@ class Game extends EventEmitter {
         };
     }
 
-    /*
+    /**
      * This information is sent to the client
      */
     getState(activePlayerName) {
@@ -1589,6 +1605,7 @@ class Game extends EventEmitter {
                 round: this.round,
                 showHand: this.showHand,
                 openHands: this.openHands,
+                solo: this.solo,
                 spectators: this.getSpectators().map((spectator) => {
                     return {
                         id: spectator.id,

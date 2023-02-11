@@ -14,7 +14,7 @@ const UserService = require('./services/AshesUserService');
 const ConfigService = require('./services/ConfigService');
 const User = require('./models/User');
 const { sortBy } = require('./Array');
-const DummyUser = require('./game/dummyuser.js');
+const DummyUser = require('./models/DummyUser.js');
 
 class Lobby {
     constructor(server, options = {}) {
@@ -655,11 +655,10 @@ class Lobby {
             deck = await this.deckService.getPreconDeckById(deckId);
         } else if (game.gameFormat === 'coaloff') {
             deck = this.deckService.getCoalOffDeck(cards);
-        } else if (game.solo) {
+        } else if (game.solo && user.isDummy) {
             deck = await this.deckService.getPreconDeckById('63667c1e0c635022600165a4');
         } else {
             switch (deckId) {
-
                 case -1: // random choice 
                     deck = await this.deckService.getRandomChoice(user, chooseForMeType);
                     break;

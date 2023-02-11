@@ -1257,7 +1257,7 @@ class Card extends PlayableObject {
         return result;
     }
 
-    getSummary(activePlayer, hideWhenFaceup) {
+    getSummary(activePlayer) {
         let isController = activePlayer === this.controller;
         let selectionState = activePlayer.getCardSelectionState(this);
 
@@ -1289,7 +1289,7 @@ class Card extends PlayableObject {
                 this.getLegalActions(activePlayer).length > 0
             ),
             childCards: this.childCards.map((card) => {
-                return card.getSummary(activePlayer, hideWhenFaceup);
+                return card.getSummary(activePlayer);
             }),
             controlled: this.owner !== this.controller,
             exhausted: this.exhausted,
@@ -1302,7 +1302,7 @@ class Card extends PlayableObject {
             new: this.new,
             type: this.getType(),
             upgrades: this.upgrades.map((upgrade) => {
-                return upgrade.getSummary(activePlayer, hideWhenFaceup);
+                return upgrade.getSummary(activePlayer);
             }),
             dieUpgrades: this.dieUpgrades.map((die) => {
                 return die.getSummary(activePlayer);

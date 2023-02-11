@@ -15,6 +15,16 @@ class FirstFivePrompt extends AllPlayerPrompt {
 
     continue() {
         if (!this.isComplete()) {
+            //TODO: check for dummy player and trigger FFStrategy
+            this.game
+                .getPlayers()
+                .filter((p) => !p.firstFiveChosen)
+                .forEach((p) => {
+                    if (p.ffStrategy) {
+                        p.ffStrategy.execute(this);
+                    }
+                })
+
             this.highlightSelectableCards();
         }
 
@@ -72,6 +82,9 @@ class FirstFivePrompt extends AllPlayerPrompt {
         player.setSelectableCards(this.selectableCards[player.name]);
     }
 
+    /**
+     * Set selectable cards for each player if not first five chosen 
+     */
     highlightSelectableCards() {
         this.game
             .getPlayers()

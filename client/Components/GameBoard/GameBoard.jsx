@@ -566,7 +566,20 @@ export class GameBoard extends React.Component {
         );
     }
 
-    getPromptArea(thisPlayer) {
+    getPromptArea(thisPlayer, otherPlayer) {
+        let otherPlayerPrompt = null;
+        if (this.props.currentGame.solo) {
+            otherPlayerPrompt = <ActivePlayerPrompt
+                cards={this.props.cards}
+                promptState={otherPlayer.promptState}
+                onButtonClick={this.onCommand}
+                onMouseOver={this.onMouseOver}
+                onMouseOut={this.onMouseOut}
+                onTimerExpired={this.onTimerExpired.bind(this)}
+                phase={this.props.currentGame.currentPhase}
+            />
+        }
+
         const logArea = thisPlayer.inspectionCard ? (
             <CardInspector card={thisPlayer.inspectionCard} />
         ) : (
@@ -574,6 +587,7 @@ export class GameBoard extends React.Component {
         );
         return (
             <div className='prompt-area panel'>
+                {otherPlayerPrompt}
                 {logArea}
                 <div className='inset-pane'>
                     <ActivePlayerPrompt
