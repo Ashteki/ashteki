@@ -67,6 +67,10 @@ class Player extends GameObject {
         return 'player';
     }
 
+    get isDummy() {
+        return false;
+    }
+
     isSpectator() {
         return false;
     }
@@ -788,7 +792,7 @@ class Player extends GameObject {
 
                 return 0;
             });
-            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer, true);
+            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer);
             playerState.firstFive = this.firstFive;
             playerState.diceHistory = this.diceHistory;
             playerState.inspectionCard = this.inspectionCard?.getSummary(activePlayer);

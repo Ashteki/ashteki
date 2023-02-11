@@ -7,6 +7,10 @@ class DummyPlayer extends Player {
         this.firstFiveStrategy = new PvpFFStrategy(this);
     }
 
+    get isDummy() {
+        return true;
+    }
+
     get ffStrategy() {
         return this.firstFiveStrategy;
     }

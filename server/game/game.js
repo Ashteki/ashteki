@@ -1031,20 +1031,25 @@ class Game extends EventEmitter {
             ];
             this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCounts[0]);
             this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCounts[1]);
-            const activeIndex = basicCounts[0] > basicCounts[1] ? 0 : 1;
-            this.activePlayer = players[activeIndex];
 
-            this.addAlert(
-                'info',
-                '{0} rolled the most basics so will choose first player',
-                this.activePlayer
-            );
-            this.queueStep(
-                new FirstPlayerSelection(this, {
-                    activeBasics: basicCounts[activeIndex],
-                    opponentBasics: basicCounts[1 - activeIndex]
-                })
-            );
+            if (this.solo) {
+                this.setGameFirstPlayer(players.find(p => !p.isDummy));
+            } else {
+                const activeIndex = basicCounts[0] > basicCounts[1] ? 0 : 1;
+                this.activePlayer = players[activeIndex];
+
+                this.addAlert(
+                    'info',
+                    '{0} rolled the most basics so will choose first player',
+                    this.activePlayer
+                );
+                this.queueStep(
+                    new FirstPlayerSelection(this, {
+                        activeBasics: basicCounts[activeIndex],
+                        opponentBasics: basicCounts[1 - activeIndex]
+                    })
+                );
+            }
         } else {
             const newFirstPlayer =
                 this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
