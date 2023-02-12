@@ -1,5 +1,4 @@
 const User = require("./User");
-const PvpFFStrategy = require("../game/solo/PvpFFStrategy");
 
 /**
  * Dummy user acts as a proxy for LOBBY

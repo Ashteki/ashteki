@@ -15,15 +15,15 @@ class FirstFivePrompt extends AllPlayerPrompt {
 
     continue() {
         if (!this.isComplete()) {
-            //TODO: check for dummy player and trigger FFStrategy
+            // check for dummy player and trigger strategy
             this.game
                 .getPlayers()
-                .filter((p) => !p.firstFiveChosen)
+                .filter((p) => !this.completionCondition(p))
                 .forEach((p) => {
                     if (p.ffStrategy) {
                         p.ffStrategy.execute(this);
                     }
-                })
+                });
 
             this.highlightSelectableCards();
         }

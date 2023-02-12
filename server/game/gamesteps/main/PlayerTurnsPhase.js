@@ -12,6 +12,7 @@ class PlayerTurnsPhase extends Phase {
         this.game.beginTurn();
         this.game.activePlayer.beginTurn();
 
+        //TODO: switch here for Chimera turn
         this.queueStep(new ActionWindow(this.game));
 
         this.queueStep(new SimpleStep(this.game, () => this.game.raiseEndTurnEvent()));
