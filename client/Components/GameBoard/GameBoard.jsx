@@ -269,7 +269,7 @@ export class GameBoard extends React.Component {
                             side='top'
                             dice={otherPlayer.dice}
                             purgedPile={otherPlayer.cardPiles.purged}
-                        />)}
+                        behaviour={otherPlayer.behaviour}
                 </div>
                 <div className='player-home-row'>
                     <PlayerPBRow

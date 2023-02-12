@@ -656,7 +656,7 @@ class Lobby {
         } else if (game.gameFormat === 'coaloff') {
             deck = this.deckService.getCoalOffDeck(cards);
         } else if (game.solo && user.isDummy) {
-            deck = await this.deckService.getPreconDeckById('63667c1e0c635022600165a4');
+            deck = await this.deckService.getPreconDeckById('63667c1e0c635022600165aa');
         } else {
             switch (deckId) {
                 case -1: // random choice 

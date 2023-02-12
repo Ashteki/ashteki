@@ -1231,6 +1231,18 @@ class Card extends PlayableObject {
         return actions.concat(this.actions.slice());
     }
 
+    canPlay(activePlayer) {
+        let isController = activePlayer === this.controller;
+
+        return !!(
+            activePlayer === this.game.activePlayer &&
+            isController &&
+            //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target
+            // and properties when interrupted mid-resolution
+            this.getLegalActions(activePlayer).length > 0
+        )
+    }
+
     getModifiedController() {
         if (this.location === 'play area' || this.location === 'spellboard') {
             return this.mostRecentEffect('takeControl') || this.defaultController;
@@ -1258,7 +1270,6 @@ class Card extends PlayableObject {
     }
 
     getSummary(activePlayer) {
-        let isController = activePlayer === this.controller;
         let selectionState = activePlayer.getCardSelectionState(this);
 
         if (!this.game.isCardVisible(this, activePlayer) && !this.game.isCardPublic(this)) {
@@ -1279,15 +1290,8 @@ class Card extends PlayableObject {
             index: this.index,
             imageStub: this.getImageStub(),
             altArts: this.altArts,
-
-            canPlay: !!(
-                activePlayer === this.game.activePlayer &&
-                isController &&
-                //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target
-                // and properties when interrupted mid-resolution
-                activePlayer.promptState.promptTitle === 'Play phase' &&
-                this.getLegalActions(activePlayer).length > 0
-            ),
+            canPlay: this.canPlay(activePlayer) &&
+                activePlayer.promptState.promptTitle === 'Play phase',
             childCards: this.childCards.map((card) => {
                 return card.getSummary(activePlayer);
             }),

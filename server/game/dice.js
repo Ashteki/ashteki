@@ -33,6 +33,10 @@ class Dice {
         return Math.floor(Math.random() * Math.floor(max));
     }
 
+    static d12Roll() {
+        return this.getRandomInt(12);
+    }
+
     // can diceReq be matched from the collection of dice?
     static canMatch(dice, diceReq) {
         const matchedDice = this.matchDice(dice, diceReq, true);

@@ -57,6 +57,7 @@ class Player extends GameObject {
         this.expectedScore = undefined;
 
         this.suddenDeath = false;
+        this.behaviour = undefined;
     }
 
     get name() {
@@ -798,6 +799,9 @@ class Player extends GameObject {
             playerState.inspectionCard = this.inspectionCard?.getSummary(activePlayer);
         }
 
+        if (!isActivePlayer) {
+            playerState.behaviour = this.behaviour;
+        }
         if (this.clock) {
             playerState.clock = this.clock.getState();
         }
