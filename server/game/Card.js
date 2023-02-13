@@ -38,7 +38,7 @@ class Card extends PlayableObject {
         this.id = cardData.stub;
         this.printedName = cardData.name;
         // this is the default imageStub for the card - this can be overridden by alt arts later
-        this.imageStub = cardData.stub;
+        this.imageStub = cardData.imageStub || cardData.stub;
         this.printedType = cardData.type;
         this.index = 0;
 

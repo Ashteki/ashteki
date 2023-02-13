@@ -262,6 +262,9 @@ class Player extends GameObject {
         this.diceCounts = preparedDeck.diceCounts;
         this.phoenixborn = preparedDeck.phoenixborn;
         this.cardsInPlay = [this.phoenixborn];
+        if (preparedDeck.ultimate) {
+            this.spellboard = [preparedDeck.ultimate];
+        }
         this.dice = preparedDeck.dice;
     }
 
@@ -777,6 +780,8 @@ class Player extends GameObject {
             actions: this.actions,
             limitedPlayed: this.limitedPlayed,
             phoenixborn: this.phoenixborn.getSummary(activePlayer),
+            ultimate: this.ultimate && this.ultimate.getSummary(activePlayer),
+
             firstPlayer: this.firstPlayer
         };
 

@@ -656,7 +656,7 @@ class Lobby {
         } else if (game.gameFormat === 'coaloff') {
             deck = this.deckService.getCoalOffDeck(cards);
         } else if (game.solo && user.isDummy) {
-            deck = await this.deckService.getPreconDeckById('63667c1e0c635022600165aa');
+            deck = await this.deckService.getPreconDeckById('63eab7769c357a3d68371043');
         } else {
             switch (deckId) {
                 case -1: // random choice 
@@ -683,6 +683,12 @@ class Lobby {
         for (let pb of deck.phoenixborn) {
             pb.card = cards[pb.id];
             hasPhoenixborn = true;
+        }
+
+        if (deck.ultimate) {
+            for (let u of deck.ultimate) {
+                u.card = cards[u.id];
+            }
         }
 
         let hasConjurations = this.checkConjurations(deck);

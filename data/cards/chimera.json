@@ -1,0 +1,49 @@
+{
+    "results": [
+        {
+            "name": "The Corpse of Viros",
+            "stub": "viros-s1",
+            "type": "Chimera",
+            "level": "standard",
+            "rank": 1,
+            "threat": 4,
+            "life": 30,
+            "ultimate": 3,
+            "setup": [
+                1,
+                2,
+                2,
+                2
+            ],
+            "imageStub": "http://localhost:4000/img/chimera/viros-s1.png"
+        },
+        {
+            "name": "Viros Ultimate 1",
+            "stub": "viros-ultimate-1",
+            "type": "Ready Spell",
+            "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-1.png"
+        },
+        {
+            "name": "Rampage",
+            "stub": "rampage",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 2,
+            "blood": 1,
+            "imageStub": "http://localhost:4000/img/chimera/rampage.png"
+        },
+        {
+            "name": "Hunting Instincts",
+            "stub": "hunting-instincts",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 4,
+            "life": 3,
+            "blood": 2,
+            "imageStub": "http://localhost:4000/img/chimera/hunting-instincts.png"
+        }
+    ]
+}

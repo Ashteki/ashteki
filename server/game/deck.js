@@ -38,6 +38,7 @@ class Deck {
             cards: [],
             diceCounts: [],
             phenixborn: null,
+            ultimate: null,
             dice: []
         };
 
@@ -66,6 +67,16 @@ class Deck {
                 pbCard.location = 'play area';
 
                 result.phoenixborn = pbCard;
+            }
+        });
+
+        this.eachRepeatedCard(this.data.ultimate, (ultData) => {
+            let ultCard = this.createCard(player, ultData);
+            if (ultCard) {
+                ultCard.setupAbilities();
+                ultCard.location = 'spellboard';
+
+                result.ultimate = ultCard;
             }
         });
 

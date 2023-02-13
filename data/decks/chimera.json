@@ -1,0 +1,36 @@
+[
+  {
+    "precon_id": 801,
+    "mode": "chimera",
+    "name": "The Corpse of Viros - Standard",
+    "phoenixborn": [
+      {
+        "id": "viros-s1",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "viros-ultimate-1",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "rampage",
+        "count": 9
+      },
+      {
+        "id": "hunting-instincts",
+        "count": 9
+      }
+    ],
+    "conjurations": []
+  }
+]

@@ -175,6 +175,7 @@ class AshesDeckService {
         let properties = {
             name: deck.deckName || deck.name,
             phoenixborn: deck.phoenixborn,
+            ultimate: deck.ultimate,
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,
@@ -199,6 +200,7 @@ class AshesDeckService {
         let properties = {
             name: deck.deckName || deck.name,
             phoenixborn: deck.phoenixborn,
+            ultimate: deck.ultimate,
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,

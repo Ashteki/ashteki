@@ -70,6 +70,19 @@ class ImportPrecons {
 
             console.log('Done importing FA decks');
             console.log('----------');
+
+            for (let deck of this.loadChimeraDecks()) {
+                deck.preconGroup = 5;
+
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing Chimera decks');
+            console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -95,6 +108,12 @@ class ImportPrecons {
 
     loadBBDecks() {
         let file = 'building-basics.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadChimeraDecks() {
+        let file = 'chimera.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }
