@@ -1,10 +1,11 @@
 const Player = require("../player");
+const ChimeraFFStrategy = require("./ChimeraFFStrategy");
 const NullPromptStrategy = require("./NullPromptStrategy");
 
 class DummyPlayer extends Player {
     constructor(id, user, owner, game, clockdetails) {
         super(id, user, owner, game, clockdetails);
-        this.firstFiveStrategy = new NullPromptStrategy(this, 'done');
+        this.firstFiveStrategy = new ChimeraFFStrategy(this);
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
         this.threatZone = []; // this is where 'drawn' aspects sit facedown in the battlefield before being 'flipped'
@@ -23,8 +24,8 @@ class DummyPlayer extends Player {
     }
 
     replenishAspects() {
-        const threat = this.phoenixborn.threat;
-        const cards = this.deck.slice(0, threat);
+        const amount = this.phoenixborn.threat - this.cardsInPlay.length;
+        const cards = this.deck.slice(0, amount);
         cards.forEach(c => {
             this.moveCard(c, 'threatZone');
         })

@@ -1024,25 +1024,26 @@ class Game extends EventEmitter {
 
     determineFirstPlayer() {
         if (!this.gameFirstPlayer) {
-            let players = this.getPlayers();
-            let i = 0;
-            while (
-                Dice.countBasic(players[0].dice) == Dice.countBasic(players[1].dice) &&
-                i < 100
-            ) {
-                this.reRollPlayerDice();
-                i++;
-            }
-            const basicCounts = [
-                Dice.countBasic(players[0].dice),
-                Dice.countBasic(players[1].dice)
-            ];
-            this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCounts[0]);
-            this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCounts[1]);
+            const players = this.getPlayers();
 
             if (this.solo) {
                 this.setGameFirstPlayer(players.find(p => !p.isDummy));
             } else {
+                let i = 0;
+                while (
+                    Dice.countBasic(players[0].dice) == Dice.countBasic(players[1].dice) &&
+                    i < 100
+                ) {
+                    this.reRollPlayerDice();
+                    i++;
+                }
+                const basicCounts = [
+                    Dice.countBasic(players[0].dice),
+                    Dice.countBasic(players[1].dice)
+                ];
+                this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCounts[0]);
+                this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCounts[1]);
+
                 const activeIndex = basicCounts[0] > basicCounts[1] ? 0 : 1;
                 this.activePlayer = players[activeIndex];
 
@@ -1080,7 +1081,7 @@ class Game extends EventEmitter {
     }
 
     reRollPlayerDice() {
-        for (let player of this.getPlayers()) {
+        for (let player of this.getPlayers().filter(p => !p.isDummy)) {
             player.rerollAllDice(this.round);
         }
     }

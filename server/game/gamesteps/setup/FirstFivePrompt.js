@@ -13,6 +13,10 @@ class FirstFivePrompt extends AllPlayerPrompt {
         return player.firstFiveChosen;
     }
 
+    setPlayerComplete(player) {
+        player.firstFiveChosen = true;
+    }
+
     continue() {
         if (!this.isComplete()) {
             // check for dummy player and trigger strategy
