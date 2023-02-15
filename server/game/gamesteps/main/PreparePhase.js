@@ -24,21 +24,25 @@ class PreparePhase extends Phase {
     }
 
     drawCards() {
-        const firstPlayer = this.game.roundFirstPlayer;
-        this.game.actions
-            .draw({ refill: true })
-            .resolve(firstPlayer, this.game.getFrameworkContext());
-        this.game.actions
-            .draw({ refill: true })
-            .resolve(firstPlayer.opponent, this.game.getFrameworkContext());
+        const players = [this.game.roundFirstPlayer, this.game.roundFirstPlayer.opponent];
+        players.forEach(p => {
+            if (!p.isDummy) {
+                this.game.actions
+                    .draw({ refill: true })
+                    .resolve(p, this.game.getFrameworkContext());
+            }
+        })
     }
 
     fatigueDamage() {
         if (!this.game.disableFatigue) {
-            const playerShortfall = [
-                this.getShortfall(this.game.roundFirstPlayer),
-                this.getShortfall(this.game.roundFirstPlayer.opponent)
-            ];
+            const playerShortfall = [];
+            const players = [this.game.roundFirstPlayer, this.game.roundFirstPlayer.opponent]
+            players.forEach(p => {
+                if (!p.isDummy) {
+                    playerShortfall.push(this.getShortfall(p));
+                }
+            })
 
             let z = 0;
             while (z < 10 && playerShortfall.some((ps) => ps.shortfall > 0)) {

@@ -249,6 +249,14 @@ class Game extends EventEmitter {
     }
 
     /**
+     * Returns the player object for the dummy player when in solo mode
+     * @returns {Player}
+     */
+    getDummyPlayer() {
+        return this.getPlayers().find(p => p.isDummy);
+    }
+
+    /**
      * Get all players and spectators in the game
      * @returns {Object} {name1: Player, name2: Player, name3: Spectator}
      */

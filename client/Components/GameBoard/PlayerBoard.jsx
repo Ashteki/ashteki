@@ -18,7 +18,8 @@ const PlayerBoard = ({
     onMouseOver,
     playerId,
     rowDirection,
-    side
+    side,
+    threatZone
 }) => {
     const attackInvolvesCard = (card) => {
         if (!attack) return false;
@@ -36,6 +37,10 @@ const PlayerBoard = ({
     };
 
     const renderRow = (row) => {
+        if (!row) {
+            return null;
+        }
+
         const results = [];
         // render attack cards or gaps
         if (attack)
@@ -113,6 +118,7 @@ const PlayerBoard = ({
         <div className={className}>
             <div className='card-row' style={style}>
                 {renderRow(cardsInPlay)}
+                {renderRow(threatZone)}
             </div>
         </div>
     );

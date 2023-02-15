@@ -13,7 +13,6 @@ class PlayerTurnsPhase extends Phase {
         this.game.beginTurn();
         this.game.activePlayer.beginTurn();
 
-        //TODO: switch here for Chimera turn
         if (this.game.solo && this.game.activePlayer.isDummy) {
             this.queueStep(new DummyTurn(this.game))
         } else {

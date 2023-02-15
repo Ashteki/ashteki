@@ -6,7 +6,7 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType } = require('../constants');
+const { BattlefieldTypes, CardType, Location } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -214,7 +214,7 @@ class Player extends GameObject {
 
             // only one copy?
             if (!singleCopy || !this.hand.some((c) => c.name == card.name)) {
-                this.moveCard(card, 'hand');
+                this.moveCard(card, Location.Hand);
                 remainingCards--;
             }
         }
@@ -446,7 +446,8 @@ class Player extends GameObject {
             'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],
             Conjuration: ['play area', 'archives', 'purged'],
-            'Conjured Alteration Spell': ['play area', 'archives']
+            'Conjured Alteration Spell': ['play area', 'archives'],
+            Aspect: ['deck', 'discard', 'purged', 'play area', 'threatZone']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);
@@ -468,7 +469,7 @@ class Player extends GameObject {
     }
 
     /**
-     * Moves a card from one location to another. This involves removing it from the list it's currently in, calling DrawCard.move 
+     * Moves a card from one location to another. This involves removing it from the list it's currently in, calling Card.move 
      * (which changes its location property), and then adding it to the list it should now be in
      * @param card
      * @param {String} targetLocation

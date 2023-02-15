@@ -504,6 +504,7 @@ class GameServer {
         socket.send('cleargamestate');
         socket.leaveChannel(game.id);
 
+        // Auto-leave dummy opponent
         if (game.solo) {
             game.leave(DummyUser.DUMMY_USERNAME);
         }

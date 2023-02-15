@@ -73,6 +73,8 @@ class Card extends PlayableObject {
         this.printedAttack = cardData.attack || 0;
         this.printedLife = cardData.life || 0;
         this.printedRecover = cardData.recover || 0;
+        this.threat = cardData.threat;
+        this.blood = cardData.blood;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
 
@@ -1273,7 +1275,7 @@ class Card extends PlayableObject {
         let selectionState = activePlayer.getCardSelectionState(this);
 
         if (!this.game.isCardVisible(this, activePlayer) && !this.game.isCardPublic(this)) {
-            return {
+            const result = {
                 controller: this.controller.name,
                 location: this.location,
                 facedown: true,
@@ -1283,6 +1285,10 @@ class Card extends PlayableObject {
                 isConjuration: ConjuredCardTypes.includes(this.type),
                 ...selectionState
             };
+            if (this.blood) {
+                result.blood = this.blood;
+            }
+            return result;
         }
 
         let state = {
