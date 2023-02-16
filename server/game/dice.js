@@ -34,7 +34,7 @@ class Dice {
     }
 
     static d12Roll() {
-        return this.getRandomInt(12);
+        return this.getRandomInt(12) + 1;
     }
 
     // can diceReq be matched from the collection of dice?
