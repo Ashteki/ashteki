@@ -1234,13 +1234,13 @@ class Card extends PlayableObject {
     }
 
     canPlay(activePlayer) {
+        // fudge - the getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
+        // see order of call in getState
         let isController = activePlayer === this.controller;
 
         return !!(
             activePlayer === this.game.activePlayer &&
             isController &&
-            //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target
-            // and properties when interrupted mid-resolution
             this.getLegalActions(activePlayer).length > 0
         )
     }
@@ -1296,8 +1296,8 @@ class Card extends PlayableObject {
             index: this.index,
             imageStub: this.getImageStub(),
             altArts: this.altArts,
-            canPlay: this.canPlay(activePlayer) &&
-                activePlayer.promptState.promptTitle === 'Play phase',
+            // FUDGE - Order matters here. The getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
+            canPlay: activePlayer.promptState.promptTitle === 'Play phase' && this.canPlay(activePlayer),
             childCards: this.childCards.map((card) => {
                 return card.getSummary(activePlayer);
             }),
