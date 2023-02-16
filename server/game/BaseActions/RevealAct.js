@@ -1,5 +1,6 @@
 const { CardType } = require('../../constants');
 const AbilityContext = require('../AbilityContext');
+const AbilityDsl = require('../abilitydsl');
 const BaseAbility = require('../baseability.js');
 const { Costs } = require('../costs');
 
@@ -53,8 +54,13 @@ class RevealAct extends BaseAbility {
     }
 
     addSubEvent(event, context) {
-        let action = context.game.actions.putIntoPlay({ target: context.card });
-        event.addChildEvent(action.getEvent(context.source, context));
+        let action = context.game.actions.putIntoPlay();
+        const playEvent = action.getEvent(context.source, context);
+        if (context.source.statusCount) {
+            const tokenAction = AbilityDsl.actions.addStatusToken({ amount: context.source.statusCount, target: context.card });
+            playEvent.addSubEvent(tokenAction.getEvent(context.source, context));
+        }
+        event.addChildEvent(playEvent);
     }
 
     executeHandler(context) {
