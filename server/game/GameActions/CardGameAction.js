@@ -18,7 +18,8 @@ class CardGameAction extends GameAction {
             'Alteration Spell',
             'Conjured Alteration Spell',
             'Phoenixborn',
-            'Reaction Spell'
+            'Reaction Spell',
+            'Aspect'
         ];
     }
 

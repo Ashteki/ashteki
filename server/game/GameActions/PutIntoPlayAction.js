@@ -10,7 +10,7 @@ class PutIntoPlayAction extends CardGameAction {
 
     setup() {
         this.name = 'putIntoPlay';
-        this.targetType = ['Ally', 'Ready Spell', 'Action Spell', 'Conjuration'];
+        this.targetType = ['Ally', 'Ready Spell', 'Action Spell', 'Conjuration', 'Aspect'];
         this.effectMsg = 'put {0} into play';
     }
 
