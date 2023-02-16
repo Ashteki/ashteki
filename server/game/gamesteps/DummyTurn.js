@@ -13,18 +13,24 @@ class DummyTurn extends BaseStepWithPipeline {
     beginTurn() {
         // roll behaviour dice and determine 
         const d12Roll = Dice.d12Roll();
-        this.activePlayer.behaviour = d12Roll;
+        this.activePlayer.behaviourRoll = d12Roll;
 
-        for (const card of this.activePlayer.hand) {
-            if (card.canPlay(this.activePlayer)) {
-                const actions = card.getLegalActions(this.activePlayer);
+        // get actions from behaviour card?
+        // need an ability here - get an array of abilities (side and main cost) from behaviour roll
+        // queue them up with abilityresolver as steps in pipeline
+        // ££
 
-                let context = actions[0].createContext(this.activePlayer);
-                this.game.resolveAbility(context);
+        // // play a card if you can
+        // for (const card of this.activePlayer.hand) {
+        //     if (card.canPlay(this.activePlayer)) {
+        //         const actions = card.getLegalActions(this.activePlayer);
 
-                break;
-            }
-        }
+        //         let context = actions[0].createContext(this.activePlayer);
+        //         this.game.resolveAbility(context);
+
+        //         break;
+        //     }
+        // }
     }
 
 }

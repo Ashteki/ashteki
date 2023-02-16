@@ -15,6 +15,12 @@
         "count": 1
       }
     ],
+    "behaviour": [
+      {
+        "id": "viros-behaviour-1",
+        "count": 1
+      }
+    ],
     "dicepool": [
       {
         "magic": "rage",

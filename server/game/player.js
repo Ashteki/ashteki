@@ -57,7 +57,7 @@ class Player extends GameObject {
         this.expectedScore = undefined;
 
         this.suddenDeath = false;
-        this.behaviour = undefined;
+        this.behaviourRoll = undefined;
     }
 
     get name() {
@@ -263,7 +263,9 @@ class Player extends GameObject {
         this.phoenixborn = preparedDeck.phoenixborn;
         this.cardsInPlay = [this.phoenixborn];
         if (preparedDeck.ultimate) {
-            this.spellboard = [preparedDeck.ultimate];
+            this.ultimate = preparedDeck.ultimate;
+            this.behaviour = preparedDeck.behaviour;
+            this.spellboard = [this.ultimate, this.behaviour];
         }
         this.dice = preparedDeck.dice;
     }
@@ -782,6 +784,7 @@ class Player extends GameObject {
             limitedPlayed: this.limitedPlayed,
             phoenixborn: this.phoenixborn.getSummary(activePlayer),
             ultimate: this.ultimate && this.ultimate.getSummary(activePlayer),
+            behaviour: this.behaviour && this.behaviour.getSummary(activePlayer),
 
             firstPlayer: this.firstPlayer
         };
@@ -806,7 +809,7 @@ class Player extends GameObject {
         }
 
         if (!isActivePlayer) {
-            playerState.behaviour = this.behaviour;
+            playerState.behaviour = this.behaviourRoll;
         }
         if (this.clock) {
             playerState.clock = this.clock.getState();
