@@ -566,7 +566,7 @@ class Card extends PlayableObject {
     getFlags() {
         var flags = {};
         if (this.location === 'play area' || this.location === 'spellboard') {
-            const attack = this.getAttackHandler();
+            const attack = this.getAttack();
             if (this.hasModifiedAttack()) flags.attack = attack;
 
             const life = this.getLife();
@@ -721,7 +721,7 @@ class Card extends PlayableObject {
         clone.controller = this.controller;
         clone.location = this.location;
         clone.parent = this.parent;
-        clone.modifiedAttack = this.getAttackHandler();
+        clone.modifiedAttack = this.getAttack();
         clone.modifiedLife = this.getLife();
         clone.modifiedBattlefield = this.getBattlefield();
         clone.modifiedSpellboard = this.getSpellboard();
@@ -730,7 +730,7 @@ class Card extends PlayableObject {
     }
 
     get attack() {
-        return this.getAttackHandler();
+        return this.getAttack();
     }
 
     get life() {
@@ -749,7 +749,7 @@ class Card extends PlayableObject {
         return this.type.includes('Spell');
     }
 
-    getAttackHandler(printed = false) {
+    getAttack(printed = false) {
         if (printed) {
             return this.printedAttack;
         }
