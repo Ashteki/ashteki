@@ -54,10 +54,10 @@ class DummyPlayer extends Player {
         return () => this.game.resolveAbility(act.createContext(this));
     }
 
-    getAttackHandler() {
+    doAttack() {
         const target = this.opponent.phoenixborn;
-        const attacker = this.threatZone[0];
-        return () => this.game.initiateAttack(target, attacker);
+        const attacker = this.getAttacker();
+        this.game.initiateAttack(target, attacker);
     }
 }
 

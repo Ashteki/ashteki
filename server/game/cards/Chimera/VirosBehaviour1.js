@@ -40,7 +40,7 @@ class VirosBehaviour1 extends BehaviourCard {
     }
 
     getAttackHandler() {
-        return this.owner.getAttackHandler();
+        return () => this.owner.doAttack();
     }
 }
 
