@@ -1,5 +1,5 @@
-describe('Summon Butterfly Monk', function () {
-    describe("Summon Butterfly Monk's ability", function () {
+describe('Summon Bone Crow', function () {
+    describe("Summon Bone Crow's ability", function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {

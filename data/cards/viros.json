@@ -136,6 +136,16 @@
                 "[[side]]",
                 "1 [[ceremonial:class]]"
             ]
+        },
+        {
+            "name": "Serve the City",
+            "stub": "serve-the-city",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ]
         }
     ]
 }
