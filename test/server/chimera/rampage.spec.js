@@ -1,4 +1,4 @@
-describe('Chimera Setup', function () {
+describe('Rampage Reveal', function () {
     beforeEach(function () {
         this.setupTest({
             mode: 'solo',
@@ -23,7 +23,7 @@ describe('Chimera Setup', function () {
         });
     });
 
-    it('behaviour1 roll always puts leftmost threatzone aspect into play', function () {
+    it('puts card into play with 2 status', function () {
         expect(this.rampage.location).toBe('threatZone');
         this.player1.endTurn();
         // informs real player of behaviour roll
@@ -31,5 +31,6 @@ describe('Chimera Setup', function () {
         this.player1.clickPrompt('Ok');
 
         expect(this.rampage.location).toBe('play area');
+        expect(this.rampage.status).toBe(2);
     });
 });
