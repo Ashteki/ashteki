@@ -146,6 +146,16 @@
                 "[[side]]",
                 "1 [[ceremonial:class]]"
             ]
+        },
+        {
+            "name": "Chant of Transfusion",
+            "stub": "chant-of-transfusion",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ]
         }
     ]
 }
