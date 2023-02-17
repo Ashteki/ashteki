@@ -25,6 +25,7 @@ class Player extends GameObject {
         this.discard = [];
         this.purged = [];
         this.archives = [];
+        this.threatZone = [];
         this.wins = 0;
 
         this.deckData = {};

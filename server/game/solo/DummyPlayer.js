@@ -9,7 +9,6 @@ class DummyPlayer extends Player {
         this.firstFiveStrategy = new ChimeraFFStrategy(this);
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
-        this.threatZone = []; // this is where 'drawn' aspects sit facedown in the battlefield before being 'flipped'
     }
 
     get isDummy() {

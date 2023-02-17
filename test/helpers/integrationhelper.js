@@ -227,27 +227,28 @@ beforeEach(function () {
         cards[card.id] = card;
     }
 
-    this.flow = new GameFlowWrapper(cards);
 
-    this.game = this.flow.game;
-    this.player1Object = this.game.getPlayerByName('player1');
-    this.player2Object = this.game.getPlayerByName('player2');
-    this.player1 = this.flow.player1;
-    this.player2 = this.flow.player2;
-
-    _.each(ProxiedGameFlowWrapperMethods, (method) => {
-        this[method] = (...args) => this.flow[method].apply(this.flow, args);
-    });
-
-    this.buildDeck = function (cards) {
-        return deckBuilder.buildDeck(cards);
-    };
 
     /**
      * Factory method. Creates a new simulation of a game.
      * @param {Object} [options = {}] - specifies the state of the game
      */
     this.setupTest = function (options = {}) {
+        this.flow = new GameFlowWrapper(cards, options);
+
+        this.game = this.flow.game;
+        this.player1Object = this.game.getPlayerByName('player1');
+        this.player2Object = this.game.getPlayerByName('player2');
+        this.player1 = this.flow.player1;
+        this.player2 = this.flow.player2;
+
+        _.each(ProxiedGameFlowWrapperMethods, (method) => {
+            this[method] = (...args) => this.flow[method].apply(this.flow, args);
+        });
+
+        this.buildDeck = function (cards) {
+            return deckBuilder.buildDeck(cards);
+        };
         //Set defaults
         if (!options.player1) {
             options.player1 = {};
@@ -302,7 +303,8 @@ beforeEach(function () {
                 'discard',
                 'archives',
                 'phoenixborn',
-                'deck'
+                'deck',
+                'threatZone'
             ].reduce((array, location) => array.concat(player[location]), []);
             for (let card of cards) {
                 let split = card.id.split('-');

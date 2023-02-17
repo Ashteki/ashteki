@@ -13,6 +13,10 @@ class PlayerInteractionWrapper {
         player.noTimer = true;
     }
 
+    get isDummy() {
+        return this.player.isDummy;
+    }
+
     get name() {
         return this.player.name;
     }
@@ -165,6 +169,18 @@ class PlayerInteractionWrapper {
 
     get phoenixborn() {
         return this.player.phoenixborn;
+    }
+
+    get behaviour() {
+        return this.player.behaviour;
+    }
+
+    get ultimate() {
+        return this.player.ultimate;
+    }
+
+    get threatZone() {
+        return this.player.threatZone;
     }
 
     get promptState() {
