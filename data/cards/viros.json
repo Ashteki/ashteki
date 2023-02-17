@@ -126,6 +126,16 @@
                 "[[main]]",
                 "1 [[ceremonial:class]]"
             ]
+        },
+        {
+            "name": "Infuriate",
+            "stub": "infuriate",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ]
         }
     ]
 }
