@@ -7,7 +7,7 @@ class ExhaustGravityFluxAction extends CardGameAction {
 
     setup() {
         this.name = 'exhaust';
-        this.targetType = ['Ally', 'Conjuration'];
+        this.targetType = [...BattlefieldTypes];
         this.effectMsg = 'exhaust {0} with a gravity flux token';
     }
 

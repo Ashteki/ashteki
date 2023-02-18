@@ -19,7 +19,8 @@ class Rampage extends Card {
                     autoTarget: (context) => context.player.dice.filter(d => d.level === Level.Basic),
                     gameAction: ability.actions.rerollDice()
                 }
-            }
+            },
+            effect: 'reroll all basic dice'
         });
     }
 

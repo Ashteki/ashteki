@@ -1,9 +1,10 @@
+const { BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class ReadyAction extends CardGameAction {
     setup() {
         this.name = 'ready';
-        this.targetType = ['Ally', 'Ready Spell', 'Conjuration', 'Phoenixborn', 'Alteration Spell'];
+        this.targetType = [...BattlefieldTypes, 'Phoenixborn', 'Alteration Spell', 'Ready Spell'];
         this.effectMsg = 'ready {0}';
     }
 

@@ -113,12 +113,14 @@ const PlayerBoard = ({
     let maxUpgrades = Math.max(...cardsInPlay.map((c) => (c.upgrades ? c.upgrades.length : 0)));
     let topMargin = maxUpgrades * 15;
     let style = { marginTop: topMargin + 'px' };
-
+    let allCardsInBoard = cardsInPlay;
+    if (threatZone && threatZone.length) {
+        allCardsInBoard = allCardsInBoard.concat(threatZone);
+    }
     return (
         <div className={className}>
             <div className='card-row' style={style}>
-                {renderRow(cardsInPlay)}
-                {renderRow(threatZone)}
+                {renderRow(allCardsInBoard)}
             </div>
         </div>
     );
