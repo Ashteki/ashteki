@@ -278,6 +278,8 @@ beforeEach(function () {
         //Field
         this.player1.hand = [];
         this.player2.hand = [];
+        this.player2.threatZone = [];
+
         // this.player1.phoenixborn = options.player1.phoenixborn;
         // this.player2.phoenixborn = options.player2.phoenixborn;
         this.player1.inPlay = options.player1.inPlay;
@@ -294,6 +296,9 @@ beforeEach(function () {
         this.player2.discard = options.player2.discard;
         this.player1.archives = options.player1.archives;
         this.player2.archives = options.player2.archives;
+        if (this.player2.isDummy) {
+            this.player2.threatZone = options.player2.threatZone;
+        }
 
         for (let player of [this.player1, this.player2]) {
             let cards = [

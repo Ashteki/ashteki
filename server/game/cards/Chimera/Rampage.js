@@ -6,6 +6,7 @@ class Rampage extends Card {
         this.alert();
 
         this.forcedReaction({
+            inexhaustible: true,
             when: {
                 // it's my turn
                 onBeginTurn: (event, context) => event.player === context.player

@@ -183,6 +183,14 @@ class PlayerInteractionWrapper {
         return this.player.threatZone;
     }
 
+    set threatZone(cards = []) {
+        //Move all cards in hand to the deck
+        var tzCards = this.threatZone;
+        _.each(tzCards, (card) => this.moveCard(card, 'deck'));
+        cards = this.mixedListToCardList(cards, 'deck');
+        _.each(cards, (card) => this.moveCard(card, 'threatZone'));
+    }
+
     get promptState() {
         return this.player.promptState;
     }
