@@ -61,6 +61,14 @@ class BattleStep extends BaseStepWithPipeline {
             return true;
         }
 
+        // aspects will always counter because they are alert
+        if (this.attack.defendingPlayer.isDummy) {
+            // if (this.chosenBattle.target.type === CardType.Aspect) {
+            this.chosenBattle.counter = true;
+            return true;
+            // }
+        }
+
         this.game.promptWithHandlerMenu(this.attack.defendingPlayer, {
             activePromptTitle: 'Do you want to counter?',
             mode: 'select',
