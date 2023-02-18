@@ -1,12 +1,14 @@
 const RevealAct = require("../BaseActions/RevealAct");
 const Player = require("../player");
 const ChimeraFFStrategy = require("./ChimeraFFStrategy");
+const ChimeraPinStrategy = require("./ChimeraPinStrategy");
 const NullPromptStrategy = require("./NullPromptStrategy");
 
 class DummyPlayer extends Player {
     constructor(id, user, owner, game, clockdetails) {
         super(id, user, owner, game, clockdetails);
         this.firstFiveStrategy = new ChimeraFFStrategy(this);
+        this.dicePinStrategy = new ChimeraPinStrategy(this);
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
     }

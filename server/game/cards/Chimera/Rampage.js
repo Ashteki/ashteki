@@ -1,10 +1,10 @@
 const { Level } = require("../../../constants");
-const RevealAct = require("../../BaseActions/RevealAct");
 const Card = require("../../Card");
-const BehaviourCard = require("../../solo/BehaviourCard");
 
 class Rampage extends Card {
     setupCardAbilities(ability) {
+        this.alert();
+
         this.forcedReaction({
             when: {
                 // it's my turn

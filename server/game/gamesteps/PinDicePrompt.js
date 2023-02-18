@@ -17,6 +17,10 @@ class PinDicePrompt extends AllPlayerPrompt {
         return player.recoveryDicePinned;
     }
 
+    setPlayerComplete(player) {
+        player.recoveryDicePinned = true;
+    }
+
     continue() {
         this.game.getPlayers().forEach((player) => {
             if (player.dice.filter((d) => this.dieCondition(d)).length === 0) {
@@ -29,6 +33,16 @@ class PinDicePrompt extends AllPlayerPrompt {
         }
 
         if (!this.isComplete()) {
+            // check for dummy player and trigger strategy
+            this.game
+                .getPlayers()
+                .filter((p) => !this.completionCondition(p))
+                .forEach((p) => {
+                    if (p.dicePinStrategy) {
+                        p.dicePinStrategy.execute(this);
+                    }
+                });
+
             this.highlightSelectableDice();
         }
 
