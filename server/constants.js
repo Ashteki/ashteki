@@ -46,7 +46,8 @@ const Magic = {
     Illusion: 'illusion',
     Natural: 'natural',
     Sympathy: 'sympathy',
-    Time: 'time'
+    Time: 'time',
+    Rage: 'rage'
 };
 
 const Level = {

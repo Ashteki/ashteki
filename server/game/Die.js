@@ -318,11 +318,11 @@ class Die extends PlayableObject {
     }
 
     raise() {
-        this.level = this.level == 'basic' ? 'class' : 'power';
+        this.level = this.magic !== Magic.Rage && this.level == 'basic' ? 'class' : 'power';
     }
 
     lower() {
-        this.level = this.level == 'power' ? 'class' : 'basic';
+        this.level = this.magic !== Magic.Rage && this.level == 'power' ? 'class' : 'basic';
     }
 
     moveTo(targetLocation) {
