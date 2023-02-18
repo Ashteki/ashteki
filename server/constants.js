@@ -11,7 +11,8 @@ const CardType = {
     Ally: 'Ally',
     Conjuration: 'Conjuration',
     ConjuredAlteration: 'Conjured Alteration Spell',
-    Aspect: 'Aspect'
+    Aspect: 'Aspect',
+    Chimera: 'Chimera'
 };
 
 const Location = {

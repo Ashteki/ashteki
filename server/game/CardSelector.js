@@ -18,7 +18,8 @@ const defaultProperties = {
         'Alteration Spell',
         'Conjured Alteration Spell',
         'Phoenixborn',
-        'Reaction Spell'
+        'Reaction Spell',
+        'Chimera'
     ],
     multiSelect: false
 };

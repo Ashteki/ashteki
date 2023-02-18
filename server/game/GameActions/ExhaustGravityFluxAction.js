@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class ExhaustGravityFluxAction extends CardGameAction {

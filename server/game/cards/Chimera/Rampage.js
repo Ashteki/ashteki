@@ -1,9 +1,9 @@
 const { Level } = require("../../../constants");
-const Card = require("../../Card");
+const AspectCard = require("../../solo/AspectCard");
 
-class Rampage extends Card {
+class Rampage extends AspectCard {
     setupCardAbilities(ability) {
-        this.alert();
+        super.setupCardAbilities(ability);
 
         this.forcedReaction({
             inexhaustible: true,

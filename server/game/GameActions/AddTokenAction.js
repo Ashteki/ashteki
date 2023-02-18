@@ -14,7 +14,8 @@ class AddTokenAction extends CardGameAction {
 
     setup() {
         this.name = 'addToken';
-        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn', 'Alteration Spell', 'Aspect'];
+        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn',
+            'Alteration Spell', 'Aspect', 'Chimera'];
 
         let type = this.type;
         if (this.type === 'status') {

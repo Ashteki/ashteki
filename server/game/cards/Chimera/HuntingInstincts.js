@@ -1,8 +1,8 @@
-const Card = require("../../Card");
+const AspectCard = require("../../solo/AspectCard");
 
-class HuntingInstincts extends Card {
+class HuntingInstincts extends AspectCard {
     setupCardAbilities(ability) {
-        this.alert();
+        super.setupCardAbilities(ability);
 
     }
 

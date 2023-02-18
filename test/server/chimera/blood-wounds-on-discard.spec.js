@@ -1,5 +1,5 @@
-describe('When Attacked', function () {
-    describe('an aspect will counter', function () {
+describe('Blood wounds', function () {
+    describe('discard causes damage', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -8,7 +8,7 @@ describe('When Attacked', function () {
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
-                    hand: ['shatter-pulse', 'summon-iron-rhino']
+                    hand: ['fear', 'summon-iron-rhino']
                 },
                 player2: {
                     dummy: true,
@@ -24,19 +24,10 @@ describe('When Attacked', function () {
         });
 
         it('attacker takes damage and aspect is not exhausted', function () {
-            this.player1.clickAttack(this.rampage);
-            this.player1.clickCard(this.fluteMage);
-
-            expect(this.rampage.location).toBe('play area');
-            expect(this.rampage.damage).toBe(1);
-            expect(this.fluteMage.location).toBe('discard');
-            expect(this.rampage.exhausted).toBe(false);
-        });
-
-        it('when destroyed an aspect damages the chimera', function () {
-            this.player1.clickAttack(this.rampage);
-            this.player1.clickCard(this.hammerKnight);
-            this.player1.clickDone(); // aftershock
+            this.player1.play(this.fear);
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.rampage);
 
             expect(this.rampage.location).toBe('discard');
             expect(this.virosS1.damage).toBe(1);

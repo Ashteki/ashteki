@@ -14,7 +14,7 @@ class RemoveTokenAction extends CardGameAction {
 
     setup() {
         this.name = 'removeToken';
-        this.targetType = ['Conjuration', 'Ally', 'Ready Spell', 'Phoenixborn', 'Alteration Spell', 'Aspect'];
+        this.targetType = ['Conjuration', 'Ally', 'Ready Spell', 'Phoenixborn', 'Alteration Spell', 'Aspect', 'Chimera'];
 
         let type = this.type;
         if (this.type === 'status') {

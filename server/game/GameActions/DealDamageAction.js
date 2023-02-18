@@ -16,7 +16,7 @@ class DealDamageAction extends CardGameAction {
     }
 
     setup() {
-        this.targetType = [...BattlefieldTypes, 'Phoenixborn'];
+        this.targetType = [...BattlefieldTypes, 'Phoenixborn', 'Chimera'];
         this.name = 'damage';
         this.effectMsg = 'deal ' + (this.amount ? this.amount + ' ' : '') + 'damage to {0}';
     }

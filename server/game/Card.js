@@ -316,6 +316,22 @@ class Card extends PlayableObject {
         );
     }
 
+    destroyedOrDiscarded(properties) {
+        return this.forcedInterrupt(
+            Object.assign(
+                {
+                    when: {
+                        onCardDestroyed: (event, context) => event.card === context.source,
+                        onCardDiscarded: (event, context) => event.card === context.source &&
+                            event.clone.location === 'play area'
+                    },
+                    destroyed: true
+                },
+                properties
+            )
+        );
+    }
+
     inheritance() {
         return this.destroyed({
             title: 'Inheritance 1',
