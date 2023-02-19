@@ -323,7 +323,12 @@ class Card extends PlayableObject {
             Object.assign(
                 {
                     when: {
-                        onCardDestroyed: (event, context) => event.card === context.source,
+                        // onCardDestroyed: (event, context) => event.card === context.source,
+                        onCardLeavesPlay: (event, context) =>
+                            event.card === context.source &&
+                            event.triggeringEvent &&
+                            event.triggeringEvent.name === 'onCardDestroyed',
+
                         onCardDiscarded: (event, context) => event.card === context.source &&
                             event.clone.location === 'play area'
                     },

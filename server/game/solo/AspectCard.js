@@ -12,7 +12,8 @@ class AspectCard extends Card {
                     amount: context.source.blood,
                     showMessage: true
                 }))
-            }
+            },
+            preferActionPromptMessage: true
         });
     }
 }
