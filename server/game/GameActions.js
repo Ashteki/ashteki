@@ -9,6 +9,7 @@ const Actions = {
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addGravityFluxToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'gravityFlux'),
+    addRedRainsToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'redRains'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory, type) => new GameActions.AddTokenAction(propertyFactory, type),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade

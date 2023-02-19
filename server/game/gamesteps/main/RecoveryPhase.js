@@ -1,3 +1,4 @@
+const { CardType } = require('../../../constants.js');
 const Phase = require('../phase.js');
 const PinDicePrompt = require('../PinDicePrompt.js');
 const SimpleStep = require('../simplestep.js');
@@ -43,7 +44,11 @@ class RecoveryPhase extends Phase {
             return;
         }
 
+        const dummyPlayer = this.game.getDummyPlayer();
         // Place 1 Red Rains token on the Chimera for each aspect in play, resolving the Ultimate card, if applicable
+        const aspectCount = dummyPlayer.unitsInPlay.filter(u => u.type === CardType.Aspect).length;
+        this.game.addMessage('Chimera receives {0} tokens for Aspects in play', aspectCount)
+        this.game.actions.addRedRainsToken({ amount: aspectCount }).resolve(dummyPlayer.phoenixborn, this.game.getFrameworkContext());
     }
 
     replenishAspects() {
