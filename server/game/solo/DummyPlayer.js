@@ -1,3 +1,4 @@
+const { CardType } = require("../../constants");
 const RevealAct = require("../BaseActions/RevealAct");
 const Player = require("../player");
 const ChimeraFFStrategy = require("./ChimeraFFStrategy");
@@ -56,9 +57,33 @@ class DummyPlayer extends Player {
     }
 
     doAttack() {
-        const target = this.opponent.phoenixborn;
         const attacker = this.getAttacker();
+        const target = this.getAttackTarget(attacker);
         this.game.initiateAttack(target, attacker);
+    }
+
+    getAttackTarget(attacker) {
+        const opponentUnits = [...this.opponent.unitsInPlay];
+        if (
+            opponentUnits.length === 0
+            || attacker.type !== CardType.Aspect
+            || attacker.target === 'jaw'
+        ) {
+            return this.opponent.phoenixborn;
+        }
+
+        //check for targetability
+        if (attacker.target === 'right') {
+            opponentUnits.reverse();
+        }
+
+        for (const unit of opponentUnits) {
+            if (!unit.anyEffect('cannotBeAttackTarget')) {
+                return unit;
+            }
+        }
+
+        return this.opponent.phoenixborn;
     }
 }
 

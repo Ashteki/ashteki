@@ -73,7 +73,7 @@ describe('Rampage Aspect', function () {
 
         });
 
-        it('status ability is inexhautible', function () {
+        it('status ability is inexhaustible', function () {
             this.rampage.tokens.exhaustion = 1;
             expect(this.rampage.location).toBe('play area');
             this.player1.endTurn();

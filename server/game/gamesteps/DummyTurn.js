@@ -1,3 +1,4 @@
+const AbilityDsl = require("../abilitydsl");
 const Dice = require("../dice");
 const BaseStepWithPipeline = require("./basestepwithpipeline");
 const SimpleStep = require("./simplestep");
@@ -15,7 +16,13 @@ class DummyTurn extends BaseStepWithPipeline {
             this.doBehaviourRoll();
         } else if (this.canAttack()) {
             // attack
-
+            this.player.doAttack();
+            // const attacker = this.getAttacker();
+            // const target = this.getTarget(attacker);
+            // AbilityDsl.actions.attack({
+            //     target: target,
+            //     attacker: attacker
+            // });
         }
         else {
             // pass
@@ -42,6 +49,15 @@ class DummyTurn extends BaseStepWithPipeline {
 
     canAttack() {
         return !!this.player.canAttack();
+    }
+
+    getAttacker() {
+        // from left to right, not exhausted / canAttack
+        return this.player.unitsInPlay.find(u => u.canAttack());
+    }
+
+    getTarget(attacker) {
+        return this.player.opponent.phoenixborn;
     }
 }
 
