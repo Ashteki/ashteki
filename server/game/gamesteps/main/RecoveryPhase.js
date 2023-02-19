@@ -71,6 +71,13 @@ class RecoveryPhase extends Phase {
         // For any aspects with status abilities, if they have
         // fewer status tokens on them than there are pips on their status ability, refill
         // their status tokens until they are equal to the number of pips
+        const dummy = this.game.getDummyPlayer();
+        for (const aspect of dummy.getAspectsInPlay()) {
+            if (aspect.status < aspect.statusCount) {
+                aspect.tokens.status = aspect.statusCount;
+            }
+        }
+        this.game.addMessage('All aspects replenish status tokens.');
     }
 }
 

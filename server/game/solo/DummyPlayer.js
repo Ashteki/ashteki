@@ -1,6 +1,7 @@
 const { CardType } = require("../../constants");
 const RevealAct = require("../BaseActions/RevealAct");
 const Player = require("../player");
+const ChimeraDefenderStrategy = require("./ChimeraDefenderStrategy");
 const ChimeraFFStrategy = require("./ChimeraFFStrategy");
 const ChimeraPinStrategy = require("./ChimeraPinStrategy");
 const NullPromptStrategy = require("./NullPromptStrategy");
@@ -10,6 +11,7 @@ class DummyPlayer extends Player {
         super(id, user, owner, game, clockdetails);
         this.firstFiveStrategy = new ChimeraFFStrategy(this);
         this.dicePinStrategy = new ChimeraPinStrategy(this);
+        this.defenderStrategy = new ChimeraDefenderStrategy(this);
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
     }
@@ -24,6 +26,16 @@ class DummyPlayer extends Player {
 
     get discardStrategy() {
         return this.disStrategy
+    }
+
+    setupAspects() {
+        this.shuffleDeck();
+        const setup = this.phoenixborn.setup;
+        setup.forEach(value => {
+            const card = this.deck.find(aspect => aspect.blood === value)
+            this.moveCard(card, 'threatZone');
+        })
+        this.shuffleDeck();
     }
 
     replenishAspects() {
@@ -84,6 +96,10 @@ class DummyPlayer extends Player {
         }
 
         return this.opponent.phoenixborn;
+    }
+
+    getAspectsInPlay() {
+        return this.unitsInPlay.filter(u => u.type === CardType.Aspect);
     }
 }
 

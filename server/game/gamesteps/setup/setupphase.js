@@ -35,7 +35,7 @@ class SetupPhase extends Phase {
     setupChimera() {
         if (this.game.solo) {
             const dummy = this.game.getDummyPlayer();
-            dummy.replenishAspects();
+            dummy.setupAspects();
         }
     }
 

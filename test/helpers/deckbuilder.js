@@ -7,6 +7,7 @@ const { matchCardByNameAndPack } = require('./cardutil.js');
 const PathToSubModulePacks = path.join(__dirname, '../../data/cards');
 
 const defaultFiller = ['open-memories'];
+const defaultDummyDeck = ['rampage', 'rampage', 'rampage', 'hunting-instincts', 'hunting-instincts', 'hunting-instincts'];
 const minDeck = 6;
 
 class DeckBuilder {
@@ -43,8 +44,12 @@ class DeckBuilder {
             }
         }
 
-        while (deck.length < minDeck) {
-            deck = deck.concat(defaultFiller[0]);
+        if (player.dummy) {
+            deck = defaultDummyDeck;
+        } else {
+            while (deck.length < minDeck) {
+                deck = deck.concat(defaultFiller[0]);
+            }
         }
 
         let dice = [

@@ -66,6 +66,7 @@ describe('Chimera recovery phase', function () {
         });
 
         it('should place a RR token for each aspect in play', function () {
+            expect(this.game.round).toBe(1);
             // player 1 pin dice
             this.player1.clickDie(0);
             this.player1.clickDone();
@@ -73,7 +74,21 @@ describe('Chimera recovery phase', function () {
             expect(this.virosS1.redRains).toBe(1);
 
             // next turn
-            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.game.round).toBe(2);
+        });
+
+        it('should refill status tokens for each aspect in play', function () {
+            this.rampage.tokens.status = 0;
+            expect(this.rampage.status).toBe(0);
+            expect(this.game.round).toBe(1);
+
+            // player 1 pin dice
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+            // recovery makes status 2, then status effect and reroll makes -1, so 1
+            expect(this.rampage.status).toBe(1);
+            // next turn
+            expect(this.game.round).toBe(2);
         });
     });
 });

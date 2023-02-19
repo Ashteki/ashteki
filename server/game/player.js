@@ -247,7 +247,7 @@ class Player extends GameObject {
      * Shuffles the deck, emitting an event and displaying a message in chat
      */
     shuffleDeck() {
-        this.game.emitEvent('onDeckShuffled', { player: this });
+        // this.game.emitEvent('onDeckShuffled', { player: this });
         this.deck = _.shuffle(this.deck);
     }
 
