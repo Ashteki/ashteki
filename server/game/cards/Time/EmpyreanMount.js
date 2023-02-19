@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class EmpyreanMount extends Card {
@@ -12,7 +12,7 @@ class EmpyreanMount extends Card {
                     // I'm the attacker and the target is a Phoenixborn
                     return event.battles.some(
                         (b) =>
-                            b.attacker === context.source && b.target.type === CardType.Phoenixborn
+                            b.attacker === context.source && PhoenixbornTypes.includes(b.target.type)
                     );
                 }
             },

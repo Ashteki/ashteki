@@ -1,4 +1,4 @@
-const { CardType, BattlefieldTypes } = require('../../../constants.js');
+const { CardType, BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Generosity extends Card {
@@ -36,7 +36,7 @@ class Generosity extends Card {
                 promptForSelect: {
                     activePromptTitle:
                         'Remove 1 exhaustion token from a Phoenixborn or ready spell',
-                    cardType: [CardType.ReadySpell, CardType.Phoenixborn],
+                    cardType: [CardType.ReadySpell, ...PhoenixbornTypes],
                     controller,
                     player,
                     message: '{0} removes 1 exhaustion token from {1}',
@@ -47,7 +47,7 @@ class Generosity extends Card {
                 amount: 2,
                 promptForSelect: {
                     activePromptTitle: 'Remove 2 damage from a unit or Phoenixborn',
-                    cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                    cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                     controller,
                     player,
                     message: '{0} removes 2 wounds from {1}',

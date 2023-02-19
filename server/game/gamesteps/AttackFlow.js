@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../constants');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../constants');
 const { Costs } = require('../costs');
 const AttackState = require('./AttackState');
 const BaseStepWithPipeline = require('./basestepwithpipeline');
@@ -10,7 +10,7 @@ class AttackFlow extends BaseStepWithPipeline {
     constructor(game, target = null, attackers = null, ignoreMainCost = false) {
         super(game);
         this.target = target;
-        this.isPBAttack = target.type === CardType.Phoenixborn;
+        this.isPBAttack = PhoenixbornTypes.includes(target.type);
         this.attackingPlayer = this.game.activePlayer;
         this.defendingPlayer = target.controller;
         this.ignoreMainCost = ignoreMainCost;

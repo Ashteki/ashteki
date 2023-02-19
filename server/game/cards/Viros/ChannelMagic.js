@@ -1,4 +1,4 @@
-const { CardType, Level } = require('../../../constants.js');
+const { CardType, Level, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class ChannelMagic extends Card {
@@ -7,7 +7,7 @@ class ChannelMagic extends Card {
             gameAction: ability.actions.draw(),
             then: {
                 target: {
-                    cardType: CardType.Phoenixborn,
+                    cardType: PhoenixbornTypes,
                     gameAction: ability.actions.removeDamage({ amount: 1, showMessage: true })
                 },
                 then: {

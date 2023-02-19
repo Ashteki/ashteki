@@ -1,4 +1,4 @@
-const { CardType } = require('../../constants');
+const { CardType, PhoenixbornTypes } = require('../../constants');
 
 class AttackState {
     constructor(target, attackingPlayer) {
@@ -10,7 +10,7 @@ class AttackState {
     }
 
     get isPBAttack() {
-        return this.target.type === CardType.Phoenixborn;
+        return PhoenixbornTypes.includes(this.target.type);
     }
 
     get attackers() {

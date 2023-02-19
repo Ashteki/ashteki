@@ -1,5 +1,5 @@
 const Card = require('../../Card.js');
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 
 class CoalRoarkwin extends Card {
     setupCardAbilities(ability) {
@@ -9,7 +9,7 @@ class CoalRoarkwin extends Card {
             target: {
                 // target a Unit, or if no units then the pb is valid
                 activePromptTitle: 'Choose a target to Slash',
-                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                 cardCondition: (card) => {
                     return (
                         BattlefieldTypes.includes(card.type) ||

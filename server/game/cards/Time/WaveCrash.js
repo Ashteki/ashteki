@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class WaveCrash extends Card {
@@ -15,10 +15,10 @@ class WaveCrash extends Card {
             then: {
                 target: {
                     activePromptTitle: 'Choose a unit or phoenixborn to deal damage to',
-                    cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                    cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
-                        amount: context.target.type === CardType.Phoenixborn ? 1 : 2,
+                        amount: PhoenixbornTypes.includes(context.target.type) ? 1 : 2,
                     }))
                 }
             }

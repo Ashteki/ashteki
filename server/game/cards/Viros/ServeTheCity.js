@@ -1,4 +1,4 @@
-const { Level, Magic, BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -30,7 +30,8 @@ class ServeTheCity extends Card {
                     target: {
                         optional: true,
                         activePromptTitle: 'Choose a target to attack',
-                        cardType: [CardType.Phoenixborn, ...BattlefieldTypes],
+                        cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),
+                        cardType: [...PhoenixbornTypes, ...BattlefieldTypes],
                         controller: 'opponent',
                         gameAction: ability.actions.attack((context) => ({
                             attacker: context.preThenEvent.card

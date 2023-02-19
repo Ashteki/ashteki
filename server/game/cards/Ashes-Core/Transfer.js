@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { CardType, PhoenixbornTypes } = require('../../../constants.js');
 const { capitalize } = require('../../../util.js');
 const Card = require('../../Card.js');
 
@@ -14,7 +14,7 @@ class Transfer extends Card {
                     activePromptTitle: 'Choose a card with tokens',
                     controller: 'any',
                     cardCondition: (card) =>
-                        card.hasAnyTokens() && card.type !== CardType.Phoenixborn
+                        card.hasAnyTokens() && !PhoenixbornTypes.includes(card.type)
                 },
                 amount: {
                     activePromptTitle: 'Choose a type',
@@ -28,7 +28,7 @@ class Transfer extends Card {
                     activePromptTitle: 'Choose a card to receive the token',
                     dependsOn: 'amount',
                     cardCondition: (card, context) =>
-                        card.type !== CardType.Phoenixborn &&
+                        !PhoenixbornTypes.includes(card.type) &&
                         card.controller === context.targets.tokenBoy.controller &&
                         card !== context.targets.tokenBoy,
                     gameAction: ability.actions.moveToken((context) => ({

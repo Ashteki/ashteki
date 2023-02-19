@@ -1,10 +1,10 @@
 const AttachAction = require('./AttachAction');
-const { CardType } = require('../../constants');
+const { CardType, PhoenixbornTypes } = require('../../constants');
 
 class AttachToPbAction extends AttachAction {
     setup() {
         this.name = 'attachToPb';
-        this.targetType = [CardType.Phoenixborn];
+        this.targetType = PhoenixbornTypes;
         this.effectMsg = 'attach {1} to {0}';
         this.effectArgs = () => {
             return this.upgrade;

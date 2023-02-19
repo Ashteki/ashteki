@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class ChangeOfHeart extends Card {
@@ -28,7 +28,7 @@ class ChangeOfHeart extends Card {
     }
 
     canAttach(card, context) {
-        return card && card.getType() === CardType.Phoenixborn
+        return card && PhoenixbornTypes.includes(card.getType())
             && !card.exhausted
             && this.canPlayAsUpgrade();
     }

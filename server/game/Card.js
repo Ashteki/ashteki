@@ -12,7 +12,8 @@ const {
     UpgradeCardTypes,
     AbilityType,
     ConjuredCardTypes,
-    Magic
+    Magic,
+    PhoenixbornTypes
 } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
@@ -1270,7 +1271,7 @@ class Card extends PlayableObject {
     }
 
     get isInPlay() {
-        return this.type === CardType.Phoenixborn || this.controller.unitsInPlay.includes(this);
+        return PhoenixbornTypes.includes(this.type) || this.controller.unitsInPlay.includes(this);
     }
 
     isLimited() {

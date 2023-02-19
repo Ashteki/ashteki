@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class LawOfGrace extends Card {
@@ -13,7 +13,7 @@ class LawOfGrace extends Card {
         this.persistentEffect({
             condition: () => !this.exhausted,
             targetController: 'Any',
-            match: (card) => card.type === CardType.Phoenixborn,
+            match: (card) => PhoenixbornTypes.includes(card.type),
             effect: ability.effects.preventNonAttackDamage(1)
         });
 

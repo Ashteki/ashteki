@@ -1,11 +1,11 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Safeguard extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
-                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                 controller: 'self',
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     effect: ability.effects.preventAllDamage(

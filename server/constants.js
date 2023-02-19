@@ -23,6 +23,7 @@ const Location = {
 };
 
 const BattlefieldTypes = [CardType.Ally, CardType.Conjuration, CardType.Aspect];
+const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [CardType.Conjuration, CardType.ConjuredAlteration];
 const EffectLocations = ['play area', 'spellboard'];
@@ -67,6 +68,7 @@ module.exports = {
     CardType,
     Location,
     BattlefieldTypes,
+    PhoenixbornTypes,
     UpgradeCardTypes,
     ConjuredCardTypes,
     AbilityType,

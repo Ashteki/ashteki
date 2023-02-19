@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class AshSpirit extends Card {
@@ -20,7 +20,7 @@ class AshSpirit extends Card {
                 onRoundEnded: () => true
             },
             target: {
-                cardType: CardType.Phoenixborn,
+                cardType: PhoenixbornTypes,
                 cardCondition: (card) => card.controller.deck.length === 0,
                 gameAction: ability.actions.dealDamage()
             }

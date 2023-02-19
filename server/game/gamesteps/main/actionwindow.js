@@ -1,7 +1,7 @@
 const UiPrompt = require('../uiprompt.js');
 const DiscardAction = require('../../BaseActions/DiscardAction');
 const UseAction = require('../../GameActions/UseAction');
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 
 class ActionWindow extends UiPrompt {
     onCardClicked(player, card) {
@@ -125,7 +125,7 @@ class ActionWindow extends UiPrompt {
                 activePromptTitle: 'Select a target to attack',
                 promptTitle: 'Attack',
                 controller: 'opponent',
-                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                 cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),
                 onSelect: (player, card) => {
                     this.game.initiateAttack(card);

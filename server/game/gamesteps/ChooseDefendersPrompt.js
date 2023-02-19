@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../constants.js');
 const SingleCardSelector = require('../CardSelectors/SingleCardSelector.js');
 const UiPrompt = require('./uiprompt.js');
 
@@ -17,7 +17,7 @@ class ChooseDefendersPrompt extends UiPrompt {
             // source: this.attack.battle.attacker,
             location: ['play area'],
             controller: 'self',
-            cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+            cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
             cardCondition: (card) => {
                 return this.availableToBlockOrGuard(card);
             }

@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { AbilityType, CardType, BattlefieldTypes } = require('../../constants');
+const { AbilityType, BattlefieldTypes, PhoenixbornTypes } = require('../../constants');
 
 const EventToTitleFunc = {
     onAttackersDeclared: () => 'attackers being declared',
@@ -46,7 +46,7 @@ function GetTargettingTitlePhrase(event, player) {
     let targetList = '';
     const targets = Object.values(myEvent.context.targets).filter(
         (t) => t.controller === player &&
-            [CardType.Phoenixborn, ...BattlefieldTypes].includes(t.type)
+            [...PhoenixbornTypes, ...BattlefieldTypes].includes(t.type)
     );
     if (
         !targets.length &&
