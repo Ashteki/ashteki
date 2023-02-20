@@ -69,9 +69,10 @@ describe('Corpse of Viros Behaviour Rolls', function () {
     });
 
 
-    xit('5 Reveal then Attack with that aspect', function () {
+    it('5 Reveal then Attack with that aspect', function () {
         spyOn(Dice, 'd12Roll').and.returnValue(5); // set behaviour roll
         expect(this.huntingInstincts.location).toBe('threatZone');
+
         this.player1.endTurn();
         // informs real player of behaviour roll
         expect(this.player2).toHavePrompt('Alerting opponent');

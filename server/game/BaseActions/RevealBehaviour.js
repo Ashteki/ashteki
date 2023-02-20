@@ -4,7 +4,7 @@ const AbilityDsl = require('../abilitydsl');
 const BaseAbility = require('../baseability.js');
 const { Costs } = require('../costs');
 
-class RevealAct extends BaseAbility {
+class RevealBehaviour extends BaseAbility {
     constructor(card, costs = [], target) {
         const revealCost = Costs.mainAction();
         let properties = { cost: costs.concat([revealCost]) };
@@ -18,9 +18,7 @@ class RevealAct extends BaseAbility {
     }
 
     displayMessage(context) {
-        if (![CardType.ReactionSpell, CardType.ActionSpell].includes(context.source.type)) {
-            context.game.addMessage('{0} reveals {1}', context.player, context.source);
-        }
+        context.game.addMessage('{0} reveals {1}', context.player, context.source);
     }
 
     // meetsRequirements(context = this.createContext(), ignoredRequirements = []) {
@@ -88,4 +86,4 @@ class RevealAct extends BaseAbility {
     }
 }
 
-module.exports = RevealAct;
+module.exports = RevealBehaviour;

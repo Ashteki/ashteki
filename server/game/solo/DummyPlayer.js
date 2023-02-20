@@ -1,5 +1,5 @@
 const { CardType } = require("../../constants");
-const RevealAct = require("../BaseActions/RevealAct");
+const RevealBehaviour = require("../BaseActions/RevealBehaviour");
 const Player = require("../player");
 const ChimeraDefenderStrategy = require("./ChimeraDefenderStrategy");
 const ChimeraFFStrategy = require("./ChimeraFFStrategy");
@@ -64,7 +64,7 @@ class DummyPlayer extends Player {
 
     getRevealHandler() {
         const target = this.threatZone[0];
-        const act = new RevealAct(target);
+        const act = new RevealBehaviour(target);
         return () => this.game.resolveAbility(act.createContext(this));
     }
 

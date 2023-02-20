@@ -1,3 +1,5 @@
+const Dice = require('../../../server/game/dice');
+
 describe('Rampage Aspect', function () {
     describe('Rampage Reveal', function () {
         beforeEach(function () {
@@ -22,6 +24,9 @@ describe('Rampage Aspect', function () {
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+
         });
 
         it('puts card into play with 2 status', function () {
@@ -58,6 +63,7 @@ describe('Rampage Aspect', function () {
                 }
             });
 
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
             this.rampage.tokens.status = 2;
             this.player2.dicepool.forEach(d => d.level = 'basic');
         });
@@ -82,7 +88,6 @@ describe('Rampage Aspect', function () {
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
-
         });
     });
 });

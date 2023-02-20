@@ -51,10 +51,7 @@ class DummyTurn extends BaseStepWithPipeline {
         })
         // get actions from behaviour card and queue
         const behaviour = this.player.behaviour;
-        const handlers = behaviour.getChimeraHandlers(d12Roll);
-        handlers.forEach(h => {
-            this.queueStep(new SimpleStep(this.game, h));
-        });
+        behaviour.getChimeraHandlers(d12Roll);
     }
 
     canAttack() {
