@@ -4,7 +4,7 @@ describe('Stormwind Sniper', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['mist-spirit'],
+                    inPlay: ['mist-spirit', 'crimson-bomber'],
                     dicepool: ['natural', 'natural', 'illusion', 'charm', 'charm'],
                     spellboard: ['summon-butterfly-monk'],
                     hand: ['molten-gold']
@@ -58,6 +58,13 @@ describe('Stormwind Sniper', function () {
         it('is concealed from PB abilities', function () {
             this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickPrompt('Water Blast');
+
+            expect(this.player1).not.toBeAbleToSelect(this.stormwindSniper);
+        });
+
+        it('is concealed from unit abilities', function () {
+            this.player1.clickCard(this.crimsonBomber);
+            this.player1.clickPrompt('Detonate 3');
 
             expect(this.player1).not.toBeAbleToSelect(this.stormwindSniper);
         });
