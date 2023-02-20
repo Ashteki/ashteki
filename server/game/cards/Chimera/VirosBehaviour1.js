@@ -13,6 +13,7 @@ class VirosBehaviour1 extends BehaviourCard {
             case 5:
             case 6:
                 // Main: Reveal. Attack with revealed aspect
+                // TODO: use revealed aspect
                 return [this.getRevealHandler(), this.getAttackHandler()];
             case 7:
             case 8:
