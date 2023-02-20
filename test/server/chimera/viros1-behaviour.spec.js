@@ -86,4 +86,19 @@ describe('Corpse of Viros Behaviour Rolls', function () {
         expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
     });
 
+    it('12 add red rains token then reveal', function () {
+        spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
+        expect(this.huntingInstincts.location).toBe('threatZone');
+
+        this.player1.endTurn();
+        // informs real player of behaviour roll
+        expect(this.player2).toHavePrompt('Alerting opponent');
+        this.player1.clickPrompt('Ok');
+
+        expect(this.player2.phoenixborn.redRains).toBe(1);
+        expect(this.huntingInstincts.location).toBe('play area');
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+    });
+
 });
