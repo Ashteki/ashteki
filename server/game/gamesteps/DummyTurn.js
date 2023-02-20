@@ -1,3 +1,4 @@
+const { Level } = require("../../constants");
 const AbilityDsl = require("../abilitydsl");
 const Dice = require("../dice");
 const BaseStepWithPipeline = require("./basestepwithpipeline");
@@ -13,7 +14,9 @@ class DummyTurn extends BaseStepWithPipeline {
 
     beginTurn() {
         if (this.player.threatZone.length) {
-            this.doBehaviourRoll();
+            this.doRageRoll();
+            this.queueStep(new SimpleStep(this.game, () => this.doBehaviourRoll()));
+
         } else if (this.canAttack()) {
             // attack
             this.player.doAttack();
@@ -26,6 +29,13 @@ class DummyTurn extends BaseStepWithPipeline {
         }
         else {
             // pass
+        }
+    }
+
+    doRageRoll() {
+        const basicDie = this.player.dice.find(die => die.level === Level.Basic);
+        if (basicDie) {
+            AbilityDsl.actions.rerollDice({ target: basicDie }).resolve(basicDie, this.game.getFrameworkContext(this.player));
         }
     }
 

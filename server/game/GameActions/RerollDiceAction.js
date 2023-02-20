@@ -17,7 +17,7 @@ class RerollDiceAction extends DiceGameAction {
         return [
             super.createEvent(
                 'onDiceRerolled',
-                { dice: context.target, context: context, diceOwner: context.target[0].owner },
+                { dice: this.target, context: context, diceOwner: this.target[0].owner },
                 (event) => {
                     event.dice.forEach((d) => {
                         d.roll();

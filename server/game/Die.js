@@ -201,7 +201,7 @@ class Die extends PlayableObject {
                     target: {
                         activePromptTitle: 'Choose a unit to deal 1 damage to',
                         showCancel: true,
-                        cardType: ['Ally', 'Conjuration'],
+                        cardType: BattlefieldTypes,
                         gameAction: this.game.actions.dealDamage()
                     },
                     message: '{0} uses {1} to deal 1 damage to {2}'
@@ -212,7 +212,7 @@ class Die extends PlayableObject {
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         activePromptTitle: 'Choose a unit to place Charm power die on',
-                        cardType: ['Ally', 'Conjuration'],
+                        cardType: BattlefieldTypes,
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Charm),
                         controller: 'opponent',
@@ -230,7 +230,7 @@ class Die extends PlayableObject {
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
                         activePromptTitle: 'Choose a unit to place Divine power die on',
-                        cardType: ['Ally', 'Conjuration'],
+                        cardType: BattlefieldTypes,
                         cardCondition: (card) =>
                             !card.dieUpgrades.some((d) => d.magic === Magic.Divine),
                         controller: 'self',

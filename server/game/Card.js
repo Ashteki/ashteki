@@ -1325,7 +1325,7 @@ class Card extends PlayableObject {
             imageStub: this.getImageStub(),
             altArts: this.altArts,
             // FUDGE - Order matters here. The getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
-            canPlay: activePlayer.promptState.promptTitle === 'Play phase' && this.canPlay(activePlayer),
+            canPlay: (activePlayer.promptState.promptTitle === 'Play phase') && this.canPlay(activePlayer),
             childCards: this.childCards.map((card) => {
                 return card.getSummary(activePlayer);
             }),

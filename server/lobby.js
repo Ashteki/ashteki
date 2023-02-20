@@ -544,7 +544,7 @@ class Lobby {
 
         this.broadcastGameMessage('updategame', game);
 
-        for (let player of Object.values(game.getPlayersAndSpectators().filter(p => !p.isDummy))) {
+        for (let player of Object.values(game.getPlayersAndSpectators())) {
             let socket = this.sockets[player.id];
 
             if (!socket || !socket.user) {
