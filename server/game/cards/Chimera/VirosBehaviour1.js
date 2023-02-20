@@ -1,3 +1,4 @@
+const { Level } = require("../../../constants");
 const AbilityDsl = require("../../abilitydsl");
 const RevealBehaviour = require("../../BaseActions/RevealBehaviour");
 const BehaviourCard = require("../../solo/BehaviourCard");
@@ -24,13 +25,14 @@ class VirosBehaviour1 extends BehaviourCard {
             case 8:
             case 9:
                 // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
+                this.doLowerOpponentsDice();
                 // Main: Reveal
                 this.doReveal();
                 break;
             case 10:
             case 11:
                 // Side: Raise 1 basic rage die one level
-
+                this.doRageRaise();
                 // Main: Reveal
                 this.doReveal();
                 break;
@@ -77,6 +79,38 @@ class VirosBehaviour1 extends BehaviourCard {
         const ability = this.behaviour({
             gameAction: AbilityDsl.actions.addRedRainsToken({})
         });
+        const context = ability.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
+
+    doRageRaise() {
+        const basicDie = this.owner.dice.find(die => die.level === Level.Basic);
+        if (basicDie) {
+            AbilityDsl.actions.raiseDie().resolve(basicDie, this.game.getFrameworkContext(this.owner));
+        }
+    }
+
+    doLowerOpponentsDice() {
+        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
+            return;
+        }
+
+        const ability = this.behaviour({
+            title: 'Chimera Behaviour',
+            target: {
+                player: 'opponent',
+                targetsPlayer: true,
+                toSelect: 'die',
+                mode: 'exactly',
+                numDice: Math.min(2, this.owner.activeNonBasicDiceCount),
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+                owner: 'opponent',
+                gameAction: AbilityDsl.actions.lowerDie()
+            },
+            message: '{0} uses {1} to lower 2 opponent dice'
+
+        });
+
         const context = ability.createContext(this.owner);
         this.game.resolveAbility(context);
     }

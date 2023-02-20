@@ -6,7 +6,7 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType, Location } = require('../constants');
+const { BattlefieldTypes, CardType, Location, Level } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -610,6 +610,14 @@ class Player extends GameObject {
 
     sortDice() {
         this.dice.sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1));
+    }
+
+    get activeDiceCount() {
+        return this.dice.filter(d => !d.exhausted).length;
+    }
+
+    get activeNonBasicDiceCount() {
+        return this.dice.filter(d => !d.exhausted && d.level !== Level.Basic).length;
     }
 
     /**
