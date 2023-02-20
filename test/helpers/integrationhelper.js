@@ -270,7 +270,9 @@ beforeEach(function () {
         this.player2.player.optionSettings.alertTimer = 0;
         this.player2.player.optionSettings.alwaysGroupTactics = false;
         this.player2.player.optionSettings.dontIceTrapOwnUnits = false;
-
+        if (this.player2.isDummy && !options.allowSetup) {
+            spyOn(this.player2.player, 'setupAspects');
+        }
         this.startGame();
         //Player stats
         this.player1.actions = { main: true, side: true };
@@ -302,13 +304,13 @@ beforeEach(function () {
         for (let player of [this.player1, this.player2]) {
             let cards = [
                 'inPlay',
+                'threatZone',
                 'spellboard',
                 'hand',
                 'discard',
                 'archives',
                 'phoenixborn',
-                'deck',
-                'threatZone'
+                'deck'
             ].reduce((array, location) => array.concat(player[location]), []);
             for (let card of cards) {
                 let split = card.id.split('-');

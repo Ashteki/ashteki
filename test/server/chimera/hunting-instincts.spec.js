@@ -1,3 +1,5 @@
+const Dice = require('../../../server/game/dice');
+
 describe('Hunting Instincts Reveal', function () {
     beforeEach(function () {
         this.setupTest({
@@ -21,9 +23,12 @@ describe('Hunting Instincts Reveal', function () {
                 dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
             }
         });
+
+        // reveal
+        spyOn(Dice, 'd12Roll').and.returnValue(1);
     });
 
-    it('puts card into play with 2 status', function () {
+    it('puts card into play with no status', function () {
         expect(this.huntingInstincts.location).toBe('threatZone');
         this.player1.endTurn();
         // informs real player of behaviour roll
@@ -32,5 +37,7 @@ describe('Hunting Instincts Reveal', function () {
 
         expect(this.huntingInstincts.location).toBe('play area');
         expect(this.huntingInstincts.status).toBe(0);
+
+        expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
     });
 });

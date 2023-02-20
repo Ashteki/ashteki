@@ -33,7 +33,7 @@ describe('Chimera recovery phase', function () {
             this.player1.clickDie(0);
             this.player1.clickDone();
             // next turn
-            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.game.round).toBe(2);
         });
     });
 

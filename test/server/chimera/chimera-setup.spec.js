@@ -3,6 +3,7 @@ describe('Chimera setup', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
+                allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
