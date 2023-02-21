@@ -869,7 +869,8 @@ class Game extends EventEmitter {
             promptTitle: options.promptTitle,
             menuTitle: options.menuTitle,
             controls: controls,
-            buttons: buttons
+            buttons: buttons,
+            style: options.style
         }
         if (options.timed) {
             activePrompt.timerLength = timerLength;

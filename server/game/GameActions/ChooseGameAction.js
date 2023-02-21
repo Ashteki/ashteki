@@ -68,13 +68,19 @@ class ChooseGameAction extends GameAction {
                 }
             };
         });
-        const choosingPlayer = this.player || context.player;
-        context.game.promptWithHandlerMenu(choosingPlayer, {
+        const properties = {
             activePromptTitle,
             context,
             choices,
             handlers
-        });
+        };
+        let choosingPlayer = this.player || context.player;
+        if (choosingPlayer.isDummy) {
+            choosingPlayer = choosingPlayer.opponent;
+            properties.promptTitle = 'CHIMERA CHOICE';
+            properties.style = 'danger';
+        }
+        context.game.promptWithHandlerMenu(choosingPlayer, properties);
     }
 
     hasLegalTarget(context) {

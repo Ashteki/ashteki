@@ -50,6 +50,7 @@ class HandlerMenuPrompt extends UiPrompt {
         }
 
         this.optional = properties.optional;
+        this.style = properties.style;
     }
 
     activeCondition(player) {
@@ -95,7 +96,8 @@ class HandlerMenuPrompt extends UiPrompt {
             menuTitle: this.properties.activePromptTitle || 'Select one',
             buttons: buttons,
             controls: this.getAdditionalPromptControls(),
-            promptTitle: this.promptTitle
+            promptTitle: this.promptTitle,
+            style: this.style
         };
     }
 

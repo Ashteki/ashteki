@@ -80,7 +80,13 @@ class CardGameAction extends GameAction {
                 }
             };
             let properties = Object.assign(defaultProperties, this.promptForSelect);
-            context.game.promptForSelect(properties.player, properties);
+            let choosingPlayer = properties.player;
+            if (choosingPlayer.isDummy) {
+                choosingPlayer = choosingPlayer.opponent;
+                properties.promptTitle = 'CHIMERA CHOICE';
+                properties.style = 'danger';
+            }
+            context.game.promptForSelect(choosingPlayer, properties);
         } else if (this.promptWithHandlerMenu) {
             let properties = this.promptWithHandlerMenu;
             if (!properties.customHandler) {

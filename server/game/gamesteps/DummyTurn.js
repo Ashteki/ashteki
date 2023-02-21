@@ -46,6 +46,7 @@ class DummyTurn extends BaseStepWithPipeline {
         this.player.behaviourRoll = d12Roll;
         const context = this.game.getFrameworkContext(this.player);
         this.game.queueUserAlert(context, {
+            style: 'danger',
             promptTitle: 'Chimera roll',
             menuTitle: 'Chimera rolled for behaviour: ' + d12Roll,
         })

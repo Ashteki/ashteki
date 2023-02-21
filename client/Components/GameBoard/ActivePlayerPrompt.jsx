@@ -338,7 +338,7 @@ class ActivePlayerPrompt extends React.Component {
         }
 
         return (
-            <Panel title={this.props.t(this.props.phase + ' phase')} titleClass='phase-indicator'>
+            <Panel type={this.props.promptState.style || 'primary'} title={this.props.t(this.props.phase + ' phase')} titleClass='phase-indicator'>
                 {promptTitle}
                 {timer}
                 <div className='menu-pane'>

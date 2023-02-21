@@ -18,6 +18,17 @@
         }
     }
 
+    &.border-danger {
+        .card-header {
+            background-image: url('~assets/img/panel-danger.png');
+            border-color: theme-color('danger');
+        }
+
+        .menu-pane-source {
+            background-color: theme-color('danger');
+        }
+    }
+
     &.border-border {
         box-shadow: 1px 1px 1px theme-color('border') !important;
 

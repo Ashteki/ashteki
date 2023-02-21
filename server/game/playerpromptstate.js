@@ -77,6 +77,7 @@ class PlayerPromptState {
         this.diceReq = prompt.diceReq || [];
         this.showAlert = prompt.showAlert || false;
         this.timerLength = prompt.timerLength;
+        this.style = prompt.style;
     }
 
     cancelPrompt() {
@@ -89,6 +90,7 @@ class PlayerPromptState {
         this.canSelectDeck = false;
         this.showAlert = false;
         this.timerLength = 0;
+        this.style = undefined;
     }
 
     getCardSelectionState(card) {
@@ -121,7 +123,8 @@ class PlayerPromptState {
             diceReq: this.diceReq,
             canSelectDeck: this.canSelectDeck,
             showAlert: this.showAlert,
-            timerLength: this.timerLength
+            timerLength: this.timerLength,
+            style: this.style
         };
     }
 }
