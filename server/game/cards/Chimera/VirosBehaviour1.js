@@ -98,11 +98,12 @@ class VirosBehaviour1 extends BehaviourCard {
         const ability = this.behaviour({
             title: 'Chimera Behaviour',
             target: {
+                activePlayerPrompt: 'Choose dice to lower',
                 player: 'opponent',
                 targetsPlayer: true,
                 toSelect: 'die',
                 mode: 'exactly',
-                numDice: Math.min(2, this.owner.activeNonBasicDiceCount),
+                numDice: Math.min(2, this.owner.opponent.activeNonBasicDiceCount),
                 dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: AbilityDsl.actions.lowerDie()

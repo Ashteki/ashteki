@@ -30,11 +30,23 @@
     "cards": [
       {
         "id": "rampage",
-        "count": 9
+        "count": 3
       },
       {
         "id": "hunting-instincts",
-        "count": 9
+        "count": 3
+      },
+      {
+        "id": "firebelly",
+        "count": 6
+      },
+      {
+        "id": "constrict",
+        "count": 3
+      },
+      {
+        "id": "stormcall",
+        "count": 3
       }
     ],
     "conjurations": []

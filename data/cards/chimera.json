@@ -50,6 +50,39 @@
             "life": 3,
             "blood": 2,
             "imageStub": "http://localhost:4000/img/chimera/hunting-instincts.png"
+        },
+        {
+            "name": "Firebelly",
+            "stub": "firebelly",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 2,
+            "blood": 1,
+            "imageStub": "http://localhost:4000/img/chimera/firebelly.png"
+        },
+        {
+            "name": "Constrict",
+            "stub": "constrict",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 3,
+            "blood": 2,
+            "imageStub": "http://localhost:4000/img/chimera/constrict.png"
+        },
+        {
+            "name": "Stormcall",
+            "stub": "stormcall",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 1,
+            "life": 2,
+            "blood": 1,
+            "imageStub": "http://localhost:4000/img/chimera/stormcall.png"
         }
     ]
 }

@@ -19,9 +19,9 @@ class ExactlyXDiceSelector extends BaseDieSelector {
         let numDice = this.getNumDice(context);
         return numDice === 1
             ? 'Choose a die'
-            : this.owner === 'self'
-            ? 'Choose ' + numDice + ' dice'
-            : 'Choose ' + numDice + " of your opponent's dice";
+            : (this.owner === 'self' || context.player.isDummy)
+                ? 'Choose ' + numDice + ' dice'
+                : 'Choose ' + numDice + " of your opponent's dice";
     }
 
     hasEnoughSelected(selectedDice, context) {
