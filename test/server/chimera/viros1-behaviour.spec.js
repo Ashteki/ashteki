@@ -1,5 +1,4 @@
 const Dice = require('../../../server/game/dice');
-const DummyTurn = require('../../../server/game/gamesteps/DummyTurn');
 
 describe('Corpse of Viros Behaviour Rolls', function () {
     describe('rampage in play', function () {
