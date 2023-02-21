@@ -1,9 +1,17 @@
+const { BattlefieldTypes } = require("../../../constants");
 const AspectCard = require("../../solo/AspectCard");
 
 class HuntingInstincts extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
+        this.afterDestroysFighting({
+            autoResolve: true,
+            gameAction: ability.actions.addRedRainsToken((context) => ({
+                target: context.player.phoenixborn,
+                amount: 1
+            }))
+        });
     }
 
 }

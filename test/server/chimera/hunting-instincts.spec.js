@@ -24,11 +24,11 @@ describe('Hunting Instincts Reveal', function () {
             }
         });
 
-        // reveal
-        spyOn(Dice, 'd12Roll').and.returnValue(1);
     });
 
     it('puts card into play with no status', function () {
+        spyOn(Dice, 'd12Roll').and.returnValue(1);        // reveal
+
         expect(this.huntingInstincts.location).toBe('threatZone');
         this.player1.endTurn();
         // informs real player of behaviour roll
@@ -40,4 +40,22 @@ describe('Hunting Instincts Reveal', function () {
 
         expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
     });
+
+    it('adds red rains token when destroys attacking', function () {
+        spyOn(Dice, 'd12Roll').and.returnValue(5);  // reveal then attack
+        this.player1.endTurn();
+        // informs real player of behaviour roll
+        expect(this.player2).toHavePrompt('Alerting opponent');
+        this.player1.clickPrompt('Ok');
+
+        // 
+        this.player1.clickDone(); // guard
+        this.player1.clickYes(); // counter
+        expect(this.anchornaut.location).toBe('discard');
+        expect(this.virosS1.redRains).toBe(1);
+
+        expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+    });
 });
+
+

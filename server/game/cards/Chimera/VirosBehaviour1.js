@@ -77,7 +77,7 @@ class VirosBehaviour1 extends BehaviourCard {
 
     doAddRedRains() {
         const ability = this.behaviour({
-            gameAction: AbilityDsl.actions.addRedRainsToken({})
+            gameAction: AbilityDsl.actions.addRedRainsToken()
         });
         const context = ability.createContext(this.owner);
         this.game.resolveAbility(context);
