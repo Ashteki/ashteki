@@ -4,17 +4,14 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonBlueJaguar extends Card {
     setupCardAbilities(ability) {
-        this.action({
+        this.summon('blue-jaguar', {
             title: 'Summon Blue Jaguar',
             cost: [
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(2, Level.Basic)])
             ],
-            location: 'spellboard',
-            gameAction: ability.actions.summon({
-                conjuration: 'blue-jaguar'
-            })
+            location: 'spellboard'
         });
     }
 }

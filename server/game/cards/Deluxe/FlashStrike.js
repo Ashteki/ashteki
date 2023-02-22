@@ -16,8 +16,16 @@ class FlashStrike extends Card {
                     duration: 'untilEndOfTurn',
                     effect: [ability.effects.quickStrike(), ability.effects.modifyAttack(2)]
                 }))
-            }
+            },
+            getWarnings: (context) => this.getWarnings(context)
         });
+
+    }
+
+    getWarnings(context) {
+        if (!context.game.attackState.attackers.some(a => a.status)) {
+            return 'You don\'t have attackers with status tokens';
+        }
     }
 }
 

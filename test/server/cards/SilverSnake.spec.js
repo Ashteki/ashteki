@@ -5,6 +5,7 @@ describe('Silver Snake', function () {
                 player1: {
                     phoenixborn: 'maeoni-viper',
                     inPlay: ['silver-snake'],
+                    spellboard: ['summon-silver-snake'],
                     hand: ['mist-typhoon'],
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
                 },
@@ -18,6 +19,12 @@ describe('Silver Snake', function () {
             this.silverSnake.tokens.status = 3;
             this.game.checkGameState(true);
         });
+
+        it('should warn if no snake in conjuration pile', function () {
+            this.player1.clickCard(this.summonSilverSnake);
+            this.player1.clickPrompt('Summon Silver Snake');
+            expect(this.player1).toHavePrompt('Warning');
+        })
 
         it('should trigger on blood archer destroy', function () {
             this.player1.clickPrompt('Attack');

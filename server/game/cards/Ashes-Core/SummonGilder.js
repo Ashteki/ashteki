@@ -4,7 +4,7 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonGilder extends Card {
     setupCardAbilities(ability) {
-        this.action({
+        this.summon('gilder', {
             title: 'Summon Gilder',
             cost: [
                 ability.costs.mainAction(),
@@ -12,9 +12,6 @@ class SummonGilder extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Natural)])
             ],
             location: 'spellboard',
-            gameAction: ability.actions.summon({
-                conjuration: 'gilder'
-            }),
             then: {
                 alwaysTriggers: true,
                 target: {

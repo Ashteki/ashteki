@@ -4,11 +4,10 @@ import { imageUrl } from '../../util';
 
 import './CardImage.scss';
 
-const CardImage = ({ card, cardBack, override, imgClass }) => {
+const CardImage = ({ card, cardBack, override }) => {
     if (!card) {
         return null;
     }
-    let classes = classNames('img-fluid', imgClass);
 
     let imgPath = card.facedown && !override ? cardBack : imageUrl(card.imageStub || card.id);
     const cardIndex =
@@ -17,6 +16,8 @@ const CardImage = ({ card, cardBack, override, imgClass }) => {
                 {card.index}
             </div>
         ) : null;
+
+    let classes = classNames('img-fluid', 'img-card');
     return (
         <>
             {cardIndex}

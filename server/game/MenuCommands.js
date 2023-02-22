@@ -44,12 +44,12 @@ class MenuCommands {
             // In manual mode, I can't click on cards in hand and receive a menu (drag & drop required)
             case 'moveHand':
                 if (
-                    card.controller != player.opponent &&
+                    // card.controller != player.opponent &&
                     ((card.location === 'play area' && card.type != 'phoenixborn') ||
                         card.location === 'spellboard' ||
                         card.location === 'discard')
                 ) {
-                    game.addAlert('danger', '{0} moves {1} from their {2} to their hand', player, card, card.location);
+                    game.addAlert('danger', '{0} moves {1} from the {2} to hand', player, card, card.location);
                     card.owner.moveCard(card, 'hand');
                 }
                 break;

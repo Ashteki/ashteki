@@ -22,21 +22,6 @@ class SummonArchasaurusMount extends Card {
                         facedown: true
                     }))
                 }
-
-                // target: {
-                //     controller: 'self',
-                //     cardType: CardType.Conjuration,
-                //     cardCondition: (card) => card.id === 'archasaurus-mount',
-                //     location: 'archives',
-                //     gameAction: ability.actions.putIntoPlay()
-                // },
-                // then: {
-                //     gameAction: ability.actions.placeUnder((context) => ({
-                //         parent: context.preThenEvent.card,
-                //         target: context.preThenEvent.context.preThenEvent.card,
-                //         facedown: true
-                //     }))
-                // }
             }
         });
     }

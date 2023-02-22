@@ -13,6 +13,10 @@ class AttackState {
         return this.target.type === CardType.Phoenixborn;
     }
 
+    get attackers() {
+        return this.battles.map(b => b.attacker);
+    }
+
     involvesCard(card) {
         return (
             this.target === card ||

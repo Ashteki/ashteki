@@ -4,7 +4,7 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonMirrorSpirit extends Card {
     setupCardAbilities(ability) {
-        this.action({
+        this.summon('mirror-spirit', {
             title: 'Summon Mirror Spirit',
             cost: [
                 ability.costs.mainAction(),
@@ -15,9 +15,6 @@ class SummonMirrorSpirit extends Card {
                 ])
             ],
             location: 'spellboard',
-            gameAction: ability.actions.summon({
-                conjuration: 'mirror-spirit'
-            }),
             then: {
                 alwaysTriggers: true,
                 may: 'remove all status to exhaust a unit',

@@ -92,8 +92,6 @@ class GameChat {
                             id: arg.id,
                             imageStub: arg.imageStub,
                             index: arg.index,
-                            label: arg.name,
-                            type: arg.getType(),
                             argType: 'card'
                         });
                     } else if (arg instanceof Spectator || arg instanceof Player) {
@@ -106,7 +104,6 @@ class GameChat {
                     } else if (arg instanceof Die) {
                         returnedFraments.push({
                             name: arg.name,
-                            type: arg.getType(),
                             argType: 'die',
                             level: arg.level,
                             magic: arg.magic
