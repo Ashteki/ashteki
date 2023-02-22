@@ -1,3 +1,4 @@
+const AbilityDsl = require("../abilitydsl");
 const Card = require("../Card");
 
 class AspectCard extends Card {
@@ -14,6 +15,16 @@ class AspectCard extends Card {
                 }))
             },
             preferActionPromptMessage: true
+        });
+
+
+    }
+
+    defender() {
+        this.persistentEffect({
+            condition: () => !this.exhausted,
+
+            effect: AbilityDsl.effects.defender()
         });
     }
 }

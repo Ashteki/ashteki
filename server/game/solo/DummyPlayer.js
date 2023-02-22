@@ -11,7 +11,7 @@ class DummyPlayer extends Player {
         super(id, user, owner, game, clockdetails);
         this.firstFiveStrategy = new ChimeraFFStrategy(this);
         this.dicePinStrategy = new ChimeraPinStrategy(this);
-        this.defenderStrategy = new ChimeraDefenceStrategy(this);
+        this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
     }
