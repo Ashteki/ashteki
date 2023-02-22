@@ -30,7 +30,7 @@ class AttackFlow extends BaseStepWithPipeline {
 
         steps = steps.concat([
             new SimpleStep(this.game, () => this.game.attackState.pruneBattles()),
-            new ChooseDefendersPrompt(this.game, this.attack),
+            this.getDefendersStep(),
             new SimpleStep(this.game, () => {
                 if (!this.cancelled) {
                     this.game.raiseEvent('onDefendersDeclared', { attack: this.attack });
@@ -131,6 +131,13 @@ class AttackFlow extends BaseStepWithPipeline {
             battles: this.attack.battles
         };
         this.game.doAttackersDeclared(params);
+    }
+
+    getDefendersStep() {
+        if (this.game.solo) {
+            return new SimpleStep(this.game, () => this.attackingPlayer.opponent.defenderStrategy.execute(this.attack))
+        }
+        return new ChooseDefendersPrompt(this.game, this.attack)
     }
 }
 

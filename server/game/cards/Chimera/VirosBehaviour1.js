@@ -77,7 +77,7 @@ class VirosBehaviour1 extends BehaviourCard {
 
     doAddRedRains() {
         const ability = this.behaviour({
-            gameAction: AbilityDsl.actions.addRedRainsToken()
+            gameAction: AbilityDsl.actions.addRedRainsToken({ showMessage: true })
         });
         const context = ability.createContext(this.owner);
         this.game.resolveAbility(context);
@@ -86,7 +86,7 @@ class VirosBehaviour1 extends BehaviourCard {
     doRageRaise() {
         const basicDie = this.owner.dice.find(die => die.level === Level.Basic);
         if (basicDie) {
-            AbilityDsl.actions.raiseDie().resolve(basicDie, this.game.getFrameworkContext(this.owner));
+            AbilityDsl.actions.raiseDie({ showMessage: true }).resolve(basicDie, this.game.getFrameworkContext(this.owner));
         }
     }
 
