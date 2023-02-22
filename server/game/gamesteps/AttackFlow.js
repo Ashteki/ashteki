@@ -134,7 +134,7 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     getDefendersStep() {
-        if (this.game.solo) {
+        if (this.game.solo && !this.attackingPlayer.isDummy) {
             return new SimpleStep(this.game, () => this.attackingPlayer.opponent.defenderStrategy.execute(this.attack))
         }
         return new ChooseDefendersPrompt(this.game, this.attack)

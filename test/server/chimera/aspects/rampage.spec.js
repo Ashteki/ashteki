@@ -1,4 +1,4 @@
-const Dice = require('../../../server/game/dice');
+const Dice = require('../../../../server/game/dice');
 
 describe('Rampage Aspect', function () {
     describe('Rampage Reveal', function () {

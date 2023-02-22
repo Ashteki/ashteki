@@ -1,4 +1,3 @@
-const { BattlefieldTypes } = require("../../../constants");
 const AspectCard = require("../../solo/AspectCard");
 
 class HuntingInstincts extends AspectCard {

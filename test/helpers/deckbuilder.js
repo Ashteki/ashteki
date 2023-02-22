@@ -7,8 +7,8 @@ const { matchCardByNameAndPack } = require('./cardutil.js');
 const PathToSubModulePacks = path.join(__dirname, '../../data/cards');
 
 const defaultFiller = ['open-memories'];
-const defaultDummyDeck = ['rampage', 'rampage', 'rampage', 'hunting-instincts', 'hunting-instincts', 'hunting-instincts'];
-const minDeck = 6;
+// why do i need each card in this?
+const defaultDummyDeck = ['rampage', 'hunting-instincts'];
 
 class DeckBuilder {
     constructor() {
@@ -37,6 +37,7 @@ class DeckBuilder {
     */
     customDeck(player = {}) {
         let deck = [];
+        const minDeck = player.dummy ? 8 : 6;
 
         for (let zone of ['deck', 'hand', 'inPlay', 'spellboard', 'discard', 'archives', 'threatZone']) {
             if (Array.isArray(player[zone])) {
@@ -44,12 +45,9 @@ class DeckBuilder {
             }
         }
 
-        if (player.dummy) {
-            deck = defaultDummyDeck;
-        } else {
-            while (deck.length < minDeck) {
-                deck = deck.concat(defaultFiller[0]);
-            }
+        const filler = player.dummy ? defaultDummyDeck : defaultFiller[0];
+        while (deck.length < minDeck) {
+            deck = deck.concat(filler);
         }
 
         let dice = [
