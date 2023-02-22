@@ -256,6 +256,10 @@ class Game extends EventEmitter {
         return this.getPlayers().find(p => p.isDummy);
     }
 
+    getSoloPlayer() {
+        return this.getPlayers().find(p => !p.isDummy);
+    }
+
     /**
      * Get all players and spectators in the game
      * @returns {Object} {name1: Player, name2: Player, name3: Spectator}
@@ -1033,8 +1037,9 @@ class Game extends EventEmitter {
         if (!this.gameFirstPlayer) {
             const players = this.getPlayers();
 
+            const firstPlayerParams = {}
             if (this.solo) {
-                this.setGameFirstPlayer(players.find(p => !p.isDummy));
+                this.activePlayer = this.getSoloPlayer();
             } else {
                 let i = 0;
                 while (
@@ -1059,13 +1064,12 @@ class Game extends EventEmitter {
                     '{0} rolled the most basics so will choose first player',
                     this.activePlayer
                 );
-                this.queueStep(
-                    new FirstPlayerSelection(this, {
-                        activeBasics: basicCounts[activeIndex],
-                        opponentBasics: basicCounts[1 - activeIndex]
-                    })
-                );
+                firstPlayerParams.activeBasics = basicCounts[activeIndex];
+                firstPlayerParams.opponentBasics = basicCounts[1 - activeIndex];
             }
+            this.queueStep(
+                new FirstPlayerSelection(this, firstPlayerParams)
+            );
         } else {
             const newFirstPlayer =
                 this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;

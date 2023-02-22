@@ -40,6 +40,7 @@ describe('Rampage Aspect', function () {
             expect(this.rampage.status).toBe(2);
         });
     });
+
     describe('Rampage In Play', function () {
         beforeEach(function () {
             this.setupTest({

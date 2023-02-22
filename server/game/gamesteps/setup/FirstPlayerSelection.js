@@ -10,7 +10,10 @@ class FirstPlayerSelection extends UiPrompt {
     }
 
     activePrompt(player) {
-        const title = `You rolled ${this.properties.activeBasics} basics.\nYour opponent rolled ${this.properties.opponentBasics}. \nWho will go first?`
+        let title = `Who will go first?`;
+        if (!this.game.solo) {
+            title = `You rolled ${this.properties.activeBasics} basics.\nYour opponent rolled ${this.properties.opponentBasics}. \n` + title;
+        }
         return {
             promptTitle: 'First Player',
             menuTitle: title,
