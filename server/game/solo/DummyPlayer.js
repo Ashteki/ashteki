@@ -14,6 +14,7 @@ class DummyPlayer extends Player {
         this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
+        this.fatigued = false;
     }
 
     get isDummy() {

@@ -29,6 +29,10 @@ class PlayerInteractionWrapper {
         return this.player.actions;
     }
 
+    get fatigued() {
+        return this.player.fatigued;
+    }
+
     /**
      * Sets the player's hand to contain the specified cards. Moves cards between
      * hand and deck

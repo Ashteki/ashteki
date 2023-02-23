@@ -83,6 +83,17 @@
             "life": 2,
             "blood": 1,
             "imageStub": "http://localhost:4000/img/chimera/stormcall.png"
+        },
+        {
+            "name": "Iron Scales",
+            "stub": "iron-scales",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 3,
+            "life": 2,
+            "blood": 2,
+            "imageStub": "http://localhost:4000/img/chimera/iron-scales.png"
         }
     ]
 }

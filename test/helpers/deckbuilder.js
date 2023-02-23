@@ -7,7 +7,6 @@ const { matchCardByNameAndPack } = require('./cardutil.js');
 const PathToSubModulePacks = path.join(__dirname, '../../data/cards');
 
 const defaultFiller = ['open-memories'];
-// why do i need each card in this?
 const defaultDummyDeck = ['rampage', 'hunting-instincts'];
 
 class DeckBuilder {

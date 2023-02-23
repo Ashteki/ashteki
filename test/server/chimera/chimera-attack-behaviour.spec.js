@@ -143,4 +143,56 @@ describe('When Attacked', function () {
         });
 
     });
+
+    describe('defender guard', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['summon-iron-rhino']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'viros-s1',
+                    behaviour: 'viros-behaviour-1',
+                    ultimate: 'viros-ultimate-1',
+                    inPlay: ['constrict', 'iron-scales'],
+                    spellboard: [],
+                    threatZone: ['hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(9);
+        });
+
+        it('defender will not guard a defender', function () {
+            this.player1.clickAttack(this.constrict);
+            this.player1.clickCard(this.fluteMage);
+
+            expect(this.constrict.location).toBe('play area');
+            expect(this.constrict.damage).toBe(1);
+            expect(this.ironScales.damage).toBe(0);
+            expect(this.fluteMage.location).toBe('discard');
+            expect(Dice.d12Roll).not.toHaveBeenCalled();
+        });
+
+        it('defender will guard an exhausted defender', function () {
+            this.constrict.tokens.exhaustion = 1;
+            this.player1.clickAttack(this.constrict);
+            this.player1.clickCard(this.fluteMage);
+
+            // this.player1.clickPrompt('Ok'); // guard roll alert
+            expect(this.constrict.location).toBe('play area');
+            expect(this.fluteMage.location).toBe('discard');
+            expect(this.ironScales.damage).toBe(1);
+            expect(this.virosS1.damage).toBe(0);
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(0);
+        });
+    });
+
 });
