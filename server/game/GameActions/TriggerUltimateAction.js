@@ -21,6 +21,10 @@ class TriggerUltimateAction extends CardGameAction {
         };
         return super.createEvent('unnamedevent', params, (event) => {
             event.card.tokens.redRains = 0;
+            const alienUnits = context.player.cardsInPlay.filter(c => c.owner !== c.controller);
+            if (alienUnits.length) {
+                context.game.actions.discard().resolve(alienUnits, context);
+            }
         });
     }
 }
