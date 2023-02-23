@@ -38,15 +38,27 @@
       },
       {
         "id": "firebelly",
-        "count": 6
+        "count": 2
       },
       {
         "id": "constrict",
-        "count": 3
+        "count": 2
       },
       {
         "id": "stormcall",
-        "count": 3
+        "count": 2
+      },
+      {
+        "id": "frozen-fear",
+        "count": 2
+      },
+      {
+        "id": "whiplash",
+        "count": 2
+      },
+      {
+        "id": "iron-scales",
+        "count": 2
       }
     ],
     "conjurations": []

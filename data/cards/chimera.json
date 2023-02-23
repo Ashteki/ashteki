@@ -94,6 +94,28 @@
             "life": 2,
             "blood": 2,
             "imageStub": "http://localhost:4000/img/chimera/iron-scales.png"
+        },
+        {
+            "name": "Frozen Fear",
+            "stub": "frozen-fear",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2,
+            "imageStub": "http://localhost:4000/img/chimera/frozen-fear.png"
+        },
+        {
+            "name": "Whiplash",
+            "stub": "whiplash",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "http://localhost:4000/img/chimera/whiplash.png"
         }
     ]
 }
