@@ -15,6 +15,18 @@ class DummyPlayer extends Player {
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
         this.fatigued = false;
+
+        game.on('onCardMoved', (event) => this.cardMovedListener(event))
+    }
+
+    cardMovedListener(event) {
+        if (
+            event.card.owner === this
+            && event.originalLocation === 'deck'
+            && this.deck.length === 0
+        ) {
+            this.fatigued = true;
+        }
     }
 
     get isDummy() {
