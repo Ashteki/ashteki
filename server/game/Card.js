@@ -76,6 +76,7 @@ class Card extends PlayableObject {
         this.printedRecover = cardData.recover || 0;
         this.threat = cardData.threat;
         this.blood = cardData.blood;
+        this.printedUltimate = cardData.ultimate;
         this.target = cardData.target;
         this.setup = cardData.setup;
         this.printedBattlefield = cardData.battlefield;
@@ -972,6 +973,10 @@ class Card extends PlayableObject {
 
     get redRains() {
         return this.hasToken('redRains') ? this.tokens.redRains : 0;
+    }
+
+    get ultimate() {
+        return this.printedUltimate + this.exhaustion;
     }
 
     exhaust(amount = 1) {

@@ -56,6 +56,7 @@ const Actions = {
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     orderedAoE: (propertyFactory) => new GameActions.OrderedAoEAction(propertyFactory),
     attack: (propertyFactory) => new GameActions.AttackAction(propertyFactory),
+    triggerUltimate: (propertyFactory) => new GameActions.TriggerUltimateAction(propertyFactory),
 
     // dice actions
     changeDice: (propertyFactory) => new GameActions.ChangeDiceAction(propertyFactory),
