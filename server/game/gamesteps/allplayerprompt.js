@@ -22,7 +22,7 @@ class AllPlayerPrompt extends UiPrompt {
             if (this.activeCondition(player)) {
                 player.setPrompt(this.addDefaultCommandToButtons(this.activePrompt(player)));
                 player.startClock();
-            } else if (this.game.solo && this.activeCondition(player.opponent)) {
+            } else if (player.opponent.isDummy && this.activeCondition(player.opponent)) {
                 const prompt = this.activePrompt(player.opponent);
                 prompt.promptTitle = 'CHIMERA CHOICE';
                 prompt.style = 'danger';

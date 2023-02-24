@@ -1,4 +1,5 @@
 const { CardType, Magic, Level } = require("../../constants");
+const AbilityDsl = require("../abilitydsl");
 const RevealBehaviour = require("../BaseActions/RevealBehaviour");
 const Player = require("../player");
 const ChimeraDefenceStrategy = require("./ChimeraDefenceStrategy");
@@ -26,8 +27,16 @@ class DummyPlayer extends Player {
             && event.originalLocation === 'deck'
             && this.deck.length === 0
         ) {
-            this.fatigued = true;
+            this.applyFatigue();
         }
+    }
+
+    applyFatigue() {
+        this.fatigued = true;
+        AbilityDsl.actions.lastingEffect({
+            targetController: 'current',
+            effect: AbilityDsl.effects.playerCannot('draw'),
+        }).resolve(this, this.game.getFrameworkContext(this));
     }
 
     dieChangeListener(event) {
@@ -129,6 +138,7 @@ class DummyPlayer extends Player {
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
         // all cards are discarded
         const context = this.game.getFrameworkContext(this);
+
         this.game.actions.discardTopOfDeck({ amount: numCards }).resolve(this, context);
         this.phoenixborn.tokens.damage = numCards + this.phoenixborn.damage;
     }
