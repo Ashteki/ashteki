@@ -23,7 +23,7 @@ describe('Chimera Draw', function () {
             });
         });
 
-        it('player chooses for chimera. draw causes discard and damage', function () {
+        it('player chooses for chimera. draw causes discard', function () {
             const decklength = this.player2.deck.length;
             this.player1.clickCard(this.abundance);
             this.player1.clickPrompt('Abundance');
@@ -33,7 +33,7 @@ describe('Chimera Draw', function () {
             expect(this.player2.deck.length).toBe(decklength - 2);
             expect(this.player2.hand.length).toBe(0);
             expect(this.player2.discard.length).toBe(2);
-            expect(this.virosS1.damage).toBe(2);
+            expect(this.virosS1.damage).toBe(0);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });

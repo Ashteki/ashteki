@@ -26,8 +26,7 @@ class DiscardCardAction extends CardGameAction {
                 lpEvent.card.owner.moveCard(lpEvent.card, lpEvent.card.discardLocation);
             }
         );
-        // TODO: for consistency within onCardLeavesPlay this should be a 
-        // discarded event with a leaves play child event
+
         const discardEvent = super.createEvent(
             'onCardDiscarded',
             params,

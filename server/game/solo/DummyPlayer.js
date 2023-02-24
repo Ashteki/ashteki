@@ -19,15 +19,37 @@ class DummyPlayer extends Player {
 
         game.on('onCardMoved', (event) => this.cardMovedListener(event));
         game.on('onDieChange', (event) => this.dieChangeListener(event));
+        game.on('onCardDiscarded', (event) => this.cardDiscardedListener(event));
     }
 
     cardMovedListener(event) {
         if (
+            // moved from my deck
             event.card.owner === this
             && event.originalLocation === 'deck'
-            && this.deck.length === 0
         ) {
-            this.applyFatigue();
+            // if draw pile hits empty then fatigue
+            if (this.deck.length === 0) {
+                if (!this.fatigued) {
+                    this.applyFatigue();
+                    const context = this.game.getFrameworkContext(this);
+                    this.game.queueUserAlert(context, {
+                        style: 'danger',
+                        promptTitle: 'Chimera Alert',
+                        menuTitle: 'Chimera is Fatigued!',
+                    });
+                }
+
+                // refill deck from discard pile
+
+            }
+        }
+    }
+
+    cardDiscardedListener(event) {
+        if (event.location === 'deck' && this.fatigued) {
+            this.phoenixborn.addToken('damage', 1);
+            this.game.addMessage('Chimera takes fatigue damage');
         }
     }
 
@@ -37,13 +59,6 @@ class DummyPlayer extends Player {
             targetController: 'current',
             effect: AbilityDsl.effects.playerCannot('draw'),
         }).resolve(this, this.game.getFrameworkContext(this));
-        // notify
-        const context = this.game.getFrameworkContext(this);
-        this.game.queueUserAlert(context, {
-            style: 'danger',
-            promptTitle: 'Chimera Alert',
-            menuTitle: 'Chimera is Fatigued!',
-        });
     }
 
     dieChangeListener(event) {
@@ -147,7 +162,7 @@ class DummyPlayer extends Player {
         const context = this.game.getFrameworkContext(this);
 
         this.game.actions.discardTopOfDeck({ amount: numCards }).resolve(this, context);
-        this.phoenixborn.tokens.damage = numCards + this.phoenixborn.damage;
+        // this.phoenixborn.tokens.damage = numCards + this.phoenixborn.damage;
     }
 }
 

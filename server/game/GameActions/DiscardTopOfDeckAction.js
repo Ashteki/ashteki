@@ -25,9 +25,7 @@ class DiscardTopOfDeckAction extends PlayerAction {
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player, context }, () => {
             let amount = Math.min(this.amount, player.deck.length);
-
             context.discardedCards = player.deck.slice(0, amount);
-
             context.game.addMessage(
                 '{0} discards {1} from the top of their deck',
                 player,
