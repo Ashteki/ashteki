@@ -125,6 +125,13 @@ class DummyPlayer extends Player {
     getAspectsInPlay() {
         return this.unitsInPlay.filter(u => u.type === CardType.Aspect);
     }
+
+    drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
+        // all cards are discarded
+        const context = this.game.getFrameworkContext(this);
+        this.game.actions.discardTopOfDeck({ amount: numCards }).resolve(this, context);
+        this.phoenixborn.tokens.damage = numCards + this.phoenixborn.damage;
+    }
 }
 
 module.exports = DummyPlayer;
