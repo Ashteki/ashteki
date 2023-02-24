@@ -1,4 +1,4 @@
-const { CardType } = require("../../constants");
+const { CardType, Magic, Level } = require("../../constants");
 const RevealBehaviour = require("../BaseActions/RevealBehaviour");
 const Player = require("../player");
 const ChimeraDefenceStrategy = require("./ChimeraDefenceStrategy");
@@ -16,7 +16,8 @@ class DummyPlayer extends Player {
         this.behaviourRoll = 0;
         this.fatigued = false;
 
-        game.on('onCardMoved', (event) => this.cardMovedListener(event))
+        game.on('onCardMoved', (event) => this.cardMovedListener(event));
+        game.on('onDieChange', (event) => this.dieChangeListener(event));
     }
 
     cardMovedListener(event) {
@@ -26,6 +27,16 @@ class DummyPlayer extends Player {
             && this.deck.length === 0
         ) {
             this.fatigued = true;
+        }
+    }
+
+    dieChangeListener(event) {
+        if (event.die.owner === this && this.dice.every(d => d.Level === Level.Power)) {
+            // reset all dice
+            this.dice.forEach(d => d.level = Level.Basic);
+            // add a RR token to the Chimera
+            const context = this.game.getFrameworkContext(this);
+            this.game.ability.actions.addRedRainsToken().resolve(this.phoenixborn, context);
         }
     }
 
