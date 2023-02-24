@@ -37,6 +37,13 @@ class DummyPlayer extends Player {
             targetController: 'current',
             effect: AbilityDsl.effects.playerCannot('draw'),
         }).resolve(this, this.game.getFrameworkContext(this));
+        // notify
+        const context = this.game.getFrameworkContext(this);
+        this.game.queueUserAlert(context, {
+            style: 'danger',
+            promptTitle: 'Chimera Alert',
+            menuTitle: 'Chimera is Fatigued!',
+        });
     }
 
     dieChangeListener(event) {

@@ -31,6 +31,8 @@ describe('Chimera fatigue', function () {
             this.player1.endTurn();
             this.player1.clickDie(0);
             this.player1.clickDone();
+
+            this.player1.clickPrompt('Ok'); // fatigue alert
             // next turn
             expect(this.game.round).toBe(2);
             // deck is empty

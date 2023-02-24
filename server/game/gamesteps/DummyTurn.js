@@ -20,12 +20,6 @@ class DummyTurn extends BaseStepWithPipeline {
         } else if (this.canAttack()) {
             // attack
             this.player.doAttack();
-            // const attacker = this.getAttacker();
-            // const target = this.getTarget(attacker);
-            // AbilityDsl.actions.attack({
-            //     target: target,
-            //     attacker: attacker
-            // });
         }
         else {
             // pass
@@ -49,7 +43,7 @@ class DummyTurn extends BaseStepWithPipeline {
             style: 'danger',
             promptTitle: 'Chimera roll',
             menuTitle: 'Chimera rolled for behaviour: ' + d12Roll,
-        })
+        });
         // get actions from behaviour card and queue
         const behaviour = this.player.behaviour;
         behaviour.handleBehaviourRoll(d12Roll);
