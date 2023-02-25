@@ -25,6 +25,7 @@ import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
 import Clock from './Clock';
 import WinLoseSplash from './WinLoseSplash';
+import ChimeraRow from './ChimeraRow';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -249,10 +250,8 @@ export class GameBoard extends React.Component {
         };
     }
 
-    renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating) {
-        return [
-            <div key='board-middle' className='board-middle'>
-                <div className='player-home-row'>
+    getPlayerRows(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating) {
+            <div className='player-home-row'>
                     {!compactLayout &&
                         (<PlayerRow
                             archives={otherPlayer.cardPiles.archives}
@@ -269,29 +268,64 @@ export class GameBoard extends React.Component {
                             side='top'
                             dice={otherPlayer.dice}
                             purgedPile={otherPlayer.cardPiles.purged}
-                        behaviour={otherPlayer.behaviour}
-                </div>
-                <div className='player-home-row'>
-                    <PlayerPBRow
+                    behaviour={otherPlayer.behaviour}
+                />
+            </div>
+            <div className='player-home-row'>
+                <PlayerPBRow
                         cardSize={cardSize}
-                        discard={otherPlayer.cardPiles.discard}
-                        drawDeck={otherPlayer.cardPiles.deck}
-                        isMe={false}
-                        language={this.props.i18n.language}
-                        manualMode={this.props.currentGame.manualMode}
-                        numDeckCards={otherPlayer.numDeckCards}
-                        onCardClick={this.onCardClick}
-                        onMouseOver={this.onMouseOver}
-                        onMouseOut={this.onMouseOut}
-                        player={otherPlayer}
+                    discard={otherPlayer.cardPiles.discard}
+                    drawDeck={otherPlayer.cardPiles.deck}
+                    isMe={false}
+                    language={this.props.i18n.language}
+                    manualMode={this.props.currentGame.manualMode}
+                    numDeckCards={otherPlayer.numDeckCards}
+                    onCardClick={this.onCardClick}
+                    onMouseOver={this.onMouseOver}
+                    onMouseOut={this.onMouseOut}
+                    player={otherPlayer}
                         showDice={compactLayout}
                         showDeckPile={!compactLayout}
-                        side='top'
-                        spells={otherPlayer.cardPiles.spells}
-                        spectating={spectating}
-                        phoenixborn={otherPlayer.phoenixborn}
-                    />
-                </div>
+                    side='top'
+                    spells={otherPlayer.cardPiles.spells}
+                    spectating={spectating}
+                    phoenixborn={otherPlayer.phoenixborn}
+                />
+            </div>
+        </>);
+    }
+
+    getChimeraRow(thisPlayer, otherPlayer, spectating) {
+        return (<div className='player-home-row'>
+            <ChimeraRow
+                cardSize={this.props.user.settings.cardSize}
+                dice={otherPlayer.dice}
+                discard={otherPlayer.cardPiles.discard}
+                drawDeck={otherPlayer.cardPiles.deck}
+                isMe={false}
+                language={this.props.i18n.language}
+                manualMode={this.props.currentGame.manualMode}
+                numDeckCards={otherPlayer.numDeckCards}
+                onCardClick={this.onCardClick}
+                onMouseOver={this.onMouseOver}
+                onMouseOut={this.onMouseOut}
+                player={otherPlayer}
+                side='top'
+                spells={otherPlayer.cardPiles.spells}
+                spectating={spectating}
+                phoenixborn={otherPlayer.phoenixborn}
+            />
+        </div>
+        );
+    }
+    renderBoard(thisPlayer, otherPlayer) {
+        let spectating = !this.props.currentGame.players[this.props.user.username];
+        return [
+            <div key='board-middle' className='board-middle'>
+                {this.props.currentGame.solo ?
+                    this.getChimeraRow(thisPlayer, otherPlayer, spectating) :
+                    this.getPlayerRows(thisPlayer, otherPlayer, spectating)}
+
                 <div className='board-inner'>
                     <div className='play-area'>
                         {/* opponent board */}

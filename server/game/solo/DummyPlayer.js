@@ -105,6 +105,7 @@ class DummyPlayer extends Player {
     getState(activePlayer) {
         const result = super.getState(activePlayer);
         result.cardPiles.threatZone = this.getSummaryForCardList(this.threatZone, activePlayer)
+        result.fatigued = this.fatigued;
 
         return result;
     }

@@ -11,8 +11,9 @@ class CardVisibility {
             (card) => this.isEffectRule(card),
             (card, player) => this.isControllerRule(card, player),
             (card, player) => this.isSpectatorRule(card, player),
-            (card, player) => this.isOpenHandsRule(card, player),
-            (card, player) => this.isSoloRule(card, player)
+            (card, player) => this.isOpenHandsRule(card, player)
+            // ,
+            // (card, player) => this.isSoloRule(card, player)
         ];
     }
 
@@ -56,11 +57,11 @@ class CardVisibility {
         );
     }
 
-    isSoloRule(card, player) {
-        return (
-            this.solo && ['hand', 'deck', 'archives'].includes(card.location)
-        );
-    }
+    // isSoloRule(card, player) {
+    //     return (
+    //         this.solo && ['hand', 'deck', 'archives'].includes(card.location)
+    //     );
+    // }
 
     isSpellRevealed(card) {
         const revealedCards = [
