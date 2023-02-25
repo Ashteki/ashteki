@@ -37,6 +37,7 @@ describe('Chimera ultimate', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
             expect(this.player2.phoenixborn.redRains).toBe(2);
+
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('Summon Blood Puppet');
             this.player1.clickPrompt("Opponent's");

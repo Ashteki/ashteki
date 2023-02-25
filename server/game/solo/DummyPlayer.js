@@ -19,6 +19,7 @@ class DummyPlayer extends Player {
 
         game.on('onCardMoved', (event) => this.cardMovedListener(event));
         game.on('onDieChange', (event) => this.dieChangeListener(event));
+        game.on('onDiceRerolled', (event) => this.dieChangeListener(event));
         game.on('onCardDiscarded', (event) => this.cardDiscardedListener(event));
     }
 
@@ -62,12 +63,12 @@ class DummyPlayer extends Player {
     }
 
     dieChangeListener(event) {
-        if (event.die.owner === this && this.dice.every(d => d.Level === Level.Power)) {
+        if (event.diceOwner === this && this.dice.every(d => d.level === Level.Power)) {
             // reset all dice
             this.dice.forEach(d => d.level = Level.Basic);
             // add a RR token to the Chimera
             const context = this.game.getFrameworkContext(this);
-            this.game.ability.actions.addRedRainsToken().resolve(this.phoenixborn, context);
+            this.game.actions.addRedRainsToken().resolve(this.phoenixborn, context);
         }
     }
 

@@ -16,8 +16,6 @@ class AspectCard extends Card {
             },
             preferActionPromptMessage: true
         });
-
-
     }
 
     defender() {
