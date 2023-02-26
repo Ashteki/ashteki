@@ -15,6 +15,12 @@ class Stormcall extends AspectCard {
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,
                 gameAction: ability.actions.dealDamage({ showMessage: true })
+            },
+            then: {
+                condition: (context) => context.source.status === 0,
+                gameAction: ability.actions.addRedRainsToken((context) => ({
+                    target: context.player.phoenixborn
+                }))
             }
         });
     }
