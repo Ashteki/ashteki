@@ -99,7 +99,6 @@ class VirosBehaviour1 extends BehaviourCard {
         const ability = this.behaviour({
             title: 'Chimera Behaviour',
             target: {
-                activePlayerPrompt: 'Choose dice to lower',
                 player: 'opponent',
                 targetsPlayer: true,
                 toSelect: 'die',

@@ -290,7 +290,9 @@ beforeEach(function () {
         this.player2.spellboard = options.player2.spellboard;
         this.player1.dicepool = options.player1.dicepool;
         this.player2.dicepool = options.player2.dicepool;
-
+        if (this.player2.isDummy) {
+            this.player2.dicepool.forEach(d => d.level = 'basic');
+        }
         this.player1.hand = options.player1.hand;
         this.player2.hand = options.player2.hand;
         this.player1.discard = options.player1.discard;

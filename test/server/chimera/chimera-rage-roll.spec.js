@@ -24,7 +24,10 @@ describe('Chimera Rage Roll', function () {
             }
         });
 
-        this.player2.dicepool[0].level = 'basic';
+        this.player2.dicepool[0].level = 'power';
+        this.player2.dicepool[1].level = 'power';
+        this.player2.dicepool[2].level = 'power';
+        this.player2.dicepool[3].level = 'power';
     });
 
     it('5 powers triggers red rains token', function () {

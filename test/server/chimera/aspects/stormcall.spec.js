@@ -1,7 +1,7 @@
 const Dice = require('../../../../server/game/dice');
 
-describe('Rampage Aspect', function () {
-    describe('Rampage Reveal', function () {
+describe('Stormcall Aspect', function () {
+    describe('stormcall Reveal', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -20,7 +20,7 @@ describe('Rampage Aspect', function () {
                     inPlay: [],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['rampage', 'hunting-instincts'],
+                    threatZone: ['stormcall', 'hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -30,18 +30,18 @@ describe('Rampage Aspect', function () {
         });
 
         it('puts card into play with 2 status', function () {
-            expect(this.rampage.location).toBe('threatZone');
+            expect(this.stormcall.location).toBe('threatZone');
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.rampage.location).toBe('play area');
-            expect(this.rampage.status).toBe(2);
+            expect(this.stormcall.location).toBe('play area');
+            expect(this.stormcall.status).toBe(2);
         });
     });
 
-    describe('Rampage In Play', function () {
+    describe('stormcall In Play', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -57,7 +57,7 @@ describe('Rampage Aspect', function () {
                     phoenixborn: 'viros-s1',
                     behaviour: 'viros-behaviour-1',
                     ultimate: 'viros-ultimate-1',
-                    inPlay: ['rampage'],
+                    inPlay: ['stormcall'],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
@@ -65,29 +65,16 @@ describe('Rampage Aspect', function () {
             });
 
             spyOn(Dice, 'd12Roll').and.returnValue(1);
-            this.rampage.tokens.status = 2;
+            this.stormcall.tokens.status = 2;
+            this.player2.dicepool.forEach(d => d.level = 'basic');
         });
 
         it('start of turn rerolls basic dice', function () {
-            expect(this.rampage.location).toBe('play area');
+            expect(this.stormcall.location).toBe('play area');
             this.player1.endTurn();
 
-            expect(this.rampage.status).toBe(1);
-            // informs real player of behaviour roll
-            expect(this.player2).toHavePrompt('Alerting opponent');
-            this.player1.clickPrompt('Ok');
-
-        });
-
-        it('status ability is inexhaustible', function () {
-            this.rampage.tokens.exhaustion = 1;
-            expect(this.rampage.location).toBe('play area');
-            this.player1.endTurn();
-
-            expect(this.rampage.status).toBe(1);
-            // informs real player of behaviour roll
-            expect(this.player2).toHavePrompt('Alerting opponent');
-            this.player1.clickPrompt('Ok');
+            expect(this.stormcall.status).toBe(1);
+            expect(this.coalRoarkwin.damage).toBe(1);
         });
     });
 });

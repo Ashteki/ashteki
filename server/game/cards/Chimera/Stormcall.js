@@ -1,7 +1,6 @@
-const { Level } = require("../../../constants");
 const AspectCard = require("../../solo/AspectCard");
 
-class Rampage extends AspectCard {
+class Stormcall extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
@@ -14,12 +13,9 @@ class Rampage extends AspectCard {
             location: 'play area',
             cost: [ability.costs.loseStatus(1)],
             target: {
-                toSelect: 'die',
-                autoTarget: (context) => context.player.dice.filter(d => d.level === Level.Basic),
-                gameAction: ability.actions.rerollDice()
-
-            },
-            effect: 'reroll all basic dice'
+                autoTarget: (context) => context.player.opponent.phoenixborn,
+                gameAction: ability.actions.dealDamage({ showMessage: true })
+            }
         });
     }
 
@@ -28,6 +24,6 @@ class Rampage extends AspectCard {
     }
 }
 
-Rampage.id = 'rampage';
+Stormcall.id = 'stormcall';
 
-module.exports = Rampage
+module.exports = Stormcall
