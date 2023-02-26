@@ -17,6 +17,8 @@ describe('Dice cycle', function () {
                     hand: ['shatter-pulse']
                 }
             });
+
+            this.player2.dicepool[0].level = 'power';
         });
 
         it('check for cycle up, and deselect of my dice', function () {
@@ -108,6 +110,9 @@ describe('Dice cycle', function () {
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
+
+            this.player2.dicepool[0].level = 'power';
+
         });
 
         it('check for cycle down of opponent', function () {

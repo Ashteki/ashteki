@@ -23,12 +23,15 @@ describe('Chimera Rage Roll', function () {
                 dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
             }
         });
+        spyOn(Dice, 'd12Roll').and.returnValue(1);
 
         this.player2.dicepool[0].level = 'power';
         this.player2.dicepool[1].level = 'power';
         this.player2.dicepool[2].level = 'power';
         this.player2.dicepool[3].level = 'power';
+        expect(this.huntingInstincts.location).toBe('threatZone');
     });
+
 
     it('5 powers triggers red rains token', function () {
         // reveal
