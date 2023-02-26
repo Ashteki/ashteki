@@ -14,9 +14,7 @@ class DummyTurn extends BaseStepWithPipeline {
 
     beginTurn() {
         if (this.player.threatZone.length) {
-            this.doRageRoll();
-            this.queueStep(new SimpleStep(this.game, () => this.doBehaviourRoll()));
-
+            this.rollDice();
         } else if (this.canAttack()) {
             // attack
             this.player.doAttack();
@@ -26,27 +24,36 @@ class DummyTurn extends BaseStepWithPipeline {
         }
     }
 
-    doRageRoll() {
+    rollDice() {
+        // queue an action because of redrains trigger
         const basicDie = this.player.dice.find(die => die.level === Level.Basic);
-        if (basicDie) {
-            AbilityDsl.actions.rerollDice({ target: basicDie }).resolve(basicDie, this.game.getFrameworkContext(this.player));
-        }
-    }
+        const result = AbilityDsl.actions.rerollDice({ target: basicDie })
+            .resolve(basicDie, this.game.getFrameworkContext(this.player));
 
-    doBehaviourRoll() {
-        // roll behaviour dice and determine 
-        const d12Roll = Dice.d12Roll();
-        this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll)
-        this.player.behaviourRoll = d12Roll;
-        const context = this.game.getFrameworkContext(this.player);
-        this.game.queueUserAlert(context, {
-            style: 'danger',
-            promptTitle: 'Chimera roll',
-            menuTitle: 'Chimera rolled for behaviour: ' + d12Roll,
-        });
-        // get actions from behaviour card and queue
-        const behaviour = this.player.behaviour;
-        behaviour.handleBehaviourRoll(d12Roll);
+        this.queueStep(new SimpleStep(this.game, () => {
+            const rolledDie = result.event.childEvent.dice[0];
+            const cloneDie = result.event.childEvent.diceCopy[0];
+            const d12Roll = Dice.d12Roll();
+            // roll behaviour dice and determine 
+            this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll)
+            this.player.behaviourRoll = d12Roll;
+            const context = this.game.getFrameworkContext(this.player);
+            this.game.queueUserAlert(context, {
+                style: 'danger',
+                promptTitle: 'Chimera Reveal',
+                menuTitle: 'Chimera rolls a rage die and d12\n\n Behaviour: ' + d12Roll,
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: cloneDie.getShortSummary(),
+                        targets: [rolledDie.getShortSummary()]// [this.attack.target.getShortSummary()]
+                    }
+                ]
+            });
+            // get actions from behaviour card and queue
+            const behaviour = this.player.behaviour;
+            behaviour.handleBehaviourRoll(d12Roll);
+        }))
     }
 
     canAttack() {

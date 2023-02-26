@@ -852,15 +852,6 @@ class Game extends EventEmitter {
             return;
         }
 
-        const controls = [
-            {
-                type: 'targeting',
-                source: context.source.getShortSummary()
-                // ,
-                // targets: [context.event.card.getShortSummary()]
-            }
-        ];
-
         const buttons = [];
         if (options.timed) {
             buttons.push({ timer: true, method: 'pass' });
@@ -872,7 +863,7 @@ class Game extends EventEmitter {
             showAlert: true,
             promptTitle: options.promptTitle,
             menuTitle: options.menuTitle,
-            controls: controls,
+            controls: options.controls,
             buttons: buttons,
             style: options.style
         }

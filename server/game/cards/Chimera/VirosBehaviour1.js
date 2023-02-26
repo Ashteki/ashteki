@@ -77,6 +77,7 @@ class VirosBehaviour1 extends BehaviourCard {
 
     doAddRedRains() {
         const ability = this.behaviour({
+            preferActionPromptMessage: true,
             gameAction: AbilityDsl.actions.addRedRainsToken({ showMessage: true })
         });
         const context = ability.createContext(this.owner);
