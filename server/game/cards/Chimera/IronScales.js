@@ -4,7 +4,8 @@ const AspectCard = require("../../solo/AspectCard");
 class IronScales extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
-        this.interrupt({
+        this.forcedInterrupt({
+            inexhaustible: true,
             title: 'Iron Scales',
             when: {
                 onDamageApplied: (event, context) => event.card === context.source
@@ -13,7 +14,7 @@ class IronScales extends AspectCard {
             effect: 'prevent all but one damage',
             gameAction: ability.actions.preventDamage((context) => ({
                 event: context.event,
-                amount: 'all'
+                amount: context.event.amount - 1
             }))
         });
 

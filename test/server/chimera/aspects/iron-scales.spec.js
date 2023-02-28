@@ -26,7 +26,7 @@ describe('Iron Scales', function () {
             });
         });
 
-        xit('prevents all but one damage', function () {
+        it('prevents all but one damage', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(1); // no guard
 
             this.player1.clickAttack(this.ironScales);
