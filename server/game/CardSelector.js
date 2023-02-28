@@ -33,7 +33,8 @@ const ModeToSelector = {
     leastStat: (p) => new LeastStatCardSelector(p),
     single: (p) => new SingleCardSelector(p),
     unlimited: (p) => new UnlimitedCardSelector(p),
-    upTo: (p) => new UpToXCardSelector(p.numCards, p)
+    upTo: (p) => new UpToXCardSelector(p.numCards, p),
+    auto: (p) => new SingleCardSelector(p)
 };
 
 class CardSelector {
