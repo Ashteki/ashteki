@@ -11,6 +11,7 @@ class Constrict extends AspectCard {
                 target: context.player.opponent
             }))
         })
+
         this.defender()
     }
 }
