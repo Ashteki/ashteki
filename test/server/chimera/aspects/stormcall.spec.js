@@ -30,13 +30,13 @@ describe('Stormcall Aspect', function () {
         });
 
         it('puts card into play with 2 status', function () {
-            expect(this.stormcall.location).toBe('threatZone');
+            expect(this.stormcall.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.stormcall.location).toBe('play area');
+            expect(this.stormcall.facedown).toBe(false);
             expect(this.stormcall.status).toBe(2);
         });
     });

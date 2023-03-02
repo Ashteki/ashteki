@@ -284,7 +284,9 @@ beforeEach(function () {
         // this.player1.phoenixborn = options.player1.phoenixborn;
         // this.player2.phoenixborn = options.player2.phoenixborn;
         this.player1.inPlay = options.player1.inPlay;
-        this.player2.inPlay = options.player2.inPlay;
+        if (!this.player2.inPlay.length) {
+            this.player2.inPlay = options.player2.inPlay;
+        }
         //Conflict deck related
         this.player1.spellboard = options.player1.spellboard;
         this.player2.spellboard = options.player2.spellboard;
@@ -306,7 +308,6 @@ beforeEach(function () {
         for (let player of [this.player1, this.player2]) {
             let cards = [
                 'inPlay',
-                'threatZone',
                 'spellboard',
                 'hand',
                 'discard',

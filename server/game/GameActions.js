@@ -50,6 +50,7 @@ const Actions = {
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
+    revealAspect: (propertyFactory) => new GameActions.RevealAspectAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     setBlocker: (propertyFactory) => new GameActions.SetBlockerAction(propertyFactory),

@@ -342,7 +342,6 @@ export class GameBoard extends React.Component {
                             cardSize={cardSize}
                             playerId={otherPlayer.id}
                             active={otherPlayer.activePlayer}
-                            threatZone={otherPlayer.cardPiles.threatZone}
                         />
                         {/* myboard */}
                         <Droppable

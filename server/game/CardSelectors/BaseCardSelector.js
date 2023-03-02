@@ -83,7 +83,7 @@ class BaseCardSelector {
     }
 
     canTarget(card, context) {
-        if (!card) {
+        if (!card || card.facedown) {
             return false;
         }
 

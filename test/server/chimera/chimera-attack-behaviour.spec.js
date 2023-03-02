@@ -18,8 +18,8 @@ describe('When Attacked', function () {
                     behaviour: 'viros-behaviour-1',
                     ultimate: 'viros-ultimate-1',
                     inPlay: ['rampage'],
-                    spellboard: [],
                     threatZone: ['hunting-instincts'],
+                    spellboard: [],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });

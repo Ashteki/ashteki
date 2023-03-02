@@ -31,7 +31,7 @@ describe('Whiplash Aspect', function () {
 
         it('destroy leftmost wounded enemy unit', function () {
             this.ironWorker.tokens.damage = 1;
-            expect(this.whiplash.location).toBe('threatZone');
+            expect(this.whiplash.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -40,11 +40,11 @@ describe('Whiplash Aspect', function () {
             expect(this.ironWorker.location).toBe('discard');
             expect(this.anchornaut.location).toBe('play area');
             expect(this.fluteMage.damage).toBe(0);
-            expect(this.whiplash.location).toBe('play area');
+            expect(this.whiplash.facedown).toBe(false);
         });
 
         it('destroy leftmost un-wounded enemy unit if no wounds found', function () {
-            expect(this.whiplash.location).toBe('threatZone');
+            expect(this.whiplash.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -54,7 +54,7 @@ describe('Whiplash Aspect', function () {
             expect(this.fluteMage.location).toBe('play area');
             expect(this.anchornaut.location).toBe('discard');
             expect(this.fluteMage.damage).toBe(0);
-            expect(this.whiplash.location).toBe('play area');
+            expect(this.whiplash.facedown).toBe(false);
         });
     });
 });

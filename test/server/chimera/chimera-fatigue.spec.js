@@ -37,7 +37,7 @@ describe('Chimera fatigue', function () {
             expect(this.game.round).toBe(2);
             // deck is empty
             expect(this.player2.deck.length).toBe(0);
-            expect(this.player2.threatZone.length).toBe(1); // deck card is not in threat zone
+            expect(this.player2.inPlay.filter(c => c.facedown).length).toBe(1); // deck card is not in threat zone
             expect(this.player2.fatigued).toBe(true);
         });
     });

@@ -48,7 +48,7 @@ class VirosBehaviour1 extends BehaviourCard {
     }
 
     doReveal() {
-        const target = this.owner.threatZone[0];
+        const target = this.owner.threatCards[0];
         const act = new RevealBehaviour(target);
         const context = act.createContext(this.owner);
         this.game.resolveAbility(context);

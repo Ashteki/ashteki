@@ -29,13 +29,13 @@ describe('Hunting Instincts Reveal', function () {
     it('puts card into play with no status', function () {
         spyOn(Dice, 'd12Roll').and.returnValue(1);        // reveal
 
-        expect(this.huntingInstincts.location).toBe('threatZone');
+        expect(this.huntingInstincts.facedown).toBe(true);
         this.player1.endTurn();
         // informs real player of behaviour roll
         expect(this.player2).toHavePrompt('Alerting opponent');
         this.player1.clickPrompt('Ok');
 
-        expect(this.huntingInstincts.location).toBe('play area');
+        expect(this.huntingInstincts.facedown).toBe(false);
         expect(this.huntingInstincts.status).toBe(0);
 
         expect(Dice.d12Roll).toHaveBeenCalledTimes(1);

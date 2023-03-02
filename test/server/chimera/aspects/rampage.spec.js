@@ -30,13 +30,15 @@ describe('Rampage Aspect', function () {
         });
 
         it('puts card into play with 2 status', function () {
-            expect(this.rampage.location).toBe('threatZone');
+            expect(this.rampage.location).toBe('play area');
+            expect(this.rampage.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
             expect(this.rampage.location).toBe('play area');
+            expect(this.rampage.facedown).toBe(false);
             expect(this.rampage.status).toBe(2);
         });
     });

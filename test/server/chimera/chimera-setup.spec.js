@@ -15,7 +15,6 @@ describe('Chimera setup', function () {
                     phoenixborn: 'viros-s1',
                     behaviour: 'viros-behaviour-1',
                     ultimate: 'viros-ultimate-1',
-                    inPlay: [],
                     spellboard: [],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
@@ -23,11 +22,12 @@ describe('Chimera setup', function () {
         });
 
         it('should be length 4 and 1,2,2,2 for viros 1', function () {
-            expect(this.player2.threatZone.length).toBe(4);
-            expect(this.player2.threatZone[0].blood).toBe(1);
-            expect(this.player2.threatZone[1].blood).toBe(2);
-            expect(this.player2.threatZone[2].blood).toBe(2);
-            expect(this.player2.threatZone[3].blood).toBe(2);
+            expect(this.player2.inPlay.length).toBe(4);
+            expect(this.player2.inPlay[0].blood).toBe(1);
+            expect(this.player2.inPlay[1].blood).toBe(2);
+            expect(this.player2.inPlay[2].blood).toBe(2);
+            expect(this.player2.inPlay[3].blood).toBe(2);
+            expect(this.player2.inPlay.every(c => c.facedown)).toBe(true);
         });
     });
 });

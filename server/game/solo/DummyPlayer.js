@@ -54,6 +54,14 @@ class DummyPlayer extends Player {
         }
     }
 
+    get threatCards() {
+        return this.cardsInPlay.filter(c => c.facedown);
+    }
+
+    get unitsInPlay() {
+        return super.unitsInPlay.filter((card) => !card.facedown);
+    }
+
     applyFatigue() {
         this.fatigued = true;
         AbilityDsl.actions.lastingEffect({
@@ -89,7 +97,7 @@ class DummyPlayer extends Player {
         const setup = this.phoenixborn.setup;
         setup.forEach(value => {
             const card = this.deck.find(aspect => aspect.blood === value)
-            this.moveCard(card, 'threatZone');
+            this.moveCard(card, 'play area', { facedown: true });
         })
         this.shuffleDeck();
     }
@@ -97,14 +105,14 @@ class DummyPlayer extends Player {
     replenishAspects() {
         const amount = this.phoenixborn.threat - this.cardsInPlay.length;
         const cards = this.deck.slice(0, amount);
-        cards.forEach(c => {
-            this.moveCard(c, 'threatZone');
+        cards.forEach(card => {
+            this.moveCard(card, 'play area', { facedown: true });
         })
     }
 
     getState(activePlayer) {
         const result = super.getState(activePlayer);
-        result.cardPiles.threatZone = this.getSummaryForCardList(this.threatZone, activePlayer)
+        // result.cardPiles.threatZone = this.getSummaryForCardList(this.threatZone, activePlayer)
         result.fatigued = this.fatigued;
 
         return result;
@@ -120,7 +128,7 @@ class DummyPlayer extends Player {
     }
 
     getRevealHandler() {
-        const target = this.threatZone[0];
+        const target = this.threatCards[0];
         const act = new RevealBehaviour(target);
         return () => this.game.resolveAbility(act.createContext(this));
     }

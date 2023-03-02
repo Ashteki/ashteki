@@ -30,8 +30,6 @@ describe('Constrict Aspect', function () {
 
         it('reveal forces opponent to exhaust a card', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(1);
-
-            expect(this.constrict.location).toBe('threatZone');
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -40,13 +38,13 @@ describe('Constrict Aspect', function () {
             this.player1.clickCard(this.anchornaut);
             expect(this.anchornaut.exhausted).toBe(true);
             expect(this.constrict.location).toBe('play area');
+            expect(this.constrict.facedown).toBe(false);
         });
 
 
         it('reveal then attack (5) forces opponent to exhaust a card', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(5);
 
-            expect(this.constrict.location).toBe('threatZone');
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -61,6 +59,8 @@ describe('Constrict Aspect', function () {
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
             expect(this.constrict.location).toBe('play area');
+            expect(this.constrict.facedown).toBe(false);
+
         });
     });
 });

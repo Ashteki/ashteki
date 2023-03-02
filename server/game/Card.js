@@ -513,10 +513,11 @@ class Card extends PlayableObject {
         // this.doSomething ?
     }
 
-    moveTo(targetLocation) {
+    moveTo(targetLocation, facedown = false) {
         let originalLocation = this.location;
 
         this.location = targetLocation;
+
 
         if (
             [
@@ -531,6 +532,9 @@ class Card extends PlayableObject {
         ) {
             this.facedown = false;
         }
+        if (facedown) {
+            this.facedown = true;
+        }
 
         if (originalLocation !== targetLocation) {
             this.updateAbilityEvents(originalLocation, targetLocation);
@@ -538,7 +542,8 @@ class Card extends PlayableObject {
             this.game.emitEvent('onCardMoved', {
                 card: this,
                 originalLocation: originalLocation,
-                newLocation: targetLocation
+                newLocation: targetLocation,
+                facedown: facedown
             });
         }
     }

@@ -18,8 +18,7 @@ const PlayerBoard = ({
     onMouseOver,
     playerId,
     rowDirection,
-    side,
-    threatZone
+    side
 }) => {
     const attackInvolvesCard = (card) => {
         if (!attack) return false;
@@ -114,9 +113,6 @@ const PlayerBoard = ({
     let topMargin = maxUpgrades * 15;
     let style = { marginTop: topMargin + 'px' };
     let allCardsInBoard = cardsInPlay;
-    if (threatZone && threatZone.length) {
-        allCardsInBoard = allCardsInBoard.concat(threatZone);
-    }
     return (
         <div className={className}>
             <div className='card-row' style={style}>

@@ -183,6 +183,7 @@ class PlayerInteractionWrapper {
         return this.player.ultimate;
     }
 
+    /** This is the cards that are facedown on a chimera battlefield */
     get threatZone() {
         return this.player.threatZone;
     }
@@ -192,7 +193,7 @@ class PlayerInteractionWrapper {
         var tzCards = this.threatZone;
         _.each(tzCards, (card) => this.moveCard(card, 'deck'));
         cards = this.mixedListToCardList(cards, 'deck');
-        _.each(cards, (card) => this.moveCard(card, 'threatZone'));
+        _.each(cards, (card) => this.moveCard(card, 'play area', { facedown: true }));
     }
 
     get promptState() {
@@ -565,12 +566,12 @@ class PlayerInteractionWrapper {
      * @param {String | String[]} searchLocations - locations where to find the
      * card object, if card parameter is a String
      */
-    moveCard(card, targetLocation, searchLocations = 'any') {
+    moveCard(card, targetLocation, moveOptions) {
         if (_.isString(card)) {
-            card = this.mixedListToCardList([card], searchLocations)[0];
+            card = this.mixedListToCardList([card])[0];
         }
 
-        this.player.moveCard(card, targetLocation);
+        this.player.moveCard(card, targetLocation, moveOptions);
         this.game.continue();
         return card;
     }

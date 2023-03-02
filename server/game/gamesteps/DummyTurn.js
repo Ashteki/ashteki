@@ -13,7 +13,7 @@ class DummyTurn extends BaseStepWithPipeline {
     }
 
     beginTurn() {
-        if (this.player.threatZone.length) {
+        if (this.player.threatCards.length) {
             this.rollDice();
         } else if (this.canAttack()) {
             // attack

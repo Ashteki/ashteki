@@ -19,7 +19,8 @@ const Location = {
     Deck: 'deck',
     Hand: 'hand',
     Archives: 'archives',
-    Discard: 'discard'
+    Discard: 'discard',
+    PlayArea: 'play area'
 };
 
 const BattlefieldTypes = [CardType.Ally, CardType.Conjuration, CardType.Aspect];

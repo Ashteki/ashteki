@@ -25,7 +25,6 @@ class Player extends GameObject {
         this.discard = [];
         this.purged = [];
         this.archives = [];
-        this.threatZone = [];
         this.wins = 0;
 
         this.deckData = {};
@@ -450,7 +449,7 @@ class Player extends GameObject {
             Ally: [...cardLocations, 'play area'],
             Conjuration: ['play area', 'archives', 'purged'],
             'Conjured Alteration Spell': ['play area', 'archives'],
-            Aspect: ['deck', 'discard', 'purged', 'play area', 'threatZone']
+            Aspect: ['deck', 'discard', 'purged', 'play area']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);
@@ -541,7 +540,7 @@ class Player extends GameObject {
             targetPile.push(card);
         }
 
-        card.moveTo(targetLocation);
+        card.moveTo(targetLocation, options.facedown);
 
         // this.game.raiseEvent('onCardPlaced', { card: card, from: location, to: targetLocation });
     }

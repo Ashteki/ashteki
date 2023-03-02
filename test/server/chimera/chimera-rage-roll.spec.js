@@ -29,14 +29,14 @@ describe('Chimera Rage Roll', function () {
         this.player2.dicepool[1].level = 'power';
         this.player2.dicepool[2].level = 'power';
         this.player2.dicepool[3].level = 'power';
-        expect(this.huntingInstincts.location).toBe('threatZone');
+        expect(this.huntingInstincts.facedown).toBe(true);
     });
 
 
     it('5 powers triggers red rains token', function () {
         // reveal
         spyOn(Dice, 'getRandomDieLevel').and.returnValue('power');
-        expect(this.huntingInstincts.location).toBe('threatZone');
+        expect(this.huntingInstincts.facedown).toBe(true);
         this.player1.endTurn();
         // informs real player of behaviour roll
 
@@ -44,7 +44,7 @@ describe('Chimera Rage Roll', function () {
         expect(this.player2.phoenixborn.redRains).toBe(1);
         this.player1.clickPrompt('Ok');
 
-        expect(this.huntingInstincts.location).toBe('play area');
+        expect(this.huntingInstincts.facedown).toBe(false);
         expect(Dice.getRandomDieLevel).toHaveBeenCalledTimes(1);
     });
 
