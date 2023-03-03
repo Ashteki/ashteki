@@ -159,7 +159,7 @@
             "attack": 2,
             "life": 1,
             "blood": 1,
-            "imageStub": "http://localhost:4000/img/chimera/dark-descent.png"
+            "imageStub": "http://localhost:4000/img/chimera/regenerate.png"
         }
     ]
 }
