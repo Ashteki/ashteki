@@ -2,7 +2,7 @@
   {
     "precon_id": 801,
     "mode": "chimera",
-    "name": "The Corpse of Viros - Standard",
+    "name": "The Corpse of Viros - Fury",
     "phoenixborn": [
       {
         "id": "viros-s1",
@@ -38,27 +38,75 @@
       },
       {
         "id": "firebelly",
-        "count": 2
-      },
-      {
-        "id": "constrict",
-        "count": 2
-      },
-      {
-        "id": "stormcall",
-        "count": 2
+        "count": 3
       },
       {
         "id": "frozen-fear",
-        "count": 2
+        "count": 3
       },
       {
         "id": "whiplash",
-        "count": 2
+        "count": 3
       },
       {
         "id": "iron-scales",
-        "count": 2
+        "count": 3
+      }
+    ],
+    "conjurations": []
+  },
+  {
+    "precon_id": 802,
+    "mode": "chimera",
+    "name": "The Corpse of Viros - Shadow",
+    "phoenixborn": [
+      {
+        "id": "viros-s1",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "viros-ultimate-1",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "viros-behaviour-1",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "lurk",
+        "count": 3
+      },
+      {
+        "id": "glare",
+        "count": 3
+      },
+      {
+        "id": "dark-descent",
+        "count": 3
+      },
+      {
+        "id": "constrict",
+        "count": 3
+      },
+      {
+        "id": "stormcall",
+        "count": 3
+      },
+      {
+        "id": "regenerate",
+        "count": 3
       }
     ],
     "conjurations": []

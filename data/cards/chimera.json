@@ -116,6 +116,50 @@
             "life": 1,
             "blood": 1,
             "imageStub": "http://localhost:4000/img/chimera/whiplash.png"
+        },
+        {
+            "name": "Lurk",
+            "stub": "lurk",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 4,
+            "life": 1,
+            "blood": 2,
+            "imageStub": "http://localhost:4000/img/chimera/lurk.png"
+        },
+        {
+            "name": "Glare",
+            "stub": "glare",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 2,
+            "blood": 1,
+            "imageStub": "http://localhost:4000/img/chimera/glare.png"
+        },
+        {
+            "name": "Dark Descent",
+            "stub": "dark-descent",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2,
+            "imageStub": "http://localhost:4000/img/chimera/dark-descent.png"
+        },
+        {
+            "name": "Regenerate",
+            "stub": "regenerate",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "http://localhost:4000/img/chimera/dark-descent.png"
         }
     ]
 }
