@@ -542,6 +542,7 @@ export class GameBoard extends React.Component {
 
                         {this.state.showMessages && (
                             <div className='gamechat'>
+                                {this.getOtherPlayerPrompt(otherPlayer)}
                                 <GameChat
                                     key='gamechat'
                                     messages={this.props.currentGame.messages}
@@ -588,19 +589,7 @@ export class GameBoard extends React.Component {
         );
     }
 
-    getCardLog() {
-        return (
-            <div className='timer-log-area'>
-                <CardLog
-                    items={this.props.currentGame.cardLog}
-                    onMouseOut={this.onMouseOut}
-                    onMouseOver={this.onMouseOver}
-                />
-            </div>
-        );
-    }
-
-    getPromptArea(thisPlayer, otherPlayer) {
+    getOtherPlayerPrompt(otherPlayer) {
         let otherPlayerPrompt = null;
         if (this.props.currentGame.solo) {
             const otherState = otherPlayer.promptState;
@@ -617,6 +606,38 @@ export class GameBoard extends React.Component {
                 />
             </div>
         }
+        return otherPlayerPrompt;
+    }
+
+    getCardLog() {
+        return (
+            <div className='timer-log-area'>
+                <CardLog
+                    items={this.props.currentGame.cardLog}
+                    onMouseOut={this.onMouseOut}
+                    onMouseOver={this.onMouseOver}
+                />
+            </div>
+        );
+    }
+
+    getPromptArea(thisPlayer, otherPlayer) {
+        let otherPlayerPrompt = null;
+        // if (this.props.currentGame.solo) {
+        //     const otherState = otherPlayer.promptState;
+        //     otherState.style = 'warning';
+        //     otherPlayerPrompt = <div className='inset-pane'>
+        //         <ActivePlayerPrompt
+        //             cards={this.props.cards}
+        //             promptState={otherState}
+        //             onButtonClick={this.onCommand}
+        //             onMouseOver={this.onMouseOver}
+        //             onMouseOut={this.onMouseOut}
+        //             onTimerExpired={this.onTimerExpired.bind(this)}
+        //             phase={this.props.currentGame.currentPhase}
+        //         />
+        //     </div>
+        // }
 
         const logArea = thisPlayer.inspectionCard ? (
             <CardInspector card={thisPlayer.inspectionCard} />

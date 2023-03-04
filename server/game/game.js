@@ -687,6 +687,29 @@ class Game extends EventEmitter {
         this.addAlert('danger', `{0} ${addRemove} 1 {1} ${toFrom} {2}`, player, tokenType, card);
     }
 
+    writeDefenceMessages(player) {
+        const blockType = this.attackState.isPBAttack ? 'block' : 'guard';
+
+        this.addMessage('{0} has chosen defenders', player);
+        this.attackState.battles
+            .sort((a, b) => a.guard ? -1 : 1)
+            .forEach((battle) => {
+                if (battle.guard) {
+                    this.addMessage(
+                        '{0} will {1} against {2}',
+                        battle.guard,
+                        blockType,
+                        battle.attacker
+                    );
+                } else {
+                    this.addMessage(
+                        '{0} will be un' + blockType + 'ed ',
+                        battle.attacker
+                    );
+                }
+            });
+    }
+
     modifyAction(playerName, actionType, unspent) {
         let player = this.getPlayerByName(playerName);
         if (!player) {

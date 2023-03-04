@@ -76,7 +76,7 @@ class DummyPlayer extends Player {
             this.dice.forEach(d => d.level = Level.Basic);
             // add a RR token to the Chimera
             const context = this.game.getFrameworkContext(this);
-            this.game.actions.addRedRainsToken().resolve(this.phoenixborn, context);
+            this.game.actions.addRedRainsToken({ showMessage: true, shortMessage: true, warnMessage: true }).resolve(this.phoenixborn, context);
         }
     }
 

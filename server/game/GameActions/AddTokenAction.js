@@ -10,6 +10,7 @@ class AddTokenAction extends CardGameAction {
         this.amount = 1;
         this.showMessage = false;
         this.shortMessage = false;
+        this.warnMessage = false;
     }
 
     setup() {
@@ -44,27 +45,28 @@ class AddTokenAction extends CardGameAction {
             { card: card, context: context, amount: this.amount, type: this.type },
             (tokenEvent) => {
                 if (this.showMessage) {
-                    if (this.shortMessage) {
-                        context.game.addMessage(
-                            tokenEvent.amount == 1
-                                ? `{0} places {1} {2} token on {3}`
-                                : `{0} places {1} {2} tokens on {3}`,
-                            context.player,
-                            tokenEvent.amount,
-                            tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
-                            tokenEvent.card
-                        );
+                    const params = this.shortMessage ? [
+                        tokenEvent.amount == 1
+                            ? `{0} places {1} {2} token on {3}`
+                            : `{0} places {1} {2} tokens on {3}`,
+                        context.player,
+                        tokenEvent.amount,
+                        tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
+                        tokenEvent.card
+                    ] : [
+                        tokenEvent.amount == 1
+                            ? `{0} uses {1} to place {2} {3} token on {4}`
+                            : `{0} uses {1} to place {2} {3} tokens on {4}`,
+                        context.player,
+                        context.source,
+                        tokenEvent.amount,
+                        tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
+                        tokenEvent.card
+                    ];
+                    if (this.warnMessage) {
+                        context.game.addAlert('warning', ...params);
                     } else {
-                        context.game.addMessage(
-                            tokenEvent.amount == 1
-                                ? `{0} uses {1} to place {2} {3} token on {4}`
-                                : `{0} uses {1} to place {2} {3} tokens on {4}`,
-                            context.player,
-                            context.source,
-                            tokenEvent.amount,
-                            tokenEvent.type == 'damage' ? 'wound' : tokenEvent.type,
-                            tokenEvent.card
-                        );
+                        context.game.addMessage(...params);
                     }
                 }
 

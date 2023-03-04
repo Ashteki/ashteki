@@ -228,24 +228,7 @@ class ChooseDefendersPrompt extends UiPrompt {
                 return false;
             }
 
-            this.game.addMessage('{0} has chosen defenders', player);
-            this.attack.battles
-                .sort((a, b) => a.guard ? -1 : 1)
-                .forEach((battle) => {
-                    if (battle.guard) {
-                        this.game.addMessage(
-                            '{0} will {1} against {2}',
-                            battle.guard,
-                            this.blockType,
-                            battle.attacker
-                        );
-                    } else {
-                        this.game.addMessage(
-                            '{0} will be un' + this.blockType + 'ed ',
-                            battle.attacker
-                        );
-                    }
-                });
+            this.game.writeDefenceMessages(player);
             this.resetSelections(player);
             this.complete();
             return true;

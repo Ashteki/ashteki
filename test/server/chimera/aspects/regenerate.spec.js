@@ -39,6 +39,7 @@ describe('Regenerate Aspect', function () {
 
             expect(this.player2.dicepool.some(d => d.level === 'power')).toBe(true);
             expect(this.regenerate.location).toBe('discard');
+            expect(this.regenerate.exhausted).toBe(false);
         });
 
         it('when destroyed roll a basic side and place rightmost on b/f', function () {
@@ -52,6 +53,7 @@ describe('Regenerate Aspect', function () {
 
             expect(this.player2.dicepool.some(d => d.level === 'power')).toBe(false);
             expect(this.regenerate.location).toBe('play area');
+            expect(this.regenerate.exhausted).toBe(true);
         });
     });
 });

@@ -19,6 +19,7 @@ class Stormcall extends AspectCard {
             then: {
                 condition: (context) => context.source.status === 0,
                 gameAction: ability.actions.addRedRainsToken((context) => ({
+                    showMessage: true, shortMessage: true, warnMessage: true,
                     target: context.player.phoenixborn
                 }))
             }

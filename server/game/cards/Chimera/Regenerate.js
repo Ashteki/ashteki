@@ -28,16 +28,20 @@ class Regenerate extends AspectCard {
                                 ability.actions.addEventToWindow((context) => ({
                                     subEvent: true,
                                     targetEvent: context.preThenEvent.context.event,
-                                    eventToAdd: ability.actions
-                                        .putIntoPlay()
-                                        .getEvent(context.source, context)
+                                    eventToAdd: this.getPlayEvent(ability, context)
                                 }))
                             ]
                     })
             }
         });
+    }
 
-        this.defender()
+    getPlayEvent(ability, context) {
+        const event = ability.actions
+            .putIntoPlay()
+            .getEvent(context.source, context);
+        event.addSubEvent(ability.actions.exhaust().getEvent(context.source, context));
+        return event;
     }
 }
 

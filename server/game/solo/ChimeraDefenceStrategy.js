@@ -35,6 +35,8 @@ class ChimeraDefenceStrategy {
                 menuTitle: 'Chimera rolled ' + d12Roll + guardText,
             })
         }
+
+        this.game.writeDefenceMessages(this.player);
     }
 }
 
