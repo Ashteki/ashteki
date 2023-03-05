@@ -120,15 +120,15 @@ class ChooseDefendersPrompt extends UiPrompt {
                 ? 'Choose which attacker to ' + this.blockType + ' with ' + this.selectedCard.name
                 : this.menuTitleText,
             selectCard: !this.completed,
-            controls: this.attack.isPBAttack
-                ? []
-                : [
+            controls: this.attack.battles.length === 1
+                ? [
                     {
                         type: 'targeting',
                         source: this.attack.battles[0].attacker.getShortSummary(),
                         targets: [this.attack.target.getShortSummary()]
                     }
                 ]
+                : []
         };
     }
 
