@@ -3,7 +3,7 @@ const GameAction = require('./GameAction');
 class ConditionalAction extends GameAction {
     setup() {
         super.setup();
-        this.effectMsg = 'conditionally do something';
+        this.effectMsg = '';
     }
 
     setDefaultTarget(func) {
@@ -82,6 +82,7 @@ class ConditionalAction extends GameAction {
 
         const gameAction = this.getGameAction(context);
         if (gameAction) {
+            this.effectMsg = gameAction[0].effectMsg;
             gameAction[0].preEventHandler(context);
         }
     }

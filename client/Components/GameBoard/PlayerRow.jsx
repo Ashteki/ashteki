@@ -7,7 +7,6 @@ import Droppable from './Droppable';
 import DiceBox from './DiceBox';
 import './PlayerRow.scss';
 import { useSelector } from 'react-redux';
-import BehaviourBox from './BehaviourBox';
 
 const PlayerRow = ({
     archives,
@@ -24,8 +23,7 @@ const PlayerRow = ({
     side,
     dice,
     onDieClick,
-    purgedPile,
-    behaviour
+    purgedPile
 }) => {
     const { t } = useTranslation();
 
@@ -59,19 +57,6 @@ const PlayerRow = ({
             </div>
         );
     };
-
-    const renderBehaviour = (value) => {
-        return (
-            <div className='panel card-pile'>
-                <h3 className='panel-header'>
-                    {opponentSrText}
-                    Behaviour
-                </h3>
-                <BehaviourBox value={value} />
-            </div>
-
-        );
-    }
 
     let cardPileProps = {
         manualMode: manualMode,
@@ -129,7 +114,6 @@ const PlayerRow = ({
             {renderDroppablePile('hand', handToRender)}
             {!leftMode && renderDroppablePile('archives', archivesToRender)}
             {!leftMode && renderResources(dice)}
-            {!isMe && renderBehaviour(behaviour)}
             {(purgedPile.length > 0 || manualMode) && renderDroppablePile('purged', purged)}
         </div>
     );

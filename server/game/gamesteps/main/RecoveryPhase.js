@@ -11,8 +11,8 @@ class RecoveryPhase extends Phase {
             new SimpleStep(game, () => this.removeRedRains()),
             new SimpleStep(game, () => this.removeExhaustion()),
             new PinDicePrompt(game),
-            new SimpleStep(game, () => this.placeRedRains()),
             new SimpleStep(game, () => this.replenishAspects()),
+            new SimpleStep(game, () => this.placeRedRains()),
             new SimpleStep(game, () => this.replenishAspectStatusTokens())
         ]);
     }
@@ -48,7 +48,9 @@ class RecoveryPhase extends Phase {
         // Place 1 Red Rains token on the Chimera for each aspect in play, resolving the Ultimate card, if applicable
         const aspectCount = dummyPlayer.unitsInPlay.filter(u => u.type === CardType.Aspect).length;
         this.game.addMessage('Chimera receives {0} red rains tokens for Aspects in play', aspectCount)
-        this.game.actions.addRedRainsToken({ amount: aspectCount, showMessage: true, shortMessage: true }).resolve(dummyPlayer.phoenixborn, this.game.getFrameworkContext());
+        this.game.actions
+            .addRedRainsToken({ amount: aspectCount, showMessage: true, shortMessage: true })
+            .resolve(dummyPlayer.phoenixborn, this.game.getFrameworkContext(dummyPlayer));
     }
 
     replenishAspects() {
