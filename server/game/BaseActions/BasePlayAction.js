@@ -65,7 +65,7 @@ class BasePlayAction extends BaseAbility {
                 originalLocation: context.source.location,
                 context: context
             },
-            () => context.game.cardsPlayed.push(context.source)
+            () => context.game.cardPlayed(context.source)
         );
         this.addSubEvent(event, context);
         context.game.openEventWindow(event);

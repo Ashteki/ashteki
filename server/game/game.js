@@ -73,6 +73,7 @@ class Game extends EventEmitter {
         this.suddenDeath = false; // are we in sudden death mode? (mostly tracked in player)
         this.cardIndex = 0;
         this.cardsUsed = [];
+        // this should be private - use cardPlayed / diePlayed etc to record events
         this.cardsPlayed = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
@@ -126,24 +127,26 @@ class Game extends EventEmitter {
     }
 
     cardUsed(card) {
-        this.cardsPlayed.push(card);
+        this.cardsPlayed.push({ act: 'use', obj: card });
     }
+    //** remove card from card log - used for refund of play cost */
     undoCardUsed() {
         this.cardsPlayed.pop();
     }
 
     diePowerUsed(die) {
-        this.cardsPlayed.push(die);
+        this.cardsPlayed.push({ act: 'use', obj: die });
     }
 
     cardPlayed(card) {
-        if (this.lastCardPlayed !== card) {
-            this.cardsPlayed.push(card);
+        const c = this.lastCardPlayed();
+        if (!c || c.obj !== card) {
+            this.cardsPlayed.push({ act: 'play', obj: card });
         }
         card.new = true;
     }
 
-    get lastCardPlayed() {
+    lastCardPlayed() {
         if (this.cardsPlayed.length > 0) return this.cardsPlayed[this.cardsPlayed.length - 1];
 
         return null;
@@ -1494,6 +1497,15 @@ class Game extends EventEmitter {
         this.pipeline.continue();
     }
 
+    doAttackersDeclared(params) {
+        this.raiseEvent('onAttackersDeclared', params);
+        this.cardsPlayed.push({ act: 'attack', obj: this.attackState.target });
+    }
+
+    logMeditation(player) {
+        this.cardsPlayed.push({ act: 'med', obj: player });
+    }
+
     initiateUnitAttack(target, attacker = null, ignoreMainCost = false) {
         this.queueStep(new AttackFlow(this, target, attacker, ignoreMainCost));
     }
@@ -1561,7 +1573,7 @@ class Game extends EventEmitter {
 
             const result = {
                 cancelPromptUsed: this.cancelPromptUsed,
-                cardLog: this.cardsPlayed.map((c) => c.getShortSummary()),
+                cardLog: this.cardsPlayed.map((i) => ({ type: i.act, obj: i.obj.getShortSummary() })),
                 currentPhase: this.currentPhase,
                 gameFormat: this.gameFormat,
                 gamePrivate: this.gamePrivate,

@@ -56,6 +56,8 @@ class MeditatePrompt extends UiPrompt {
                 firstTopOfDeck: this.firstTopOfDeck,
                 player: this.choosingPlayer
             });
+
+            this.game.logMeditation(this.choosingPlayer);
         }
         return result;
     }
