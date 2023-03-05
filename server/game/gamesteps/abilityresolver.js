@@ -174,7 +174,11 @@ class AbilityResolver extends BaseStepWithPipeline {
         }
 
         if (this.context.source.type === CardType.ReactionSpell && !this.context.preThenEvent) {
-            this.game.queueUserAlert(this.context);
+            this.game.queueUserAlert(this.context, {
+                timed: true,
+                promptTitle: 'Reaction Played',
+                menuTitle: this.context.player.name + ' plays a reaction',
+            });
         }
 
         this.game.raiseEvent(

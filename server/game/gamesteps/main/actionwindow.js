@@ -76,7 +76,7 @@ class ActionWindow extends UiPrompt {
     canAttack() {
         return (
             this.game.activePlayer.actions.main &&
-            this.game.activePlayer.unitsInPlay.some((c) => c.canAttack())
+            this.game.activePlayer.canAttack()
         );
     }
 
@@ -128,11 +128,7 @@ class ActionWindow extends UiPrompt {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),
                 onSelect: (player, card) => {
-                    if (card.type == CardType.Phoenixborn) {
-                        this.initiatePBAttack(card);
-                    } else {
-                        this.initiateUnitAttack(card);
-                    }
+                    this.game.initiateAttack(card);
                     return true;
                 },
                 buttons: [{ text: 'Cancel', arg: 'cancel' }]

@@ -12,10 +12,10 @@ class DummyTurn extends BaseStepWithPipeline {
 
     beginTurn() {
         if (this.player.threatZone.length) {
-            this.game.addMessage('Chimera has facedown aspects. Rolling for behaviour.')
             this.doBehaviourRoll();
         } else if (this.canAttack()) {
             // attack
+
         }
         else {
             // pass
@@ -27,18 +27,21 @@ class DummyTurn extends BaseStepWithPipeline {
         const d12Roll = Dice.d12Roll();
         this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll)
         this.player.behaviourRoll = d12Roll;
-
+        const context = this.game.getFrameworkContext(this.player);
+        this.game.queueUserAlert(context, {
+            promptTitle: 'Chimera roll',
+            menuTitle: 'Chimera rolled for behaviour: ' + d12Roll,
+        })
         // get actions from behaviour card and queue
         const behaviour = this.player.behaviour;
-        const actions = behaviour.getChimeraActions(d12Roll);
-        actions.forEach(a => {
-            const context = a.createContext(this.player);
-            this.queueStep(new SimpleStep(this.game, () => this.game.resolveAbility(context)));
+        const handlers = behaviour.getChimeraHandlers(d12Roll);
+        handlers.forEach(h => {
+            this.queueStep(new SimpleStep(this.game, h));
         });
     }
 
     canAttack() {
-        return !!this.player.cardsInPlay.length;
+        return !!this.player.canAttack();
     }
 }
 

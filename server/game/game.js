@@ -32,7 +32,7 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
-const { BattlefieldTypes } = require('../constants');
+const { BattlefieldTypes, CardType } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
@@ -840,8 +840,14 @@ class Game extends EventEmitter {
         this.queueStep(new ChosenDrawPrompt(this, properties));
     }
 
-    queueUserAlert(context) {
+    queueUserAlert(context, options = {}) {
         const player = context.player.opponent;
+        const timerLength = player.getAlertTimerSetting();
+        // don't show timed alerts to players who set timerLength to 0
+        if (options.timed && timerLength === 0) {
+            return;
+        }
+
         const controls = [
             {
                 type: 'targeting',
@@ -850,35 +856,35 @@ class Game extends EventEmitter {
                 // targets: [context.event.card.getShortSummary()]
             }
         ];
-        const timerLength = player.getAlertTimerSetting();
-        if (timerLength > 0) {
-            this.promptWithMenu(
-                player,
-                { pass: () => true }, // context object to handle 'do nothing' pass
-                {
-                    source: 'Triggered Abilities',
-                    waitingPromptTitle: 'Alerting opponent',
-                    activePrompt: {
-                        showAlert: true,
-                        promptTitle: 'Reaction Played',
-                        menuTitle: context.player.name + ' plays a reaction',
-                        controls: controls,
-                        buttons: [
-                            { timer: true, method: 'pass' },
-                            { text: 'Wait', timerCancel: true },
-                            // {
-                            //     text: "Don't ask again until end of round",
-                            //     timerCancel: true,
-                            //     method: 'pass',
-                            //     arg: 'pauseRound'
-                            // },
-                            { text: 'Ok', method: 'pass' }
-                        ],
-                        timerLength: timerLength
-                    }
-                }
-            );
+
+        const buttons = [];
+        if (options.timed) {
+            buttons.push({ timer: true, method: 'pass' });
+            buttons.push({ text: 'Wait', timerCancel: true });
         }
+        buttons.push({ text: 'Ok', method: 'pass' });
+
+        const activePrompt = {
+            showAlert: true,
+            promptTitle: options.promptTitle,
+            menuTitle: options.menuTitle,
+            controls: controls,
+            buttons: buttons
+        }
+        if (options.timed) {
+            activePrompt.timerLength = timerLength;
+        }
+
+        this.promptWithMenu(
+            player,
+            { pass: () => true }, // context object to handle 'do nothing' pass
+            {
+                source: options.source || 'Triggered Abilities',
+                waitingPromptTitle: 'Alerting opponent',
+                activePrompt: activePrompt
+            }
+        );
+
     }
 
     // from triggered ability window
@@ -1536,13 +1542,21 @@ class Game extends EventEmitter {
     logMeditation(player) {
         this.cardsPlayed.push({ act: 'med', obj: player });
     }
+    
+    initiateAttack(target, attacker) {
+        if (target.type == CardType.Phoenixborn) {
+            this.initiatePBAttack(target, attacker);
+        } else {
+            this.initiateUnitAttack(target, attacker);
+        }
+    }
 
     initiateUnitAttack(target, attacker = null, ignoreMainCost = false) {
         this.queueStep(new AttackFlow(this, target, attacker, ignoreMainCost));
     }
 
-    initiatePBAttack(target) {
-        this.queueStep(new AttackFlow(this, target));
+    initiatePBAttack(target, attacker) {
+        this.queueStep(new AttackFlow(this, target, attacker));
     }
 
     setAttackState(attack) {

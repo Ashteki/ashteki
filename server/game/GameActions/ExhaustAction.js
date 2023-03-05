@@ -9,7 +9,7 @@ class ExhaustAction extends CardGameAction {
 
     setup() {
         this.name = 'exhaust';
-        this.targetType = [...BattlefieldTypes, 'Ready Spell', 'Phoenixborn', ...UpgradeCardTypes];
+        this.targetType = [...BattlefieldTypes, 'Ready Spell', 'Phoenixborn', 'Aspect', ...UpgradeCardTypes];
         this.effectMsg = 'exhaust {0}';
     }
 

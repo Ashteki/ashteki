@@ -1,3 +1,4 @@
+const RevealAct = require("../BaseActions/RevealAct");
 const Player = require("../player");
 const ChimeraFFStrategy = require("./ChimeraFFStrategy");
 const NullPromptStrategy = require("./NullPromptStrategy");
@@ -36,6 +37,27 @@ class DummyPlayer extends Player {
         result.cardPiles.threatZone = this.getSummaryForCardList(this.threatZone, activePlayer)
 
         return result;
+    }
+
+    getAttacker() {
+        for (const card of this.cardsInPlay) {
+            if (card.canAttack()) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    getRevealHandler() {
+        const target = this.threatZone[0];
+        const act = new RevealAct(target);
+        return () => this.game.resolveAbility(act.createContext(this));
+    }
+
+    getAttackHandler() {
+        const target = this.opponent.phoenixborn;
+        const attacker = this.threatZone[0];
+        return () => this.game.initiateAttack(target, attacker);
     }
 }
 

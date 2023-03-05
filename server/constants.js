@@ -10,7 +10,8 @@ const CardType = {
     ReadySpell: 'Ready Spell',
     Ally: 'Ally',
     Conjuration: 'Conjuration',
-    ConjuredAlteration: 'Conjured Alteration Spell'
+    ConjuredAlteration: 'Conjured Alteration Spell',
+    Aspect: 'Aspect'
 };
 
 const Location = {
@@ -20,7 +21,7 @@ const Location = {
     Discard: 'discard'
 };
 
-const BattlefieldTypes = [CardType.Ally, CardType.Conjuration];
+const BattlefieldTypes = [CardType.Ally, CardType.Conjuration, CardType.Aspect];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [CardType.Conjuration, CardType.ConjuredAlteration];
 const EffectLocations = ['play area', 'spellboard'];
