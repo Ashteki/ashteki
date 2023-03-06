@@ -17,10 +17,11 @@ describe('Summon Bone Crow', function () {
             });
         });
 
-        it('should not place a bone crow into play', function () {
+        it('should not place a bone crow into play - warning', function () {
             this.player1.clickCard(this.summonBoneCrow);
             this.player1.clickPrompt('Summon Bone Crow');
 
+            this.player1.clickPrompt('Yes');
             expect(this.boneCrow.location).toBe('archives');
         });
 

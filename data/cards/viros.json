@@ -36,7 +36,13 @@
             ],
             "attack": 1,
             "life": 1,
-            "recover": 1
+            "recover": 1,
+            "conjurations": [
+                {
+                    "name": "Blood Puppet",
+                    "stub": "blood-puppet"
+                }
+            ]
         },
         {
             "name": "Channel Magic",
@@ -91,6 +97,12 @@
             "placement": "spellboard",
             "cost": [
                 "[[main]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Bone Crow",
+                    "stub": "bone-crow"
+                }
             ]
         },
         {
@@ -99,7 +111,8 @@
             "type": "Conjuration",
             "attack": 1,
             "life": 1,
-            "recover": 0
+            "recover": 0,
+            "copies": 4
         },
         {
             "name": "Summon Calamity Golem",

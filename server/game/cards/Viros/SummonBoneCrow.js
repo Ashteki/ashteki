@@ -17,8 +17,15 @@ class SummonBoneCrow extends Card {
                 trueGameAction: ability.actions.summon({
                     conjuration: 'bone-crow'
                 })
-            })
+            }),
+            getWarnings: (context) => this.getWarnings(context)
         })
+    }
+
+    getWarnings(context) {
+        if (!context.game.turnEvents.unitDestroyed) {
+            return 'A unit has not been destroyed this turn.';
+        }
     }
 }
 
