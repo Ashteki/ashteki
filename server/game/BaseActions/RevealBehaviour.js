@@ -71,7 +71,7 @@ class RevealBehaviour extends BaseAbility {
                 originalLocation: context.source.location,
                 context: context
             },
-            () => context.game.cardsPlayed.push(event.card)
+            () => context.game.cardPlayed(event.card)
         );
         this.addSubEvent(event, context);
         context.game.openEventWindow(event);

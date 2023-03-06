@@ -45,6 +45,7 @@ describe('Chimera ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
+            this.player1.clickPrompt('Ok'); // ultimate
 
             expect(this.player2.phoenixborn.redRains).toBe(0);
             expect(this.bloodPuppet.location).toBe('archives');
