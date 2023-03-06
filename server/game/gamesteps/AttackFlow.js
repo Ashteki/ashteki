@@ -130,7 +130,7 @@ class AttackFlow extends BaseStepWithPipeline {
             attackingPlayer: this.attackingPlayer,
             battles: this.attack.battles
         };
-        this.game.raiseEvent('onAttackersDeclared', params);
+        this.game.doAttackersDeclared(params);
     }
 }
 

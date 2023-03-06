@@ -1,72 +1,86 @@
 import React, { useState } from 'react';
 import { isSafari } from 'react-device-detect';
 import CardImage from './CardImage';
+import classNames from 'classnames';
+import attackIcon from '../../assets/img/attack-icon.png';
+import medIcon from '../../assets/img/meditate-icon.png';
 
 import './CardZoom.scss';
 import './Cardlog.scss';
 import DieIcon from './DieIcon';
 
-const CardLog = ({ cards, onMouseOut, onMouseOver }) => {
+const CardLog = ({ items, onMouseOut, onMouseOver }) => {
     const [show, setShow] = useState(true);
 
-    if (!cards) {
+    if (!items) {
         return null;
     }
+    const renderDieUsed = (die) => {
+        return (
+            <div className='x-large cardlog-die mb-2'>
+                <DieIcon key={'cld-' + die.uuid} die={die} />
+            </div>
+        )
+    }
 
-    const renderSimpleCard = (card) => {
+    const renderAttack = (attack) => {
+        return (
+            <div className='x-large cardlog-die mb-2'>
+                <img className='log-icon' title='Attack!' src={attackIcon} />
+            </div>
+        )
+    }
+    const renderMed = (obj) => {
+        return (
+            <div className='x-large cardlog-die mb-2'>
+                <img className='log-icon' title={obj.name + ' meditates'} src={medIcon} />
+            </div>
+        )
+    }
+
+    const renderItem = (item, last = false) => {
         if (!show) return '';
 
-        if (card.type === 'die') {
-            return (
-                <div className='x-large cardlog-die mb-2'>
-                    <DieIcon key={'cld-' + card.uuid} die={card} />
-                </div>
-            )
+        if (item.type === 'attack') {
+            return renderAttack(item.obj);
+        }
+        if (item.type === 'med') {
+            return renderMed(item.obj);
         }
 
-        if (!card.id) return '';
+        if (item.obj.type === 'die') {
+            return renderDieUsed(item.obj);
+        }
+
+        // now it's a card
+        if (!item.obj.id) return '';
+        const itemClass = classNames(
+            'vertical mb-2',
+            last ? 'last-card' : 'target-card'
+        );
 
         return (
             <div
-                className='target-card vertical mb-2'
-                onMouseOut={() => onMouseOut && onMouseOut(card)}
-                onMouseOver={() => onMouseOver && onMouseOver(card)}
+                className={itemClass}
+                onMouseOut={() => onMouseOut && onMouseOut(item.obj)}
+                onMouseOver={() => onMouseOver && onMouseOver(item.obj)}
             >
-                <CardImage card={card} />
+                <CardImage card={item.obj} />
             </div>
         );
     };
 
-    const renderLastCard = (card) => {
-        if (card.type === 'die') {
-            return (
-                <div className='x-large cardlog-die mb-2'>
-                    <DieIcon key={'cld-' + card.uuid} die={card} />
-                </div>
-            )
-        }
-
-        if (!card.id) return '';
-
-        return (
-            <div
-                className='last-card vertical mb-2'
-                onMouseOut={() => onMouseOut && onMouseOut(card)}
-                onMouseOver={() => onMouseOver && onMouseOver(card)}
-            >
-                <CardImage card={card} />
-            </div>
-        );
-    };
-
-    let logLength = cards.length - 1;
+    let logLength = items.length - 1;
     if (isSafari) {
         logLength = Math.min(3, logLength);
     }
 
-    const cardPics =
-        cards.length > 1 ? cards.slice(0, logLength).map((c) => renderSimpleCard(c)) : null;
-    const firstCard = cards.length ? renderLastCard(cards[logLength]) : null;
+    const cardPics = items.length > 1
+        ? items.slice(0, logLength).map((c) => renderItem(c))
+        : null;
+    const firstCard = items.length
+        ? renderItem(items[logLength], true)
+        : null;
     // const size = card.type === 'decklist' ? 'x-large' : 'normal';
     const arrow = show ? '︿' : '﹀';
     return (

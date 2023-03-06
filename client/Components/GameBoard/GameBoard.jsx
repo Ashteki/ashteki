@@ -545,7 +545,7 @@ export class GameBoard extends React.Component {
         return (
             <div className='timer-log-area'>
                 <CardLog
-                    cards={this.props.currentGame.cardLog}
+                    items={this.props.currentGame.cardLog}
                     onMouseOut={this.onMouseOut}
                     onMouseOver={this.onMouseOver}
                 />
