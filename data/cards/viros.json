@@ -129,7 +129,8 @@
             "type": "Conjuration",
             "attack": 3,
             "life": 5,
-            "recover": 0
+            "recover": 0,
+            "copies": 1
         },
         {
             "name": "Blood Brawl",

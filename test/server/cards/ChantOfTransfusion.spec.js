@@ -55,6 +55,7 @@ describe('Chant of Transfusion', function () {
             this.player1.clickPrompt('Main');
 
             this.player1.clickCard(this.hammerKnight);
+            expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
             this.player1.clickCard(this.ironWorker);
 
             expect(this.chantOfTransfusion.status).toBe(0);

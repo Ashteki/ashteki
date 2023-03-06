@@ -37,6 +37,7 @@ class ChantOfTransfusion extends Card {
                     dependsOn: 'tokenBoy',
                     cardType: BattlefieldTypes,
                     controller: 'any',
+                    cardCondition: (card, context) => card !== context.targets.tokenBoy,
                     gameAction: ability.actions.moveToken((context) => ({
                         from: context.targets.tokenBoy,
                         to: context.targets.receiver,
