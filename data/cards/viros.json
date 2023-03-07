@@ -121,6 +121,12 @@
             "cost": [
                 "[[main]]",
                 "3 [[ceremonial:class]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Calamity Golem",
+                    "stub": "calamity-golem"
+                }
             ]
         },
         {
