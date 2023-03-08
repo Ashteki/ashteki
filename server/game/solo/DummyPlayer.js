@@ -23,6 +23,10 @@ class DummyPlayer extends Player {
         game.on('onCardDiscarded', (event) => this.cardDiscardedListener(event));
     }
 
+    get chimera() {
+        return this.phoenixborn;
+    }
+
     cardMovedListener(event) {
         if (
             // moved from my deck
@@ -49,7 +53,7 @@ class DummyPlayer extends Player {
 
     cardDiscardedListener(event) {
         if (event.location === 'deck' && this.fatigued) {
-            this.phoenixborn.addToken('damage', 1);
+            this.chimera.addToken('damage', 1);
             this.game.addMessage('Chimera takes fatigue damage');
         }
     }
@@ -94,7 +98,7 @@ class DummyPlayer extends Player {
 
     setupAspects() {
         this.shuffleDeck();
-        const setup = this.phoenixborn.setup;
+        const setup = this.chimera.setup;
         setup.forEach(value => {
             const card = this.deck.find(aspect => aspect.blood === value)
             this.moveCard(card, 'play area', { facedown: true });
@@ -103,7 +107,7 @@ class DummyPlayer extends Player {
     }
 
     replenishAspects() {
-        const amount = this.phoenixborn.threat - this.cardsInPlay.length;
+        const amount = this.chimera.threat - this.cardsInPlay.length;
         const cards = this.deck.slice(0, amount);
         cards.forEach(card => {
             this.moveCard(card, 'play area', { facedown: true });
@@ -172,7 +176,18 @@ class DummyPlayer extends Player {
         const context = this.game.getFrameworkContext(this);
 
         this.game.actions.discardTopOfDeck({ amount: numCards }).resolve(this, context);
-        // this.phoenixborn.tokens.damage = numCards + this.phoenixborn.damage;
+        // this.chimera.tokens.damage = numCards + this.chimera.damage;
+    }
+
+    get ultimateThreshold() {
+        return (this.chimera.printedUltimate
+            + this.chimera.exhaustion
+            + this.ultimate.exhaustion);
+    }
+
+    checkUltimateThreshold() {
+
+        return this.chimera.redRains >= this.ultimateThreshold;
     }
 }
 

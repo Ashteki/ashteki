@@ -7,7 +7,7 @@ class ChimeraCard extends Card {
             when: {
                 onAddToken: (event, context) => event.type === 'redRains'
                     && event.card === context.source
-                    && event.card.redRains >= event.card.ultimate
+                    && event.card.owner.checkUltimateThreshold()
             },
             gameAction: ability.actions.triggerUltimate()
         })

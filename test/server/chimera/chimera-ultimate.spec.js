@@ -26,11 +26,15 @@ describe('Chimera ultimate', function () {
         });
 
         it('ultimate value raises with exhaustion tokens', function () {
-            expect(this.virosS1.ultimate).toBe(3);
+            expect(this.player2.player.ultimateThreshold).toBe(3);
 
             this.virosS1.tokens.exhaustion = 2;
 
-            expect(this.virosS1.ultimate).toBe(5);
+            expect(this.player2.player.ultimateThreshold).toBe(5);
+
+            this.player2.ultimate.tokens.exhaustion = 2;
+
+            expect(this.player2.player.ultimateThreshold).toBe(7);
         });
 
         it('red rains ultimate trigger removes RR tokens, removes non-owned units', function () {

@@ -981,7 +981,7 @@ class Card extends PlayableObject {
     }
 
     get ultimate() {
-        return this.printedUltimate + this.exhaustion;
+        return this.printedUltimate;
     }
 
     exhaust(amount = 1) {
