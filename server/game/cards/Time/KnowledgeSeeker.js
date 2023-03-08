@@ -11,7 +11,7 @@ class KnowledgeSeeker extends Card {
 
         this.destroyed({
             inexhaustible: true,
-            optional: true,
+            may: 'draw cards',
             activePromptTitle: 'Bequest 1',
             gameAction: ability.actions.draw(() => ({
                 amount: this.getAbilityNumeric(1)

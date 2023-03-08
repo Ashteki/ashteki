@@ -18,6 +18,7 @@ class WishingWing extends Card {
             }))
         });
         this.destroyed({
+            may: 'draw cards',
             inexhaustible: true,
             optional: true,
             activePromptTitle: 'Bequest X',
