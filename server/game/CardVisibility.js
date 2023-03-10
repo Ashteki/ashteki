@@ -60,7 +60,8 @@ class CardVisibility {
             card.controller.phoenixborn,
             ...card.controller.phoenixborn.upgrades,
             ...card.controller.cardsInPlay,
-            ...card.controller.spellboard
+            ...card.controller.spellboard,
+            ...card.controller.discard
         ];
         return revealedCards.some((spell) => spell.conjurations.some((c) => c.stub === card.id));
     }

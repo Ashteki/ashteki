@@ -18,8 +18,8 @@ class WishingWing extends Card {
             }))
         });
         this.destroyed({
+            may: 'draw cards',
             inexhaustible: true,
-            optional: true,
             activePromptTitle: 'Bequest X',
             gameAction: ability.actions.draw((context) => ({
                 amount: this.getAbilityNumeric(context.source.status)
