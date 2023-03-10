@@ -9,6 +9,10 @@
                 "1 [[ceremonial:class]]",
                 "1 [[basic]]"
             ],
+            "magicCost": {
+                "basic": 1,
+                "ceremonial:class": 1
+            },
             "attack": 2,
             "life": 3,
             "recover": 1
@@ -22,6 +26,10 @@
                 "1 [[ceremonial:class]]",
                 "1 [[basic]]"
             ],
+            "magicCost": {
+                "basic": 1,
+                "ceremonial:class": 1
+            },
             "attack": 1,
             "life": 4,
             "recover": 2
@@ -34,6 +42,9 @@
                 "[[main]]",
                 "1 [[ceremonial:power]]"
             ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
             "attack": 1,
             "life": 1,
             "recover": 1,
@@ -51,7 +62,10 @@
             "cost": [
                 "[[main]]",
                 "1 [[basic]]"
-            ]
+            ],
+            "magicCost": {
+                "basic": 1
+            }
         },
         {
             "name": "Final Stand",
@@ -60,7 +74,11 @@
             "cost": [
                 "[[main]]",
                 "1 [[basic]]"
-            ]
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Coal Roarkwin"
         },
         {
             "name": "Playtime",
@@ -70,7 +88,11 @@
             "cost": [
                 "[[main]]",
                 "1 [[ceremonial:class]]"
-            ]
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "phoenixborn": "Jessa Na Ni"
         },
         {
             "name": "Shadowblade",
@@ -78,7 +100,11 @@
             "type": "Reaction Spell",
             "cost": [
                 "1 [[basic]]"
-            ]
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Noah Halfmoon"
         },
         {
             "name": "Change of Heart",
@@ -88,7 +114,11 @@
             "cost": [
                 "[[main]]",
                 "1 [[basic]]"
-            ]
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Brennen Blackcloud"
         },
         {
             "name": "Summon Bone Crow",
@@ -122,6 +152,9 @@
                 "[[main]]",
                 "3 [[ceremonial:class]]"
             ],
+            "magicCost": {
+                "ceremonial:class": 3
+            },
             "conjurations": [
                 {
                     "name": "Calamity Golem",
@@ -145,7 +178,10 @@
             "cost": [
                 "[[main]]",
                 "1 [[ceremonial:class]]"
-            ]
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
         },
         {
             "name": "Infuriate",
@@ -155,7 +191,10 @@
             "cost": [
                 "[[side]]",
                 "1 [[ceremonial:class]]"
-            ]
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
         },
         {
             "name": "Serve the City",
@@ -165,7 +204,10 @@
             "cost": [
                 "[[side]]",
                 "1 [[ceremonial:class]]"
-            ]
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
         },
         {
             "name": "Chant of Transfusion",
@@ -175,7 +217,10 @@
             "cost": [
                 "[[side]]",
                 "1 [[ceremonial:class]]"
-            ]
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
         }
     ]
 }
