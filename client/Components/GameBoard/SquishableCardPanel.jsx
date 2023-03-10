@@ -30,7 +30,7 @@ class SquishableCardPanel extends React.Component {
         let focusLeftDelta = 0;
         let hand = cards.map((card) => {
             if (this.props.focusDupes && lastCardSlot === card.cardSlot) {
-                focusLeftDelta += -30;
+                focusLeftDelta += -47;
             } else {
                 //focusLeftDelta = 0;
             }

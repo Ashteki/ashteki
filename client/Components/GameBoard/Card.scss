@@ -43,11 +43,6 @@
             height: $keyteki-card-lg-width;
             width: $keyteki-card-lg-height;
         }
-
-        &.exhausted {
-            left: 19px;
-            top: -20px;
-        }
     }
 
     &.x-large {
@@ -60,11 +55,6 @@
             height: $keyteki-card-xl-width;
             width: $keyteki-card-xl-height;
         }
-
-        &.exhausted {
-            left: 24px;
-            top: -26px;
-        }
     }
 
     &.vertical {
@@ -75,12 +65,6 @@
     &.horizontal {
         height: $keyteki-card-width;
         width: $keyteki-card-height;
-    }
-
-    &.exhausted {
-        left: 11px;
-        top: -14px;
-        transform: rotate(90deg);
     }
 }
 
@@ -241,6 +225,10 @@
 
     &.combat-bottom {
         margin-top: -15px;
+    }
+
+    &.exhausted {
+        filter: grayscale(60%) brightness(80%);
     }
 }
 
