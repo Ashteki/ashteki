@@ -29,7 +29,7 @@ describe('Blood Puppeteer', function () {
         });
     });
 
-    describe('Retitch', function () {
+    describe('Restitch', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -42,17 +42,34 @@ describe('Blood Puppeteer', function () {
                     spellboard: [],
                     dicepool: ['ceremonial', 'natural', 'charm', 'charm'],
                     inPlay: ['blood-puppeteer', 'blood-puppet'],
-                    archives: ['blood-puppet']
+                    archives: ['blood-puppet'],
+                    hand: ['fear']
                 }
             });
         });
 
-        it('summons a bp onto my bf when played', function () {
+        it('gifts a puppet to opponent', function () {
             const archivesPuppet = this.player2.archives[0];
             this.player1.clickAttack(this.bloodPuppeteer);
             this.player1.clickCard(this.mistSpirit);
             this.player2.clickDone();
             this.player2.clickNo();
+            this.player2.clickYes(); // restitch
+            this.player2.clickCard(this.bloodPuppet);
+
+            expect(this.bloodPuppeteer.location).toBe('discard');
+            expect(this.bloodPuppet.location).toBe('archives');
+            expect(archivesPuppet.location).toBe('play area');
+            expect(archivesPuppet.controller).toBe(this.player1.player);
+        });
+
+        it('is triggered by fear', function () {
+            const archivesPuppet = this.player2.archives[0];
+            this.player1.endTurn();
+
+            this.player2.play(this.fear)
+            this.player2.clickDie(0);
+            this.player2.clickCard(this.bloodPuppeteer);
             this.player2.clickYes(); // restitch
             this.player2.clickCard(this.bloodPuppet);
 
