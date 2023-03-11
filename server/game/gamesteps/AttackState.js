@@ -147,6 +147,11 @@ class AttackState {
     checkUnseen() {
         return !this.battles.some((b) => !b.attacker.anyEffect('unseen') && !b.guard);
     }
+
+    getTargetFor(card) {
+        const myBattle = this.battles.find(b => b.attacker === card);
+        return myBattle.target;
+    }
 }
 
 module.exports = AttackState;

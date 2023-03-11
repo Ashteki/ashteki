@@ -24,7 +24,7 @@ class SummonAction extends PlayerAction {
     update(context) {
         super.update(context);
         // get card
-        this.cards = context.player.archives
+        this.cards = context.source.owner.archives
             .filter((c) => c.id === this.conjuration)
             .slice(0, this.count);
         // this.effectArgs = [this.cards];

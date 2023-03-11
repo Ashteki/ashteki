@@ -63,7 +63,7 @@ const PlayerPBRow = ({
             groupVisibleCards
             focusDupes={true}
             manualMode={manualMode}
-            maxCards={7}
+            // maxCards={7}
             onCardClick={onCardClick}
             onDieClick={onDieClick}
             onMouseOut={onMouseOut}

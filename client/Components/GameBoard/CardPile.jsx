@@ -72,8 +72,8 @@ const CardPile = ({
     let cardOrientation =
         orientation === 'horizontal' && topCard && topCard.facedown ? 'exhausted' : orientation;
 
-    if (hiddenTopCard && count > 0) {
-        topCard = { facedown: true };
+    if (hiddenTopCard && count > 0 && topCard) {
+        topCard = { facedown: true, isConjuration: topCard.isConjuration };
     }
 
     const onPileClicked = () => {

@@ -1,0 +1,226 @@
+{
+    "results": [
+        {
+            "name": "Old Salt",
+            "stub": "old-salt",
+            "type": "Ally",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "ceremonial:class": 1
+            },
+            "attack": 2,
+            "life": 3,
+            "recover": 1
+        },
+        {
+            "name": "Phoenix Attendant",
+            "stub": "phoenix-attendant",
+            "type": "Ally",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "ceremonial:class": 1
+            },
+            "attack": 1,
+            "life": 4,
+            "recover": 2
+        },
+        {
+            "name": "Blood Puppeteer",
+            "stub": "blood-puppeteer",
+            "type": "Ally",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:power]]"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1,
+            "conjurations": [
+                {
+                    "name": "Blood Puppet",
+                    "stub": "blood-puppet"
+                }
+            ]
+        },
+        {
+            "name": "Channel Magic",
+            "stub": "channel-magic",
+            "type": "Action Spell",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            }
+        },
+        {
+            "name": "Final Stand",
+            "stub": "final-stand",
+            "type": "Action Spell",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Coal Roarkwin"
+        },
+        {
+            "name": "Playtime",
+            "stub": "playtime",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "phoenixborn": "Jessa Na Ni"
+        },
+        {
+            "name": "Shadowblade",
+            "stub": "shadowblade",
+            "type": "Reaction Spell",
+            "cost": [
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Noah Halfmoon"
+        },
+        {
+            "name": "Change of Heart",
+            "stub": "change-of-heart",
+            "type": "Alteration Spell",
+            "placement": "Phoenixborn",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Brennen Blackcloud"
+        },
+        {
+            "name": "Summon Bone Crow",
+            "stub": "summon-bone-crow",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Bone Crow",
+                    "stub": "bone-crow"
+                }
+            ]
+        },
+        {
+            "name": "Bone Crow",
+            "stub": "bone-crow",
+            "type": "Conjuration",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
+        },
+        {
+            "name": "Summon Calamity Golem",
+            "stub": "summon-calamity-golem",
+            "type": "Action Spell",
+            "cost": [
+                "[[main]]",
+                "3 [[ceremonial:class]]"
+            ],
+            "magicCost": {
+                "ceremonial:class": 3
+            },
+            "conjurations": [
+                {
+                    "name": "Calamity Golem",
+                    "stub": "calamity-golem"
+                }
+            ]
+        },
+        {
+            "name": "Calamity Golem",
+            "stub": "calamity-golem",
+            "type": "Conjuration",
+            "attack": 3,
+            "life": 5,
+            "recover": 0,
+            "copies": 1
+        },
+        {
+            "name": "Blood Brawl",
+            "stub": "blood-brawl",
+            "type": "Action Spell",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
+        },
+        {
+            "name": "Infuriate",
+            "stub": "infuriate",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
+        },
+        {
+            "name": "Serve the City",
+            "stub": "serve-the-city",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
+        },
+        {
+            "name": "Chant of Transfusion",
+            "stub": "chant-of-transfusion",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            }
+        }
+    ]
+}

@@ -7,13 +7,13 @@ class ConditionalAction extends GameAction {
     }
 
     getGameAction(context) {
-        if (this.trueGameAction) {
-            this.trueGameAction.setDefaultTarget(() => context.target);
-        }
+        // if (this.trueGameAction) {
+        //     this.trueGameAction.setDefaultTarget(() => context.target);
+        // }
 
-        if (this.falseGameAction) {
-            this.falseGameAction.setDefaultTarget(() => context.target);
-        }
+        // if (this.falseGameAction) {
+        //     this.falseGameAction.setDefaultTarget(() => context.target);
+        // }
 
         let condition = this.condition;
         if (typeof condition === 'function') {
@@ -33,7 +33,9 @@ class ConditionalAction extends GameAction {
         super.preEventHandler(context);
 
         const gameAction = this.getGameAction(context);
-        gameAction.preEventHandler(context);
+        if (gameAction) {
+            gameAction.preEventHandler(context);
+        }
     }
 
     update(context) {
