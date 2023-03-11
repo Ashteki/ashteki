@@ -54,6 +54,7 @@ const Actions = {
     setBlocker: (propertyFactory) => new GameActions.SetBlockerAction(propertyFactory),
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     orderedAoE: (propertyFactory) => new GameActions.OrderedAoEAction(propertyFactory),
+    attack: (propertyFactory) => new GameActions.AttackAction(propertyFactory),
 
     // dice actions
     changeDice: (propertyFactory) => new GameActions.ChangeDiceAction(propertyFactory),

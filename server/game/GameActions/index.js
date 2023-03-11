@@ -78,5 +78,6 @@ module.exports = {
     UseAction: require('./UseAction'),
     UseDieAction: require('./UseDieAction'),
     OrderedAoEAction: require('./OrderedAoEAction'),
-    RaiseEventAction: require('./RaiseEventAction')
+    RaiseEventAction: require('./RaiseEventAction'),
+    AttackAction: require('./AttackAction')
 };

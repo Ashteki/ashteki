@@ -77,6 +77,8 @@ class Game extends EventEmitter {
         this.cardsPlayed = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
+        this.turnEvents = {};
+
         this.activePlayer = null;
         this.gameFirstPlayer = null;
         this.roundFirstPlayer = null;
@@ -148,6 +150,13 @@ class Game extends EventEmitter {
         if (this.cardsPlayed.length > 0) return this.cardsPlayed[this.cardsPlayed.length - 1];
 
         return null;
+    }
+
+    /**
+     * Record that a unit has been destroyed this turn (e.g. for summon bone crow)
+     */
+    onUnitDestroyed() {
+        this.turnEvents.unitDestroyed = true;
     }
 
     /*
@@ -1093,6 +1102,8 @@ class Game extends EventEmitter {
 
     beginTurn() {
         this.betweenTurns = false;
+        this.turnEvents = {};
+
         // Would be better to have this refresh during endTurn, but couldn't work out how to ensure reset after other endTurn effects
         this.cardsInPlay.forEach((c) => {
             c.wasAttacker = false;

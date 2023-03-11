@@ -46,6 +46,7 @@ class DestroyAction extends CardGameAction {
                 message = message + ', and removed from the game';
             }
             event.context.game.addMessage(message, card);
+            event.context.game.onUnitDestroyed();
             event.card.moribund = true;
             event.card.skipDestroyCheck = false;
             if (event.card.isAttacker || event.card.isDefender) {

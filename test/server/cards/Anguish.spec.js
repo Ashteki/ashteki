@@ -26,7 +26,8 @@ describe('Anguish', function () {
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.rinNorthfell);
-            this.player2.clickPrompt('Discard');
+            expect(this.player1).not.toHavePromptButton('Discard');
+            this.player2.clickPrompt('Take 2 Wounds');
 
             expect(this.rinNorthfell.damage).toBe(2);
         });
