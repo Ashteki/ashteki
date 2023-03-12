@@ -5,6 +5,7 @@ class PhoenixAttendant extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Alleviate 1',
+            cost: [ability.costs.sideAction()],
             gameAction: ability.actions.moveToken((context) => ({
                 from: context.player.phoenixborn,
                 to: context.source,
