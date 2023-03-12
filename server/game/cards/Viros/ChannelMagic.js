@@ -8,7 +8,7 @@ class ChannelMagic extends Card {
             then: {
                 target: {
                     cardType: CardType.Phoenixborn,
-                    gameAction: ability.actions.removeDamage({ amount: 1 })
+                    gameAction: ability.actions.removeDamage({ amount: 1, showMessage: true })
                 },
                 then: {
                     target: {
@@ -18,7 +18,7 @@ class ChannelMagic extends Card {
                         dieCondition: (die) => !die.exhausted && die.level !== Level.Power,
                         owner: 'self',
                         activePromptTitle: 'Choose up to 3 dice to raise one level',
-                        gameAction: ability.actions.raiseDie()
+                        gameAction: ability.actions.raiseDie({ showMessage: true })
                     }
                 }
             }
