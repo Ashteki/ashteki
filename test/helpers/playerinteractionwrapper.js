@@ -43,7 +43,7 @@ class PlayerInteractionWrapper {
      * @return {DrawCard[]} - List of player's cards currently in play
      */
     get inPlay() {
-        return this.player.cardsInPlay;
+        return this.player.unitsInPlay;
     }
 
     /**

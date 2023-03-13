@@ -1484,7 +1484,7 @@ class Game extends EventEmitter {
     get cardsInPlay() {
         return this.getPlayers().reduce(
             (array, player) =>
-                array.concat(player.cardsInPlay, player.spellboard, player.phoenixborn),
+                array.concat(player.cardsInPlay, player.spellboard),
             []
         );
     }

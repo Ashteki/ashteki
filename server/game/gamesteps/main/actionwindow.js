@@ -76,7 +76,7 @@ class ActionWindow extends UiPrompt {
     canAttack() {
         return (
             this.game.activePlayer.actions.main &&
-            this.game.activePlayer.cardsInPlay.some((c) => c.canAttack())
+            this.game.activePlayer.unitsInPlay.some((c) => c.canAttack())
         );
     }
 

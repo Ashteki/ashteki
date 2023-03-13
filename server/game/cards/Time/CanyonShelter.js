@@ -9,7 +9,7 @@ class CanyonShelter extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
             condition: (context) =>
-                context.player.cardsInPlay.filter((c) => c.exhausted).length > 0,
+                context.player.unitsInPlay.filter((c) => c.exhausted).length > 0,
             target: {
                 controller: 'self',
                 cardType: BattlefieldTypes,

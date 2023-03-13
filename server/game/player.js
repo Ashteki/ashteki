@@ -115,6 +115,7 @@ class Player extends GameObject {
     }
 
     get defenders() {
+        // can be cardsInPlay
         return this.cardsInPlay.concat(this.phoenixborn);
     }
 
@@ -133,7 +134,7 @@ class Player extends GameObject {
      * Checks whether any cards in play are currently marked as selected
      */
     areCardsSelected() {
-        return this.cardsInPlay.some((card) => {
+        return this.unitsInPlay.some((card) => {
             return card.selected;
         });
     }
@@ -234,7 +235,7 @@ class Player extends GameObject {
     }
 
     isBattlefieldFull() {
-        return this.cardsInPlay.filter((c) => !c.moribund).length >= this.phoenixborn.battlefield;
+        return this.unitsInPlay.filter((c) => !c.moribund).length >= this.phoenixborn.battlefield;
     }
 
     /**
@@ -256,6 +257,7 @@ class Player extends GameObject {
         this.allCards = preparedDeck.cards;
         this.diceCounts = preparedDeck.diceCounts;
         this.phoenixborn = preparedDeck.phoenixborn;
+        this.cardsInPlay = [this.phoenixborn];
         this.dice = preparedDeck.dice;
     }
 
@@ -741,7 +743,7 @@ class Player extends GameObject {
         let playerState = {
             cardPiles: {
                 archives: this.getSummaryForCardList(this.archives, activePlayer),
-                cardsInPlay: this.getSummaryForCardList(this.cardsInPlay, activePlayer),
+                cardsInPlay: this.getSummaryForCardList(this.unitsInPlay, activePlayer),
                 discard: this.getSummaryForCardList(this.discard, activePlayer),
                 hand: this.getSummaryForCardList(this.hand, activePlayer, true),
                 purged: this.getSummaryForCardList(this.purged, activePlayer),

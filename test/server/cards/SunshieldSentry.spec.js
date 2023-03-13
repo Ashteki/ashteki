@@ -91,14 +91,14 @@ describe('Sunshield Sentry', function () {
         this.player1.clickCard(this.timeHopper);
         this.player1.clickPrompt('Done');
 
-        this.player2.clickCard(this.player2.player.cardsInPlay[0]); //sentry 1
+        this.player2.clickCard(this.player2.player.unitsInPlay[0]); //sentry 1
         this.player2.clickCard(this.fallen);
-        this.player2.clickCard(this.player2.player.cardsInPlay[1]); //sentry 2
+        this.player2.clickCard(this.player2.player.unitsInPlay[1]); //sentry 2
         this.player2.clickCard(this.mistSpirit);
         this.player2.clickPrompt('Done');
-        this.player2.clickCard(this.player2.player.cardsInPlay[0]); //reaction
+        this.player2.clickCard(this.player2.player.unitsInPlay[0]); //reaction
         this.player2.clickCard(this.raptorHerder); //choose herder
-        this.player2.clickCard(this.player2.player.cardsInPlay[1]); //reaction
+        this.player2.clickCard(this.player2.player.unitsInPlay[1]); //reaction
         this.player2.clickCard(this.timeHopper); //choose hopper
 
         //resolve battles

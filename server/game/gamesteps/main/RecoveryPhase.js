@@ -7,7 +7,7 @@ class RecoveryPhase extends Phase {
         super(game, 'recovery');
         this.initialise([
             new SimpleStep(game, () => this.recoverWounds()),
-            new SimpleStep(game, () => this.readyCards()),
+            new SimpleStep(game, () => this.readyAllCards()),
             new PinDicePrompt(game)
         ]);
     }
@@ -17,10 +17,11 @@ class RecoveryPhase extends Phase {
 
         this.game.actions
             .recoverWounds()
-            .resolve(this.game.cardsInPlay, this.game.getFrameworkContext());
+            .resolve(this.game.unitsInPlay, this.game.getFrameworkContext());
     }
 
-    readyCards() {
+    /** remove one exhaustion from all cards in play - battlefield, spellboard and phoenixborn */
+    readyAllCards() {
         this.game.addMessage('All cards remove one exhaustion token.');
         this.game.actions.ready().resolve(this.game.cardsInPlay, this.game.getFrameworkContext());
     }

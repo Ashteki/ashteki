@@ -10,7 +10,7 @@ class ChosenDestroyAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        if (player.cardsInPlay.length === 0) {
+        if (player.unitsInPlay.length === 0) {
             return false;
         }
 
@@ -19,7 +19,7 @@ class ChosenDestroyAction extends PlayerAction {
 
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player: player }, () => {
-            if (player.cardsInPlay.length > 0) {
+            if (player.unitsInPlay.length > 0) {
                 context.game.promptForSelect(player, {
                     activePromptTitle: 'Choose a card to destroy',
                     // eslint-disable-next-line no-undef

@@ -2,11 +2,11 @@ describe('Dispel action spell', function () {
     beforeEach(function () {
         this.setupTest({
             player1: {
-                phoenixborn: 'aradel-summergaard',
+                phoenixborn: 'brennen-blackcloud',
                 inPlay: ['mist-spirit', 'iron-worker'],
-                dicepool: ['natural', 'natural', 'charm', 'charm'],
+                dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial'],
                 spellboard: [],
-                hand: ['root-armor', 'deep-freeze']
+                hand: ['root-armor', 'deep-freeze', 'change-of-heart']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -46,5 +46,19 @@ describe('Dispel action spell', function () {
         this.player2.clickCard(this.rootArmor);
 
         expect(this.rootArmor.location).toBe('deck');
+    });
+
+    it('should remove change of heart upgrade', function () {
+        this.player1.play(this.changeOfHeart);
+        this.player1.clickDie(0);
+        this.player1.endTurn();
+
+        this.player2.clickCard(this.dispel);
+        this.player2.clickPrompt('Play this action');
+        this.player2.clickDie(2);
+        this.player2.clickPrompt('Return Alteration');
+        this.player2.clickCard(this.changeOfHeart);
+
+        expect(this.changeOfHeart.location).toBe('deck');
     });
 });
