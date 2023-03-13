@@ -32,6 +32,7 @@ describe('ChangeOfHeart', function () {
             this.player1.clickCard(this.ironRhino);
             expect(this.crystalArcher.location).toBe('hand');
             expect(this.ironRhino.damage).toBe(1);
+            expect(this.changeOfHeart.exhausted).toBe(true);
         });
     });
 });
