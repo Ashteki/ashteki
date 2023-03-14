@@ -15,7 +15,8 @@ class Playtime extends Card {
             autoResolve: true,
             when: {
                 onAttackersDeclared: (event, context) =>
-                    event.attackingPlayer === context.source.owner.opponent,
+                    event.attackingPlayer === context.source.owner.opponent
+                    && context.source.parent.isAttacker,
                 onDefendersDeclared: (event, context) => {
                     return event.attack.battles.some((b) => b.guard === context.source.parent);
                 }

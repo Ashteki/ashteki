@@ -10,7 +10,7 @@ describe('Playtime', function () {
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['hammer-knight', 'iron-rhino']
+                    inPlay: ['hammer-knight', 'iron-rhino', 'flute-mage']
                 }
             });
         });
@@ -28,6 +28,21 @@ describe('Playtime', function () {
             this.player1.clickNo();
 
             expect(this.aradelSummergaard.damage).toBe(1);
+        });
+
+        it('no trigger on other unit attack', function () {
+            this.player1.play(this.playtime);
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.upgrades.length).toBe(1);
+            expect(this.hammerKnight.attack).toBe(2);
+
+            this.player1.endTurn();
+            this.player2.clickAttack(this.mistSpirit);
+            this.player2.clickCard(this.fluteMage);
+            this.player1.clickDone();
+            this.player1.clickNo();
+
+            expect(this.aradelSummergaard.damage).toBe(0);
         });
     });
 
