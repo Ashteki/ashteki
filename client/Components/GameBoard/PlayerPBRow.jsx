@@ -59,7 +59,7 @@ const PlayerPBRow = ({
     let spellboard = (
         <SquishableCardPanel
             cards={spells}
-            className='panel hand'
+            className='panel spellboard'
             groupVisibleCards
             focusDupes={true}
             manualMode={manualMode}

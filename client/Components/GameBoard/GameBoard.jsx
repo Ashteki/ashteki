@@ -514,27 +514,27 @@ export class GameBoard extends React.Component {
                     <PlayerStats
                         {...boundActionCreators}
                         activePlayer={thisPlayer.activePlayer}
+                        actions={thisPlayer.actions}
+                        clockState={thisPlayer.clock}
+                        firstPlayer={thisPlayer.firstPlayer}
+                        isMe={!spectating}
                         manualModeEnabled={manualMode}
                         matchRecord={this.getMatchRecord(thisPlayer, otherPlayer)}
                         muteSpectators={this.props.currentGame.muteSpectators}
                         numMessages={this.state.newMessages}
+                        onDiceHistoryClick={this.onDiceHistoryClick}
+                        onManualCommandsClick={this.onManualCommandsClick}
                         onManualModeClick={this.onManualModeClick}
                         onMessagesClick={this.onMessagesClick}
                         onMuteClick={this.onMuteClick}
                         onSettingsClick={this.onSettingsClick}
+                        phoenixborn={thisPlayer.phoenixborn}
+                        player={thisPlayer}
                         showControls={!spectating && manualMode}
                         showManualMode={!spectating}
                         showMessages
                         stats={thisPlayer.stats}
-                        player={thisPlayer}
-                        actions={thisPlayer.actions}
-                        firstPlayer={thisPlayer.firstPlayer}
-                        onDiceHistoryClick={this.onDiceHistoryClick}
-                        onManualCommandsClick={this.onManualCommandsClick}
-                        phoenixborn={thisPlayer.phoenixborn}
-                        clockState={thisPlayer.clock}
                         winner={this.props.currentGame.winner}
-
                     />
                 </div>
             </div>
