@@ -59,7 +59,7 @@ class CardVisibility {
         const revealedCards = [
             card.controller.phoenixborn,
             ...card.controller.phoenixborn.upgrades,
-            ...card.controller.cardsInPlay,
+            ...card.controller.unitsInPlay,
             ...card.controller.spellboard,
             ...card.controller.discard
         ];

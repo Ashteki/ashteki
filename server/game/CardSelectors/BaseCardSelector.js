@@ -37,6 +37,7 @@ class BaseCardSelector {
             return context.game.allCards;
         }
 
+        // use cardsInPlay to include phoenixborn (technically 'in play')
         let upgrades = context.player.cardsInPlay.reduce(
             (array, card) => array.concat(card.upgrades),
             []

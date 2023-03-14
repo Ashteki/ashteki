@@ -15,7 +15,7 @@ const Costs = {
         payEvent: (context) => context.game.actions.exhaust().getEvent(context.source, context)
     }),
     destroy: () => ({
-        canPay: (context) => context.player.cardsInPlay.includes(context.source),
+        canPay: (context) => context.player.unitsInPlay.includes(context.source),
         payEvent: (context) => context.game.actions.destroy().getEvent(context.source, context)
     }),
     // this is the cost to execute a dice power - not to spend the dice (see diceCost)

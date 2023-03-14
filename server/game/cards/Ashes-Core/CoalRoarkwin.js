@@ -13,7 +13,7 @@ class CoalRoarkwin extends Card {
                 cardCondition: (card) => {
                     return (
                         BattlefieldTypes.includes(card.type) ||
-                        card.controller.cardsInPlay.length == 0 // implies the cardtype is pb
+                        card.controller.unitsInPlay.length == 0 // implies the cardtype is pb
                     );
                 },
                 gameAction: ability.actions.dealDamage()
