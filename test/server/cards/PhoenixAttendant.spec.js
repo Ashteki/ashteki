@@ -28,5 +28,17 @@ describe('Phoenix Attendant', function () {
             expect(this.brennenBlackcloud.damage).toBe(1);
             expect(this.phoenixAttendant.damage).toBe(1);
         });
+
+        it('not allowed if wounded', function () {
+            this.phoenixAttendant.tokens.damage = 1;
+            expect(this.brennenBlackcloud.damage).toBe(2);
+            expect(this.phoenixAttendant.damage).toBe(1);
+
+            this.player1.clickCard(this.phoenixAttendant);
+            expect(this.player1).not.toHavePrompt('Alleviate 1');
+            this.player1.clickPrompt('Alleviate 1');
+            expect(this.brennenBlackcloud.damage).toBe(2);
+            expect(this.phoenixAttendant.damage).toBe(1);
+        });
     });
 });

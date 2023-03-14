@@ -6,11 +6,14 @@ class PhoenixAttendant extends Card {
         this.action({
             title: 'Alleviate 1',
             cost: [ability.costs.sideAction()],
-            gameAction: ability.actions.moveToken((context) => ({
-                from: context.player.phoenixborn,
-                to: context.source,
-                type: 'damage'
-            }))
+            gameAction: ability.actions.conditional({
+                condition: (context) => context.source.damage < 1,
+                trueGameAction: ability.actions.moveToken((context) => ({
+                    from: context.player.phoenixborn,
+                    to: context.source,
+                    type: 'damage'
+                }))
+            })
         });
     }
 }
