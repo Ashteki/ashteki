@@ -63,6 +63,40 @@ describe('Blood Puppeteer', function () {
             expect(archivesPuppet.controller).toBe(this.player1.player);
         });
 
+        it('ignores exhaustion on puppeteer', function () {
+            this.bloodPuppeteer.tokens.exhaustion = 1;
+            expect(this.bloodPuppeteer.exhausted).toBe(true);
+            const archivesPuppet = this.player2.archives[0];
+            this.player1.clickAttack(this.bloodPuppeteer);
+            this.player1.clickCard(this.mistSpirit);
+            this.player2.clickDone();
+            // this.player2.clickNo(); // no counter as exhausted
+            this.player2.clickYes(); // restitch
+            this.player2.clickCard(this.bloodPuppet);
+
+            expect(this.bloodPuppeteer.location).toBe('discard');
+            expect(this.bloodPuppet.location).toBe('archives');
+            expect(archivesPuppet.location).toBe('play area');
+            expect(archivesPuppet.controller).toBe(this.player1.player);
+        });
+
+        it('ignores exhaustion on puppet', function () {
+            this.bloodPuppet.tokens.exhaustion = 1;
+            expect(this.bloodPuppet.exhausted).toBe(true);
+            const archivesPuppet = this.player2.archives[0];
+            this.player1.clickAttack(this.bloodPuppeteer);
+            this.player1.clickCard(this.mistSpirit);
+            this.player2.clickDone();
+            this.player2.clickNo();
+            this.player2.clickYes(); // restitch
+            this.player2.clickCard(this.bloodPuppet);
+
+            expect(this.bloodPuppeteer.location).toBe('discard');
+            expect(this.bloodPuppet.location).toBe('archives');
+            expect(archivesPuppet.location).toBe('play area');
+            expect(archivesPuppet.controller).toBe(this.player1.player);
+        });
+
         it('is triggered by fear', function () {
             const archivesPuppet = this.player2.archives[0];
             this.player1.endTurn();
@@ -80,6 +114,43 @@ describe('Blood Puppeteer', function () {
         });
 
 
+    });
+
+    describe('Restitch vs Conscript', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['mist-spirit'],
+                    spellboard: ['summon-butterfly-monk']
+                },
+                player2: {
+                    phoenixborn: 'rowan-umberend',
+                    spellboard: [],
+                    dicepool: ['ceremonial', 'natural', 'charm', 'charm'],
+                    inPlay: ['blood-puppeteer', 'blood-puppet'],
+                    archives: ['blood-puppet'],
+                    hand: ['fear']
+                }
+            });
+        });
+
+        it('restitch THEN conscript', function () {
+            const archivesPuppet = this.player2.archives[0];
+            this.player1.clickAttack(this.bloodPuppeteer);
+            this.player1.clickCard(this.mistSpirit);
+            this.player2.clickDone();
+            this.player2.clickNo();
+            this.player2.clickYes(); // restitch
+            this.player2.clickCard(this.bloodPuppet);
+
+            expect(this.bloodPuppeteer.location).toBe('discard');
+            expect(this.bloodPuppet.location).toBe('archives');
+            expect(archivesPuppet.location).toBe('play area');
+            expect(archivesPuppet.controller).toBe(this.player1.player);
+            this.player2.clickYes() // conscript
+            expect(this.rowanUmberend.childCards[0]).toBe(this.bloodPuppeteer);
+        });
     });
 
 });

@@ -10,6 +10,7 @@ class BloodPuppeteer extends Card {
         });
 
         this.destroyed({
+            inexhaustible: true,
             may: 'discard a blood puppet to gift a blood puppet',
             target: {
                 activePromptTitle: 'Choose a blood puppet you control to discard',

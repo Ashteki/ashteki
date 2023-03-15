@@ -7,6 +7,7 @@ import DrawDeck from './DrawDeck';
 import Card from './Card';
 
 import './PlayerRow.scss';
+import DiceBox from './DiceBox';
 
 const PlayerPBRow = ({
     cardSize,
@@ -22,6 +23,7 @@ const PlayerPBRow = ({
     onMouseOver,
     onMouseOut,
     player,
+    showDice,
     side,
     spells,
     spectating,
@@ -29,6 +31,7 @@ const PlayerPBRow = ({
     onShuffleClick,
     onPileClick,
     showDeck,
+    showDeckPile,
     phoenixborn,
     onMenuItemClick
 }) => {
@@ -59,7 +62,7 @@ const PlayerPBRow = ({
     let spellboard = (
         <SquishableCardPanel
             cards={spells}
-            className='panel hand'
+            className='panel spellboard'
             groupVisibleCards
             focusDupes={true}
             manualMode={manualMode}
@@ -121,11 +124,31 @@ const PlayerPBRow = ({
             />
         );
     }
+    let opponentSrText = side === 'top' ? <span className='sr-only'>Opponent&apos;s</span> : null;
 
+    const renderResources = (dice) => {
+        return (
+            <div className='panel resources card-pile'>
+                <h3 className='panel-header'>
+                    {opponentSrText}
+                    Dice
+                </h3>
+                <DiceBox
+                    dice={dice}
+                    size={cardSize}
+                    onDieClick={onDieClick}
+                    onMenuItemClick={onMenuItemClick}
+                    onMouseOver={onMouseOver}
+                    onMouseOut={onMouseOut}
+                />
+            </div>
+        );
+    };
     return (
         <div className='player-home-row-container pt-1'>
+            {showDice && renderResources(player.dice)}
             {renderDroppablePile('discard', discardToRender)}
-            {renderDroppablePile('deck', drawDeckToRender)}
+            {showDeckPile && renderDroppablePile('deck', drawDeckToRender)}
             {identityCard}
             {renderDroppablePile('spellboard', spellboard)}
         </div>

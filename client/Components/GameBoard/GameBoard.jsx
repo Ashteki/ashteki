@@ -254,21 +254,22 @@ export class GameBoard extends React.Component {
         return [
             <div key='board-middle' className='board-middle'>
                 <div className='player-home-row'>
-                    <PlayerRow
-                        archives={otherPlayer.cardPiles.archives}
-                        cardSize={this.props.user.settings.cardSize}
-                        isMe={false}
-                        hand={otherPlayer.cardPiles.hand}
-                        language={this.props.i18n.language}
-                        manualMode={this.props.currentGame.manualMode}
-                        onCardClick={this.onCardClick}
-                        onDieClick={this.onDieClick}
-                        onMouseOut={this.onMouseOut}
-                        onMouseOver={this.onMouseOver}
-                        side='top'
-                        dice={otherPlayer.dice}
-                        purgedPile={otherPlayer.cardPiles.purged}
-                    />
+                    {!thisPlayer.optionSettings.compactLayout &&
+                        (<PlayerRow
+                            archives={otherPlayer.cardPiles.archives}
+                            cardSize={this.props.user.settings.cardSize}
+                            isMe={false}
+                            hand={otherPlayer.cardPiles.hand}
+                            language={this.props.i18n.language}
+                            manualMode={this.props.currentGame.manualMode}
+                            onCardClick={this.onCardClick}
+                            onDieClick={this.onDieClick}
+                            onMouseOut={this.onMouseOut}
+                            onMouseOver={this.onMouseOver}
+                            side='top'
+                            dice={otherPlayer.dice}
+                            purgedPile={otherPlayer.cardPiles.purged}
+                        />)}
                 </div>
                 <div className='player-home-row'>
                     <PlayerPBRow
@@ -283,6 +284,8 @@ export class GameBoard extends React.Component {
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         player={otherPlayer}
+                        showDice={thisPlayer.optionSettings.compactLayout}
+                        showDeckPile={!thisPlayer.optionSettings.compactLayout}
                         side='top'
                         spells={otherPlayer.cardPiles.spells}
                         spectating={spectating}
@@ -346,6 +349,7 @@ export class GameBoard extends React.Component {
                         onMouseOut={this.onMouseOut}
                         onMenuItemClick={this.onMenuItemClick}
                         player={thisPlayer}
+                        showDeckPile={true}
                         side='bottom'
                         spells={thisPlayer.cardPiles.spells}
                         spectating={spectating}
@@ -445,14 +449,15 @@ export class GameBoard extends React.Component {
                 <div className='stats-top'>
                     <PlayerStats
                         stats={otherPlayer.stats}
-                        user={otherPlayer.user}
                         activePlayer={otherPlayer.activePlayer}
                         actions={otherPlayer.actions}
+                        compactLayout={thisPlayer.optionSettings.compactLayout}
                         firstPlayer={otherPlayer.firstPlayer}
                         phoenixborn={otherPlayer.phoenixborn}
                         player={otherPlayer}
                         clockState={otherPlayer.clock}
                         winner={this.props.currentGame.winner}
+                        onMouseOver={this.onMouseOver}
                     />
                 </div>
                 <div className='main-window'>
@@ -514,27 +519,30 @@ export class GameBoard extends React.Component {
                     <PlayerStats
                         {...boundActionCreators}
                         activePlayer={thisPlayer.activePlayer}
+                        actions={thisPlayer.actions}
+                        clockState={thisPlayer.clock}
+                        // compactLayout={thisPlayer.optionSettings.compactLayout}
+                        firstPlayer={thisPlayer.firstPlayer}
+                        isMe={!spectating}
                         manualModeEnabled={manualMode}
                         matchRecord={this.getMatchRecord(thisPlayer, otherPlayer)}
                         muteSpectators={this.props.currentGame.muteSpectators}
                         numMessages={this.state.newMessages}
+                        onDiceHistoryClick={this.onDiceHistoryClick}
+                        onDragDrop={this.onDragDrop}
+                        onManualCommandsClick={this.onManualCommandsClick}
                         onManualModeClick={this.onManualModeClick}
                         onMessagesClick={this.onMessagesClick}
                         onMuteClick={this.onMuteClick}
                         onSettingsClick={this.onSettingsClick}
+                        phoenixborn={thisPlayer.phoenixborn}
+                        player={thisPlayer}
                         showControls={!spectating && manualMode}
                         showManualMode={!spectating}
                         showMessages
+                        size={this.props.user.settings.cardSize}
                         stats={thisPlayer.stats}
-                        player={thisPlayer}
-                        actions={thisPlayer.actions}
-                        firstPlayer={thisPlayer.firstPlayer}
-                        onDiceHistoryClick={this.onDiceHistoryClick}
-                        onManualCommandsClick={this.onManualCommandsClick}
-                        phoenixborn={thisPlayer.phoenixborn}
-                        clockState={thisPlayer.clock}
                         winner={this.props.currentGame.winner}
-
                     />
                 </div>
             </div>
