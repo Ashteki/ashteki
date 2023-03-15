@@ -66,7 +66,17 @@ const InGameSettings = ({ formProps }) => {
                     checked={formProps.values.gameOptions.dontIceTrapOwnUnits}
                     onChange={formProps.handleChange}
                     onBlur={formProps.handleBlur}
-                />            </Form.Row>
+                />
+                <Form.Check
+                    id='compactLayout'
+                    name='gameOptions.compactLayout'
+                    label={t("Use compact layout")}
+                    type='switch'
+                    checked={formProps.values.gameOptions.compactLayout}
+                    onChange={formProps.handleChange}
+                    onBlur={formProps.handleBlur}
+                />
+            </Form.Row>
         </Panel>
     );
 };
