@@ -57,6 +57,8 @@ const CardPileLink = ({
     });
 
     const topCard = () => {
+        return { facedown: true, isConjuration: topCard && topCard.isConjuration };
+
         if (cards.length === 0) {
             return;
         }
@@ -81,24 +83,24 @@ const CardPileLink = ({
             {card && (
                 <div
                     className='icon'
-                    onMouseOver={() =>
-                        onMouseOver({
-                            image: (
-                                <CardImage
-                                    card={{ ...card, location: 'zoom' }}
-                                    cardBack={cardBack}
-                                />
-                            ),
-                            size: 'normal'
-                        })
-                    }
-                    onMouseOut={onMouseOut}
+                //     onMouseOver={() =>
+                //         onMouseOver({
+                //             image: (
+                //                 <CardImage
+                //                     card={{ ...card, location: 'zoom' }}
+                //                     cardBack={cardBack}
+                //                 />
+                //             ),
+                //             size: 'normal'
+                //         })
+                //     }
+                //     onMouseOut={onMouseOut}
                 >
-                    <CardImage card={card} orientation='vertical' size='icon' />
+                    <CardImage card={card} cardBack={cardBack} orientation='vertical' size='icon' />
                 </div>
             )}
-            <div className={'text ' + title.toLowerCase()}>{title}:</div>&nbsp;
-            <div className={'counter ' + title.toLowerCase()}>
+            <div className={'text ' + title.toLowerCase()}>{title}:</div>
+            <div className={'count ' + title.toLowerCase()}>
                 {source === 'deck' ? numDeckCards : cards.length}
             </div>
             {!disablePopup && showPopup && (

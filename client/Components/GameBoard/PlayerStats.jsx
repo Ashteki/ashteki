@@ -27,12 +27,15 @@ import CardPileLink from './CardPileLink';
 import { useDispatch } from 'react-redux';
 import { sendGameMessage } from '../../redux/actions';
 import Droppable from './Droppable';
+import conjback from '../../assets/img/cardback-conjuration.png';
+import spellback from '../../assets/img/cardback-spell.png';
 
 const PlayerStats = ({
     activePlayer,
     actions,
     cardBack,
     clockState,
+    compactLayout,
     firstPlayer,
     isMe,
     manualModeEnabled,
@@ -148,7 +151,9 @@ const PlayerStats = ({
                 key={`action-main`}
                 className={actionClass}
                 onClick={() => {
-                    dispatch(sendGameMessage('modifyAction', 'main', actions['main']))
+                    if (showControls) {
+                        dispatch(sendGameMessage('modifyAction', 'main', actions['main']));
+                    }
                 }}
                 title='main action'
             >
@@ -261,9 +266,22 @@ const PlayerStats = ({
         <CardPileLink
             {...pileProps}
             cards={cardPiles.archives}
+            cardBack={conjback}
             className='archives'
-            title={t('Archives')}
+            title={t('Conjurations')}
             source='archives'
+        />
+    );
+
+    const draw = (
+        <CardPileLink
+            {...pileProps}
+            cards={cardPiles.draw}
+            cardBack={spellback}
+            className='draw'
+            numDeckCards={player.numDeckCards}
+            title={t('Draw')}
+            source='deck'
         />
     );
 
@@ -280,7 +298,13 @@ const PlayerStats = ({
                     <Trans>Active Player</Trans>
                 </div>
             )}
-            <div className='state'>{renderDroppableList('archives', archives)}</div>
+            {compactLayout && (
+                <>
+                    <div className='state'>{renderDroppableList('archives', archives)}</div>
+                    <div className='state'>{renderDroppableList('draw', draw)}</div>
+                </>
+            )}
+
 
             {showMessages && (
                 <div className='state chat-status'>
@@ -292,7 +316,7 @@ const PlayerStats = ({
                             ></FontAwesomeIcon>
                         </a>
                     </div>
-                    <div className='state'>
+                    <div className='main'>
                         <a href='#' className='pr-1 pl-1' title='Mute spectators'>
                             <FontAwesomeIcon
                                 icon={muteSpectators ? faEyeSlash : faEye}

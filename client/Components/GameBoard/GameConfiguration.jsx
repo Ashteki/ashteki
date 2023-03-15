@@ -56,7 +56,18 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             onChange={(event) =>
                                 onOptionSettingToggle('dontIceTrapOwnUnits', event.target.checked)
                             }
-                        />                        <div className='bluffTimer'>
+                        />
+                        <Form.Check
+                            id='compactLayout'
+                            name='gameOptions.compactLayout'
+                            label={t("Use compact layout")}
+                            type='switch'
+                            checked={optionSettings.compactLayout}
+                            onChange={(event) =>
+                                onOptionSettingToggle('compactLayout', event.target.checked)
+                            }
+                        />
+                        <div className='bluffTimer'>
                             Bluff Timer (seconds):
                             <RangeSlider
                                 name='gameOptions.bluffTimer'
