@@ -97,7 +97,7 @@
     @include calculate-tiled-card-prop(height, 3, height, -5);
     overflow-y: auto;
 
-    &.hand {
+    &.hand-popup {
         @include calculate-tiled-card-prop(height, 1, height);
     }
 }
@@ -144,19 +144,24 @@
     background-color: #444 !important;
 }
 
-// .discard,
-// .archives,
-// .purged {
-//     .panel {
-//         min-height: 146px;
-//         z-index: $layer-pile-header;
+.card-pile-link.draw {
+    background-color: #666 !important;
+}
 
-//         .inner {
-//             @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
-//             padding: 4px;
-//         }
-//     }
-// }
+.discard,
+.archives,
+.purged,
+.hand-popup {
+    .panel {
+        min-height: 146px;
+        z-index: $layer-pile-header !important;
+
+        //     .inner {
+        //         @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
+        //         padding: 4px;
+        //     }
+    }
+}
 
 // .draw {
 //     .panel {
@@ -173,12 +178,12 @@
 // .hand {
 //     .panel {
 //         z-index: $layer-card-menu;
-//         @include calculate-tiled-card-prop(width, 6, width, $scrollbar-width + 10);
-//         @include calculate-tiled-card-prop(height, 1, height);
+// @include calculate-tiled-card-prop(width, 6, width, $scrollbar-width + 10);
+// @include calculate-tiled-card-prop(height, 1, height);
 
-//         .inner {
-//             @include calculate-tiled-card-prop(width, 6, width, $scrollbar-width);
-//         }
+// .inner {
+//     @include calculate-tiled-card-prop(width, 6, width, $scrollbar-width);
+// }
 //     }
 // }
 
