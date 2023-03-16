@@ -285,6 +285,17 @@ const PlayerStats = ({
         />
     );
 
+    const hand = (
+        <CardPileLink
+            {...pileProps}
+            cards={cardPiles.hand}
+            cardBack={spellback}
+            className='hand-popup'
+            title={t('Hand')}
+            source='hand'
+        />
+    );
+
     return (
         <div className={statsClass}>
             {playerAvatar}
@@ -302,6 +313,7 @@ const PlayerStats = ({
                 <>
                     <div className='state'>{renderDroppableList('archives', archives)}</div>
                     <div className='state'>{renderDroppableList('draw', draw)}</div>
+                    <div className='state'>{renderDroppableList('hand', hand)}</div>
                 </>
             )}
 

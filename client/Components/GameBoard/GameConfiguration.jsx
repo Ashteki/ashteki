@@ -4,9 +4,13 @@ import { useTranslation } from 'react-i18next';
 import Panel from '../Site/Panel';
 import { Form } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeViewSetting } from '../../redux/actions';
 
 const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const compactLayout = useSelector((state) => state.user.viewSettings?.compactLayout);
 
     return (
         <div>
@@ -62,9 +66,10 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             name='gameOptions.compactLayout'
                             label={t("Use compact layout")}
                             type='switch'
-                            checked={optionSettings.compactLayout}
-                            onChange={(event) =>
-                                onOptionSettingToggle('compactLayout', event.target.checked)
+                            checked={compactLayout}
+                            onChange={(event) => {
+                                dispatch(changeViewSetting('compactLayout', event.target.checked));
+                            }
                             }
                         />
                         <div className='bluffTimer'>
