@@ -69,6 +69,7 @@ export default function (state = {}, action) {
                 accountLinked: undefined,
                 user: user
             });
+
     }
 
     return state;

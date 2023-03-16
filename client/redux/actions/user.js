@@ -85,3 +85,11 @@ export function clearProfileStatus() {
         type: 'CLEAR_PROFILE_STATUS'
     };
 }
+
+export function changeViewSetting(setting, value) {
+    return {
+        type: 'view/changeViewSetting',
+        setting,
+        value
+    }
+}

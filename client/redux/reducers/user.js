@@ -1,6 +1,6 @@
 import { UserAction } from '../types';
 
-export default function (state = { blockList: [] }, action) {
+export default function (state = { blockList: [], viewSettings: {} }, action) {
     switch (action.type) {
         case UserAction.ReceiveBlocklist:
             return Object.assign({}, state, {
@@ -61,6 +61,11 @@ export default function (state = { blockList: [] }, action) {
             return Object.assign({}, state, {
                 profileSaved: false
             });
+        case 'view/changeViewSetting':
+            const newState = Object.assign({}, state);
+            newState.viewSettings[action.setting] = action.value;
+
+            return newState;
     }
 
     return state;

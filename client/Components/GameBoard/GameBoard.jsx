@@ -249,12 +249,12 @@ export class GameBoard extends React.Component {
         };
     }
 
-    renderBoard(thisPlayer, otherPlayer) {
+    renderBoard(thisPlayer, otherPlayer, compactLayout) {
         let spectating = !this.props.currentGame.players[this.props.user.username];
         return [
             <div key='board-middle' className='board-middle'>
                 <div className='player-home-row'>
-                    {!thisPlayer.optionSettings.compactLayout &&
+                    {!compactLayout &&
                         (<PlayerRow
                             archives={otherPlayer.cardPiles.archives}
                             cardSize={this.props.user.settings.cardSize}
@@ -284,8 +284,8 @@ export class GameBoard extends React.Component {
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         player={otherPlayer}
-                        showDice={thisPlayer.optionSettings.compactLayout}
-                        showDeckPile={!thisPlayer.optionSettings.compactLayout}
+                        showDice={compactLayout}
+                        showDeckPile={!compactLayout}
                         side='top'
                         spells={otherPlayer.cardPiles.spells}
                         spectating={spectating}
@@ -437,6 +437,8 @@ export class GameBoard extends React.Component {
             cardToZoom = this.props.cardToZoom;
         }
 
+        const compactLayout = this.props.viewSettings?.compactLayout;
+
         return (
             <div className={boardClass}>
                 {this.state.showModal && (
@@ -451,7 +453,7 @@ export class GameBoard extends React.Component {
                         stats={otherPlayer.stats}
                         activePlayer={otherPlayer.activePlayer}
                         actions={otherPlayer.actions}
-                        compactLayout={thisPlayer.optionSettings.compactLayout}
+                        compactLayout={compactLayout}
                         firstPlayer={otherPlayer.firstPlayer}
                         phoenixborn={otherPlayer.phoenixborn}
                         player={otherPlayer}
@@ -462,7 +464,7 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='main-window'>
                     {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
-                    {this.renderBoard(thisPlayer, otherPlayer)}
+                    {this.renderBoard(thisPlayer, otherPlayer, compactLayout)}
                     {this.state.showWinSplash && this.props.currentGame.winner && (
                         <WinLoseSplash
                             game={this.props.currentGame}
@@ -614,7 +616,8 @@ function mapStateToProps(state) {
         packs: state.cards.packs,
         restrictedList: state.cards.restrictedList,
         socket: state.lobby.socket,
-        user: state.auth.user
+        user: state.auth.user,
+        viewSettings: state.user.viewSettings || {}
     };
 }
 
