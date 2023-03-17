@@ -11,6 +11,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const compactLayout = useSelector((state) => state.user.viewSettings?.compactLayout);
+    const leftMode = useSelector((state) => state.user.viewSettings?.leftMode);
 
     return (
         <div>
@@ -32,14 +33,14 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         />
 
                         <Form.Check
-                            id='leftPrompt'
-                            name='gameOptions.leftPrompt'
+                            id='leftMode'
+                            name='gameOptions.leftMode'
                             label={t('Show the prompt area on left')}
                             type='switch'
-                            checked={optionSettings.leftPrompt}
-                            onChange={(event) =>
-                                onOptionSettingToggle('leftPrompt', event.target.checked)
-                            }
+                            checked={leftMode}
+                            onChange={(event) => {
+                                dispatch(changeViewSetting('leftMode', event.target.checked));
+                            }}
                         />
                         <Form.Check
                             id='alwaysGroupTactics'

@@ -6,6 +6,7 @@ import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
 import DiceBox from './DiceBox';
 import './PlayerRow.scss';
+import { useSelector } from 'react-redux';
 
 const PlayerRow = ({
     archives,
@@ -24,6 +25,7 @@ const PlayerRow = ({
     purgedPile
 }) => {
     const { t } = useTranslation();
+    const leftMode = useSelector((state) => state.user.viewSettings.leftMode)
 
     const renderDroppablePile = (source, child) => {
         return isMe ? (
@@ -107,9 +109,11 @@ const PlayerRow = ({
 
     return (
         <div className='player-home-row-container pt-1'>
+            {leftMode && renderResources(dice)}
+            {leftMode && renderDroppablePile('archives', archivesToRender)}
             {renderDroppablePile('hand', handToRender)}
-            {renderDroppablePile('archives', archivesToRender)}
-            {renderResources(dice)}
+            {!leftMode && renderDroppablePile('archives', archivesToRender)}
+            {!leftMode && renderResources(dice)}
             {(purgedPile.length > 0 || manualMode) && renderDroppablePile('purged', purged)}
         </div>
     );

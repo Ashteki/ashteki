@@ -41,15 +41,6 @@ const InGameSettings = ({ formProps }) => {
                     onBlur={formProps.handleBlur}
                 />
                 <Form.Check
-                    id='leftPrompt'
-                    name='gameOptions.leftPrompt'
-                    label={t('Show the prompt area on left')}
-                    type='switch'
-                    checked={formProps.values.gameOptions.leftPrompt}
-                    onChange={formProps.handleChange}
-                    onBlur={formProps.handleBlur}
-                />
-                <Form.Check
                     id='alwaysGroupTactics'
                     name='gameOptions.alwaysGroupTactics'
                     label={t('Always trigger Group Tactics without asking')}
@@ -64,6 +55,15 @@ const InGameSettings = ({ formProps }) => {
                     label={t("Don't prompt to ice trap my own units")}
                     type='switch'
                     checked={formProps.values.gameOptions.dontIceTrapOwnUnits}
+                    onChange={formProps.handleChange}
+                    onBlur={formProps.handleBlur}
+                />
+                <Form.Check
+                    id='leftMode'
+                    name='gameOptions.leftMode'
+                    label={t('Show the prompt area on left')}
+                    type='switch'
+                    checked={formProps.values.gameOptions.leftMode}
                     onChange={formProps.handleChange}
                     onBlur={formProps.handleBlur}
                 />
