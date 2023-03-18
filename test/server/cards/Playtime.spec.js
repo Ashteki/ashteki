@@ -84,6 +84,7 @@ describe('Playtime', function () {
 
             // check for blood puppet summon
             expect(this.bloodPuppet.location).toBe('play area');
+            expect(this.player2.inPlay.includes(this.bloodPuppet)).toBe(true);
         });
     });
 });

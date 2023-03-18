@@ -37,10 +37,13 @@ class Playtime extends Card {
                     event.card === context.source.parent
             },
             targetController: 'any',
-            gameAction: ability.actions.summon((context) => ({
-                conjuration: 'blood-puppet',
-                target: context.source.owner.opponent
-            }))
+            target: {
+                toSelect: 'player',
+                autoTarget: (context) => context.player.opponent,
+                gameAction: ability.actions.summon((context) => ({
+                    conjuration: 'blood-puppet',
+                }))
+            }
         });
     }
 }
