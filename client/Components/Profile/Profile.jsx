@@ -72,11 +72,12 @@ const initialValues = {
     gameOptions: {
         confirmOneClick: false,
         orderForcedAbilities: false,
-        leftPrompt: false,
         bluffTimer: 0,
         alertTimer: 5,
         alwaysGroupTactics: false,
-        dontIceTrapOwnUnits: true
+        dontIceTrapOwnUnits: true,
+        leftMode: false,
+        compactLayout: false
     }
 };
 
@@ -85,7 +86,8 @@ const initialValues = {
  */
 const Profile = ({ onSubmit, isLoading }) => {
     const { t } = useTranslation();
-    const user = useSelector((state) => state.account.user);
+    // USE AUTH for PROFILE and SAVED user state, use ACCOUNT for temporary changes
+    const user = useSelector((state) => state.auth.user);
     const [localBackground, setBackground] = useState(user?.settings.background);
     const [localCardSize, setCardSize] = useState(user?.settings.cardSize);
     const [customBg, setCustomBg] = useState(null);

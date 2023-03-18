@@ -249,7 +249,7 @@ export class GameBoard extends React.Component {
         };
     }
 
-    renderBoard(thisPlayer, otherPlayer, compactLayout) {
+    renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode) {
         let spectating = !this.props.currentGame.players[this.props.user.username];
         return [
             <div key='board-middle' className='board-middle'>
@@ -261,6 +261,7 @@ export class GameBoard extends React.Component {
                             isMe={false}
                             hand={otherPlayer.cardPiles.hand}
                             language={this.props.i18n.language}
+                            leftMode={leftMode}
                             manualMode={this.props.currentGame.manualMode}
                             onCardClick={this.onCardClick}
                             onDieClick={this.onDieClick}
@@ -366,6 +367,7 @@ export class GameBoard extends React.Component {
                         cardSize={this.props.user.settings.cardSize}
                         isMe={!spectating}
                         hand={thisPlayer.cardPiles.hand}
+                        leftMode={leftMode}
                         manualMode={this.props.currentGame.manualMode}
                         onCardClick={this.onCardClick}
                         onDragDrop={this.onDragDrop}
@@ -437,7 +439,8 @@ export class GameBoard extends React.Component {
             cardToZoom = this.props.cardToZoom;
         }
 
-        const compactLayout = this.props.viewSettings?.compactLayout;
+        const compactLayout = this.props.optionSettings?.compactLayout;
+        const leftMode = this.props.optionSettings?.leftMode;
 
         return (
             <div className={boardClass}>
@@ -463,8 +466,8 @@ export class GameBoard extends React.Component {
                     />
                 </div>
                 <div className='main-window'>
-                    {thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
-                    {this.renderBoard(thisPlayer, otherPlayer, compactLayout)}
+                    {leftMode && this.getPromptArea(thisPlayer)}
+                    {this.renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode)}
                     {this.state.showWinSplash && this.props.currentGame.winner && (
                         <WinLoseSplash
                             game={this.props.currentGame}
@@ -475,7 +478,7 @@ export class GameBoard extends React.Component {
                         <CardZoom
                             cardName={cardToZoom ? cardToZoom.name : null}
                             card={cardToZoom}
-                            left={thisPlayer.optionSettings.leftPrompt}
+                            left={leftMode}
                         />
                     )}
                     {this.state.showManualCommands && (
@@ -501,7 +504,7 @@ export class GameBoard extends React.Component {
                         </div>
                     )}
                     <div className='right-side'>
-                        {!thisPlayer.optionSettings.leftPrompt && this.getPromptArea(thisPlayer)}
+                        {!leftMode && this.getPromptArea(thisPlayer)}
 
                         {this.state.showMessages && (
                             <div className='gamechat'>
@@ -617,7 +620,8 @@ function mapStateToProps(state) {
         restrictedList: state.cards.restrictedList,
         socket: state.lobby.socket,
         user: state.auth.user,
-        viewSettings: state.user.viewSettings || {}
+        // using ACCOUNT for temporary settings access
+        optionSettings: state.account.user.settings.optionSettings || {}
     };
 }
 

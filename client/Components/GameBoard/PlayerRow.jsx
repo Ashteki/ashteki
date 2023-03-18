@@ -6,12 +6,14 @@ import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
 import DiceBox from './DiceBox';
 import './PlayerRow.scss';
+import { useSelector } from 'react-redux';
 
 const PlayerRow = ({
     archives,
     cardSize,
     isMe,
     hand,
+    leftMode,
     manualMode,
     onCardClick,
     onDragDrop,
@@ -107,9 +109,11 @@ const PlayerRow = ({
 
     return (
         <div className='player-home-row-container pt-1'>
+            {leftMode && renderResources(dice)}
+            {leftMode && renderDroppablePile('archives', archivesToRender)}
             {renderDroppablePile('hand', handToRender)}
-            {renderDroppablePile('archives', archivesToRender)}
-            {renderResources(dice)}
+            {!leftMode && renderDroppablePile('archives', archivesToRender)}
+            {!leftMode && renderResources(dice)}
             {(purgedPile.length > 0 || manualMode) && renderDroppablePile('purged', purged)}
         </div>
     );
