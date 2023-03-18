@@ -13,6 +13,7 @@ const PlayerRow = ({
     cardSize,
     isMe,
     hand,
+    leftMode,
     manualMode,
     onCardClick,
     onDragDrop,
@@ -25,7 +26,6 @@ const PlayerRow = ({
     purgedPile
 }) => {
     const { t } = useTranslation();
-    const leftMode = useSelector((state) => state.user.viewSettings.leftMode)
 
     const renderDroppablePile = (source, child) => {
         return isMe ? (

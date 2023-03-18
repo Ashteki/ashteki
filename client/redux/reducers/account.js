@@ -69,7 +69,11 @@ export default function (state = {}, action) {
                 accountLinked: undefined,
                 user: user
             });
+        case 'view/changeViewSetting':
+            const newState = Object.assign({}, state);
+            newState.user.settings.optionSettings[action.setting] = action.value;
 
+            return newState;
     }
 
     return state;

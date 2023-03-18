@@ -22,7 +22,6 @@ class Lobby {
         this.users = {};
         this.games = {};
         this.configService = options.configService || new ConfigService();
-        this.messageService = options.messageService || ServiceFactory.messageService();
         this.cardService = options.cardService || ServiceFactory.cardService(options.configService);
         this.userService = options.userService || new UserService(options.configService);
         this.deckService = options.deckService || new AshesDeckService(this.configService);
@@ -43,24 +42,6 @@ class Lobby {
         // this.io.set('heartbeat timeout', 30000);
         this.io.use(this.handshake.bind(this));
         this.io.on('connection', this.onConnection.bind(this));
-
-        this.messageService.on('messageDeleted', (messageId, user) => {
-            for (let socket of Object.values(this.sockets)) {
-                if (socket.user === user || (socket.user && socket.user.hasUserBlocked(user))) {
-                    continue;
-                }
-
-                if (
-                    socket.user &&
-                    socket.user.permissions &&
-                    socket.user.permissions.canModerateChat
-                ) {
-                    socket.send('removemessage', messageId, user.username);
-                } else {
-                    socket.send('removemessage', messageId);
-                }
-            }
-        });
 
         setInterval(() => this.clearStalePendingGames(), 60 * 1000); // every minute
         setInterval(() => this.clearOldRefreshTokens(), 2 * 60 * 60 * 1000); // every 2 hours
@@ -339,14 +320,6 @@ class Lobby {
         });
     }
 
-    sendFilteredMessages(socket) {
-        this.messageService.getLastMessagesForUser(socket.user).then((messages) => {
-            let messagesToSend = messages;
-            //  this.filterMessages(messages, socket);
-            socket.send('lobbymessages', messagesToSend.reverse());
-        });
-    }
-
     filterMessages(messages, socket) {
         if (!socket.user) {
             return messages;
@@ -367,8 +340,6 @@ class Lobby {
         socket.registerEvent('getnodestatus', this.onGetNodeStatus.bind(this));
         socket.registerEvent('joingame', this.onJoinGame.bind(this));
         socket.registerEvent('leavegame', this.onLeaveGame.bind(this));
-        socket.registerEvent('lobbychat', this.onLobbyChat.bind(this));
-        socket.registerEvent('motd', this.onMotdChange.bind(this));
         socket.registerEvent('newgame', this.onNewGame.bind(this));
         socket.registerEvent('removegame', this.onRemoveGame.bind(this));
         socket.registerEvent('restartnode', this.onRestartNode.bind(this));
@@ -390,19 +361,7 @@ class Lobby {
         }
 
         this.sendUserListFilteredWithBlockList(socket, this.getUserList());
-        this.sendFilteredMessages(socket);
         this.broadcastGameList(socket);
-
-        this.messageService
-            .getMotdMessage()
-            .then((message) => {
-                if (message) {
-                    socket.send('motd', message);
-                }
-            })
-            .catch((err) => {
-                logger.error(err);
-            });
 
         if (!socket.user) {
             return;
@@ -422,7 +381,6 @@ class Lobby {
         }
 
         this.broadcastUserMessage(user, 'newuser');
-        this.sendFilteredMessages(socket);
         this.sendUserListFilteredWithBlockList(socket, this.getUserList());
 
         this.broadcastGameList(socket);
@@ -662,28 +620,6 @@ class Lobby {
         this.sendGameState(game);
     }
 
-    async onLobbyChat(socket, message) {
-        if (
-            Date.now() - socket.user.registered <
-            this.configService.getValue('minLobbyChatTime') * 1000
-        ) {
-            socket.send('nochat');
-            return;
-        }
-
-        let chatMessage = { message: message, time: new Date() };
-        chatMessage.user = socket.user.getShortSummary();
-        await this.messageService.addMessage(chatMessage, socket.user);
-
-        for (let s of Object.values(this.sockets)) {
-            if (s.user && s.user.hasUserBlocked(socket.user)) {
-                continue;
-            }
-
-            s.send('lobbychat', chatMessage);
-        }
-    }
-
     async onSelectDeck(socket, gameId, deckId, isStandalone, chooseForMeType) {
         let game = this.games[gameId];
         if (!game) {
@@ -832,31 +768,6 @@ class Lobby {
         this.router.restartNode(node);
 
         socket.send('nodestatus', this.router.getNodeStatus());
-    }
-
-    onMotdChange(socket, motd) {
-        if (!socket.user.permissions.canManageMotd) {
-            return;
-        }
-
-        let newMotd =
-            motd && motd.message
-                ? {
-                    message: motd.message,
-                    motdType: motd.motdType,
-                    type: 'motd',
-                    time: new Date()
-                }
-                : {};
-
-        this.messageService
-            .setMotdMessage(newMotd, socket.user)
-            .then(() => {
-                this.io.emit('motd', { message: newMotd.message, motdType: newMotd.motdType });
-            })
-            .catch((err) => {
-                logger.error(err);
-            });
     }
 
     // router Events
