@@ -22,7 +22,7 @@ class Fear extends Card {
                         activePromptTitle: 'Choose a unit to discard',
                         controller: 'opponent',
                         cardType: BattlefieldTypes,
-                        gameAction: ability.actions.discard()
+                        gameAction: ability.actions.discard({ showMessage: true })
                     }
                 }
             }
