@@ -33,6 +33,11 @@ describe('ChangeOfHeart', function () {
             expect(this.crystalArcher.location).toBe('hand');
             expect(this.ironRhino.damage).toBe(1);
             expect(this.changeOfHeart.exhausted).toBe(true);
+
+            this.player1.endTurn();
+            this.player1.clickDone(); // no dice pins
+            expect(this.game.round).toBe(2);
+            expect(this.changeOfHeart.exhausted).toBe(false);
         });
     });
 });
