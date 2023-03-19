@@ -26,7 +26,6 @@ class SummonWeepingSpirit extends Card {
                     optional: true,
                     activePromptTitle: 'Choose a card to remove from the game',
                     location: 'discard',
-                    controller: 'opponent',
                     gameAction: ability.actions.purge()
                 }
             }
