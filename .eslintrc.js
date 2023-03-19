@@ -6,9 +6,10 @@ module.exports = {
         browser: true
     },
     parserOptions: {
-        ecmaVersion: 11
+        ecmaVersion: 11,
+        requireConfigFile: false
     },
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     plugins: ['react', 'prettier'],
     extends: [
         'eslint:recommended',
