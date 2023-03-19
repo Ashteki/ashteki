@@ -678,9 +678,14 @@ class Lobby {
 
         let uniques =
             !hasPhoenixborn ||
-            deck.cards.filter(
-                (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
-            ).length === 0;
+            (
+                deck.cards.filter(
+                    (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
+                ).length === 0 &&
+                deck.cards.filter(
+                    (c) => c.card.phoenixborn
+                ).length <= 3
+            );
 
         const legalToPlay =
             hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;

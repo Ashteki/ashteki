@@ -47,9 +47,14 @@ function processDecks(decks, state) {
 
         let uniques =
             !hasPhoenixborn ||
-            deck.cards.filter(
-                (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
-            ).length === 0;
+            (
+                deck.cards.filter(
+                    (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
+                ).length === 0 &&
+                deck.cards.filter(
+                    (c) => c.card.phoenixborn
+                ).length <= 3
+            );
 
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
         const legalToPlay =
