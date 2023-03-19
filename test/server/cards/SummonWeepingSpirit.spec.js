@@ -19,7 +19,7 @@ describe('Summon Weeping Spirit', function () {
             });
         });
 
-        it('should place a blood puppet onto own battlefield', function () {
+        it('should place a Weeping Spirit onto own battlefield', function () {
             this.player1.clickCard(this.summonWeepingSpirit);
             this.player1.clickPrompt('Summon Weeping Spirit');
             this.player1.clickPrompt('Mine');
@@ -29,7 +29,7 @@ describe('Summon Weeping Spirit', function () {
             expect(this.player2.inPlay.length).toBe(0);
         });
 
-        it('should place a blood puppet onto opponents battlefield', function () {
+        it('should place a Weeping Spirit onto opponents battlefield', function () {
             expect(this.player2.side).toBe(1);
 
             this.player1.clickCard(this.summonWeepingSpirit);
