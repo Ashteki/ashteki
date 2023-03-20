@@ -249,15 +249,14 @@ export class GameBoard extends React.Component {
         };
     }
 
-    renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode) {
-        let spectating = !this.props.currentGame.players[this.props.user.username];
+    renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating) {
         return [
             <div key='board-middle' className='board-middle'>
                 <div className='player-home-row'>
                     {!compactLayout &&
                         (<PlayerRow
                             archives={otherPlayer.cardPiles.archives}
-                            cardSize={this.props.user.settings.cardSize}
+                            cardSize={cardSize}
                             isMe={false}
                             hand={otherPlayer.cardPiles.hand}
                             language={this.props.i18n.language}
@@ -274,7 +273,7 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='player-home-row'>
                     <PlayerPBRow
-                        cardSize={this.props.user.settings.cardSize}
+                        cardSize={cardSize}
                         discard={otherPlayer.cardPiles.discard}
                         drawDeck={otherPlayer.cardPiles.deck}
                         isMe={false}
@@ -306,7 +305,7 @@ export class GameBoard extends React.Component {
                             onMouseOver={this.onMouseOver}
                             rowDirection='reverse'
                             side='top'
-                            cardSize={this.props.user.settings.cardSize}
+                            cardSize={cardSize}
                             playerId={otherPlayer.id}
                             active={otherPlayer.activePlayer}
                         />
@@ -327,7 +326,7 @@ export class GameBoard extends React.Component {
                                 onMouseOver={this.onMouseOver}
                                 rowDirection='default'
                                 side='bottom'
-                                cardSize={this.props.user.settings.cardSize}
+                                cardSize={cardSize}
                                 playerId={thisPlayer.id}
                                 active={thisPlayer.activePlayer}
                             />
@@ -336,7 +335,7 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='player-home-row our-side'>
                     <PlayerPBRow
-                        cardSize={this.props.user.settings.cardSize}
+                        cardSize={cardSize}
                         discard={thisPlayer.cardPiles.discard}
                         drawDeck={thisPlayer.cardPiles.deck}
                         isMe={!spectating}
@@ -364,7 +363,7 @@ export class GameBoard extends React.Component {
                 <div className='player-home-row our-side'>
                     <PlayerRow
                         archives={thisPlayer.cardPiles.archives}
-                        cardSize={this.props.user.settings.cardSize}
+                        cardSize={cardSize}
                         isMe={!spectating}
                         hand={thisPlayer.cardPiles.hand}
                         leftMode={leftMode}
@@ -393,7 +392,7 @@ export class GameBoard extends React.Component {
             );
         }
 
-        if (!this.props.user) {
+        if (!this.props.authUser) {
             this.props.navigate('/');
             return (
                 <div>
@@ -402,6 +401,7 @@ export class GameBoard extends React.Component {
             );
         }
 
+        const cardSize = this.props.user.settings.cardSize;
         let spectating = !this.props.currentGame.players[this.props.user.username];
         let thisPlayer = this.props.currentGame.players[this.props.user.username];
         if (!thisPlayer) {
@@ -467,7 +467,7 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='main-window'>
                     {leftMode && this.getPromptArea(thisPlayer)}
-                    {this.renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode)}
+                    {this.renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating)}
                     {this.state.showWinSplash && this.props.currentGame.winner && (
                         <WinLoseSplash
                             game={this.props.currentGame}
@@ -545,7 +545,7 @@ export class GameBoard extends React.Component {
                         showControls={!spectating && manualMode}
                         showManualMode={!spectating}
                         showMessages
-                        size={this.props.user.settings.cardSize}
+                        size={this.cardSize}
                         stats={thisPlayer.stats}
                         winner={this.props.currentGame.winner}
                     />
@@ -619,7 +619,8 @@ function mapStateToProps(state) {
         packs: state.cards.packs,
         restrictedList: state.cards.restrictedList,
         socket: state.lobby.socket,
-        user: state.auth.user,
+        user: state.account.user,
+        authUser: state.auth.user,
         // using ACCOUNT for temporary settings access
         optionSettings: state.account.user.settings.optionSettings || {}
     };

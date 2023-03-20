@@ -47,8 +47,11 @@ export default function (state = {}, action) {
                 user: action.response.user
             });
         case 'PROFILE_SAVED':
+            var u = Object.assign({}, action.response.user);
+            u.settings = Object.assign({}, u.settings);
+            u.settings.optionSettings = Object.assign({}, u.settings.optionSettings);
             return Object.assign({}, state, {
-                user: action.response.user
+                user: u
             });
         case 'ACCOUNT_LINK_RESPONSE':
             return Object.assign({}, state, {
@@ -70,9 +73,12 @@ export default function (state = {}, action) {
                 user: user
             });
         case 'view/changeViewSetting':
-            const newState = Object.assign({}, state);
-            newState.user.settings.optionSettings[action.setting] = action.value;
-
+            var newState = Object.assign({}, state);
+            if (action.setting === 'cardSize') {
+                newState.user.settings.cardSize = action.value;
+            } else {
+                newState.user.settings.optionSettings[action.setting] = action.value;
+            }
             return newState;
     }
 

@@ -78,8 +78,15 @@ export const gameFormats = [
     { name: 'coaloff', label: 'Coal Off!' }
 ];
 
+export const cardSizes = [
+    { name: 'small', label: 'small' },
+    { name: 'normal', label: 'normal' },
+    { name: 'large', label: 'large' },
+    { name: 'x-large', label: 'extra-large' }
+];
+
 export const getFormatLabel = (name) => {
-    const format = gameFormats.find(f => f.name === name);
+    const format = gameFormats.find((f) => f.name === name);
     return format?.label;
 };
 
