@@ -23,7 +23,11 @@ class RecoveryPhase extends Phase {
     /** remove one exhaustion from all cards in play - battlefield, spellboard and phoenixborn */
     readyAllCards() {
         this.game.addMessage('All cards remove one exhaustion token.');
-        this.game.actions.ready().resolve(this.game.cardsInPlay, this.game.getFrameworkContext());
+        const upgrades = this.game.cardsInPlay.reduce(
+            (acc, c) => c.upgrades ? acc.concat(c.upgrades) : acc,
+            []
+        );
+        this.game.actions.ready().resolve(this.game.cardsInPlay.concat(upgrades), this.game.getFrameworkContext());
     }
 }
 

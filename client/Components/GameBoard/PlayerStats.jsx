@@ -60,7 +60,8 @@ const PlayerStats = ({
     showManualMode,
     showMessages,
     side,
-    size
+    size,
+    winner
 }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();

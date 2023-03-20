@@ -3,7 +3,7 @@ const CardGameAction = require('./CardGameAction');
 class ReadyAction extends CardGameAction {
     setup() {
         this.name = 'ready';
-        this.targetType = ['Ally', 'Ready Spell', 'Conjuration', 'Phoenixborn'];
+        this.targetType = ['Ally', 'Ready Spell', 'Conjuration', 'Phoenixborn', 'Alteration Spell'];
         this.effectMsg = 'ready {0}';
     }
 
