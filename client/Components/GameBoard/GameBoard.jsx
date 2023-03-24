@@ -250,10 +250,12 @@ export class GameBoard extends React.Component {
         };
     }
 
-    getPlayerRows(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating) {
-            <div className='player-home-row'>
-                    {!compactLayout &&
-                        (<PlayerRow
+    getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating) {
+        return (
+            <>
+                {!compactLayout && (
+                    <div className='player-home-row'>
+                        <PlayerRow
                             archives={otherPlayer.cardPiles.archives}
                             cardSize={cardSize}
                             isMe={false}
@@ -268,12 +270,41 @@ export class GameBoard extends React.Component {
                             side='top'
                             dice={otherPlayer.dice}
                             purgedPile={otherPlayer.cardPiles.purged}
-                    behaviour={otherPlayer.behaviour}
-                />
-            </div>
-            <div className='player-home-row'>
-                <PlayerPBRow
+                            behaviour={otherPlayer.behaviour}
+                        />
+                    </div>
+                )}
+                <div className='player-home-row'>
+                    <PlayerPBRow
                         cardSize={cardSize}
+                        discard={otherPlayer.cardPiles.discard}
+                        drawDeck={otherPlayer.cardPiles.deck}
+                        isMe={false}
+                        language={this.props.i18n.language}
+                        manualMode={this.props.currentGame.manualMode}
+                        numDeckCards={otherPlayer.numDeckCards}
+                        onCardClick={this.onCardClick}
+                        onMouseOver={this.onMouseOver}
+                        onMouseOut={this.onMouseOut}
+                        player={otherPlayer}
+                        showDice={compactLayout}
+                        showDeckPile={!compactLayout}
+                        side='top'
+                        spells={otherPlayer.cardPiles.spells}
+                        spectating={spectating}
+                        phoenixborn={otherPlayer.phoenixborn}
+                    />
+                </div>
+            </>
+        );
+    }
+
+    getChimeraRow(otherPlayer, spectating) {
+        return (
+            <div className='player-home-row'>
+                <ChimeraRow
+                    cardSize={this.props.user.settings.cardSize}
+                    dice={otherPlayer.dice}
                     discard={otherPlayer.cardPiles.discard}
                     drawDeck={otherPlayer.cardPiles.deck}
                     isMe={false}
@@ -284,47 +315,21 @@ export class GameBoard extends React.Component {
                     onMouseOver={this.onMouseOver}
                     onMouseOut={this.onMouseOut}
                     player={otherPlayer}
-                        showDice={compactLayout}
-                        showDeckPile={!compactLayout}
                     side='top'
                     spells={otherPlayer.cardPiles.spells}
                     spectating={spectating}
                     phoenixborn={otherPlayer.phoenixborn}
                 />
             </div>
-        </>);
-    }
-
-    getChimeraRow(thisPlayer, otherPlayer, spectating) {
-        return (<div className='player-home-row'>
-            <ChimeraRow
-                cardSize={this.props.user.settings.cardSize}
-                dice={otherPlayer.dice}
-                discard={otherPlayer.cardPiles.discard}
-                drawDeck={otherPlayer.cardPiles.deck}
-                isMe={false}
-                language={this.props.i18n.language}
-                manualMode={this.props.currentGame.manualMode}
-                numDeckCards={otherPlayer.numDeckCards}
-                onCardClick={this.onCardClick}
-                onMouseOver={this.onMouseOver}
-                onMouseOut={this.onMouseOut}
-                player={otherPlayer}
-                side='top'
-                spells={otherPlayer.cardPiles.spells}
-                spectating={spectating}
-                phoenixborn={otherPlayer.phoenixborn}
-            />
-        </div>
         );
     }
-    renderBoard(thisPlayer, otherPlayer) {
-        let spectating = !this.props.currentGame.players[this.props.user.username];
+
+    renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating) {
         return [
             <div key='board-middle' className='board-middle'>
-                {this.props.currentGame.solo ?
-                    this.getChimeraRow(thisPlayer, otherPlayer, spectating) :
-                    this.getPlayerRows(thisPlayer, otherPlayer, spectating)}
+                {this.props.currentGame.solo
+                    ? this.getChimeraRow(otherPlayer, compactLayout, leftMode, cardSize, spectating)
+                    : this.getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating)}
 
                 <div className='board-inner'>
                     <div className='play-area'>

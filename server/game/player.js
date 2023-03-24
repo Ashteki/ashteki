@@ -6,7 +6,7 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType, Location, Level } = require('../constants');
+const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -192,6 +192,11 @@ class Player extends GameObject {
 
     get unitsInPlay() {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
+    }
+
+    // this get sent to the client
+    get battlefield() {
+        return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type));
     }
 
     getSpendableDice(context) {
@@ -758,7 +763,7 @@ class Player extends GameObject {
         let playerState = {
             cardPiles: {
                 archives: this.getSummaryForCardList(this.archives, activePlayer),
-                cardsInPlay: this.getSummaryForCardList(this.unitsInPlay, activePlayer),
+                cardsInPlay: this.getSummaryForCardList(this.battlefield, activePlayer),
                 discard: this.getSummaryForCardList(this.discard, activePlayer),
                 hand: this.getSummaryForCardList(this.hand, activePlayer, true),
                 purged: this.getSummaryForCardList(this.purged, activePlayer),
