@@ -5,7 +5,6 @@ const Deck = require('./deck');
 const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
-const Dice = require('./dice');
 const GameActions = require('./GameActions');
 const { BattlefieldTypes, CardType } = require('../constants');
 
@@ -277,10 +276,7 @@ class Player extends GameObject {
 
     rerollAllDice(round) {
         this.dice.forEach((die) => {
-            if (!die.pinned) {
-                die.level = Dice.getRandomDieLevel();
-            }
-            die.exhausted = false;
+            die.roll();
         });
 
         this.diceHistory[round] = this.dice

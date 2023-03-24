@@ -2,6 +2,7 @@ const { Magic, BattlefieldTypes, CardType } = require('../constants');
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const { Costs } = require('./costs');
+const Dice = require('./dice');
 const PlayableObject = require('./PlayableObject');
 
 class Die extends PlayableObject {
@@ -368,6 +369,13 @@ class Die extends PlayableObject {
 
     isLimited() {
         return false;
+    }
+
+    roll() {
+        if (!this.pinned) {
+            this.level = Dice.getRandomDieLevel();
+        }
+        this.exhausted = false;
     }
 }
 
