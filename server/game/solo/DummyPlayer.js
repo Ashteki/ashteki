@@ -107,7 +107,7 @@ class DummyPlayer extends Player {
     }
 
     replenishAspects() {
-        const amount = this.chimera.threat - this.cardsInPlay.length;
+        const amount = this.chimera.threat - this.unitsInPlay.length;
         const cards = this.deck.slice(0, amount);
         cards.forEach(card => {
             this.moveCard(card, 'play area', { facedown: true });
@@ -123,7 +123,7 @@ class DummyPlayer extends Player {
     }
 
     getAttacker() {
-        for (const card of this.cardsInPlay) {
+        for (const card of this.unitsInPlay) {
             if (card.canAttack()) {
                 return card;
             }

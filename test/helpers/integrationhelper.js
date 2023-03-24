@@ -308,6 +308,7 @@ beforeEach(function () {
         for (let player of [this.player1, this.player2]) {
             let cards = [
                 'inPlay',
+                'threatZone',
                 'spellboard',
                 'hand',
                 'discard',

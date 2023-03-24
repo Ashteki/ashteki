@@ -185,7 +185,7 @@ class PlayerInteractionWrapper {
 
     /** This is the cards that are facedown on a chimera battlefield */
     get threatZone() {
-        return this.player.threatZone;
+        return this.player.threatCards || [];
     }
 
     set threatZone(cards = []) {

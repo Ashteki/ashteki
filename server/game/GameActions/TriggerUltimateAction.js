@@ -27,7 +27,7 @@ class TriggerUltimateAction extends CardGameAction {
                 menuTitle: "Chimera uses it's Ultimate ability",
             });
             event.card.tokens.redRains = 0;
-            const alienUnits = context.player.cardsInPlay.filter(c => c.owner !== c.controller);
+            const alienUnits = context.player.unitsInPlay.filter(c => c.owner !== c.controller);
             if (alienUnits.length) {
                 context.game.actions.discard().resolve(alienUnits, context);
             }
