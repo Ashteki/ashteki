@@ -41,6 +41,11 @@ class RecoveryPhase extends Phase {
             []
         );
         this.game.actions.ready().resolve(this.game.cardsInPlay.concat(upgrades), this.game.getFrameworkContext());
+        return;
+    }
+
+    placeRedRains() {
+        if (!this.game.solo) {
             return;
         }
 
