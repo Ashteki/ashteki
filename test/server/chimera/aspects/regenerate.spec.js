@@ -29,8 +29,7 @@ describe('Regenerate Aspect', function () {
         });
 
         it('when destroyed roll a power side and no effect', function () {
-            spyOn(Dice, 'getRandomDieLevel').and.returnValue('power');
-
+            spyOn(Dice, 'getRandomInt').and.returnValue(1); // power
             expect(this.regenerate.location).toBe('play area');
 
             this.player1.clickCard(this.aradelSummergaard);
@@ -43,7 +42,7 @@ describe('Regenerate Aspect', function () {
         });
 
         it('when destroyed roll a basic side and place rightmost on b/f', function () {
-            spyOn(Dice, 'getRandomDieLevel').and.returnValue('basic');
+            spyOn(Dice, 'getRandomInt').and.returnValue(5); // basic
 
             expect(this.regenerate.location).toBe('play area');
 

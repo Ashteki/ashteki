@@ -35,7 +35,7 @@ describe('Chimera Rage Roll', function () {
 
     it('5 powers triggers red rains token', function () {
         // reveal
-        spyOn(Dice, 'getRandomDieLevel').and.returnValue('power');
+        spyOn(Dice, 'getRandomInt').and.returnValue(1);
         expect(this.huntingInstincts.facedown).toBe(true);
         this.player1.endTurn();
         // informs real player of behaviour roll
@@ -45,7 +45,7 @@ describe('Chimera Rage Roll', function () {
         this.player1.clickPrompt('Ok');
 
         expect(this.huntingInstincts.facedown).toBe(false);
-        expect(Dice.getRandomDieLevel).toHaveBeenCalledTimes(1);
+        expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
     });
 
 });
