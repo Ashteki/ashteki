@@ -19,8 +19,8 @@ class RerollDiceAction extends DiceGameAction {
                 'onDiceRerolled',
                 { dice: context.target, context: context, diceOwner: context.target[0].owner },
                 (event) => {
-                    event.dice.forEach(d => {
-                        d.level = Dice.getRandomDieLevel();
+                    event.dice.forEach((d) => {
+                        d.roll();
                     });
                     context.game.addMessage('{0} rolls {1}', event.diceOwner, event.dice);
                 }

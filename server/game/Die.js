@@ -373,9 +373,24 @@ class Die extends PlayableObject {
 
     roll() {
         if (!this.pinned) {
-            this.level = Dice.getRandomDieLevel();
+            const indexRoll = Dice.getRandomInt(6);
+            this.level = this.getDieLevel(indexRoll);
+            this.magic = this.getDieMagic(indexRoll);
         }
         this.exhausted = false;
+    }
+
+    getDieLevel(indexRoll) {
+        let levels = ['power', 'class', 'class', 'class', 'basic', 'basic'];
+        if (this.magic === Magic.Rage) {
+            // Rage are only power and basic (50/50)
+            levels = ['power', 'power', 'power', 'basic', 'basic', 'basic'];
+        }
+        return levels[indexRoll];
+    }
+
+    getDieMagic(indexRoll) {
+        return this.magic;
     }
 }
 

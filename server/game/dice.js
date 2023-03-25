@@ -28,30 +28,9 @@ class Dice {
     static countBasic(dice) {
         return dice.filter((d) => d.level === 'basic').length;
     }
+
     static getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
-    }
-
-    static rollDice(diceCounts) {
-        let dice = [];
-        diceCounts.forEach((dc) => {
-            for (let i = 0; i < dc.count; i++) {
-                dice.push(dc.magic);
-            }
-        });
-
-        return dice.map((dt) => {
-            return {
-                magic: dt,
-                level: this.getRandomDieLevel(),
-                exhausted: false
-            };
-        });
-    }
-
-    static getRandomDieLevel() {
-        let levels = ['power', 'class', 'class', 'class', 'basic', 'basic'];
-        return levels[this.getRandomInt(6)];
     }
 
     // can diceReq be matched from the collection of dice?

@@ -1,4 +1,3 @@
-const Dice = require('../dice');
 const DiceGameAction = require('./DiceGameAction');
 
 class RerollDieAction extends DiceGameAction {
@@ -13,11 +12,7 @@ class RerollDieAction extends DiceGameAction {
     }
 
     getEvent(die, context) {
-        return super.createEvent(
-            'unnamedEvent',
-            { die: die, context: context },
-            () => (die.level = Dice.getRandomDieLevel())
-        );
+        return super.createEvent('unnamedEvent', { die: die, context: context }, () => die.roll());
     }
 }
 
