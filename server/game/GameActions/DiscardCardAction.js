@@ -29,6 +29,7 @@ class DiscardCardAction extends CardGameAction {
                     context.game.cardsDiscarded.push(card);
                 }
                 card.owner.moveCard(card, card.discardLocation);
+                card.removed = true;
 
                 if (event.showMessage || this.showMessage) {
                     const discardingPlayer = this.player || context.player;

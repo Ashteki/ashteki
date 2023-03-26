@@ -545,7 +545,6 @@ class Card extends PlayableObject {
                 menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
             } else {
                 menu.push({ command: 'moveHand', text: 'Remove', menu: 'main' });
-
             }
         }
         if (

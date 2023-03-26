@@ -4,7 +4,7 @@ describe('Blood Puppeteer', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['hammer-knight'],
+                    // inPlay: ['hammer-knight'],
                     spellboard: [],
                     dicepool: ['ceremonial', 'natural', 'charm', 'charm'],
                     hand: ['blood-puppeteer'],
@@ -13,7 +13,9 @@ describe('Blood Puppeteer', function () {
                 player2: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar'],
-                    spellboard: ['summon-butterfly-monk']
+                    spellboard: ['summon-butterfly-monk'],
+                    dicepool: ['natural', 'natural'],
+                    hand: ['natures-wrath']
                 }
             });
         });
@@ -26,6 +28,28 @@ describe('Blood Puppeteer', function () {
             expect(this.bloodPuppeteer.location).toBe('play area');
             expect(this.bloodPuppet.location).toBe('play area');
             expect(this.bloodPuppet.controller).toBe(this.player1.player);
+        });
+
+        it('vs AoE after played', function () {
+            this.player1.clickCard(this.bloodPuppeteer);
+            this.player1.clickPrompt('Play this Ally');
+            // this.player1.clickDone();
+
+            expect(this.bloodPuppeteer.location).toBe('play area');
+            expect(this.bloodPuppet.location).toBe('play area');
+            expect(this.bloodPuppet.controller).toBe(this.player1.player);
+
+            this.player1.endTurn();
+
+            this.player2.play(this.naturesWrath);
+            this.player2.clickCard(this.bloodPuppeteer);
+            this.player1.clickPrompt('Yes');
+            this.player1.clickCard(this.bloodPuppet); // discard
+            this.player2.clickCard(this.blueJaguar);
+            expect(this.bloodPuppeteer.location).toBe('discard');
+            expect(this.bloodPuppet.location).toBe('play area');
+            expect(this.player2).toHaveDefaultPrompt();
+            expect(this.bloodPuppet.removed).toBe(false);
         });
     });
 
