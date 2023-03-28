@@ -20,7 +20,8 @@ class PsychicVampire extends Card {
                 )
             ,
             gameAction: ability.actions.chosenDiscard((context) => ({
-                target: context.player.opponent
+                target: context.player.opponent,
+                amount: this.getAbilityNumeric(1)
             }))
         });
     }
