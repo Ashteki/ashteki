@@ -349,7 +349,8 @@ export class GameBoard extends React.Component {
                         onMouseOut={this.onMouseOut}
                         onMenuItemClick={this.onMenuItemClick}
                         player={thisPlayer}
-                        showDeckPile={true}
+                        showDice={spectating && compactLayout}
+                        showDeckPile={!(spectating && compactLayout)}
                         side='bottom'
                         spells={thisPlayer.cardPiles.spells}
                         spectating={spectating}
@@ -361,23 +362,25 @@ export class GameBoard extends React.Component {
                     />
                 </div>
                 <div className='player-home-row our-side'>
-                    <PlayerRow
-                        archives={thisPlayer.cardPiles.archives}
-                        cardSize={cardSize}
-                        isMe={!spectating}
-                        hand={thisPlayer.cardPiles.hand}
-                        leftMode={leftMode}
-                        manualMode={this.props.currentGame.manualMode}
-                        onCardClick={this.onCardClick}
-                        onDragDrop={this.onDragDrop}
-                        onMouseOut={this.onMouseOut}
-                        onMouseOver={this.onMouseOver}
-                        onDieClick={this.onDieClick}
-                        onMenuItemClick={this.onMenuItemClick}
-                        side='bottom'
-                        dice={thisPlayer.dice}
-                        purgedPile={thisPlayer.cardPiles.purged}
-                    />
+                    {!(spectating && compactLayout) && (
+                        <PlayerRow
+                            archives={thisPlayer.cardPiles.archives}
+                            cardSize={cardSize}
+                            isMe={!spectating}
+                            hand={thisPlayer.cardPiles.hand}
+                            leftMode={leftMode}
+                            manualMode={this.props.currentGame.manualMode}
+                            onCardClick={this.onCardClick}
+                            onDragDrop={this.onDragDrop}
+                            onMouseOut={this.onMouseOut}
+                            onMouseOver={this.onMouseOver}
+                            onDieClick={this.onDieClick}
+                            onMenuItemClick={this.onMenuItemClick}
+                            side='bottom'
+                            dice={thisPlayer.dice}
+                            purgedPile={thisPlayer.cardPiles.purged}
+                        />
+                    )}
                 </div>
             </div>
         ];
@@ -526,7 +529,7 @@ export class GameBoard extends React.Component {
                         activePlayer={thisPlayer.activePlayer}
                         actions={thisPlayer.actions}
                         clockState={thisPlayer.clock}
-                        // compactLayout={thisPlayer.optionSettings.compactLayout}
+                        compactLayout={spectating && compactLayout}
                         firstPlayer={thisPlayer.firstPlayer}
                         isMe={!spectating}
                         manualModeEnabled={manualMode}
@@ -537,6 +540,12 @@ export class GameBoard extends React.Component {
                         onDragDrop={this.onDragDrop}
                         onManualCommandsClick={this.onManualCommandsClick}
                         onManualModeClick={this.onManualModeClick}
+                        onCardClick={this.onCardClick}
+                        onCardAltClick={this.onCardAltClick}
+                        onDieClick={this.onDieClick}
+                        onMouseOver={this.onMouseOver}
+                        onMouseOut={this.onMouseOut}
+                        onMenuItemClick={this.onMenuItemClick}
                         onMessagesClick={this.onMessagesClick}
                         onMuteClick={this.onMuteClick}
                         onSettingsClick={this.onSettingsClick}
