@@ -211,7 +211,9 @@ class AbilityResolver extends BaseStepWithPipeline {
             return;
         }
 
-        this.game.raiseEvent('onAbilityResolved', { context: this.context });
+        this.game.raiseEvent('onAbilityResolved', { context: this.context }, (event) => {
+            // this.game.resetRemovedFlags();
+        });
     }
 }
 

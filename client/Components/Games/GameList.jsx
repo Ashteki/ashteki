@@ -82,7 +82,13 @@ class GameList extends React.Component {
     removeGame(event, game) {
         event.preventDefault();
 
-        this.props.socket.emit('removegame', game.id);
+        toastr.confirm('Are you sure you want to kill this game?', {
+            okText: 'Ok',
+            cancelText: 'Cancel',
+            onOk: () => {
+                this.props.socket.emit('removegame', game.id);
+            }
+        });
     }
 
     canJoin(game) {

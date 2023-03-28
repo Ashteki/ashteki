@@ -100,12 +100,6 @@ const Profile = ({ onSubmit, isLoading }) => {
     const [alertTimer, setAlertTimer] = useState(defaultAlertTimer);
 
     const backgrounds = [{ name: 'none', label: t('none'), imageUrl: BlankBg }];
-    const cardSizes = [
-        { name: 'small', label: t('small') },
-        { name: 'normal', label: t('normal') },
-        { name: 'large', label: t('large') },
-        { name: 'x-large', label: t('extra-large') }
-    ];
 
     backgrounds.push({
         name: 'ashesreborn',
@@ -232,7 +226,6 @@ const Profile = ({ onSubmit, isLoading }) => {
                     <Row>
                         <Col sm='6'>
                             <ProfileCardSize
-                                cardSizes={cardSizes}
                                 selectedCardSize={localCardSize || user.settings.cardSize}
                                 onCardSizeSelected={(name) => setCardSize(name)}
                             />

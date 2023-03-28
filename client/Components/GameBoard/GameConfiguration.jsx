@@ -2,17 +2,22 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Panel from '../Site/Panel';
-import { Form } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeViewSetting } from '../../redux/actions';
+import CardSizeSelector from '../Profile/CardSizeSelector';
 
 const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+
     // USE ACCOUNT for temporary / in game changes, use AUTH.USER for saved / profile changes
-    const compactLayout = useSelector((state) => state.account.user.settings.optionSettings?.compactLayout);
+    const compactLayout = useSelector(
+        (state) => state.account.user.settings.optionSettings?.compactLayout
+    );
     const leftMode = useSelector((state) => state.account.user.settings.optionSettings?.leftMode);
+    const selectedCardSize = useSelector((state) => state.account.user.settings.cardSize);
 
     return (
         <div>
@@ -64,13 +69,12 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <Form.Check
                         id='compactLayout'
                         name='gameOptions.compactLayout'
-                        label={t("Use compact layout")}
+                        label={t('Use compact layout')}
                         type='switch'
                         checked={compactLayout}
                         onChange={(event) => {
                             dispatch(changeViewSetting('compactLayout', event.target.checked));
-                        }
-                        }
+                        }}
                     />
                     <div className='bluffTimer'>
                         Bluff Timer (seconds):
@@ -102,9 +106,22 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         />
                     </div>
                     <br />
+                    <Form.Row>
+                        Card Size:
+                        <Row>
+                            <Col xs='12'>
+                                <CardSizeSelector
+                                    onCardSizeSelected={(name) => {
+                                        dispatch(changeViewSetting('cardSize', name));
+                                    }}
+                                    selectedCardSize={selectedCardSize}
+                                />
+                            </Col>
+                        </Row>
+                    </Form.Row>
                 </Panel>
             </Form>
-        </div >
+        </div>
     );
 };
 
