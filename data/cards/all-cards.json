@@ -5416,10 +5416,10 @@
             },
             "placement": "Battlefield",
             "text": "* Transparent: This unit cannot block or be chosen as the target of an attack.",
-            "attack": 1,
+            "attack": 0,
             "life": 1,
             "recover": 0,
-            "copies": 3
+            "copies": 2
         },
         {
             "name": "Saria Guideman",

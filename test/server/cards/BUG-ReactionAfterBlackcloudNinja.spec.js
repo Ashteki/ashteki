@@ -10,7 +10,8 @@ describe('standard trigger', function () {
                     'ceremonial',
                     'ceremonial',
                     'charm',
-                    'charm'
+                    'charm',
+                    'natural'
                 ],
                 spellboard: ['chant-of-revenge'],
                 hand: ['final-cry']
@@ -35,8 +36,8 @@ describe('standard trigger', function () {
 
         expect(this.leoSunshadow.damage).toBe(1);
         expect(this.player1.player.limitedPlayed).toBe(0);
-        this.player1.clickCard(this.brennenBlackcloud);
-        this.player1.clickPrompt('Spirit Burn');
+        this.player1.clickDie(6);
+        this.player1.clickPrompt('Natural Dice Power');
         this.player1.clickCard(this.blackcloudNinja);
 
         expect(this.chantOfRevenge.status).toBe(1);
@@ -45,6 +46,6 @@ describe('standard trigger', function () {
 
         this.player1.clickPass();
         this.player1.clickCard(this.leoSunshadow);
-        expect(this.leoSunshadow.damage).toBe(3);
+        expect(this.leoSunshadow.damage).toBe(1);
     });
 });
