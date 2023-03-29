@@ -281,6 +281,7 @@ export class GameBoard extends React.Component {
                         manualMode={this.props.currentGame.manualMode}
                         numDeckCards={otherPlayer.numDeckCards}
                         onCardClick={this.onCardClick}
+                        onDieClick={this.onDieClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         player={otherPlayer}
