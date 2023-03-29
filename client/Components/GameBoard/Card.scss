@@ -293,11 +293,17 @@
 
     &.large {
         margin-top: $underneath-offset-lg - $keyteki-card-lg-height;
+        margin-left: 20px;
     }
 
     &.x-large {
         margin-top: $underneath-offset-xl - $keyteki-card-xl-height;
+        margin-left: 25px;
     }
+}
+
+.under {
+    position: absolute
 }
 
 .flag {
