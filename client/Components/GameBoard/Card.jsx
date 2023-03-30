@@ -147,11 +147,16 @@ const Card = ({
         if ('spellboard' === source && !card.childCards) {
             return null;
         }
+        if (card.type === 'Phoenixborn') {
+            return null;
+        }
 
         let index = 1;
-        const cardsToRender = 'spellboard' === source
-            ? card.childCards
-            : card.upgrades;
+        let cardsToRender = card.upgrades;
+        if ('spellboard' === source) {
+            cardsToRender = card.childCards;
+        }
+
         let upgrades = cardsToRender.map((upgrade) => {
             let returnedupgrade = (
                 <Card
@@ -184,6 +189,9 @@ const Card = ({
         // are being placed underneath the current card. In the future there may
         // be other types of cards in this array and it should be filtered.
         let underneathCards = card.childCards;
+        if (card.type === 'Phoenixborn') {
+            underneathCards = underneathCards.concat(card.upgrades);
+        }
         if (!underneathCards || underneathCards.length === 0 || card.location === 'spellboard') {
             return;
         }
@@ -199,6 +207,7 @@ const Card = ({
                 onMouseOut={onMouseOut}
                 onMouseOver={onMouseOver}
                 source='underneath'
+                reverse={true}
             />
         );
     };

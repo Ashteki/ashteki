@@ -28,7 +28,7 @@ class SquishableCardPanel extends React.Component {
 
         let lastCardSlot = '';
         let focusLeftDelta = 0;
-        let hand = cards.map((card) => {
+        let hand = cards.map((card, i) => {
             if (this.props.focusDupes && lastCardSlot === card.cardSlot) {
                 focusLeftDelta += -47;
             } else {
@@ -48,6 +48,9 @@ class SquishableCardPanel extends React.Component {
                 };
             }
 
+            if (this.props.reverse) {
+                style.zIndex = -i;
+            }
             return (
                 <Card
                     key={card.uuid}
