@@ -33,16 +33,21 @@ export function loginAccount(auth) {
 }
 
 export function logoutAccount(tokenId) {
+
     return {
-        types: ['LOGOUT_ACCOUNT', 'ACCOUNT_LOGGEDOUT'],
-        shouldCallAPI: () => true,
-        APIParams: {
-            url: '/api/account/logout',
-            type: 'POST',
-            data: JSON.stringify({ tokenId: tokenId }),
-            contentType: 'application/json'
-        }
+        type: 'ACCOUNT_LOGGEDOUT'
     };
+
+    // return {
+    //     types: ['LOGOUT_ACCOUNT', 'ACCOUNT_LOGGEDOUT'],
+    //     shouldCallAPI: () => true,
+    //     APIParams: {
+    //         url: '/api/account/logout',
+    //         type: 'POST',
+    //         data: JSON.stringify({ tokenId: tokenId }),
+    //         contentType: 'application/json'
+    //     }
+    // };
 }
 
 export function logout() {

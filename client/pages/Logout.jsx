@@ -8,14 +8,9 @@ import * as actions from '../redux/actions';
 
 class Logout extends React.Component {
     componentDidMount() {
+        //TODO: there's probably a way to do this without the roundtrip...
         this.props.logout();
-    }
-
-    // eslint-disable-next-line camelcase
-    UNSAFE_componentWillReceiveProps(props) {
-        if (props.loggedOut) {
-            this.props.navigate('/');
-        }
+        this.props.navigate('/');
     }
 
     render() {
