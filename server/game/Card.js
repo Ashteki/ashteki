@@ -589,7 +589,8 @@ class Card extends PlayableObject {
             'cannotBeAttackTarget': 'Cannot be attack target',
             'cannotBeSpellTarget': 'Protected',
             'preventBlock': 'Cannot be blocked',
-            'preventGuard': 'Cannot be guarded against'
+            'preventGuard': 'Cannot be guarded against',
+            'magnify': 'Magnify'
         };
         const simpleNames = acquiredEffects
             .filter((e) => Object.keys(simpleTypes).includes(e.type))
