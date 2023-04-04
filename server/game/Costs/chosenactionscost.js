@@ -1,20 +1,32 @@
+const ActionCost = require('./actioncost');
+
 class ChosenActionCost {
     constructor() {
         this.promptsPlayer = true;
+        this.sideCost = new ActionCost({ type: 'side' });
+        this.mainCost = new ActionCost({ type: 'main' });
     }
 
     canPay(context) {
         // if you have either available
-        return context.player.actions.main || context.player.actions.side;
+        return this.canPayWithMain(context) || this.canPayWithSide(context);
+    }
+
+    canPayWithMain(context) {
+        return context.player.actions.main && this.mainCost.canPay(context);
+    }
+
+    canPayWithSide(context) {
+        return context.player.actions.side && this.sideCost.canPay(context);
     }
 
     resolve(context, result) {
         // if there's no choice
-        if (!context.player.actions.main) {
+        if (!this.canPayWithMain(context)) {
             context.costs.actionType = 'side';
             return true;
         }
-        if (!context.player.actions.side) {
+        if (!this.canPayWithSide(context)) {
             context.costs.actionType = 'main';
             return true;
         }

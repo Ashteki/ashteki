@@ -15,13 +15,14 @@ describe('Light Bringer in play', function () {
                         'charm'
                     ],
                     hand: ['call-upon-the-realms', 'molten-gold'],
-                    spellboard: ['summon-gilder']
+                    spellboard: ['summon-gilder', 'chant-of-transfusion']
                 },
                 player2: {
                     phoenixborn: 'rin-northfell',
                     spellboard: ['summon-light-bringer'],
                     archives: ['light-bringer'],
                     dicepool: ['divine'],
+                    inPlay: ['flute-mage'],
                     hand: ['summon-biter']
                 }
             });
@@ -59,6 +60,53 @@ describe('Light Bringer in play', function () {
 
             this.player1.clickPrompt('End Turn');
             expect(this.player1).toHaveDefaultPrompt();
+
+            // check player can attack
+            this.player1.clickPrompt('Attack');
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.lightBringer);
+            this.player1.clickCard(this.mistSpirit);
+            this.player2.clickPrompt('Done');
+        });
+
+        it('stops opponent using Chant of Transfusion as main', function () {
+            this.chantOfTransfusion.tokens.status = 1;
+            this.player1.actions.side = 0;
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.actions.main).toBe(true);
+            expect(this.chantOfTransfusion.status).toBe(1);
+
+            this.player1.clickCard(this.chantOfTransfusion);
+            expect(this.player1).toHaveDefaultPrompt();
+
+            // check player can attack
+            this.player1.clickPrompt('Attack');
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.lightBringer);
+            this.player1.clickCard(this.mistSpirit);
+            this.player2.clickPrompt('Done');
+        });
+
+        it('can use Chant of Transfusion as side', function () {
+            this.ironWorker.tokens.damage = 1;
+            this.chantOfTransfusion.tokens.status = 1;
+            // this.player1.actions.side = 0;
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.actions.main).toBe(true);
+            expect(this.player1.actions.side).toBe(1);
+            expect(this.chantOfTransfusion.status).toBe(1);
+
+            this.player1.clickCard(this.chantOfTransfusion);
+            this.player1.clickPrompt('Transfusion');
+            // need a target
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.fluteMage);
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.player1.actions.main).toBe(true);
+            expect(this.player1.actions.side).toBe(0);
 
             // check player can attack
             this.player1.clickPrompt('Attack');
