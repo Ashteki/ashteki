@@ -161,7 +161,8 @@ describe('Reactions', function () {
                         'ceremonial',
                         'ceremonial',
                         'charm',
-                        'charm'
+                        'charm',
+                        'natural'
                     ],
                     spellboard: [],
                     hand: ['summon-sleeping-widows', 'final-cry', 'fire-archer', 'ice-trap'],
@@ -175,6 +176,7 @@ describe('Reactions', function () {
                     hand: ['ice-trap']
                 }
             });
+            this.ironWorker.tokens.damage = 1;
         });
 
         it('Allow one reaction spell per player', function () {
@@ -193,8 +195,8 @@ describe('Reactions', function () {
             expect(this.player1).toHavePrompt('Any reactions to Fire Archer being destroyed?');
 
             this.player1.clickPrompt('Pass');
-            this.player1.clickCard(this.brennenBlackcloud);
-            this.player1.clickPrompt('Spirit Burn');
+            this.player1.clickDie(7); // natural
+            this.player1.clickPrompt('Natural dice power');
             this.player1.clickCard(this.ironWorker);
             expect(this.ironWorker.location).toBe('discard');
             // player1 has not used a reaction spell, so is asked for reaction

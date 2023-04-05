@@ -712,7 +712,7 @@
             ],
             "text": "Spirit Burn: [[side]] - [[exhaust]] - 1 [[ceremonial:class]]: Destroy a unit you control to deal 2 damage to a target Phoenixborn.",
             "battlefield": 5,
-            "life": 18,
+            "life": 16,
             "spellboard": 3
         },
         {
@@ -3140,7 +3140,7 @@
             "attack": 2,
             "life": 1,
             "recover": 0,
-            "copies": 3
+            "copies": 1
         },
         {
             "name": "Inflame",
@@ -5416,10 +5416,10 @@
             },
             "placement": "Battlefield",
             "text": "* Transparent: This unit cannot block or be chosen as the target of an attack.",
-            "attack": 1,
+            "attack": 0,
             "life": 1,
             "recover": 0,
-            "copies": 3
+            "copies": 2
         },
         {
             "name": "Saria Guideman",
@@ -7779,7 +7779,7 @@
             "attack": 0,
             "life": 2,
             "recover": 0,
-            "copies": 3
+            "copies": 2
         },
         {
             "name": "Tidal Crab",

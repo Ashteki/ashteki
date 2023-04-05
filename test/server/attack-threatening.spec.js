@@ -56,7 +56,7 @@ describe('threatening', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['salamander-monk-spirit']
+                    inPlay: ['weeping-spirit']
                 }
             });
         });
@@ -80,7 +80,7 @@ describe('threatening', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['salamander-monk-spirit', 'anchornaut']
+                    inPlay: ['weeping-spirit', 'anchornaut']
                 }
             });
         });
@@ -113,7 +113,7 @@ describe('threatening', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['salamander-monk-spirit', 'anchornaut']
+                    inPlay: ['weeping-spirit', 'anchornaut']
                 }
             });
         });

@@ -1,4 +1,4 @@
-const { Level, Magic, BattlefieldTypes, CardType } = require('../../../constants.js');
+const { Level, Magic, CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -7,13 +7,13 @@ class BrennenBlackcloud extends Card {
         this.action({
             title: 'Spirit Burn',
             cost: [
-                ability.costs.sideAction(),
+                ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
             target: {
                 activePromptTitle: 'Destroy a Unit',
-                cardType: BattlefieldTypes,
+                cardType: CardType.Ally,
                 controller: 'self',
                 gameAction: ability.actions.destroy()
             },
