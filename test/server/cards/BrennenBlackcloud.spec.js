@@ -4,7 +4,7 @@ describe('Brennen Blackcloud Ability', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'brennen-blackcloud',
-                    inPlay: ['iron-worker'],
+                    inPlay: ['iron-worker', 'shadow-hound'],
                     dicepool: ['natural', 'ceremonial', 'charm', 'charm'],
                     hand: []
                 },
@@ -19,11 +19,19 @@ describe('Brennen Blackcloud Ability', function () {
 
         it('should destroy my unit, and deal damage to chosen pb', function () {
             expect(this.aradelSummergaard.damage).toBe(0);
+            // errata life
+            expect(this.brennenBlackcloud.life).toBe(16);
 
             this.player1.clickCard(this.brennenBlackcloud);
             this.player1.clickPrompt('Spirit Burn');
+            // errata to ally
+            expect(this.player1).not.toBeAbleToSelect(this.shadowHound);
             this.player1.clickCard(this.ironWorker); // destroy my unit
             this.player1.clickCard(this.aradelSummergaard); // 2 damage to pb
+
+            // errata cost
+            expect(this.player1.actions.side).toBe(1);
+            expect(this.player1.actions.main).toBe(false);
 
             expect(this.ironWorker.location).toBe('discard');
             expect(this.aradelSummergaard.damage).toBe(2);

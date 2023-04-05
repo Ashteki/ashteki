@@ -48,6 +48,7 @@ module.exports = {
     PurgeAction: require('./PurgeAction'),
     PutIntoPlayAction: require('./PutIntoPlayAction'),
     RandomDiscardAction: require('./RandomDiscardAction'),
+    RandomExposeAction: require('./RandomExposeAction'),
     RandomPurgeAction: require('./RandomPurgeAction'),
     ReadyAction: require('./ReadyAction'),
     ReadyDieAction: require('./ReadyDieAction'),

@@ -1,10 +1,8 @@
 const Card = require('../../Card.js');
 
 class SalamanderMonkSpirit extends Card {
-    setupCardAbilities(ability) {
-        this.persistentEffect({
-            effect: [ability.effects.cardCannot('block'), ability.effects.cannotBeAttackTarget()]
-        });
+    setupCardAbilities() {
+        this.fleeting();
     }
 }
 

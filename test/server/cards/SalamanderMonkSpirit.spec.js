@@ -18,13 +18,23 @@ describe('Salamander Monk Spirit', function () {
         });
     });
 
-    it('cannot be targetted for attack', function () {
+    it('can be targetted for attack', function () {
         this.player1.clickPrompt('Attack');
         expect(this.player1).toBeAbleToSelect(this.ironWorker);
-        expect(this.player1).not.toBeAbleToSelect(this.salamanderMonkSpirit);
+        expect(this.player1).toBeAbleToSelect(this.salamanderMonkSpirit);
     });
 
-    it('cannot block', function () {
+    it('is fleeting', function () {
+        this.player1.endTurn();
+        this.player2.endTurn();
+        // dice pins
+        this.player1.clickDone();
+        this.player2.clickDone();
+        expect(this.game.round).toBe(2);
+        expect(this.salamanderMonkSpirit.location).toBe('archives');
+    });
+
+    it('can block', function () {
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.coalRoarkwin);
         this.player1.clickCard(this.mistSpirit);
@@ -32,7 +42,11 @@ describe('Salamander Monk Spirit', function () {
 
         expect(this.player2).toHavePrompt('choose a blocker');
         expect(this.player2).toBeAbleToSelect(this.ironWorker);
-        expect(this.player2).not.toBeAbleToSelect(this.salamanderMonkSpirit);
+        expect(this.player2).toBeAbleToSelect(this.salamanderMonkSpirit);
+        this.player2.clickCard(this.salamanderMonkSpirit);
+        this.player2.clickCard(this.mistSpirit);
+        this.player2.clickDone();
+        expect(this.player1).toHaveDefaultPrompt();
     });
 
     it('can be blocked', function () {
