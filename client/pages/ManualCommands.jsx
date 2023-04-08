@@ -36,6 +36,10 @@ const ManualCommands = () => {
                     </Trans>
                 </li>
                 <li>
+                    /endgame - With agreement from your opponent, end the game without a win/loss
+                    record
+                </li>
+                <li>
                     /givecontrol -{' '}
                     <Trans i18nKey='howtoplay.cmd.givecontrol'>
                         Give control of a card to your opponent. Use with caution
