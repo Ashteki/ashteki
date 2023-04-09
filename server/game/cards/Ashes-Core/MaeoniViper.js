@@ -25,7 +25,7 @@ class MaeoniViper extends Card {
                     dependsOn: 'myChar',
                     activePromptTitle: 'Choose a unit to damage',
                     cardType: BattlefieldTypes,
-                    controller: 'opponent',
+                    // controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
                         amount: context.targets.myChar.attack
                     }))

@@ -38,7 +38,9 @@ $upgrade-offset-sm: $upgrade-offset * 0.6;
 $upgrade-offset-lg: $upgrade-offset * 1.4;
 $upgrade-offset-xl: $upgrade-offset * 2;
 
-$underneath-offset: 15px;
+// how far down should a card be offset
+$underneath-offset: 0px;
+// $underneath-offset: 15px;
 $underneath-offset-sm: $underneath-offset * 0.6;
 $underneath-offset-lg: $underneath-offset * 1.4;
 $underneath-offset-xl: $underneath-offset * 2;

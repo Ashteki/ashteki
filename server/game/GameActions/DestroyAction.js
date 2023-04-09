@@ -69,6 +69,7 @@ class DestroyAction extends CardGameAction {
                 },
                 (leavesPlayEvent) => {
                     leavesPlayEvent.card.owner.moveCard(event.card, leavesPlayEvent.destination);
+                    leavesPlayEvent.card.removed = true;
                 }
             );
 

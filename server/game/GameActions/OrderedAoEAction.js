@@ -20,11 +20,14 @@ class OrderedAoEAction extends GameAction {
     getEventArray(context) {
         return [
             super.createEvent('unnamedEvent', { player: context.player }, () => {
+                context.game.queueSimpleStep(() => context.game.resetRemovedFlags());
                 this.cards = this.target;
 
                 if (this.cards.length > 0) {
                     this.promptForRemainingCards(context);
                 }
+
+                context.game.queueSimpleStep(() => context.game.resetRemovedFlags());
             })
         ];
     }
@@ -37,14 +40,16 @@ class OrderedAoEAction extends GameAction {
             // eslint-disable-next-line no-undef
             cardType: BattlefieldTypes,
             location: ['play area'],
-            cardCondition: (card) => this.cards.includes(card),
+            cardCondition: (card) => this.cards.includes(card) && !card.removed,
             context: context,
             onSelect: (player, card) => {
                 this.propertyCache.gameAction.resolve(card, context);
-                this.cards = this.cards.filter((c) => c !== card);
-                if (this.cards.length) {
-                    this.promptForRemainingCards(context);
-                }
+                context.game.queueSimpleStep(() => {// TODO: puppetteer remove discarded card
+                    this.cards = this.cards.filter((c) => c !== card && !c.removed);
+                    if (this.cards.length) {
+                        this.promptForRemainingCards(context);
+                    }
+                });
                 return true;
             }
         });

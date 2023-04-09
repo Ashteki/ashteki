@@ -6,11 +6,13 @@ class ChannelMagic extends Card {
         this.play({
             gameAction: ability.actions.draw(),
             then: {
+                alwaysTriggers: true,
                 target: {
                     cardType: PhoenixbornTypes,
                     gameAction: ability.actions.removeDamage({ amount: 1, showMessage: true })
                 },
                 then: {
+                    alwaysTriggers: true,
                     target: {
                         toSelect: 'die',
                         mode: 'upTo',

@@ -4,7 +4,7 @@ describe('Maeoni Viper command strike', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'maeoni-viper',
-                    inPlay: ['silver-snake'],
+                    inPlay: ['silver-snake', 'flute-mage'],
                     hand: ['mist-typhoon'],
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
                 },
@@ -28,6 +28,20 @@ describe('Maeoni Viper command strike', function () {
             this.player1.clickCard(this.silverSnake);
             this.player1.clickCard(this.bloodArcher);
             expect(this.silverSnake.status).toBe(4);
+        });
+
+        it('own unit', function () {
+            expect(this.silverSnake.status).toBe(3);
+
+            this.player1.clickCard(this.maeoniViper);
+            this.player1.clickPrompt('Command Strike');
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.silverSnake);
+            this.player1.clickCard(this.fluteMage);
+            expect(this.fluteMage.location).toBe('discard');
+            expect(this.silverSnake.status).toBe(3); // not opponents unit
         });
 
         it('cannot use without unexhausted units', function () {

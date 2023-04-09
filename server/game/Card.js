@@ -577,7 +577,6 @@ class Card extends PlayableObject {
                 menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
             } else {
                 menu.push({ command: 'moveHand', text: 'Remove', menu: 'main' });
-
             }
         }
         if (
@@ -622,7 +621,8 @@ class Card extends PlayableObject {
             'cannotBeAttackTarget': 'Cannot be attack target',
             'cannotBeSpellTarget': 'Protected',
             'preventBlock': 'Cannot be blocked',
-            'preventGuard': 'Cannot be guarded against'
+            'preventGuard': 'Cannot be guarded against',
+            'magnify': 'Magnify'
         };
         const simpleNames = acquiredEffects
             .filter((e) => Object.keys(simpleTypes).includes(e.type))

@@ -1180,6 +1180,11 @@ class Game extends EventEmitter {
         }
     }
 
+    resetRemovedFlags() {
+        this.allCards.forEach((c) => {
+            c.removed = false;
+        });
+    }
     /*
      * Adds a step to the pipeline queue
      * @param {BaseStep} step

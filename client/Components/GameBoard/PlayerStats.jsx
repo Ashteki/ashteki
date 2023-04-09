@@ -277,7 +277,7 @@ const PlayerStats = ({
     const draw = (
         <CardPileLink
             {...pileProps}
-            cards={cardPiles.draw}
+            cards={cardPiles.deck}
             cardBack={spellback}
             className='draw'
             numDeckCards={player.numDeckCards}

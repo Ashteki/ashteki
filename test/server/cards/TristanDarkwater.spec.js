@@ -9,7 +9,8 @@ describe('Tristan Darkwater, magnify', function () {
                     'crystal-archer',
                     'iron-worker',
                     'nightshade-swallow',
-                    'shadow-spirit'
+                    'shadow-spirit',
+                    'psychic-vampire'
                 ],
                 spellboard: [],
                 dicepool: ['time', 'natural', 'charm', 'charm', 'natural'],
@@ -19,7 +20,7 @@ describe('Tristan Darkwater, magnify', function () {
             player2: {
                 phoenixborn: 'saria-guideman',
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
-                hand: ['sympathy-pain'],
+                hand: ['sympathy-pain', 'purge'],
                 inPlay: ['flute-mage', 'hammer-knight', 'iron-rhino']
             }
         });
@@ -97,5 +98,28 @@ describe('Tristan Darkwater, magnify', function () {
         this.player1.clickDone();
         expect(this.player2.dicepool[0].level).toBe('class');
         expect(this.player2.dicepool[1].level).toBe('class');
+    });
+
+    it('magnify psychic vampire', function () {
+        expect(this.player2.dicepool[0].level).toBe('power');
+        expect(this.player2.dicepool[1].level).toBe('power');
+        this.player1.clickCard(this.tristanDarkwater);
+        this.player1.clickPrompt('Magnify');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.psychicVampire);
+        this.player1.clickDone();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage);
+        this.player1.clickCard(this.psychicVampire);
+        this.player2.clickDone();
+        this.player2.clickYes();
+        this.player2.clickCard(this.sympathyPain);
+        this.player2.clickCard(this.purge);
+        this.player2.clickDone();
+
+        expect(this.purge.location).toBe('discard');
+        expect(this.player1).toHaveDefaultPrompt();
+
     });
 });
