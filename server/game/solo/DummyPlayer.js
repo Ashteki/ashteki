@@ -16,6 +16,7 @@ class DummyPlayer extends Player {
         this.disStrategy = new NullPromptStrategy(this, 'no');
         this.behaviourRoll = 0;
         this.fatigued = false;
+        this.chimeraPhase = 1; // values 1-3
 
         game.on('onCardMoved', (event) => this.cardMovedListener(event));
         game.on('onDieChange', (event) => this.dieChangeListener(event));
@@ -25,6 +26,14 @@ class DummyPlayer extends Player {
 
     get chimera() {
         return this.phoenixborn;
+    }
+
+    get ultimate() {
+        if (!this.ultimates || this.ultimates.length === 0) {
+            return null;
+        }
+
+        return this.ultimates[this.chimeraPhase - 1];
     }
 
     cardMovedListener(event) {
@@ -180,14 +189,15 @@ class DummyPlayer extends Player {
     }
 
     get ultimateThreshold() {
-        return (this.chimera.printedUltimate
-            + this.chimera.exhaustion
-            + this.ultimate.exhaustion);
+        return this.chimera.printedUltimate + this.chimera.exhaustion + this.ultimate.exhaustion;
     }
 
     checkUltimateThreshold() {
-
         return this.chimera.redRains >= this.ultimateThreshold;
+    }
+
+    advanceChimeraPhase() {
+        this.chimeraPhase++;
     }
 }
 

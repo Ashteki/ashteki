@@ -109,14 +109,17 @@ class DeckBuilder {
                     id: bData.stub
                 }
             ];
-            var uData = this.getCard(player.ultimate);
-            result.ultimate = [
-                {
+
+            const ults = [];
+            player.ultimates.forEach(stub => {
+                const uData = this.getCard(stub);
+                ults.push({
                     count: 1,
                     card: uData,
                     id: uData.stub
-                }
-            ]
+                });
+            })
+            result.ultimates = ults;
         }
         return result;
     }

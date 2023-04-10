@@ -24,6 +24,18 @@
             "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-1.png"
         },
         {
+            "name": "Viros Ultimate 2",
+            "stub": "viros-ultimate-2",
+            "type": "Ready Spell",
+            "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-2.png"
+        },
+        {
+            "name": "Viros Ultimate 3",
+            "stub": "viros-ultimate-3",
+            "type": "Ready Spell",
+            "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-3.png"
+        },
+        {
             "name": "Viros Behaviour 1",
             "stub": "viros-behaviour-1",
             "type": "Ready Spell",

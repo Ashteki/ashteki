@@ -16,7 +16,7 @@ describe('Chimera ultimate', function () {
                     dummy: true,
                     phoenixborn: 'viros-s1',
                     behaviour: 'viros-behaviour-1',
-                    ultimate: 'viros-ultimate-1',
+                    ultimates: ['viros-ultimate-1', 'viros-ultimate-2', 'viros-ultimate-3'],
                     inPlay: [],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
@@ -37,7 +37,7 @@ describe('Chimera ultimate', function () {
             expect(this.player2.player.ultimateThreshold).toBe(7);
         });
 
-        it('red rains ultimate trigger removes RR tokens, removes non-owned units', function () {
+        it('red rains ultimate trigger removes RR tokens, removes non-owned units, next phase', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
             expect(this.player2.phoenixborn.redRains).toBe(2);
@@ -53,6 +53,8 @@ describe('Chimera ultimate', function () {
 
             expect(this.player2.phoenixborn.redRains).toBe(0);
             expect(this.bloodPuppet.location).toBe('archives');
+            expect(this.player2.player.chimeraPhase).toBe(2);
+            expect(this.player2.player.ultimate.id).toBe('viros-ultimate-2');
         });
     });
 });

@@ -102,7 +102,7 @@ describe('Dice cycle', function () {
                     dummy: true,
                     phoenixborn: 'viros-s1',
                     behaviour: 'viros-behaviour-1',
-                    ultimate: 'viros-ultimate-1',
+                    ultimates: ['viros-ultimate-1', 'viros-ultimate-2', 'viros-ultimate-3'],
                     inPlay: [],
                     deck: [],
                     spellboard: [],

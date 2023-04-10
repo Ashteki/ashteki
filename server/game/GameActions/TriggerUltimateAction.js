@@ -20,13 +20,13 @@ class TriggerUltimateAction extends CardGameAction {
             context: context
         };
         return super.createEvent('onUltimate', params, (event) => {
-            // context.game.addAlert('warning', 'Chimera triggers Ultimate!')
             context.game.queueUserAlert(context, {
                 style: 'danger',
                 promptTitle: 'Chimera Ultimate',
-                menuTitle: "Chimera uses it's Ultimate ability",
+                menuTitle: "Chimera uses it's Ultimate ability"
             });
             event.card.tokens.redRains = 0;
+            context.player.advanceChimeraPhase();
             const alienUnits = context.player.unitsInPlay.filter(c => c.owner !== c.controller);
             if (alienUnits.length) {
                 context.game.actions.discard().resolve(alienUnits, context);
