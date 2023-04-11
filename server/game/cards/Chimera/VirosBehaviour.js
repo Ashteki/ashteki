@@ -1,9 +1,8 @@
 const { Level } = require("../../../constants");
 const AbilityDsl = require("../../abilitydsl");
-const RevealBehaviour = require("../../BaseActions/RevealBehaviour");
 const BehaviourCard = require("../../solo/BehaviourCard");
 
-class VirosBehaviour1 extends BehaviourCard {
+class VirosBehaviour extends BehaviourCard {
     handleBehaviourRoll(behaviourRoll) {
         switch (behaviourRoll) {
             case 1:
@@ -47,50 +46,6 @@ class VirosBehaviour1 extends BehaviourCard {
         }
     }
 
-    doReveal() {
-        const target = this.owner.threatCards[0];
-        const act = new RevealBehaviour(target);
-        const context = act.createContext(this.owner);
-        this.game.resolveAbility(context);
-        return target;
-    }
-
-    canAttack() {
-        return this.owner.canAttack();
-    }
-
-    doAttack(attackWith) {
-        const attacker = attackWith || this.owner.getAttacker();
-        const target = this.owner.getAttackTarget(attacker);
-
-        const attackAbility = this.behaviour({
-            title: 'Attack',
-            gameAction: AbilityDsl.actions.attack({
-                attacker: attacker,
-                target: target
-            })
-        });
-
-        const context = attackAbility.createContext(this.owner);
-        this.game.resolveAbility(context);
-    }
-
-    doAddRedRains() {
-        const ability = this.behaviour({
-            preferActionPromptMessage: true,
-            gameAction: AbilityDsl.actions.addRedRainsToken({ showMessage: true, shortMessage: true, warnMessage: true })
-        });
-        const context = ability.createContext(this.owner);
-        this.game.resolveAbility(context);
-    }
-
-    doRageRaise() {
-        const basicDie = this.owner.dice.find(die => die.level === Level.Basic);
-        if (basicDie) {
-            AbilityDsl.actions.raiseDie({ showMessage: true }).resolve(basicDie, this.game.getFrameworkContext(this.owner));
-        }
-    }
-
     doLowerOpponentsDice() {
         if (this.owner.opponent.activeNonBasicDiceCount === 0) {
             return;
@@ -117,6 +72,6 @@ class VirosBehaviour1 extends BehaviourCard {
     }
 }
 
-VirosBehaviour1.id = 'viros-behaviour-1';
+VirosBehaviour.id = 'viros-behaviour';
 
-module.exports = VirosBehaviour1
+module.exports = VirosBehaviour

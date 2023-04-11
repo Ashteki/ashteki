@@ -36,10 +36,10 @@
             "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-3.png"
         },
         {
-            "name": "Viros Behaviour 1",
-            "stub": "viros-behaviour-1",
+            "name": "Viros Behaviour",
+            "stub": "viros-behaviour",
             "type": "Ready Spell",
-            "imageStub": "http://localhost:4000/img/chimera/viros-behaviour-1.png"
+            "imageStub": "http://localhost:4000/img/chimera/viros-behaviour-%s.png"
         },
         {
             "name": "Rampage",

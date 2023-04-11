@@ -1,4 +1,4 @@
-const { BattlefieldTypes, PhoenixbornTypes, CardType } = require('../../constants');
+const { CardType } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class TriggerUltimateAction extends CardGameAction {

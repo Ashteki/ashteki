@@ -13,7 +13,7 @@ describe('Chimera setup', function () {
                 player2: {
                     dummy: true,
                     phoenixborn: 'viros-s1',
-                    behaviour: 'viros-behaviour-1',
+                    behaviour: 'viros-behaviour',
                     ultimates: ['viros-ultimate-1', 'viros-ultimate-2', 'viros-ultimate-3'],
                     spellboard: [],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']

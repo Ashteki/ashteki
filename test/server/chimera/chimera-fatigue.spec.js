@@ -12,7 +12,7 @@ describe('Chimera fatigue', function () {
                 player2: {
                     dummy: true,
                     phoenixborn: 'viros-s1',
-                    behaviour: 'viros-behaviour-1',
+                    behaviour: 'viros-behaviour',
                     ultimates: ['viros-ultimate-1', 'viros-ultimate-2', 'viros-ultimate-3'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
                     discard: ['iron-scales', 'constrict'],
