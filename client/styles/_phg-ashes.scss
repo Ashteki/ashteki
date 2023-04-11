@@ -1,7 +1,8 @@
 @font-face {
   font-family: 'phg-ashes';
-  src: url('~assets/fonts/phg-ashes.woff2?2676953') format('woff2'),
-    url('~assets/fonts/phg-ashes.woff?2676953') format('woff');
+  // src: url('~assets/fonts/phg-ashes.woff2?2676953') format('woff2'),
+  //   url('~assets/fonts/phg-ashes.woff?2676953') format('woff');
+  src: url("~assets/fonts/phg-ashes.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -162,7 +163,7 @@ button[class*=" phg-"]::before {
 
 /* '' */
 .phg-rage-power:before {
-  content: '\e801';
+  content: '\e816';
 }
 
 /* '' */
