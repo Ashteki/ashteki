@@ -39,7 +39,8 @@ class NightsongCricket extends Card {
                         })),
                         ability.actions.moveCard((context) => ({
                             target: context.targets.myChoice,
-                            destination: 'hand'
+                            destination: 'hand',
+                            showMessage: true
                         }))
                     ]
                 }
