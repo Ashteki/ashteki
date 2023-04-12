@@ -29,6 +29,7 @@ class GuiltLink extends Card {
             location: 'spellboard',
             cost: [ability.costs.sideAction(), ability.costs.exhaust(), ability.costs.loseStatus()],
             target: {
+                activePromptTitle: 'Choose a card to destroy',
                 cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: ability.actions.destroy()
