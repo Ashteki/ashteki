@@ -1,8 +1,7 @@
 import React from 'react';
-import { withTranslation, Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { toastr } from 'react-redux-toastr';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faEye,
@@ -326,10 +325,7 @@ const PlayerStats = ({
                     {player.deckNotes && (
                         <div className='state'>
                             <a href='#' className='pr-1 pl-1' title='Show deck notes'>
-                                <FontAwesomeIcon
-                                    icon={faStickyNote}
-                                    onClick={onDeckNotesClick}
-                                />
+                                <FontAwesomeIcon icon={faStickyNote} onClick={onDeckNotesClick} />
                             </a>
                         </div>
                     )}
