@@ -197,7 +197,9 @@ class DummyPlayer extends Player {
     }
 
     advanceChimeraPhase() {
-        this.chimeraPhase++;
+        if (this.chimeraPhase < 3) {
+            this.chimeraPhase++;
+        }
     }
 }
 
