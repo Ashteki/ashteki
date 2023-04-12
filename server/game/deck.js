@@ -38,7 +38,8 @@ class Deck {
             cards: [],
             diceCounts: [],
             phenixborn: null,
-            dice: []
+            dice: [],
+            notes: this.data.notes
         };
 
         this.eachRepeatedCard(this.data.cards, (cardData) => {

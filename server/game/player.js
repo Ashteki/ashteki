@@ -258,6 +258,7 @@ class Player extends GameObject {
         this.phoenixborn = preparedDeck.phoenixborn;
         this.cardsInPlay = [this.phoenixborn];
         this.dice = preparedDeck.dice;
+        this.deckNotes = preparedDeck.notes;
     }
 
     /**
@@ -745,6 +746,7 @@ class Player extends GameObject {
                 purged: this.getSummaryForCardList(this.purged, activePlayer),
                 spells: this.getSummaryForCardList(this.spellboard, activePlayer)
             },
+            deckNotes: this.game.currentPhase === 'setup' ? this.deckNotes : '',
             disconnected: !!this.disconnectedAt,
             activePlayer: this.game.activePlayer === this,
             gamesPlayed: this.user.gamesPlayed ? this.user.gamesPlayed : 0,

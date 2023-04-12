@@ -25,6 +25,7 @@ import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
 import Clock from './Clock';
 import WinLoseSplash from './WinLoseSplash';
+import DeckNotes from '../../pages/DeckNotes';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -67,6 +68,7 @@ export class GameBoard extends React.Component {
         this.onMessagesClick = this.onMessagesClick.bind(this);
         this.onDiceHistoryClick = this.onDiceHistoryClick.bind(this);
         this.onManualCommandsClick = this.onManualCommandsClick.bind(this);
+        this.onDeckNotesClick = this.onDeckNotesClick.bind(this);
         this.onManualModeClick = this.onManualModeClick.bind(this);
         this.onMuteClick = this.onMuteClick.bind(this);
         this.onWinSplashCloseClick = this.onWinSplashCloseClick.bind(this);
@@ -78,6 +80,7 @@ export class GameBoard extends React.Component {
             showMessages: true,
             showDiceHistory: false,
             showManualCommands: false,
+            showDeckNotes: false,
             showWinSplash: true,
             lastMessageCount: 0,
             newMessages: 0,
@@ -223,6 +226,10 @@ export class GameBoard extends React.Component {
 
     onManualCommandsClick() {
         this.setState({ showManualCommands: !this.state.showManualCommands });
+    }
+
+    onDeckNotesClick() {
+        this.setState({ showDeckNotes: !this.state.showDeckNotes });
     }
 
     onWinSplashCloseClick() {
@@ -497,6 +504,18 @@ export class GameBoard extends React.Component {
                             </MovablePanel>
                         </div>
                     )}
+                    {this.state.showDeckNotes && thisPlayer.deckNotes && (
+                        <div className='info-panel'>
+                            <MovablePanel
+                                title='Deck Notes'
+                                name='Notes'
+                                onCloseClick={this.onDeckNotesClick}
+                                side='bottom'
+                            >
+                                <DeckNotes notes={thisPlayer.deckNotes} />
+                            </MovablePanel>
+                        </div>
+                    )}
                     {this.state.showDiceHistory && (
                         <div>
                             <DiceHistory
@@ -537,6 +556,7 @@ export class GameBoard extends React.Component {
                         matchRecord={this.getMatchRecord(thisPlayer, otherPlayer)}
                         muteSpectators={this.props.currentGame.muteSpectators}
                         numMessages={this.state.newMessages}
+                        onDeckNotesClick={this.onDeckNotesClick}
                         onDiceHistoryClick={this.onDiceHistoryClick}
                         onDragDrop={this.onDragDrop}
                         onManualCommandsClick={this.onManualCommandsClick}
