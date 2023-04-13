@@ -36,7 +36,7 @@ describe('Blink action spell', function () {
         this.player1.endTurn();
         expect(this.anchornaut.location).toBe('play area');
         // enters play ability
-        expect(this.player2).toHavePrompt('Throw 1');
+        expect(this.player2).toHavePromptTitle('Anchornaut');
     });
 
     it('should allow enters play triggers - fire archer', function () {
