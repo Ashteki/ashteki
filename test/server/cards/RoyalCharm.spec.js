@@ -4,9 +4,9 @@ describe('Royal Charm', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    hand: ['mist-spirit', 'enchanted-violinist'],
-                    spellboard: ['royal-charm'],
-                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    hand: ['mist-spirit', 'enchanted-violinist', 'rayward-recruit'],
+                    spellboard: ['royal-charm', 'piercing-light'],
+                    dicepool: ['divine', 'natural', 'charm', 'charm'],
                     archives: ['butterfly-monk']
                 },
                 player2: {
@@ -84,6 +84,24 @@ describe('Royal Charm', function () {
             this.player1.clickCard(this.hammerKnight);
             expect(this.hammerKnight.dieUpgrades.length).toBe(1);
             expect(this.hammerKnight.attack).toBe(2);
+        });
+
+        it('piercing light does not effect RC with divine die', function () {
+            this.player1.play(this.raywardRecruit);
+            this.player1.clickDie(0);
+            this.player1.clickDone(); // choose dice
+            // RC select
+            this.player1.clickDie(0);
+
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.royalCharm.hasModifiedAttack()).toBe(false);
+            expect(this.royalCharm.hasKeyword('overkill')).toBe(false);
+
+            this.player1.clickDieUpgrade(this.royalCharm, 0);
+            this.player1.clickPrompt('Use Die');
+            this.player1.clickCard(this.raywardRecruit);
+            expect(this.raywardRecruit.dieUpgrades.length).toBe(1);
+            expect(this.raywardRecruit.attack).toBe(1);
         });
     });
 });

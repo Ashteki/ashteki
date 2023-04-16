@@ -1,8 +1,7 @@
 import React from 'react';
-import { withTranslation, Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { toastr } from 'react-redux-toastr';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faEye,
@@ -13,7 +12,8 @@ import {
     faCogs,
     faComment,
     faHistory,
-    faBolt
+    faBolt,
+    faStickyNote
 } from '@fortawesome/free-solid-svg-icons';
 import { Badge } from 'react-bootstrap';
 
@@ -42,6 +42,7 @@ const PlayerStats = ({
     muteSpectators,
     numMessages,
     onCardClick,
+    onDeckNotesClick,
     onDiceHistoryClick,
     onDragDrop,
     onManualModeClick,
@@ -321,6 +322,13 @@ const PlayerStats = ({
 
             {showMessages && (
                 <div className='state chat-status'>
+                    {player.deckNotes && (
+                        <div className='state'>
+                            <a href='#' className='pr-1 pl-1' title='Show deck notes'>
+                                <FontAwesomeIcon icon={faStickyNote} onClick={onDeckNotesClick} />
+                            </a>
+                        </div>
+                    )}
                     <div className='state'>
                         <a href='#' className='pr-1 pl-1' title='Show dice/card history'>
                             <FontAwesomeIcon

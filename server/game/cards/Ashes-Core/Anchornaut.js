@@ -9,7 +9,7 @@ class Anchornaut extends Card {
             target: {
                 optional: true,
                 cardCondition: (card, context) => card !== context.source,
-                activePromptTitle: 'Throw 1',
+                activePromptTitle: 'Throw 1\n Choose a unit to deal 1 damage to',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage()
             }

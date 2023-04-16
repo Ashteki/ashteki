@@ -9,6 +9,7 @@ class Ritualist extends Card {
                 activePromptTitle: 'Choose a Chant card to place in your hand',
                 optional: true,
                 cardType: CardType.ReadySpell,
+                controller: 'self',
                 cardCondition: (card) => card.name.includes('Chant'),
                 location: ['discard', 'deck'],
                 gameAction: ability.actions.moveCard({
