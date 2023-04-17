@@ -61,6 +61,13 @@
         border-radius: 0.25rem;
         border: 1px solid rgba(128, 128, 128, 0.53);
     }
+
+    .disconnected {
+        padding: 0px 3px;
+        color: red;
+        border: 1pt dashed red;
+        background-color: black;
+    }
 }
 
 
