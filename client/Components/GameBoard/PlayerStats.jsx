@@ -211,6 +211,13 @@ const PlayerStats = ({
         );
     };
 
+    let playerDisconnect = player.disconnected && (
+        <div className='state'>
+            <div className='disconnected'>
+                Disconnected!
+            </div>
+        </div>
+    )
 
     let playerAvatar = (
         <div className='state'>
@@ -318,7 +325,7 @@ const PlayerStats = ({
                     <div className='state'>{renderDroppableList('hand', hand)}</div>
                 </>
             )}
-
+            {playerDisconnect}
 
             {showMessages && (
                 <div className='state chat-status'>
