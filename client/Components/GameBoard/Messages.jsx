@@ -50,6 +50,10 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
 
     const formatPlayerChatMsg = (fragment, index) => {
         const user = playersLookup[fragment.name];
+        if (!user) {
+            return '_not found_';
+        }
+
         let userClass =
             'username' + (user.role ? ` ${user.role.toLowerCase()}-role` : '');
         let userStyle = {};
@@ -68,6 +72,9 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
 
     const formatplayerNameFragment = (fragment, index) => {
         const user = playersLookup[fragment.name];
+        if (!user) {
+            return '_not found_';
+        }
         let userClass =
             'username' + (user.role ? ` ${user.role.toLowerCase()}-role` : '');
         let userStyle = {};
