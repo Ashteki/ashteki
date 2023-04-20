@@ -50,22 +50,11 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
 
     const formatPlayerChatMsg = (fragment, index) => {
         const user = playersLookup[fragment.name];
-        if (!user) {
-            return '_not found_';
-        }
-
-        let userClass =
-            'username' + (user.role ? ` ${user.role.toLowerCase()}-role` : '');
-        let userStyle = {};
-        if (user.faveColor) {
-            userStyle.color = user.faveColor;
-        }
+        const avatar = user && <Avatar imgPath={user.avatar} float />;
         return (
             <div key={index++} className='message-chat'>
-                <Avatar imgPath={user.avatar} float />
-                <span key={index++} className={userClass} style={userStyle}>
-                    {user.name}
-                </span>
+                {avatar}
+                {formatplayerNameFragment(fragment, index)}
             </div>
         );
     }
@@ -73,10 +62,9 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const formatplayerNameFragment = (fragment, index) => {
         const user = playersLookup[fragment.name];
         if (!user) {
-            return '_not found_';
+            return fragment.name; // plain player name
         }
-        let userClass =
-            'username' + (user.role ? ` ${user.role.toLowerCase()}-role` : '');
+        let userClass = 'username' + (user.role ? ` ${user.role.toLowerCase()}-role` : '');
         let userStyle = {};
         if (user.faveColor) {
             userStyle.color = user.faveColor;
