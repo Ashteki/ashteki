@@ -379,6 +379,7 @@ export class GameBoard extends React.Component {
                             leftMode={leftMode}
                             manualMode={this.props.currentGame.manualMode}
                             onCardClick={this.onCardClick}
+                            onCardAltClick={this.onCardAltClick}
                             onDragDrop={this.onDragDrop}
                             onMouseOut={this.onMouseOut}
                             onMouseOver={this.onMouseOver}

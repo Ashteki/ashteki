@@ -41,8 +41,12 @@ const Card = ({
     };
     const [showMenu, setShowMenu] = useState(false);
     const gameRound = useSelector((state) => state.lobby.currentGame?.round);
-    const showAltIcon = useSelector((state) => state.lobby.currentGame?.round === 0);
-    const showChains = useSelector((state) => !['firstadventure', 'precon'].includes(state.lobby.currentGame.gameFormat));
+    const showAltIcon =
+        useSelector((state) => state.lobby.currentGame?.round === 0) ||
+        card.location === 'archives';
+    const showChains = useSelector(
+        (state) => !['firstadventure', 'precon'].includes(state.lobby.currentGame.gameFormat)
+    );
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
         item: { card: card, source: source, type: ItemTypes.CARD },

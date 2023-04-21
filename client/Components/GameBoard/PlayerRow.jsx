@@ -6,7 +6,6 @@ import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
 import DiceBox from './DiceBox';
 import './PlayerRow.scss';
-import { useSelector } from 'react-redux';
 
 const PlayerRow = ({
     archives,
@@ -16,6 +15,7 @@ const PlayerRow = ({
     leftMode,
     manualMode,
     onCardClick,
+    onCardAltClick,
     onDragDrop,
     onMouseOut,
     onMouseOver,
@@ -61,6 +61,7 @@ const PlayerRow = ({
     let cardPileProps = {
         manualMode: manualMode,
         onCardClick: onCardClick,
+        onCardAltClick: onCardAltClick,
         onDragDrop: onDragDrop,
         onMouseOut: onMouseOut,
         onMouseOver: onMouseOver,
