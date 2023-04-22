@@ -11,25 +11,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const owner = useSelector(
         (state) => state.lobby.currentGame.players[state.lobby.currentGame.owner]
     );
-
-    // doesn't work in lobby mode - only game
-    const playersLookup = useSelector((state) => {
-        const pHolder = {};
-        for (const player in state.lobby.currentGame.players) {
-            const p = state.lobby.currentGame.players[player];
-            const item = {
-                name: p.name,
-                argType: p.argType,
-                avatar: p.avatar
-            };
-            if (p.user) {
-                item.role = p.user.role;
-                item.faveColor = p.user.faveColor;
-            }
-            pHolder[p.name] = item;
-        }
-        return pHolder;
-    });
+    const users = useSelector((state) => state.lobby.users);
 
     const getMessage = () => {
         return messages.map((message, index) => {
@@ -48,8 +30,12 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
         });
     };
 
+    const getUserDetails = (name) => {
+        return users.find((u) => u.username === name);
+    };
+
     const formatPlayerChatMsg = (fragment, index) => {
-        const user = playersLookup[fragment.name];
+        const user = getUserDetails(fragment.name);
         const avatar = user && <Avatar imgPath={user.avatar} float />;
         return (
             <div key={index++} className='message-chat'>
@@ -60,7 +46,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     }
 
     const formatplayerNameFragment = (fragment, index) => {
-        const user = playersLookup[fragment.name];
+        const user = getUserDetails(fragment.name);
         if (!user) {
             return fragment.name; // plain player name
         }
