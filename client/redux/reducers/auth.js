@@ -19,7 +19,8 @@ export default function (state = {}, action) {
 
             return Object.assign({}, state, {
                 token: action.response.token,
-                refreshToken: action.response.refreshToken
+                refreshToken: action.response.refreshToken,
+                user: action.response.user
             });
         case 'ACCOUNT_LOGGEDOUT':
             localStorage.removeItem('token');
