@@ -161,6 +161,22 @@ class ChooseDefendersPrompt extends UiPrompt {
                     this.choosingPlayer,
                     this.selectedCard
                 );
+                // if (this.selectedCard.type === CardType.Phoenixborn) {
+                this.game.queueUserAlert(this.context, {
+                    timed: true,
+                    promptTitle: 'PB Guarded',
+                    menuTitle:
+                        this.context.player.name + ' uses ' + this.selectedCard.name + ' to guard',
+                    controls: [
+                        {
+                            type: 'targeting',
+                            source: this.selectedCard.getShortSummary()
+                            // ,
+                            // targets: [this.attack.target.getShortSummary()]
+                        }
+                    ]
+                });
+                // }
                 this.game.checkGameState(true);
                 this.selectedCard = null;
                 this.clearSelection();
