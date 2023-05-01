@@ -26,15 +26,17 @@
     }
 }
 
-.player-board{
-    .card-wrapper{
+.player-board {
+    padding: 10px;
+
+    .card-wrapper {
         margin-right: 10px;
         margin-bottom: 5px;
 
     }
 
-    &.active-player{
-        // background-color: rgba(248, 247, 216, 0.7);
-
+    &.active-player {
+        background-color: rgba(248, 247, 216, 0.7);
+        background-color: $active-player-color;
     }
 }

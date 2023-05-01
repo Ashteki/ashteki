@@ -262,6 +262,7 @@ export class GameBoard extends React.Component {
                 <div className='player-home-row'>
                     {!compactLayout &&
                         (<PlayerRow
+                            active={otherPlayer.activePlayer}
                             archives={otherPlayer.cardPiles.archives}
                             cardSize={cardSize}
                             isMe={false}
@@ -280,6 +281,7 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='player-home-row'>
                     <PlayerPBRow
+                        active={otherPlayer.activePlayer}
                         cardSize={cardSize}
                         discard={otherPlayer.cardPiles.discard}
                         drawDeck={otherPlayer.cardPiles.deck}
@@ -343,6 +345,7 @@ export class GameBoard extends React.Component {
                 </div>
                 <div className='player-home-row our-side'>
                     <PlayerPBRow
+                        active={thisPlayer.activePlayer}
                         cardSize={cardSize}
                         discard={thisPlayer.cardPiles.discard}
                         drawDeck={thisPlayer.cardPiles.deck}
@@ -372,6 +375,7 @@ export class GameBoard extends React.Component {
                 <div className='player-home-row our-side'>
                     {!(spectating && compactLayout) && (
                         <PlayerRow
+                            active={thisPlayer.activePlayer}
                             archives={thisPlayer.cardPiles.archives}
                             cardSize={cardSize}
                             isMe={!spectating}
