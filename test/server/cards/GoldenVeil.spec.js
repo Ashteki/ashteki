@@ -331,6 +331,41 @@ describe('Golden Veil', function () {
         });
     });
 
+    describe('GV vs Serve the City', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['mist-spirit', 'iron-worker', 'time-hopper'],
+                    spellboard: ['serve-the-city'],
+                    dicepool: ['time', 'natural', 'illusion'],
+                    hand: ['disengage']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['flute-mage', 'hammer-knight'],
+                    spellboard: [],
+                    archives: ['sleeping-widow'],
+                    hand: ['golden-veil'],
+                    dicepool: ['charm']
+                }
+            });
+        });
+
+        it('does not trigger golden veil (target for StC is not a real target unit selection)', function () {
+            this.player1.clickCard(this.serveTheCity);
+            this.player1.clickPrompt('Serve the City');
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.fluteMage);
+
+            this.player2.clickDone(); // guard
+            this.player2.clickYes(); // counter
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.ironWorker.location).toBe('discard');
+            expect(this.fluteMage.location).toBe('discard');
+        });
+    });
+
     describe('GV vs Disengage', function () {
         beforeEach(function () {
             this.setupTest({
