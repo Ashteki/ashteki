@@ -51,7 +51,7 @@ describe('Polarity Mage', function () {
                     inPlay: ['iron-worker'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'sympathy', 'sympathy'],
-                    hand: ['polarity-mage', 'massive-growth']
+                    hand: ['polarity-mage', 'massive-growth', 'change-of-heart']
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
@@ -102,6 +102,32 @@ describe('Polarity Mage', function () {
 
             expect(this.massiveGrowth.location).toBe('play area');
         });
+
+        it('Discard from Play NOT pb attachment', function () {
+            this.player1.clickCard(this.changeOfHeart);
+            this.player1.clickPrompt('Play this Alteration');
+            this.player1.clickDie(3);
+
+            expect(this.coalRoarkwin.upgrades[0]).toBe(this.changeOfHeart);
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            this.player1.clickCard(this.polarityMage);
+            this.player1.clickPrompt('Play this Ally');
+            this.player1.clickDie(2);
+            expect(this.polarityMage.location).toBe('play area');
+            // no option to activate discard
+            // this.player1.clickPrompt('Discard card');
+            // expect(this.player1).toHavePrompt('Choose a card');
+
+            // this.player1.clickCard(this.changeOfHeart);
+
+            // does nothing
+            expect(this.changeOfHeart.location).toBe('play area');
+            expect(this.coalRoarkwin.upgrades[0]).toBe(this.changeOfHeart);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
     });
 
     describe('enters play - Discard from Play', function () {
