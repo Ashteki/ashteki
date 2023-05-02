@@ -821,7 +821,7 @@ class Game extends EventEmitter {
     }
 
     queueUserAlert(context, options = {}) {
-        const player = context.player.opponent;
+        const player = options.self ? context.player : context.player.opponent;
         const timerLength = player.getAlertTimerSetting();
         // don't show timed alerts to players who set timerLength to 0
         if (options.timed && timerLength === 0) {

@@ -23,6 +23,19 @@ class RandomExposeAction extends PlayerAction {
             let cards = _.shuffle(player.hand).slice(0, amount);
 
             context.game.addMessage('{0} reveals {1} from their hand', player, cards);
+            context.game.queueUserAlert(context, {
+                // timed: true,
+                self: true,
+                promptTitle: 'Three-Eyed Owl',
+                menuTitle: player.name + ' reveals ' + cards.map((c) => c.name).join(', '),
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: context.source.getShortSummary(),
+                        targets: cards.map(c => c.getShortSummary())
+                    }
+                ]
+            });
         });
     }
 }
