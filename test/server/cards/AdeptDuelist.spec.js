@@ -3,7 +3,7 @@ describe('Adept duelist', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['anchornaut', 'iron-worker'],
+                inPlay: ['anchornaut', 'iron-worker', 'stormwind-sniper'],
                 dicepool: ['natural', 'illusion', 'ceremonial', 'charm'],
                 hand: ['root-armor']
             },
@@ -18,6 +18,19 @@ describe('Adept duelist', function () {
     });
 
     it('removes upgrade', function () {
+        this.player1.playUpgrade(this.rootArmor, this.stormwindSniper);
+        this.player1.endTurn();
+        this.player2.clickAttack(this.coalRoarkwin);
+        this.player2.clickCard(this.adeptDuelist);
+        this.player2.clickDone();
+        // reaction to onAttackersDeclared
+        this.player2.clickCard(this.adeptDuelist);
+        this.player2.clickCard(this.rootArmor); // remove this
+
+        expect(this.rootArmor.location).toBe('discard');
+    });
+
+    it('removes upgrade on concealed unit', function () {
         this.player1.playUpgrade(this.rootArmor, this.anchornaut);
         this.player1.endTurn();
         this.player2.clickAttack(this.ironWorker);
@@ -28,6 +41,7 @@ describe('Adept duelist', function () {
 
         expect(this.rootArmor.location).toBe('discard');
     });
+
 
     it("removes own upgrade on opponent's unit", function () {
         this.player1.playUpgrade(this.rootArmor, this.anchornaut);

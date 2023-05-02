@@ -3,7 +3,7 @@ describe('Blood Archer', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'brennen-blackcloud',
-                inPlay: ['blood-archer']
+                inPlay: ['blood-archer', 'glow-finch']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -31,4 +31,18 @@ describe('Blood Archer', function () {
         expect(this.bloodArcher.location).toBe('discard');
         expect(this.fluteMage.damage).toBe(1);
     });
+
+    it('vs glow finch triggers GF discard', function () {
+        const deckSize = this.player2.deck.length;
+        this.player1.clickCard(this.bloodArcher);
+        this.player1.clickPrompt('Blood Shot');
+        this.player1.clickCard(this.glowFinch);
+        this.player1.clickYes();
+
+        expect(this.bloodArcher.damage).toBe(1);
+        expect(this.bloodArcher.exhaustion).toBe(0);
+        expect(this.glowFinch.location).toBe('archives');
+        expect(this.player2.deck.length).toBe(deckSize - 2);
+    });
+
 });
