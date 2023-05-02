@@ -41,6 +41,10 @@ export default function (state = {}, action) {
                 refreshToken: action.refreshToken,
                 user: action.user || state.user
             });
+        case 'ACCOUNT_AUTH_VERIFIED':
+            return Object.assign({}, state, {
+                user: action.response.user
+            });
     }
 
     return state;
