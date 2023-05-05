@@ -8,7 +8,7 @@ describe('Unit attacks', function () {
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['flute-mage', 'gilder'],
+                inPlay: ['flute-mage', 'gilder', 'sleeping-widow'],
                 spellboard: [],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 hand: ['anchornaut']
@@ -157,6 +157,21 @@ describe('Unit attacks', function () {
         expect(this.fluteMage.location).toBe('discard');
         expect(this.ironWorker.tokens.damage).toBe(this.fluteMage.attack);
         expect(this.ironWorker.exhausted).toBe(true);
+    });
+
+    it('simultaneous damage kills both', function () {
+        expect(this.sleepingWidow.tokens.damage).toBeUndefined();
+        expect(this.ironWorker.tokens.damage).toBeUndefined();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.sleepingWidow); // target
+        this.player1.clickCard(this.ironWorker); // single attacker
+
+        this.player2.clickPrompt('Done'); // no guard
+        this.player2.clickPrompt('Yes'); // DO counter
+
+        expect(this.sleepingWidow.location).toBe('archives');
+        expect(this.ironWorker.location).toBe('discard');
     });
 
     it('defender may not counter when exhausted', function () {

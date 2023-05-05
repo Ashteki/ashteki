@@ -113,7 +113,8 @@ class AddTokenAction extends CardGameAction {
                             }
                         }
                     );
-                    tokenEvent.addSubEvent(killerEvent);
+                    // tokenEvent.addSubEvent(killerEvent);
+                    context.game.openEventWindow(killerEvent);
                 }
             }
         );

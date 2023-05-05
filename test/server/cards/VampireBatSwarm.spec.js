@@ -200,7 +200,7 @@ describe('Vampire Bat Swarm', function () {
 
             expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
             this.player2.clickYes();
-            // pulse
+            // pulse 
             this.player1.clickCard(this.vampireBatSwarm);
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
