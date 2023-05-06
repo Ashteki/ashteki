@@ -11,10 +11,11 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const owner = useSelector(
         (state) => state.lobby.currentGame.players[state.lobby.currentGame.owner]
     );
+    const users = useSelector((state) => state.lobby.users);
 
     const getMessage = () => {
         return messages.map((message, index) => {
-            let className = classNames('message', 'mb-1', {
+            let className = classNames('message', {
                 'this-player': message.activePlayer && message.activePlayer == owner.name,
                 'other-player': message.activePlayer && message.activePlayer !== owner.name,
                 'chat-bubble': Object.values(message.message).some(
@@ -28,6 +29,38 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             );
         });
     };
+
+    const getUserDetails = (name) => {
+        return users.find((u) => u.username === name);
+    };
+
+    const formatPlayerChatMsg = (fragment, index) => {
+        const user = getUserDetails(fragment.name);
+        const avatar = user && <Avatar imgPath={user.avatar} float />;
+        return (
+            <div key={index++} className='message-chat'>
+                {avatar}
+                {formatplayerNameFragment(fragment, index)}
+            </div>
+        );
+    }
+
+    const formatplayerNameFragment = (fragment, index) => {
+        const user = getUserDetails(fragment.name);
+        if (!user) {
+            return fragment.name; // plain player name
+        }
+        let userClass = 'username' + (user.role ? ` ${user.role.toLowerCase()}-role` : '');
+        let userStyle = {};
+        if (user.faveColor) {
+            userStyle.color = user.faveColor;
+        }
+        return (
+            <span key={index++} className={userClass} style={userStyle}>
+                {user.name}
+            </span>
+        );
+    }
 
     const formatMessageText = (message) => {
         let index = 0;
@@ -119,32 +152,11 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                     </span>
                 );
             } else if (fragment.name && fragment.argType === 'player') {
-                let userClass =
-                    'username' + (fragment.role ? ` ${fragment.role.toLowerCase()}-role` : '');
-                let userStyle = {};
-                if (fragment.faveColor) {
-                    userStyle.color = fragment.faveColor;
-                }
-                messages.push(
-                    <div key={index++} className='message-chat mb-1'>
-                        <Avatar imgPath={fragment.avatar} float />
-                        <span key={index++} className={userClass} style={userStyle}>
-                            {fragment.name}
-                        </span>
-                    </div>
-                );
+                messages.push(formatPlayerChatMsg(fragment, index));
+
             } else if (fragment.argType === 'nonAvatarPlayer') {
-                let userClass =
-                    'username' + (fragment.role ? ` ${fragment.role.toLowerCase()}-role` : '');
-                let userStyle = {};
-                if (fragment.faveColor) {
-                    userStyle.color = fragment.faveColor;
-                }
-                messages.push(
-                    <span key={index++} className={userClass} style={userStyle}>
-                        {fragment.name}
-                    </span>
-                );
+                messages.push(formatplayerNameFragment(fragment, index));
+
             } else if (fragment.argType === 'die') {
                 let diceFont = 'phg-basic-magic';
 

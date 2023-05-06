@@ -6,6 +6,11 @@
 
 .player-home-row-container {
     display: flex;
+    width: 100%;
+
+    &.active-player {
+        // background-color: $active-player-color;
+    }
 }
 
 .spellboard {

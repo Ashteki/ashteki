@@ -22,6 +22,7 @@ if (process.argv[3] !== '') {
         });
     // .then(() => db.close());
 
+    console.log('updating game for player: ' + oldName + ' to: ' + newName);
     const colGames = db.get('games');
     colGames
         .update(
@@ -35,11 +36,26 @@ if (process.argv[3] !== '') {
         });
     // .then(() => db.close());
 
+    console.log('updating game winner for player: ' + oldName + ' to: ' + newName);
     const colGames2 = db.get('games');
     colGames2
         .update(
             { winner: oldName },
             { $set: { winner: newName } },
+            { multi: true }
+        )
+        .then((result) => {
+            // Updated the document with the field a equal to 2
+            console.log(result);
+        });
+    // .then(() => db.close());
+
+    console.log('updating deck username for : ' + oldName + ' to: ' + newName);
+    const coldecks = db.get('decks');
+    coldecks
+        .update(
+            { username: oldName },
+            { $set: { username: newName } },
             { multi: true }
         )
         .then((result) => {

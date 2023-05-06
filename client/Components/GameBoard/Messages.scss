@@ -24,11 +24,11 @@
 }
 
 
-.message.mb-1.this-player {
+.message.this-player {
     background: #0035734d;
 }
 
-.message.mb-1.other-player {
+.message.other-player {
     background: #791e1e4d;
 }
 
@@ -38,19 +38,19 @@
     }
 }
 
-.chat-bubble .message-chat{
+.chat-bubble .message-chat {
     background: #ffffff3d;
     border-radius: 5px 5px 0 0;
     padding: 5px;
 
-    .gravatar{
+    .gravatar {
         width: 14px;
         height: 14px;
         margin-top: -3px;
     }
 }
 
-.chat-bubble .message-fragment + .message-fragment{
+.chat-bubble .message-fragment+.message-fragment {
     background: #ffffff3d;
     border-radius: 0 0 5px 5px;
     padding: 0 5px 5px 5px;
@@ -59,7 +59,7 @@
     display: block;
 }
 
-.chat-bubble .message-fragment + .message-fragment:after {
+.chat-bubble .message-fragment+.message-fragment:after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -89,12 +89,12 @@
     }
 }
 
-.messages .mb-1{
+.messages .mb-1 {
     margin-bottom: 0 !important;
     padding-bottom: 0.25rem;
 }
 
-.messages .mt-2{
+.messages .mt-2 {
     margin-top: 0 !important;
     margin-bottom: 0.2rem;
 }
@@ -138,7 +138,7 @@
     margin: 0px -6px -7px -6px;
 }
 
-.startofround .username{
+.startofround .username {
     text-transform: none;
     font-weight: 300 !important;
 }

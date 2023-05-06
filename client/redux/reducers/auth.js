@@ -19,7 +19,8 @@ export default function (state = {}, action) {
 
             return Object.assign({}, state, {
                 token: action.response.token,
-                refreshToken: action.response.refreshToken
+                refreshToken: action.response.refreshToken,
+                user: action.response.user
             });
         case 'ACCOUNT_LOGGEDOUT':
             localStorage.removeItem('token');
@@ -39,6 +40,10 @@ export default function (state = {}, action) {
                 token: action.token,
                 refreshToken: action.refreshToken,
                 user: action.user || state.user
+            });
+        case 'ACCOUNT_AUTH_VERIFIED':
+            return Object.assign({}, state, {
+                user: action.response.user
             });
     }
 

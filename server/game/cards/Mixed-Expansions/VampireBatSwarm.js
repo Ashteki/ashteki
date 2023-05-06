@@ -10,27 +10,33 @@ class VampireBatSwarm extends Card {
         this.forcedInterrupt({
             autoResolve: true,
             when: {
-                onCardLeavesPlay: (event, context) =>
+                whenCardDestroyed: (event, context) =>
                     event.triggeringEvent &&
                     event.triggeringEvent.name === 'onCardDestroyed' &&
                     event.card === context.source
             },
             may: 'activate Swarm',
-            cost: ability.costs.dice(
+            cost: ability.costs.dice([
                 [
-                    [
-                        new DiceCount(1, Level.Class, Magic.Ceremonial),
-                        new DiceCount(1, Level.Class, Magic.Sympathy)
-                    ]
+                    new DiceCount(1, Level.Class, Magic.Ceremonial),
+                    new DiceCount(1, Level.Class, Magic.Sympathy)
                 ]
-            ),
+            ]),
             gameAction: [
+                ability.actions.changeEvent((context) => ({
+                    event: context.event.leavesPlayEvent,
+                    handler: () => true
+                })),
                 ability.actions.removeFromBattle((context) => ({
                     target: context.source,
                     forceRemoval: true
                 })),
+                ability.actions.purge((context) => ({
+                    target: context.source
+                })),
+
                 ability.actions.addEventToWindow((context) => ({
-                    subEvent: true,
+                    //    / subEvent: true,
                     targetEvent: context.event,
                     eventToAdd: ability.actions
                         .putIntoPlay()

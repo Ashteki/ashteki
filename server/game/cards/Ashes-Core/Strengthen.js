@@ -8,6 +8,7 @@ class Strengthen extends Card {
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
             target: {
+                showCancel: true,
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',

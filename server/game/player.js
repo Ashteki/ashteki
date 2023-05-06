@@ -273,6 +273,7 @@ class Player extends GameObject {
             this.spellboard = [this.ultimate, this.behaviour];
         }
         this.dice = preparedDeck.dice;
+        this.deckNotes = preparedDeck.notes;
     }
 
     get ultimate() {
@@ -772,6 +773,7 @@ class Player extends GameObject {
                 purged: this.getSummaryForCardList(this.purged, activePlayer),
                 spells: this.getSummaryForCardList(this.spellboard, activePlayer)
             },
+            deckNotes: this.game.currentPhase === 'setup' ? this.deckNotes : '',
             disconnected: !!this.disconnectedAt,
             activePlayer: this.game.activePlayer === this,
             gamesPlayed: this.user.gamesPlayed ? this.user.gamesPlayed : 0,

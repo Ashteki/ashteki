@@ -5,11 +5,13 @@ import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
 import DrawDeck from './DrawDeck';
 import Card from './Card';
+import classNames from 'classnames';
 
 import './PlayerRow.scss';
 import DiceBox from './DiceBox';
 
 const PlayerPBRow = ({
+    active,
     cardSize,
     discard,
     drawDeck,
@@ -144,8 +146,12 @@ const PlayerPBRow = ({
             </div>
         );
     };
+    const cn = classNames('player-home-row-container pt-1 pb-1', {
+        'active-player': active
+    });
+
     return (
-        <div className='player-home-row-container pt-1'>
+        <div className={cn}>
             {showDice && renderResources(player.dice)}
             {renderDroppablePile('discard', discardToRender)}
             {showDeckPile && renderDroppablePile('deck', drawDeckToRender)}

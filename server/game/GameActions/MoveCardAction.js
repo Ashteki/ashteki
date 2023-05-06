@@ -49,7 +49,7 @@ class MoveCardAction extends CardGameAction {
                 if (this.showMessage) {
                     context.game.addMessage(
                         '{0} moves {1} to their {2}',
-                        context.player,
+                        card.owner,
                         card,
                         this.destination
                     );

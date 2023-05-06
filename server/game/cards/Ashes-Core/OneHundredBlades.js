@@ -7,6 +7,7 @@ class OneHundredBlades extends Card {
             title: 'One Hundred Blades',
             effect: "deal 1 damage to {0} and all opponent's units",
             target: {
+                activePromptTitle: 'Choose a phoenixborn to deal 1 damage to',
                 cardType: PhoenixbornTypes,
                 gameAction: ability.actions.dealDamage()
             },

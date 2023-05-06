@@ -39,8 +39,6 @@ const CardLog = ({ items, onMouseOut, onMouseOver }) => {
     }
 
     const renderItem = (item, last = false) => {
-        if (!show) return '';
-
         if (item.type === 'attack') {
             return renderAttack(item.obj);
         }
@@ -87,7 +85,8 @@ const CardLog = ({ items, onMouseOut, onMouseOver }) => {
         <div className='cardlog-wrapper'>
             {firstCard}
             <div className='card-log bg-dark'>
-                {cardPics}
+
+                {show && cardPics}
                 <div className='card-log-arrow' onClick={() => setShow(!show)}>
                     {arrow}
                 </div>

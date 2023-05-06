@@ -13,10 +13,7 @@ class GameChat {
         let args = [
             {
                 name: player.name,
-                argType: 'player',
-                role: player.user && player.user.role,
-                avatar: player.user && player.user.avatar,
-                faveColor: player.user.faveColor
+                argType: 'player'
             },
             message
         ];
@@ -31,18 +28,12 @@ class GameChat {
             if (arg instanceof Spectator) {
                 return {
                     name: arg.name,
-                    argType: 'nonAvatarPlayer',
-                    role: arg.user.role,
-                    avatar: arg.user.avatar,
-                    faveColor: arg.user.faveColor
+                    argType: 'nonAvatarPlayer'
                 };
             } else if (arg && arg.name && arg.argType === 'player') {
                 return {
                     name: arg.name,
-                    argType: arg.argType,
-                    role: arg.user.role,
-                    avatar: arg.user.avatar,
-                    faveColor: arg.user.faveColor
+                    argType: arg.argType
                 };
             }
 
@@ -97,9 +88,7 @@ class GameChat {
                     } else if (arg instanceof Spectator || arg instanceof Player) {
                         returnedFraments.push({
                             name: arg.user.username,
-                            argType: 'nonAvatarPlayer',
-                            role: arg.user.role,
-                            faveColor: arg.user.faveColor
+                            argType: 'nonAvatarPlayer'
                         });
                     } else if (arg instanceof Die) {
                         returnedFraments.push({

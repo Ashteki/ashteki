@@ -1,19 +1,15 @@
 const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
-const DiceCount = require('../../DiceCount.js');
 
 class ServeTheCity extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Serve the City',
-            cost: [
-                ability.costs.mainAction(),
-                ability.costs.exhaust()
-            ],
+            cost: [ability.costs.mainAction(), ability.costs.exhaust()],
             location: 'spellboard',
             target: {
                 optional: true,
-                cardCondition: (card, context) => !card.exhausted,
+                cardCondition: (card) => !card.exhausted,
                 activePromptTitle: 'Choose a unit to Serve the City',
                 cardType: BattlefieldTypes,
                 controller: 'self',
@@ -29,6 +25,7 @@ class ServeTheCity extends Card {
                     condition: (context) => context.preThenEvent.context.preThenEvent.card.canAttack(),
                     target: {
                         optional: true,
+                        ignoreTargetCheck: true,
                         activePromptTitle: 'Choose a target to attack',
                         cardCondition: (card) => !card.anyEffect('cannotBeAttackTarget'),
                         cardType: [...PhoenixbornTypes, ...BattlefieldTypes],

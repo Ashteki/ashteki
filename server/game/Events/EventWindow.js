@@ -32,6 +32,9 @@ class EventWindow extends BaseStepWithPipeline {
 
     openAbilityWindow(abilityType) {
         logger.debug(abilityType + 'window for ' + this.event.name);
+        // if (!['onResolveAbility', 'unnamedEvent', 'onAbilityInitiated', 'onAbilityResolved'].includes(this.event.name)) {
+        //     console.log(abilityType + 'window for ' + this.event.name + ': ' + this.event.card);
+        // }
 
         let events = this.event.getSimultaneousEvents();
         if (

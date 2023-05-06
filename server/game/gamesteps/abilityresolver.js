@@ -177,7 +177,7 @@ class AbilityResolver extends BaseStepWithPipeline {
             this.game.queueUserAlert(this.context, {
                 timed: true,
                 promptTitle: 'Reaction Played',
-                menuTitle: this.context.player.name + ' plays a reaction',
+                menuTitle: this.context.player.name + ' plays a reaction'
             });
         }
 

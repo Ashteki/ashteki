@@ -1,4 +1,4 @@
-const { CardType, UpgradeCardTypes } = require('../../../constants.js');
+const { CardType, UpgradeCardTypes, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class PolarityMage extends Card {
@@ -21,7 +21,8 @@ class PolarityMage extends Card {
                         promptForSelect: {
                             optional: true,
                             cardType: UpgradeCardTypes,
-                            controller: 'self'
+                            controller: 'self',
+                            cardCondition: (card) => BattlefieldTypes.includes(card.parent.type)
                         },
                         showMessage: true
                     })

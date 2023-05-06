@@ -868,7 +868,7 @@ class Game extends EventEmitter {
     }
 
     queueUserAlert(context, options = {}) {
-        const player = context.player.opponent;
+        const player = options.self ? context.player : context.player.opponent;
         const timerLength = player.getAlertTimerSetting();
         // don't show timed alerts to players who set timerLength to 0
         if (options.timed && timerLength === 0) {
@@ -890,6 +890,7 @@ class Game extends EventEmitter {
             buttons: buttons,
             style: options.style
         }
+
         if (options.timed) {
             activePrompt.timerLength = timerLength;
         }
@@ -903,7 +904,6 @@ class Game extends EventEmitter {
                 activePrompt: activePrompt
             }
         );
-
     }
 
     // from triggered ability window
@@ -1638,6 +1638,7 @@ class Game extends EventEmitter {
         if (this.started) {
             for (const player of this.getPlayers()) {
                 playerState[player.name] = player.getState(activePlayer);
+                playerState[player.name].connected = !!player.socket;
             }
 
             const result = {
