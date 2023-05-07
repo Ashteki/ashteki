@@ -5,9 +5,15 @@ class Regenerate extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
-        this.destroyed({
+        this.forcedInterrupt({
             inexhaustible: true,
             title: 'Regenerate',
+            when: {
+                whenCardDestroyed: (event, context) =>
+                    event.triggeringEvent &&
+                    event.triggeringEvent.name === 'onCardDestroyed' &&
+                    event.card === context.source
+            },
             target: {
                 toSelect: 'die',
                 autoTarget: (context) => context.source.owner.dice.find(d => d.level === Level.Basic),
@@ -20,6 +26,10 @@ class Regenerate extends AspectCard {
                         condition: (context) => context.preThenEvent.dice[0].level === Level.Basic,
                         trueGameAction:
                             [
+                                ability.actions.changeEvent((context) => ({
+                                    event: context.preThenEvent.context.event.leavesPlayEvent,
+                                    handler: () => true
+                                })),
                                 ability.actions.removeFromBattle((context) => ({
                                     target: context.source,
                                     forceRemoval: true

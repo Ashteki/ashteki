@@ -94,6 +94,7 @@ class SelectCardPrompt extends UiPrompt {
         this.revealTargets = properties.revealTargets;
         this.revealFunc = null;
         this.savePreviouslySelectedCards();
+        this.style = properties.style;
     }
 
     defaultProperties() {
@@ -205,7 +206,8 @@ class SelectCardPrompt extends UiPrompt {
                 this.selector.defaultActivePromptTitle(this.context),
             buttons: buttons,
             promptTitle: this.promptTitle,
-            controls: this.properties.controls
+            controls: this.properties.controls,
+            style: this.style
         };
     }
 

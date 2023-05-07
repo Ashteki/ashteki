@@ -843,7 +843,13 @@ class Game extends EventEmitter {
      * @param {Object} properties - see selectcardprompt
      */
     promptForSelect(player, properties) {
-        this.queueStep(new SelectCardPrompt(this, player, properties));
+        let choosingPlayer = player;
+        if (choosingPlayer.isDummy) {
+            choosingPlayer = choosingPlayer.opponent;
+            properties.promptTitle = 'CHIMERA CHOICE';
+            properties.style = 'danger';
+        }
+        this.queueStep(new SelectCardPrompt(this, choosingPlayer, properties));
     }
 
     promptForDieSelect(player, properties) {
@@ -871,7 +877,7 @@ class Game extends EventEmitter {
         const player = options.self ? context.player : context.player.opponent;
         const timerLength = player.getAlertTimerSetting();
         // don't show timed alerts to players who set timerLength to 0
-        if (options.timed && timerLength === 0) {
+        if ((this.solo && player instanceof DummyPlayer) || (options.timed && timerLength === 0)) {
             return;
         }
 
@@ -1566,7 +1572,7 @@ class Game extends EventEmitter {
     logMeditation(player) {
         this.cardsPlayed.push({ act: 'med', obj: player });
     }
-    
+
     initiateAttack(target, attacker) {
         if (PhoenixbornTypes.includes(target.type)) {
             this.initiatePBAttack(target, attacker);
