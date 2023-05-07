@@ -1,30 +1,14 @@
 import React from 'react';
 import Panel from '../Site/Panel';
 import { Form } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 
-/**
- * @typedef { import('./Profile').ProfileDetails } ProfileDetails
- */
-
-/**
- * @typedef InGameSettingsProps
- * @property {import('formik').FormikProps<ProfileDetails>} formProps
- * @property {User} user
- */
-
-/**
- * @param {InGameSettingsProps} props
- */
 const InGameSettings = ({ formProps }) => {
-    const { t } = useTranslation();
-
     return (
-        <Panel title={t('Game Settings')}>
+        <Panel title='Game Settings'>
             <Form.Check
                 id='orderForcedAbilities'
                 name='gameOptions.orderForcedAbilities'
-                label={t('Prompt to order simultaneous abilities')}
+                label='Prompt to order simultaneous abilities'
                 type='switch'
                 checked={formProps.values.gameOptions.orderForcedAbilities}
                 onChange={formProps.handleChange}
@@ -33,7 +17,7 @@ const InGameSettings = ({ formProps }) => {
             <Form.Check
                 id='confirmOneClick'
                 name='gameOptions.confirmOneClick'
-                label={t('Show a prompt when initating 1-click abilities')}
+                label='Show a prompt when initating 1-click abilities'
                 type='switch'
                 checked={formProps.values.gameOptions.confirmOneClick}
                 onChange={formProps.handleChange}
@@ -42,7 +26,7 @@ const InGameSettings = ({ formProps }) => {
             <Form.Check
                 id='alwaysGroupTactics'
                 name='gameOptions.alwaysGroupTactics'
-                label={t('Always trigger Group Tactics without asking')}
+                label='Always trigger Group Tactics without asking'
                 type='switch'
                 checked={formProps.values.gameOptions.alwaysGroupTactics}
                 onChange={formProps.handleChange}
@@ -51,7 +35,7 @@ const InGameSettings = ({ formProps }) => {
             <Form.Check
                 id='dontIceTrapOwnUnits'
                 name='gameOptions.dontIceTrapOwnUnits'
-                label={t("Don't prompt to ice trap my own units")}
+                label="Don't prompt to ice trap my own units"
                 type='switch'
                 checked={formProps.values.gameOptions.dontIceTrapOwnUnits}
                 onChange={formProps.handleChange}
@@ -60,7 +44,7 @@ const InGameSettings = ({ formProps }) => {
             <Form.Check
                 id='leftMode'
                 name='gameOptions.leftMode'
-                label={t('Show the prompt area on left')}
+                label='Show the prompt area on left'
                 type='switch'
                 checked={formProps.values.gameOptions.leftMode}
                 onChange={formProps.handleChange}
@@ -69,7 +53,7 @@ const InGameSettings = ({ formProps }) => {
             <Form.Check
                 id='compactLayout'
                 name='gameOptions.compactLayout'
-                label={t("Use compact layout")}
+                label='Use compact layout'
                 type='switch'
                 checked={formProps.values.gameOptions.compactLayout}
                 onChange={formProps.handleChange}

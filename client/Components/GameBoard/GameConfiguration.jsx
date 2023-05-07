@@ -1,6 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-
 import Panel from '../Site/Panel';
 import { Col, Form, Row } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
@@ -9,7 +7,6 @@ import { changeViewSetting } from '../../redux/actions';
 import CardSizeSelector from '../Profile/CardSizeSelector';
 
 const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
-    const { t } = useTranslation();
     const dispatch = useDispatch();
 
     // USE ACCOUNT for temporary / in game changes, use AUTH.USER for saved / profile changes
@@ -22,14 +19,14 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
     return (
         <div>
             <Form>
-                <Panel title={t('Game Settings')}>
+                <Panel title='Game Settings'>
                     <div className='advice'>
                         Note: Changes made here will only affect the current game.
                     </div>
                     <Form.Check
                         id='orderForcedAbilities'
                         name='optionSettings.orderForcedAbilities'
-                        label={t('Prompt to order simultaneous abilities')}
+                        label='Prompt to order simultaneous abilities'
                         type='switch'
                         checked={optionSettings.orderForcedAbilities}
                         onChange={(event) =>
@@ -39,7 +36,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <Form.Check
                         id='alwaysGroupTactics'
                         name='gameOptions.alwaysGroupTactics'
-                        label={t('Always trigger Group Tactics without asking')}
+                        label='Always trigger Group Tactics without asking'
                         type='switch'
                         checked={optionSettings.alwaysGroupTactics}
                         onChange={(event) =>
@@ -49,7 +46,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <Form.Check
                         id='dontIceTrapOwnUnits'
                         name='gameOptions.dontIceTrapOwnUnits'
-                        label={t("Don't prompt to ice trap my own units")}
+                        label="Don't prompt to ice trap my own units"
                         type='switch'
                         checked={optionSettings.dontIceTrapOwnUnits}
                         onChange={(event) =>
@@ -59,7 +56,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <Form.Check
                         id='leftMode'
                         name='gameOptions.leftMode'
-                        label={t('Show the prompt area on left')}
+                        label='Show the prompt area on left'
                         type='switch'
                         checked={leftMode}
                         onChange={(event) => {
@@ -69,7 +66,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <Form.Check
                         id='compactLayout'
                         name='gameOptions.compactLayout'
-                        label={t('Use compact layout')}
+                        label='Use compact layout'
                         type='switch'
                         checked={compactLayout}
                         onChange={(event) => {

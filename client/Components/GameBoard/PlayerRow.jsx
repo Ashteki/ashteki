@@ -1,6 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-
 import CardPile from './CardPile';
 import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
@@ -27,8 +25,6 @@ const PlayerRow = ({
     onDieClick,
     purgedPile
 }) => {
-    const { t } = useTranslation();
-
     const renderDroppablePile = (source, child) => {
         return isMe ? (
             <Droppable onDragDrop={onDragDrop} source={source} manualMode={manualMode}>
@@ -83,7 +79,7 @@ const PlayerRow = ({
             onMouseOver={onMouseOver}
             rotateHeader={true}
             source='hand'
-            title={t('Hand')}
+            title='Hand'
             cardSize={cardSize}
             side={side}
         />
@@ -92,7 +88,7 @@ const PlayerRow = ({
     let archivesToRender = (
         <CardPile
             className='archives'
-            title={t('Conjurations')}
+            title='Conjurations'
             source='archives'
             cards={archives}
             hiddenTopCard={true}
@@ -103,7 +99,7 @@ const PlayerRow = ({
     let purged = (
         <CardPile
             className='purged'
-            title={t('Purged')}
+            title='Purged'
             source='purged'
             cards={purgedPile}
             {...cardPileProps}

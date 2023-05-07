@@ -1,5 +1,4 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
 import { toastr } from 'react-redux-toastr';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -64,7 +63,6 @@ const PlayerStats = ({
     size,
     winner
 }) => {
-    const { t } = useTranslation();
     const dispatch = useDispatch();
 
     const cardPiles = player.cardPiles;
@@ -277,7 +275,7 @@ const PlayerStats = ({
             cards={cardPiles.archives}
             cardBack={conjback}
             className='archives'
-            title={t('Conjurations')}
+            title='Conjurations'
             source='archives'
         />
     );
@@ -289,7 +287,7 @@ const PlayerStats = ({
             cardBack={spellback}
             className='draw'
             numDeckCards={player.numDeckCards}
-            title={t('Draw')}
+            title='Draw'
             source='deck'
         />
     );
@@ -300,7 +298,7 @@ const PlayerStats = ({
             cards={cardPiles.hand}
             cardBack={spellback}
             className='hand-popup'
-            title={t('Hand')}
+            title='Hand'
             source='hand'
         />
     );
@@ -313,11 +311,7 @@ const PlayerStats = ({
             {renderLimited()}
             {firstPlayerToken}
             {clock}
-            {activePlayer && (
-                <div className='state first-player-state'>
-                    <Trans>Active Player</Trans>
-                </div>
-            )}
+            {activePlayer && <div className='state first-player-state'>Active Player</div>}
             {compactLayout && (
                 <>
                     <div className='state'>{renderDroppableList('archives', archives)}</div>
@@ -360,28 +354,18 @@ const PlayerStats = ({
                                 onClick={onManualModeClick}
                             >
                                 <FontAwesomeIcon icon={faWrench}></FontAwesomeIcon>
-                                <span className='ml-1'>
-                                    <Trans>Manual Mode</Trans>
-                                </span>
-                            </a>&nbsp;
+                                <span className='ml-1'>Manual Mode</span>
+                            </a>
+                            &nbsp;
                             <a href='#' className='pr-1 pl-1' title='Show manual command list'>
-                                <FontAwesomeIcon
-                                    icon={faList}
-                                    onClick={onManualCommandsClick}
-                                />
+                                <FontAwesomeIcon icon={faList} onClick={onManualCommandsClick} />
                             </a>
                         </div>
                     )}
                     <div className='state'>
-                        <a
-                            href='#'
-                            onClick={onSettingsClick}
-                            className='pr-1 pl-1'
-                        >
+                        <a href='#' onClick={onSettingsClick} className='pr-1 pl-1'>
                             <FontAwesomeIcon icon={faCogs}></FontAwesomeIcon>
-                            <span className='ml-1'>
-                                <Trans>Settings</Trans>
-                            </span>
+                            <span className='ml-1'>Settings</span>
                         </a>
                     </div>
                     <div className='state'>
@@ -393,25 +377,16 @@ const PlayerStats = ({
                         </a>
                     </div>
                     <div>
-                        <a
-                            href='#'
-                            onClick={onMessagesClick}
-                            className='pl-1'
-                            title='Toggle chat'
-                        >
+                        <a href='#' onClick={onMessagesClick} className='pl-1' title='Toggle chat'>
                             <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
-                            {numMessages > 0 && (
-                                <Badge variant='danger'>{numMessages}</Badge>
-                            )}
+                            {numMessages > 0 && <Badge variant='danger'>{numMessages}</Badge>}
                         </a>
                     </div>
-
                 </div>
             )}
         </div>
     );
-
-}
+};
 
 PlayerStats.displayName = 'PlayerStats';
 

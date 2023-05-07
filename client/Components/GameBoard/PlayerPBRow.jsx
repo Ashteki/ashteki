@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import CardPile from './CardPile';
 import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
@@ -37,8 +36,6 @@ const PlayerPBRow = ({
     phoenixborn,
     onMenuItemClick
 }) => {
-    const { t } = useTranslation();
-
     const renderDroppablePile = (source, child) => {
         if (isMe) {
             return (
@@ -77,7 +74,7 @@ const PlayerPBRow = ({
             rotateHeader={true}
             showChains={true}
             source='spellboard'
-            title={t('Spellboard')}
+            title='Spellboard'
             cardSize={cardSize}
             side={side}
         />
@@ -103,7 +100,7 @@ const PlayerPBRow = ({
     let discardToRender = (
         <CardPile
             className='discard'
-            title={t('Discard')}
+            title='Discard'
             source='discard'
             cards={discard}
             {...cardPileProps}

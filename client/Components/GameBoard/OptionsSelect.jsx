@@ -58,7 +58,7 @@ class OptionsSelect extends React.Component {
                     className='btn btn-default prompt-button btn-stretch option-button'
                     onClick={this.onDoneClicked}
                 >
-                    {this.props.t('Done')}
+                    Done{' '}
                 </button>
             </div>
         );

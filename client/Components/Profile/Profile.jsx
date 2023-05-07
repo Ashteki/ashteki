@@ -99,11 +99,11 @@ const Profile = ({ onSubmit, isLoading }) => {
     }
     const [alertTimer, setAlertTimer] = useState(defaultAlertTimer);
 
-    const backgrounds = [{ name: 'none', label: t('none'), imageUrl: BlankBg }];
+    const backgrounds = [{ name: 'none', label: 'none', imageUrl: BlankBg }];
 
     backgrounds.push({
         name: 'ashesreborn',
-        label: t('Ashes Reborn'),
+        label: 'Ashes Reborn',
         imageUrl: AshesRebornBg
     });
 

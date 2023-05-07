@@ -64,7 +64,7 @@ class ActivePlayerPrompt extends React.Component {
 
     //TODO: remove this
     localizedText(source, text, values) {
-        let { t, i18n } = this.props;
+        let { t } = this.props;
 
         if (!isNaN(text)) {
             // text is just a plain number, avoid translation

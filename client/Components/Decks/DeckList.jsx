@@ -4,7 +4,6 @@ import moment from 'moment';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
-import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 import $ from 'jquery';
@@ -86,7 +85,6 @@ import DiceRack from './DiceRack';
  * @param {DeckListProps} props
  */
 const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
-    const { t } = useTranslation();
     const [pagingDetails, setPagingDetails] = useState({
         pageSize: 10,
         page: 1,
@@ -227,7 +225,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         },
         {
             dataField: 'name',
-            text: t('Name'),
+            text: 'Name',
             sort: !standaloneDecks,
             style: {
                 fontSize: '0.8rem'
@@ -262,7 +260,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 fontSize: '0.7rem'
             },
             align: 'center',
-            text: t('Updated'),
+            text: 'Updated',
             sort: !standaloneDecks,
             /**
              * @param {Date} cell
@@ -272,7 +270,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         {
             dataField: 'winRate',
             align: 'center',
-            text: t('Win Rate'),
+            text: 'Win Rate',
             headerStyle: {
                 width: '18%'
             },
@@ -321,7 +319,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                                         event.persist();
                                         onNameChange(event);
                                     }}
-                                    placeholder={t('Filter by name')}
+                                    placeholder='Filter by name'
                                 />
                             </Form.Group>
                             <Form.Group as={Col} controlId='phoenixborn'>

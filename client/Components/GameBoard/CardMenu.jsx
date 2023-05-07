@@ -36,7 +36,7 @@ class CardMenu extends React.Component {
                         className={className}
                         onClick={this.onMenuItemClick.bind(this, menuItem)}
                     >
-                        {this.props.t(menuItem.text)}
+                        {menuItem.text}
                     </div>
                 );
             }
