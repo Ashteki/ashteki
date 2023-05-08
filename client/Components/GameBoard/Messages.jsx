@@ -24,7 +24,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             });
             return (
                 <div key={index} className={className}>
-                    {formatMessageText(message.message)}
+                    {formatMessageText(message.message, index)}
                 </div>
             );
         });
@@ -62,8 +62,8 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
         );
     }
 
-    const formatMessageText = (message) => {
-        let index = 0;
+    const formatMessageText = (message, index) => {
+        // let index = 0;
         let messages = [];
 
         for (const [key, fragment] of Object.entries(message)) {
@@ -74,7 +74,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             }
 
             if (key === 'alert') {
-                let message = formatMessageText(fragment.message);
+                let message = formatMessageText(fragment.message, index);
 
                 switch (fragment.type) {
                     case 'endofround':
@@ -82,7 +82,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         messages.push(
                             <div
                                 className={'font-weight-bold text-white separator ' + fragment.type}
-                                key={index++}
+                                key={'m-' + index}
                             >
                                 <hr className={'mt-2 mb-2' + fragment.type} />
                                 {message}
@@ -93,7 +93,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         messages.push(
                             <div
                                 className={'font-weight-bold text-white separator ' + fragment.type}
-                                key={index++}
+                                key={'m-' + index}
                             >
                                 {message}
                             </div>
@@ -101,28 +101,28 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         break;
                     case 'success':
                         messages.push(
-                            <AlertPanel type='success' key={index++}>
+                            <AlertPanel type='success' key={'m-' + index}>
                                 {message}
                             </AlertPanel>
                         );
                         break;
                     case 'info':
                         messages.push(
-                            <AlertPanel type='info' key={index++}>
+                            <AlertPanel type='info' key={'m-' + index}>
                                 {message}
                             </AlertPanel>
                         );
                         break;
                     case 'danger':
                         messages.push(
-                            <AlertPanel type='danger' key={index++}>
+                            <AlertPanel type='danger' key={'m-' + index}>
                                 {message}
                             </AlertPanel>
                         );
                         break;
                     case 'warning':
                         messages.push(
-                            <AlertPanel type='warning' key={index++}>
+                            <AlertPanel type='warning' key={'m-' + index}>
                                 {message}
                             </AlertPanel>
                         );
