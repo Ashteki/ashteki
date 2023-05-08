@@ -1,4 +1,4 @@
-const { CardType, Magic, Level } = require("../../constants");
+const { CardType, Level } = require("../../constants");
 const AbilityDsl = require("../abilitydsl");
 const RevealBehaviour = require("../BaseActions/RevealBehaviour");
 const Player = require("../player");
