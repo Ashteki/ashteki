@@ -38,6 +38,7 @@ const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
+const logger = require('../log');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -907,6 +908,21 @@ class Game extends EventEmitter {
         return this.pipeline.handleMenuCommand(player, arg, uuid, method);
     }
 
+    /**
+     * This function is called by the client when a player chess clock hits Zero. 
+     * It triggers a gamestatecheck (in gameserver) and doesn't really need to do much else
+     * This needs to exist for gameserver to trigger the state check (and immediate win/loss)
+     * @param {String} playerName
+     */
+    clockZero(playerName) {
+        logger.info(playerName, ' clockZero message recived');
+        let player = this.getPlayerByName(playerName);
+        if (!player) {
+            return false;
+        }
+
+        player.clock.checkForGameLoss();
+    }
     /*
      * This function is called by the client when a player clicks an option setting
      * toggle in the settings menu

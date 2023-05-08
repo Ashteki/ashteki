@@ -53,17 +53,21 @@ class Clock {
     }
 
     updateTimeLeft(secs) {
-        if (this.timeLeft === 0 || secs < 0) {
+        if (secs < 0) {
             return;
         }
         if (this.mode === 'down') {
             this.modify(-secs);
-            if (this.timeLeft < 0) {
-                this.timeLeft = 0;
-                this.timeRanOut();
-            }
+            this.checkForGameLoss();
         } else if (this.mode === 'up') {
             this.modify(secs);
+        }
+    }
+
+    checkForGameLoss() {
+        if (this.timeLeft <= 0) {
+            this.timeLeft = 0;
+            this.timeRanOut();
         }
     }
 

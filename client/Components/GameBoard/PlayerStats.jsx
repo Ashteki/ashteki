@@ -49,6 +49,7 @@ const PlayerStats = ({
     onMenuItemClick,
     onPopupChange,
     onTouchMove,
+    onClockZero,
     onMessagesClick,
     onMuteClick,
     onSettingsClick,
@@ -248,6 +249,7 @@ const PlayerStats = ({
                             mainTime={clockState.mainTime}
                             timePeriod={clockState.timePeriod}
                             winner={winner}
+                            onClockZero={onClockZero}
                         />
                     </div>
                 </div>

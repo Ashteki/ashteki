@@ -72,6 +72,7 @@ export class GameBoard extends React.Component {
         this.onManualModeClick = this.onManualModeClick.bind(this);
         this.onMuteClick = this.onMuteClick.bind(this);
         this.onWinSplashCloseClick = this.onWinSplashCloseClick.bind(this);
+        this.onClockZero = this.onClockZero.bind(this);
 
         this.state = {
             cardToZoom: undefined,
@@ -167,6 +168,7 @@ export class GameBoard extends React.Component {
                         mainTime={player.clock.mainTime}
                         timePeriod={player.clock.timePeriod}
                         winner={this.props.currentGame.winner}
+                        onClockZero={this.onClockZero}
                     />
                 );
             }
@@ -190,6 +192,10 @@ export class GameBoard extends React.Component {
 
     onTimerExpired(uuid) {
         this.props.sendGameMessage('menuButton', null, uuid, 'pass');
+    }
+
+    onClockZero() {
+        this.props.sendGameMessage('clockZero');
     }
 
     onMuteClick() {

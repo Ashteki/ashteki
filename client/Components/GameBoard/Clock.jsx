@@ -41,11 +41,15 @@ class Clock extends React.Component {
                 this.setState({
                     timeLeft: this.state.timeLeft + (newProps.mode === 'up' ? 1 : -1)
                 });
-                if (this.state.timeLeft < 0) {
+                if (this.state.timeLeft <= 0) {
                     this.setState({
                         timeLeft: 0
                     });
                     clearInterval(this.timerHandle);
+                    // notify the server (check game state)
+                    if (this.props.onClockZero) {
+                        this.props.onClockZero();
+                    }
                 }
                 if (newProps.winner) {
                     clearInterval(this.timerHandle);
@@ -74,7 +78,8 @@ Clock.propTypes = {
     secondsLeft: PropTypes.number,
     stateId: PropTypes.number,
     timePeriod: PropTypes.number,
-    gameFinished: PropTypes.number
+    gameFinished: PropTypes.number,
+    onClockZero: PropTypes.func
 };
 
 export default Clock;
