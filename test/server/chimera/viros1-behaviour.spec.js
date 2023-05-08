@@ -8,9 +8,10 @@ describe('Corpse of Viros Behaviour Rolls', function () {
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
-                    spellboard: [],
-                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
-                    hand: ['summon-iron-rhino']
+                    spellboard: ['summon-light-bringer'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
+                    hand: ['summon-iron-rhino'],
+                    archives: ['light-bringer']
                 },
                 player2: {
                     dummy: true,
@@ -26,6 +27,23 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             });
 
         });
+
+        it('light bringer forces attack with no roll', function () {
+            // reveal
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+            expect(this.rampage.facedown).toBe(false);
+            expect(this.huntingInstincts.facedown).toBe(true);
+
+            this.player1.clickCard(this.summonLightBringer);
+            this.player1.clickPrompt('summon light bringer');
+            expect(this.lightBringer.location).toBe('play area');
+            this.player1.endTurn();
+
+            expect(this.player1).toHavePrompt('Attack');
+            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(Dice.d12Roll).not.toHaveBeenCalled();
+        });
+
 
         it('1, Reveal puts card into play', function () {
             // reveal

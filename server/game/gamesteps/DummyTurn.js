@@ -1,25 +1,29 @@
-const { Level } = require("../../constants");
-const AbilityDsl = require("../abilitydsl");
-const Dice = require("../dice");
-const BaseStepWithPipeline = require("./basestepwithpipeline");
-const SimpleStep = require("./simplestep");
+const { Level } = require('../../constants');
+const AbilityDsl = require('../abilitydsl');
+const Dice = require('../dice');
+const BaseStepWithPipeline = require('./basestepwithpipeline');
+const SimpleStep = require('./simplestep');
 
 class DummyTurn extends BaseStepWithPipeline {
     constructor(game) {
         super(game);
-        this.player = game.activePlayer
+        this.player = game.activePlayer;
         // set up some steps
         this.pipeline.initialise([new SimpleStep(game, () => this.beginTurn())]);
     }
 
     beginTurn() {
+        if (this.player.anyEffect('mustAttack') && this.canAttack()) {
+            this.player.doAttack();
+            return;
+        }
+
         if (this.player.threatCards.length) {
             this.rollDice();
         } else if (this.canAttack()) {
             // attack
             this.player.doAttack();
-        }
-        else {
+        } else {
             // pass
         }
     }
@@ -36,11 +40,10 @@ class DummyTurn extends BaseStepWithPipeline {
         this.queueStep(
             new SimpleStep(this.game, () => {
                 const d12Roll = Dice.d12Roll();
-                // roll behaviour dice and determine 
-                this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll)
+                // roll behaviour dice and determine
+                this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll);
                 this.player.behaviourRoll = d12Roll;
                 const context = this.game.getFrameworkContext(this.player);
-
 
                 const rolledRageDie = result.event.childEvent.dice[0];
                 const clonedRageDie = result.event.childEvent.diceCopy[0];
@@ -52,7 +55,7 @@ class DummyTurn extends BaseStepWithPipeline {
                         {
                             type: 'targeting',
                             source: clonedRageDie.getShortSummary(),
-                            targets: [rolledRageDie.getShortSummary()]// [this.attack.target.getShortSummary()]
+                            targets: [rolledRageDie.getShortSummary()] // [this.attack.target.getShortSummary()]
                         }
                     ]
                 });
@@ -69,7 +72,7 @@ class DummyTurn extends BaseStepWithPipeline {
 
     getAttacker() {
         // from left to right, not exhausted / canAttack
-        return this.player.unitsInPlay.find(u => u.canAttack());
+        return this.player.unitsInPlay.find((u) => u.canAttack());
     }
 
     getTarget(attacker) {
