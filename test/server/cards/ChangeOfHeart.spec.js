@@ -10,7 +10,7 @@ describe('ChangeOfHeart', function () {
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['hammer-knight', 'iron-rhino']
+                    inPlay: ['hammer-knight', 'iron-rhino', 'adept-duelist']
                 }
             });
         });
@@ -38,6 +38,26 @@ describe('ChangeOfHeart', function () {
             this.player1.clickDone(); // no dice pins
             expect(this.game.round).toBe(2);
             expect(this.changeOfHeart.exhausted).toBe(false);
+        });
+
+        it('adept duelist cannot detach', function () {
+            this.player1.play(this.changeOfHeart);
+            this.player1.clickDie(0);
+            expect(this.brennenBlackcloud.upgrades.length).toBe(1);
+
+            this.player1.endTurn();
+            this.player2.clickAttack(this.brennenBlackcloud);
+            this.player2.clickCard(this.adeptDuelist);
+            this.player2.clickDone();
+            // reaction to onAttackersDeclared
+            this.player2.clickCard(this.adeptDuelist);
+            expect(this.changeOfHeart.location).toBe('play area');
+            this.player2.clickCard(this.changeOfHeart);
+
+            // no effect
+            expect(this.changeOfHeart.location).toBe('play area');
+            expect(this.brennenBlackcloud.upgrades.length).toBe(1);
+
         });
     });
 });

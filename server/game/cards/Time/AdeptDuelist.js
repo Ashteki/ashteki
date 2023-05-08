@@ -1,4 +1,4 @@
-const { UpgradeCardTypes } = require('../../../constants.js');
+const { UpgradeCardTypes, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class AdeptDuelist extends Card {
@@ -18,7 +18,7 @@ class AdeptDuelist extends Card {
                 activePromptTitle: 'Choose an alteration to discard',
                 cardType: UpgradeCardTypes,
                 controller: 'opponent',
-                // condition: (card) => BattlefieldTypes.includes(card.parent.type),
+                cardCondition: (card) => BattlefieldTypes.includes(card.parent.type),
                 gameAction: ability.actions.discard()
             }
         });

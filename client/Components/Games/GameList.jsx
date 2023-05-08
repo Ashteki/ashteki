@@ -244,16 +244,10 @@ class GameList extends React.Component {
                                     />
                                 )}
                                 {game.clockType === 'chess' && (
-                                    <FontAwesomeIcon
-                                        icon={faChessKnight}
-                                        title='Chess Clock'
-                                    />
+                                    <FontAwesomeIcon icon={faChessKnight} title='Chess Clock' />
                                 )}
                                 {!game.allowSpectators && (
-                                    <FontAwesomeIcon
-                                        icon={faEyeSlash}
-                                        title='No spectators'
-                                    />
+                                    <FontAwesomeIcon icon={faEyeSlash} title='No spectators' />
                                 )}
                             </span>
                         </div>
