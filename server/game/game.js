@@ -921,7 +921,9 @@ class Game extends EventEmitter {
             return false;
         }
 
-        player.clock.checkForGameLoss();
+        if (this.clockType === 'chess') {
+            player.clock.checkForGameLoss();
+        }
     }
     /*
      * This function is called by the client when a player clicks an option setting
