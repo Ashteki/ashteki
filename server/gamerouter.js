@@ -307,7 +307,7 @@ class GameRouter extends EventEmitter {
     async doRankedUpdate(game) {
         // update player / user elo stats
         if (game.gameType === GameType.Competitive) {
-            await this.userService.recordRankedResult(game.players, game.winner);
+            await this.userService.recordRankedResult(game.players, game.winner, game.finishedAt);
         }
     }
 
