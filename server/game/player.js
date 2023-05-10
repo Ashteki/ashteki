@@ -80,6 +80,15 @@ class Player extends GameObject {
         return this.limitedPlayed < this.maxLimited;
     }
 
+    /**
+     * Used for effects that target the opponent's hand. 
+     * This is for DummyPlayer to override and prep chimera hand from top of deck 
+     * @returns array of cards
+     */
+    getHand() {
+        return this.hand;
+    }
+
     startClock() {
         if (!this.clock) return;
         this.clock.start();
@@ -212,17 +221,7 @@ class Player extends GameObject {
      * @param {number} numCards
      */
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
-        let remainingCards = numCards;
-
-        for (let card of this.deck) {
-            if (remainingCards == 0) break;
-
-            // only one copy?
-            if (!singleCopy || !this.hand.some((c) => c.name == card.name)) {
-                this.moveCard(card, Location.Hand);
-                remainingCards--;
-            }
-        }
+        let remainingCards = this.doDrawCards(numCards, singleCopy);
 
         if (remainingCards > 0 && damageIfEmpty) {
             this.game.addMessage(
@@ -234,6 +233,29 @@ class Player extends GameObject {
                 this.phoenixborn,
                 this.game.getFrameworkContext()
             );
+        }
+    }
+
+    doDrawCards(numCards, singleCopy) {
+        let remainingCards = numCards;
+
+        for (let card of this.deck) {
+            if (remainingCards == 0) break;
+
+            // only one copy?
+            if (!singleCopy || !this.hand.some((c) => c.name == card.name)) {
+                this.moveCard(card, Location.Hand);
+                remainingCards--;
+            }
+        }
+        return remainingCards;
+    }
+
+    releaseHand() {
+        _.shuffle(this.hand);
+        for (let card of this.hand) {
+            // only one copy?
+            this.moveCard(card, Location.Deck);
         }
     }
 
@@ -458,7 +480,7 @@ class Player extends GameObject {
             Ally: [...cardLocations, 'play area'],
             Conjuration: ['play area', 'archives', 'purged'],
             'Conjured Alteration Spell': ['play area', 'archives'],
-            Aspect: ['deck', 'discard', 'purged', 'play area']
+            Aspect: ['deck', 'discard', 'purged', 'play area', 'hand']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);

@@ -19,8 +19,9 @@ class RandomExposeAction extends PlayerAction {
 
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player, context }, () => {
-            let amount = Math.min(this.amount, player.hand.length);
-            let cards = _.shuffle(player.hand).slice(0, amount);
+            const hand = player.getHand();
+            let amount = Math.min(this.amount, hand.length);
+            let cards = _.shuffle(hand).slice(0, amount);
 
             context.game.addMessage('{0} reveals {1} from their hand', player, cards);
             context.game.queueUserAlert(context, {

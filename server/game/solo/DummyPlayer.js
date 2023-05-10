@@ -36,14 +36,21 @@ class DummyPlayer extends Player {
         return this.ultimates[this.chimeraPhase - 1];
     }
 
+    getHand() {
+        if (this.hand.length === 0) {
+            this.doDrawCards(5);
+        }
+        return this.hand;
+    }
+
     cardMovedListener(event) {
         if (
             // moved from my deck
-            event.card.owner === this
-            && event.originalLocation === 'deck'
+            event.card.owner === this &&
+            event.originalLocation === 'deck'
         ) {
-            // if draw pile hits empty then fatigue
-            if (this.deck.length === 0) {
+            // if draw pile hits empty then fatigue (but not if we're moving cards to form a hand)
+            if (this.deck.length === 0 && this.hand.length === 0) {
                 if (!this.fatigued) {
                     this.applyFatigue();
                     const context = this.game.getFrameworkContext(this);

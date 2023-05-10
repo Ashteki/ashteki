@@ -90,7 +90,7 @@ const Actions = {
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),
     playerChosenAmountDraw: (propertyFactory) =>
         new GameActions.PlayerChosenAmountDrawAction(propertyFactory),
-    purgeAtRandom: (propertyFactory) => new GameActions.RandomPurgeAction(propertyFactory), // amount = 1
+    releaseChimeraHand: (propertyFactory) => new GameActions.ReleaseChimeraHandAction(propertyFactory),
     rearrangeCards: (propertyFactory) => new GameActions.RearrangeCardsAction(propertyFactory),
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name

@@ -287,9 +287,13 @@ beforeEach(function () {
         if (!this.player2.inPlay.length) {
             this.player2.inPlay = options.player2.inPlay;
         }
-        //Conflict deck related
-        this.player1.spellboard = options.player1.spellboard;
-        this.player2.spellboard = options.player2.spellboard;
+
+        if (!this.player1.isDummy) {
+            this.player1.spellboard = options.player1.spellboard;
+        }
+        if (!this.player2.isDummy) {
+            this.player2.spellboard = options.player2.spellboard;
+        }
         this.player1.dicepool = options.player1.dicepool;
         this.player2.dicepool = options.player2.dicepool;
         if (this.player2.isDummy) {

@@ -38,9 +38,10 @@ class PreparePhase extends Phase {
         if (!this.game.disableFatigue) {
             const playerShortfall = [];
             const players = [this.game.roundFirstPlayer, this.game.roundFirstPlayer.opponent]
-            players.forEach(p => {
-                if (!p.isDummy) {
-                    playerShortfall.push(this.getShortfall(p));
+            players.forEach((player) => {
+                if (!player.isDummy) {
+                    const shortfall = { player: player, shortfall: 5 - player.hand.length };
+                    playerShortfall.push(shortfall);
                 }
             })
 
@@ -61,10 +62,6 @@ class PreparePhase extends Phase {
                 z++;
             }
         }
-    }
-
-    getShortfall(player) {
-        return { player: player, shortfall: 5 - player.hand.length };
     }
 
     additionalDraw() {
