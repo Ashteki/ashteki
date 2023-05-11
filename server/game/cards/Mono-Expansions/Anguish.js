@@ -14,7 +14,7 @@ class Anguish extends Card {
                     player: context.target.controller,
                     choices: {
                         Discard: ability.actions.conditional({
-                            condition: (context) => context.target.controller.hand.length > 0,
+                            condition: (context) => context.target.controller.getHand().length > 0,
                             trueGameAction: ability.actions.discardAtRandom({
                                 target: context.target.controller
                             }),

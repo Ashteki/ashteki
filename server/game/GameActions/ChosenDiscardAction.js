@@ -47,7 +47,9 @@ class ChosenDiscardAction extends PlayerAction {
                             }
                             context.game.addMessage('{0} discards {1}', player, cards);
                             context.game.actions.discard().resolve(cards, context);
-                            context.game.actions.releaseChimeraHand().resolve(player.opponent, context);
+                            context.game.actions
+                                .releaseChimeraHand()
+                                .resolve(player.opponent, context);
                             return true;
                         }
                     });

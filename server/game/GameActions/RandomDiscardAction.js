@@ -36,6 +36,7 @@ class RandomDiscardAction extends PlayerAction {
 
             context.game.addMessage('{0} discards {1} at random', player, event.cards);
             context.game.actions.discard().resolve(event.cards, context);
+            context.game.actions.releaseChimeraHand().resolve(player, context);
         });
     }
 }
