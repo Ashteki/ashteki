@@ -35,7 +35,8 @@ const placeholderPlayer = {
         hand: [],
         purged: [],
         spells: [],
-        deck: []
+        deck: [],
+        archives: []
     },
     activePlayer: false,
     firstPlayer: false,
@@ -517,7 +518,9 @@ export class GameBoard extends React.Component {
                         player={otherPlayer}
                         clockState={otherPlayer.clock}
                         winner={this.props.currentGame.winner}
+                        onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
+                        solo={this.props.currentGame.solo}
                     />
                 </div>
                 <div className='main-window'>
