@@ -39,7 +39,6 @@ const PlayerStats = ({
     isMe,
     manualModeEnabled,
     muteSpectators,
-    numMessages,
     onCardClick,
     onDeckNotesClick,
     onDiceHistoryClick,
@@ -386,7 +385,6 @@ const PlayerStats = ({
                     <div>
                         <a href='#' onClick={onMessagesClick} className='pl-1' title='Toggle chat'>
                             <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
-                            {numMessages > 0 && <Badge variant='danger'>{numMessages}</Badge>}
                         </a>
                     </div>
                 </div>

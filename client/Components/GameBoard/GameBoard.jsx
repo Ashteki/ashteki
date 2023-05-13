@@ -55,8 +55,6 @@ const GameBoard = () => {
     const [showManualCommands, setShowManualCommands] = useState(false);
     const [showDeckNotes, setShowDeckNotes] = useState(false);
     const [showWinSplash, setShowWinSplash] = useState(true);
-    const [lastMessageCount, setLastMessageCount] = useState(0);
-    const [newMessages, setNewMessages] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -138,10 +136,6 @@ const GameBoard = () => {
 
     const onMessagesClick = () => {
         setShowMessages(!showMessages);
-        if (showMessages) {
-            setNewMessages(0);
-            setLastMessageCount(currentGame.messages.length);
-        }
     };
 
     const onDiceHistoryClick = () => {
@@ -386,18 +380,6 @@ const GameBoard = () => {
         ];
     };
 
-    // // eslint-disable-next-line camelcase
-    // UNSAFE_componentWillReceiveProps(props) {
-    //     let lastMessageCount = this.state.lastMessageCount;
-    //     let currentMessageCount = props.currentGame ? props.currentGame.messages.length : 0;
-
-    //     if (this.state.showMessages) {
-    //         this.setState({ lastMessageCount: currentMessageCount, newMessages: 0 });
-    //     } else {
-    //         this.setState({ newMessages: currentMessageCount - lastMessageCount });
-    //     }
-    // }
-
     if (Object.values(cards).length === 0 || !currentGame?.started) {
         return (
             <div>
@@ -612,7 +594,6 @@ const GameBoard = () => {
                     isMe={!spectating}
                     manualModeEnabled={manualMode}
                     muteSpectators={currentGame.muteSpectators}
-                    numMessages={newMessages}
                     onDeckNotesClick={onDeckNotesClick}
                     onDiceHistoryClick={onDiceHistoryClick}
                     onDragDrop={onDragDrop}
@@ -639,28 +620,6 @@ const GameBoard = () => {
             </div>
         </div>
     );
-
-    // function mapStateToProps(state) {
-    //     return {
-    //         cardToZoom: state.cards.zoomCard,
-    //         cards: state.cards.cards,
-    //         currentGame: state.lobby.currentGame,
-    //         packs: state.cards.packs,
-    //         restrictedList: state.cards.restrictedList,
-    //         socket: state.lobby.socket,
-    //         user: state.account.user,
-    //         authUser: state.auth.user,
-    //         // using ACCOUNT for temporary settings access
-    //         optionSettings: state.account.user.settings.optionSettings || {}
-    //     };
-    // }
-
-    // function mapDispatchToProps(dispatch) {
-    //     let boundActions = bindActionCreators(actions, dispatch);
-    //     boundActions.dispatch = dispatch;
-
-    //     return boundActions;
-    // }
 };
 
 PlayerStats.displayName = 'GameBoard';
