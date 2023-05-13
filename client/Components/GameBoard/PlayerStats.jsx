@@ -62,6 +62,7 @@ const PlayerStats = ({
     showMessages,
     side,
     size,
+    solo,
     winner
 }) => {
     const dispatch = useDispatch();
@@ -282,6 +283,10 @@ const PlayerStats = ({
         />
     );
 
+    const getArchives = () => (
+        <div className='state'>{renderDroppableList('archives', archives)}</div>
+    );
+
     const draw = (
         <CardPileLink
             {...pileProps}
@@ -316,7 +321,7 @@ const PlayerStats = ({
             {activePlayer && <div className='state first-player-state'>Active Player</div>}
             {compactLayout && (
                 <>
-                    <div className='state'>{renderDroppableList('archives', archives)}</div>
+                    {!solo && getArchives()}
                     <div className='state'>{renderDroppableList('draw', draw)}</div>
                     <div className='state'>{renderDroppableList('hand', hand)}</div>
                 </>

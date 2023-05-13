@@ -1,11 +1,11 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Heal extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
-                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                 gameAction: ability.actions.removeDamage((context) => {
                     let amount = 2;
                     if (BattlefieldTypes.includes(context.target.type)) {

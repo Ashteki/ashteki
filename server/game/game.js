@@ -32,18 +32,20 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
-const { BattlefieldTypes } = require('../constants');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
 const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt');
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const logger = require('../log');
+const DummyPlayer = require('./solo/DummyPlayer');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
         this.allowSpectators = details.allowSpectators;
+        this.solo = details.solo;
         this.cancelPromptUsed = false;
         this.chatCommands = new ChatCommands(this);
         this.createdAt = new Date();
@@ -89,7 +91,7 @@ class Game extends EventEmitter {
         this.cardData = options.cardData || [];
         this.showHand = details.showHand;
         this.openHands = details.openHands;
-        this.cardVisibility = new CardVisibility(this.showHand, this.openHands);
+        this.cardVisibility = new CardVisibility(this.showHand, this.openHands, this.solo);
 
         this.useGameTimeLimit = details.useGameTimeLimit;
         const clockDetails = { type: 'none', time: 0 };
@@ -103,13 +105,8 @@ class Game extends EventEmitter {
         }
         this.clockType = details.clockType;
         _.each(details.players, (player) => {
-            this.playersAndSpectators[player.user.username] = new Player(
-                player.id,
-                player.user,
-                this.owner === player.user.username,
-                this,
-                clockDetails
-            );
+            const newPlayer = this.createPlayer(player, clockDetails);
+            this.playersAndSpectators[player.user.username] = newPlayer;
         });
 
         _.each(details.spectators, (spectator) => {
@@ -120,6 +117,21 @@ class Game extends EventEmitter {
         });
 
         this.setMaxListeners(0);
+    }
+
+    createPlayer(player, clockDetails) {
+        const isOwner = this.owner === player.user.username;
+        if (player.playerType === 'dummy') {
+            return new DummyPlayer(player.id, player.user, isOwner, this, clockDetails)
+        }
+
+        return new Player(
+            player.id,
+            player.user,
+            isOwner,
+            this,
+            clockDetails
+        );
     }
 
     getCardIndex() {
@@ -235,6 +247,18 @@ class Game extends EventEmitter {
         if (player && !this.isSpectator(player)) {
             return player;
         }
+    }
+
+    /**
+     * Returns the player object for the dummy player when in solo mode
+     * @returns {Player}
+     */
+    getDummyPlayer() {
+        return this.getPlayers().find(p => p.isDummy);
+    }
+
+    getSoloPlayer() {
+        return this.getPlayers().find(p => !p.isDummy);
     }
 
     /**
@@ -376,11 +400,11 @@ class Game extends EventEmitter {
 
     /**
      * This function is called from the client whenever a card is clicked
-     * @param {String} sourcePlayer - name of the clicking player
+     * @param {String} username - name of the clicking user
      * @param {String} cardId - uuid of the card clicked
      */
-    cardClicked(sourcePlayer, cardId) {
-        let player = this.getPlayerByName(sourcePlayer);
+    cardClicked(username, cardId) {
+        let player = this.getPlayerByName(username);
 
         if (!player) {
             return;
@@ -664,6 +688,29 @@ class Game extends EventEmitter {
         this.addAlert('danger', `{0} ${addRemove} 1 {1} ${toFrom} {2}`, player, tokenType, card);
     }
 
+    writeDefenceMessages(player) {
+        const blockType = this.attackState.isPBAttack ? 'block' : 'guard';
+
+        this.addMessage('{0} has chosen defenders', player);
+        this.attackState.battles
+            .sort((a, b) => a.guard ? -1 : 1)
+            .forEach((battle) => {
+                if (battle.guard) {
+                    this.addMessage(
+                        '{0} will {1} against {2}',
+                        battle.guard,
+                        blockType,
+                        battle.attacker
+                    );
+                } else {
+                    this.addMessage(
+                        '{0} will be un' + blockType + 'ed ',
+                        battle.attacker
+                    );
+                }
+            });
+    }
+
     modifyAction(playerName, actionType, unspent) {
         let player = this.getPlayerByName(playerName);
         if (!player) {
@@ -797,7 +844,13 @@ class Game extends EventEmitter {
      * @param {Object} properties - see selectcardprompt
      */
     promptForSelect(player, properties) {
-        this.queueStep(new SelectCardPrompt(this, player, properties));
+        let choosingPlayer = player;
+        if (choosingPlayer.isDummy) {
+            choosingPlayer = choosingPlayer.opponent;
+            properties.promptTitle = 'CHIMERA CHOICE';
+            properties.style = 'danger';
+        }
+        this.queueStep(new SelectCardPrompt(this, choosingPlayer, properties));
     }
 
     promptForDieSelect(player, properties) {
@@ -825,7 +878,7 @@ class Game extends EventEmitter {
         const player = options.self ? context.player : context.player.opponent;
         const timerLength = player.getAlertTimerSetting();
         // don't show timed alerts to players who set timerLength to 0
-        if (options.timed && timerLength === 0) {
+        if ((this.solo && player instanceof DummyPlayer) || (options.timed && timerLength === 0)) {
             return;
         }
 
@@ -890,16 +943,16 @@ class Game extends EventEmitter {
     }
 
     /**
-     * This function is called by the client whenever a player clicks a button
+     * This function is called by the client whenever a user clicks a button
      * in a prompt
-     * @param {String} playerName
+     * @param {String} username
      * @param {String} arg - arg property of the button clicked
      * @param {String} uuid - unique identifier of the prompt clicked
      * @param {String} method - method property of the button clicked
      * @returns {Boolean} this indicates to the server whether the received input is legal or not
      */
-    menuButton(playerName, arg, uuid, method) {
-        let player = this.getPlayerByName(playerName);
+    menuButton(username, arg, uuid, method) {
+        let player = this.getPlayerByName(username);
         if (!player) {
             return false;
         }
@@ -952,6 +1005,11 @@ class Game extends EventEmitter {
             this.manualMode = false;
             this.addAlert('danger', '{0} switches manual mode off', player);
         } else {
+            if (this.solo) {
+                this.manualMode = true;
+                this.addAlert('danger', '{0} switches manual mode on', player);
+                return;
+            }
             if (!this.requestingManualMode) {
                 this.addAlert('danger', '{0} is attempting to switch manual mode on', player);
                 this.requestingManualMode = true;
@@ -1015,34 +1073,40 @@ class Game extends EventEmitter {
 
     determineFirstPlayer() {
         if (!this.gameFirstPlayer) {
-            let players = this.getPlayers();
-            let i = 0;
-            while (
-                Dice.countBasic(players[0].dice) == Dice.countBasic(players[1].dice) &&
-                i < 100
-            ) {
-                this.reRollPlayerDice();
-                i++;
-            }
-            const basicCounts = [
-                Dice.countBasic(players[0].dice),
-                Dice.countBasic(players[1].dice)
-            ];
-            this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCounts[0]);
-            this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCounts[1]);
-            const activeIndex = basicCounts[0] > basicCounts[1] ? 0 : 1;
-            this.activePlayer = players[activeIndex];
+            const players = this.getPlayers();
 
-            this.addAlert(
-                'info',
-                '{0} rolled the most basics so will choose first player',
-                this.activePlayer
-            );
+            const firstPlayerParams = {}
+            if (this.solo) {
+                this.activePlayer = this.getSoloPlayer();
+            } else {
+                let i = 0;
+                while (
+                    Dice.countBasic(players[0].dice) == Dice.countBasic(players[1].dice) &&
+                    i < 100
+                ) {
+                    this.reRollPlayerDice();
+                    i++;
+                }
+                const basicCounts = [
+                    Dice.countBasic(players[0].dice),
+                    Dice.countBasic(players[1].dice)
+                ];
+                this.addMessage('{0} rolls {1} basic dice', players[0].name, basicCounts[0]);
+                this.addMessage('{0} rolls {1} basic dice', players[1].name, basicCounts[1]);
+
+                const activeIndex = basicCounts[0] > basicCounts[1] ? 0 : 1;
+                this.activePlayer = players[activeIndex];
+
+                this.addAlert(
+                    'info',
+                    '{0} rolled the most basics so will choose first player',
+                    this.activePlayer
+                );
+                firstPlayerParams.activeBasics = basicCounts[activeIndex];
+                firstPlayerParams.opponentBasics = basicCounts[1 - activeIndex];
+            }
             this.queueStep(
-                new FirstPlayerSelection(this, {
-                    activeBasics: basicCounts[activeIndex],
-                    opponentBasics: basicCounts[1 - activeIndex]
-                })
+                new FirstPlayerSelection(this, firstPlayerParams)
             );
         } else {
             const newFirstPlayer =
@@ -1066,7 +1130,7 @@ class Game extends EventEmitter {
     }
 
     reRollPlayerDice() {
-        for (let player of this.getPlayers()) {
+        for (let player of this.getPlayers().filter(p => !p.isDummy)) {
             player.rerollAllDice(this.round);
         }
     }
@@ -1527,12 +1591,20 @@ class Game extends EventEmitter {
         this.cardsPlayed.push({ act: 'med', obj: player });
     }
 
+    initiateAttack(target, attacker) {
+        if (PhoenixbornTypes.includes(target.type)) {
+            this.initiatePBAttack(target, attacker);
+        } else {
+            this.initiateUnitAttack(target, attacker);
+        }
+    }
+
     initiateUnitAttack(target, attacker = null, ignoreMainCost = false) {
         this.queueStep(new AttackFlow(this, target, attacker, ignoreMainCost));
     }
 
-    initiatePBAttack(target) {
-        this.queueStep(new AttackFlow(this, target));
+    initiatePBAttack(target, attacker) {
+        this.queueStep(new AttackFlow(this, target, attacker));
     }
 
     setAttackState(attack) {
@@ -1577,10 +1649,11 @@ class Game extends EventEmitter {
             winReason: this.winReason,
             winner: this.winner ? this.winner.name : undefined,
             swap: this.swap,
+            solo: this.solo
         };
     }
 
-    /*
+    /**
      * This information is sent to the client
      */
     getState(activePlayerName) {
@@ -1610,6 +1683,7 @@ class Game extends EventEmitter {
                 round: this.round,
                 showHand: this.showHand,
                 openHands: this.openHands,
+                solo: this.solo,
                 spectators: this.getSpectators().map((spectator) => {
                     return {
                         id: spectator.id,
@@ -1694,7 +1768,8 @@ class Game extends EventEmitter {
             started: this.started,
             startedAt: this.startedAt,
             swap: this.swap,
-            winner: this.winner ? this.winner.name : undefined
+            winner: this.winner ? this.winner.name : undefined,
+            solo: this.solo
         };
     }
 }

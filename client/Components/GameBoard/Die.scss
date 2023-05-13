@@ -42,6 +42,10 @@
     @include dice-colors(#dfdfdf, #9a2e36);
 }
 
+.rage {
+    @include dice-colors(#e41d1d, #f1daa6);
+}
+
 .any {
     @include dice-colors(#111, #fff);
     border: 1px solid #fff;

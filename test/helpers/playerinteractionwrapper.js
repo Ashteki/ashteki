@@ -13,6 +13,10 @@ class PlayerInteractionWrapper {
         player.noTimer = true;
     }
 
+    get isDummy() {
+        return this.player.isDummy;
+    }
+
     get name() {
         return this.player.name;
     }
@@ -23,6 +27,10 @@ class PlayerInteractionWrapper {
 
     get actions() {
         return this.player.actions;
+    }
+
+    get fatigued() {
+        return this.player.fatigued;
     }
 
     /**
@@ -165,6 +173,27 @@ class PlayerInteractionWrapper {
 
     get phoenixborn() {
         return this.player.phoenixborn;
+    }
+
+    get behaviour() {
+        return this.player.behaviour;
+    }
+
+    get ultimate() {
+        return this.player.ultimate;
+    }
+
+    /** This is the cards that are facedown on a chimera battlefield */
+    get threatZone() {
+        return this.player.threatCards || [];
+    }
+
+    set threatZone(cards = []) {
+        //Move all cards in hand to the deck
+        var tzCards = this.threatZone;
+        _.each(tzCards, (card) => this.moveCard(card, 'deck'));
+        cards = this.mixedListToCardList(cards, 'deck');
+        _.each(cards, (card) => this.moveCard(card, 'play area', { facedown: true }));
     }
 
     get promptState() {
@@ -537,12 +566,12 @@ class PlayerInteractionWrapper {
      * @param {String | String[]} searchLocations - locations where to find the
      * card object, if card parameter is a String
      */
-    moveCard(card, targetLocation, searchLocations = 'any') {
+    moveCard(card, targetLocation, moveOptions) {
         if (_.isString(card)) {
-            card = this.mixedListToCardList([card], searchLocations)[0];
+            card = this.mixedListToCardList([card])[0];
         }
 
-        this.player.moveCard(card, targetLocation);
+        this.player.moveCard(card, targetLocation, moveOptions);
         this.game.continue();
         return card;
     }

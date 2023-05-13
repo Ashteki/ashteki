@@ -12,6 +12,7 @@ const Game = require('../game/game');
 const Socket = require('../socket');
 const ConfigService = require('../services/ConfigService');
 const version = require('../../version');
+const DummyUser = require('../models/DummyUser');
 
 class GameServer {
     constructor() {
@@ -500,6 +501,11 @@ class GameServer {
 
         socket.send('cleargamestate');
         socket.leaveChannel(game.id);
+
+        // Auto-leave dummy opponent
+        if (game.solo) {
+            game.leave(DummyUser.DUMMY_USERNAME);
+        }
 
         if (game.isEmpty()) {
             delete this.games[game.id];

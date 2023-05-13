@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class RemoveAllTokensAction extends CardGameAction {
@@ -10,7 +11,7 @@ class RemoveAllTokensAction extends CardGameAction {
 
     setup() {
         this.name = 'removeToken';
-        this.targetType = ['Conjuration', 'Ally', 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
+        this.targetType = [...BattlefieldTypes, 'Ready Spell', 'Phoenixborn', 'Alteration Spell'];
 
         this.effectMsg = `remove all tokens from {0}`;
     }

@@ -1,4 +1,4 @@
-const { Level, Magic, CardType } = require('../../../constants.js');
+const { Level, Magic, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -19,7 +19,7 @@ class BrennenBlackcloud extends Card {
             },
             then: {
                 target: {
-                    cardType: CardType.Phoenixborn,
+                    cardType: PhoenixbornTypes,
                     gameAction: ability.actions.dealDamage({ amount: 2, showMessage: true })
                 }
             }

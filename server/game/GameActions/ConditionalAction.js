@@ -3,38 +3,41 @@ const GameAction = require('./GameAction');
 class ConditionalAction extends GameAction {
     setup() {
         super.setup();
-        this.effectMsg = 'conditionally do something';
+        this.effectMsg = '';
     }
 
-    getGameAction(context) {
-        // if (this.trueGameAction) {
-        //     this.trueGameAction.setDefaultTarget(() => context.target);
-        // }
-
-        // if (this.falseGameAction) {
-        //     this.falseGameAction.setDefaultTarget(() => context.target);
-        // }
-
-        let condition = this.condition;
-        if (typeof condition === 'function') {
-            condition = condition(context);
+    setDefaultTarget(func) {
+        if (this.trueGameAction) {
+            for (let gameAction of this.trueGameAction) {
+                gameAction.setDefaultTarget(func);
+            }
         }
-
-        let gameAction = condition ? this.trueGameAction : this.falseGameAction;
-        if (gameAction) {
-            this.effectMsg = gameAction.effectMsg;
-            this.effectArgs = gameAction.effectArgs;
+        if (this.falseGameAction) {
+            for (let gameAction of this.falseGameAction) {
+                gameAction.setDefaultTarget(func);
+            }
         }
-
-        return gameAction;
     }
 
-    preEventHandler(context) {
-        super.preEventHandler(context);
+    setTarget(target) {
+        if (this.trueGameAction && !Array.isArray(this.trueGameAction)) {
+            this.trueGameAction = [this.trueGameAction];
+        }
 
-        const gameAction = this.getGameAction(context);
-        if (gameAction) {
-            gameAction.preEventHandler(context);
+        if (this.falseGameAction && !Array.isArray(this.falseGameAction)) {
+            this.falseGameAction = [this.falseGameAction];
+        }
+
+        if (this.trueGameAction) {
+            for (let gameAction of this.trueGameAction) {
+                gameAction.setTarget(target);
+            }
+        }
+
+        if (this.falseGameAction) {
+            for (let gameAction of this.falseGameAction) {
+                gameAction.setTarget(target);
+            }
         }
     }
 
@@ -42,32 +45,62 @@ class ConditionalAction extends GameAction {
         super.update(context);
 
         if (this.trueGameAction) {
-            this.trueGameAction.update(context);
+            for (let gameAction of this.trueGameAction) {
+                gameAction.update(context);
+            }
         }
 
         if (this.falseGameAction) {
-            this.falseGameAction.update(context);
+            for (let gameAction of this.falseGameAction) {
+                gameAction.update(context);
+            }
         }
     }
 
     hasLegalTarget(context) {
         this.update(context);
-        // if (this.target.length === 0) {
-        //     return false;
-        // }
-        // delegate to game action(s)
-        let gameAction = this.getGameAction(context);
-        return gameAction && gameAction.hasLegalTarget(context);
+
+        return (
+            (this.trueGameAction &&
+                this.trueGameAction.some((action) => action.hasLegalTarget(context))) ||
+            (this.falseGameAction &&
+                this.falseGameAction.some((action) => action.hasLegalTarget(context)))
+        );
     }
 
     canAffect(target, context) {
-        let gameAction = this.getGameAction(context);
-        return gameAction && gameAction.canAffect(target, context);
+        return (
+            (this.trueGameAction &&
+                this.trueGameAction.some((action) => action.canAffect(target, context))) ||
+            (this.falseGameAction &&
+                this.falseGameAction.some((action) => action.canAffect(target, context)))
+        );
+    }
+
+    preEventHandler(context) {
+        super.preEventHandler(context);
+
+        const gameAction = this.getGameAction(context);
+        if (gameAction) {
+            this.effectMsg = gameAction[0].effectMsg;
+            gameAction[0].preEventHandler(context);
+        }
     }
 
     getEventArray(context) {
-        let gameAction = this.getGameAction(context);
-        return gameAction ? gameAction.getEventArray(context) : [];
+        const gameAction = this.getGameAction(context);
+        return gameAction
+            ? gameAction.reduce((array, action) => array.concat(action.getEventArray(context)), [])
+            : [];
+    }
+
+    getGameAction(context) {
+        let condition = this.condition;
+        if (typeof condition === 'function') {
+            condition = condition(context);
+        }
+
+        return condition ? this.trueGameAction : this.falseGameAction;
     }
 }
 

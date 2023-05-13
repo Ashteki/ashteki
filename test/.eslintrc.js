@@ -4,7 +4,7 @@ module.exports = {
         jasmine: true,
         node: true
     },
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     plugins: ['react', 'prettier', 'jasmine'],
     extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
     rules: { 'jasmine/no-focused-tests': 'error' },

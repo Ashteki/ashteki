@@ -1,4 +1,4 @@
-const { Level, Magic, BattlefieldTypes, CardType } = require('../../../constants.js');
+const { Level, Magic, BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -27,9 +27,9 @@ class BloodTransfer extends Card {
                     optional: true,
                     dependsOn: 'first',
                     controller: 'self',
-                    cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                    cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                     gameAction: ability.actions.removeDamage((context) => ({
-                        amount: context.targets.second.type === CardType.Phoenixborn ? 1 : 2,
+                        amount: PhoenixbornTypes.includes(context.targets.second.type) ? 1 : 2,
                         showMessage: true
                     }))
                 }

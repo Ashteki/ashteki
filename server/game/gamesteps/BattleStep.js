@@ -1,4 +1,4 @@
-const { CardType } = require('../../constants');
+const { CardType, PhoenixbornTypes } = require('../../constants');
 const BaseStepWithPipeline = require('./basestepwithpipeline');
 const SimpleStep = require('./simplestep');
 
@@ -49,7 +49,7 @@ class BattleStep extends BaseStepWithPipeline {
         if (this.chosenBattle.guard) {
             // if it's not a pb guard then counter - blockers always counter IF not exhausted
             this.chosenBattle.counter =
-                this.chosenBattle.guard.type !== CardType.Phoenixborn &&
+                !PhoenixbornTypes.includes(this.chosenBattle.guard.type) &&
                 !this.chosenBattle.guard.exhausted;
             return true;
         }
@@ -59,6 +59,14 @@ class BattleStep extends BaseStepWithPipeline {
             // and exhausted targets cannot counter
             this.chosenBattle.counter = false;
             return true;
+        }
+
+        // aspects will always counter because they are alert
+        if (this.attack.defendingPlayer.isDummy) {
+            // if (this.chosenBattle.target.type === CardType.Aspect) {
+            this.chosenBattle.counter = true;
+            return true;
+            // }
         }
 
         this.game.promptWithHandlerMenu(this.attack.defendingPlayer, {
@@ -84,7 +92,7 @@ class BattleStep extends BaseStepWithPipeline {
         // if there's a guard or blocker, they MUST counter and so exhaust
         // Correction... they may have been exhausted mid fight
         // EXCEPTION! not if it's a phoenixborn - no counter or exhaust
-        if (battle.guard && battle.guard.type !== CardType.Phoenixborn) {
+        if (battle.guard && !PhoenixbornTypes.includes(battle.guard.type)) {
             if (battle.counter && battle.guard.exhaustsOnCounter()) {
                 participants.push(battle.guard);
             }
@@ -99,7 +107,7 @@ class BattleStep extends BaseStepWithPipeline {
         }
 
         // phoenixborn don't exhaust, but are marked as having guarded this round
-        if (battle.guard && battle.guard.type === CardType.Phoenixborn) {
+        if (battle.guard && PhoenixbornTypes.includes(battle.guard.type)) {
             this.game.actions
                 .setGuarded()
                 .resolve(battle.guard, this.game.getFrameworkContext(this.game.activePlayer));

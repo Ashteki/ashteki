@@ -43,6 +43,7 @@ const NewGame = ({
 }) => {
     const lobbySocket = useSelector((state) => state.lobby.socket);
     const username = useSelector((state) => state.account.user?.username);
+    const showSolo = useSelector((state) => state.account.user?.permissions.isAdmin);
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
@@ -74,7 +75,8 @@ const NewGame = ({
         gameTimeLimit: defaultTimeLimit || 50,
         clockType: 'timer',
         gamePrivate: defaultPrivate,
-        ranked: false
+        ranked: false,
+        solo: false
     };
 
     const options = [
@@ -84,6 +86,10 @@ const NewGame = ({
         { name: 'showHand', label: t('Show hands to spectators') },
         { name: 'openHands', label: 'Play with open hands' }
     ];
+    if (showSolo) {
+
+        options.push({ name: 'solo', label: 'Play solo' });
+    }
 
     let clockType = [
         { name: 'timer', label: t('Shared') },

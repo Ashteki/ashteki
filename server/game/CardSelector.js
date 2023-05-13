@@ -18,7 +18,9 @@ const defaultProperties = {
         'Alteration Spell',
         'Conjured Alteration Spell',
         'Phoenixborn',
-        'Reaction Spell'
+        'Reaction Spell',
+        'Aspect',
+        'Chimera'
     ],
     multiSelect: false
 };
@@ -32,7 +34,8 @@ const ModeToSelector = {
     leastStat: (p) => new LeastStatCardSelector(p),
     single: (p) => new SingleCardSelector(p),
     unlimited: (p) => new UnlimitedCardSelector(p),
-    upTo: (p) => new UpToXCardSelector(p.numCards, p)
+    upTo: (p) => new UpToXCardSelector(p.numCards, p),
+    auto: (p) => new SingleCardSelector(p)
 };
 
 class CardSelector {

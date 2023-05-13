@@ -34,7 +34,9 @@ class UiPrompt extends BaseStep {
     }
 
     // eslint-disable-next-line no-unused-vars
-    activePrompt(player) { }
+    activePrompt(player) {
+        return null;
+    }
 
     addDefaultCommandToButtons(original) {
         var prompt = _.clone(original);

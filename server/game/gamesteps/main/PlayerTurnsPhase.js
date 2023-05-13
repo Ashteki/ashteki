@@ -1,3 +1,4 @@
+const DummyTurn = require('../DummyTurn');
 const Phase = require('../phase');
 const SimpleStep = require('../simplestep');
 const ActionWindow = require('./actionwindow');
@@ -5,14 +6,18 @@ const ActionWindow = require('./actionwindow');
 class PlayerTurnsPhase extends Phase {
     constructor(game) {
         super(game, 'playerturns');
-        this.initialise([new SimpleStep(this, () => this.beginTurn())]);
+        this.initialise([new SimpleStep(game, () => this.beginTurn())]);
     }
 
     beginTurn() {
         this.game.beginTurn();
         this.game.activePlayer.beginTurn();
 
-        this.queueStep(new ActionWindow(this.game));
+        if (this.game.solo && this.game.activePlayer.isDummy) {
+            this.queueStep(new DummyTurn(this.game))
+        } else {
+            this.queueStep(new ActionWindow(this.game));
+        }
 
         this.queueStep(new SimpleStep(this.game, () => this.game.raiseEndTurnEvent()));
         this.queueStep(new SimpleStep(this.game, () => this.queueNextTurn()));

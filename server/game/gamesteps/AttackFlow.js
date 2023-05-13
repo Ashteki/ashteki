@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../constants');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../constants');
 const { Costs } = require('../costs');
 const AttackState = require('./AttackState');
 const BaseStepWithPipeline = require('./basestepwithpipeline');
@@ -10,7 +10,7 @@ class AttackFlow extends BaseStepWithPipeline {
     constructor(game, target = null, attackers = null, ignoreMainCost = false) {
         super(game);
         this.target = target;
-        this.isPBAttack = target.type === CardType.Phoenixborn;
+        this.isPBAttack = PhoenixbornTypes.includes(target.type);
         this.attackingPlayer = this.game.activePlayer;
         this.defendingPlayer = target.controller;
         this.ignoreMainCost = ignoreMainCost;
@@ -30,7 +30,7 @@ class AttackFlow extends BaseStepWithPipeline {
 
         steps = steps.concat([
             new SimpleStep(this.game, () => this.game.attackState.pruneBattles()),
-            new ChooseDefendersPrompt(this.game, this.attack),
+            this.getDefendersStep(),
             new SimpleStep(this.game, () => {
                 if (!this.cancelled) {
                     this.game.raiseEvent('onDefendersDeclared', { attack: this.attack });
@@ -131,6 +131,13 @@ class AttackFlow extends BaseStepWithPipeline {
             battles: this.attack.battles
         };
         this.game.doAttackersDeclared(params);
+    }
+
+    getDefendersStep() {
+        if (this.game.solo && !this.attackingPlayer.isDummy) {
+            return new SimpleStep(this.game, () => this.attackingPlayer.opponent.defenderStrategy.execute(this.attack))
+        }
+        return new ChooseDefendersPrompt(this.game, this.attack)
     }
 }
 

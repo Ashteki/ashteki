@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class MarkOfTheGoddess extends Card {
@@ -17,13 +17,13 @@ class MarkOfTheGoddess extends Card {
                 victim: {
                     dependsOn: 'source',
                     activePromptTitle: "Choose another opponent's card to deal damage to",
-                    cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                    cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                     cardCondition: (card, context) => {
                         return (
                             card != context.targets.source &&
                             (BattlefieldTypes.includes(card.type) ||
                                 card.controller.unitsInPlay.filter((c) => !c.exhausted).length ===
-                                    1)
+                                1)
                         );
                     },
                     controller: 'opponent',

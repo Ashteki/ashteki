@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { CardType, PhoenixbornTypes } = require('../../../constants.js');
 const AbilityTargetCard = require('../../AbilityTargets/AbilityTargetCard.js');
 const AbilityTargetDie = require('../../AbilityTargets/AbilityTargetDie.js');
 const Card = require('../../Card.js');
@@ -24,7 +24,7 @@ class Vanish extends Card {
 
     targetsPhoenixborn(event, context) {
         return Object.values(event.context.targets).some(
-            (t) => t.controller === context.player && t.type === CardType.Phoenixborn
+            (t) => t.controller === context.player && PhoenixbornTypes.includes(t.type)
         );
     }
 

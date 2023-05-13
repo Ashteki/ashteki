@@ -6,6 +6,9 @@ const urlMatchingRegex = new RegExp(
 );
 
 export function imageUrl(cardStub) {
+    if (cardStub && cardStub.includes('http')) {
+        return cardStub;
+    }
     if (cardStub && cardStub.includes('.')) {
         return `https://cdn.ashes.live/images/cards/${cardStub}`;
     }

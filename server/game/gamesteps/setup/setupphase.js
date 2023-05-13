@@ -9,6 +9,7 @@ class SetupPhase extends Phase {
         super(game, 'setup');
         this.initialise([
             new SimpleStep(game, () => this.setupBegin()),
+            new SimpleStep(game, () => this.setupChimera()),
             new FirstFivePrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
@@ -28,6 +29,13 @@ class SetupPhase extends Phase {
     setupBegin() {
         for (let card of this.game.allCards) {
             card.applyAnyLocationPersistentEffects();
+        }
+    }
+
+    setupChimera() {
+        if (this.game.solo) {
+            const dummy = this.game.getDummyPlayer();
+            dummy.setupAspects();
         }
     }
 

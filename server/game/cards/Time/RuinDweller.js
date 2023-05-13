@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RuinDweller extends Card {
@@ -6,7 +6,7 @@ class RuinDweller extends Card {
         this.afterDestroyedDefending({
             title: 'Blight 1',
             target: {
-                cardType: CardType.Phoenixborn,
+                cardType: PhoenixbornTypes,
                 gameAction: ability.actions.dealDamage()
             }
         });
@@ -17,7 +17,7 @@ class RuinDweller extends Card {
                 onRoundEnded: () => true
             },
             target: {
-                cardType: CardType.Phoenixborn,
+                cardType: PhoenixbornTypes,
                 gameAction: ability.actions.dealDamage()
             }
         });

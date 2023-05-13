@@ -13,8 +13,22 @@ class FirstFivePrompt extends AllPlayerPrompt {
         return player.firstFiveChosen;
     }
 
+    setPlayerComplete(player) {
+        player.firstFiveChosen = true;
+    }
+
     continue() {
         if (!this.isComplete()) {
+            // check for dummy player and trigger strategy
+            this.game
+                .getPlayers()
+                .filter((p) => !this.completionCondition(p))
+                .forEach((p) => {
+                    if (p.ffStrategy) {
+                        p.ffStrategy.execute(this);
+                    }
+                });
+
             this.highlightSelectableCards();
         }
 
@@ -72,6 +86,9 @@ class FirstFivePrompt extends AllPlayerPrompt {
         player.setSelectableCards(this.selectableCards[player.name]);
     }
 
+    /**
+     * Set selectable cards for each player if not first five chosen 
+     */
     highlightSelectableCards() {
         this.game
             .getPlayers()

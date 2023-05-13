@@ -1,4 +1,4 @@
-const { Level } = require('../constants');
+const { Level, Magic } = require('../constants');
 
 class Dice {
     static levelUp(level) {
@@ -31,6 +31,10 @@ class Dice {
 
     static getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    static d12Roll() {
+        return this.getRandomInt(12) + 1;
     }
 
     // can diceReq be matched from the collection of dice?

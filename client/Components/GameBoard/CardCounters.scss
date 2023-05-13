@@ -110,6 +110,10 @@
     background-image: url('~assets/img/status.png');
 }
 
+.redRains {
+    background-image: url('~assets/img/redrains.png');
+}
+
 .preventAllDamage {
     background-image: url('~assets/img/armor-plus.png');
 }
@@ -164,6 +168,16 @@
 .preventGuard {
     background-image: url('~assets/img/sembali.png');
 
+}
+
+.behaviour {
+    background-image: url('~assets/img/behaviour.png');
+    width: 50px;
+    height: 50px;
+    color: black;
+    line-height: 30px;
+    font-size: 30px;
+    padding-top: 10px
 }
 
 .magnify {

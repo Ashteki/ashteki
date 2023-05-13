@@ -6,13 +6,16 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType } = require('../constants');
+const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes } = require('../constants');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
         super(game);
         this.user = user;
-        this.emailHash = this.user.emailHash;
+        this.role = user.role;
+        this.avatar = user.avatar;
+        this.optionSettings = user.settings.optionSettings;
+
         this.id = id;
         this.owner = owner;
 
@@ -37,11 +40,8 @@ class Player extends GameObject {
         this.maxLimited = 1;
         this.limitedPlayed = 0;
         this.showDeck = false;
-        this.role = user.role;
-        this.avatar = user.avatar;
 
         this.playableLocations = [new PlayableLocation('play', this, 'hand')];
-        this.optionSettings = user.settings.optionSettings;
 
         this.promptState = new PlayerPromptState(this);
         this.inspectionCard = null;
@@ -57,15 +57,7 @@ class Player extends GameObject {
         this.expectedScore = undefined;
 
         this.suddenDeath = false;
-    }
-
-    getAlertTimerSetting() {
-        let result = 5;
-        if (this.optionSettings.alertTimer !== null) {
-            result = this.optionSettings.alertTimer;
-        }
-
-        return result;
+        this.behaviourRoll = undefined;
     }
 
     get name() {
@@ -76,12 +68,25 @@ class Player extends GameObject {
         return 'player';
     }
 
+    get isDummy() {
+        return false;
+    }
+
     isSpectator() {
         return false;
     }
 
     canPlayLimited() {
         return this.limitedPlayed < this.maxLimited;
+    }
+
+    /**
+     * Used for effects that target the opponent's hand. 
+     * This is for DummyPlayer to override and prep chimera hand from top of deck 
+     * @returns array of cards
+     */
+    getHand() {
+        return this.hand;
     }
 
     startClock() {
@@ -100,6 +105,15 @@ class Player extends GameObject {
     resetClock() {
         if (!this.clock) return;
         this.clock.reset();
+    }
+
+    getAlertTimerSetting() {
+        let result = 5;
+        if (this.optionSettings.alertTimer !== null) {
+            result = this.optionSettings.alertTimer;
+        }
+
+        return result;
     }
 
     /**
@@ -189,6 +203,11 @@ class Player extends GameObject {
         return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
     }
 
+    // this get sent to the client
+    get battlefield() {
+        return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type));
+    }
+
     getSpendableDice(context) {
         // this assumes all spendable dice are on ready spells
         const spendableUpgrades = this.spellboard
@@ -202,17 +221,7 @@ class Player extends GameObject {
      * @param {number} numCards
      */
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
-        let remainingCards = numCards;
-
-        for (let card of this.deck) {
-            if (remainingCards == 0) break;
-
-            // only one copy?
-            if (!singleCopy || !this.hand.some((c) => c.name == card.name)) {
-                this.moveCard(card, 'hand');
-                remainingCards--;
-            }
-        }
+        let remainingCards = this.doDrawCards(numCards, singleCopy);
 
         if (remainingCards > 0 && damageIfEmpty) {
             this.game.addMessage(
@@ -224,6 +233,29 @@ class Player extends GameObject {
                 this.phoenixborn,
                 this.game.getFrameworkContext()
             );
+        }
+    }
+
+    doDrawCards(numCards, singleCopy) {
+        let remainingCards = numCards;
+
+        for (let card of this.deck) {
+            if (remainingCards == 0) break;
+
+            // only one copy?
+            if (!singleCopy || !this.hand.some((c) => c.name == card.name)) {
+                this.moveCard(card, Location.Hand);
+                remainingCards--;
+            }
+        }
+        return remainingCards;
+    }
+
+    releaseHand() {
+        _.shuffle(this.hand);
+        for (let card of this.hand) {
+            // only one copy?
+            this.moveCard(card, Location.Deck);
         }
     }
 
@@ -241,7 +273,7 @@ class Player extends GameObject {
      * Shuffles the deck, emitting an event and displaying a message in chat
      */
     shuffleDeck() {
-        this.game.emitEvent('onDeckShuffled', { player: this });
+        // this.game.emitEvent('onDeckShuffled', { player: this });
         this.deck = _.shuffle(this.deck);
     }
 
@@ -257,10 +289,18 @@ class Player extends GameObject {
         this.diceCounts = preparedDeck.diceCounts;
         this.phoenixborn = preparedDeck.phoenixborn;
         this.cardsInPlay = [this.phoenixborn];
+        if (preparedDeck.ultimates.length) {
+            this.ultimates = preparedDeck.ultimates;
+            this.behaviour = preparedDeck.behaviour;
+            this.spellboard = [this.ultimate, this.behaviour];
+        }
         this.dice = preparedDeck.dice;
         this.deckNotes = preparedDeck.notes;
     }
 
+    get ultimate() {
+        return null;
+    }
     /**
      * Called when the Game object starts the game. Creates all cards on this players decklist, shuffles the decks and initialises player parameters for the start of the game
      */
@@ -439,7 +479,8 @@ class Player extends GameObject {
             'Reaction Spell': [...cardLocations, 'being played'],
             Ally: [...cardLocations, 'play area'],
             Conjuration: ['play area', 'archives', 'purged'],
-            'Conjured Alteration Spell': ['play area', 'archives']
+            'Conjured Alteration Spell': ['play area', 'archives'],
+            Aspect: ['deck', 'discard', 'purged', 'play area', 'hand']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);
@@ -461,7 +502,7 @@ class Player extends GameObject {
     }
 
     /**
-     * Moves a card from one location to another. This involves removing it from the list it's currently in, calling DrawCard.move 
+     * Moves a card from one location to another. This involves removing it from the list it's currently in, calling Card.move 
      * (which changes its location property), and then adding it to the list it should now be in
      * @param card
      * @param {String} targetLocation
@@ -530,7 +571,7 @@ class Player extends GameObject {
             targetPile.push(card);
         }
 
-        card.moveTo(targetLocation);
+        card.moveTo(targetLocation, options.facedown);
 
         // this.game.raiseEvent('onCardPlaced', { card: card, from: location, to: targetLocation });
     }
@@ -601,6 +642,14 @@ class Player extends GameObject {
         this.dice.sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1));
     }
 
+    get activeDiceCount() {
+        return this.dice.filter(d => !d.exhausted).length;
+    }
+
+    get activeNonBasicDiceCount() {
+        return this.dice.filter(d => !d.exhausted && d.level !== Level.Basic).length;
+    }
+
     /**
      * Sets the passed cards as selected
      * @param cards
@@ -653,15 +702,15 @@ class Player extends GameObject {
         this.promptState.clearSelectableDice();
     }
 
-    getSummaryForCardList(list, activePlayer, hideWhenFaceup) {
+    getSummaryForCardList(list, activePlayer) {
         return list.map((card) => {
-            return card.getSummary(activePlayer, hideWhenFaceup);
+            return card.getSummary(activePlayer);
         });
     }
 
-    getSummaryForDiceList(list, activePlayer, hideWhenFaceup) {
+    getSummaryForDiceList(list, activePlayer) {
         return list.map((die) => {
-            return die.getSummary(activePlayer, hideWhenFaceup);
+            return die.getSummary(activePlayer);
         });
     }
 
@@ -736,11 +785,11 @@ class Player extends GameObject {
 
     getState(activePlayer) {
         let isActivePlayer = activePlayer === this;
-        let promptState = isActivePlayer ? this.promptState.getState() : {};
+        let promptState = (isActivePlayer || this.game.solo) ? this.promptState.getState() : {};
         let playerState = {
             cardPiles: {
                 archives: this.getSummaryForCardList(this.archives, activePlayer),
-                cardsInPlay: this.getSummaryForCardList(this.unitsInPlay, activePlayer),
+                cardsInPlay: this.getSummaryForCardList(this.battlefield, activePlayer),
                 discard: this.getSummaryForCardList(this.discard, activePlayer),
                 hand: this.getSummaryForCardList(this.hand, activePlayer, true),
                 purged: this.getSummaryForCardList(this.purged, activePlayer),
@@ -774,10 +823,13 @@ class Player extends GameObject {
             actions: this.actions,
             limitedPlayed: this.limitedPlayed,
             phoenixborn: this.phoenixborn.getSummary(activePlayer),
+            ultimate: this.ultimate && this.ultimate.getSummary(activePlayer),
+            behaviour: this.behaviour && this.behaviour.getSummary(activePlayer),
+
             firstPlayer: this.firstPlayer
         };
 
-        if (isActivePlayer) {
+        if (isActivePlayer || this.game.solo) {
             let sortedDeck = this.deck.slice();
             sortedDeck.sort((a, b) => {
                 const typeValueA = this.getTypeValue(a.type);
@@ -790,12 +842,15 @@ class Player extends GameObject {
 
                 return 0;
             });
-            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer, true);
+            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer);
             playerState.firstFive = this.firstFive;
             playerState.diceHistory = this.diceHistory;
             playerState.inspectionCard = this.inspectionCard?.getSummary(activePlayer);
         }
 
+        if (!isActivePlayer) {
+            playerState.behaviour = this.behaviourRoll;
+        }
         if (this.clock) {
             playerState.clock = this.clock.getState();
         }

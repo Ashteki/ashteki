@@ -3,6 +3,9 @@ class BaseStep {
         this.game = game;
     }
 
+    /**
+     * Entry point to the Step when on the pipeline. Gets called at every game loop until complete or cancelled
+     */
     continue() { }
 
     onCardClicked() {

@@ -1,4 +1,4 @@
-const { CardType } = require('../../constants');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class AttackAction extends CardGameAction {
@@ -7,7 +7,7 @@ class AttackAction extends CardGameAction {
     }
 
     setup() {
-        this.targetType = ['Ally', 'Conjuration', CardType.Phoenixborn];
+        this.targetType = [...BattlefieldTypes, ...PhoenixbornTypes];
     }
 
     canAffect(card, context) {
@@ -21,7 +21,7 @@ class AttackAction extends CardGameAction {
             attacker: this.attacker
         };
         return super.createEvent('unnamedevent', params, (event) => {
-            if (event.card.type === CardType.Phoenixborn) {
+            if (PhoenixbornTypes.includes(event.card.getType())) {
                 event.context.game.initiatePBAttack(event.card, event.attacker);
             } else {
                 event.context.game.initiateUnitAttack(event.card, event.attacker)

@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class PhoenixBarrage extends Card {
@@ -25,7 +25,7 @@ class PhoenixBarrage extends Card {
                     alwaysTriggers: true,
                     target: {
                         activePromptTitle: 'Choose a phoenixborn to damage',
-                        cardType: CardType.Phoenixborn,
+                        cardType: PhoenixbornTypes,
                         gameAction: ability.actions.dealDamage({
                             amount: 2,
                             showMessage: true

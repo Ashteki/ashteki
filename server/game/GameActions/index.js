@@ -49,11 +49,11 @@ module.exports = {
     PutIntoPlayAction: require('./PutIntoPlayAction'),
     RandomDiscardAction: require('./RandomDiscardAction'),
     RandomExposeAction: require('./RandomExposeAction'),
-    RandomPurgeAction: require('./RandomPurgeAction'),
     ReadyAction: require('./ReadyAction'),
     ReadyDieAction: require('./ReadyDieAction'),
     RearrangeCardsAction: require('./RearrangeCardsAction'),
     RecoverAction: require('./RecoverAction'),
+    ReleaseChimeraHandAction: require('./ReleaseChimeraHandAction'),
     RemoveAllTokensAction: require('./RemoveAllTokensAction'),
     RemoveFromBattleAction: require('./RemoveFromBattleAction'),
     RemoveAttackerAction: require('./RemoveAttackerAction'),
@@ -66,6 +66,7 @@ module.exports = {
     ReturnToDeckAction: require('./ReturnToDeckAction'),
     ReturnToHandAction: require('./ReturnToHandAction'),
     RevealAction: require('./RevealAction'),
+    RevealAspectAction: require('./RevealAspectAction'),
     SearchAction: require('./SearchAction'),
     SequentialAction: require('./SequentialAction'),
     SequentialForEachAction: require('./SequentialForEachAction'),
@@ -80,5 +81,6 @@ module.exports = {
     UseDieAction: require('./UseDieAction'),
     OrderedAoEAction: require('./OrderedAoEAction'),
     RaiseEventAction: require('./RaiseEventAction'),
-    AttackAction: require('./AttackAction')
+    AttackAction: require('./AttackAction'),
+    TriggerUltimateAction: require('./TriggerUltimateAction')
 };

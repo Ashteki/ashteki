@@ -18,7 +18,8 @@ class CardGameAction extends GameAction {
             'Alteration Spell',
             'Conjured Alteration Spell',
             'Phoenixborn',
-            'Reaction Spell'
+            'Reaction Spell',
+            'Aspect'
         ];
     }
 
@@ -79,7 +80,8 @@ class CardGameAction extends GameAction {
                 }
             };
             let properties = Object.assign(defaultProperties, this.promptForSelect);
-            context.game.promptForSelect(properties.player, properties);
+            let choosingPlayer = properties.player;
+            context.game.promptForSelect(choosingPlayer, properties);
         } else if (this.promptWithHandlerMenu) {
             let properties = this.promptWithHandlerMenu;
             if (!properties.customHandler) {

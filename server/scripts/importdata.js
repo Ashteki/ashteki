@@ -7,6 +7,7 @@ let cardService = new AshesCardService(new ConfigService());
 const dataDirectory = 'data/cards/';
 let files = fs.readdirSync(dataDirectory);
 let totalCards = [];
+let deckType = null;
 // let packs = JSON.parse(fs.readFileSync('fiveringdsdb-data/Pack.json').toString());
 // let types = JSON.parse(fs.readFileSync('fiveringdsdb-data/Type.json').toString());
 // let clans = JSON.parse(fs.readFileSync('fiveringdsdb-data/Clan.json').toString());
@@ -14,7 +15,14 @@ let totalCards = [];
 _.each(files, (file) => {
     let cardData = JSON.parse(fs.readFileSync(dataDirectory + file).toString());
     console.log(file);
-    totalCards = totalCards.concat(cardData.results);
+    deckType = cardData.deckType;
+    let packCards = cardData.results;
+    if (deckType) {
+        packCards.forEach((card) => {
+            card.deckType = deckType;
+        });
+    }
+    totalCards = totalCards.concat(packCards);
 });
 
 _.each(totalCards, (card) => {

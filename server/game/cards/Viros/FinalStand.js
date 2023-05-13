@@ -1,4 +1,4 @@
-const { CardType, Level, BattlefieldTypes } = require('../../../constants.js');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class FinalStand extends Card {
@@ -20,7 +20,7 @@ class FinalStand extends Card {
                     condition: (context) => context.player.phoenixborn.damage > 11,
                     trueGameAction: ability.actions.dealDamage({
                         promptForSelect: {
-                            cardType: CardType.Phoenixborn,
+                            cardType: PhoenixbornTypes,
                             activePromptTitle: 'Choose a phoenixborn to receive 2 damage',
                         },
                         amount: 2,

@@ -33,6 +33,7 @@ const Effects = {
         EffectBuilder.card.static('abilityRestrictions', new CannotRestriction(type, condition)),
     changeType: (type) => EffectBuilder.card.static('changeType', type),
     copyCard: (card) => EffectBuilder.card.static('copyCard', new CopyCard(card)),
+    defender: () => EffectBuilder.card.static('defender'),
     entersPlayUnderOpponentsControl: () =>
         EffectBuilder.card.static('entersPlayUnderOpponentsControl'),
     exhausted: () => EffectBuilder.card.static('exhausted'),

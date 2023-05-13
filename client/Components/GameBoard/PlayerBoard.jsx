@@ -36,6 +36,10 @@ const PlayerBoard = ({
     };
 
     const renderRow = (row) => {
+        if (!row) {
+            return null;
+        }
+
         const results = [];
         // render attack cards or gaps
         if (attack)
@@ -108,11 +112,11 @@ const PlayerBoard = ({
     let maxUpgrades = Math.max(...cardsInPlay.map((c) => (c.upgrades ? c.upgrades.length : 0)));
     let topMargin = maxUpgrades * 15;
     let style = { marginTop: topMargin + 'px' };
-
+    let allCardsInBoard = cardsInPlay;
     return (
         <div className={className}>
             <div className='card-row' style={style}>
-                {renderRow(cardsInPlay)}
+                {renderRow(allCardsInBoard)}
             </div>
         </div>
     );

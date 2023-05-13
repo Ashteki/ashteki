@@ -77,7 +77,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
             return false;
         }
 
-        if (myChoices.length === 1) {
+        if (myChoices.length === 1 || this.currentPlayer.isDummy) {
             this.resolveAbility(myChoices[0]);
             return false;
         }

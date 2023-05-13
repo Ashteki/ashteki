@@ -14,29 +14,38 @@ class DiscardCardAction extends CardGameAction {
 
     getEvent(card, context) {
         let location = card.location;
-        let eventName =
+        const params = { card, context, location, showMessage: this.showMessage };
+
+        // leaving play event
+        const leavesPlayEvent = context.game.getEvent(
             card.location === 'play area' || card.location === 'spellboard'
                 ? 'onCardLeavesPlay'
-                : 'onCardDiscarded';
+                : 'unnamedevent',
+            params,
+            (lpEvent) => {
+                lpEvent.card.owner.moveCard(lpEvent.card, lpEvent.card.discardLocation);
+            }
+        );
 
-        // TODO: for consistency within onCardLeavesPlay this should be a 
-        // discarded event with a leaves play child event
-        return super.createEvent(
-            eventName,
-            { card, context, location, showMessage: this.showMessage },
+        const discardEvent = super.createEvent(
+            'onCardDiscarded',
+            params,
             (event) => {
                 if (card.location === 'hand') {
                     context.game.cardsDiscarded.push(card);
                 }
-                card.owner.moveCard(card, card.discardLocation);
                 card.removed = true;
 
                 if (event.showMessage || this.showMessage) {
                     const discardingPlayer = this.player || context.player;
                     context.game.addMessage('{0} discards {1}', discardingPlayer, card);
                 }
+
             }
         );
+        discardEvent.addSubEvent(leavesPlayEvent)
+
+        return discardEvent;
     }
 }
 

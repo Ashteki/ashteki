@@ -25,6 +25,16 @@ class AllPlayerDiscardPrompt extends AllPlayerPrompt {
         });
 
         if (!this.isComplete()) {
+            // check for dummy player and trigger strategy
+            this.game
+                .getPlayers()
+                .filter((p) => !this.completionCondition(p))
+                .forEach((p) => {
+                    if (p.discardStrategy) {
+                        p.discardStrategy.execute(this);
+                    }
+                });
+
             this.highlightSelectableCards();
         }
 

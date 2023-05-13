@@ -14,6 +14,7 @@ const UserService = require('./services/AshesUserService');
 const ConfigService = require('./services/ConfigService');
 const User = require('./models/User');
 const { sortBy } = require('./Array');
+const DummyUser = require('./models/DummyUser.js');
 
 class Lobby {
     constructor(server, options = {}) {
@@ -467,6 +468,13 @@ class Lobby {
                 return;
             }
         }
+
+        if (game.solo) {
+            const dummy = new DummyUser();
+            game.addPlayer(0, dummy);
+            await this.selectDeck(game, dummy, -1, 0, game.gameFormat)
+        }
+
         this.sendGameState(game);
 
         this.games[game.id] = game;
@@ -597,6 +605,9 @@ class Lobby {
             return;
         }
 
+        if (game.solo) {
+            game.leave(DummyUser.DUMMY_USERNAME);
+        }
         game.leave(socket.user.username);
         socket.send('cleargamestate');
         socket.leaveChannel(game.id);
@@ -636,17 +647,18 @@ class Lobby {
         this.sendGameState(game);
     }
 
-    async selectDeck(game, user, deckId, isStandalone, chooseForMeType) {
+    async selectDeck(game, user, deckId, isPrecon, chooseForMeType) {
         // get cards (need this for random deck generation)
-        const cards = await this.cardService.getAllCards();
+        const cards = this.cards;
         let deck = null;
-        if (isStandalone) {
+        if (isPrecon) {
             deck = await this.deckService.getPreconDeckById(deckId);
+        } else if (game.gameFormat === 'coaloff') {
+            deck = this.deckService.getCoalOffDeck(cards);
+        } else if (game.solo && user.isDummy) {
+            deck = await this.deckService.getChimeraDeck();
         } else {
             switch (deckId) {
-                case -2: // coaloff!
-                    deck = this.deckService.getCoalOffDeck(cards);
-                    break;
                 case -1: // random choice 
                     deck = await this.deckService.getRandomChoice(user, chooseForMeType);
                     break;
@@ -673,19 +685,27 @@ class Lobby {
             hasPhoenixborn = true;
         }
 
+        if (deck.ultimates) {
+            for (let u of deck.ultimates) {
+                u.card = cards[u.id];
+            }
+        }
+
+        if (deck.behaviour) {
+            for (let u of deck.behaviour) {
+                u.card = cards[u.id];
+            }
+        }
+
         let hasConjurations = this.checkConjurations(deck);
         let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
         let uniques =
             !hasPhoenixborn ||
-            (
-                deck.cards.filter(
-                    (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
-                ).length === 0 &&
-                deck.cards.filter(
-                    (c) => c.card.phoenixborn
-                ).length <= 3
-            );
+            (deck.cards.filter(
+                (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
+            ).length === 0 &&
+                deck.cards.filter((c) => c.card.phoenixborn).length <= 3);
 
         const legalToPlay =
             hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
@@ -1009,6 +1029,8 @@ class Lobby {
             syncGame.node = this.router.workers[nodeName];
             syncGame.password = game.password;
             syncGame.started = game.started;
+
+            syncGame.solo = game.solo;
 
             for (let player of Object.values(game.players)) {
                 syncGame.players[player.name] = {

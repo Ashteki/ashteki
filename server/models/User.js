@@ -1,5 +1,8 @@
 const Settings = require('../settings');
 
+/**
+ * A Lobby server user
+ */
 class User {
     constructor(userData) {
         this.userData = userData;

@@ -141,8 +141,14 @@ class AbilityTargetDie {
                 return true;
             }
         };
+
+        let player = context.player;
+        if (this.properties.player && this.properties.player === 'opponent') {
+            player = player.opponent;
+        }
+
         context.game.promptForDieSelect(
-            context.player,
+            player,
             Object.assign(promptProperties, otherProperties)
         );
     }

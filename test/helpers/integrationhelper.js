@@ -227,27 +227,28 @@ beforeEach(function () {
         cards[card.id] = card;
     }
 
-    this.flow = new GameFlowWrapper(cards);
 
-    this.game = this.flow.game;
-    this.player1Object = this.game.getPlayerByName('player1');
-    this.player2Object = this.game.getPlayerByName('player2');
-    this.player1 = this.flow.player1;
-    this.player2 = this.flow.player2;
-
-    _.each(ProxiedGameFlowWrapperMethods, (method) => {
-        this[method] = (...args) => this.flow[method].apply(this.flow, args);
-    });
-
-    this.buildDeck = function (cards) {
-        return deckBuilder.buildDeck(cards);
-    };
 
     /**
      * Factory method. Creates a new simulation of a game.
      * @param {Object} [options = {}] - specifies the state of the game
      */
     this.setupTest = function (options = {}) {
+        this.flow = new GameFlowWrapper(cards, options);
+
+        this.game = this.flow.game;
+        this.player1Object = this.game.getPlayerByName('player1');
+        this.player2Object = this.game.getPlayerByName('player2');
+        this.player1 = this.flow.player1;
+        this.player2 = this.flow.player2;
+
+        _.each(ProxiedGameFlowWrapperMethods, (method) => {
+            this[method] = (...args) => this.flow[method].apply(this.flow, args);
+        });
+
+        this.buildDeck = function (cards) {
+            return deckBuilder.buildDeck(cards);
+        };
         //Set defaults
         if (!options.player1) {
             options.player1 = {};
@@ -269,7 +270,9 @@ beforeEach(function () {
         this.player2.player.optionSettings.alertTimer = 0;
         this.player2.player.optionSettings.alwaysGroupTactics = false;
         this.player2.player.optionSettings.dontIceTrapOwnUnits = false;
-
+        if (this.player2.isDummy && !options.allowSetup) {
+            spyOn(this.player2.player, 'setupAspects');
+        }
         this.startGame();
         //Player stats
         this.player1.actions = { main: true, side: true };
@@ -277,26 +280,39 @@ beforeEach(function () {
         //Field
         this.player1.hand = [];
         this.player2.hand = [];
+
         // this.player1.phoenixborn = options.player1.phoenixborn;
         // this.player2.phoenixborn = options.player2.phoenixborn;
         this.player1.inPlay = options.player1.inPlay;
-        this.player2.inPlay = options.player2.inPlay;
-        //Conflict deck related
-        this.player1.spellboard = options.player1.spellboard;
-        this.player2.spellboard = options.player2.spellboard;
+        if (!this.player2.inPlay.length) {
+            this.player2.inPlay = options.player2.inPlay;
+        }
+
+        if (!this.player1.isDummy) {
+            this.player1.spellboard = options.player1.spellboard;
+        }
+        if (!this.player2.isDummy) {
+            this.player2.spellboard = options.player2.spellboard;
+        }
         this.player1.dicepool = options.player1.dicepool;
         this.player2.dicepool = options.player2.dicepool;
-
+        if (this.player2.isDummy) {
+            this.player2.dicepool.forEach(d => d.level = 'basic');
+        }
         this.player1.hand = options.player1.hand;
         this.player2.hand = options.player2.hand;
         this.player1.discard = options.player1.discard;
         this.player2.discard = options.player2.discard;
         this.player1.archives = options.player1.archives;
         this.player2.archives = options.player2.archives;
+        if (this.player2.isDummy && options.player2.threatZone) {
+            this.player2.threatZone = options.player2.threatZone;
+        }
 
         for (let player of [this.player1, this.player2]) {
             let cards = [
                 'inPlay',
+                'threatZone',
                 'spellboard',
                 'hand',
                 'discard',

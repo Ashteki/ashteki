@@ -1,4 +1,4 @@
-const { Level, Magic, CardType, BattlefieldTypes } = require('../../../constants.js');
+const { Level, Magic, BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -17,7 +17,7 @@ class FrostBite extends Card {
             ],
             location: 'spellboard',
             target: {
-                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                 gameAction: ability.actions.dealDamage()
             }
         });

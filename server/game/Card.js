@@ -12,7 +12,8 @@ const {
     UpgradeCardTypes,
     AbilityType,
     ConjuredCardTypes,
-    Magic
+    Magic,
+    PhoenixbornTypes
 } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
@@ -38,7 +39,7 @@ class Card extends PlayableObject {
         this.id = cardData.stub;
         this.printedName = cardData.name;
         // this is the default imageStub for the card - this can be overridden by alt arts later
-        this.imageStub = cardData.stub;
+        this.imageStub = cardData.imageStub || cardData.stub;
         this.printedType = cardData.type;
         this.index = 0;
 
@@ -73,6 +74,11 @@ class Card extends PlayableObject {
         this.printedAttack = cardData.attack || 0;
         this.printedLife = cardData.life || 0;
         this.printedRecover = cardData.recover || 0;
+        this.threat = cardData.threat;
+        this.blood = cardData.blood;
+        this.printedUltimate = cardData.ultimate;
+        this.target = cardData.target;
+        this.setup = cardData.setup;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
 
@@ -314,6 +320,27 @@ class Card extends PlayableObject {
         );
     }
 
+    destroyedOrDiscarded(properties) {
+        return this.forcedInterrupt(
+            Object.assign(
+                {
+                    when: {
+                        // onCardDestroyed: (event, context) => event.card === context.source,
+                        onCardLeavesPlay: (event, context) =>
+                            event.card === context.source &&
+                            event.triggeringEvent &&
+                            event.triggeringEvent.name === 'onCardDestroyed',
+
+                        onCardDiscarded: (event, context) => event.card === context.source &&
+                            event.clone.location === 'play area'
+                    },
+                    destroyed: true
+                },
+                properties
+            )
+        );
+    }
+
     inheritance() {
         return this.destroyed({
             title: 'Inheritance 1',
@@ -486,10 +513,11 @@ class Card extends PlayableObject {
         // this.doSomething ?
     }
 
-    moveTo(targetLocation) {
+    moveTo(targetLocation, facedown = false) {
         let originalLocation = this.location;
 
         this.location = targetLocation;
+
 
         if (
             [
@@ -504,6 +532,9 @@ class Card extends PlayableObject {
         ) {
             this.facedown = false;
         }
+        if (facedown) {
+            this.facedown = true;
+        }
 
         if (originalLocation !== targetLocation) {
             this.updateAbilityEvents(originalLocation, targetLocation);
@@ -511,7 +542,8 @@ class Card extends PlayableObject {
             this.game.emitEvent('onCardMoved', {
                 card: this,
                 originalLocation: originalLocation,
-                newLocation: targetLocation
+                newLocation: targetLocation,
+                facedown: facedown
             });
         }
     }
@@ -944,6 +976,14 @@ class Card extends PlayableObject {
         return this.hasToken('damage') ? this.tokens.damage : 0;
     }
 
+    get redRains() {
+        return this.hasToken('redRains') ? this.tokens.redRains : 0;
+    }
+
+    get ultimate() {
+        return this.printedUltimate;
+    }
+
     exhaust(amount = 1) {
         this.addToken('exhaustion', amount);
     }
@@ -1231,6 +1271,18 @@ class Card extends PlayableObject {
         return actions.concat(this.actions.slice());
     }
 
+    canPlay(activePlayer) {
+        // fudge - the getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
+        // see order of call in getState
+        let isController = activePlayer === this.controller;
+
+        return !!(
+            activePlayer === this.game.activePlayer &&
+            isController &&
+            this.getLegalActions(activePlayer).length > 0
+        )
+    }
+
     getModifiedController() {
         if (this.location === 'play area' || this.location === 'spellboard') {
             return this.mostRecentEffect('takeControl') || this.defaultController;
@@ -1240,7 +1292,7 @@ class Card extends PlayableObject {
     }
 
     get isInPlay() {
-        return this.type === CardType.Phoenixborn || this.controller.unitsInPlay.includes(this);
+        return PhoenixbornTypes.includes(this.type) || this.controller.unitsInPlay.includes(this);
     }
 
     isLimited() {
@@ -1257,12 +1309,11 @@ class Card extends PlayableObject {
         return result;
     }
 
-    getSummary(activePlayer, hideWhenFaceup) {
-        let isController = activePlayer === this.controller;
+    getSummary(activePlayer) {
         let selectionState = activePlayer.getCardSelectionState(this);
 
         if (!this.game.isCardVisible(this, activePlayer) && !this.game.isCardPublic(this)) {
-            return {
+            const result = {
                 controller: this.controller.name,
                 location: this.location,
                 facedown: true,
@@ -1272,6 +1323,10 @@ class Card extends PlayableObject {
                 isConjuration: ConjuredCardTypes.includes(this.type),
                 ...selectionState
             };
+            if (this.blood) {
+                result.blood = this.blood;
+            }
+            return result;
         }
 
         let state = {
@@ -1279,17 +1334,10 @@ class Card extends PlayableObject {
             index: this.index,
             imageStub: this.getImageStub(),
             altArts: this.altArts,
-
-            canPlay: !!(
-                activePlayer === this.game.activePlayer &&
-                isController &&
-                //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target
-                // and properties when interrupted mid-resolution
-                activePlayer.promptState.promptTitle === 'Play phase' &&
-                this.getLegalActions(activePlayer).length > 0
-            ),
+            // FUDGE - Order matters here. The getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
+            canPlay: (activePlayer.promptState.promptTitle === 'Play phase') && this.canPlay(activePlayer),
             childCards: this.childCards.map((card) => {
-                return card.getSummary(activePlayer, hideWhenFaceup);
+                return card.getSummary(activePlayer);
             }),
             controlled: this.owner !== this.controller,
             exhausted: this.exhausted,
@@ -1302,7 +1350,7 @@ class Card extends PlayableObject {
             new: this.new,
             type: this.getType(),
             upgrades: this.upgrades.map((upgrade) => {
-                return upgrade.getSummary(activePlayer, hideWhenFaceup);
+                return upgrade.getSummary(activePlayer);
             }),
             dieUpgrades: this.dieUpgrades.map((die) => {
                 return die.getSummary(activePlayer);

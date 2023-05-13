@@ -7,7 +7,7 @@ const { matchCardByNameAndPack } = require('./cardutil.js');
 const PathToSubModulePacks = path.join(__dirname, '../../data/cards');
 
 const defaultFiller = ['open-memories'];
-const minDeck = 6;
+const defaultDummyDeck = ['rampage', 'hunting-instincts'];
 
 class DeckBuilder {
     constructor() {
@@ -36,15 +36,17 @@ class DeckBuilder {
     */
     customDeck(player = {}) {
         let deck = [];
+        const minDeck = player.dummy ? 8 : 6;
 
-        for (let zone of ['deck', 'hand', 'inPlay', 'spellboard', 'discard', 'archives']) {
+        for (let zone of ['deck', 'hand', 'inPlay', 'spellboard', 'discard', 'archives', 'threatZone']) {
             if (Array.isArray(player[zone])) {
                 deck = deck.concat(player[zone]);
             }
         }
 
+        const filler = player.dummy ? defaultDummyDeck : defaultFiller[0];
         while (deck.length < minDeck) {
-            deck = deck.concat(defaultFiller[0]);
+            deck = deck.concat(filler);
         }
 
         let dice = [
@@ -66,10 +68,10 @@ class DeckBuilder {
             }
         ];
 
-        return this.buildDeck(deck, player['phoenixborn'], dice);
+        return this.buildDeck(deck, player, dice);
     }
 
-    buildDeck(cardLabels, phoenixborn, dice) {
+    buildDeck(cardLabels, player, dice) {
         var cardCounts = {};
         _.each(cardLabels, (label) => {
             var cardData = this.getCard(label);
@@ -84,9 +86,9 @@ class DeckBuilder {
             }
         });
 
-        var pbData = this.getCard(phoenixborn);
+        var pbData = this.getCard(player.phoenixborn);
 
-        return {
+        const result = {
             cards: Object.values(cardCounts),
             phoenixborn: [
                 {
@@ -97,6 +99,29 @@ class DeckBuilder {
             ],
             dicepool: dice
         };
+
+        if (player.dummy) {
+            var bData = this.getCard(player.behaviour);
+            result.behaviour = [
+                {
+                    count: 1,
+                    card: bData,
+                    id: bData.stub
+                }
+            ];
+
+            const ults = [];
+            player.ultimates.forEach(stub => {
+                const uData = this.getCard(stub);
+                ults.push({
+                    count: 1,
+                    card: uData,
+                    id: uData.stub
+                });
+            })
+            result.ultimates = ults;
+        }
+        return result;
     }
 
     getCard(idOrLabelOrName) {

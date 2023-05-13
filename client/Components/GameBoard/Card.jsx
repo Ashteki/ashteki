@@ -12,6 +12,9 @@ import { ItemTypes, UpgradeCardTypes } from '../../constants';
 import SquishableCardPanel from './SquishableCardPanel';
 import spellback from '../../assets/img/cardback-spell.png';
 import conjback from '../../assets/img/cardback-conjuration.png';
+import blood1back from '../../assets/img/cardback-aspect-blood1.png';
+import blood2back from '../../assets/img/cardback-aspect-blood2.png';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import Die from './Die';
@@ -35,7 +38,6 @@ const Card = ({
     style,
     wrapped = true
 }) => {
-    const cardBack = card.isConjuration ? conjback : spellback;
     const sizeClass = {
         [size]: size !== 'normal'
     };
@@ -356,7 +358,7 @@ const Card = ({
         });
         const image = card ? (
             <div className={imageClass}>
-                <CardImage card={card} cardBack={cardBack} />
+                <CardImage card={card} cardBack={getCardBack(card)} />
                 {getChainIcon(card)}
                 {getBoostedFlags(card)}
             </div>
@@ -402,7 +404,12 @@ const Card = ({
             </div>
         );
     };
-
+    const getCardBack = (card) => {
+        if (card.blood) {
+            return card.blood === 2 ? blood2back : blood1back;
+        }
+        return card.isConjuration ? conjback : spellback;
+    }
     const getStatusClass = () => {
         if (!card) {
             return undefined;

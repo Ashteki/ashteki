@@ -102,6 +102,7 @@ const PendingGame = () => {
     }
 
     const canClickStart = () => {
+        return true;
         if (
             !user ||
             !currentGame ||

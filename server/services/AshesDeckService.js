@@ -36,6 +36,13 @@ class AshesDeckService {
         });
     }
 
+    getChimeraDeck() {
+        return this.preconDecks.findOne({ mode: 'chimera' }).catch((err) => {
+            logger.error('Unable to fetch a chimera deck', err);
+            throw new Error('Unable to fetch a chimera deck ');
+        });
+    }
+
     getPreconDecks(preconGroup = 1) {
         return this.preconDecks.find({ 'precon_group': preconGroup }, { sort: { precon_id: 1 } });
     }
@@ -173,8 +180,11 @@ class AshesDeckService {
 
     getDeckProperties(deck, isPrecon) {
         let properties = {
+            mode: deck.mode,
             name: deck.deckName || deck.name,
             phoenixborn: deck.phoenixborn,
+            ultimates: deck.ultimates,
+            behaviour: deck.behaviour,
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,
@@ -199,6 +209,8 @@ class AshesDeckService {
         let properties = {
             name: deck.deckName || deck.name,
             phoenixborn: deck.phoenixborn,
+            ultimates: deck.ultimates,
+            behaviour: deck.behaviour,
             dicepool: deck.dicepool,
             cards: deck.cards,
             conjurations: deck.conjurations,

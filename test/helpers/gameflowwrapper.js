@@ -3,7 +3,7 @@ const PlayerInteractionWrapper = require('./playerinteractionwrapper.js');
 const Settings = require('../../server/settings.js');
 
 class GameFlowWrapper {
-    constructor(cards) {
+    constructor(cards, options) {
         var gameRouter = jasmine.createSpyObj('gameRouter', [
             'gameWon',
             'playerLeft',
@@ -16,6 +16,7 @@ class GameFlowWrapper {
             name: "player1's game",
             id: 12345,
             owner: 'player1',
+            solo: options.mode === 'solo',
             saveGameId: 12345,
             players: [
                 {
@@ -34,6 +35,15 @@ class GameFlowWrapper {
                 }
             ]
         };
+
+        if (options.player1.dummy) {
+            details.players[0].playerType = 'dummy';
+        }
+
+        if (options.player2.dummy) {
+            details.players[1].playerType = 'dummy';
+        }
+
         this.game = new Game(details, {
             router: gameRouter,
             cardData: cards,
@@ -60,10 +70,10 @@ class GameFlowWrapper {
         this.game.initialise();
         // set the active player -> determinefirst will not roll dice
         this.game.gameFirstPlayer = this.player1.player;
-        this.player1.clickPrompt('Start the Game');
-        this.player2.clickPrompt('Start the Game');
+        !this.player1.isDummy && this.player1.clickPrompt('Start the Game');
+        !this.player2.isDummy && this.player2.clickPrompt('Start the Game');
 
-        this.player1.clickNo(); // discard
+        !this.player1.isDummy && this.player1.clickNo(); // discard
         // workaround for the Sleeping Widows with Fallen, Double Down with Indiglow Creeper intermittent failures
         if (this.player2.hasPrompt('Do you want to discard any cards?')) {
             this.player2.clickNo(); // discard

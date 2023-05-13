@@ -24,6 +24,13 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
                 this.bid[key] = 0;
             }
         }
+
+        // if player cannot draw then bid 0
+        game.getPlayers().forEach(p => {
+            if (!p.checkRestrictions('draw', game.getFrameworkContext(p))) {
+                this.bid[p.uuid] = 0;
+            }
+        });
         this.source = properties.source;
     }
 

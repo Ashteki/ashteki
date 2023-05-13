@@ -4,6 +4,7 @@ class BaseDieSelector {
         this.dieType = properties.dieType;
         this.optional = properties.optional;
         this.owner = properties.owner || 'any';
+        this.player = properties.player || 'self';
         this.checkTarget = properties.targets;
 
         if (!Array.isArray(properties.dieType)) {

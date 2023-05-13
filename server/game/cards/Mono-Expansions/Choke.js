@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Choke extends Card {
@@ -7,7 +7,7 @@ class Choke extends Card {
             condition: (context) => !context.source.exhausted,
             title: 'Choke',
             target: {
-                cardType: CardType.Phoenixborn,
+                cardType: PhoenixbornTypes,
                 controller: 'opponent',
                 cardCondition: (card) => !card.exhausted,
                 gameAction: [

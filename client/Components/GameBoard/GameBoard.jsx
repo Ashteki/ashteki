@@ -25,6 +25,7 @@ import MovablePanel from './MovablePanel';
 import CardInspector from './CardInspector';
 import Clock from './Clock';
 import WinLoseSplash from './WinLoseSplash';
+import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
 
 const placeholderPlayer = {
@@ -34,7 +35,8 @@ const placeholderPlayer = {
         hand: [],
         purged: [],
         spells: [],
-        deck: []
+        deck: [],
+        archives: []
     },
     activePlayer: false,
     firstPlayer: false,
@@ -262,12 +264,12 @@ export class GameBoard extends React.Component {
         };
     }
 
-    renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating) {
-        return [
-            <div key='board-middle' className='board-middle'>
-                <div className='player-home-row'>
-                    {!compactLayout &&
-                        (<PlayerRow
+    getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating) {
+        return (
+            <>
+                {!compactLayout && (
+                    <div className='player-home-row'>
+                        <PlayerRow
                             active={otherPlayer.activePlayer}
                             archives={otherPlayer.cardPiles.archives}
                             cardSize={cardSize}
@@ -283,8 +285,10 @@ export class GameBoard extends React.Component {
                             side='top'
                             dice={otherPlayer.dice}
                             purgedPile={otherPlayer.cardPiles.purged}
-                        />)}
-                </div>
+                            behaviour={otherPlayer.behaviour}
+                        />
+                    </div>
+                )}
                 <div className='player-home-row'>
                     <PlayerPBRow
                         active={otherPlayer.activePlayer}
@@ -308,6 +312,42 @@ export class GameBoard extends React.Component {
                         phoenixborn={otherPlayer.phoenixborn}
                     />
                 </div>
+            </>
+        );
+    }
+
+    getChimeraRow(otherPlayer, spectating) {
+        return (
+            <div className='player-home-row'>
+                <ChimeraRow
+                    cardSize={this.props.user.settings.cardSize}
+                    dice={otherPlayer.dice}
+                    discard={otherPlayer.cardPiles.discard}
+                    drawDeck={otherPlayer.cardPiles.deck}
+                    isMe={false}
+                    language={this.props.i18n.language}
+                    manualMode={this.props.currentGame.manualMode}
+                    numDeckCards={otherPlayer.numDeckCards}
+                    onCardClick={this.onCardClick}
+                    onMouseOver={this.onMouseOver}
+                    onMouseOut={this.onMouseOut}
+                    player={otherPlayer}
+                    side='top'
+                    spells={otherPlayer.cardPiles.spells}
+                    spectating={spectating}
+                    phoenixborn={otherPlayer.phoenixborn}
+                />
+            </div>
+        );
+    }
+
+    renderBoard(thisPlayer, otherPlayer, compactLayout, leftMode, cardSize, spectating) {
+        return [
+            <div key='board-middle' className='board-middle'>
+                {this.props.currentGame.solo
+                    ? this.getChimeraRow(otherPlayer, compactLayout, leftMode, cardSize, spectating)
+                    : this.getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating)}
+
                 <div className='board-inner'>
                     <div className='play-area'>
                         {/* opponent board */}
@@ -484,7 +524,9 @@ export class GameBoard extends React.Component {
                         player={otherPlayer}
                         clockState={otherPlayer.clock}
                         winner={this.props.currentGame.winner}
+                        onCardClick={this.onCardClick}
                         onMouseOver={this.onMouseOver}
+                        solo={this.props.currentGame.solo}
                     />
                 </div>
                 <div className='main-window'>
@@ -542,6 +584,7 @@ export class GameBoard extends React.Component {
 
                         {this.state.showMessages && (
                             <div className='gamechat'>
+                                {this.getOtherPlayerPrompt(otherPlayer)}
                                 <GameChat
                                     key='gamechat'
                                     messages={this.props.currentGame.messages}
@@ -595,6 +638,26 @@ export class GameBoard extends React.Component {
         );
     }
 
+    getOtherPlayerPrompt(otherPlayer) {
+        let otherPlayerPrompt = null;
+        if (this.props.currentGame.solo) {
+            const otherState = otherPlayer.promptState;
+            otherState.style = 'warning';
+            otherPlayerPrompt = <div className='inset-pane'>
+                <ActivePlayerPrompt
+                    cards={this.props.cards}
+                    promptState={otherState}
+                    onButtonClick={this.onCommand}
+                    onMouseOver={this.onMouseOver}
+                    onMouseOut={this.onMouseOut}
+                    onTimerExpired={this.onTimerExpired.bind(this)}
+                    phase={this.props.currentGame.currentPhase}
+                />
+            </div>
+        }
+        return otherPlayerPrompt;
+    }
+
     getCardLog() {
         return (
             <div className='timer-log-area'>
@@ -607,11 +670,28 @@ export class GameBoard extends React.Component {
         );
     }
 
-    getPromptArea(thisPlayer) {
+    getPromptArea(thisPlayer, otherPlayer) {
+        let otherPlayerPrompt = null;
+        // if (this.props.currentGame.solo) {
+        //     const otherState = otherPlayer.promptState;
+        //     otherState.style = 'warning';
+        //     otherPlayerPrompt = <div className='inset-pane'>
+        //         <ActivePlayerPrompt
+        //             cards={this.props.cards}
+        //             promptState={otherState}
+        //             onButtonClick={this.onCommand}
+        //             onMouseOver={this.onMouseOver}
+        //             onMouseOut={this.onMouseOut}
+        //             onTimerExpired={this.onTimerExpired.bind(this)}
+        //             phase={this.props.currentGame.currentPhase}
+        //         />
+        //     </div>
+        // }
+
         const logArea = thisPlayer.inspectionCard ? (
             <CardInspector card={thisPlayer.inspectionCard} />
         ) : (
-            <div>{this.getCardLog()}</div>
+            <div>{otherPlayerPrompt || this.getCardLog()}</div>
         );
         return (
             <div className='prompt-area panel'>

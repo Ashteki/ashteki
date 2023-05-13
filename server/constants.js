@@ -10,17 +10,21 @@ const CardType = {
     ReadySpell: 'Ready Spell',
     Ally: 'Ally',
     Conjuration: 'Conjuration',
-    ConjuredAlteration: 'Conjured Alteration Spell'
+    ConjuredAlteration: 'Conjured Alteration Spell',
+    Aspect: 'Aspect',
+    Chimera: 'Chimera'
 };
 
 const Location = {
     Deck: 'deck',
     Hand: 'hand',
     Archives: 'archives',
-    Discard: 'discard'
+    Discard: 'discard',
+    PlayArea: 'play area'
 };
 
-const BattlefieldTypes = [CardType.Ally, CardType.Conjuration];
+const BattlefieldTypes = [CardType.Ally, CardType.Conjuration, CardType.Aspect];
+const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [CardType.Conjuration, CardType.ConjuredAlteration];
 const EffectLocations = ['play area', 'spellboard'];
@@ -45,7 +49,8 @@ const Magic = {
     Illusion: 'illusion',
     Natural: 'natural',
     Sympathy: 'sympathy',
-    Time: 'time'
+    Time: 'time',
+    Rage: 'rage'
 };
 
 const Level = {
@@ -64,6 +69,7 @@ module.exports = {
     CardType,
     Location,
     BattlefieldTypes,
+    PhoenixbornTypes,
     UpgradeCardTypes,
     ConjuredCardTypes,
     AbilityType,

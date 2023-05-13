@@ -9,6 +9,7 @@ const Actions = {
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addGravityFluxToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'gravityFlux'),
+    addRedRainsToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'redRains'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory, type) => new GameActions.AddTokenAction(propertyFactory, type),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
@@ -49,12 +50,14 @@ const Actions = {
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
+    revealAspect: (propertyFactory) => new GameActions.RevealAspectAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     setBlocker: (propertyFactory) => new GameActions.SetBlockerAction(propertyFactory),
     use: (propertyFactory) => new GameActions.UseAction(propertyFactory),
     orderedAoE: (propertyFactory) => new GameActions.OrderedAoEAction(propertyFactory),
     attack: (propertyFactory) => new GameActions.AttackAction(propertyFactory),
+    triggerUltimate: (propertyFactory) => new GameActions.TriggerUltimateAction(propertyFactory),
 
     // dice actions
     changeDice: (propertyFactory) => new GameActions.ChangeDiceAction(propertyFactory),
@@ -87,7 +90,7 @@ const Actions = {
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),
     playerChosenAmountDraw: (propertyFactory) =>
         new GameActions.PlayerChosenAmountDrawAction(propertyFactory),
-    purgeAtRandom: (propertyFactory) => new GameActions.RandomPurgeAction(propertyFactory), // amount = 1
+    releaseChimeraHand: (propertyFactory) => new GameActions.ReleaseChimeraHandAction(propertyFactory),
     rearrangeCards: (propertyFactory) => new GameActions.RearrangeCardsAction(propertyFactory),
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name

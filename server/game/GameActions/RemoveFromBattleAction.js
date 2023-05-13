@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class RemoveFromBattleAction extends CardGameAction {
@@ -8,7 +9,7 @@ class RemoveFromBattleAction extends CardGameAction {
     }
 
     setup() {
-        this.targetType = ['Ally', 'Conjuration'];
+        this.targetType = [...BattlefieldTypes];
     }
 
     canAffect(card, context) {

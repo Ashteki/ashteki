@@ -14,7 +14,7 @@ class ChosenDiscardAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        if (player.hand.length === 0 || this.amount === 0) {
+        if (player.getHand().length === 0 || this.amount === 0) {
             return false;
         }
 
@@ -23,8 +23,9 @@ class ChosenDiscardAction extends PlayerAction {
 
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player: player }, () => {
-            if (player.hand.length > 0) {
-                let amount = Math.min(player.hand.length, this.amount);
+            const hand = player.getHand();
+            if (hand.length > 0) {
+                let amount = Math.min(hand.length, this.amount);
                 if (amount > 0) {
                     context.game.promptForSelect(player, {
                         activePromptTitle:
@@ -46,6 +47,9 @@ class ChosenDiscardAction extends PlayerAction {
                             }
                             context.game.addMessage('{0} discards {1}', player, cards);
                             context.game.actions.discard().resolve(cards, context);
+                            context.game.actions
+                                .releaseChimeraHand()
+                                .resolve(player.opponent, context);
                             return true;
                         }
                     });
