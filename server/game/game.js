@@ -1631,6 +1631,7 @@ class Game extends EventEmitter {
             winReason: this.winReason,
             winner: this.winner ? this.winner.name : undefined,
             swap: this.swap,
+            solo: this.solo
         };
     }
 
@@ -1749,7 +1750,8 @@ class Game extends EventEmitter {
             started: this.started,
             startedAt: this.startedAt,
             swap: this.swap,
-            winner: this.winner ? this.winner.name : undefined
+            winner: this.winner ? this.winner.name : undefined,
+            solo: this.solo
         };
     }
 }
