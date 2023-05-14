@@ -102,7 +102,6 @@ const PendingGame = () => {
     }
 
     const canClickStart = () => {
-        return true;
         if (
             !user ||
             !currentGame ||
@@ -115,7 +114,9 @@ const PendingGame = () => {
 
         if (
             !Object.values(currentGame.players).every((player) => {
-                return !!player.deck.selected && !!player.deck.status.legalToPlay;
+                return (
+                    !!player.deck.selected && (!!player.deck.status.legalToPlay || currentGame.solo)
+                );
             })
         ) {
             return false;
