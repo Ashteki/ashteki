@@ -275,7 +275,7 @@ class Card extends PlayableObject {
             target: {
                 activePromptTitle: 'Ambush ' + amount + ': Choose a Phoenixborn',
                 gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true }),
-                cardType: 'Phoenixborn',
+                cardType: PhoenixbornTypes,
                 optional: true
             }
         });

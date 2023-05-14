@@ -139,9 +139,7 @@ describe('When Attacked', function () {
             expect(this.virosS1.damage).toBe(1);
             expect(this.fluteMage.location).toBe('play area');
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
-
         });
-
     });
 
     describe('defender guard', function () {
@@ -186,7 +184,7 @@ describe('When Attacked', function () {
             this.player1.clickAttack(this.constrict);
             this.player1.clickCard(this.fluteMage);
 
-            // this.player1.clickPrompt('Ok'); // guard roll alert
+            this.player1.clickPrompt('Ok'); // guard roll alert
             expect(this.constrict.location).toBe('play area');
             expect(this.fluteMage.location).toBe('discard');
             expect(this.ironScales.damage).toBe(1);
@@ -194,5 +192,4 @@ describe('When Attacked', function () {
             expect(Dice.d12Roll).toHaveBeenCalledTimes(0);
         });
     });
-
 });

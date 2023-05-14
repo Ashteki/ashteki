@@ -57,7 +57,7 @@ class DummyPlayer extends Player {
                     this.game.queueUserAlert(context, {
                         style: 'danger',
                         promptTitle: 'Chimera Alert',
-                        menuTitle: 'Chimera is Fatigued!',
+                        menuTitle: 'Chimera is Fatigued!'
                     });
                 }
 
