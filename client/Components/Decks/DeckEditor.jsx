@@ -327,13 +327,10 @@ class InnerDeckEditor extends React.Component {
             return <div>Waiting for deck...</div>;
         }
 
-        let phoenixbornCards = [];
-        for (let c in this.props.cards) {
-            if (this.props.cards[c].type == 'Phoenixborn') {
-                phoenixbornCards.push(this.props.cards[c]);
-            }
-        }
+        let phoenixbornCards = _.toArray(this.props.cards).filter((c) => c.type == 'Phoenixborn');
         phoenixbornCards.sort((a, b) => (a.name < b.name ? -1 : 1));
+
+        const lookupCards = _.toArray(this.props.cards).filter((c) => c.deckType !== 'chimera');
 
         return (
             <div>
@@ -381,7 +378,7 @@ class InnerDeckEditor extends React.Component {
                         </Form.Label>
                         <Col sm='4'>
                             <Typeahead
-                                options={_.toArray(this.props.cards)}
+                                options={lookupCards}
                                 onChange={this.addCardChange.bind(this)}
                                 labelKey={'name'}
                             />

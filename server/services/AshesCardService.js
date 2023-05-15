@@ -39,7 +39,8 @@ class AshesCardService {
                             id: card.stub,
                             conjurations: card.conjurations,
                             phoenixborn: card.phoenixborn,
-                            copies: card.copies
+                            copies: card.copies,
+                            deckType: card.deckType
                         };
                     } else {
                         cards[card.stub] = card;
