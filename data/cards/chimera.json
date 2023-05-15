@@ -16,31 +16,31 @@
                 2,
                 2
             ],
-            "imageStub": "http://localhost:4000/img/chimera/viros-s1.png"
+            "imageStub": "corpse-of-viros-1p-standard-1.jpg"
         },
         {
             "name": "Viros Ultimate 1",
             "stub": "viros-ultimate-1",
             "type": "Ready Spell",
-            "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-1.png"
+            "imageStub": "corpse-of-viros-ultimate-1.jpg"
         },
         {
             "name": "Viros Ultimate 2",
             "stub": "viros-ultimate-2",
             "type": "Ready Spell",
-            "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-2.png"
+            "imageStub": "corpse-of-viros-ultimate-2.jpg"
         },
         {
             "name": "Viros Ultimate 3",
             "stub": "viros-ultimate-3",
             "type": "Ready Spell",
-            "imageStub": "http://localhost:4000/img/chimera/viros-ultimate-3.png"
+            "imageStub": "corpse-of-viros-ultimate-3.jpg"
         },
         {
             "name": "Viros Behaviour",
             "stub": "viros-behaviour",
             "type": "Ready Spell",
-            "imageStub": "http://localhost:4000/img/chimera/viros-behaviour-%s.png"
+            "imageStub": "corpse-of-viros-behaviour-%s.jpg"
         },
         {
             "name": "Rampage",

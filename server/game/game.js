@@ -44,18 +44,24 @@ const DummyPlayer = require('./solo/DummyPlayer');
 class Game extends EventEmitter {
     constructor(details, options = {}) {
         super();
-        this.allowSpectators = details.allowSpectators;
-        this.solo = details.solo;
-        this.cancelPromptUsed = false;
         this.chatCommands = new ChatCommands(this);
+        this.effectEngine = new EffectEngine(this);
+        this.gameChat = new GameChat(this);
+        this.pipeline = new GamePipeline();
+        this.solo = details.solo;
+        this.showHand = details.showHand;
+        this.openHands = details.openHands;
+        this.cardVisibility = new CardVisibility(this.showHand, this.openHands, this.solo);
+
+        this.allowSpectators = details.allowSpectators;
+        this.cancelPromptUsed = false;
         this.createdAt = new Date();
         this.currentAbilityWindow = null;
         this.currentActionWindow = null;
         this.currentEventWindow = null;
         this.currentPhase = '';
-        this.effectEngine = new EffectEngine(this);
+        // disable fatigue for tests
         this.disableFatigue = options.disableFatigue;
-        this.gameChat = new GameChat(this);
         this.gamePrivate = details.gamePrivate;
         this.gameFormat = details.gameFormat;
         this.gameType = details.gameType;
@@ -66,7 +72,6 @@ class Game extends EventEmitter {
         this.name = details.name;
         this.owner = details.owner.username;
         this.password = details.password;
-        this.pipeline = new GamePipeline();
         this.playStarted = false;
         this.playersAndSpectators = {};
         this.savedGameId = details.savedGameId;
@@ -89,9 +94,6 @@ class Game extends EventEmitter {
         this.router = options.router;
         this.attackState = null;
         this.cardData = options.cardData || [];
-        this.showHand = details.showHand;
-        this.openHands = details.openHands;
-        this.cardVisibility = new CardVisibility(this.showHand, this.openHands, this.solo);
 
         this.useGameTimeLimit = details.useGameTimeLimit;
         const clockDetails = { type: 'none', time: 0 };
