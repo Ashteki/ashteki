@@ -174,9 +174,13 @@ class InnerDeckEditor extends React.Component {
     }
 
     getCard(cardName) {
-        return _.find(this.props.cards, function (card) {
-            return card.name.toLowerCase() === cardName.toLowerCase();
-        });
+        return this.getAllCards().find(
+            (card) => card.name.toLowerCase() === cardName.toLowerCase()
+        );
+    }
+
+    getAllCards() {
+        return _.toArray(this.props.cards).filter((card) => card.deckType !== 'chimera');
     }
 
     onDiceListChange(event) {
@@ -327,10 +331,10 @@ class InnerDeckEditor extends React.Component {
             return <div>Waiting for deck...</div>;
         }
 
-        let phoenixbornCards = _.toArray(this.props.cards).filter((c) => c.type == 'Phoenixborn');
+        let phoenixbornCards = this.getAllCards().filter((c) => c.type == 'Phoenixborn');
         phoenixbornCards.sort((a, b) => (a.name < b.name ? -1 : 1));
 
-        const lookupCards = _.toArray(this.props.cards).filter((c) => c.deckType !== 'chimera');
+        const lookupCards = this.getAllCards().filter((c) => c.deckType !== 'chimera');
 
         return (
             <div>
