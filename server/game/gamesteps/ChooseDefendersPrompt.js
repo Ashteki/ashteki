@@ -112,23 +112,24 @@ class ChooseDefendersPrompt extends UiPrompt {
             { text: 'Clear', arg: 'clear' },
             { text: 'Done', arg: 'done' }
         ];
+        const controls = [];
+        if (this.attack.battles.length === 1) {
+            controls.push({
+                type: 'targeting',
+                source: this.attack.battles[0].attacker.getShortSummary(),
+                targets: [this.attack.target.getShortSummary()]
+            });
+        }
 
         return {
+            timed: false,
             buttons: buttons,
             promptTitle: 'Attack',
             menuTitle: this.selectedCard
                 ? 'Choose which attacker to ' + this.blockType + ' with ' + this.selectedCard.name
                 : this.menuTitleText,
             selectCard: !this.completed,
-            controls: this.attack.battles.length === 1
-                ? [
-                    {
-                        type: 'targeting',
-                        source: this.attack.battles[0].attacker.getShortSummary(),
-                        targets: [this.attack.target.getShortSummary()]
-                    }
-                ]
-                : []
+            controls: controls
         };
     }
 

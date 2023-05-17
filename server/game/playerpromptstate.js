@@ -19,6 +19,7 @@ class PlayerPromptState {
         this.selectedCards = [];
         this.selectedDice = [];
         this.showAlert = false;
+        this.timerLength = 0;
     }
 
     setSelectedCards(cards) {

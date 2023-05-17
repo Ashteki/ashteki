@@ -1584,9 +1584,28 @@ class Game extends EventEmitter {
         this.pipeline.continue();
     }
 
-    doAttackersDeclared(params) {
+    doAttackersDeclared(attackingPlayer, attackState) {
+        this.queueUserAlert(this.getFrameworkContext(attackingPlayer), {
+            timed: true,
+            style: 'danger',
+            promptTitle: (attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
+            menuTitle: attackState.target.name + ' is being attacked',
+            controls: [
+                {
+                    type: 'targeting',
+                    source: attackState.target.getShortSummary()
+                    // ,
+                    // targets: [attackState.target.getShortSummary()]
+                }
+            ]
+        });
+
+        const params = {
+            attackingPlayer: attackingPlayer,
+            battles: attackState.battles
+        };
         this.raiseEvent('onAttackersDeclared', params);
-        this.cardsPlayed.push({ act: 'attack', obj: this.attackState.target });
+        this.cardsPlayed.push({ act: 'attack', obj: attackState.target });
     }
 
     logMeditation(player) {
