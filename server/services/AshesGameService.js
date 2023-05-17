@@ -98,7 +98,8 @@ class GameService {
         const findSpec = {
             'players.name': username,
             'players.deck': { $ne: null },
-            gameType: { $ne: 'beginner' }
+            gameType: { $ne: 'beginner' },
+            solo: { $ne: true }
         };
         if (mon && mon > 0) {
             const fromDate = moment().subtract(mon, 'months');
