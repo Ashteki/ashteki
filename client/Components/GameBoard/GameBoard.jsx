@@ -156,7 +156,7 @@ const GameBoard = () => {
     };
 
     const onWinSplashCloseClick = () => {
-        setShowWinSplash(showWinSplash);
+        setShowWinSplash(!showWinSplash);
     };
 
     const defaultPlayerInfo = (source) => {
