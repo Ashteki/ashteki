@@ -8,11 +8,11 @@ const PendingPlayer = require('./models/PendingPlayer.js');
 
 class PendingGame {
     constructor(owner, details) {
-        this.allowSpectators = details.allowSpectators;
+        this.allowSpectators = !details.solo && details.allowSpectators;
         this.createdAt = new Date();
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;
-        this.gamePrivate = !!details.gamePrivate;
+        this.gamePrivate = !!details.gamePrivate; // hides from game list
         // this.gameType = details.gameType;
         this.gameType = details.ranked ? 'competitive' : 'casual';
         this.id = uuid.v1();
@@ -318,7 +318,9 @@ class PendingGame {
                     selected: player.deck.selected,
                     status: player.deck.status,
                     name: null,
-                    pbStub: player.deck.phoenixborn[0]?.card.stub
+                    pbStub:
+                        player.deck.phoenixborn[0]?.card.imageStub ||
+                        player.deck.phoenixborn[0]?.card.stub
                 };
                 if (activePlayer === player.name || this.gameFormat === 'firstadventure') {
                     deck.name = player.deck.name;
