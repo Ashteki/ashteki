@@ -80,8 +80,9 @@
 
 .action {
     @include action-colors(#333, #FFF);
-    border-radius: 8px;
-    margin: 5px;
+    border-radius: 4px;
+    // margin-left: 5px;
+    margin-right: 5px;
     // height: 24px;
     // width: 26px;
     padding: 0px 5px;
@@ -90,6 +91,10 @@
     z-index: $layer-cards + 1;
     font-size: 120%;
     border: 1pt solid black;
+
+    &:last-child {
+        margin-right: 0px;
+    }
 
     svg {
         color: #333 !important;

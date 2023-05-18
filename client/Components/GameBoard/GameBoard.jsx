@@ -577,8 +577,10 @@ const GameBoard = () => {
                                 messages={currentGame.messages}
                                 onCardMouseOut={onMouseOut}
                                 onCardMouseOver={onMouseOver}
+                                onMuteClick={onMuteClick}
                                 onSendChat={sendChatMessage}
                                 muted={spectating && currentGame.muteSpectators}
+                                muteSpectators={currentGame.muteSpectators}
                             />
                         </div>
                     )}

@@ -5,6 +5,9 @@ import $ from 'jquery';
 import Messages from './Messages';
 
 import './GameChat.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { toastr } from 'react-redux-toastr';
 
 class GameChat extends React.Component {
     constructor(props) {
@@ -66,6 +69,18 @@ class GameChat extends React.Component {
         this.setState({ message: '' });
     }
 
+    writeChatToClipboard(event) {
+        event.preventDefault();
+        let messagePanel = document.getElementsByClassName('messages panel')[0];
+        if (messagePanel) {
+            navigator.clipboard
+                .writeText(messagePanel.innerText)
+                .then(() => toastr.success('Copied game chat to clipboard'))
+                .catch((err) => toastr.error(`Could not copy game chat: ${err}`));
+        }
+    };
+
+
     render() {
         let placeholder = this.props.muted ? 'Spectators cannot chat in this game' : 'Chat...';
 
@@ -81,6 +96,20 @@ class GameChat extends React.Component {
                         onCardMouseOver={this.props.onCardMouseOver}
                         onCardMouseOut={this.props.onCardMouseOut}
                     />
+                </div>
+                <div className='chat-footer'>
+                    <a href='#' className='pr-1 pl-1' title='Mute spectators'>
+                        <FontAwesomeIcon
+                            icon={this.props.muteSpectators ? faEyeSlash : faEye}
+                            onClick={this.props.onMuteClick}
+                        ></FontAwesomeIcon>
+                    </a>
+                    <a href='#' className='pr-1 pl-1' title='Copy chat to clipboard'>
+                        <FontAwesomeIcon
+                            icon={faCopy}
+                            onClick={this.writeChatToClipboard}
+                        ></FontAwesomeIcon>
+                    </a>
                 </div>
                 <form className='form chat-form'>
                     <input

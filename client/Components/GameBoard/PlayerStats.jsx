@@ -14,7 +14,6 @@ import {
     faBolt,
     faStickyNote
 } from '@fortawesome/free-solid-svg-icons';
-import { Badge } from 'react-bootstrap';
 
 import PlayerName from '../Site/PlayerName';
 import Minus from '../../assets/img/Minus.png';
@@ -90,9 +89,10 @@ const PlayerStats = ({
             <div className='state'>
                 {renderMainAction()}
                 {renderSideAction()}
+                {renderLimited()}
             </div>
         );
-    }
+    };
 
     const renderLifeRemaining = () => {
         const pb = phoenixborn;
@@ -128,17 +128,15 @@ const PlayerStats = ({
         const value = !player.limitedPlayed;
         let actionClass = classNames('action', value ? '' : 'exhausted');
         return (
-            <div className='state'>
-                <a
-                    href='#'
-                    key='limitedPlayed'
-                    className={actionClass}
-                    onClick={toggleLimited}
-                    title='reaction'
-                >
-                    <FontAwesomeIcon icon={faBolt} />
-                </a>
-            </div>
+            <a
+                href='#'
+                key='limitedPlayed'
+                className={actionClass}
+                onClick={toggleLimited}
+                title='reaction'
+            >
+                <FontAwesomeIcon icon={faBolt} />
+            </a>
         );
     }
 
@@ -168,7 +166,7 @@ const PlayerStats = ({
         let actionClass = classNames('action', actionValue ? '' : 'exhausted');
         let diceFont = `phg-side-action`;
         return (
-            <div className='state'>
+            <>
                 {showControls ? (
                     <a
                         href='#'
@@ -196,7 +194,7 @@ const PlayerStats = ({
                         <img src={Plus} title='+ side' alt='+' />
                     </a>
                 ) : null}
-            </div>
+            </>
         );
     }
 
@@ -314,7 +312,6 @@ const PlayerStats = ({
             {playerAvatar}
             {renderLifeRemaining()}
             {renderActions()}
-            {renderLimited()}
             {firstPlayerToken}
             {clock}
             {activePlayer && <div className='state first-player-state'>Active Player</div>}
@@ -344,14 +341,6 @@ const PlayerStats = ({
                             ></FontAwesomeIcon>
                         </a>
                     </div>
-                    <div className='main'>
-                        <a href='#' className='pr-1 pl-1' title='Mute spectators'>
-                            <FontAwesomeIcon
-                                icon={muteSpectators ? faEyeSlash : faEye}
-                                onClick={onMuteClick}
-                            ></FontAwesomeIcon>
-                        </a>
-                    </div>
                     {showManualMode && (
                         <div className='state'>
                             <a
@@ -375,14 +364,6 @@ const PlayerStats = ({
                         </a>
                     </div>
                     <div className='state'>
-                        <a href='#' className='pr-1 pl-1' title='Copy chat to clipboard'>
-                            <FontAwesomeIcon
-                                icon={faCopy}
-                                onClick={writeChatToClipboard}
-                            ></FontAwesomeIcon>
-                        </a>
-                    </div>
-                    <div>
                         <a href='#' onClick={onMessagesClick} className='pl-1' title='Toggle chat'>
                             <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
                         </a>
