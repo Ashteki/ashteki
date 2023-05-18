@@ -86,17 +86,6 @@ class GameChat extends React.Component {
 
         return (
             <div className='chat'>
-                <div
-                    className='messages panel'
-                    ref={(m) => (this.messagePanel = m)}
-                    onScroll={this.onScroll}
-                >
-                    <Messages
-                        messages={this.props.messages}
-                        onCardMouseOver={this.props.onCardMouseOver}
-                        onCardMouseOut={this.props.onCardMouseOut}
-                    />
-                </div>
                 <div className='chat-footer' aria-hidden='true'>
                     <a href='#' className='pr-1 pl-1' title='Mute spectators'>
                         <FontAwesomeIcon
@@ -110,6 +99,17 @@ class GameChat extends React.Component {
                             onClick={this.writeChatToClipboard}
                         ></FontAwesomeIcon>
                     </a>
+                </div>
+                <div
+                    className='messages panel'
+                    ref={(m) => (this.messagePanel = m)}
+                    onScroll={this.onScroll}
+                >
+                    <Messages
+                        messages={this.props.messages}
+                        onCardMouseOver={this.props.onCardMouseOver}
+                        onCardMouseOut={this.props.onCardMouseOut}
+                    />
                 </div>
                 <form className='form chat-form'>
                     <input
