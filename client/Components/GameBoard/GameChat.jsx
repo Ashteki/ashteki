@@ -97,7 +97,7 @@ class GameChat extends React.Component {
                         onCardMouseOut={this.props.onCardMouseOut}
                     />
                 </div>
-                <div className='chat-footer'>
+                <div className='chat-footer' aria-hidden='true'>
                     <a href='#' className='pr-1 pl-1' title='Mute spectators'>
                         <FontAwesomeIcon
                             icon={this.props.muteSpectators ? faEyeSlash : faEye}
