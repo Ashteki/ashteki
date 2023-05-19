@@ -1586,7 +1586,7 @@ class Game extends EventEmitter {
 
     doAttackersDeclared(attackingPlayer, attackState) {
         this.queueUserAlert(this.getFrameworkContext(attackingPlayer), {
-            timed: true,
+            timed: false,
             style: 'danger',
             promptTitle: (attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
             menuTitle: attackState.target.name + ' is being attacked',
