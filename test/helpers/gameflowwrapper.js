@@ -23,14 +23,18 @@ class GameFlowWrapper {
                     id: '111',
                     user: Settings.getUserWithDefaultsSet({
                         username: 'player1',
-                        settings: { optionSettings: { orderForcedAbilities: true } }
+                        settings: {
+                            optionSettings: { orderForcedAbilities: true, noAttackAlerts: true }
+                        }
                     })
                 },
                 {
                     id: '222',
                     user: Settings.getUserWithDefaultsSet({
                         username: 'player2',
-                        settings: { optionSettings: { orderForcedAbilities: true } }
+                        settings: {
+                            optionSettings: { orderForcedAbilities: true, noAttackAlerts: true }
+                        }
                     })
                 }
             ]

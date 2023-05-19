@@ -1585,21 +1585,22 @@ class Game extends EventEmitter {
     }
 
     doAttackersDeclared(attackingPlayer, attackState) {
-        this.queueUserAlert(this.getFrameworkContext(attackingPlayer), {
-            timed: false,
-            style: 'danger',
-            promptTitle: (attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
-            menuTitle: attackState.target.name + ' is being attacked',
-            controls: [
-                {
-                    type: 'targeting',
-                    source: attackState.target.getShortSummary()
-                    // ,
-                    // targets: [attackState.target.getShortSummary()]
-                }
-            ]
-        });
-
+        if (!attackingPlayer.opponent.optionSettings.noAttackAlerts) {
+            this.queueUserAlert(this.getFrameworkContext(attackingPlayer), {
+                timed: false,
+                style: 'danger',
+                promptTitle: (attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
+                menuTitle: attackState.target.name + ' is being attacked',
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: attackState.target.getShortSummary()
+                        // ,
+                        // targets: [attackState.target.getShortSummary()]
+                    }
+                ]
+            });
+        }
         const params = {
             attackingPlayer: attackingPlayer,
             battles: attackState.battles
