@@ -86,14 +86,26 @@ class GameChat extends React.Component {
 
         return (
             <div className='chat'>
-                <div className='chat-footer' aria-hidden='true'>
-                    <a href='#' className='pr-1 pl-1' title='Mute spectators'>
+                <div className='chat-footer'>
+                    <a
+                        href='#'
+                        className='pr-1 pl-1'
+                        title='Mute spectators'
+                        tabIndex={-1}
+                        aria-hidden='true'
+                    >
                         <FontAwesomeIcon
                             icon={this.props.muteSpectators ? faEyeSlash : faEye}
                             onClick={this.props.onMuteClick}
                         ></FontAwesomeIcon>
                     </a>
-                    <a href='#' className='pr-1 pl-1' title='Copy chat to clipboard'>
+                    <a
+                        href='#'
+                        className='pr-1 pl-1'
+                        title='Copy chat to clipboard'
+                        tabIndex={-1}
+                        aria-hidden='true'
+                    >
                         <FontAwesomeIcon
                             icon={faCopy}
                             onClick={this.writeChatToClipboard}
