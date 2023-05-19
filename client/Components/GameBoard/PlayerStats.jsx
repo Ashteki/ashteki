@@ -37,7 +37,6 @@ const PlayerStats = ({
     firstPlayer,
     isMe,
     manualModeEnabled,
-    muteSpectators,
     onCardClick,
     onDeckNotesClick,
     onDiceHistoryClick,
@@ -49,13 +48,13 @@ const PlayerStats = ({
     onTouchMove,
     onClockZero,
     onMessagesClick,
-    onMuteClick,
     onSettingsClick,
-    phoenixborn,
-    player,
     showControls,
     onMouseOut,
     onMouseOver,
+    phoenixborn,
+    player,
+    round,
     showManualMode,
     showMessages,
     side,
@@ -370,6 +369,7 @@ const PlayerStats = ({
                     </div>
                 </div>
             )}
+            {!showMessages && <div className='state  chat-status'>Round {round}</div>}
         </div>
     );
 };
