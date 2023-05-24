@@ -374,12 +374,6 @@ class Player extends GameObject {
         if (this.passedMain) {
             this.game.addAlert('info', '{0} PASSES their main action', this);
         }
-        //this.limitedPlayed = 0; // reset for opponent's turn - moved to game.js
-        this.cardsInPlay.forEach((c) => {
-            c.new = false;
-
-            c.upgrades.forEach((u) => (u.new = false));
-        });
     }
 
     endRound() {
