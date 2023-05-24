@@ -242,6 +242,12 @@ class MeditatePrompt extends UiPrompt {
                 messageFormat = messageFormat + ' to change from {3} to {4}';
                 messageArgs.push(this.prevDie, dice);
             }
+
+            if (!this.logged) {
+                this.game.logMeditation(this.choosingPlayer);
+                this.logged = true;
+            }
+
             this.game.addMessage(messageFormat, ...messageArgs);
             if (!this.firstTopOfDeck && this.isTopDeck) {
                 this.firstTopOfDeck = this.choosingPlayer.selectedCards[0]; // should only be 1
@@ -260,8 +266,8 @@ class MeditatePrompt extends UiPrompt {
         if (arg === 'done' || arg === 'cancel') {
             if (this.count > 0) {
                 this.game.addMessage('{0} meditated {1} cards/dice', player, this.count);
-                this.game.logMeditation(this.choosingPlayer);
             }
+
             // If they didn't meditate at all, recover the side action and reset the die
             if (this.count == 0) {
                 this.resetDice();
