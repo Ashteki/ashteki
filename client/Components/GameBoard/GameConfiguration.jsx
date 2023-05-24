@@ -54,6 +54,16 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         }
                     />
                     <Form.Check
+                        id='noAttackAlerts'
+                        name='gameOptions.noAttackAlerts'
+                        label="Don't alert on attacks (useful for blitz games)"
+                        type='switch'
+                        checked={optionSettings.noAttackAlerts}
+                        onChange={(event) =>
+                            onOptionSettingToggle('noAttackAlerts', event.target.checked)
+                        }
+                    />
+                    <Form.Check
                         id='leftMode'
                         name='gameOptions.leftMode'
                         label='Show the prompt area on left'

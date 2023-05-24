@@ -42,6 +42,15 @@ const InGameSettings = ({ formProps }) => {
                 onBlur={formProps.handleBlur}
             />
             <Form.Check
+                id='noAttackAlerts'
+                name='gameOptions.noAttackAlerts'
+                label="Don't alert on attacks (useful for blitz games)"
+                type='switch'
+                checked={formProps.values.gameOptions.noAttackAlerts}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <Form.Check
                 id='leftMode'
                 name='gameOptions.leftMode'
                 label='Show the prompt area on left'

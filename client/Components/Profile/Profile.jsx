@@ -76,6 +76,7 @@ const initialValues = {
         alertTimer: 5,
         alwaysGroupTactics: false,
         dontIceTrapOwnUnits: true,
+        noAttackAlerts: false,
         leftMode: false,
         compactLayout: false
     }
