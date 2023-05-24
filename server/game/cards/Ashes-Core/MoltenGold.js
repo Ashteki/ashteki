@@ -8,7 +8,8 @@ class MoltenGold extends Card {
             target: {
                 cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                 gameAction: ability.actions.addDamageToken({ amount: 3 })
-            }
+            },
+            promptTitle: 'Choose a unit or PB to receive 3 wounds'
         });
     }
 }
