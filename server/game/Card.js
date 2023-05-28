@@ -1354,12 +1354,10 @@ class Card extends PlayableObject {
                 return card.getSummary(activePlayer);
             }),
             controlled: this.owner !== this.controller,
-            exhausted: this.exhausted,
             facedown: this.facedown,
             location: this.location,
             menu: this.getMenu(),
             name: this.name,
-            cardSlot: this.cardSlot,
             label: this.name,
             new: this.new,
             type: this.getType(),
@@ -1372,18 +1370,24 @@ class Card extends PlayableObject {
             tokens: this.tokens,
             flags: this.getFlags(),
             acquiredEffects: this.getAcquiredEffects(),
-            armor: this.armor,
-            life: this.life,
-            guarded: this.usedGuardThisRound,
             uuid: this.uuid,
             isAttacker: this.isAttacker,
             isDefender: this.isDefender,
             isConjuration: ConjuredCardTypes.includes(this.type),
             isChained: this.isChained,
-            altArts: this.altArts,
-            conjurations: this.conjurations, //?? .map((c) => c.stub),
-            phoenixborn: this.phoenixborn
+            conjurations: this.conjurations //?? .map((c) => c.stub),
         };
+
+        if (this.armor > 0) {
+            state.armor = this.armor;
+        }
+        if (this.type === CardType.Phoenixborn) {
+            state.life = this.life;
+            state.guarded = this.usedGuardThisRound;
+        }
+        if (this.type === CardType.ReadySpell) {
+            state.cardSlot = this.cardSlot;
+        }
 
         return Object.assign(state, selectionState);
     }
