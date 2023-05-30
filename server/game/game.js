@@ -124,16 +124,10 @@ class Game extends EventEmitter {
     createPlayer(player, clockDetails) {
         const isOwner = this.owner === player.user.username;
         if (player.playerType === 'dummy') {
-            return new DummyPlayer(player.id, player.user, isOwner, this, clockDetails)
+            return new DummyPlayer(player.id, player.user, isOwner, this, clockDetails);
         }
 
-        return new Player(
-            player.id,
-            player.user,
-            isOwner,
-            this,
-            clockDetails
-        );
+        return new Player(player.id, player.user, isOwner, this, clockDetails);
     }
 
     getCardIndex() {
@@ -256,11 +250,11 @@ class Game extends EventEmitter {
      * @returns {Player}
      */
     getDummyPlayer() {
-        return this.getPlayers().find(p => p.isDummy);
+        return this.getPlayers().find((p) => p.isDummy);
     }
 
     getSoloPlayer() {
-        return this.getPlayers().find(p => !p.isDummy);
+        return this.getPlayers().find((p) => !p.isDummy);
     }
 
     /**
@@ -695,7 +689,7 @@ class Game extends EventEmitter {
 
         this.addMessage('{0} has chosen defenders', player);
         this.attackState.battles
-            .sort((a, b) => a.guard ? -1 : 1)
+            .sort((a) => (a.guard ? -1 : 1))
             .forEach((battle) => {
                 if (battle.guard) {
                     this.addMessage(
@@ -705,10 +699,7 @@ class Game extends EventEmitter {
                         battle.attacker
                     );
                 } else {
-                    this.addMessage(
-                        '{0} will be un' + blockType + 'ed ',
-                        battle.attacker
-                    );
+                    this.addMessage('{0} will be un' + blockType + 'ed ', battle.attacker);
                 }
             });
     }
@@ -898,7 +889,7 @@ class Game extends EventEmitter {
             controls: options.controls,
             buttons: buttons,
             style: options.style
-        }
+        };
 
         if (options.timed) {
             activePrompt.timerLength = timerLength;
@@ -964,7 +955,7 @@ class Game extends EventEmitter {
     }
 
     /**
-     * This function is called by the client when a player chess clock hits Zero. 
+     * This function is called by the client when a player chess clock hits Zero.
      * It triggers a gamestatecheck (in gameserver) and doesn't really need to do much else
      * This needs to exist for gameserver to trigger the state check (and immediate win/loss)
      * @param {String} playerName
@@ -1077,7 +1068,7 @@ class Game extends EventEmitter {
         if (!this.gameFirstPlayer) {
             const players = this.getPlayers();
 
-            const firstPlayerParams = {}
+            const firstPlayerParams = {};
             if (this.solo) {
                 this.activePlayer = this.getSoloPlayer();
             } else {
@@ -1107,9 +1098,7 @@ class Game extends EventEmitter {
                 firstPlayerParams.activeBasics = basicCounts[activeIndex];
                 firstPlayerParams.opponentBasics = basicCounts[1 - activeIndex];
             }
-            this.queueStep(
-                new FirstPlayerSelection(this, firstPlayerParams)
-            );
+            this.queueStep(new FirstPlayerSelection(this, firstPlayerParams));
         } else {
             const newFirstPlayer =
                 this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
@@ -1132,7 +1121,7 @@ class Game extends EventEmitter {
     }
 
     reRollPlayerDice() {
-        for (let player of this.getPlayers().filter(p => !p.isDummy)) {
+        for (let player of this.getPlayers().filter((p) => !p.isDummy)) {
             player.rerollAllDice(this.round);
         }
     }
@@ -1570,8 +1559,7 @@ class Game extends EventEmitter {
 
     get cardsInPlay() {
         return this.getPlayers().reduce(
-            (array, player) =>
-                array.concat(player.cardsInPlay, player.spellboard),
+            (array, player) => array.concat(player.cardsInPlay, player.spellboard),
             []
         );
     }
@@ -1690,33 +1678,38 @@ class Game extends EventEmitter {
 
             const result = {
                 cancelPromptUsed: this.cancelPromptUsed,
-                cardLog: this.cardsPlayed.map((i) => ({ type: i.act, obj: i.obj.getShortSummary() })),
+                cardLog: this.cardsPlayed.map((i) => ({
+                    type: i.act,
+                    obj: i.obj.getShortSummary()
+                })),
                 currentPhase: this.currentPhase,
-                gameFormat: this.gameFormat,
-                gamePrivate: this.gamePrivate,
+                round: this.round,
                 id: this.id,
-                label: this.label,
-                manualMode: this.manualMode,
-                messages: this.gameChat.messages,
-                muteSpectators: this.muteSpectators,
                 name: this.name,
+                label: this.label,
+                solo: this.solo,
                 owner: this.owner,
                 players: playerState,
-                round: this.round,
-                showHand: this.showHand,
-                openHands: this.openHands,
-                solo: this.solo,
                 spectators: this.getSpectators().map((spectator) => {
                     return {
                         id: spectator.id,
                         name: spectator.name
                     };
                 }),
-                started: this.started,
-                attack: this.attackState ? this.attackState.getSummary() : null,
-                swap: this.swap,
+                // game options
+                gameFormat: this.gameFormat,
+                gamePrivate: this.gamePrivate,
+                muteSpectators: this.muteSpectators,
+                openHands: this.openHands,
+                showHand: this.showHand,
                 useGameTimeLimit: this.useGameTimeLimit,
                 clockType: this.clockType,
+
+                started: this.started,
+                swap: this.swap,
+                manualMode: this.manualMode,
+                messages: this.gameChat.messages,
+                attack: this.attackState ? this.attackState.getSummary() : null,
                 winner: this.winner ? this.winner.name : undefined
             };
 

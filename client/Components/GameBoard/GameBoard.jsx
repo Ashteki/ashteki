@@ -485,7 +485,7 @@ const GameBoard = () => {
                 </div>
             </div>
         );
-    }
+    };
 
     return (
         <div className={boardClass}>

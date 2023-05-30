@@ -1,4 +1,4 @@
-const { CardType, PhoenixbornTypes } = require('../../../constants.js');
+const { PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RuinDweller extends Card {
@@ -17,6 +17,7 @@ class RuinDweller extends Card {
                 onRoundEnded: () => true
             },
             target: {
+                activePromptTitle: 'Choose a Phoenixborn to deal 1 damage to',
                 cardType: PhoenixbornTypes,
                 gameAction: ability.actions.dealDamage()
             }
