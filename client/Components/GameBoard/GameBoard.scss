@@ -51,6 +51,20 @@
     // overflow-x: hidden;
 }
 
+.attack-zone {
+    background-color: rgba(125, 13, 13, 0.41);
+    display: flex;
+
+    .battle {
+        background-color: rgba(128, 128, 143, 0.371);
+        height: 100%;
+        margin: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
 .right-side {
     // position: relative;
     display: flex;

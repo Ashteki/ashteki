@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Card from './Card';
 
 import './PlayerBoard.scss';
+import CardFrame from './CardFrame';
 
 const PlayerBoard = ({
     active,
@@ -71,18 +72,7 @@ const PlayerBoard = ({
     };
 
     const renderCardGap = () => {
-        const sizeClass = {
-            [cardSize]: cardSize !== 'normal'
-        };
-        let cardClass = classNames('game-card', 'vertical', sizeClass);
-
-        return (
-            <div className={'card-wrapper'}>
-                <div className='card-frame'>
-                    <div className={cardClass} />
-                </div>
-            </div>
-        );
+        <CardFrame cardSize={cardSize} />
     };
 
     const renderCard = (card) => {
