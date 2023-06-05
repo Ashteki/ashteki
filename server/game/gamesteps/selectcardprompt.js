@@ -132,22 +132,22 @@ class SelectCardPrompt extends UiPrompt {
     }
 
     continue() {
-        // not enough targets to continue - cancel the prompt
-        if (
-            !this.selector.hasEnoughSelected(this.choosingPlayer.selectedCards) &&
-            !this.selector.hasEnoughTargets(this.context)
-        ) {
-            this.properties.onCancel(this.choosingPlayer);
-            this.complete();
-            return true;
-        }
-
-        // auto-select cards if appropriate
-        if (this.properties.unique && !this.choosingPlayer.selectedCards.length) {
-            this.attemptAutoSelection();
-        }
-
         if (!this.isComplete()) {
+            // not enough targets to continue - cancel the prompt
+            if (
+                !this.selector.hasEnoughSelected(this.choosingPlayer.selectedCards) &&
+                !this.selector.hasEnoughTargets(this.context)
+            ) {
+                this.properties.onCancel(this.choosingPlayer);
+                this.complete();
+                return true;
+            }
+
+            // auto-select cards if appropriate
+            if (this.properties.unique && !this.choosingPlayer.selectedCards.length) {
+                this.attemptAutoSelection();
+            }
+
             this.highlightSelectableCards();
         }
 

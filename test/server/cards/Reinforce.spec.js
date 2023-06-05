@@ -12,7 +12,7 @@ describe('Reinforce Ready Spell', function () {
                     'recollect',
                     'piercing-light',
                     'hammer-knight',
-                    'massive-growth'
+                    'rayward-knight'
                 ],
                 discard: ['concentration', 'concentration']
             },
@@ -38,5 +38,29 @@ describe('Reinforce Ready Spell', function () {
         this.player1.clickDie(3);
         this.player1.clickCard(this.ironWorker);
         expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('returns rayward knight that can then be played, and use charge side action', function () {
+        this.player1.clickCard(this.reinforce);
+        this.player1.clickPrompt('Reinforce');
+        this.player1.clickPrompt('rayward knight');
+        expect(this.raywardKnight.location).toBe('hand');
+        this.player1.clickYes();
+        this.player1.clickDie(3);
+        this.player1.clickDie(4);
+        this.player1.clickDie(5);
+        this.player1.clickDone();
+        expect(this.raywardKnight.location).toBe('play area');
+        expect(this.player1.player.actions.side).toBe(1);
+        this.player1.clickCard(this.raywardKnight);
+        this.player1.clickPrompt('Charge');
+
+        this.player1.clickCard(this.ironWorker); // attack Iron Worker
+
+        this.player2.clickPrompt('Done'); // no guard
+        this.player2.clickPrompt('No'); // no counter
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.ironWorker.location).toBe('discard');
+        expect(this.player1.actions.side).toBe(0);
     });
 });
