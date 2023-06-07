@@ -195,7 +195,6 @@ class BaseAbility {
     resolveTargets(context) {
         let targetResults = {
             cancelled: false,
-            payCostsFirst: false,
             delayTargeting: null
         };
         for (let target of this.targets) {

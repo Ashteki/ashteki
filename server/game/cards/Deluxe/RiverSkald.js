@@ -8,7 +8,6 @@ class RiverSkald extends Card {
             then: {
                 may: 'discard a card to deal damage',
                 cost: [ability.costs.chosenDiscard()],
-                payCostsFirst: true,
                 target: {
                     activePromptTitle: 'Choose a damage target',
                     cardType: BattlefieldTypes,

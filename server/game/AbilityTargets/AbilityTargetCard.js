@@ -71,7 +71,7 @@ class AbilityTargetCard {
     }
 
     resolve(context, targetResults) {
-        if (targetResults.cancelled || targetResults.payCostsFirst) {
+        if (targetResults.cancelled) {
             return;
         }
 
@@ -104,10 +104,6 @@ class AbilityTargetCard {
         let buttons = [];
         let waitingPromptTitle = '';
         if (context.stage === 'pretarget') {
-            if (!targetResults.noCostsFirstButton) {
-                buttons.push({ text: 'Pay costs first', arg: 'costsFirst' });
-            }
-
             buttons.push({ text: 'Cancel', arg: 'cancel' });
             if (context.ability.abilityType === 'action') {
                 waitingPromptTitle = 'Waiting for opponent to take an action or pass';

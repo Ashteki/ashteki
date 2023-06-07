@@ -95,11 +95,7 @@ class AbilityTargetSelect {
     }
 
     resolve(context, targetResults) {
-        if (
-            targetResults.cancelled ||
-            targetResults.payCostsFirst ||
-            targetResults.delayTargeting
-        ) {
+        if (targetResults.cancelled || targetResults.delayTargeting) {
             return;
         }
 
@@ -134,11 +130,6 @@ class AbilityTargetSelect {
             };
         });
         if (this.properties.player !== 'opponent' && context.stage === 'pretarget') {
-            if (!targetResults.noCostsFirstButton) {
-                choices.push('Pay costs first');
-                handlers.push(() => (targetResults.payCostsFirst = true));
-            }
-
             choices.push('Cancel');
             handlers.push(() => (targetResults.cancelled = true));
         }
