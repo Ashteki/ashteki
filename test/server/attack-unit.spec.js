@@ -33,10 +33,10 @@ describe('Unit attacks', function () {
         expect(this.mistSpirit.exhausted).toBe(true);
     });
 
-    it('attack without attackers chosen is a cancellation with no cost spent', function () {
+    it('attack without attackers chosen can cancel with no cost spent', function () {
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.fluteMage); // target
-        this.player1.clickPrompt('Done'); // no guard
+        this.player1.clickPrompt('Cancel'); // no guard
 
         expect(this.player1).toHaveDefaultPrompt();
         expect(this.player1.actions.main).toBe(true);

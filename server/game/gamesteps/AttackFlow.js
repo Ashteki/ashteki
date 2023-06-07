@@ -75,7 +75,6 @@ class AttackFlow extends BaseStepWithPipeline {
             cardType: BattlefieldTypes,
             cardCondition: (card) => card.canAttack(),
             mode: this.isPBAttack ? 'unlimited' : 'single',
-            optional: true,
             showCancel: true,
             onSelect: (player, card) => {
                 let cards;
