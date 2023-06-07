@@ -195,7 +195,8 @@ class BaseAbility {
     resolveTargets(context) {
         let targetResults = {
             cancelled: false,
-            delayTargeting: null
+            delayTargeting: null,
+            firstTarget: true
         };
         for (let target of this.targets) {
             context.game.queueSimpleStep(() => {

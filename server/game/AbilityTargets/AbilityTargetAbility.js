@@ -101,14 +101,6 @@ class AbilityTargetAbility {
             onCancel: () => {
                 targetResults.cancelled = true;
                 return true;
-            },
-            onMenuCommand: (player, arg) => {
-                if (arg === 'costsFirst') {
-                    targetResults.costsFirst = true;
-                    return true;
-                }
-
-                return true;
             }
         };
         context.game.promptForSelect(
