@@ -17,15 +17,29 @@ describe('Small sacrifice', function () {
     });
 
     it('should deal 1 damage to both chosen targets', function () {
-        expect(this.ironWorker.tokens.damage).toBeUndefined();
-        expect(this.blueJaguar.tokens.damage).toBeUndefined();
+        expect(this.ironWorker.damage).toBe(0);
+        expect(this.blueJaguar.damage).toBe(0);
 
         this.player1.clickCard(this.smallSacrifice);
         this.player1.clickPrompt('Small Sacrifice');
         this.player1.clickCard(this.ironWorker);
         this.player1.clickCard(this.blueJaguar);
 
-        expect(this.ironWorker.tokens.damage).toBe(1);
-        expect(this.blueJaguar.tokens.damage).toBe(1);
+        expect(this.ironWorker.damage).toBe(1);
+        expect(this.blueJaguar.damage).toBe(1);
+    });
+
+    it('can skip second target', function () {
+        expect(this.ironWorker.damage).toBe(0);
+        expect(this.blueJaguar.damage).toBe(0);
+
+        this.player1.clickCard(this.smallSacrifice);
+        this.player1.clickPrompt('Small Sacrifice');
+        this.player1.clickCard(this.ironWorker);
+        this.player1.clickDone();
+
+        expect(this.ironWorker.damage).toBe(1);
+        expect(this.blueJaguar.damage).toBe(0);
+        expect(this.player1).toHaveDefaultPrompt();
     });
 });
