@@ -23,15 +23,14 @@ const FAQ = () => {
                             <li>Exhortation</li>
                             <li>Explosive Growth</li>
                             <li>Massive Growth</li>
+                            <li>Meteor</li>
                             <li>Psychic Vampire</li>
                             <li>River Skald</li>
                             <li>Summon Shining Hydra</li>
-                            <li>Three-Eyed Owl</li>
                             <li>Summon Sleeping Widows</li>
                         </ul>
                         <p>
-                            In Ashteki, decks that include chained cards will display a chain link icon
-                            in the decklist and the card list
+                            In Ashteki, decks that include chained cards will display a chain link icon in the decklist and the card list
                         </p>
                         <img className='decklist-img' src={chainedDeck} />
                         <img className='deckbuilder-chained-card-img' src={chainedCard} />
