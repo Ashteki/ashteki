@@ -12,7 +12,7 @@ class RileTheMeek extends Card {
         let returnValue = {
             alwaysTriggers: true,
             target: {
-                optional: true,
+                showCancel: true,
                 activePromptTitle: 'Choose a target to deal 1 damage',
                 cardType: BattlefieldTypes,
                 controller: 'opponent',

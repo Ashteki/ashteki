@@ -1,8 +1,10 @@
 const _ = require('underscore');
 const SelectChoice = require('./SelectChoice.js');
+const AbilityTarget = require('./AbilityTarget.js');
 
-class AbilityTargetPlayer {
+class AbilityTargetPlayer extends AbilityTarget {
     constructor(name, properties, ability) {
+        super(properties);
         this.name = name;
         this.properties = properties;
         // if (!this.properties.choiceHandler) {
@@ -30,12 +32,6 @@ class AbilityTargetPlayer {
 
     canResolve(context) {
         return !!this.properties.dependsOn || this.hasLegalTarget(context);
-    }
-
-    resetGameActions() {
-        for (let action of this.properties.gameAction) {
-            action.reset();
-        }
     }
 
     hasLegalTarget(context) {

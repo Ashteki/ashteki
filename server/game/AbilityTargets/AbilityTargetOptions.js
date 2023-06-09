@@ -1,5 +1,8 @@
-class AbilityTargetOptions {
+const AbilityTarget = require('./AbilityTarget');
+
+class AbilityTargetOptions extends AbilityTarget {
     constructor(name, properties, ability) {
+        super(properties);
         this.name = name;
         this.properties = properties;
         this.options = properties.options;
@@ -31,8 +34,6 @@ class AbilityTargetOptions {
     canResolve(context) {
         return !!this.properties.dependsOn || this.hasLegalTarget(context);
     }
-
-    resetGameActions() { }
 
     hasLegalTarget(context) {
         return !!this.getOptions(context).length;

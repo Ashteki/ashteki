@@ -4,7 +4,7 @@ describe('Natural Dice Power', function () {
             player1: {
                 phoenixborn: 'aradel-summergaard',
                 inPlay: ['anchornaut'],
-                dicepool: ['natural', 'time', 'ceremonial'],
+                dicepool: ['natural'],
                 spellboard: ['summon-gilder']
             },
             player2: {
