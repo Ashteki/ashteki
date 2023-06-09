@@ -56,7 +56,7 @@ describe('Rile the Meek', function () {
         this.player1.clickCard(this.mistSpirit);
         expect(this.mistSpirit.location).toBe('archives');
         expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
-        this.player1.clickPrompt('Done');
+        this.player1.clickPrompt('Cancel');
         expect(this.player1).toHaveDefaultPrompt();
     });
 });

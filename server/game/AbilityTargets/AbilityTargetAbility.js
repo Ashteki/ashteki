@@ -1,7 +1,9 @@
 const CardSelector = require('../CardSelector.js');
+const AbilityTarget = require('./AbilityTarget.js');
 
-class AbilityTargetAbility {
+class AbilityTargetAbility extends AbilityTarget {
     constructor(name, properties, ability) {
+        super(properties);
         this.name = name;
         this.properties = properties;
         this.selector = this.getSelector(properties);
@@ -48,12 +50,6 @@ class AbilityTargetAbility {
 
     canResolve(context) {
         return !!this.properties.dependsOn || this.hasLegalTarget(context);
-    }
-
-    resetGameActions() {
-        for (let action of this.properties.gameAction) {
-            action.reset();
-        }
     }
 
     hasLegalTarget(context) {

@@ -1,8 +1,10 @@
 const _ = require('underscore');
 const DieSelector = require('../DieSelector');
+const AbilityTarget = require('./AbilityTarget');
 
-class AbilityTargetDie {
+class AbilityTargetDie extends AbilityTarget {
     constructor(name, properties, ability) {
+        super(properties);
         this.name = name;
         this.properties = properties;
         for (let gameAction of this.properties.gameAction) {
@@ -47,12 +49,6 @@ class AbilityTargetDie {
     canResolve(context) {
         // if this depends on another target, that will check hasLegalTarget already
         return !!this.properties.dependsOn || this.hasLegalTarget(context);
-    }
-
-    resetGameActions() {
-        for (let action of this.properties.gameAction) {
-            action.reset();
-        }
     }
 
     hasLegalTarget(context) {
