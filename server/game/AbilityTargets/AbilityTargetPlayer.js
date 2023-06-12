@@ -4,8 +4,8 @@ const AbilityTarget = require('./AbilityTarget.js');
 
 class AbilityTargetPlayer extends AbilityTarget {
     constructor(name, properties, ability) {
-        super(properties);
-        this.name = name;
+        super(name, properties);
+
         this.properties = properties;
         // if (!this.properties.choiceHandler) {
         //     for (const key of Object.keys(properties.choices)) {

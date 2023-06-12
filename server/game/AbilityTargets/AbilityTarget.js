@@ -1,5 +1,7 @@
 class AbilityTarget {
-    constructor(properties) {
+    constructor(name, properties) {
+        this.name = name;
+
         this.properties = properties;
     }
 
@@ -8,6 +10,14 @@ class AbilityTarget {
             action.reset();
         }
     }
+
+    setSelected(context, item) {
+        context.targets[this.name] = item;
+        if (this.name === 'target') {
+            context.target = item;
+        }
+    }
+
     onCancel(targetResults) {
         if (
             // targetResults.firstTarget ||
