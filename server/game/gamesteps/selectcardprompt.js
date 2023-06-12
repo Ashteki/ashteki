@@ -113,6 +113,7 @@ class SelectCardPrompt extends UiPrompt {
     getDefaultControls() {
         let targets = this.context.targets ? Object.values(this.context.targets) : [];
         targets = targets.reduce((array, target) => array.concat(target), []);
+        targets = targets.filter((t) => t.getShortSummary);
         if (targets.length === 0 && this.context.event && this.context.event.card) {
             this.targets = [this.context.event.card];
         }

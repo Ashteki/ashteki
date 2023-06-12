@@ -25,6 +25,7 @@ class ChantOfTransfusion extends Card {
                 ability.costs.exhaust(),
                 ability.costs.loseStatus()
             ],
+            targetCondition: (context) => context.game.unitsInPlay.length > 1,
             targets: {
                 tokenBoy: {
                     activePromptTitle: 'Choose an target unit to remove a wound from',
@@ -45,7 +46,7 @@ class ChantOfTransfusion extends Card {
                     }))
                 }
             }
-        })
+        });
     }
 }
 

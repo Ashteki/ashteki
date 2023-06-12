@@ -63,4 +63,65 @@ describe('Chant of Transfusion', function () {
             expect(this.ironWorker.damage).toBe(1);
         });
     });
+
+    describe('when no target for wounds is available, do nothing but pay cost', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: ['chant-of-transfusion'],
+                    dicepool: ['ceremonial', 'ceremonial', 'charm', 'charm']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: []
+                }
+            });
+        });
+
+        it('no wound movement', function () {
+            this.chantOfTransfusion.tokens.status = 1;
+            this.hammerKnight.tokens.damage = 2;
+            expect(this.player1.actions.main).toBe(true);
+            expect(this.chantOfTransfusion.status).toBe(1);
+            this.player1.clickCard(this.chantOfTransfusion);
+            this.player1.clickPrompt('Transfusion');
+            this.player1.clickPrompt('Main');
+
+            expect(this.chantOfTransfusion.status).toBe(0);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.actions.main).toBe(false);
+        });
+    });
+
+    describe('when no wounds on target', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: ['chant-of-transfusion'],
+                    dicepool: ['ceremonial', 'ceremonial', 'charm', 'charm']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker']
+                }
+            });
+        });
+
+        it('no wound movement, does nothing but costs paid', function () {
+            this.chantOfTransfusion.tokens.status = 1;
+            expect(this.chantOfTransfusion.status).toBe(1);
+            this.player1.clickCard(this.chantOfTransfusion);
+            this.player1.clickPrompt('Transfusion');
+            this.player1.clickPrompt('Main');
+
+            expect(this.chantOfTransfusion.status).toBe(0);
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });
