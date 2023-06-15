@@ -50,11 +50,7 @@ class AllPlayerPrompt extends UiPrompt {
     }
 
     actingForOpponent(player) {
-        return (
-            player.opponent.isDummy &&
-            !this.activeCondition(player) &&
-            this.activeCondition(player.opponent)
-        );
+        return player.opponent.isDummy && !this.activeCondition(player) && this.activeCondition(player.opponent);
     }
 }
 

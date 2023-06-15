@@ -1,12 +1,11 @@
 const _ = require('underscore');
 
 const CardSelector = require('../CardSelector.js');
-const AbilityTarget = require('./AbilityTarget.js');
 
-class AbilityTargetCard extends AbilityTarget {
+class AbilityTargetCard {
     constructor(name, properties, ability) {
-        super(properties);
         this.name = name;
+        this.properties = properties;
         this.random = properties.random || false;
         for (let gameAction of this.properties.gameAction) {
             gameAction.setDefaultTarget((context) => context.targets[name]);
@@ -120,11 +119,19 @@ class AbilityTargetCard extends AbilityTarget {
             buttons: buttons,
             onSelect: (player, card) => {
                 this.setSelectedCard(context, card);
-                targetResults.firstTarget = false;
+
                 return true;
             },
             onCancel: () => {
-                super.onCancel(targetResults);
+                targetResults.cancelled = true;
+                return true;
+            },
+            onMenuCommand: (player, arg) => {
+                if (arg === 'costsFirst') {
+                    targetResults.costsFirst = true;
+                    return true;
+                }
+
                 return true;
             }
         };
