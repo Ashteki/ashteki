@@ -3,7 +3,8 @@ const AbilityTarget = require('./AbilityTarget.js');
 
 class AbilityTargetAbility extends AbilityTarget {
     constructor(name, properties, ability) {
-        super(name, properties);
+        super(properties);
+        this.name = name;
         this.properties = properties;
         this.selector = this.getSelector(properties);
         this.dependentTarget = null;

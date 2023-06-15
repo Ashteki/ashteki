@@ -4,8 +4,8 @@ const AbilityTarget = require('./AbilityTarget');
 
 class AbilityTargetDie extends AbilityTarget {
     constructor(name, properties, ability) {
-        super(name, properties);
-
+        super(properties);
+        this.name = name;
         this.properties = properties;
         for (let gameAction of this.properties.gameAction) {
             gameAction.setDefaultTarget((context) => context.targets[name]);

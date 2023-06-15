@@ -4,8 +4,8 @@ const AbilityTarget = require('./AbilityTarget.js');
 
 class AbilityTargetSelect extends AbilityTarget {
     constructor(name, properties, ability) {
-        super(name, properties);
-
+        super(properties);
+        this.name = name;
         this.properties = properties;
         if (!this.properties.choiceHandler) {
             for (const key of Object.keys(properties.choices)) {
@@ -131,7 +131,6 @@ class AbilityTargetSelect extends AbilityTarget {
         }
 
         if (choices.length === 1 && this.properties.choiceHandler) {
-            this.setSelected(context, choices[0]);
             this.properties.choiceHandler(choices[0]);
         } else if (handlers.length === 1) {
             handlers[0]();
@@ -145,13 +144,6 @@ class AbilityTargetSelect extends AbilityTarget {
                 }
             }
 
-            const handler = (choice) => {
-                this.setSelected(context, choice);
-                if (this.properties.choiceHandler) {
-                    this.properties.choiceHandler(choice);
-                }
-            };
-
             context.game.promptWithHandlerMenu(player, {
                 promptTitle: this.properties.title,
                 waitingPromptTitle: waitingPromptTitle,
@@ -160,7 +152,7 @@ class AbilityTargetSelect extends AbilityTarget {
                 source: this.properties.source || context.source,
                 choices: choices,
                 handlers: handlers,
-                choiceHandler: this.properties.choiceHandler ? handler : null
+                choiceHandler: this.properties.choiceHandler
             });
         }
     }

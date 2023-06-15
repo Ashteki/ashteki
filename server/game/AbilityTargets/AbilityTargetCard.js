@@ -5,7 +5,8 @@ const AbilityTarget = require('./AbilityTarget.js');
 
 class AbilityTargetCard extends AbilityTarget {
     constructor(name, properties, ability) {
-        super(name, properties);
+        super(properties);
+        this.name = name;
         this.random = properties.random || false;
         for (let gameAction of this.properties.gameAction) {
             gameAction.setDefaultTarget((context) => context.targets[name]);
@@ -15,10 +16,10 @@ class AbilityTargetCard extends AbilityTarget {
         this.dependentTarget = null;
         this.dependentCost = null;
         if (this.properties.dependsOn) {
-            this.dependsOnTarget = ability.targets.find(
+            let dependsOnTarget = ability.targets.find(
                 (target) => target.name === this.properties.dependsOn
             );
-            this.dependsOnTarget.dependentTarget = this;
+            dependsOnTarget.dependentTarget = this;
         }
     }
 
@@ -65,10 +66,7 @@ class AbilityTargetCard extends AbilityTarget {
     }
 
     resolve(context, targetResults) {
-        if (
-            targetResults.cancelled ||
-            (this.properties.dependsOn && !context.targets[this.properties.dependsOn])
-        ) {
+        if (targetResults.cancelled) {
             return;
         }
 
@@ -133,7 +131,10 @@ class AbilityTargetCard extends AbilityTarget {
     }
 
     setSelectedCard(context, card) {
-        this.setSelected(context, card);
+        context.targets[this.name] = card;
+        if (this.name === 'target') {
+            context.target = card;
+        }
     }
 
     checkTarget(context) {

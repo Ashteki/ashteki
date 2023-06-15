@@ -186,8 +186,7 @@ class BaseAbility {
      * @returns {Boolean}
      */
     canResolveTargets(context) {
-        return (!this.targetCondition || this.targetCondition(context)) &&
-            this.nonDependentTargets.some((target) => target.canResolve(context));
+        return this.nonDependentTargets.some((target) => target.canResolve(context));
     }
 
     /**
@@ -199,15 +198,13 @@ class BaseAbility {
             delayTargeting: null,
             firstTarget: true
         };
-        if (!this.properties.targetCondition || this.properties.targetCondition(context)) {
-            for (let target of this.targets) {
-                context.game.queueSimpleStep(() => {
-                    if (target.hasLegalTarget(context)) {
-                        target.resetGameActions();
-                        target.resolve(context, targetResults);
-                    }
-                });
-            }
+        for (let target of this.targets) {
+            context.game.queueSimpleStep(() => {
+                if (target.hasLegalTarget(context)) {
+                    target.resetGameActions();
+                    target.resolve(context, targetResults);
+                }
+            });
         }
 
         return targetResults;
