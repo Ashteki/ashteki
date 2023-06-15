@@ -16,7 +16,7 @@ class AradelSummergaard extends Card {
                 cardType: BattlefieldTypes,
                 controller: 'any',
                 gameAction: ability.actions.dealDamage({ amount: 2 }),
-                showCancel: true
+                showCancel: true,
             }
         });
     }

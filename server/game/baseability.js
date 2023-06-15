@@ -201,7 +201,6 @@ class BaseAbility {
         for (let target of this.targets) {
             context.game.queueSimpleStep(() => {
                 if (target.hasLegalTarget(context)) {
-                    target.resetGameActions();
                     target.resolve(context, targetResults);
                 }
             });

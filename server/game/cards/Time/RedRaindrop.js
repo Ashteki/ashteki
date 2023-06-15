@@ -1,5 +1,5 @@
 const Card = require('../../Card.js');
-const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
 
 class RedRaindrop extends Card {
     setupCardAbilities(ability) {
