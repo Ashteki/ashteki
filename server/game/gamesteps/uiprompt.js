@@ -47,7 +47,8 @@ class UiPrompt extends BaseStep {
             });
         }
 
-        if (prompt.controls) {
+        // array check is defensive coding - error doesn't happen in dev
+        if (prompt.controls && Array.isArray(prompt.controls)) {
             for (let control of prompt.controls) {
                 control.uuid = this.uuid;
             }
