@@ -157,8 +157,12 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
             waitingPromptTitle: 'Waiting for opponent',
             activePrompt: {
                 promptTitle: 'BLUFF Delay',
-                menuTitle: 'BLUFFING A REACTION',
-                controls: this.game.getPromptControls(this.events)[0],
+                menuTitle: TriggeredAbilityWindowTitles.getTitle(
+                    this.abilityType,
+                    this.events,
+                    player
+                ),
+                controls: this.game.getPromptControls(this.events),
                 buttons: [
                     { timer: true, method: 'pass' },
                     { text: 'Wait', timerCancel: true },
