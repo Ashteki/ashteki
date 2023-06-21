@@ -19,6 +19,7 @@ class SummonIndiglowCreeper extends Card {
                 conjuration: 'indiglow-creeper'
             }),
             then: {
+                alwaysTriggers: true,
                 condition: () => this.focus >= 1,
                 gameAction: ability.actions.addStatusToken({
                     promptForSelect: {
