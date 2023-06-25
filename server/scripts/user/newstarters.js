@@ -49,9 +49,11 @@ gameService.getAllGames(start, end).then((games) => {
             });
 
             for (let j in starterList) {
+                const starterCount = starterList[j].length;
+                const starterCountOneGame = starterList[j].filter((s) => s.count > 0).length;
+                const starterCountTwoGame = starterList[j].filter((s) => s.count > 1).length;
                 console.log(
-                    `${j} | ${starterList[j].length} | ${starterList[j].filter((s) => s.count > 0).length
-                    }`
+                    `${j} | ${starterCount} | ${starterCountOneGame} | ${starterCountTwoGame}`
                 );
             }
             console.info('' + _.size(users), 'total users');
