@@ -98,7 +98,7 @@ gameService
             .sortBy((player) => {
                 return -(player.wins + player.losses);
             })
-            .first(20)
+            .first(100)
             .value();
 
         let winners = _.chain(players)
