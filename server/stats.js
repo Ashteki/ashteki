@@ -21,7 +21,7 @@ console.info('Running stats between', start, 'and', end);
 gameService
     .getAllGames(start, end)
     .then((games) => {
-        let rejected = { singlePlayer: 0, noWinner: 0, mirror: 0 };
+        let rejected = { singlePlayer: 0, noWinner: 0 };
 
         console.info('' + _.size(games), 'total games');
 
@@ -43,9 +43,6 @@ gameService
                 rejected.noWinner++;
 
                 return;
-            } else if (game.players[0].deck === game.players[1].deck) {
-                rejected.mirror++;
-                // return;
             }
 
             if (
