@@ -7,6 +7,16 @@ class GameChat {
     constructor(game) {
         this.messages = [];
         this.game = game;
+        this.msgSeq = 0;
+    }
+
+    pushMessage(message, activePlayer) {
+        this.msgSeq++;
+        const msg = { mid: this.msgSeq, date: new Date(), message: message };
+        if (activePlayer) {
+            msg.activePlayer = activePlayer;
+        }
+        this.messages.push(msg);
     }
 
     addChatMessage(format, player, message) {
@@ -18,8 +28,7 @@ class GameChat {
             message
         ];
         let formattedMessage = this.formatMessage(format, args);
-
-        this.messages.push({ date: new Date(), message: formattedMessage });
+        this.pushMessage(formattedMessage);
     }
 
     getFormattedMessage(message) {
@@ -45,21 +54,13 @@ class GameChat {
 
     addMessage(message, ...args) {
         let formattedMessage = this.getFormattedMessage(message, ...args);
-        this.messages.push({
-            date: new Date(),
-            message: formattedMessage,
-            activePlayer: this.game.activePlayer && this.game.activePlayer.name
-        });
+        this.pushMessage(formattedMessage, this.game.activePlayer && this.game.activePlayer.name);
     }
 
     addAlert(type, message, ...args) {
         let formattedMessage = this.getFormattedMessage(message, ...args);
-
-        this.messages.push({
-            date: new Date(),
-            message: { alert: { type: type, message: formattedMessage } },
-            activePlayer: this.game.activePlayer && this.game.activePlayer.name
-        });
+        const alertMsg = { alert: { type: type, message: formattedMessage } };
+        this.pushMessage(alertMsg, this.game.activePlayer && this.game.activePlayer.name);
     }
 
     formatMessage(format, args) {

@@ -23,7 +23,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                 )
             });
             return (
-                <div key={index} className={className}>
+                <div key={message.mid} className={className}>
                     {formatMessageText(message.message, index)}
                 </div>
             );
@@ -34,18 +34,18 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
         return users.find((u) => u.username === name);
     };
 
-    const formatPlayerChatMsg = (fragment, index) => {
+    const formatPlayerChatMsg = (fragment) => {
         const user = getUserDetails(fragment.name);
         const avatar = user && <Avatar imgPath={user.avatar} float />;
         return (
-            <div key={index++} className='message-chat'>
+            <div className='message-chat'>
                 {avatar}
-                {formatplayerNameFragment(fragment, index)}
+                {formatplayerNameFragment(fragment)}
             </div>
         );
     }
 
-    const formatplayerNameFragment = (fragment, index) => {
+    const formatplayerNameFragment = (fragment) => {
         const user = getUserDetails(fragment.name);
         if (!user) {
             return fragment.name; // plain player name
@@ -56,14 +56,13 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             userStyle.color = user.faveColor;
         }
         return (
-            <span key={index++} className={userClass} style={userStyle}>
+            <span className={userClass} style={userStyle}>
                 {user.name}
             </span>
         );
     }
 
     const formatMessageText = (message, index) => {
-        // let index = 0;
         let messages = [];
 
         for (const [key, fragment] of Object.entries(message)) {
@@ -152,11 +151,9 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                     </span>
                 );
             } else if (fragment.name && fragment.argType === 'player') {
-                messages.push(formatPlayerChatMsg(fragment, index));
-
+                messages.push(formatPlayerChatMsg(fragment));
             } else if (fragment.argType === 'nonAvatarPlayer') {
-                messages.push(formatplayerNameFragment(fragment, index));
-
+                messages.push(formatplayerNameFragment(fragment));
             } else if (fragment.argType === 'die') {
                 let diceFont = 'phg-basic-magic';
 
