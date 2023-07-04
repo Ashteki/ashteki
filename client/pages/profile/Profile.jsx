@@ -3,9 +3,9 @@ import { Col, Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Profile from '../Components/Profile/Profile';
-import { saveProfile, clearApiStatus } from '../redux/actions';
-import ApiStatus from '../Components/Site/ApiStatus';
+import Profile from '../../Components/Profile/Profile';
+import { saveProfile, clearApiStatus } from '../../redux/actions';
+import ApiStatus from '../../Components/Site/ApiStatus';
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();

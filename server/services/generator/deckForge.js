@@ -8,7 +8,7 @@ class DeckForge {
         this.extrasFactory = new ExtrasFactory();
         const conjuredCards = ['Conjuration', 'Conjured Alteration Spell'];
         this.cardsByCode = cards;
-        this.allCards = Object.values(this.cardsByCode);
+        this.allCards = Object.values(this.cardsByCode).filter((c) => c.deckType !== 'chimera');
         this.conjurations = this.allCards.filter((c) => conjuredCards.includes(c.type));
         this.playableCards = this.allCards.filter((c) => ![...conjuredCards, 'Phoenixborn'].includes(c.type));
     }

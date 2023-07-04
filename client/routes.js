@@ -9,25 +9,25 @@ import Decks from './pages/Decks';
 import AddDeck from './pages/AddDeck';
 import EditDeck from './pages/EditDeck';
 // import Matches from './pages/Matches';
-import Stats from './pages/Stats';
+import Stats from './pages/profile/Stats';
 import ImportDeck from './Components/Decks/ImportDeck';
 import Learn from './pages/Learn';
-import Security from './pages/Security.jsx';
+import Security from './pages/profile/Security.jsx';
 import Activation from './pages/Activation';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import UserAdmin from './pages/UserAdmin';
-import Profile from './pages/Profile';
+import Profile from './pages/profile/Profile';
 import MotdAdmin from './pages/MotdAdmin';
 import GameLobby from './Components/Games/GameLobby';
 import GameBoard from './Components/GameBoard/GameBoard.jsx';
-import BlockList from './pages/BlockList';
+import BlockList from './pages/profile/BlockList';
 import NodesAdmin from './pages/NodesAdmin';
 import BanlistAdmin from './pages/BanlistAdmin';
 import Patreon from './pages/Patreon';
 import EloLadder from './pages/EloLadder';
 import FAQ from './pages/faq';
-import UserAlts from './pages/UserAlts';
+import UserAlts from './pages/profile/UserAlts';
 
 const routes = [
     { path: '/', action: () => <Home key='lobby' /> },

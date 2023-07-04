@@ -654,7 +654,7 @@ class Lobby {
         if (isPrecon) {
             deck = await this.deckService.getPreconDeckById(deckId);
         } else if (game.gameFormat === 'coaloff') {
-            deck = this.deckService.getCoalOffDeck(cards.filter((c) => c.deckType !== 'chimera'));
+            deck = this.deckService.getCoalOffDeck(cards);
         } else if (game.solo && user.isDummy) {
             deck = await this.deckService.getChimeraDeck();
         } else {

@@ -6,9 +6,9 @@ import { toastr } from 'react-redux-toastr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import AlertPanel from '../Components/Site/AlertPanel';
-import Panel from '../Components/Site/Panel';
-import * as actions from '../redux/actions';
+import AlertPanel from '../../Components/Site/AlertPanel';
+import Panel from '../../Components/Site/Panel';
+import * as actions from '../../redux/actions';
 
 import { withTranslation, Trans } from 'react-i18next';
 

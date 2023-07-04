@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Alert } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import CardGallery from '../Components/Profile/CardGallery';
-import Panel from '../Components/Site/Panel';
+import CardGallery from '../../Components/Profile/CardGallery';
+import Panel from '../../Components/Site/Panel';
 import './UserAlts.scss';
 
 function UserAlts() {

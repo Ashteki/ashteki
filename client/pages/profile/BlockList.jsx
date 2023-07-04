@@ -7,18 +7,18 @@ import { faTimes, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import * as yup from 'yup';
 import { Trans, useTranslation } from 'react-i18next';
 
-import Panel from '../Components/Site/Panel';
+import Panel from '../../Components/Site/Panel';
 import {
     loadBlockList,
     addBlockListEntry,
     clearApiStatus,
     removeBlockListEntry,
     sendSocketMessage
-} from '../redux/actions';
+} from '../../redux/actions';
 
 import './BlockList.scss';
-import { UserAction } from '../redux/types';
-import ApiStatus from '../Components/Site/ApiStatus';
+import { UserAction } from '../../redux/types';
+import ApiStatus from '../../Components/Site/ApiStatus';
 
 const BlockList = () => {
     const { user, token } = useSelector((state) => ({
