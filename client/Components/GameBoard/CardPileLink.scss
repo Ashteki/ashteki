@@ -154,7 +154,7 @@
 .hand-popup {
     .panel {
         min-height: 146px;
-        z-index: $layer-pile-header !important;
+        z-index: $layer-card-menu !important;
 
         //     .inner {
         //         @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
@@ -165,7 +165,7 @@
 
 // .draw {
 //     .panel {
-//         z-index: $layer-pile-header;
+//         z-index: $layer-card-menu;
 //         @include calculate-tiled-card-prop(width, 7, width, $scrollbar-width + 10);
 //         @include calculate-tiled-card-prop(height, 3, height);
 
