@@ -35,13 +35,15 @@ const BattleZone = ({ player, cardsInPlay, cardProps }) => {
     return (
         <div className='attack-zone'>
             {currentGame.attack &&
-                currentGame.attack.battles.map((b) => (
-                    <div key='battlex' className='battle'>
-                        {theirAttack ? getAttacker(b) : getDefender(b)}
-                        <hr />
-                        {theirAttack ? getDefender(b) : getAttacker(b)}
-                    </div>
-                ))}
+                currentGame.attack.battles
+                    .sort((a, b) => (a.key > b.key ? 1 : -1))
+                    .map((b) => (
+                        <div key={b.key} className='battle'>
+                            {theirAttack ? getAttacker(b) : getDefender(b)}
+                            <hr />
+                            {theirAttack ? getDefender(b) : getAttacker(b)}
+                        </div>
+                    ))}
         </div>
     );
 };
