@@ -6,7 +6,7 @@ describe('Summon Adaptodon', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['ice-golem'],
                     spellboard: ['summon-adaptodon'],
-                    dicepool: ['natural', 'divine', 'divine', 'charm'],
+                    dicepool: ['natural', 'natural', 'divine', 'charm'],
                     archives: ['adaptodon', 'ice-golem']
                 },
                 player2: {
