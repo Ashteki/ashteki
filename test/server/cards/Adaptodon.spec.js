@@ -27,9 +27,26 @@ describe('Adapt ability', function () {
         expect(this.player1).toBeAbleToSelect(this.iceAdaptation);
 
         this.player1.clickCard(this.fireAdaptation);
+        this.player1.clickDone(); // no ping
 
         expect(this.adaptodon.upgrades.length).toBe(1);
         expect(this.adaptodon.attack).toBe(2);
+    });
+
+    it('applies fire adaptation with Fire Adaptation ping', function () {
+        this.player1.clickCard(this.adaptodon);
+        this.player1.clickPrompt('Adapt');
+
+        expect(this.player1).not.toBeAbleToSelect(this.spark);
+        expect(this.player1).toBeAbleToSelect(this.fireAdaptation);
+        expect(this.player1).toBeAbleToSelect(this.iceAdaptation);
+
+        this.player1.clickCard(this.fireAdaptation);
+        this.player1.clickCard(this.fluteMage);
+
+        expect(this.adaptodon.upgrades.length).toBe(1);
+        expect(this.adaptodon.attack).toBe(2);
+        expect(this.fluteMage.damage).toBe(1);
     });
 
     it('applies ice adaptation', function () {
