@@ -58,9 +58,26 @@ describe('Adapt ability', function () {
         expect(this.player1).toBeAbleToSelect(this.iceAdaptation);
 
         this.player1.clickCard(this.iceAdaptation);
+        this.player1.clickDone(); // no exhaustion
 
         expect(this.adaptodon.upgrades.length).toBe(1);
         expect(this.adaptodon.life).toBe(3);
+    });
+
+    it('applies ice adaptation with unit exhaustion', function () {
+        this.player1.clickCard(this.adaptodon);
+        this.player1.clickPrompt('Adapt');
+
+        expect(this.player1).not.toBeAbleToSelect(this.spark);
+        expect(this.player1).toBeAbleToSelect(this.fireAdaptation);
+        expect(this.player1).toBeAbleToSelect(this.iceAdaptation);
+
+        this.player1.clickCard(this.iceAdaptation);
+        this.player1.clickCard(this.fluteMage);
+
+        expect(this.adaptodon.upgrades.length).toBe(1);
+        expect(this.adaptodon.life).toBe(3);
+        expect(this.fluteMage.exhausted).toBe(true);
     });
 
     it('cannot apply two adaptations', function () {
