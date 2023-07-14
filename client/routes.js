@@ -27,6 +27,7 @@ import Patreon from './pages/Patreon';
 import EloLadder from './pages/EloLadder';
 import FAQ from './pages/faq';
 import UserAlts from './pages/profile/UserAlts';
+import Matches from './pages/Matches';
 
 const routes = [
     { path: '/', action: () => <Home key='lobby' /> },
@@ -48,6 +49,7 @@ const routes = [
     { path: '/logout', action: () => <Logout key='logout' /> },
     // { path: '/matches', action: () => <Matches key='matches' /> },
     { path: '/stats', action: () => <Stats key='stats' /> },
+    { path: '/matches', action: () => <Matches key='matches' /> },
     { path: '/elo', action: () => <EloLadder key='elo' /> },
     { path: '/faq', action: () => <FAQ key='elo' /> },
     {
