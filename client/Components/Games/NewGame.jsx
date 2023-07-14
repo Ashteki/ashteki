@@ -87,7 +87,6 @@ const NewGame = ({
         { name: 'openHands', label: 'Play with open hands' }
     ];
     if (showSolo) {
-
         options.push({ name: 'solo', label: 'Play solo' });
     }
 
@@ -104,14 +103,37 @@ const NewGame = ({
     };
 
     const onClockChange = (value, setFieldValue) => {
-        setFieldValue("clockType", value);
-        setFieldValue("gameTimeLimit", defaultTime[value]);
-    }
+        setFieldValue('clockType', value);
+        setFieldValue('gameTimeLimit', defaultTime[value]);
+    };
 
     const onOptionChange = (option, value, setFieldValue) => {
         // setFieldValue("clockType", value);
         // setFieldValue("gameTimeLimit", defaultTime[value]);
-    }
+    };
+
+    const handlePresetChange = (value, setFieldValue) => {
+        // update the values to the presets for this game type
+        switch (value) {
+            case 'FFL':
+                setFieldValue('ranked', false);
+                setFieldValue('useGameTimeLimit', false);
+
+                break;
+
+            case 'PHX':
+                setFieldValue('ranked', true);
+                setFieldValue('useGameTimeLimit', true);
+                setFieldValue('gameTimeLimit', 50);
+                setFieldValue('gameFormat', 'constructed');
+
+                break;
+
+            default:
+                break;
+        }
+        setFieldValue('label', value);
+    };
 
     if (!lobbySocket) {
         return (
@@ -162,9 +184,6 @@ const NewGame = ({
                                     <Form.Row>
                                         <Form.Group as={Col} lg='8' controlId='formGridGameName'>
                                             <Form.Label>{t('Name')}</Form.Label>
-                                            <Form.Label className='float-right'>
-                                                {GameNameMaxLength - formProps.values.name.length}
-                                            </Form.Label>
                                             <Form.Control
                                                 type='text'
                                                 placeholder={t('Game Name')}
@@ -175,6 +194,25 @@ const NewGame = ({
                                                 {formProps.errors.name}
                                             </Form.Control.Feedback>
                                         </Form.Group>
+
+                                        <div className='col-md-4 inline'>
+                                            <Form.Label>League Presets</Form.Label>
+                                            <select
+                                                className='form-control'
+                                                // value={this.state.selectedTerm}
+                                                onChange={(e) => {
+                                                    handlePresetChange(
+                                                        e.target.value,
+                                                        formProps.setFieldValue
+                                                    );
+                                                    e.stopPropagation();
+                                                }}
+                                            >
+                                                <option value=''></option>
+                                                <option value='FFL'>First Five League</option>
+                                                <option value='PHX'>Phoenix League</option>
+                                            </select>
+                                        </div>
                                     </Form.Row>
                                 )}
                                 <GameFormats formProps={formProps} />
@@ -192,7 +230,11 @@ const NewGame = ({
                                                     // inline
                                                     onChange={(e) => {
                                                         formProps.handleChange(e);
-                                                        onOptionChange(option.name, e.value, formProps.setFieldValue);
+                                                        onOptionChange(
+                                                            option.name,
+                                                            e.value,
+                                                            formProps.setFieldValue
+                                                        );
                                                     }}
                                                     value='true'
                                                     checked={formProps.values[option.name]}
@@ -204,18 +246,24 @@ const NewGame = ({
                                 {formProps.values.useGameTimeLimit && (
                                     <Form.Row>
                                         <Form.Group>
-                                            <Form.Label><span>
-                                                <img
-                                                    src={TimeLimitIcon}
-                                                    className='game-list-icon'
-                                                    alt={'Time limit used'}
-                                                />
-                                            </span>&nbsp;
-                                                {t('Time Limit')}</Form.Label>
+                                            <Form.Label>
+                                                <span>
+                                                    <img
+                                                        src={TimeLimitIcon}
+                                                        className='game-list-icon'
+                                                        alt={'Time limit used'}
+                                                    />
+                                                </span>
+                                                &nbsp;
+                                                {t('Time Limit')}
+                                            </Form.Label>
                                             <Form.Control
                                                 type='text'
                                                 placeholder={t('Enter time limit')}
-                                                {...getStandardControlProps(formProps, 'gameTimeLimit')}
+                                                {...getStandardControlProps(
+                                                    formProps,
+                                                    'gameTimeLimit'
+                                                )}
                                             />
                                             <Form.Control.Feedback type='invalid'>
                                                 {formProps.errors.gameTimeLimit}
@@ -231,17 +279,20 @@ const NewGame = ({
                                                     inline
                                                     onChange={(e) => {
                                                         formProps.handleChange(e);
-                                                        onClockChange(type.name, formProps.setFieldValue);
+                                                        onClockChange(
+                                                            type.name,
+                                                            formProps.setFieldValue
+                                                        );
                                                     }}
                                                     value={type.name}
-                                                    checked={formProps.values.clockType === type.name}
+                                                    checked={
+                                                        formProps.values.clockType === type.name
+                                                    }
                                                 ></Form.Check>
                                             ))}
-
                                         </Form.Group>
                                     </Form.Row>
                                 )}
-
                             </>
                         }
                         {/* {!tournament && <GameTypes formProps={formProps} />} */}
