@@ -1,4 +1,4 @@
-const { CardType, PhoenixbornTypes } = require('../../constants');
+const { PhoenixbornTypes } = require('../../constants');
 
 class AttackState {
     constructor(target, attackingPlayer) {
@@ -128,6 +128,7 @@ class AttackState {
             isPBAttack: this.isPBAttack,
             attackingPlayer: this.attackingPlayer.id,
             battles: this.battles.map((b) => ({
+                key: b.key,
                 attacker: b.attacker ? b.attacker.uuid : null,
                 target: b.target ? b.target.uuid : null,
                 guard: b.guard ? b.guard.uuid : null,

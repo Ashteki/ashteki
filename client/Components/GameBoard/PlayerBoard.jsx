@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Card from './Card';
 
 import './PlayerBoard.scss';
+import CardFrame from './CardFrame';
 
 const PlayerBoard = ({
     active,
@@ -41,28 +42,28 @@ const PlayerBoard = ({
         }
 
         const results = [];
-        // render attack cards or gaps
-        if (attack)
-            // should we display the attackers or defenders?
-            // is this player (top or bottom) the attacker?
-            attack.battles.forEach((b) => {
-                if (attack.attackingPlayer === playerId) {
-                    // just display the attackers
-                    const attackerCard = getCard(b.attacker);
-                    results.push(renderCard(attackerCard));
-                } else {
-                    // work out defender or blank
-                    const guardCard = getCard(b.guard);
-                    const targetCard = getCard(b.target);
-                    let defCard = guardCard;
-                    if (!guardCard && !b.guard) {
-                        defCard = targetCard;
-                    }
+        // // render attack cards or gaps
+        // if (attack)
+        //     // should we display the attackers or defenders?
+        //     // is this player (top or bottom) the attacker?
+        //     attack.battles.forEach((b) => {
+        //         if (attack.attackingPlayer === playerId) {
+        //             // just display the attackers
+        //             const attackerCard = getCard(b.attacker);
+        //             results.push(renderCard(attackerCard));
+        //         } else {
+        //             // work out defender or blank
+        //             const guardCard = getCard(b.guard);
+        //             const targetCard = getCard(b.target);
+        //             let defCard = guardCard;
+        //             if (!guardCard && !b.guard) {
+        //                 defCard = targetCard;
+        //             }
 
-                    if (defCard && defCard !== phoenixborn) results.push(renderCard(defCard));
-                    else results.push(renderCardGap());
-                }
-            });
+        //             if (defCard && defCard !== phoenixborn) results.push(renderCard(defCard));
+        //             else results.push(renderCardGap());
+        //         }
+        //     });
 
         // render the remaining cards not involved in the attack
         let rowCards = row.filter((c) => !attackInvolvesCard(c));
@@ -71,18 +72,7 @@ const PlayerBoard = ({
     };
 
     const renderCardGap = () => {
-        const sizeClass = {
-            [cardSize]: cardSize !== 'normal'
-        };
-        let cardClass = classNames('game-card', 'vertical', sizeClass);
-
-        return (
-            <div className={'card-wrapper'}>
-                <div className='card-frame'>
-                    <div className={cardClass} />
-                </div>
-            </div>
-        );
+        <CardFrame cardSize={cardSize} />
     };
 
     const renderCard = (card) => {

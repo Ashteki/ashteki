@@ -51,6 +51,39 @@
     // overflow-x: hidden;
 }
 
+.attack-zone {
+    background-color: rgba(125, 13, 13, 0.41);
+    display: flex;
+    padding: 0px 10px;
+
+    .attack-title {
+        margin: auto;
+        transform: rotate(-90deg);
+        // transform-origin: 0 0;
+        text-transform: uppercase;
+        height: 30px;
+    }
+
+    .battle {
+        // background-color: rgba(128, 128, 143, 0.371);
+        height: 100%;
+        margin: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .battle-arrow {
+        font-weight: bold;
+        font-size: 2em;
+        text-align: center;
+    }
+
+    hr {
+        color: white;
+    }
+}
+
 .right-side {
     // position: relative;
     display: flex;
@@ -116,6 +149,8 @@
         }
 
         border-bottom: none;
+        position:absolute;
+        bottom: 0px;
     }
 }
 

@@ -25,6 +25,7 @@ import Clock from './Clock';
 import WinLoseSplash from './WinLoseSplash';
 import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
+import BattleZone from './BattleZone';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -270,6 +271,15 @@ const GameBoard = () => {
         );
     }
 
+    const cardProps = {
+        onClick: onCardClick,
+        onMouseOut,
+        onMouseOver,
+        size: cardSize
+    };
+
+    const showBatlleZone = currentGame.attack && currentGame.attack.battles && !!currentGame.attack.battles.length;
+
     const renderBoard = (
         thisPlayer,
         otherPlayer,
@@ -285,6 +295,15 @@ const GameBoard = () => {
                     : getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating)}
 
                 <div className='board-inner'>
+                    {showBatlleZone && (
+                        <BattleZone
+                            player={thisPlayer}
+                            cardsInPlay={otherPlayer.cardPiles.cardsInPlay.concat(
+                                thisPlayer.cardPiles.cardsInPlay
+                            )}
+                            cardProps={cardProps}
+                        />
+                    )}
                     <div className='play-area'>
                         {/* opponent board */}
                         <PlayerBoard

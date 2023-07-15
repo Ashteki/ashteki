@@ -106,8 +106,10 @@ class AttackFlow extends BaseStepWithPipeline {
             cards
         );
 
+        let key = 1;
         cards.forEach((c) => {
             this.attack.battles.push({
+                key: key,
                 attacker: c,
                 target: this.target,
                 guard: null,
@@ -116,6 +118,7 @@ class AttackFlow extends BaseStepWithPipeline {
             });
             c.isAttacker = true;
             c.wasAttacker = true;
+            key++;
         });
 
         if (!this.ignoreMainCost) {
