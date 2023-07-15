@@ -18,7 +18,6 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import UserAdmin from './pages/UserAdmin';
 import Profile from './pages/profile/Profile';
-import MotdAdmin from './pages/MotdAdmin';
 import GameLobby from './Components/Games/GameLobby';
 import GameBoard from './Components/GameBoard/GameBoard.jsx';
 import BlockList from './pages/profile/BlockList';
@@ -79,11 +78,6 @@ const routes = [
     {
         path: '/banlist',
         action: () => <BanlistAdmin key='banlist' permission='canManageBanlist' />
-    },
-    {
-        path: '/admin/motd',
-        action: () => <MotdAdmin key='motdadmin' />,
-        permission: 'canManageMotd'
     },
     { path: '/patreon', action: (context) => <Patreon code={context.params.code} /> }
 ];

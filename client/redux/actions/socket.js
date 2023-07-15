@@ -132,7 +132,6 @@ const messages = [
     'passworderror',
     'lobbymessages',
     'banner',
-    'motd',
     'cleargamestate',
     'gameerror'
 ];

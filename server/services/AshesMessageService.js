@@ -26,10 +26,6 @@ class MessageService extends EventEmitter {
 
         this.emit('messageDeleted', messageId, user);
     }
-
-    async getMotdMessage() {
-        return undefined;
-    }
 }
 
 module.exports = MessageService;

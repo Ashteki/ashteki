@@ -9,7 +9,6 @@ import Panel from '../Site/Panel';
 import GameFormats from './GameFormats';
 
 // import GameOptions from './GameOptions';
-// import GameTypes from './GameTypes';
 import { getStandardControlProps } from '../../util';
 import { cancelNewGame, sendSocketMessage } from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
@@ -295,7 +294,6 @@ const NewGame = ({
                                 )}
                             </>
                         }
-                        {/* {!tournament && <GameTypes formProps={formProps} />} */}
                         {
                             <Row>
                                 <Form.Group as={Col} sm={6}>

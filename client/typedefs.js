@@ -7,7 +7,6 @@
     'canModerateChat' | 
     'canVerifyDecks' | 
     'canManageBanlist' | 
-    'canManageMotd' | 
     'canManageTournaments' | 
     'isAdmin' | 
     'isContributor' | 

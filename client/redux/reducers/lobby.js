@@ -232,10 +232,6 @@ function handleMessage(action, state) {
         case 'banner':
             newState.notice = action.args[0];
             break;
-        case 'motd':
-            newState.motd = action.args[0];
-
-            break;
         case 'gamestate':
             newState = handleGameState(action, state);
 
