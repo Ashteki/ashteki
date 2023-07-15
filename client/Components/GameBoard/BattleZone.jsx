@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import CardFrame from './CardFrame';
 import Card from './Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretUp, faLink } from '@fortawesome/free-solid-svg-icons';
 
 const BattleZone = ({ player, cardsInPlay, cardProps }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -31,6 +33,7 @@ const BattleZone = ({ player, cardsInPlay, cardProps }) => {
 
         return <Card card={c} {...cardProps} />;
     };
+    const arrow = theirAttack ? faCaretDown : faCaretUp;
 
     return (
         <div className='attack-zone'>
@@ -40,7 +43,9 @@ const BattleZone = ({ player, cardsInPlay, cardProps }) => {
                     .map((b) => (
                         <div key={b.key} className='battle'>
                             {theirAttack ? getAttacker(b) : getDefender(b)}
-                            <hr />
+                            <div className='battle-arrow'>
+                                <FontAwesomeIcon icon={arrow} title='Attack!' />
+                            </div>
                             {theirAttack ? getDefender(b) : getAttacker(b)}
                         </div>
                     ))}

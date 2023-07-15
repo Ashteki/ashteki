@@ -278,6 +278,8 @@ const GameBoard = () => {
         size: cardSize
     };
 
+    const showBatlleZone = currentGame.attack && currentGame.attack.battles && !!currentGame.attack.battles.length;
+
     const renderBoard = (
         thisPlayer,
         otherPlayer,
@@ -293,13 +295,15 @@ const GameBoard = () => {
                     : getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating)}
 
                 <div className='board-inner'>
-                    <BattleZone
-                        player={thisPlayer}
-                        cardsInPlay={otherPlayer.cardPiles.cardsInPlay.concat(
-                            thisPlayer.cardPiles.cardsInPlay
-                        )}
-                        cardProps={cardProps}
-                    />
+                    {showBatlleZone && (
+                        <BattleZone
+                            player={thisPlayer}
+                            cardsInPlay={otherPlayer.cardPiles.cardsInPlay.concat(
+                                thisPlayer.cardPiles.cardsInPlay
+                            )}
+                            cardProps={cardProps}
+                        />
+                    )}
                     <div className='play-area'>
                         {/* opponent board */}
                         <PlayerBoard
