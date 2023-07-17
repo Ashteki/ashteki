@@ -168,6 +168,17 @@ class HandlerMenuPrompt extends UiPrompt {
 
         return true;
     }
+
+    onCardClicked(player, card) {
+        if (this.properties.autoCancel && card !== this.source) {
+            this.complete();
+
+            card.use(player);
+
+            return true;
+        }
+        return false;
+    }
 }
 
 module.exports = HandlerMenuPrompt;

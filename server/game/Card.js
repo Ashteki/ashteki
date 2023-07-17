@@ -1048,6 +1048,7 @@ class Card extends PlayableObject {
         handlers = handlers.concat([() => true]);
 
         this.game.promptWithHandlerMenu(player, {
+            autoCancel: true,
             activePromptTitle:
                 this.location === 'play area' || this.location === 'spellboard'
                     ? 'Choose an ability:'
