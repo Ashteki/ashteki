@@ -4,10 +4,6 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonWishingWing extends Card {
     setupCardAbilities(ability) {
-        this.spellGuard({
-            location: 'spellboard'
-        });
-
         this.action({
             title: 'Summon Wishing Wing',
             cost: [
