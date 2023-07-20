@@ -4,10 +4,6 @@ const DiceCount = require('../../DiceCount.js');
 
 class SummonPrismTetra extends Card {
     setupCardAbilities(ability) {
-        this.spellGuard({
-            location: 'spellboard'
-        });
-
         this.action({
             title: 'Summon Prism Tetra',
             cost: [
