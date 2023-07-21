@@ -438,7 +438,7 @@ const Card = ({
     }
     if (wrapped) {
         return (
-            <div className={'card-wrapper'} style={style}>
+            <div className={classNames('card-wrapper', sizeClass)} style={style}>
                 {getAltIcon(card)}
 
                 {getCard()}

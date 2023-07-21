@@ -9,6 +9,20 @@
     display: inline-block;
     user-select: none;
     position: relative;
+    min-height: $keyteki-card-height;
+
+    &.small {
+        min-height: $keyteki-card-sm-height ;
+    }
+
+    &.large {
+        min-height: $keyteki-card-lg-height ;
+    }
+
+    &.x-large {
+        min-height: $keyteki-card-xl-height ;
+    }
+
 }
 
 .card-frame {
