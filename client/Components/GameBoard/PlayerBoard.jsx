@@ -2,22 +2,18 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Card from './Card';
-
 import './PlayerBoard.scss';
-import CardFrame from './CardFrame';
 
 const PlayerBoard = ({
     active,
     attack,
     cardsInPlay,
-    phoenixborn,
     cardSize,
     manualMode,
     onCardClick,
     onMenuItemClick,
     onMouseOut,
     onMouseOver,
-    playerId,
     rowDirection,
     side
 }) => {
@@ -32,47 +28,16 @@ const PlayerBoard = ({
         );
     };
 
-    const getCard = (uuid) => {
-        return phoenixborn.uuid === uuid ? phoenixborn : cardsInPlay.find((c) => c.uuid === uuid);
-    };
-
     const renderRow = (row) => {
         if (!row) {
             return null;
         }
 
         const results = [];
-        // // render attack cards or gaps
-        // if (attack)
-        //     // should we display the attackers or defenders?
-        //     // is this player (top or bottom) the attacker?
-        //     attack.battles.forEach((b) => {
-        //         if (attack.attackingPlayer === playerId) {
-        //             // just display the attackers
-        //             const attackerCard = getCard(b.attacker);
-        //             results.push(renderCard(attackerCard));
-        //         } else {
-        //             // work out defender or blank
-        //             const guardCard = getCard(b.guard);
-        //             const targetCard = getCard(b.target);
-        //             let defCard = guardCard;
-        //             if (!guardCard && !b.guard) {
-        //                 defCard = targetCard;
-        //             }
-
-        //             if (defCard && defCard !== phoenixborn) results.push(renderCard(defCard));
-        //             else results.push(renderCardGap());
-        //         }
-        //     });
-
-        // render the remaining cards not involved in the attack
+        // render the cards not involved in an attack
         let rowCards = row.filter((c) => !attackInvolvesCard(c));
         const renderedCards = rowCards.map((card) => renderCard(card));
         return results.concat(renderedCards);
-    };
-
-    const renderCardGap = () => {
-        <CardFrame cardSize={cardSize} />
     };
 
     const renderCard = (card) => {

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import CardFrame from './CardFrame';
 import Card from './Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faCaretUp, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 const BattleZone = ({ player, cardsInPlay, cardProps }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -18,7 +18,7 @@ const BattleZone = ({ player, cardsInPlay, cardProps }) => {
         if (!c) {
             return emptyFrame;
         }
-        return <Card card={c} {...cardProps} />;
+        return <Card card={c} source='play area' {...cardProps} />;
     };
 
     const getDefender = (battle) => {
