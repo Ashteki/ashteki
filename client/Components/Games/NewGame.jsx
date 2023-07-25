@@ -123,7 +123,8 @@ const NewGame = ({
             case 'PHX':
                 setFieldValue('ranked', true);
                 setFieldValue('useGameTimeLimit', true);
-                setFieldValue('gameTimeLimit', 50);
+                setFieldValue('clockType', 'timer');
+                setFieldValue('gameTimeLimit', 60);
                 setFieldValue('gameFormat', 'constructed');
 
                 break;
