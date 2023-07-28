@@ -11,7 +11,7 @@ if (!username) {
 console.info('Games for ', username);
 
 gameService
-    .findByUserName(username)
+    .findByUserName(username, { includeNonWins: true })
     .then((games) => {
         console.info('' + _.size(games), 'total games');
 

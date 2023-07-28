@@ -21,9 +21,7 @@ async function getDecks(username) {
         });
 
         await gameService
-            .findByUserName(username, {
-                excludeNonWins: true
-            })
+            .findByUserName(username, {})
             .then((games) => {
                 games.forEach((game) => {
                     const player = game.players.find(p => p.name === username);

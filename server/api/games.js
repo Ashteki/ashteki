@@ -11,7 +11,7 @@ module.exports.init = function (server) {
         '/api/games',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            let games = await gameService.findByUserName(req.user.username);
+            let games = await gameService.findByUserName(req.user.username, {});
             res.send({ success: true, games: games });
         })
     );

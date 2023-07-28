@@ -67,8 +67,8 @@ class GameService {
         const findSpec = {
             'players.name': username
         };
-        if (options.excludeNonWins) {
-            // findSpec.winner = { $exists: true };
+        if (!options.includeNonWins) {
+            findSpec.winner = { $exists: true };
             findSpec.winReason = { $ne: 'Agreement' };
         }
 

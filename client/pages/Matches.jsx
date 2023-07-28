@@ -14,18 +14,6 @@ class Matches extends React.Component {
         this.props.loadUserGames();
     }
 
-    computeKeys(player) {
-        if (player.keys === null || player.keys === undefined) {
-            return 0;
-        }
-
-        if (!isNaN(player.keys)) {
-            return player.keys;
-        }
-
-        return player.keys.yellow + player.keys.blue + player.keys.red;
-    }
-
     computeWinner(game) {
         if (
             !game.winner ||
@@ -63,19 +51,13 @@ class Matches extends React.Component {
                     var finishedAt = moment(game.finishedAt);
                     var duration = moment.duration(finishedAt.diff(startedAt));
 
-                    var myKeys = this.computeKeys(game.players[0]);
-                    var oppKeys = this.computeKeys(game.players[1]);
-
                     return (
                         <tr key={game.gameId}>
-                            <td>0 name</td>
+                            <td>{game.players[0].deck}</td>
                             <td style={{ 'white-space': 'nowrap' }}>{game.players[1].name}</td>
-                            <td>1 name</td>
+                            <td>{game.players[1].deck}</td>
                             <td>{this.computeWinner(game)}</td>
                             <td style={{ 'white-space': 'nowrap' }}>{t(game.winReason)}</td>
-                            <td style={{ 'white-space': 'nowrap' }}>
-                                {myKeys} x {oppKeys}
-                            </td>
                             <td style={{ 'white-space': 'nowrap' }}>{t(game.gameType)}</td>
                             <td style={{ 'white-space': 'nowrap' }}>
                                 {moment(game.startedAt).format('YYYY-MM-DD HH:mm')}
@@ -111,13 +93,7 @@ class Matches extends React.Component {
                                     <Trans>Reason</Trans>
                                 </th>
                                 <th>
-                                    <Trans>Keys</Trans>
-                                </th>
-                                <th>
                                     <Trans>Type</Trans>
-                                </th>
-                                <th>
-                                    <Trans>Format</Trans>
                                 </th>
                                 <th>
                                     <Trans>Started At</Trans>

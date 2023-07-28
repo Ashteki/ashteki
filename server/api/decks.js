@@ -119,9 +119,7 @@ module.exports.init = function (server) {
                 });
 
                 await gameService
-                    .findByUserName(req.user.username, {
-                        excludeNonWins: true
-                    })
+                    .findByUserName(req.user.username, {})
                     .then((games) => {
                         games.forEach((game) => {
                             const player = game.players.find(p => p.name === req.user.username);
