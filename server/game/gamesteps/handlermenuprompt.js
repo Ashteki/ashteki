@@ -170,14 +170,16 @@ class HandlerMenuPrompt extends UiPrompt {
     }
 
     onCardClicked(player, card) {
-        if (this.properties.autoCancel && card !== this.source) {
-            this.complete();
+        if (this.game.activePlayer.optionSettings.allowAutoCancel) {
+            if (this.properties.autoCancel && card !== this.source) {
+                this.complete();
 
-            card.use(player);
+                card.use(player);
 
-            return true;
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 }
 

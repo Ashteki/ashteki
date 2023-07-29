@@ -71,6 +71,7 @@ const initialValues = {
     },
     gameOptions: {
         confirmOneClick: false,
+        allowAutoCancel: false,
         orderForcedAbilities: false,
         bluffTimer: 0,
         alertTimer: 5,

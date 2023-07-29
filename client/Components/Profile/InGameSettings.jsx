@@ -24,6 +24,15 @@ const InGameSettings = ({ formProps }) => {
                 onBlur={formProps.handleBlur}
             />
             <Form.Check
+                id='allowAutoCancel'
+                name='gameOptions.allowAutoCancel'
+                label="Allow card switching without pressing 'Cancel' button"
+                type='switch'
+                checked={formProps.values.gameOptions.allowAutoCancel}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <Form.Check
                 id='alwaysGroupTactics'
                 name='gameOptions.alwaysGroupTactics'
                 label='Always trigger Group Tactics without asking'

@@ -1,6 +1,7 @@
 const defaultOptionSettings = {
     orderForcedAbilities: false,
     confirmOneClick: true,
+    allowAutoCancel: false,
     leftMode: false,
     compactLayout: false,
     bluffTimer: 0,
