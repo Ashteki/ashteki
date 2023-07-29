@@ -10,7 +10,8 @@ describe('Tristan Darkwater, magnify', function () {
                     'iron-worker',
                     'nightshade-swallow',
                     'shadow-spirit',
-                    'psychic-vampire'
+                    'psychic-vampire',
+                    'beast-warrior'
                 ],
                 spellboard: [],
                 dicepool: ['time', 'natural', 'charm', 'charm', 'natural'],
@@ -121,5 +122,24 @@ describe('Tristan Darkwater, magnify', function () {
         expect(this.purge.location).toBe('discard');
         expect(this.player1).toHaveDefaultPrompt();
 
+    });
+
+    it('magnify beast warrior transform', function () {
+        this.game.setRoundFirstPlayer(this.player2.player);
+        this.game.switchActivePlayer();
+        expect(this.player1.player.firstPlayer).toBe(false);
+        expect(this.player2.dicepool[0].level).toBe('power');
+        expect(this.player2.dicepool[1].level).toBe('power');
+        this.player1.clickCard(this.tristanDarkwater);
+        this.player1.clickPrompt('Magnify');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.beastWarrior);
+        this.player1.clickDone();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage);
+        this.player1.clickCard(this.beastWarrior);
+        this.player2.clickDone();
+        expect(this.beastWarrior.attack).toBe(3);
     });
 });

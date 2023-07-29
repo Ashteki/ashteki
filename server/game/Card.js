@@ -1120,14 +1120,14 @@ class Card extends PlayableObject {
     }
 
     transform(properties) {
-        const amt = this.getAbilityNumeric(properties.amount);
+        const amtFunc = () => this.getAbilityNumeric(properties.amount);
         return this.persistentEffect({
             condition: () => !this.controller.firstPlayer,
             match: this,
             effect: [
-                AbilityDsl.effects.modifyAttack(amt),
-                AbilityDsl.effects.modifyLife(amt),
-                AbilityDsl.effects.modifyRecover(amt)
+                AbilityDsl.effects.modifyAttack(amtFunc),
+                AbilityDsl.effects.modifyLife(amtFunc),
+                AbilityDsl.effects.modifyRecover(amtFunc)
             ]
         });
     }
