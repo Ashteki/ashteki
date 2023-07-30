@@ -27,7 +27,8 @@ class AttachAction extends CardGameAction {
         if (
             !this.upgrade ||
             this.upgrade.location === 'play area' ||
-            !this.upgrade.canAttach(card, context)
+            !this.upgrade.canAttach(card, context) ||
+            card.anyEffect('cannotBeSpellTarget')
         ) {
             return false;
         }

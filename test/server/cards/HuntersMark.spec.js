@@ -11,7 +11,7 @@ describe('Hunters Mark', function () {
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['iron-worker', 'hammer-knight'],
+                    inPlay: ['iron-worker', 'hammer-knight', 'holy-knight'],
                     dicepool: ['natural', 'natural', 'sympathy', 'sympathy'],
                     hand: ['explosive-growth', 'explosive-growth']
                 }
@@ -33,6 +33,16 @@ describe('Hunters Mark', function () {
             expect(this.ironWorker.location).toBe('discard');
             expect(this.mistSpirit.location).toBe('play area');
             expect(this.mistSpirit.damage).toBe(0);
+        });
+
+        it('vs holy knight unexhausted cannot attach', function () {
+            this.player1.clickCard(this.haroldWestraven);
+
+            this.player1.clickPrompt('Mark Prey');
+            this.player1.clickCard(this.holyKnight);
+            this.player1.clickCard(this.huntersMark);
+
+            expect(this.holyKnight.upgrades.length).toBe(0);
         });
 
         it('no guarding when targetted', function () {

@@ -18,7 +18,7 @@ describe('Adept duelist', function () {
     });
 
     it('removes upgrade', function () {
-        this.player1.playUpgrade(this.rootArmor, this.stormwindSniper);
+        this.player1.playUpgrade(this.rootArmor, this.ironWorker);
         this.player1.endTurn();
         this.player2.clickAttack(this.coalRoarkwin);
         this.player2.clickCard(this.adeptDuelist);
