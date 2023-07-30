@@ -52,7 +52,9 @@ function games(state = {}, action) {
             break;
         case 'GAME_SOCKET_RESPONSE_TIME_RECEIVED':
             newState.responseTime = action.responseTime;
-
+            break;
+        case 'RECEIVE_TAGGEDGAMES':
+            newState.taggedGames = action.response.results;
             break;
         default:
             return state;

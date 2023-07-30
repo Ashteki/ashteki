@@ -240,3 +240,12 @@ export function leaveGame(id) {
         return dispatch(gameSocketClose());
     };
 }
+
+export function loadTaggedGames(tag) {
+    return {
+        types: ['REQUEST_TAGGEDGAMES', 'RECEIVE_TAGGEDGAMES'],
+        shouldCallAPI: () => true,
+        APIParams: { url: 'api/games/' + tag, cache: false },
+        type: 'GET'
+    };
+}
