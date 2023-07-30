@@ -85,10 +85,10 @@ class ResolveBattleAction extends GameAction {
                 let counterDamageEvent;
                 if (
                     // quickstrike in a fight skips counter damage
-                    // !(
-                    //     event.attacker?.attacksFirst() &&
-                    //     this.damageWillDestroyTarget(attackerAmount, event.card)
-                    // ) &&
+                    !(
+                        event.attacker?.attacksFirst() &&
+                        this.damageWillDestroyTarget(attackerAmount, event.card)
+                    ) &&
                     defenderParams.amount > 0 &&
                     // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
                     event.defenderTarget === event.attacker &&

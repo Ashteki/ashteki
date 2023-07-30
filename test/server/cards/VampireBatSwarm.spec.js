@@ -4,7 +4,7 @@ describe('Vampire Bat Swarm', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['iron-worker', 'string-mage'],
+                    inPlay: ['iron-worker', 'string-mage', 'cloudburst-gryphon'],
                     dicepool: ['natural']
                 },
                 player2: {
@@ -82,6 +82,25 @@ describe('Vampire Bat Swarm', function () {
             expect(this.vampireBatSwarm.isAttacker).toBe(false);
             expect(this.vampireBatSwarm.isDefender).toBe(false);
             expect(this.aradelSummergaard.exhausted).toBe(false);
+            expect(this.maeoniViper.exhausted).toBe(false);
+        });
+
+        it('on defence vs quickstrike - NO COUNTER', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.vampireBatSwarm);
+            this.player1.clickCard(this.cloudburstGryphon);
+            this.player2.clickDone();
+            this.player2.clickYes();
+            // on destroy choices...
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
+            expect(this.vampireBatSwarm.location).toBe('play area');
+            expect(this.vampireBatSwarm.damage).toBe(0);
+            expect(this.vampireBatSwarm.exhausted).toBe(false);
+            expect(this.vampireBatSwarm.isAttacker).toBe(false);
+            expect(this.vampireBatSwarm.isDefender).toBe(false);
+            expect(this.aradelSummergaard.exhausted).toBe(false);
+            expect(this.cloudburstGryphon.location).toBe('play area');
             expect(this.maeoniViper.exhausted).toBe(false);
         });
 
@@ -175,7 +194,6 @@ describe('Vampire Bat Swarm', function () {
         });
     });
 
-
     describe('vs sonic swordsman', function () {
         beforeEach(function () {
             this.setupTest({
@@ -200,7 +218,7 @@ describe('Vampire Bat Swarm', function () {
 
             expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
             this.player2.clickYes();
-            // pulse 
+            // pulse
             this.player1.clickCard(this.vampireBatSwarm);
             expect(this.vampireBatSwarm.location).toBe('play area');
             expect(this.vampireBatSwarm.damage).toBe(0);
@@ -208,6 +226,5 @@ describe('Vampire Bat Swarm', function () {
             expect(this.vampireBatSwarm.isAttacker).toBe(false);
             expect(this.vampireBatSwarm.isDefender).toBe(false);
         });
-
     });
 });
