@@ -611,9 +611,10 @@ class Card extends PlayableObject {
     }
 
     getAcquiredEffects() {
-        const acquiredEffects = this.effects.filter(
-            (e) => e.context.source != this || e.effect.printedAbility === false
-        );
+        const acquiredEffects = this.effects;
+        //.filter(
+        //     (e) => e.context.source != this || e.effect.printedAbility === false
+        // );
         const simpleTypes = {
             'preventAllDamage': 'Prevent all damage',
             'bypass': 'Bypass',
@@ -631,6 +632,11 @@ class Card extends PlayableObject {
                 source: e.context.source.name,
                 name: simpleTypes[e.type]
             }));
+        // const keywords = ['terrifying', 'overkill'].filter((s) => this.hasKeyword(s))
+        //     .map((s) => {
+        //         // const value = Object.keys(e.getValue())[0];
+        //         return { effect: s, source: s, name: s };
+        //     });
         const keywords = acquiredEffects
             .filter((e) => e.type === 'addKeyword')
             .map((e) => {
