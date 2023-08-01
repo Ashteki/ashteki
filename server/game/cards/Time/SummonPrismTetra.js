@@ -19,7 +19,7 @@ class SummonPrismTetra extends Card {
             then: {
                 condition: (context) => context.source.focus >= 1,
                 gameAction: ability.actions.cardLastingEffect((context) => ({
-                    target: context.preThenEvent.cards,
+                    target: context.player.cardsInPlay.filter((card) => card.id === 'prism-tetra'),
                     until: {
                         onBeginTurn: (event) => event.player === context.player,
                         onBeginRound: () => true

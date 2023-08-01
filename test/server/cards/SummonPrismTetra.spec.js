@@ -37,7 +37,8 @@ describe('Summon Prism Tetra', function () {
                     dicepool: ['sympathy', 'sympathy', 'charm', 'time', 'illusion'],
                     spellboard: ['summon-prism-tetra', 'summon-prism-tetra'],
                     archives: ['prism-tetra', 'prism-tetra', 'prism-tetra', 'prism-tetra'],
-                    deck: ['anchornaut']
+                    deck: ['anchornaut'],
+                    inPlay: ['prism-tetra']
                 },
                 player2: {
                     phoenixborn: 'aradel-summergaard',
@@ -48,17 +49,21 @@ describe('Summon Prism Tetra', function () {
             });
         });
 
-        it('places status token for enter play and focus 2', function () {
+        it('places status token for enter play and focus 2 effect', function () {
+            const existingTetra = this.player1.inPlay[0];
+            const newTetra = this.player1.archives[0];
+            expect(existingTetra.anyEffect('cannotBeSpellTarget')).toBe(false);
             expect(this.player1.actions.main).toBe(true);
             this.player1.clickCard(this.summonPrismTetra);
             this.player1.clickPrompt('Summon Prism Tetra');
             this.player1.endTurn();
 
-            expect(this.prismTetra.location).toBe('play area');
-            expect(this.player1.inPlay.length).toBe(3);
-            expect(this.prismTetra.anyEffect('cannotBeSpellTarget')).toBe(true);
-            expect(this.prismTetra.anyEffect('cannotBeAbilityTarget')).toBe(true);
-            expect(this.prismTetra.anyEffect('cannotBeDicePowerTarget')).toBe(true);
+            expect(newTetra.location).toBe('play area');
+            expect(this.player1.inPlay.length).toBe(4);
+            expect(newTetra.anyEffect('cannotBeSpellTarget')).toBe(true);
+            expect(existingTetra.anyEffect('cannotBeSpellTarget')).toBe(true);
+            expect(existingTetra.anyEffect('cannotBeAbilityTarget')).toBe(true);
+            expect(existingTetra.anyEffect('cannotBeDicePowerTarget')).toBe(true);
 
             this.player2.endTurn();
             expect(this.prismTetra.anyEffect('cannotBeSpellTarget')).toBe(false);
