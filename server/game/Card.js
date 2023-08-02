@@ -568,7 +568,6 @@ class Card extends PlayableObject {
         }
 
         menu.push({ command: 'click', text: 'Select card', menu: 'main' });
-        menu.push({ command: 'inspect', text: 'Inspect card', menu: 'main' });
         if (this.dieUpgrades.length) {
             menu.push({ command: 'detachDie', text: 'Remove die', menu: 'main' });
         }

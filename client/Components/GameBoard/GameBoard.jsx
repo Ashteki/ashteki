@@ -74,8 +74,17 @@ const GameBoard = () => {
         dispatch(clearZoom());
     };
 
-    const onCardClick = (card) => {
+    const onCardClick = (card, source) => {
+        if (manualMode && (source === 'play area' || source === 'spellboard')) {
+            if (!thisPlayer.inspectionCard) {
+                dispatch(sendGameMessage('inspectCard', card.uuid));
+            } else {
+                dispatch(sendGameMessage('closeInspector'));
+            }
+        }
+        // } else {
         dispatch(sendGameMessage('cardClicked', card.uuid));
+        // }
     };
 
     const onCardAltClick = (card) => {

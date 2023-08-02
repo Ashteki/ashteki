@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import 'jquery-migrate';
@@ -16,7 +16,7 @@ import blood1back from '../../assets/img/cardback-aspect-blood1.png';
 import blood2back from '../../assets/img/cardback-aspect-blood2.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faLink } from '@fortawesome/free-solid-svg-icons';
 import Die from './Die';
 import './Card.scss';
 
@@ -49,6 +49,7 @@ const Card = ({
     const showChains = useSelector(
         (state) => !['firstadventure', 'precon'].includes(state.lobby.currentGame.gameFormat)
     );
+    const manualMode = useSelector((state) => state.lobby.currentGame.manualMode);
 
     const [{ dragOffset, isDragging }, drag, preview] = useDrag({
         item: { card: card, source: source, type: ItemTypes.CARD },
@@ -63,16 +64,16 @@ const Card = ({
         return source === 'play area' || source === 'spellboard';
     };
 
-    // const isAllowedInspector = () => {
-    //     return manualMode && (source === 'play area' || source === 'spellboard');
-    // };
-
     const onCardClicked = (event, card) => {
         event.preventDefault();
         event.stopPropagation();
-        // if (isAllowedInspector()) {
-        //     dispatch(sendGameMessage('inspectCard', card.uuid));
-        // }
+
+        onClick && onClick(card, source);
+    };
+
+    const onMenuIconClicked = (event, card) => {
+        event.preventDefault();
+        event.stopPropagation();
         if (isAllowedMenuSource() && card.menu && card.menu.length !== 0) {
             setShowMenu(!showMenu);
             return;
@@ -80,7 +81,6 @@ const Card = ({
 
         onClick && onClick(card);
     };
-
     const getCountersForCard = (card) => {
         let counters = [];
         let needsFade = UpgradeCardTypes.includes(card.type) && !['full deck'].includes(source);
@@ -311,9 +311,20 @@ const Card = ({
         if (showAltIcon && card.altArts) {
             return (
                 <div className='card-alt-icon'>
-                    <button className=''
-                        onClick={() => onAltClick(card)}
-                    >Alt</button>
+                    <button className='' onClick={() => onAltClick(card)}>
+                        Alt
+                    </button>
+                </div>
+            );
+        }
+        return '';
+    };
+
+    const getMenuBox = () => {
+        if (manualMode && isAllowedMenuSource() && card.menu && card.menu.length !== 0) {
+            return (
+                <div className='card-menu-icon' onClick={(event) => onMenuIconClicked(event, card)}>
+                    <FontAwesomeIcon icon={faBars} title='Show menu' />
                 </div>
             );
         }
@@ -399,6 +410,7 @@ const Card = ({
                             onMenuItemClick && onMenuItemClick(card, menuItem);
                             setShowMenu(!showMenu);
                         }}
+                        onCloseClick={() => setShowMenu(false)}
                     />
                 )}
             </div>
@@ -440,7 +452,7 @@ const Card = ({
         return (
             <div className={classNames('card-wrapper', sizeClass)} style={style}>
                 {getAltIcon(card)}
-
+                {getMenuBox(card)}
                 {getCard()}
                 {getupgrades()}
                 {renderUnderneathCards()}

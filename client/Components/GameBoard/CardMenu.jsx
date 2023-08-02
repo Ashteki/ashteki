@@ -4,6 +4,8 @@ import { withTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 import './CardMenu.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class CardMenu extends React.Component {
     constructor(props) {
@@ -23,6 +25,12 @@ class CardMenu extends React.Component {
         }
     }
 
+    onCloseClick() {
+        if (this.props.onCloseClick) {
+            this.props.onCloseClick();
+        }
+    }
+
     render() {
         let menuIndex = 0;
         let menuItems = this.props.menu.map((menuItem) => {
@@ -34,7 +42,10 @@ class CardMenu extends React.Component {
                     <div
                         key={menuIndex++}
                         className={className}
-                        onClick={this.onMenuItemClick.bind(this, menuItem)}
+                        onClick={(event) => {
+                            this.onMenuItemClick(menuItem);
+                            event.stopPropagation();
+                        }}
                     >
                         {menuItem.text}
                     </div>
@@ -44,8 +55,10 @@ class CardMenu extends React.Component {
 
         let menuClass = this.props.side == 'bottom' ? 'bottom-menu' : 'menu';
         return (
-            <div className={`panel ${menuClass}`}>
-                <div className='menu-title'>{this.props.cardName}</div>
+            <div className={`panel ${menuClass}`} onClick={this.onCloseClick.bind(this)}>
+                <div className='menu-title'>{this.props.cardName}
+                    <span className='close-menu-button'><FontAwesomeIcon icon={faTimes} /></span>
+                </div>
                 {menuItems}
             </div>
         );
