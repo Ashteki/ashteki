@@ -279,6 +279,17 @@ export default function (state = { decks: [], cards: {} }, action) {
                 deckDeleted: false,
                 deckSaved: false
             });
+        case 'DECK_FAVED':
+            newState = Object.assign({}, state, {});
+
+            var faved = newState.decks.find((deck) => {
+                return deck._id === action.response.deckId;
+            });
+
+            faved.favourite = action.response.isFave;
+
+            return newState;
+
         default:
             return state;
     }

@@ -73,6 +73,22 @@ export function deleteDeck(deck) {
     };
 }
 
+export function setFavourite(deck, value) {
+    let data = JSON.stringify({
+        favourite: value
+    });
+
+    return {
+        types: [Decks.FaveDeck, Decks.DeckFaved],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: `/api/decks/${deck._id}`,
+            type: 'PATCH',
+            data: data
+        }
+    };
+}
+
 export function saveDeck(deck) {
     let str = JSON.stringify({
         deckName: deck.name,

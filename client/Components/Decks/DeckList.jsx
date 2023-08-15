@@ -202,7 +202,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         setPagingDetails(newPageData);
     };
 
-
     const columns = [
         {
             dataField: 'pb',
@@ -244,7 +243,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 const output = (
                     <>
                         <span>{item}</span>&nbsp;
-                        {icon}<br />
+                        {icon}
+                        <br />
                         {dice}
                     </>
                 );
@@ -283,7 +283,11 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
              * @param {number} cell
              */
             formatter: (item, row) => {
-                const output = <span>{item}%<br />({row.played} games)</span>;
+                const output = (
+                    <span>
+                        {item}%<br />({row.played} games)
+                    </span>
+                );
                 return output;
             }
         }

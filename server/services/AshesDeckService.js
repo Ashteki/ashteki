@@ -216,6 +216,7 @@ class AshesDeckService {
             conjurations: deck.conjurations,
             notes: deck.notes,
             ashesLiveModified: deck.ashesLiveModified,
+            favourite: deck.favourite,
             lastUpdated: new Date()
         };
 

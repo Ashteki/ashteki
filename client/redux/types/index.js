@@ -20,7 +20,9 @@ export const Decks = Object.freeze({
     ImportDeck: 'IMPORT_DECK',
     DeckImported: 'DECK_IMPORTED',
     ResyncDeck: 'RESYNC_DECK',
-    DeckResynced: 'DECK_RESYNCED'
+    DeckResynced: 'DECK_RESYNCED',
+    FaveDeck: 'FAVE_DECK',
+    DeckFaved: 'DECK_FAVED'
 });
 
 export const UserAction = Object.freeze({

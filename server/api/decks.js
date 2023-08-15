@@ -238,6 +238,33 @@ module.exports.init = function (server) {
         })
     );
 
+    server.patch(
+        '/api/decks/:id',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            if (!req.user) {
+                return res.status(401).send({ message: 'Unauthorized' });
+            }
+
+            let deck = await deckService.getById(req.params.id);
+
+            if (!deck) {
+                return res.status(404).send({ message: 'No such deck' });
+            }
+
+            if (deck.username !== req.user.username) {
+                return res.status(401).send({ message: 'Unauthorized' });
+            }
+
+            // deck.favourite = !deck.favourite;
+            deck.favourite = req.body.favourite;
+
+            deckService.update(deck);
+
+            res.send({ success: true, message: 'Faved', deckId: deck._id, isFave: deck.favourite });
+        })
+    );
+
     server.delete(
         '/api/decks/:id',
         passport.authenticate('jwt', { session: false }),
