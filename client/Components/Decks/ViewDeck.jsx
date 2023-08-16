@@ -18,6 +18,7 @@ import { Decks } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faRegHeart } from '@fortawesome/free-regular-svg-icons';
+import './ViewDeck.scss';
 
 /**
  * @typedef ViewDeckProps
@@ -100,7 +101,9 @@ const ViewDeck = ({ deck }) => {
 
             <Panel title={deck?.name}>
                 <Col xs={12} className='text-center'>
-                    <a href='#'>{faveIcon}</a>
+                    <a href='#' className='fave-icon'>
+                        {faveIcon}
+                    </a>
                     <ButtonGroup>
                         <button className='btn btn-primary' onClick={handleEditClick}>
                             Edit

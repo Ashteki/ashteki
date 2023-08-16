@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Col, Form } from 'react-bootstrap';
+import { ButtonGroup, Col, Form, ToggleButton } from 'react-bootstrap';
 import moment from 'moment';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faLink } from '@fortawesome/free-solid-svg-icons';
 
 import Phoenixborn from './Phoenixborn';
 import {
@@ -93,6 +93,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         filter: []
     });
 
+    const [showFaves, setShowFaves] = useState(false);
     const pbFilter = useRef(null);
     const nameFilter = useRef(null);
     const dispatch = useDispatch();
@@ -113,7 +114,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     };
 
     const { decks, numDecks, selectedDeck, allCards, deckReload } = useSelector((state) => ({
-        decks: getDecks(state),
+        decks: getDecks(state).filter(d => !showFaves || d.favourite),
         numDecks: state.cards.numDecks,
         selectedDeck: standaloneDecks ? null : state.cards.selectedDeck,
         allCards: state.cards.cards,
@@ -301,6 +302,10 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         pbFilter.current(event.target.value);
     }, 500);
 
+    const handleFaveChange = () => {
+        setShowFaves(!showFaves);
+    };
+
     let phoenixbornCards = [];
     for (let c in allCards) {
         if (allCards[c].type == 'Phoenixborn') {
@@ -347,6 +352,17 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                                         );
                                     })}
                                 </Form.Control>
+                            </Form.Group>
+                            <Form.Group as={Col} controlId='favourite' xs='1' className='fave-hdr'>
+                                <FontAwesomeIcon
+                                    icon={faHeart}
+                                    title='Remove from favourites'
+                                />
+                                <Form.Check // prettier-ignore
+                                    type='switch'
+                                    id='custom-switch'
+                                    onChange={handleFaveChange}
+                                />
                             </Form.Group>
                         </Form.Row>
                     </Form>
