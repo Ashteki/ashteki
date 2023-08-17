@@ -23,67 +23,6 @@ import {
 import './DeckList.scss';
 import DiceRack from './DiceRack';
 
-/**
- * @typedef CardLanguage
- * @property {string} name
- */
-
-/**
- * @typedef Card
- * @property {string} id
- * @property {string} name
- * @property {string} type
- * @property {string} rarity
- * @property {string} number
- * @property {string} image
- * @property {number} status
- * @property {number} power
- * @property {number} expansion
- * @property {string} packCode
- * @property {string[]} keywords
- */
-
-/**
- * @typedef DeckCard
- * @property {number} count
- * @property {string} id
- * @property {Card} card
- */
-
-/**
- * @typedef Deck
- * @property {number} id The database id of the deck
- * @property {string} name The name of the deck
- * @property {Date} lastUpdated The date the deck was last saved
- * @property {DeckCard[]} cards The cards in the deck along with how many of each card
- * @property {number} expansion The expansion number
- * @property {string} losses The number of losses this deck has had
- * @property {string} username The owner of this deck
- * @property {string} uuid The unique identifier of the deck
- * @property {number} wins The number of wins this deck has had
- * @property {number} winRate The win rate of the deck
- */
-
-/**
- * @typedef DeckListProps
- * @property {Deck} [activeDeck] The currently selected deck
- * @property {boolean} [noFilter] Whether or not to enable filtering
- * @property {function(Deck): void} [onDeckSelected] Callback fired when a deck is selected
- * @property {boolean} [standaloneDecks] Only load the standalong decks rather than the user decks
- */
-
-/**
- * @typedef PagingDetails
- * @property {number} page
- * @property {number} sizePerPage
- * @property {string} sortField
- * @property {string} sortOrder
- * @property {{ [key: string]: { filterVal: string; }; }} filters
- */
-
-/**
- * @param {DeckListProps} props
- */
 const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     const [pagingDetails, setPagingDetails] = useState({
         pageSize: 10,
@@ -114,7 +53,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     };
 
     const { decks, numDecks, selectedDeck, allCards, deckReload } = useSelector((state) => ({
-        decks: getDecks(state).filter(d => !showFaves || d.favourite),
+        decks: getDecks(state),
         numDecks: state.cards.numDecks,
         selectedDeck: standaloneDecks ? null : state.cards.selectedDeck,
         allCards: state.cards.cards,
@@ -304,6 +243,16 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
 
     const handleFaveChange = () => {
         setShowFaves(!showFaves);
+        const newPageData = Object.assign({}, pagingDetails);
+        const i = newPageData.filter.findIndex((f) => f.name === 'favourite');
+        if (i > -1) {
+            newPageData.filter.splice(i, 1);
+        }
+        newPageData.filter.push({
+            name: 'favourite',
+            value: !showFaves
+        });
+        setPagingDetails(newPageData);
     };
 
     let phoenixbornCards = [];
