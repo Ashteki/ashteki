@@ -27,19 +27,14 @@ import GameCountMenu from './GameCountMenu';
  */
 const Navigation = (props) => {
     const { t } = useTranslation();
-    const {
-        games,
-        currentGame,
-        lobbyResponse,
-        lobbySocketConnected,
-        lobbySocketConnecting
-    } = useSelector((state) => ({
-        games: state.lobby.games,
-        currentGame: state.lobby.currentGame,
-        lobbyResponse: state.lobby.responseTime,
-        lobbySocketConnected: state.lobby.connected,
-        lobbySocketConnecting: state.lobby.connecting
-    }));
+    const { games, currentGame, lobbyResponse, lobbySocketConnected, lobbySocketConnecting } =
+        useSelector((state) => ({
+            games: state.lobby.games,
+            currentGame: state.lobby.currentGame,
+            lobbyResponse: state.lobby.responseTime,
+            lobbySocketConnected: state.lobby.connected,
+            lobbySocketConnecting: state.lobby.connecting
+        }));
     const { gameConnected, gameConnecting, gameResponse } = useSelector((state) => ({
         gameConnected: state.games.connected,
         gameConnecting: state.games.connecting,

@@ -3,16 +3,15 @@ import { toastr } from 'react-redux-toastr';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faEye,
-    faEyeSlash,
-    faCopy,
+
     faWrench,
     faList,
     faCogs,
     faComment,
     faHistory,
     faBolt,
-    faStickyNote
+    faStickyNote,
+    faRightFromBracket
 } from '@fortawesome/free-solid-svg-icons';
 
 import PlayerName from '../Site/PlayerName';
@@ -27,6 +26,7 @@ import { sendGameMessage } from '../../redux/actions';
 import Droppable from './Droppable';
 import conjback from '../../assets/img/cardback-conjuration.png';
 import spellback from '../../assets/img/cardback-spell.png';
+import PSGameContextMenu from './PSGameContextMenu';
 
 const PlayerStats = ({
     activePlayer,
@@ -332,6 +332,7 @@ const PlayerStats = ({
                             </a>
                         </div>
                     )}
+                    <PSGameContextMenu />
                     <div className='state'>
                         <a href='#' className='pr-1 pl-1' title='Show dice/card history'>
                             <FontAwesomeIcon
