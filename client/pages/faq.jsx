@@ -12,6 +12,35 @@ const FAQ = () => {
         <Col className='full-height lobby-content' xs='12'>
             <Panel type='lobby' cardClass='learn'>
                 <h2>Frequently Asked Questions</h2>
+                <h3>Where can I find an opponent?</h3>
+                <div className='faq-entry'>
+                    <p>
+                        Join the{' '}
+                        <a
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href='https://discord.gg/UU5bduq'
+                        >
+                            Ashes Community Discord
+                        </a>
+                        !
+                    </p>
+                </div>
+                <h3>Where can I learn about the game?</h3>
+                <div className='faq-entry'>
+                    <p>
+                        Check out the{' '}
+                        <a
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href='https://wiki.ashes.live'
+                        >
+                            Ashes: Reborn Wiki
+                        </a> for rules, articles, and lore
+                        !
+                    </p>
+                </div>
+
                 <h3>The Chained List</h3>
                 <div className='faq-entry'>
                     <p>

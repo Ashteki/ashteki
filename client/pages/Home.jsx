@@ -24,21 +24,6 @@ const Home = () => {
                     </Link>
                 </Panel>
                 <Panel type='lobby' className='link-box'>
-                    <Link className='link-box-item lobby-content' href='/learntoplay' key='learn-link'>
-                        <div>
-                            <h2>
-                                <img src={bookLogo} className='bookTextlogo' />
-                                Learn to Play
-                            </h2>
-                            <p className='d-none d-md-block'>
-                                Check out articles and videos on how to play, how to use Ashteki,
-                                and much more
-                            </p>
-                        </div>
-                    </Link>
-                </Panel>
-
-                <Panel type='lobby' className='link-box'>
                     <a className='link-box-item lobby-content' href='/decks' key='mydecks-link'>
                         <div>
                             <h2>
@@ -51,7 +36,23 @@ const Home = () => {
                         </div>
                     </a>
                 </Panel>
-
+                <Panel type='lobby' className='link-box'>
+                    <Link
+                        className='link-box-item lobby-content'
+                        href='/learntoplay'
+                        key='learn-link'
+                    >
+                        <div>
+                            <h2>
+                                <img src={bookLogo} className='bookTextlogo' />
+                                Help
+                            </h2>
+                            <p className='d-none d-md-block'>
+                                FAQ and links to the community wiki.
+                            </p>
+                        </div>
+                    </Link>
+                </Panel>
                 <Panel type='lobby'>
                     <a
                         className='link-box-item lobby-content'
