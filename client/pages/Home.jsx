@@ -28,7 +28,7 @@ const Home = () => {
                         <div>
                             <h2>
                                 <img src={cardsLogo} className='cardsTextlogo' />
-                                Build a deck
+                                My Decks
                             </h2>
                             <p className='d-none d-md-block'>
                                 When you move beyond the built-in decks you can create your own here, or import from ashes.live
@@ -39,7 +39,7 @@ const Home = () => {
                 <Panel type='lobby' className='link-box'>
                     <Link
                         className='link-box-item lobby-content'
-                        href='/learntoplay'
+                        href='/faq'
                         key='learn-link'
                     >
                         <div>
