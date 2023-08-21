@@ -12,6 +12,7 @@ class LuluFirststone extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
             target: {
+                activePromptTitle: 'Choose a unit to receive a spark alteration',
                 cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: [
