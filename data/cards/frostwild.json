@@ -103,8 +103,8 @@
             "phoenixborn": "Lulu Firststone"
         },
         {
-            "name": "Rejuvinate",
-            "stub": "rejuvinate",
+            "name": "Rejuvenate",
+            "stub": "rejuvenate",
             "type": "Ready Spell",
             "placement": "spellboard",
             "cost": [
