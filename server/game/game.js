@@ -1113,11 +1113,13 @@ class Game extends EventEmitter {
         this.setRoundFirstPlayer(player);
     }
 
-    setRoundFirstPlayer(player) {
+    setRoundFirstPlayer(player, makeActive = true) {
         this.roundFirstPlayer = player;
         player.firstPlayer = true;
         player.opponent.firstPlayer = false;
-        this.activePlayer = player;
+        if (makeActive) {
+            this.activePlayer = player;
+        }
     }
 
     reRollPlayerDice() {

@@ -36,6 +36,7 @@ module.exports = {
     JointGameAction: require('./JointGameAction'),
     LastingEffectAction: require('./LastingEffectAction'),
     LastingEffectCardAction: require('./LastingEffectCardAction'),
+    MakeFirstPlayerAction: require('./MakeFirstPlayerAction'),
     MeditateAction: require('./MeditateAction'),
     MoveCardAction: require('./MoveCardAction'),
     MoveToBottomAction: require('./MoveToBottomAction'),
