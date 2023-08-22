@@ -15,6 +15,7 @@ class RedFlower extends Card {
             then: (context) => ({
                 condition: context.tokensRemoved >= 3,
                 target: {
+                    activePromptTitle: 'Choose a card to deal 1 damage to',
                     controller: 'opponent',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({
