@@ -15,7 +15,7 @@ class ChooseGameAction extends GameAction {
 
     setup() {
         super.setup();
-        this.effectMsg = 'choose between different actions';
+        this.effectMsg = 'take a chosen action';
     }
 
     update(context) {
