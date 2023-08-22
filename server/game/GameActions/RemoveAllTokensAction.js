@@ -25,7 +25,7 @@ class RemoveAllTokensAction extends CardGameAction {
 
     getEvent(card, context) {
         return super.createEvent('onRemoveToken', { card: card, context: context }, (event) => {
-            card.removeAllTokens();
+            context.tokensRemoved = card.removeAllTokens();
             if (this.showMessage) {
                 context.game.addMessage(
                     `{0} removes all tokens from {1}`,
