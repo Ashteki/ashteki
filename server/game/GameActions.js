@@ -97,6 +97,7 @@ const Actions = {
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),
     spendSideAction: (propertyFactory) => new GameActions.SpendSideAction(propertyFactory),
     summon: (propertyFactory) => new GameActions.SummonAction(propertyFactory),
+    makeFirstPlayer: (propertyFactory) => new GameActions.MakeFirstPlayerAction(propertyFactory),
 
     // meta actions
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),

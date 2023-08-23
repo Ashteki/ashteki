@@ -4,6 +4,7 @@ const CardGameAction = require('./CardGameAction');
 class AttachConjuredAlterationAction extends CardGameAction {
     setDefaultProperties() {
         this.conjuredAlteration = null;
+        this.showMessage = false;
     }
 
     setup() {
@@ -35,7 +36,12 @@ class AttachConjuredAlterationAction extends CardGameAction {
         const gameAction = context.game.actions.attach({
             upgrade: this.alteration
         });
-
+        context.game.addMessage(
+            '{0} attaches {1} to {2}',
+            context.player,
+            this.alteration,
+            card
+        );
         return gameAction.getEvent(card, context);
     }
 }

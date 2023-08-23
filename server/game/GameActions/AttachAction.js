@@ -6,6 +6,7 @@ class AttachAction extends CardGameAction {
         this.upgrade = null;
         this.upgradeChosenOnResolution = false;
         this.giveControl = false;
+        this.canTakeUpgradeInPlay = false;
     }
 
     setup() {
@@ -26,7 +27,7 @@ class AttachAction extends CardGameAction {
 
         if (
             !this.upgrade ||
-            this.upgrade.location === 'play area' ||
+            (this.upgrade.location === 'play area' && !this.canTakeUpgradeInPlay) ||
             !this.upgrade.canAttach(card, context) ||
             (card.anyEffect('cannotBeSpellTarget') && context.player !== card.controller)
         ) {

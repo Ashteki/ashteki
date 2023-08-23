@@ -688,7 +688,9 @@ class Card extends PlayableObject {
     }
 
     removeAllTokens() {
+        const tokenCount = this.damage + this.exhaustion + this.status;
         this.tokens = {};
+        return tokenCount;
     }
 
     removeToken(type, number = 1) {

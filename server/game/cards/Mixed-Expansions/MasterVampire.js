@@ -4,6 +4,7 @@ class MasterVampire extends Card {
     setupCardAbilities(ability) {
         this.stalk();
 
+        // life drain
         this.afterDestroysFighting({
             autoResolve: true,
             gameAction: ability.actions.removeDamage((context) => ({

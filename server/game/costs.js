@@ -68,6 +68,13 @@ const Costs = {
         payEvent: (context) =>
             context.game.actions.removeStatus({ amount: amount }).getEvent(context.source, context)
     }),
+    loseAllStatus: () => ({
+        canPay: (context) => context.source.status >= 0,
+        payEvent: (context) => {
+            context.costs.statusPaid = context.source.status;
+            return context.game.actions.removeStatus({ all: true }).getEvent(context.source, context);
+        }
+    }),
     // player chooses their own card to discard from hand
     chosenDiscard: (amount = 1) => ({
         canPay: (context) => context.player.hand.filter((c) => c !== context.source).length >= amount,

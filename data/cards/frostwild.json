@@ -1,0 +1,238 @@
+{
+    "results": [
+        {
+            "name": "Summon Adaptodon",
+            "stub": "summon-adaptodon",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Adaptodon",
+                    "stub": "adaptodon"
+                }
+            ]
+        },
+        {
+            "name": "Adaptodon",
+            "stub": "adaptodon",
+            "type": "Conjuration",
+            "attack": 1,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Fire Adaptation",
+            "stub": "fire-adaptation",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit"
+        },
+        {
+            "name": "Ice Adaptation",
+            "stub": "ice-adaptation",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit"
+        },
+        {
+            "name": "Clashing Tempers",
+            "stub": "clashing-tempers",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[natural:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1,
+                "basic": 1
+            }
+        },
+        {
+            "name": "Ember Heart",
+            "stub": "ember-heart",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:power]]",
+                "1 [[natural:class]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "natural:power": 1,
+                "natural:class": 1,
+                "basic": 1
+            },
+            "attack": 3,
+            "life": 4,
+            "recover": 2
+        },
+        {
+            "name": "Shattering Fist",
+            "stub": "shattering-fist",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Rin Northfell"
+        },
+        {
+            "name": "Stamina Burst",
+            "stub": "stamina-burst",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Lulu Firststone"
+        },
+        {
+            "name": "Rejuvenate",
+            "stub": "rejuvenate",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[side]]"
+            ],
+            "phoenixborn": "Aradel Summergaard"
+        },
+        {
+            "name": "Wolfpack Leader",
+            "stub": "wolfpack-leader",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "attack": 2,
+            "life": 2,
+            "recover": 1
+        },
+        {
+            "name": "Pack Wolf",
+            "stub": "pack-wolf",
+            "type": "Conjuration",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Jungle Forager",
+            "stub": "jungle-forager",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:class]]"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            },
+            "attack": 0,
+            "life": 2,
+            "recover": 1
+        },
+        {
+            "name": "Will to Survive",
+            "stub": "will-to-survive",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[natural:class]]"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            }
+        },
+        {
+            "name": "Wallop",
+            "stub": "wallop",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[natural:power]]"
+            ],
+            "magicCost": {
+                "natural:power": 1
+            }
+        },
+        {
+            "name": "Summon Frost Frog",
+            "stub": "summon-frost-frog",
+            "type": "Ready Spell",
+            "placement": "spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Frost Frog",
+                    "stub": "frost-frog"
+                }
+            ]
+        },
+        {
+            "name": "Frost Frog",
+            "stub": "frost-frog",
+            "type": "Conjuration",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Glaciate",
+            "stub": "glaciate",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[natural:class]]"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            }
+        },
+        {
+            "name": "Red Flower",
+            "stub": "red-flower",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1,
+                "basic": 1
+            }
+        }
+    ]
+}

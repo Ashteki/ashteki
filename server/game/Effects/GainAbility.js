@@ -17,6 +17,7 @@ class GainAbility extends EffectValue {
     }
 
     apply(target) {
+        // this calls card.function() where function() is e.g. forcedInterrupt
         this.values[target.uuid] = target[this.type](this.properties);
 
         if (this.type === 'persistentEffect') {
