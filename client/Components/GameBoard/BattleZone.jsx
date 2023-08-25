@@ -31,7 +31,7 @@ const BattleZone = ({ player, cardsInPlay, cardProps }) => {
             return emptyFrame;
         }
 
-        return <Card card={c} {...cardProps} />;
+        return <Card card={c} source='play area' {...cardProps} />;
     };
     const arrow = theirAttack ? faCaretDown : faCaretUp;
 
