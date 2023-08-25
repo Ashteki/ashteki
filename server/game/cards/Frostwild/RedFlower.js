@@ -13,7 +13,7 @@ class RedFlower extends Card {
                 gameAction: ability.actions.removeAllTokens()
             },
             then: (context) => ({
-                condition: context.tokensRemoved >= 3,
+                condition: () => context.tokensRemoved >= 3,
                 target: {
                     activePromptTitle: 'Choose a card to deal 1 damage to',
                     controller: 'opponent',
