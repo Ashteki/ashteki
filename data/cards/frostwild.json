@@ -257,6 +257,21 @@
             "text": "Remove all tokens from a target unit you control with 1 or more status tokens on it or alteration spells attached to it. If 3 or more tokens were removed, deal 1 damage to a target unit an opponent controls."
         },
         {
+            "name": "Rejuvenate",
+            "stub": "rejuvenate",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Frostwild Scourge",
+                "stub": "the-frostwild-scourge"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]"
+            ],
+            "text": "After a conjuration comes into play onto your battlefield, place 1 status token on this spell.\n\n[[main]] - [[exhaust]] - 1 [[basic]]: Remove all status tokens from this spell. Remove 1 exhaustion token from a conjuration you control with an attack value equal to or less than the number of status tokens removed.",
+            "phoenixborn": "Aradel Summergaard"
+        },
+        {
             "name": "Shattering Fist",
             "stub": "shattering-fist",
             "type": "Action Spell",
