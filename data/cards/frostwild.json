@@ -28,13 +28,15 @@
             "name": "Fire Adaptation",
             "stub": "fire-adaptation",
             "type": "Conjured Alteration Spell",
-            "placement": "Unit"
+            "placement": "Unit",
+            "copies": 2
         },
         {
             "name": "Ice Adaptation",
             "stub": "ice-adaptation",
             "type": "Conjured Alteration Spell",
-            "placement": "Unit"
+            "placement": "Unit",
+            "copies": 2
         },
         {
             "name": "Clashing Tempers",

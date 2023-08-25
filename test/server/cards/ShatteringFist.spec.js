@@ -36,6 +36,7 @@ describe('Shattering Fist', function () {
 
             expect(this.ironWorker.upgrades.length).toBe(0);
             expect(this.hammerKnight.damage).toBe(3);
+            expect(this.iceBuff.location).toBe('archives');
         });
     });
 });
