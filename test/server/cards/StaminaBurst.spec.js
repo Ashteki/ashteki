@@ -4,7 +4,7 @@ describe('Stamina Burst', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'lulu-firststone',
-                    inPlay: ['mist-spirit', 'iron-worker'],
+                    inPlay: ['mist-spirit'],
                     dicepool: ['divine', 'divine', 'charm', 'charm', 'natural', 'natural'],
                     hand: ['stamina-burst'],
                     archives: ['spark']
@@ -29,13 +29,22 @@ describe('Stamina Burst', function () {
             this.player1.clickDie(0);
             expect(this.luluFirststone.damage).toBe(1);
 
-            this.player1.clickCard(this.ironWorker);
-            expect(this.ironWorker.upgrades.length).toBe(1);
+            this.player1.clickCard(this.mistSpirit);
+            expect(this.mistSpirit.upgrades.length).toBe(1);
 
             this.player1.clickYes();
             this.player1.clickPrompt('opponent');
             expect(this.player1.player.firstPlayer).toBe(false);
             expect(this.player2.player.firstPlayer).toBe(true);
+
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.clickDone(); // pin dice
+            this.player2.clickDone();
+            // first player should have first turn
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player1.player.firstPlayer).toBe(true);
+            expect(this.player2.player.firstPlayer).toBe(false);
         });
     });
 });

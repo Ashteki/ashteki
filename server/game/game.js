@@ -1101,7 +1101,8 @@ class Game extends EventEmitter {
             this.queueStep(new FirstPlayerSelection(this, firstPlayerParams));
         } else {
             const newFirstPlayer =
-                this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
+                this.round === 1 ? this.gameFirstPlayer : this.roundFirstPlayer.opponent;
+            // this.round % 2 > 0 ? this.gameFirstPlayer : this.gameFirstPlayer.opponent;
             this.setRoundFirstPlayer(newFirstPlayer);
             this.addMessage('{0} goes first this round', this.activePlayer);
         }
