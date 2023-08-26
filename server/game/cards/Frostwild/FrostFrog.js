@@ -15,7 +15,7 @@ class FrostFrog extends Card {
                 choices: {
                     '+1 Attack': ability.actions.cardLastingEffect(() => ({
                         target: this,
-                        effect: ability.effects.modifyAttack(1),
+                        effect: ability.effects.modifyAttack(this.getAbilityNumeric(1)),
                         duration: 'untilEndOfTurn'
                     })),
                     Exhaust: ability.actions.exhaust({

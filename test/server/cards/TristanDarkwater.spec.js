@@ -11,7 +11,8 @@ describe('Tristan Darkwater, magnify', function () {
                     'nightshade-swallow',
                     'shadow-spirit',
                     'psychic-vampire',
-                    'beast-warrior'
+                    'beast-warrior',
+                    'frost-frog'
                 ],
                 spellboard: [],
                 dicepool: ['time', 'natural', 'charm', 'charm', 'natural'],
@@ -121,7 +122,6 @@ describe('Tristan Darkwater, magnify', function () {
 
         expect(this.purge.location).toBe('discard');
         expect(this.player1).toHaveDefaultPrompt();
-
     });
 
     it('magnify beast warrior transform', function () {
@@ -141,5 +141,20 @@ describe('Tristan Darkwater, magnify', function () {
         this.player1.clickCard(this.beastWarrior);
         this.player2.clickDone();
         expect(this.beastWarrior.attack).toBe(3);
+    });
+
+    it('magnify frost frog', function () {
+        this.player1.clickCard(this.tristanDarkwater);
+        this.player1.clickPrompt('Magnify');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.frostFrog);
+        this.player1.clickDone();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage);
+        this.player1.clickCard(this.frostFrog);
+        this.player1.clickPrompt('+1 Attack');
+        this.player2.clickDone();
+        expect(this.frostFrog.attack).toBe(3);
     });
 });
