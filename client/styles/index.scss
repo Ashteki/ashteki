@@ -53,7 +53,7 @@ a {
         margin-right: 5px;
     }
 
-    &:not(.dropdown-toggle) {
+    &:not(.dropdown-toggle):not(label) {
         background-position: center;
         background-repeat: no-repeat;
         border: none;
@@ -86,7 +86,7 @@ a {
     }
 }
 
-.btn-primary {
+.btn-primary:not(label) {
     background-image: url('~assets/img/button-primary.png');
 
     &:hover {
@@ -95,6 +95,10 @@ a {
 
     &:focus {
         background-image: url('~assets/img/button-primary-hover.png');
+    }
+
+    &.active {
+        border: 1pt solid yellow;
     }
 }
 

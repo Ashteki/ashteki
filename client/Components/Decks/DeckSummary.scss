@@ -3,10 +3,6 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
-.deck-cards {
-    // padding-top: 15px;
-}
-
 .deck-card-link {
     cursor: pointer;
     cursor: hand;
@@ -52,6 +48,11 @@
     margin: 5px 5px 5px 0;
     padding: 10px;
     border: 1px solid rgba(71, 58, 56, 0.65);
+
+    >.game-card {
+        margin: 5px;
+
+    }
 }
 
 .deck-notes {
@@ -81,8 +82,20 @@
     width: 50%
 }
 
+.cards-no-break-100 {
+    width: 100%;
+}
+
 .cards {
     flex-flow: row wrap;
     display: flex;
     width: 100%;
+
+    .game-card {
+        margin: 4px;
+
+        >.card-index {
+            background-color: darkgreen;
+        }
+    }
 }

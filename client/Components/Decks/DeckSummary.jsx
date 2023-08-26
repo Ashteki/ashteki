@@ -1,91 +1,22 @@
 import React, { useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import CardImage from '../GameBoard/CardImage';
+import { ButtonGroup, Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import Phoenixborn from './Phoenixborn';
 import DeckStatus from './DeckStatus';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 import DeckStatusSummary from './DeckStatusSummary';
 
 import './DeckSummary.scss';
 import DieIcon from '../GameBoard/DieIcon';
+import CardListText from './CardListText';
+import CardListImg from './CardListImg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faImage, faList } from '@fortawesome/free-solid-svg-icons';
 
 const DeckSummary = ({ deck }) => {
-    let [zoomCard, setZoomCard] = useState(null);
-    let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
+    const [radioValue, setRadioValue] = useState(false);
 
     if (!deck) return null;
 
-    const getCardsToRender = () => {
-        let cardsToRender = [];
-        let groupedCards = {};
-
-        let combinedCards = deck.cards.concat(deck.conjurations);
-
-        combinedCards.forEach((card) => {
-            let type = card.card.type;
-
-            if (type === 'character' || type === 'event') {
-                type = card.card.side + ` ${type}`;
-            }
-            if (!groupedCards[type]) {
-                groupedCards[type] = [card];
-            } else {
-                groupedCards[type].push(card);
-            }
-        });
-
-        for (let key in groupedCards) {
-            let cardList = groupedCards[key];
-            let cards = [];
-            let count = 0;
-
-            cardList.forEach((card) => {
-                let chainedIcon = null;
-                if (card.card.isChained) {
-                    chainedIcon = (
-                        <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
-                    );
-                }
-                cards.push(
-                    <div key={card.card.id}>
-                        <span>{card.count + 'x '}</span>
-                        <span
-                            className='card-link'
-                            onMouseOver={() => setZoomCard(card)}
-                            onMouseMove={(event) => {
-                                let y = event.clientY;
-                                let yPlusHeight = y + 420;
-
-                                if (yPlusHeight >= window.innerHeight) {
-                                    y -= yPlusHeight - window.innerHeight;
-                                }
-
-                                setMousePosition({ x: event.clientX, y: y });
-                            }}
-                            onMouseOut={() => setZoomCard(null)}
-                        >
-                            {card.card.name}
-                        </span>
-                        &nbsp;
-                        {chainedIcon}
-                    </div>
-                );
-                count += parseInt(card.count);
-            });
-
-            cardsToRender.push(
-                <div className='cards-no-break'>
-                    <div className='card-group-title'>{key + ' (' + count.toString() + ')'}</div>
-                    <div key={key} className='deck-card-group'>
-                        {cards}
-                    </div>
-                </div>
-            );
-        }
-
-        return cardsToRender;
-    };
+    const combinedCards = deck.cards.concat(deck.conjurations);
 
     const getDiceToRender = () => {
         const diceToRender = [];
@@ -107,7 +38,6 @@ const DeckSummary = ({ deck }) => {
         );
     };
 
-    var cardsToRender = getCardsToRender();
     var diceToRender = getDiceToRender();
     var phoenixbornStub = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].card.imageStub : '';
 
@@ -136,7 +66,6 @@ const DeckSummary = ({ deck }) => {
                     <Row>
                         <Col xs='8'>
                             <DeckStatusSummary status={deck.status} />
-
                         </Col>
                         <Col xs='4'>
                             <DeckStatus status={deck.status} />
@@ -147,25 +76,42 @@ const DeckSummary = ({ deck }) => {
             <Row>
                 <div className='large'>{diceToRender}</div>
             </Row>
-            <Row className='deck-cards'>
-                {zoomCard && (
-                    <div
-                        className='decklist-card-zoom'
-                        style={{ left: mousePos.x + 5 + 'px', top: mousePos.y + 'px' }}
+            <Row>
+                <ToggleButtonGroup name="radio" value={radioValue}>
+                    <ToggleButton
+                        key={'rad-0'}
+                        id={`radio-0`}
+                        type="radio"
+                        // variant={idx % 2 ? 'outline-success' : 'outline-danger'}
+                        value={false}
+                        // checked={radioValue === false}
+                        onChange={(e) => setRadioValue(false)}
                     >
-                        <CardImage
-                            card={Object.assign({}, zoomCard, zoomCard.card, zoomCard.cardData)}
-                        />
-                    </div>
+                        <FontAwesomeIcon icon={faList} title='Show menu' />
+                    </ToggleButton>
+                    <ToggleButton
+                        key={'rad-1'}
+                        id={`radio-1`}
+                        type="radio"
+                        // variant={'outline'}
+                        value={true}
+                        // checked={radioValue}
+                        onChange={(e) => setRadioValue(true)}
+                    >
+                        <FontAwesomeIcon icon={faImage} title='Show menu' />
+                    </ToggleButton>
+                </ToggleButtonGroup>
+            </Row>
+            <Row className='deck-cards'>
+                {radioValue ? (
+                    <CardListImg deckCards={combinedCards} />
+                ) : (
+                    <CardListText deckCards={combinedCards} />
                 )}
-                <div className='cards'>{cardsToRender}</div>
             </Row>
             <Row>
-                <div className='deck-card-group deck-notes'>
-                    {deck.notes}
-                </div>
+                <div className='deck-card-group deck-notes'>{deck.notes}</div>
             </Row>
-
         </Col>
     );
 };

@@ -3,7 +3,6 @@ import './DiceRack.scss';
 import DieIcon from '../GameBoard/DieIcon';
 import { MagicTypes } from '../../constants';
 
-
 const DiceRack = ({ dice }) => {
     const output = MagicTypes.map((mt) => {
         const d = {
