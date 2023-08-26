@@ -16,7 +16,7 @@ class ShatteringFist extends Card {
                     activePromptTitle: 'Choose a unit to deal 3 damage to',
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
-                    gameAction: ability.actions.dealDamage({ amount: 3 })
+                    gameAction: ability.actions.addDamageToken({ amount: 3 })
                 }
             }
         });

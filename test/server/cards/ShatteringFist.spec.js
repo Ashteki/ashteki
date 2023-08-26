@@ -13,13 +13,18 @@ describe('Shattering Fist', function () {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['hammer-knight', 'holy-knight', 'anchornaut'],
                     spellboard: [],
-                    hand: [],
+                    hand: ['root-armor'],
                     dicepool: ['natural', 'natural', 'charm']
                 }
             });
         });
 
-        it('discards an upgrade and deals 3 damage to an opp. target unit', function () {
+        it('discards an upgrade and deals 3 wounds to an opp. target unit ignoring armor', function () {
+            this.player1.actions.main = false;
+            this.player1.endTurn();
+            // add root armor to ensure wounds not damage
+            this.player2.play(this.rootArmor, this.hammerKnight);
+            this.player2.endTurn();
             this.player1.clickCard(this.rinNorthfell);
             this.player1.clickPrompt('ice buff');
             this.player1.clickCard(this.ironWorker);
