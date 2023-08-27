@@ -6,68 +6,47 @@ import CardImage from '../GameBoard/CardImage';
 
 
 const CardListImg = ({ deckCards }) => {
-    const getCardsToRender = () => {
 
-        let cardsToRender = [];
-        let groupedCards = {};
+    let cardsToRender = [];
+    let groupedCards = {};
 
-        deckCards.forEach((card) => {
-            let type = card.card.type;
+    deckCards.forEach((card) => {
+        let type = card.card.type;
 
-            if (type === 'character' || type === 'event') {
-                type = card.card.side + ` ${type}`;
-            }
-            if (!groupedCards[type]) {
-                groupedCards[type] = [card];
-            } else {
-                groupedCards[type].push(card);
-            }
-        });
-
-        for (let key in groupedCards) {
-            let cardList = groupedCards[key];
-            let cards = [];
-            let count = 0;
-
-            cardList.forEach((card) => {
-                let chainedIcon = null;
-                if (card.card.isChained) {
-                    chainedIcon = (
-                        <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
-                    );
-                }
-                const cardProp = Object.assign(
-                    { index: card.count },
-                    card,
-                    card.card,
-                    card.cardData
-                );
-
-                cards.push(
-                    <div key={card.card.id} className='game-card large vertical'>
-                        <CardImage card={cardProp} />
-                    </div>
-                );
-                count += parseInt(card.count);
-            });
-
-            cardsToRender.push(
-                // <div className='cards-no-break-100'>
-                //     <div className='card-group-title'>{key + ' (' + count.toString() + ')'}</div>
-                // <div key={key} className='deck-card-group flex'>
-                cards
-                // </div>
-                // </div>
-            );
+        if (type === 'character' || type === 'event') {
+            type = card.card.side + ` ${type}`;
         }
+        if (!groupedCards[type]) {
+            groupedCards[type] = [card];
+        } else {
+            groupedCards[type].push(card);
+        }
+    });
 
-        return cardsToRender;
-    };
+    for (let key in groupedCards) {
+        let cardList = groupedCards[key];
+
+        cardList.forEach((card) => {
+            const cardProps = Object.assign({ index: card.count }, card, card.card, card.cardData);
+            cardsToRender.push(cardProps);
+        });
+    }
 
     return (
-        // <div className='deck-card-group flex'>
-        <div className='cards'>{getCardsToRender(deckCards)}</div>
-        // </div>
+        <div className='cards'>
+            {cardsToRender.map((card) => (
+                <div key={card.id} className='game-card large vertical'>
+                    <CardImage card={card} />
+                    {card.isChained && (
+                        <FontAwesomeIcon
+                            className='card-chain-bad'
+                            icon={faLink}
+                            title='This card is on the chained list'
+                        />
+                    )}
+                </div>
+            ))}
+        </div>
     );
 };
 

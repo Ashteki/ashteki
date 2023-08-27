@@ -103,8 +103,11 @@ const DeckSummary = ({ deck }) => {
                 </ToggleButtonGroup>
             </Row>
             <Row className='deck-cards'>
-                {radioValue ? (
-                    <CardListImg deckCards={combinedCards} />
+                {radioValue ? (<>
+                    <CardListImg deckCards={deck.cards} />
+                    <div className='basic-title'>Conjurations</div>
+                    <CardListImg deckCards={deck.conjurations} />
+                </>
                 ) : (
                     <CardListText deckCards={combinedCards} />
                 )}
