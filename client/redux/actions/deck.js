@@ -199,3 +199,15 @@ export function loadFirstAdventureDecks() {
         }
     };
 }
+
+export function loadPveDecks() {
+    return {
+        types: ['LOAD_PVE_DECKS', 'PVE_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/pve-decks',
+            type: 'GET'
+        }
+    };
+}
+

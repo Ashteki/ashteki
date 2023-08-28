@@ -29,6 +29,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/pve-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(6);
+            } catch (err) {
+                logger.error('Failed to get pve precon decks', err);
+
+                throw new Error('Failed to get pve precon decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/adventuringparty-decks',
         wrapAsync(async function (req, res) {
             let decks;

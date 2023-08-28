@@ -1,0 +1,630 @@
+[
+  {
+    "precon_id": 401,
+    "name": "The Corpse of Viros: Noah",
+    "phoenixborn": [
+      {
+        "id": "noah-redmoon",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "blood-brawl",
+        "count": 3
+      },
+      {
+        "id": "blood-puppeteer",
+        "count": 3
+      },
+      {
+        "id": "chant-of-transfusion",
+        "count": 3
+      },
+      {
+        "id": "infuriate",
+        "count": 3
+      },
+      {
+        "id": "old-salt",
+        "count": 3
+      },
+      {
+        "id": "phoenix-attendant",
+        "count": 3
+      },
+      {
+        "id": "serve-the-city",
+        "count": 3
+      },
+      {
+        "id": "shadowblade",
+        "count": 3
+      },
+      {
+        "id": "summon-bone-crow",
+        "count": 3
+      },
+      {
+        "id": "summon-calamity-golem",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blood-puppet",
+        "count": 5
+      },
+      {
+        "id": "bone-crow",
+        "count": 4
+      },
+      {
+        "id": "calamity-golem",
+        "count": 1
+      }
+    ],
+    "notes": "This is the official second deck for [[Noah Redmoon]], available in the first Red Rains release, The Corpse of Viros. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 402,
+    "name": "The Corpse of Viros: Jessa",
+    "phoenixborn": [
+      {
+        "id": "jessa-na-ni",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "blood-brawl",
+        "count": 3
+      },
+      {
+        "id": "blood-puppeteer",
+        "count": 3
+      },
+      {
+        "id": "chant-of-transfusion",
+        "count": 3
+      },
+      {
+        "id": "infuriate",
+        "count": 3
+      },
+      {
+        "id": "old-salt",
+        "count": 3
+      },
+      {
+        "id": "phoenix-attendant",
+        "count": 3
+      },
+      {
+        "id": "playtime",
+        "count": 3
+      },
+      {
+        "id": "serve-the-city",
+        "count": 3
+      },
+      {
+        "id": "summon-bone-crow",
+        "count": 3
+      },
+      {
+        "id": "summon-calamity-golem",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blood-puppet",
+        "count": 5
+      },
+      {
+        "id": "bone-crow",
+        "count": 4
+      },
+      {
+        "id": "calamity-golem",
+        "count": 1
+      }
+    ],
+    "notes": "This is the official second deck for [[Jessa Na Ni]], available in the first Red Rains release, The Corpse of Viros. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 403,
+    "name": "The Corpse of Viros: Coal",
+    "phoenixborn": [
+      {
+        "id": "coal-roarkwin",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "blood-brawl",
+        "count": 3
+      },
+      {
+        "id": "blood-puppeteer",
+        "count": 3
+      },
+      {
+        "id": "chant-of-transfusion",
+        "count": 3
+      },
+      {
+        "id": "final-stand",
+        "count": 3
+      },
+      {
+        "id": "infuriate",
+        "count": 3
+      },
+      {
+        "id": "old-salt",
+        "count": 3
+      },
+      {
+        "id": "phoenix-attendant",
+        "count": 3
+      },
+      {
+        "id": "serve-the-city",
+        "count": 3
+      },
+      {
+        "id": "summon-bone-crow",
+        "count": 3
+      },
+      {
+        "id": "summon-calamity-golem",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blood-puppet",
+        "count": 5
+      },
+      {
+        "id": "bone-crow",
+        "count": 4
+      },
+      {
+        "id": "calamity-golem",
+        "count": 1
+      }
+    ],
+    "notes": "This is the official second deck for [[Coal Roarkwin]], available in the first Red Rains release, The Corpse of Viros. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 404,
+    "name": "The Corpse of Viros: Brennen",
+    "phoenixborn": [
+      {
+        "id": "brennen-blackcloud",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "blood-brawl",
+        "count": 3
+      },
+      {
+        "id": "blood-puppeteer",
+        "count": 3
+      },
+      {
+        "id": "change-of-heart",
+        "count": 3
+      },
+      {
+        "id": "chant-of-transfusion",
+        "count": 3
+      },
+      {
+        "id": "infuriate",
+        "count": 3
+      },
+      {
+        "id": "old-salt",
+        "count": 3
+      },
+      {
+        "id": "phoenix-attendant",
+        "count": 3
+      },
+      {
+        "id": "serve-the-city",
+        "count": 3
+      },
+      {
+        "id": "summon-bone-crow",
+        "count": 3
+      },
+      {
+        "id": "summon-calamity-golem",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blood-puppet",
+        "count": 5
+      },
+      {
+        "id": "bone-crow",
+        "count": 4
+      },
+      {
+        "id": "calamity-golem",
+        "count": 1
+      }
+    ],
+    "notes": "This is the official second deck for [[Brennen Blackcloud]], available in the first Red Rains release, The Corpse of Viros. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 405,
+    "name": "The Frostwild Scourge: Aradel",
+    "phoenixborn": [
+      {
+        "id": "aradel-summergaard",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "clashing-tempers",
+        "count": 3
+      },
+      {
+        "id": "ember-heart",
+        "count": 3
+      },
+      {
+        "id": "glaciate",
+        "count": 3
+      },
+      {
+        "id": "jungle-forager",
+        "count": 3
+      },
+      {
+        "id": "red-flower",
+        "count": 3
+      },
+      {
+        "id": "rejuvenate",
+        "count": 3
+      },
+      {
+        "id": "summon-adaptodon",
+        "count": 3
+      },
+      {
+        "id": "summon-frost-frog",
+        "count": 3
+      },
+      {
+        "id": "wallop",
+        "count": 3
+      },
+      {
+        "id": "will-to-survive",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "adaptodon",
+        "count": 2
+      },
+      {
+        "id": "fire-adaptation",
+        "count": 2
+      },
+      {
+        "id": "frost-frog",
+        "count": 3
+      },
+      {
+        "id": "ice-adaptation",
+        "count": 2
+      }
+    ],
+    "notes": "This is the official second deck for [[Aradel Summergaard]], available in the second Red Rains release, The Frostwild Scourge. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 406,
+    "name": "The Frostwild Scourge: Koji",
+    "phoenixborn": [
+      {
+        "id": "koji-wolfcub",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "clashing-tempers",
+        "count": 3
+      },
+      {
+        "id": "ember-heart",
+        "count": 3
+      },
+      {
+        "id": "glaciate",
+        "count": 3
+      },
+      {
+        "id": "jungle-forager",
+        "count": 3
+      },
+      {
+        "id": "red-flower",
+        "count": 3
+      },
+      {
+        "id": "summon-adaptodon",
+        "count": 3
+      },
+      {
+        "id": "summon-frost-frog",
+        "count": 3
+      },
+      {
+        "id": "wallop",
+        "count": 3
+      },
+      {
+        "id": "will-to-survive",
+        "count": 3
+      },
+      {
+        "id": "wolfpack-leader",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "adaptodon",
+        "count": 2
+      },
+      {
+        "id": "fire-adaptation",
+        "count": 2
+      },
+      {
+        "id": "frost-frog",
+        "count": 3
+      },
+      {
+        "id": "ice-adaptation",
+        "count": 2
+      },
+      {
+        "id": "pack-wolf",
+        "count": 3
+      }
+    ],
+    "notes": "This is the official second deck for [[Koji Wolfcub]], available in the second Red Rains release, The Frostwild Scourge. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 407,
+    "name": "The Frostwild Scourge: Lulu",
+    "phoenixborn": [
+      {
+        "id": "lulu-firststone",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "clashing-tempers",
+        "count": 3
+      },
+      {
+        "id": "ember-heart",
+        "count": 3
+      },
+      {
+        "id": "glaciate",
+        "count": 3
+      },
+      {
+        "id": "jungle-forager",
+        "count": 3
+      },
+      {
+        "id": "red-flower",
+        "count": 3
+      },
+      {
+        "id": "stamina-burst",
+        "count": 3
+      },
+      {
+        "id": "summon-adaptodon",
+        "count": 3
+      },
+      {
+        "id": "summon-frost-frog",
+        "count": 3
+      },
+      {
+        "id": "wallop",
+        "count": 3
+      },
+      {
+        "id": "will-to-survive",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "adaptodon",
+        "count": 2
+      },
+      {
+        "id": "fire-adaptation",
+        "count": 2
+      },
+      {
+        "id": "frost-frog",
+        "count": 3
+      },
+      {
+        "id": "ice-adaptation",
+        "count": 2
+      },
+      {
+        "id": "spark",
+        "count": 3
+      }
+    ],
+    "notes": "This is the official second deck for [[Lulu Firststone]], available in the second Red Rains release, The Frostwild Scourge. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 408,
+    "name": "The Frostwild Scourge: Rin",
+    "phoenixborn": [
+      {
+        "id": "rin-northfell",
+        "count": 1
+      }
+    ],
+    "ultimates": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "clashing-tempers",
+        "count": 3
+      },
+      {
+        "id": "ember-heart",
+        "count": 3
+      },
+      {
+        "id": "glaciate",
+        "count": 3
+      },
+      {
+        "id": "jungle-forager",
+        "count": 3
+      },
+      {
+        "id": "red-flower",
+        "count": 3
+      },
+      {
+        "id": "shattering-fist",
+        "count": 3
+      },
+      {
+        "id": "summon-adaptodon",
+        "count": 3
+      },
+      {
+        "id": "summon-frost-frog",
+        "count": 3
+      },
+      {
+        "id": "wallop",
+        "count": 3
+      },
+      {
+        "id": "will-to-survive",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "adaptodon",
+        "count": 2
+      },
+      {
+        "id": "fire-adaptation",
+        "count": 2
+      },
+      {
+        "id": "frost-frog",
+        "count": 3
+      },
+      {
+        "id": "ice-adaptation",
+        "count": 2
+      },
+      {
+        "id": "ice-buff",
+        "count": 5
+      }
+    ],
+    "notes": "This is the official second deck for [[Rin Northfell]], available in the second Red Rains release, The Frostwild Scourge. *Suggested First Five forthcoming.*"
+  }
+]

@@ -153,6 +153,16 @@ export default function (state = { decks: [], cards: {} }, action) {
             });
 
             return newState;
+        case 'PVE_DECKS_LOADED':
+            if (action.response.decks) {
+                processDecks(action.response.decks, state);
+            }
+
+            newState = Object.assign({}, state, {
+                pveDecks: action.response.decks
+            });
+
+            return newState;
         case 'REQUEST_DECK':
             return Object.assign({}, state, {
                 deckSaved: false,

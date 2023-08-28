@@ -17,6 +17,11 @@
     background-color: rgba(theme-color('dark'), 0.9);
 }
 
+.modal-dialog {
+    max-width: 600px;
+
+}
+
 .deck-list-header {
     margin-left: 15px;
 }
@@ -26,7 +31,7 @@
 }
 
 .react-tabs__tab {
-    background-color:#333;
+    background-color: #333;
     border-radius: 5px 5px 0 0;
 }
 

@@ -18,6 +18,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe })
                 <TabList>
                     <Tab>My Decks</Tab>
                     <Tab>Pre-cons</Tab>
+                    <Tab>PvE</Tab>
                     <Tab>Building Basics</Tab>
                     <Tab style={{ backgroundColor: 'rgb(0, 153, 255)', color: '#FFF' }}>
                         <img src={igcircle} alt='Adventuring Party' height='22' width='22' />{' '}
@@ -26,42 +27,52 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe })
                 </TabList>
 
                 <TabPanel>
-                    <Button onClick={() => onChooseForMe(0)}>
-                        Choose for me
-                    </Button>
+                    <Button onClick={() => onChooseForMe(0)}>Choose for me</Button>
                     <DeckList onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
-                    <Button onClick={() => onChooseForMe(1)}>
-                        Choose for me
-                    </Button>
+                    <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
                     <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
-                    <Button onClick={() => onChooseForMe(3)}>
-                        Choose for me
-                    </Button>
+                    <Button onClick={() => onChooseForMe(6)}>Choose for me</Button>
+                    <DeckList standaloneDecks={6} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(3)}>Choose for me</Button>
                     <DeckList standaloneDecks={3} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
-                    <Button onClick={() => onChooseForMe(2)}>
-                        Choose for me
-                    </Button>
+                    <Button onClick={() => onChooseForMe(2)}>Choose for me</Button>
                     <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
                 </TabPanel>
             </Tabs>
         );
-    } else {
+    } else if (gameFormat === 'precon') {
+        deckList = (
+            <Tabs>
+                <TabList>
+                    <Tab>Pre-cons</Tab>
+                    <Tab>PvE</Tab>
+                </TabList>
 
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
+                    <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(6)}>Choose for me</Button>
+                    <DeckList standaloneDecks={6} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+            </Tabs>
+        );
+    } else {
         switch (gameFormat) {
             case 'firstadventure':
                 setIndex = 4;
                 break;
             case 'aparty':
                 setIndex = 2;
-                break;
-            case 'precon':
-                setIndex = 1;
                 break;
         }
 

@@ -83,6 +83,18 @@ class ImportPrecons {
 
             console.log('Done importing Chimera decks');
             console.log('----------');
+
+            for (let deck of this.loadPvEDecks()) {
+                deck.preconGroup = 6;
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing pvE precon decks');
+            console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -90,6 +102,12 @@ class ImportPrecons {
 
     loadDecks() {
         let file = 'precon-core.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadPvEDecks() {
+        let file = 'precon-pve.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }
