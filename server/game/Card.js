@@ -501,6 +501,7 @@ class Card extends PlayableObject {
         this.moribund = false;
         this.new = false;
         this.tokens = {};
+        this.index = 0;
         this.setDefaultController(this.owner);
         this.endRound();
     }

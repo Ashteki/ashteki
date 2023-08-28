@@ -696,8 +696,19 @@ class Player extends GameObject {
         this.promptState.clearSelectableDice();
     }
 
-    getSummaryForCardList(list, activePlayer) {
-        return list.map((card) => {
+    getSummaryForCardList(list, activePlayer, sort = false) {
+        let returnList = list;
+        if (sort) {
+            returnList = list.sort((a, b) => {
+                if (a.id < b.id) {
+                    return -1;
+                } else if (a.id > b.id) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+        return returnList.map((card) => {
             return card.getSummary(activePlayer);
         });
     }
@@ -782,7 +793,7 @@ class Player extends GameObject {
         let promptState = (isActivePlayer || this.game.solo) ? this.promptState.getState() : {};
         let playerState = {
             cardPiles: {
-                archives: this.getSummaryForCardList(this.archives, activePlayer),
+                archives: this.getSummaryForCardList(this.archives, activePlayer, true),
                 cardsInPlay: this.getSummaryForCardList(this.battlefield, activePlayer),
                 discard: this.getSummaryForCardList(this.discard, activePlayer),
                 hand: this.getSummaryForCardList(this.hand, activePlayer, true),
