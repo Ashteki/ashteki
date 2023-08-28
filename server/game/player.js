@@ -796,7 +796,7 @@ class Player extends GameObject {
                 archives: this.getSummaryForCardList(this.archives, activePlayer, true),
                 cardsInPlay: this.getSummaryForCardList(this.battlefield, activePlayer),
                 discard: this.getSummaryForCardList(this.discard, activePlayer),
-                hand: this.getSummaryForCardList(this.hand, activePlayer, true),
+                hand: this.getSummaryForCardList(this.hand, activePlayer),
                 purged: this.getSummaryForCardList(this.purged, activePlayer),
                 spells: this.getSummaryForCardList(this.spellboard, activePlayer)
             },
