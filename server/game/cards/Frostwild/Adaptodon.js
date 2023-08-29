@@ -1,4 +1,3 @@
-const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Adaptodon extends Card {
@@ -11,15 +10,17 @@ class Adaptodon extends Card {
                     (u) => u.id === 'fire-adaptation' || u.id === 'ice-adaptation'
                 ),
             target: {
-                cardType: CardType.ConjuredAlteration,
-                location: 'archives',
-                cardCondition: (card) => card.id === 'fire-adaptation' || card.id === 'ice-adaptation',
-                controller: 'self',
-                gameAction: ability.actions.attach((context) => ({
-                    target: context.source,
-                    upgrade: context.target
-                }))
-            }
+                activePromptTitle: 'Choose an adaptation:',
+                mode: 'select',
+                choices: {
+                    Fire: (context) => context.player.archives.some((c) => c.id === 'fire-adaptation'),
+                    Ice: (context) => context.player.archives.some((c) => c.id === 'ice-adaptation')
+                }
+            },
+            gameAction: ability.actions.attachConjuredAlteration((context) => ({
+                conjuredAlteration: context.select === 'Fire' ? 'fire-adaptation' : 'ice-adaptation',
+                target: context.source
+            }))
         });
     }
 }
