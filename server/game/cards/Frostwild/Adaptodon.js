@@ -8,6 +8,9 @@ class Adaptodon extends Card {
             condition: (context) =>
                 !context.source.upgrades.some(
                     (u) => u.id === 'fire-adaptation' || u.id === 'ice-adaptation'
+                ) &&
+                context.player.archives.some(
+                    (u) => u.id === 'fire-adaptation' || u.id === 'ice-adaptation'
                 ),
             target: {
                 activePromptTitle: 'Choose an adaptation:',

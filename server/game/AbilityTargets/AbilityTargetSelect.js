@@ -133,9 +133,7 @@ class AbilityTargetSelect extends AbilityTarget {
         if (choices.length === 1 && this.properties.choiceHandler) {
             this.setSelected(context, choices[0]);
             this.properties.choiceHandler(choices[0]);
-        } else if (handlers.length === 1) {
-            handlers[0]();
-        } else if (handlers.length > 1) {
+        } else if (handlers.length > 0) {
             let waitingPromptTitle = '';
             if (context.stage === 'pretarget') {
                 if (context.ability.abilityType === 'action') {

@@ -100,12 +100,71 @@ describe('Adapt', function () {
             this.player1.clickCard(this.adaptodon);
             this.player1.clickPrompt('Adapt');
             expect(this.player1).not.toHavePromptButton('Fire');
-            // auto-chooses ice as only valid option
-
+            this.player1.clickPrompt('Ice');
             this.player1.clickDone(); // no exhaust
 
             expect(this.adaptodon.upgrades.length).toBe(1);
             expect(this.adaptodon.life).toBe(3);
+        });
+    });
+
+    describe('option 2', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'lulu-firststone',
+                    inPlay: ['adaptodon'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'time', 'charm'],
+                    hand: ['molten-gold'],
+                    archives: ['fire-adaptation', 'spark']
+                },
+                player2: {
+                    phoenixborn: 'saria-guideman',
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    hand: ['sympathy-pain'],
+                    inPlay: ['flute-mage']
+                }
+            });
+        });
+
+        it('no ice button if not in archives', function () {
+            this.player1.clickCard(this.adaptodon);
+            this.player1.clickPrompt('Adapt');
+            expect(this.player1).not.toHavePromptButton('Ice');
+            this.player1.clickPrompt('Fire');
+            this.player1.clickDone(); // no ping
+
+            expect(this.adaptodon.upgrades.length).toBe(1);
+            expect(this.adaptodon.attack).toBe(2);
+        });
+    });
+
+    describe('neither in archives', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'lulu-firststone',
+                    inPlay: ['adaptodon'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'time', 'charm'],
+                    hand: ['molten-gold'],
+                    archives: ['spark']
+                },
+                player2: {
+                    phoenixborn: 'saria-guideman',
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    hand: ['sympathy-pain'],
+                    inPlay: ['flute-mage']
+                }
+            });
+        });
+
+        it('no ice button if not in archives', function () {
+            this.player1.clickCard(this.adaptodon);
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.adaptodon.upgrades.length).toBe(0);
+            expect(this.adaptodon.attack).toBe(1);
         });
     });
 });
