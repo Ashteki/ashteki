@@ -29,6 +29,18 @@ describe('Clashing Tempers', function () {
             expect(this.mistSpirit.upgrades.length).toBe(1);
             expect(this.ironWorker.upgrades.length).toBe(1);
         });
+
+        it('cannot attach both adaptations to one unit', function () {
+            this.player1.play(this.clashingTempers);
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+            expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
+            this.player1.clickCard(this.mistSpirit);
+            expect(this.player1).not.toBeAbleToSelect(this.mistSpirit);
+            this.player1.clickCard(this.mistSpirit);
+            this.player1.clickCard(this.ironWorker);
+            expect(this.mistSpirit.upgrades.length).toBe(1);
+        });
     });
 
     describe('from hand without available adaptations', function () {

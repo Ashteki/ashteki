@@ -130,6 +130,7 @@ class AbilityTargetSelect extends AbilityTarget {
             handlers.push(() => (targetResults.cancelled = true));
         }
 
+        // remove this auto trigger?
         if (choices.length === 1 && this.properties.choiceHandler) {
             this.setSelected(context, choices[0]);
             this.properties.choiceHandler(choices[0]);

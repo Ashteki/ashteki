@@ -15,6 +15,7 @@ class ClashingTempers extends Card {
                     activePromptTitle: 'Choose a unit to receive an ice adaptation',
                     cardType: BattlefieldTypes,
                     controller: 'self',
+                    cardCondition: (card, context) => card !== context.targets.fire,
                     gameAction: [
                         ability.actions.attachConjuredAlteration((context) => ({
                             conjuredAlteration: 'fire-adaptation',
