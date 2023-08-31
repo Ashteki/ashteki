@@ -700,12 +700,17 @@ class Lobby {
         let hasConjurations = this.checkConjurations(deck);
         let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
-        let uniques =
-            !hasPhoenixborn ||
-            (deck.cards.filter(
+        const countUniques = deck.cards
+            .filter((c) => c.card.phoenixborn)
+            .reduce((agg, b) => agg + b.count, 0);
+        const validUniques =
+            // none for other pbs
+            deck.cards.filter(
                 (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
             ).length === 0 &&
-                deck.cards.filter((c) => c.card.phoenixborn).length <= 3);
+            // max 3 uniques
+            countUniques <= 3;
+        let uniques = !hasPhoenixborn || validUniques;
 
         const legalToPlay =
             hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
