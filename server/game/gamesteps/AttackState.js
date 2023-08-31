@@ -105,6 +105,14 @@ class AttackState {
         blocker.wasDefender = true;
     }
 
+    clearBlocker(card) {
+        const battle = this.battles.find((b) => b.guard === card);
+        //Can't remove Forced block
+        if (battle.guard?.anyEffect('forceBlock')) return;
+        if (battle.guard) battle.guard.isDefender = false;
+        battle.guard = null;
+    }
+
     clearAllBlockers() {
         this.battles.forEach((b) => {
             //Can't remove Forced block

@@ -108,8 +108,9 @@ class ChooseDefendersPrompt extends UiPrompt {
     }
 
     activePrompt() {
+        const clearText = this.selectedCard ? 'None' : 'Clear all';
         let buttons = [
-            { text: 'Clear', arg: 'clear' },
+            { text: clearText, arg: 'clear' },
             { text: 'Done', arg: 'done' }
         ];
         const controls = [];
@@ -216,16 +217,8 @@ class ChooseDefendersPrompt extends UiPrompt {
                 }
 
                 this.attack.setBlockerForAttacker(this.selectedCard, card);
-                // this.game.addMessage(
-                //     '{0} uses {1} to {2} against {3}',
-                //     this.choosingPlayer,
-                //     this.selectedCard,
-                //     this.blockType,
-                //     card
-                // );
                 this.game.checkGameState(true);
-                this.selectedCard = null;
-                this.clearSelection();
+                this.deselectMyCard();
             }
         }
     }
@@ -233,6 +226,11 @@ class ChooseDefendersPrompt extends UiPrompt {
     selectMyCard(card) {
         this.selectedCard = card;
         this.choosingPlayer.setSelectedCards([card]);
+    }
+
+    deselectMyCard() {
+        this.selectedCard = null;
+        this.clearSelection();
     }
 
     menuCommand(player, arg) {
@@ -252,6 +250,11 @@ class ChooseDefendersPrompt extends UiPrompt {
         }
 
         if (arg === 'clear') {
+            if (this.selectedCard) {
+                this.attack.clearBlocker(this.selectedCard);
+                this.deselectMyCard();
+                return true;
+            }
             this.attack.clearAllBlockers();
             this.game.addAlert('info', '{0} clears all blockers', this.choosingPlayer);
             this.game.checkGameState(true);
