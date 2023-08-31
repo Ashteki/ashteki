@@ -997,6 +997,9 @@ class Game extends EventEmitter {
         if (this.manualMode) {
             this.manualMode = false;
             this.addAlert('danger', '{0} switches manual mode off', player);
+            this.getPlayers().forEach((p) => {
+                p.clearInspector();
+            });
         } else {
             if (this.solo) {
                 this.manualMode = true;

@@ -14,7 +14,6 @@ const CardInspector = ({ card }) => {
     if (!card || !card.id) {
         return null;
     }
-    const diceFont = `phg-main-action`;
 
     const getInspectorControl = (tokenType) => {
         return (
