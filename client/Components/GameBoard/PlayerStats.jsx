@@ -10,8 +10,7 @@ import {
     faComment,
     faHistory,
     faBolt,
-    faStickyNote,
-    faRightFromBracket
+    faStickyNote
 } from '@fortawesome/free-solid-svg-icons';
 
 import PlayerName from '../Site/PlayerName';
@@ -21,7 +20,7 @@ import FirstPlayerImage from '../../assets/img/firstplayer.png';
 import Clock from './Clock';
 import './PlayerStats.scss';
 import CardPileLink from './CardPileLink';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendGameMessage } from '../../redux/actions';
 import Droppable from './Droppable';
 import conjback from '../../assets/img/cardback-conjuration.png';
@@ -63,6 +62,9 @@ const PlayerStats = ({
     winner
 }) => {
     const dispatch = useDispatch();
+    const currentGame = useSelector((state) => state.lobby.currentGame);
+    const user = useSelector((state) => state.account.user);
+    const isSpectating = !currentGame?.players[user?.username];
 
     const cardPiles = player.cardPiles;
 
@@ -71,17 +73,6 @@ const PlayerStats = ({
             dispatch(sendGameMessage('modifyLimited', player.limitedPlayed));
         }
     }
-
-    const writeChatToClipboard = (event) => {
-        event.preventDefault();
-        let messagePanel = document.getElementsByClassName('messages panel')[0];
-        if (messagePanel) {
-            navigator.clipboard
-                .writeText(messagePanel.innerText)
-                .then(() => toastr.success('Copied game chat to clipboard'))
-                .catch((err) => toastr.error(`Could not copy game chat: ${err}`));
-        }
-    };
 
     const renderActions = () => {
         return (
@@ -333,14 +324,16 @@ const PlayerStats = ({
                         </div>
                     )}
                     <PSGameContextMenu />
-                    <div className='state'>
-                        <a href='#' className='pr-1 pl-1' title='Show dice/card history'>
-                            <FontAwesomeIcon
-                                icon={faHistory}
-                                onClick={onDiceHistoryClick}
-                            ></FontAwesomeIcon>
-                        </a>
-                    </div>
+                    {!isSpectating && (
+                        <div className='state'>
+                            <a href='#' className='pr-1 pl-1' title='Show dice/card history'>
+                                <FontAwesomeIcon
+                                    icon={faHistory}
+                                    onClick={onDiceHistoryClick}
+                                ></FontAwesomeIcon>
+                            </a>
+                        </div>
+                    )}
                     {showManualMode && (
                         <div className='state'>
                             <a
