@@ -7,6 +7,7 @@ import chainedGameCard from '../assets/img/game-chained-card.png';
 import chainedGameCardR2 from '../assets/img/game-chained-card-green.png';
 
 import Panel from '../Components/Site/Panel';
+import ManualCommands from './ManualCommands';
 const FAQ = () => {
     return (
         <Col className='full-height lobby-content' xs='12'>
@@ -70,6 +71,7 @@ const FAQ = () => {
                         <p>These icons are for information only. <b>Ashteki does not enforce the OP rules regarding the chained list</b></p>
                     </p>
                 </div>
+                <ManualCommands></ManualCommands>
             </Panel>
         </Col >
     );
