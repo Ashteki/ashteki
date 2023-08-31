@@ -46,7 +46,7 @@ describe('Empyrean Mount', function () {
             expect(this.game.attackState.battles[1].guard).toBe(this.hammerKnight);
 
             // reset button does not clear chosen blocker
-            this.player2.clickPrompt('Clear');
+            this.player2.clickPrompt('Clear All');
             expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
             expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
 
@@ -99,7 +99,7 @@ describe('Empyrean Mount', function () {
             expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
 
             // reset button clears blocker
-            this.player2.clickPrompt('Clear');
+            this.player2.clickPrompt('Clear All');
             expect(this.game.attackState.battles.every((b) => !b.guard));
         });
     });
