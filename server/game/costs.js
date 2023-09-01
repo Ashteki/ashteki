@@ -48,10 +48,10 @@ const Costs = {
                     ((context.player.isSpellboardFull(context.source.cardSlot) &&
                         !context.source.isPlayedToExistingSpellboardSlot) ||
                         (context.player.spellboard.length === 0 &&
-                            context.source.isPlayedToExistingSpellboardSlot))) ||
+                            context.source.isPlayedToExistingSpellboardSlot)))
                 // check for battlefield space
-                (BattlefieldTypes.includes(context.source.getType()) &&
-                    context.player.isBattlefieldFull())
+                // (BattlefieldTypes.includes(context.source.getType()) &&
+                //     context.player.isBattlefieldFull())
             ) {
                 return false;
             } else {

@@ -21,7 +21,7 @@ describe('When Battlefield is full', function () {
                 ],
                 hand: ['hammer-knight'],
                 archives: ['gilder'],
-                dicepool: ['natural', 'natural', 'charm', 'charm']
+                dicepool: ['natural', 'natural', 'charm', 'ceremonial']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -31,7 +31,12 @@ describe('When Battlefield is full', function () {
     });
 
     it('cannot play an ally', function () {
-        expect(this.player1).not.toBeAbleToPlayFromHand(this.hammerKnight);
+        // expect(this.player1).not.toBeAbleToPlayFromHand(this.hammerKnight);
+        this.player1.play(this.hammerKnight);
+        this.player1.clickYes(); // warning
+        this.player1.clickDie(2);
+        this.player1.clickDone();
+        expect(this.hammerKnight.location).toBe('discard');
     });
 
     it('can use summon gilder, but not place gilder on battlefield', function () {
