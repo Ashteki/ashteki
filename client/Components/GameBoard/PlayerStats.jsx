@@ -305,7 +305,7 @@ const PlayerStats = ({
             {firstPlayerToken}
             {clock}
             {activePlayer && <div className='state first-player-state'>Active Player</div>}
-            {compactLayout && (
+            {(compactLayout || solo) && (
                 <>
                     {!solo && getArchives()}
                     <div className='state'>{renderDroppableList('draw', draw)}</div>

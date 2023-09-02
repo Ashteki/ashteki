@@ -71,8 +71,8 @@ const ChimeraRow = ({
                     size={cardSize}
                     onDieClick={onDieClick}
                     onMenuItemClick={onMenuItemClick}
-                    onMouseOver={onMouseOver}
-                    onMouseOut={onMouseOut}
+                // onMouseOver={onMouseOver}
+                // onMouseOut={onMouseOut}
                 />
             </div>
         );
@@ -100,22 +100,22 @@ const ChimeraRow = ({
         />
     );
 
-    let drawDeckToRender = (
-        <DrawDeck
-            cardCount={numDeckCards}
-            cards={drawDeck}
-            isMe={isMe}
-            manualMode={manualMode}
-            onCardAltClick={onCardAltClick}
-            onPileClick={onPileClick}
-            onPopupChange={onDrawPopupChange}
-            onShuffleClick={onShuffleClick}
-            player={player}
-            showDeck={showDeck}
-            spectating={spectating}
-            {...cardPileProps}
-        />
-    );
+    // let drawDeckToRender = (
+    //     <DrawDeck
+    //         cardCount={numDeckCards}
+    //         cards={drawDeck}
+    //         isMe={isMe}
+    //         manualMode={manualMode}
+    //         onCardAltClick={onCardAltClick}
+    //         onPileClick={onPileClick}
+    //         onPopupChange={onDrawPopupChange}
+    //         onShuffleClick={onShuffleClick}
+    //         player={player}
+    //         showDeck={showDeck}
+    //         spectating={spectating}
+    //         {...cardPileProps}
+    //     />
+    // );
 
     let discardToRender = (
         <CardPile
@@ -146,11 +146,11 @@ const ChimeraRow = ({
 
     return (
         <div className='player-home-row-container pt-1'>
+            {renderResources(dice)}
             {renderDroppablePile('discard', discardToRender)}
-            {renderDroppablePile('deck', drawDeckToRender)}
+            {/* {renderDroppablePile('deck', drawDeckToRender)} */}
             {identityCard}
             {renderDroppablePile('spellboard', spellboard)}
-            {renderResources(dice)}
 
         </div>
     );

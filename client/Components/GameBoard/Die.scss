@@ -44,6 +44,11 @@
 
 .rage {
     @include dice-colors(#e41d1d, #f1daa6);
+
+    &.power {
+        @include dice-colors(white, #e41d1d);
+
+    }
 }
 
 .any {

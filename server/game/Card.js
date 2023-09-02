@@ -1384,7 +1384,7 @@ class Card extends PlayableObject {
         if (this.armor > 0) {
             state.armor = this.armor;
         }
-        if (this.type === CardType.Phoenixborn) {
+        if (PhoenixbornTypes.includes(this.type)) {
             state.life = this.life;
             state.guarded = this.usedGuardThisRound;
         }

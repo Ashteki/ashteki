@@ -22,6 +22,7 @@ const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver, simpleText })
     }
 
     const colorClass = die.location === 'dicepool' && die.exhausted ? 'exhausted' : die.magic;
+    const powerClass = die.level === 'power' ? 'power' : '';
     const readerSpan = <span className='sr-only tiny'>{description}</span>;
     const getStatusClass = () => {
         if (!die) {
@@ -40,7 +41,7 @@ const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver, simpleText })
     };
 
     let statusClass = getStatusClass();
-    let dieClass = classNames('die', statusClass, colorClass);
+    let dieClass = classNames('die', statusClass, colorClass, powerClass);
 
     return (
         <span
@@ -49,7 +50,6 @@ const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver, simpleText })
             onMouseOut={!disableMouseOver ? onMouseOut : undefined}
         >
             <span className={diceFont} title={description}>  {readerSpan}</span>
-
         </span>
     );
 };

@@ -40,7 +40,7 @@
             "name": "Viros Behaviour",
             "stub": "viros-behaviour",
             "type": "Ready Spell",
-            "imageStub": "corpse-of-viros-behaviour-%s.jpg"
+            "imageStub": "corpse-of-viros-behavior-%s.jpg"
         },
         {
             "name": "Rampage",
