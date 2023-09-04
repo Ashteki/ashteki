@@ -262,6 +262,7 @@ const GameBoard = () => {
                 <ChimeraRow
                     cardSize={cardSize}
                     dice={otherPlayer.dice}
+                    onDieClick={onDieClick}
                     discard={otherPlayer.cardPiles.discard}
                     drawDeck={otherPlayer.cardPiles.deck}
                     isMe={false}
