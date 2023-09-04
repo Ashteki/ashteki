@@ -25,7 +25,7 @@ describe('Regenerate Aspect', function () {
             });
 
             spyOn(Dice, 'd12Roll').and.returnValue(1);
-            this.player2.dicepool.forEach(d => d.level = 'basic');
+            this.player2.dicepool.forEach((d) => (d.level = 'basic'));
         });
 
         it('when destroyed roll a power side and no effect', function () {
@@ -36,9 +36,10 @@ describe('Regenerate Aspect', function () {
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.regenerate);
 
-            expect(this.player2.dicepool.some(d => d.level === 'power')).toBe(true);
+            expect(this.player2.dicepool.some((d) => d.level === 'power')).toBe(true);
             expect(this.regenerate.location).toBe('discard');
             expect(this.regenerate.exhausted).toBe(false);
+            expect(this.regenerate.moribund).toBe(false);
         });
 
         it('when destroyed roll a basic side and place rightmost on b/f', function () {
@@ -50,7 +51,7 @@ describe('Regenerate Aspect', function () {
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.regenerate);
 
-            expect(this.player2.dicepool.some(d => d.level === 'power')).toBe(false);
+            expect(this.player2.dicepool.some((d) => d.level === 'power')).toBe(false);
             expect(this.regenerate.location).toBe('play area');
             expect(this.regenerate.exhausted).toBe(true);
         });

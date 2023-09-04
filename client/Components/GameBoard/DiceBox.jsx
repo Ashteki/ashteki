@@ -4,6 +4,7 @@ import Die from './Die';
 import './DiceBox.scss';
 
 const DiceBox = ({ dice, onDieClick, onMenuItemClick, onMouseOut, onMouseOver, size }) => {
+    const widthClass = dice.length < 6 ? 'half' : '';
     const getDice = () => {
         return (
             dice
@@ -22,7 +23,7 @@ const DiceBox = ({ dice, onDieClick, onMenuItemClick, onMouseOut, onMouseOver, s
         );
     };
 
-    return <div className={`dice ${size}`}>{getDice()}</div>;
+    return <div className={`dice ${size} ${widthClass}`}>{getDice()}</div>;
 };
 
 export default DiceBox;

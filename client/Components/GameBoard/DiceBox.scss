@@ -1,7 +1,6 @@
-
 // .dice.large {
 //     // width: 300px;
-    
+
 // }
 // .alt{
 //     // background:#eeeeee;
@@ -12,8 +11,12 @@
 //     // min-height: 46px;
 // }
 
-.dice{
-    display:grid;
+.dice {
+    display: grid;
     grid-template-columns: auto auto auto auto auto;
     margin-top: 20px;
+
+    &.half {
+        // grid-template-columns: auto auto auto;
+    }
 }

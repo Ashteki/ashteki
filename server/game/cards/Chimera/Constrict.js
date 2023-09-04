@@ -1,5 +1,4 @@
-const { Level } = require("../../../constants");
-const AspectCard = require("../../solo/AspectCard");
+const AspectCard = require('../../solo/AspectCard');
 
 class Constrict extends AspectCard {
     setupCardAbilities(ability) {
@@ -10,9 +9,9 @@ class Constrict extends AspectCard {
             gameAction: ability.actions.chosenExhaust((context) => ({
                 target: context.player.opponent
             }))
-        })
+        });
 
-        this.defender()
+        this.defender();
     }
 }
 

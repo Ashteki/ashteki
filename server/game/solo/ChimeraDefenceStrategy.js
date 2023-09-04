@@ -1,3 +1,4 @@
+const { CardType } = require("../../constants");
 const Dice = require("../dice");
 
 class ChimeraDefenceStrategy {
@@ -11,7 +12,9 @@ class ChimeraDefenceStrategy {
         const defenders = this.player.unitsInPlay.filter(
             (u) => u !== attack.target && u.anyEffect('defender')
         );
-        const battlesToGuard = attack.battles.filter(b => !b.target.anyEffect('defender'));
+        const battlesToGuard = attack.battles.filter(
+            (b) => !b.target.anyEffect('defender') && b.target.type === CardType.Aspect
+        );
         defenders.forEach(d => {
             const bat = battlesToGuard.find(b => !b.guard);
             if (!bat) {
@@ -40,7 +43,8 @@ class ChimeraDefenceStrategy {
         if (
             !attack.isPBAttack &&
             !attack.target.anyEffect('defender') &&
-            !attack.battles[0].guard
+            !attack.battles[0].guard &&
+            attack.target.type === CardType.Aspect
         ) {
             const d12Roll = Dice.d12Roll();
             let guardText = '\nNo guard';

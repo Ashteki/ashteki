@@ -158,7 +158,7 @@ describe('When Attacked', function () {
                     phoenixborn: 'viros-s1',
                     behaviour: 'viros-behaviour',
                     ultimates: ['viros-ultimate-1', 'viros-ultimate-2', 'viros-ultimate-3'],
-                    inPlay: ['constrict', 'iron-scales'],
+                    inPlay: ['constrict', 'iron-scales', 'blood-puppet'],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
@@ -176,6 +176,17 @@ describe('When Attacked', function () {
             expect(this.constrict.damage).toBe(1);
             expect(this.ironScales.damage).toBe(0);
             expect(this.fluteMage.location).toBe('discard');
+            expect(Dice.d12Roll).not.toHaveBeenCalled();
+        });
+
+        it('defender will not guard non-aspect', function () {
+            this.player1.clickAttack(this.bloodPuppet);
+            this.player1.clickCard(this.fluteMage);
+
+            expect(this.bloodPuppet.location).toBe('play area');
+            expect(this.bloodPuppet.damage).toBe(1);
+            expect(this.ironScales.damage).toBe(0);
+            expect(this.fluteMage.location).toBe('play area');
             expect(Dice.d12Roll).not.toHaveBeenCalled();
         });
 

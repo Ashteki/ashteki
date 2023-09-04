@@ -160,7 +160,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                 if (fragment.magic && fragment.level && fragment.level !== 'basic') {
                     diceFont = `phg-${fragment.magic}-${fragment.level}`;
                 }
-                let dieClass = classNames('chat-die', fragment.magic);
+                let dieClass = classNames('chat-die', fragment.magic, fragment.level);
 
                 messages.push(
                     <span key={index++} className={dieClass}>
