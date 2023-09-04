@@ -25,7 +25,6 @@ describe('Corpse of Viros Behaviour Rolls', function () {
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
-
         });
 
         it('light bringer forces attack with no roll', function () {
@@ -43,7 +42,6 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(this.huntingInstincts.facedown).toBe(true);
             expect(Dice.d12Roll).not.toHaveBeenCalled();
         });
-
 
         it('1, Reveal puts card into play', function () {
             // reveal
@@ -87,7 +85,6 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(this.huntingInstincts.facedown).toBe(false);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
-
 
         it('5 Reveal then Attack with that aspect', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(5); // set behaviour roll
@@ -160,6 +157,5 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
-
     });
 });

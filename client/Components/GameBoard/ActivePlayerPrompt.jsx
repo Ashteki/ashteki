@@ -9,6 +9,7 @@ import OptionsSelect from './OptionsSelect';
 import Panel from '../Site/Panel';
 
 import './ActivePlayerPrompt.scss';
+import BehaviourPromptControl from './BehaviourPromptControl';
 
 const MaxButtonTextLength = 28;
 
@@ -171,6 +172,8 @@ class ActivePlayerPrompt extends React.Component {
                             onOptionSelected={this.onOptionSelected}
                         />
                     );
+                case 'behaviour':
+                    return <BehaviourPromptControl behaviour={control.behaviour} />
             }
         });
     }

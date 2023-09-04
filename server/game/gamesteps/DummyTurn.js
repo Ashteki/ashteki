@@ -47,21 +47,27 @@ class DummyTurn extends BaseStepWithPipeline {
 
                 const rolledRageDie = result.event.childEvent.dice[0];
                 const clonedRageDie = result.event.childEvent.diceCopy[0];
+                // get actions from behaviour card and queue
+                const behaviour = this.player.behaviour.getBehaviour(d12Roll);
+
                 this.game.queueUserAlert(context, {
                     style: 'danger',
-                    promptTitle: 'Chimera Reveal',
-                    menuTitle: 'Chimera rolls a rage die and d12\n\n Behaviour: ' + d12Roll,
+                    promptTitle: 'Chimera Turn',
+                    menuTitle: 'Chimera rolls rage and behavior dice',
                     controls: [
                         {
                             type: 'targeting',
                             source: clonedRageDie.getShortSummary(),
                             targets: [rolledRageDie.getShortSummary()] // [this.attack.target.getShortSummary()]
+                        },
+                        {
+                            type: 'behaviour',
+                            behaviour: behaviour.getShortSummary()
                         }
                     ]
                 });
-                // get actions from behaviour card and queue
-                const behaviour = this.player.behaviour;
-                behaviour.handleBehaviourRoll(d12Roll);
+                // behaviourCard.handleBehaviourRoll(d12Roll);
+                behaviour.execute();
             })
         );
     }

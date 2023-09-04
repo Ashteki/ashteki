@@ -1,46 +1,74 @@
-const { Level } = require("../../../constants");
-const AbilityDsl = require("../../abilitydsl");
-const BehaviourCard = require("../../solo/BehaviourCard");
+const { Level } = require('../../../constants');
+const AbilityDsl = require('../../abilitydsl');
+const Behaviour = require('../../solo/Behaviour');
+const BehaviourCard = require('../../solo/BehaviourCard');
 
 class VirosBehaviour extends BehaviourCard {
-    handleBehaviourRoll(behaviourRoll) {
+    getBehaviour(behaviourRoll) {
         switch (behaviourRoll) {
             case 1:
             case 2:
-                this.doReveal();
-                break;
+                return new Behaviour(behaviourRoll, { main: 'Reveal.' }, () => this.doReveal());
             case 3:
             case 4:
-                this.canAttack() ? this.doAttack() : this.doReveal();
-                break;
+                return new Behaviour(
+                    behaviourRoll,
+                    { main: 'Attack, if able. If not, Reveal.' },
+                    () => (this.canAttack() ? this.doAttack() : this.doReveal())
+                );
             case 5:
             case 6:
                 // Main: Reveal. Attack with revealed aspect
-                // TODO: use revealed aspect
-                const attacker = this.doReveal();
-                this.doAttack(attacker);
-                break;
+                return new Behaviour(
+                    behaviourRoll,
+                    { main: 'Reveal. Attack with revealed aspect.' },
+                    () => this.doAttack(this.doReveal())
+                );
             case 7:
             case 8:
             case 9:
-                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                this.doLowerOpponentsDice();
-                // Main: Reveal
-                this.doReveal();
-                break;
+                return new Behaviour(
+                    behaviourRoll,
+                    {
+                        main: 'Reveal',
+                        side: 'Target opposing player must lower 2 non-basic dice in their active pool one level'
+                    },
+                    () => {
+                        // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
+                        this.doLowerOpponentsDice();
+                        // Main: Reveal
+                        this.doReveal();
+                    }
+                );
             case 10:
             case 11:
-                // Side: Raise 1 basic rage die one level
-                this.doRageRaise();
-                // Main: Reveal
-                this.doReveal();
-                break;
+                return new Behaviour(
+                    behaviourRoll,
+                    {
+                        main: 'Reveal.',
+                        side: 'Raise 1 basic rage die one level\n Main: Reveal'
+                    },
+                    () => {
+                        // Side: Raise 1 basic rage die one level
+                        this.doRageRaise();
+                        // Main: Reveal
+                        this.doReveal();
+                    }
+                );
             case 12:
-                // Side: Place 1 Red Rains token on the Chimera.
-                this.doAddRedRains();
-                // Main: Reveal
-                this.doReveal();
-                break;
+                return new Behaviour(
+                    behaviourRoll,
+                    {
+                        main: 'Reveal.',
+                        side: 'Place 1 Red Rains token on the Chimera'
+                    },
+                    () => {
+                        // Side: Place 1 Red Rains token on the Chimera.
+                        this.doAddRedRains();
+                        // Main: Reveal
+                        this.doReveal();
+                    }
+                );
             default:
                 throw new Error('Unexpected behaviour roll');
         }
@@ -64,7 +92,6 @@ class VirosBehaviour extends BehaviourCard {
                 gameAction: AbilityDsl.actions.lowerDie()
             },
             message: '{0} uses {1} to lower 2 opponent dice'
-
         });
 
         const context = ability.createContext(this.owner);
@@ -74,4 +101,4 @@ class VirosBehaviour extends BehaviourCard {
 
 VirosBehaviour.id = 'viros-behaviour';
 
-module.exports = VirosBehaviour
+module.exports = VirosBehaviour;

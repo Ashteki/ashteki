@@ -9,7 +9,7 @@ class BehaviourCard extends Card {
         return this.imageStub.replace('%s', this.owner.chimeraPhase);
     }
 
-    handleBehaviourRoll(behaviourRoll) {
+    getBehaviour(behaviourRoll) {
         // override this in derived classes
     }
 
