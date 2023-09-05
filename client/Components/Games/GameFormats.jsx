@@ -5,8 +5,15 @@ import { gameFormats } from '../../util';
 import './GameFormats.scss';
 import GameFormatInfo from './GameFormatInfo';
 import classNames from 'classnames';
+import { useSelector } from 'react-redux';
 
 const GameFormats = ({ formProps }) => {
+    const showSolo = useSelector((state) => state.account.user?.permissions.isAdmin);
+
+    let formats = [...gameFormats];
+    if (!showSolo) {
+        formats = formats.filter((f) => f.name !== 'solo');
+    }
     return (
         <>
             <Form.Row>
@@ -14,7 +21,7 @@ const GameFormats = ({ formProps }) => {
                     <Trans>Format</Trans>
                 </Col>
                 <Form.Group as={Col}>
-                    {gameFormats.map((format) => {
+                    {formats.map((format) => {
                         const checkClasses = classNames('game-format', format.name);
 
                         return (

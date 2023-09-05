@@ -8,7 +8,8 @@ const PendingPlayer = require('./models/PendingPlayer.js');
 
 class PendingGame {
     constructor(owner, details) {
-        this.allowSpectators = !details.solo && details.allowSpectators;
+        this.solo = details.gameFormat === 'solo';
+        this.allowSpectators = !this.solo && details.allowSpectators;
         this.createdAt = new Date();
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;
@@ -29,7 +30,6 @@ class PendingGame {
         this.swap = !!details.swap;
         this.rematch = false;
         this.tournament = details.tournament;
-        this.solo = details.solo;
 
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.gameTimeLimit = details.gameTimeLimit;

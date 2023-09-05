@@ -55,6 +55,12 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
                     random cards. Yes, this is a fun format.
                 </AlertPanel>
             );
+        case 'solo':
+            return (
+                <AlertPanel type='info'>
+                    <strong>Solo</strong> Play single player against a chimera.
+                </AlertPanel>
+            );
     }
 };
 
