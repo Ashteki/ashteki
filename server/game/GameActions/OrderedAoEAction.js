@@ -38,7 +38,7 @@ class OrderedAoEAction extends GameAction {
             waitingPromptTitle: 'Waiting for opponent to order AoE actions',
             promptTitle: this.propertyCache.promptTitle,
             // eslint-disable-next-line no-undef
-            cardType: BattlefieldTypes,
+            // cardType: BattlefieldTypes,
             location: ['play area'],
             cardCondition: (card) => this.cards.includes(card) && !card.removed,
             context: context,

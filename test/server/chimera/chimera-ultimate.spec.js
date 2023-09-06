@@ -55,11 +55,12 @@ describe('Chimera ultimate', function () {
             expect(this.bloodPuppet.location).toBe('archives');
 
             // triggers effect for VIROS ULTIMATE 1
-            //
             this.player1.clickCard(this.blueJaguar);
+            this.player1.clickCard(this.aradelSummergaard);
             this.player1.clickCard(this.mistSpirit);
             expect(this.blueJaguar.damage).toBe(1);
             expect(this.mistSpirit.location).toBe('archives');
+            expect(this.aradelSummergaard.damage).toBe(1);
 
             // advances phase
             expect(this.player2.player.chimeraPhase).toBe(2);
