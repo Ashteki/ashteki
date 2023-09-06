@@ -107,12 +107,22 @@ const PlayerStats = ({
         let classes = classNames('action', 'life-remaining', lifeClass);
         return (
             <div className='state'>
-                <span key={`action-side`} className={classes}>
+                <span key={`life-rem`} className={classes}>
                     {lifeValue}
                 </span>
             </div>
         );
     }
+
+    const renderChimeraPhase = () => {
+        return (
+            <div className='state'>
+                <span key={`chimera-phase`} className='action chimera-phase'>
+                    Phase {player.chimeraPhase}
+                </span>
+            </div>
+        );
+    };
 
     const renderLimited = () => {
         const value = !player.limitedPlayed;
@@ -300,6 +310,7 @@ const PlayerStats = ({
     return (
         <div className={statsClass}>
             {playerAvatar}
+            {solo && !isMe && renderChimeraPhase()}
             {renderLifeRemaining()}
             {renderActions()}
             {firstPlayerToken}

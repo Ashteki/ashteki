@@ -9,17 +9,9 @@
         "count": 1
       }
     ],
-    "ultimates": [
+    "ultimate": [
       {
-        "id": "viros-ultimate-1",
-        "count": 1
-      },
-      {
-        "id": "viros-ultimate-2",
-        "count": 1
-      },
-      {
-        "id": "viros-ultimate-3",
+        "id": "viros-ultimate",
         "count": 1
       }
     ],
@@ -73,17 +65,9 @@
         "count": 1
       }
     ],
-    "ultimates": [
+    "ultimate": [
       {
-        "id": "viros-ultimate-1",
-        "count": 1
-      },
-      {
-        "id": "viros-ultimate-2",
-        "count": 1
-      },
-      {
-        "id": "viros-ultimate-3",
+        "id": "viros-ultimate",
         "count": 1
       }
     ],

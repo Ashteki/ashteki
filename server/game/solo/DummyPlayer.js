@@ -28,14 +28,6 @@ class DummyPlayer extends Player {
         return this.phoenixborn;
     }
 
-    get ultimate() {
-        if (!this.ultimates || this.ultimates.length === 0) {
-            return null;
-        }
-
-        return this.ultimates[this.chimeraPhase - 1];
-    }
-
     getHand() {
         if (this.hand.length === 0) {
             this.doDrawCards(5);
@@ -130,14 +122,6 @@ class DummyPlayer extends Player {
         })
     }
 
-    getState(activePlayer) {
-        const result = super.getState(activePlayer);
-        // result.cardPiles.threatZone = this.getSummaryForCardList(this.threatZone, activePlayer)
-        result.fatigued = this.fatigued;
-
-        return result;
-    }
-
     getAttacker() {
         for (const card of this.unitsInPlay) {
             if (card.canAttack()) {
@@ -206,7 +190,23 @@ class DummyPlayer extends Player {
     advanceChimeraPhase() {
         if (this.chimeraPhase < 3) {
             this.chimeraPhase++;
+            this.game.addMessage('Chimera advances to phase {0}', this.chimeraPhase);
         }
+    }
+
+    triggerUltimateAbility() {
+        const ultAbility = this.ultimate.getUltimateAbility(this.chimeraPhase);
+        const context = ultAbility.createContext(this);
+        this.game.resolveAbility(context);
+    }
+
+    getState(activePlayer) {
+        const result = super.getState(activePlayer);
+        // result.cardPiles.threatZone = this.getSummaryForCardList(this.threatZone, activePlayer)
+        result.fatigued = this.fatigued;
+        result.chimeraPhase = this.chimeraPhase;
+
+        return result;
     }
 }
 

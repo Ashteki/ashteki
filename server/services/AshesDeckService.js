@@ -190,7 +190,7 @@ class AshesDeckService {
             mode: deck.mode,
             name: deck.deckName || deck.name,
             phoenixborn: deck.phoenixborn,
-            ultimates: deck.ultimates,
+            ultimate: deck.ultimate,
             behaviour: deck.behaviour,
             dicepool: deck.dicepool,
             cards: deck.cards,
@@ -216,7 +216,7 @@ class AshesDeckService {
         let properties = {
             name: deck.deckName || deck.name,
             phoenixborn: deck.phoenixborn,
-            ultimates: deck.ultimates,
+            ultimate: deck.ultimate,
             behaviour: deck.behaviour,
             dicepool: deck.dicepool,
             cards: deck.cards,

@@ -21,27 +21,6 @@ class RevealBehaviour extends BaseAbility {
         context.game.addMessage('{0} reveals {1}', context.player, context.source);
     }
 
-    // meetsRequirements(context = this.createContext(), ignoredRequirements = []) {
-    //     if (
-    //         !ignoredRequirements.includes('location') &&
-    //         !context.player.isCardInPlayableLocation(context.source, 'play')
-    //     ) {
-    //         return 'location';
-    //     } else if (
-    //         !ignoredRequirements.includes('cannotTrigger') &&
-    //         (!context.player.checkRestrictions('play', context) ||
-    //             !context.source.checkRestrictions('play', context))
-    //     ) {
-    //         return 'cannotTrigger';
-    //     }
-
-    //     if (this.isCardPlayed() && this.card.isLimited() && !context.player.canPlayLimited()) {
-    //         return 'limited';
-    //     }
-
-    //     return super.meetsRequirements(context, ignoredRequirements);
-    // }
-
     createContext(player = this.card.controller) {
         return new AbilityContext({
             ability: this,

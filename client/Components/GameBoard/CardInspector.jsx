@@ -52,6 +52,7 @@ const CardInspector = ({ card }) => {
             {getInspectorControl('damage')}
             {getInspectorControl('exhaustion')}
             {getInspectorControl('status')}
+            {card.type === 'Chimera' && getInspectorControl('redRains')}
 
             <div className='center-content'>
                 <button

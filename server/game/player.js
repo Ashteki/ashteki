@@ -289,8 +289,8 @@ class Player extends GameObject {
         this.diceCounts = preparedDeck.diceCounts;
         this.phoenixborn = preparedDeck.phoenixborn;
         this.cardsInPlay = [this.phoenixborn];
-        if (preparedDeck.ultimates.length) {
-            this.ultimates = preparedDeck.ultimates;
+        if (this.deckData.ultimate) {
+            this.ultimate = preparedDeck.ultimate;
             this.behaviour = preparedDeck.behaviour;
             this.spellboard = [this.ultimate, this.behaviour];
         }
@@ -298,9 +298,6 @@ class Player extends GameObject {
         this.deckNotes = preparedDeck.notes;
     }
 
-    get ultimate() {
-        return null;
-    }
     /**
      * Called when the Game object starts the game. Creates all cards on this players decklist, shuffles the decks and initialises player parameters for the start of the game
      */

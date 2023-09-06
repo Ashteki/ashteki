@@ -19,22 +19,10 @@
             "imageStub": "corpse-of-viros-1p-standard-1.jpg"
         },
         {
-            "name": "Viros Ultimate 1",
-            "stub": "viros-ultimate-1",
+            "name": "Viros Ultimate",
+            "stub": "viros-ultimate",
             "type": "Ready Spell",
-            "imageStub": "corpse-of-viros-ultimate-1.jpg"
-        },
-        {
-            "name": "Viros Ultimate 2",
-            "stub": "viros-ultimate-2",
-            "type": "Ready Spell",
-            "imageStub": "corpse-of-viros-ultimate-2.jpg"
-        },
-        {
-            "name": "Viros Ultimate 3",
-            "stub": "viros-ultimate-3",
-            "type": "Ready Spell",
-            "imageStub": "corpse-of-viros-ultimate-3.jpg"
+            "imageStub": "corpse-of-viros-ultimate-%s.jpg"
         },
         {
             "name": "Viros Behaviour",

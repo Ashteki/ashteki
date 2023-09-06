@@ -110,16 +110,14 @@ class DeckBuilder {
                 }
             ];
 
-            const ults = [];
-            player.ultimates.forEach(stub => {
-                const uData = this.getCard(stub);
-                ults.push({
+            const uData = this.getCard(player.ultimate);
+            result.ultimate = [
+                {
                     count: 1,
                     card: uData,
                     id: uData.stub
-                });
-            })
-            result.ultimates = ults;
+                }
+            ];
         }
         return result;
     }

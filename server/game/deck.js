@@ -38,7 +38,7 @@ class Deck {
             cards: [],
             diceCounts: [],
             phenixborn: null,
-            ultimates: [],
+            ultimate: null,
             behaviour: null,
             dice: [],
             notes: this.data.notes
@@ -72,13 +72,13 @@ class Deck {
             }
         });
 
-        this.eachRepeatedCard(this.data.ultimates, (ultData) => {
+        this.eachRepeatedCard(this.data.ultimate, (ultData) => {
             let ultCard = this.createCard(player, ultData);
             if (ultCard) {
                 ultCard.setupAbilities();
                 ultCard.location = 'spellboard';
 
-                result.ultimates.push(ultCard);
+                result.ultimate = ultCard;
             }
         });
 

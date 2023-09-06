@@ -16,7 +16,7 @@ describe('Chimera ultimate', function () {
                     dummy: true,
                     phoenixborn: 'viros-s1',
                     behaviour: 'viros-behaviour',
-                    ultimates: ['viros-ultimate-1', 'viros-ultimate-2', 'viros-ultimate-3'],
+                    ultimate: 'viros-ultimate',
                     inPlay: [],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
@@ -29,11 +29,9 @@ describe('Chimera ultimate', function () {
             expect(this.player2.player.ultimateThreshold).toBe(3);
 
             this.virosS1.tokens.exhaustion = 2;
-
             expect(this.player2.player.ultimateThreshold).toBe(5);
 
             this.player2.ultimate.tokens.exhaustion = 2;
-
             expect(this.player2.player.ultimateThreshold).toBe(7);
         });
 
@@ -51,10 +49,21 @@ describe('Chimera ultimate', function () {
             this.player1.clickPrompt('Ok');
             this.player1.clickPrompt('Ok'); // ultimate
 
+            // removes RR tokens
             expect(this.player2.phoenixborn.redRains).toBe(0);
+            // wipes alien units
             expect(this.bloodPuppet.location).toBe('archives');
+
+            // triggers effect for VIROS ULTIMATE 1
+            //
+            this.player1.clickCard(this.blueJaguar);
+            this.player1.clickCard(this.mistSpirit);
+            expect(this.blueJaguar.damage).toBe(1);
+            expect(this.mistSpirit.location).toBe('archives');
+
+            // advances phase
             expect(this.player2.player.chimeraPhase).toBe(2);
-            expect(this.player2.player.ultimate.id).toBe('viros-ultimate-2');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });

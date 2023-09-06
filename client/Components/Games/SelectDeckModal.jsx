@@ -12,7 +12,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe })
 
     let deckList = null;
     let setIndex = 0;
-    if (gameFormat === 'constructed') {
+    if (['constructed', 'solo'].includes(gameFormat)) {
         deckList = (
             <Tabs>
                 <TabList>

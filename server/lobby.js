@@ -685,8 +685,8 @@ class Lobby {
             hasPhoenixborn = true;
         }
 
-        if (deck.ultimates) {
-            for (let u of deck.ultimates) {
+        if (deck.ultimate) {
+            for (let u of deck.ultimate) {
                 u.card = cards[u.id];
             }
         }

@@ -15,7 +15,7 @@ describe('Dark descent', function () {
                 dummy: true,
                 phoenixborn: 'viros-s1',
                 behaviour: 'viros-behaviour',
-                ultimates: ['viros-ultimate-1', 'viros-ultimate-2', 'viros-ultimate-3'],
+                ultimate: 'viros-ultimate',
                 inPlay: ['dark-descent'],
                 deck: [],
                 spellboard: [],
