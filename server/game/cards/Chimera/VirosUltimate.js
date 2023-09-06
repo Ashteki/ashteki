@@ -14,7 +14,7 @@ class VirosUltimate extends UltimateCard {
                 ],
                 gameAction: AbilityDsl.actions.orderedAoE({
                     gameAction: AbilityDsl.actions.dealDamage({ amount: phase, showMessage: true }),
-                    promptTitle: 'One Hundred Blades'
+                    promptTitle: 'Chimera Ultimate'
                 })
             }
         });

@@ -14,6 +14,7 @@ class Spark extends Card {
             gameAction: ability.actions.discard({ target: this }),
             then: {
                 target: {
+                    activePromptTitle: 'Choose a card to deal 1 damage to',
                     cardType: BattlefieldTypes,
                     controller: 'any',
                     gameAction: ability.actions.dealDamage({ showMessage: true }),

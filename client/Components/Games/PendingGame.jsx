@@ -7,7 +7,6 @@ import $ from 'jquery';
 
 import Panel from '../Site/Panel';
 import Messages from '../GameBoard/Messages';
-import SelectDeckModal from './SelectDeckModal';
 import { startGame, leaveGame, sendSocketMessage } from '../../redux/actions';
 import PendingGamePlayers from './PendingGamePlayers';
 import ChargeMp3 from '../../assets/sound/charge.mp3';
@@ -41,7 +40,6 @@ const PendingGame = () => {
     }));
     const notification = useRef();
     const [waiting, setWaiting] = useState(false);
-    const [showModal, setShowModal] = useState(false);
     const [message, setMessage] = useState('');
     const [canScroll, setCanScroll] = useState(true);
     const [playerCount, setPlayerCount] = useState(0);
@@ -239,11 +237,7 @@ const PendingGame = () => {
                 {timelimit}
                 {gameLabel}
 
-                <PendingGamePlayers
-                    currentGame={currentGame}
-                    user={user}
-                    onSelectDeck={() => setShowModal(true)}
-                />
+                <PendingGamePlayers currentGame={currentGame} user={user} />
 
                 <h3>Spectators ({currentGame.spectators.length})</h3>
                 <div className='spectator-list'>
@@ -290,36 +284,6 @@ const PendingGame = () => {
                     </Form>
                 </div>
             </Panel>
-
-            {showModal && (
-                <SelectDeckModal
-                    gameFormat={currentGame.gameFormat}
-                    onClose={() => setShowModal(false)}
-                    onDeckSelected={(deck) => {
-                        setShowModal(false);
-                        dispatch(
-                            sendSocketMessage(
-                                'selectdeck',
-                                currentGame.id,
-                                deck._id,
-                                !!deck.precon_id
-                            )
-                        );
-                    }}
-                    onChooseForMe={(deckType) => {
-                        setShowModal(false);
-                        dispatch(
-                            sendSocketMessage(
-                                'selectdeck',
-                                currentGame.id,
-                                -1,
-                                0,
-                                deckType
-                            )
-                        );
-                    }}
-                />
-            )}
         </>
     );
 };

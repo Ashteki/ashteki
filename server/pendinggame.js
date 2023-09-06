@@ -57,6 +57,15 @@ class PendingGame {
         return this.players[playerName];
     }
 
+    getOtherPlayer(thisPlayerName) {
+        for (const [key, value] of Object.entries(this.players)) {
+            if (key !== thisPlayerName) {
+                return value;
+            }
+        }
+        return null;
+    }
+
     getSaveState() {
         let players = _.map(this.getPlayers(), (player) => {
             return {
@@ -234,8 +243,10 @@ class PendingGame {
         this.addMessage('{0} {1}', player, message);
     }
 
-    selectDeck(playerName, deck) {
-        var player = this.getPlayerByName(playerName);
+    selectDeck(playerName, deck, forOpponent) {
+        var player = forOpponent
+            ? this.getOtherPlayer(playerName)
+            : this.getPlayerByName(playerName);
         if (!player) {
             return;
         }
@@ -322,7 +333,10 @@ class PendingGame {
                         player.deck.phoenixborn[0]?.card.imageStub ||
                         player.deck.phoenixborn[0]?.card.stub
                 };
-                if (activePlayer === player.name || this.gameFormat === 'firstadventure') {
+                if (
+                    activePlayer === player.name ||
+                    ['firstadventure', 'solo'].includes(this.gameFormat)
+                ) {
                     deck.name = player.deck.name;
                 }
             }

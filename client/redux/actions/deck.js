@@ -211,3 +211,13 @@ export function loadPveDecks() {
     };
 }
 
+export function loadChimeraDecks() {
+    return {
+        types: ['LOAD_CHIMERA_DECKS', 'CHIMERA_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/chimera-decks',
+            type: 'GET'
+        }
+    };
+}

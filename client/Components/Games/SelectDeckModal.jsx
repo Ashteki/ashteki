@@ -7,12 +7,12 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './SelectDeckModal.scss';
 
-const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe }) => {
+const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
     const { t } = useTranslation();
 
     let deckList = null;
     let setIndex = 0;
-    if (['constructed', 'solo'].includes(gameFormat)) {
+    if ('constructed' === gameFormat || (gameFormat === 'solo' && playerIsMe)) {
         deckList = (
             <Tabs>
                 <TabList>
@@ -68,6 +68,9 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe })
         );
     } else {
         switch (gameFormat) {
+            case 'solo':
+                setIndex = 5;
+                break;
             case 'firstadventure':
                 setIndex = 4;
                 break;

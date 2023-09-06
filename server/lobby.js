@@ -472,7 +472,7 @@ class Lobby {
         if (game.solo) {
             const dummy = new DummyUser();
             game.addPlayer(0, dummy);
-            await this.selectDeck(game, dummy, -1, 0, game.gameFormat)
+            await this.selectDeck(game, dummy, true, -1, 0, game.gameFormat);
         }
 
         this.sendGameState(game);
@@ -631,14 +631,22 @@ class Lobby {
         this.sendGameState(game);
     }
 
-    async onSelectDeck(socket, gameId, deckId, isStandalone, chooseForMeType) {
+    // called when the lobby server receives a 'selectdeck' message
+    async onSelectDeck(socket, gameId, isForMe, deckId, isStandalone, chooseForMeType) {
         let game = this.games[gameId];
         if (!game) {
             return;
         }
 
         try {
-            await this.selectDeck(game, socket.user, deckId, isStandalone, chooseForMeType);
+            await this.selectDeck(
+                game,
+                socket.user,
+                isForMe, // for me or for opponent (dummy/solo)
+                deckId,
+                isStandalone,
+                chooseForMeType
+            );
         } catch (err) {
             logger.info(err);
 
@@ -647,7 +655,7 @@ class Lobby {
         this.sendGameState(game);
     }
 
-    async selectDeck(game, user, deckId, isPrecon, chooseForMeType) {
+    async selectDeck(game, user, isForMe, deckId, isPrecon, chooseForMeType) {
         // get cards (need this for random deck generation)
         const cards = this.cards;
         let deck = null;
@@ -725,7 +733,7 @@ class Lobby {
             officialRole: true
         };
 
-        game.selectDeck(user.username, deck);
+        game.selectDeck(user.username, deck, !isForMe);
     }
 
     checkConjurations(deck) {
@@ -890,7 +898,7 @@ class Lobby {
         this.broadcastGameMessage('newgame', newGame);
 
         let promises = [
-            this.onSelectDeck(socket, newGame.id, owner.deck._id, !!owner.deck.precon_id)
+            this.onSelectDeck(socket, newGame.id, true, owner.deck._id, !!owner.deck.precon_id)
         ];
 
         for (let player of Object.values(game.getPlayers()).filter(
@@ -907,7 +915,7 @@ class Lobby {
 
             newGame.join(socket.id, player.user);
             promises.push(
-                this.onSelectDeck(socket, newGame.id, player.deck._id, !!player.deck.precon_id)
+                this.onSelectDeck(socket, newGame.id, true, player.deck._id, !!player.deck.precon_id)
             );
         }
 

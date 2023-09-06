@@ -46,6 +46,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/chimera-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(5);
+            } catch (err) {
+                logger.error('Failed to get chimera precon decks', err);
+
+                throw new Error('Failed to get chimera precon decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/adventuringparty-decks',
         wrapAsync(async function (req, res) {
             let decks;

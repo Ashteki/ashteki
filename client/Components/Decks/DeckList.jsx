@@ -18,7 +18,8 @@ import {
     loadAdventuringPartyDecks,
     loadBuildingBasicsDecks,
     loadFirstAdventureDecks,
-    loadPveDecks
+    loadPveDecks,
+    loadChimeraDecks
 } from '../../redux/actions';
 
 import './DeckList.scss';
@@ -48,6 +49,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 return state.cards.buildingBasicsDecks;
             case 4:
                 return state.cards.firstAdventureDecks;
+            case 5:
+                return state.cards.chimeraDecks;
             case 6:
                 return state.cards.pveDecks;
             default:
@@ -72,6 +75,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             dispatch(loadBuildingBasicsDecks());
         } else if (standaloneDecks == 4) {
             dispatch(loadFirstAdventureDecks());
+        } else if (standaloneDecks == 5) {
+            dispatch(loadChimeraDecks());
         } else if (standaloneDecks == 6) {
             dispatch(loadPveDecks());
         } else {

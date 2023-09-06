@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { sendSocketMessage } from '../../redux/actions';
 import { Button } from 'react-bootstrap';
-
-import DeckStatus from '../Decks/DeckStatus';
+import classNames from 'classnames';
 
 import './PendingGamePlayer.scss';
+import DeckStatus from '../Decks/DeckStatus';
 import PlayerName from '../Site/PlayerName';
-import classNames from 'classnames';
+import SelectDeckModal from './SelectDeckModal';
 
 /**
  * @typedef PendingGamePlayersProps
@@ -18,15 +20,38 @@ import classNames from 'classnames';
 /**
  * @param {PendingGamePlayersProps} props
  */
-const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
+const PendingGamePlayers = ({ currentGame, user }) => {
+    const [showModal, setShowModal] = useState(false);
+    const [playerIsMe, setPlayerIsMe] = useState(true);
     const { t } = useTranslation();
+    const dispatch = useDispatch();
 
     let firstPlayer = true;
+    // need to account for coaloff, and player index
+    let clickHandler = (playerIsMe) => {
+        if (currentGame.gameFormat === 'coaloff') {
+            return true;
+        }
+
+        setPlayerIsMe(playerIsMe);
+        setShowModal(true);
+    };
+
+    const deckSelectedHandler = (deck) => {
+        setShowModal(false);
+        dispatch(sendSocketMessage('selectdeck', currentGame.id, playerIsMe, deck._id, !!deck.precon_id));
+    };
+
+    const chooseForMeHandler = (deckType) => {
+        setShowModal(false);
+        dispatch(sendSocketMessage('selectdeck', currentGame.id, playerIsMe, -1, 0, deckType));
+    };
+
     return (
         <div title={t('Players')}>
             <h3>Players:</h3>
             {Object.values(currentGame.players).map((player) => {
-                const playerIsMe = player && player.name === user?.username;
+                const isMe = player && player.name === user?.username;
 
                 let deck = null;
                 let selectLink = null;
@@ -34,15 +59,13 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
                 let clickClasses = classNames('deck-selection', {
                     clickable: currentGame.gameFormat !== 'coaloff'
                 });
-                let clickHandler = onSelectDeck;
-                if (currentGame.gameFormat === 'coaloff') {
-                    clickHandler = () => true;
-                }
+
                 if (player && player.deck && player.deck.selected) {
-                    if (playerIsMe) {
+                    if (isMe || currentGame.solo) {
+                        const deckName = player.deck.name;
                         deck = (
-                            <span className={clickClasses} onClick={clickHandler}>
-                                {player.deck.name}
+                            <span className={clickClasses} onClick={() => clickHandler(isMe)}>
+                                {deckName}
                             </span>
                         );
                     } else {
@@ -54,10 +77,10 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
                     }
 
                     status = <DeckStatus status={player.deck.status} />;
-                } else if (player && playerIsMe) {
+                } else if (player && isMe) {
                     selectLink = (
                         <>
-                            <Button onClick={onSelectDeck} className="btn-secondary">
+                            <Button onClick={() => clickHandler(isMe)} className='btn-secondary'>
                                 <Trans>Select Deck</Trans>
                             </Button>
                         </>
@@ -77,6 +100,15 @@ const PendingGamePlayers = ({ currentGame, user, onSelectDeck }) => {
                     </div>
                 );
             })}
+            {showModal && (
+                <SelectDeckModal
+                    gameFormat={currentGame.gameFormat}
+                    onClose={() => setShowModal(false)}
+                    onDeckSelected={deckSelectedHandler}
+                    onChooseForMe={chooseForMeHandler}
+                    playerIsMe={playerIsMe}
+                />
+            )}
         </div>
     );
 };

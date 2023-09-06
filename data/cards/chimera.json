@@ -67,7 +67,7 @@
             "placement": "battlefield",
             "target": "right",
             "attack": 2,
-            "life": 3,
+            "life": 4,
             "blood": 2
         },
         {
