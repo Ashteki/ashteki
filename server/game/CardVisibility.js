@@ -72,7 +72,6 @@ class CardVisibility {
             ...card.controller.spellboard,
             ...card.controller.discard
         ];
-        logger.info(revealedCards.length);
         return revealedCards.some((spell) => spell.conjurations.some((c) => c.stub === card.id));
     }
 }
