@@ -37,13 +37,14 @@ class Deck {
             conjurations: [],
             cards: [],
             diceCounts: [],
-            phenixborn: null,
+            phoenixborn: null,
             ultimate: null,
             behaviour: null,
             dice: [],
             notes: this.data.notes
         };
 
+        logger.info('creating deck cards');
         this.eachRepeatedCard(this.data.cards, (cardData) => {
             let card = this.createCard(player, cardData);
             if (card) {
@@ -53,6 +54,7 @@ class Deck {
             }
         });
 
+        logger.info('creating deck cards');
         this.eachRepeatedCard(this.data.conjurations, (conjData) => {
             let card = this.createCard(player, conjData);
             if (card) {
@@ -62,6 +64,7 @@ class Deck {
             }
         });
 
+        logger.info('creating phoenixborn card');
         this.eachRepeatedCard(this.data.phoenixborn, (pbData) => {
             let pbCard = this.createCard(player, pbData);
             if (pbCard) {
@@ -72,6 +75,7 @@ class Deck {
             }
         });
 
+        logger.info('creating ultimate cards');
         this.eachRepeatedCard(this.data.ultimate, (ultData) => {
             let ultCard = this.createCard(player, ultData);
             if (ultCard) {
@@ -82,6 +86,7 @@ class Deck {
             }
         });
 
+        logger.info('creating behaviour cards');
         this.eachRepeatedCard(this.data.behaviour, (behaviourData) => {
             let bCard = this.createCard(player, behaviourData);
             if (bCard) {
