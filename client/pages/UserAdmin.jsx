@@ -14,6 +14,7 @@ import { clearApiStatus, findUser, clearUserSessions, saveUser } from '../redux/
 import './UserAdmin.scss';
 import { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 const defaultPermissions = {
     canEditNews: false,
@@ -53,7 +54,9 @@ const permissions = [
 ];
 
 const UserAdmin = () => {
+    // currentUser is the user we're messing about with
     const currentUser = useSelector((state) => state.admin.currentUser);
+    // user is the active admin account that's doing the updates
     const user = useSelector((state) => state.account.user);
     const { t } = useTranslation();
     const apiState = useSelector((state) => {
@@ -194,132 +197,148 @@ const UserAdmin = () => {
                             </Row>
                         </Panel>
                         {currentUser && (
-                            <div>
-                                <Panel title={`${currentUser.username} - User details`}>
-                                    <dl>
-                                        <Row>
-                                            <Col md={3}>
-                                                <dt>Username:</dt>
-                                            </Col>
-                                            <Col md={3}>
-                                                <dd>{currentUser.username}</dd>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col md={3}>
-                                                <dt>Email:</dt>
-                                            </Col>
-                                            <Col md={3}>
-                                                <dd>{currentUser.email}</dd>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col md={3}>
-                                                <dt>Registered:</dt>
-                                            </Col>
-                                            <Col md={3}>
-                                                <dd>
-                                                    {moment(currentUser.registered).format(
-                                                        'YYYY-MM-DD HH:MM'
-                                                    )}
-                                                </dd>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col md={3}>
-                                                <dt>Favorite Color:</dt>
-                                            </Col>
-                                            <Col md={3}>
-                                                <HexColorPicker
-                                                    color={faveColor}
-                                                    onChange={setfaveColor}
-                                                />
-                                                ;
-                                                <Form.Control
-                                                    name='favecolor'
-                                                    type='text'
-                                                    value={faveColor}
-                                                    style={{ backgroundColor: faveColor }}
-                                                    onChange={(event) =>
-                                                        setfaveColor(event.target.value)
-                                                    }
-                                                />
-                                                <Button onClick={() => setfaveColor('')}>Clear</Button>
-                                            </Col>
-                                        </Row>
-                                    </dl>
+                            <div >
+                                <Panel>
+                                    <Tabs>
+                                        <TabList>
+                                            <Tab>User Details</Tab>
+                                            <Tab>Permissions</Tab>
+                                            <Tab>Sessions</Tab>
+                                        </TabList>
+                                        <TabPanel>
+                                            <dl>
+                                                <Row>
+                                                    <Col md={3}>
+                                                        <dt>Username:</dt>
+                                                    </Col>
+                                                    <Col md={3}>
+                                                        <dd>{currentUser.username}</dd>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col md={3}>
+                                                        <dt>Email:</dt>
+                                                    </Col>
+                                                    <Col md={3}>
+                                                        <dd>{currentUser.email}</dd>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col md={3}>
+                                                        <dt>Registered:</dt>
+                                                    </Col>
+                                                    <Col md={3}>
+                                                        <dd>
+                                                            {moment(currentUser.registered).format(
+                                                                'YYYY-MM-DD HH:MM'
+                                                            )}
+                                                        </dd>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col md={3}>
+                                                        <dt>Favorite Color:</dt>
+                                                    </Col>
+                                                    <Col md={3}>
+                                                        <HexColorPicker
+                                                            color={faveColor}
+                                                            onChange={setfaveColor}
+                                                        />
+                                                        ;
+                                                        <Form.Control
+                                                            name='favecolor'
+                                                            type='text'
+                                                            value={faveColor}
+                                                            style={{ backgroundColor: faveColor }}
+                                                            onChange={(event) =>
+                                                                setfaveColor(event.target.value)
+                                                            }
+                                                        />
+                                                        <Button onClick={() => setfaveColor('')}>Clear</Button>
+                                                    </Col>
+                                                </Row>
+                                            </dl>
 
-                                    <Form.Check
-                                        type='switch'
-                                        id='disabled'
-                                        label={'Disabled'}
-                                        inline
-                                        onChange={() => setUserDisabled(!userDisabled)}
-                                        value='true'
-                                        checked={userDisabled}
-                                    ></Form.Check>
-                                    <Form.Check
-                                        type='switch'
-                                        id='verified'
-                                        label={'Verified'}
-                                        inline
-                                        onChange={() => setUserVerified(!userVerified)}
-                                        value='true'
-                                        checked={userVerified}
-                                    ></Form.Check>
+                                            <Form.Check
+                                                type='switch'
+                                                id='disabled'
+                                                label={'Disabled'}
+                                                inline
+                                                onChange={() => setUserDisabled(!userDisabled)}
+                                                value='true'
+                                                checked={userDisabled}
+                                            ></Form.Check>
+                                            <Form.Check
+                                                type='switch'
+                                                id='verified'
+                                                label={'Verified'}
+                                                inline
+                                                onChange={() => setUserVerified(!userVerified)}
+                                                value='true'
+                                                checked={userVerified}
+                                            ></Form.Check>
 
-                                </Panel>
-                                {currentUser.linkedAccounts && (
-                                    <Panel title='Possibly linked accounts'>
-                                        <ul className='list'>
-                                            {currentUser.linkedAccounts.map((name) => {
-                                                return (
-                                                    <li key={name}>
-                                                        <a
-                                                            href='javascript:void(0)'
-                                                            onClick={() => dispatch(findUser(name))}
-                                                        >
-                                                            {name}
-                                                        </a>
-                                                    </li>
-                                                );
-                                            })}
-                                        </ul>
-                                    </Panel>
-                                )}
-                                {currentUser.tokens && (
-                                    <Panel title='Sessions'>
-                                        <Table striped>
-                                            <thead>
-                                                <tr>
-                                                    <th>IP Address</th>
-                                                    <th>Last Used</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {currentUser.tokens.map((token) => {
-                                                    return (
-                                                        <tr key={token.ip}>
-                                                            <td>{token.ip}</td>
-                                                            <td>
-                                                                {moment(token.lastUsed).format(
-                                                                    'YYYY-MM-DD HH:MM'
-                                                                )}
-                                                            </td>
+                                        </TabPanel>
+
+                                        <TabPanel>
+                                            {user?.permissions.canManagePermissions ? (
+                                                <Panel title='Permissions'>
+                                                    <Form.Group>
+                                                        <Form.Row>{permissionsCheckBoxes}</Form.Row>
+                                                    </Form.Group>
+                                                </Panel>
+                                            ) : null}
+                                        </TabPanel>
+
+                                        <TabPanel>
+                                            <h3>Sessions</h3>
+                                            {currentUser.tokens && (
+                                                <Table striped>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>IP Address</th>
+                                                            <th>Last Used</th>
                                                         </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {currentUser.tokens.map((token) => {
+                                                            return (
+                                                                <tr key={token.ip}>
+                                                                    <td>{token.ip}</td>
+                                                                    <td>
+                                                                        {moment(token.lastUsed).format(
+                                                                            'YYYY-MM-DD HH:MM'
+                                                                        )}
+                                                                    </td>
+                                                                </tr>
+                                                            );
+                                                        })}
+                                                    </tbody>
+                                                </Table>
+                                            )}
+                                            <h3>Possibly Linked Accounts</h3>
+                                            <ul className='list'>
+                                                {currentUser.linkedAccounts?.map((name) => {
+                                                    return (
+                                                        <li key={name}>
+                                                            <a
+                                                                href='javascript:void(0)'
+                                                                onClick={() => dispatch(findUser(name))}
+                                                            >
+                                                                {name}
+                                                            </a>
+                                                        </li>
                                                     );
                                                 })}
-                                            </tbody>
-                                        </Table>
-                                    </Panel>
-                                )}
-                                {user?.permissions.canManagePermissions ? (
-                                    <Panel title='Permissions'>
-                                        <Form.Group>
-                                            <Form.Row>{permissionsCheckBoxes}</Form.Row>
-                                        </Form.Group>
-                                    </Panel>
-                                ) : null}
+                                            </ul>
+
+
+                                        </TabPanel>
+
+                                    </Tabs>
+
+                                </Panel>
+
                                 <div className='text-center'>
                                     <Button
                                         type='button'

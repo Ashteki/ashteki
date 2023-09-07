@@ -64,6 +64,11 @@ const routes = [
     { path: '/profile', action: () => <Profile key='profile' /> },
     { path: '/register', action: () => <Register key='register' /> },
     { path: '/alts', action: () => <UserAlts key='altarts' /> },
+    // PASSING PARAMETERS!
+    // {
+    //     path: '/alts/:username',
+    //     action: (args) => <UserAlts key='altarts' user={args.params.username} />
+    // },
     {
         path: '/reset-password',
         action: (context) => (
