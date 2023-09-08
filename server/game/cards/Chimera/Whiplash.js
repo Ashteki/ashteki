@@ -19,10 +19,17 @@ class Whiplash extends AspectCard {
                     // aim: 'left',
                 }
             },
-            gameAction: ability.actions.destroy((context) => ({
-                target: context.targets.damaged || context.targets.undamaged
-            }))
-        })
+            gameAction: ability.actions.conditional({
+                condition: (context) => context.targets.damaged,
+                trueGameAction: ability.actions.destroy((context) => ({
+                    target: context.targets.damaged
+                })),
+                falseGameAction: ability.actions.dealDamage((context) => ({
+                    amount: 1,
+                    target: context.targets.undamaged
+                }))
+            })
+        });
     }
 }
 
