@@ -254,7 +254,6 @@ class Player extends GameObject {
     releaseHand() {
         _.shuffle(this.hand);
         for (let card of this.hand) {
-            // only one copy?
             this.moveCard(card, Location.Deck);
         }
     }

@@ -74,7 +74,7 @@ class DummyPlayer extends Player {
     cardDiscardedListener(event) {
         if (event.location === 'deck' && this.fatigued) {
             this.chimera.addToken('damage', 1);
-            this.game.addMessage('Chimera takes fatigue damage');
+            this.game.addMessage('Chimera takes 1 fatigue damage');
         }
     }
 

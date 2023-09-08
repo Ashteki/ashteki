@@ -37,6 +37,7 @@ class RandomExposeAction extends PlayerAction {
                     }
                 ]
             });
+            context.game.actions.releaseChimeraHand().resolve(player, context);
         });
     }
 }
