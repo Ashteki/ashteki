@@ -15,7 +15,7 @@ describe('Chimera fatigue', function () {
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
-                    discard: ['iron-scales', 'constrict'],
+                    discard: ['iron-scales', 'constrict', 'firebelly', 'lurk'],
                     deck: ['rampage']
                 }
             });
@@ -25,7 +25,7 @@ describe('Chimera fatigue', function () {
             // trim filler cards
             this.player2.player.deck = [this.rampage];
             expect(this.player2.deck.length).toBe(1);
-            expect(this.player2.discard.length).toBe(2);
+            expect(this.player2.discard.length).toBe(4);
             expect(this.player2.fatigued).toBe(false);
 
             this.player1.endTurn();
@@ -36,9 +36,10 @@ describe('Chimera fatigue', function () {
             // next turn
             expect(this.game.round).toBe(2);
             // deck is empty
-            expect(this.player2.deck.length).toBe(0);
-            expect(this.player2.threatZone.length).toBe(1); // deck card is not in threat zone
+            expect(this.player2.deck.length).toBe(1); // reshuffled from discard, but then played to threatzone
+            expect(this.player2.threatZone.length).toBe(4); // refilled from reshuffled deck
             expect(this.player2.fatigued).toBe(true);
+            expect(this.firebelly.location).toBe('play area');
         });
     });
 });

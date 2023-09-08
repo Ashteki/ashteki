@@ -54,9 +54,21 @@ class DummyPlayer extends Player {
                 }
 
                 // refill deck from discard pile
-
+                this.deckRanOutOfCards();
             }
         }
+    }
+
+    deckRanOutOfCards() {
+        this.game.addMessage(
+            'Chimera deck has run out of cards, so re-shuffles from discard',
+            this
+        );
+        for (let card of this.discard) {
+            this.moveCard(card, 'deck');
+        }
+
+        this.shuffleDeck();
     }
 
     cardDiscardedListener(event) {
@@ -116,10 +128,26 @@ class DummyPlayer extends Player {
 
     replenishAspects() {
         const amount = this.chimera.threat - this.unitsInPlay.length;
-        const cards = this.deck.slice(0, amount);
-        cards.forEach(card => {
+
+        this.moveCardsToThreatZone(amount);
+    }
+
+    moveCardsToThreatZone(numCards) {
+        let remainingCards = 0;
+
+        if (numCards > this.deck.length) {
+            remainingCards = numCards - this.deck.length;
+            numCards = this.deck.length;
+        }
+
+        for (let card of this.deck.slice(0, numCards)) {
             this.moveCard(card, 'play area', { facedown: true });
-        })
+        }
+
+        // if re-draw occurred
+        if (remainingCards > 0 && this.deck.length > 0) {
+            this.game.queueSimpleStep(() => this.moveCardsToThreatZone(remainingCards));
+        }
     }
 
     getAttacker() {
