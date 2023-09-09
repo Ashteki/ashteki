@@ -28,6 +28,10 @@ class DummyPlayer extends Player {
         return this.phoenixborn;
     }
 
+    get aspectsInPlay() {
+        return this.cardsInPlay.filter((card) => CardType.Aspect === card.type);
+    }
+
     getHand() {
         if (this.hand.length === 0) {
             this.doDrawCards(5);
@@ -127,7 +131,7 @@ class DummyPlayer extends Player {
     }
 
     replenishAspects() {
-        const amount = this.chimera.threat - this.unitsInPlay.length;
+        const amount = this.chimera.threat - this.aspectsInPlay.length;
 
         this.moveCardsToThreatZone(amount);
     }

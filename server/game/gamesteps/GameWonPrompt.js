@@ -24,14 +24,15 @@ class GameWonPrompt extends AllPlayerPrompt {
             };
         }
 
+        const promptButtons = [{ command: 'leavegame', arg: 'leavegame', text: 'Leave' }];
+        if (!this.game.solo) {
+            promptButtons.push({ arg: 'rematch', text: 'Rematch' });
+            promptButtons.push({ arg: 'rematch-swap', text: 'Rematch: Swap Decks' });
+        }
         return {
             promptTitle: 'Game Won',
             menuTitle: menuTitle,
-            buttons: [
-                { command: 'leavegame', arg: 'leavegame', text: 'Leave' },
-                { arg: 'rematch', text: 'Rematch' },
-                { arg: 'rematch-swap', text: 'Rematch: Swap Decks' }
-            ]
+            buttons: promptButtons
         };
     }
 

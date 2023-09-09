@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class MoveTokenAction extends CardGameAction {
@@ -16,8 +17,7 @@ class MoveTokenAction extends CardGameAction {
     setup() {
         this.name = 'moveToken';
         this.targetType = [
-            'Conjuration',
-            'Ally',
+            ...BattlefieldTypes,
             'Ready Spell',
             'Phoenixborn',
             'Alteration Spell',
