@@ -1,4 +1,4 @@
-const { CardType, PhoenixbornTypes } = require('../../../constants.js');
+const { PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Anguish extends Card {
@@ -8,6 +8,7 @@ class Anguish extends Card {
             message: '{0} plays {1}',
             messageArgs: (context) => [context.player, context.source],
             target: {
+                activePromptTitle: 'Choose a phoenixborn for player discard',
                 cardType: PhoenixbornTypes,
                 // autoTarget: (context) => context.player.opponent.phoenixborn
                 gameAction: ability.actions.chooseAction((context) => ({

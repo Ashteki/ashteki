@@ -268,6 +268,10 @@ class Player extends GameObject {
         return this.unitsInPlay.filter((c) => !c.moribund).length >= this.phoenixborn.battlefield;
     }
 
+    get deckIsEmpty() {
+        return this.deck.length === 0;
+    }
+
     /**
      * Shuffles the deck, emitting an event and displaying a message in chat
      */

@@ -117,7 +117,12 @@ class DummyPlayer extends Player {
     }
 
     get discardStrategy() {
-        return this.disStrategy
+        return this.disStrategy;
+    }
+
+    get deckIsEmpty() {
+        // dummy reshuffles deck from discard so effectively is never really empty
+        return this.fatigued;
     }
 
     setupAspects() {

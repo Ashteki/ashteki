@@ -11,7 +11,7 @@ class Remorse extends Card {
             gameAction: ability.actions.discardTopOfDeck({ amount: 2 }),
             then: {
                 alwaysTriggers: true,
-                condition: (context) => context.player.opponent.deck.length === 0,
+                condition: (context) => context.player.opponent.deckIsEmpty,
                 target: {
                     autoTarget: (context) => context.player.opponent.phoenixborn,
                     gameAction: ability.actions.dealDamage({

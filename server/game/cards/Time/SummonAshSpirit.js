@@ -24,7 +24,7 @@ class SummonAshSpirit extends Card {
                         alwaysTriggers: true
                     };
 
-                    if (context.player.opponent.deck.length > 0) {
+                    if (!context.player.opponent.deckIsEmpty) {
                         result.gameAction = ability.actions.draw((context) => ({
                             target: [context.player.opponent]
                         }));

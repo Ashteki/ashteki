@@ -40,14 +40,13 @@ describe('Chimera dice interations', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
 
-            expect(this.player2.dicepool.every(d => d.level === 'basic'));
+            expect(this.player2.dicepool.every((d) => d.level === 'basic'));
             expect(this.player2.phoenixborn.redRains).toBe(1);
             this.player1.clickPrompt('Ok');
 
             expect(this.huntingInstincts.facedown).toBe(false);
             expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
         });
-
     });
 
     describe('Illusion dice power vs rage dice', function () {
