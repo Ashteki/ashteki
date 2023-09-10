@@ -55,6 +55,7 @@ class DummyPlayer extends Player {
                         promptTitle: 'Chimera Alert',
                         menuTitle: 'Chimera is Fatigued!'
                     });
+                    this.game.addAlert('info', 'Chimera is Fatigued!');
                 }
 
                 // refill deck from discard pile
