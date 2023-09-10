@@ -1,10 +1,16 @@
-const { BattlefieldTypes } = require('../../constants');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
+// readyAction is used to unexhaust during the recovery phase
 class ReadyAction extends CardGameAction {
     setup() {
         this.name = 'ready';
-        this.targetType = [...BattlefieldTypes, 'Phoenixborn', 'Alteration Spell', 'Ready Spell'];
+        this.targetType = [
+            ...BattlefieldTypes,
+            ...PhoenixbornTypes,
+            'Alteration Spell',
+            'Ready Spell'
+        ];
         this.effectMsg = 'ready {0}';
     }
 

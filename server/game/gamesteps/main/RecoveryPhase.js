@@ -30,7 +30,18 @@ class RecoveryPhase extends Phase {
             return;
         }
 
+        const dummyPlayer = this.game.getDummyPlayer();
         // remove 1 Red Rains token from the Chimera for each exhaustion token on the Chimera or Ultimate cards. 
+        const totalExhaustion = dummyPlayer.chimera.exhaustion + dummyPlayer.ultimate.exhaustion;
+        if (totalExhaustion > 0 && dummyPlayer.chimera.redRains) {
+            const amt = Math.min(totalExhaustion, dummyPlayer.chimera.redRains);
+            this.game.addMessage('Chimera removes {0} red rains tokens for being exhausted', amt);
+            const context = this.game.getFrameworkContext(dummyPlayer);
+            context.source = dummyPlayer.chimera;
+            this.game.actions
+                .removeRedRains({ amount: amt, showMessage: true, shortMessage: true })
+                .resolve(dummyPlayer.phoenixborn, context);
+        }
     }
 
     /** remove one exhaustion from all cards in play - battlefield, spellboard and phoenixborn */
@@ -40,7 +51,9 @@ class RecoveryPhase extends Phase {
             (acc, c) => c.upgrades ? acc.concat(c.upgrades) : acc,
             []
         );
-        this.game.actions.ready().resolve(this.game.cardsInPlay.concat(upgrades), this.game.getFrameworkContext());
+        this.game.actions
+            .ready()
+            .resolve(this.game.cardsInPlay.concat(upgrades), this.game.getFrameworkContext());
         return;
     }
 

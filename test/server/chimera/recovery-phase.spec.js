@@ -37,7 +37,7 @@ describe('Chimera recovery phase', function () {
         });
     });
 
-    describe('Red Rains tokens', function () {
+    describe('Red Rains - status tokens', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -104,20 +104,24 @@ describe('Chimera recovery phase', function () {
             });
 
             this.ironScales.tokens.exhaustion = 1; // should end turn
+            this.virosS1.tokens.redRains = 1;
+            this.virosS1.tokens.exhaustion = 1;
             this.player1.endTurn();
             // no threat to reveal, no unexhausted units to attack should PASS chimera turn
         });
 
-        it('should place a RR token for each aspect in play', function () {
+        it('should place a RR token for each aspect in play, remove 1 for each exhaustion', function () {
             expect(this.game.round).toBe(1);
             // player 1 pin dice
             this.player1.clickDie(0);
             this.player1.clickDone();
+
             // recovery
-            expect(this.virosS1.redRains).toBe(1);
+            expect(this.virosS1.redRains).toBe(1); // remove 1 from exhaustion
 
             // next turn
             expect(this.game.round).toBe(2);
+            expect(this.virosS1.exhaustion).toBe(0);
         });
     });
 });

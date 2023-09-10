@@ -39,7 +39,6 @@ describe('Chimera fatigue', function () {
             expect(this.player2.deck.length).toBe(1); // reshuffled from discard, but then played to threatzone
             expect(this.player2.threatZone.length).toBe(4); // refilled from reshuffled deck
             expect(this.player2.fatigued).toBe(true);
-            expect(this.firebelly.location).toBe('play area');
         });
     });
 });

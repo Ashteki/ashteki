@@ -27,7 +27,7 @@
         {
             "name": "Viros Behaviour",
             "stub": "viros-behaviour",
-            "type": "Ready Spell",
+            "type": "Behaviour",
             "imageStub": "corpse-of-viros-behavior-%s.jpg"
         },
         {

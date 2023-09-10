@@ -9,7 +9,8 @@ const Actions = {
         new GameActions.AddTokenAction(propertyFactory, 'exhaustion'),
     addGravityFluxToken: (propertyFactory) =>
         new GameActions.AddTokenAction(propertyFactory, 'gravityFlux'),
-    addRedRainsToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'redRains'),
+    addRedRainsToken: (propertyFactory) =>
+        new GameActions.AddTokenAction(propertyFactory, 'redRains'),
     addStatusToken: (propertyFactory) => new GameActions.AddTokenAction(propertyFactory, 'status'),
     addToken: (propertyFactory, type) => new GameActions.AddTokenAction(propertyFactory, type),
     attach: (propertyFactory) => new GameActions.AttachAction(propertyFactory), // upgrade
@@ -43,6 +44,8 @@ const Actions = {
         new GameActions.RemoveTokenAction(propertyFactory, 'exhaustion'),
     removeFromBattle: (propertyFactory) => new GameActions.RemoveFromBattleAction(propertyFactory),
     removeAttacker: (propertyFactory) => new GameActions.RemoveAttackerAction(propertyFactory),
+    removeRedRains: (propertyFactory) =>
+        new GameActions.RemoveTokenAction(propertyFactory, 'redRains'),
     removeStatus: (propertyFactory) => new GameActions.RemoveTokenAction(propertyFactory, 'status'),
     removeToken: (propertyFactory, type) =>
         new GameActions.RemoveTokenAction(propertyFactory, type),

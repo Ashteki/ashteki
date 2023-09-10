@@ -12,7 +12,8 @@ const CardType = {
     Conjuration: 'Conjuration',
     ConjuredAlteration: 'Conjured Alteration Spell',
     Aspect: 'Aspect',
-    Chimera: 'Chimera'
+    Chimera: 'Chimera',
+    Behaviour: 'Behaviour'
 };
 
 const Location = {

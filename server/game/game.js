@@ -1050,7 +1050,11 @@ class Game extends EventEmitter {
         this.allCards = _.reduce(
             this.getPlayers(),
             (cards, player) => {
-                return cards.concat(player.deck, player.archives, player.phoenixborn);
+                let result = cards.concat(player.deck, player.archives, player.phoenixborn);
+                if (this.solo && player instanceof DummyPlayer) {
+                    result = result.concat(player.ultimate);
+                }
+                return result;
             },
             []
         );
