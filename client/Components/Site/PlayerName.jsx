@@ -1,5 +1,6 @@
 import React from 'react';
 import Avatar from '../Site/Avatar';
+import classNames from 'classnames';
 
 import './PlayerName.scss';
 
@@ -20,10 +21,14 @@ const PlayerName = ({ player }) => {
         return null;
     };
 
+    let className = classNames(userClass, {
+        'no-avatar': !player.avatar
+    });
+
     return (
-        <span>
+        <span style={{ margin: 'auto 2px' }}>
             <Avatar imgPath={player.avatar} />
-            <span className={userClass} style={userStyle}>
+            <span className={className} style={userStyle}>
                 {player.name || player.username}
             </span>{' '}
             {getExpLevel(player)}

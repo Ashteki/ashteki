@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../constants.js');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../constants.js');
 const SingleCardSelector = require('../CardSelectors/SingleCardSelector.js');
 const UiPrompt = require('./uiprompt.js');
 

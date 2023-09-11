@@ -71,7 +71,7 @@ describe('Remorse', function () {
                     },
                     player2: {
                         dummy: true,
-                        phoenixborn: 'viros-s1',
+                        phoenixborn: 'corpse-of-viros',
                         behaviour: 'viros-behaviour',
                         ultimate: 'viros-ultimate',
                         inPlay: ['iron-scales'],
@@ -95,7 +95,7 @@ describe('Remorse', function () {
                 this.player1.clickCard(this.remorse);
 
                 expect(this.player2.deck.length).toBe(deckSize - 2);
-                expect(this.virosS1.damage).toBe(4); // 2 discard damage plus 2 for empty deck
+                expect(this.corpseOfViros.damage).toBe(4); // 2 discard damage plus 2 for empty deck
             });
         });
     });

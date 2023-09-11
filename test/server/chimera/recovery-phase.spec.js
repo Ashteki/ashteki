@@ -11,7 +11,7 @@ describe('Chimera recovery phase', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -49,7 +49,7 @@ describe('Chimera recovery phase', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['rampage'],
@@ -92,7 +92,7 @@ describe('Chimera recovery phase', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['iron-scales'],
@@ -104,8 +104,8 @@ describe('Chimera recovery phase', function () {
             });
 
             this.ironScales.tokens.exhaustion = 1; // should end turn
-            this.virosS1.tokens.redRains = 1;
-            this.virosS1.tokens.exhaustion = 1;
+            this.corpseOfViros.tokens.redRains = 1;
+            this.corpseOfViros.tokens.exhaustion = 1;
             this.player1.endTurn();
             // no threat to reveal, no unexhausted units to attack should PASS chimera turn
         });
@@ -117,11 +117,11 @@ describe('Chimera recovery phase', function () {
             this.player1.clickDone();
 
             // recovery
-            expect(this.virosS1.redRains).toBe(1); // remove 1 from exhaustion
+            expect(this.corpseOfViros.redRains).toBe(1); // remove 1 from exhaustion
 
             // next turn
             expect(this.game.round).toBe(2);
-            expect(this.virosS1.exhaustion).toBe(0);
+            expect(this.corpseOfViros.exhaustion).toBe(0);
         });
     });
 });

@@ -13,7 +13,7 @@ describe('Dark descent', function () {
             },
             player2: {
                 dummy: true,
-                phoenixborn: 'viros-s1',
+                phoenixborn: 'corpse-of-viros',
                 behaviour: 'viros-behaviour',
                 ultimate: 'viros-ultimate',
                 inPlay: ['dark-descent'],

@@ -14,7 +14,7 @@ describe('Stormcall Aspect', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -54,7 +54,7 @@ describe('Stormcall Aspect', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['stormcall'],
@@ -75,7 +75,7 @@ describe('Stormcall Aspect', function () {
 
             expect(this.stormcall.status).toBe(1);
             expect(this.coalRoarkwin.damage).toBe(1);
-            expect(this.virosS1.redRains).toBe(0);
+            expect(this.corpseOfViros.redRains).toBe(0);
         });
 
         it('the last status also places a redrains token', function () {
@@ -85,7 +85,7 @@ describe('Stormcall Aspect', function () {
 
             expect(this.stormcall.status).toBe(0);
             expect(this.coalRoarkwin.damage).toBe(1);
-            expect(this.virosS1.redRains).toBe(1);
+            expect(this.corpseOfViros.redRains).toBe(1);
         });
     });
 });

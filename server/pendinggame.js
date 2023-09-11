@@ -9,6 +9,10 @@ const PendingPlayer = require('./models/PendingPlayer.js');
 class PendingGame {
     constructor(owner, details) {
         this.solo = details.gameFormat === 'solo';
+        if (this.solo) {
+            this.soloLevel = 'S';
+            this.soloStage = '1';
+        }
         this.allowSpectators = !this.solo && details.allowSpectators;
         this.createdAt = new Date();
         this.gameChat = new GameChat(this);
@@ -329,6 +333,7 @@ class PendingGame {
                     selected: player.deck.selected,
                     status: player.deck.status,
                     name: null,
+                    isChimera: player.playerType === 'dummy',
                     pbStub:
                         player.deck.phoenixborn[0]?.card.imageStub ||
                         player.deck.phoenixborn[0]?.card.stub
@@ -432,7 +437,9 @@ class PendingGame {
             swap: this.swap,
             useGameTimeLimit: this.useGameTimeLimit,
             clockType: this.clockType,
-            solo: this.solo
+            solo: this.solo,
+            soloLevel: this.soloLevel,
+            soloStage: this.soloStage
         };
     }
 }

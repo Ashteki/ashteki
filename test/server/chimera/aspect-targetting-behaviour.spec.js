@@ -12,7 +12,7 @@ describe('When Attacking', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['rampage', 'hunting-instincts'],

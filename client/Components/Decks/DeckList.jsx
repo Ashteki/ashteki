@@ -107,6 +107,10 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
 
     // eslint-disable-next-line no-unused-vars
     const rowClasses = (row) => {
+        if (row.mode === 'chimera') {
+            return '';
+        }
+
         if (!row.status.basicRules) {
             return 'invalid';
         }
@@ -176,9 +180,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             dataField: 'name',
             text: 'Name',
             sort: !standaloneDecks,
-            style: {
-                fontSize: '0.8rem'
-            },
             filter: textFilter({
                 getFilter: (filter) => {
                     nameFilter.current = filter;
@@ -189,7 +190,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 const icon = hasChained ? (
                     <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
                 ) : null;
-                const dice = <DiceRack dice={row.dicepool} />;
+                const dice = row.mode !== 'chimera' && <DiceRack dice={row.dicepool} />;
                 const output = (
                     <>
                         <span>{item}</span>&nbsp;
@@ -212,6 +213,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             align: 'center',
             text: 'Updated',
             sort: !standaloneDecks,
+            hidden: standaloneDecks,
+
             /**
              * @param {Date} cell
              */

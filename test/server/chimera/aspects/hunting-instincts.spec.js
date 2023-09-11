@@ -13,7 +13,7 @@ describe('Hunting Instincts Reveal', function () {
             },
             player2: {
                 dummy: true,
-                phoenixborn: 'viros-s1',
+                phoenixborn: 'corpse-of-viros',
                 behaviour: 'viros-behaviour',
                 ultimate: 'viros-ultimate',
                 inPlay: [],
@@ -52,7 +52,7 @@ describe('Hunting Instincts Reveal', function () {
         this.player1.clickDone(); // guard
         this.player1.clickYes(); // counter
         expect(this.anchornaut.location).toBe('discard');
-        expect(this.virosS1.redRains).toBe(1);
+        expect(this.corpseOfViros.redRains).toBe(1);
 
         expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
     });

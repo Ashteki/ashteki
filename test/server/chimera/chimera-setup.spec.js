@@ -12,7 +12,7 @@ describe('Chimera setup', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     spellboard: [],

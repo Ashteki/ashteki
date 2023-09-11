@@ -13,7 +13,7 @@ describe('Chimera Discard', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -34,7 +34,7 @@ describe('Chimera Discard', function () {
 
             expect(this.player2.deck.length).toBe(decklength - 1);
             expect(this.player2.discard.length).toBe(1);
-            expect(this.virosS1.damage).toBe(1);
+            expect(this.corpseOfViros.damage).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });

@@ -35,7 +35,7 @@ class AshesCardService {
                             name: card.name,
                             type: card.type,
                             stub: card.stub,
-                            imageStub: card.stub,
+                            imageStub: card.imageStub ? card.imageStub : card.stub,
                             id: card.stub,
                             conjurations: card.conjurations,
                             phoenixborn: card.phoenixborn,

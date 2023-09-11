@@ -46,7 +46,7 @@ describe('Glow Finch', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -67,7 +67,7 @@ describe('Glow Finch', function () {
 
             expect(this.glowFinch.location).toBe('archives');
             expect(this.player2.deck.length).toBe(cardCount - 2);
-            expect(this.virosS1.damage).toBe(2);
+            expect(this.corpseOfViros.damage).toBe(2);
         });
     });
 });

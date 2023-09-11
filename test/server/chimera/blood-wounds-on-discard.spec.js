@@ -12,7 +12,7 @@ describe('Blood wounds', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['rampage'],
@@ -30,7 +30,7 @@ describe('Blood wounds', function () {
             this.player1.clickCard(this.rampage);
 
             expect(this.rampage.location).toBe('discard');
-            expect(this.virosS1.damage).toBe(1);
+            expect(this.corpseOfViros.damage).toBe(1);
         });
     });
 });

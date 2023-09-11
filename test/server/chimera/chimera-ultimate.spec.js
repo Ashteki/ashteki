@@ -14,7 +14,7 @@ describe('Chimera ultimate', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -28,7 +28,7 @@ describe('Chimera ultimate', function () {
         it('ultimate value raises with exhaustion tokens', function () {
             expect(this.player2.player.ultimateThreshold).toBe(3);
 
-            this.virosS1.tokens.exhaustion = 2;
+            this.corpseOfViros.tokens.exhaustion = 2;
             expect(this.player2.player.ultimateThreshold).toBe(5);
 
             this.player2.ultimate.tokens.exhaustion = 2;

@@ -3,19 +3,13 @@
     "results": [
         {
             "name": "The Corpse of Viros",
-            "stub": "viros-s1",
+            "stub": "corpse-of-viros",
             "type": "Chimera",
             "level": "standard",
             "rank": 1,
             "threat": 4,
             "life": 30,
             "ultimate": 3,
-            "setup": [
-                1,
-                2,
-                2,
-                2
-            ],
             "imageStub": "corpse-of-viros-1p-standard-1.jpg"
         },
         {

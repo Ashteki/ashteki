@@ -13,7 +13,7 @@ describe('Chimera Hand', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -52,7 +52,7 @@ describe('Chimera Hand', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -64,22 +64,22 @@ describe('Chimera Hand', function () {
         });
 
         it('damage damages opponents pb', function () {
-            expect(this.virosS1.damage).toBe(0);
+            expect(this.corpseOfViros.damage).toBe(0);
 
             this.player1.clickCard(this.anguish);
             this.player1.clickPrompt('Play this action');
             this.player1.clickDie(2);
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.virosS1);
+            this.player1.clickCard(this.corpseOfViros);
             this.player1.clickPrompt('Take 2 wounds');
 
-            expect(this.virosS1.damage).toBe(2);
+            expect(this.corpseOfViros.damage).toBe(2);
             expect(this.player2.hand.length).toBe(0);
         });
 
         it('discard removes card with no damage and exhaust choice exhausts dice', function () {
-            expect(this.virosS1.damage).toBe(0);
+            expect(this.corpseOfViros.damage).toBe(0);
             // expect(this.player2.dicepool[0].exhausted).toBe(false);
             // expect(this.player2.dicepool[1].exhausted).toBe(false);
 
@@ -88,7 +88,7 @@ describe('Chimera Hand', function () {
             this.player1.clickDie(2);
             this.player1.clickDie(3);
             this.player1.clickPrompt('Done');
-            this.player1.clickCard(this.virosS1);
+            this.player1.clickCard(this.corpseOfViros);
 
             this.player1.clickPrompt('Discard');
             expect(this.player2.discard.length).toBe(1);
@@ -101,7 +101,7 @@ describe('Chimera Hand', function () {
             // expect(this.player2.dicepool[0].exhausted).toBe(true);
             // expect(this.player2.dicepool[1].exhausted).toBe(true);
 
-            expect(this.virosS1.damage).toBe(0);
+            expect(this.corpseOfViros.damage).toBe(0);
             expect(this.player2.hand.length).toBe(0);
         });
     });

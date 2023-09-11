@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { sendSocketMessage } from '../../redux/actions';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Form } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import './PendingGamePlayer.scss';
@@ -39,12 +39,22 @@ const PendingGamePlayers = ({ currentGame, user }) => {
 
     const deckSelectedHandler = (deck) => {
         setShowModal(false);
-        dispatch(sendSocketMessage('selectdeck', currentGame.id, playerIsMe, deck._id, !!deck.precon_id));
+        dispatch(
+            sendSocketMessage('selectdeck', currentGame.id, playerIsMe, deck._id, !!deck.precon_id)
+        );
     };
 
     const chooseForMeHandler = (deckType) => {
         setShowModal(false);
         dispatch(sendSocketMessage('selectdeck', currentGame.id, playerIsMe, -1, 0, deckType));
+    };
+
+    const onSoloLevelChange = (newLevel) => {
+        dispatch(sendSocketMessage('setsololevel', currentGame.id, newLevel));
+    };
+
+    const onSoloStageChange = (newStage) => {
+        dispatch(sendSocketMessage('setsolostage', currentGame.id, newStage));
     };
 
     return (
@@ -56,6 +66,8 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                 let deck = null;
                 let selectLink = null;
                 let status = null;
+                let soloControls = null;
+
                 let clickClasses = classNames('deck-selection', {
                     clickable: currentGame.gameFormat !== 'coaloff'
                 });
@@ -76,7 +88,38 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         deck = <span className='deck-selection'>{deckName}</span>;
                     }
 
-                    status = <DeckStatus status={player.deck.status} />;
+                    status = !(currentGame.solo && !isMe) && (
+                        <DeckStatus status={player.deck.status} />
+                    );
+
+                    if (player.deck.isChimera) {
+                        soloControls = (
+                            <>
+                                <Col xs='auto'>
+                                    <Form.Control
+                                        as='select'
+                                        sm='3'
+                                        size='sm'
+                                        onChange={(e) => onSoloLevelChange(e.target.value)}
+                                    >
+                                        <option value='S'>Standard</option>
+                                        <option value='H'>Heroic</option>
+                                    </Form.Control>
+                                </Col>
+                                <Col xs='auto'>
+                                    <Form.Control
+                                        as='select'
+                                        size='sm'
+                                        onChange={(e) => onSoloStageChange(e.target.value)}
+                                    >
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </Form.Control>
+                                </Col>
+                            </>
+                        );
+                    }
                 } else if (player && isMe) {
                     selectLink = (
                         <>
@@ -95,8 +138,13 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                 }
                 return (
                     <div className={rowClass} key={player.name}>
-                        <PlayerName player={player} />
-                        {deck} {status} {selectLink}
+                        <Form.Row>
+                            <PlayerName player={player} />
+                            {deck}
+                            {status}
+                            {selectLink}
+                            {soloControls}
+                        </Form.Row>
                     </div>
                 );
             })}

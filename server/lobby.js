@@ -345,6 +345,8 @@ class Lobby {
         socket.registerEvent('removegame', this.onRemoveGame.bind(this));
         socket.registerEvent('restartnode', this.onRestartNode.bind(this));
         socket.registerEvent('selectdeck', this.onSelectDeck.bind(this));
+        socket.registerEvent('setsololevel', this.onSetSoloLevel.bind(this));
+        socket.registerEvent('setsolostage', this.onSetSoloStage.bind(this));
         socket.registerEvent('startgame', this.onStartGame.bind(this));
         socket.registerEvent('togglenode', this.onToggleNode.bind(this));
         socket.registerEvent('watchgame', this.onWatchGame.bind(this));
@@ -734,6 +736,26 @@ class Lobby {
         };
 
         game.selectDeck(user.username, deck, !isForMe);
+    }
+
+    onSetSoloLevel(socket, gameId, level) {
+        let game = this.games[gameId];
+        if (!game) {
+            return;
+        }
+
+        game.soloLevel = level;
+        this.sendGameState(game);
+    }
+
+    onSetSoloStage(socket, gameId, stage) {
+        let game = this.games[gameId];
+        if (!game) {
+            return;
+        }
+
+        game.soloStage = stage;
+        this.sendGameState(game);
     }
 
     checkConjurations(deck) {

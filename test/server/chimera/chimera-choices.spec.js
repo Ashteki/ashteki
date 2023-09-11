@@ -13,7 +13,7 @@ describe('Chimera Choice', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -27,7 +27,7 @@ describe('Chimera Choice', function () {
             this.player1.play(this.generosity);
             this.player1.clickPrompt('Draw');
             this.player1.clickPrompt('Heal');
-            this.player1.clickCard(this.virosS1);
+            this.player1.clickCard(this.corpseOfViros);
             this.player1.clickPrompt('Unexhaust');
             this.player1.clickCard(this.aradelSummergaard);
             expect(this.player1).toHaveDefaultPrompt();

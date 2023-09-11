@@ -13,7 +13,7 @@ describe('Chimera Draw', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -33,7 +33,7 @@ describe('Chimera Draw', function () {
             expect(this.player2.deck.length).toBe(decklength - 2);
             expect(this.player2.hand.length).toBe(0);
             expect(this.player2.discard.length).toBe(2);
-            expect(this.virosS1.damage).toBe(0);
+            expect(this.corpseOfViros.damage).toBe(0);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
@@ -52,7 +52,7 @@ describe('Chimera Draw', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: [],
@@ -74,7 +74,7 @@ describe('Chimera Draw', function () {
             expect(this.player2.deck.length).toBe(decklength);
             expect(this.player2.hand.length).toBe(0);
             expect(this.player2.discard.length).toBe(0);
-            expect(this.virosS1.damage).toBe(2);
+            expect(this.corpseOfViros.damage).toBe(2);
             expect(this.player1).toHaveDefaultPrompt();
         });
 

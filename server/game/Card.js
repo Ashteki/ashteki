@@ -78,7 +78,6 @@ class Card extends PlayableObject {
         this.blood = cardData.blood;
         this.printedUltimate = cardData.ultimate;
         this.target = cardData.target;
-        this.setup = cardData.setup;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
 

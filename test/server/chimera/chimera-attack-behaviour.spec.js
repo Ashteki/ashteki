@@ -14,7 +14,7 @@ describe('When Attacked', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['rampage'],
@@ -48,7 +48,7 @@ describe('When Attacked', function () {
             this.player1.clickDone(); // aftershock
 
             expect(this.rampage.location).toBe('discard');
-            expect(this.virosS1.damage).toBe(1);
+            expect(this.corpseOfViros.damage).toBe(1);
         });
     });
 
@@ -65,7 +65,7 @@ describe('When Attacked', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['rampage'],
@@ -85,7 +85,7 @@ describe('When Attacked', function () {
             this.player1.clickPrompt('Ok'); // guard roll alert
             expect(this.rampage.location).toBe('play area');
             expect(this.rampage.damage).toBe(0);
-            expect(this.virosS1.damage).toBe(1);
+            expect(this.corpseOfViros.damage).toBe(1);
             expect(this.fluteMage.location).toBe('play area');
         });
     });
@@ -103,7 +103,7 @@ describe('When Attacked', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['constrict'],
@@ -122,7 +122,7 @@ describe('When Attacked', function () {
 
             expect(this.constrict.location).toBe('play area');
             expect(this.constrict.damage).toBe(1);
-            expect(this.virosS1.damage).toBe(0);
+            expect(this.corpseOfViros.damage).toBe(0);
             expect(this.fluteMage.location).toBe('discard');
             expect(Dice.d12Roll).not.toHaveBeenCalled();
 
@@ -136,7 +136,7 @@ describe('When Attacked', function () {
             this.player1.clickPrompt('Ok'); // guard roll alert
             expect(this.constrict.location).toBe('play area');
             expect(this.constrict.damage).toBe(0);
-            expect(this.virosS1.damage).toBe(1);
+            expect(this.corpseOfViros.damage).toBe(1);
             expect(this.fluteMage.location).toBe('play area');
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
@@ -155,7 +155,7 @@ describe('When Attacked', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'viros-s1',
+                    phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['constrict', 'iron-scales', 'blood-puppet'],
@@ -199,7 +199,7 @@ describe('When Attacked', function () {
             expect(this.constrict.location).toBe('play area');
             expect(this.fluteMage.location).toBe('discard');
             expect(this.ironScales.damage).toBe(1);
-            expect(this.virosS1.damage).toBe(0);
+            expect(this.corpseOfViros.damage).toBe(0);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(0);
         });
     });

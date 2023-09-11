@@ -1,11 +1,11 @@
-const { CardType, Level } = require("../../constants");
-const AbilityDsl = require("../abilitydsl");
-const RevealBehaviour = require("../BaseActions/RevealBehaviour");
-const Player = require("../player");
-const ChimeraDefenceStrategy = require("./ChimeraDefenceStrategy");
-const ChimeraFFStrategy = require("./ChimeraFFStrategy");
-const ChimeraPinStrategy = require("./ChimeraPinStrategy");
-const NullPromptStrategy = require("./NullPromptStrategy");
+const { CardType, Level } = require('../../constants');
+const AbilityDsl = require('../abilitydsl');
+const RevealBehaviour = require('../BaseActions/RevealBehaviour');
+const Player = require('../player');
+const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
+const ChimeraFFStrategy = require('./ChimeraFFStrategy');
+const ChimeraPinStrategy = require('./ChimeraPinStrategy');
+const NullPromptStrategy = require('./NullPromptStrategy');
 
 class DummyPlayer extends Player {
     constructor(id, user, owner, game, clockdetails) {
@@ -17,6 +17,8 @@ class DummyPlayer extends Player {
         this.behaviourRoll = 0;
         this.fatigued = false;
         this.chimeraPhase = 1; // values 1-3
+        this.level = game.soloLevel;
+        this.stage = game.soloStage;
 
         game.on('onCardMoved', (event) => this.cardMovedListener(event));
         game.on('onDieChange', (event) => this.dieChangeListener(event));
@@ -26,6 +28,13 @@ class DummyPlayer extends Player {
 
     get chimera() {
         return this.phoenixborn;
+    }
+
+    initialise() {
+        super.initialise();
+        // chimera card should be set up after super init / prepare decks
+        this.chimera.level = this.level;
+        this.chimera.stage = this.stage;
     }
 
     get aspectsInPlay() {
@@ -84,7 +93,7 @@ class DummyPlayer extends Player {
     }
 
     get threatCards() {
-        return this.cardsInPlay.filter(c => c.facedown);
+        return this.cardsInPlay.filter((c) => c.facedown);
     }
 
     get unitsInPlay() {
@@ -93,19 +102,23 @@ class DummyPlayer extends Player {
 
     applyFatigue() {
         this.fatigued = true;
-        AbilityDsl.actions.lastingEffect({
-            targetController: 'current',
-            effect: AbilityDsl.effects.playerCannot('draw'),
-        }).resolve(this, this.game.getFrameworkContext(this));
+        AbilityDsl.actions
+            .lastingEffect({
+                targetController: 'current',
+                effect: AbilityDsl.effects.playerCannot('draw')
+            })
+            .resolve(this, this.game.getFrameworkContext(this));
     }
 
     dieChangeListener(event) {
-        if (event.diceOwner === this && this.dice.every(d => d.level === Level.Power)) {
+        if (event.diceOwner === this && this.dice.every((d) => d.level === Level.Power)) {
             // reset all dice
-            this.dice.forEach(d => d.level = Level.Basic);
+            this.dice.forEach((d) => (d.level = Level.Basic));
             // add a RR token to the Chimera
             const context = this.game.getFrameworkContext(this);
-            this.game.actions.addRedRainsToken({ showMessage: true, shortMessage: true, warnMessage: true }).resolve(this.phoenixborn, context);
+            this.game.actions
+                .addRedRainsToken({ showMessage: true, shortMessage: true, warnMessage: true })
+                .resolve(this.phoenixborn, context);
         }
     }
 
@@ -129,10 +142,10 @@ class DummyPlayer extends Player {
     setupAspects() {
         this.shuffleDeck();
         const setup = this.chimera.setup;
-        setup.forEach(value => {
-            const card = this.deck.find(aspect => aspect.blood === value)
+        setup.forEach((value) => {
+            const card = this.deck.find((aspect) => aspect.blood === value);
             this.moveCard(card, 'play area', { facedown: true });
-        })
+        });
         this.shuffleDeck();
     }
 
@@ -184,9 +197,9 @@ class DummyPlayer extends Player {
     getAttackTarget(attacker) {
         const opponentUnits = [...this.opponent.unitsInPlay];
         if (
-            opponentUnits.length === 0
-            || attacker.type !== CardType.Aspect
-            || attacker.target === 'jaw'
+            opponentUnits.length === 0 ||
+            attacker.type !== CardType.Aspect ||
+            attacker.target === 'jaw'
         ) {
             return this.opponent.phoenixborn;
         }
@@ -206,7 +219,7 @@ class DummyPlayer extends Player {
     }
 
     getAspectsInPlay() {
-        return this.unitsInPlay.filter(u => u.type === CardType.Aspect);
+        return this.unitsInPlay.filter((u) => u.type === CardType.Aspect);
     }
 
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
