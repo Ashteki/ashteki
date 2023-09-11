@@ -12,14 +12,15 @@ class SariaGuideman extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Charm)])
             ],
             gameAction: ability.actions.draw(),
-            then: {
+            then: (thenContext) => ({
+                condition: () => thenContext.drawResult.cardsDrawn > 0,
                 may: 'force your opponent to discard top of deck',
                 target: {
                     toSelect: 'player',
                     autoTarget: (context) => context.player.opponent,
                     gameAction: ability.actions.discardTopOfDeck()
                 }
-            }
+            })
         });
     }
 }

@@ -223,6 +223,7 @@ class Player extends GameObject {
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
         let remainingCards = this.doDrawCards(numCards, singleCopy);
 
+        const result = { cardsDrawn: numCards - remainingCards };
         if (remainingCards > 0 && damageIfEmpty) {
             this.game.addMessage(
                 '{0} receives {1} fatigue damage',
@@ -233,7 +234,9 @@ class Player extends GameObject {
                 this.phoenixborn,
                 this.game.getFrameworkContext()
             );
+            result.damagePlaced = remainingCards;
         }
+        return result;
     }
 
     doDrawCards(numCards, singleCopy) {

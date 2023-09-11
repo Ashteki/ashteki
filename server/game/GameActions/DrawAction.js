@@ -57,7 +57,11 @@ class DrawAction extends PlayerAction {
             },
             (event) => {
                 if (event.amount > 0) {
-                    event.player.drawCardsToHand(amount, this.damageIfEmpty, this.singleCopy);
+                    event.context.drawResult = event.player.drawCardsToHand(
+                        event.amount,
+                        this.damageIfEmpty,
+                        this.singleCopy
+                    );
                 }
             }
         );
