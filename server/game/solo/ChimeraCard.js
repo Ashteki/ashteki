@@ -12,23 +12,11 @@ class ChimeraCard extends Card {
     }
 
     get setup() {
-        const levelStage = this.level + this.stage;
-        switch (levelStage) {
-            case 'S1':
-                return [1, 2, 2, 2];
-            case 'S2':
-                return [1, 2, 1, 2, 2];
-            case 'S3':
-                return [1, 2, 1, 2, 1, 2];
-            case 'H1':
-                return [1, 2, 1, 1, 2];
-            case 'H2':
-                return [1, 2, 1, 1, 1, 2];
-            case 'H3':
-                return [1, 2, 1, 2, 1, 1, 2];
-            default:
-                throw new Error('unrecognised chimera level / stage');
-        }
+        return [];
+    }
+
+    get threat() {
+        return this.setup.length;
     }
 
     getImageStub() {

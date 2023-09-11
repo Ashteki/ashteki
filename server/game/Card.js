@@ -74,7 +74,7 @@ class Card extends PlayableObject {
         this.printedAttack = cardData.attack || 0;
         this.printedLife = cardData.life || 0;
         this.printedRecover = cardData.recover || 0;
-        this.threat = cardData.threat;
+        // this.threat = cardData.threat;
         this.blood = cardData.blood;
         this.printedUltimate = cardData.ultimate;
         this.target = cardData.target;
