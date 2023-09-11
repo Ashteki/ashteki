@@ -77,6 +77,7 @@ const Actions = {
 
     // player actions
     addSideAction: (propertyFactory) => new GameActions.AddSideAction(propertyFactory),
+    addToThreatZone: (propertyFactory) => new GameActions.AddToThreatZoneAction(propertyFactory),
     chosenAmountDraw: (propertyFactory) => new GameActions.ChosenAmountDrawAction(propertyFactory),
     chosenDestroy: (propertyFactory) => new GameActions.ChosenDestroyAction(propertyFactory),
     chosenDiscard: (propertyFactory) => new GameActions.ChosenDiscardAction(propertyFactory), // amount = 1

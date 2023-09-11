@@ -66,5 +66,33 @@ describe('Chimera ultimate', function () {
             expect(this.player2.player.chimeraPhase).toBe(2);
             expect(this.player1).toHaveDefaultPrompt();
         });
+
+        it('Viros phase 3 ultimate trigger no damage but adds aspect', function () {
+            const aspectCount = this.player2.player.aspectsInPlay.length;
+            this.player2.player.chimeraPhase = 3;
+            spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
+            this.player2.phoenixborn.tokens.redRains = 2;
+            expect(this.player2.player.chimeraPhase).toBe(3);
+
+            this.player1.clickCard(this.summonBloodPuppet);
+            this.player1.clickPrompt('Summon Blood Puppet');
+            this.player1.clickPrompt("Opponent's");
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            this.player1.clickPrompt('Ok');
+            this.player1.clickPrompt('Ok'); // ultimate
+
+            // triggers effect for VIROS ULTIMATE 3
+            expect(this.player2.player.aspectsInPlay.length).toBe(aspectCount + 1);
+
+            // no damage
+            expect(this.blueJaguar.damage).toBe(0);
+            expect(this.mistSpirit.location).toBe('play area');
+            expect(this.aradelSummergaard.damage).toBe(0);
+
+            // no change to phase
+            expect(this.player2.player.chimeraPhase).toBe(3);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 });

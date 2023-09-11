@@ -2,6 +2,7 @@ module.exports = {
     AddEventToWindowAction: require('./AddEventToWindowAction'),
     AddSideAction: require('./AddSideAction'),
     AddTokenAction: require('./AddTokenAction'),
+    AddToThreatZoneAction: require('./AddToThreatZoneAction'),
     AllocateDamageAction: require('./AllocateDamageAction'),
     AttachAction: require('./AttachAction'),
     AttachConjuredAlterationAction: require('./AttachConjuredAlterationAction'),
