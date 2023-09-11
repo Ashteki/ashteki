@@ -17,8 +17,8 @@ class DummyPlayer extends Player {
         this.behaviourRoll = 0;
         this.fatigued = false;
         this.chimeraPhase = 1; // values 1-3
-        this.level = game.soloLevel;
-        this.stage = game.soloStage;
+        this.level = game.soloLevel || 'S';
+        this.stage = game.soloStage || 1;
 
         game.on('onCardMoved', (event) => this.cardMovedListener(event));
         game.on('onDieChange', (event) => this.dieChangeListener(event));
