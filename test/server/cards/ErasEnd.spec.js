@@ -69,4 +69,38 @@ describe('Eras End', function () {
             expect(this.orrickGilstream.damage).toBe(1);
         });
     });
+
+    describe('BUG: should snapshot eor triggers and skip new units with fleeting', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'rowan-umberend',
+                    inPlay: ['anchornaut', 'salamander-monk'],
+                    deck: ['anchornaut'],
+                    dicepool: ['natural', 'time', 'charm', 'charm', 'time'],
+                    hand: ['discovery', 'discovery', 'discovery', 'purge', 'eras-end', 'devotion'],
+                    archives: ['red-raindrop', 'salamander-monk-spirit']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    spellboard: ['chant-of-revenge'],
+                    inPlay: ['river-skald']
+                }
+            });
+        });
+
+        it('play triggers end round event', function () {
+            this.player1.play(this.discovery);
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.purge); // discard cost
+            expect(this.redRaindrop.location).toBe('play area');
+            expect(this.rowanUmberend.upgrades.length).toBe(1);
+            this.player1.player.actions.main = true;
+
+            this.player1.play(this.erasEnd);
+            this.player1.clickCard(this.salamanderMonk);
+            expect(this.salamanderMonk.location).toBe('archives');
+            expect(this.salamanderMonkSpirit.location).toBe('play area');
+        });
+    });
 });

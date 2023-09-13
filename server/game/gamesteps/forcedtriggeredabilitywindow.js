@@ -5,14 +5,13 @@ const BaseStep = require('./basestep.js');
 const TriggeredAbilityWindowTitles = require('./triggeredabilitywindowtitles.js');
 
 class ForcedTriggeredAbilityWindow extends BaseStep {
-    constructor(game, abilityType, window, eventsToExclude = []) {
+    constructor(game, abilityType, window) {
         super(game);
         // choices holds all of the abilities that were triggered by the event - this may be more than one for a single card
         this.choices = [];
         // all of the events that are being handled together - e.g. events and child events
         this.events = [];
         this.eventWindow = window;
-        this.eventsToExclude = eventsToExclude;
         this.abilityType = abilityType; // forcedInterrupt / forcedReaction etc.
 
         this.currentPlayer = this.game.betweenRounds
@@ -32,7 +31,11 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     continue() {
         this.game.currentAbilityWindow = this;
         if (this.eventWindow) {
-            this.emitEvents();
+            if (this.events.length && this.eventWindow.event.snapshot) {
+                this.choices = this.choices.filter((c) => !this.hasAbilityBeenTriggered(c));
+            } else {
+                this.emitEvents();
+            }
         }
 
         if (this.filterChoices()) {
@@ -301,9 +304,9 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
 
     emitEvents() {
         this.choices = [];
-        let events = this.eventWindow.event.getSimultaneousEvents();
+        this.events = this.eventWindow.event.getSimultaneousEvents();
 
-        this.events = _.difference(events, this.eventsToExclude);
+        // this.events = _.difference(events, this.eventsToExclude);
         _.each(this.events, (event) => {
             this.game.emit(event.name + ':' + this.abilityType, event, this);
         });
