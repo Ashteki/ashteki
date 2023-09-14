@@ -459,7 +459,10 @@ class Card extends PlayableObject {
                     }),
                     getWarnings: (context) => {
                         if (!context.player.archives.some((c) => c.id === cardId)) {
-                            return 'You don\'t have a conjuration to play'
+                            return "You don't have a conjuration to play";
+                        }
+                        if (context.player.isBattlefieldFull()) {
+                            return 'Your battlefield is full';
                         }
                     }
                 },

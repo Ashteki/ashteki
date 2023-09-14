@@ -40,11 +40,12 @@ describe('When Battlefield is full', function () {
     });
 
     it('can use summon gilder, but not place gilder on battlefield', function () {
+        expect(this.player1.inPlay.length).toBe(8);
         expect(this.player1).toBeAbleToPlayFromHand(this.summonGilder);
         this.player1.clickCard(this.summonGilder);
         this.player1.clickPrompt('Summon Gilder');
+        this.player1.clickYes(); // warning
 
-        this.player1.clickCard(this.gilder);
         expect(this.player1.inPlay.length).toBe(8);
         // additional test to ensure summon-gilder pings event when gilder not placed
         expect(this.player1).toHavePrompt('Deal 1 damage');
