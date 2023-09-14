@@ -26,6 +26,10 @@ import WinLoseSplash from './WinLoseSplash';
 import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
+import { Rnd } from 'react-rnd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import MovablePanel2 from './MovablePanel2';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -563,39 +567,41 @@ const GameBoard = () => {
                     />
                 )}
                 {showManualCommands && (
-                    <div className='info-panel'>
-                        <MovablePanel
-                            title='Manual Commands'
-                            name='Manual'
-                            onCloseClick={onManualCommandsClick}
-                            side='bottom'
-                        >
-                            <ManualCommands />
-                        </MovablePanel>
-                    </div>
+                    <MovablePanel2
+                        title='Manual Commands'
+                        name='Manual'
+                        onCloseClick={onManualCommandsClick}
+                        side='bottom'
+                    >
+                        <ManualCommands />
+                    </MovablePanel2>
                 )}
-                {showDeckNotes && thisPlayer.deckNotes && (
-                    <div className='info-panel'>
-                        <MovablePanel
-                            title='Deck Notes'
-                            name='Notes'
-                            onCloseClick={onDeckNotesClick}
-                            side='bottom'
-                        >
-                            <DeckNotes notes={thisPlayer.deckNotes} />
-                        </MovablePanel>
-                    </div>
-                )}
-                {showDiceHistory && (
-                    <div>
-                        <DiceHistory
-                            firstFive={thisPlayer.firstFive}
-                            diceHistory={thisPlayer.diceHistory}
-                            onCloseClick={onDiceHistoryClick}
-                            side='bottom'
-                        />
-                    </div>
-                )}
+                {
+                    showDeckNotes && thisPlayer.deckNotes && (
+                        <div className='info-panel'>
+                            <MovablePanel
+                                title='Deck Notes'
+                                name='Notes'
+                                onCloseClick={onDeckNotesClick}
+                                side='bottom'
+                            >
+                                <DeckNotes notes={thisPlayer.deckNotes} />
+                            </MovablePanel>
+                        </div>
+                    )
+                }
+                {
+                    showDiceHistory && (
+                        <div>
+                            <DiceHistory
+                                firstFive={thisPlayer.firstFive}
+                                diceHistory={thisPlayer.diceHistory}
+                                onCloseClick={onDiceHistoryClick}
+                                side='bottom'
+                            />
+                        </div>
+                    )
+                }
                 <div className='right-side'>
                     {!leftMode && getPromptArea(thisPlayer)}
 
@@ -615,7 +621,7 @@ const GameBoard = () => {
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
             <div>
                 <PlayerStats
                     activePlayer={thisPlayer.activePlayer}
@@ -650,7 +656,7 @@ const GameBoard = () => {
                     winner={currentGame.winner}
                 />
             </div>
-        </div>
+        </div >
     );
 };
 
