@@ -12,7 +12,7 @@ const CardZoom = ({ card, cardName, left }) => {
 
     const size = card.type === 'decklist' ? 'x-large' : 'normal';
     return (
-        <div className={classNames(`card-zoom`, size, `vertical`, { left: left })}>
+        <div className={classNames(`card-zoom`, size, `vertical`, { left: false })}>
             {
                 <div className='card-zoomed shadow'>
                     {card.imageUrl ? (

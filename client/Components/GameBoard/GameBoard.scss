@@ -202,10 +202,10 @@
 .info-panel {
     font-size: 1.1em;
     z-index: 999;
-}
 
-.info-panel .manual-commands {
-    max-width: 800px;
+    &.manual-commands {
+        width: 800px;
+    }
 }
 
 .bluffTimer {
