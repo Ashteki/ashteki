@@ -10,17 +10,17 @@ import { Rnd } from 'react-rnd';
 // import './MovablePanel.scss';
 
 const MovablePanel2 = ({ children, name, onCloseClick, side, title }) => {
-    const getSavedCoords = () => {
+    const getSavedCoords = (key) => {
         const savedCoords = localStorage.getItem(key);
-        return savedCoords && JSON.parse(savedCoords);
+        return (savedCoords && JSON.parse(savedCoords)) || { x: 200, y: 200 };
     };
 
     // const popupRef = useRef(null);
-    const key = `${name}-${side}`;
-    const coords = getSavedCoords() || { x: 200, y: 200 };
+    const key = `mp-${name}-${side}`;
+    const coords = getSavedCoords(key);
 
     const handleDragStop = (e, d) => {
-        const toSave = Object.assign(getSavedCoords(), { x: d.x, y: d.y });
+        const toSave = Object.assign(getSavedCoords(key), { x: d.x, y: d.y });
         localStorage.setItem(`${key}`, JSON.stringify(toSave));
     };
     const handleResize = (e, direction, ref, delta, position) => {
