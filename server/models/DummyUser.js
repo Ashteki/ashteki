@@ -11,7 +11,7 @@ class DummyUser extends User {
         })
     }
 
-    static DUMMY_USERNAME = 'dummy'
+    static DUMMY_USERNAME = 'Chimera';
     get username() {
         return DummyUser.DUMMY_USERNAME;
     }
