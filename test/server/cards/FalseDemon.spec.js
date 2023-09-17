@@ -34,5 +34,23 @@ describe('False Demon', function () {
 
             expect(this.blueJaguar.damage).toBe(1);
         });
+
+        it('optional ability', function () {
+            expect(this.blueJaguar.damage).toBe(0);
+
+            this.player1.clickCard(this.summonFalseDemon);
+            this.player1.clickPrompt('Summon False Demon');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+            this.player1.clickCard(this.falseDemon);
+
+            expect(this.player1).toBeAbleToSelect(this.blueJaguar);
+            expect(this.player1).not.toBeAbleToSelect(this.mistSpirit);
+
+            this.player1.clickCancel();
+
+            expect(this.blueJaguar.damage).toBe(0);
+            expect(this.falseDemon.location).toBe('play area');
+        });
     });
 });

@@ -6,7 +6,7 @@ class FalseDemon extends Card {
         this.entersPlay({
             effect: 'deal 1 damage to {0}',
             target: {
-                optional: true,
+                showCancel: true,
                 activePromptTitle: 'Nightmare 1',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.exhausted,

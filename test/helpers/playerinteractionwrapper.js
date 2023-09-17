@@ -410,6 +410,10 @@ class PlayerInteractionWrapper {
         this.clickCard(target);
     }
 
+    clickCancel() {
+        this.clickPrompt('Cancel');
+    }
+
     clickDone() {
         this.clickPrompt('Done');
     }
