@@ -58,10 +58,10 @@ describe('When Attacked', function () {
                 mode: 'solo',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
+                    inPlay: ['anchornaut', 'flute-mage', 'hammer-knight', 'winged-lioness'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
-                    hand: ['shatter-pulse', 'summon-iron-rhino']
+                    hand: ['summon-iron-rhino']
                 },
                 player2: {
                     dummy: true,
@@ -87,6 +87,15 @@ describe('When Attacked', function () {
             expect(this.rampage.damage).toBe(0);
             expect(this.corpseOfViros.damage).toBe(1);
             expect(this.fluteMage.location).toBe('play area');
+        });
+
+        it('cannot guard against stalk', function () {
+            this.player1.clickAttack(this.rampage);
+            this.player1.clickCard(this.wingedLioness);
+
+            expect(this.rampage.location).toBe('discard');
+            expect(this.corpseOfViros.damage).toBe(1);
+            expect(this.wingedLioness.location).toBe('archives');
         });
     });
 

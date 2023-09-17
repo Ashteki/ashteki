@@ -44,6 +44,7 @@ class ChimeraDefenceStrategy {
             !attack.isPBAttack &&
             !attack.target.anyEffect('defender') &&
             !attack.battles[0].guard &&
+            !attack.battles[0].attacker.anyEffect('preventGuard') &&
             attack.target.type === CardType.Aspect
         ) {
             const d12Roll = Dice.d12Roll();
