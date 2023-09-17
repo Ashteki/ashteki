@@ -13,7 +13,7 @@ class PendingGame {
             this.soloLevel = 'S';
             this.soloStage = '1';
         }
-        this.allowSpectators = !this.solo && details.allowSpectators;
+        this.allowSpectators = details.allowSpectators;
         this.createdAt = new Date();
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;

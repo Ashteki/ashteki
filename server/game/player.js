@@ -793,7 +793,7 @@ class Player extends GameObject {
 
     getState(activePlayer) {
         let isActivePlayer = activePlayer === this;
-        let promptState = (isActivePlayer || this.game.solo) ? this.promptState.getState() : {};
+        let promptState = (isActivePlayer || (this.game.solo && this.isDummy)) ? this.promptState.getState() : {};
         let playerState = {
             cardPiles: {
                 archives: this.getSummaryForCardList(this.archives, activePlayer, true),

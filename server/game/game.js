@@ -676,9 +676,14 @@ class Game extends EventEmitter {
     }
 
     modifyCardToken(playerName, uuid, tokenType, increment) {
+        const player = this.getPlayerByName(playerName);
+
+        if (!player) {
+            return;
+        }
+
         const card = this.findAnyCardInAnyList(uuid);
         card.addToken(tokenType, increment);
-        const player = this.getPlayerByName(playerName);
         let addRemove = 'adds';
         let toFrom = 'to';
         if (increment < 0) {
