@@ -13,6 +13,7 @@ console.info('Games for ', username);
 gameService
     .findByUserName(username, { includeNonWins: true })
     .then((games) => {
+        games.sort((a, b) => a.startedAt > b.startedAt ? 1 : -1)
         console.info('' + _.size(games), 'total games');
 
         _.each(games, (game) => {
