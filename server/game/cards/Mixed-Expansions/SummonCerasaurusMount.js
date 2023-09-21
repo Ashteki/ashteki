@@ -28,8 +28,7 @@ class SummonCerasaurusMount extends Card {
                 then: {
                     gameAction: ability.actions.placeUnder((context) => ({
                         parent: context.preThenEvent.cards[0],
-                        target: context.preThenEvent.context.preThenEvent.card,
-                        facedown: true
+                        target: context.preThenEvent.context.preThenEvent.card
                     }))
                 }
             }

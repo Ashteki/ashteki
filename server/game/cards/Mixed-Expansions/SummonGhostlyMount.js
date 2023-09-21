@@ -34,8 +34,7 @@ class SummonGhostlyMount extends Card {
                         ability.actions.putIntoPlay(),
                         ability.actions.placeUnder((context) => ({
                             parent: context.target,
-                            target: context.preThenEvent.card,
-                            facedown: true
+                            target: context.preThenEvent.card
                         }))
                     ]
                 }

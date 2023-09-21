@@ -53,14 +53,11 @@ class PutIntoPlayAction extends CardGameAction {
                 return;
             }
 
-            player.moveCard(card, card.type.includes('Spell') ? 'spellboard' : 'play area', {
-                myControl: control
-            });
+            const targetLocation = card.type.includes('Spell') ? 'spellboard' : 'play area';
+            player.moveCard(card, targetLocation, { myControl: control });
+
             if (this.showMessage) {
                 context.game.addMessage('{0} puts {1} into play', player, card);
-            }
-            if (this.myControl) {
-                card.updateEffectContexts();
             }
 
             event.context.game.cardPlayed(card);

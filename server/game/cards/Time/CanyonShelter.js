@@ -17,8 +17,7 @@ class CanyonShelter extends Card {
                 gameAction: ability.actions.sequential([
                     ability.actions.purge(),
                     ability.actions.placeUnder((context) => ({
-                        parent: context.source,
-                        facedown: true
+                        parent: context.source
                     }))
                 ])
             },

@@ -71,7 +71,6 @@ class AttachDieAction extends DiceGameAction {
                 event.die.parent = event.parent;
                 if (event.die.owner !== event.context.player) {
                     event.die.owner = event.context.player;
-                    event.die.updateEffectContexts();
                 }
                 if (event.die.parent.canSpendDieUpgrades) {
                     event.die.ready();

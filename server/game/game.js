@@ -1340,11 +1340,9 @@ class Game extends EventEmitter {
             return;
         }
 
-        this.raiseEvent('onTakeControl', { player, card });
+        // this.raiseEvent('onTakeControl', { player, card });
         card.controller.removeCardFromPile(card);
         player.cardsInPlay.push(card);
-
-        card.updateEffectContexts();
         this.queueSimpleStep(() => this.checkGameState(true));
     }
 
@@ -1497,8 +1495,6 @@ class Game extends EventEmitter {
                         // any card being controlled by the wrong player
                         this.takeControl(card.getModifiedController(), card);
                     }
-                    // any upgrades which are illegally attached
-                    // card.checkForIllegalAttachments();
                 });
             }
 
