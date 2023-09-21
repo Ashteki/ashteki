@@ -13,7 +13,8 @@ const {
     AbilityType,
     ConjuredCardTypes,
     Magic,
-    PhoenixbornTypes
+    PhoenixbornTypes,
+    FaceUpLocations
 } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
@@ -517,29 +518,16 @@ class Card extends PlayableObject {
     }
 
     moveTo(targetLocation, facedown = false) {
-        let originalLocation = this.location;
-
-        this.location = targetLocation;
-
-
-        if (
-            [
-                'play area',
-                'spellboard',
-                'discard',
-                'hand',
-                'purged',
-                'grafted',
-                'archives'
-            ].includes(targetLocation)
-        ) {
+        if (FaceUpLocations.includes(targetLocation)) {
             this.facedown = false;
         }
         if (facedown) {
             this.facedown = true;
         }
 
+        let originalLocation = this.location;
         if (originalLocation !== targetLocation) {
+            this.location = targetLocation;
             this.updateAbilityEvents(originalLocation, targetLocation);
             this.updateEffects(originalLocation, targetLocation);
             this.game.emitEvent('onCardMoved', {

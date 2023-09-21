@@ -569,8 +569,15 @@ class Player extends GameObject {
         }
 
         card.moveTo(targetLocation, options.facedown);
+    }
 
-        // this.game.raiseEvent('onCardPlaced', { card: card, from: location, to: targetLocation });
+    placeCardUnder(card, target) {
+        card.controller.removeCardFromPile(card);
+        card.controller = card.owner;
+        card.parent = target;
+        card.moveTo('purged');
+        card.facedown = true;
+        target.childCards.push(card);
     }
 
     /**
@@ -606,11 +613,11 @@ class Player extends GameObject {
      * @param die
      */
     removeDieFromPool(die) {
+        // detach this die if attached to a card (has a parent)
         if (die.parent) {
             if (die.parent.dieUpgrades.includes(die)) {
                 die.parent.dieUpgrades = die.parent.dieUpgrades.filter((d) => d !== die);
             }
-
             die.parent = null;
             return;
         }

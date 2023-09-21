@@ -30,6 +30,15 @@ const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [CardType.Conjuration, CardType.ConjuredAlteration];
 const EffectLocations = ['play area', 'spellboard'];
 const DamageDealingLocations = ['play area', 'being played', 'spellboard'];
+const FaceUpLocations = [
+    'play area',
+    'spellboard',
+    'discard',
+    'hand',
+    'purged',
+    'grafted',
+    'archives'
+];
 
 const AbilityType = {
     Action: 'action', // not used
@@ -79,5 +88,6 @@ module.exports = {
     EffectLocations,
     BluffAbilityTypes,
     DamageDealingLocations,
+    FaceUpLocations,
     GameType
 };

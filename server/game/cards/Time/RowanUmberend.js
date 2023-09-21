@@ -16,8 +16,7 @@ class RowanUmberend extends Card {
                 })),
                 ability.actions.placeUnder((context) => ({
                     parent: context.source,
-                    target: context.event.card,
-                    facedown: true
+                    target: context.event.card
                 }))
             ]),
             effect: 'conscript {1}',

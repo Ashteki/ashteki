@@ -143,16 +143,6 @@ class PlayableObject extends EffectSource {
         });
     }
 
-    updateEffectContexts() {
-        for (const effect of this.getPersistentEffects(true)) {
-            if (effect.ref) {
-                for (let e of effect.ref) {
-                    e.refreshContext();
-                }
-            }
-        }
-    }
-
     /**
      * Applies an effect with the specified properties while the current card is
      * attached to another card. By default the effect will target the parent
