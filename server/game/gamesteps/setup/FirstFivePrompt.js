@@ -51,7 +51,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
         if (!player || !this.activeCondition(player) || !card) {
             return false;
         }
-        if (!this.cardCondition(card)) {
+        if (!this.cardCondition(card, player)) {
             return false;
         }
 
@@ -101,8 +101,8 @@ class FirstFivePrompt extends AllPlayerPrompt {
             });
     }
 
-    cardCondition(card) {
-        return card.location === 'deck' || card.location === 'hand';
+    cardCondition(card, player) {
+        return player === card.owner && (card.location === 'deck' || card.location === 'hand');
     }
 
     waitingPrompt() {
