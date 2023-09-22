@@ -33,7 +33,6 @@ describe('When Attacked', function () {
             this.player1.clickCard(this.fluteMage);
             this.player1.clickPrompt('Ok'); // guard roll alert
 
-
             expect(this.rampage.location).toBe('play area');
             expect(this.rampage.damage).toBe(1);
             expect(this.fluteMage.location).toBe('discard');
@@ -134,7 +133,6 @@ describe('When Attacked', function () {
             expect(this.corpseOfViros.damage).toBe(0);
             expect(this.fluteMage.location).toBe('discard');
             expect(Dice.d12Roll).not.toHaveBeenCalled();
-
         });
 
         it('chimera will guard an exhausted defender', function () {
@@ -157,7 +155,7 @@ describe('When Attacked', function () {
                 mode: 'solo',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
+                    inPlay: ['anchornaut', 'flute-mage', 'hammer-knight', 'archasaurus-mount'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
                     hand: ['summon-iron-rhino']
@@ -167,17 +165,17 @@ describe('When Attacked', function () {
                     phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
-                    inPlay: ['constrict', 'iron-scales', 'blood-puppet'],
+                    inPlay: ['constrict', 'iron-scales', 'blood-puppet', 'rampage'],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
-
-            spyOn(Dice, 'd12Roll').and.returnValue(9);
         });
 
         it('defender will not guard a defender', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(9);
+
             this.player1.clickAttack(this.constrict);
             this.player1.clickCard(this.fluteMage);
 
@@ -188,7 +186,38 @@ describe('When Attacked', function () {
             expect(Dice.d12Roll).not.toHaveBeenCalled();
         });
 
+        it('defender will guard an aspect', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(9);
+
+            this.player1.clickAttack(this.rampage);
+            this.player1.clickCard(this.fluteMage);
+            expect(this.player1).toHavePrompt('Aspect Guard');
+            this.player1.clickPrompt('Ok');
+            expect(this.rampage.location).toBe('play area');
+            expect(this.rampage.damage).toBe(0);
+            expect(this.constrict.damage).toBe(1);
+            expect(this.fluteMage.location).toBe('discard');
+            expect(Dice.d12Roll).not.toHaveBeenCalled();
+        });
+
+        it('defender cannot guard vs gigantic 2', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(1); // no chimera guard
+
+            this.constrict.tokens.exhaustion = 1; // could defend as life = 4
+
+            this.player1.clickAttack(this.rampage);
+            this.player1.clickCard(this.archasaurusMount);
+            expect(this.player1).toHavePrompt('Chimera guard roll');
+            this.player1.clickPrompt('Ok');
+            expect(this.rampage.location).toBe('discard');
+            expect(this.constrict.damage).toBe(0);
+            expect(this.ironScales.damage).toBe(0);
+            expect(this.archasaurusMount.location).toBe('play area');
+        });
+
         it('defender will not guard non-aspect', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(9);
+
             this.player1.clickAttack(this.bloodPuppet);
             this.player1.clickCard(this.fluteMage);
 
@@ -200,6 +229,8 @@ describe('When Attacked', function () {
         });
 
         it('defender will guard an exhausted defender', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(9);
+
             this.constrict.tokens.exhaustion = 1;
             this.player1.clickAttack(this.constrict);
             this.player1.clickCard(this.fluteMage);

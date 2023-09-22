@@ -1,10 +1,12 @@
 const { CardType } = require("../../constants");
+const DefenceRules = require("../DefenceRules");
 const Dice = require("../dice");
 
 class ChimeraDefenceStrategy {
     constructor(player, game) {
         this.player = player;
         this.game = game;
+        this.defenceRules = new DefenceRules();
     }
 
     execute(attack) {
@@ -15,12 +17,18 @@ class ChimeraDefenceStrategy {
         const battlesToGuard = attack.battles.filter(
             (b) => !b.target.anyEffect('defender') && b.target.type === CardType.Aspect
         );
+
+        // defenders guard for aspects
         defenders.forEach(d => {
-            const bat = battlesToGuard.find(b => !b.guard);
+            const bat = battlesToGuard.find(
+                (b) => !b.guard && this.defenceRules.guardTest(d, b.target, b.attacker)
+            );
             if (!bat) {
                 return;
             }
             bat.guard = d;
+
+            // alert if this is a unit attack
             if (!attack.isPBAttack) {
                 const context = this.game.getFrameworkContext(this.player);
                 this.game.queueUserAlert(context, {
@@ -39,6 +47,7 @@ class ChimeraDefenceStrategy {
             }
         });
 
+        // chimera guards for a unit on 9+
         if (
             !attack.isPBAttack &&
             !attack.target.anyEffect('defender') &&

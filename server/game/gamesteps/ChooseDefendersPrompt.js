@@ -1,5 +1,6 @@
 const { BattlefieldTypes, PhoenixbornTypes } = require('../../constants.js');
 const SingleCardSelector = require('../CardSelectors/SingleCardSelector.js');
+const DefenceRules = require('../DefenceRules.js');
 const UiPrompt = require('./uiprompt.js');
 
 class ChooseDefendersPrompt extends UiPrompt {
@@ -24,6 +25,7 @@ class ChooseDefendersPrompt extends UiPrompt {
         });
         this.selectedCard = null;
         this.blockType = this.attack.isPBAttack ? 'block' : 'guard';
+        this.defenceRules = new DefenceRules();
     }
 
     continue() {
@@ -79,18 +81,10 @@ class ChooseDefendersPrompt extends UiPrompt {
         if (this.attack.isPBAttack)
             return this.attack.battles.some((b) => this.blockTest(defender, b.attacker));
         else {
-            return this.attack.battles.some((b) => this.guardTest(defender, b.target, b.attacker));
+            return this.attack.battles.some((b) =>
+                this.defenceRules.guardTest(defender, b.target, b.attacker)
+            );
         }
-    }
-
-    guardTest(card, target, attacker) {
-        return (
-            !attacker.anyEffect('bypass') &&
-            !attacker.anyEffect('preventGuard') &&
-            !target.anyEffect('cannotBeGuarded') &&
-            card !== target &&
-            card.canGuard(attacker)
-        );
     }
 
     blockTest(card, attacker) {
