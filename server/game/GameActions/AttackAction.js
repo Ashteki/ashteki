@@ -24,7 +24,7 @@ class AttackAction extends CardGameAction {
             if (PhoenixbornTypes.includes(event.card.getType())) {
                 event.context.game.initiatePBAttack(event.card, event.attacker);
             } else {
-                event.context.game.initiateUnitAttack(event.card, event.attacker)
+                event.context.game.initiateUnitAttack(event.card, event.attacker);
             }
         });
     }

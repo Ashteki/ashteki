@@ -28,7 +28,6 @@ describe('When Attacking', function () {
 
             expect(this.game.attackState.battles.length).toBe(1);
             expect(this.rampage.isAttacker).toBe(true);
-
         });
 
         it('exhausted units are skipped', function () {
@@ -38,7 +37,6 @@ describe('When Attacking', function () {
 
             expect(this.game.attackState.battles.length).toBe(1);
             expect(this.huntingInstincts.isAttacker).toBe(true);
-
         });
 
         it('hunting instincts targets left to right', function () {

@@ -17,7 +17,6 @@ class Rampage extends AspectCard {
                 toSelect: 'die',
                 autoTarget: (context) => context.player.dice.filter(d => d.level === Level.Basic),
                 gameAction: ability.actions.rerollDice()
-
             },
             effect: 'reroll all basic dice'
         });

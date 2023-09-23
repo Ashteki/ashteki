@@ -9,7 +9,7 @@ class BehaviourCard extends Card {
         return this.imageStub.replace('%s', this.owner.chimeraPhase);
     }
 
-    getBehaviour(behaviourRoll) {
+    getBehaviour(behaviourRoll, phase) {
         // override this in derived classes
     }
 
@@ -59,14 +59,48 @@ class BehaviourCard extends Card {
         this.game.resolveAbility(context);
     }
 
-    doPbBurnDamage(amount) { }
+    doPbBurnDamage(amount) {
+        // must TARGET
+        const act = this.action({
+            target: {
+                ignoreTargetCheck: true,
+                autoTarget: (context) => context.player.opponent.phoenixborn,
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true })
+            }
+        });
 
-    doRageRaise(numDice) {
-        const basicDie = this.owner.dice.find((die) => die.level === Level.Basic);
-        if (basicDie) {
-            AbilityDsl.actions
-                .raiseDie({ showMessage: true })
-                .resolve(basicDie, this.game.getFrameworkContext(this.owner));
+        const context = act.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
+
+    doUnitBurnDamage(amount, aim) {
+        // must TARGET
+        const act = this.action({
+            target: {
+                ignoreTargetCheck: true,
+                autoTarget: (context) =>
+                    context.player.getTargetUnit(
+                        aim,
+                        (u) => !u.anyEffect('cannotBeDicePowerTarget')
+                    ),
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true })
+            }
+        });
+
+        const context = act.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
+
+    doRageRaise(numDice = 1) {
+        for (let i = 0; i < numDice; i++) {
+            this.game.queueSimpleStep(() => {
+                const basicDie = this.owner.dice.find((die) => die.level === Level.Basic);
+                if (basicDie) {
+                    AbilityDsl.actions
+                        .raiseDie({ showMessage: true })
+                        .resolve(basicDie, this.game.getFrameworkContext(this.owner));
+                }
+            });
         }
     }
 }

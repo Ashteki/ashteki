@@ -195,27 +195,35 @@ class DummyPlayer extends Player {
     }
 
     getAttackTarget(attacker) {
-        const opponentUnits = [...this.opponent.unitsInPlay];
         if (
-            opponentUnits.length === 0 ||
+            this.opponent.unitsInPlay.length === 0 ||
             attacker.type !== CardType.Aspect ||
             attacker.target === 'jaw'
         ) {
             return this.opponent.phoenixborn;
         }
 
-        //check for targetability
-        if (attacker.target === 'right') {
-            opponentUnits.reverse();
+        const targetUnit = this.getTargetUnit(
+            attacker.target,
+            (u) => !u.anyEffect('cannotBeAttackTarget')
+        );
+
+        return targetUnit || this.opponent.phoenixborn;
+    }
+
+    getTargetUnit(direction, condition) {
+        const unitsCopy = [...this.opponent.unitsInPlay];
+        if (direction === 'right') {
+            unitsCopy.reverse();
         }
 
-        for (const unit of opponentUnits) {
-            if (!unit.anyEffect('cannotBeAttackTarget')) {
+        for (const unit of unitsCopy) {
+            if (condition(unit)) {
                 return unit;
             }
         }
 
-        return this.opponent.phoenixborn;
+        return null;
     }
 
     getAspectsInPlay() {
@@ -225,9 +233,10 @@ class DummyPlayer extends Player {
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
         // all cards are discarded
         const context = this.game.getFrameworkContext(this);
-
         this.game.actions.discardTopOfDeck({ amount: numCards }).resolve(this, context);
-        // this.chimera.tokens.damage = numCards + this.chimera.damage;
+
+        const dummyResult = { cardsDrawn: 0 };
+        return dummyResult;
     }
 
     get ultimateThreshold() {

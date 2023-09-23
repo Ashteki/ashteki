@@ -48,7 +48,10 @@ class DummyTurn extends BaseStepWithPipeline {
                 const rolledRageDie = result.event.childEvent.dice[0];
                 const clonedRageDie = result.event.childEvent.diceCopy[0];
                 // get actions from behaviour card and queue
-                const behaviour = this.player.behaviour.getBehaviour(d12Roll);
+                const behaviour = this.player.behaviour.getBehaviour(
+                    d12Roll,
+                    this.player.chimeraPhase
+                );
 
                 this.game.queueUserAlert(context, {
                     style: 'danger',
