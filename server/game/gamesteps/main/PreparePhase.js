@@ -37,13 +37,13 @@ class PreparePhase extends Phase {
     fatigueDamage() {
         if (!this.game.disableFatigue) {
             const playerShortfall = [];
-            const players = [this.game.roundFirstPlayer, this.game.roundFirstPlayer.opponent]
+            const players = [this.game.roundFirstPlayer, this.game.roundFirstPlayer.opponent];
             players.forEach((player) => {
                 if (!player.isDummy) {
                     const shortfall = { player: player, shortfall: 5 - player.hand.length };
                     playerShortfall.push(shortfall);
                 }
-            })
+            });
 
             let z = 0;
             while (z < 10 && playerShortfall.some((ps) => ps.shortfall > 0)) {
