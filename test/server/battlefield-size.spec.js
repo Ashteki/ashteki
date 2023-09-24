@@ -30,7 +30,7 @@ describe('When Battlefield is full', function () {
         });
     });
 
-    it('cannot play an ally', function () {
+    it('cannot play an ally - discarded instead', function () {
         // expect(this.player1).not.toBeAbleToPlayFromHand(this.hammerKnight);
         this.player1.play(this.hammerKnight);
         this.player1.clickYes(); // warning

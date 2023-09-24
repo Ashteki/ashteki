@@ -11,7 +11,7 @@ describe('When Spellboard is full', function () {
                     'summon-iron-rhino'
                 ],
                 hand: ['summon-masked-wolf', 'summon-gilder', 'resonance'],
-                dicepool: ['natural', 'natural', 'sympathy', 'sympathy', 'charm', 'charm']
+                dicepool: ['natural', 'natural', 'sympathy', 'sympathy', 'illusion', 'charm']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
@@ -32,6 +32,10 @@ describe('When Spellboard is full', function () {
     });
 
     it('cannot play a new spell', function () {
-        expect(this.player1).not.toBeAbleToPlayFromHand('summon-masked-wolf');
+        this.player1.play(this.summonMaskedWolf);
+        this.player1.clickYes(); // warning
+        this.player1.clickDie(0);
+        this.player1.clickDone();
+        expect(this.summonMaskedWolf.location).toBe('discard');
     });
 });
