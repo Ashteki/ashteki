@@ -18,7 +18,7 @@ class HopeEverthorn extends Card {
                 cardCondition: (card) => card.life == 1
             },
             gameAction: ability.actions.summon((context) => ({
-                conjuration: context.target.id,
+                conjuration: context.target?.id,
                 showMessage: true
             })),
             then: (thenContext) => ({

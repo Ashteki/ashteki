@@ -62,4 +62,40 @@ describe('Hope Everthorn', function () {
             expect(this.player1.archives.length).toBe(1);
         });
     });
+
+    describe('Duplicate with unsuitable conji', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'hope-everthorn',
+                    inPlay: ['frostback-bear'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'illusion', 'ceremonial'],
+                    spellboard: ['summon-shadow-spirit'],
+                    hand: ['final-cry'],
+                    archives: ['frostback-bear']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['flute-mage']
+                }
+            });
+        });
+
+        it('duplicates', function () {
+            const firstBear = this.player1.inPlay[0];
+            const secondBear = this.player1.archives[0];
+            expect(this.player1.inPlay.length).toBe(1);
+            expect(this.player1.archives.length).toBe(1);
+            this.player1.clickCard(this.hopeEverthorn);
+            this.player1.clickPrompt('Duplicate');
+            this.player1.clickDie(0);
+            this.player1.clickCard(firstBear);
+
+            expect(this.player1.archives.length).toBe(1);
+            expect(firstBear.tokens.duplicate).toBeUndefined();
+            expect(secondBear.tokens.duplicate).toBeUndefined(); //check duplicate token applied
+
+            expect(secondBear.location).toBe('archives');
+        });
+    });
 });
