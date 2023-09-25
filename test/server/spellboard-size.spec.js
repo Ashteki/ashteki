@@ -24,11 +24,18 @@ describe('When Spellboard is full', function () {
     });
 
     it('can play an existing spell', function () {
+        const secondSummonGilder = this.player1.hand[1];
         expect(this.player1).toBeAbleToPlayFromHand('summon-gilder');
+        this.player1.play(secondSummonGilder);
+        expect(this.player1).toHaveDefaultPrompt();
     });
 
     it('can play resonance', function () {
         expect(this.player1).toBeAbleToPlayFromHand('resonance');
+        this.player1.play(this.resonance);
+        this.player1.clickDie(0);
+        this.player1.clickDone();
+        expect(this.resonance.location).toBe('spellboard');
     });
 
     it('cannot play a new spell', function () {

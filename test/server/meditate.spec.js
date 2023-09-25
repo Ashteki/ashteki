@@ -178,7 +178,7 @@ describe('Meditate', function () {
         });
 
         it('meditate spell, leaves gap in spellboard', function () {
-            expect(this.player1.player.isSpellboardFull()).toBe(true);
+            expect(this.player1.player.canPlayToSpellboard(this.shiftingMist)).toBe(false);
             this.player1.clickPrompt('Meditate');
             const target = this.player1.dicepool[0];
             expect(target.level).toBe('basic');
@@ -193,7 +193,7 @@ describe('Meditate', function () {
             this.player1.clickPrompt('Stop meditating');
             expect(target.level).toBe('power');
             expect(this.player1).toHaveDefaultPrompt();
-            expect(this.player1.player.isSpellboardFull()).toBe(false);
+            expect(this.player1.player.canPlayToSpellboard(this.shiftingMist)).toBe(true);
             expect(this.shiftingMist.location).toBe('hand');
             this.player1.play(this.shiftingMist);
             expect(this.shiftingMist.location).toBe('spellboard');

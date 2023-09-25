@@ -1,10 +1,9 @@
 const BasePlayAction = require('./BasePlayAction');
 const AttachToPbAction = require('../GameActions/AttachToPbAction');
-const { Costs } = require('../costs');
 
 class PlayPbUpgradeAction extends BasePlayAction {
     constructor(card) {
-        super(card, [Costs.play()], {
+        super(card, {
             autoTarget: (context) => context.player.phoenixborn,
             gameAction: new AttachToPbAction((context) => ({ upgrade: context.source }))
         });

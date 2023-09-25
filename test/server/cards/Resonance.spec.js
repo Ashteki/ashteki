@@ -18,8 +18,12 @@ describe('resonance', function () {
         });
 
         it('cannot be played', function () {
-            this.player1.clickCard(this.resonance);
+            this.player1.play(this.resonance);
+            this.player1.clickYes(); // warning on discard
+            this.player1.clickDie(0);
+            this.player1.clickDone();
             expect(this.player1).toHaveDefaultPrompt();
+            expect(this.resonance.location).toBe('discard');
         });
     });
 
@@ -50,7 +54,8 @@ describe('resonance', function () {
             this.player1.clickCard(this.summonIronRhino);
 
             expect(this.resonance.location).toBe('spellboard');
-            expect(this.player1.player.isSpellboardFull('summon-mist-spirit')).toBe(false);
+            // sb is not full
+            expect(this.player1.player.canPlayToSpellboard(this.player1.hand[0])).toBe(true);
             expect(this.empower.focus).toBe(0);
             expect(this.summonIronRhino.focus).toBe(1);
             expect(this.resonance.focus).toBe(0);

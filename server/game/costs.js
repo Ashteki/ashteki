@@ -39,27 +39,6 @@ const Costs = {
                 return true;
             })
     }),
-    play: () => ({
-        // is this card playable, are there limits on the target location
-        canPay: (context) => {
-            if (
-                // check for spellboard space
-                (context.source.type === 'Ready Spell' && (
-                    // ((context.player.isSpellboardFull(context.source.cardSlot) &&
-                    //     !context.source.isPlayedToExistingSpellboardSlot) ||
-                    (context.player.spellboard.length === 0 &&
-                        context.source.isPlayedToExistingSpellboardSlot)))
-            ) {
-                return false;
-            } else {
-                return true;
-            }
-        },
-        payEvent: (context) =>
-            context.game.getEvent('unnamedEvent', {}, () => {
-                return true;
-            })
-    }),
     loseStatus: (amount = 1) => ({
         canPay: (context) => context.source.status >= amount,
         payEvent: (context) =>

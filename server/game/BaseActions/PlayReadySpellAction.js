@@ -1,10 +1,9 @@
 const ActionCost = require('../Costs/actioncost');
-const { Costs } = require('../costs');
 const BasePlayAction = require('./BasePlayAction');
 
 class PlayReadySpellAction extends BasePlayAction {
     constructor(card, payActionCost = true) {
-        super(card, [Costs.play()]);
+        super(card);
         if (!payActionCost) {
             this.cost = this.cost.filter((c) => !(c instanceof ActionCost));
         }
@@ -14,10 +13,9 @@ class PlayReadySpellAction extends BasePlayAction {
 
     addSubEvent(event, context) {
         let action = context.game.actions.putIntoPlay({ myControl: true });
-        if (context.player.isSpellboardFull() &&
-            !context.source.isPlayedToExistingSpellboardSlot) {
+        if (!context.player.canPlayToSpellboard(context.source)) {
             context.game.addMessage(
-                "{0}'s battlefield is full. {1} is discarded.",
+                "Cannot play {1} to {0}'s spellboard. It is discarded.",
                 context.player,
                 context.source
             );
@@ -28,8 +26,8 @@ class PlayReadySpellAction extends BasePlayAction {
     }
 
     getWarnings(context) {
-        if (context.player.isSpellboardFull() && !context.source.isPlayedToExistingSpellboardSlot) {
-            return 'Your spellboard is full.';
+        if (!context.player.canPlayToSpellboard(context.source)) {
+            return `Ready Spell will be discarded.`;
         }
 
         return super.getWarnings(context);

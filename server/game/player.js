@@ -264,7 +264,22 @@ class Player extends GameObject {
     isSpellboardFull(spellToAdd) {
         const spellSet = new Set(this.spellboard.map((s) => s.cardSlot));
         const spellCount = spellSet.size;
-        return !spellSet.has(spellToAdd) && spellCount >= this.phoenixborn.spellboard;
+        return !spellSet.has(spellToAdd.cardSlot) && spellCount >= this.phoenixborn.spellboard;
+    }
+
+    canPlayToSpellboard(card) {
+        const spellSet = new Set(this.spellboard.map((s) => s.cardSlot));
+        const spellCount = spellSet.size;
+        // resonance on empty sb
+        if (card.isPlayedToExistingSpellboardSlot && spellCount === 0) {
+            return false;
+        }
+        // is there a slot (focus play, resonance target, empty slot)
+        return (
+            spellSet.has(card.cardSlot) ||
+            (spellCount > 0 && card.isPlayedToExistingSpellboardSlot) ||
+            spellCount < this.phoenixborn.spellboard
+        );
     }
 
     isBattlefieldFull() {
