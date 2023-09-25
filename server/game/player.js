@@ -261,12 +261,6 @@ class Player extends GameObject {
         }
     }
 
-    isSpellboardFull(spellToAdd) {
-        const spellSet = new Set(this.spellboard.map((s) => s.cardSlot));
-        const spellCount = spellSet.size;
-        return !spellSet.has(spellToAdd.cardSlot) && spellCount >= this.phoenixborn.spellboard;
-    }
-
     canPlayToSpellboard(card) {
         const spellSet = new Set(this.spellboard.map((s) => s.cardSlot));
         const spellCount = spellSet.size;
