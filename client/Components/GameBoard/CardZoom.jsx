@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import './CardZoom.scss';
 
-const CardZoom = ({ card, cardName, left }) => {
+const CardZoom = ({ card, cardName }) => {
     if (!card || !card.id) {
         return null;
     }

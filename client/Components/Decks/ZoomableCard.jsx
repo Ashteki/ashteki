@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './Phoenixborn.scss';
+import './ZoomableCard.scss';
 import { imageUrl } from '../../util';
 
 // pbStub should be the imageStub from the card as loaded by AshesCardService
-const Phoenixborn = ({ pbStub }) => {
+const ZoomableCard = ({ pbStub }) => {
     let pbImage = imageUrl(pbStub);
     const [imageZoom, setImageZoom] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -40,4 +40,4 @@ const Phoenixborn = ({ pbStub }) => {
     );
 };
 
-export default Phoenixborn;
+export default ZoomableCard;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ButtonGroup, Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import Phoenixborn from './Phoenixborn';
+import ZoomableCard from './ZoomableCard';
 import DeckStatus from './DeckStatus';
 import DeckStatusSummary from './DeckStatusSummary';
 
@@ -45,7 +45,7 @@ const DeckSummary = ({ deck }) => {
         <Col xs='12' className='deck-summary'>
             <Row>
                 <Col xs='2' sm='3'>
-                    <Phoenixborn pbStub={phoenixbornStub} />
+                    <ZoomableCard pbStub={phoenixbornStub} />
                 </Col>
                 <Col xs='10' sm='9'>
                     <table style={{ width: '100%' }}>

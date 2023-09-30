@@ -17,7 +17,7 @@ import * as actions from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
 import ShowHandIcon from '../../assets/img/ShowHandIcon.png';
 import OpenHandsIcon from '../../assets/img/OpenHandsIcon.png';
-import Phoenixborn from '../Decks/Phoenixborn';
+import ZoomableCard from '../Decks/ZoomableCard';
 // ref error comment
 
 import './GameList.scss';
@@ -103,7 +103,7 @@ class GameList extends React.Component {
         const pbCard =
             gameStarted && showPhoenixborn && player.deck ? (
                 <div className='game-list-deck-image'>
-                    <Phoenixborn pbStub={player.deck.pbStub} />
+                    <ZoomableCard pbStub={player.deck.pbStub} />
                 </div>
             ) : null;
         if (firstPlayer) {

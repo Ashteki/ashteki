@@ -6,4 +6,8 @@
     left: 0px;
     width: $keyteki-card-width * 4;
     z-index: 999;
+
+    >.img-fluid {
+        border-radius: 6px;
+    }
 }

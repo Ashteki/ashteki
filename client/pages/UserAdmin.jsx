@@ -15,6 +15,7 @@ import './UserAdmin.scss';
 import { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import CardGallery from '../Components/Profile/CardGallery';
 
 const defaultPermissions = {
     canEditNews: false,
@@ -137,6 +138,12 @@ const UserAdmin = () => {
         });
     }
 
+    var allAlts = Object.values(currentUser?.altArts || []).reduce(function (prev, next) {
+        return prev.concat(next);
+    }, []);
+
+    const altCards = allAlts.map((a) => ({ imageStub: a }));
+
     return (
         <Col sm={{ span: 8, offset: 2 }}>
             <ApiStatus state={apiState} onClose={() => dispatch(clearApiStatus(Admin.FindUser))} />
@@ -202,6 +209,7 @@ const UserAdmin = () => {
                                     <Tabs>
                                         <TabList>
                                             <Tab>User Details</Tab>
+                                            <Tab>Alt Arts</Tab>
                                             <Tab>Permissions</Tab>
                                             <Tab>Sessions</Tab>
                                         </TabList>
@@ -277,6 +285,14 @@ const UserAdmin = () => {
                                                 value='true'
                                                 checked={userVerified}
                                             ></Form.Check>
+
+                                        </TabPanel>
+
+                                        <TabPanel>
+                                            Alt Arts
+                                            <Col lg={{ span: 12, offset: 0 }} className='user-alts'>
+                                                <CardGallery cards={altCards} />
+                                            </Col>
 
                                         </TabPanel>
 

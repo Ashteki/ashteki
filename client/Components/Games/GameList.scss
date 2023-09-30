@@ -144,9 +144,13 @@
 .game-list-deck-image img.pb-image {
     margin-left: 5px;
     margin-right: 5px;
-    ;
     width: 40px;
 }
+
+.pb-image {
+    border-radius: 4px;
+}
+
 .game-icons {
     img {
         margin-right: 3px;

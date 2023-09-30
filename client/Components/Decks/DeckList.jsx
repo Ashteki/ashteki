@@ -10,7 +10,7 @@ import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faLink } from '@fortawesome/free-solid-svg-icons';
 
-import Phoenixborn from './Phoenixborn';
+import ZoomableCard from './ZoomableCard';
 import {
     loadDecks,
     selectDeck,
@@ -172,7 +172,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             // eslint-disable-next-line react/display-name
             formatter: (pb, row) => (
                 <div className='deck-image'>
-                    <Phoenixborn pbStub={row.phoenixborn[0]?.card.imageStub} />
+                    <ZoomableCard pbStub={row.phoenixborn[0]?.card.imageStub} />
                 </div>
             )
         },

@@ -2,7 +2,6 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 
-import conjurationCardBack from '../../assets/img/cardback-conjuration.png';
 import CardImage from '../GameBoard/CardImage';
 
 import './CardGallery.scss';
