@@ -17,11 +17,11 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             <Tabs>
                 <TabList>
                     <Tab>My Decks</Tab>
-                    <Tab>Pre-cons</Tab>
-                    <Tab>PvE</Tab>
+                    <Tab>Precons</Tab>
+                    <Tab>Red Rains Precons</Tab>
                     <Tab>Building Basics</Tab>
                     <Tab style={{ backgroundColor: 'rgb(0, 153, 255)', color: '#FFF' }}>
-                        <img src={igcircle} alt='Adventuring Party' height='22' width='22' />{' '}
+                        {/* <img src={igcircle} alt='Adventuring Party' height='22' width='22' />{' '} */}
                         Adventuring Party
                     </Tab>
                 </TabList>
@@ -52,8 +52,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         deckList = (
             <Tabs>
                 <TabList>
-                    <Tab>Pre-cons</Tab>
-                    <Tab>PvE</Tab>
+                    <Tab>Precons</Tab>
+                    <Tab>Red Rains Precons</Tab>
                 </TabList>
 
                 <TabPanel>
