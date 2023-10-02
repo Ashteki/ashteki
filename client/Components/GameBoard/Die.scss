@@ -156,4 +156,7 @@
         filter: grayscale(100%) brightness(60%);
     }
 
+    &.slot {
+        border: 1px solid darkred;
+    }
 }

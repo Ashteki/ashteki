@@ -97,6 +97,37 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
+
+    >.game-menu {
+        position: absolute;
+        top: 0px;
+        width: 90px;
+        display: flex;
+        flex-direction: column;
+
+        >.round-display {
+            font-size: 20px;
+        }
+
+        .game-menu-icon {
+            width: 35px;
+            height: 35px;
+        }
+
+        .game-menu-item {
+            padding: 5px;
+            // width: 100%;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .game-menu-item:hover {
+            padding: 5px;
+            // width: 100%;
+            color: #CCC;
+        }
+    }
 }
 
 .timer-log-area {

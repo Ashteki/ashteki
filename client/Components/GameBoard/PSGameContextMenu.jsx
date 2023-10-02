@@ -82,17 +82,18 @@ const PSGameContextMenu = () => {
         return null;
     }
     return !isSpectating && isGameActive() ? (
-        <div className='state'>
-            <a href='#' className='pr-1 pl-1' title='Concede'>
-                <FontAwesomeIcon icon={faSkull} onClick={onConcedeClick}></FontAwesomeIcon>
-            </a>
-        </div>
+        <a href='#' className='pr-1 pl-1 game-menu-item' title='Concede' onClick={onConcedeClick}>
+            <FontAwesomeIcon icon={faSkull} className='game-menu-icon'></FontAwesomeIcon>
+        </a>
     ) : (
-        <div className='state'>
-            <a href='#' className='pr-1 pl-1' title='Leave the game'>
-                <FontAwesomeIcon icon={faRightFromBracket} onClick={onLeaveClick}></FontAwesomeIcon>
-            </a>
-        </div>
+        <a
+            href='#'
+            className='pr-1 pl-1 game-menu-item'
+            title='Leave the game'
+            onClick={onLeaveClick}
+        >
+            <FontAwesomeIcon icon={faRightFromBracket} className='game-menu-icon' style={{ rotate: '180deg' }}></FontAwesomeIcon>
+        </a>
     );
 };
 

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { ButtonGroup, Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import ZoomableCard from './ZoomableCard';
 import DeckStatus from './DeckStatus';
 import DeckStatusSummary from './DeckStatusSummary';
 
 import './DeckSummary.scss';
 import DieIcon from '../GameBoard/DieIcon';
+import DieSlot from '../GameBoard/DieSlot';
 import CardListText from './CardListText';
 import CardListImg from './CardListImg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faImage, faList } from '@fortawesome/free-solid-svg-icons';
+import { faImage, faList } from '@fortawesome/free-solid-svg-icons';
 
 const DeckSummary = ({ deck }) => {
     const [radioValue, setRadioValue] = useState(false);
@@ -30,6 +31,9 @@ const DeckSummary = ({ deck }) => {
                         );
                     }
                 });
+        }
+        for (let i = diceToRender.length; i < 10; i++) {
+            diceToRender.push(<DieSlot />);
         }
         return (
             <div>
