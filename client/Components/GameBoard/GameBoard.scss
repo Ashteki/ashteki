@@ -105,6 +105,7 @@
         width: 90px;
         display: flex;
         flex-direction: column;
+        z-index: 10;
 
         >.round-display {
             font-size: 20px;

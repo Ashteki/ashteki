@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import CardLog from './CardLog';
 import PSGameContextMenu from './PSGameContextMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faList, faWrench } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 
 const Sidebar = ({
@@ -19,6 +19,7 @@ const Sidebar = ({
     onClockZero,
     onSettingsClick,
     onManualModeClick,
+    onManualCommandsClick,
     leftMode
 }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -82,7 +83,7 @@ const Sidebar = ({
                         className='pr-1 pl-1 game-menu-item'
                         title='Settings'
                     >
-                        <FontAwesomeIcon icon={faCogs} className='game-menu-icon'></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faCogs} className='game-menu-icon' />
                     </a>
                     <a
                         href='#'
@@ -90,10 +91,15 @@ const Sidebar = ({
                         onClick={onManualModeClick}
                         title='Manual Mode'
                     >
-                        <FontAwesomeIcon
-                            icon={faWrench}
-                            className='game-menu-icon'
-                        ></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faWrench} className='game-menu-icon' />
+                    </a>
+                    <a
+                        href='#'
+                        className='pr-1 pl-1 game-menu-item'
+                        title='Show manual command list'
+                        onClick={onManualCommandsClick}
+                    >
+                        <FontAwesomeIcon icon={faList} className='game-menu-icon' />
                     </a>
                 </div>
             )}

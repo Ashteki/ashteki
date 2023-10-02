@@ -484,6 +484,7 @@ const GameBoard = () => {
                         onClockZero={onClockZero}
                         onSettingsClick={onSettingsClick}
                         onManualModeClick={onManualModeClick}
+                        onManualCommandsClick={onManualCommandsClick}
                         leftMode={leftMode}
                     />
                 )}
@@ -548,6 +549,7 @@ const GameBoard = () => {
                             onClockZero={onClockZero}
                             onSettingsClick={onSettingsClick}
                             onManualModeClick={onManualModeClick}
+                            onManualCommandsClick={onManualCommandsClick}
                             leftMode={leftMode}
                         />
                     )}
