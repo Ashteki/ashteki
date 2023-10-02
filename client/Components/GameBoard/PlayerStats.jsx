@@ -1,5 +1,4 @@
 import React from 'react';
-import { toastr } from 'react-redux-toastr';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -56,6 +55,7 @@ const PlayerStats = ({
     round,
     showManualMode,
     showMessages,
+    showContextItem,
     side,
     size,
     solo,
@@ -334,7 +334,11 @@ const PlayerStats = ({
                             </a>
                         </div>
                     )}
-                    <PSGameContextMenu />
+                    {showContextItem && (
+                        <div className='state'>
+                            <PSGameContextMenu />
+                        </div>
+                    )}
                     {!isSpectating && (
                         <div className='state'>
                             <a href='#' className='pr-1 pl-1' title='Show dice/card history'>
@@ -345,7 +349,7 @@ const PlayerStats = ({
                             </a>
                         </div>
                     )}
-                    {showManualMode && (
+                    {showContextItem && showManualMode && (
                         <div className='state'>
                             <a
                                 href='#'
@@ -361,12 +365,14 @@ const PlayerStats = ({
                             </a>
                         </div>
                     )}
-                    <div className='state'>
-                        <a href='#' onClick={onSettingsClick} className='pr-1 pl-1'>
-                            <FontAwesomeIcon icon={faCogs}></FontAwesomeIcon>
-                            <span className='ml-1'>Settings</span>
-                        </a>
-                    </div>
+                    {showContextItem && (
+                        <div className='state'>
+                            <a href='#' onClick={onSettingsClick} className='pr-1 pl-1'>
+                                <FontAwesomeIcon icon={faCogs}></FontAwesomeIcon>
+                                <span className='ml-1'>Settings</span>
+                            </a>
+                        </div>
+                    )}
                     <div className='state'>
                         <a href='#' onClick={onMessagesClick} className='pl-1' title='Toggle chat'>
                             <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>

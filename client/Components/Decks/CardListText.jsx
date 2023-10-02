@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import CardImage from '../GameBoard/CardImage';
 
-
-
 const CardListText = ({ deckCards }) => {
     let [zoomCard, setZoomCard] = useState(null);
     let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });

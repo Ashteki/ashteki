@@ -9,7 +9,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    top: $navbar-height;
+    top: 0; //$navbar-height;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -97,6 +97,38 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
+
+    >.game-menu {
+        position: absolute;
+        top: 0px;
+        width: 90px;
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+
+        >.round-display {
+            font-size: 20px;
+        }
+
+        .game-menu-icon {
+            width: 35px;
+            height: 35px;
+        }
+
+        .game-menu-item {
+            padding: 5px;
+            // width: 100%;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .game-menu-item:hover {
+            padding: 5px;
+            // width: 100%;
+            color: #CCC;
+        }
+    }
 }
 
 .timer-log-area {

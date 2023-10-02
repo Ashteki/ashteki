@@ -10,23 +10,18 @@ const CardZoom = ({ card, cardName }) => {
         return null;
     }
 
-    const size = card.type === 'decklist' ? 'x-large' : 'normal';
+    const size = 'x-large'; //card.type === 'decklist' ? 'x-large' : 'normal';
     return (
         <div className={classNames(`card-zoom`, size, `vertical`, { left: false })}>
-            {
+            {card.imageUrl ? (
                 <div className='card-zoomed shadow'>
-                    {card.imageUrl ? (
-                        <div className='card-zoomed shadow'>
-                            <img className={`image-zoom ${size} img-fluid`} src={card.imageUrl} />
-                        </div>
-                    ) : (
-                        <div className='card-zoomed shadow'>
-                            <span className='card-name'>{cardName}</span>
-                            <CardImage card={card} override={true} />
-                        </div>
-                    )}
+                    <img className={`image-zoom ${size} img-fluid`} src={card.imageUrl} />
                 </div>
-            }
+            ) : (
+                <div className='card-zoomed shadow'>
+                    <CardImage card={card} override={true} />
+                </div>
+            )}
         </div>
     );
 };

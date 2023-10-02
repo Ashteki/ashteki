@@ -160,7 +160,7 @@ class Application extends React.Component {
 
         return (
             <div className='bg' ref={this.bgRef}>
-                <Navigation appName='Ashes Online' user={this.props.user} />
+                {!gameBoardVisible && <Navigation appName='Ashes Online' user={this.props.user} />}
                 <div className='wrapper'>
                     <Container className='content'>
                         <ErrorBoundary

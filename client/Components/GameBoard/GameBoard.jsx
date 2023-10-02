@@ -14,22 +14,17 @@ import PlayerBoard from './PlayerBoard';
 import GameChat from './GameChat';
 import GameConfigurationModal from './GameConfigurationModal';
 import Droppable from './Droppable';
-import TimeLimitClock from './TimeLimitClock';
 
 import './GameBoard.scss';
 import PlayerPBRow from './PlayerPBRow';
 import ManualCommands from '../../pages/ManualCommands';
 import MovablePanel from './MovablePanel';
-import CardInspector from './CardInspector';
-import Clock from './Clock';
 import WinLoseSplash from './WinLoseSplash';
 import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
-import { Rnd } from 'react-rnd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import MovablePanel2 from './MovablePanel2';
+import Sidebar from './Sidebar';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -179,36 +174,6 @@ const GameBoard = () => {
         player.dice = Object.assign([], placeholderPlayer.dice, player.dice);
         return player;
     };
-
-    const getTimer = (player) => {
-        let clocks = [];
-        if (currentGame.useGameTimeLimit) {
-            if (currentGame.gameTimeLimit && currentGame.gameTimeLimitStarted) {
-                clocks.push(
-                    <TimeLimitClock
-                        timeLimitStarted={currentGame.gameTimeLimitStarted}
-                        timeLimitStartedAt={currentGame.gameTimeLimitStartedAt}
-                        timeLimit={currentGame.gameTimeLimit}
-                    />
-                );
-            }
-            if (player.clock) {
-                clocks.push(
-                    <Clock
-                        secondsLeft={player.clock.timeLeft}
-                        mode={player.clock.mode}
-                        stateId={player.clock.stateId}
-                        periods={player.clock.periods}
-                        mainTime={player.clock.mainTime}
-                        timePeriod={player.clock.timePeriod}
-                        winner={currentGame.winner}
-                        onClockZero={onClockZero}
-                    />
-                );
-            }
-        }
-        return <div className='time-limit-clock card bg-dark border-primary'>{clocks}</div>;
-    }
 
     const getPlayerRows = (otherPlayer, compactLayout, leftMode, cardSize, spectating) => {
         return (
@@ -458,7 +423,7 @@ const GameBoard = () => {
 
     let manualMode = currentGame.manualMode;
     const compactLayout = optionSettings?.compactLayout;
-    const leftMode = optionSettings?.leftMode;
+    const leftMode = optionSettings?.leftMode || currentGame.solo || compactLayout;
 
     const getOtherPlayerPrompt = (otherPlayer) => {
         let otherPlayerPrompt = null;
@@ -480,44 +445,6 @@ const GameBoard = () => {
             );
         }
         return otherPlayerPrompt;
-    };
-
-    const getCardLog = () => {
-        return (
-            <div className='timer-log-area'>
-                <CardLog
-                    items={currentGame.cardLog}
-                    onMouseOut={onMouseOut}
-                    onMouseOver={onMouseOver}
-                />
-            </div>
-        );
-    };
-
-    const getPromptArea = (thisPlayer) => {
-        let otherPlayerPrompt = null;
-        const logArea = thisPlayer.inspectionCard ? (
-            <CardInspector card={thisPlayer.inspectionCard} />
-        ) : (
-            <div>{otherPlayerPrompt || getCardLog()}</div>
-        );
-        return (
-            <div className='prompt-area panel'>
-                {logArea}
-                <div className='inset-pane'>
-                    <ActivePlayerPrompt
-                        cards={cards}
-                        promptState={thisPlayer.promptState}
-                        onButtonClick={onCommand}
-                        onMouseOver={onMouseOver}
-                        onMouseOut={onMouseOut}
-                        onTimerExpired={onTimerExpired}
-                        phase={currentGame.currentPhase}
-                    />
-                    {getTimer(thisPlayer)}
-                </div>
-            </div>
-        );
     };
 
     return (
@@ -547,7 +474,20 @@ const GameBoard = () => {
                 />
             </div>
             <div className='main-window'>
-                {leftMode && getPromptArea(thisPlayer)}
+                {leftMode && (
+                    <Sidebar
+                        thisPlayer={thisPlayer}
+                        onCommand={onCommand}
+                        onMouseOver={onMouseOver}
+                        onMouseOut={onMouseOut}
+                        onTimerExpired={onTimerExpired}
+                        onClockZero={onClockZero}
+                        onSettingsClick={onSettingsClick}
+                        onManualModeClick={onManualModeClick}
+                        onManualCommandsClick={onManualCommandsClick}
+                        leftMode={leftMode}
+                    />
+                )}
                 {renderBoard(
                     thisPlayer,
                     otherPlayer,
@@ -576,34 +516,43 @@ const GameBoard = () => {
                         <ManualCommands />
                     </MovablePanel2>
                 )}
-                {
-                    showDeckNotes && thisPlayer.deckNotes && (
-                        <div className='info-panel'>
-                            <MovablePanel
-                                title='Deck Notes'
-                                name='Notes'
-                                onCloseClick={onDeckNotesClick}
-                                side='bottom'
-                            >
-                                <DeckNotes notes={thisPlayer.deckNotes} />
-                            </MovablePanel>
-                        </div>
-                    )
-                }
-                {
-                    showDiceHistory && (
-                        <div>
-                            <DiceHistory
-                                firstFive={thisPlayer.firstFive}
-                                diceHistory={thisPlayer.diceHistory}
-                                onCloseClick={onDiceHistoryClick}
-                                side='bottom'
-                            />
-                        </div>
-                    )
-                }
+                {showDeckNotes && thisPlayer.deckNotes && (
+                    <div className='info-panel'>
+                        <MovablePanel
+                            title='Deck Notes'
+                            name='Notes'
+                            onCloseClick={onDeckNotesClick}
+                            side='bottom'
+                        >
+                            <DeckNotes notes={thisPlayer.deckNotes} />
+                        </MovablePanel>
+                    </div>
+                )}
+                {showDiceHistory && (
+                    <div>
+                        <DiceHistory
+                            firstFive={thisPlayer.firstFive}
+                            diceHistory={thisPlayer.diceHistory}
+                            onCloseClick={onDiceHistoryClick}
+                            side='bottom'
+                        />
+                    </div>
+                )}
                 <div className='right-side'>
-                    {!leftMode && getPromptArea(thisPlayer)}
+                    {!leftMode && (
+                        <Sidebar
+                            thisPlayer={thisPlayer}
+                            onCommand={onCommand}
+                            onMouseOver={onMouseOver}
+                            onMouseOut={onMouseOut}
+                            onTimerExpired={onTimerExpired}
+                            onClockZero={onClockZero}
+                            onSettingsClick={onSettingsClick}
+                            onManualModeClick={onManualModeClick}
+                            onManualCommandsClick={onManualCommandsClick}
+                            leftMode={leftMode}
+                        />
+                    )}
 
                     {showMessages && (
                         <div className='gamechat'>
@@ -621,7 +570,7 @@ const GameBoard = () => {
                         </div>
                     )}
                 </div>
-            </div >
+            </div>
             <div>
                 <PlayerStats
                     activePlayer={thisPlayer.activePlayer}
@@ -651,6 +600,7 @@ const GameBoard = () => {
                     showControls={!spectating && manualMode}
                     showManualMode={!spectating}
                     showMessages
+                    showContextItem={!leftMode}
                     size={cardSize}
                     stats={thisPlayer.stats}
                     winner={currentGame.winner}

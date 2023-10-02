@@ -503,7 +503,7 @@ class GameServer {
         socket.leaveChannel(game.id);
 
         // Auto-leave dummy opponent
-        if (game.solo) {
+        if (game.solo && !isSpectator) {
             game.leave(DummyUser.DUMMY_USERNAME);
         }
 
