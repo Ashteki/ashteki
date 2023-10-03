@@ -43,13 +43,13 @@ const DeckSummary = ({ deck }) => {
     };
 
     var diceToRender = getDiceToRender();
-    var phoenixbornStub = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].card.imageStub : '';
+    var pbCard = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].card : null;
 
     return (
         <Col xs='12' className='deck-summary'>
             <Row>
                 <Col xs='2' sm='3'>
-                    <ZoomableCard pbStub={phoenixbornStub} />
+                    <ZoomableCard card={pbCard} />
                 </Col>
                 <Col xs='10' sm='9'>
                     <table style={{ width: '100%' }}>

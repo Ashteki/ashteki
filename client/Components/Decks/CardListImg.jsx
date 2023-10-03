@@ -35,7 +35,7 @@ const CardListImg = ({ deckCards }) => {
         <div className='cards'>
             {cardsToRender.map((card) => (
                 <div key={card.id} className='game-card large vertical'>
-                    <ZoomableCard pbStub={card.imageStub} />
+                    <ZoomableCard card={card} />
                     {card.isChained && (
                         <FontAwesomeIcon
                             className='card-chain-bad'

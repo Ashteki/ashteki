@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import './ZoomableCard.scss';
 import { imageUrl } from '../../util';
+import CardImage from '../GameBoard/CardImage';
 
 // pbStub should be the imageStub from the card as loaded by AshesCardService
-const ZoomableCard = ({ pbStub }) => {
-    let pbImage = imageUrl(pbStub);
+const ZoomableCard = ({ card }) => {
+    let pbImage = imageUrl(card.imageStub);
     const [imageZoom, setImageZoom] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     return (
         <div>
-            <img
-                className='img-fluid pb-image'
-                src={pbImage}
+            <span
+                // className='img-fluid pb-image'
+                // src={pbImage}
                 onMouseMove={(event) => {
                     let y = event.clientY;
                     let yPlusHeight = y + 364;
@@ -27,7 +28,9 @@ const ZoomableCard = ({ pbStub }) => {
                     setImageZoom(true);
                 }}
                 onMouseOut={() => setImageZoom(false)}
-            />
+            >
+                <CardImage card={card} />
+            </span>
             {imageZoom && (
                 <div
                     className='archon-zoom'

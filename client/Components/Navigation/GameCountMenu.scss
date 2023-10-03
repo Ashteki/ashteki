@@ -1,9 +1,19 @@
+@import '../../styles/variables';
+@import '../../styles/colours';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+
 .games-popup {
     position: absolute;
     left: -80px;
     top: 0px;
     min-width: 200px;
     list-style-type: none;
+}
+
+.spectators-popup {
+    z-index: $layer-top;
 }
 
 .absolute-panel {

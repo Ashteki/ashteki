@@ -25,6 +25,8 @@ import Droppable from './Droppable';
 import conjback from '../../assets/img/cardback-conjuration.png';
 import spellback from '../../assets/img/cardback-spell.png';
 import PSGameContextMenu from './PSGameContextMenu';
+import GameCountMenu from '../Navigation/GameCountMenu';
+import SpectatorIcon from './SpectatorIcon';
 
 const PlayerStats = ({
     activePlayer,
@@ -324,7 +326,6 @@ const PlayerStats = ({
                 </>
             )}
             {playerDisconnect}
-
             {showMessages && (
                 <div className='state chat-status'>
                     {player.deckNotes && (
@@ -380,7 +381,11 @@ const PlayerStats = ({
                     </div>
                 </div>
             )}
-            {!showMessages && <div className='state  chat-status'>Round {round}</div>}
+            {!showMessages && (
+                <div className='state chat-status'>
+                    Round {round} |&nbsp;<SpectatorIcon />
+                </div>
+            )}
         </div>
     );
 };

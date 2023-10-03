@@ -103,7 +103,7 @@ class GameList extends React.Component {
         const pbCard =
             gameStarted && showPhoenixborn && player.deck ? (
                 <div className='game-list-deck-image'>
-                    <ZoomableCard pbStub={player.deck.pbStub} />
+                    <ZoomableCard card={{ imageStub: player.deck.pbStub }} />
                 </div>
             ) : null;
         if (firstPlayer) {

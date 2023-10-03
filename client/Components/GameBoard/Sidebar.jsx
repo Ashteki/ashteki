@@ -5,10 +5,7 @@ import TimeLimitClock from './TimeLimitClock';
 import Clock from './Clock';
 import { useSelector } from 'react-redux';
 import CardLog from './CardLog';
-import PSGameContextMenu from './PSGameContextMenu';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faList, faWrench } from '@fortawesome/free-solid-svg-icons';
-import classNames from 'classnames';
+import GameMenu from './GameMenu';
 
 const Sidebar = ({
     thisPlayer,
@@ -68,40 +65,15 @@ const Sidebar = ({
         </div>
     );
 
-    const manualClassNames = classNames('game-menu-item', {
-        'text-danger': currentGame.manualMode
-    })
+
     return (
         <div className='prompt-area panel'>
             {leftMode && (
-                <div className='game-menu'>
-                    <div className='round-display game-menu-item'>{`Round ${currentGame.round}`}</div>
-                    <PSGameContextMenu />
-                    <a
-                        href='#'
-                        onClick={onSettingsClick}
-                        className='pr-1 pl-1 game-menu-item'
-                        title='Settings'
-                    >
-                        <FontAwesomeIcon icon={faCogs} className='game-menu-icon' />
-                    </a>
-                    <a
-                        href='#'
-                        className={manualClassNames}
-                        onClick={onManualModeClick}
-                        title='Manual Mode'
-                    >
-                        <FontAwesomeIcon icon={faWrench} className='game-menu-icon' />
-                    </a>
-                    <a
-                        href='#'
-                        className='pr-1 pl-1 game-menu-item'
-                        title='Show manual command list'
-                        onClick={onManualCommandsClick}
-                    >
-                        <FontAwesomeIcon icon={faList} className='game-menu-icon' />
-                    </a>
-                </div>
+                <GameMenu
+                    onSettingsClick={onSettingsClick}
+                    onManualModeClick={onManualModeClick}
+                    onManualCommandsClick={onManualCommandsClick}
+                />
             )}
             {logArea}
             <div className='inset-pane'>

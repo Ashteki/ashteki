@@ -26,8 +26,7 @@ const GameCountMenu = () => {
         }
         const p1Name = players[0].name;
         const p2Name = players.length > 1 ? players[1].name : '??';
-        const liClass = 'game-count-list-item'
-
+        const liClass = 'game-count-list-item';
         return <li key={game.id} className={liClass}>{p1Name} vs {p2Name}</li>;
     });
     const linkClass = classNames('patreon-link', { 'empty-game': emptyGame });

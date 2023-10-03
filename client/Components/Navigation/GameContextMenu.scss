@@ -1,11 +1,12 @@
 .spectators-popup {
     position: absolute;
-    width: 115px;
+    width: 100%;
     list-style-type: none;
 }
 
 .absolute-panel {
     background-color: rgba(0, 0, 0, 0.85);
+    top: 30px;
     margin: 5px;
     padding: 5px 10px;
     border: 1px solid rgba(71, 58, 56, 0.95);

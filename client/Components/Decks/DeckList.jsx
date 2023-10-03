@@ -172,7 +172,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             // eslint-disable-next-line react/display-name
             formatter: (pb, row) => (
                 <div className='deck-image'>
-                    <ZoomableCard pbStub={row.phoenixborn[0]?.card.imageStub} />
+                    <ZoomableCard card={row.phoenixborn[0]?.card} />
                 </div>
             )
         },
@@ -316,10 +316,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                                 </Form.Control>
                             </Form.Group>
                             <Form.Group as={Col} controlId='favourite' xs='1' className='fave-hdr'>
-                                <FontAwesomeIcon
-                                    icon={faHeart}
-                                    title='Remove from favourites'
-                                />
+                                <FontAwesomeIcon icon={faHeart} title='Remove from favourites' />
                                 <Form.Check // prettier-ignore
                                     type='switch'
                                     id='custom-switch'
