@@ -87,7 +87,7 @@ const NewGame = ({
 
     let clockType = [
         { name: 'timer', label: t('Shared') },
-        { name: 'chess', label: t('Chess Clock') }
+        { name: 'chess', label: t('Chess Clock (each)') }
     ];
 
     const defaultTime = {
