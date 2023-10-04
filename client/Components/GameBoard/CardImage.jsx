@@ -4,7 +4,7 @@ import { imageUrl } from '../../util';
 
 import './CardImage.scss';
 
-const CardImage = ({ card, cardBack, override }) => {
+const CardImage = ({ card, cardBack, override, noIndex }) => {
     if (!card) {
         return null;
     }
@@ -20,7 +20,7 @@ const CardImage = ({ card, cardBack, override }) => {
     let classes = classNames('img-fluid', 'img-card');
     return (
         <>
-            {cardIndex}
+            {!noIndex && cardIndex}
             <img className={classes} src={imgPath} />
         </>
     );

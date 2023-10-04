@@ -55,7 +55,7 @@ const Sidebar = ({
     const logArea = thisPlayer.inspectionCard ? (
         <CardInspector card={thisPlayer.inspectionCard} />
     ) : (
-        <div>
+        <>
             {!leftMode && (
                 <div className='timer-log-area'>
                     <CardLog
@@ -72,7 +72,7 @@ const Sidebar = ({
                     onMouseOver={onMouseOver}
                 />
             )}
-        </div>
+        </>
     );
 
     return (

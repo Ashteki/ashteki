@@ -15,13 +15,6 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
     if (!items) {
         return null;
     }
-    const renderDieUsed = (die) => {
-        return (
-            <div className='x-large cardlog-die mb-2'>
-                <DieIcon key={'cld-' + die.uuid} die={die} />
-            </div>
-        )
-    }
 
     const renderItem = (item, last = false) => {
         const actionClass = 'action-' + item.type;
@@ -52,7 +45,18 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
         }
 
         if (item.obj.type === 'die') {
-            return renderDieUsed(item.obj);
+            const die = item.obj;
+            return (
+                <div key={item.id} className='log-card'>
+                    <div className='x-large cardlog-icon'>
+                        <DieIcon key={'cld-' + die.uuid} die={die} />
+                    </div>
+                    <div className='log-info'>
+                        {item.p} <span className={actionClass}>uses</span> dice power
+                    </div>
+                </div>
+
+            )
         }
 
         // now it's a card
@@ -67,14 +71,14 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
                 onMouseOut={() => onMouseOut && onMouseOut(item.obj)}
                 onMouseOver={() => onMouseOver && onMouseOver(item.obj)}
             >
-                <CardImage card={item.obj} />
+                <CardImage card={item.obj} noIndex={true} />
                 <div className='log-info'>{item.p} <span className={actionClass}>{actionText}</span>  {item.obj.name}
                 </div>
             </div>
         );
     };
 
-    return <div className='cardlog-wrapper'>{items.map((i) => renderItem(i))}</div>;
+    return <div className='cardlogex-wrapper'>{items.map((i) => renderItem(i))}</div>;
 };
 
 CardLogEx.displayName = 'CardLog';

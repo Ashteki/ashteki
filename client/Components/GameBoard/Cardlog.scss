@@ -9,6 +9,14 @@
     flex-direction: column;
 }
 
+.cardlogex-wrapper {
+    width: 216px;
+    display: flex;
+    flex-direction: column;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+}
+
 .last-card {
     border-radius: 6.25%;
     overflow: hidden;
@@ -68,5 +76,10 @@
 
     .log-info {
         margin-left: 4px;
+    }
+
+    .x-large .die {
+        height: 45px;
+        width: 45px;
     }
 }

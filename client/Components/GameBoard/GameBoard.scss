@@ -98,21 +98,32 @@
     flex-direction: column;
     justify-content: flex-end;
     position: relative;
+    padding-top: 40px;
+
+    >.game-menu-header {
+        position: absolute;
+        top: 0px;
+        font-size: 20px;
+        padding: 5px;
+        width: 100%;
+        color: #CCC;
+        background-color: black;
+    }
+
+    .game-menu-trigger {
+        color: #FFF;
+    }
 
     >.game-menu {
         position: absolute;
-        top: 0px;
-        // width: 90px;
         display: flex;
         flex-direction: column;
         z-index: 10;
-
-        >.game-menu-header {
-            font-size: 20px;
-            padding: 5px;
-            // width: 100%;
-            color: #CCC;
-        }
+        background-color: black;
+        border: 1px solid grey;
+        left: 1px;
+        top: 40px;
+        padding: 4px;
 
         .game-menu-icon {
             width: 35px;
