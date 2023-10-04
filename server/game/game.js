@@ -84,6 +84,7 @@ class Game extends EventEmitter {
         this.triggerSuddenDeath = false;
         this.suddenDeath = false; // are we in sudden death mode? (mostly tracked in player)
         this.cardIndex = 0;
+        this.cardLogIndex = 0;
         this.cardsUsed = [];
         // this should be private - use cardPlayed / diePlayed etc to record events
         this.cardsPlayed = [];
@@ -139,22 +140,41 @@ class Game extends EventEmitter {
         return this.cardIndex;
     }
 
-    cardUsed(card) {
-        this.cardsPlayed.push({ act: 'use', obj: card });
+    getCardLogIndex() {
+        this.cardLogIndex++;
+        return this.cardLogIndex;
+    }
+    cardUsed(card, player) {
+        this.cardsPlayed.push({
+            id: 'cl' + this.getCardLogIndex(),
+            act: 'use',
+            obj: card,
+            player: player
+        });
     }
     //** remove card from card log - used for refund of play cost */
     undoCardUsed() {
         this.cardsPlayed.pop();
     }
 
-    diePowerUsed(die) {
-        this.cardsPlayed.push({ act: 'use', obj: die });
+    diePowerUsed(die, player) {
+        this.cardsPlayed.push({
+            id: 'cl' + this.getCardLogIndex(),
+            act: 'use',
+            obj: die,
+            player: player
+        });
     }
 
-    cardPlayed(card) {
+    cardPlayed(card, player) {
         const c = this.lastCardPlayed();
         if (!c || c.obj !== card) {
-            this.cardsPlayed.push({ act: 'play', obj: card });
+            this.cardsPlayed.push({
+                id: 'cl' + this.getCardLogIndex(),
+                act: 'play',
+                obj: card,
+                player: player
+            });
         }
         card.new = true;
     }
@@ -1609,11 +1629,20 @@ class Game extends EventEmitter {
             battles: attackState.battles
         };
         this.raiseEvent('onAttackersDeclared', params);
-        this.cardsPlayed.push({ act: 'attack', obj: attackState.target });
+        this.cardsPlayed.push({
+            id: 'cl' + this.getCardLogIndex(),
+            act: 'attack',
+            obj: attackState.target,
+            player: attackingPlayer
+        });
     }
 
     logMeditation(player) {
-        this.cardsPlayed.push({ act: 'med', obj: player });
+        this.cardsPlayed.push({
+            id: 'cl' + this.getCardLogIndex(),
+            act: 'med',
+            obj: player
+        });
     }
 
     initiateAttack(target, attacker) {
@@ -1695,7 +1724,8 @@ class Game extends EventEmitter {
                 cancelPromptUsed: this.cancelPromptUsed,
                 cardLog: this.cardsPlayed.map((i) => ({
                     type: i.act,
-                    obj: i.obj.getShortSummary()
+                    obj: i.obj.getShortSummary(),
+                    p: i.player?.name
                 })),
                 currentPhase: this.currentPhase,
                 round: this.round,
