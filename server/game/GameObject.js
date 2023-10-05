@@ -23,6 +23,10 @@ class GameObject {
         return '';
     }
 
+    getImageStub() {
+        return this.imageStub;
+    }
+
     addEffect(effect) {
         this.effects.push(effect);
     }
@@ -93,7 +97,7 @@ class GameObject {
     getShortSummary() {
         return {
             id: this.id,
-            imageStub: this.imageStub,
+            imageStub: this.getImageStub(),
             label: this.name,
             name: this.name,
             facedown: this.facedown,

@@ -165,15 +165,19 @@ class AbilityResolver extends BaseStepWithPipeline {
         if (this.context.source.location === 'hand') {
             this.context.player.moveCard(this.context.source, 'being played');
             if (this.context.source.type === CardType.ReactionSpell) {
-                this.context.game.cardUsed(this.context.source);
+                this.context.game.cardPlayed(this.context.source, this.context.player);
             }
         }
 
         if (this.context.source.type === 'die' && !this.context.preThenEvent) {
-            this.game.diePowerUsed(this.context.source);
+            this.game.diePowerUsed(this.context.source, this.context.player);
         }
 
-        if (!this.game.solo && this.context.source.type === CardType.ReactionSpell && !this.context.preThenEvent) {
+        if (
+            !this.game.solo &&
+            this.context.source.type === CardType.ReactionSpell &&
+            !this.context.preThenEvent
+        ) {
             this.game.queueUserAlert(this.context, {
                 timed: true,
                 promptTitle: 'Reaction Played',

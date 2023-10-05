@@ -6,6 +6,7 @@ import Clock from './Clock';
 import { useSelector } from 'react-redux';
 import CardLog from './CardLog';
 import GameMenu from './GameMenu';
+import CardLogEx from './CardLogEx';
 
 const Sidebar = ({
     thisPlayer,
@@ -54,17 +55,25 @@ const Sidebar = ({
     const logArea = thisPlayer.inspectionCard ? (
         <CardInspector card={thisPlayer.inspectionCard} />
     ) : (
-        <div>
-            <div className='timer-log-area'>
-                <CardLog
+        <>
+            {!leftMode && (
+                <div className='timer-log-area'>
+                    <CardLog
+                        items={currentGame.cardLog}
+                        onMouseOut={onMouseOut}
+                        onMouseOver={onMouseOver}
+                    />
+                </div>
+            )}
+            {leftMode && (
+                <CardLogEx
                     items={currentGame.cardLog}
                     onMouseOut={onMouseOut}
                     onMouseOver={onMouseOver}
                 />
-            </div>
-        </div>
+            )}
+        </>
     );
-
 
     return (
         <div className='prompt-area panel'>

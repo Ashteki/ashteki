@@ -6,6 +6,15 @@
 .cardlog-wrapper {
     width: 210px;
     display: flex;
+    flex-direction: column;
+}
+
+.cardlogex-wrapper {
+    width: 216px;
+    display: flex;
+    flex-direction: column;
+    // overflow-y: auto;
+    // overflow-x: hidden;
 }
 
 .last-card {
@@ -19,10 +28,58 @@
 
 .log-icon {
     border-radius: 3px;
-    margin: 5px;
-    height: 48px;
-    width: 48px;
+    // margin: 5px;
+    height: 45px;
+    width: 45px;
     text-align: center;
     display: inline-block;
     z-index: $layer-cards + 1;
+}
+
+.action-play {
+    color: rgb(255, 215, 0);
+
+}
+
+.action-use {
+    color: green;
+}
+
+.action-attack {
+    color: red;
+}
+
+.action-med {
+    color: violet;
+}
+
+.cardlog-die {
+    width: 58px;
+}
+
+.log-card {
+    display: flex;
+    width: 100%;
+    margin: 2px;
+    padding-left: 4px;
+
+    &:hover {
+        background-color: #333;
+    }
+
+    >.img-card {
+        width: 45px;
+        border-radius: 4px;
+        // margin-left: 4px;
+        // margin-right: 4px;
+    }
+
+    .log-info {
+        margin-left: 4px;
+    }
+
+    .x-large .die {
+        height: 45px;
+        width: 45px;
+    }
 }

@@ -35,7 +35,7 @@ const Costs = {
         canPay: (context) => !context.source.exhausted,
         payEvent: (context) =>
             context.game.getEvent('useCardEvent', {}, () => {
-                context.game.cardUsed(context.source);
+                context.game.cardUsed(context.source, context.player);
                 return true;
             })
     }),
