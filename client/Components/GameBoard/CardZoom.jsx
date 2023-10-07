@@ -5,12 +5,12 @@ import classNames from 'classnames';
 
 import './CardZoom.scss';
 
-const CardZoom = ({ card, cardName }) => {
+const CardZoom = ({ card, cardName, cardSize }) => {
     if (!card || !card.id) {
         return null;
     }
 
-    const size = 'x-large'; //card.type === 'decklist' ? 'x-large' : 'normal';
+    const size = cardSize;
     return (
         <div className={classNames(`card-zoom`, size, `vertical`, { left: false })}>
             {card.imageUrl ? (

@@ -503,6 +503,7 @@ const GameBoard = () => {
                     <CardZoom
                         cardName={cardToZoom ? cardToZoom.name : null}
                         card={cardToZoom}
+                        cardSize={cardSize}
                         left={leftMode}
                     />
                 )}
