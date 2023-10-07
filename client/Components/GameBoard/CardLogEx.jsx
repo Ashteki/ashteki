@@ -4,6 +4,7 @@ import CardImage from './CardImage';
 import classNames from 'classnames';
 import attackIcon from '../../assets/img/attack-icon.png';
 import medIcon from '../../assets/img/meditate-icon.png';
+import passIcon from '../../assets/img/pass-icon.png';
 
 import './CardZoom.scss';
 import './Cardlog.scss';
@@ -39,6 +40,19 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
                     </div>
                     <div className='log-info'>
                         {item.obj.name} <span className={actionClass}>meditates</span>
+                    </div>
+                </div>
+            );
+        }
+
+        if (item.type === 'pass') {
+            return (
+                <div key={item.id} className='log-card'>
+                    <div className='x-large cardlog-icon'>
+                        <img className='log-icon' title={item.obj.name + ' passes'} src={passIcon} />
+                    </div>
+                    <div className='log-info'>
+                        {item.obj.name} <span className={actionClass}>passes</span>
                     </div>
                 </div>
             );

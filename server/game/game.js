@@ -87,7 +87,7 @@ class Game extends EventEmitter {
         this.cardLogIndex = 0;
         this.cardsUsed = [];
         // this should be private - use cardPlayed / diePlayed etc to record events
-        this.cardsPlayed = [];
+        this.gameLog = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
         this.turnEvents = {};
@@ -145,7 +145,7 @@ class Game extends EventEmitter {
         return this.cardLogIndex;
     }
     cardUsed(card, player) {
-        this.cardsPlayed.push({
+        this.gameLog.push({
             id: 'cl' + this.getCardLogIndex(),
             act: 'use',
             obj: card,
@@ -154,11 +154,11 @@ class Game extends EventEmitter {
     }
     //** remove card from card log - used for refund of play cost */
     undoCardUsed() {
-        this.cardsPlayed.pop();
+        this.gameLog.pop();
     }
 
     diePowerUsed(die, player) {
-        this.cardsPlayed.push({
+        this.gameLog.push({
             id: 'cl' + this.getCardLogIndex(),
             act: 'use',
             obj: die,
@@ -169,7 +169,7 @@ class Game extends EventEmitter {
     cardPlayed(card, player) {
         const c = this.lastCardPlayed();
         if (!c || c.obj !== card) {
-            this.cardsPlayed.push({
+            this.gameLog.push({
                 id: 'cl' + this.getCardLogIndex(),
                 act: 'play',
                 obj: card,
@@ -182,7 +182,7 @@ class Game extends EventEmitter {
     }
 
     lastCardPlayed() {
-        if (this.cardsPlayed.length > 0) return this.cardsPlayed[this.cardsPlayed.length - 1];
+        if (this.gameLog.length > 0) return this.gameLog[this.gameLog.length - 1];
 
         return null;
     }
@@ -1578,7 +1578,7 @@ class Game extends EventEmitter {
 
     endRound() {
         this.getPlayers().forEach((player) => player.endRound());
-        this.cardsPlayed = [];
+        this.gameLog = [];
         this.cardsDiscarded = [];
         this.effectsUsed = [];
 
@@ -1631,7 +1631,7 @@ class Game extends EventEmitter {
             battles: attackState.battles
         };
         this.raiseEvent('onAttackersDeclared', params);
-        this.cardsPlayed.push({
+        this.gameLog.push({
             id: 'cl' + this.getCardLogIndex(),
             act: 'attack',
             obj: attackState.target,
@@ -1640,9 +1640,17 @@ class Game extends EventEmitter {
     }
 
     logMeditation(player) {
-        this.cardsPlayed.push({
+        this.gameLog.push({
             id: 'cl' + this.getCardLogIndex(),
             act: 'med',
+            obj: player
+        });
+    }
+
+    logPlayerPass(player) {
+        this.gameLog.push({
+            id: 'cl' + this.getCardLogIndex(),
+            act: 'pass',
             obj: player
         });
     }
@@ -1724,7 +1732,7 @@ class Game extends EventEmitter {
 
             const result = {
                 cancelPromptUsed: this.cancelPromptUsed,
-                cardLog: this.cardsPlayed.map((i) => ({
+                cardLog: this.gameLog.map((i) => ({
                     type: i.act,
                     obj: i.obj.getShortSummary(),
                     p: i.player?.name
