@@ -1,7 +1,7 @@
 const UiPrompt = require('../uiprompt.js');
 const DiscardAction = require('../../BaseActions/DiscardAction');
 const UseAction = require('../../GameActions/UseAction');
-const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 
 class ActionWindow extends UiPrompt {
     onCardClicked(player, card) {

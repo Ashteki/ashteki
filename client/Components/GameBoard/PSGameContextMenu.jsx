@@ -81,7 +81,7 @@ const PSGameContextMenu = () => {
     if (!currentGame || !currentGame.started) {
         return null;
     }
-    return !isSpectating && isGameActive() ? (
+    return !isSpectating && isGameActive() && !currentGame.solo ? (
         <a href='#' className='pr-1 pl-1 game-menu-item' title='Concede' onClick={onConcedeClick}>
             <FontAwesomeIcon icon={faSkull} className='game-menu-icon'></FontAwesomeIcon>
         </a>
