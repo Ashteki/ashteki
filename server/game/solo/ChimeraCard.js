@@ -42,7 +42,7 @@ class ChimeraCard extends Card {
                     context.player.threatCards.length > 0
             },
             gameAction: ability.actions.addRedRainsToken()
-        })
+        });
     }
 }
 

@@ -43,7 +43,7 @@ describe('Hunting Instincts Reveal', function () {
 
     it('adds red rains token when destroys attacking', function () {
         spyOn(Dice, 'd12Roll').and.returnValue(5);  // reveal then attack
-        this.player1.endTurn();
+        this.player1.endTurn(); // adds RR because of threat
         // informs real player of behaviour roll
         expect(this.player2).toHavePrompt('Alerting opponent');
         this.player1.clickPrompt('Ok');
@@ -52,7 +52,7 @@ describe('Hunting Instincts Reveal', function () {
         this.player1.clickDone(); // guard
         this.player1.clickYes(); // counter
         expect(this.anchornaut.location).toBe('discard');
-        expect(this.corpseOfViros.redRains).toBe(1);
+        expect(this.corpseOfViros.redRains).toBe(2);
 
         expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
     });

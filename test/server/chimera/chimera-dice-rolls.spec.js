@@ -37,11 +37,11 @@ describe('Chimera dice interations', function () {
             // reveal
             spyOn(Dice, 'getRandomInt').and.returnValue(1);
             expect(this.huntingInstincts.facedown).toBe(true);
-            this.player1.endTurn();
+            this.player1.endTurn(); // adds RR because of threat
             // informs real player of behaviour roll
 
             expect(this.player2.dicepool.every((d) => d.level === 'basic'));
-            expect(this.player2.phoenixborn.redRains).toBe(1);
+            expect(this.player2.phoenixborn.redRains).toBe(2);
             this.player1.clickPrompt('Ok');
 
             expect(this.huntingInstincts.facedown).toBe(false);
