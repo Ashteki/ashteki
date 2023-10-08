@@ -144,6 +144,7 @@ class Game extends EventEmitter {
         this.cardLogIndex++;
         return this.cardLogIndex;
     }
+
     cardUsed(card, player) {
         this.gameLog.push({
             id: 'cl' + this.getCardLogIndex(),

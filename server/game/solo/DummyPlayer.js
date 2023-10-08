@@ -256,6 +256,7 @@ class DummyPlayer extends Player {
 
     triggerUltimateAbility() {
         const ultAbility = this.ultimate.getUltimateAbility(this.chimeraPhase);
+        this.game.cardUsed(this.ultimate, this);
         const context = ultAbility.createContext(this);
         this.game.resolveAbility(context);
     }
