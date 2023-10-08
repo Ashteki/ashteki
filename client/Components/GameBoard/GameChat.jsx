@@ -6,7 +6,7 @@ import Messages from './Messages';
 
 import './GameChat.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faCommentSlash, faCopy, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { toastr } from 'react-redux-toastr';
 
 class GameChat extends React.Component {
@@ -86,7 +86,7 @@ class GameChat extends React.Component {
 
         return (
             <div className='chat'>
-                <div className='chat-footer'>
+                <div className='chat-header'>
                     <a
                         href='#'
                         className='pr-1 pl-1'
@@ -95,7 +95,7 @@ class GameChat extends React.Component {
                         aria-hidden='true'
                     >
                         <FontAwesomeIcon
-                            icon={this.props.muteSpectators ? faEyeSlash : faEye}
+                            icon={this.props.muteSpectators ? faCommentSlash : faComment}
                             onClick={this.props.onMuteClick}
                         ></FontAwesomeIcon>
                     </a>

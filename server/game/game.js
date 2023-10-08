@@ -1441,17 +1441,16 @@ class Game extends EventEmitter {
             return;
         }
 
-        this.addAlert(
-            'info',
-            '{0} has disconnected. They can reconnect if you wait for them.',
-            player
-        );
-
         this.jsonForUsers[player.name] = undefined;
 
         if (this.isSpectator(player)) {
             delete this.playersAndSpectators[playerName];
         } else {
+            this.addAlert(
+                'info',
+                '{0} has disconnected. They can reconnect if you wait for them.',
+                player
+            );
             player.disconnectedAt = new Date();
         }
 
