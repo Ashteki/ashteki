@@ -19,7 +19,7 @@ const CardZoom = ({ card, cardName, cardSize }) => {
                 </div>
             ) : (
                 <div className='card-zoomed shadow'>
-                    <CardImage card={card} override={true} />
+                    <CardImage card={card} override={true} noIndex={true} />
                 </div>
             )}
         </div>

@@ -1653,6 +1653,8 @@ class Game extends EventEmitter {
             act: 'pass',
             obj: player
         });
+        // do chat log too
+        this.addAlert('info', '{0} PASSES their main action', player);
     }
 
     initiateAttack(target, attacker) {

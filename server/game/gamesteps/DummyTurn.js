@@ -24,8 +24,7 @@ class DummyTurn extends BaseStepWithPipeline {
             // attack
             this.player.doAttack();
         } else {
-            // pass
-            this.game.logPlayerPass(this.player);
+            // pass (log is handled in player.endTurn)
         }
     }
 

@@ -9,7 +9,6 @@ import PlayerRow from './PlayerRow';
 import DiceHistory from './DiceHistory';
 import ActivePlayerPrompt from './ActivePlayerPrompt';
 import CardZoom from './CardZoom';
-import CardLog from './CardLog';
 import PlayerBoard from './PlayerBoard';
 import GameChat from './GameChat';
 import GameConfigurationModal from './GameConfigurationModal';
@@ -557,7 +556,7 @@ const GameBoard = () => {
 
                     {showMessages && (
                         <div className='gamechat'>
-                            {getOtherPlayerPrompt(otherPlayer)}
+                            {/* {getOtherPlayerPrompt(otherPlayer)} */}
                             <GameChat
                                 key='gamechat'
                                 messages={currentGame.messages}
