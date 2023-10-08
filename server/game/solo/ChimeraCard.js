@@ -34,6 +34,15 @@ class ChimeraCard extends Card {
             },
             gameAction: ability.actions.triggerUltimate()
         });
+
+        this.forcedInterrupt({
+            when: {
+                onPlayerPass: (event, context) =>
+                    event.player === context.player.opponent &&
+                    context.player.threatCards.length > 0
+            },
+            gameAction: ability.actions.addRedRainsToken()
+        })
     }
 }
 

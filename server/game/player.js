@@ -384,6 +384,8 @@ class Player extends GameObject {
     endTurn() {
         this.passedMain = this.actions.main;
         if (this.passedMain) {
+            this.game.raiseEvent('onPlayerPass', { player: this });
+
             this.game.logPlayerPass(this);
         }
     }
