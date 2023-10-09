@@ -2,15 +2,14 @@ import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-
     faWrench,
     faList,
     faCogs,
-    faComment,
     faHistory,
     faBolt,
     faStickyNote
 } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-regular-svg-icons'
 
 import PlayerName from '../Site/PlayerName';
 import Minus from '../../assets/img/Minus.png';
@@ -24,7 +23,7 @@ import { sendGameMessage } from '../../redux/actions';
 import Droppable from './Droppable';
 import conjback from '../../assets/img/cardback-conjuration.png';
 import spellback from '../../assets/img/cardback-spell.png';
-import PSGameContextMenu from './PSGameContextMenu';
+import ConcedeLeave from './ConcedeLeave';
 import GameCountMenu from '../Navigation/GameCountMenu';
 import SpectatorIcon from './SpectatorIcon';
 
@@ -36,6 +35,7 @@ const PlayerStats = ({
     compactLayout,
     firstPlayer,
     isMe,
+    leftMode,
     manualModeEnabled,
     onCardClick,
     onDeckNotesClick,
@@ -335,11 +335,6 @@ const PlayerStats = ({
                             </a>
                         </div>
                     )}
-                    {showContextItem && (
-                        <div className='state'>
-                            <PSGameContextMenu />
-                        </div>
-                    )}
                     {!isSpectating && (
                         <div className='state'>
                             <a href='#' className='pr-1 pl-1' title='Show dice/card history'>
@@ -381,10 +376,15 @@ const PlayerStats = ({
                     </div>
                 </div>
             )}
-            {!showMessages && (
-                <div className='state chat-status'>
-                    Round {round} |&nbsp;<SpectatorIcon />
-                </div>
+            {!showMessages && !leftMode && (
+                <>
+                    <div className='state chat-status'>
+                        <GameCountMenu />
+                        {showContextItem && <ConcedeLeave showText={!isSpectating} />}
+                        &nbsp;|&nbsp;Round&nbsp;{round}&nbsp;|&nbsp;
+                        <SpectatorIcon />
+                    </div>
+                </>
             )}
         </div>
     );

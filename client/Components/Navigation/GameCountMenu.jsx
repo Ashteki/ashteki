@@ -30,7 +30,7 @@ const GameCountMenu = () => {
         return <li key={game.id} className={liClass}>{p1Name} vs {p2Name}</li>;
     });
     const linkClass = classNames('patreon-link', { 'empty-game': emptyGame });
-    let gamesPopup = <ul className='games-popup mt-5 absolute-panel'>{gameList}</ul>;
+    let gamesPopup = <ul className='games-popup absolute-panel'>{gameList}</ul>;
     return (
         <div className='game-count-menu'>
             <Link key='games-link' href='/play'>

@@ -149,6 +149,18 @@
     }
 }
 
+.concede {
+    color: rgb(209, 53, 53) !important;
+
+    svg {
+        color: rgb(209, 53, 53) !important;
+    }
+
+    &:hover {
+        color: red;
+    }
+}
+
 .timer-log-area {
     display: flex;
     flex-direction: row;

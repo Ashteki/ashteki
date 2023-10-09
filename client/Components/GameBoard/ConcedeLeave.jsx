@@ -7,7 +7,7 @@ import { sendGameMessage, closeGameSocket } from '../../redux/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket, faSkull } from '@fortawesome/free-solid-svg-icons';
 
-const PSGameContextMenu = () => {
+const ConcedeLeave = ({ showText }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
     const user = useSelector((state) => state.account.user);
     const { t } = useTranslation();
@@ -82,19 +82,24 @@ const PSGameContextMenu = () => {
         return null;
     }
     return !isSpectating && isGameActive() && !currentGame.solo ? (
-        <a href='#' className='pr-1 pl-1 game-menu-item' title='Concede' onClick={onConcedeClick}>
-            <FontAwesomeIcon icon={faSkull} className='game-menu-icon'></FontAwesomeIcon>
+        <a
+            href='#'
+            className='pr-1 pl-1 game-menu-item concede'
+            title='Concede'
+            onClick={onConcedeClick}
+        >
+            <FontAwesomeIcon icon={faSkull} className='game-menu-icon' /> {showText && 'Concede'}
         </a>
     ) : (
         <a
             href='#'
-            className='pr-1 pl-1 game-menu-item'
+            className='pr-1 pl-1 game-menu-item leave'
             title='Leave the game'
             onClick={onLeaveClick}
         >
-            <FontAwesomeIcon icon={faRightFromBracket} className='game-menu-icon' style={{ rotate: '180deg' }}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faRightFromBracket} className='game-menu-icon' style={{ rotate: '180deg' }} /> {showText && 'Leave'}
         </a>
     );
 };
 
-export default PSGameContextMenu;
+export default ConcedeLeave;

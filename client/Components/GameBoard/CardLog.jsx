@@ -3,6 +3,7 @@ import { isSafari } from 'react-device-detect';
 import CardImage from './CardImage';
 import classNames from 'classnames';
 import attackIcon from '../../assets/img/attack-icon.png';
+import passIcon from '../../assets/img/pass-icon.png';
 import medIcon from '../../assets/img/meditate-icon.png';
 
 import './CardZoom.scss';
@@ -20,23 +21,32 @@ const CardLog = ({ items, onMouseOut, onMouseOver }) => {
             <div className='x-large cardlog-die mb-2'>
                 <DieIcon key={'cld-' + die.uuid} die={die} />
             </div>
-        )
-    }
+        );
+    };
 
     const renderAttack = (attack) => {
         return (
             <div className='x-large cardlog-die mb-2'>
                 <img className='log-icon' title='Attack!' src={attackIcon} />
             </div>
-        )
-    }
+        );
+    };
+
+    const renderPass = (attack) => {
+        return (
+            <div className='x-large cardlog-die mb-2'>
+                <img className='log-icon' title='Pass' src={passIcon} />
+            </div>
+        );
+    };
+
     const renderMed = (obj) => {
         return (
             <div className='x-large cardlog-die mb-2'>
                 <img className='log-icon' title={obj.name + ' meditates'} src={medIcon} />
             </div>
-        )
-    }
+        );
+    };
 
     const renderItem = (item, last = false) => {
         if (item.type === 'attack') {
@@ -48,6 +58,10 @@ const CardLog = ({ items, onMouseOut, onMouseOver }) => {
 
         if (item.obj.type === 'die') {
             return renderDieUsed(item.obj);
+        }
+
+        if (item.type === 'pass') {
+            return renderPass(item.obj);
         }
 
         // now it's a card

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import PSGameContextMenu from './PSGameContextMenu';
+import ConcedeLeave from './ConcedeLeave';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCogs, faList, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCog, faCogs, faList, faWrench } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import SpectatorIcon from './SpectatorIcon';
@@ -19,18 +19,29 @@ const GameMenu = ({ onSettingsClick, onManualModeClick, onManualCommandsClick })
     return (
         <>
             <div className='game-menu-header'>
-                <FontAwesomeIcon
+                <ConcedeLeave />
+                {/* <FontAwesomeIcon
                     className='game-menu-trigger'
                     icon={faBars}
                     onClick={(e) => {
                         e.stopPropagation();
                         setShowPopup(!showPopup);
                     }}
-                />  {`Round ${currentGame.round} | `} <SpectatorIcon />
+                />   */}
+                {`| Round ${currentGame.round} | `} <SpectatorIcon />
+                {' | '}
+                <FontAwesomeIcon
+                    className=''
+                    icon={faCog}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setShowPopup(!showPopup);
+                    }}
+                />
+
             </div>
             {showPopup && (
                 <div className='game-menu'>
-                    <PSGameContextMenu />
                     <a
                         href='#'
                         onClick={onSettingsClick}

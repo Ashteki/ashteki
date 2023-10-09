@@ -6,10 +6,12 @@
 
 .games-popup {
     position: absolute;
-    left: -80px;
-    top: 0px;
+    // left: -80px;
+    // top: 0px;
     min-width: 200px;
-    list-style-type: none;
+    // list-style-type: none;
+    z-index: $layer-top;
+
 }
 
 .spectators-popup {

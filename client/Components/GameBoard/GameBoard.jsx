@@ -470,6 +470,8 @@ const GameBoard = () => {
                     onMouseOver={onMouseOver}
                     round={currentGame.round}
                     solo={currentGame.solo}
+                    leftMode={leftMode}
+                    showContextItem={!leftMode}
                 />
             </div>
             <div className='main-window'>
