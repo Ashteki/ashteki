@@ -4,11 +4,15 @@ const Card = require('../../Card.js');
 class StaminaBurst extends Card {
     setupCardAbilities(ability) {
         this.play({
-            gameAction: ability.actions.removeDamage((context) => ({
-                amount: 1,
-                target: context.source.owner.phoenixborn
-            })),
+            target: {
+                ignoreTargetCheck: true,
+                autoTarget: (context) => context.player.phoenixborn,
+                gameAction: ability.actions.removeDamage({
+                    amount: 1
+                })
+            },
             then: {
+                alwaysTriggers: true,
                 target: {
                     activePromptTitle: 'Choose a unit to receive a spark alteration',
                     cardType: BattlefieldTypes,
