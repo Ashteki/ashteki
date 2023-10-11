@@ -20,6 +20,7 @@ class ChatCommands {
             '/discardfromdeck': this.discardtopofdeck,
             '/givecontrol': this.giveControl,
             '/endgame': this.endgame,
+            '/firstplayer': this.makeFirstPlayer,
             '/move': this.moveCard,
             '/moveto': this.moveCard,
             '/modifyclock': this.modifyClock, // hidden option
@@ -286,6 +287,36 @@ class ChatCommands {
         }
     }
 
+    makeFirstPlayer(player) {
+        if (player === this.game.activePlayer) {
+            this.game.promptWithHandlerMenu(player, {
+                promptTitle: 'Make first player',
+                activePromptTitle: 'Who do you want to have the first player token?',
+                context: this.game.getFrameworkContext(player),
+                choices: ['Me', 'Opponent'],
+                handlers: [
+                    () => {
+                        this.game.setRoundFirstPlayer(player, false);
+                        this.game.addAlert(
+                            'danger',
+                            '{0} gives the first player token to {1}',
+                            player,
+                            player
+                        );
+                    },
+                    () => {
+                        this.game.setRoundFirstPlayer(player.opponent, false);
+                        this.game.addAlert(
+                            'danger',
+                            '{0} gives the first player token to {1}',
+                            player,
+                            player.opponent
+                        );
+                    }
+                ]
+            });
+        }
+    }
     // startClocks(player) {
     //     this.game.startTimer();
 

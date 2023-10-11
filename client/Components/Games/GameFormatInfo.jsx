@@ -58,7 +58,7 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
         case 'solo':
             return (
                 <AlertPanel type='info'>
-                    <strong>Solo</strong> Play single player against a chimera. (Caution: ALPHA/Work in progress!)
+                    <strong>Solo</strong> Play single player against a chimera. (Beta / WIP)
                 </AlertPanel>
             );
     }
