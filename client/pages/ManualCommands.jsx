@@ -49,7 +49,8 @@ const ManualCommands = () => {
                     record
                 </li>
                 <li>/rematch - Start over a new game with the current opponent</li>
-                <li>/manual - Deactivate manual mode (see above)</li>
+                <li>/manual - Deactivate manual mode</li>
+                <li>/firstplayer - Give the first player token to a chosen player</li>
             </ul>
         </div>
     );
