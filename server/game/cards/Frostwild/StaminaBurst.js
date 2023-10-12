@@ -22,6 +22,7 @@ class StaminaBurst extends Card {
                     })
                 },
                 then: {
+                    alwaysTriggers: true,
                     may: 'move the first player token',
                     target: {
                         mode: 'select',
