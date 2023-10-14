@@ -316,7 +316,11 @@ class ActivePlayerPrompt extends React.Component {
                 <div>
                     <span>Auto passing in {this.state.timeLeft}...</span>
                     <div className='progress'>
-                        <div className='progress-bar progress-bar-success' role='progressbar' style={{ width: this.state.timerClass }} />
+                        <div
+                            className='progress-bar progress-bar-success'
+                            role='progressbar'
+                            style={{ width: this.state.timerClass }}
+                        />
                     </div>
                 </div>);
         }

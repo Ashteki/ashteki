@@ -15,9 +15,10 @@ export function loadUserGames() {
     };
 }
 
-export function startNewGame() {
+export function startNewGame(gameType) {
     return {
-        type: 'START_NEWGAME'
+        type: 'START_NEWGAME',
+        gameType: gameType
     };
 }
 

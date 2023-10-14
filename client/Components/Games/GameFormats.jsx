@@ -8,7 +8,8 @@ import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 
 const GameFormats = ({ formProps }) => {
-    const showSolo = useSelector((state) => state.account.user?.permissions.isSupporter);
+    // const showSolo = useSelector((state) => state.account.user?.permissions.isSupporter);
+    const showSolo = useSelector((state) => state.lobby.newGameType === 'chimera');
 
     let formats = [...gameFormats];
     if (!showSolo) {

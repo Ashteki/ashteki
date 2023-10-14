@@ -42,6 +42,8 @@ const NewGame = ({
 }) => {
     const lobbySocket = useSelector((state) => state.lobby.socket);
     const username = useSelector((state) => state.account.user?.username);
+    const newGameType = useSelector((state) => state.lobby.newGameType);
+
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
@@ -74,7 +76,7 @@ const NewGame = ({
         clockType: 'timer',
         gamePrivate: defaultPrivate,
         ranked: false,
-        solo: false
+        solo: newGameType === 'chimera'
     };
 
     const options = [

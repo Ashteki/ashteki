@@ -15,6 +15,7 @@ import './GameLobby.scss';
 import { useEffect } from 'react';
 import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl } from '../../redux/actions';
 import { useRef } from 'react';
+import PictureButton from '../Lobby/PictureButton';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
@@ -29,9 +30,10 @@ const GameLobby = ({ gameId }) => {
         filterDefaults[filter.name] = true;
     }
 
-    const { games, newGame, currentGame, passwordGame } = useSelector((state) => ({
+    const { games, newGame, newGameType, currentGame, passwordGame } = useSelector((state) => ({
         games: state.lobby.games,
         newGame: state.lobby.newGame,
+        newGameType: state.lobby.newGameType,
         currentGame: state.lobby.currentGame,
         passwordGame: state.lobby.passwordGame
     }));
@@ -84,6 +86,12 @@ const GameLobby = ({ gameId }) => {
         }
     }, [currentGame, dispatch, gameId, games]);
 
+    const handleNewGameClick = (gameType) => {
+        if (user) {
+            dispatch(startNewGame(gameType));
+        }
+    };
+
     return (
         <>
             <Row>
@@ -96,17 +104,25 @@ const GameLobby = ({ gameId }) => {
                                 </AlertPanel>
                             </div>
                         )}
-                        <Row className='game-buttons'>
-                            <Col xs='12'>
-                                <Button
-                                    disabled={!user}
-                                    variant='primary'
-                                    onClick={() => dispatch(startNewGame())}
-                                >
-                                    <Trans>New Game</Trans>
-                                </Button>
-                            </Col>
-                        </Row>
+                        <div className='lobby-header'>Start a new game vs:</div>
+                        <div className='game-buttons'>
+                            <div className='new-game-buttons'>
+                                <PictureButton
+                                    backgroundImage='https://cdn.ashes.live/images/cards/clashing-tempers.jpg'
+                                    onClick={() => handleNewGameClick('pvp')}
+                                    text='Player'
+                                    position='center'
+                                />
+                                <PictureButton
+                                    backgroundImage='https://cdn.ashes.live/images/cards/corpse-of-viros-1p-standard-1.jpg'
+                                    onClick={() => handleNewGameClick('chimera')}
+                                    text='Chimera'
+                                    position='50% 40%'
+                                    scale='120%'
+                                    header='Premium'
+                                />
+                            </div>
+                        </div>
                         <Row>
                             <Col xs='12' className='text-center'>
                                 {games.length === 0 ? (

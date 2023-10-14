@@ -67,6 +67,7 @@ export default function (state = defaultState, action) {
             break;
         case 'START_NEWGAME':
             newState.newGame = true;
+            newState.newGameType = action.gameType;
 
             break;
         case 'CANCEL_NEWGAME':
