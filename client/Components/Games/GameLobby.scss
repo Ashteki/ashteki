@@ -25,4 +25,21 @@
     font-size: 20px;
     text-shadow: #FFF 1px 1px 15px;
     padding: 4px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.lobby-card {
+    border-radius: 0.25rem;
+    box-shadow: 1px 1px 1px #666;
+    background-color: rgba(0, 0, 0, 0.65);
+    border: 1px solid #666;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.no-games-notice {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
 }

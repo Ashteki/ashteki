@@ -14,6 +14,7 @@ import { cancelNewGame, sendSocketMessage } from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
 
 import './NewGame.scss';
+import PictureButton from '../Lobby/PictureButton';
 
 const GameNameMaxLength = 64;
 
@@ -70,7 +71,7 @@ const NewGame = ({
         label: '',
         allowSpectators: true,
         gameType: defaultGameType || 'casual',
-        gameFormat: 'constructed',
+        gameFormat: newGameType === 'chimera' ? 'solo' : 'constructed',
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,
         clockType: 'timer',
@@ -86,6 +87,8 @@ const NewGame = ({
         { name: 'showHand', label: t('Show hands to spectators') },
         { name: 'openHands', label: 'Play with open hands' }
     ];
+
+    const soloOptions = [{ name: 'allowSpectators', label: t('Allow spectators') }];
 
     let clockType = [
         { name: 'timer', label: t('Shared') },
@@ -133,6 +136,23 @@ const NewGame = ({
         setFieldValue('label', value);
     };
 
+    const getOptionToggle = (option, formProps) => {
+        return (
+            <Form.Check
+                type='switch'
+                id={option.name}
+                label={option.label}
+                // inline
+                onChange={(e) => {
+                    formProps.handleChange(e);
+                    onOptionChange(option.name, e.value, formProps.setFieldValue);
+                }}
+                value='true'
+                checked={formProps.values[option.name]}
+            />
+        );
+    };
+
     if (!lobbySocket) {
         return (
             <div>
@@ -145,8 +165,9 @@ const NewGame = ({
     }
 
     return (
-        <Panel title={t('New game')}>
+        <div>
             <Formik
+                enableReinitialize={true}
                 validationSchema={schema}
                 onSubmit={(values) => {
                     if (tournament) {
@@ -178,69 +199,69 @@ const NewGame = ({
                     >
                         {
                             <>
-                                {!tournament && (
-                                    <Form.Row>
-                                        <Form.Group as={Col} lg='8' controlId='formGridGameName'>
-                                            <Form.Label>{t('Name')}</Form.Label>
-                                            <Form.Control
-                                                type='text'
-                                                placeholder={t('Game Name')}
-                                                maxLength={GameNameMaxLength}
-                                                {...getStandardControlProps(formProps, 'name')}
-                                            />
-                                            <Form.Control.Feedback type='invalid'>
-                                                {formProps.errors.name}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
+                                <Form.Row>
+                                    <PictureButton
+                                        text='Chimera'
+                                        // header='Premium'
+                                        disabled={true}
+                                        imageClass={newGameType}
+                                    />
 
-                                        <div className='col-md-4 inline'>
-                                            <Form.Label>League Presets</Form.Label>
-                                            <select
-                                                className='form-control'
-                                                // value={this.state.selectedTerm}
-                                                onChange={(e) => {
-                                                    handlePresetChange(
-                                                        e.target.value,
-                                                        formProps.setFieldValue
-                                                    );
-                                                    e.stopPropagation();
-                                                }}
-                                            >
-                                                <option value=''></option>
-                                                <option value='FFL'>First Five League</option>
-                                                <option value='PHX'>Phoenix League</option>
-                                            </select>
-                                        </div>
-                                    </Form.Row>
-                                )}
-                                <GameFormats formProps={formProps} />
-                                <Form.Group>
-                                    <Form.Row>
-                                        <Col xs={12} className='font-weight-bold'>
-                                            <Trans>Options</Trans>
-                                        </Col>
-                                        {options.map((option) => (
-                                            <Col key={option.name} lg='6'>
-                                                <Form.Check
-                                                    type='switch'
-                                                    id={option.name}
-                                                    label={option.label}
-                                                    // inline
+                                    <Form.Group as={Col} controlId='formGridGameName'>
+                                        <Form.Label>{t('Name')}</Form.Label>
+                                        <Form.Control
+                                            type='text'
+                                            placeholder={t('Game Name')}
+                                            maxLength={GameNameMaxLength}
+                                            {...getStandardControlProps(formProps, 'name')}
+                                        />
+                                        <Form.Control.Feedback type='invalid'>
+                                            {formProps.errors.name}
+                                        </Form.Control.Feedback>
+
+                                        {newGameType === 'chimera' &&
+                                            soloOptions.map((option) =>
+                                                getOptionToggle(option, formProps)
+                                            )}
+                                        {newGameType === 'pvp' && (
+                                            <div >
+                                                <Form.Label>League Presets</Form.Label>
+                                                <select
+                                                    className='form-control'
+                                                    // value={this.state.selectedTerm}
                                                     onChange={(e) => {
-                                                        formProps.handleChange(e);
-                                                        onOptionChange(
-                                                            option.name,
-                                                            e.value,
+                                                        handlePresetChange(
+                                                            e.target.value,
                                                             formProps.setFieldValue
                                                         );
+                                                        e.stopPropagation();
                                                     }}
-                                                    value='true'
-                                                    checked={formProps.values[option.name]}
-                                                ></Form.Check>
-                                            </Col>
-                                        ))}
-                                    </Form.Row>
-                                </Form.Group>
+                                                >
+                                                    <option value=''></option>
+                                                    <option value='FFL'>First Five League</option>
+                                                    <option value='PHX'>Phoenix League</option>
+                                                </select>
+                                            </div>
+                                        )}
+                                    </Form.Group>
+                                </Form.Row>
+                                {newGameType === 'pvp' && (
+                                    <>
+                                        <GameFormats formProps={formProps} />
+                                        <Form.Group>
+                                            <Form.Row>
+                                                <Col xs={12} className='font-weight-bold'>
+                                                    <Trans>Options</Trans>
+                                                </Col>
+                                                {options.map((option) => (
+                                                    <Col key={option.name} lg='6'>
+                                                        {getOptionToggle(option, formProps)}
+                                                    </Col>
+                                                ))}
+                                            </Form.Row>
+                                        </Form.Group>
+                                    </>
+                                )}
                                 {formProps.values.useGameTimeLimit && (
                                     <Form.Row>
                                         <Form.Group>
@@ -293,7 +314,7 @@ const NewGame = ({
                                 )}
                             </>
                         }
-                        {
+                        {newGameType === 'pvp' && (
                             <Row>
                                 <Form.Group as={Col} sm={6}>
                                     <Form.Label>{t('Password')}</Form.Label>
@@ -313,7 +334,7 @@ const NewGame = ({
                                     />
                                 </Form.Group>
                             </Row>
-                        }
+                        )}
                         <div className='text-center newgame-buttons'>
                             <Button
                                 variant='primary'
@@ -333,7 +354,7 @@ const NewGame = ({
                     </Form>
                 )}
             </Formik>
-        </Panel>
+        </div>
     );
 };
 

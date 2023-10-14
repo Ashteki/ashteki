@@ -280,10 +280,10 @@ class GameList extends React.Component {
         let gameHeaderClass = 'game-header';
         switch (gameType) {
             case 'casual':
-                gameHeaderClass += ' badge-warning';
+                gameHeaderClass += ' game-casual';
                 break;
             case 'competitive':
-                gameHeaderClass += ' badge-danger';
+                gameHeaderClass += ' game-comp';
                 break;
         }
 
@@ -316,17 +316,6 @@ class GameList extends React.Component {
             if (groupedGames[gameType]) {
                 gameList.push(this.getGamesForType(gameType, groupedGames[gameType]));
             }
-        }
-
-        if (gameList.length === 0) {
-            return (
-                <Col className='game-list' xs='12'>
-                    <AlertPanel
-                        type='info'
-                        message={t('There are no games matching the filters you have selected')}
-                    />
-                </Col>
-            );
         }
 
         return (

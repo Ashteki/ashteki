@@ -72,6 +72,7 @@ export default function (state = defaultState, action) {
             break;
         case 'CANCEL_NEWGAME':
             newState.newGame = false;
+            newState.newGameType = undefined;
 
             break;
         case 'CLEAR_CHAT_STATUS':

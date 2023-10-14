@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
-import { Trans, useTranslation } from 'react-i18next';
-import { Col, Row, Button, Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { Col, Row } from 'react-bootstrap';
 
 import NewGame from './NewGame';
 import GameList from './GameList';
 import PendingGame from './PendingGame';
 import PasswordGame from './PasswordGame';
 import AlertPanel from '../Site/AlertPanel';
-import Panel from '../Site/Panel';
 
 import './GameLobby.scss';
 import { useEffect } from 'react';
@@ -54,13 +53,6 @@ const GameLobby = ({ gameId }) => {
         }
     }, []);
 
-    const onFilterChecked = (name, checked) => {
-        currentFilter[name] = checked;
-        setCurrentFilter(Object.assign({}, currentFilter));
-
-        localStorage.setItem('gameFilter', JSON.stringify(currentFilter));
-    };
-
     useEffect(() => {
         if (!currentGame && gameId && games.length > 0) {
             const game = games.find((x) => x.id === gameId);
@@ -96,7 +88,7 @@ const GameLobby = ({ gameId }) => {
         <>
             <Row>
                 <Col md='6' >
-                    <Panel title={t('Current Games')}>
+                    <div className='lobby-card'>
                         {!user && (
                             <div className='text-center'>
                                 <AlertPanel type='warning'>
@@ -105,48 +97,50 @@ const GameLobby = ({ gameId }) => {
                             </div>
                         )}
                         <div className='lobby-header'>Start a new game vs:</div>
-                        <div className='game-buttons'>
-                            <div className='new-game-buttons'>
-                                <PictureButton
-                                    backgroundImage='https://cdn.ashes.live/images/cards/clashing-tempers.jpg'
-                                    onClick={() => handleNewGameClick('pvp')}
-                                    text='Player'
-                                    position='center'
-                                />
-                                <PictureButton
-                                    backgroundImage='https://cdn.ashes.live/images/cards/corpse-of-viros-1p-standard-1.jpg'
-                                    onClick={() => handleNewGameClick('chimera')}
-                                    text='Chimera'
-                                    position='50% 40%'
-                                    scale='120%'
-                                    header='Premium'
-                                />
-                            </div>
-                        </div>
-                        <Row>
-                            <Col xs='12' className='text-center'>
-                                {games.length === 0 ? (
-                                    <AlertPanel type='info'>
-                                        {t(
-                                            'No games are currently in progress. Click the button above to start one.'
-                                        )}
-                                    </AlertPanel>
-                                ) : (
-                                    <GameList
-                                        games={games}
-                                        gameFilter={currentFilter}
-                                        onJoinOrWatchClick={() => topRef.current.scrollIntoView(false)}
-                                    />
-                                )}
-                            </Col>
-                        </Row>
-                    </Panel>
-                </Col>
-                <Col md='6'>
-                    <div ref={topRef}>
+                        {!newGame && (
+                            <>
+                                <div className='game-buttons'>
+                                    <div className='new-game-buttons'>
+                                        <PictureButton
+                                            text='Player'
+                                            imageClass='pvp'
+                                            onClick={() => handleNewGameClick('pvp')}
+                                        />
+                                        <PictureButton
+                                            text='Chimera'
+                                            header='Premium'
+                                            imageClass='chimera'
+                                            onClick={() => handleNewGameClick('chimera')}
+                                        />
+                                    </div>
+                                </div>
+                            </>
+                        )}
                         {newGame && <NewGame />}
+                    </div>
+                    <div ref={topRef}>
                         {currentGame?.started === false && <PendingGame />}
                         {passwordGame && <PasswordGame />}
+                    </div>
+                </Col>
+                <Col md='6'>
+                    <div className='lobby-card'>
+
+                        <div className='lobby-header'>Game List</div>
+
+                        <div className='game-list'>
+                            {games.length === 0 ? (
+                                <div className='no-games-notice'>
+                                    No games are currently in progress
+                                </div>
+                            ) : (
+                                <GameList
+                                    games={games}
+                                    gameFilter={currentFilter}
+                                    onJoinOrWatchClick={() => topRef.current.scrollIntoView(false)}
+                                />
+                            )}
+                        </div>
                     </div>
                 </Col>
             </Row>
