@@ -199,7 +199,9 @@ class GameList extends React.Component {
                 ['private-game']: game.gamePrivate && isAdmin
             });
 
-            let timeDifference = moment().diff(moment(game.createdAt));
+            const startTime = game.startedAt ? game.startedAt : game.createdAt;
+            const timeAdvice = game.started ? 'Started' : 'Created';
+            let timeDifference = moment().diff(moment(startTime));
             if (timeDifference < 0) {
                 timeDifference = 0;
             }
@@ -217,7 +219,7 @@ class GameList extends React.Component {
                             <span className='game-title'>
                                 <b>{game.name}</b>
                             </span>{' '}
-                            <span className='game-time'>{`[${formattedTime}]`}</span>
+                            <span className='game-time'>{`[${timeAdvice}: ${formattedTime}]`}</span>
                             <span className='game-icons'>
                                 {game.showHand && (
                                     <img

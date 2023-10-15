@@ -543,6 +543,7 @@ class Lobby {
 
         game.node = gameNode;
         game.started = true;
+        game.startedAt = new Date();
 
         this.broadcastGameMessage('updategame', game);
 

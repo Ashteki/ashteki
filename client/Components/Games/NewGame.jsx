@@ -313,9 +313,6 @@ const NewGame = ({
                             </Row>
                         }
                         <div className='text-center newgame-buttons'>
-                            <Button variant='success' type='submit'>
-                                <Trans>Create</Trans>
-                            </Button>
                             <Button
                                 variant='primary'
                                 onClick={() => {
@@ -326,6 +323,9 @@ const NewGame = ({
                                 }}
                             >
                                 <Trans>Cancel</Trans>
+                            </Button>
+                            <Button variant='success' type='submit'>
+                                <Trans>Create</Trans>
                             </Button>
                         </div>
                     </Form>

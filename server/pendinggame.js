@@ -15,6 +15,7 @@ class PendingGame {
         }
         this.allowSpectators = details.allowSpectators;
         this.createdAt = new Date();
+        this.startedAt = null;
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;
         this.gamePrivate = !!details.gamePrivate; // hides from game list
@@ -388,6 +389,7 @@ class PendingGame {
                     avatar: spectator.user.avatar
                 };
             }),
+            startedAt: this.startedAt,
             solo: this.solo,
             useGameTimeLimit: this.useGameTimeLimit,
             clockType: this.clockType
