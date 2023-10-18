@@ -9,7 +9,7 @@ import Panel from '../Site/Panel';
 import GameFormats from './GameFormats';
 
 // import GameOptions from './GameOptions';
-import { getStandardControlProps } from '../../util';
+import { getGameTypeLabel, getStandardControlProps } from '../../util';
 import { cancelNewGame, sendSocketMessage } from '../../redux/actions';
 import TimeLimitIcon from '../../assets/img/Timelimit.png';
 
@@ -201,7 +201,7 @@ const NewGame = ({
                             <>
                                 <Form.Row>
                                     <PictureButton
-                                        text='Chimera'
+                                        text={getGameTypeLabel(newGameType)}
                                         // header='Premium'
                                         disabled={true}
                                         imageClass={newGameType}
@@ -338,6 +338,7 @@ const NewGame = ({
                         <div className='text-center newgame-buttons'>
                             <Button
                                 variant='primary'
+                                className='def'
                                 onClick={() => {
                                     dispatch(cancelNewGame());
                                     if (onClosed) {
@@ -345,10 +346,10 @@ const NewGame = ({
                                     }
                                 }}
                             >
-                                <Trans>Cancel</Trans>
+                                Cancel
                             </Button>
-                            <Button variant='success' type='submit'>
-                                <Trans>Create</Trans>
+                            <Button variant='success' type='submit' className='def'>
+                                Create
                             </Button>
                         </div>
                     </Form>

@@ -123,8 +123,8 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                 } else if (player && isMe) {
                     selectLink = (
                         <>
-                            <Button onClick={() => clickHandler(isMe)} className='btn-secondary'>
-                                <Trans>Select Deck</Trans>
+                            <Button onClick={() => clickHandler(isMe)} className='btn-focus def'>
+                                Select Deck
                             </Button>
                         </>
                     );

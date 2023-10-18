@@ -5,17 +5,17 @@ import { Button, Form } from 'react-bootstrap';
 import { Trans, useTranslation } from 'react-i18next';
 import $ from 'jquery';
 
-import Panel from '../Site/Panel';
 import Messages from '../GameBoard/Messages';
 import { startGame, leaveGame, sendSocketMessage } from '../../redux/actions';
 import PendingGamePlayers from './PendingGamePlayers';
 import ChargeMp3 from '../../assets/sound/charge.mp3';
 import ChargeOgg from '../../assets/sound/charge.ogg';
-import { getFormatLabel, getGameTypeLabel } from '../../util';
+import { getFormatLabel, getGameTypeLabel, getRankedLabel } from '../../util';
 
 import './PendingGame.scss';
 import { useEffect } from 'react';
 import GameFormatInfo from './GameFormatInfo';
+import PictureButton from '../Lobby/PictureButton';
 
 function showNotification(notification) {
     if (window.Notification && Notification.permission === 'granted') {
@@ -38,6 +38,7 @@ const PendingGame = () => {
         gameError: state.games.gameError,
         gameHost: state.games.gameHost
     }));
+    const newGameType = useSelector((state) => state.lobby.newGameType);
     const notification = useRef();
     const [waiting, setWaiting] = useState(false);
     const [message, setMessage] = useState('');
@@ -195,47 +196,68 @@ const PendingGame = () => {
                 <source src={ChargeMp3} type='audio/mpeg' />
                 <source src={ChargeOgg} type='audio/ogg' />
             </audio>
-            <Panel title={currentGame.name}>
-                <Button
-                    variant='success'
-                    disabled={!canClickStart()}
-                    onClick={() => {
-                        setWaiting(true);
-                        dispatch(startGame(currentGame.id));
-                    }}
-                >
-                    <Trans>Start</Trans>
-                </Button>
-                <Button
-                    variant='primary'
-                    onClick={() => {
-                        dispatch(leaveGame(currentGame.id));
-                    }}
-                >
-                    <Trans>Leave</Trans>
-                </Button>
-                <div className='float-right'>
-                    <ReactClipboard
-                        text={`${window.location.protocol}//${window.location.host}/play?gameId=${currentGame.id}`}
-                    >
-                        <Button variant='primary'>
-                            <Trans>Copy Game Link</Trans>
-                        </Button>
-                    </ReactClipboard>
+            <div>
+                <div className='newgame-header'>
+                    <PictureButton
+                        text={getGameTypeLabel(newGameType)}
+                        // header='Premium'
+                        disabled={true}
+                        imageClass={newGameType}
+                    />
+                    <div>
+                        <div className='start-game-buttons'>
+
+                            <Button
+                                variant='primary'
+                                className='def'
+                                onClick={() => {
+                                    dispatch(leaveGame(currentGame.id));
+                                }}
+                            >
+                                Leave
+                            </Button>
+                            <Button
+                                variant='success'
+                                className='def'
+                                disabled={!canClickStart()}
+                                onClick={() => {
+                                    setWaiting(true);
+                                    dispatch(startGame(currentGame.id));
+                                }}
+                            >
+                                Start
+                            </Button>
+                        </div>
+                        <h3>
+                            Format: <span className='unbold cap'>{getFormatLabel(currentGame.gameFormat)}</span>
+                        </h3>
+                        <div>
+                            <GameFormatInfo gameType={currentGame.gameFormat} />
+                        </div>
+                    </div>
+                    {/* {!currentGame.solo && (
+                        <div className='float-right'>
+                            <ReactClipboard
+                                text={`${window.location.protocol}//${window.location.host}/play?gameId=${currentGame.id}`}
+                            >
+                                <Button variant='primary'>
+                                    <Trans>Copy Game Link</Trans>
+                                </Button>
+                            </ReactClipboard>
+                        </div>
+                    )} */}
                 </div>
                 <div className='game-status'>{getGameStatus()}</div>
-                <h3>
-                    Format: <span className='unbold cap'>{getFormatLabel(currentGame.gameFormat)}</span>
-                </h3>
-                <div>
-                    <GameFormatInfo gameType={currentGame.gameFormat} />
-                </div>
-                <h3>
-                    Type: <span className='unbold cap'>{getGameTypeLabel(currentGame.gameType)}</span>
-                </h3>
+                {!currentGame.solo && (
+                    <>
+                        <h3>
+                            Type: <span className='unbold cap'>{getRankedLabel(currentGame.gameType)}</span>
+                        </h3>
 
-                {timelimit}
-                {gameLabel}
+                        {timelimit}
+                        {gameLabel}
+                    </>
+                )}
 
                 <PendingGamePlayers currentGame={currentGame} user={user} />
 
@@ -283,7 +305,7 @@ const PendingGame = () => {
                         </Form.Group>
                     </Form>
                 </div>
-            </Panel>
+            </div>
         </>
     );
 };

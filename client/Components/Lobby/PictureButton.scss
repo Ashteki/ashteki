@@ -5,6 +5,7 @@
 
 .image-button {
     width: 150px;
+    min-width: 150px; // don't resize smaller
     height: 200px;
     border: 2px solid rgb(210, 210, 194);
     border-radius: 8px;
@@ -23,7 +24,7 @@
     &.chimera {
         background-image: url('https://cdn.ashes.live/images/cards/corpse-of-viros-1p-standard-1.jpg');
         background-position: 50% 40%;
-        background-size: 120%;
+        background-size: 150%;
     }
 
     .img-button-label {

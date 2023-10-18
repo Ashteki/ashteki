@@ -84,6 +84,7 @@ const GameLobby = ({ gameId }) => {
         }
     };
 
+    const newGameText = currentGame?.started === false ? currentGame.name : 'Start a new game vs:';
     return (
         <>
             <Row>
@@ -96,8 +97,8 @@ const GameLobby = ({ gameId }) => {
                                 </AlertPanel>
                             </div>
                         )}
-                        <div className='lobby-header'>Start a new game vs:</div>
-                        {!newGame && (
+                        <div className='lobby-header'>{newGameText}</div>
+                        {!newGame && currentGame?.started !== false && (
                             <>
                                 <div className='game-buttons'>
                                     <div className='new-game-buttons'>
@@ -117,9 +118,10 @@ const GameLobby = ({ gameId }) => {
                             </>
                         )}
                         {newGame && <NewGame />}
+                        {currentGame?.started === false && <PendingGame />}
+
                     </div>
                     <div ref={topRef}>
-                        {currentGame?.started === false && <PendingGame />}
                         {passwordGame && <PasswordGame />}
                     </div>
                 </Col>

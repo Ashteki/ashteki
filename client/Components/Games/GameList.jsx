@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faLock, faChessKnight } from '@fortawesome/free-solid-svg-icons';
 
 import PlayerName from '../Site/PlayerName';
-import { getFormatLabel, getGameTypeLabel } from '../../util';
+import { getFormatLabel, getRankedLabel } from '../../util';
 
 import AlertPanel from '../Site/AlertPanel';
 import * as actions from '../../redux/actions';
@@ -290,7 +290,7 @@ class GameList extends React.Component {
         return (
             <div key={gameType}>
                 <div className={gameHeaderClass} key={gameType + 'header'}>
-                    {getGameTypeLabel(gameType)} ({gamesToReturn.length})
+                    {getRankedLabel(gameType)} ({gamesToReturn.length})
                 </div>
                 {gamesToReturn}
             </div>

@@ -46,7 +46,18 @@ a {
 }
 
 .btn {
-    font-size: 0.8rem;
+
+    font-size: 0.9rem;
+
+    &:not(.dropdown-toggle) {
+        margin-right: 10px;
+        min-width: 100px
+    }
+
+
+}
+
+.btn:not(.def) {
 
     .spinner-border {
         vertical-align: middle;
@@ -84,91 +95,95 @@ a {
             background-color: transparent;
         }
     }
-}
 
-.btn-primary:not(label) {
-    background-image: url('~assets/img/button-primary.png');
 
-    &:hover {
-        background-image: url('~assets/img/button-primary-hover.png');
-    }
-
-    &:focus {
-        background-image: url('~assets/img/button-primary-hover.png');
-    }
-
-    &.active {
-        border: 1pt solid yellow;
-    }
-}
-
-.btn-default {
-    background-image: url('~assets/img/button-orange.png');
-
-    &:hover {
-        background-image: url('~assets/img/button-orange-hover.png');
-    }
-
-    &:focus {
-        background-image: url('~assets/img/button-orange-hover.png');
-    }
-}
-
-.btn-secondary {
-    &:not(.dropdown-toggle) {
-        background-image: url('~assets/img/button-orange.png');
+    &.btn-primary:not(label) {
+        background-image: url('~assets/img/button-primary.png');
 
         &:hover {
-            background-image: url('~assets/img/button-orange-hover.png');
+            background-image: url('~assets/img/button-primary-hover.png');
         }
 
         &:focus {
-            background-image: url('~assets/img/button-orange-hover.png');
+            background-image: url('~assets/img/button-primary-hover.png');
+        }
+
+        &.active {
+            border: 1pt solid yellow;
         }
     }
-}
 
-.btn-danger {
-    &:not(.dropdown-toggle) {
-        background-image: url('~assets/img/button-red.png');
+    &.btn-default {
+        &:not(.dropdown-toggle) {
+
+            background-image: url('~assets/img/button-orange.png');
+
+            &:hover {
+                background-image: url('~assets/img/button-orange-hover.png');
+            }
+
+            &:focus {
+                background-image: url('~assets/img/button-orange-hover.png');
+            }
+        }
+    }
+
+    &.btn-secondary {
+        &:not(.dropdown-toggle) {
+            background-image: url('~assets/img/button-orange.png');
+
+            &:hover {
+                background-image: url('~assets/img/button-orange-hover.png');
+            }
+
+            &:focus {
+                background-image: url('~assets/img/button-orange-hover.png');
+            }
+        }
+    }
+
+    &.btn-danger {
+        &:not(.dropdown-toggle) {
+            background-image: url('~assets/img/button-red.png');
+
+            &:hover {
+                background-image: url('~assets/img/button-red-hover.png');
+            }
+
+            &:focus {
+                background-image: url('~assets/img/button-red-hover.png');
+            }
+        }
+    }
+
+    &.btn-success {
+        background-image: url('~assets/img/button-green.png');
 
         &:hover {
-            background-image: url('~assets/img/button-red-hover.png');
+            background-image: url('~assets/img/button-green-hover.png');
         }
 
-        &:focus {
-            background-image: url('~assets/img/button-red-hover.png');
+        &:focus:active {
+            background-image: url('~assets/img/button-green-hover.png');
         }
     }
-}
 
-.btn-success {
-    background-image: url('~assets/img/button-green.png');
+    &.btn-grey {
+        background-image: url('~assets/img/button-grey.png');
 
-    &:hover {
-        background-image: url('~assets/img/button-green-hover.png');
+        &:hover {
+            background-image: url('~assets/img/button-grey-hover.png');
+        }
+
+        &:focus:active {
+            background-image: url('~assets/img/button-grey-hover.png');
+        }
     }
 
-    &:focus:active {
-        background-image: url('~assets/img/button-green-hover.png');
+
+    &.btn-stretch {
+        background-size: 100% 32px;
     }
-}
-
-.btn-grey {
-    background-image: url('~assets/img/button-grey.png');
-
-    &:hover {
-        background-image: url('~assets/img/button-grey-hover.png');
-    }
-
-    &:focus:active {
-        background-image: url('~assets/img/button-grey-hover.png');
-    }
-}
-
-
-.btn-stretch {
-    background-size: 100% 32px;
 }
 
 .alert {
@@ -286,3 +301,5 @@ pre {
     display: inline-block;
 
 }
+
+.def {}

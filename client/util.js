@@ -68,9 +68,13 @@ export const gameTypes = [
     { name: 'casual', label: 'Unranked' },
     { name: 'competitive', label: 'Ranked' }
 ];
-export const getGameTypeLabel = (name) => {
+export const getRankedLabel = (name) => {
     const type = gameTypes.find(f => f.name === name);
     return type?.label;
+};
+
+export const getGameTypeLabel = (gameType) => {
+    return gameType === 'chimera' ? 'Chimera' : 'Player';
 };
 
 export const gameFormats = [

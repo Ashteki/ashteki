@@ -17,7 +17,7 @@
     margin: 10px 0;
     padding: 3px 5px;
     background-color: rgba(169, 169, 169, 0.304);
-
+    font-size: 18px;
 }
 
 .spectator-list {
@@ -26,4 +26,13 @@
 
 .unbold {
     font-weight: normal;
+}
+
+.newgame-header {
+    display: flex;
+}
+
+.start-game-buttons {
+    text-align: center;
+    margin-bottom: 10px;
 }
