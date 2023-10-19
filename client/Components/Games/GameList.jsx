@@ -92,7 +92,7 @@ class GameList extends React.Component {
     }
 
     canJoin(game) {
-        if (this.props.currentGame || game.started || game.full) {
+        if (this.props.currentGame || game.started || game.full || game.solo) {
             return false;
         }
 
@@ -168,7 +168,7 @@ class GameList extends React.Component {
                     <div key={players[0].name} className={'game-player-row other-player'}>
                         <div className='game-faction-row other-player'>
                             <button
-                                className='btn btn-success gamelist-button img-fluid'
+                                className='btn btn-success gamelist-button img-fluid def'
                                 onClick={(event) => this.joinGame(event, game)}
                             >
                                 <Trans>Join</Trans>
@@ -257,18 +257,18 @@ class GameList extends React.Component {
                         <div className='game-row-buttons'>
                             {this.canWatch(game) && (
                                 <button
-                                    className='btn btn-primary gamelist-button'
+                                    className='btn btn-primary gamelist-button def'
                                     onClick={(event) => this.watchGame(event, game)}
                                 >
-                                    <Trans>Watch</Trans>
+                                    Watch
                                 </button>
                             )}
                             {isAdmin && (
                                 <button
-                                    className='btn btn-danger gamelist-button'
+                                    className='btn btn-danger gamelist-button def'
                                     onClick={(event) => this.removeGame(event, game)}
                                 >
-                                    <Trans>Remove</Trans>
+                                    Remove
                                 </button>
                             )}
                         </div>

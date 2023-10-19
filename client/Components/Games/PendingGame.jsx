@@ -38,7 +38,7 @@ const PendingGame = () => {
         gameError: state.games.gameError,
         gameHost: state.games.gameHost
     }));
-    const newGameType = useSelector((state) => state.lobby.newGameType);
+    // const newGameType = useSelector((state) => state.lobby.newGameType);
     const notification = useRef();
     const [waiting, setWaiting] = useState(false);
     const [message, setMessage] = useState('');
@@ -199,10 +199,10 @@ const PendingGame = () => {
             <div>
                 <div className='newgame-header'>
                     <PictureButton
-                        text={getGameTypeLabel(newGameType)}
+                        text={getGameTypeLabel(currentGame.newGameType)}
                         // header='Premium'
                         disabled={true}
-                        imageClass={newGameType}
+                        imageClass={currentGame.newGameType}
                     />
                     <div>
                         <div className='start-game-buttons'>

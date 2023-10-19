@@ -71,6 +71,7 @@ const NewGame = ({
         label: '',
         allowSpectators: true,
         gameType: defaultGameType || 'casual',
+        newGameType: newGameType,
         gameFormat: newGameType === 'chimera' ? 'solo' : 'constructed',
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 50,

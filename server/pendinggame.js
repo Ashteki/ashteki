@@ -8,6 +8,7 @@ const PendingPlayer = require('./models/PendingPlayer.js');
 
 class PendingGame {
     constructor(owner, details) {
+        this.newGameType = details.newGameType;
         this.solo = details.gameFormat === 'solo';
         if (this.solo) {
             this.soloLevel = 'S';
@@ -375,6 +376,7 @@ class PendingGame {
             muteSpectators: this.muteSpectators,
             name: this.name,
             needsPassword: !!this.password,
+            newGameType: this.newGameType,
             node: this.node ? this.node.identity : undefined,
             owner: this.owner.username,
             players: playerSummaries,
