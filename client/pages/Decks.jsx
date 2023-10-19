@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Col, Row } from 'react-bootstrap';
 
-import Panel from '../Components/Site/Panel';
 import Link from '../Components/Navigation/Link';
 import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
@@ -41,7 +40,8 @@ const DecksComponent = () => {
             </Col>
             <Row>
                 <Col lg={6} className='full-height'>
-                    <Panel title={t('My decks')}>
+                    <div className='lobby-card'>
+                        <div className='lobby-header'>My Decks</div>
                         <Col className='text-center'>
                             <Link className='btn btn-primary' href='/decks/add'>
                                 New Deck
@@ -55,7 +55,7 @@ const DecksComponent = () => {
                             create them here.
                         </Col>
                         <DeckList />
-                    </Panel>
+                    </div>
                 </Col>
                 <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
             </Row>

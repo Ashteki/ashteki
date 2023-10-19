@@ -6,7 +6,6 @@ import * as actions from '../redux/actions';
 import DeckEditor from '../Components/Decks/DeckEditor';
 import AlertPanel from '../Components/Site/AlertPanel';
 import { Col, Row } from 'react-bootstrap';
-import Panel from '../Components/Site/Panel';
 // import ViewDeck from '../Components/Decks/ViewDeck.jsx';
 import DeckSummary from '../Components/Decks/DeckSummary';
 
@@ -46,14 +45,17 @@ export class InnerAddDeck extends React.Component {
                 <div className='full-height'>
                     <Row>
                         <Col lg={6} className='full-height'>
-                            <Panel title={'Deck Editor'}>
+                            <div className='lobby-card'>
+                                <div className='lobby-header'>Deck Editor</div>
+
                                 <DeckEditor mode='Add' onDeckSave={this.onAddDeck} />
-                            </Panel>
+                            </div>
                         </Col>
                         <Col lg={6}>
-                            <Panel title={this.props.deck?.name}>
+                            <div className='lobby-card'>
+                                <div className='lobby-header'>{this.props.deck?.name}</div>
                                 <DeckSummary deck={this.props.deck} />
-                            </Panel>
+                            </div>
                         </Col>
                     </Row>
                 </div>

@@ -9,10 +9,11 @@ import GameList from './GameList';
 import PendingGame from './PendingGame';
 import PasswordGame from './PasswordGame';
 import AlertPanel from '../Site/AlertPanel';
+import discordTextLogo from '../../assets/img/discord-logo-white.svg';
 
 import './GameLobby.scss';
 import { useEffect } from 'react';
-import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl } from '../../redux/actions';
+import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl, navigate } from '../../redux/actions';
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
 
@@ -79,8 +80,11 @@ const GameLobby = ({ gameId }) => {
     }, [currentGame, dispatch, gameId, games]);
 
     const handleNewGameClick = (gameType) => {
-        if (user) {
+        if (gameType === 'pvp' || user?.permissions.isSupporter) {
             dispatch(startNewGame(gameType));
+        }
+        if (gameType === 'chimera' && !user?.permissions.isSupporter) {
+            window.location = 'https://www.patreon.com/ashteki';
         }
     };
 
@@ -143,6 +147,32 @@ const GameLobby = ({ gameId }) => {
                                 />
                             )}
                         </div>
+                    </div>
+
+                    <div className='lobby-card'>
+                        <a
+                            className='link-box-item lobby-content'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href='https://discord.gg/UU5bduq'
+                        >
+                            <div>
+                                <h2 className='lobby-header'>
+                                    <img src={discordTextLogo} className='textlogo' />
+                                    Join the Ashes Discord!
+                                </h2>
+                                <div className='d-none d-sm-block'>
+                                    <ul className='two-column'>
+                                        <li>Find other players</li>
+                                        <li>Talk strategy</li>
+                                        <li>Get deckbuilding advice</li>
+                                        <li>Join a league or tournament</li>
+                                        <li>Ask rules questions</li>
+                                        <li>Report a bug</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </Col>
             </Row>

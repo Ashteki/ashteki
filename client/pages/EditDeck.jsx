@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
-import Panel from '../Components/Site/Panel';
 
 import ViewDeck from '../Components/Decks/ViewDeck.jsx';
 import DeckEditor from '../Components/Decks/DeckEditor.jsx';
@@ -53,9 +52,10 @@ class InnerEditDeck extends React.Component {
                 <div className='full-height'>
                     <Row>
                         <Col lg={6} className='full-height'>
-                            <Panel title={'Deck Editor'}>
+                            <div className='lobby-card'>
+                                <div className='lobby-header'>Deck Editor</div>
                                 <DeckEditor mode='Save' onDeckSave={this.onEditDeck} />
-                            </Panel>
+                            </div>
                         </Col>
                         <Col lg={6}>{<ViewDeck deck={this.props.deck} />}</Col>
                     </Row>

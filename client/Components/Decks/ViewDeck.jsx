@@ -99,7 +99,9 @@ const ViewDeck = ({ deck }) => {
                 onClose={() => dispatch(clearApiStatus(Decks.ResyncDeck))}
             />
 
-            <Panel title={deck?.name}>
+            <div className='lobby-card'>
+                <div className='lobby-header'>{deck?.name}</div>
+
                 <Col xs={12} className='text-center'>
                     <a href='#' className='fave-icon'>
                         {faveIcon}
@@ -114,7 +116,7 @@ const ViewDeck = ({ deck }) => {
                     </ButtonGroup>
                 </Col>
                 <DeckSummary deck={deck} />
-            </Panel>
+            </div>
         </>
     );
 };
