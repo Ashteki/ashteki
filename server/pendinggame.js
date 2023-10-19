@@ -120,6 +120,10 @@ class PendingGame {
         };
     }
 
+    isSpectator(username) {
+        return !!this.spectators[username];
+    }
+
     newGame(id, user, password, join) {
         if (password) {
             this.password = crypto.createHash('md5').update(password).digest('hex');

@@ -603,15 +603,16 @@ class Lobby {
     }
 
     onLeaveGame(socket) {
-        let game = this.findGameForUser(socket.user.username);
+        const username = socket.user.username;
+        let game = this.findGameForUser(username);
         if (!game) {
             return;
         }
 
-        if (game.solo) {
+        if (game.solo && !game.isSpectator(username)) {
             game.leave(DummyUser.DUMMY_USERNAME);
         }
-        game.leave(socket.user.username);
+        game.leave(username);
         socket.send('cleargamestate');
         socket.leaveChannel(game.id);
 
