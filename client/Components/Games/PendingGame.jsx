@@ -196,115 +196,111 @@ const PendingGame = () => {
                 <source src={ChargeMp3} type='audio/mpeg' />
                 <source src={ChargeOgg} type='audio/ogg' />
             </audio>
-            <div>
-                <div className='newgame-header'>
-                    <PictureButton
-                        text={getGameTypeLabel(currentGame.newGameType)}
-                        // header='Premium'
-                        disabled={true}
-                        imageClass={currentGame.newGameType}
-                    />
-                    <div>
-                        <div className='start-game-buttons'>
-
-                            <Button
-                                variant='primary'
-                                className='def'
-                                onClick={() => {
-                                    dispatch(leaveGame(currentGame.id));
-                                }}
-                            >
-                                Leave
-                            </Button>
-                            <Button
-                                variant='success'
-                                className='def'
-                                disabled={!canClickStart()}
-                                onClick={() => {
-                                    setWaiting(true);
-                                    dispatch(startGame(currentGame.id));
-                                }}
-                            >
-                                Start
-                            </Button>
-                        </div>
-                        <h3>
-                            Format: <span className='unbold cap'>{getFormatLabel(currentGame.gameFormat)}</span>
-                        </h3>
-                        <div>
-                            <GameFormatInfo gameType={currentGame.gameFormat} />
-                        </div>
-                    </div>
-                    {/* {!currentGame.solo && (
-                        <div className='float-right'>
-                            <ReactClipboard
-                                text={`${window.location.protocol}//${window.location.host}/play?gameId=${currentGame.id}`}
-                            >
-                                <Button variant='primary'>
-                                    <Trans>Copy Game Link</Trans>
-                                </Button>
-                            </ReactClipboard>
-                        </div>
-                    )} */}
-                </div>
-                <div className='game-status'>{getGameStatus()}</div>
-                {!currentGame.solo && (
-                    <>
-                        <h3>
-                            Type: <span className='unbold cap'>{getRankedLabel(currentGame.gameType)}</span>
-                        </h3>
-
-                        {timelimit}
-                        {gameLabel}
-                    </>
-                )}
-
-                <PendingGamePlayers currentGame={currentGame} user={user} />
-
-                <h3>Spectators ({currentGame.spectators.length})</h3>
-                <div className='spectator-list'>
-                    {currentGame.spectators.map((spectator) => {
-                        return <div key={spectator.name}>{spectator.name}</div>;
-                    })}
-                </div>
+            <div className='newgame-header'>
+                <PictureButton
+                    text={getGameTypeLabel(currentGame.newGameType)}
+                    // header='Premium'
+                    disabled={true}
+                    imageClass={currentGame.newGameType}
+                />
                 <div>
-                    <div
-                        className='message-list'
-                        ref={messageRef}
-                        onScroll={() => {
-                            setTimeout(() => {
-                                if (
-                                    messageRef.current?.scrollTop >=
-                                    messageRef.current.scrollHeight -
-                                    messageRef.current.offsetHeight -
-                                    20
-                                ) {
-                                    setCanScroll(true);
-                                } else {
-                                    setCanScroll(false);
-                                }
-                            }, 500);
-                        }}
-                    >
-                        <Messages messages={currentGame.messages} />
+                    <div className='start-game-buttons'>
+
+                        <Button
+                            variant='primary'
+                            className='def'
+                            onClick={() => {
+                                dispatch(leaveGame(currentGame.id));
+                            }}
+                        >
+                            Leave
+                        </Button>
+                        <Button
+                            variant='success'
+                            className='def'
+                            disabled={!canClickStart()}
+                            onClick={() => {
+                                setWaiting(true);
+                                dispatch(startGame(currentGame.id));
+                            }}
+                        >
+                            Start
+                        </Button>
                     </div>
-                    <Form>
-                        <Form.Group>
-                            <Form.Control
-                                type='text'
-                                placeholder={t('Enter a message...')}
-                                value={message}
-                                onKeyPress={(event) => {
-                                    if (event.key === 'Enter') {
-                                        sendMessage();
-                                        event.preventDefault();
-                                    }
-                                }}
-                                onChange={(event) => setMessage(event.target.value)}
-                            ></Form.Control>
-                        </Form.Group>
-                    </Form>
+                    <h3>
+                        Format: <span className='unbold cap'>{getFormatLabel(currentGame.gameFormat)}</span>
+                    </h3>
+                    <div>
+                        <GameFormatInfo gameType={currentGame.gameFormat} />
+                    </div>
                 </div>
+            </div>
+            <div className='game-status'>{getGameStatus()}</div>
+            {!currentGame.solo && (
+                <>
+                    <div className='copy-game-link'>
+                        <ReactClipboard
+                            text={`${window.location.protocol}//${window.location.host}/play?gameId=${currentGame.id}`}
+                        >
+                            <Button variant='primary' className='def'>
+                                <Trans>Copy Game Link</Trans>
+                            </Button>
+                        </ReactClipboard>
+                    </div>
+                    <h3>
+                        Type: <span className='unbold cap'>{getRankedLabel(currentGame.gameType)}</span>
+                    </h3>
+
+                    {timelimit}
+                    {gameLabel}
+                </>
+            )}
+
+            <PendingGamePlayers currentGame={currentGame} user={user} />
+
+            <h3>Spectators ({currentGame.spectators.length})</h3>
+            <div className='spectator-list'>
+                {currentGame.spectators.map((spectator) => {
+                    return <div key={spectator.name}>{spectator.name}</div>;
+                })}
+            </div>
+            <div>
+                <div
+                    className='message-list'
+                    ref={messageRef}
+                    onScroll={() => {
+                        setTimeout(() => {
+                            if (
+                                messageRef.current?.scrollTop >=
+                                messageRef.current.scrollHeight -
+                                messageRef.current.offsetHeight -
+                                20
+                            ) {
+                                setCanScroll(true);
+                            } else {
+                                setCanScroll(false);
+                            }
+                        }, 500);
+                    }}
+                >
+                    <Messages messages={currentGame.messages} />
+                </div>
+                <Form>
+                    <Form.Group>
+                        <Form.Control
+                            type='text'
+                            placeholder={t('Enter a message...')}
+                            value={message}
+                            onKeyPress={(event) => {
+                                if (event.key === 'Enter') {
+                                    sendMessage();
+                                    event.preventDefault();
+                                }
+                            }}
+                            onChange={(event) => setMessage(event.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+                </Form>
             </div>
         </>
     );

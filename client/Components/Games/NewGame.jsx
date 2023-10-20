@@ -200,7 +200,7 @@ const NewGame = ({
                     >
                         {
                             <>
-                                <Form.Row>
+                                <div className='newgame-header'>
                                     <PictureButton
                                         text={getGameTypeLabel(newGameType)}
                                         // header='Premium'
@@ -245,7 +245,7 @@ const NewGame = ({
                                             </div>
                                         )}
                                     </Form.Group>
-                                </Form.Row>
+                                </div>
                                 {newGameType === 'pvp' && (
                                     <>
                                         <GameFormats formProps={formProps} />
