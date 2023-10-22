@@ -6,7 +6,7 @@ class AbilityTargetAutoCard extends AbilityTargetCard {
     constructor(name, properties, ability) {
         super(name, properties, ability);
 
-        // leftmost (L2R) or rightmost (R2L)
+        // leftmost (left) or rightmost (right)
         this.aim = properties.aim;
     }
 
@@ -14,6 +14,9 @@ class AbilityTargetAutoCard extends AbilityTargetCard {
         // aim dictates
         const opposingUnits = [...context.player.opponent.unitsInPlay];
         // reverse for L2R
+        if (this.aim === 'right') {
+            opposingUnits.reverse();
+        }
 
         // loop
         for (const unit of opposingUnits) {
