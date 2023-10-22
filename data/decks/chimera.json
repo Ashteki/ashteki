@@ -110,5 +110,66 @@
       }
     ],
     "conjurations": []
+  },
+  {
+    "precon_id": 803,
+    "mode": "chimera",
+    "name": "The Frostwild Scourge - Storm",
+    "phoenixborn": [
+      {
+        "id": "frostwild-scourge",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "scourge-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "scourge-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "storm-bolt",
+        "count": 3
+      },
+      {
+        "id": "shockwave",
+        "count": 3
+      },
+      {
+        "id": "bonechill-wind",
+        "count": 3
+      },
+      {
+        "id": "galeforce",
+        "count": 3
+      },
+      {
+        "id": "avalanche",
+        "count": 3
+      },
+      {
+        "id": "frost-bulwark",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "stun",
+        "count": 6
+      }
+    ]
   }
 ]

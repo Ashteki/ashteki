@@ -1,0 +1,97 @@
+{
+    "deckType": "chimera",
+    "results": [
+        {
+            "name": "The Frostwild Scourge",
+            "stub": "frostwild-scourge",
+            "type": "Chimera",
+            "level": "standard",
+            "rank": 1,
+            "threat": 4,
+            "life": 35,
+            "ultimate": 3,
+            "imageStub": "frostwild-scourge-1p-standard-1.jpg"
+        },
+        {
+            "name": "Frostwild Scourge Ultimate",
+            "stub": "scourge-ultimate",
+            "type": "Ready Spell",
+            "imageStub": "frostwild-scourge-ultimate-%s.jpg"
+        },
+        {
+            "name": "Frostwild Scourge Behaviour",
+            "stub": "scourge-behaviour",
+            "type": "Behaviour",
+            "imageStub": "frostwild-scourge-behavior-%s.jpg"
+        },
+        {
+            "name": "Storm Bolt",
+            "stub": "storm-bolt",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Shockwave",
+            "stub": "shockwave",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Bonechill Wind",
+            "stub": "bonechill-wind",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Galeforce",
+            "stub": "galeforce",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 4,
+            "blood": 2
+        },
+        {
+            "name": "Avalanche",
+            "stub": "avalanche",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 4,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Frost Bulwark",
+            "stub": "frost-bulwark",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Stun",
+            "stub": "stun",
+            "type": "Conjured Alteration Spell",
+            "placement": [
+                "Unit",
+                "Phoenixborn"
+            ]
+        }
+    ]
+}

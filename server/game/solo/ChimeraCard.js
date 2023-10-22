@@ -19,11 +19,6 @@ class ChimeraCard extends Card {
         return this.setup.length;
     }
 
-    getImageStub() {
-        const level = this.level === 'H' ? 'heroic' : 'standard';
-        return `corpse-of-viros-1p-${level}-${this.stage}.jpg`;
-    }
-
     setupCardAbilities(ability) {
         this.forcedReaction({
             when: {

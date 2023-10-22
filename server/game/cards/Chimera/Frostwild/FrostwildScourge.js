@@ -1,13 +1,13 @@
-const ChimeraCard = require('../../solo/ChimeraCard');
+const ChimeraCard = require('../../../solo/ChimeraCard');
 
-class CorpseOfViros extends ChimeraCard {
+class FrostwildScourge extends ChimeraCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
     }
 
     getImageStub() {
         const level = this.level === 'H' ? 'heroic' : 'standard';
-        return `corpse-of-viros-1p-${level}-${this.stage}.jpg`;
+        return `frostwild-scourge-1p-${level}-${this.stage}.jpg`;
     }
 
     get setup() {
@@ -16,15 +16,15 @@ class CorpseOfViros extends ChimeraCard {
             case 'S1':
                 return [1, 2, 2, 2];
             case 'S2':
-                return [1, 2, 1, 2, 2];
+                return [1, 2, 2, 2, 1];
             case 'S3':
-                return [1, 2, 1, 2, 1, 2];
+                return [1, 2, 1, 2, 2, 1];
             case 'H1':
-                return [1, 2, 1, 1, 2];
+                return [1, 2, 2, 2, 1];
             case 'H2':
-                return [1, 2, 1, 1, 1, 2];
+                return [1, 2, 1, 1, 2, 1];
             case 'H3':
-                return [1, 2, 1, 2, 1, 1, 2];
+                return [1, 2, 1, 2, 1, 2, 1];
             default:
                 throw new Error('unrecognised chimera level / stage');
         }
@@ -33,15 +33,15 @@ class CorpseOfViros extends ChimeraCard {
     get life() {
         switch (this.level) {
             case 'S':
-                return 30;
-            case 'H':
                 return 35;
+            case 'H':
+                return 40;
             default:
                 throw new Error('unrecognised chimera level');
         }
     }
 }
 
-CorpseOfViros.id = 'corpse-of-viros';
+FrostwildScourge.id = 'frostwild-scourge';
 
-module.exports = CorpseOfViros;
+module.exports = FrostwildScourge;
