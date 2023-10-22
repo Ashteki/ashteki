@@ -15,7 +15,10 @@ class Firebelly extends AspectCard {
             },
             target: {
                 ignoreTargetCheck: true,
-                autoTarget: (context) => [...context.player.opponent.unitsInPlay, context.player.opponent.phoenixborn],
+                autoTarget: (context) => [
+                    ...context.player.opponent.unitsInPlay,
+                    context.player.opponent.phoenixborn
+                ],
                 gameAction: ability.actions.dealDamage({ showMessage: true })
             }
         });
