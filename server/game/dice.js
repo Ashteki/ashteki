@@ -1,4 +1,4 @@
-const { Level, Magic } = require('../constants');
+const { Level } = require('../constants');
 
 class Dice {
     static levelUp(level) {
