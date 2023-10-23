@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl, navigate } from '../../redux/actions';
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
+import { patreonUrl } from '../../constants';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
@@ -83,8 +84,12 @@ const GameLobby = ({ gameId }) => {
         if (gameType === 'pvp' || user?.permissions.isSupporter) {
             dispatch(startNewGame(gameType));
         }
+
         if (gameType === 'chimera' && !user?.permissions.isSupporter) {
-            window.location = 'https://www.patreon.com/ashteki';
+            if (user?.patreon === 'linked') {
+                window.location = 'https://www.patreon.com/ashteki';
+            }
+            window.location = patreonUrl;
         }
     };
 

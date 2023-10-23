@@ -6,12 +6,12 @@ import { useDispatch } from 'react-redux';
 import { PatreonStatus } from '../../types';
 import Panel from '../Site/Panel';
 import Avatar from '../Site/Avatar';
-import { PatreonClientId } from '../../constants';
 import { unlinkPatreon } from '../../redux/actions';
 import PatreonImage from '../../assets/img/Patreon_Mark_Coral.jpg';
 
 import './ProfileMain.scss';
 import Link from '../Navigation/Link';
+import { patreonUrl } from '../../constants';
 
 /**
  * @typedef { import('./Profile').ProfileDetails } ProfileDetails
@@ -39,9 +39,6 @@ const ProfileMain = ({ user, formProps }) => {
 
         inputFile.current.click();
     };
-
-    const callbackUrl = `${window.location.origin}/patreon`;
-    const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${PatreonClientId}&redirect_uri=${callbackUrl}`;
 
     let eloRating = '(calibrating)';
     if (user.rankedGamesPlayed >= 12) {

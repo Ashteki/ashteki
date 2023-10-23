@@ -26,23 +26,30 @@ class Patreon extends React.Component {
         if (props.accountLinked) {
             this.setState({
                 successMessage:
-                    'Your account was linked successfully.  Sending you back to the profile page.'
+                    'Your account was linked successfully. Please wait while you are redirected.'
             });
 
             setTimeout(() => {
                 this.props.clearLinkStatus();
-                this.props.navigate('/profile');
-            }, 5000);
+                this.props.navigate('/play');
+            }, 2000);
         }
     }
 
     render() {
         if (!this.props.code) {
+            setTimeout(() => {
+                this.props.clearLinkStatus();
+                this.props.navigate('/play');
+            }, 2000);
+
             return (
-                <AlertPanel
-                    type='error'
-                    message='This page is not intended to be viewed directly.  Please click on one of the links at the top of the page or your browser back button to return to the site.'
-                />
+                <>
+                    <AlertPanel
+                        type='error'
+                        message='Your account was not successfully linked.  Please wait while we redirect you.'
+                    />
+                </>
             );
         }
 
