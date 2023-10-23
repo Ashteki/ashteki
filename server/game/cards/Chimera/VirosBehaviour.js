@@ -49,7 +49,7 @@ class VirosBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
-                                side: 'Raise 1 basic rage die one level\n Main: Reveal'
+                                side: 'Raise 1 basic rage die one level'
                             },
                             () => {
                                 // Side: Raise 1 basic rage die one level

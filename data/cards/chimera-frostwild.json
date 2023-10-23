@@ -92,6 +92,12 @@
                 "Unit",
                 "Phoenixborn"
             ]
+        },
+        {
+            "name": "Vigor",
+            "stub": "vigor",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit"
         }
     ]
 }

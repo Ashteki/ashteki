@@ -29,7 +29,10 @@ class ChangeDieAction extends DiceGameAction {
         return super.createEvent(
             'onDieChange',
             { die: die, context: context, change: this.change, diceOwner: die.owner },
-            () => (this.change == 'raise' ? die.raise() : die.lower())
+            (event) => {
+                this.change == 'raise' ? die.raise() : die.lower();
+                event.context.diceChangeCount = 1 + (event.context.diceChangeCount || 0);
+            }
         );
     }
 }
