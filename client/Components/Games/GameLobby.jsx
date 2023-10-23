@@ -81,15 +81,22 @@ const GameLobby = ({ gameId }) => {
     }, [currentGame, dispatch, gameId, games]);
 
     const handleNewGameClick = (gameType) => {
-        if (gameType === 'pvp' || user?.permissions.isSupporter) {
+        if (!user) {
+            return;
+        }
+
+        const userIsSupporter = user?.permissions.isSupporter;
+
+        if (gameType === 'pvp' || userIsSupporter) {
             dispatch(startNewGame(gameType));
         }
 
-        if (gameType === 'chimera' && !user?.permissions.isSupporter) {
+        if (gameType === 'chimera' && !userIsSupporter) {
             if (user?.patreon === 'linked') {
                 window.location = 'https://www.patreon.com/ashteki';
+            } else {
+                window.location = patreonUrl;
             }
-            window.location = patreonUrl;
         }
     };
 
