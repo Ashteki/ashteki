@@ -67,6 +67,7 @@ module.exports = {
     ResolveBattleAction: require('./ResolveBattleAction'),
     ReturnToDeckAction: require('./ReturnToDeckAction'),
     ReturnToHandAction: require('./ReturnToHandAction'),
+    RemoveDieAction: require('./RemoveDieAction'),
     RevealAction: require('./RevealAction'),
     RevealAspectAction: require('./RevealAspectAction'),
     SearchAction: require('./SearchAction'),

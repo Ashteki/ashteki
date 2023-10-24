@@ -33,16 +33,32 @@ class AttachConjuredAlterationAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        const gameAction =
-            card.type == CardType.Phoenixborn
-                ? context.game.actions.attachToPb({
-                    upgrade: this.alteration
-                })
-                : context.game.actions.attach({
-                    upgrade: this.alteration
-                });
-        context.game.addMessage('{0} attaches {1} to {2}', context.player, this.alteration, card);
-        return gameAction.getEvent(card, context);
+        const result = super.createEvent(
+            'unnamedEvent',
+            {
+                card: card,
+                context: context,
+                alteration: this.alteration
+            },
+            (event) => {
+                const alt = context.player.archives
+                    .filter((c) => c.id === this.conjuredAlteration)
+                    .slice(0, 1)[0];
+
+                const gameAction =
+                    card.type == CardType.Phoenixborn
+                        ? context.game.actions.attachToPb({
+                            upgrade: alt
+                        })
+                        : context.game.actions.attach({
+                            upgrade: alt
+                        });
+                context.game.addMessage('{0} attaches {1} to {2}', context.player, alt, card);
+                event.addSubEvent(gameAction.getEvent(card, context));
+            }
+        );
+
+        return result;
     }
 }
 

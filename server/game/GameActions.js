@@ -74,6 +74,7 @@ const Actions = {
         new GameActions.ResolveDieAbilityAction(propertyFactory),
     setDieLevel: (propertyFactory) => new GameActions.SetDieLevelAction(propertyFactory),
     useDie: (propertyFactory) => new GameActions.UseDieAction(propertyFactory),
+    removeDieFromGame: (propertyFactory) => new GameActions.RemoveDieAction(propertyFactory),
 
     // player actions
     addSideAction: (propertyFactory) => new GameActions.AddSideAction(propertyFactory),
