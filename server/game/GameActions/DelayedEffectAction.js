@@ -28,7 +28,7 @@ class DelayedEffectAction extends CardGameAction {
             message: this.message,
             gameAction: this.gameAction,
             handler: this.handler,
-            target: card,
+            target: context.target,
             context: context
         };
         return super.createEvent('onEffectApplied', { card: card, context: context }, (event) =>

@@ -63,6 +63,54 @@ describe('Hope Everthorn', function () {
         });
     });
 
+    describe('Duplicate LightBringer', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'hope-everthorn',
+                    inPlay: ['light-bringer'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'illusion', 'ceremonial'],
+                    spellboard: ['summon-shadow-spirit'],
+                    archives: ['light-bringer']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['flute-mage'],
+                    hand: ['call-upon-the-realms']
+                }
+            });
+        });
+
+        it('duplicates lightbringer and forces attack', function () {
+            const firstLB = this.player1.inPlay[0];
+            const secondLB = this.player1.archives[0];
+            expect(this.player1.inPlay.length).toBe(1);
+            expect(this.player1.archives.length).toBe(1);
+            this.player1.clickCard(this.hopeEverthorn);
+            this.player1.clickPrompt('Duplicate');
+            this.player1.clickDie(0);
+            this.player1.clickCard(firstLB);
+
+            expect(this.player1.archives.length).toBe(0);
+            expect(firstLB.tokens.duplicate).toBeUndefined();
+            expect(secondLB.tokens.duplicate).toBe(1); //check duplicate token applied
+
+            this.player1.endTurn();
+            expect(this.player2.player.anyEffect('mustAttack')).toBe(true);
+
+            // then it's the new turn
+            expect(this.player2).toHaveDefaultPrompt();
+            // prevent action card - non-attack
+            this.player2.clickCard(this.callUponTheRealms);
+            expect(this.player2).toHaveDefaultPrompt();
+
+            expect(firstLB.location).toBe('play area');
+            expect(secondLB.location).toBe('archives');
+            expect(this.player1.inPlay.length).toBe(1);
+            expect(this.player1.archives.length).toBe(1);
+        });
+    });
+
     describe('Duplicate with unsuitable conji', function () {
         beforeEach(function () {
             this.setupTest({
