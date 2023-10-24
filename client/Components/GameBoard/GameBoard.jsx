@@ -468,6 +468,7 @@ const GameBoard = () => {
                     winner={currentGame.winner}
                     onCardClick={onCardClick}
                     onMouseOver={onMouseOver}
+                    onMouseOut={onMouseOut}
                     round={currentGame.round}
                     solo={currentGame.solo}
                     leftMode={leftMode}

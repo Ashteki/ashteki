@@ -1,6 +1,6 @@
 const AspectCard = require('../../../solo/AspectCard');
 
-class FrostBullwark extends AspectCard {
+class FrostBulwark extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
@@ -13,6 +13,6 @@ class FrostBullwark extends AspectCard {
     }
 }
 
-FrostBullwark.id = 'frost-bullwark';
+FrostBulwark.id = 'frost-bulwark';
 
-module.exports = FrostBullwark;
+module.exports = FrostBulwark;

@@ -320,7 +320,7 @@ const PlayerStats = ({
             {activePlayer && <div className='state first-player-state'>Active Player</div>}
             {(compactLayout || solo) && (
                 <>
-                    {!solo && getArchives()}
+                    {getArchives()}
                     <div className='state'>{renderDroppableList('draw', draw)}</div>
                     <div className='state'>{renderDroppableList('hand', hand)}</div>
                 </>

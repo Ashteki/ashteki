@@ -60,7 +60,7 @@ class CardVisibility {
 
     isSoloRule(card, player) {
         return (
-            this.solo && ['hand'].includes(card.location)
+            this.solo && ['hand', 'archives'].includes(card.location)
         );
     }
 

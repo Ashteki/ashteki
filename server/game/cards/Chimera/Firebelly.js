@@ -28,4 +28,4 @@ class Firebelly extends AspectCard {
 
 Firebelly.id = 'firebelly';
 
-module.exports = Firebelly
+module.exports = Firebelly;

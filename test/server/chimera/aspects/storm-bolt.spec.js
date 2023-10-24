@@ -33,12 +33,17 @@ describe('Storm Bolt Aspect', function () {
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
-
             expect(this.ironWorker.upgrades.length).toBe(1);
             expect(this.ironWorker.exhausted).toBe(true);
+
+            this.player1.clickCard(this.stun);
+            this.player1.clickPrompt('Unstun');
             expect(this.stormBolt.location).toBe('play area');
             expect(this.stormBolt.facedown).toBe(false);
             expect(this.coalRoarkwin.damage).toBe(0);
+            expect(this.ironWorker.upgrades.length).toBe(0);
+            expect(this.ironWorker.exhausted).toBe(false);
+            expect(this.stun.location).toBe('archives');
         });
 
         it('reveal damages pb is no unexhausted unit', function () {

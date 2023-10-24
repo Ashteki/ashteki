@@ -169,6 +169,10 @@
       {
         "id": "stun",
         "count": 6
+      },
+      {
+        "id": "vigor",
+        "count": 6
       }
     ]
   }

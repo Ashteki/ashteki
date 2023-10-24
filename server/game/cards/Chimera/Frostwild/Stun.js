@@ -6,6 +6,12 @@ class Stun extends Card {
         this.whileAttached({
             effect: [ability.effects.exhausted()]
         });
+
+        this.action({
+            title: 'Unstun',
+            cost: ability.costs.sideAction(),
+            gameAction: ability.actions.discard({ target: this })
+        });
     }
 
     canAttach(card, context) {
