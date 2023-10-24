@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const GameChat = require('./game/gamechat.js');
 const logger = require('./log');
 const PendingPlayer = require('./models/PendingPlayer.js');
+const DummyUser = require('./models/DummyUser.js');
 
 class PendingGame {
     constructor(owner, details) {
@@ -233,6 +234,9 @@ class PendingGame {
 
         if (this.players[playerName]) {
             if (!this.started) {
+                if (this.solo && !this.isSpectator(playerName)) {
+                    this.removeDummy();
+                }
                 this.removeAndResetOwner(playerName);
 
                 delete this.players[playerName];
@@ -240,6 +244,10 @@ class PendingGame {
         } else {
             delete this.spectators[playerName];
         }
+    }
+
+    removeDummy() {
+        delete this.players[DummyUser.DUMMY_USERNAME];
     }
 
     chat(playerName, message) {
@@ -301,7 +309,8 @@ class PendingGame {
         return (
             (this.players[playerName] &&
                 !this.players[playerName].left &&
-                !this.players[playerName].disconnected) ||
+                !this.players[playerName].disconnected &&
+                !this.players[playerName].isDummy) ||
             this.spectators[playerName]
         );
     }

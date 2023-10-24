@@ -1396,19 +1396,21 @@ class Game extends EventEmitter {
     }
 
     isEmpty() {
-        return Object.values(this.playersAndSpectators).every((player) => {
-            if (player.left || player.id === 'TBA') {
-                return true;
-            }
+        return Object.values(this.playersAndSpectators)
+            .filter((d) => !(d instanceof DummyPlayer))
+            .every((player) => {
+                if (player.left || player.id === 'TBA') {
+                    return true;
+                }
 
-            if (!player.disconnectedAt) {
-                return false;
-            }
+                if (!player.disconnectedAt) {
+                    return false;
+                }
 
-            let difference = moment().diff(moment(player.disconnectedAt), 'minutes');
+                let difference = moment().diff(moment(player.disconnectedAt), 'minutes');
 
-            return difference > 5;
-        });
+                return difference > 5;
+            });
     }
 
     leave(playerName) {
