@@ -7,11 +7,11 @@ describe('Redirect reaction spell', function () {
                 spellboard: ['summon-butterfly-monk'],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 archives: ['butterfly-monk'],
-                hand: ['one-hundred-blades']
+                hand: ['one-hundred-blades', 'will-to-survive']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['flute-mage', 'hammer-knight'],
+                inPlay: ['flute-mage', 'hammer-knight', 'anchornaut'],
                 spellboard: [],
                 hand: ['redirect'],
                 dicepool: ['natural', 'natural', 'charm']
@@ -39,6 +39,25 @@ describe('Redirect reaction spell', function () {
         expect(this.coalRoarkwin.tokens.damage).toBeUndefined;
         expect(this.mistSpirit.tokens.damage).toBeUndefined;
         expect(this.player2.dicepool[2].exhausted).toBe(true);
+    });
+
+    it('vs Will to survive, triggers heal', function () {
+        this.aradelSummergaard.tokens.damage = 1;
+        this.player1.play(this.willToSurvive, this.mistSpirit);
+        expect(this.mistSpirit.attack).toBe(2);
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.coalRoarkwin); // target
+        this.player1.clickCard(this.mistSpirit); // single attacker
+        this.player1.clickPrompt('Done'); // end attacker select
+        this.player2.clickPrompt('Done'); // don't place blocker
+
+        // any interrupts?
+        this.player2.clickCard(this.redirect); // click redirect to play as reaction
+        this.player2.clickCard(this.anchornaut); // redirect damage to hammerKnight
+
+        expect(this.redirect.location).toBe('discard');
+        expect(this.anchornaut.location).toBe('discard');
+        expect(this.aradelSummergaard.damage).toBe(0);
     });
 
     it('can be cancelled', function () {
