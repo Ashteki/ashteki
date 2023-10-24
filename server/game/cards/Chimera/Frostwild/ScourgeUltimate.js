@@ -1,3 +1,4 @@
+const { PhoenixbornTypes } = require('../../../../constants');
 const AbilityDsl = require('../../../abilitydsl');
 const UltimateCard = require('../../../solo/UltimateCard');
 
@@ -5,18 +6,27 @@ class ScourgeUltimate extends UltimateCard {
     getUltimateAbility(phase) {
         if (phase < 3) {
             return this.ultimate({
-                effect: 'deal {0} damage to all opponent units and phoenixborn',
-                effectArgs: () => phase,
+                title: 'Ultimate',
                 target: {
+                    mode: 'auto',
+                    // aim: 'left',
                     ignoreTargetCheck: true,
-                    autoTarget: (context) => [
-                        ...context.player.opponent.unitsInPlay,
-                        context.player.opponent.phoenixborn
-                    ],
-                    gameAction: AbilityDsl.actions.orderedAoE({
-                        gameAction: AbilityDsl.actions.dealDamage({ amount: phase, showMessage: true }),
-                        promptTitle: 'Chimera Ultimate'
-                    })
+                    gameAction: AbilityDsl.actions.destroy()
+                },
+                then: {
+                    alwaysTriggers: true,
+                    gameAction: AbilityDsl.actions.attachConjuredAlteration((context) => ({
+                        targetType: PhoenixbornTypes,
+                        conjuredAlteration: 'stun',
+                        target: context.player.opponent.phoenixborn
+                    })),
+                    then: {
+                        alwaysTriggers: true,
+                        gameAction: AbilityDsl.actions.attachConjuredAlteration((context) => ({
+                            conjuredAlteration: 'stun',
+                            target: context.player.opponent.unitsInPlay
+                        }))
+                    }
                 }
             });
         } else {

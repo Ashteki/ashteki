@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../../constants.js');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class TheAwakenedState extends Card {

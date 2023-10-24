@@ -1,5 +1,5 @@
 const AttachAction = require('./AttachAction');
-const { CardType, PhoenixbornTypes } = require('../../constants');
+const { PhoenixbornTypes } = require('../../constants');
 
 class AttachToPbAction extends AttachAction {
     setup() {

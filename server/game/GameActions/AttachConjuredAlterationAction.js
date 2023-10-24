@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../constants');
+const { BattlefieldTypes, CardType } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class AttachConjuredAlterationAction extends CardGameAction {
@@ -9,7 +9,7 @@ class AttachConjuredAlterationAction extends CardGameAction {
 
     setup() {
         this.name = 'attachConjuredAlteration';
-        this.targetType = BattlefieldTypes;
+        this.targetType = this.targetType || BattlefieldTypes;
         this.effectMsg = 'attach {1} to {0}';
         this.effectArgs = () => {
             return this.alteration;
@@ -33,15 +33,15 @@ class AttachConjuredAlterationAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        const gameAction = context.game.actions.attach({
-            upgrade: this.alteration
-        });
-        context.game.addMessage(
-            '{0} attaches {1} to {2}',
-            context.player,
-            this.alteration,
-            card
-        );
+        const gameAction =
+            card.type == CardType.Phoenixborn
+                ? context.game.actions.attachToPb({
+                    upgrade: this.alteration
+                })
+                : context.game.actions.attach({
+                    upgrade: this.alteration
+                });
+        context.game.addMessage('{0} attaches {1} to {2}', context.player, this.alteration, card);
         return gameAction.getEvent(card, context);
     }
 }
