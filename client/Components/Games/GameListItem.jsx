@@ -98,17 +98,19 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
         );
     }
 
-    const getPlayerCards = (player, firstPlayer, gameStarted, showPhoenixborn) => {
-        const pbCard =
-            gameStarted && showPhoenixborn && player.deck ? (
-                <div className='game-list-deck-image'>
-                    <ZoomableCard card={{ imageStub: player.deck.pbStub }} />
-                </div>
-            ) : null;
+    const getPlayerCard = (player, firstPlayer, gameStarted, showPhoenixborn) => {
+        const showPics = gameStarted && showPhoenixborn && player.deck;
+        // const pbCard =
+        //     gameStarted && showPhoenixborn && player.deck ? (
+        //         <div className='game-list-deck-image'>
+        //             <ZoomableCard card={{ imageStub: player.deck.pbStub }} />
+        //         </div>
+        //     ) : null;
         if (firstPlayer) {
             return (
                 <div className='game-faction-row first-player'>
-                    {pbCard}
+                    {/* {pbCard} */}
+                    {showPics && <div className={`decklist-entry-image ${player.deck.stub}`}></div>}
                     {getPlayerNameAndAvatar(player, firstPlayer)}
                 </div>
             );
@@ -117,7 +119,9 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
         return (
             <div className='game-faction-row other-player'>
                 {getPlayerNameAndAvatar(player, firstPlayer)}
-                {pbCard}
+                {showPics && <div className={`decklist-entry-image ${player.deck.stub}`}></div>}
+
+                {/* {pbCard} */}
             </div>
         );
     }
@@ -132,7 +136,7 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
 
             let retPlayer = (
                 <div key={player.name} className={classes}>
-                    <div>{getPlayerCards(player, firstPlayer, game.started, canWatch(game))}</div>
+                    <div>{getPlayerCard(player, firstPlayer, game.started, game.allowSpectators)}</div>
                 </div>
             );
 
