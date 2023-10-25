@@ -160,7 +160,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         {
             dataField: 'pb',
             headerStyle: {
-                width: '120px'
+                width: '100px'
             },
             text: 'Pb',
             sort: !standaloneDecks,
