@@ -160,7 +160,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         {
             dataField: 'pb',
             headerStyle: {
-                width: '13%'
+                width: '110px'
             },
             text: 'Pb',
             sort: !standaloneDecks,
@@ -171,9 +171,11 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             }),
             // eslint-disable-next-line react/display-name
             formatter: (pb, row) => (
-                <div className='deck-image'>
-                    <ZoomableCard card={row.phoenixborn[0]?.card} />
-                </div>
+                <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div>
+
+                // <div className='deck-image'>
+                //     <ZoomableCard card={row.phoenixborn[0]?.card} />
+                // </div>
             )
         },
         {
@@ -192,12 +194,15 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 ) : null;
                 const dice = row.mode !== 'chimera' && <DiceRack dice={row.dicepool} />;
                 const output = (
-                    <>
-                        <span>{item}</span>&nbsp;
-                        {icon}
-                        <br />
-                        {dice}
-                    </>
+                    <div className='decklist-entry'>
+                        {/* <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div> */}
+                        <div>
+                            <span className='decklist-title'>{item}</span>&nbsp;
+                            {icon}
+                            <br />
+                            {dice}
+                        </div>
+                    </div>
                 );
                 return output;
             }

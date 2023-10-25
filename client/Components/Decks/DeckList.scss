@@ -14,25 +14,25 @@
         }
     }
 
-    table {
-        border: solid 1px #dee2e6;
-        border-width: 0 1px 1px 0;
-        border-spacing: 0;
-        border-collapse: separate;
+    // table {
+    //     border: solid 1px #dee2e6;
+    //     border-width: 0 1px 1px 0;
+    //     border-spacing: 0;
+    //     border-collapse: separate;
 
-        th,
-        td {
-            border: solid 1px #dee2e6;
-            border-width: 1px 0 0 1px;
-        }
+    //     th,
+    //     td {
+    //         border: solid 1px #dee2e6;
+    //         border-width: 1px 0 0 1px;
+    //     }
 
-        tr {
-            td {
-                padding-top: 5px;
-                padding-bottom: 5px;
-            }
-        }
-    }
+    //     tr {
+    //         td {
+    //             padding-top: 5px;
+    //             padding-bottom: 5px;
+    //         }
+    //     }
+    // }
 
     .invalid {
         background-color: rgba(theme-color(danger), 0.6);
@@ -64,4 +64,201 @@
 
 .fave-hdr {
     text-align: center;
+}
+
+.decklist-entry {
+    display: flex;
+}
+
+.decklist-title {
+    font-size: 16px;
+}
+
+.decklist-entry-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    border: silver solid 2px;
+
+    &.astrea {
+        background-image: url('https://cdn.ashes.live/images/cards/astrea.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.brennen-blackcloud {
+        background-image: url('https://cdn.ashes.live/images/cards/brennen-blackcloud.jpg');
+        background-position: 50% 25%;
+        background-size: 250%;
+    }
+
+    &.aradel-summergaard {
+        background-image: url('https://cdn.ashes.live/images/cards/aradel-summergaard.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.coal-roarkwin {
+        background-image: url('https://cdn.ashes.live/images/cards/coal-roarkwin.jpg');
+        background-position: 45% 20%;
+        background-size: 250%;
+    }
+
+    &.dimona-odinstar {
+        background-image: url('https://cdn.ashes.live/images/cards/dimona-odinstar.jpg');
+        background-position: 60% 35%;
+        background-size: 250%;
+    }
+
+    &.echo-greystorm {
+        background-image: url('https://cdn.ashes.live/images/cards/echo-greystorm.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.fiona-mercywind {
+        background-image: url('https://cdn.ashes.live/images/cards/fiona-mercywind.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.harold-westraven {
+        background-image: url('https://cdn.ashes.live/images/cards/harold-westraven.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.hope-everthorn {
+        background-image: url('https://cdn.ashes.live/images/cards/hope-everthorn.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.james-endersight {
+        background-image: url('https://cdn.ashes.live/images/cards/james-endersight.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.jericho-reborn {
+        background-image: url('https://cdn.ashes.live/images/cards/jericho-reborn.jpg');
+        background-position: 45% 20%;
+        background-size: 250%;
+    }
+
+    &.jessa-na-ni {
+        background-image: url('https://cdn.ashes.live/images/cards/jessa-na-ni.jpg');
+        background-position: 50% 20%;
+        background-size: 200%;
+    }
+
+    &.koji-wolfcub {
+        background-image: url('https://cdn.ashes.live/images/cards/koji-wolfcub.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.leo-sunshadow {
+        background-image: url('https://cdn.ashes.live/images/cards/leo-sunshadow.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.lulu-firststone {
+        background-image: url('https://cdn.ashes.live/images/cards/lulu-firststone.jpg');
+        background-position: 55% 20%;
+        background-size: 250%;
+    }
+
+    &.maeoni-viper {
+        background-image: url('https://cdn.ashes.live/images/cards/maeoni-viper.jpg');
+        background-position: 45% 20%;
+        background-size: 250%;
+    }
+
+    &.namine-hymntide {
+        background-image: url('https://cdn.ashes.live/images/cards/namine-hymntide.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.noah-redmoon {
+        background-image: url('https://cdn.ashes.live/images/cards/noah-redmoon.jpg');
+        background-position: 40% 20%;
+        background-size: 250%;
+    }
+
+    &.odette-diamondcrest {
+        background-image: url('https://cdn.ashes.live/images/cards/odette-diamondcrest.jpg');
+        background-position: 60% 20%;
+        background-size: 250%;
+    }
+
+    &.orrick-gilstream {
+        background-image: url('https://cdn.ashes.live/images/cards/orrick-gilstream.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.rimea-careworn {
+        background-image: url('https://cdn.ashes.live/images/cards/rimea-careworn.jpg');
+        background-position: 40% 20%;
+        background-size: 250%;
+    }
+
+    &.rin-northfell {
+        background-image: url('https://cdn.ashes.live/images/cards/rin-northfell.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.rowan-umberend {
+        background-image: url('https://cdn.ashes.live/images/cards/rowan-umberend.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.saria-guideman {
+        background-image: url('https://cdn.ashes.live/images/cards/saria-guideman.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.sembali-grimtongue {
+        background-image: url('https://cdn.ashes.live/images/cards/sembali-grimtongue.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.tristan-darkwater {
+        background-image: url('https://cdn.ashes.live/images/cards/tristan-darkwater.jpg');
+        background-position: 50% 20%;
+        background-size: 250%;
+    }
+
+    &.victoria-glassfire {
+        background-image: url('https://cdn.ashes.live/images/cards/victoria-glassfire.jpg');
+        background-position: 45% 20%;
+        background-size: 250%;
+    }
+
+    &.xander-heartsblood {
+        background-image: url('https://cdn.ashes.live/images/cards/xander-heartsblood.jpg');
+        background-position: 55% 20%;
+        background-size: 250%;
+    }
+
+    &.corpse-of-viros {
+        background-image: url('https://cdn.ashes.live/images/cards/corpse-of-viros-1p-standard-1.jpg');
+        background-position: 60% 30%;
+        background-size: 150%;
+    }
+
+
+    &.frostwild-scourge {
+        background-image: url('https://cdn.ashes.live/images/cards/frostwild-scourge-1p-standard-1.jpg');
+        background-position: 50% 20%;
+        background-size: 200%;
+    }
+
 }
