@@ -16,8 +16,9 @@ class Stun extends Card {
 
     canAttach(card, context) {
         return (
-            (card && PhoenixbornTypes.includes(card.getType()) && this.canPlayAsUpgrade()) ||
-            super.canAttach(card, context)
+            !card.upgrades.some((u) => u.id === 'stun') &&
+            ((card && PhoenixbornTypes.includes(card.getType()) && this.canPlayAsUpgrade()) ||
+                super.canAttach(card, context))
         );
     }
 }
