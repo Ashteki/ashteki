@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faLock, faChessKnight } from '@fortawesome/free-solid-svg-icons';
 import { toastr } from 'react-redux-toastr';
 import PlayerName from '../Site/PlayerName';
-import ZoomableCard from '../Decks/ZoomableCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinPasswordGame } from '../../redux/actions';
 
@@ -100,12 +99,6 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
 
     const getPlayerCard = (player, firstPlayer, gameStarted, showPhoenixborn) => {
         const showPics = gameStarted && showPhoenixborn && player.deck;
-        // const pbCard =
-        //     gameStarted && showPhoenixborn && player.deck ? (
-        //         <div className='game-list-deck-image'>
-        //             <ZoomableCard card={{ imageStub: player.deck.pbStub }} />
-        //         </div>
-        //     ) : null;
         if (firstPlayer) {
             return (
                 <div className='game-faction-row first-player'>
@@ -193,9 +186,7 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
             <hr />
             <div className={rowClass}>
                 <div className='game-header-row'>
-                    <span className={formatBadgeClass}>
-                        {getFormatLabel(game.gameFormat)}
-                    </span>
+                    <span className={formatBadgeClass}>{getFormatLabel(game.gameFormat)}</span>
                     <span className='game-title'>
                         <b>{game.name}</b>
                     </span>{' '}
@@ -205,8 +196,8 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
                             <img
                                 src={ShowHandIcon}
                                 className='game-list-icon-white'
-                                alt={t('Show hands to spectators')}
-                                title={t('Show hands to spectators')}
+                                alt={'Show hands to spectators'}
+                                title={'Show hands to spectators'}
                             />
                         )}
                         {game.openHands && (
@@ -221,8 +212,8 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
                             <img
                                 src={TimeLimitIcon}
                                 className='game-list-icon'
-                                alt={t('Time limit used')}
-                                title={t('Time limit used')}
+                                alt={'Time limit used'}
+                                title={'Time limit used'}
                             />
                         )}
                         {game.clockType === 'chess' && (
