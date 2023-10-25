@@ -230,7 +230,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             align: 'center',
             text: 'Win Rate',
             headerStyle: {
-                width: '18%'
+                width: '60px'
             },
             style: {
                 fontSize: '0.8rem'
