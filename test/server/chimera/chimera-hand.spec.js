@@ -105,4 +105,43 @@ describe('Chimera Hand', function () {
             expect(this.player2.hand.length).toBe(0);
         });
     });
+
+    describe('nightsong cricket return from discard', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                allowSetup: true,
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['ice-golem', 'nightsong-cricket'],
+                    spellboard: ['summon-three-eyed-owl'],
+                    dicepool: ['natural', 'divine', 'divine', 'charm'],
+                    archives: ['ice-golem'],
+                    discard: ['flute-mage']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: [],
+                    spellboard: [],
+                    threatZone: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
+                    discard: ['rampage']
+                }
+            });
+        });
+
+        it('card chosen goes to draw pile', function () {
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Natural Dice Power');
+            this.player1.clickCard(this.nightsongCricket);
+            this.player1.clickPrompt('Renewed Harmony');
+            this.player1.clickCard(this.fluteMage);
+            this.player1.clickCard(this.rampage); // chimera choice
+            expect(this.rampage.location).toBe('deck');
+            expect(this.player2.hand.length).toBe(0);
+        });
+    });
 });

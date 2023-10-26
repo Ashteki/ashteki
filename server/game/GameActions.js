@@ -95,6 +95,7 @@ const Actions = {
     meditate: (propertyFactory) => new GameActions.MeditateAction(propertyFactory),
     playerChosenAmountDraw: (propertyFactory) =>
         new GameActions.PlayerChosenAmountDrawAction(propertyFactory),
+    makeChimeraHand: (propertyFactory) => new GameActions.MakeChimeraHandAction(propertyFactory),
     releaseChimeraHand: (propertyFactory) => new GameActions.ReleaseChimeraHandAction(propertyFactory),
     rearrangeCards: (propertyFactory) => new GameActions.RearrangeCardsAction(propertyFactory),
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name

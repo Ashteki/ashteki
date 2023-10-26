@@ -33,6 +33,9 @@ class NightsongCricket extends Card {
                     controller: 'opponent',
                     location: 'discard',
                     gameAction: [
+                        ability.actions.makeChimeraHand((context) => ({
+                            target: context.player.opponent
+                        })),
                         ability.actions.moveCard((context) => ({
                             target: context.targets.theirChoice,
                             destination: 'hand'
@@ -41,6 +44,9 @@ class NightsongCricket extends Card {
                             target: context.targets.myChoice,
                             destination: 'hand',
                             showMessage: true
+                        })),
+                        ability.actions.releaseChimeraHand((context) => ({
+                            target: context.player.opponent
                         }))
                     ]
                 }
