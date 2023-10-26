@@ -102,7 +102,6 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
         if (firstPlayer) {
             return (
                 <div className='game-faction-row first-player'>
-                    {/* {pbCard} */}
                     {showPics && <div className={`decklist-entry-image ${player.deck.stub}`}></div>}
                     {getPlayerNameAndAvatar(player, firstPlayer)}
                 </div>
@@ -113,30 +112,30 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
             <div className='game-faction-row other-player'>
                 {getPlayerNameAndAvatar(player, firstPlayer)}
                 {showPics && <div className={`decklist-entry-image ${player.deck.stub}`}></div>}
-
-                {/* {pbCard} */}
             </div>
         );
-    }
+    };
+
+    const getPlayer = (player, firstPlayer) => {
+        let classes = classNames('game-player-row', {
+            'first-player': firstPlayer,
+            'other-player': !firstPlayer
+        });
+
+        let retPlayer = (
+            <div key={player.name} className={classes}>
+                <div>{getPlayerCard(player, firstPlayer, game.started, game.allowSpectators)}</div>
+            </div>
+        );
+
+        return retPlayer;
+    };
 
     const getPlayers = (game) => {
-        let firstPlayer = true;
-        let players = Object.values(game.players).map((player) => {
-            let classes = classNames('game-player-row', {
-                'first-player': firstPlayer,
-                'other-player': !firstPlayer
-            });
-
-            let retPlayer = (
-                <div key={player.name} className={classes}>
-                    <div>{getPlayerCard(player, firstPlayer, game.started, game.allowSpectators)}</div>
-                </div>
-            );
-
-            firstPlayer = false;
-
-            return retPlayer;
-        });
+        const players = [];
+        const gamePlayers = Object.values(game.players);
+        gamePlayers[0] && players.push(getPlayer(gamePlayers[0], true));
+        gamePlayers[1] && players.push(getPlayer(gamePlayers[1], false));
 
         if (players.length === 1) {
             if (canJoin(game)) {
@@ -207,7 +206,9 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
                                 title={'Play with open hands'}
                             />
                         )}
-                        {game.needsPassword && <FontAwesomeIcon icon={faLock} title='Password required' />}
+                        {game.needsPassword && (
+                            <FontAwesomeIcon icon={faLock} title='Password required' />
+                        )}
                         {game.useGameTimeLimit && (
                             <img
                                 src={TimeLimitIcon}
@@ -224,7 +225,9 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
                         )}
                     </span>
                 </div>
-                <div className='game-middle-row'>{players}</div>
+                <div className='game-middle-row'>
+                    {players[0]} Vs {players[1]}
+                </div>
                 <div className='game-row-buttons'>
                     {canWatch(game) && (
                         <button
