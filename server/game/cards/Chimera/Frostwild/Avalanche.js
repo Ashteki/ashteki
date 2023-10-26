@@ -1,4 +1,3 @@
-const { Level } = require('../../../../constants');
 const AbilityDsl = require('../../../abilitydsl');
 const AspectCard = require('../../../solo/AspectCard');
 
@@ -15,9 +14,9 @@ class Avalanche extends AspectCard {
                 toSelect: 'die',
                 mode: 'exactly',
                 numDice: 1,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+                dieCondition: (die) => !die.exhausted,
                 owner: 'opponent',
-                gameAction: AbilityDsl.actions.lowerDie()
+                gameAction: AbilityDsl.actions.exhaustDie()
             }
         });
     }

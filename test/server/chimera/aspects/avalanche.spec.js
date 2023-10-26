@@ -27,7 +27,7 @@ describe('Avalanche Reveal', function () {
 
     it('lowers opponent dice when destroys attacking', function () {
         spyOn(Dice, 'd12Roll').and.returnValue(5);  // reveal then attack
-        expect(this.player1.dicepool[0].level).toBe('power');
+        expect(this.player1.dicepool[0].exhausted).toBe(false);
         this.player1.endTurn(); // adds RR because of threat
         // informs real player of behaviour roll
         expect(this.player2).toHavePrompt('Alerting opponent');
@@ -39,7 +39,7 @@ describe('Avalanche Reveal', function () {
 
         this.player1.clickDie(0);
 
-        expect(this.player1.dicepool[0].level).toBe('class');
+        expect(this.player1.dicepool[0].exhausted).toBe(true);
         expect(this.anchornaut.location).toBe('discard');
 
         expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
