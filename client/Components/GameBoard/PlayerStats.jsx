@@ -26,6 +26,7 @@ import spellback from '../../assets/img/cardback-spell.png';
 import ConcedeLeave from './ConcedeLeave';
 import GameCountMenu from '../Navigation/GameCountMenu';
 import SpectatorIcon from './SpectatorIcon';
+import ServerStatus from '../Navigation/ServerStatus';
 
 const PlayerStats = ({
     activePlayer,
@@ -67,6 +68,11 @@ const PlayerStats = ({
     const currentGame = useSelector((state) => state.lobby.currentGame);
     const user = useSelector((state) => state.account.user);
     const isSpectating = !currentGame?.players[user?.username];
+    const { gameConnected, gameConnecting, gameResponse } = useSelector((state) => ({
+        gameConnected: state.games.connected,
+        gameConnecting: state.games.connecting,
+        gameResponse: state.games.responseTime
+    }));
 
     const cardPiles = player.cardPiles;
 
@@ -381,11 +387,30 @@ const PlayerStats = ({
                     <div className='state chat-status'>
                         <GameCountMenu />
                         {showContextItem && <ConcedeLeave showText={!isSpectating} />}
+                        &nbsp;|&nbsp;
+                        <ServerStatus
+                            connected={gameConnected}
+                            connecting={gameConnecting}
+                            serverType='Game server'
+                            responseTime={gameResponse}
+                        />
                         &nbsp;|&nbsp;Round&nbsp;{round}&nbsp;|&nbsp;
                         <SpectatorIcon />
                     </div>
                 </>
             )}
+            {!showMessages && leftMode && (
+                <div className='state chat-status'>
+                    <ServerStatus
+                        connected={gameConnected}
+                        connecting={gameConnecting}
+                        serverType='Game server'
+                        responseTime={gameResponse}
+                    />
+
+                </div>
+            )}
+
         </div>
     );
 };
