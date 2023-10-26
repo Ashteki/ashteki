@@ -3,7 +3,6 @@ const CardGameAction = require('./CardGameAction');
 
 class TriggerUltimateAction extends CardGameAction {
     setDefaultProperties() {
-
     }
 
     setup() {
@@ -35,6 +34,13 @@ class TriggerUltimateAction extends CardGameAction {
             const alienUnits = context.player.unitsInPlay.filter(c => c.owner !== c.controller);
             if (alienUnits.length) {
                 context.game.actions.discard().resolve(alienUnits, context);
+            }
+            const alienUpgrades = context.player.unitsInPlay.reduce((accumulator, curValue) => {
+                return accumulator.concat(curValue.upgrades);
+            }, []);
+
+            if (alienUpgrades.length) {
+                context.game.actions.discard().resolve(alienUpgrades, context);
             }
             // do ability
             context.player.triggerUltimateAbility();
