@@ -13,6 +13,7 @@ class Shockwave extends AspectCard {
                     );
                 }
             },
+            effect: "stun leftmost and rightmost opponent's units",
             targets: {
                 left: {
                     mode: 'auto',

@@ -29,6 +29,7 @@ describe('Storm Bolt Aspect', function () {
 
         it('reveal attaches stun to rightmost unit', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(1);
+            expect(this.player1.dicepool[0].level).toBe('power');
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -38,6 +39,12 @@ describe('Storm Bolt Aspect', function () {
 
             this.player1.clickCard(this.stun);
             this.player1.clickPrompt('Unstun');
+            this.player1.clickPrompt('Cancel');
+            expect(this.player1.actions.side).toBe(1);
+            this.player1.clickCard(this.stun);
+            this.player1.clickPrompt('Unstun');
+            this.player1.clickDie(0);
+            expect(this.player1.dicepool[0].level).toBe('class');
             expect(this.stormBolt.location).toBe('play area');
             expect(this.stormBolt.facedown).toBe(false);
             expect(this.coalRoarkwin.damage).toBe(0);

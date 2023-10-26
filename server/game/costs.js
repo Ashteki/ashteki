@@ -1,4 +1,3 @@
-const { BattlefieldTypes } = require('../constants');
 const ActionCost = require('./Costs/actioncost');
 const ChosenActionCost = require('./Costs/chosenactionscost');
 const DiceCost = require('./Costs/dicecost');

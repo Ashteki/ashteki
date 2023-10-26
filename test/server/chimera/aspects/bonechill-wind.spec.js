@@ -98,8 +98,24 @@ describe('Bonechill wind Aspect', function () {
             expect(this.coalRoarkwin.damage).toBe(0);
             expect(this.ironWorker.damage).toBe(0);
             expect(this.anchornaut.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
         });
 
+        it('start of turn does not damage unexhausted pb with exhausted unit', function () {
+            this.ironWorker.tokens.exhaustion = 1;
+            expect(this.bonechillWind.location).toBe('play area');
+            this.player1.endTurn();
+
+            expect(this.bonechillWind.status).toBe(1);
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            expect(this.coalRoarkwin.damage).toBe(0);
+            expect(this.ironWorker.damage).toBe(1);
+            expect(this.anchornaut.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
 
         it('status ability is inexhaustible', function () {
             this.bonechillWind.tokens.exhaustion = 1;

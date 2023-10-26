@@ -1,5 +1,6 @@
-const { PhoenixbornTypes } = require('../../../../constants.js');
+const { PhoenixbornTypes, Level } = require('../../../../constants.js');
 const Card = require('../../../Card.js');
+const AbilityDsl = require('../../../abilitydsl.js');
 
 class Stun extends Card {
     setupCardAbilities(ability) {
@@ -10,7 +11,18 @@ class Stun extends Card {
         this.action({
             title: 'Unstun',
             cost: ability.costs.sideAction(),
-            gameAction: ability.actions.discard({ target: this })
+            target: {
+                showCancel: true,
+                activePromptTitle: 'Choose a die to lower one level',
+                toSelect: 'die',
+                mode: 'exactly',
+                numDice: 1,
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+                gameAction: AbilityDsl.actions.lowerDie()
+            },
+            then: {
+                gameAction: ability.actions.discard({ target: this })
+            }
         });
     }
 
