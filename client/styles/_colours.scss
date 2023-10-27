@@ -4,13 +4,14 @@ $body-color: #e0e0e0;
 $theme-colors: (
     'primary': #1c3774,
     'secondary': #009648,
+    'extra': goldenrod,
     'focus': #009648,
     // 'focus': #ffe014,
     'selected': #ffdf14,
     'dark': rgba(0, 0, 0, 0.65),
     'darkblue': #1e263a,
     'border': #666,
-    'danger': rgb(118, 22, 22)
+    'danger': rgb(169, 13, 13)
 );
 
 $controlled-border-color: #ffdf14;

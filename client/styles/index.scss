@@ -48,10 +48,24 @@ a {
 .btn {
     font-size: 0.9rem;
 
-    &:not(.dropdown-toggle) {
+    &:not(.dropdown-toggle):not(.mini) {
         margin-right: 10px;
-        min-width: 100px
+        min-width: 100px;
+
     }
+
+    &.mini {
+        min-width: 50px;
+
+        &.active {
+            // background-color: rgb(0, 162, 255) !important;
+        }
+    }
+
+}
+
+.btn-extra {
+    color: white;
 }
 
 .btn:not(.def) {

@@ -26,6 +26,7 @@ const DeckSummary = ({ deck }) => {
                         value={false}
                         // checked={radioValue === false}
                         onChange={(e) => setRadioValue(false)}
+                        className='mini'
                     >
                         <FontAwesomeIcon icon={faList} title='Show menu' />
                     </ToggleButton>
@@ -37,6 +38,7 @@ const DeckSummary = ({ deck }) => {
                         value={true}
                         // checked={radioValue}
                         onChange={(e) => setRadioValue(true)}
+                        className='mini'
                     >
                         <FontAwesomeIcon icon={faImage} title='Show menu' />
                     </ToggleButton>

@@ -29,11 +29,11 @@ const ConfirmButton = ({ children, onClick }) => {
 
     return (
         <>
-            <Button variant='primary' onClick={handleClick}>
+            <Button variant='primary' onClick={handleClick} className='def'>
                 {children}
             </Button>
             {showConfirm && (
-                <Button variant='danger' onClick={handleConfirmClick}>
+                <Button variant='danger' onClick={handleConfirmClick} className='def'>
                     <Trans>Confirm</Trans>
                 </Button>
             )}

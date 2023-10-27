@@ -43,10 +43,10 @@ const DecksComponent = () => {
                     <div className='lobby-card'>
                         <div className='lobby-header'>My Decks</div>
                         <Col className='text-center'>
-                            <Link className='btn btn-primary' href='/decks/add'>
+                            <Link className='btn btn-secondary def' href='/decks/add'>
                                 New Deck
                             </Link>
-                            <Link className='btn btn-secondary' href='/decks/import'>
+                            <Link className='btn btn-primary def' href='/decks/import'>
                                 Import a Deck
                             </Link>
                         </Col>

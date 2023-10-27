@@ -401,7 +401,7 @@ class InnerDeckEditor extends React.Component {
                     <Row>
                         <Col sm='3'></Col>
                         <Col>
-                            <button className='btn btn-primary' onClick={this.onAddCard.bind(this)}>
+                            <button className='btn btn-primary def' onClick={this.onAddCard.bind(this)}>
                                 Add
                             </button>
                         </Col>
@@ -432,12 +432,12 @@ class InnerDeckEditor extends React.Component {
                                 // eslint-disable-next-line react/no-string-refs
                                 ref='submit'
                                 type='submit'
-                                className='btn btn-success'
+                                className='btn btn-success def'
                                 onClick={this.onSaveClick.bind(this)}
                             >
                                 Save Deck
                             </button>
-                            <button className='btn btn-primary' onClick={this.handleCancelClick.bind(this)}>
+                            <button className='btn btn-primary def' onClick={this.handleCancelClick.bind(this)}>
                                 Cancel
                             </button>
                         </div>

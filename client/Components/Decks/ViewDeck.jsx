@@ -57,7 +57,7 @@ const ViewDeck = ({ deck }) => {
     let updateButton = null;
     if (deck.ashesLiveUuid) {
         updateButton = (
-            <button className='btn btn-secondary' onClick={handleUpdateClick}>
+            <button className='btn btn-extra def' onClick={handleUpdateClick}>
                 Update
             </button>
         );
@@ -73,14 +73,12 @@ const ViewDeck = ({ deck }) => {
             <div className='lobby-card'>
                 <DeckHeader deck={deck} />
                 <Col xs={12} className='text-center'>
-                    <ButtonGroup>
-                        <button className='btn btn-primary' onClick={handleEditClick}>
-                            Edit
-                        </button>
+                    <button className='btn btn-primary def' onClick={handleEditClick}>
+                        Edit
+                    </button>
 
-                        {deleteButton}
-                        {updateButton}
-                    </ButtonGroup>
+                    {deleteButton}
+                    {updateButton}
                 </Col>
                 <DeckSummary deck={deck} />
             </div >
