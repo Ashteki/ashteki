@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import CardImage from '../GameBoard/CardImage';
+import classNames from 'classnames';
 
 const CardListText = ({ deckCards }) => {
     let [zoomCard, setZoomCard] = useState(null);
     let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
 
     const getCardsToRender = () => {
-
         let cardsToRender = [];
         let groupedCards = {};
 
@@ -37,11 +37,14 @@ const CardListText = ({ deckCards }) => {
                         <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
                     );
                 }
+                const linkClasses = classNames('card-link', {
+                    unique: card.phoenixborn
+                });
                 cards.push(
                     <div key={'text-' + card.card.id}>
                         <span>{card.count + 'x '}</span>
                         <span
-                            className='card-link'
+                            className={linkClasses}
                             onMouseOver={() => setZoomCard(card)}
                             onMouseMove={(event) => {
                                 let y = event.clientY;

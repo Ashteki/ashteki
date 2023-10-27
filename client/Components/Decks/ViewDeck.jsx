@@ -4,21 +4,12 @@ import { ButtonGroup, Col } from 'react-bootstrap';
 
 import ConfirmButton from '../Form/ConfirmButton';
 import DeckSummary from './DeckSummary';
-import Panel from '../Site/Panel';
-import {
-    deleteDeck,
-    navigate,
-    clearApiStatus,
-    resyncDeck,
-    setFavourite
-} from '../../redux/actions';
+import { deleteDeck, navigate, clearApiStatus, resyncDeck } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as faRegHeart } from '@fortawesome/free-regular-svg-icons';
 import './ViewDeck.scss';
+import DeckHeader from './DeckHeader';
 
 /**
  * @typedef ViewDeckProps
@@ -39,9 +30,6 @@ const ViewDeck = ({ deck }) => {
     };
     const handleUpdateClick = () => {
         dispatch(resyncDeck(deck));
-    };
-    const handleFavouriteClick = () => {
-        dispatch(setFavourite(deck, !deck.favourite));
     };
 
     const apiState = useSelector((state) => {
@@ -75,23 +63,6 @@ const ViewDeck = ({ deck }) => {
         );
     }
 
-    let faveIcon = (
-        <FontAwesomeIcon
-            icon={faRegHeart}
-            title='Add to favourites'
-            onClick={handleFavouriteClick}
-        />
-    );
-    if (deck.favourite) {
-        faveIcon = (
-            <FontAwesomeIcon
-                icon={faHeart}
-                title='Remove from favourites'
-                onClick={handleFavouriteClick}
-            />
-        );
-    }
-
     return (
         <>
             <ApiStatus
@@ -100,12 +71,8 @@ const ViewDeck = ({ deck }) => {
             />
 
             <div className='lobby-card'>
-                <div className='lobby-header'>{deck?.name}</div>
-
+                <DeckHeader deck={deck} />
                 <Col xs={12} className='text-center'>
-                    <a href='#' className='fave-icon'>
-                        {faveIcon}
-                    </a>
                     <ButtonGroup>
                         <button className='btn btn-primary' onClick={handleEditClick}>
                             Edit
@@ -116,7 +83,7 @@ const ViewDeck = ({ deck }) => {
                     </ButtonGroup>
                 </Col>
                 <DeckSummary deck={deck} />
-            </div>
+            </div >
         </>
     );
 };

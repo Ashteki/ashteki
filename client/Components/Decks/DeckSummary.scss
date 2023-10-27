@@ -19,8 +19,6 @@
 }
 
 .deck-summary {
-    margin-top: 15px;
-
     ul {
         padding: 0;
     }
@@ -112,5 +110,14 @@
         >.card-index {
             background-color: darkgreen;
         }
+    }
+}
+
+.deck-cards-header {
+    position: relative;
+
+    .total-box {
+        position: absolute;
+        right: 4px;
     }
 }

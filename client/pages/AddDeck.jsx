@@ -8,6 +8,7 @@ import AlertPanel from '../Components/Site/AlertPanel';
 import { Col, Row } from 'react-bootstrap';
 // import ViewDeck from '../Components/Decks/ViewDeck.jsx';
 import DeckSummary from '../Components/Decks/DeckSummary';
+import DeckHeader from '../Components/Decks/DeckHeader';
 
 export class InnerAddDeck extends React.Component {
     constructor(props) {
@@ -34,14 +35,12 @@ export class InnerAddDeck extends React.Component {
     }
 
     render() {
-        let content;
-
         if (this.props.loading) {
-            content = <div>Loading decks from the server...</div>;
+            return <div>Loading decks from the server...</div>;
         } else if (this.props.apiError) {
-            content = <AlertPanel type='error' message={this.props.apiError} />;
+            return <AlertPanel type='error' message={this.props.apiError} />;
         } else {
-            content = (
+            return (
                 <div className='full-height'>
                     <Row>
                         <Col lg={6} className='full-height'>
@@ -53,7 +52,7 @@ export class InnerAddDeck extends React.Component {
                         </Col>
                         <Col lg={6}>
                             <div className='lobby-card'>
-                                <div className='lobby-header'>{this.props.deck?.name}</div>
+                                <DeckHeader deck={this.props.deck} />
                                 <DeckSummary deck={this.props.deck} />
                             </div>
                         </Col>
@@ -61,8 +60,6 @@ export class InnerAddDeck extends React.Component {
                 </div>
             );
         }
-
-        return content;
     }
 }
 

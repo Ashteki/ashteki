@@ -163,6 +163,10 @@
     cursor: pointer;
     cursor: hand;
     color: theme-color(secondary);
+
+    &.unique {
+        color: goldenrod;
+    }
 }
 
 .card-link:hover {

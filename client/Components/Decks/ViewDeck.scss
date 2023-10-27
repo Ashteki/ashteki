@@ -2,3 +2,29 @@
     margin-right: 8px;
     color: white;
 }
+
+.deck-header {
+    position: relative;
+    display: flex;
+    margin-bottom: 5px;
+
+    .decklist-entry-image {
+        margin-right: 8px;
+        height: 120px;
+        background-position-y: 25%;
+    }
+
+    .deck-title {
+        font-size: 20px;
+        text-shadow: #FFF 1px 1px 15px;
+        // margin-top: 10px;
+        // margin-bottom: 10px;
+
+    }
+
+    .deck-header-buttons {
+        position: absolute;
+        right: 10px;
+        bottom: 5px;
+    }
+}

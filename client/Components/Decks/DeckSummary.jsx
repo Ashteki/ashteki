@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import ZoomableCard from './ZoomableCard';
-import DeckStatus from './DeckStatus';
-import DeckStatusSummary from './DeckStatusSummary';
-
 import './DeckSummary.scss';
-import DieIcon from '../GameBoard/DieIcon';
-import DieSlot from '../GameBoard/DieSlot';
 import CardListText from './CardListText';
 import CardListImg from './CardListImg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faList } from '@fortawesome/free-solid-svg-icons';
+import DeckDice from './DeckDice';
 
 const DeckSummary = ({ deck }) => {
     const [radioValue, setRadioValue] = useState(false);
@@ -18,69 +13,10 @@ const DeckSummary = ({ deck }) => {
     if (!deck) return null;
 
     const combinedCards = deck.cards.concat(deck.conjurations);
-
-    const getDiceToRender = () => {
-        const diceToRender = [];
-        if (deck.dicepool) {
-            deck.dicepool
-                .sort((a, b) => (a.magic < b.magic ? -1 : 1))
-                .forEach((diceCount) => {
-                    for (let i = 0; i < diceCount.count; i++) {
-                        diceToRender.push(
-                            <DieIcon die={{ magic: diceCount.magic, level: 'power' }} />
-                        );
-                    }
-                });
-        }
-        for (let i = diceToRender.length; i < 10; i++) {
-            diceToRender.push(<DieSlot />);
-        }
-        return (
-            <div>
-                <div className='flex'> {diceToRender}</div>
-            </div>
-        );
-    };
-
-    var diceToRender = getDiceToRender();
-    var pbCard = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].card : null;
-
     return (
         <Col xs='12' className='deck-summary'>
-            <Row>
-                <Col xs='2' sm='3'>
-                    <ZoomableCard card={pbCard} />
-                </Col>
-                <Col xs='10' sm='9'>
-                    <table style={{ width: '100%' }}>
-                        <tr>
-                            <th>Win</th>
-                            <th>Loss</th>
-                            <th>Total</th>
-                            <th>Win Rate</th>
-                        </tr>
-                        <tr>
-                            <td>{deck.wins}</td>
-                            <td>{deck.played - deck.wins}</td>
-                            <td>{parseInt(deck.played)}</td>
-                            <td>{deck.winRate?.toFixed(0)}%</td>
-                        </tr>
-                    </table>
-
-                    <Row>
-                        <Col xs='8'>
-                            <DeckStatusSummary status={deck.status} />
-                        </Col>
-                        <Col xs='4'>
-                            <DeckStatus status={deck.status} />
-                        </Col>
-                    </Row>
-                </Col>
-            </Row>
-            <Row>
-                <div className='large'>{diceToRender}</div>
-            </Row>
-            <Row>
+            <DeckDice deck={deck} slotCount={10} />
+            <div className='deck-cards-header'>
                 <ToggleButtonGroup name="radio" value={radioValue}>
                     <ToggleButton
                         key={'rad-0'}
@@ -105,7 +41,7 @@ const DeckSummary = ({ deck }) => {
                         <FontAwesomeIcon icon={faImage} title='Show menu' />
                     </ToggleButton>
                 </ToggleButtonGroup>
-            </Row>
+            </div>
             <Row className='deck-cards'>
                 {radioValue ? (<>
                     <CardListImg deckCards={deck.cards} />
@@ -119,6 +55,26 @@ const DeckSummary = ({ deck }) => {
             <Row>
                 <div className='deck-card-group deck-notes'>{deck.notes}</div>
             </Row>
+            {deck.played && (
+                <Row>
+                    <Col xs='10' sm='9'>
+                        <table style={{ width: '100%' }}>
+                            <tr>
+                                <th>Win</th>
+                                <th>Loss</th>
+                                <th>Total</th>
+                                <th>Win Rate</th>
+                            </tr>
+                            <tr>
+                                <td>{deck.wins}</td>
+                                <td>{deck.played - deck.wins}</td>
+                                <td>{parseInt(deck.played)}</td>
+                                <td>{deck.winRate?.toFixed(0)}%</td>
+                            </tr>
+                        </table>
+                    </Col>
+                </Row>
+            )}
         </Col>
     );
 };
