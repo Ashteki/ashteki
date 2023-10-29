@@ -5,11 +5,11 @@ import $ from 'jquery';
 import Messages from './Messages';
 
 import './GameChat.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment, faCommentSlash, faCopy, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { toastr } from 'react-redux-toastr';
+import { actions, toastr } from 'react-redux-toastr';
 import { debounce } from 'underscore';
 import ChatHeader from './ChatHeader';
+import typingIndicator from '../../assets/img/typing-dots.gif';
+import { connect } from 'react-redux';
 
 class GameChat extends React.Component {
     constructor(props) {
@@ -112,6 +112,13 @@ class GameChat extends React.Component {
                         onCardMouseOut={this.props.onCardMouseOut}
                     />
                 </div>
+                {this.props.oppTyping && (
+                    <img
+                        className='typing-indicator'
+                        title='Opponent is typing...'
+                        src={typingIndicator}
+                    />
+                )}
                 <form className='form chat-form'>
                     <input
                         className='form-control'
@@ -136,4 +143,10 @@ GameChat.propTypes = {
     onSendChat: PropTypes.func
 };
 
-export default GameChat;
+function mapStateToProps(state) {
+    return {
+        oppTyping: state.lobby.currentGame.opponentTyping
+    };
+}
+
+export default connect(mapStateToProps, actions)(GameChat);

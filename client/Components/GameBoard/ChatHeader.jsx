@@ -2,11 +2,8 @@ import React from 'react';
 import { faComment, faCommentSlash, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toastr } from 'react-redux-toastr';
-import { useSelector } from 'react-redux';
 
 const ChatHeader = ({ muteSpectators, onMuteClick }) => {
-    const typing = useSelector((state) => state.lobby.currentGame.opponentTyping);
-
     const writeChatToClipboard = (event) => {
         event.preventDefault();
         let messagePanel = document.getElementsByClassName('messages panel')[0];
@@ -20,7 +17,6 @@ const ChatHeader = ({ muteSpectators, onMuteClick }) => {
 
     return (
         <div className='chat-header'>
-            {typing && <span>TYPING</span>}
             <a
                 href='#'
                 className='pr-1 pl-1'

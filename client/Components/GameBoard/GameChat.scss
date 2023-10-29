@@ -36,3 +36,11 @@
 .chat-form {
     background-color: black; //theme-color('primary');
 }
+
+.typing-indicator {
+    width: 40px;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 50px;
+    left: 5px;
+}
