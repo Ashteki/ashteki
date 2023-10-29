@@ -96,6 +96,10 @@ export default function (state = defaultState, action) {
             newState.responseTime = action.responseTime;
 
             break;
+        case 'PLAYER_TYPED':
+            newState.currentGame.opponentTyping = action.active;
+
+            break;
         default:
             return state;
     }
@@ -211,7 +215,6 @@ function handleMessage(action, state) {
             break;
         case 'lobbychat':
             newState.messages = [...state.messages, action.args[0]];
-
             break;
         case 'nochat':
             newState.lobbyError = true;

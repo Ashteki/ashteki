@@ -172,6 +172,10 @@ export function connectGameSocket(url, name) {
             dispatch(clearGameState());
         });
 
+        gameSocket.on('playertyping', () => {
+            dispatch(playerTyping(true));
+        });
+
         setInterval(() => {
             if (getState().lobby.currentGame?.started) {
                 const start = Date.now();
@@ -248,5 +252,12 @@ export function loadTaggedGames(tag) {
         shouldCallAPI: () => true,
         APIParams: { url: 'api/games/' + tag, cache: false },
         type: 'GET'
+    };
+}
+
+export function playerTyping(active) {
+    return {
+        type: 'PLAYER_TYPED',
+        active: active
     };
 }

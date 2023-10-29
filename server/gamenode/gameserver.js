@@ -236,6 +236,21 @@ class GameServer {
         }
     }
 
+    sendPlayerTyped(game, username) {
+        for (const player of Object.values(game.getPlayers())) {
+            if (
+                player.left ||
+                player.disconnectedAt ||
+                !player.socket ||
+                player.name === username // don't send to myself
+            ) {
+                continue;
+            }
+
+            player.socket.send('playertyping', { user: username });
+        }
+    }
+
     /**
      * @param {import("socket.io").Socket} socket
      * @param {() => void} next
@@ -441,6 +456,7 @@ class GameServer {
         this.sendGameState(game);
 
         socket.registerEvent('game', this.onGameMessage.bind(this));
+        socket.registerEvent('playerTyping', this.onPlayerTyping.bind(this));
         socket.on('disconnect', this.onSocketDisconnected.bind(this));
     }
 
@@ -540,6 +556,17 @@ class GameServer {
 
             this.sendGameState(game);
         });
+    }
+
+    onPlayerTyping(socket, command, ...args) {
+        let game = this.findGameForUser(socket.user.username);
+
+        if (!game) {
+            return;
+        }
+        this.sendGameState(game);
+
+        this.sendPlayerTyped(game, socket.user.username);
     }
 }
 

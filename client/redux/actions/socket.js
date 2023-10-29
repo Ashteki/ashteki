@@ -32,6 +32,18 @@ export function sendGameMessage(message, ...args) {
     };
 }
 
+export function sendTypingMessage() {
+    return (dispatch, getState) => {
+        var state = getState();
+
+        if (state.games.socket) {
+            state.games.socket.emit('playerTyping');
+        }
+
+        return dispatch(socketMessageSent('playerTyping'));
+    };
+}
+
 export function lobbyConnecting(socket) {
     return {
         type: 'LOBBY_CONNECTING',
@@ -200,6 +212,10 @@ export function connectLobby() {
 
         socket.on('removemessage', (messageId, deletedBy) => {
             dispatch(lobbyMessageReceived('removemessage', messageId, deletedBy));
+        });
+
+        socket.on('playertyping', (arg) => {
+            dispatch(lobbyMessageReceived('playertyping', arg));
         });
 
         setInterval(() => {

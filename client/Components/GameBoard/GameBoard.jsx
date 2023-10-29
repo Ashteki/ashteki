@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { Trans } from 'react-i18next';
-import { clearZoom, navigate, sendGameMessage, zoomCard } from '../../redux/actions';
+import {
+    clearZoom,
+    navigate,
+    sendGameMessage,
+    sendTypingMessage,
+    zoomCard
+} from '../../redux/actions';
 
 import PlayerStats from './PlayerStats';
 import PlayerRow from './PlayerRow';
@@ -99,6 +105,10 @@ const GameBoard = () => {
 
     const sendChatMessage = (message) => {
         dispatch(sendGameMessage('chat', message));
+    };
+
+    const sendPlayerTyping = () => {
+        dispatch(sendTypingMessage());
     };
 
     const onShuffleClick = () => {
@@ -567,6 +577,7 @@ const GameBoard = () => {
                                 onCardMouseOver={onMouseOver}
                                 onMuteClick={onMuteClick}
                                 onSendChat={sendChatMessage}
+                                onPlayerTyping={sendPlayerTyping}
                                 muted={spectating && currentGame.muteSpectators}
                                 muteSpectators={currentGame.muteSpectators}
                             />
