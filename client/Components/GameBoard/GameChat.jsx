@@ -8,6 +8,8 @@ import './GameChat.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faCommentSlash, faCopy, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { toastr } from 'react-redux-toastr';
+import { debounce } from 'underscore';
+import ChatHeader from './ChatHeader';
 
 class GameChat extends React.Component {
     constructor(props) {
@@ -47,8 +49,20 @@ class GameChat extends React.Component {
         }, 500);
     }
 
+    handleTyping = debounce(function () {
+        // continually delays setting "isTyping" to false for 500ms until the user has stopped typing and the delay runs out
+        this.setState({ isTyping: false });
+        this.props.onPlayerTyping(false);
+    }, 2000);
+
     onChange(event) {
-        this.setState({ message: event.target.value });
+        if (!this.state.isTyping) {
+            this.props.onPlayerTyping(true);
+        }
+        this.setState({ isTyping: true, message: event.target.value }, () => {
+            // allows user input updates and continually sets "isTyping" to true
+            this.handleTyping();
+        });
     }
 
     onKeyPress(event) {
@@ -86,32 +100,7 @@ class GameChat extends React.Component {
 
         return (
             <div className='chat'>
-                <div className='chat-header'>
-                    <a
-                        href='#'
-                        className='pr-1 pl-1'
-                        title='Mute spectators'
-                        tabIndex={-1}
-                        aria-hidden='true'
-                    >
-                        <FontAwesomeIcon
-                            icon={this.props.muteSpectators ? faCommentSlash : faComment}
-                            onClick={this.props.onMuteClick}
-                        ></FontAwesomeIcon>
-                    </a>
-                    <a
-                        href='#'
-                        className='pr-1 pl-1'
-                        title='Copy chat to clipboard'
-                        tabIndex={-1}
-                        aria-hidden='true'
-                    >
-                        <FontAwesomeIcon
-                            icon={faCopy}
-                            onClick={this.writeChatToClipboard}
-                        ></FontAwesomeIcon>
-                    </a>
-                </div>
+                <ChatHeader muteSpectators={this.props.muteSpectators} onMuteClick={this.props.onMuteClick} />
                 <div
                     className='messages panel'
                     ref={(m) => (this.messagePanel = m)}

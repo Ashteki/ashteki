@@ -172,8 +172,8 @@ export function connectGameSocket(url, name) {
             dispatch(clearGameState());
         });
 
-        gameSocket.on('playertyping', () => {
-            dispatch(playerTyping(true));
+        gameSocket.on('playertyping', (username, isTyping) => {
+            dispatch(playerTyping(username, isTyping));
         });
 
         setInterval(() => {
@@ -255,7 +255,7 @@ export function loadTaggedGames(tag) {
     };
 }
 
-export function playerTyping(active) {
+export function playerTyping(username, active) {
     return {
         type: 'PLAYER_TYPED',
         active: active

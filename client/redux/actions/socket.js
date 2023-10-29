@@ -32,12 +32,12 @@ export function sendGameMessage(message, ...args) {
     };
 }
 
-export function sendTypingMessage() {
+export function sendTypingMessage(isTyping) {
     return (dispatch, getState) => {
         var state = getState();
 
         if (state.games.socket) {
-            state.games.socket.emit('playerTyping');
+            state.games.socket.emit('playerTyping', isTyping);
         }
 
         return dispatch(socketMessageSent('playerTyping'));
@@ -215,7 +215,7 @@ export function connectLobby() {
         });
 
         socket.on('playertyping', (arg) => {
-            dispatch(lobbyMessageReceived('playertyping', arg));
+            dispatch(lobbyMessageReceived('playertyping', username, isTyping));
         });
 
         setInterval(() => {

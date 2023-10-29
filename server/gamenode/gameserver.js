@@ -236,7 +236,7 @@ class GameServer {
         }
     }
 
-    sendPlayerTyped(game, username) {
+    sendPlayerTyped(game, username, isTyping) {
         for (const player of Object.values(game.getPlayers())) {
             if (
                 player.left ||
@@ -247,7 +247,7 @@ class GameServer {
                 continue;
             }
 
-            player.socket.send('playertyping', { user: username });
+            player.socket.send('playertyping', username, isTyping);
         }
     }
 
@@ -558,15 +558,14 @@ class GameServer {
         });
     }
 
-    onPlayerTyping(socket, command, ...args) {
+    onPlayerTyping(socket, isTyping) {
         let game = this.findGameForUser(socket.user.username);
 
         if (!game) {
             return;
         }
-        this.sendGameState(game);
 
-        this.sendPlayerTyped(game, socket.user.username);
+        this.sendPlayerTyped(game, socket.user.username, isTyping);
     }
 }
 

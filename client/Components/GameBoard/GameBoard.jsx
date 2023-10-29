@@ -107,8 +107,8 @@ const GameBoard = () => {
         dispatch(sendGameMessage('chat', message));
     };
 
-    const sendPlayerTyping = () => {
-        dispatch(sendTypingMessage());
+    const sendPlayerTyping = (arg) => {
+        dispatch(sendTypingMessage(arg));
     };
 
     const onShuffleClick = () => {
