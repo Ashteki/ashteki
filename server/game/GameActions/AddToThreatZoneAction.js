@@ -4,7 +4,7 @@ class AddToThreatZoneAction extends PlayerAction {
     setup() {
         super.setup();
         this.name = 'addToThreatZone';
-        this.effectMsg = 'moves a card to its threat zone';
+        // this.effectMsg = 'moves a card to its threat zone';
     }
 
     setDefaultProperties() {
@@ -30,6 +30,11 @@ class AddToThreatZoneAction extends PlayerAction {
             (event) => {
                 if (event.amount > 0) {
                     event.player.moveCardsToThreatZone(event.amount);
+                    context.game.addMessage(
+                        '{0} adds {1} card(s) to its threat zone',
+                        event.player,
+                        event.amount
+                    );
                 }
             }
         );
