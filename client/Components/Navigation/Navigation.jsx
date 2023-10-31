@@ -11,6 +11,7 @@ import GameContextMenu from './GameContextMenu';
 
 import './Navigation.scss';
 import GameCountMenu from './GameCountMenu';
+import LobbyUserCount from './LobbyUserCount';
 
 /**
  * @typedef { import('../../menus').MenuItem } MenuItem
@@ -134,7 +135,7 @@ const Navigation = (props) => {
                 <Nav className='ml-auto pr-md-6'>
                     <GameContextMenu />
                     <GameCountMenu />
-
+                    <LobbyUserCount />
                     {!currentGame && (
                         <ServerStatus
                             connected={lobbySocketConnected}
