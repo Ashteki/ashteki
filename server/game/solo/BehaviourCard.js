@@ -77,7 +77,6 @@ class BehaviourCard extends Card {
         // must TARGET
         const act = this.action({
             target: {
-                ignoreTargetCheck: true,
                 autoTarget: (context) =>
                     context.player.getTargetUnit(
                         aim,

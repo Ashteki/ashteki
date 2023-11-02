@@ -286,7 +286,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
         });
     });
 
-    describe('phase 2', function () {
+    describe('phase 3', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -393,6 +393,54 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(this.player2.phoenixborn.redRains).toBe(2);
             expect(this.huntingInstincts.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('burn damage triggers GV', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['iron-worker', 'anchornaut'],
+                    spellboard: ['summon-light-bringer'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
+                    hand: ['summon-iron-rhino', 'golden-veil'],
+                    archives: ['light-bringer']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['rampage'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+            this.player2.player.chimeraPhase = 3;
+        });
+
+        it('phase 3: 7 deal 1 damage trigggers GV', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(7); // set behaviour roll
+
+            expect(this.huntingInstincts.facedown).toBe(true);
+
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.goldenVeil);
+            expect(this.ironWorker.damage).toBe(0);
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.huntingInstincts.facedown).toBe(false);
+
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
     });
