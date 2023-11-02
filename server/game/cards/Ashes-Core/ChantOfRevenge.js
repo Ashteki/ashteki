@@ -20,9 +20,13 @@ class ChantOfRevenge extends Card {
             title: 'Take revenge',
             location: 'spellboard',
             cost: [ability.costs.sideAction(), ability.costs.exhaust(), ability.costs.loseStatus()],
-            gameAction: ability.actions.dealDamage((context) => ({
-                target: context.player.opponent.phoenixborn
-            }))
+            target: {
+                autoTarget: (context) => context.player.opponent.phoenixborn,
+                gameAction: ability.actions.dealDamage({
+                    amount: 1
+                })
+            }
+
         });
     }
 }
