@@ -16,26 +16,10 @@ class MirrorSpirit extends Card {
                     amount: this.getTokenCount(context)
                 }))
             }
-
-            // target: {
-
-            //     mode: 'select',
-            //     activePromptTitle: "Reflect Sorrow: Choose which player's units",
-            //     choices: [
-            //         { text: 'Mine', value: false },
-            //         { text: "Opponent's", value: true }
-            //     ],
-            //     choiceHandler: (option) => (this.chosenValue = option.value)
-            // },
-            // gameAction: ability.actions.addStatusToken((context) => ({
-            //     target: context.source,
-            //     amount: this.getTokenCount(context)
-            // }))
         });
     }
 
     getTokenCount(context) {
-        // const player = this.chosenValue ? context.player.opponent : context.player;
         const player = context.target;
         const exhaustionTotal = player.unitsInPlay.reduce((acc, u) => acc + u.exhaustion, 0);
         const gravityFluxExhaustionTotal = player.unitsInPlay.reduce(
