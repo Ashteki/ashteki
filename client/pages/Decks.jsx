@@ -47,7 +47,7 @@ const DecksComponent = () => {
                                 New Deck
                             </Link>
                             <Link className='btn btn-primary def' href='/decks/import'>
-                                Import a Deck
+                                <span className='phg-basic-magic'></span> Import a Deck
                             </Link>
                         </Col>
                         <Col>

@@ -109,3 +109,5 @@ export const toBase64 = (file) =>
         reader.onload = () => resolve(reader.result.toString().split(',')[1]);
         reader.onerror = (error) => reject(error);
     });
+
+export const ashesLiveShareUrl = 'https://ashes.live/decks/share/';

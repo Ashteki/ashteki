@@ -11,6 +11,8 @@
     .decklist-entry-image {
         margin-right: 8px;
         height: 120px;
+        width: 80px;
+        min-width: 80px;
         background-position-y: 25%;
     }
 
@@ -27,4 +29,14 @@
         right: 10px;
         bottom: 5px;
     }
+}
+
+.deck-buttons {
+    .dropdown {
+        display: inline-block;
+    }
+}
+
+.ashes-live {
+    color: black;
 }

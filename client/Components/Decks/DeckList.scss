@@ -26,12 +26,9 @@
             border-width: 1px 0 0 1px;
         }
 
-        tr {
-
+        .deck-list-entry {
             td {
-                padding-top: 5px;
-                padding-bottom: 5px;
-
+                padding: 6px;
             }
         }
     }
@@ -73,14 +70,18 @@
 }
 
 .decklist-title {
-    font-size: 16px;
+    font-size: 15px;
+}
+
+.win-rate {
+    font-size: 15px;
 }
 
 .decklist-entry-image {
-    width: 80px;
-    min-width: 80px;
+    width: 70px;
+    min-width: 70px;
 
-    height: 80px;
+    height: 70px;
     border-radius: 4px;
     border: silver solid 2px;
 

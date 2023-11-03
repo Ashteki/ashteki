@@ -10,7 +10,6 @@ import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faLink } from '@fortawesome/free-solid-svg-icons';
 
-import ZoomableCard from './ZoomableCard';
 import {
     loadDecks,
     selectDeck,
@@ -107,19 +106,20 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
 
     // eslint-disable-next-line no-unused-vars
     const rowClasses = (row) => {
+        const classes = ['deck-list-entry'];
         if (row.mode === 'chimera') {
             return '';
         }
 
         if (!row.status.basicRules) {
-            return 'invalid';
+            classes.push('invalid');
         }
 
         if (!row.status.hasConjurations) {
-            return 'conjurations';
+            classes.push('conjurations');
         }
 
-        return '';
+        return classes;
     };
 
     /**
@@ -160,7 +160,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         {
             dataField: 'pb',
             headerStyle: {
-                width: '100px'
+                width: '80px'
             },
             text: 'Pb',
             sort: !standaloneDecks,
@@ -207,24 +207,24 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 return output;
             }
         },
-        {
-            dataField: 'lastUpdated',
-            headerStyle: {
-                width: '20%'
-            },
-            style: {
-                fontSize: '0.7rem'
-            },
-            align: 'center',
-            text: 'Updated',
-            sort: !standaloneDecks,
-            hidden: standaloneDecks,
+        // {
+        //     dataField: 'lastUpdated',
+        //     headerStyle: {
+        //         width: '20%'
+        //     },
+        //     style: {
+        //         fontSize: '0.7rem'
+        //     },
+        //     align: 'center',
+        //     text: 'Updated',
+        //     sort: !standaloneDecks,
+        //     hidden: standaloneDecks,
 
-            /**
-             * @param {Date} cell
-             */
-            formatter: (cell) => moment(cell).format('YYYY-MM-DD')
-        },
+        //     /**
+        //      * @param {Date} cell
+        //      */
+        //     formatter: (cell) => moment(cell).format('YYYY-MM-DD')
+        // },
         {
             dataField: 'winRate',
             align: 'center',
@@ -242,9 +242,11 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
              */
             formatter: (item, row) => {
                 const output = (
-                    <span>
-                        {item}%<br />({row.played} games)
-                    </span>
+                    <>
+                        <span className='win-rate'>{item}%</span>
+                        <br />
+                        (of {row.played})
+                    </>
                 );
                 return output;
             }

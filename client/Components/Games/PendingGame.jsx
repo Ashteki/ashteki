@@ -16,6 +16,7 @@ import './PendingGame.scss';
 import { useEffect } from 'react';
 import GameFormatInfo from './GameFormatInfo';
 import PictureButton from '../Lobby/PictureButton';
+import { toastr } from 'react-redux-toastr';
 
 function showNotification(notification) {
     if (window.Notification && Notification.permission === 'granted') {
@@ -190,6 +191,10 @@ const PendingGame = () => {
         );
     }
 
+    const onGameLinkCopy = () => {
+        toastr.success('Copied game link to clipboard');
+    };
+
     return (
         <>
             <audio ref={notification}>
@@ -241,6 +246,7 @@ const PendingGame = () => {
                     <div className='copy-game-link'>
                         <ReactClipboard
                             text={`${window.location.protocol}//${window.location.host}/play?gameId=${currentGame.id}`}
+                            onSuccess={onGameLinkCopy}
                         >
                             <Button variant='primary' className='def'>
                                 <Trans>Copy Game Link</Trans>

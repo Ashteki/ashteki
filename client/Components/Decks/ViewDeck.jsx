@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
-import { Col } from 'react-bootstrap';
+import { Button, ButtonGroup, Col, Dropdown, SplitButton } from 'react-bootstrap';
 
 import ConfirmButton from '../Form/ConfirmButton';
 import DeckSummary from './DeckSummary';
@@ -10,6 +10,8 @@ import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
 import './ViewDeck.scss';
 import DeckHeader from './DeckHeader';
+import { ashesLiveShareUrl } from '../../util';
+import { toastr } from 'react-redux-toastr';
 
 /**
  * @typedef ViewDeckProps
@@ -63,6 +65,15 @@ const ViewDeck = ({ deck }) => {
         );
     }
 
+    const ashesLiveLink = ashesLiveShareUrl + deck.ashesLiveUuid;
+
+    const writeLinkToClipboard = (event) => {
+        event.preventDefault();
+        navigator.clipboard
+            .writeText(ashesLiveLink)
+            .then(() => toastr.success('Copied url to clipboard'))
+            .catch((err) => toastr.error(`Could not copy deck url: ${err}`));
+    };
     return (
         <>
             <ApiStatus
@@ -72,16 +83,44 @@ const ViewDeck = ({ deck }) => {
 
             <div className='lobby-card'>
                 <DeckHeader deck={deck} />
-                <Col xs={12} className='text-center'>
+                <div className='deck-buttons text-center'>
                     <button className='btn btn-primary def' onClick={handleEditClick}>
                         Edit
                     </button>
 
                     {deleteButton}
-                    {updateButton}
-                </Col>
+                    {/* {updateButton} */}
+                    {deck.ashesLiveUuid && (
+                        <Dropdown
+                            variant='extra'
+                            className='ashes-live def'
+                            title='ashes.live'
+                            as={ButtonGroup}
+                        >
+                            <Dropdown.Toggle
+                                split
+                                variant='extra'
+                                className='def'
+                                id='dropdown-basic'
+                            >
+                                <span className='phg-basic-magic'></span>&nbsp;
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href='#' onClick={handleUpdateClick}>
+                                    Update
+                                </Dropdown.Item>
+                                <Dropdown.Item href={ashesLiveLink}>Go to ashes.live</Dropdown.Item>
+                                <Dropdown.Item href='#' onClick={writeLinkToClipboard}>
+                                    Copy ashes.live url
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    )}
+                </div>
+
                 <DeckSummary deck={deck} />
-            </div >
+            </div>
         </>
     );
 };
