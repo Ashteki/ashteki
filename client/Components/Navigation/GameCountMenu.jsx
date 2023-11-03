@@ -5,7 +5,6 @@ import { useState } from 'react';
 import classNames from 'classnames';
 
 import './GameCountMenu.scss';
-import Link from './Link';
 
 const GameCountMenu = () => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -29,15 +28,13 @@ const GameCountMenu = () => {
         const liClass = 'game-count-list-item';
         return <li key={game.id} className={liClass}>{p1Name} vs {p2Name}</li>;
     });
-    const linkClass = classNames('patreon-link', { 'empty-game': emptyGame });
+    const linkClass = classNames({ 'empty-game': emptyGame });
     let gamesPopup = <ul className='games-popup absolute-panel'>{gameList}</ul>;
     return (
         <div className='game-count-menu'>
-            <Link key='games-link' href='/play'>
-                <Nav.Link onMouseOver={() => setShowPopup(true)} onMouseOut={() => setShowPopup(false)}>
-                    <span className={linkClass}>{games?.length} Games</span>
-                </Nav.Link>
-            </Link>
+            <Nav.Link onMouseOver={() => setShowPopup(true)} onMouseOut={() => setShowPopup(false)}>
+                <span className={linkClass}>{games?.length} Games</span>
+            </Nav.Link>
 
             {showPopup && gameCount > 0 && gamesPopup}
         </div>

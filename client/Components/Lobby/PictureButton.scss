@@ -1,6 +1,7 @@
-.new-game-buttons {
+.game-buttons {
     display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
 }
 
 .image-button {
@@ -68,4 +69,15 @@
             color: #FFF;
         }
     }
+}
+
+.decks-link {
+    width: 300px;
+    min-width: 250px;
+    height: 150px;
+
+    background-image: url('https://cdn.ashes.live/images/cards/resonance.jpg');
+    background-position: 40% 40%;
+    background-size: 150%;
+
 }

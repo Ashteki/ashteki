@@ -30,7 +30,16 @@ import UserAlts from './pages/profile/UserAlts';
 import Matches from './pages/Matches';
 
 const routes = [
-    { path: '/', action: () => <Home key='lobby' /> },
+    // { path: '/', action: () => <Home key='lobby' /> },
+    {
+        path: ['/', '/play'],
+        action: (context) =>
+            context.currentGame?.started ? (
+                <GameBoard key='gameboard' />
+            ) : (
+                <GameLobby key='gamelobby' gameId={context.params.gameId} />
+            )
+    },
     {
         path: '/activation',
         action: (context) => (
@@ -52,15 +61,6 @@ const routes = [
     { path: '/matches', action: () => <Matches key='matches' /> },
     { path: '/elo', action: () => <EloLadder key='elo' /> },
     { path: '/faq', action: () => <FAQ key='elo' /> },
-    {
-        path: '/play',
-        action: (context) =>
-            context.currentGame?.started ? (
-                <GameBoard key='gameboard' />
-            ) : (
-                <GameLobby key='gamelobby' gameId={context.params.gameId} />
-            )
-    },
     { path: '/profile', action: () => <Profile key='profile' /> },
     { path: '/register', action: () => <Register key='register' /> },
     { path: '/alts', action: () => <UserAlts key='altarts' /> },

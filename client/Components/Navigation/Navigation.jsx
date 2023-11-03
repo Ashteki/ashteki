@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, NavbarBrand } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -116,9 +116,7 @@ const Navigation = (props) => {
             }
 
             return (
-                <Link key={menuItem.path || menuItem.title} href={menuItem.path}>
-                    <Nav.Link>{t(menuItem.title)}</Nav.Link>
-                </Link>
+                <Nav.Link key={menuItem.path || menuItem.title} href={menuItem.path}>{menuItem.title}</Nav.Link>
             );
         });
     };
@@ -126,9 +124,7 @@ const Navigation = (props) => {
     return (
         <Navbar bg='dark' variant='dark' className='navbar-sm' fixed='top'>
             <Nav>
-                <Link href='/'>
-                    <Nav.Link>{t('Home')}</Nav.Link>
-                </Link>
+                <NavbarBrand>Ashteki</NavbarBrand>
                 {renderMenuItems(LeftMenu)}
             </Nav>
             <Navbar.Collapse id='navbar' className='justify-content-end'>

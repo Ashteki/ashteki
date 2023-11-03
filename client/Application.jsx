@@ -115,8 +115,7 @@ class Application extends React.Component {
     }
 
     render() {
-        let gameBoardVisible =
-            this.props.currentGame && this.props.currentGame.started && this.props.path === '/play';
+        let gameBoardVisible = this.props.currentGame && this.props.currentGame.started;
 
         let component = this.router.resolvePath({
             pathname: this.props.path,

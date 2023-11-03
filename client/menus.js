@@ -12,7 +12,7 @@
  * @type {MenuItem[]} The list of menu items for the left side menu
  */
 export const LeftMenu = [
-    { path: '/play', title: 'Play' },
+    { path: '/', title: 'Play' },
     { path: '/decks', title: 'My Decks', showOnlyWhenLoggedIn: true },
     { path: '/faq', title: 'Help' },
     {

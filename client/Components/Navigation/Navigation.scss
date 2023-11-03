@@ -4,14 +4,8 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-a.navbar-brand {
-    color: gray('500');
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-origin: content-box;
-    width: 72px;
-    height: 100%;
+.navbar {
+    font-size: 1rem;
 }
 
 .navbar-sm {
@@ -19,10 +13,10 @@ a.navbar-brand {
     height: $navbar-height;
 }
 
-.navbar-sm .navbar-nav>li>span {
-    padding: 0 15px;
-    line-height: 36px;
-}
+// .navbar-sm .navbar-nav>li>span {
+//     padding: 0 15px;
+//     line-height: 36px;
+// }
 
 .patreon-link {
     color: #CCC;

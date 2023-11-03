@@ -31,7 +31,7 @@ class Patreon extends React.Component {
 
             setTimeout(() => {
                 this.props.clearLinkStatus();
-                this.props.navigate('/play');
+                this.props.navigate('/');
             }, 2000);
         }
     }
@@ -40,7 +40,7 @@ class Patreon extends React.Component {
         if (!this.props.code) {
             setTimeout(() => {
                 this.props.clearLinkStatus();
-                this.props.navigate('/play');
+                this.props.navigate('/');
             }, 2000);
 
             return (

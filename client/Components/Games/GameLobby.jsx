@@ -76,7 +76,7 @@ const GameLobby = ({ gameId }) => {
                     }
                 }
             }
-            dispatch(setUrl('/play'));
+            dispatch(setUrl('/'));
         }
     }, [currentGame, dispatch, gameId, games]);
 
@@ -117,22 +117,30 @@ const GameLobby = ({ gameId }) => {
                         {!newGame && currentGame?.started !== false && (
                             <>
                                 <div className='game-buttons'>
-                                    <div className='new-game-buttons'>
-                                        <PictureButton
-                                            text='Player'
-                                            imageClass='pvp'
-                                            onClick={() => handleNewGameClick('pvp')}
-                                        />
-                                        <PictureButton
-                                            text='Chimera'
-                                            header='Premium'
-                                            imageClass='chimera'
-                                            onClick={() => handleNewGameClick('chimera')}
-                                        />
-                                    </div>
+                                    <PictureButton
+                                        text='Player'
+                                        imageClass='pvp'
+                                        onClick={() => handleNewGameClick('pvp')}
+                                    />
+                                    <PictureButton
+                                        text='Chimera'
+                                        header='Premium'
+                                        imageClass='chimera'
+                                        onClick={() => handleNewGameClick('chimera')}
+                                    />
+                                </div>
+                                <div className='lobby-header'>or build a deck</div>
+                                <div className='game-buttons'>
+                                    <PictureButton
+                                        text='My Decks'
+                                        imageClass='decks-link'
+                                        onClick={() => dispatch(navigate('/decks'))}
+                                    />
                                 </div>
                             </>
+
                         )}
+
                         {newGame && <NewGame />}
                         {currentGame?.started === false && <PendingGame />}
 
