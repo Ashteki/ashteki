@@ -25,12 +25,11 @@ gameService
 
         console.info('' + _.size(games), 'total games');
 
-        let players = {};
-        let decks = {};
-        let playersByMonth = {};
-        let weekCount = [];
-        let monthCount = [];
-        let fpWinRates = { first: 0, second: 0 };
+        const players = {};
+        const decks = {};
+        const playersByMonth = {};
+        const weekCount = [];
+        const monthCount = [];
 
         _.each(games, (game) => {
             if (_.size(game.players) !== 2) {
@@ -45,20 +44,19 @@ gameService
                 return;
             }
 
-            if (
-                (game.players[0].turns === game.players[1].turns) ===
-                (game.winner === game.players[0].name)
-            ) {
-                fpWinRates.first++;
-            } else {
-                fpWinRates.second++;
-            }
-
             const startDateTime = moment(game.startedAt);
             const week = startDateTime.week();
             const month = startDateTime.month();
             weekCount[week] = weekCount[week] ? weekCount[week] + 1 : 1;
-            monthCount[month] = monthCount[month] ? monthCount[month] + 1 : 1;
+            if (!monthCount[month]) {
+                monthCount[month] = { month: month, count: 0, solo: 0 };
+            }
+            if (game.solo) {
+                monthCount[month].solo += 1;
+            } else {
+                monthCount[month].count += 1;
+            }
+
             if (!playersByMonth[month]) {
                 playersByMonth[month] = {};
             }
@@ -91,53 +89,6 @@ gameService
             });
         });
 
-        let topPlayers = _.chain(players)
-            .sortBy((player) => {
-                return -(player.wins + player.losses);
-            })
-            .first(100)
-            .value();
-
-        let winners = _.chain(players)
-            .sortBy((player) => {
-                return -player.wins;
-            })
-            .first(10)
-            .value();
-
-        let winRates = _.map(winners, (player) => {
-            let games = player.wins + player.losses;
-
-            return {
-                name: player.name,
-                wins: player.wins,
-                losses: player.losses,
-                winRate: Math.round((player.wins / games) * 100)
-            };
-        });
-
-        let winRateStats = _.chain(winRates)
-            .sortBy((player) => {
-                return -player.winRate;
-            })
-            .first(10)
-            .value();
-
-        let deckWinRates = _.map(decks, (deck) => {
-            let games = deck.wins + deck.losses;
-
-            return {
-                name: deck.name,
-                wins: deck.wins,
-                losses: deck.losses,
-                winRate: Math.round((deck.wins / games) * 100)
-            };
-        });
-
-        let deckWinRateStats = _.sortBy(deckWinRates, (deck) => {
-            return -deck.winRate;
-        });
-
         console.info('\n### Game count by week \n\nWeek | Count');
         for (var key in weekCount) {
             console.info(key, ' | ', weekCount[key]);
@@ -157,59 +108,10 @@ gameService
             'November',
             'December'
         ];
-        console.info('\n### Game count by month \n\nMonth | Count');
+        console.info('\n### Game count by month \n\nMonth | PvP | Solo');
         for (const m in monthCount) {
-            console.info(monthNames[m], ' | ', monthCount[m]);
+            console.info(monthNames[m], ' | ', monthCount[m].count, ' | ', monthCount[m].solo);
         }
-
-        console.info('\n### Top 10 Players\n\nName | Number of games\n-----|----------------');
-
-        _.each(topPlayers, (p) => {
-            console.info(p.name, ' | ', p.wins + p.losses);
-        });
-
-        console.info('\n### Top 10\n\nName | Number of wins\n-----|----------------');
-
-        _.each(winners, (winner) => {
-            console.info(winner.name, ' | ', winner.wins);
-        });
-
-        console.info(
-            '\n### Top 10 by winrate\n\nName | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
-        );
-
-        _.each(winRateStats, (winner) => {
-            console.info(
-                winner.name,
-                ' | ',
-                winner.wins,
-                ' | ',
-                winner.losses,
-                ' | ',
-                winner.winRate + '%'
-            );
-        });
-
-        console.info(
-            '\n### Deck win rates\n\nDeck | Number of wins | Number of losses | Win Rate\n-----|----------------|------------------|----------'
-        );
-
-        _.each(deckWinRateStats, (winner) => {
-            console.info(
-                winner.name,
-                ' | ',
-                winner.wins,
-                ' | ',
-                winner.losses,
-                ' | ',
-                winner.winRate + '%'
-            );
-        });
-
-        console.info(
-            'First Player win rate:',
-            Math.round((fpWinRates.first / (fpWinRates.first + fpWinRates.second)) * 100) + '%'
-        );
 
         console.info(rejected);
 
