@@ -10,12 +10,15 @@
     height: 200px;
     border: 2px solid rgb(210, 210, 194);
     border-radius: 8px;
-    margin-right: 10px;
     position: relative;
     padding: 0px;
     background-color: unset;
     filter: grayscale(.5);
     -webkit-filter: grayscale(.5);
+
+    &:not(:last-of-type) {
+        margin-right: 20px;
+    }
 
     &.pvp {
         background-image: url('https://cdn.ashes.live/images/cards/clashing-tempers.jpg');

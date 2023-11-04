@@ -518,11 +518,6 @@ class Player extends GameObject {
      * @param {Object} options
      */
     moveCard(card, targetLocation, options = {}) {
-        if (targetLocation.endsWith(' bottom')) {
-            options.bottom = true;
-            targetLocation = targetLocation.replace(' bottom', '');
-        }
-
         let targetPile = this.getSourceList(targetLocation);
 
         if (
@@ -535,7 +530,7 @@ class Player extends GameObject {
         this.removeCardFromPile(card);
         let location = card.location;
 
-        // from play
+        // card leaves play
         if (location === 'play area' || location === 'spellboard') {
             if (targetLocation !== 'archives' && card.owner !== this) {
                 card.owner.moveCard(card, targetLocation, options);
@@ -547,6 +542,7 @@ class Player extends GameObject {
                 upgrade.owner.moveCard(upgrade, upgrade.discardLocation);
             }
 
+            // discard all cards under this one
             for (let child of card.childCards) {
                 child.onLeavesPlay();
                 child.owner.moveCard(child, child.discardLocation);
@@ -555,9 +551,8 @@ class Player extends GameObject {
             this.removeDieAttachments(card);
 
             card.onLeavesPlay();
-            card.controller = this;
         } else if (targetLocation === 'play area' || targetLocation === 'spellboard') {
-            // into play
+            // moves into play
             if (targetLocation === 'play area' && !card.index) {
                 card.index = this.game.getCardIndex();
             }
@@ -576,7 +571,7 @@ class Player extends GameObject {
             targetPile.unshift(card);
         } else if (['discard', 'purged'].includes(targetLocation)) {
             targetPile.unshift(card);
-        } else if (targetPile) {
+        } else if (targetPile) { // 'being played' does not have a target pile
             targetPile.push(card);
         }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Col, Form } from 'react-bootstrap';
-import moment from 'moment';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
@@ -8,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faLink, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import {
     loadDecks,
@@ -23,6 +22,7 @@ import {
 
 import './DeckList.scss';
 import DiceRack from './DiceRack';
+import { PatreonStatus } from '../../types';
 
 const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     const [pagingDetails, setPagingDetails] = useState({
@@ -32,7 +32,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         sortDir: 'desc',
         filter: []
     });
-
+    const user = useSelector((state) => state.account.user);
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
     const [showFaves, setShowFaves] = useState(false);
     const pbFilter = useRef(null);
     const nameFilter = useRef(null);
@@ -100,7 +101,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
 
     const rowEvents = {
         onClick: (event, deck) => {
-            onDeckSelected && onDeckSelected(deck);
+            (!deck.premium || allowPremium) && onDeckSelected && onDeckSelected(deck);
         }
     };
 
@@ -108,18 +109,19 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     const rowClasses = (row) => {
         const classes = ['deck-list-entry'];
         if (row.mode === 'chimera') {
-            return '';
-        }
+            if (row.premium && !allowPremium) {
+                classes.push('premium');
+            }
+        } else {
+            if (!row.status.basicRules) {
+                classes.push('invalid');
+            }
 
-        if (!row.status.basicRules) {
-            classes.push('invalid');
+            if (!row.status.hasConjurations) {
+                classes.push('conjurations');
+            }
         }
-
-        if (!row.status.hasConjurations) {
-            classes.push('conjurations');
-        }
-
-        return classes;
+        return classes.join(' ');
     };
 
     /**
@@ -172,10 +174,6 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             // eslint-disable-next-line react/display-name
             formatter: (pb, row) => (
                 <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div>
-
-                // <div className='deck-image'>
-                //     <ZoomableCard card={row.phoenixborn[0]?.card} />
-                // </div>
             )
         },
         {
@@ -201,6 +199,12 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                             {icon}
                             <br />
                             {dice}
+                            {row.premium && !allowPremium && (
+                                <div className='premium-lozenge'>
+                                    <FontAwesomeIcon icon={faLock} />
+                                    &nbsp;Premium
+                                </div>
+                            )}
                         </div>
                     </div>
                 );
