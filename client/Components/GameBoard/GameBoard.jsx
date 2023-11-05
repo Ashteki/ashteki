@@ -483,6 +483,7 @@ const GameBoard = () => {
                     solo={currentGame.solo}
                     leftMode={leftMode}
                     showContextItem={!leftMode}
+                    side='top'
                 />
             </div>
             <div className='main-window'>
@@ -618,6 +619,7 @@ const GameBoard = () => {
                     size={cardSize}
                     stats={thisPlayer.stats}
                     winner={currentGame.winner}
+                    side='bottom'
                 />
             </div>
         </div >

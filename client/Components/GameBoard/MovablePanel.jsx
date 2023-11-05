@@ -30,16 +30,16 @@ const MovablePanel = ({ children, name, onCloseClick, side, title }) => {
     const getStyle = (offset) => {
         const style = {
             left: Math.max(offset.x, 10),
-            top: Math.max(offset.y, 50),
+            top: Math.max(offset.y, 10),
             position: 'fixed'
         };
 
         const popup = $(popupRef.current);
 
         style.top -= popup.height();
-        if (style.top < 50) {
-            style.top = 50;
-        }
+        // if (style.top < 5) {
+        //     style.top = 5;
+        // }
 
         if (style.left + popup.width() > window.innerWidth) {
             style.left = window.innerWidth - popup.width();
