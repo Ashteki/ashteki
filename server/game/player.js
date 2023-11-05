@@ -209,6 +209,16 @@ class Player extends GameObject {
         return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type));
     }
 
+    areCardsAdjacent(card, anotherCard) {
+        const cardIndex = this.battlefield.indexOf(card);
+        const anotherCardIndex = this.battlefield.indexOf(anotherCard);
+        if (Math.abs(cardIndex - anotherCardIndex) === 1) {
+            return true;
+        }
+
+        return false;
+    }
+
     getSpendableDice(context) {
         // this assumes all spendable dice are on ready spells
         const spendableUpgrades = this.spellboard
