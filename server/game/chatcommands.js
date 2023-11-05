@@ -10,6 +10,7 @@ class ChatCommands {
         this.game = game;
         this.commands = {
             '/addcard': this.addCard, // hidden option (that is, not in About.jsx)
+            '/addthreat': this.addThreat,
             '/attach': this.attachCard,
             '/cancelprompt': this.cancelPrompt,
             '/conj': this.moveConjuration, // hidden option
@@ -569,6 +570,12 @@ class ChatCommands {
         }
 
         this.game.queueStep(new RematchPrompt(this.game, player));
+    }
+
+    addThreat(player, args) {
+        if (this.game.solo) {
+            player.opponent.moveCardsToThreatZone(1);
+        }
     }
 }
 
