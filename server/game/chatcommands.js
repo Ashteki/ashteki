@@ -31,7 +31,7 @@ class ChatCommands {
             '/rematch': this.rematch,
             '/remove': this.removeAttachment,
             '/removeeffects': this.removeEffects,
-            '/reveal': this.reveal,
+            '/revealaspect': this.revealAspect,
             '/shuffle': this.shuffle,
             '/suddendeath': this.suddenDeath,
             '/stopclocks': this.stopClocks, // hidden option
@@ -418,13 +418,15 @@ class ChatCommands {
         });
     }
 
-    reveal(player) {
+    revealAspect(player) {
         this.game.promptForSelect(player, {
-            activePromptTitle: 'Select a card to reveal',
-            cardCondition: (card) => card.facedown && card.controller === player,
+            activePromptTitle: 'Select an aspect to reveal',
+            controller: 'opponent',
+            allowFacedown: true,
+            cardCondition: (card) => card.facedown,
             onSelect: (player, card) => {
-                card.facedown = false;
-                this.game.addAlert('danger', '{0} reveals {1}', player, card);
+                GameActions.revealAspect().resolve(card, this.game.getFrameworkContext(player));
+                this.game.addAlert('danger', '{0} manually reveals {1}', player, card);
                 return true;
             }
         });

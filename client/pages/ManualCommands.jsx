@@ -15,6 +15,7 @@ const ManualCommands = () => {
                 <li>/discardfromdeck x - Discard x cards from the top of your deck</li>
                 <li>/shuffle - Shuffle your deck </li>
                 <li>/addthreat - Add one card from the chimera deck to the battlefield</li>
+                <li>/revealaspect - Select a facedown aspect to flip</li>
             </ul>
             <ul>
                 <li>

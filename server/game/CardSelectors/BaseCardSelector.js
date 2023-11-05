@@ -13,6 +13,7 @@ class BaseCardSelector {
             this.cardType = [properties.cardType];
         }
         this.unique = properties.unique;
+        this.allowFacedown = properties.allowFacedown;
     }
 
     buildLocation(property) {
@@ -83,7 +84,11 @@ class BaseCardSelector {
     }
 
     canTarget(card, context) {
-        if (!card || card.facedown) {
+        if (!card) {
+            return false;
+        }
+
+        if (card.facedown && !this.allowFacedown) {
             return false;
         }
 
