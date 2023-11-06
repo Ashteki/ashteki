@@ -24,6 +24,7 @@ const Location = {
     PlayArea: 'play area'
 };
 
+const ActionSpellTypes = [CardType.ActionSpell, CardType.ReactionSpell];
 const BattlefieldTypes = [CardType.Ally, CardType.Conjuration, CardType.Aspect];
 const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
@@ -78,6 +79,7 @@ module.exports = {
     Constants,
     CardType,
     Location,
+    ActionSpellTypes,
     BattlefieldTypes,
     PhoenixbornTypes,
     UpgradeCardTypes,

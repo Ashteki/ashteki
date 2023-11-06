@@ -32,7 +32,7 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
-const { BattlefieldTypes, PhoenixbornTypes, CardType } = require('../constants');
+const { BattlefieldTypes, PhoenixbornTypes, CardType, ActionSpellTypes } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
@@ -177,7 +177,8 @@ class Game extends EventEmitter {
                 player: player
             });
         }
-        if (card.type !== CardType.ReactionSpell) {
+
+        if (!ActionSpellTypes.includes(card.type)) {
             card.new = true;
         }
     }

@@ -28,6 +28,8 @@ describe('Clashing Tempers', function () {
             this.player1.clickCard(this.ironWorker);
             expect(this.mistSpirit.upgrades.length).toBe(1);
             expect(this.ironWorker.upgrades.length).toBe(1);
+
+            expect(this.clashingTempers.new).not.toBe(true);
         });
 
         it('cannot attach both adaptations to one unit', function () {
