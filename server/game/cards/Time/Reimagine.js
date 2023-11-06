@@ -14,6 +14,7 @@ class Reimagine extends Card {
             title: 'Reimagine',
             location: 'spellboard',
             may: () => 'place the used die on Reimagine',
+            condition: (context) => !context.event.die.parent,
             gameAction: [
                 ability.actions.attachDie((context) => ({
                     target: context.source,
