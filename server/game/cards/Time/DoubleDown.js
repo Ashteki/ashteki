@@ -7,8 +7,8 @@ class DoubleDown extends Card {
             when: {
                 onCardDestroyed: (event, context) =>
                     // a 1-life conjuration that I control
-                    event.card.type === CardType.Conjuration &&
-                    event.card.life === 1 &&
+                    event.clone.type === CardType.Conjuration &&
+                    event.clone.life === 1 &&
                     // check the clone because ondestroyed resets controller to owner (blood puppet)
                     event.clone.controller === context.source.owner &&
                     // destroyed as a result of an event that my opponent controls

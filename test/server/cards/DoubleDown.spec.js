@@ -298,4 +298,41 @@ describe('Double Down', function () {
             expect(this.player2.inPlay.length).toBe(5); // added 2 VBS
         });
     });
+
+    describe('respects adaptation life adjustments', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['iron-worker'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    archives: []
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['frost-frog'],
+                    spellboard: ['summon-shadow-spirit'],
+                    dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
+                    archives: ['frost-frog', 'frost-frog', 'ice-adaptation'],
+                    hand: ['double-down']
+                }
+            });
+
+            this.player2.attachUpgrade(this.iceAdaptation, this.frostFrog);
+            expect(this.frostFrog.upgrades.length).toBe(1);
+        });
+
+        it('should not allow double down', function () {
+            expect(this.player2.inPlay.length).toBe(1);
+            expect(this.frostFrog.life).toBe(2);
+
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('water blast');
+            this.player1.clickCard(this.frostFrog);
+
+            expect(this.player1).toHaveDefaultPrompt(); // no prompt for DD
+            expect(this.player2.inPlay.length).toBe(0); // no trigger
+        });
+    });
 });

@@ -580,6 +580,16 @@ class PlayerInteractionWrapper {
         return card;
     }
 
+    attachUpgrade(card, target) {
+        this.game.actions
+            .attach({
+                target: target,
+                upgrade: card
+            })
+            .resolve(card, this.game.getFrameworkContext(this.player));
+        this.game.continue();
+    }
+
     /**
      * Player's action of passing priority
      */
