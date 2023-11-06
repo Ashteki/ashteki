@@ -75,4 +75,32 @@ describe('Clashing Tempers', function () {
             expect(this.ironWorker.upgrades.length).toBe(1);
         });
     });
+
+    describe('with only one unit', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['mist-spirit'],
+                    dicepool: ['divine', 'divine', 'charm', 'charm', 'natural', 'natural'],
+                    hand: ['clashing-tempers', 'freezing-blast'],
+                    archives: ['ice-adaptation', 'fire-adaptation']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight', 'holy-knight', 'anchornaut'],
+                    spellboard: [],
+                    hand: ['rins-fury', 'golden-veil'],
+                    dicepool: ['natural', 'natural', 'charm']
+                }
+            });
+        });
+
+        it('pay cost then nothing', function () {
+            this.player1.play(this.clashingTempers);
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

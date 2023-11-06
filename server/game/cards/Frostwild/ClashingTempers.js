@@ -4,6 +4,7 @@ const Card = require('../../Card.js');
 class ClashingTempers extends Card {
     setupCardAbilities(ability) {
         this.play({
+            condition: (context) => context.player.unitsInPlay.length > 1,
             effect: 'add fire and ice adaptations to two units',
             targets: {
                 fire: {
