@@ -154,5 +154,24 @@ describe('Gorrenrock Brawler', function () {
             expect(this.gorrenrockBrawler.status).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
         });
+
+        it('no status when brawler was blocker but removed', function () {
+            expect(this.gorrenrockBrawler.status).toBe(0);
+            this.player1.clickAttack(this.luluFirststone);
+            this.player1.clickCard(this.fluteMage);
+            this.player1.clickDone();
+            this.player2.clickCard(this.gorrenrockBrawler);
+            this.player2.clickCard(this.fluteMage);
+            this.player2.clickPrompt('Clear all');
+            this.player2.clickCard(this.mistSpirit);
+            this.player2.clickCard(this.fluteMage);
+
+            this.player2.clickDone();
+
+            expect(this.mistSpirit.location).toBe('archives');
+            expect(this.fluteMage.location).toBe('play area');
+            expect(this.gorrenrockBrawler.status).toBe(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 });
