@@ -125,7 +125,10 @@ class AbilityTargetSelect extends AbilityTarget {
                 }
             };
         });
-        if (this.properties.player !== 'opponent' && context.stage === 'pretarget') {
+        if (
+            this.properties.showCancel ||
+            (this.properties.player !== 'opponent' && context.stage === 'pretarget')
+        ) {
             choices.push('Cancel');
             handlers.push(() => (targetResults.cancelled = true));
         }

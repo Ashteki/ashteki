@@ -256,6 +256,7 @@ class Die extends PlayableObject {
                             },
                             action: {
                                 mode: 'select',
+                                showCancel: true,
                                 dependsOn: 'myCard',
                                 player: 'self',
                                 choices: {
