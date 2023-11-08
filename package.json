@@ -72,7 +72,7 @@
         "clean-webpack-plugin": "^3.0.0",
         "clipboard": "^2.0.8",
         "config": "^1.26.2",
-        "connect-history-api-fallback": "^1.6.0",
+        "connect-history-api-fallback": "^2.0.0",
         "cookie-parser": "^1.4.5",
         "core-js": "^3.27.2",
         "cross-env": "^7.0.3",
