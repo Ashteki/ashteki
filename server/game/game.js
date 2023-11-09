@@ -40,6 +40,7 @@ const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt')
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
+const AuditHelper = require('./audithelper');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -48,6 +49,7 @@ class Game extends EventEmitter {
         this.effectEngine = new EffectEngine(this);
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
+        this.auditHelper = new AuditHelper(this);
         this.solo = details.solo;
         if (this.solo) {
             this.soloLevel = details.soloLevel;
@@ -645,6 +647,7 @@ class Game extends EventEmitter {
         }
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
+        this.auditHelper.snapshotState('end');
     }
 
     /**
@@ -1575,7 +1578,7 @@ class Game extends EventEmitter {
         for (let card of this.cardsInPlay) {
             card.endTurn();
         }
-
+        this.auditHelper.snapshotState('turn');
         this.checkForTimeExpired();
     }
 
@@ -1590,6 +1593,7 @@ class Game extends EventEmitter {
         }
 
         this.addAlert('endofround', `End of round ${this.round}`);
+        this.auditHelper.snapshotState('round');
         this.checkForTimeExpired();
     }
 
@@ -1718,7 +1722,8 @@ class Game extends EventEmitter {
             winReason: this.winReason,
             winner: this.winner ? this.winner.name : undefined,
             swap: this.swap,
-            solo: this.solo
+            solo: this.solo,
+            auditReport: this.auditHelper.getReport()
         };
     }
 
