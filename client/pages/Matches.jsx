@@ -54,15 +54,15 @@ class Matches extends React.Component {
                     return (
                         <tr key={game.gameId}>
                             <td>{game.players[0].deck}</td>
-                            <td style={{ 'white-space': 'nowrap' }}>{game.players[1].name}</td>
-                            <td>{game.players[1].deck}</td>
-                            <td>{this.computeWinner(game)}</td>
-                            <td style={{ 'white-space': 'nowrap' }}>{t(game.winReason)}</td>
-                            <td style={{ 'white-space': 'nowrap' }}>{t(game.gameType)}</td>
+                            <td style={{ 'white-space': 'nowrap' }}>{game.players[1].name}<br />
+                                {game.players[1].deck}</td>
+                            <td>{this.computeWinner(game)}<br />({game.winReason})</td>
+                            <td style={{ 'white-space': 'nowrap' }}>{game.gameType === 'competitive' ? 'Y' : ''}</td>
                             <td style={{ 'white-space': 'nowrap' }}>
+                                {game.gameId}
+                                <br />
                                 {moment(game.startedAt).format('YYYY-MM-DD HH:mm')}
-                            </td>
-                            <td style={{ 'white-space': 'nowrap' }}>
+                                <br />
                                 {duration.get('minutes')}m {duration.get('seconds')}s
                             </td>
                         </tr>
@@ -84,22 +84,13 @@ class Matches extends React.Component {
                                     <Trans>Opponent</Trans>
                                 </th>
                                 <th>
-                                    <Trans>Opponent&apos;s Deck</Trans>
-                                </th>
-                                <th>
                                     <Trans>Winner</Trans>
                                 </th>
                                 <th>
-                                    <Trans>Reason</Trans>
+                                    <Trans>Ranked</Trans>
                                 </th>
                                 <th>
-                                    <Trans>Type</Trans>
-                                </th>
-                                <th>
-                                    <Trans>Started At</Trans>
-                                </th>
-                                <th>
-                                    <Trans>Duration</Trans>
+                                    <Trans>details</Trans>
                                 </th>
                             </tr>
                         </thead>
