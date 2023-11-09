@@ -24,7 +24,8 @@ class GameService {
             players: game.players,
             winner: game.winner,
             winReason: game.winReason,
-            finishedAt: new Date(game.finishedAt)
+            finishedAt: new Date(game.finishedAt),
+            auditReport: game.auditReport
         };
         return this.games.update({ gameId: game.gameId }, { $set: properties }).catch((err) => {
             logger.error('Unable to update game', err);

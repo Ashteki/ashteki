@@ -33,6 +33,7 @@ class Player extends GameObject {
         this.pinnedDice = [];
         this.firstFive = [];
         this.diceHistory = [];
+        this.medCount = 0;
 
         this.clock = ClockSelector.for(this, clockdetails);
         this.disconnectedAt = undefined;

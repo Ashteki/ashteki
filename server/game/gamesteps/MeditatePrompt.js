@@ -56,6 +56,8 @@ class MeditatePrompt extends UiPrompt {
                 firstTopOfDeck: this.firstTopOfDeck,
                 player: this.choosingPlayer
             });
+
+            this.choosingPlayer.medCount += this.count;
         }
         return result;
     }

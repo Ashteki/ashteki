@@ -71,7 +71,7 @@
         "canvas": "^2.9.0",
         "clean-webpack-plugin": "^3.0.0",
         "clipboard": "^2.0.8",
-        "config": "^1.26.2",
+        "config": "^3.3.9",
         "connect-history-api-fallback": "^1.6.0",
         "cookie-parser": "^1.4.5",
         "core-js": "^3.27.2",
@@ -137,7 +137,7 @@
         "redux": "^4.1.1",
         "redux-thunk": "^2.1.0",
         "regenerator-runtime": "^0.13.9",
-        "sass": "^1.32.8",
+        "sass": "^1.69.5",
         "sass-loader": "^10.1.0",
         "socket.io": "^4.6.1",
         "socket.io-client": "^4.6.1",
@@ -152,7 +152,7 @@
         "yup": "^0.32.9"
     },
     "devDependencies": {
-        "@babel/eslint-parser": "^7.21.8",
+        "@babel/eslint-parser": "^7.22.15",
         "@redux-devtools/core": "^3.13.1",
         "@redux-devtools/dock-monitor": "^3.0.1",
         "@redux-devtools/log-monitor": "^4.0.2",

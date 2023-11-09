@@ -18,14 +18,14 @@ class ChosenDestroyAction extends PlayerAction {
     }
 
     getEvent(player, context) {
-        return super.createEvent('unnamedEvent', { player: player }, () => {
-            if (player.unitsInPlay.length > 0) {
-                context.game.promptForSelect(player, {
+        return super.createEvent('unnamedEvent', { player: context.target }, (event) => {
+            if (event.player.unitsInPlay.length > 0) {
+                context.game.promptForSelect(event.player, {
                     activePromptTitle: 'Choose a card to destroy',
-                    // eslint-disable-next-line no-undef
                     cardType: BattlefieldTypes,
                     context: context,
-                    controller: player === context.player ? 'self' : 'opponent',
+                    // 'self' / 'opponent' settings are in context of context.player
+                    controller: context.player === event.player ? 'self' : 'opponent',
                     onSelect: (player, cards) => {
                         context.game.addMessage('{0} chooses to destroy {1}', player, cards);
                         context.game.actions.destroy().resolve(cards, context);

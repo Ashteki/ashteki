@@ -103,7 +103,7 @@ describe('Guilt link', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['iron-worker', 'iron-rhino'],
+                    inPlay: ['iron-worker', 'iron-rhino', 'flute-mage'],
                     dicepool: ['natural', 'illusion', 'sympathy', 'charm', 'natural', 'natural'],
                     hand: ['molten-gold'],
                     spellboard: ['guilt-link']
@@ -117,16 +117,31 @@ describe('Guilt link', function () {
             this.guiltLink.tokens.status = 1;
         });
 
-        it('destroys own unit and prompts opponent to destroy unit', function () {
+        it('destroys own unit and choose opponent to destroy unit', function () {
             this.player1.clickCard(this.guiltLink);
             this.player1.clickPrompt('Guilt Link');
             expect(this.player2).not.toBeAbleToSelect(this.anchornaut);
             this.player1.clickCard(this.ironWorker);
             expect(this.ironWorker.location).toBe('discard');
+            this.player1.clickPrompt('opponent');
 
             expect(this.player2).not.toBeAbleToSelect(this.ironRhino);
             this.player2.clickCard(this.anchornaut);
             expect(this.anchornaut.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('destroys own unit and choose self to destroy unit', function () {
+            this.player1.clickCard(this.guiltLink);
+            this.player1.clickPrompt('Guilt Link');
+            expect(this.player2).not.toBeAbleToSelect(this.anchornaut);
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.location).toBe('discard');
+            this.player1.clickPrompt('me');
+
+            expect(this.player1).toBeAbleToSelect(this.ironRhino);
+            this.player1.clickCard(this.fluteMage);
+            expect(this.fluteMage.location).toBe('discard');
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
