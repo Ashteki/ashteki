@@ -16,7 +16,6 @@ import { useEffect } from 'react';
 import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl, navigate } from '../../redux/actions';
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
-import { patreonUrl } from '../../constants';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
