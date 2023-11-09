@@ -219,6 +219,13 @@ class Player extends GameObject {
         return false;
     }
 
+    moveUnit(card, to) {
+        // if to === 'right'
+        const position = this.cardsInPlay.indexOf(card);
+        this.cardsInPlay.splice(position, 1);
+        this.cardsInPlay.push(card);
+    }
+
     getSpendableDice(context) {
         // this assumes all spendable dice are on ready spells
         const spendableUpgrades = this.spellboard
