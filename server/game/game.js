@@ -32,7 +32,7 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
-const { BattlefieldTypes, PhoenixbornTypes, CardType, ActionSpellTypes } = require('../constants');
+const { BattlefieldTypes, PhoenixbornTypes, CardType, ActionSpellTypes, GameType } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
@@ -1708,7 +1708,7 @@ class Game extends EventEmitter {
             return p;
         });
 
-        return {
+        const state = {
             id: this.savedGameId,
             label: this.label,
             gameId: this.id,
@@ -1722,9 +1722,14 @@ class Game extends EventEmitter {
             winReason: this.winReason,
             winner: this.winner ? this.winner.name : undefined,
             swap: this.swap,
-            solo: this.solo,
-            auditReport: this.auditHelper.getReport()
+            solo: this.solo
         };
+
+        if (this.gameType === GameType.Competitive) {
+            state.auditReport = this.auditHelper.getReport();
+        }
+
+        return state;
     }
 
     /**

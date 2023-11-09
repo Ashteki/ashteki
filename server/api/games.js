@@ -49,7 +49,6 @@ async function getPlayer(game, index) {
                 checkMe: deck.lastUpdated > deck.created
             } : null;
 
-        // console.log(deckAudit);
         player.deckAudit = deckAudit;
     }
     return player;
