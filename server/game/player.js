@@ -222,6 +222,11 @@ class Player extends GameObject {
     }
 
     areCardsAdjacent(card, anotherCard) {
+        if (anotherCard.facedown) {
+            // threatzone isn't actually in the battlefield
+            return false;
+        }
+
         const cardIndex = this.battlefield.indexOf(card);
         const anotherCardIndex = this.battlefield.indexOf(anotherCard);
         if (Math.abs(cardIndex - anotherCardIndex) === 1) {
