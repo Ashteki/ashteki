@@ -35,6 +35,8 @@ describe('Wild Throw Aspect', function () {
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
+            // alert about throw reposition
+            this.player1.clickPrompt('Ok');
 
             expect(this.anchornaut.upgrades.length).toBe(1);
             expect(this.anchornaut.exhausted).toBe(true);
@@ -42,6 +44,8 @@ describe('Wild Throw Aspect', function () {
             expect(this.wildThrow.facedown).toBe(false);
             expect(this.stun.location).toBe('play area');
             expect(this.player1.inPlay[2]).toBe(this.anchornaut);
+
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });

@@ -20,9 +20,20 @@ class MoveUnitAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent('onUnitMoved', { card: card, context: context }, () => {
+        return super.createEvent('onUnitMoved', { card: card, context: context }, (event) => {
             card.controller.moveUnit(card, 'right');
             context.game.addMessage('{0} is moved to the {1}', card, this.to);
+            context.game.queueUserAlert(context, {
+                promptTitle: context.source.name,
+                menuTitle: `${context.source.name} moves ${event.card.name} to the ${this.to}most position`,
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: context.source.getShortSummary(),
+                        targets: [event.card.getShortSummary()]
+                    }
+                ]
+            });
         });
     }
 }
