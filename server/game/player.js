@@ -209,6 +209,10 @@ class Player extends GameObject {
         return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type));
     }
 
+    indexOf(card) {
+        return this.battlefield.indexOf(card);
+    }
+
     areCardsAdjacent(card, anotherCard) {
         const cardIndex = this.battlefield.indexOf(card);
         const anotherCardIndex = this.battlefield.indexOf(anotherCard);
