@@ -20,7 +20,6 @@ class Avalanche extends AspectCard {
             }
         });
     }
-
 }
 
 Avalanche.id = 'avalanche';

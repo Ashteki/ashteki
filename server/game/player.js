@@ -206,11 +206,19 @@ class Player extends GameObject {
 
     // this get sent to the client
     get battlefield() {
-        return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type));
+        return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type) && !card.moribund);
     }
 
     indexOf(card) {
         return this.battlefield.indexOf(card);
+    }
+
+    isRightmost(card) {
+        return this.indexOf(card) === this.battlefield.length - 1;
+    }
+
+    isLeftmost(card) {
+        return this.indexOf(card) === 0;
     }
 
     areCardsAdjacent(card, anotherCard) {
