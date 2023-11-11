@@ -14,7 +14,10 @@ module.exports.init = function (server) {
         '/api/games',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            let games = await gameService.findByUserName(req.user.username, {});
+            let games = await gameService.findByUserName(req.user.username, {
+                months: req.query.months,
+                gameType: req.query.gameType
+            });
             res.send({ success: true, games: games });
         })
     );
@@ -24,14 +27,7 @@ module.exports.init = function (server) {
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
             let games = await gameService.getTaggedGames(req.params.tag);
-            const results = await Promise.all(
-                games.map(async (game) => {
-                    const gameResult = await getGameResult(game);
-                    return gameResult;
-                })
-            );
-
-            res.send({ success: true, results: results });
+            res.send({ success: true, games: games });
         })
     );
 
@@ -46,38 +42,3 @@ module.exports.init = function (server) {
     );
 
 };
-
-async function getPlayer(game, index) {
-    const player = game.players[index];
-    if (player.deckid) {
-        const deck = await deckService.getById(player.deckid);
-        const deckAudit = deck
-            ? {
-                deckId: player.deckid,
-                ashesLiveModified: deck.ashesLiveModified,
-                created: deck.created,
-                lastUpdated: deck.lastUpdated,
-                checkMe: deck.lastUpdated > deck.created
-            } : null;
-
-        player.deckAudit = deckAudit;
-    }
-    return player;
-}
-
-async function getGameResult(game) {
-
-    const p1 = await getPlayer(game, 0);
-    const p2 = await getPlayer(game, 1);
-    const result = {
-        label: game.label,
-        id: game.id,
-        startedAt: game.startedAt.toUTCString(),
-        winner: game.winner,
-
-        p1: p1,
-        p2: p2
-    };
-    // console.log("gameResult: ", result);
-    return result;
-}

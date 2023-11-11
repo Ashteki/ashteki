@@ -54,7 +54,7 @@ function games(state = {}, action) {
             newState.responseTime = action.responseTime;
             break;
         case 'RECEIVE_TAGGEDGAMES':
-            newState.taggedGames = action.response.results;
+            newState.taggedGames = action.response.games;
             break;
         default:
             return state;

@@ -82,6 +82,13 @@ class GameService {
             findSpec.winner = { $exists: true };
             findSpec.winReason = { $ne: 'Agreement' };
         }
+        if (options.months && options.months > 0) {
+            const fromDate = moment().subtract(options.months, 'months');
+            findSpec.startedAt = { $gt: fromDate.toDate() };
+        }
+        if (options.gameType) {
+            findSpec.gameType = options.gameType;
+        }
 
         return this.games
             .find(findSpec, {

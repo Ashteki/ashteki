@@ -7,11 +7,18 @@ export function receiveGames(games) {
     };
 }
 
-export function loadUserGames() {
+export function loadUserGames(months, gameType) {
     return {
         types: ['REQUEST_USERGAMES', 'RECEIVE_USERGAMES'],
         shouldCallAPI: () => true,
-        APIParams: { url: '/api/games', cache: false }
+        APIParams: {
+            url: '/api/games',
+            cache: false,
+            data: {
+                months: months,
+                gameType: gameType
+            }
+        }
     };
 }
 

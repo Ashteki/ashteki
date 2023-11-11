@@ -21,7 +21,8 @@ export const LeftMenu = [
         childItems: [
             { path: '/users', title: 'Users', permission: 'canManageUsers' },
             { path: '/nodes', title: 'Nodes', permission: 'canManageNodes' },
-            { path: '/banlist', title: 'Ban List', permission: 'canManageBanlist' }
+            { path: '/banlist', title: 'Ban List', permission: 'canManageBanlist' },
+            { path: '/taggedgames', title: 'Tagged Games', permission: 'canManageTournaments' }
         ]
     }
 ];
@@ -40,7 +41,7 @@ export const RightMenu = [
 export const ProfileMenu = [
     { title: 'Profile', path: '/profile' },
     { title: 'Stats', path: '/stats' },
-    // { title: 'My Games', path: '/mygames' },
+    { title: 'My Games', path: '/mygames' },
     { title: 'Alt Arts', path: '/alts' },
 
     { title: 'Security', path: '/security' },

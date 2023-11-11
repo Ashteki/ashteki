@@ -70,30 +70,6 @@ class Stats extends React.Component {
     render() {
         let t = this.props.t;
         let content = null;
-        const dropdown = (
-            <select
-                className='form-control'
-                value={this.state.selectedTerm}
-                onChange={this.handleChange}
-            >
-                <option value='0'>All games</option>
-                <option value='1'>Last 1 month</option>
-                <option value='3'>Last 3 months</option>
-                <option value='12'>Last 12 months</option>
-            </select>
-        )
-
-        const gtDropdown = (
-            <select
-                className='form-control'
-                value={this.state.gameType}
-                onChange={this.handleTypeChange}
-            >
-                <option value=''>All Types</option>
-                <option value='competitive'>Ranked</option>
-                <option value='casual'>Casual</option>
-            </select>
-        )
 
         if (this.props.apiLoading) {
             content = (
@@ -165,8 +141,29 @@ class Stats extends React.Component {
                 <div>
                     <div className='profile full-height'>
                         <Panel title={t('Stats')}>
-                            <div className='col-md-6 inline'>{dropdown}</div>
-                            <div className='col-md-6 inline'>{gtDropdown}</div>
+                            <div className='col-md-6 inline'>
+                                <select
+                                    className='form-control'
+                                    value={this.state.selectedTerm}
+                                    onChange={this.handleChange}
+                                >
+                                    <option value='0'>All games</option>
+                                    <option value='1'>Last 1 month</option>
+                                    <option value='3'>Last 3 months</option>
+                                    <option value='12'>Last 12 months</option>
+                                </select>
+                            </div>
+                            <div className='col-md-6 inline'>
+                                <select
+                                    className='form-control'
+                                    value={this.state.gameType}
+                                    onChange={this.handleTypeChange}
+                                >
+                                    <option value=''>All Types</option>
+                                    <option value='competitive'>Ranked</option>
+                                    <option value='casual'>Casual</option>
+                                </select>
+                            </div>
 
                             {table}
                         </Panel>
