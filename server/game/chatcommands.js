@@ -521,7 +521,7 @@ class ChatCommands {
     }
 
     endgame(player) {
-        this.game.addAlert('danger', '{0} is wants to end the game without loss', player);
+        this.game.addAlert('danger', '{0} wants to end the game without loss', player);
         this.game.queueStep(new EndGamePrompt(this.game, player));
     }
 
