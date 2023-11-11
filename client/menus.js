@@ -40,7 +40,7 @@ export const RightMenu = [
 export const ProfileMenu = [
     { title: 'Profile', path: '/profile' },
     { title: 'Stats', path: '/stats' },
-    { title: 'My Games', path: '/mygames' },
+    // { title: 'My Games', path: '/mygames' },
     { title: 'Alt Arts', path: '/alts' },
 
     { title: 'Security', path: '/security' },
