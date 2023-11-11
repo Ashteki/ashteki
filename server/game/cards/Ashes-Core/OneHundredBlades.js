@@ -1,4 +1,4 @@
-const { CardType, PhoenixbornTypes } = require('../../../constants.js');
+const { PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class OneHundredBlades extends Card {

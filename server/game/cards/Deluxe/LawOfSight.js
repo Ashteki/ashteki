@@ -1,6 +1,5 @@
 const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
-const TriggeredAbility = require('../../triggeredability.js');
 
 class LawOfSight extends Card {
     setupCardAbilities(ability) {
