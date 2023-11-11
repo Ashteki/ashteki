@@ -57,7 +57,7 @@ const routes = [
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
     { path: '/stats', action: () => <Stats key='stats' /> },
-    { path: '/matches', action: () => <Matches key='matches' /> },
+    { path: '/mygames', action: () => <Matches key='matches' /> },
     { path: '/elo', action: () => <EloLadder key='elo' /> },
     { path: '/faq', action: () => <FAQ key='elo' /> },
     { path: '/profile', action: () => <Profile key='profile' /> },

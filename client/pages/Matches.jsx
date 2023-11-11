@@ -39,13 +39,13 @@ class Matches extends React.Component {
         if (this.props.apiLoading) {
             content = (
                 <div>
-                    <Trans>Loading matches from the server...</Trans>
+                    <Trans>Loading games from the server...</Trans>
                 </div>
             );
         } else if (!this.props.apiSuccess) {
             content = <AlertPanel type='error' message={this.props.apiMessage} />;
         } else {
-            let matches = this.props.games
+            let myGames = this.props.games
                 ? this.props.games.map((game) => {
                     var startedAt = moment(game.startedAt);
                     var finishedAt = moment(game.finishedAt);
@@ -53,6 +53,9 @@ class Matches extends React.Component {
 
                     return (
                         <tr key={game.gameId}>
+                            <td>
+                                {moment(game.startedAt).format('YYYY-MM-DD HH:mm')}
+                            </td>
                             <td>{game.players[0].deck}</td>
                             <td style={{ 'white-space': 'nowrap' }}>{game.players[1].name}<br />
                                 {game.players[1].deck}</td>
@@ -60,8 +63,6 @@ class Matches extends React.Component {
                             <td style={{ 'white-space': 'nowrap' }}>{game.gameType === 'competitive' ? 'Y' : ''}</td>
                             <td style={{ 'white-space': 'nowrap' }}>
                                 {game.gameId}
-                                <br />
-                                {moment(game.startedAt).format('YYYY-MM-DD HH:mm')}
                                 <br />
                                 {duration.get('minutes')}m {duration.get('seconds')}s
                             </td>
@@ -72,11 +73,12 @@ class Matches extends React.Component {
 
             let table =
                 this.props.games && this.props.games.length === 0 ? (
-                    <div>You have no recorded matches.</div>
+                    <div>You have no recorded games.</div>
                 ) : (
                     <table className='table table-striped'>
                         <thead>
                             <tr>
+                                <th>Date</th>
                                 <th>
                                     <Trans>My Deck</Trans>
                                 </th>
@@ -94,13 +96,13 @@ class Matches extends React.Component {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>{matches}</tbody>
+                        <tbody>{myGames}</tbody>
                     </table>
                 );
 
             content = (
-                <div className='col-sm-10 col-sm-offset-1 profile full-height'>
-                    <Panel title={t('Matches')}>{table}</Panel>
+                <div className='col-sm-offset-1 profile full-height'>
+                    <Panel title={'My Games'}>{table}</Panel>
                 </div>
             );
         }
