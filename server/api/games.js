@@ -34,6 +34,17 @@ module.exports.init = function (server) {
             res.send({ success: true, results: results });
         })
     );
+
+    server.get(
+        '/api/game/:id',
+        wrapAsync(async function (req, res) {
+            let game = await gameService.getGameById(req.params.id);
+            res.attachment(req.params.id + '.json');
+            // res.type('.json');
+            res.send({ success: true, game: game });
+        })
+    );
+
 };
 
 async function getPlayer(game, index) {

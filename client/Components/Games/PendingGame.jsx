@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactClipboard from 'react-clipboardjs-copy';
 import { Button, Form } from 'react-bootstrap';
 import { Trans, useTranslation } from 'react-i18next';
 import $ from 'jquery';
@@ -191,8 +190,14 @@ const PendingGame = () => {
         );
     }
 
-    const onGameLinkCopy = () => {
-        toastr.success('Copied game link to clipboard');
+    const copyGameLink = () => {
+        const gameLink = `${window.location.protocol}//${window.location.host}/play?gameId=${currentGame.id}`;
+
+        navigator.clipboard
+            .writeText(gameLink)
+            .then(() => toastr.success('Copied game link to clipboard'))
+            .catch(() => toastr.error('Could not copy game link to clipboard'))
+
     };
 
     return (
@@ -210,7 +215,6 @@ const PendingGame = () => {
                 />
                 <div>
                     <div className='start-game-buttons'>
-
                         <Button
                             variant='primary'
                             className='def'
@@ -244,14 +248,9 @@ const PendingGame = () => {
             {!currentGame.solo && (
                 <>
                     <div className='copy-game-link'>
-                        <ReactClipboard
-                            text={`${window.location.protocol}//${window.location.host}/play?gameId=${currentGame.id}`}
-                            onSuccess={onGameLinkCopy}
-                        >
-                            <Button variant='primary' className='def'>
-                                <Trans>Copy Game Link</Trans>
-                            </Button>
-                        </ReactClipboard>
+                        <Button variant='primary' className='def' onClick={copyGameLink}>
+                            <Trans>Copy Game Link</Trans>
+                        </Button>
                     </div>
                     <h3>
                         Type: <span className='unbold cap'>{getRankedLabel(currentGame.gameType)}</span>

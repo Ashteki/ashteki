@@ -98,7 +98,7 @@ class Stats extends React.Component {
         if (this.props.apiLoading) {
             content = (
                 <div>
-                    <Trans>Loading matches from the server...</Trans>
+                    <Trans>Loading games from the server...</Trans>
                 </div>
             );
         } else if (!this.props.apiSuccess) {
@@ -135,7 +135,7 @@ class Stats extends React.Component {
 
             let table =
                 statisticRows.length === 0 ? (
-                    <div>You have no recorded matches.</div>
+                    <div>You have no recorded games.</div>
                 ) : (
                     <table className='table table-striped table-totals'>
                         <thead>

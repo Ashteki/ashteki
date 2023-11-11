@@ -64,6 +64,16 @@ class GameService {
             });
     }
 
+    getGameById(id) {
+        const findSpec = {
+            gameId: id
+        };
+        return this.games.findOne(findSpec).catch((err) => {
+            logger.error('Unable to get game: ', id, err);
+            throw new Error('Unable to get game');
+        });
+    }
+
     async findByUserName(username, options = {}) {
         const findSpec = {
             'players.name': username
