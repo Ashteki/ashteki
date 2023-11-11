@@ -39,6 +39,8 @@ module.exports.init = function (server) {
         '/api/game/:id',
         wrapAsync(async function (req, res) {
             let game = await gameService.getGameById(req.params.id);
+            res.attachment(req.params.id + '.json');
+            // res.type('.json');
             res.send({ success: true, game: game });
         })
     );

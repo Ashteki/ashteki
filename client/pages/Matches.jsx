@@ -33,7 +33,8 @@ class Matches extends React.Component {
     }
 
     render() {
-        let t = this.props.t;
+        const gameApiRoot = `${window.location.protocol}//${window.location.host}/api/game/`;
+
         let content = null;
 
         if (this.props.apiLoading) {
@@ -62,7 +63,9 @@ class Matches extends React.Component {
                             <td>{this.computeWinner(game)}<br />({game.winReason})</td>
                             <td style={{ 'white-space': 'nowrap' }}>{game.gameType === 'competitive' ? 'Y' : ''}</td>
                             <td style={{ 'white-space': 'nowrap' }}>
-                                {game.gameId}
+                                <a href={gameApiRoot + game.gameId} download={true}>
+                                    {game.gameId}
+                                </a>
                                 <br />
                                 {duration.get('minutes')}m {duration.get('seconds')}s
                             </td>
