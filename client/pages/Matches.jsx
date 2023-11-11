@@ -1,18 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-import AlertPanel from '../Components/Site/AlertPanel';
 import Panel from '../Components/Site/Panel';
 import { loadUserGames } from '../redux/actions';
 
 const Matches = () => {
     const dispatch = useDispatch();
     const games = useSelector((state) => state.games.games);
+    const [term, setTerm] = useState(1);
+    const [gameType, setGameType] = useState('');
 
     useEffect(() => {
-        dispatch(loadUserGames());
-    }, []);
+        dispatch(loadUserGames(term, gameType));
+    }, [dispatch, term, gameType]);
+
+    const handleTermChange = (event) => {
+        setTerm(event.target.value);
+        event.stopPropagation();
+    };
+
+    const handleTypeChange = (event) => {
+        setGameType(event.target.value);
+        event.stopPropagation();
+    };
 
     const computeWinner = (game) => {
         if (
@@ -33,8 +44,6 @@ const Matches = () => {
     };
 
     const gameApiRoot = `${window.location.protocol}//${window.location.host}/api/game/`;
-
-    let content = null;
 
     let myGames = games
         ? games.map((game) => {
@@ -89,13 +98,37 @@ const Matches = () => {
             </table>
         );
 
-    content = (
+    return (
         <div className='col-sm-offset-1 profile full-height'>
-            <Panel title={'My Games'}>{table}</Panel>
+            <Panel title={'My Games'}>
+                <div className='col-md-6 inline'>
+                    <select
+                        className='form-control'
+                        onChange={handleTermChange}
+                        value={term}
+                    >
+                        <option value='0'>All games</option>
+                        <option value='1'>Last 1 month</option>
+                        <option value='3'>Last 3 months</option>
+                        <option value='12'>Last 12 months</option>
+                    </select>
+                </div>
+                <div className='col-md-6 inline'>
+                    <select
+                        className='form-control'
+                        onChange={handleTypeChange}
+                    >
+                        <option value=''>All Types</option>
+                        <option value='competitive'>Ranked</option>
+                        <option value='casual'>Casual</option>
+                    </select>
+                </div>
+
+
+                {table}
+            </Panel>
         </div>
     );
-
-    return content;
 };
 
 export default Matches;

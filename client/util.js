@@ -64,12 +64,12 @@ export const getStandardControlProps = (formProps, controlName) => ({
     isInvalid: formProps.touched[controlName] && !!formProps.errors[controlName]
 });
 
-export const gameTypes = [
+export const rankTypes = [
     { name: 'casual', label: 'Unranked' },
     { name: 'competitive', label: 'Ranked' }
 ];
 export const getRankedLabel = (name) => {
-    const type = gameTypes.find(f => f.name === name);
+    const type = rankTypes.find(f => f.name === name);
     return type?.label;
 };
 
