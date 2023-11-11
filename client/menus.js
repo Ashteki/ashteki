@@ -21,7 +21,8 @@ export const LeftMenu = [
         childItems: [
             { path: '/users', title: 'Users', permission: 'canManageUsers' },
             { path: '/nodes', title: 'Nodes', permission: 'canManageNodes' },
-            { path: '/banlist', title: 'Ban List', permission: 'canManageBanlist' }
+            { path: '/banlist', title: 'Ban List', permission: 'canManageBanlist' },
+            { path: '/taggedgames', title: 'Tagged Games', permission: 'canManageTournaments' }
         ]
     }
 ];

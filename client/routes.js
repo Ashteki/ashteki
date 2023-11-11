@@ -28,6 +28,7 @@ import EloLadder from './pages/EloLadder';
 import FAQ from './pages/faq';
 import UserAlts from './pages/profile/UserAlts';
 import Matches from './pages/Matches';
+import TaggedGames from './pages/admin/TaggedGames.jsx';
 
 const routes = [
     // { path: '/', action: () => <Home key='lobby' /> },
@@ -85,7 +86,8 @@ const routes = [
         path: '/banlist',
         action: () => <BanlistAdmin key='banlist' permission='canManageBanlist' />
     },
-    { path: '/patreon', action: (context) => <Patreon code={context.params.code} /> }
+    { path: '/patreon', action: (context) => <Patreon code={context.params.code} /> },
+    { path: '/taggedgames', action: () => <TaggedGames /> }
 ];
 
 export default routes;
