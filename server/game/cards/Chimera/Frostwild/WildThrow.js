@@ -5,7 +5,7 @@ class WildThrow extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.entersPlay({
-            title: "Giant's Might 1",
+            title: 'Wild Throw',
             target: {
                 mode: 'auto',
                 aim: 'left',
@@ -15,7 +15,8 @@ class WildThrow extends AspectCard {
                     }),
                     ability.actions.moveUnit()
                 ]
-            }
+            },
+            preferActionPromptMessage: true
         });
     }
 }
