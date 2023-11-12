@@ -57,6 +57,7 @@
   },
   {
     "precon_id": 802,
+    "premium": true,
     "mode": "chimera",
     "name": "The Corpse of Viros - Shadow",
     "phoenixborn": [
@@ -113,6 +114,7 @@
   },
   {
     "precon_id": 803,
+    "premium": true,
     "mode": "chimera",
     "name": "The Frostwild Scourge - Storm",
     "phoenixborn": [
@@ -162,6 +164,72 @@
       },
       {
         "id": "frost-bulwark",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "stun",
+        "count": 6
+      },
+      {
+        "id": "vigor",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "precon_id": 804,
+    "premium": true,
+    "mode": "chimera",
+    "name": "The Frostwild Scourge - Mighty",
+    "phoenixborn": [
+      {
+        "id": "frostwild-scourge",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "scourge-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "scourge-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "giants-might",
+        "count": 3
+      },
+      {
+        "id": "warcry",
+        "count": 3
+      },
+      {
+        "id": "sweeping-strike",
+        "count": 3
+      },
+      {
+        "id": "wild-throw",
+        "count": 3
+      },
+      {
+        "id": "charge-fist",
+        "count": 3
+      },
+      {
+        "id": "crushing-grip",
         "count": 3
       }
     ],

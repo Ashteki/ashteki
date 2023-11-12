@@ -16,7 +16,6 @@ import { useEffect } from 'react';
 import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl, navigate } from '../../redux/actions';
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
-import { patreonUrl } from '../../constants';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
@@ -85,19 +84,19 @@ const GameLobby = ({ gameId }) => {
             return;
         }
 
-        const userIsSupporter = user?.permissions.isSupporter;
+        // const userIsSupporter = user?.permissions.isSupporter;
 
-        if (gameType === 'pvp' || userIsSupporter) {
-            dispatch(startNewGame(gameType));
-        }
+        // if (gameType === 'pvp' || userIsSupporter) {
+        dispatch(startNewGame(gameType));
+        // }
 
-        if (gameType === 'chimera' && !userIsSupporter) {
-            if (user?.patreon === 'linked') {
-                window.location = 'https://www.patreon.com/ashteki';
-            } else {
-                window.location = patreonUrl;
-            }
-        }
+        // if (gameType === 'chimera' && !userIsSupporter) {
+        //     if (user?.patreon === 'linked') {
+        //         window.location = 'https://www.patreon.com/ashteki';
+        //     } else {
+        //         window.location = patreonUrl;
+        //     }
+        // }
     };
 
     const newGameText = currentGame?.started === false ? currentGame.name : 'Start a new game vs:';
@@ -124,7 +123,7 @@ const GameLobby = ({ gameId }) => {
                                     />
                                     <PictureButton
                                         text='Chimera'
-                                        header='Premium'
+                                        // header='Premium'
                                         imageClass='chimera'
                                         onClick={() => handleNewGameClick('chimera')}
                                     />

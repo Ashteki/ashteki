@@ -33,6 +33,9 @@ class PlayerInteractionWrapper {
         return this.player.fatigued;
     }
 
+    get activeNonBasicDiceCount() {
+        return this.player.activeNonBasicDiceCount;
+    }
     /**
      * Sets the player's hand to contain the specified cards. Moves cards between
      * hand and deck

@@ -204,7 +204,8 @@ class AshesDeckService {
         if (isPrecon) {
             properties = Object.assign(properties, {
                 precon_id: deck.precon_id,
-                precon_group: deck.preconGroup
+                precon_group: deck.preconGroup,
+                premium: deck.premium
             });
         } else {
             properties = Object.assign(properties, { username: deck.username });

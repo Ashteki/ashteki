@@ -267,3 +267,20 @@
     }
 
 }
+
+.premium-lozenge {
+    padding: 2px 4px;
+    border-radius: 4px;
+    display: inline-block;
+    background-color: rgb(251, 219, 89);
+    font-size: 14px;
+    color: black;
+}
+
+.premium {
+    cursor: not-allowed;
+
+    .decklist-entry-image {
+        filter: grayscale(100%);
+    }
+}

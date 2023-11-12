@@ -136,7 +136,7 @@ describe('Summon Sleeping Widows', function () {
             this.player2.clickCard(this.sleepingWidow);
             expect(this.player1.player.limitedPlayed).toBe(0);
 
-            expect(this.player1).toHavePrompt('Any reactions to Sleeping Widow being destroyed?'); // Failing as reaction already used?
+            expect(this.player1).toHavePrompt('Any reactions to Sleeping Widow being destroyed?'); // Intermittant Failing as reaction already used?
         });
     });
 });

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendSocketMessage } from '../../redux/actions';
 import { Button, Col, Form } from 'react-bootstrap';
 import classNames from 'classnames';
@@ -9,6 +8,7 @@ import './PendingGamePlayer.scss';
 import DeckStatus from '../Decks/DeckStatus';
 import PlayerName from '../Site/PlayerName';
 import SelectDeckModal from './SelectDeckModal';
+import { PatreonStatus } from '../../types';
 
 /**
  * @typedef PendingGamePlayersProps
@@ -23,8 +23,8 @@ import SelectDeckModal from './SelectDeckModal';
 const PendingGamePlayers = ({ currentGame, user }) => {
     const [showModal, setShowModal] = useState(false);
     const [playerIsMe, setPlayerIsMe] = useState(true);
-    const { t } = useTranslation();
     const dispatch = useDispatch();
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
 
     let firstPlayer = true;
     // need to account for coaloff, and player index
@@ -58,7 +58,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
     };
 
     return (
-        <div title={t('Players')}>
+        <div>
             <h3>Players:</h3>
             {Object.values(currentGame.players).map((player) => {
                 const isMe = player && player.name === user?.username;
@@ -76,7 +76,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     if (isMe || currentGame.solo) {
                         const deckName = player.deck.name;
                         deck = (
-                            <span className={clickClasses} onClick={() => clickHandler(isMe)}>
+                            <span className={clickClasses} title='Select Deck' onClick={() => clickHandler(isMe)}>
                                 {deckName}
                             </span>
                         );
@@ -93,32 +93,43 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     );
 
                     if (player.deck.isChimera) {
-                        soloControls = (
-                            <>
-                                <Col xs='auto'>
-                                    <Form.Control
-                                        as='select'
-                                        sm='3'
-                                        size='sm'
-                                        onChange={(e) => onSoloLevelChange(e.target.value)}
-                                    >
-                                        <option value='S'>Standard</option>
-                                        <option value='H'>Heroic</option>
-                                    </Form.Control>
-                                </Col>
-                                <Col xs='auto'>
-                                    <Form.Control
-                                        as='select'
-                                        size='sm'
-                                        onChange={(e) => onSoloStageChange(e.target.value)}
-                                    >
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </Form.Control>
-                                </Col>
-                            </>
-                        );
+                        if (allowPremium) {
+                            soloControls = (
+                                <>
+                                    <Col xs='auto'>
+                                        <Form.Control
+                                            as='select'
+                                            sm='3'
+                                            size='sm'
+                                            onChange={(e) => onSoloLevelChange(e.target.value)}
+                                        >
+                                            <option value='S'>Standard</option>
+                                            <option value='H'>Heroic</option>
+                                        </Form.Control>
+                                    </Col>
+                                    <Col xs='auto'>
+                                        <Form.Control
+                                            as='select'
+                                            size='sm'
+                                            onChange={(e) => onSoloStageChange(e.target.value)}
+                                        >
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </Form.Control>
+                                    </Col>
+                                </>
+                            );
+                        } else {
+                            soloControls = (
+                                <span
+                                    className='premium btn btn-primary def disabled'
+                                    title='Patreon only'
+                                >
+                                    Standard Level 1
+                                </span>
+                            );
+                        }
                     }
                 } else if (player && isMe) {
                     selectLink = (

@@ -1,4 +1,3 @@
-const Dice = require('../dice');
 const DiceGameAction = require('./DiceGameAction');
 
 class RerollDiceAction extends DiceGameAction {
