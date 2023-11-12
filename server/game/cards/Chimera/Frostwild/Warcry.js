@@ -5,6 +5,9 @@ class Warcry extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.forcedReaction({
+            // why does this one need messageArgs when normally it doesn't?
+            message: '{0} ability is triggered',
+            messageArgs: (context) => context.source,
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (

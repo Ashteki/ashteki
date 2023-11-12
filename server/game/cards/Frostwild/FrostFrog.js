@@ -3,6 +3,7 @@ const Card = require('../../Card.js');
 class FrostFrog extends Card {
     setupCardAbilities(ability) {
         this.forcedReaction({
+            title: 'Cold Snap 1',
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
