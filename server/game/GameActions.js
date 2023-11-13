@@ -32,6 +32,7 @@ const Actions = {
     moveCard: (propertyFactory) => new GameActions.MoveCardAction(propertyFactory), // destination, switch = false, shuffle = false
     moveToBottom: (propertyFactory) => new GameActions.MoveToBottomAction(propertyFactory),
     moveToken: (propertyFactory) => new GameActions.MoveTokenAction(propertyFactory),
+    moveUnit: (propertyFactory) => new GameActions.MoveUnitAction(propertyFactory),
     placeUnder: (propertyFactory) => new GameActions.PlaceUnderAction(propertyFactory), // parent
     playCard: (propertyFactory) => new GameActions.PlayCardAction(propertyFactory), // resetOnCancel = false, postHandler
     purge: (propertyFactory) => new GameActions.PurgeAction(propertyFactory),

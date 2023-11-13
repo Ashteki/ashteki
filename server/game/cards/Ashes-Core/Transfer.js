@@ -1,4 +1,4 @@
-const { CardType, PhoenixbornTypes } = require('../../../constants.js');
+const { PhoenixbornTypes } = require('../../../constants.js');
 const { capitalize } = require('../../../util.js');
 const Card = require('../../Card.js');
 

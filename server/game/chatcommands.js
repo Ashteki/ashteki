@@ -24,7 +24,6 @@ class ChatCommands {
             '/firstplayer': this.makeFirstPlayer,
             '/move': this.moveCard,
             '/moveto': this.moveCard,
-            '/modifyclock': this.modifyClock, // hidden option
             '/mutespectators': this.muteSpectators, // hidden option
             '/passactive': this.passActiveTurn, //hidden option
             '/purge': this.purgeCard,
@@ -34,8 +33,6 @@ class ChatCommands {
             '/revealaspect': this.revealAspect,
             '/shuffle': this.shuffle,
             '/suddendeath': this.suddenDeath,
-            '/stopclocks': this.stopClocks, // hidden option
-            '/startclocks': this.startClocks, // hidden option
             '/token': this.setToken
         };
         this.tokens = ['damage', 'exhaust', 'status'];
@@ -318,24 +315,6 @@ class ChatCommands {
             });
         }
     }
-    // startClocks(player) {
-    //     this.game.startTimer();
-
-    //     this.game.addAlert('danger', '{0} restarts the timers', player);
-    //     _.each(this.game.getPlayers(), (player) => player.clock.restart());
-    // }
-
-    // stopClocks(player) {
-    //     this.game.stopTimer();
-    //     this.game.addAlert('danger', '{0} stops the timers', player);
-    //     _.each(this.game.getPlayers(), (player) => player.clock.pause());
-    // }
-
-    // modifyClock(player, args) {
-    //     let num = this.getNumberOrDefault(args[1], 60);
-    //     this.game.addAlert('danger', '{0} adds {1} seconds to their clock', player, num);
-    //     player.clock.modify(num);
-    // }
 
     draw(player, args) {
         let num = this.getNumberOrDefault(args[1], 1);
@@ -521,7 +500,7 @@ class ChatCommands {
     }
 
     endgame(player) {
-        this.game.addAlert('danger', '{0} is wants to end the game without loss', player);
+        this.game.addAlert('danger', '{0} wants to end the game without loss', player);
         this.game.queueStep(new EndGamePrompt(this.game, player));
     }
 

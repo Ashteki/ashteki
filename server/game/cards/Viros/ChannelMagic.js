@@ -1,4 +1,4 @@
-const { CardType, Level, PhoenixbornTypes } = require('../../../constants.js');
+const { Level, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class ChannelMagic extends Card {

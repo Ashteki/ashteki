@@ -219,7 +219,7 @@ const UserAdmin = () => {
                                                     <Col md={3}>
                                                         <dt>Username:</dt>
                                                     </Col>
-                                                    <Col md={3}>
+                                                    <Col md={9}>
                                                         <dd>{currentUser.username}</dd>
                                                     </Col>
                                                 </Row>
@@ -227,7 +227,7 @@ const UserAdmin = () => {
                                                     <Col md={3}>
                                                         <dt>Email:</dt>
                                                     </Col>
-                                                    <Col md={3}>
+                                                    <Col md={9}>
                                                         <dd>{currentUser.email}</dd>
                                                     </Col>
                                                 </Row>
@@ -235,7 +235,7 @@ const UserAdmin = () => {
                                                     <Col md={3}>
                                                         <dt>Registered:</dt>
                                                     </Col>
-                                                    <Col md={3}>
+                                                    <Col md={9}>
                                                         <dd>
                                                             {moment(currentUser.registered).format(
                                                                 'YYYY-MM-DD HH:MM'
@@ -247,12 +247,11 @@ const UserAdmin = () => {
                                                     <Col md={3}>
                                                         <dt>Favorite Color:</dt>
                                                     </Col>
-                                                    <Col md={3}>
+                                                    <Col md={9}>
                                                         <HexColorPicker
                                                             color={faveColor}
                                                             onChange={setfaveColor}
                                                         />
-                                                        ;
                                                         <Form.Control
                                                             name='favecolor'
                                                             type='text'
@@ -332,6 +331,17 @@ const UserAdmin = () => {
                                                     </tbody>
                                                 </Table>
                                             )}
+                                            <Button
+                                                type='button'
+                                                className='btn btn-primary col-xs-3'
+                                                onClick={() =>
+                                                    dispatch(
+                                                        clearUserSessions(currentUser.username)
+                                                    )
+                                                }
+                                            >
+                                                Clear sessions
+                                            </Button>
                                             <h3>Possibly Linked Accounts</h3>
                                             <ul className='list'>
                                                 {currentUser.linkedAccounts?.map((name) => {
@@ -339,7 +349,9 @@ const UserAdmin = () => {
                                                         <li key={name}>
                                                             <a
                                                                 href='javascript:void(0)'
-                                                                onClick={() => dispatch(findUser(name))}
+                                                                onClick={() =>
+                                                                    dispatch(findUser(name))
+                                                                }
                                                             >
                                                                 {name}
                                                             </a>
@@ -347,24 +359,11 @@ const UserAdmin = () => {
                                                     );
                                                 })}
                                             </ul>
-
-
                                         </TabPanel>
-
                                     </Tabs>
-
                                 </Panel>
 
                                 <div className='text-center'>
-                                    <Button
-                                        type='button'
-                                        className='btn btn-primary col-xs-3'
-                                        onClick={() =>
-                                            dispatch(clearUserSessions(currentUser.username))
-                                        }
-                                    >
-                                        Clear sessions
-                                    </Button>
                                     <Button
                                         type='button'
                                         variant='primary'

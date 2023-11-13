@@ -21,7 +21,7 @@ const DeckHeader = ({ deck }) => {
                 <div>{deck?.phoenixborn[0]?.card.name}</div>
                 <div className='deck-header-buttons'>
                     <a href='#' className='fave-icon'>
-                        {deck.favourite ? (
+                        {deck?.favourite ? (
                             <FontAwesomeIcon
                                 icon={faHeart}
                                 title='Remove from favourites'

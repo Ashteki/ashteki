@@ -1,4 +1,4 @@
-const { CardType, PhoenixbornTypes } = require('../../../constants.js');
+const { PhoenixbornTypes } = require('../../../constants.js');
 const AbilityTargetCard = require('../../AbilityTargets/AbilityTargetCard.js');
 const AbilityTargetDie = require('../../AbilityTargets/AbilityTargetDie.js');
 const Card = require('../../Card.js');

@@ -42,6 +42,7 @@ module.exports = {
     MoveCardAction: require('./MoveCardAction'),
     MoveToBottomAction: require('./MoveToBottomAction'),
     MoveTokenAction: require('./MoveTokenAction'),
+    MoveUnitAction: require('./MoveUnitAction'),
     PlaceUnderAction: require('./PlaceUnderAction'),
     PlayCardAction: require('./PlayCardAction'),
     //PlayerAction

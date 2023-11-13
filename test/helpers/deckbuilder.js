@@ -38,7 +38,15 @@ class DeckBuilder {
         let deck = [];
         const minDeck = player.dummy ? 8 : 6;
 
-        for (let zone of ['deck', 'hand', 'inPlay', 'spellboard', 'discard', 'archives', 'threatZone']) {
+        for (let zone of [
+            'deck',
+            'hand',
+            'inPlay',
+            'spellboard',
+            'discard',
+            'archives',
+            'threatZone'
+        ]) {
             if (Array.isArray(player[zone])) {
                 deck = deck.concat(player[zone]);
             }

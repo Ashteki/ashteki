@@ -1,4 +1,4 @@
-const { BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../constants');
+const { BattlefieldTypes, PhoenixbornTypes } = require('../../constants');
 const { Costs } = require('../costs');
 const AttackState = require('./AttackState');
 const BaseStepWithPipeline = require('./basestepwithpipeline');

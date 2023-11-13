@@ -1,4 +1,4 @@
-const { CardType, PhoenixbornTypes } = require('../../constants');
+const { PhoenixbornTypes } = require('../../constants');
 const BaseStepWithPipeline = require('./basestepwithpipeline');
 const SimpleStep = require('./simplestep');
 

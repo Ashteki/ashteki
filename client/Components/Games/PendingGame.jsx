@@ -213,7 +213,7 @@ const PendingGame = () => {
                     disabled={true}
                     imageClass={currentGame.newGameType}
                 />
-                <div>
+                <div className='pending-header-content'>
                     <div className='start-game-buttons'>
                         <Button
                             variant='primary'

@@ -65,7 +65,7 @@ const TaggedGames = () => {
                         <br />({game.winReason})
                     </td>
                     <td style={{ 'white-space': 'nowrap' }}>
-                        {game.players[1 - winnerIndex]?.wounds}
+                        {game.players[winnerIndex]?.wounds}
                     </td>
                     <td style={{ 'white-space': 'nowrap' }}>
                         <a href={gameApiRoot + game.gameId} download={true}>

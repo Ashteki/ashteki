@@ -21,7 +21,8 @@ class Stun extends Card {
                 gameAction: AbilityDsl.actions.lowerDie()
             },
             then: {
-                gameAction: ability.actions.discard({ target: this })
+                gameAction: ability.actions.discard({ target: this }),
+                message: '{1} is discarded'
             }
         });
     }
