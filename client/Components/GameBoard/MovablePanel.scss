@@ -32,3 +32,25 @@
     padding: 15px;
     overflow-y: auto;
 }
+
+.zoom-buttons {
+    position: absolute;
+    left: 10px;
+
+    a {
+        margin: 0px 5px !important;
+    }
+
+    .zoom-plus {
+        color: $body-color;
+        // margin-bottom: 0 !important;
+        vertical-align: middle !important;
+        margin-right: 0px;
+    }
+
+    .zoom-minus {
+        color: $body-color;
+        // margin-bottom: 0 !important;
+        vertical-align: middle !important;
+    }
+}

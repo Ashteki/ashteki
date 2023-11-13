@@ -12,6 +12,8 @@ const CardPilePopup = ({
     onCardClick,
     onCardAltClick,
     onCloseClick,
+    onPlusClick,
+    onMinusClick,
     onDragDrop,
     onMouseOut,
     onMouseOver,
@@ -83,7 +85,13 @@ const CardPilePopup = ({
     );
 
     popup = (
-        <MovablePanel title={title} name={source} onCloseClick={onCloseClick} side={popupLocation}>
+        <MovablePanel
+            title={title}
+            name={source}
+            onCloseClick={onCloseClick}
+            onPlusClick={onPlusClick}
+            onMinusClick={onMinusClick}
+            side={popupLocation}>
             <Droppable onDragDrop={onDragDrop} source={source} manualMode={manualMode}>
                 <div className={popupClass} onClick={(event) => event.stopPropagation()}>
                     {popupMenuToRender}

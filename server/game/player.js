@@ -206,7 +206,9 @@ class Player extends GameObject {
 
     // this get sent to the client
     get battlefield() {
-        return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type) && !card.moribund);
+        return this.cardsInPlay.filter(
+            (card) => !PhoenixbornTypes.includes(card.type) && !card.moribund
+        );
     }
 
     indexOf(card) {
@@ -687,12 +689,19 @@ class Player extends GameObject {
         this.dice.sort((a, b) => (a.magic + a.level > b.magic + b.level ? -1 : 1));
     }
 
+    get activeDice() {
+        return this.dice.filter(d => !d.exhausted);
+    }
     get activeDiceCount() {
-        return this.dice.filter(d => !d.exhausted).length;
+        return this.activeDice.length;
+    }
+
+    get activeNonBasicDice() {
+        return this.dice.filter(d => !d.exhausted && d.level !== Level.Basic);
     }
 
     get activeNonBasicDiceCount() {
-        return this.dice.filter(d => !d.exhausted && d.level !== Level.Basic).length;
+        return this.activeNonBasicDice.length;
     }
 
     /**

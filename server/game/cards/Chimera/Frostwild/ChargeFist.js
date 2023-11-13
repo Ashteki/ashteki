@@ -25,7 +25,7 @@ class ChargeFist extends AspectCard {
                 condition: (context) => context.source.status === 0,
                 target: {
                     toSelect: 'die',
-                    autoTarget: (context) => context.player.opponent.dice.filter((d) => d.level !== Level.Basic),
+                    autoTarget: (context) => context.player.opponent.activeNonBasicDice,
                     gameAction: ability.actions.rerollDice()
                 }
             }

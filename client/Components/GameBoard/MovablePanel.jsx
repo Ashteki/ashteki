@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDrag } from 'react-dnd';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faMinusCircle, faPlus, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { ItemTypes } from '../../constants';
 import PopupDefaults from './PopupDefaults';
 
 import './MovablePanel.scss';
 
-const MovablePanel = ({ children, name, onCloseClick, side, title }) => {
+const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick, side, title }) => {
     const key = `${name}-${side}`;
     const savedStyle = localStorage.getItem(key);
     const style = (savedStyle && JSON.parse(savedStyle)) || PopupDefaults[key];
@@ -80,6 +80,18 @@ const MovablePanel = ({ children, name, onCloseClick, side, title }) => {
         <div ref={popupRef}>
             <div ref={drag} className='panel panel-primary' style={position}>
                 <div className='panel-heading' onClick={(event) => event.stopPropagation()}>
+                    {onMinusClick &&
+                        <span className='zoom-buttons'>
+                            <a className='zoom-minus' onClick={onMinusClick}>
+                                <FontAwesomeIcon icon={faMinusCircle} />
+                            </a>
+                            /
+                            <a className='zoom-plus' onClick={onPlusClick}>
+                                <FontAwesomeIcon icon={faPlusCircle} />
+                            </a>
+
+                        </span>
+                    }
                     <span className='text-center'>{title}</span>
                     <span className='float-right'>
                         <a className='close-button' onClick={onCloseClick}>

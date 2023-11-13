@@ -35,7 +35,7 @@ const DeckHeader = ({ deck }) => {
                             />
                         )}
                     </a>
-                    <DeckStatus status={deck.status} />
+                    {deck && <DeckStatus status={deck.status} />}
                 </div>
             </div>
         </div>
