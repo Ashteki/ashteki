@@ -605,14 +605,15 @@ class Card extends PlayableObject {
             (e) => e.context.source != this || e.effect.printedAbility === false
         );
         const simpleTypes = {
-            'preventAllDamage': 'Prevent all damage',
-            'bypass': 'Bypass',
-            'quickStrike': 'Quick strike',
-            'cannotBeAttackTarget': 'Cannot be attack target',
-            'cannotBeSpellTarget': 'Protected',
-            'preventBlock': 'Cannot be blocked',
-            'preventGuard': 'Cannot be guarded against',
-            'magnify': 'Magnify'
+            preventAllDamage: 'Prevent all damage',
+            bypass: 'Bypass',
+            quickStrike: 'Quick strike',
+            cannotBeAttackTarget: 'Cannot be attack target',
+            cannotBeSpellTarget: 'Protected',
+            preventBlock: 'Cannot be blocked',
+            preventGuard: 'Cannot be guarded against',
+            magnify: 'Magnify',
+            exhausted: 'Exhausted'
         };
         const simpleNames = acquiredEffects
             .filter((e) => Object.keys(simpleTypes).includes(e.type))
