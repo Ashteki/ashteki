@@ -34,6 +34,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     });
     const user = useSelector((state) => state.account.user);
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
+    const showRestricted = user?.permissions.canVerifyDecks;
     const [showFaves, setShowFaves] = useState(false);
     const pbFilter = useRef(null);
     const nameFilter = useRef(null);
@@ -50,7 +51,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             case 4:
                 return state.cards.firstAdventureDecks;
             case 5:
-                return state.cards.chimeraDecks;
+                return state.cards.chimeraDecks.filter((d) => showRestricted || !d.restricted);
             case 6:
                 return state.cards.pveDecks;
             default:
