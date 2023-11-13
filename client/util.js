@@ -111,3 +111,17 @@ export const toBase64 = (file) =>
     });
 
 export const ashesLiveShareUrl = 'https://ashes.live/decks/share/';
+
+const sizes = ['small', 'normal', 'large', 'x-large']
+export function sizeUp(size) {
+    if (size === 'x-large') {
+        return 'x-large';
+    }
+    return sizes[sizes.indexOf(size) + 1];
+}
+export function sizeDown(size) {
+    if (size === 'small') {
+        return 'small';
+    }
+    return sizes[sizes.indexOf(size) - 1];
+}

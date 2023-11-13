@@ -17,42 +17,52 @@
   */
 
 @function card-var($value) {
-    @if $value == 'keyteki-card-height' {
+    @if $value =='keyteki-card-height' {
         @return $keyteki-card-height;
-    } @else if $value == 'keyteki-card-width' {
+    }
+
+    @else if $value =='keyteki-card-width' {
         @return $keyteki-card-width;
-    } @else if $value == 'keyteki-card-lg-height' {
+    }
+
+    @else if $value =='keyteki-card-lg-height' {
         @return $keyteki-card-lg-height;
-    } @else if $value == 'keyteki-card-lg-width' {
+    }
+
+    @else if $value =='keyteki-card-lg-width' {
         @return $keyteki-card-lg-width;
-    } @else if $value == 'keyteki-card-sm-height' {
+    }
+
+    @else if $value =='keyteki-card-sm-height' {
         @return $keyteki-card-sm-height;
-    } @else if $value == 'keyteki-card-sm-width' {
+    }
+
+    @else if $value =='keyteki-card-sm-width' {
         @return $keyteki-card-sm-width;
-    } @else if $value == 'keyteki-card-xl-height' {
+    }
+
+    @else if $value =='keyteki-card-xl-height' {
         @return $keyteki-card-xl-height;
-    } @else if $value == 'keyteki-card-xl-width' {
+    }
+
+    @else if $value =='keyteki-card-xl-width' {
         @return $keyteki-card-xl-width;
     }
 }
 
 @mixin calculate-tiled-card-prop($property, $numCards, $cardMeasurement, $additionalOffset: 0px) {
-    #{$property}: $numCards * (card-var('keyteki-card-#{$cardMeasurement}') + 5px) +
-        $additionalOffset;
+    #{$property}: $numCards * (card-var('keyteki-card-#{$cardMeasurement}') + 5px)+$additionalOffset;
 
     &.small {
-        #{$property}: $numCards * (card-var('keyteki-card-sm-#{$cardMeasurement}') + 5px) +
-            $additionalOffset;
+        #{$property}: $numCards * (card-var('keyteki-card-sm-#{$cardMeasurement}') + 5px)+$additionalOffset;
     }
 
     &.large {
-        #{$property}: $numCards * (card-var('keyteki-card-lg-#{$cardMeasurement}') + 5px) +
-            $additionalOffset;
+        #{$property}: $numCards * (card-var('keyteki-card-lg-#{$cardMeasurement}') + 5px)+$additionalOffset;
     }
 
     &.x-large {
-        #{$property}: $numCards * (card-var('keyteki-card-xl-#{$cardMeasurement}') + 5px) +
-            $additionalOffset;
+        #{$property}: $numCards * (card-var('keyteki-card-xl-#{$cardMeasurement}') + 5px)+$additionalOffset;
     }
 }
 
@@ -177,7 +187,7 @@
     .panel {
         .inner {
             @include calculate-tiled-card-prop(min-height, 1, height);
-            @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
+            @include calculate-tiled-card-prop(width, 4, width, $scrollbar-width);
             padding: 4px;
         }
     }

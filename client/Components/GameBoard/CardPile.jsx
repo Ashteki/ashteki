@@ -8,6 +8,7 @@ import './CardPile.scss';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
+import { sizeDown, sizeUp } from '../../util';
 
 const CardPile = ({
     cards,
@@ -38,6 +39,15 @@ const CardPile = ({
 }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [manualPopup, setManualPopup] = useState(false);
+    const [popupSize, setPopupSize] = useState(size);
+    const onPlusClick = () => {
+        setPopupSize(sizeUp(popupSize));
+    };
+
+    const onMinusClick = () => {
+        setPopupSize(sizeDown(popupSize));
+    };
+
     const updatePopupVisibility = useCallback(
         (value) => {
             setShowPopup(value);
@@ -138,10 +148,12 @@ const CardPile = ({
                     onMouseOut={onMouseOut}
                     onMouseOver={onMouseOver}
                     onTouchMove={onTouchMove}
+                    onPlusClick={onPlusClick}
+                    onMinusClick={onMinusClick}
                     popupLocation={popupLocation}
                     popupMenu={popupMenu}
                     showChains={showChains}
-                    size={size}
+                    size={popupSize}
                     source={source}
                     title={title}
                 />
