@@ -1609,7 +1609,9 @@ class Game extends EventEmitter {
     }
 
     get unitsInPlay() {
-        return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
+        return this.cardsInPlay.filter(
+            (card) => BattlefieldTypes.includes(card.type) && !card.facedown
+        );
     }
 
     continue() {

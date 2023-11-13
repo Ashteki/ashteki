@@ -48,7 +48,7 @@ class RecoveryPhase extends Phase {
     removeExhaustion() {
         this.game.addMessage('All cards remove one exhaustion token.');
         const upgrades = this.game.cardsInPlay.reduce(
-            (acc, c) => c.upgrades ? acc.concat(c.upgrades) : acc,
+            (acc, c) => (c.upgrades ? acc.concat(c.upgrades) : acc),
             []
         );
         this.game.actions

@@ -106,19 +106,18 @@ const TaggedGames = () => {
                     onSubmit={(e) => {
                         e.preventDefault();
                         onSubmitClick(e);
-                    }}>
+                    }}
+                >
                     <Form.Control
                         name='tag'
                         className='form-control col-md-6'
                         value={tag}
                         onChange={(e) => setTag(e.target.value)}
-                    >
-                    </Form.Control>
-                    <Button variant='primary' className='def'
-                        onClick={onSubmitClick}
-                    >Search</Button>
+                    />
+                    <Button variant='primary' className='def' onClick={onSubmitClick}>
+                        Search
+                    </Button>
                 </Form>
-
                 {table}
             </Panel>
         </div>

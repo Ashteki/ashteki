@@ -33,6 +33,8 @@ describe('Chimera setup', function () {
             expect(this.player2.threatZone[2].facedown).toBe(true);
             expect(this.player2.threatZone[3].facedown).toBe(true);
             expect(this.player2.inPlay.length).toBe(0);
+
+            expect(this.player2.player.unitsInPlay.length).toBe(0);
         });
     });
 });

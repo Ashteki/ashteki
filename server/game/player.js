@@ -206,7 +206,9 @@ class Player extends GameObject {
 
     // this get sent to the client
     get battlefield() {
-        return this.cardsInPlay.filter((card) => !PhoenixbornTypes.includes(card.type) && !card.moribund);
+        return this.cardsInPlay.filter(
+            (card) => !PhoenixbornTypes.includes(card.type) && !card.moribund
+        );
     }
 
     indexOf(card) {
