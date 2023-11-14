@@ -15,7 +15,8 @@ class ChimeraDefenceStrategy {
             (u) => u !== attack.target && u.anyEffect('defender')
         );
         const battlesToGuard = attack.battles.filter(
-            (b) => !b.target.anyEffect('defender') && b.target.type === CardType.Aspect
+            (b) => !b.target.anyEffect('defender') &&
+                [CardType.Chimera, CardType.Aspect].includes(b.target.type)
         );
 
         // defenders guard for aspects

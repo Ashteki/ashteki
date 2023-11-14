@@ -242,5 +242,20 @@ describe('When Attacked', function () {
             expect(this.corpseOfViros.damage).toBe(0);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(0);
         });
+
+        it('defender will block for pb', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(9);
+
+            this.constrict.tokens.exhaustion = 1; // setup iron scales to defend
+            this.player1.clickAttack(this.corpseOfViros);
+            this.player1.clickCard(this.fluteMage);
+            this.player1.clickDone();
+
+            expect(this.ironScales.damage).toBe(1);
+            expect(this.fluteMage.location).toBe('discard');
+            expect(this.corpseOfViros.damage).toBe(0);
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 });
