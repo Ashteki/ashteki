@@ -86,6 +86,9 @@ class GameService {
             const fromDate = moment().subtract(options.months, 'months');
             findSpec.startedAt = { $gt: fromDate.toDate() };
         }
+        if (!options.solo) {
+            findSpec.solo = { $ne: true };
+        }
         if (options.gameType) {
             findSpec.gameType = options.gameType;
         }
