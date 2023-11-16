@@ -3,11 +3,9 @@ const passport = require('passport');
 const GameService = require('../services/AshesGameService.js');
 const ConfigService = require('../services/ConfigService.js');
 const { wrapAsync } = require('../util.js');
-const AshesDeckService = require('../services/AshesDeckService.js');
 
 const configService = new ConfigService();
 const gameService = new GameService(configService);
-const deckService = new AshesDeckService(configService);
 
 module.exports.init = function (server) {
     server.get(
