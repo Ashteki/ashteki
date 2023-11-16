@@ -80,99 +80,105 @@
             top: 50%;
         }
     }
-}
 
-.damage {
-    background-image: url('~assets/img/damage.png');
-}
 
-.armor {
-    background-image: url('~assets/img/armor.png');
-}
+    &.damage {
+        background-image: url('~assets/img/damage.png');
+    }
 
-.guarded {
-    background-image: url('~assets/img/guarded.png');
-}
+    &.armor {
+        background-image: url('~assets/img/armor.png');
+    }
 
-.exhaustion {
-    background-image: url('~assets/img/exhaustion.png');
-}
+    &.guarded {
+        background-image: url('~assets/img/guarded.png');
+    }
 
-.gravityFlux {
-    background-image: url('~assets/img/gravity-flux.png');
-}
+    &.exhaustion {
+        background-image: url('~assets/img/exhaustion.png');
+    }
 
-.duplicate {
-    background-image: url('~assets/img/duplicate.png');
-}
+    &.gravityFlux {
+        background-image: url('~assets/img/gravity-flux.png');
+    }
 
-.status {
-    background-image: url('~assets/img/status.png');
-}
+    &.duplicate {
+        background-image: url('~assets/img/duplicate.png');
+    }
 
-.redRains {
-    background-image: url('~assets/img/redrains.png');
-}
+    &.status {
+        background-image: url('~assets/img/status.png');
+    }
 
-.preventAllDamage {
-    background-image: url('~assets/img/armor-plus.png');
-}
+    &.redRains {
+        background-image: url('~assets/img/redrains.png');
+    }
 
-.terrifying {
-    background-image: url('~assets/img/terrifying.png');
-}
+    &.preventAllDamage {
+        background-image: url('~assets/img/armor-plus.png');
+    }
 
-.overkill {
-    background-image: url('~assets/img/overkill.png');
-}
+    &.terrifying {
+        background-image: url('~assets/img/terrifying.png');
+    }
 
-.bypass {
-    background-image: url('~assets/img/hypnotize.png');
-}
+    &.overkill {
+        background-image: url('~assets/img/overkill.png');
+    }
 
-.quickStrike {
-    background-image: url('~assets/img/lightning.png');
-}
+    &.bypass {
+        background-image: url('~assets/img/hypnotize.png');
+    }
 
-.grouptactics {
-    background-image: url('~assets/img/grouptactics.png');
-}
+    &.quickStrike {
+        background-image: url('~assets/img/lightning.png');
+    }
 
-.cannotBeAttackTarget {
-    background-image: url('~assets/img/cannotBeAttackTarget.png');
-}
+    &.grouptactics {
+        background-image: url('~assets/img/grouptactics.png');
+    }
 
-.cannotBeSpellTarget {
-    background-image: url('~assets/img/cannotBeSpellTarget.png');
-}
+    &.cannotBeAttackTarget {
+        background-image: url('~assets/img/cannotBeAttackTarget.png');
+    }
 
-.cannotattack {
-    background-image: url('~assets/img/cannotAttack.png');
-}
+    &.cannotBeSpellTarget {
+        background-image: url('~assets/img/cannotBeSpellTarget.png');
+    }
 
-.cannotblock {
-    background-image: url('~assets/img/cannotBlock.png');
+    &.cannotattack {
+        background-image: url('~assets/img/cannotAttack.png');
+    }
 
-}
+    &.cannotblock {
+        background-image: url('~assets/img/cannotBlock.png');
 
-.cannotguard {
-    background-image: url('~assets/img/guarded.png');
+    }
 
-}
+    &.cannotguard {
+        background-image: url('~assets/img/guarded.png');
 
-.preventBlock {
-    background-image: url('~assets/img/cannotBeBlocked.png');
+    }
 
-}
+    &.preventBlock {
+        background-image: url('~assets/img/cannotBeBlocked.png');
 
-.preventGuard {
-    background-image: url('~assets/img/sembali.png');
+    }
 
-}
+    &.preventGuard {
+        background-image: url('~assets/img/sembali.png');
 
-.exhausted {
-    background-image: url('~assets/img/exhausted.png');
-    background-color: unset;
+    }
+
+    &.exhausted {
+        background-image: url('~assets/img/exhausted.png');
+        background-color: unset;
+    }
+
+    &.magnify {
+        background-image: url('~assets/img/tristan.png');
+
+    }
 }
 
 .behaviour {
@@ -183,9 +189,4 @@
     line-height: 30px;
     font-size: 30px;
     padding-top: 10px
-}
-
-.magnify {
-    background-image: url('~assets/img/tristan.png');
-
 }
