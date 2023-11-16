@@ -10,44 +10,73 @@
 }
 
 .exhausted {
-    background: #999;
-    color: #444;
+    // background: #999;
+    color: #555;
+    background-color: unset;
+    background-size: cover;
+
+    &.charm {
+        background-image: url('~assets/img/tag-charm.png');
+    }
+
+    &.illusion {
+        background-image: url('~assets/img/tag-illusion.png');
+    }
+
+    &.natural {
+        background-image: url('~assets/img/tag-natural.png');
+    }
+
+    &.divine {
+        background-image: url('~assets/img/tag-divine.png');
+    }
+
+    &.sympathy {
+        background-image: url('~assets/img/tag-sympathy.png');
+    }
+
+    &.time {
+        background-image: url('~assets/img/tag-time.png');
+    }
+
 }
 
-.ceremonial {
-    @include dice-colors(#ee3342, #111821);
-}
+:not(.exhausted) {
+    .ceremonial {
+        @include dice-colors(#ee3342, #111821);
+    }
 
-.charm {
-    @include dice-colors(#f7e442, #f34f98);
-}
+    &.charm {
+        @include dice-colors(#f7e442, #f34f98);
+    }
 
-.illusion {
-    @include dice-colors(#8bc7ea, #490d67);
-}
+    &.illusion {
+        @include dice-colors(#8bc7ea, #490d67);
+    }
 
-.natural {
-    @include dice-colors(#cedb00, #004a98);
-}
+    &.natural {
+        @include dice-colors(#cedb00, #004a98);
+    }
 
-.divine {
-    @include dice-colors(#b58a2b, #f2f2f2);
-}
+    &.divine {
+        @include dice-colors(#b58a2b, #f2f2f2);
+    }
 
-.sympathy {
-    @include dice-colors(#e3c2af, #119981);
-}
+    &.sympathy {
+        @include dice-colors(#e3c2af, #119981);
+    }
 
-.time {
-    @include dice-colors(#dfdfdf, #9a2e36);
-}
+    &.time {
+        @include dice-colors(#dfdfdf, #9a2e36);
+    }
 
-.rage {
-    @include dice-colors(#e41d1d, #f1daa6);
+    &.rage {
+        @include dice-colors(#e41d1d, #f1daa6);
 
-    &.power {
-        @include dice-colors(white, #e41d1d);
+        &.power {
+            @include dice-colors(white, #e41d1d);
 
+        }
     }
 }
 
