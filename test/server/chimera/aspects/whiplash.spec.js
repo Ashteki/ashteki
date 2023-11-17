@@ -57,4 +57,46 @@ describe('Whiplash Aspect', function () {
             expect(this.whiplash.facedown).toBe(false);
         });
     });
+
+    describe('Vs Snapper', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['seafoam-snapper', 'anchornaut', 'iron-worker', 'flute-mage'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['summon-iron-rhino']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: [],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['whiplash', 'hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+            this.seafoamSnapper.tokens.status = 2;
+        });
+
+        it('damage leftmost removes snapper status tokens', function () {
+            expect(this.whiplash.facedown).toBe(true);
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            expect(this.seafoamSnapper.location).toBe('play area');
+            expect(this.seafoamSnapper.damage).toBe(0);
+            expect(this.seafoamSnapper.status).toBe(0);
+            expect(this.whiplash.facedown).toBe(false);
+        });
+    });
 });
