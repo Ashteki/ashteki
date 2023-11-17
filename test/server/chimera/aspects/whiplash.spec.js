@@ -99,4 +99,48 @@ describe('Whiplash Aspect', function () {
             expect(this.whiplash.facedown).toBe(false);
         });
     });
+
+    describe('Vs Sacred Ground', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],
+                    spellboard: ['sacred-ground'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'sympathy', 'sympathy'],
+                    hand: ['summon-iron-rhino', 'safeguard']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: [],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['whiplash', 'hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+        });
+
+        it('damage leftmost removes snapper status tokens', function () {
+            this.player1.play(this.safeguard);
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.falseDemon);
+
+            expect(this.whiplash.facedown).toBe(true);
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            expect(this.falseDemon.location).toBe('play area');
+            expect(this.falseDemon.damage).toBe(0);
+            expect(this.whiplash.facedown).toBe(false);
+        });
+    });
 });
