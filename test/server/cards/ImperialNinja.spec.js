@@ -99,4 +99,36 @@ describe('Imperial Ninja reaction', function () {
             expect(this.player2).not.toHavePromptButton('Discard 2 top of deck');
         });
     });
+
+    describe('vs vanish - should trigger', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'brennen-blackcloud',
+                    inPlay: ['imperial-ninja', 'mist-spirit'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    archives: ['butterfly-monk']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['flute-mage', 'hammer-knight'],
+                    spellboard: ['summon-butterfly-monk'],
+                    hand: ['vanish', 'redirect'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'illusion'],
+                    deck: ['molten-gold', 'open-memories', 'molten-gold', 'empower']
+                }
+            });
+        });
+
+        it('prompts vanish reaction on player target', function () {
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.coalRoarkwin); // target
+            this.player1.clickCard(this.imperialNinja); // single attacker
+            this.player1.clickPrompt('Done'); // end attacker select
+
+            expect(this.player2).toHavePromptButton('Discard Redirect');
+            expect(this.player2).toHavePromptButton('Discard 2 top of deck');
+        });
+    });
+
 });
