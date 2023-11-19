@@ -95,7 +95,9 @@ const CardPilePopup = ({
             <Droppable onDragDrop={onDragDrop} source={source} manualMode={manualMode}>
                 <div className={popupClass} onClick={(event) => event.stopPropagation()}>
                     {popupMenuToRender}
-                    <div className={innerClass}>{cardList}</div>
+                    {/* <div className={innerClass}> */}
+                    {cardList}
+                    {/* </div> */}
                 </div>
             </Droppable>
         </MovablePanel>

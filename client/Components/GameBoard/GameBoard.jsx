@@ -484,6 +484,7 @@ const GameBoard = () => {
                     leftMode={leftMode}
                     showContextItem={!leftMode}
                     side='top'
+                    size={cardSize}
                 />
             </div>
             <div className='main-window'>

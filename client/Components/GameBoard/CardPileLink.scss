@@ -93,8 +93,8 @@
 }
 
 .inner {
-    @include calculate-tiled-card-prop(max-height, 4, height);
-    @include calculate-tiled-card-prop(height, 3, height, -5);
+    // @include calculate-tiled-card-prop(max-height, 4, height);
+    // @include calculate-tiled-card-prop(height, 3, height, -5);
     overflow-y: auto;
 
     &.hand-popup {
@@ -117,6 +117,8 @@
         z-index: $layer-card-menu;
         background-color: rgba(0, 0, 0, 0.85);
         position: fixed;
+        max-width: 800px;
+        min-width: 200px;
 
         a {
             display: inline-block;
@@ -136,6 +138,10 @@
 
         .panel-title {
             margin: 5px 5px;
+        }
+
+        .drop-target {
+            height: calc(100% - 50px);
         }
     }
 }

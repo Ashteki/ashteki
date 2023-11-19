@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDrag } from 'react-dnd';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faMinusCircle, faPlus, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { ItemTypes } from '../../constants';
 import PopupDefaults from './PopupDefaults';
 
 import './MovablePanel.scss';
+import { Resizable } from 're-resizable';
 
 const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick, side, title }) => {
     const key = `${name}-${side}`;
@@ -27,6 +28,7 @@ const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick,
     const [position, setPosition] = useState(Object.assign({}, style));
     const popupRef = useRef(null);
 
+    // this function limits the x/y so that the popup is not lost off the edges
     const getStyle = (offset) => {
         const style = {
             left: Math.max(offset.x, 10),
@@ -36,15 +38,12 @@ const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick,
 
         const popup = $(popupRef.current);
 
-        style.top -= popup.height();
-        // if (style.top < 5) {
-        //     style.top = 5;
-        // }
-
+        // lost off the window to the right
         if (style.left + popup.width() > window.innerWidth) {
             style.left = window.innerWidth - popup.width();
         }
 
+        // lost off the window to the bottom
         if (style.top + 50 > window.innerHeight) {
             style.top = window.innerHeight - 50;
         }
@@ -77,9 +76,23 @@ const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick,
     }, [dragOffset, isDragging]);
 
     let content = (
-        <div ref={popupRef}>
-            <div ref={drag} className='panel panel-primary' style={position}>
-                <div className='panel-heading' onClick={(event) => event.stopPropagation()}>
+        <div ref={popupRef} className='panel panel-primary' style={position}>
+            <Resizable
+                enable={{
+                    top: false,
+                    right: false,
+                    bottom: false,
+                    left: false,
+                    topRight: false,
+                    bottomRight: true,
+                    bottomLeft: false,
+                    topLeft: false
+                }}
+                maxWidth={800}
+                minWidth={200}
+                minHeight={150}
+            >
+                <div ref={drag} className='panel-heading' onClick={(event) => event.stopPropagation()}>
                     {onMinusClick &&
                         <span className='zoom-buttons'>
                             <a className='zoom-minus' onClick={onMinusClick}>
@@ -100,7 +113,7 @@ const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick,
                     </span>
                 </div>
                 {children}
-            </div>
+            </Resizable>
         </div>
     );
 

@@ -67,7 +67,7 @@
 }
 
 .inner {
-    @include calculate-tiled-card-prop(max-height, 4, height);
+    // @include calculate-tiled-card-prop(max-height, 4, height);
     overflow-y: auto;
 }
 
@@ -130,6 +130,8 @@
         z-index: $layer-card-menu;
         background-color: rgba(0, 0, 0, 0.85);
         position: fixed;
+        max-width: 800px;
+        min-width: 200px;
 
         a {
             display: inline-block;
@@ -150,24 +152,28 @@
         .panel-title {
             margin: 5px 5px;
         }
+
+        .drop-target {
+            height: calc(100% - 50px);
+        }
     }
 }
 
 .draw {
     .panel {
         .inner {
-            @include calculate-tiled-card-prop(min-height, 1, height);
-            @include calculate-tiled-card-prop(width, 8, width, $scrollbar-width);
+            // @include calculate-tiled-card-prop(min-height, 1, height);
+            // @include calculate-tiled-card-prop(width, 8, width, $scrollbar-width);
         }
     }
 }
 
 .additional-cards {
     .panel {
-        .inner {
-            @include calculate-tiled-card-prop(min-height, 2, width);
-            @include calculate-tiled-card-prop(min-width, 2, height, $scrollbar-width);
-        }
+        // .inner {
+        //     @include calculate-tiled-card-prop(min-height, 2, width);
+        //     @include calculate-tiled-card-prop(min-width, 2, height, $scrollbar-width);
+        // }
     }
 }
 
@@ -175,54 +181,54 @@
     .panel {
         min-height: 146px;
 
-        .inner {
-            @include calculate-tiled-card-prop(min-height, 1, height);
-            @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
-            padding: 4px;
-        }
+        // .inner {
+        //     @include calculate-tiled-card-prop(min-height, 1, height);
+        //     @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
+        //     padding: 4px;
+        // }
     }
 }
 
 .archives {
     .panel {
-        .inner {
-            @include calculate-tiled-card-prop(min-height, 1, height);
-            @include calculate-tiled-card-prop(width, 4, width, $scrollbar-width);
-            padding: 4px;
-        }
+        // .inner {
+        //     @include calculate-tiled-card-prop(min-height, 1, height);
+        //     @include calculate-tiled-card-prop(width, 4, width, $scrollbar-width);
+        //     padding: 4px;
+        // }
     }
 }
 
 
 .purged {
     .panel {
-        .inner {
-            @include calculate-tiled-card-prop(min-height, 1, height);
-            @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
-        }
+        // .inner {
+        //     @include calculate-tiled-card-prop(min-height, 1, height);
+        //     @include calculate-tiled-card-prop(width, 5, width, $scrollbar-width);
+        // }
     }
 }
 
-.small {
-    .inner {
-        height: $keyteki-card-height * 3;
-    }
-}
+// .small {
+//     .inner {
+//         height: $keyteki-card-height * 3;
+//     }
+// }
 
-.normal {
-    .inner {
-        height: $keyteki-card-height * 4;
-    }
-}
+// .normal {
+//     .inner {
+//         height: $keyteki-card-height * 4;
+//     }
+// }
 
-.large {
-    .inner {
-        height: $keyteki-card-height * 5;
-    }
-}
+// .large {
+//     .inner {
+//         height: $keyteki-card-height * 5;
+//     }
+// }
 
-.x-large {
-    .inner {
-        height: $keyteki-card-height * 6;
-    }
-}
+// .x-large {
+//     .inner {
+//         height: $keyteki-card-height * 6;
+//     }
+// }
