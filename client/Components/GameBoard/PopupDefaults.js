@@ -1,4 +1,10 @@
 export default {
+    'archives-bottom': {
+        bottom: '155px'
+    },
+    'archives-top': {
+        top: '185px'
+    },
     'deck-bottom': {
         bottom: '140px'
     },
@@ -8,12 +14,13 @@ export default {
     'discard-top': {
         top: '185px'
     },
-    'archives-bottom': {
+    'hand-bottom': {
         bottom: '155px'
     },
-    'archives-top': {
+    'hand-top': {
         top: '185px'
     },
+
     'purged-top': {
         top: '155px',
         left: '20px'

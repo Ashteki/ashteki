@@ -42,7 +42,7 @@
 }
 
 :not(.exhausted) {
-    .ceremonial {
+    &.ceremonial {
         @include dice-colors(#ee3342, #111821);
     }
 

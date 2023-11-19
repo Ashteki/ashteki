@@ -4,11 +4,7 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-.card-list {
-    .card-wrapper {
-        margin: 0 5px 5px 0;
-    }
-}
+
 
 .card-list-title {
     background-color: theme-color('primary');
@@ -22,4 +18,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+
+    .card-wrapper {
+        margin: 0 5px 5px 0;
+    }
 }

@@ -28,7 +28,7 @@ describe('Seafoam Snapper', function () {
         });
 
         it('attack with status acts as armor', function () {
-            this.seafoamSnapper.tokens.status = 1;
+            this.seafoamSnapper.tokens.status = 2;
             this.player1.clickAttack(this.seafoamSnapper);
             this.player1.clickCard(this.fluteMage);
             this.player2.clickDone();
@@ -131,7 +131,7 @@ describe('Seafoam Snapper', function () {
         });
 
         it('dies with status tokens should not trigger Fighting Spirit', function () {
-            this.seafoamSnapper.tokens.status = 1;
+            this.seafoamSnapper.tokens.status = 2;
             this.player1.clickAttack(this.seafoamSnapper);
             this.player1.clickCard(this.ironWorker);
             this.player2.clickDone();
@@ -141,5 +141,4 @@ describe('Seafoam Snapper', function () {
             expect(this.fightingSpirit.status).toBe(0);
         });
     });
-
 });

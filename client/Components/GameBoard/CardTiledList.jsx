@@ -28,16 +28,8 @@ function CardTiledList(props) {
             );
         });
 
-    let title =
-        props.title && props.cards
-            ? `${props.title} (${props.titleCount || props.cards.length})`
-            : props.title;
-
     return (
-        <div className='card-list'>
-            {title && <div className='card-list-title'>{title}</div>}
-            <div className='card-list-cards'>{cardList}</div>
-        </div>
+        <div className='card-list-cards'>{cardList}</div>
     );
 }
 

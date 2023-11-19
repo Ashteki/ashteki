@@ -21,7 +21,6 @@ describe('Sacred Ground', function () {
             this.player1.clickCard(this.sacredGround);
             this.player1.clickPrompt('Sacred Ground');
 
-            // check spellboard is still just 1
             expect(this.mistSpirit.armor).toBe(1);
             expect(this.blueJaguar.armor).toBe(1);
             expect(this.hammerKnight.armor).toBe(0);
