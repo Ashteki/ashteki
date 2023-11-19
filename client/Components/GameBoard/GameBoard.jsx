@@ -28,7 +28,6 @@ import WinLoseSplash from './WinLoseSplash';
 import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
-import MovablePanel2 from './MovablePanel2';
 import Sidebar from './Sidebar';
 
 const placeholderPlayer = {
@@ -522,14 +521,14 @@ const GameBoard = () => {
                     />
                 )}
                 {showManualCommands && (
-                    <MovablePanel2
+                    <MovablePanel
                         title='Manual Commands'
                         name='Manual'
                         onCloseClick={onManualCommandsClick}
                         side='bottom'
                     >
                         <ManualCommands />
-                    </MovablePanel2>
+                    </MovablePanel>
                 )}
                 {showDeckNotes && thisPlayer.deckNotes && (
                     <div className='info-panel'>
