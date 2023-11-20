@@ -7,7 +7,8 @@ describe('Meditate', function () {
                     inPlay: ['shadow-hound', 'mist-spirit'],
                     spellboard: ['hypnotize'],
                     dicepool: ['natural', 'natural', 'charm', 'charm'],
-                    hand: ['call-upon-the-realms', 'molten-gold']
+                    hand: ['call-upon-the-realms', 'molten-gold'],
+                    deck: ['purify', 'purge', 'abundance']
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
@@ -67,6 +68,25 @@ describe('Meditate', function () {
             this.player1.clickPrompt('Confirm');
             this.player1.clickPrompt('Stop meditating');
             expect(target.level).toBe('class');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('BUG: Meditate topofdeck, choose die, then STOP should cancel die change', function () {
+            this.player1.clickPrompt('Meditate');
+            const target = this.player1.dicepool[0];
+            expect(target.level).toBe('basic');
+
+            this.player1.clickPrompt('Choose top Of Deck');
+
+            this.player1.clickDie(1);
+            this.player1.clickPrompt('Confirm');
+
+            this.player1.clickPrompt('Choose top Of Deck');
+            this.player1.clickDie(0);
+
+            this.player1.clickPrompt('Clear Selection');
+            this.player1.clickPrompt('Stop meditating');
+            expect(target.level).toBe('basic');
             expect(this.player1).toHaveDefaultPrompt();
         });
 
