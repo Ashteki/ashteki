@@ -115,7 +115,7 @@ class MeditatePrompt extends UiPrompt {
 
         if (this.count === 0) {
             buttons.push({ text: 'Cancel', arg: 'cancel', class: 'btn-grey' });
-        } else {
+        } else if (!this.diceSelected) {
             buttons.push({ text: 'Stop meditating', arg: 'done', class: 'btn-grey' });
         }
 
