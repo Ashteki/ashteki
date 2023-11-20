@@ -132,4 +132,38 @@ describe('Chained Creations', function () {
             expect(this.summonVampireBatSwarm.exhausted).toBe(true);
         });
     });
+
+    describe('vs Chimera', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                allowSetup: true,
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['mist-spirit', 'blue-jaguar'],
+                    dicepool: ['natural', 'divine', 'charm', 'charm'],
+                    hand: ['chained-creations']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    spellboard: [],
+                    inPlay: ['constrict'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+        });
+
+        it('2 damage to aspect', function () {
+            this.player1.clickCard(this.chainedCreations); // play card
+            this.player1.clickPrompt('Play this action');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.constrict); // no destroy
+            expect(this.constrict.damage).toBe(2);
+        });
+    });
 });

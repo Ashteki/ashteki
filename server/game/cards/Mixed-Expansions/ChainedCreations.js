@@ -6,7 +6,7 @@ class ChainedCreations extends Card {
         this.play({
             target: {
                 controller: 'opponent',
-                cardType: CardType.Conjuration,
+                cardType: [CardType.Conjuration, CardType.Aspect],
                 gameAction: ability.actions.dealDamage({ amount: 2 })
             },
             then: {
