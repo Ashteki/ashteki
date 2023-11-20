@@ -1,4 +1,9 @@
-const { BattlefieldTypes, UpgradeCardTypes } = require('../../constants');
+const {
+    BattlefieldTypes,
+    UpgradeCardTypes,
+    PhoenixbornTypes,
+    CardType
+} = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class ExhaustAction extends CardGameAction {
@@ -9,7 +14,12 @@ class ExhaustAction extends CardGameAction {
 
     setup() {
         this.name = 'exhaust';
-        this.targetType = [...BattlefieldTypes, 'Ready Spell', 'Phoenixborn', 'Aspect', ...UpgradeCardTypes];
+        this.targetType = [
+            ...BattlefieldTypes,
+            CardType.ReadySpell,
+            ...PhoenixbornTypes,
+            ...UpgradeCardTypes
+        ];
         this.effectMsg = 'exhaust {0}';
     }
 
