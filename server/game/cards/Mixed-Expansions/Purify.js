@@ -14,12 +14,12 @@ class Purify extends Card {
             then: {
                 condition: (context) =>
                     context.player.opponent.unitsInPlay.some(
-                        (card) => card.type === CardType.Conjuration
+                        (card) => card.isConjuration()
                     ),
                 target: {
                     activePromptTitle: 'Choose a conjuration to destroy',
                     controller: 'opponent',
-                    cardType: CardType.Conjuration,
+                    cardType: [CardType.Conjuration, CardType.Aspect],
                     gameAction: ability.actions.destroy()
                 }
             }

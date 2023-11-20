@@ -18,6 +18,10 @@ class AspectCard extends Card {
         });
     }
 
+    isConjuration() {
+        return true;
+    }
+
     defender() {
         this.persistentEffect({
             condition: () => !this.exhausted,

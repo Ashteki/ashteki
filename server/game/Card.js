@@ -141,6 +141,10 @@ class Card extends PlayableObject {
             : 'discard';
     }
 
+    isConjuration() {
+        return this.type === CardType.Conjuration;
+    }
+
     getMagicCost(cardData) {
         let result = 0;
         if (cardData.magicCost) {
