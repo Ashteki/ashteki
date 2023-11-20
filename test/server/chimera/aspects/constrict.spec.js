@@ -24,8 +24,6 @@ describe('Constrict Aspect', function () {
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
-
-
         });
 
         it('reveal forces opponent to exhaust a card', function () {
@@ -40,7 +38,6 @@ describe('Constrict Aspect', function () {
             expect(this.constrict.location).toBe('play area');
             expect(this.constrict.facedown).toBe(false);
         });
-
 
         it('reveal then attack (5) forces opponent to exhaust a card', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(5);
@@ -60,7 +57,6 @@ describe('Constrict Aspect', function () {
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
             expect(this.constrict.location).toBe('play area');
             expect(this.constrict.facedown).toBe(false);
-
         });
     });
 });
