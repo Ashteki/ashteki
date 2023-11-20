@@ -1,0 +1,230 @@
+{
+    "results": [
+        {
+            "name": "Chimera Charmer",
+            "stub": "chimera-charmer",
+            "type": "Ally",
+            "cost": [
+                "[[main]]",
+                "1 [[charm:power]]",
+                "1 [[charm:class]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "charm:power": 1,
+                "charm:class": 1
+            },
+            "attack": 2,
+            "life": 4,
+            "recover": 2
+        },
+        {
+            "name": "Summon Bastion Badger",
+            "stub": "summon-bastion-badger",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Bastion Badger",
+                    "stub": "bastion-badger"
+                }
+            ]
+        },
+        {
+            "name": "Bastion Badger",
+            "stub": "bastion-badger",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Snake Bite",
+            "stub": "snake-bite",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[charm:power]]"
+            ]
+        },
+        {
+            "name": "Rose Gardener",
+            "stub": "rose-gardener",
+            "type": "Ally",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
+            "name": "Summon Shimmer Wing",
+            "stub": "summon-shimmer-wing",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Shimmer Wing",
+                    "stub": "shimmer-wing"
+                },
+                {
+                    "name": "Eternity Flame",
+                    "stub": "eternity-flame"
+                }
+            ]
+        },
+        {
+            "name": "Shimmer Wing",
+            "stub": "shimmer-wing",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 1,
+            "conjurations": [
+                {
+                    "name": "Eternity Flame",
+                    "stub": "eternity-flame"
+                }
+            ]
+        },
+        {
+            "name": "Arrogance",
+            "stub": "arrogance",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:class": 1
+            }
+        },
+        {
+            "name": "Dealer's Choice",
+            "stub": "dealers-choice",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:class": 1
+            }
+        },
+        {
+            "name": "Farewell",
+            "stub": "farewell",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "[[side]]",
+                "X [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:class": 1
+            }
+        },
+        {
+            "name": "Embrace",
+            "stub": "embrace",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:class": 1
+            }
+        },
+        {
+            "name": "Willpower",
+            "stub": "willpower",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Saria Guideman"
+        },
+        {
+            "name": "Gifted Rose",
+            "stub": "gifted-rose",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Leo Sunshadow"
+        },
+        {
+            "name": "Venom Strike",
+            "stub": "venom-strike",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Maeoni Viper"
+        },
+        {
+            "name": "Judgment",
+            "stub": "judgment",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "[[side]]",
+                "2 [[basic]]",
+                "1 [[discard]]"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "phoenixborn": "Astrea"
+        }
+    ]
+}
