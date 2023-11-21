@@ -91,15 +91,7 @@ const CardPile = ({
     };
 
     return (
-        <div
-            className={classNameStr}
-            onClick={() => {
-                if (!disablePopup) {
-                    updatePopupVisibility(!showPopup);
-                    setManualPopup(!showPopup);
-                }
-            }}
-        >
+        <div className={classNameStr}>
             <div className='panel-header'>{headerText}</div>
             {topCard ? (
                 <Card
