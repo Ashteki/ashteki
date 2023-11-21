@@ -58,44 +58,14 @@ const CardPileLink = ({
 
     const topCard = () => {
         return { facedown: true, isConjuration: topCard && topCard.isConjuration };
-
-        if (cards.length === 0) {
-            return;
-        }
-        let card = cards[0];
-        if (!card.facedown && card.location !== 'deck') {
-            return card;
-        }
     };
 
     const card = topCard();
 
     return (
-        <div
-            className={classNameStr}
-            onClick={() => {
-                if (!disablePopup) {
-                    updatePopupVisibility(!showPopup);
-                    setManualPopup(!showPopup);
-                }
-            }}
-        >
+        <div className={classNameStr}>
             {card && (
-                <div
-                    className='icon'
-                //     onMouseOver={() =>
-                //         onMouseOver({
-                //             image: (
-                //                 <CardImage
-                //                     card={{ ...card, location: 'zoom' }}
-                //                     cardBack={cardBack}
-                //                 />
-                //             ),
-                //             size: 'normal'
-                //         })
-                //     }
-                //     onMouseOut={onMouseOut}
-                >
+                <div className='icon'>
                     <CardImage card={card} cardBack={cardBack} orientation='vertical' size='icon' />
                 </div>
             )}
