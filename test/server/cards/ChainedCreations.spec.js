@@ -137,7 +137,6 @@ describe('Chained Creations', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
-                allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['mist-spirit', 'blue-jaguar'],
