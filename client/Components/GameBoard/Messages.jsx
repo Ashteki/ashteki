@@ -163,9 +163,7 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                 let dieClass = classNames('chat-die', fragment.magic, fragment.level);
 
                 messages.push(
-                    <span key={index++} className={dieClass}>
-                        <span className={diceFont} title={`${fragment.name}`}></span>
-                    </span>
+                    <span key={index++} className={dieClass}><span className={diceFont} title={`${fragment.name}`}><span className="sr-only">{fragment.code}</span></span></span>
                 );
             } else {
                 let messageFragment = fragment.toString();
