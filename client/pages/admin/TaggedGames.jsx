@@ -9,9 +9,22 @@ const TaggedGames = () => {
     const dispatch = useDispatch();
     const taggedGames = useSelector((state) => state.games.taggedGames);
     const [tag, setTag] = useState('');
+    const [term, setTerm] = useState(1);
 
     const onSubmitClick = (event) => {
-        dispatch(loadTaggedGames(tag));
+        dispatch(loadTaggedGames(tag, term));
+        event.stopPropagation();
+    };
+
+    const doShortcut = (event) => {
+        setTag(event.target.value);
+        dispatch(loadTaggedGames(event.target.value, term));
+        event.stopPropagation();
+    };
+
+    const handleTermChange = (event) => {
+        setTerm(event.target.value);
+        dispatch(loadTaggedGames(tag, event.target.value));
         event.stopPropagation();
     };
 
@@ -108,15 +121,29 @@ const TaggedGames = () => {
                         onSubmitClick(e);
                     }}
                 >
-                    <Form.Control
-                        name='tag'
-                        className='form-control col-md-6'
-                        value={tag}
-                        onChange={(e) => setTag(e.target.value)}
-                    />
-                    <Button variant='primary' className='def' onClick={onSubmitClick}>
-                        Search
-                    </Button>
+                    <div >
+                        <Button variant='primary' className='def' onClick={doShortcut} value='PHX'>
+                            PHX
+                        </Button>
+                        <Button variant='primary' className='def' onClick={doShortcut} value='FFL'>
+                            FFL
+                        </Button>
+                        <Form.Control
+                            name='tag'
+                            value={tag}
+                            onChange={(e) => setTag(e.target.value)}
+                            placeholder='Enter a tag'
+                        />
+                        <Button variant='primary' className='def' onClick={onSubmitClick}>
+                            Search
+                        </Button>
+                        <select className='form-control' onChange={handleTermChange} value={term}>
+                            <option value='0'>All games</option>
+                            <option value='1'>Last 1 month</option>
+                            <option value='3'>Last 3 months</option>
+                            <option value='12'>Last 12 months</option>
+                        </select>
+                    </div>
                 </Form>
                 {table}
             </Panel>
