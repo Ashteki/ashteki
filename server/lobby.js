@@ -851,6 +851,9 @@ class Lobby {
             return;
         }
 
+        game.finishedAt = new Date();
+        this.broadcastGameMessage('updategame', game);
+
         // refresh the userlist with the latest player record (with game count incremented) 
         const promises = [];
         for (const p in game.players) {

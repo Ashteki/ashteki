@@ -161,7 +161,6 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
         return players;
     }
 
-
     let players = getPlayers(game);
 
     let isAdmin = user && user.permissions.canManageGames;
@@ -170,8 +169,12 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
         ['private-game']: game.gamePrivate && isAdmin
     });
 
-    const startTime = game.startedAt ? game.startedAt : game.createdAt;
-    const timeAdvice = game.started ? 'Started' : 'Created';
+    const startTime = game.finishedAt
+        ? game.finishedAt
+        : game.startedAt
+            ? game.startedAt
+            : game.createdAt;
+    const timeAdvice = game.finishedAt ? 'Finished' : game.started ? 'Started' : 'Created';
     let timeDifference = moment().diff(moment(startTime));
     if (timeDifference < 0) {
         timeDifference = 0;

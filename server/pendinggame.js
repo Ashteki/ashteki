@@ -18,6 +18,7 @@ class PendingGame {
         this.allowSpectators = details.allowSpectators;
         this.createdAt = new Date();
         this.startedAt = null;
+        this.finishedAt = null;
         this.gameChat = new GameChat(this);
         this.gameFormat = details.gameFormat;
         this.gamePrivate = !!details.gamePrivate; // hides from game list
@@ -380,6 +381,7 @@ class PendingGame {
         return {
             allowSpectators: this.allowSpectators,
             createdAt: this.createdAt,
+            finishedAt: this.finishedAt,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
