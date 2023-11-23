@@ -2,6 +2,7 @@ const Card = require('./Card.js');
 const Spectator = require('./spectator.js');
 const Player = require('./player.js');
 const Die = require('./Die.js');
+const Dice = require('./dice.js');
 
 class GameChat {
     constructor(game) {
@@ -96,7 +97,8 @@ class GameChat {
                             name: arg.name,
                             argType: 'die',
                             level: arg.level,
-                            magic: arg.magic
+                            magic: arg.magic,
+                            code: Dice.getDieCode(arg)
                         });
                     } else {
                         returnedFraments.push(arg);
@@ -121,14 +123,15 @@ class GameChat {
 
         let format;
 
-        if (array.length === 1) {
-            format = '{0}';
-        } else if (array.length === 2) {
-            format = '{0} and {1}';
-        } else {
-            let range = [...Array(array.length - 1).keys()].map((i) => '{' + i + '}');
-            format = range.join(', ') + ', and {' + (array.length - 1) + '}';
-        }
+        format = [...Array(array.length).keys()].map((i) => '{' + i + '}').join(',');
+        // if (array.length === 1) {
+        //     format = '{0}';
+        // } else if (array.length === 2) {
+        //     format = '{0} and {1}';
+        // } else {
+        //     let range = [...Array(array.length - 1).keys()].map((i) => '{' + i + '}');
+        //     format = range.join(', ') + ', and {' + (array.length - 1) + '}';
+        // }
 
         return { message: this.formatMessage(format, array) };
     }

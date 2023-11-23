@@ -1,4 +1,4 @@
-const { Level } = require('../constants');
+const { Level, Magic } = require('../constants');
 
 class Dice {
     static levelUp(level) {
@@ -115,6 +115,15 @@ class Dice {
                 !d.exhausted &&
                 (d.magic == req.magic || req.level == 'basic')
         );
+    }
+
+    static getDieCode(die) {
+        let magic = die.magic[0];
+        if (die.magic === Magic.Charm) {
+            magic = 'h';
+        }
+
+        return magic + die.level[0];
     }
 }
 

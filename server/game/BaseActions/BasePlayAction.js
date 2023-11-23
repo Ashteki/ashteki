@@ -15,8 +15,13 @@ class BasePlayAction extends BaseAbility {
     }
 
     displayMessage(context) {
-        if (![CardType.ReactionSpell, CardType.ActionSpell].includes(context.source.type)) {
-            context.game.addMessage('{0} plays {1}', context.player, context.source);
+        if (![CardType.ReactionSpell].includes(context.source.type)) {
+            context.game.addMessage(
+                '{0} spends {1} to play {2}',
+                context.player,
+                context.costs.returnDice,
+                context.source
+            );
         }
     }
 
