@@ -1382,6 +1382,7 @@ class Card extends PlayableObject {
         if (PhoenixbornTypes.includes(this.type)) {
             state.life = this.life;
             state.guarded = this.usedGuardThisRound;
+            state.damage = this.damage;
         }
         if (this.type === CardType.ReadySpell) {
             state.cardSlot = this.cardSlot;

@@ -3,8 +3,11 @@ import { useDispatch } from 'react-redux';
 import { closeGameSocket, sendGameMessage } from '../../redux/actions';
 import Panel from '../Site/Panel';
 import CardImage from './CardImage';
+import cardsLogo from '../../assets/img/ShowHandIcon.png';
 
 import './WinLoseSplash.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDice, faDroplet } from '@fortawesome/free-solid-svg-icons';
 
 const WinLoseSplash = ({ game, onCloseClick }) => {
     const dispatch = useDispatch();
@@ -34,6 +37,27 @@ const WinLoseSplash = ({ game, onCloseClick }) => {
             <CardImage card={card} />
             <div className='central'>
                 <h2>{headerMessage}</h2>
+                <div className='splash-stats-box'>
+                    <div className='stat header'>
+                        <div className={`decklist-entry-image ${winner.phoenixborn.id}`} />
+                        <div className='stat-vs' >Vs</div>
+                        <div className={`decklist-entry-image ${loser.phoenixborn.id}`} />
+                    </div>
+                    <div className='stat'>
+                        {winner.totalDiceSpend}
+                        <FontAwesomeIcon icon={faDice} className='stat-icon' />
+                        {loser.totalDiceSpend}
+                    </div>
+                    <div className='stat'>
+                        {winner.totalCardsPlayed}
+                        <img src={cardsLogo} className='stat-icon cards-icon' />
+                        {loser.totalCardsPlayed}
+                    </div>
+                    <div className='stat'>{winner.phoenixborn.damage}
+                        <FontAwesomeIcon icon={faDroplet} className='blood-stat-icon' />
+                        {loser.phoenixborn.damage}
+                    </div>
+                </div>
                 <div className='buttonDiv'>
                     <button
                         onClick={onLeaveClick}

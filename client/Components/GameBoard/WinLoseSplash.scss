@@ -16,6 +16,7 @@
 
     img {
         width: 210px;
+        height: 294px;
     }
 
     .card-body {
@@ -36,12 +37,57 @@
         h2 {
             color: #ddd;
             text-align: center;
-            margin-bottom: 40px;
         }
     }
 
     .buttonDiv {
         width: 130px;
-        margin: 8px auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+
+    .splash-stats-box {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        .stat {
+            font-size: 20px;
+            align-self: center;
+            line-height: 20px;
+            margin-top: 5px;
+
+            &.header {
+                display: flex;
+
+                .decklist-entry-image {
+                    height: 40px;
+                }
+            }
+        }
+
+        .cards-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .stat-icon {
+            margin: auto 40px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .stat-vs {
+            margin: auto 10px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .blood-stat-icon {
+            margin: auto 42px;
+            width: 20px;
+            height: 20px;
+        }
     }
 }
