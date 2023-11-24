@@ -84,7 +84,10 @@ class DiceCost {
             player: context.player
         };
 
-        const payEvent = context.game.getEvent('onDiceSpent', params);
+        const payEvent = context.game.getEvent('onDiceSpent', params, (event) => {
+            event.player.totalDiceSpend += event.dice.length;
+        });
+
         const exhaustEvents = context.game.actions
             .exhaustDie({ target: context.costs.returnDice })
             .getEventArray(context);

@@ -34,6 +34,8 @@ class Player extends GameObject {
         this.firstFive = [];
         this.diceHistory = [];
         this.medCount = 0;
+        this.totalDiceSpend = 0;
+        this.totalCardsPlayed = 0;
 
         this.clock = ClockSelector.for(this, clockdetails);
         this.disconnectedAt = undefined;
@@ -890,7 +892,9 @@ class Player extends GameObject {
             phoenixborn: this.phoenixborn.getSummary(activePlayer),
             ultimate: this.ultimate && this.ultimate.getSummary(activePlayer),
             behaviour: this.behaviour && this.behaviour.getSummary(activePlayer),
-
+            medCount: this.medCount,
+            totalDiceSpend: this.totalDiceSpend,
+            totalCardsPlayed: this.totalCardsPlayed,
             firstPlayer: this.firstPlayer
         };
 

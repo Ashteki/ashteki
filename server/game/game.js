@@ -180,6 +180,8 @@ class Game extends EventEmitter {
             });
         }
 
+        player.totalCardsPlayed += 1;
+
         if (!ActionSpellTypes.includes(card.type)) {
             card.new = true;
         }
@@ -1702,7 +1704,9 @@ class Game extends EventEmitter {
                 name: player.name,
                 turn: player.turn,
                 wins: player.wins,
-                wounds: player.phoenixborn.damage
+                wounds: player.phoenixborn.damage,
+                medCount: player.medCount,
+                totalDiceSpend: player.totalDiceSpend
             };
             if (player.disconnectedAt) {
                 p.disconnectedAt = player.disconnectedAt;
