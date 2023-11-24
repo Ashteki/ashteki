@@ -253,11 +253,17 @@ export function leaveGame(id) {
     };
 }
 
-export function loadTaggedGames(tag) {
+export function loadTaggedGames(tag, months) {
     return {
         types: ['REQUEST_TAGGEDGAMES', 'RECEIVE_TAGGEDGAMES'],
         shouldCallAPI: () => true,
-        APIParams: { url: 'api/games/' + tag, cache: false },
+        APIParams: {
+            url: 'api/games/' + tag,
+            data: {
+                months: months,
+            },
+            cache: false
+        },
         type: 'GET'
     };
 }

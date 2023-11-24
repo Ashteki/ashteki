@@ -48,10 +48,17 @@ class GameService {
             });
     }
 
-    getTaggedGames(tag) {
+    getTaggedGames(tag, options) {
         const findSpec = {
-            label: tag
+            label: { $exists: true, $ne: null }
         };
+        if (tag !== '') {
+            findSpec.label = tag;
+        }
+        if (options.months && options.months > 0) {
+            const fromDate = moment().subtract(options.months, 'months');
+            findSpec.startedAt = { $gt: fromDate.toDate() };
+        }
         return this.games
             .find(findSpec, {
                 sort: {
