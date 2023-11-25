@@ -6,11 +6,11 @@ import CardImage from '../GameBoard/CardImage';
 
 import './CardGallery.scss';
 
-function CardGallery({ cards = [] }) {
+function CardGallery({ onAltClick, cards = [] }) {
     const cardList = cards;
     return (
         <div className='card-gallery'>
-            {cardList.map((c) => <CardImage card={c} key={'alt' + c.id} />)}
+            {cardList.map((c) => <CardImage card={c} key={'alt' + c.id} onClick={() => onAltClick(c.id, c.alt)} />)}
         </div>
     );
 }
