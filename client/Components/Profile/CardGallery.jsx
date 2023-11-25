@@ -10,7 +10,11 @@ function CardGallery({ onAltClick, cards = [] }) {
     const cardList = cards;
     return (
         <div className='card-gallery'>
-            {cardList.map((c) => <CardImage card={c} key={'alt' + c.id} onClick={() => onAltClick(c.id, c.alt)} />)}
+            {cardList.map((c) => (
+                <div key={'alt' + c.id} onClick={() => onAltClick(c.id, c.alt)}>
+                    <CardImage card={c} />
+                </div>
+            ))}
         </div>
     );
 }

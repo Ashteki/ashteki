@@ -140,21 +140,23 @@ const UserAdmin = () => {
         });
     }
 
-    var allAlts = Object.values(userAlts || []).reduce(function (prev, next) {
-        return prev.concat(next);
-    }, []);
+    const altCards = [];
+    for (const [key, value] of Object.entries(userAlts || [])) {
+        altCards.push(...value.map((v) => ({ id: key, alt: v, imageStub: v })));
+    }
 
-    const altCards = allAlts.map((a) => ({ imageStub: a }));
+    // const altCards = allAlts.map((a) => ({ imageStub: a }));
     const onAltClick = (stub, alt) => {
         const tempAlts = Object.assign({}, userAlts);
-        if (tempAlts[stub][alt]) {
-            delete tempAlts[stub][alt];
+        const altIndex = tempAlts[stub].indexOf(alt);
+        if (altIndex >= 0) {
+            tempAlts[stub].splice(altIndex, 1);
         }
         setUserAlts(tempAlts);
     };
 
     return (
-        <Col >
+        <Col>
             <ApiStatus state={apiState} onClose={() => dispatch(clearApiStatus(Admin.FindUser))} />
             <ApiStatus
                 state={apiSaveState}
