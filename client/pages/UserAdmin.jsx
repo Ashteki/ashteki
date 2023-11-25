@@ -91,6 +91,7 @@ const UserAdmin = () => {
     const [userVerified, setUserVerified] = useState(currentUser?.verified);
     const [userDisabled, setUserDisabled] = useState(currentUser?.disabled);
     const [faveColor, setfaveColor] = useState(currentUser?.faveColor);
+    const [userAlts, setUserAlts] = useState(currentUser?.altArts);
 
     useEffect(() => {
         if (currentUser) {
@@ -98,6 +99,7 @@ const UserAdmin = () => {
             setUserDisabled(currentUser.disabled);
             setUserVerified(currentUser.verified);
             setfaveColor(currentUser.faveColor);
+            setUserAlts(currentUser.altArts);
         }
     }, [currentUser]);
 
@@ -138,14 +140,21 @@ const UserAdmin = () => {
         });
     }
 
-    var allAlts = Object.values(currentUser?.altArts || []).reduce(function (prev, next) {
+    var allAlts = Object.values(userAlts || []).reduce(function (prev, next) {
         return prev.concat(next);
     }, []);
 
     const altCards = allAlts.map((a) => ({ imageStub: a }));
+    const onAltClick = (stub, alt) => {
+        const tempAlts = Object.assign({}, userAlts);
+        if (tempAlts[stub][alt]) {
+            delete tempAlts[stub][alt];
+        }
+        setUserAlts(tempAlts);
+    };
 
     return (
-        <Col sm={{ span: 8, offset: 2 }}>
+        <Col >
             <ApiStatus state={apiState} onClose={() => dispatch(clearApiStatus(Admin.FindUser))} />
             <ApiStatus
                 state={apiSaveState}
@@ -289,8 +298,11 @@ const UserAdmin = () => {
 
                                         <TabPanel>
                                             Alt Arts
-                                            <Col lg={{ span: 12, offset: 0 }} className='user-alts'>
-                                                <CardGallery cards={altCards} />
+                                            <Col className='user-alts'>
+                                                <CardGallery
+                                                    cards={altCards}
+                                                    onAltClick={onAltClick}
+                                                />
                                             </Col>
 
                                         </TabPanel>

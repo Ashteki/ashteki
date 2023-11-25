@@ -60,7 +60,7 @@ class PutIntoPlayAction extends CardGameAction {
                 context.game.addMessage('{0} puts {1} into play', player, card);
             }
 
-            event.context.game.cardPlayed(card, player);
+            event.context.game.cardPut(card, player);
         });
     }
 }

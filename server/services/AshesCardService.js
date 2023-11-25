@@ -11,6 +11,7 @@ class AshesCardService {
         }
 
         this.cards = db.get('cards');
+        this.alts = db.get('altarts');
         this.packs = db.get('packs');
     }
 
@@ -18,8 +19,23 @@ class AshesCardService {
         return this.cards.remove({}).then(() => this.cards.insert(cards));
     }
 
+    replaceAlts(alts) {
+        return this.alts.remove({}).then(() => this.alts.insert(alts));
+    }
+
     replacePacks(cards) {
         return this.packs.remove({}).then(() => this.packs.insert(cards));
+    }
+
+    getAltArts() {
+        return this.alts
+            .find({})
+            .then((results) => {
+                return results;
+            })
+            .catch((err) => {
+                logger.info(err);
+            });
     }
 
     getAllCards(options) {

@@ -1,0 +1,23 @@
+{
+    "category": "phg",
+    "results": [
+        {
+            "name": "Jessanaut",
+            "stub": "anchornaut",
+            "alt": "alt/anchornaut",
+            "use": "Ashteki 1000 club"
+        },
+        {
+            "name": "Hammer Knight - Blue",
+            "stub": "hammer-knight",
+            "alt": "alt/hammer-knight-blue",
+            "use": "Metal and Mist OP Kit. Early tournament reward"
+        },
+        {
+            "name": "Hammer Knight - Green",
+            "stub": "hammer-knight",
+            "alt": "alt/hammer-knight-green",
+            "use": "Metal and Mist OP Kit. Early tournament reward"
+        }
+    ]
+}

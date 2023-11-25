@@ -187,6 +187,22 @@ class Game extends EventEmitter {
         }
     }
 
+    cardPut(card, player) {
+        const c = this.lastCardPlayed();
+        if (!c || c.obj !== card) {
+            this.gameLog.push({
+                id: 'cl' + this.getCardLogIndex(),
+                act: 'play',
+                obj: card,
+                player: player
+            });
+        }
+
+        if (!ActionSpellTypes.includes(card.type)) {
+            card.new = true;
+        }
+    }
+
     lastCardPlayed() {
         if (this.gameLog.length > 0) return this.gameLog[this.gameLog.length - 1];
 

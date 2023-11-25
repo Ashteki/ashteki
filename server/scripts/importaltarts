@@ -1,0 +1,37 @@
+const fs = require('fs');
+const _ = require('underscore');
+const AshesCardService = require('../services/AshesCardService');
+const ConfigService = require('../services/ConfigService');
+
+let cardService = new AshesCardService(new ConfigService());
+const dataDirectory = 'data/altarts/';
+let files = fs.readdirSync(dataDirectory);
+let totalCards = [];
+let category = null;
+
+_.each(files, (file) => {
+    let cardData = JSON.parse(fs.readFileSync(dataDirectory + file).toString());
+    console.log(file);
+    category = cardData.category;
+    let packCards = cardData.results;
+    if (category) {
+        packCards.forEach((alt) => {
+            alt.category = category;
+        });
+    }
+    totalCards = totalCards.concat(packCards);
+});
+
+_.each(totalCards, (card) => {
+    let cardsByName = _.filter(totalCards, (filterCard) => {
+        return filterCard.name === card.name;
+    });
+
+    if (cardsByName.length > 1) {
+        card.name = card.name + ' (' + card.pack_code + ')';
+    }
+});
+
+cardService.replaceAlts(totalCards).then((cards) => {
+    console.info(cards.length + ' alt arts imported');
+});
