@@ -40,21 +40,29 @@ const WinLoseSplash = ({ game, onCloseClick }) => {
                 <div className='splash-stats-box'>
                     <div className='stat header'>
                         <div className={`decklist-entry-image ${winner.phoenixborn.id}`} />
-                        <div className='stat-vs' >Vs</div>
+                        <div className='stat-vs'>Vs</div>
                         <div className={`decklist-entry-image ${loser.phoenixborn.id}`} />
                     </div>
                     <div className='stat'>
                         {winner.totalDiceSpend}
-                        <FontAwesomeIcon icon={faDice} className='stat-icon' />
+                        <FontAwesomeIcon icon={faDice} className='stat-icon' title='Dice spent' />
                         {loser.totalDiceSpend}
                     </div>
                     <div className='stat'>
                         {winner.totalCardsPlayed}
-                        <img src={cardsLogo} className='stat-icon cards-icon' />
+                        <img
+                            src={cardsLogo}
+                            className='stat-icon cards-icon'
+                            title='Cards played'
+                        />
                         {loser.totalCardsPlayed}
                     </div>
                     <div className='stat'>{winner.phoenixborn.damage}
-                        <FontAwesomeIcon icon={faDroplet} className='blood-stat-icon' />
+                        <FontAwesomeIcon
+                            icon={faDroplet}
+                            className='blood-stat-icon'
+                            title='Final Wounds'
+                        />
                         {loser.phoenixborn.damage}
                     </div>
                 </div>
