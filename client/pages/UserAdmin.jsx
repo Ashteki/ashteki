@@ -145,7 +145,7 @@ const UserAdmin = () => {
     const altCards = allAlts.map((a) => ({ imageStub: a }));
 
     return (
-        <Col sm={{ span: 8, offset: 2 }}>
+        <Col >
             <ApiStatus state={apiState} onClose={() => dispatch(clearApiStatus(Admin.FindUser))} />
             <ApiStatus
                 state={apiSaveState}
@@ -289,7 +289,7 @@ const UserAdmin = () => {
 
                                         <TabPanel>
                                             Alt Arts
-                                            <Col lg={{ span: 12, offset: 0 }} className='user-alts'>
+                                            <Col className='user-alts'>
                                                 <CardGallery cards={altCards} />
                                             </Col>
 

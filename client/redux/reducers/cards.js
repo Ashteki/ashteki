@@ -99,6 +99,12 @@ export default function (state = { decks: [], cards: {} }, action) {
             }
 
             return newState;
+        case 'RECEIVE_ALTS':
+            newState = Object.assign({}, state, {
+                alts: action.response.alts
+            });
+
+            return newState;
         case 'ZOOM_CARD':
             return Object.assign({}, state, {
                 zoomCard: action.card

@@ -14,4 +14,15 @@ module.exports.init = function (server) {
                 return next(err);
             });
     });
+
+    server.get('/api/cards/alts', function (req, res, next) {
+        cardService
+            .getAltArts({ shortForm: true })
+            .then((alts) => {
+                res.send({ success: true, alts: alts });
+            })
+            .catch((err) => {
+                return next(err);
+            });
+    });
 };
