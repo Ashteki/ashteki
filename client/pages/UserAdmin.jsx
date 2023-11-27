@@ -170,6 +170,11 @@ const UserAdmin = () => {
     };
 
     const addAltClick = (event) => {
+        event.preventDefault();
+        if (!selectedAlt) {
+            return;
+        }
+
         const tempAlts = Object.assign({}, userAlts);
 
         if (tempAlts[selectedAlt.stub]) {
@@ -180,7 +185,6 @@ const UserAdmin = () => {
             tempAlts[selectedAlt.stub] = [selectedAlt.alt];
         }
         setUserAlts(tempAlts);
-        event.preventDefault();
     };
 
     return (
