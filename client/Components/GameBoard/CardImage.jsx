@@ -9,7 +9,7 @@ const CardImage = ({ card, cardBack, override, noIndex }) => {
         return null;
     }
 
-    let imgPath = card.facedown && !override ? cardBack : imageUrl(card.imageStub || card.id);
+    let imgPath = card.facedown && !override ? cardBack : imageUrl(card.imageStub || card.id || card.alt);
     const cardIndex =
         card.index && !card.facedown ? (
             <div className='card-index' aria-hidden='true'>

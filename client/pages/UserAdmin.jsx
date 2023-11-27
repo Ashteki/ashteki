@@ -9,13 +9,14 @@ import ApiStatus from '../Components/Site/ApiStatus';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Admin } from '../redux/types';
-import { clearApiStatus, findUser, clearUserSessions, saveUser } from '../redux/actions';
+import { clearApiStatus, findUser, clearUserSessions, saveUser, loadAlts } from '../redux/actions';
 
 import './UserAdmin.scss';
 import { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import CardGallery from '../Components/Profile/CardGallery';
+import CardImage from '../Components/GameBoard/CardImage';
 
 const defaultPermissions = {
     canEditNews: false,
@@ -92,6 +93,8 @@ const UserAdmin = () => {
     const [userDisabled, setUserDisabled] = useState(currentUser?.disabled);
     const [faveColor, setfaveColor] = useState(currentUser?.faveColor);
     const [userAlts, setUserAlts] = useState(currentUser?.altArts);
+    const allAlts = useSelector((state) => state.cards.alts);
+    const [selectedAlt, setSelectedAlt] = useState(null);
 
     useEffect(() => {
         if (currentUser) {
@@ -102,6 +105,10 @@ const UserAdmin = () => {
             setUserAlts(currentUser.altArts);
         }
     }, [currentUser]);
+
+    useEffect(() => {
+        dispatch(loadAlts());
+    }, [dispatch]);
 
     const initialValues = {
         username: '',
@@ -140,19 +147,40 @@ const UserAdmin = () => {
         });
     }
 
+
     const altCards = [];
     for (const [key, value] of Object.entries(userAlts || [])) {
         altCards.push(...value.map((v) => ({ id: key, alt: v, imageStub: v })));
     }
 
-    // const altCards = allAlts.map((a) => ({ imageStub: a }));
     const onAltClick = (stub, alt) => {
         const tempAlts = Object.assign({}, userAlts);
         const altIndex = tempAlts[stub].indexOf(alt);
         if (altIndex >= 0) {
-            tempAlts[stub].splice(altIndex, 1);
+            if (confirm('Remove this alt?')) {
+                tempAlts[stub].splice(altIndex, 1);
+            }
         }
         setUserAlts(tempAlts);
+    };
+
+    const handleSelectedAltChange = (event) => {
+        const newAlt = allAlts.find((a) => a.alt === event.target.value);
+        setSelectedAlt(newAlt);
+    };
+
+    const addAltClick = (event) => {
+        const tempAlts = Object.assign({}, userAlts);
+
+        if (tempAlts[selectedAlt.stub]) {
+            if (!tempAlts[selectedAlt.stub].includes(selectedAlt.alt)) {
+                tempAlts[selectedAlt.stub].push(selectedAlt.alt);
+            }
+        } else {
+            tempAlts[selectedAlt.stub] = [selectedAlt.alt];
+        }
+        setUserAlts(tempAlts);
+        event.preventDefault();
     };
 
     return (
@@ -299,13 +327,27 @@ const UserAdmin = () => {
                                         </TabPanel>
 
                                         <TabPanel>
-                                            Alt Arts
-                                            <Col className='user-alts'>
+                                            <div style={{ display: 'flex' }}>
+                                                <select className='form-control col-md-6' onChange={handleSelectedAltChange}>
+                                                    <option value={null} />
+                                                    {allAlts.map((a) => (
+                                                        <option key={a.alt} value={a.alt}>
+                                                            {a.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <button className='btn btn-primary def' onClick={addAltClick} >Add</button>
+                                            </div>
+                                            <div className='admin-card' >
+                                                {selectedAlt && <CardImage card={selectedAlt} />}
+                                            </div>
+                                            <h3>Currently held alts</h3>
+                                            <div className='user-alts'>
                                                 <CardGallery
                                                     cards={altCards}
                                                     onAltClick={onAltClick}
                                                 />
-                                            </Col>
+                                            </div>
 
                                         </TabPanel>
 
@@ -386,6 +428,8 @@ const UserAdmin = () => {
                                             currentUser.verified = userVerified;
                                             currentUser.disabled = userDisabled;
                                             currentUser.faveColor = faveColor;
+                                            currentUser.altArts = userAlts;
+
                                             dispatch(saveUser(currentUser));
                                         }}
                                     >
