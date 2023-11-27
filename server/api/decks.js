@@ -214,8 +214,8 @@ module.exports.init = function (server) {
 
             if (!req.body.uuid) {
                 let deck = Object.assign(req.body, { username: req.user.username });
-                await deckService.create(deck);
-                res.send({ success: true });
+                const result = await deckService.create(deck);
+                res.send({ success: true, deck: result });
             } else {
                 // this is an import/update request
                 let deck = Object.assign(

@@ -253,6 +253,18 @@ export default function (state = { decks: [], cards: {} }, action) {
             }
 
             return newState;
+        case 'DECK_DUPLICATED':
+            decks = state.decks;
+            decks.unshift(action.response.deck);
+            newState = Object.assign({}, state, {
+                selectedDeck: action.response.deck,
+                deckSaved: true,
+                decks: decks
+            });
+
+            processDecks(newState.decks, state);
+
+            return newState;
         case 'SAVE_DECK':
             newState = Object.assign({}, state, {
                 deckSaved: false

@@ -62,6 +62,23 @@ export function updateDeck(deck) {
     };
 }
 
+export function duplicateDeck(deck) {
+    const newDeck = Object.assign({}, deck);
+    newDeck._id = null;
+    newDeck.name = deck.name + ' (Copy)';
+    var str = getDeckJson(newDeck);
+
+    return {
+        types: ['DUPLICATE_DECK', 'DECK_DUPLICATED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/decks/',
+            type: 'POST',
+            data: str
+        }
+    };
+}
+
 export function deleteDeck(deck) {
     return {
         types: [Decks.DeleteDeck, Decks.DeckDeleted],
@@ -89,8 +106,8 @@ export function setFavourite(deck, value) {
     };
 }
 
-export function saveDeck(deck) {
-    let str = JSON.stringify({
+function getDeckJson(deck) {
+    return JSON.stringify({
         deckName: deck.name,
         phoenixborn: formatCards(deck.phoenixborn),
         cards: formatCards(deck.cards),
@@ -98,6 +115,10 @@ export function saveDeck(deck) {
         dicepool: deck.dicepool,
         notes: deck.notes
     });
+}
+
+export function saveDeck(deck) {
+    var str = getDeckJson(deck);
 
     return {
         types: [Decks.SaveDeck, Decks.DeckSaved],

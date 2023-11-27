@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Col, Dropdown, SplitButton } from 'react-bootstrap
 
 import ConfirmButton from '../Form/ConfirmButton';
 import DeckSummary from './DeckSummary';
-import { deleteDeck, navigate, clearApiStatus, resyncDeck } from '../../redux/actions';
+import { deleteDeck, navigate, clearApiStatus, resyncDeck, saveDeck, loadDecks, duplicateDeck } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
@@ -29,6 +29,9 @@ const ViewDeck = ({ deck }) => {
     };
     const handleEditClick = () => {
         dispatch(navigate('/decks/edit'));
+    };
+    const handleDuplicateClick = () => {
+        dispatch(duplicateDeck(deck));
     };
     const handleUpdateClick = () => {
         dispatch(resyncDeck(deck));
@@ -86,6 +89,9 @@ const ViewDeck = ({ deck }) => {
                 <div className='deck-buttons text-center'>
                     <button className='btn btn-primary def' onClick={handleEditClick}>
                         Edit
+                    </button>
+                    <button className='btn btn-primary def' onClick={handleDuplicateClick}>
+                        Duplicate
                     </button>
 
                     {deleteButton}
