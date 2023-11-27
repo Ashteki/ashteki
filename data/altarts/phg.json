@@ -2,6 +2,61 @@
     "category": "phg",
     "results": [
         {
+            "name": "Aradel Sad",
+            "stub": "aradel-summergaard",
+            "alt": "alt/aradel-summergaard"
+        },
+        {
+            "name": "Coal Angry",
+            "stub": "coal-roarkwin",
+            "alt": "alt/coal-roarkwin"
+        },
+        {
+            "name": "Jessa Needles",
+            "stub": "jessa-na-ni",
+            "alt": "alt/jessa-na-ni"
+        },
+        {
+            "name": "Maeoni Big Snake",
+            "stub": "maeoni-viper",
+            "alt": "alt/maeoni-viper"
+        },
+        {
+            "name": "Jessa Needles",
+            "stub": "noah-redmoon",
+            "alt": "alt/noah-redmoon"
+        },
+        {
+            "name": "Noah Masked",
+            "stub": "noah-redmoon",
+            "alt": "alt/noah-redmoon"
+        },
+        {
+            "name": "Saria Makeup",
+            "stub": "saria-guideman",
+            "alt": "alt/saria-guideman"
+        },
+        {
+            "name": "Gilder Fighting",
+            "stub": "gilder",
+            "alt": "alt/gilder"
+        },
+        {
+            "name": "Mist Spirit Dark Forest",
+            "stub": "mist-spirit",
+            "alt": "alt/mist-spirit"
+        },
+        {
+            "name": "Rose Fire Dancer Ring",
+            "stub": "rose-fire-dancer",
+            "alt": "alt/rose-fire-dancer"
+        },
+        {
+            "name": "Molten Gold Foil",
+            "stub": "molten-gold-foil",
+            "alt": "alt/molten-gold-foil.png"
+        },
+        {
             "name": "Jessanaut",
             "stub": "anchornaut",
             "alt": "alt/anchornaut",

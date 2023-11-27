@@ -1,0 +1,70 @@
+{
+    "category": "fan-made",
+    "results": [
+        {
+            "name": "Meteor Matt",
+            "stub": "meteor",
+            "alt": "alt/meteor-matt"
+        },
+        {
+            "name": "Call Upon Carl",
+            "stub": "call-upon-the-realms",
+            "alt": "alt/call-upon-the-realms-carl"
+        },
+        {
+            "name": "Broughmander Monk",
+            "stub": "salamander-monk",
+            "alt": "alt/salamander-monk-broughmander"
+        },
+        {
+            "name": "Broughmander Monk Spirit",
+            "stub": "salamander-monk-spirit",
+            "alt": "alt/salamander-monk-spirit-broughmander"
+        },
+        {
+            "name": "Purple Mist Spirit",
+            "stub": "mist-spirit",
+            "alt": "alt/mist-spirit-purple"
+        },
+        {
+            "name": "Brian B Gilder",
+            "stub": "gilder",
+            "alt": "alt/gilder-fan-art"
+        },
+        {
+            "name": "Marbled Donut Dog",
+            "stub": "mirror-spirit",
+            "alt": "alt/mirror-spirit-marbled"
+        },
+        {
+            "name": "Powdered Donut Dog",
+            "stub": "mirror-spirit",
+            "alt": "alt/mirror-spirit-powdered"
+        },
+        {
+            "name": "Sprinkles Donut Dog",
+            "stub": "mirror-spirit",
+            "alt": "alt/mirror-spirit-sprinkles"
+        },
+        {
+            "name": "Accelerate Blitz",
+            "stub": "accelerate",
+            "alt": "alt/accelerate-fanmade"
+        },
+        {
+            "name": "Accelerate Blitz Winner",
+            "stub": "accelerate",
+            "alt": "alt/accelerate-blitz.gif"
+        },
+        {
+            "name": "NSM Time Hopper",
+            "stub": "time-hopper",
+            "alt": "alt/time-hopper-fanmade"
+        },
+        {
+            "name": "NSM Turtle Guard",
+            "stub": "turtle-guard",
+            "alt": "alt/turtle-guard-fanmade"
+        }
+    ]
+}
