@@ -167,6 +167,8 @@ class Game extends EventEmitter {
             obj: die,
             player: player
         });
+
+        player.totalDiceSpend += 1;
     }
 
     cardPlayed(card, player) {
