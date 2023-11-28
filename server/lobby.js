@@ -724,11 +724,14 @@ class Lobby {
             countUniques <= 3;
         let uniques = !hasPhoenixborn || validUniques;
 
+        const maxThree = !deck.cards.some((c) => c.count > 3);
+
         const legalToPlay =
-            hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
+            hasPhoenixborn && maxThree && cardCount === 30 && hasConjurations && tenDice && uniques;
 
         deck.status = {
             basicRules: hasPhoenixborn && cardCount === 30,
+            maxThree: maxThree,
             legalToPlay: legalToPlay,
             hasConjurations: hasConjurations,
             tenDice: tenDice,

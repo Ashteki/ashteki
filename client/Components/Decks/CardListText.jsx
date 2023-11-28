@@ -40,9 +40,11 @@ const CardListText = ({ deckCards }) => {
                 const linkClasses = classNames('card-link', {
                     unique: card.phoenixborn
                 });
+                const countClass = card.count > 3 && !card.card.type.includes('Conjur') ? 'invalidCount' : '';
+
                 cards.push(
                     <div key={'text-' + card.card.id}>
-                        <span>{card.count + 'x '}</span>
+                        <span className={countClass}>{card.count + 'x '}</span>
                         <span
                             className={linkClasses}
                             onMouseOver={() => setZoomCard(card)}

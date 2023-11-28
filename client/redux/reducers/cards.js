@@ -60,8 +60,11 @@ function processDecks(decks, state) {
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
         const legalToPlay =
             hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
+        const maxThree = !deck.cards.some((c) => c.count > 3);
+
         deck.status = {
             basicRules: hasPhoenixborn && cardCount === 30,
+            maxThree: maxThree,
             legalToPlay: legalToPlay,
             hasConjurations: hasConjurations,
             uniques: uniques,
