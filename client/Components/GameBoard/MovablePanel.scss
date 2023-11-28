@@ -3,6 +3,10 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
+.movable-panel {
+    z-index: $layer-card-menu;
+}
+
 .panel-heading {
     text-align: center;
     font-weight: bold;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ConcedeLeave from './ConcedeLeave';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCog, faCogs, faList, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faCogs, faList, faWrench } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import SpectatorIcon from './SpectatorIcon';
@@ -20,14 +20,6 @@ const GameMenu = ({ onSettingsClick, onManualModeClick, onManualCommandsClick })
         <>
             <div className='game-menu-header'>
                 <ConcedeLeave />
-                {/* <FontAwesomeIcon
-                    className='game-menu-trigger'
-                    icon={faBars}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setShowPopup(!showPopup);
-                    }}
-                />   */}
                 {`| Round ${currentGame.round} | `} <SpectatorIcon />
                 {' | '}
                 <FontAwesomeIcon
@@ -41,7 +33,12 @@ const GameMenu = ({ onSettingsClick, onManualModeClick, onManualCommandsClick })
 
             </div>
             {showPopup && (
-                <div className='game-menu'>
+                <div className='game-menu'
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setShowPopup(!showPopup);
+                    }}
+                >
                     <a
                         href='#'
                         onClick={onSettingsClick}

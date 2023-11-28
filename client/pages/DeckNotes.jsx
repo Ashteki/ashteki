@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next';
 
 const DeckNotes = ({ notes }) => {
     return (
-        <div className='manual-commands'>
+        <div className='deck-notes'>
             <h3 id='commands'>
                 <Trans>Deck Notes</Trans>
             </h3>
@@ -12,6 +12,6 @@ const DeckNotes = ({ notes }) => {
     );
 };
 
-DeckNotes.displayName = 'ManualCommands';
+DeckNotes.displayName = 'DeckNotes';
 
 export default DeckNotes;

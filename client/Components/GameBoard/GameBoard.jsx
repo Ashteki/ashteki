@@ -527,7 +527,9 @@ const GameBoard = () => {
                         onCloseClick={onManualCommandsClick}
                         side='bottom'
                     >
-                        <ManualCommands />
+                        <div className='panel-body'>
+                            <ManualCommands />
+                        </div>
                     </MovablePanel>
                 )}
                 {showDeckNotes && thisPlayer.deckNotes && (
@@ -538,7 +540,9 @@ const GameBoard = () => {
                             onCloseClick={onDeckNotesClick}
                             side='bottom'
                         >
-                            <DeckNotes notes={thisPlayer.deckNotes} />
+                            <div className='panel-body'>
+                                <DeckNotes notes={thisPlayer.deckNotes} />
+                            </div>
                         </MovablePanel>
                     </div>
                 )}
