@@ -6,9 +6,10 @@ import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import './DeckStatusSummary.scss';
 
 const DeckStatusSummary = ({ status }) => {
-    let { basicRules, hasConjurations, tenDice, uniques } = status;
+    let { basicRules, maxThree, hasConjurations, tenDice, uniques } = status;
     let items = [
         { title: 'Basic rules (deck size)', value: basicRules },
+        { title: 'Max 3x each card', value: maxThree },
         { title: 'Conjurations included', value: hasConjurations },
         { title: 'Ten dice', value: tenDice },
         { title: 'Phoenixborn unique cards', value: uniques }
