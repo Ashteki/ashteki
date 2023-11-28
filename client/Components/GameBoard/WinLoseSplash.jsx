@@ -37,35 +37,34 @@ const WinLoseSplash = ({ game, onCloseClick }) => {
             <CardImage card={card} />
             <div className='central'>
                 <h2>{headerMessage}</h2>
-                <div className='splash-stats-box'>
-                    <div className='stat header'>
+                <div className='splash-stats-box-columns'>
+                    <div className='stat-column'>
                         <div className={`decklist-entry-image ${winner.phoenixborn.id}`} />
+                        <div className='stat'>{winner.totalDiceSpend}</div>
+                        <div className='stat'>{winner.totalCardsPlayed}</div>
+                        <div className='stat'>{winner.phoenixborn.damage}</div>
+                    </div>
+                    <div className='stat-column'>
                         <div className='stat-vs'>Vs</div>
-                        <div className={`decklist-entry-image ${loser.phoenixborn.id}`} />
-                    </div>
-                    <div className='stat'>
-                        {winner.totalDiceSpend}
-                        <FontAwesomeIcon icon={faDice} className='stat-icon' title='Dice spent' />
-                        {loser.totalDiceSpend}
-                    </div>
-                    <div className='stat'>
-                        {winner.totalCardsPlayed}
-                        <img
+                        <div className='stat'><FontAwesomeIcon icon={faDice} className='stat-icon' title='Dice spent' /></div>
+                        <div className='stat'><img
                             src={cardsLogo}
                             className='stat-icon cards-icon'
                             title='Cards played'
-                        />
-                        {loser.totalCardsPlayed}
-                    </div>
-                    <div className='stat'>{winner.phoenixborn.damage}
-                        <FontAwesomeIcon
+                        /></div>
+                        <div className='stat'><FontAwesomeIcon
                             icon={faDroplet}
                             className='blood-stat-icon'
                             title='Final Wounds'
-                        />
-                        {loser.phoenixborn.damage}
+                        /></div>
                     </div>
-                </div>
+                    <div className='stat-column'>
+                        <div className={`decklist-entry-image ${loser.phoenixborn.id}`} />
+                        <div className='stat'>{loser.totalDiceSpend}</div>
+                        <div className='stat'>{loser.totalCardsPlayed}</div>
+                        <div className='stat'>{loser.phoenixborn.damage}</div>
+                    </div>
+                </div >
                 <div className='buttonDiv'>
                     <button
                         onClick={onLeaveClick}
@@ -76,8 +75,8 @@ const WinLoseSplash = ({ game, onCloseClick }) => {
                         className='btn splash-button btn-primary'
                     >Close</button>
                 </div>
-            </div>
-        </Panel>
+            </div >
+        </Panel >
     );
 };
 
