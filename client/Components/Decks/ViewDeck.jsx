@@ -1,10 +1,8 @@
 import React from 'react';
-import { Trans } from 'react-i18next';
-import { Button, ButtonGroup, Col, Dropdown, SplitButton } from 'react-bootstrap';
-
+import { ButtonGroup, Dropdown } from 'react-bootstrap';
 import ConfirmButton from '../Form/ConfirmButton';
 import DeckSummary from './DeckSummary';
-import { deleteDeck, navigate, clearApiStatus, resyncDeck, saveDeck, loadDecks, duplicateDeck } from '../../redux/actions';
+import { deleteDeck, navigate, clearApiStatus, resyncDeck, duplicateDeck } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
@@ -97,7 +95,6 @@ const ViewDeck = ({ deck }) => {
                     </button>
 
                     {deleteButton}
-                    {/* {updateButton} */}
                     {deck.ashesLiveUuid && (
                         <Dropdown
                             variant='extra'

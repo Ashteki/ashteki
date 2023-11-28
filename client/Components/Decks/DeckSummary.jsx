@@ -13,6 +13,7 @@ const DeckSummary = ({ deck }) => {
     if (!deck) return null;
 
     const combinedCards = deck.cards.concat(deck.conjurations);
+    const cardCount = deck.cards.reduce((agg, val) => agg += val.count, 0);
     return (
         <Col xs='12' className='deck-summary'>
             <DeckDice deck={deck} slotCount={10} />
@@ -43,6 +44,7 @@ const DeckSummary = ({ deck }) => {
                         <FontAwesomeIcon icon={faImage} title='Show menu' />
                     </ToggleButton>
                 </ToggleButtonGroup>
+                <div className='total-box'>Total: {cardCount}</div>
             </div>
             <Row className='deck-cards'>
                 {radioValue ? (<>
