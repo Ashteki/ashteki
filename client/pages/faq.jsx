@@ -71,7 +71,7 @@ const FAQ = () => {
                         <p>These icons are for information only. <b>Ashteki does not enforce the OP rules regarding the chained list</b></p>
                     </p>
                 </div>
-                <ManualCommands></ManualCommands>
+                <ManualCommands />
             </Panel>
         </Col >
     );

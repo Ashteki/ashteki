@@ -8,7 +8,7 @@ import DieIcon from './DieIcon';
 const DiceHistory = ({ firstFive, diceHistory, onCloseClick, side }) => {
     return (
         <MovablePanel title='History' name='History' onCloseClick={onCloseClick} side={side}>
-            <div className='dice-history'>
+            <div className='dice-history panel-body'>
                 <div>First Five</div>
                 <div className='cardHistory'>
                     {(

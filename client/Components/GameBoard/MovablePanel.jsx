@@ -76,7 +76,7 @@ const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick,
     }, [dragOffset, isDragging]);
 
     let content = (
-        <div ref={popupRef} className='panel panel-primary' style={position}>
+        <div ref={popupRef} className='panel panel-primary movable-panel' style={position}>
             <Resizable
                 enable={{
                     top: false,
