@@ -12,6 +12,8 @@ import './ViewDeck.scss';
 import DeckHeader from './DeckHeader';
 import { ashesLiveShareUrl } from '../../util';
 import { toastr } from 'react-redux-toastr';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @typedef ViewDeckProps
@@ -54,7 +56,7 @@ const ViewDeck = ({ deck }) => {
     if (deck._id) {
         deleteButton = (
             <ConfirmButton onClick={handleDeleteClick}>
-                <Trans>Delete</Trans>
+                <FontAwesomeIcon icon={faTrashCan} /> Delete
             </ConfirmButton>
         );
     }
@@ -88,10 +90,10 @@ const ViewDeck = ({ deck }) => {
                 <DeckHeader deck={deck} />
                 <div className='deck-buttons text-center'>
                     <button className='btn btn-primary def' onClick={handleEditClick}>
-                        Edit
+                        <FontAwesomeIcon icon={faPen} /> Edit
                     </button>
                     <button className='btn btn-primary def' onClick={handleDuplicateClick}>
-                        Duplicate
+                        <FontAwesomeIcon icon={faCopy} /> Copy
                     </button>
 
                     {deleteButton}

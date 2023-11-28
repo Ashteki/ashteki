@@ -9,6 +9,8 @@ import ViewDeck from '../Components/Decks/ViewDeck';
 import ApiStatus from '../Components/Site/ApiStatus';
 import { Decks } from '../redux/types';
 import { clearApiStatus } from '../redux/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const DecksComponent = () => {
     const { t } = useTranslation();
@@ -44,7 +46,7 @@ const DecksComponent = () => {
                         <div className='lobby-header'>My Decks</div>
                         <Col className='text-center'>
                             <Link className='btn btn-secondary def' href='/decks/add'>
-                                New Deck
+                                <FontAwesomeIcon icon={faPlus} /> New Deck
                             </Link>
                             <Link className='btn btn-primary def' href='/decks/import'>
                                 <span className='phg-basic-magic'></span> Import a Deck
