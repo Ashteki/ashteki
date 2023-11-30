@@ -20,6 +20,10 @@ class DummyUser extends User {
         return true;
     }
 
+    get gamesPlayed() {
+        return 100;
+    }
+
     hasUserBlocked() {
         return false;
     }
