@@ -2,7 +2,6 @@ import React from 'react';
 import { Col, Alert } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import CardGallery from '../../Components/Profile/CardGallery';
-import Panel from '../../Components/Site/Panel';
 import './UserAlts.scss';
 
 function UserAlts() {
@@ -19,15 +18,13 @@ function UserAlts() {
 
     const altCards = allAlts.map((a) => ({ imageStub: a }));
     return (
-        <Panel type='lobby'>
-            <h2>Alt arts</h2>
-            <p>You have {altCards.length} alt art cards</p>
+        <>
+            <div className='lobby-header'>You have {altCards.length} alt art cards</div>
 
             <Col lg={{ span: 12, offset: 0 }} className='user-alts'>
                 <CardGallery cards={altCards} />
             </Col>
-        </Panel>
-
+        </>
     );
 };
 

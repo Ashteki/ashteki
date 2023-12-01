@@ -1,0 +1,68 @@
+.results-page {
+    >.react-tabs {
+        >.react-tabs__tab-list {
+            border: none;
+            text-align: center;
+
+            .image-button:not(:hover) {
+                filter: grayscale(0.8);
+            }
+
+            .react-tabs__tab {
+                background-color: transparent;
+                border-radius: 5px 5px 0 0;
+                border: none;
+                padding: 6px 6px;
+
+            }
+
+            .react-tabs__tab:hover {
+                // background-color: #1d0606;
+            }
+
+            .react-tabs__tab--selected {
+                // background-color: rgb(248, 236, 236);
+
+                .image-button {
+                    filter: grayscale(0);
+                    -webkit-filter: grayscale(0);
+
+                    .img-button-label {
+                        background-color: rgb(0, 0, 0, 0.9)
+                    }
+                }
+            }
+        }
+    }
+
+    .image-button {
+        width: 200px;
+        min-width: 200px;
+        height: 130px;
+    }
+
+    .results-link {
+        background-image: url('https://cdn.ashes.live/images/cards/survival-of-the-fittest.jpg');
+        background-position: 28% 30%;
+        background-size: 140%;
+    }
+
+    .elo-link {
+        background-image: url('https://cdn.ashes.live/images/cards/channel-magic.jpg');
+        background-position: 50% 30%;
+        background-size: 100%;
+    }
+
+    .stats-link {
+        background-image: url('https://cdn.ashes.live/images/cards/law-of-assurance.jpg');
+        background-position: 30% 30%;
+        background-size: 105%;
+    }
+
+    .alts-link {
+        background-image: url('https://cdn.ashes.live/images/cards/reflections-in-the-water.jpg');
+        background-position: 30% 35%;
+        background-size: 105%;
+    }
+
+}

@@ -7,7 +7,7 @@ const DeckNotes = ({ notes }) => {
             <h3 id='commands'>
                 <Trans>Deck Notes</Trans>
             </h3>
-            <p style={{ 'white-space': 'pre-line' }}>{notes}</p>
+            <p style={{ whiteSpace: 'pre-line' }}>{notes}</p>
         </div>
     );
 };

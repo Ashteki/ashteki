@@ -32,6 +32,17 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/games/report/:tag',
+        // passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            let report = await gameService.getTagReport(req.params.tag, {
+                season: req.query.season
+            });
+            res.send({ success: true, tag: req.params.tag, report: report });
+        })
+    );
+
+    server.get(
         '/api/game/:id',
         wrapAsync(async function (req, res) {
             let game = await gameService.getGameById(req.params.id);

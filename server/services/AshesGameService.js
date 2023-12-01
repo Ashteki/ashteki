@@ -71,6 +71,62 @@ class GameService {
             });
     }
 
+    getTagReport(tag, options) {
+        const findSpec = {
+            label: tag
+        };
+        findSpec.winner = { $exists: true };
+        findSpec.winReason = { $ne: 'Agreement' };
+
+        // season currently used only for PHX
+        if (options.season === 2) {
+            // from date
+            const fromDate = new Date('2023-11-23');
+            findSpec.startedAt = { $gt: fromDate };
+        }
+        if (options.season === 1) {
+            // from date
+            const toDate = new Date('2023-11-23');
+            findSpec.startedAt = { $lt: toDate };
+        }
+
+        // ignore FFL games before 23 relaunch
+        if (tag === 'FFL') {
+            const fromDate = new Date('2023-01-01');
+            findSpec.startedAt = { $gt: fromDate };
+        }
+
+        return this.games
+            .find(findSpec, {
+                sort: {
+                    finishedAt: -1
+                }
+            })
+            .then((results) => {
+                const output = results.reduce((agg, game) => {
+                    game.players.forEach(p => {
+                        let player = agg.find((pl) => pl.name === p.name);
+                        if (player) {
+                            player.count += 1;
+                        } else {
+                            player = { name: p.name, count: 1, wins: 0 };
+                            agg.push(player);
+                        }
+
+                        if (player.name === game.winner) {
+                            player.wins += 1;
+                        }
+                    });
+                    return agg;
+                }, []);
+                return output.sort((a, b) => a.wins > b.wins ? -1 : 1);
+            })
+            .catch((err) => {
+                logger.error('Unable to get TAG REPORT ', tag, err);
+                throw new Error('Unable to get tag report');
+            });
+    }
+
     getGameById(id) {
         const findSpec = {
             gameId: id

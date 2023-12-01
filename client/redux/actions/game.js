@@ -21,6 +21,20 @@ export function loadUserGames(months, gameType) {
         }
     };
 }
+export function loadLeague(tag, season) {
+    return {
+        types: ['REQUEST_TAGREPORT', 'RECEIVE_TAGREPORT'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: 'api/games/report/' + tag,
+            data: {
+                season: season
+            },
+            cache: false
+        },
+        type: 'GET'
+    };
+}
 
 export function startNewGame(gameType) {
     return {

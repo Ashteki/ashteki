@@ -50,6 +50,9 @@ function games(state = {}, action) {
             newState.games = action.response.games;
 
             break;
+        case 'RECEIVE_TAGREPORT':
+            newState.tagReport = action.response.report;
+            break;
         case 'GAME_SOCKET_RESPONSE_TIME_RECEIVED':
             newState.responseTime = action.responseTime;
             break;
