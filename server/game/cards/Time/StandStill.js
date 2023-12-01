@@ -15,7 +15,7 @@ class StandStill extends Card {
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
                 gameAction: ability.actions.cardLastingEffect((context) => ({
-                    target: context.player.opponent.unitsInPlay.filter(
+                    target: context.player.opponent.battlefield.filter(
                         (c) => c.id === context.target.id
                     ),
                     duration: 'untilEndOfTurn',

@@ -270,7 +270,7 @@ class ScourgeBehaviour extends BehaviourCard {
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => {
-                    const targets = [...context.player.opponent.unitsInPlay];
+                    const targets = [...context.player.opponent.battlefield];
                     if (includePb) {
                         targets.push(context.player.opponent.phoenixborn);
                     }

@@ -8,7 +8,7 @@ class MaeoniViper extends Card {
             title: 'Command Strike',
             condition: (context) =>
                 context.player.unitsInPlay.filter((u) => !u.exhausted).length > 0 &&
-                context.player.opponent.unitsInPlay.length > 0,
+                context.player.opponent.battlefield.length > 0,
             cost: [
                 ability.costs.sideAction(),
                 ability.costs.exhaust(),
