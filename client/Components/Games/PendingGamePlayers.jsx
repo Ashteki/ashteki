@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { sendSocketMessage } from '../../redux/actions';
 import { Button, Col, Form } from 'react-bootstrap';
 import classNames from 'classnames';
@@ -9,6 +9,7 @@ import DeckStatus from '../Decks/DeckStatus';
 import PlayerName from '../Site/PlayerName';
 import SelectDeckModal from './SelectDeckModal';
 import { PatreonStatus } from '../../types';
+import { patreonUrl } from '../../constants';
 
 /**
  * @typedef PendingGamePlayersProps
@@ -25,6 +26,8 @@ const PendingGamePlayers = ({ currentGame, user }) => {
     const [playerIsMe, setPlayerIsMe] = useState(true);
     const dispatch = useDispatch();
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
+    const unlinked = !user?.patreon || user?.patreon === PatreonStatus.Unlinked;
+    const showPatreonAdvice = !allowPremium;
 
     let firstPlayer = true;
     // need to account for coaloff, and player index
@@ -55,6 +58,16 @@ const PendingGamePlayers = ({ currentGame, user }) => {
 
     const onSoloStageChange = (newStage) => {
         dispatch(sendSocketMessage('setsolostage', currentGame.id, newStage));
+    };
+
+    const patreonLoginClick = (event) => {
+        if (user?.patreon === 'linked') {
+            window.location = 'https://www.patreon.com/ashteki';
+        } else {
+            window.location = patreonUrl;
+        }
+
+        event.preventDefault();
     };
 
     return (
@@ -121,13 +134,14 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                 </>
                             );
                         } else {
-                            soloControls = (
+                            soloControls = (<>
                                 <span
                                     className='premium btn btn-primary def disabled'
                                     title='Patreon only'
                                 >
-                                    Standard Level 1
+                                    Standard L1
                                 </span>
+                            </>
                             );
                         }
                     }
@@ -156,6 +170,19 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                             {selectLink}
                             {soloControls}
                         </Form.Row>
+                        {player.deck.isChimera && showPatreonAdvice && (
+                            <Form.Row className='patreon-row'>
+                                <div className='pending-player-name'></div>
+                                <div>
+                                    <span className='unlock-advice'>
+                                        <a href='#' onClick={patreonLoginClick}>
+                                            {unlinked ? 'Login to' : 'Support on'} Patreon
+                                        </a>{' '}
+                                        to unlock all content
+                                    </span>
+                                </div>
+                            </Form.Row>
+                        )}
                     </div>
                 );
             })}

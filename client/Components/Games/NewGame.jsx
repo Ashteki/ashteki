@@ -5,7 +5,6 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import Panel from '../Site/Panel';
 import GameFormats from './GameFormats';
 
 // import GameOptions from './GameOptions';

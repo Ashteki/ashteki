@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { imageUrl } from '../../util';
 
 const Zoomable = ({ children, card }) => {
-    let pbImage = imageUrl(card.imageStub);
+    let pbImage = imageUrl(card?.imageStub);
 
     const [imageZoom, setImageZoom] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });

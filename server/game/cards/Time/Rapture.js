@@ -15,7 +15,7 @@ class Rapture extends Card {
             then: {
                 target: {
                     ignoreTargetCheck: true,
-                    autoTarget: (context) => context.player.opponent.unitsInPlay,
+                    autoTarget: (context) => context.player.opponent.battlefield,
                     gameAction: ability.actions.orderedAoE({
                         gameAction: ability.actions.dealDamage({ showMessage: true }),
                         promptTitle: 'Rapture'

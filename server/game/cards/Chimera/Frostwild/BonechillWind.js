@@ -22,7 +22,7 @@ class BonechillWind extends AspectCard {
     }
 
     getExhaustedTargets(context) {
-        const result = [...context.player.opponent.unitsInPlay.filter((u) => u.exhausted)];
+        const result = [...context.player.opponent.battlefield.filter((u) => u.exhausted)];
 
         if (context.player.opponent.phoenixborn.exhausted) {
             result.push(context.player.opponent.phoenixborn);

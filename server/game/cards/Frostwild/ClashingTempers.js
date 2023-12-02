@@ -17,7 +17,7 @@ class ClashingTempers extends Card {
                     cardType: BattlefieldTypes,
                     controller: 'self',
                     cardCondition: (card, context) => card !== context.targets.fire,
-                    gameAction: [
+                    gameAction: ability.actions.sequential([
                         ability.actions.attachConjuredAlteration((context) => ({
                             conjuredAlteration: 'fire-adaptation',
                             target: context.targets.fire
@@ -26,7 +26,7 @@ class ClashingTempers extends Card {
                             conjuredAlteration: 'ice-adaptation',
                             target: context.targets.ice
                         }))
-                    ]
+                    ])
                 }
             }
         });

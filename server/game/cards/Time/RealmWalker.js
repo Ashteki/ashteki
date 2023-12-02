@@ -11,7 +11,7 @@ class RealmWalker extends Card {
                     return event.battles.some((b) => b.attacker === context.source);
                 }
             },
-            condition: (context) => context.player.opponent.unitsInPlay.some((c) => !c.exhausted),
+            condition: (context) => context.player.opponent.battlefield.some((c) => !c.exhausted),
             gameAction: ability.actions.chosenExhaust((context) => ({
                 target: context.player.opponent,
                 cardType: BattlefieldTypes,

@@ -10,7 +10,7 @@ class VirosUltimate extends UltimateCard {
                 target: {
                     ignoreTargetCheck: true,
                     autoTarget: (context) => [
-                        ...context.player.opponent.unitsInPlay,
+                        ...context.player.opponent.battlefield,
                         context.player.opponent.phoenixborn
                     ],
                     gameAction: AbilityDsl.actions.orderedAoE({
