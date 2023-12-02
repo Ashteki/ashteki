@@ -279,6 +279,10 @@
     background-color: rgb(251, 219, 89);
     font-size: 14px;
     color: black;
+
+    &.login {
+        cursor: pointer;
+    }
 }
 
 .premium {
@@ -286,5 +290,13 @@
 
     .decklist-entry-image {
         filter: grayscale(100%);
+    }
+}
+
+.patreon-row {
+    margin-top: 4px;
+
+    .unlock-advice {
+        margin: 4px;
     }
 }
