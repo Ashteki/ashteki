@@ -6,7 +6,7 @@ class LawOfDomination extends Card {
         this.entersSpellboard({
             condition: (context) =>
                 context.player.unitsInPlay.length > 0 &&
-                context.player.opponent.battlefield.length > 0,
+                context.player.opponent.unitsInPlay.length > 0,
             targets: {
                 theirs: {
                     player: 'opponent',
