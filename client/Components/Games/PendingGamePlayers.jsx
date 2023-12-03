@@ -10,6 +10,8 @@ import PlayerName from '../Site/PlayerName';
 import SelectDeckModal from './SelectDeckModal';
 import { PatreonStatus } from '../../types';
 import { patreonUrl } from '../../constants';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @typedef PendingGamePlayersProps
@@ -178,7 +180,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                         <a href='#' onClick={patreonLoginClick}>
                                             {unlinked ? 'Login to' : 'Support on'} Patreon
                                         </a>{' '}
-                                        to unlock all content
+                                        to unlock all content <FontAwesomeIcon icon={faCircleInfo} title='You may need to reload this page after' />
                                     </span>
                                 </div>
                             </Form.Row>
