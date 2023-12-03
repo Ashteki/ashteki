@@ -13,7 +13,7 @@ class Purify extends Card {
             },
             then: {
                 condition: (context) =>
-                    context.player.opponent.battlefield.some(
+                    context.player.opponent.unitsInPlay.some(
                         (card) => card.isConjuration()
                     ),
                 target: {

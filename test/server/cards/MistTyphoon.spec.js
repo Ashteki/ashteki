@@ -38,6 +38,48 @@ describe('Mist Typhoon', function () {
         });
     });
 
+    describe('vs Chimera deals damage', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'iron-worker'],
+                    spellboard: [],
+                    dicepool: ['natural', 'illusion', 'time', 'charm'],
+                    hand: ['mist-typhoon'],
+                    archives: ['spark']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['constrict', 'hunting-instincts'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['rampage'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+        });
+
+        it('deals damage to every opponents unit', function () {
+            this.player1.play(this.mistTyphoon);
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            // ordered unit damage
+            this.player1.clickCard(this.constrict);
+            this.player1.clickCard(this.huntingInstincts);
+            expect(this.hammerKnight.location).toBe('play area');
+            expect(this.constrict.damage).toBe(1);
+            expect(this.huntingInstincts.damage).toBe(1);
+
+            this.player1.clickNo(); // draw a card
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
     describe('vs double down', function () {
         beforeEach(function () {
             this.setupTest({

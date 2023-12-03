@@ -18,7 +18,7 @@ class ScourgeUltimate extends UltimateCard {
                         alwaysTriggers: true,
                         gameAction: AbilityDsl.actions.sequentialForEach((context) => ({
                             forEach: [
-                                ...context.player.opponent.battlefield,
+                                ...context.player.opponent.unitsInPlay,
                                 context.player.opponent.phoenixborn
                             ],
                             action: AbilityDsl.actions.attachConjuredAlteration({
@@ -39,7 +39,7 @@ class ScourgeUltimate extends UltimateCard {
                         alwaysTriggers: true,
                         gameAction: AbilityDsl.actions.sequentialForEach((context) => ({
                             forEach: [
-                                ...context.player.opponent.battlefield,
+                                ...context.player.opponent.unitsInPlay,
                                 context.player.opponent.phoenixborn
                             ],
                             action: AbilityDsl.actions.attachConjuredAlteration({

@@ -12,7 +12,7 @@ class AbilityTargetAutoCard extends AbilityTargetCard {
 
     resolve(context, targetResults) {
         // aim dictates
-        const opposingUnits = [...context.player.opponent.battlefield];
+        const opposingUnits = [...context.player.opponent.unitsInPlay];
         // reverse for L2R
         if (this.aim === 'right') {
             opposingUnits.reverse();
