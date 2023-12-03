@@ -92,12 +92,9 @@ class DummyPlayer extends Player {
         }
     }
 
+    // THREAT CARDS are considered to be a part of the battlefield
     get threatCards() {
         return this.cardsInPlay.filter((c) => c.facedown);
-    }
-
-    get unitsInPlay() {
-        return super.unitsInPlay.filter((card) => !card.facedown);
     }
 
     applyFatigue() {
