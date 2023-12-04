@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class Infuriate extends Card {
     setupCardAbilities(ability) {
-        this.forcedInterrupt({
+        this.forcedReaction({
             when: {
                 onAttackersDeclared: (event, context) =>
                     event.battles.some((b) => b.attacker === context.source.parent)
@@ -15,7 +15,7 @@ class Infuriate extends Card {
 
         this.whileAttached({
             effect: ability.effects.modifyAttack(() => this.getAbilityNumeric(this.parent.damage))
-        })
+        });
     }
 }
 
