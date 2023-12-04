@@ -5,8 +5,8 @@ class SwordOfVirtue extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.chooseAction(() => ({
-                    cardType: BattlefieldTypes,
                     choices: {
                         Destroy: ability.actions.destroy(),
                         'Remove tokens': [

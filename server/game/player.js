@@ -202,11 +202,15 @@ class Player extends GameObject {
         );
     }
 
+    // CAUTION! overridden in DummyPlayer
     get unitsInPlay() {
-        return this.cardsInPlay.filter((card) => BattlefieldTypes.includes(card.type));
+        return this.cardsInPlay.filter(
+            (card) => BattlefieldTypes.includes(card.type) && !card.facedown && !card.moribund
+        );
     }
 
-    // this get sent to the client
+    // this gets sent to the client
+    // CAUTION: it includes facedown cards vs chimera
     get battlefield() {
         return this.cardsInPlay.filter(
             (card) => !PhoenixbornTypes.includes(card.type) && !card.moribund
