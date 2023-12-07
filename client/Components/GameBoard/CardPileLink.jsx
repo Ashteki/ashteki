@@ -63,7 +63,15 @@ const CardPileLink = ({
     const card = topCard();
 
     return (
-        <div className={classNameStr}>
+        <div
+            className={classNameStr}
+            onClick={() => {
+                if (!disablePopup) {
+                    updatePopupVisibility(!showPopup);
+                    setManualPopup(!showPopup);
+                }
+            }}
+        >
             {card && (
                 <div className='icon'>
                     <CardImage card={card} cardBack={cardBack} orientation='vertical' size='icon' />
