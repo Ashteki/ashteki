@@ -1,3 +1,5 @@
+const Dice = require("../../../server/game/dice");
+
 describe('chimera reactions', function () {
     describe('discard causes damage', function () {
         beforeEach(function () {
@@ -58,12 +60,16 @@ describe('chimera reactions', function () {
             });
         });
 
-        it('adds red rains token', function () {
+        it('raises a basic die', function () {
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
+
+            expect(this.player2.activeNonBasicDiceCount).toBe(0);
             expect(this.player2.player.threatCards.length).toBe(1);
             expect(this.corpseOfViros.redRains).toBe(0);
             this.player1.endTurn();
 
-            expect(this.corpseOfViros.redRains).toBe(1);
+            expect(this.corpseOfViros.redRains).toBe(0);
+            expect(this.player2.activeNonBasicDiceCount).toBe(1);
         });
     });
 
@@ -91,12 +97,15 @@ describe('chimera reactions', function () {
             });
         });
 
-        it('does not add red rains token', function () {
+        it('does not raise a basic rage die', function () {
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
+
             expect(this.player2.player.threatCards.length).toBe(0);
             expect(this.corpseOfViros.redRains).toBe(0);
             this.player1.endTurn();
 
             expect(this.corpseOfViros.redRains).toBe(0);
+            expect(this.player2.activeNonBasicDiceCount).toBe(0);
         });
     });
 });

@@ -1,4 +1,4 @@
-const { Level } = require('../../constants');
+const { Level, Magic } = require('../../constants');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
 const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
@@ -93,7 +93,7 @@ class BehaviourCard extends Card {
     doRageRaise(numDice = 1) {
         for (let i = 0; i < numDice; i++) {
             this.game.queueSimpleStep(() => {
-                const basicDie = this.owner.dice.find((die) => die.level === Level.Basic);
+                const basicDie = this.owner.getBasicDie(Magic.Rage);
                 if (basicDie) {
                     AbilityDsl.actions
                         .raiseDie({ showMessage: true })

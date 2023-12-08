@@ -710,6 +710,10 @@ class Player extends GameObject {
         return this.activeNonBasicDice.length;
     }
 
+    getBasicDie(magic) {
+        return this.activeDice.find((die) => die.level === Level.Basic && die.magic === magic);
+    }
+
     /**
      * Sets the passed cards as selected
      * @param cards

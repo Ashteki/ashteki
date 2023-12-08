@@ -1,3 +1,4 @@
+const { Magic } = require('../../constants');
 const Card = require('../Card');
 
 class ChimeraCard extends Card {
@@ -36,7 +37,10 @@ class ChimeraCard extends Card {
                     event.player === context.player.opponent &&
                     context.player.threatCards.length > 0
             },
-            gameAction: ability.actions.addRedRainsToken()
+            gameAction: ability.actions.raiseDie((context) => ({
+                target: this.owner.getBasicDie(Magic.Rage),
+                showMessage: true
+            }))
         });
     }
 }
