@@ -8,7 +8,7 @@ class Avalanche extends AspectCard {
         this.afterDestroysFighting({
             autoResolve: true,
             target: {
-                activePromptTitle: 'Choose a die to lower one level',
+                activePromptTitle: 'Choose a die to exhaust',
                 player: 'opponent',
                 targetsPlayer: true,
                 toSelect: 'die',
