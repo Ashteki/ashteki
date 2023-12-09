@@ -37,6 +37,47 @@ describe('Chimera Hand', function () {
         });
     });
 
+    describe('Imperial Ninja attack, discard choice', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                allowSetup: true,
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['ice-golem', 'imperial-ninja'],
+                    spellboard: ['summon-three-eyed-owl'],
+                    dicepool: ['natural', 'divine', 'divine', 'charm', 'charm'],
+                    archives: ['ice-golem']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: [],
+                    spellboard: [],
+                    threatZone: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+        });
+
+        it('forces discard of revealed card', function () {
+            const deckSize = this.player2.deck.length;
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.corpseOfViros); // target
+            this.player1.clickCard(this.imperialNinja); // single attacker
+            this.player1.clickPrompt('Done'); // end attacker select
+            this.player1.clickOk(); // alert revealed card
+
+            this.player1.clickPromptButton(0); // chimera choice
+            expect(this.player2.deck.length).toBe(deckSize - 1);
+            expect(this.corpseOfViros.damage).toBe(2); // unblocked damage from ninja, but no extra
+            expect(this.player2.discard.length).toBe(1);
+        });
+    });
+
+
     describe('Anguish discard', function () {
         beforeEach(function () {
             this.setupTest({
