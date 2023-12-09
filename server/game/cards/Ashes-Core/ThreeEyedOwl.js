@@ -19,7 +19,7 @@ class ThreeEyedOwl extends Card {
             target: {
                 toSelect: 'player',
                 autoTarget: (context) => context.player.opponent,
-                gameAction: ability.actions.exposeRandom()
+                gameAction: ability.actions.exposeRandom({ promptTitle: 'Three-Eyed Owl' })
             }
         });
     }

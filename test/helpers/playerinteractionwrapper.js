@@ -433,6 +433,10 @@ class PlayerInteractionWrapper {
         this.clickPrompt('No');
     }
 
+    clickOk() {
+        this.clickPrompt('Ok');
+    }
+
     clickPrompt(text, overrideDisabledCheck) {
         text = text.toString();
         var currentPrompt = this.player.currentPrompt();

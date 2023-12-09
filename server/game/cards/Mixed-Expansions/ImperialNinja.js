@@ -13,31 +13,33 @@ class ImperialNinja extends Card {
                 }
             },
             target: {
-                random: true,
-                controller: 'opponent',
-                location: 'hand',
-                gameAction: [
-                    ability.actions.reveal(),
-                    ability.actions.chooseAction((context) => {
-                        const choices = {
-                            ['Discard ' + context.target[0].name]: ability.actions.discard({
-                                showMessage: true,
-                                player: context.player.opponent
-                            })
-                        };
-                        if (context.player.opponent.deck.length >= 2) {
-                            choices['Discard 2 top of deck'] = ability.actions.discardTopOfDeck({
-                                amount: 2,
-                                target: context.player.opponent
-                            });
-                        }
-
-                        return {
+                toSelect: 'player',
+                autoTarget: (context) => context.player.opponent,
+                gameAction: ability.actions.exposeRandom()
+            },
+            then: {
+                gameAction: ability.actions.chooseAction((context) => {
+                    const revealedCard = context.preThenEvent.context.cardsRevealed[0];
+                    const choices = {
+                        ['Discard ' + revealedCard.name]: ability.actions.discard({
+                            showMessage: true,
                             player: context.player.opponent,
-                            choices: choices
-                        };
-                    })
-                ]
+                            target: revealedCard
+                        })
+                    };
+                    if (context.player.opponent.deck.length >= 2) {
+                        choices['Discard 2 top of deck'] = ability.actions.discardTopOfDeck({
+                            amount: 2,
+                            target: context.player.opponent
+                        });
+                    }
+
+                    return {
+                        player: context.player.opponent,
+                        choices: choices
+                    };
+                })
+
             }
         });
     }

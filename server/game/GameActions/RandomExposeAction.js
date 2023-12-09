@@ -6,6 +6,7 @@ class RandomExposeAction extends PlayerAction {
         this.amount = 1;
         // hand or archives
         this.location = 'hand';
+        this.promptTitle = 'Random Reveal';
     }
 
     setup() {
@@ -24,10 +25,11 @@ class RandomExposeAction extends PlayerAction {
             let cards = _.shuffle(hand).slice(0, amount);
 
             context.game.addMessage('{0} reveals {1} from their hand', player, cards);
+            context.cardsRevealed = cards;
             context.game.queueUserAlert(context, {
                 // timed: true,
                 self: true,
-                promptTitle: 'Three-Eyed Owl',
+                promptTitle: this.promptTitle,
                 menuTitle: player.name + ' reveals ' + cards.map((c) => c.name).join(', '),
                 controls: [
                     {
