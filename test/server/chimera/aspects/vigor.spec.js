@@ -48,7 +48,7 @@ describe('Vigor Alteration', function () {
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.firebelly);
             expect(this.firebelly.location).toBe('discard');
-            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(1); // PASS ADDS POWOER DICE
 
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
             expect(Dice.getRandomInt).toHaveBeenCalledTimes(2);

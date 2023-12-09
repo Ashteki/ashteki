@@ -21,7 +21,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
                     inPlay: ['rampage'],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['hunting-instincts'],
+                    threatZone: ['regenerate'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -31,7 +31,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             // reveal
             spyOn(Dice, 'd12Roll').and.returnValue(1);
             expect(this.rampage.facedown).toBe(false);
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
             this.player1.clickCard(this.summonLightBringer);
             this.player1.clickPrompt('summon light bringer');
@@ -39,7 +39,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             this.player1.endTurn();
 
             expect(this.player1).toHavePrompt('Attack');
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(Dice.d12Roll).not.toHaveBeenCalled();
         });
 
@@ -47,19 +47,19 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             // reveal
             spyOn(Dice, 'd12Roll').and.returnValue(1);
             expect(this.rampage.facedown).toBe(false);
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.regenerate.facedown).toBe(false);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('3 Attacks if able, no reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(3); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -69,34 +69,34 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
             expect(this.player1).toHaveDefaultPrompt();
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('3 Cannot Attack, Reveals', function () {
             this.rampage.tokens.exhaustion = 1; // cannot attack
             spyOn(Dice, 'd12Roll').and.returnValue(3); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.regenerate.facedown).toBe(false);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('5 Reveal then Attack with that aspect', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(5); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
-            expect(this.huntingInstincts.isAttacker).toBe(true);
+            expect(this.regenerate.facedown).toBe(false);
+            expect(this.regenerate.isAttacker).toBe(true);
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
             expect(this.player1).toHaveDefaultPrompt();
@@ -106,7 +106,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
         it('8 lower dice then reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(8); // set behaviour roll
 
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(this.player1.dicepool.filter((d) => d.level === 'power').length).toBe(6);
 
             this.player1.endTurn();
@@ -119,7 +119,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             this.player1.clickDone();
 
             expect(this.player1.dicepool.filter((d) => d.level === 'power').length).toBe(4);
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
@@ -130,7 +130,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
 
             this.player2.dicepool.forEach((d) => (d.level = 'basic'));
 
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
 
             this.player1.endTurn();
@@ -139,23 +139,23 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             this.player1.clickPrompt('Ok');
 
             // >= because could be 1 or 2 (rageroll plus behaviour roll)
-            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(1);
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(2);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('12 add red rains token then reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
-            this.player1.endTurn(); // adds RR because of threat
+            this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.player2.phoenixborn.redRains).toBe(2);
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.player2.phoenixborn.redRains).toBe(1);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
@@ -181,7 +181,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
                     inPlay: ['rampage'],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['hunting-instincts'],
+                    threatZone: ['regenerate'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -192,19 +192,19 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             // reveal
             spyOn(Dice, 'd12Roll').and.returnValue(1);
             expect(this.rampage.facedown).toBe(false);
-            expect(this.huntingInstincts.facedown).toBe(true);
-            this.player1.endTurn(); // adds RR because of threat
+            expect(this.regenerate.facedown).toBe(true);
+            this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.regenerate.facedown).toBe(false);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('phase 2: 3 Attacks if able, no reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(2); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -214,21 +214,21 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
             expect(this.player1).toHaveDefaultPrompt();
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('phase 2: 5 Reveal then Attack with that aspect', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(5); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
-            expect(this.huntingInstincts.isAttacker).toBe(true);
+            expect(this.regenerate.facedown).toBe(false);
+            expect(this.regenerate.isAttacker).toBe(true);
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
             expect(this.player1).toHaveDefaultPrompt();
@@ -238,14 +238,14 @@ describe('Corpse of Viros Behaviour Rolls', function () {
         it('phase 2: 8 deal 1 damage to ph then reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(8); // set behaviour roll
 
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.coalRoarkwin.damage).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
@@ -256,7 +256,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
             this.player2.dicepool.forEach((d) => (d.level = 'basic'));
 
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
 
             this.player1.endTurn();
@@ -264,23 +264,23 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(2);
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(3);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('phase 2: 12 add red rains token then reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
-            this.player1.endTurn(); // adds RR because of threat
+            this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.player2.phoenixborn.redRains).toBe(2);
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.player2.phoenixborn.redRains).toBe(1);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
@@ -306,7 +306,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
                     inPlay: ['rampage'],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['hunting-instincts'],
+                    threatZone: ['regenerate'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -315,7 +315,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
 
         it('phase 3: 1 Attacks if able, no reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(1); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
@@ -325,21 +325,21 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
             expect(this.player1).toHaveDefaultPrompt();
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('phase 3: 4 Reveal then Attack with that aspect', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(4); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
-            expect(this.huntingInstincts.isAttacker).toBe(true);
+            expect(this.regenerate.facedown).toBe(false);
+            expect(this.regenerate.isAttacker).toBe(true);
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
             expect(this.player1).toHaveDefaultPrompt();
@@ -349,14 +349,14 @@ describe('Corpse of Viros Behaviour Rolls', function () {
         it('phase 3: 7 deal 1 damage to leftmost then reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(7); // set behaviour roll
 
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.ironWorker.damage).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
@@ -367,7 +367,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
             this.player2.dicepool.forEach((d) => (d.level = 'basic'));
 
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
             expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
 
             this.player1.endTurn();
@@ -375,23 +375,23 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(3);
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(4);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
         it('phase 3: 12 add red rains token then reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
-            this.player1.endTurn(); // adds RR because of threat
+            this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.player2.phoenixborn.redRains).toBe(2);
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.player2.phoenixborn.redRains).toBe(1);
+            expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
@@ -417,7 +417,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
                     inPlay: ['rampage'],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['hunting-instincts'],
+                    threatZone: ['regenerate'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -427,7 +427,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
         it('phase 3: 7 deal 1 damage trigggers GV', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(7); // set behaviour roll
 
-            expect(this.huntingInstincts.facedown).toBe(true);
+            expect(this.regenerate.facedown).toBe(true);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
@@ -439,7 +439,7 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(this.ironWorker.damage).toBe(0);
             expect(this.player1).toHaveDefaultPrompt();
 
-            expect(this.huntingInstincts.facedown).toBe(false);
+            expect(this.regenerate.facedown).toBe(false);
 
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
