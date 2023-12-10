@@ -350,7 +350,7 @@ class PendingGame {
                     status: player.deck.status,
                     name: null,
                     isChimera: player.playerType === 'dummy',
-                    stub: player.deck.phoenixborn[0]?.card.stub || player.deck.phoenixborn[0]?.card.id,
+                    stub: player.deck.listClass || player.deck.phoenixborn[0]?.card.stub || player.deck.phoenixborn[0]?.card.id,
                     pbStub:
                         player.deck.phoenixborn[0]?.card.imageStub ||
                         player.deck.phoenixborn[0]?.card.stub
