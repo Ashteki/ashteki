@@ -17,17 +17,24 @@ class Deck {
                 count: card.count,
                 card: card.card
             };
+            if (card.imageStub) {
+                result.card.imageStub = card.imageStub;
+            }
+
             if (!result.card) {
                 logger.error(`Corrupt card ${card.name}: ${card}`);
                 return result;
             }
 
-            if (card.image) {
-                result.card.cardImage = card.image;
-            }
-
             return result;
         });
+
+        if (data.phoenixborn?.length) {
+            const pb = data.phoenixborn[0];
+            if (pb.imageStub) {
+                pb.card.imageStub = pb.imageStub;
+            }
+        }
 
         this.data = data;
     }
