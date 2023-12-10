@@ -2073,11 +2073,23 @@
     "dicepool": [
       {
         "magic": "natural",
-        "count": 5
+        "count": 3
       },
       {
         "magic": "ceremonial",
-        "count": 5
+        "count": 3
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "divine",
+        "count": 1
       }
     ],
     "cards": [
