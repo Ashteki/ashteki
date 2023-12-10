@@ -4,9 +4,9 @@ const Card = require('../../Card.js');
 class ChimeraCharmer extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
-            title: 'Armed',
+            title: 'Subdue',
             target: {
-                activePromptTitle: 'Choose an exhausted Divine die to resolve its die power',
+                activePromptTitle: 'Choose an exhausted Charm die to resolve its die power',
                 optional: true,
                 toSelect: 'die',
                 owner: 'self',
