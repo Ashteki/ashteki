@@ -25,7 +25,7 @@ const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick,
         }
     }
 
-    const [position, setPosition] = useState(Object.assign({}, style));
+    const [position, setPosition] = useState(Object.assign({ top: 10 }, style));
     const popupRef = useRef(null);
 
     // this function limits the x/y so that the popup is not lost off the edges
