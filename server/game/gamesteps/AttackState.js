@@ -24,6 +24,22 @@ class AttackState {
         );
     }
 
+    getBattleOpponent(card) {
+        const battle = this.battles.find(
+            (b) => b.target === card || b.guard === card || b.attacker === card
+        );
+
+        if (!battle) {
+            return null;
+        }
+
+        if (battle.attacker === card) {
+            return battle.guard || battle.target;
+        } else {
+            return battle.attacker;
+        }
+    }
+
     removeFromBattle(card, includeResolved = false, damageSource = null) {
         this.battles
             .filter((b) => includeResolved || !b.resolved)
