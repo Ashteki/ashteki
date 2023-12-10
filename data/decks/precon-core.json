@@ -2033,8 +2033,7 @@
       },
       {
         "id": "anchornaut",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/KEVIN/anchornaut.jpg"
+        "count": 3
       },
       {
         "id": "iron-worker",
@@ -2061,8 +2060,8 @@
     ]
   },
   {
-    "precon_id": 99,
-    "name": "KEVIN! Home Alone",
+    "precon_id": 0.1,
+    "name": "KEVIN! Home Alone! (xmas limited edition)",
     "listClass": "kevin",
     "phoenixborn": [
       {
