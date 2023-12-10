@@ -36,22 +36,25 @@ class Deck {
             }
         }
 
-        data.conjurations = data.conjurations.map((card) => {
-            let result = {
-                count: card.count,
-                card: card.card
-            };
-            if (card.imageStub) {
-                result.card.imageStub = card.imageStub;
-            }
 
-            if (!result.card) {
-                logger.error(`Corrupt card ${card.name}: ${card}`);
+        if (data.conjurations) {
+            data.conjurations = data.conjurations.map((card) => {
+                let result = {
+                    count: card.count,
+                    card: card.card
+                };
+                if (card.imageStub) {
+                    result.card.imageStub = card.imageStub;
+                }
+
+                if (!result.card) {
+                    logger.error(`Corrupt card ${card.name}: ${card}`);
+                    return result;
+                }
+
                 return result;
-            }
-
-            return result;
-        });
+            });
+        }
 
         this.data = data;
     }
