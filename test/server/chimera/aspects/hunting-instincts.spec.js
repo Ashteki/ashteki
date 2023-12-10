@@ -10,7 +10,7 @@ describe('Hunting Instincts', function () {
                     inPlay: ['anchornaut'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
-                    hand: ['shatter-pulse', 'summon-iron-rhino']
+                    hand: ['summon-iron-rhino']
                 },
                 player2: {
                     dummy: true,
@@ -27,7 +27,7 @@ describe('Hunting Instincts', function () {
         });
 
         it('puts card into play with no status', function () {
-            spyOn(Dice, 'd12Roll').and.returnValue(1);        // reveal
+            spyOn(Dice, 'd12Roll').and.returnValue(1); // reveal
 
             expect(this.huntingInstincts.facedown).toBe(true);
             this.player1.endTurn();
@@ -48,11 +48,10 @@ describe('Hunting Instincts', function () {
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            // 
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
             expect(this.anchornaut.location).toBe('discard');
-            expect(this.corpseOfViros.redRains).toBe(2);
+            expect(this.corpseOfViros.redRains).toBe(1);
 
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });

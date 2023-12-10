@@ -71,21 +71,21 @@ describe('Stormcall Aspect', function () {
 
         it('start of turn pay status to deal 1 damage', function () {
             expect(this.stormcall.location).toBe('play area');
-            this.player1.endTurn(); // adds RR because of threat
+            this.player1.endTurn();
 
             expect(this.stormcall.status).toBe(1);
             expect(this.coalRoarkwin.damage).toBe(1);
-            expect(this.corpseOfViros.redRains).toBe(1);
+            expect(this.corpseOfViros.redRains).toBe(0);
         });
 
         it('the last status also places a redrains token', function () {
             this.stormcall.tokens.status = 1;
             expect(this.stormcall.location).toBe('play area');
-            this.player1.endTurn(); // adds RR because of threat
+            this.player1.endTurn();
 
             expect(this.stormcall.status).toBe(0);
             expect(this.coalRoarkwin.damage).toBe(1);
-            expect(this.corpseOfViros.redRains).toBe(2);
+            expect(this.corpseOfViros.redRains).toBe(1);
         });
     });
 });

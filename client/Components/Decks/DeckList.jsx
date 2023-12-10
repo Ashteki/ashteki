@@ -173,9 +173,10 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 }
             }),
             // eslint-disable-next-line react/display-name
-            formatter: (pb, row) => (
-                <div className={`decklist-entry-image ${row.phoenixborn[0].id}`} title={row.phoenixborn[0].card.name}><span className='sr-only'>{row.phoenixborn[0].card.name}</span></div>
-            )
+            formatter: (pb, row) => {
+                const idClass = row.listClass || row.phoenixborn[0].id;
+                return <div className={`decklist-entry-image ${idClass}`} title={row.phoenixborn[0].card.name}><span className='sr-only'>{row.phoenixborn[0].card.name}</span></div>
+            }
         },
         {
             dataField: 'name',

@@ -17,7 +17,7 @@ describe('Scourge ultimate', function () {
                     phoenixborn: 'frostwild-scourge',
                     behaviour: 'scourge-behaviour',
                     ultimate: 'scourge-ultimate',
-                    inPlay: [],
+                    inPlay: ['stormcall'],
                     spellboard: [],
                     threatZone: ['storm-bolt', 'hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
@@ -48,6 +48,7 @@ describe('Scourge ultimate', function () {
         });
 
         it('phase 1, stun on stun test', function () {
+            this.stormcall.tokens.status = 2;
             // reveal storm bolt
             spyOn(Dice, 'd12Roll').and.returnValue(1);
             this.player1.endTurn();
@@ -105,6 +106,8 @@ describe('Scourge ultimate', function () {
         });
 
         it('phase 3 removes a die from the game and stuns leftmost', function () {
+            this.stormcall.tokens.status = 1;
+
             const diceCount = this.player1.dicepool.length;
             this.player2.player.chimeraPhase = 3;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
