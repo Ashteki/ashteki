@@ -206,6 +206,7 @@ class AshesDeckService {
                 precon_id: deck.precon_id,
                 precon_group: deck.preconGroup,
                 premium: deck.premium,
+                listClass: deck.listClass,
                 restricted: deck.restricted
             });
         } else {
