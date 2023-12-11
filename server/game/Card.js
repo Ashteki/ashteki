@@ -456,24 +456,23 @@ class Card extends PlayableObject {
      * @returns CardAction result of call to card.action
      */
     summon(cardId, properties) {
-        return this.action(
-            Object.assign(
-                {
-                    gameAction: AbilityDsl.actions.summon({
-                        conjuration: cardId
-                    }),
-                    getWarnings: (context) => {
-                        if (!context.player.archives.some((c) => c.id === cardId)) {
-                            return "You don't have a conjuration to play";
-                        }
-                        if (context.player.isBattlefieldFull()) {
-                            return 'Your battlefield is full';
-                        }
-                    }
-                },
-                properties
-            )
-        )
+        return this.action(Object.assign(this.getSummonActionObject(cardId), properties));
+    }
+
+    getSummonActionObject(cardId) {
+        return {
+            gameAction: AbilityDsl.actions.summon({
+                conjuration: cardId
+            }),
+            getWarnings: (context) => {
+                if (!context.player.archives.some((c) => c.id === cardId)) {
+                    return "You don't have a conjuration to play";
+                }
+                if (context.player.isBattlefieldFull()) {
+                    return 'Your battlefield is full';
+                }
+            }
+        };
     }
 
     reaction(properties) {
