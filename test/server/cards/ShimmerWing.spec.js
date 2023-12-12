@@ -5,19 +5,23 @@ describe('Summon Shimmer Wing', function () {
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     spellboard: ['summon-shimmer-wing'],
-                    dicepool: ['charm', 'charm', 'natural', 'natural'],
-                    inPlay: ['shimmer-wing', 'shimmer-wing'],
+                    dicepool: ['charm', 'charm', 'natural', 'natural', 'charm'],
+                    inPlay: ['shimmer-wing', 'shimmer-wing', 'flute-mage'],
                     archives: ['eternity-flame']
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['hammer-knight'],
+                    inPlay: ['hammer-knight', 'anchornaut'],
                     spellboard: []
                 }
             });
         });
 
         it('discard two shimmer wings to put an eternity flame into play', function () {
+            this.player1.useDie(4);
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.attack).toBe(2);
+
             expect(this.player1.archives.length).toBe(1); // eternity flame
             const otherWing = this.player1.inPlay[1];
             this.player1.clickCard(this.shimmerWing);
@@ -28,6 +32,14 @@ describe('Summon Shimmer Wing', function () {
             expect(this.shimmerWing.location).toBe('archives');
             expect(this.eternityFlame.location).toBe('play area');
             expect(this.player1.archives.length).toBe(2); // 2x shimmer wing
+
+            // eternity flames does stuff when it enters play
+            expect(this.player1).not.toHaveDefaultPrompt();
+            expect(this.player1).not.toBeAbleToSelect(this.fluteMage);
+            expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.location).toBe('discard');
+            expect(this.coalRoarkwin.damage).toBe(2);
         });
     });
 
