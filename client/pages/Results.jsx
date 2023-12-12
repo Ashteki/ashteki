@@ -21,9 +21,6 @@ const Results = () => {
                     <Tab>
                         <PictureButton text='Elo Standings' imageClass='elo-link' />
                     </Tab>
-                    <Tab>
-                        <PictureButton text='Phoenix League' imageClass='results-link' />
-                    </Tab>
                 </TabList>
                 <TabPanel>
                     <MyResults />
@@ -33,10 +30,6 @@ const Results = () => {
                 </TabPanel>
                 <TabPanel>
                     <EloLadder key='elo' />
-                </TabPanel>
-                <TabPanel>
-                    <div className='lobby-header'>Phoenix League Current Standings</div>
-                    <League tag='PHX' />
                 </TabPanel>
             </Tabs>
         </div >

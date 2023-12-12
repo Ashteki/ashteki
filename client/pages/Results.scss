@@ -42,27 +42,27 @@
     }
 
     .results-link {
-        background-image: url('https://cdn.ashes.live/images/cards/survival-of-the-fittest.jpg');
+        background-image: url('https://cdn.ashteki.com/slices/survival-of-the-fittest.jpg');
         background-position: 28% 30%;
         background-size: 140%;
     }
 
     .elo-link {
-        background-image: url('https://cdn.ashes.live/images/cards/channel-magic.jpg');
+        background-image: url('https://cdn.ashteki.com/slices/channel-magic.jpg');
         background-position: 50% 30%;
-        background-size: 100%;
+        background-size: contain
     }
 
     .stats-link {
-        background-image: url('https://cdn.ashes.live/images/cards/law-of-assurance.jpg');
+        background-image: url('https://cdn.ashteki.com/slices/law-of-assurance.jpg');
         background-position: 30% 30%;
-        background-size: 105%;
+        background-size: cover;
     }
 
     .alts-link {
-        background-image: url('https://cdn.ashes.live/images/cards/reflections-in-the-water.jpg');
+        background-image: url('https://cdn.ashteki.com/slices/reflections-in-the-water.jpg');
         background-position: 30% 35%;
-        background-size: 105%;
+        background-size: cover;
     }
 
 }

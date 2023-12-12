@@ -47,11 +47,7 @@ const Matches = () => {
     return (
         <div className='col-sm-offset-1 profile full-height'>
             <div className='col-md-6 inline'>
-                <select
-                    className='form-control'
-                    onChange={handleTermChange}
-                    value={term}
-                >
+                <select className='form-control' onChange={handleTermChange} value={term}>
                     <option value='0'>All games</option>
                     <option value='1'>Last 1 month</option>
                     <option value='3'>Last 3 months</option>
@@ -59,10 +55,7 @@ const Matches = () => {
                 </select>
             </div>
             <div className='col-md-6 inline'>
-                <select
-                    className='form-control'
-                    onChange={handleTypeChange}
-                >
+                <select className='form-control' onChange={handleTypeChange}>
                     <option value=''>All Types</option>
                     <option value='competitive'>Ranked</option>
                     <option value='casual'>Casual</option>
@@ -84,8 +77,8 @@ const Matches = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            games && games.map((game) => {
+                        {games &&
+                            games.map((game) => {
                                 const startedAt = moment(game.startedAt);
                                 const finishedAt = moment(game.finishedAt);
                                 const duration = moment.duration(finishedAt.diff(startedAt));
@@ -112,12 +105,11 @@ const Matches = () => {
                                                 {game.gameId}
                                             </a>
                                             <br />
-                                            {duration.get('minutes')}m {duration.get('seconds')}s
+                                            {duration.get('hours')}h {duration.get('minutes')}m
                                         </td>
                                     </tr>
                                 );
-                            })
-                        }
+                            })}
                     </tbody>
                 </table>
             )}
