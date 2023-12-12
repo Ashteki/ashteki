@@ -93,16 +93,26 @@
             "stub": "shimmer-wing",
             "type": "Conjuration",
             "placement": "Battlefield",
-            "attack": 3,
-            "life": 3,
+            "attack": 0,
+            "life": 2,
             "recover": 0,
-            "copies": 1,
+            "copies": 3,
             "conjurations": [
                 {
                     "name": "Eternity Flame",
                     "stub": "eternity-flame"
                 }
             ]
+        },
+        {
+            "name": "Eternity Flame",
+            "stub": "eternity-flame",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 1
         },
         {
             "name": "Arrogance",
