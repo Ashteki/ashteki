@@ -1217,7 +1217,7 @@ class Card extends PlayableObject {
             !this.exhausted &&
             this.checkGigantic(attacker) &&
             this.checkTerrifying(attacker) &&
-            !attacker.anyEffect('preventBlock') &&
+            !attacker.anyEffect('preventBlock', { card: this }) &&
             !attacker.anyEffect('bypass')
         );
     }
