@@ -16,11 +16,8 @@ class Arrogance extends Card {
                 controller: 'self',
                 gameAction: ability.actions.cardLastingEffect({
                     effect: [
-                        ability.effects.preventBlock(
-                            (eventContext) => eventContext.card.hasCharmDie
-                        ), ability.effects.preventGuard(
-                            (eventContext) => eventContext.card.hasCharmDie
-                        )
+                        ability.effects.preventBlockByCharmedUnit(),
+                        ability.effects.preventGuardByCharmedUnit()
                     ],
                     duration: 'untilEndOfTurn'
                 })

@@ -57,8 +57,20 @@ const Effects = {
     preventAllDamage: (shield, contextFunc) => EffectBuilder.card.static('preventAllDamage', shield, contextFunc),
     // attacks from this unit may not be blocked
     preventBlock: (contextFunc) => EffectBuilder.card.static('preventBlock', 0, contextFunc),
-    // attacks from this unit may not be guarded (e.g. stalk)
+    preventBlockByCharmedUnit: () =>
+        EffectBuilder.card.static(
+            'preventBlock',
+            0,
+            (eventContext) => eventContext.card.hasCharmDie
+        ),
+    // attacks from this unit may not be guarded (e.g. stalk).
     preventGuard: (contextFunc) => EffectBuilder.card.static('preventGuard', 0, contextFunc),
+    preventGuardByCharmedUnit: () =>
+        EffectBuilder.card.static(
+            'preventGuard',
+            0,
+            (eventContext) => eventContext.card.hasCharmDie
+        ),
     preventNonAttackDamage: (amount) => EffectBuilder.card.static('preventNonAttackDamage', amount),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
