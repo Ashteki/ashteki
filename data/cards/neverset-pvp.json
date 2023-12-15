@@ -166,7 +166,7 @@
             "name": "Embrace",
             "stub": "embrace",
             "type": "Alteration Spell",
-            "placement": "Unit",
+            "placement": "Phoenixborn",
             "cost": [
                 "[[side]]",
                 "1 [[charm:class]]"
