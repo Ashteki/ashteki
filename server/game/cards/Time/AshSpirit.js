@@ -21,7 +21,7 @@ class AshSpirit extends Card {
             },
             target: {
                 cardType: PhoenixbornTypes,
-                cardCondition: (card) => card.controller.deck.length === 0,
+                cardCondition: (card) => card.controller.deckIsEmpty(),
                 gameAction: ability.actions.dealDamage()
             }
         });
