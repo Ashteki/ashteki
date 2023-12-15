@@ -196,7 +196,7 @@
             "name": "Gifted Rose",
             "stub": "gifted-rose",
             "type": "Alteration Spell",
-            "placement": "Unit",
+            "placement": "Phoenixborn",
             "cost": [
                 "[[side]]",
                 "1 [[basic]]"

@@ -18,12 +18,7 @@ class Embrace extends Card {
     }
 
     canAttach(card, context) {
-        return (
-            card &&
-            PhoenixbornTypes.includes(card.getType()) &&
-            !card.exhausted &&
-            this.canPlayAsUpgrade()
-        );
+        return card && PhoenixbornTypes.includes(card.getType()) && this.canPlayAsUpgrade();
     }
 }
 
