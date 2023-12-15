@@ -3,39 +3,50 @@ describe('Hypnotize', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['iron-worker'],
+                inPlay: ['iron-worker', 'flute-mage'],
                 spellboard: ['hypnotize'],
                 dicepool: ['charm', 'charm', 'illusion'],
                 hand: ['reflections-in-the-water']
             },
             player2: {
                 phoenixborn: 'coal-roarkwin',
-                inPlay: ['hammer-knight'],
+                inPlay: ['hammer-knight', 'gilder'],
                 spellboard: []
             }
         });
     });
 
-    it('grants bypass to target as acquired Effect', function () {
-        expect(this.ironWorker.anyEffect('bypass')).toBe(false);
+    it('unit cannot be guarded', function () {
         this.player1.clickCard(this.hypnotize);
         this.player1.clickPrompt('Hypnotize a unit');
-        this.player1.clickCard(this.ironWorker);
-        const effects = this.ironWorker.getAcquiredEffects();
+        this.player1.clickCard(this.fluteMage);
 
-        expect(this.ironWorker.anyEffect('bypass')).toBe(true);
-    });
+        this.player1.clickAttack(this.hammerKnight);
+        this.player1.clickCard(this.fluteMage);
 
-    it('bypass is removed at turn end', function () {
-        expect(this.ironWorker.anyEffect('bypass')).toBe(false);
-        this.player1.clickCard(this.hypnotize);
-        this.player1.clickPrompt('Hypnotize a unit');
-        this.player1.clickCard(this.ironWorker);
+        // no guard prompt
+        this.player2.clickNo(); // counter
 
-        expect(this.ironWorker.anyEffect('bypass')).toBe(true);
-
+        expect(this.hammerKnight.damage).toBe(1);
         this.player1.endTurn();
 
-        expect(this.ironWorker.anyEffect('bypass')).toBe(false);
+        expect(this.fluteMage.effects.length).toBe(0);
+    });
+
+    it('unit cannot be blocked', function () {
+        expect(this.fluteMage.effects.length).toBe(0);
+        this.player1.clickCard(this.hypnotize);
+        this.player1.clickPrompt('Hypnotize a unit');
+        this.player1.clickCard(this.fluteMage);
+
+        this.player1.clickAttack(this.coalRoarkwin);
+        this.player1.clickCard(this.fluteMage);
+        this.player1.clickDone();
+
+        // no block prompt
+        expect(this.coalRoarkwin.damage).toBe(1);
+        this.player1.endTurn();
+
+        expect(this.fluteMage.effects.length).toBe(0);
     });
 });

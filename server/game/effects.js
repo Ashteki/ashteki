@@ -19,7 +19,6 @@ const Effects = {
     blank: () => EffectBuilder.card.static('blank'),
     bonusDamage: (match) => EffectBuilder.card.static('bonusDamage', match),
     bound: () => EffectBuilder.card.static('bound'),
-    bypass: () => EffectBuilder.card.static('bypass'),
     canGuard: () => EffectBuilder.card.static('canGuard'),
     canPlayAsUpgrade: () => EffectBuilder.card.static('canPlayAsUpgrade'),
     cannotBeAbilityTarget: () => EffectBuilder.card.static('cannotBeAbilityTarget'),

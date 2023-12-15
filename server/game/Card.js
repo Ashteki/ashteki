@@ -609,7 +609,6 @@ class Card extends PlayableObject {
         );
         const simpleTypes = {
             preventAllDamage: 'Prevent all damage',
-            bypass: 'Bypass',
             quickStrike: 'Quick strike',
             cannotBeAttackTarget: 'Cannot be attack target',
             cannotBeSpellTarget: 'Protected',
@@ -1203,7 +1202,6 @@ class Card extends PlayableObject {
                 (this.anyEffect('canGuard') || this.anyEffect('defender')) &&
                 this.checkGigantic(attacker) &&
                 this.checkTerrifying(attacker) &&
-                !attacker.anyEffect('bypass') &&
                 !attacker.anyEffect('preventGuard', { card: this })
             );
         }
@@ -1217,8 +1215,7 @@ class Card extends PlayableObject {
             !this.exhausted &&
             this.checkGigantic(attacker) &&
             this.checkTerrifying(attacker) &&
-            !attacker.anyEffect('preventBlock', { card: this }) &&
-            !attacker.anyEffect('bypass')
+            !attacker.anyEffect('preventBlock', { card: this })
         );
     }
 
