@@ -199,12 +199,17 @@ class SelectCardPrompt extends UiPrompt {
             });
         }
 
+        let activePromptTitle = '';
+        if (typeof this.properties.activePromptTitle === 'function') {
+            activePromptTitle = this.properties.activePromptTitle(this.context);
+        } else {
+            activePromptTitle = this.properties.activePromptTitle;
+        }
+
         return {
             selectCard: this.properties.selectCard,
             selectOrder: this.properties.ordered,
-            menuTitle:
-                this.properties.activePromptTitle ||
-                this.selector.defaultActivePromptTitle(this.context),
+            menuTitle: activePromptTitle || this.selector.defaultActivePromptTitle(this.context),
             buttons: buttons,
             promptTitle: this.promptTitle,
             controls: this.properties.controls,

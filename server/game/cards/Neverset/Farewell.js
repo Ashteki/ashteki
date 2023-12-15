@@ -7,7 +7,10 @@ class Farewell extends Card {
 
         this.play({
             target: {
-                activePromptTitle: 'Choose a unit to discard',
+                activePromptTitle: (context) =>
+                    'Choose a unit with ' +
+                    context.event.context.costs.returnDice.length +
+                    ' life to discard',
                 cardCondition: (card, context) => card.life === context.event.context.costs.returnDice.length,
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
