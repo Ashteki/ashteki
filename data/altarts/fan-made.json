@@ -65,6 +65,11 @@
             "name": "NSM Turtle Guard",
             "stub": "turtle-guard",
             "alt": "alt/turtle-guard-fanmade"
+        },
+        {
+            "name": "Lark Harold for Collection '23",
+            "stub": "harold-westraven",
+            "alt": "alt/harold-westraven-squishy"
         }
     ]
 }
