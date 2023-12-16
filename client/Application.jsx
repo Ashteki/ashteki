@@ -182,7 +182,6 @@ Application.propTypes = {
     connectLobby: PropTypes.func,
     currentGame: PropTypes.object,
     loadCards: PropTypes.func,
-    loadPacks: PropTypes.func,
     loadStandaloneDecks: PropTypes.func,
     loadAdventuringPartyDecks: PropTypes.func,
     loadBuildingBasicsDecks: PropTypes.func,
