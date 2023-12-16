@@ -174,6 +174,10 @@ class PlayerInteractionWrapper {
         return this.player.archives;
     }
 
+    get charmedUnits() {
+        return this.player.charmedUnits;
+    }
+
     get phoenixborn() {
         return this.player.phoenixborn;
     }
