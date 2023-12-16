@@ -143,66 +143,6 @@
             "attack": 2,
             "life": 1,
             "blood": 1
-        },
-        {
-            "name": "Giant's Might",
-            "stub": "giants-might",
-            "type": "Aspect",
-            "placement": "battlefield",
-            "target": "jaw",
-            "attack": 1,
-            "life": 3,
-            "blood": 2
-        },
-        {
-            "name": "Warcry",
-            "stub": "warcry",
-            "type": "Aspect",
-            "placement": "battlefield",
-            "target": "jaw",
-            "attack": 1,
-            "life": 4,
-            "blood": 2
-        },
-        {
-            "name": "Sweeping Strike",
-            "stub": "sweeping-strike",
-            "type": "Aspect",
-            "placement": "battlefield",
-            "target": "right",
-            "attack": 3,
-            "life": 3,
-            "blood": 2
-        },
-        {
-            "name": "Wild Throw",
-            "stub": "wild-throw",
-            "type": "Aspect",
-            "placement": "battlefield",
-            "target": "left",
-            "attack": 3,
-            "life": 1,
-            "blood": 1
-        },
-        {
-            "name": "Charge Fist",
-            "stub": "charge-fist",
-            "type": "Aspect",
-            "placement": "battlefield",
-            "target": "left",
-            "attack": 2,
-            "life": 2,
-            "blood": 1
-        },
-        {
-            "name": "Crushing Grip",
-            "stub": "crushing-grip",
-            "type": "Aspect",
-            "placement": "battlefield",
-            "target": "left",
-            "attack": 2,
-            "life": 2,
-            "blood": 1
         }
     ]
 }
