@@ -366,4 +366,36 @@ describe('AshSpirit', function () {
             expect(this.aradelSummergaard.damage).toBe(1);
         });
     });
+
+    describe('smolder vs Chimera (fatigued)', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    deck: ['kneel', 'anchornaut'],
+                    inPlay: ['ash-spirit'],
+                    hand: ['massive-growth', 'massive-growth', 'massive-growth', 'kneel', 'kneel']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: [],
+                    spellboard: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+            this.player2.player.fatigued = true;
+        });
+
+        it('works', function () {
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            this.player1.clickCard(this.corpseOfViros);
+            this.player1.clickNo();
+            expect(this.corpseOfViros.damage).toBe(1);
+        });
+    });
 });
