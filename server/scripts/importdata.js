@@ -8,9 +8,6 @@ const dataDirectory = 'data/cards/';
 let files = fs.readdirSync(dataDirectory);
 let totalCards = [];
 let deckType = null;
-// let packs = JSON.parse(fs.readFileSync('fiveringdsdb-data/Pack.json').toString());
-// let types = JSON.parse(fs.readFileSync('fiveringdsdb-data/Type.json').toString());
-// let clans = JSON.parse(fs.readFileSync('fiveringdsdb-data/Clan.json').toString());
 
 _.each(files, (file) => {
     let cardData = JSON.parse(fs.readFileSync(dataDirectory + file).toString());
@@ -34,10 +31,6 @@ _.each(totalCards, (card) => {
         card.name = card.name + ' (' + card.pack_code + ')';
     }
 });
-
-// let replacePacks = cardService.replacePacks(packs).then((packs) => {
-//     console.info(packs.length + ' packs imported');
-// });
 
 cardService.replaceCards(totalCards).then((cards) => {
     console.info(cards.length + ' cards imported');

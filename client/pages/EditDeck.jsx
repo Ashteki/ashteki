@@ -79,7 +79,6 @@ InnerEditDeck.propTypes = {
     loadDeck: PropTypes.func,
     loading: PropTypes.bool,
     navigate: PropTypes.func,
-    packs: PropTypes.array,
     saveDeck: PropTypes.func,
     setUrl: PropTypes.func
 };
