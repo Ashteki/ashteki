@@ -21,7 +21,8 @@ class RemoveTokenAction extends CardGameAction {
             'Phoenixborn',
             'Alteration Spell',
             'Aspect',
-            'Chimera'
+            'Chimera',
+            'Conjured Aspect'
         ];
 
         let type = this.type;
