@@ -26,7 +26,12 @@ const Location = {
 };
 
 const ActionSpellTypes = [CardType.ActionSpell, CardType.ReactionSpell];
-const BattlefieldTypes = [CardType.Ally, CardType.Conjuration, CardType.Aspect];
+const BattlefieldTypes = [
+    CardType.Ally,
+    CardType.Conjuration,
+    CardType.Aspect,
+    CardType.ConjuredAspect
+];
 const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [

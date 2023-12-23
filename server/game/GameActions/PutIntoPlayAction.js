@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../constants');
+const { BattlefieldTypes, CardType } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class PutIntoPlayAction extends CardGameAction {
@@ -10,7 +10,13 @@ class PutIntoPlayAction extends CardGameAction {
 
     setup() {
         this.name = 'putIntoPlay';
-        this.targetType = ['Ally', 'Ready Spell', 'Action Spell', 'Conjuration', 'Aspect'];
+        this.targetType = [
+            CardType.Ally,
+            CardType.ReadySpell,
+            CardType.Conjuration,
+            CardType.Aspect,
+            CardType.ConjuredAspect
+        ];
         this.effectMsg = 'put {0} into play';
     }
 
