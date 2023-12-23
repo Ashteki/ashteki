@@ -50,11 +50,19 @@ class ChimeraDefenceStrategy {
 
         // chimera guards for a unit on 9+
         if (
+            // a unit attack
             !attack.isPBAttack &&
+            // not targetting a defender
             !attack.target.anyEffect('defender') &&
+            // battle has not been pruned (e.g. by card reaction) - (Sentry log error)
+            attack.battles[0] &&
+            // there is not an existing guard
             !attack.battles[0].guard &&
+            // guard is not prevented by the attacker
             !attack.battles[0].attacker.anyEffect('preventGuard') &&
+            // or the target cannot be guarded
             !attack.target.anyEffect('cannotBeGuarded') &&
+            // and the target is an aspect (chimera won't guard tourists like blood puppet)
             attack.target.type === CardType.Aspect
         ) {
             const d12Roll = Dice.d12Roll();
