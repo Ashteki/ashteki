@@ -107,7 +107,7 @@ using an incognito window.
 These users will be normal (non-admin) users. To escalate a user to
 the admin role you can run
 ```
-node server/scripts/makeSuperuser <username>
+node server/scripts/user/makeSuperuser <username>
 ```
 
 This is not required for testing in-game functionality.
