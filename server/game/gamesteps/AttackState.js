@@ -107,7 +107,9 @@ class AttackState {
 
     clearBlocker(card) {
         const battle = this.battles.find((b) => b.guard === card);
-        this.clearBattleBlocker(battle);
+        if (battle) {
+            this.clearBattleBlocker(battle);
+        }
     }
 
     clearAllBlockers() {

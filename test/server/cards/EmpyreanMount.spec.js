@@ -18,7 +18,7 @@ describe('Empyrean Mount', function () {
             });
         });
 
-        it('forces unit to block', function () {
+        it('forces unit to block - 2 attackers', function () {
             this.player1.clickPrompt('Attack');
 
             this.player1.clickCard(this.aradelSummergaard); // target PB
@@ -51,6 +51,43 @@ describe('Empyrean Mount', function () {
             expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
 
             expect(this.game.attackState.battles[1].guard).toBe(null);
+        });
+
+        it('BUG: forces unit to block - 1 attacker', function () {
+            this.player1.clickPrompt('Attack');
+
+            this.player1.clickCard(this.aradelSummergaard); // target PB
+            this.player1.clickCard(this.empyreanMount); // attacker
+            this.player1.clickPrompt('Done'); // 1 attackers
+
+            expect(this.player1).toHavePrompt('Choose a unit to force it to block');
+            this.player1.clickCard(this.fluteMage); // single blocker forced
+
+            expect(this.player2).toHavePrompt('Choose a blocker');
+            expect(this.player2).toBeAbleToSelect(this.hammerKnight);
+            this.player2.clickCard(this.hammerKnight);
+            // EM and flute Mage unit are in battle together
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
+
+            // player2 cannot swap out chosen blocker
+            expect(this.player2).not.toBeAbleToSelect(this.empyreanMount);
+            this.player2.clickCard(this.empyreanMount);
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
+            this.player2.clickPrompt('None');
+
+            // try to remove flute mage
+            this.player2.clickCard(this.fluteMage);
+            expect(this.player2).not.toHavePrompt('None');
+
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
+
+            // reset button does not clear chosen blocker
+            this.player2.clickPrompt('Clear All');
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
         });
     });
 
