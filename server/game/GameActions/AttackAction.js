@@ -28,6 +28,11 @@ class AttackAction extends CardGameAction {
             }
         });
     }
+
+    checkEventCondition(event) {
+        // check the attacker is still in play
+        return event.attacker.location === 'play area';
+    }
 }
 
 module.exports = AttackAction;
