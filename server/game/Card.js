@@ -136,7 +136,7 @@ class Card extends PlayableObject {
     }
 
     get discardLocation() {
-        return this.type == 'Conjuration' || this.type === 'Conjured Alteration Spell'
+        return ConjuredCardTypes.includes(this.type)
             ? 'archives'
             : 'discard';
     }
