@@ -56,11 +56,11 @@ class ScourgeUltimate extends UltimateCard {
                         player: 'opponent',
                         // targetsPlayer: true,
                         toSelect: 'die',
-                        // mode: 'exactly',
-                        // numDice: Math.min(2, this.owner.opponent.activeNonBasicDiceCount),
-                        dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+                        dieCondition: (die) =>
+                            !die.exhausted ||
+                            (die.exhausted && die.owner.dice.every((d) => d.exhausted)),
                         owner: 'opponent',
-                        gameAction: AbilityDsl.actions.removeDieFromGame(),
+                        gameAction: AbilityDsl.actions.removeDieFromGame()
                     },
                     then: {
                         alwaysTriggers: true,
