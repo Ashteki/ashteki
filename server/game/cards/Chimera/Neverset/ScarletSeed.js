@@ -11,19 +11,19 @@ class ScarletSeed extends AspectCard {
                 onBeginTurn: (event, context) => event.player === context.player
             },
             location: 'play area',
-            gameAction: ability.actions.removeStatus({ target: this }),
-            then: {
-                condition: () => this.status === 0,
-                gameAction: ability.actions.discard({ target: this }),
-                then: {
-                    gameAction: ability.actions.addRedRainsToken((context) => ({
+            cost: [ability.costs.loseStatus(1)],
+            gameAction: ability.actions.conditional({
+                condition: (context) => context.source.status === 0,
+                trueGameAction: [
+                    ability.actions.discard({ target: this }),
+                    ability.actions.addRedRainsToken((context) => ({
                         showMessage: true,
                         shortMessage: true,
                         warnMessage: true,
                         target: context.player.phoenixborn
                     }))
-                }
-            }
+                ]
+            })
         });
     }
 
