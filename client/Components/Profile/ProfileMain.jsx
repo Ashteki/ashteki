@@ -41,7 +41,7 @@ const ProfileMain = ({ user, formProps }) => {
     };
 
     let eloRating = '(calibrating)';
-    if (user.rankedGamesPlayed >= 12) {
+    if (user.rankedGamesPlayed >= 6) {
         eloRating = user?.eloRating ? Math.round(user.eloRating) : '';
     };
     return (
