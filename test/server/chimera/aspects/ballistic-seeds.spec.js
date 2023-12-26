@@ -56,4 +56,37 @@ describe('Ballistic Seeds Aspect', function () {
             expect(this.anchornaut.location).toBe('discard');
         });
     });
+
+    describe('Cannot attack', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut', 'hammer-knight'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['summon-iron-rhino'],
+                    deck: ['summon-gilder', 'flute-mage']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
+                    inPlay: ['ballistic-seeds'],
+                    spellboard: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+        });
+
+        it('chimera passes at start of round', function () {
+            expect(this.coalRoarkwin.damage).toBe(0);
+            this.player1.player.actions.main = false; // fudge
+            this.player1.endTurn();
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

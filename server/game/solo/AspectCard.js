@@ -18,6 +18,10 @@ class AspectCard extends Card {
         });
     }
 
+    canAttack() {
+        return this.target && super.canAttack();
+    }
+
     isConjuration() {
         return true;
     }
