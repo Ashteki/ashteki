@@ -156,9 +156,10 @@ class Stats extends React.Component {
                                 value={this.state.gameType}
                                 onChange={this.handleTypeChange}
                             >
-                                <option value=''>All Types</option>
-                                <option value='competitive'>Ranked</option>
-                                <option value='casual'>Casual</option>
+                                <option value=''>All PvP</option>
+                                <option value='competitive'>Ranked PvP</option>
+                                <option value='casual'>Casual PvP</option>
+                                <option value='solo'>Solo</option>
                             </select>
                         </div>
 
