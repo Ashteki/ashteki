@@ -243,5 +243,68 @@
         "count": 6
       }
     ]
+  },
+  {
+    "precon_id": 805,
+    "premium": true,
+    "restricted": true,
+    "mode": "chimera",
+    "name": "The Blight of Neverset - Bloom",
+    "phoenixborn": [
+      {
+        "id": "blight-of-neverset",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "neverset-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "neverset-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "proliferate",
+        "count": 3
+      },
+      {
+        "id": "sowing-strike",
+        "count": 3
+      },
+      {
+        "id": "photosynthesize",
+        "count": 3
+      },
+      {
+        "id": "allure",
+        "count": 3
+      },
+      {
+        "id": "ballistic-seeds",
+        "count": 3
+      },
+      {
+        "id": "soothing-scent",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "scarlet-seed",
+        "count": 1
+      }
+    ]
   }
 ]
