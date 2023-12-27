@@ -124,7 +124,7 @@ const Navigation = (props) => {
     return (
         <Navbar bg='dark' variant='dark' className='navbar-sm' fixed='top'>
             <Nav>
-                <NavbarBrand>Ashteki</NavbarBrand>
+                <NavbarBrand href='/'>Ashteki</NavbarBrand>
                 {renderMenuItems(LeftMenu)}
             </Nav>
             <Navbar.Collapse id='navbar' className='justify-content-end'>

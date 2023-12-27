@@ -84,118 +84,111 @@ const GameLobby = ({ gameId }) => {
             return;
         }
 
-        // const userIsSupporter = user?.permissions.isSupporter;
-
-        // if (gameType === 'pvp' || userIsSupporter) {
         dispatch(startNewGame(gameType));
-        // }
-
-        // if (gameType === 'chimera' && !userIsSupporter) {
-        //     if (user?.patreon === 'linked') {
-        //         window.location = 'https://www.patreon.com/ashteki';
-        //     } else {
-        //         window.location = patreonUrl;
-        //     }
-        // }
     };
 
     const newGameText = currentGame?.started === false ? currentGame.name : 'Start a new game vs:';
     return (
-        <>
-            <Row>
-                <Col md='6' >
-                    <div className='lobby-card'>
-                        {!user && (
-                            <div className='text-center'>
-                                <AlertPanel type='warning'>
-                                    {t('Please log in to be able to start a new game')}
-                                </AlertPanel>
-                            </div>
-                        )}
-                        <div className='lobby-header'>{newGameText}</div>
-                        {!newGame && currentGame?.started !== false && (
-                            <>
-                                <div className='game-buttons'>
-                                    <PictureButton
-                                        text='Player'
-                                        imageClass='pvp'
-                                        onClick={() => handleNewGameClick('pvp')}
-                                    />
-                                    <PictureButton
-                                        text='Chimera'
-                                        // header='Premium'
-                                        imageClass='chimera'
-                                        onClick={() => handleNewGameClick('chimera')}
-                                    />
-                                </div>
-                                <div className='lobby-header'>or build a deck</div>
-                                <div className='game-buttons'>
-                                    <PictureButton
-                                        text='My Decks'
-                                        imageClass='decks-link'
-                                        onClick={() => dispatch(navigate('/decks'))}
-                                    />
-                                </div>
-                            </>
-
-                        )}
-
-                        {newGame && <NewGame />}
-                        {currentGame?.started === false && <PendingGame />}
-
-                    </div>
-                    <div ref={topRef}>
-                        {passwordGame && <PasswordGame />}
-                    </div>
-                </Col>
-                <Col md='6'>
-                    <div className='lobby-card'>
-
-                        <div className='lobby-header'>Game List</div>
-
-                        <div className='game-list'>
-                            {games.length === 0 ? (
-                                <div className='no-games-notice'>
-                                    No games are currently in progress
-                                </div>
-                            ) : (
-                                <GameList
-                                    games={games}
-                                    gameFilter={currentFilter}
-                                    onJoinOrWatchClick={() => topRef.current.scrollIntoView(false)}
-                                />
-                            )}
+        <Row>
+            <Col md='6'>
+                <div className='lobby-card'>
+                    {!user && (
+                        <div className='text-center'>
+                            <AlertPanel type='warning'>
+                                {t('Please log in to be able to start a new game')}
+                            </AlertPanel>
                         </div>
-                    </div>
-
-                    <div className='lobby-card'>
-                        <a
-                            className='link-box-item lobby-content'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            href='https://discord.gg/UU5bduq'
-                        >
-                            <div>
-                                <h2 className='lobby-header'>
-                                    <img src={discordTextLogo} className='textlogo' />
-                                    Join the Ashes Discord!
-                                </h2>
-                                <div className='d-none d-sm-block'>
-                                    <ul className='two-column'>
-                                        <li>Find other players</li>
-                                        <li>Talk strategy</li>
-                                        <li>Get deckbuilding advice</li>
-                                        <li>Join a league or tournament</li>
-                                        <li>Ask rules questions</li>
-                                        <li>Report a bug</li>
-                                    </ul>
-                                </div>
+                    )}
+                    <div className='lobby-header'>{newGameText}</div>
+                    {!newGame && currentGame?.started !== false && (
+                        <>
+                            <div className='game-buttons'>
+                                <PictureButton
+                                    text='Player'
+                                    imageClass='pvp'
+                                    onClick={() => handleNewGameClick('pvp')}
+                                />
+                                <PictureButton
+                                    text='Chimera'
+                                    // header='Premium'
+                                    imageClass='chimera'
+                                    onClick={() => handleNewGameClick('chimera')}
+                                />
                             </div>
-                        </a>
+                            <div className='lobby-header'><hr /></div>
+                            <div className='game-buttons'>
+                                <PictureButton
+                                    text='My Decks'
+                                    imageClass='decks-link'
+                                    onClick={() => dispatch(navigate('/decks'))}
+                                />
+                            </div>
+                            <div className='game-buttons'>
+                                <PictureButton
+                                    text='Results'
+                                    imageClass='records-link'
+                                    onClick={() => dispatch(navigate('/results'))}
+                                />
+                            </div>
+                        </>
+
+                    )}
+
+                    {newGame && <NewGame />}
+                    {currentGame?.started === false && <PendingGame />}
+
+                </div>
+                <div ref={topRef}>
+                    {passwordGame && <PasswordGame />}
+                </div>
+            </Col>
+            <Col md='6'>
+                <div className='lobby-card'>
+
+                    <div className='lobby-header'>Game List</div>
+
+                    <div className='game-list'>
+                        {games.length === 0 ? (
+                            <div className='no-games-notice'>
+                                No games are currently in progress
+                            </div>
+                        ) : (
+                            <GameList
+                                games={games}
+                                gameFilter={currentFilter}
+                                onJoinOrWatchClick={() => topRef.current.scrollIntoView(false)}
+                            />
+                        )}
                     </div>
-                </Col>
-            </Row>
-        </>
+                </div>
+
+                <div className='lobby-card'>
+                    <a
+                        className='link-box-item lobby-content'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        href='https://discord.gg/UU5bduq'
+                    >
+                        <div>
+                            <h2 className='lobby-header'>
+                                <img src={discordTextLogo} className='textlogo' />
+                                Join the Ashes Discord!
+                            </h2>
+                            <div className='d-none d-sm-block'>
+                                <ul className='two-column'>
+                                    <li>Find other players</li>
+                                    <li>Talk strategy</li>
+                                    <li>Get deckbuilding advice</li>
+                                    <li>Join a league or tournament</li>
+                                    <li>Ask rules questions</li>
+                                    <li>Report a bug</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </Col>
+        </Row>
     );
 };
 

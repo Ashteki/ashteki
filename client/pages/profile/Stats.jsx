@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import AlertPanel from '../../Components/Site/AlertPanel';
-import Panel from '../../Components/Site/Panel';
 import * as actions from '../../redux/actions';
 
 import { withTranslation, Trans } from 'react-i18next';
@@ -58,23 +57,22 @@ class Stats extends React.Component {
     statRow(pbid, stat) {
         return (
             <tr key={'stat-' + pbid}>
-                <td style={{ 'white-space': 'nowrap' }}>{stat.name}</td>
-                <td style={{ 'white-space': 'nowrap' }}>{stat.wins}</td>
-                <td style={{ 'white-space': 'nowrap' }}>{stat.losses}</td>
-                <td style={{ 'white-space': 'nowrap' }}>{stat.total}</td>
-                <td style={{ 'white-space': 'nowrap' }}>{stat.winRate}%</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{stat.name}</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{stat.wins}</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{stat.losses}</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{stat.total}</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{stat.winRate}%</td>
             </tr>
         );
     }
 
     render() {
-        let t = this.props.t;
         let content = null;
 
         if (this.props.apiLoading) {
             content = (
                 <div>
-                    <Trans>Loading games from the server...</Trans>
+                    Loading games from the server...
                 </div>
             );
         } else if (!this.props.apiSuccess) {
@@ -140,33 +138,31 @@ class Stats extends React.Component {
             content = (
                 <div>
                     <div className='profile full-height'>
-                        <Panel title={t('Stats')}>
-                            <div className='col-md-6 inline'>
-                                <select
-                                    className='form-control'
-                                    value={this.state.selectedTerm}
-                                    onChange={this.handleChange}
-                                >
-                                    <option value='0'>All games</option>
-                                    <option value='1'>Last 1 month</option>
-                                    <option value='3'>Last 3 months</option>
-                                    <option value='12'>Last 12 months</option>
-                                </select>
-                            </div>
-                            <div className='col-md-6 inline'>
-                                <select
-                                    className='form-control'
-                                    value={this.state.gameType}
-                                    onChange={this.handleTypeChange}
-                                >
-                                    <option value=''>All Types</option>
-                                    <option value='competitive'>Ranked</option>
-                                    <option value='casual'>Casual</option>
-                                </select>
-                            </div>
+                        <div className='col-md-6 inline'>
+                            <select
+                                className='form-control'
+                                value={this.state.selectedTerm}
+                                onChange={this.handleChange}
+                            >
+                                <option value='0'>All games</option>
+                                <option value='1'>Last 1 month</option>
+                                <option value='3'>Last 3 months</option>
+                                <option value='12'>Last 12 months</option>
+                            </select>
+                        </div>
+                        <div className='col-md-6 inline'>
+                            <select
+                                className='form-control'
+                                value={this.state.gameType}
+                                onChange={this.handleTypeChange}
+                            >
+                                <option value=''>All Types</option>
+                                <option value='competitive'>Ranked</option>
+                                <option value='casual'>Casual</option>
+                            </select>
+                        </div>
 
-                            {table}
-                        </Panel>
+                        {table}
                     </div>
                 </div>
             );

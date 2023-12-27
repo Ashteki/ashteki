@@ -4,12 +4,13 @@ import React from 'react';
 import Login from './pages/LoginContainer';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
-import Home from './pages/Home';
 import Decks from './pages/Decks';
 import AddDeck from './pages/AddDeck';
 import EditDeck from './pages/EditDeck';
 // import Matches from './pages/Matches';
 import Stats from './pages/profile/Stats';
+import Results from './pages/Results';
+
 import ImportDeck from './Components/Decks/ImportDeck';
 import Learn from './pages/Learn';
 import Security from './pages/profile/Security.jsx';
@@ -57,10 +58,10 @@ const routes = [
     { path: '/learntoplay', action: () => <Learn key='learn' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },
+    { path: '/results', action: () => <Results key='results' /> },
     { path: '/stats', action: () => <Stats key='stats' /> },
     { path: '/mygames', action: () => <Matches key='matches' /> },
-    { path: '/elo', action: () => <EloLadder key='elo' /> },
-    { path: '/faq', action: () => <FAQ key='elo' /> },
+    { path: '/faq', action: () => <FAQ key='faq' /> },
     { path: '/profile', action: () => <Profile key='profile' /> },
     { path: '/register', action: () => <Register key='register' /> },
     { path: '/alts', action: () => <UserAlts key='altarts' /> },

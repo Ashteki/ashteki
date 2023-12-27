@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-import Panel from '../Components/Site/Panel';
 import { loadUserGames } from '../redux/actions';
 
 const Matches = () => {
@@ -45,88 +44,75 @@ const Matches = () => {
 
     const gameApiRoot = `${window.location.protocol}//${window.location.host}/api/game/`;
 
-    let myGames = games
-        ? games.map((game) => {
-            const startedAt = moment(game.startedAt);
-            const finishedAt = moment(game.finishedAt);
-            const duration = moment.duration(finishedAt.diff(startedAt));
-
-            return (
-                <tr key={game.gameId}>
-                    <td>{moment(game.startedAt).format('YYYY-MM-DD HH:mm')}</td>
-                    <td>{game.players[0].deck}</td>
-                    <td style={{ 'white-space': 'nowrap' }}>
-                        {game.players[1]?.name}
-                        <br />
-                        {game.players[1]?.deck}
-                    </td>
-                    <td>
-                        {computeWinner(game)}
-                        <br />({game.winReason})
-                    </td>
-                    <td style={{ 'white-space': 'nowrap' }}>
-                        {game.gameType === 'competitive' ? 'Y' : ''}
-                    </td>
-                    <td style={{ 'white-space': 'nowrap' }}>
-                        <a href={gameApiRoot + game.gameId} download={true}>
-                            {game.gameId}
-                        </a>
-                        <br />
-                        {duration.get('minutes')}m {duration.get('seconds')}s
-                    </td>
-                </tr>
-            );
-        })
-        : null;
-
-    let table =
-        games && games.length === 0 ? (
-            <div>You have no recorded games.</div>
-        ) : (
-            <table className='table table-striped'>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>My Deck</th>
-                        <th>Opponent</th>
-                        <th>Winner</th>
-                        <th>Ranked</th>
-                        <th>details</th>
-                    </tr>
-                </thead>
-                <tbody>{myGames}</tbody>
-            </table>
-        );
-
     return (
         <div className='col-sm-offset-1 profile full-height'>
-            <Panel title={'My Games'}>
-                <div className='col-md-6 inline'>
-                    <select
-                        className='form-control'
-                        onChange={handleTermChange}
-                        value={term}
-                    >
-                        <option value='0'>All games</option>
-                        <option value='1'>Last 1 month</option>
-                        <option value='3'>Last 3 months</option>
-                        <option value='12'>Last 12 months</option>
-                    </select>
-                </div>
-                <div className='col-md-6 inline'>
-                    <select
-                        className='form-control'
-                        onChange={handleTypeChange}
-                    >
-                        <option value=''>All Types</option>
-                        <option value='competitive'>Ranked</option>
-                        <option value='casual'>Casual</option>
-                    </select>
-                </div>
+            <div className='col-md-6 inline'>
+                <select className='form-control' onChange={handleTermChange} value={term}>
+                    <option value='0'>All games</option>
+                    <option value='1'>Last 1 month</option>
+                    <option value='3'>Last 3 months</option>
+                    <option value='12'>Last 12 months</option>
+                </select>
+            </div>
+            <div className='col-md-6 inline'>
+                <select className='form-control' onChange={handleTypeChange}>
+                    <option value=''>All Types</option>
+                    <option value='competitive'>Ranked</option>
+                    <option value='casual'>Casual</option>
+                </select>
+            </div>
 
+            {games && games.length === 0 ? (
+                <div>You have no recorded games.</div>
+            ) : (
+                <table className='table table-striped'>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>My Deck</th>
+                            <th>Opponent</th>
+                            <th>Winner</th>
+                            <th>Ranked</th>
+                            <th>details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {games &&
+                            games.map((game) => {
+                                const startedAt = moment(game.startedAt);
+                                const finishedAt = moment(game.finishedAt);
+                                const duration = moment.duration(finishedAt.diff(startedAt));
 
-                {table}
-            </Panel>
+                                return (
+                                    <tr key={game.gameId}>
+                                        <td>{moment(game.startedAt).format('YYYY-MM-DD HH:mm')}<br />
+                                            <b>{game.label}</b></td>
+                                        <td>{game.players[0].deck}</td>
+                                        <td style={{ whiteSpace: 'nowrap' }}>
+                                            {game.players[1]?.name}
+                                            <br />
+                                            {game.players[1]?.deck}
+                                        </td>
+                                        <td>
+                                            {computeWinner(game)}
+                                            <br />({game.winReason})
+                                        </td>
+                                        <td style={{ whiteSpace: 'nowrap' }}>
+                                            {game.gameType === 'competitive' ? 'Y' : ''}
+                                        </td>
+                                        <td style={{ whiteSpace: 'nowrap' }}>
+                                            <a href={gameApiRoot + game.gameId} download={true}>
+                                                {game.gameId}
+                                            </a>
+                                            <br />
+                                            {duration.get('hours')}h {duration.get('minutes')}m
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 };

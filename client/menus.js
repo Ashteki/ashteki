@@ -14,6 +14,7 @@
 export const LeftMenu = [
     { path: '/', title: 'Play' },
     { path: '/decks', title: 'My Decks', showOnlyWhenLoggedIn: true },
+    { path: '/results', title: 'Results', showOnlyWhenLoggedIn: true },
     { path: '/faq', title: 'Help' },
     {
         title: 'Admin',
@@ -40,11 +41,7 @@ export const RightMenu = [
  */
 export const ProfileMenu = [
     { title: 'Profile', path: '/profile' },
-    { title: 'Stats', path: '/stats' },
-    { title: 'My Games', path: '/mygames' },
-    { title: 'Alt Arts', path: '/alts' },
-
-    { title: 'Security', path: '/security' },
-    { title: 'Block List', path: '/blocklist' },
+    // { title: 'Security', path: '/security' },
+    // { title: 'Block List', path: '/blocklist' },
     { title: 'Logout', path: '/logout' }
 ];

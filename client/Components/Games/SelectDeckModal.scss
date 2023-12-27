@@ -30,15 +30,17 @@
     color: white;
 }
 
-.react-tabs__tab {
-    background-color: #333;
-    border-radius: 5px 5px 0 0;
-}
+.modal-body {
+    .react-tabs__tab {
+        background-color: #333;
+        border-radius: 5px 5px 0 0;
+    }
 
-.react-tabs__tab:hover {
-    background-color: #666;
-}
+    .react-tabs__tab:hover {
+        background-color: #666;
+    }
 
-.react-tabs__tab--selected {
-    background-color: white;
+    .react-tabs__tab--selected {
+        background-color: white;
+    }
 }
