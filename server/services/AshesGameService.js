@@ -190,8 +190,13 @@ class GameService {
             findSpec.startedAt = { $gt: fromDate.toDate() };
         }
         if (gameType) {
-            findSpec.gameType = gameType;
+            if (gameType === 'solo') {
+                findSpec.solo = true;
+            } else {
+                findSpec.gameType = gameType;
+            }
         }
+
         return this.games
             .find(findSpec, {
                 sort: {
