@@ -48,9 +48,10 @@
     }
 
     .elo-link {
-        background-image: url('https://cdn.ashteki.com/slices/channel-magic.jpg');
+        background-image: url('https://cdn.ashteki.com/slices/channel-magic-180.jpg');
         background-position: 50% 30%;
-        background-size: contain
+        background-size: cover;
+
     }
 
     .stats-link {

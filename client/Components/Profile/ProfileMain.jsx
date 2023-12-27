@@ -141,7 +141,7 @@ const ProfileMain = ({ user, formProps }) => {
                 </Form.Group>
                 <Form.Group as={Col} md='3'>
                     <Form.Label>{t('Elo Rating')}</Form.Label>
-                    <div>{eloRating}&nbsp;- <Link href='/elo'>View Elo Leaderboard</Link></div>
+                    <div>{eloRating}&nbsp;- <Link href='/results'>View Elo Leaderboard</Link></div>
 
                 </Form.Group>
             </Form.Row>
