@@ -1,4 +1,3 @@
-const { Level } = require('../../../../constants');
 const AbilityDsl = require('../../../abilitydsl');
 const Behaviour = require('../../../solo/Behaviour');
 const BehaviourCard = require('../../../solo/BehaviourCard');
@@ -69,16 +68,17 @@ class NeversetBehaviour extends BehaviourCard {
                         );
 
                     case 12:
-                        //TODO: place scarlet seed if able
                         return new Behaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
-                                side: 'Place 1 Red Rains token on the Chimera'
+                                side: 'Scarlet Seed if able, else place 1 Red Rains token on the Chimera'
                             },
                             () => {
                                 // Side: Place 1 Red Rains token on the Chimera.
-                                this.doAddRedRains();
+                                this.owner.canSummon('scarlet-seed')
+                                    ? this.doSummon('scarlet-seed')
+                                    : this.doAddRedRains();
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -147,16 +147,17 @@ class NeversetBehaviour extends BehaviourCard {
                         );
 
                     case 12:
-                        //TODO: place scarlet seed if able
                         return new Behaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
-                                side: 'Place 1 Red Rains token on the Chimera'
+                                side: 'Scarlet Seed if able, else place 1 Red Rains token on the Chimera'
                             },
                             () => {
                                 // Side: Place 1 Red Rains token on the Chimera.
-                                this.doAddRedRains();
+                                this.owner.canSummon('scarlet-seed')
+                                    ? this.doSummon('scarlet-seed')
+                                    : this.doAddRedRains();
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -217,16 +218,17 @@ class NeversetBehaviour extends BehaviourCard {
                         );
 
                     case 12:
-                        //TODO: place scarlet seed if able
                         return new Behaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
-                                side: 'Place 1 Red Rains token on the Chimera'
+                                side: 'Scarlet Seed if able, else place 1 Red Rains token on the Chimera'
                             },
                             () => {
                                 // Side: Place 1 Red Rains token on the Chimera.
-                                this.doAddRedRains();
+                                this.owner.canSummon('scarlet-seed')
+                                    ? this.doSummon('scarlet-seed')
+                                    : this.doAddRedRains();
                                 // Main: Reveal
                                 this.doReveal();
                             }
