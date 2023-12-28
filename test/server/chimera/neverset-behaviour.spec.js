@@ -7,7 +7,7 @@ describe('Blight of Neverset Behaviour Rolls', function () {
                 mode: 'solo',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['anchornaut', 'flute-mage'],
+                    inPlay: ['hammer-knight', 'flute-mage'],
                     spellboard: ['summon-light-bringer'],
                     dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
                     hand: ['summon-iron-rhino'],
@@ -52,6 +52,7 @@ describe('Blight of Neverset Behaviour Rolls', function () {
         it('10 attach a bleed to opp leftmost then reveal', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(10); // set behaviour roll
             spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
+            expect(this.hammerKnight.damage).toBe(0);
 
             expect(this.regenerate.facedown).toBe(true);
             this.player1.endTurn();
@@ -60,10 +61,15 @@ describe('Blight of Neverset Behaviour Rolls', function () {
             this.player1.clickPrompt('Ok');
 
             expect(this.regenerate.facedown).toBe(false);
-            expect(this.anchornaut.upgrades.length).toBe(1);
-            expect(this.bleed.parent).toBe(this.anchornaut);
+            expect(this.hammerKnight.upgrades.length).toBe(1);
+            expect(this.bleed.parent).toBe(this.hammerKnight);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+
+            // bleed damages at end of turn
+            this.player1.player.actions.main = false;
+            this.player1.endTurn();
+            expect(this.hammerKnight.damage).toBe(1);
         });
 
         it('12 add scarlet seed then reveal', function () {
