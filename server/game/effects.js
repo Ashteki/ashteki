@@ -58,7 +58,7 @@ const Effects = {
     // attacks from this unit may not be blocked
     preventBlock: (contextFunc) => EffectBuilder.card.static('preventBlock', 0, contextFunc),
     // attacks from this unit may not be guarded (e.g. stalk)
-    preventGuard: () => EffectBuilder.card.static('preventGuard'),
+    preventGuard: (contextFunc) => EffectBuilder.card.static('preventGuard', 0, contextFunc),
     preventNonAttackDamage: (amount) => EffectBuilder.card.static('preventNonAttackDamage', amount),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),

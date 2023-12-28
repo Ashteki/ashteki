@@ -1,5 +1,5 @@
 describe('Arrogance', function () {
-    describe('standard test', function () {
+    describe('prevent block', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -56,6 +56,39 @@ describe('Arrogance', function () {
             this.player1.clickCard(this.fluteMage);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.mistSpirit.location).toBe('archives');
+        });
+    });
+
+    describe('prevent guard', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'flute-mage'],
+                    dicepool: ['ceremonial', 'sympathy', 'charm', 'charm'],
+                    hand: ['arrogance', 'molten-gold']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['iron-rhino', 'gilder', 'butterfly-monk']
+                }
+            });
+        });
+
+        it('can prevent unit guard by charmed - only attacker', function () {
+            this.player1.useDie(2);
+            this.player1.clickCard(this.gilder);
+            this.player1.clickAttack(this.ironRhino);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.arrogance);
+            this.player1.clickCard(this.hammerKnight);
+
+            expect(this.player2).toHavePrompt('Choose a guard?');
+            expect(this.player2).not.toBeAbleToSelect(this.ironRhino);
+            expect(this.player2).not.toBeAbleToSelect(this.gilder); // charmed
+            expect(this.player2).toBeAbleToSelect(this.butterflyMonk);
+
+            expect(this.arrogance.location).toBe('discard');
         });
     });
 });
