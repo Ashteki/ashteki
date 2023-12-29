@@ -76,7 +76,7 @@ const TaggedGameList = () => {
                                     {game.gameId}
                                 </a>
                                 <br />
-                                {duration.get('minutes')}m {duration.get('seconds')}s
+                                {duration.get('hours')}h {duration.get('minutes')}m
                             </td>
                         </tr>
                     );

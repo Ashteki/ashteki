@@ -19,7 +19,6 @@ class Die extends PlayableObject {
         this.pinned = false;
 
         this.menu = [
-            { command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' },
             { command: 'raise', text: 'Raise', menu: 'main' },
             { command: 'lower', text: 'Lower', menu: 'main' }
         ];
@@ -80,6 +79,9 @@ class Die extends PlayableObject {
         }
 
         menu.push({ command: 'click', text: 'Select Die', menu: 'main' });
+        if (this.magic !== Magic.Rage) {
+            menu.push({ command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' });
+        }
 
         if ([Magic.Divine, Magic.Charm].includes(this.magic)) {
             if (this.parent) {

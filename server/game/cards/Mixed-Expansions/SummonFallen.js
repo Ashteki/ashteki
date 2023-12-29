@@ -24,7 +24,7 @@ class SummonFallen extends Card {
                 ability.costs.mainAction(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
             ],
-            condition: (context) => context.player.spellboard.some((s) => s.status > 0),
+            // condition: (context) => context.player.spellboard.some((s) => s.status > 0),
             target: {
                 activePromptTitle: 'Choose which Summon Fallen books to remove a status token from',
                 mode: 'upTo',

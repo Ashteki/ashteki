@@ -21,7 +21,7 @@ describe('Behaviour Bugs', function () {
                     inPlay: ['rampage'],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['regenerate'],
+                    threatZone: ['firebelly'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -29,16 +29,16 @@ describe('Behaviour Bugs', function () {
 
         it('5 Reveal then Attack vs ICE TRAP', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(5); // set behaviour roll
-            expect(this.regenerate.facedown).toBe(true);
+            expect(this.firebelly.facedown).toBe(true);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.regenerate.facedown).toBe(false);
+            expect(this.firebelly.facedown).toBe(false);
             this.player1.clickCard(this.iceTrap);
-            expect(this.regenerate.location).toBe('discard');
+            expect(this.firebelly.location).toBe('discard');
             expect(this.corpseOfViros.damage).toBe(1);
 
             expect(this.player1).toHaveDefaultPrompt();

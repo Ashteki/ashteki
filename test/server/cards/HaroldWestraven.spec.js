@@ -78,7 +78,6 @@ describe('Hunters Mark', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
-                allowSetup: true,
                 player1: {
                     phoenixborn: 'harold-westraven',
                     inPlay: ['ice-golem', 'three-eyed-owl', 'mist-spirit'],
