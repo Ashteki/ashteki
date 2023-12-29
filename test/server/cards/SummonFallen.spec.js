@@ -14,17 +14,31 @@ describe('Summon Fallen', function () {
                     spellboard: []
                 }
             });
-
-            this.summonFallen.tokens.status = 1;
         });
 
         it('should place a fallen into play', function () {
+            this.summonFallen.tokens.status = 1;
             this.player1.clickCard(this.summonFallen);
             this.player1.clickPrompt('Summon Fallen');
             this.player1.clickCard(this.summonFallen);
             this.player1.clickDone();
             expect(this.fallen.location).toBe('play area');
 
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.summonFallen.status).toBe(0);
+        });
+
+        it('no tokens uses main, but no fallen into play', function () {
+            expect(this.summonFallen.status).toBe(0);
+
+            this.player1.clickCard(this.summonFallen);
+            this.player1.clickPrompt('Summon Fallen');
+            this.player1.clickCard(this.summonFallen);
+            this.player1.clickDone();
+            expect(this.fallen.location).toBe('archives');
+            // spends dice and main action
+            expect(this.player1.dicepool[1].exhausted).toBe(true);
+            expect(this.player1.actions.main).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.summonFallen.status).toBe(0);
         });
