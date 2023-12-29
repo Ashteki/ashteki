@@ -30,5 +30,19 @@ describe('Pain Shaman', function () {
             expect(this.blueJaguar.tokens.damage).toBe(1);
             expect(this.coalRoarkwin.damage).toBe(0);
         });
+
+        it('skip 1 damage to a target unit', function () {
+            this.coalRoarkwin.tokens.damage = 1;
+            expect(this.blueJaguar.tokens.damage).toBeUndefined();
+            expect(this.coalRoarkwin.damage).toBe(1);
+
+            this.player1.clickCard(this.painShaman);
+            this.player1.clickPrompt('Play this Ally');
+            this.player1.clickDone();
+            this.player1.clickCard(this.coalRoarkwin);
+
+            expect(this.blueJaguar.damage).toBe(0);
+            expect(this.coalRoarkwin.damage).toBe(0);
+        });
     });
 });
