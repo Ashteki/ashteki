@@ -33,6 +33,24 @@ class AspectCard extends Card {
             effect: AbilityDsl.effects.defender()
         });
     }
+
+    statusAbility(properties) {
+        return this.forcedReaction(
+            Object.assign(
+                {
+                    status: true,
+                    inexhaustible: true,
+                    when: {
+                        // it's my turn
+                        onBeginTurn: (event, context) => event.player === context.player
+                    },
+                    location: 'play area',
+                    cost: [AbilityDsl.costs.loseStatus(1)]
+                },
+                properties
+            )
+        );
+    }
 }
 
 module.exports = AspectCard;

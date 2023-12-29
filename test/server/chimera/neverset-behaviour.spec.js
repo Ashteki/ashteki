@@ -132,5 +132,4 @@ describe('Blight of Neverset Behaviour Rolls', function () {
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
     });
-
 });

@@ -4,14 +4,7 @@ class ScarletSeed extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
-        this.forcedReaction({
-            inexhaustible: true,
-            when: {
-                // it's my turn
-                onBeginTurn: (event, context) => event.player === context.player
-            },
-            location: 'play area',
-            cost: [ability.costs.loseStatus(1)],
+        this.statusAbility({
             gameAction: ability.actions.conditional({
                 condition: (context) => context.source.status === 0,
                 trueGameAction: [
