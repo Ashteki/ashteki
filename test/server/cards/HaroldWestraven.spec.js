@@ -83,7 +83,8 @@ describe('Hunters Mark', function () {
                     inPlay: ['ice-golem', 'three-eyed-owl', 'mist-spirit'],
                     spellboard: ['summon-three-eyed-owl'],
                     dicepool: ['divine', 'illusion', 'charm', 'charm'],
-                    archives: ['ice-golem', 'hunters-mark']
+                    archives: ['ice-golem', 'hunters-mark'],
+                    hand: []
                 },
                 player2: {
                     dummy: true,
