@@ -246,6 +246,7 @@ const GameBoard = () => {
                     manualMode={currentGame.manualMode}
                     numDeckCards={otherPlayer.numDeckCards}
                     onCardClick={onCardClick}
+                    onMenuItemClick={onMenuItemClick}
                     onMouseOver={onMouseOver}
                     onMouseOut={onMouseOut}
                     player={otherPlayer}
