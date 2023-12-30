@@ -626,5 +626,306 @@
       }
     ],
     "notes": "This is the official second deck for [[Rin Northfell]], available in the second Red Rains release, The Frostwild Scourge. *Suggested First Five forthcoming.*"
+  },
+  {
+    "precon_id": 409,
+    "name": "The Blight of Neverset: Maeoni",
+    "phoenixborn": [
+      {
+        "id": "maeoni-viper",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "chimera-charmer",
+        "count": 3
+      },
+      {
+        "id": "summon-bastion-badger",
+        "count": 3
+      },
+      {
+        "id": "snake-bite",
+        "count": 3
+      },
+      {
+        "id": "rose-gardener",
+        "count": 3
+      },
+      {
+        "id": "summon-shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "arrogance",
+        "count": 3
+      },
+      {
+        "id": "dealers-choice",
+        "count": 3
+      },
+      {
+        "id": "farewell",
+        "count": 3
+      },
+      {
+        "id": "embrace",
+        "count": 3
+      },
+      {
+        "id": "venom-strike",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "bastion-badger",
+        "count": 2
+      },
+      {
+        "id": "shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "eternity-flame",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 410,
+    "name": "The Blight of Neverset: Saria",
+    "phoenixborn": [
+      {
+        "id": "saria-guideman",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "chimera-charmer",
+        "count": 3
+      },
+      {
+        "id": "summon-bastion-badger",
+        "count": 3
+      },
+      {
+        "id": "snake-bite",
+        "count": 3
+      },
+      {
+        "id": "rose-gardener",
+        "count": 3
+      },
+      {
+        "id": "summon-shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "arrogance",
+        "count": 3
+      },
+      {
+        "id": "dealers-choice",
+        "count": 3
+      },
+      {
+        "id": "farewell",
+        "count": 3
+      },
+      {
+        "id": "embrace",
+        "count": 3
+      },
+      {
+        "id": "willpower",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "bastion-badger",
+        "count": 2
+      },
+      {
+        "id": "shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "eternity-flame",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 411,
+    "name": "The Blight of Neverset: Leo",
+    "phoenixborn": [
+      {
+        "id": "leo-sunshadow",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "chimera-charmer",
+        "count": 3
+      },
+      {
+        "id": "summon-bastion-badger",
+        "count": 3
+      },
+      {
+        "id": "snake-bite",
+        "count": 3
+      },
+      {
+        "id": "rose-gardener",
+        "count": 3
+      },
+      {
+        "id": "summon-shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "arrogance",
+        "count": 3
+      },
+      {
+        "id": "dealers-choice",
+        "count": 3
+      },
+      {
+        "id": "farewell",
+        "count": 3
+      },
+      {
+        "id": "embrace",
+        "count": 3
+      },
+      {
+        "id": "gifted-rose",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "bastion-badger",
+        "count": 2
+      },
+      {
+        "id": "shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "eternity-flame",
+        "count": 1
+      },
+      {
+        "id": "glow-finch",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 412,
+    "name": "The Blight of Neverset: Astrea",
+    "restricted": true,
+    "phoenixborn": [
+      {
+        "id": "astrea",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "chimera-charmer",
+        "count": 3
+      },
+      {
+        "id": "summon-bastion-badger",
+        "count": 3
+      },
+      {
+        "id": "snake-bite",
+        "count": 3
+      },
+      {
+        "id": "rose-gardener",
+        "count": 3
+      },
+      {
+        "id": "summon-shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "arrogance",
+        "count": 3
+      },
+      {
+        "id": "dealers-choice",
+        "count": 3
+      },
+      {
+        "id": "farewell",
+        "count": 3
+      },
+      {
+        "id": "embrace",
+        "count": 3
+      },
+      {
+        "id": "judgment",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "bastion-badger",
+        "count": 2
+      },
+      {
+        "id": "shimmer-wing",
+        "count": 3
+      },
+      {
+        "id": "eternity-flame",
+        "count": 1
+      }
+    ]
   }
 ]
