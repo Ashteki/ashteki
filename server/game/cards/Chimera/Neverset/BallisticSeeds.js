@@ -16,14 +16,14 @@ class BallisticSeeds extends AspectCard {
                 targetsPlayer: true,
                 controller: 'opponent',
                 cardCondition: (card, context) =>
-                    card.type === CardType.Phoenixborn || this.checkLeftmost(card, context),
+                    card.type === CardType.Phoenixborn || this.checkRightmost(card, context),
                 gameAction: ability.actions.addDamageToken({ amount: 1, showMessage: true })
             }
         });
     }
 
-    checkLeftmost(card, context) {
-        return card.owner.isLeftmost(card);
+    checkRightmost(card, context) {
+        return card.owner.isRightmost(card);
     }
 }
 

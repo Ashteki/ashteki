@@ -1269,6 +1269,14 @@ class Card extends PlayableObject {
         return actions.concat(this.actions.slice());
     }
 
+    get hasStatusAbility() {
+        return !!this.abilities.reactions.find(a => a.properties.status);
+    }
+
+    getStatusAbility() {
+        return this.abilities.reactions.find(a => a.properties.status);
+    }
+
     canPlay(activePlayer) {
         // fudge - the getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
         // see order of call in getState

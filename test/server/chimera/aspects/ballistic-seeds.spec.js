@@ -43,17 +43,17 @@ describe('Ballistic Seeds Aspect', function () {
             expect(this.coalRoarkwin.damage).toBe(1);
         });
 
-        it('damage leftmost on status token spend', function () {
+        it('damage rightmost on status token spend', function () {
             expect(this.coalRoarkwin.damage).toBe(0);
             expect(this.allure.status).toBe(2);
             this.player1.endTurn();
-            expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
-            this.player1.clickCard(this.anchornaut);
+            expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+            this.player1.clickCard(this.hammerKnight);
 
             this.player1.clickOk(); // reveal behaviour alert
 
             expect(this.allure.status).toBe(1);
-            expect(this.anchornaut.location).toBe('discard');
+            expect(this.hammerKnight.damage).toBe(1);
         });
     });
 

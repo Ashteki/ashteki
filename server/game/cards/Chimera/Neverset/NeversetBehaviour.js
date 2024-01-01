@@ -6,7 +6,6 @@ class NeversetBehaviour extends BehaviourCard {
     getBehaviour(behaviourRoll, phase) {
         switch (phase) {
             case 1:
-
                 switch (behaviourRoll) {
                     case 1:
                     case 2:
@@ -37,7 +36,6 @@ class NeversetBehaviour extends BehaviourCard {
                         );
                     case 8:
                     case 9:
-                        //TODO: resolve status ability
                         return new Behaviour(
                             behaviourRoll,
                             {
@@ -45,10 +43,9 @@ class NeversetBehaviour extends BehaviourCard {
                                 side: 'resolve status ability'
                             },
                             () => {
-                                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                                // this.doResolveStatus();
                                 // Main: Reveal
                                 this.doReveal();
+                                this.useStatusAbility('right');
                             }
                         );
                     case 10:
@@ -116,7 +113,6 @@ class NeversetBehaviour extends BehaviourCard {
                         );
                     case 8:
                     case 9:
-                        //TODO: resolve status ability
                         return new Behaviour(
                             behaviourRoll,
                             {
@@ -124,10 +120,9 @@ class NeversetBehaviour extends BehaviourCard {
                                 side: 'resolve status ability'
                             },
                             () => {
-                                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                                // this.doResolveStatus();
                                 // Main: Reveal
                                 this.doReveal();
+                                this.useStatusAbility('right');
                             }
                         );
                     case 10:
@@ -187,7 +182,6 @@ class NeversetBehaviour extends BehaviourCard {
                         );
                     case 8:
                     case 9:
-                        //TODO: resolve status ability
                         return new Behaviour(
                             behaviourRoll,
                             {
@@ -195,10 +189,9 @@ class NeversetBehaviour extends BehaviourCard {
                                 side: 'resolve status ability'
                             },
                             () => {
-                                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                                // this.doResolveStatus();
                                 // Main: Reveal
                                 this.doReveal();
+                                this.useStatusAbility('right');
                             }
                         );
                     case 10:
@@ -257,29 +250,22 @@ class NeversetBehaviour extends BehaviourCard {
         this.game.resolveAbility(context);
     }
 
-    // doLowerOpponentsDice() {
-    //     if (this.owner.opponent.activeNonBasicDiceCount === 0) {
-    //         return;
-    //     }
+    useStatusAbility(aim) {
+        const ability = this.behaviour({
+            target: {
+                mode: 'auto',
+                aim: aim,
+                controller: 'self',
+                cardCondition: (card) => card.status > 0 && card.hasStatusAbility,
+                gameAction: AbilityDsl.actions.resolveStatusAbility((context) => ({
+                    ability: context.target?.getStatusAbility()
+                }))
+            }
+        });
 
-    //     const ability = this.behaviour({
-    //         title: 'Chimera Behaviour',
-    //         target: {
-    //             player: 'opponent',
-    //             targetsPlayer: true,
-    //             toSelect: 'die',
-    //             mode: 'exactly',
-    //             numDice: Math.min(2, this.owner.opponent.activeNonBasicDiceCount),
-    //             dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
-    //             owner: 'opponent',
-    //             gameAction: AbilityDsl.actions.lowerDie()
-    //         },
-    //         message: '{0} uses {1} to lower 2 opponent dice'
-    //     });
-
-    //     const context = ability.createContext(this.owner);
-    //     this.game.resolveAbility(context);
-    // }
+        const context = ability.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
 }
 
 NeversetBehaviour.id = 'neverset-behaviour';

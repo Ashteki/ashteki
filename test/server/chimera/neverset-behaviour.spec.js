@@ -132,4 +132,157 @@ describe('Blight of Neverset Behaviour Rolls', function () {
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
     });
+
+    describe('Phase 1, status abilities', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'flute-mage'],
+                    spellboard: ['summon-light-bringer'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
+                    hand: ['summon-iron-rhino'],
+                    archives: ['light-bringer']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
+                    inPlay: ['regenerate'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['rampage'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
+                    archives: ['bleed', 'scarlet-seed']
+                }
+            });
+        });
+
+        it('8, reveal then use rightmost status ability', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(8); // set behaviour roll
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
+
+            expect(this.rampage.facedown).toBe(true);
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
+
+            this.player1.player.actions.main = false; // prevent rage die bonus roll (pass on threat)
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
+            this.player1.clickPrompt('Ok');
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
+
+            expect(this.rampage.facedown).toBe(false);
+            expect(this.rampage.status).toBe(1);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(6); // for each basic rage die on rampage reroll
+        });
+    });
+
+    describe('Phase 1, status abilities - existing', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'flute-mage'],
+                    spellboard: ['summon-light-bringer'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
+                    hand: ['summon-iron-rhino'],
+                    archives: ['light-bringer']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
+                    inPlay: ['regenerate', 'scarlet-seed', 'charge-fist'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['crushing-grip'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
+                    archives: ['bleed', 'scarlet-seed']
+                }
+            });
+            this.chargeFist.tokens.status = 3;
+            this.scarletSeed.tokens.status = 3;
+        });
+
+        it('8, reveal then use rightmost status ability - in play', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(8); // set behaviour roll
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
+
+            expect(this.crushingGrip.facedown).toBe(true);
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
+
+            this.player1.player.actions.main = false; // prevent rage die bonus roll (pass on threat)
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
+            this.player1.clickPrompt('Ok');
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
+
+            expect(this.crushingGrip.facedown).toBe(false);
+            expect(this.chargeFist.status).toBe(1);
+            expect(this.scarletSeed.status).toBe(2);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(1); // for each basic rage die on rampage reroll
+        });
+    });
+
+    describe('Phase 1, status abilities - none', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'flute-mage'],
+                    spellboard: ['summon-light-bringer'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
+                    hand: ['summon-iron-rhino'],
+                    archives: ['light-bringer']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
+                    inPlay: ['regenerate'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['crushing-grip'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
+                    archives: ['bleed', 'scarlet-seed']
+                }
+            });
+        });
+
+        it('8, reveal then no status ability found', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(8); // set behaviour roll
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
+
+            expect(this.crushingGrip.facedown).toBe(true);
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
+
+            this.player1.player.actions.main = false; // prevent rage die bonus roll (pass on threat)
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
+            this.player1.clickPrompt('Ok');
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
+            expect(this.crushingGrip.facedown).toBe(false);
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(1); // for each basic rage die on rampage reroll
+        });
+    });
 });
