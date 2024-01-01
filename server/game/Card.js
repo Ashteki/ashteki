@@ -136,7 +136,7 @@ class Card extends PlayableObject {
     }
 
     get discardLocation() {
-        return this.type == 'Conjuration' || this.type === 'Conjured Alteration Spell'
+        return ConjuredCardTypes.includes(this.type)
             ? 'archives'
             : 'discard';
     }
@@ -1267,6 +1267,14 @@ class Card extends PlayableObject {
         }
 
         return actions.concat(this.actions.slice());
+    }
+
+    get hasStatusAbility() {
+        return !!this.abilities.reactions.find(a => a.properties.status);
+    }
+
+    getStatusAbility() {
+        return this.abilities.reactions.find(a => a.properties.status);
     }
 
     canPlay(activePlayer) {

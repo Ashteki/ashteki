@@ -65,6 +65,7 @@ module.exports = {
     RerollDiceAction: require('./RerollDiceAction'),
     RerollDieAction: require('./RerollDieAction'),
     ResolveAbilityAction: require('./ResolveAbilityAction'),
+    ResolveStatusAbilityAction: require('./ResolveStatusAbilityAction'),
     ResolveDieAbilityAction: require('./ResolveDieAbilityAction'),
     ResolveBattleAction: require('./ResolveBattleAction'),
     ReturnToDeckAction: require('./ReturnToDeckAction'),

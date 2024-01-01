@@ -102,6 +102,17 @@ class BehaviourCard extends Card {
             });
         }
     }
+
+    doSummon(cardId) {
+        const act = this.action({
+            gameAction: AbilityDsl.actions.summon({
+                conjuration: cardId
+            })
+        });
+
+        const context = act.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
 }
 
 module.exports = BehaviourCard;

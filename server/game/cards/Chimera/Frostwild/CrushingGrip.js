@@ -9,7 +9,7 @@ class CrushingGrip extends AspectCard {
         // treat leftmost as exhausted
         this.persistentEffect({
             condition: () => !this.exhausted,
-            match: (card) => card.controller.indexOf(card) === 0,
+            match: (card) => card.controller.isLeftmost(card),
             targetController: 'opponent',
             effect: ability.effects.exhausted()
         });

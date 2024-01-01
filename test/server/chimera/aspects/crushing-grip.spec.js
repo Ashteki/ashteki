@@ -27,6 +27,9 @@ describe('Constrict Aspect', function () {
         });
 
         it('reveal to in play makes opp leftmost considered exhausted', function () {
+            expect(this.anchornaut.exhausted).toBe(false);
+            expect(this.player1.player.isLeftmost(this.anchornaut)).toBe(true);
+
             spyOn(Dice, 'd12Roll').and.returnValue(1);
             this.player1.endTurn();
             // informs real player of behaviour roll
@@ -35,6 +38,7 @@ describe('Constrict Aspect', function () {
 
             expect(this.anchornaut.exhausted).toBe(true);
             expect(this.firebelly.exhausted).toBe(false);
+            expect(this.ironWorker.exhausted).toBe(false);
             expect(this.hammerKnight.exhausted).toBe(false);
             expect(this.crushingGrip.location).toBe('play area');
             expect(this.crushingGrip.facedown).toBe(false);

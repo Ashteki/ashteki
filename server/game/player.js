@@ -531,7 +531,8 @@ class Player extends GameObject {
             Ally: [...cardLocations, 'play area'],
             Conjuration: ['play area', 'archives', 'purged'],
             'Conjured Alteration Spell': ['play area', 'archives'],
-            Aspect: ['deck', 'discard', 'purged', 'play area', 'hand']
+            Aspect: ['deck', 'discard', 'purged', 'play area', 'hand'],
+            'Conjured Aspect': ['play area', 'archives', 'purged']
         };
 
         return legalLocations[card.type] && legalLocations[card.type].includes(location);
@@ -811,6 +812,10 @@ class Player extends GameObject {
 
     canAttack() {
         return this.unitsInPlay.some((c) => c.canAttack());
+    }
+
+    canSummon(stub) {
+        return this.archives.some(c => c.id === stub);
     }
 
     spendMainAction() {
