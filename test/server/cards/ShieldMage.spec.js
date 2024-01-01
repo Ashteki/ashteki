@@ -1,3 +1,5 @@
+const Dice = require("../../../server/game/dice");
+
 describe('Shield Mage', function () {
     describe('PvP', function () {
         beforeEach(function () {
@@ -103,13 +105,13 @@ describe('Shield Mage', function () {
         });
     });
 
-    describe('BUG REPORT (rediking): pb targetted when shield mage should be target.', function () {
+    describe('BUG REPORT (redking): pb targetted when shield mage should be target.', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['shield-mage', 'iron-worker', 'flock-shepherd', 'anchornaut'],
+                    inPlay: ['shield-mage', 'iron-worker', 'anchornaut'],
                     dicepool: ['divine', 'illusion', 'charm', 'charm'],
                     spellboard: [],
                     hand: ['close-combat', 'power-through']
@@ -119,22 +121,25 @@ describe('Shield Mage', function () {
                     phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
-                    inPlay: ['crushing-grip'],
+                    inPlay: [],
                     spellboard: [],
+                    threatZone: ['crushing-grip'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
         });
 
-        it('shield mage is exhausted, so becomes attack target', function () {
-            expect(this.shieldMage.exhausted).toBe(true); // crushing grip in play
+        it('shield mage is exhausted on reveal, so becomes attack target', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(5); // set behaviour roll to reveal + attack
+            expect(this.crushingGrip.facedown).toBe(true);
+            expect(this.shieldMage.exhausted).toBe(false); // crushing grip not in play
 
             this.player1.endTurn();
+            this.player1.clickOk(); // alert
             // attackers declared
-            this.player1.clickPass(); // shepherd buff reaction
             expect(this.ironWorker.exhausted).toBe(false);
+            expect(this.crushingGrip.facedown).toBe(false);
             expect(this.shieldMage.exhausted).toBe(true);
-
             expect(this.game.attackState.target).toBe(this.shieldMage);
         });
     });

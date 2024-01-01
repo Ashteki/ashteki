@@ -44,14 +44,14 @@ class BehaviourCard extends Card {
     }
 
     doAttack(attackWith) {
-        const attacker = attackWith || this.owner.getAttacker();
-        const target = this.owner.getAttackTarget(attacker);
-
         const attackAbility = this.behaviour({
             title: 'Attack',
-            gameAction: AbilityDsl.actions.attack({
-                attacker: attacker,
-                target: target
+            gameAction: AbilityDsl.actions.attack((context) => {
+                const attacker = attackWith || context.player.getAttacker();
+                return {
+                    attacker: attacker,
+                    target: context.player.getAttackTarget(attacker)
+                }
             })
         });
 
