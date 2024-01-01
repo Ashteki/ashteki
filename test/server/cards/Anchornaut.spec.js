@@ -29,5 +29,18 @@ describe('Anchornaut', function () {
 
             expect(this.blueJaguar.tokens.damage).toBe(1);
         });
+
+        it('skip 1 damage to a target unit', function () {
+            expect(this.blueJaguar.tokens.damage).toBeUndefined();
+
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickPrompt('Play this Ally');
+            this.player1.clickDie(1);
+            expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+
+            this.player1.clickCancel();
+
+            expect(this.blueJaguar.damage).toBe(0);
+        });
     });
 });

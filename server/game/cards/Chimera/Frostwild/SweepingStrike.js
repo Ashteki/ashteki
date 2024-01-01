@@ -12,9 +12,7 @@ class SweepingStrike extends AspectCard {
             alwaysTriggers: true,
             target: {
                 cardCondition: (card) =>
-                    card.type === CardType.Phoenixborn ||
-                    card.controller.isRightmost(card),
-                showCancel: true,
+                    card.type === CardType.Phoenixborn || card.controller.isRightmost(card),
                 activePromptTitle: 'Choose a target to be dealt 1 damage',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 player: 'opponent',

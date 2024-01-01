@@ -1,0 +1,164 @@
+{
+    "deckType": "chimera",
+    "results": [
+        {
+            "name": "The Blight of Neverset",
+            "stub": "blight-of-neverset",
+            "type": "Chimera",
+            "level": "standard",
+            "rank": 1,
+            "threat": 4,
+            "life": 30,
+            "ultimate": 3,
+            "imageStub": "blight-of-neverset-1p-standard-1.jpg"
+        },
+        {
+            "name": "Blight of Neverset Ultimate",
+            "stub": "neverset-ultimate",
+            "type": "Ready Spell",
+            "imageStub": "blight-of-neverset-ultimate-%s.jpg"
+        },
+        {
+            "name": "Blight of Neverset Behaviour",
+            "stub": "neverset-behaviour",
+            "type": "Behaviour",
+            "imageStub": "blight-of-neverset-behavior-%s.jpg"
+        },
+        {
+            "name": "Proliferate",
+            "stub": "proliferate",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Sowing Strike",
+            "stub": "sowing-strike",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Scarlet Seed",
+            "stub": "scarlet-seed",
+            "type": "Conjured Aspect",
+            "placement": "battlefield",
+            "attack": 0,
+            "life": 1,
+            "blood": 0,
+            "copies": 6
+        },
+        {
+            "name": "Photosynthesize",
+            "stub": "photosynthesize",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Allure",
+            "stub": "allure",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Ballistic Seeds",
+            "stub": "ballistic-seeds",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "attack": 1,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Soothing Scent",
+            "stub": "soothing-scent",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 3,
+            "life": 2,
+            "blood": 2
+        },
+        {
+            "name": "Vine Whip",
+            "stub": "vine-whip",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Bleed",
+            "stub": "bleed",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit",
+            "copies": 3
+        },
+        {
+            "name": "Horrific Gaze",
+            "stub": "horrific-gaze",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Overgrowth",
+            "stub": "overgrowth",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 4,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Vampiric Roots",
+            "stub": "vampiric-roots",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 4,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Explosive Pods",
+            "stub": "explosive-pods",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Withering Rot",
+            "stub": "withering-rot",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 3,
+            "blood": 2
+        }
+    ]
+}

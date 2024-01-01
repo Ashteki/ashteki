@@ -4,20 +4,12 @@ class BonechillWind extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
-        this.forcedReaction({
-            inexhaustible: true,
-            when: {
-                // it's my turn
-                onBeginTurn: (event, context) => event.player === context.player
-            },
-            location: 'play area',
-            cost: [ability.costs.loseStatus(1)],
+        this.statusAbility({
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => this.getExhaustedTargets(context),
                 gameAction: ability.actions.dealDamage({ showMessage: true })
             }
-            //            effect: 'reroll all basic dice'
         });
     }
 

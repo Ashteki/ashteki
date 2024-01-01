@@ -40,8 +40,18 @@ const Costs = {
     }),
     loseStatus: (amount = 1) => ({
         canPay: (context) => context.source.status >= amount,
-        payEvent: (context) =>
-            context.game.actions.removeStatus({ amount: amount }).getEvent(context.source, context)
+        payEvent: (context) => {
+            const event = context.game.getEvent('onLoseStatusCost', {
+                amount: amount,
+                card: context.source
+            });
+            event.addSubEvent(
+                context.game.actions
+                    .removeStatus({ amount: amount })
+                    .getEvent(context.source, context)
+            );
+            return event;
+        }
     }),
     loseAllStatus: () => ({
         canPay: (context) => context.source.status >= 0,

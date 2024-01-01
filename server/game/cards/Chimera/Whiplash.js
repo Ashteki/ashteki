@@ -22,11 +22,13 @@ class Whiplash extends AspectCard {
             gameAction: ability.actions.conditional({
                 condition: (context) => context.targets.damaged,
                 trueGameAction: ability.actions.destroy((context) => ({
-                    target: context.targets.damaged
+                    target: context.targets.damaged,
+                    showMessage: true
                 })),
                 falseGameAction: ability.actions.dealDamage((context) => ({
                     amount: 1,
-                    target: context.targets.undamaged
+                    target: context.targets.undamaged,
+                    showMessage: true
                 }))
             })
         });

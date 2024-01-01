@@ -12,6 +12,7 @@ const CardType = {
     Conjuration: 'Conjuration',
     ConjuredAlteration: 'Conjured Alteration Spell',
     Aspect: 'Aspect',
+    ConjuredAspect: 'Conjured Aspect',
     Chimera: 'Chimera',
     Behaviour: 'Behaviour'
 };
@@ -25,10 +26,19 @@ const Location = {
 };
 
 const ActionSpellTypes = [CardType.ActionSpell, CardType.ReactionSpell];
-const BattlefieldTypes = [CardType.Ally, CardType.Conjuration, CardType.Aspect];
+const BattlefieldTypes = [
+    CardType.Ally,
+    CardType.Conjuration,
+    CardType.Aspect,
+    CardType.ConjuredAspect
+];
 const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
-const ConjuredCardTypes = [CardType.Conjuration, CardType.ConjuredAlteration];
+const ConjuredCardTypes = [
+    CardType.Conjuration,
+    CardType.ConjuredAlteration,
+    CardType.ConjuredAspect
+];
 const EffectLocations = ['play area', 'spellboard'];
 const DamageDealingLocations = ['play area', 'being played', 'spellboard'];
 const FaceUpLocations = [

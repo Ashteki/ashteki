@@ -51,6 +51,7 @@ const Actions = {
     removeToken: (propertyFactory, type) =>
         new GameActions.RemoveTokenAction(propertyFactory, type),
     resolveAbility: (propertyFactory) => new GameActions.ResolveAbilityAction(propertyFactory), // ability
+    resolveStatusAbility: (propertyFactory) => new GameActions.ResolveStatusAbilityAction(propertyFactory), // ability
     returnToDeck: (propertyFactory) => new GameActions.ReturnToDeckAction(propertyFactory), // bottom = false
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),

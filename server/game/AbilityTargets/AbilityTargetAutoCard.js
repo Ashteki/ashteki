@@ -1,5 +1,3 @@
-const _ = require('underscore');
-
 const AbilityTargetCard = require('./AbilityTargetCard.js');
 
 class AbilityTargetAutoCard extends AbilityTargetCard {
@@ -8,18 +6,23 @@ class AbilityTargetAutoCard extends AbilityTargetCard {
 
         // leftmost (left) or rightmost (right)
         this.aim = properties.aim;
+        this.controller = properties.controller || 'opponent';
     }
 
     resolve(context, targetResults) {
         // aim dictates
-        const opposingUnits = [...context.player.opponent.unitsInPlay];
+        const possibleUnits =
+            this.controller === 'self'
+                ? [...context.player.unitsInPlay]
+                : [...context.player.opponent.unitsInPlay];
+
         // reverse for L2R
         if (this.aim === 'right') {
-            opposingUnits.reverse();
+            possibleUnits.reverse();
         }
 
         // loop
-        for (const unit of opposingUnits) {
+        for (const unit of possibleUnits) {
             if (this.selector.canTarget(unit, context)) {
                 this.setSelectedCard(context, unit);
 
