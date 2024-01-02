@@ -183,3 +183,32 @@
         color: inherit;
     }
 }
+
+@mixin action-colors($text, $background) {
+    color: $text !important;
+    background: $background;
+    border-color: $text;
+
+}
+
+.chat-action {
+    // @include action-colors(#333, #FFF);
+    // border-radius: 3px;
+    // padding: 2px;
+    margin-right: 3px;
+    // // width: 17px;
+    // text-align: center;
+    // display: inline-block;
+    // border: 1pt solid black;
+
+    svg {
+        color: #FFF !important;
+    }
+}
+
+// .chat-die {
+//     border-radius: 3px;
+//     text-align: center;
+//     display: inline-block;
+//     padding: 2px;
+// }

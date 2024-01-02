@@ -16,12 +16,22 @@ class BasePlayAction extends BaseAbility {
 
     displayMessage(context) {
         if (![CardType.ReactionSpell].includes(context.source.type)) {
-            context.game.addMessage(
-                '{0} spends {1} to play {2}',
-                context.player,
-                context.costs.returnDice,
-                context.source
-            );
+            if (context.costs.returnDice?.length) {
+                context.game.addMessage(
+                    '{0}{1}: {2} plays {3}',
+                    context.costs.actions,
+                    context.costs.returnDice,
+                    context.player,
+                    context.source
+                );
+            } else {
+                context.game.addMessage(
+                    '{0}{1} plays {2}',
+                    context.costs.actions,
+                    context.player,
+                    context.source
+                );
+            }
         }
     }
 

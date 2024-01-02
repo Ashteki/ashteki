@@ -60,6 +60,22 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                 {user.name}
             </span>
         );
+    };
+
+    const getActionFragment = (fragment) => {
+        const result = [];
+        if (fragment.main) {
+            result.push(
+                <span className='phg-main-action chat-action' title='main action'></span>
+            );
+        }
+        if (fragment.side) {
+            result.push(
+                <span className='phg-side-action chat-action' title='side action'></span>
+            );
+        }
+
+        return result;
     }
 
     const formatMessageText = (message, index) => {
@@ -164,6 +180,12 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
 
                 messages.push(
                     <span key={index++} className={dieClass}><span className={diceFont} title={`${fragment.name}`}><span className="sr-only">{fragment.code}</span></span></span>
+                );
+            } else if (fragment.argType === 'actions') {
+                messages.push(
+                    <span key={index++} >
+                        {getActionFragment(fragment)}
+                    </span>
                 );
             } else {
                 let messageFragment = fragment.toString();
