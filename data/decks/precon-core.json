@@ -2060,7 +2060,8 @@
     ]
   },
   {
-    "precon_id": 0.1,
+    "precon_id": 99,
+    "restricted": true,
     "name": "KEVIN! Home Alone! (xmas limited edition)",
     "listClass": "kevin",
     "phoenixborn": [
