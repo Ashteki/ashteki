@@ -126,9 +126,8 @@ describe('Imperial Ninja reaction', function () {
             this.player1.clickCard(this.imperialNinja); // single attacker
             this.player1.clickPrompt('Done'); // end attacker select
 
-            expect(this.player2).toHavePromptButton('Discard Redirect');
-            expect(this.player2).toHavePromptButton('Discard 2 top of deck');
+            this.player2.clickCard(this.vanish);
+            expect(this.player2).toHavePrompt('Choose a blocker'); // normal attack sequence continues
         });
     });
-
 });
