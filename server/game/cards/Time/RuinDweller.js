@@ -6,6 +6,7 @@ class RuinDweller extends Card {
         this.afterDestroyedDefending({
             title: 'Blight 1',
             target: {
+                activePromptTitle: 'Choose a Phoenixborn to deal 1 damage to',
                 cardType: PhoenixbornTypes,
                 gameAction: ability.actions.dealDamage()
             }

@@ -16,6 +16,17 @@ class ActionCost {
             this.actionType === 'main'
                 ? context.game.actions.spendMainAction()
                 : context.game.actions.spendSideAction();
+
+        if (!context.costs.actions) {
+            context.costs.actions = {};
+        }
+        if (this.actionType === 'main') {
+            context.costs.actions.main = true;
+
+        } else {
+            context.costs.actions.side = true;
+        }
+
         return action.getEvent(context.player, context);
     }
 }

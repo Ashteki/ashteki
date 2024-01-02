@@ -81,6 +81,9 @@ class CardAbility extends ThenAbility {
         last = false
     ) {
         let messageArgs = previousMessageArgs || [
+            context.costs.actions,
+            context.costs.returnDice,
+            context.costs.actions || context.costs.returnDice ? ' : ' : '',
             context.player,
             [CardType.ReactionSpell].includes(context.source.type)
                 ? ' plays '

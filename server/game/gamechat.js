@@ -100,6 +100,12 @@ class GameChat {
                             magic: arg.magic,
                             code: Dice.getDieCode(arg)
                         });
+                    } else if (arg.main || arg.side) {
+                        returnedFraments.push({
+                            argType: 'actions',
+                            main: arg.main,
+                            side: arg.side
+                        });
                     } else {
                         returnedFraments.push(arg);
                     }
