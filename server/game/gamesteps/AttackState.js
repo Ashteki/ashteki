@@ -167,6 +167,10 @@ class AttackState {
         const myBattle = this.battles.find(b => b.attacker === card);
         return myBattle.target;
     }
+
+    getBattleFor(card) {
+        return this.battles.find(b => b.attacker === card || b.guard === card);
+    }
 }
 
 module.exports = AttackState;
