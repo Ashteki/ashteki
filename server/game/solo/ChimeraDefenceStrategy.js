@@ -75,8 +75,8 @@ class ChimeraDefenceStrategy {
                 if (!bat) {
                     return;
                 }
-                bat.guard = d;
-            })
+                attack.setGuard(d, bat);
+            });
 
             this.game.writeDefenceMessages(this.player);
         }
@@ -96,7 +96,7 @@ class ChimeraDefenceStrategy {
             if (!bat) {
                 return;
             }
-            bat.guard = d;
+            attack.setGuard(d, bat);
 
             // alert if this is a unit attack
             if (!attack.isPBAttack) {

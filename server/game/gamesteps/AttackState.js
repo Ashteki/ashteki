@@ -128,8 +128,8 @@ class AttackState {
         battle.guard = null;
     }
 
-    setGuard(guard) {
-        let battle = this.battles[0];
+    setGuard(guard, forBattle) {
+        let battle = forBattle || this.battles[0];
         battle.guard = guard;
         guard.isDefender = true;
         guard.wasDefender = true;
