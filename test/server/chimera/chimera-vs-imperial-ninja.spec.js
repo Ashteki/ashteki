@@ -30,7 +30,12 @@ describe('Chimera vs Imperial Ninja', function () {
 
             this.player1.clickAttack(this.ironScales);
             this.player1.clickCard(this.imperialNinja);
-            expect(this.imperialNinja.exhausted).toBe(true);
+            // reveal alert
+            this.player1.clickOk();
+            expect(this.player1).toHavePrompt('CHIMERA CHOICE');
+            this.player1.clickPrompt('Discard 2 top of deck');
+
+            expect(this.player2.discard.length).toBe(2);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });

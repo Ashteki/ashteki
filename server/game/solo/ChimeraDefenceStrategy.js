@@ -10,43 +10,22 @@ class ChimeraDefenceStrategy {
     }
 
     execute(attack) {
-        //TODO: if defenders are on the battlefield, unit guard or block with them
-        const defenders = this.player.unitsInPlay.filter(
-            (u) => u !== attack.target && u.anyEffect('defender')
-        );
+        // defender aspect blocks
+        let remainingDefenders = this.getAvailableDefenders(attack);
+        // defenders guard for aspects or the chimera
         const battlesToGuard = attack.battles.filter(
             (b) => !b.target.anyEffect('defender') &&
                 [CardType.Chimera, CardType.Aspect].includes(b.target.type)
         );
+        // get threatening battles to block first
+        const threateningBattles = battlesToGuard.filter((b) =>
+            b.attacker.anyEffect('threatening')
+        );
+        this.allocateBlockers(remainingDefenders, threateningBattles, attack);
 
-        // defenders guard for aspects
-        defenders.forEach(d => {
-            const bat = battlesToGuard.find(
-                (b) => !b.guard && this.defenceRules.guardTest(d, b.target, b.attacker)
-            );
-            if (!bat) {
-                return;
-            }
-            bat.guard = d;
-
-            // alert if this is a unit attack
-            if (!attack.isPBAttack) {
-                const context = this.game.getFrameworkContext(this.player);
-                this.game.queueUserAlert(context, {
-                    style: 'danger',
-                    promptTitle: 'Aspect Guard',
-                    menuTitle: d.name + ' guards for ' + bat.target.name,
-                    controls: [
-                        {
-                            type: 'targeting',
-                            source: d.getShortSummary()
-                            // ,
-                            // targets: [this.attack.target.getShortSummary()]
-                        }
-                    ]
-                });
-            }
-        });
+        // block / guard 'normal' attackers
+        remainingDefenders = this.getAvailableDefenders(attack);
+        this.allocateBlockers(remainingDefenders, battlesToGuard, attack);
 
         // chimera guards for a unit on 9+
         if (
@@ -79,7 +58,62 @@ class ChimeraDefenceStrategy {
             });
         }
 
-        this.game.writeDefenceMessages(this.player);
+        // forced block of unblocked THREATENING attackers
+        if (
+            attack.isPBAttack &&
+            attack.battles.some((b) => b.attacker.anyEffect('threatening') && !b.guard)
+        ) {
+            const nonDefenders = this.player.unitsInPlay.filter(
+                (u) => u !== attack.target && !u.anyEffect('defender') && !u.isDefender
+            );
+
+            // try and assign to battles
+            nonDefenders.forEach(d => {
+                const bat = battlesToGuard.find(
+                    (b) => !b.guard && b.attacker.anyEffect('threatening')
+                );
+                if (!bat) {
+                    return;
+                }
+                bat.guard = d;
+            })
+
+            this.game.writeDefenceMessages(this.player);
+        }
+    }
+
+    getAvailableDefenders(attack) {
+        return this.player.unitsInPlay.filter(
+            (u) => u !== attack.target && u.anyEffect('defender') && !attack.getBattleFor(u)
+        );
+    }
+
+    allocateBlockers(defenders, battlesToGuard, attack) {
+        defenders.forEach(d => {
+            const bat = battlesToGuard.find(
+                (b) => !b.guard && this.defenceRules.guardTest(d, b.target, b.attacker)
+            );
+            if (!bat) {
+                return;
+            }
+            bat.guard = d;
+
+            // alert if this is a unit attack
+            if (!attack.isPBAttack) {
+                const context = this.game.getFrameworkContext(this.player);
+                this.game.queueUserAlert(context, {
+                    style: 'danger',
+                    promptTitle: 'Aspect Guard',
+                    menuTitle: d.name + ' guards for ' + bat.target.name,
+                    controls: [
+                        {
+                            type: 'targeting',
+                            source: d.getShortSummary()
+                        }
+                    ]
+                });
+            }
+        });
     }
 }
 

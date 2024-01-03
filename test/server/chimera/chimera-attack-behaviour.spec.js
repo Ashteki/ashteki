@@ -258,4 +258,64 @@ describe('When Attacked', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('foreced block of threatening', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['grave-knight', 'flute-mage'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['summon-iron-rhino']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['frozen-fear', 'iron-scales', 'blood-puppet', 'rampage'],
+                    spellboard: [],
+                    threatZone: ['hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+        });
+
+        it('chimera will use non-defenders to block if no defenders', function () {
+            this.ironScales.tokens.exhaustion = 1;
+            this.player1.clickAttack(this.corpseOfViros);
+            this.player1.clickCard(this.fluteMage);
+            this.player1.clickCard(this.graveKnight);
+            this.player1.clickDone();
+
+            // resolve battles
+            this.player1.clickCard(this.graveKnight);
+            this.player1.clickCard(this.fluteMage);
+
+            expect(this.frozenFear.location).toBe('discard'); // blocked vs grave knight
+            expect(this.graveKnight.location).toBe('discard');
+            expect(this.corpseOfViros.damage).toBe(4); // GK overkill 1 + 2 blood + fluteMage 1
+        });
+
+        it('chimera will use defender to block threatening unit as a priority', function () {
+            this.player1.clickAttack(this.corpseOfViros);
+            this.player1.clickCard(this.fluteMage);
+            this.player1.clickCard(this.graveKnight);
+            this.player1.clickDone();
+
+            expect(this.game.attackState.getBattleFor(this.graveKnight).guard).toBe(
+                this.ironScales
+            );
+            expect(this.game.attackState.getBattleFor(this.fluteMage).guard).toBe(null);
+            // resolve battles
+            this.player1.clickCard(this.graveKnight);
+            this.player1.clickCard(this.fluteMage);
+
+            expect(this.ironScales.damage).toBe(1); // blocked vs grave knight, takes 1
+            expect(this.graveKnight.location).toBe('discard'); // killed by iron scales
+            expect(this.corpseOfViros.damage).toBe(1); // fluteMage 1
+        });
+    });
 });
