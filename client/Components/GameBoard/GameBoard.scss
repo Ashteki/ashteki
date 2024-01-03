@@ -100,6 +100,10 @@
     position: relative;
     padding-top: 40px;
 
+    &.manual {
+        background-color: rgb(255, 0, 0, 0.2);
+    }
+
     >.game-menu-header {
         position: absolute;
         top: 0px;

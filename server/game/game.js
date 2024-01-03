@@ -1057,12 +1057,12 @@ class Game extends EventEmitter {
                 p.clearInspector();
             });
         } else {
-            if (this.solo) {
+            if (this.solo || player.opponent.isAwol) {
                 this.manualMode = true;
                 this.addAlert('danger', '{0} switches manual mode on', player);
                 return;
             }
-            if (!this.requestingManualMode) {
+            if (!this.requestingManualMode && !player.opponent.disconnectedAt) {
                 this.addAlert('danger', '{0} is attempting to switch manual mode on', player);
                 this.requestingManualMode = true;
                 this.queueStep(new ManualModePrompt(this, player));
@@ -1800,6 +1800,8 @@ class Game extends EventEmitter {
                 clockType: this.clockType,
 
                 started: this.started,
+                finishedAt: this.finishedAt,
+
                 swap: this.swap,
                 manualMode: this.manualMode,
                 messages: this.gameChat.messages,
@@ -1876,6 +1878,7 @@ class Game extends EventEmitter {
             }),
             started: this.started,
             startedAt: this.startedAt,
+            finishedAt: this.finishedAt,
             swap: this.swap,
             winner: this.winner ? this.winner.name : undefined,
             solo: this.solo

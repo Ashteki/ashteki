@@ -20,7 +20,7 @@ const ConcedeLeave = ({ showText }) => {
             return false;
         }
 
-        if (currentGame.winner) {
+        if (currentGame.winner || currentGame.finishedAt) {
             return false;
         }
 
@@ -37,7 +37,7 @@ const ConcedeLeave = ({ showText }) => {
             return false;
         }
 
-        if (otherPlayer.disconnected || otherPlayer.left) {
+        if (otherPlayer.left) {
             return false;
         }
 

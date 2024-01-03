@@ -216,11 +216,10 @@ const PlayerStats = ({
         );
     };
 
+    const playerAwol = player.awol ? 'awol' : '';
     let playerDisconnect = player.disconnected && (
         <div className='state'>
-            <div className='disconnected'>
-                Disconnected!
-            </div>
+            <div className={`disconnected ${playerAwol}`}>Disconnected!</div>
         </div>
     )
 
