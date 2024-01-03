@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import CardLog from './CardLog';
 import GameMenu from './GameMenu';
 import CardLogEx from './CardLogEx';
+import classNames from 'classnames';
+
 
 const Sidebar = ({
     thisPlayer,
@@ -21,6 +23,7 @@ const Sidebar = ({
     leftMode
 }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
+    const manualMode = useSelector((state) => state.lobby.currentGame.manualMode);
 
     const getTimer = (player) => {
         let clocks = [];
@@ -75,8 +78,11 @@ const Sidebar = ({
         </>
     );
 
+    const panelClass = classNames('prompt-area', 'panel', {
+        manual: manualMode
+    })
     return (
-        <div className='prompt-area panel'>
+        <div className={panelClass}>
             {leftMode && (
                 <GameMenu
                     onSettingsClick={onSettingsClick}

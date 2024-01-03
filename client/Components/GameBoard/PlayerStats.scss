@@ -67,6 +67,10 @@
         color: red;
         border: 1pt dashed red;
         background-color: black;
+
+        &.awol {
+            background-color: #DDD;
+        }
     }
 }
 

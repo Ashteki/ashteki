@@ -7,6 +7,7 @@ const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
 const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes } = require('../constants');
+const moment = require('moment');
 
 class Player extends GameObject {
     constructor(id, user, owner, game, clockdetails) {
@@ -73,6 +74,11 @@ class Player extends GameObject {
 
     get isDummy() {
         return false;
+    }
+
+    get isAwol() {
+        let difference = moment().diff(moment(this.disconnectedAt), 'minutes');
+        return difference > 3;
     }
 
     isSpectator() {
@@ -877,6 +883,7 @@ class Player extends GameObject {
             },
             deckNotes: this.game.currentPhase === 'setup' ? this.deckNotes : '',
             disconnected: !!this.disconnectedAt,
+            awol: !!this.isAwol,
             activePlayer: this.game.activePlayer === this,
             gamesPlayed: this.user.gamesPlayed ? this.user.gamesPlayed : 0,
             avatar: this.user.avatar,
