@@ -13,6 +13,9 @@
                 "basic": 1,
                 "ceremonial:class": 1
             },
+            "dice": [
+                "ceremonial"
+            ],
             "attack": 2,
             "life": 3,
             "recover": 1
@@ -30,6 +33,9 @@
                 "basic": 1,
                 "ceremonial:class": 1
             },
+            "dice": [
+                "ceremonial"
+            ],
             "attack": 1,
             "life": 4,
             "recover": 2
@@ -45,6 +51,9 @@
             "magicCost": {
                 "ceremonial:class": 1
             },
+            "dice": [
+                "ceremonial"
+            ],
             "attack": 1,
             "life": 1,
             "recover": 1,
@@ -89,6 +98,9 @@
                 "[[main]]",
                 "1 [[ceremonial:class]]"
             ],
+            "dice": [
+                "ceremonial"
+            ],
             "magicCost": {
                 "ceremonial:class": 1
             },
@@ -128,6 +140,9 @@
             "cost": [
                 "[[main]]"
             ],
+            "dice": [
+                "ceremonial"
+            ],
             "conjurations": [
                 {
                     "name": "Bone Crow",
@@ -151,6 +166,9 @@
             "cost": [
                 "[[main]]",
                 "3 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
             ],
             "magicCost": {
                 "ceremonial:class": 3
@@ -179,6 +197,9 @@
                 "[[main]]",
                 "1 [[ceremonial:class]]"
             ],
+            "dice": [
+                "ceremonial"
+            ],
             "magicCost": {
                 "ceremonial:class": 1
             }
@@ -191,6 +212,9 @@
             "cost": [
                 "[[side]]",
                 "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
             ],
             "magicCost": {
                 "ceremonial:class": 1
@@ -205,6 +229,9 @@
                 "[[side]]",
                 "1 [[ceremonial:class]]"
             ],
+            "dice": [
+                "ceremonial"
+            ],
             "magicCost": {
                 "ceremonial:class": 1
             }
@@ -217,6 +244,9 @@
             "cost": [
                 "[[side]]",
                 "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
             ],
             "magicCost": {
                 "ceremonial:class": 1

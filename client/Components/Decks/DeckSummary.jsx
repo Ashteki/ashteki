@@ -14,7 +14,10 @@ const DeckSummary = ({ deck, editMode }) => {
     if (!deck) return null;
 
     const onDieClick = (die) => {
-        alert(die.magic);
+        if (editMode) {
+            alert(die.magic);
+
+        }
     }
 
     const onDieHover = (die) => {
