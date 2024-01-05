@@ -51,7 +51,8 @@ class AshesCardService {
                             conjurations: card.conjurations,
                             phoenixborn: card.phoenixborn,
                             copies: card.copies,
-                            deckType: card.deckType
+                            deckType: card.deckType,
+                            dice: card.dice
                         };
                     } else {
                         cards[card.stub] = card;

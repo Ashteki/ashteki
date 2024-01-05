@@ -167,6 +167,10 @@
     &.unique {
         color: goldenrod;
     }
+
+    &.highlight {
+        color: #DDD;
+    }
 }
 
 .card-link:hover {

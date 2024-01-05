@@ -4,7 +4,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import CardImage from '../GameBoard/CardImage';
 import classNames from 'classnames';
 
-const CardListText = ({ deckCards }) => {
+const CardListText = ({ deckCards, highlight }) => {
     let [zoomCard, setZoomCard] = useState(null);
     let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -38,7 +38,8 @@ const CardListText = ({ deckCards }) => {
                     );
                 }
                 const linkClasses = classNames('card-link', {
-                    unique: card.phoenixborn
+                    unique: card.phoenixborn,
+                    highlight: card.card.dice && card.card.dice.includes(highlight)
                 });
                 const countClass = card.count > 3 && !card.card.type.includes('Conjur') ? 'invalidCount' : '';
 

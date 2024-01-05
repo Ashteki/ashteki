@@ -7,16 +7,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faList } from '@fortawesome/free-solid-svg-icons';
 import DeckDice from './DeckDice';
 
-const DeckSummary = ({ deck }) => {
+const DeckSummary = ({ deck, editMode }) => {
     const [radioValue, setRadioValue] = useState(false);
+    const [magicHover, setMagicHover] = useState('');
 
     if (!deck) return null;
+
+    const onDieClick = (die) => {
+        alert(die.magic);
+    }
+
+    const onDieHover = (die) => {
+        // highlight cards with dice type
+        setMagicHover(die.magic);
+    }
 
     const combinedCards = deck.cards.concat(deck.conjurations);
     const cardCount = deck.cards.reduce((agg, val) => agg += val.count, 0);
     return (
         <Col xs='12' className='deck-summary'>
-            <DeckDice deck={deck} slotCount={10} />
+            <DeckDice deck={deck} slotCount={10} onDieClick={onDieClick} onDieHover={onDieHover} />
             <div className='deck-cards-header'>
                 <ToggleButtonGroup name="radio" value={radioValue}>
                     <ToggleButton
@@ -53,7 +63,7 @@ const DeckSummary = ({ deck }) => {
                     <CardListImg deckCards={deck.conjurations} />
                 </>
                 ) : (
-                    <CardListText deckCards={combinedCards} />
+                    <CardListText deckCards={combinedCards} highlight={magicHover} />
                 )}
             </Row>
             <Row>
