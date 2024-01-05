@@ -38,7 +38,7 @@ class InnerDeckEditor extends React.Component {
                 this.props.deck.phoenixborn.length > 0 ? this.props.deck.phoenixborn[0].id : '';
 
             _.each(this.props.deck.cards, (card) => {
-                cardList += this.getCardListEntry(card.count, card.card);
+                cardList += this.getCardListEntry(card.count, card.card, card.ff);
             });
 
             // _.each(this.props.deck.conjurations, (card) => {
@@ -154,14 +154,19 @@ class InnerDeckEditor extends React.Component {
                 index++;
             }
             let num = parseInt(line.substr(0, index));
-            let cardName = line.substr(index, line.length);
+            let cardName = line.substr(index, line.length).trim();
+            let isFirstFive = false;
+            if (cardName.endsWith(' ff')) {
+                isFirstFive = true;
+                cardName = cardName.substr(0, cardName.length - 3);
+            }
 
             let card = this.getCard(cardName);
 
             if (card) {
                 const isConjuration = card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell';
                 if (!isConjuration) {
-                    this.addCard(card, num, deck);
+                    this.addCard(card, num, deck, isFirstFive);
                 }
             }
         });
@@ -261,7 +266,7 @@ class InnerDeckEditor extends React.Component {
         return isValid ? mgc : '';
     }
 
-    addCard(card, number, deck) {
+    addCard(card, number, deck, isFirstFive) {
         let phoenixborn = deck.phoenixborn;
         let conjurations = deck.conjurations;
         let cards = deck.cards;
@@ -284,7 +289,8 @@ class InnerDeckEditor extends React.Component {
                 count: number,
                 card: card,
                 id: card.stub,
-                conjurations: card.conjurations
+                conjurations: card.conjurations,
+                ff: isFirstFive
             });
         }
         this.addConjurations(card, deck);
@@ -318,8 +324,9 @@ class InnerDeckEditor extends React.Component {
         }
     }
 
-    getCardListEntry(count, card) {
-        return count + ' ' + card.name + '\n';
+    getCardListEntry(count, card, ff) {
+        const fFive = ff ? ' ff' : '';
+        return count + ' ' + card.name + fFive + '\n';
     }
 
     getDiceListEntry(diceCount) {

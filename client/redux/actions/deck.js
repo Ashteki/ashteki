@@ -167,7 +167,7 @@ export function resyncDeck(deck) {
 
 function formatCards(cards) {
     return cards.map((card) => {
-        return { id: card.id, count: card.count || 1 };
+        return { id: card.id, count: card.count || 1, ff: card.ff };
     });
 }
 

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
-import CardImage from '../GameBoard/CardImage';
 import ZoomableCard from './ZoomableCard';
 
-const CardListImg = ({ deckCards }) => {
+const CardListImg = ({ deckCards, noIndex }) => {
 
     let cardsToRender = [];
     let groupedCards = {};
@@ -35,7 +34,7 @@ const CardListImg = ({ deckCards }) => {
         <div className='cards'>
             {cardsToRender.map((card) => (
                 <div key={card.id} className='game-card large vertical'>
-                    <ZoomableCard card={card} />
+                    <ZoomableCard card={card} noIndex={noIndex} />
                     {card.isChained && (
                         <FontAwesomeIcon
                             className='card-chain-bad'

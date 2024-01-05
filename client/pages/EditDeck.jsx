@@ -13,7 +13,7 @@ class InnerEditDeck extends React.Component {
     constructor() {
         super();
 
-        this.onEditDeck = this.onSaveDeck.bind(this);
+        this.onSaveDeck = this.onSaveDeck.bind(this);
     }
 
     componentDidMount() {
