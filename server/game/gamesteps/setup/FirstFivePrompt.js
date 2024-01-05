@@ -6,7 +6,21 @@ class FirstFivePrompt extends AllPlayerPrompt {
         super(game);
         this.selectedCards = {};
         this.selectableCards = {};
-        _.each(game.getPlayers(), (player) => (this.selectedCards[player.name] = []));
+
+        this.highlightSelectableCards();
+        _.each(game.getPlayers(), (player) => {
+            this.selectedCards[player.name] = [];
+            player.deckData.cards.forEach((c) => {
+                if (c.ff) {
+                    const card = player.deck.find((card) => card.id === c.card.stub);
+                    if (card) {
+                        this.addChosenCard(player, card);
+                    }
+                }
+            });
+            player.setSelectedCards(this.selectedCards[player.name]);
+            player.setSelectableCards(this.selectableCards[player.name]);
+        });
     }
 
     completionCondition(player) {
@@ -61,14 +75,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
             !this.selectedCards[player.name].some((c) => c.name == card.name) // only one copy
         ) {
             // add
-            this.selectedCards[player.name].push(card);
-            if (card.location == 'deck') {
-                player.moveCard(card, 'hand');
-            }
-            this.selectableCards[player.name] = this.selectableCards[player.name].filter(
-                (c) => c.name !== card.name
-            );
-            this.selectableCards[player.name].push(card);
+            this.addChosenCard(player, card);
         } else {
             // remove it
             this.selectedCards[player.name] = this.selectedCards[player.name].filter(
@@ -84,6 +91,17 @@ class FirstFivePrompt extends AllPlayerPrompt {
         }
         player.setSelectedCards(this.selectedCards[player.name]);
         player.setSelectableCards(this.selectableCards[player.name]);
+    }
+
+    addChosenCard(player, card) {
+        this.selectedCards[player.name].push(card);
+        if (card.location == 'deck') {
+            player.moveCard(card, 'hand');
+        }
+        this.selectableCards[player.name] = this.selectableCards[player.name].filter(
+            (c) => c.name !== card.name
+        );
+        this.selectableCards[player.name].push(card);
     }
 
     /**
