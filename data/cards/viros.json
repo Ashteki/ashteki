@@ -1,21 +1,217 @@
 {
+    "count": 16,
+    "next": null,
+    "previous": null,
     "results": [
+        {
+            "name": "Blood Brawl",
+            "stub": "blood-brawl",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "text": "Resolve the following effect once for each wound token on units you control:\n\nYou may deal 1 damage to a target unit an opponent controls."
+        },
+        {
+            "name": "Blood Puppeteer",
+            "stub": "blood-puppeteer",
+            "type": "Ally",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[ceremonial:power]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:power": 1
+            },
+            "text": "Stitch: When this unit comes into play, place a [[Blood Puppet]] conjuration onto your battlefield.\n\n* Restitch: When this unit is destoyed, you may discard a [[Blood Puppet]] you control to place a [[Blood Puppet]] conjuration onto a target opponent's battlefield.",
+            "conjurations": [
+                {
+                    "name": "Blood Puppet",
+                    "stub": "blood-puppet"
+                }
+            ],
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
+            "name": "Bone Crow",
+            "stub": "bone-crow",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Battlefield",
+            "text": "Feast 1: When this unit is declared as an attacker, add 1 to its attack value for the remainder of the turn if it is targeting a card with any wound tokens on it.",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
+        },
+        {
+            "name": "Calamity Golem",
+            "stub": "calamity-golem",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Battlefield",
+            "text": "Rancor: When this unit is declared as an attacker, deal damage to a target unit an opponent controls equal to the number of wound tokens on this unit.",
+            "attack": 3,
+            "life": 5,
+            "recover": 0,
+            "copies": 1
+        },
+        {
+            "name": "Change of Heart",
+            "stub": "change-of-heart",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Phoenixborn",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "This spell can only be attached to an unexhausted Phoenixborn you control.\n\n* You cannot activate your Phoenixborn's ability.\n\n[[side]] - [[exhaust]]: Choose an ally you control and place it into your hand to deal 1 damage to a target unit an opponent controls.",
+            "phoenixborn": "Brennen Blackcloud"
+        },
+        {
+            "name": "Channel Magic",
+            "stub": "channel-magic",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Draw 1 card. Remove 1 wound token from a target Phoenixborn. Raise 3 dice in your active pool one level."
+        },
+        {
+            "name": "Chant of Transfusion",
+            "stub": "chant-of-transfusion",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "text": "After an ally you control is destroyed, place 1 status token on this spell if it has no status tokens on it.\n\n[[main]] or [[side]] - [[exhaust]]: Remove 1 status token from this spell to move 1 wound token from a target unit onto another target unit."
+        },
+        {
+            "name": "Final Stand",
+            "stub": "final-stand",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "If you have no cards in your hand, deal 4 damage to a target unit an opponent controls.\n\nIf there are 12 or more wound tokens on your Phoenixborn, deal 2 damage to a target Phoenixborn.",
+            "phoenixborn": "Coal Roarkwin"
+        },
+        {
+            "name": "Infuriate",
+            "stub": "infuriate",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "text": "This unit now has the following abilities:\n\nFrenzy 2: When this unit is declared as an attacker, deal 2 damage to it.\n\n* Rage 1: Add 1 to this unit's attack value for each wound token on this unit."
+        },
         {
             "name": "Old Salt",
             "stub": "old-salt",
             "type": "Ally",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Battlefield",
             "cost": [
                 "[[main]]",
                 "1 [[ceremonial:class]]",
                 "1 [[basic]]"
             ],
-            "magicCost": {
-                "basic": 1,
-                "ceremonial:class": 1
-            },
             "dice": [
                 "ceremonial"
             ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Wounded 1: When this unit comes into play, place 1 wound token onto it.\n\nThrow 1: When this unit comes into play, you may deal 1 damage to another target unit.",
             "attack": 2,
             "life": 3,
             "recover": 1
@@ -24,75 +220,36 @@
             "name": "Phoenix Attendant",
             "stub": "phoenix-attendant",
             "type": "Ally",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Battlefield",
             "cost": [
                 "[[main]]",
                 "1 [[ceremonial:class]]",
                 "1 [[basic]]"
             ],
+            "dice": [
+                "ceremonial"
+            ],
             "magicCost": {
                 "basic": 1,
                 "ceremonial:class": 1
             },
-            "dice": [
-                "ceremonial"
-            ],
+            "text": "Alleviate 1: [[side]]: If there are no wound tokens on this unit, move 1 wound token from your Phoenixborn onto this unit.",
             "attack": 1,
             "life": 4,
             "recover": 2
         },
         {
-            "name": "Blood Puppeteer",
-            "stub": "blood-puppeteer",
-            "type": "Ally",
-            "cost": [
-                "[[main]]",
-                "1 [[ceremonial:power]]"
-            ],
-            "magicCost": {
-                "ceremonial:class": 1
-            },
-            "dice": [
-                "ceremonial"
-            ],
-            "attack": 1,
-            "life": 1,
-            "recover": 1,
-            "conjurations": [
-                {
-                    "name": "Blood Puppet",
-                    "stub": "blood-puppet"
-                }
-            ]
-        },
-        {
-            "name": "Channel Magic",
-            "stub": "channel-magic",
-            "type": "Action Spell",
-            "cost": [
-                "[[main]]",
-                "1 [[basic]]"
-            ],
-            "magicCost": {
-                "basic": 1
-            }
-        },
-        {
-            "name": "Final Stand",
-            "stub": "final-stand",
-            "type": "Action Spell",
-            "cost": [
-                "[[main]]",
-                "1 [[basic]]"
-            ],
-            "magicCost": {
-                "basic": 1
-            },
-            "phoenixborn": "Coal Roarkwin"
-        },
-        {
             "name": "Playtime",
             "stub": "playtime",
             "type": "Alteration Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
             "placement": "Unit",
             "cost": [
                 "[[main]]",
@@ -104,45 +261,77 @@
             "magicCost": {
                 "ceremonial:class": 1
             },
-            "phoenixborn": "Jessa Na Ni"
+            "text": "When this unit is declared as an attacker, blocker, or guard, deal 1 damage to your Phoenixborn.\n\nWhen this unit is destroyed, place a [[Blood Puppet]] conjuration from the conjuration pile of this spell's owner onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Blood Puppet",
+                    "stub": "blood-puppet"
+                }
+            ],
+            "phoenixborn": "Jessa Na Ni",
+            "attack": "-1"
+        },
+        {
+            "name": "Serve the City",
+            "stub": "serve-the-city",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[ceremonial:class]]"
+            ],
+            "dice": [
+                "ceremonial"
+            ],
+            "magicCost": {
+                "ceremonial:class": 1
+            },
+            "text": "[[main]] - [[exhaust]]: Deal 1 damage to an unexhausted unit you control to add 1 to its attack value for the remainder of the turn. If that unit can attack, you may take an Attack action, declaring that unit as the only attacker."
         },
         {
             "name": "Shadowblade",
             "stub": "shadowblade",
             "type": "Reaction Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Discard",
             "cost": [
                 "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
             ],
             "magicCost": {
                 "basic": 1
             },
+            "text": "You may play this spell after a player declares attackers. Draw 2 cards. Deal 1 damage to a target unit an opponent controls. Deal 1 damage to another target unit an opponent controls.",
             "phoenixborn": "Noah Redmoon"
-        },
-        {
-            "name": "Change of Heart",
-            "stub": "change-of-heart",
-            "type": "Alteration Spell",
-            "placement": "Phoenixborn",
-            "cost": [
-                "[[main]]",
-                "1 [[basic]]"
-            ],
-            "magicCost": {
-                "basic": 1
-            },
-            "phoenixborn": "Brennen Blackcloud"
         },
         {
             "name": "Summon Bone Crow",
             "stub": "summon-bone-crow",
             "type": "Ready Spell",
-            "placement": "spellboard",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Spellboard",
             "cost": [
                 "[[main]]"
             ],
             "dice": [
                 "ceremonial"
             ],
+            "effectMagicCost": {
+                "ceremonial:class": 1
+            },
+            "text": "[[side]] - [[exhaust]] - 1 [[ceremonial:class]]: If a unit was destroyed this turn, place a [[Bone Crow]] conjuration onto your battlefield.",
             "conjurations": [
                 {
                     "name": "Bone Crow",
@@ -151,18 +340,14 @@
             ]
         },
         {
-            "name": "Bone Crow",
-            "stub": "bone-crow",
-            "type": "Conjuration",
-            "attack": 1,
-            "life": 1,
-            "recover": 0,
-            "copies": 4
-        },
-        {
             "name": "Summon Calamity Golem",
             "stub": "summon-calamity-golem",
             "type": "Action Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Discard",
             "cost": [
                 "[[main]]",
                 "3 [[ceremonial:class]]"
@@ -173,84 +358,13 @@
             "magicCost": {
                 "ceremonial:class": 3
             },
+            "text": "Destroy an ally you control to place a [[Calamity Golem]] conjuration onto your battlefield. Place wound tokens on it equal to the printed recover value of the destroyed ally.",
             "conjurations": [
                 {
                     "name": "Calamity Golem",
                     "stub": "calamity-golem"
                 }
             ]
-        },
-        {
-            "name": "Calamity Golem",
-            "stub": "calamity-golem",
-            "type": "Conjuration",
-            "attack": 3,
-            "life": 5,
-            "recover": 0,
-            "copies": 1
-        },
-        {
-            "name": "Blood Brawl",
-            "stub": "blood-brawl",
-            "type": "Action Spell",
-            "cost": [
-                "[[main]]",
-                "1 [[ceremonial:class]]"
-            ],
-            "dice": [
-                "ceremonial"
-            ],
-            "magicCost": {
-                "ceremonial:class": 1
-            }
-        },
-        {
-            "name": "Infuriate",
-            "stub": "infuriate",
-            "type": "Alteration Spell",
-            "placement": "Unit",
-            "cost": [
-                "[[side]]",
-                "1 [[ceremonial:class]]"
-            ],
-            "dice": [
-                "ceremonial"
-            ],
-            "magicCost": {
-                "ceremonial:class": 1
-            }
-        },
-        {
-            "name": "Serve the City",
-            "stub": "serve-the-city",
-            "type": "Ready Spell",
-            "placement": "spellboard",
-            "cost": [
-                "[[side]]",
-                "1 [[ceremonial:class]]"
-            ],
-            "dice": [
-                "ceremonial"
-            ],
-            "magicCost": {
-                "ceremonial:class": 1
-            }
-        },
-        {
-            "name": "Chant of Transfusion",
-            "stub": "chant-of-transfusion",
-            "type": "Ready Spell",
-            "placement": "spellboard",
-            "cost": [
-                "[[side]]",
-                "1 [[ceremonial:class]]"
-            ],
-            "dice": [
-                "ceremonial"
-            ],
-            "magicCost": {
-                "ceremonial:class": 1
-            }
         }
     ]
 }
