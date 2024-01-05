@@ -174,6 +174,10 @@ class PlayerInteractionWrapper {
         return this.player.archives;
     }
 
+    get charmedUnits() {
+        return this.player.charmedUnits;
+    }
+
     get phoenixborn() {
         return this.player.phoenixborn;
     }
@@ -500,6 +504,16 @@ class PlayerInteractionWrapper {
     clickDie(index) {
         let die = this.player.dice[index];
         this.game.dieClicked(this.player.name, die.uuid);
+        this.game.continue();
+        this.checkUnserializableGameState();
+        return die;
+    }
+
+    useDie(index) {
+        let die = this.player.dice[index];
+        this.game.dieClicked(this.player.name, die.uuid);
+        this.game.continue();
+        this.clickPromptButton(0);
         this.game.continue();
         this.checkUnserializableGameState();
         return die;

@@ -27,23 +27,20 @@ class DiscardCardAction extends CardGameAction {
             }
         );
 
-        const discardEvent = super.createEvent(
-            'onCardDiscarded',
-            params,
-            (event) => {
-                if (card.location === 'hand') {
-                    context.game.cardsDiscarded.push(card);
-                }
-                card.removed = true;
-
-                if (event.showMessage || this.showMessage) {
-                    const discardingPlayer = this.player || context.player;
-                    context.game.addMessage('{0} discards {1}', discardingPlayer, card);
-                }
-
+        const discardEvent = super.createEvent('onCardDiscarded', params, (event) => {
+            if (card.location === 'hand') {
+                context.game.cardsDiscarded.push(card);
             }
-        );
-        discardEvent.addSubEvent(leavesPlayEvent)
+            card.removed = true;
+            context.cardsDiscarded = (context.cardsDiscarded || []).concat(card);
+
+            if (event.showMessage || this.showMessage) {
+                const discardingPlayer = this.player || context.player;
+                context.game.addMessage('{0} discards {1}', discardingPlayer, card);
+            }
+        });
+
+        discardEvent.addSubEvent(leavesPlayEvent);
 
         return discardEvent;
     }

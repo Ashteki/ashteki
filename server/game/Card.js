@@ -456,24 +456,23 @@ class Card extends PlayableObject {
      * @returns CardAction result of call to card.action
      */
     summon(cardId, properties) {
-        return this.action(
-            Object.assign(
-                {
-                    gameAction: AbilityDsl.actions.summon({
-                        conjuration: cardId
-                    }),
-                    getWarnings: (context) => {
-                        if (!context.player.archives.some((c) => c.id === cardId)) {
-                            return "You don't have a conjuration to play";
-                        }
-                        if (context.player.isBattlefieldFull()) {
-                            return 'Your battlefield is full';
-                        }
-                    }
-                },
-                properties
-            )
-        )
+        return this.action(Object.assign(this.getSummonActionObject(cardId), properties));
+    }
+
+    getSummonActionObject(cardId) {
+        return {
+            gameAction: AbilityDsl.actions.summon({
+                conjuration: cardId
+            }),
+            getWarnings: (context) => {
+                if (!context.player.archives.some((c) => c.id === cardId)) {
+                    return "You don't have a conjuration to play";
+                }
+                if (context.player.isBattlefieldFull()) {
+                    return 'Your battlefield is full';
+                }
+            }
+        };
     }
 
     reaction(properties) {
@@ -610,7 +609,6 @@ class Card extends PlayableObject {
         );
         const simpleTypes = {
             preventAllDamage: 'Prevent all damage',
-            bypass: 'Bypass',
             quickStrike: 'Quick strike',
             cannotBeAttackTarget: 'Cannot be attack target',
             cannotBeSpellTarget: 'Protected',
@@ -1204,8 +1202,7 @@ class Card extends PlayableObject {
                 (this.anyEffect('canGuard') || this.anyEffect('defender')) &&
                 this.checkGigantic(attacker) &&
                 this.checkTerrifying(attacker) &&
-                !attacker.anyEffect('bypass') &&
-                !attacker.anyEffect('preventGuard')
+                !attacker.anyEffect('preventGuard', { card: this })
             );
         }
     }
@@ -1218,8 +1215,7 @@ class Card extends PlayableObject {
             !this.exhausted &&
             this.checkGigantic(attacker) &&
             this.checkTerrifying(attacker) &&
-            !attacker.anyEffect('preventBlock') &&
-            !attacker.anyEffect('bypass')
+            !attacker.anyEffect('preventBlock', { card: this })
         );
     }
 

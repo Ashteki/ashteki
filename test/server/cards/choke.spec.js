@@ -21,8 +21,6 @@ describe('Choke', function () {
 
         this.player1.clickCard(this.choke);
         this.player1.clickPrompt('Play this action');
-        expect(this.player1).toBeAbleToSelect(this.rinNorthfell);
-        this.player1.clickCard(this.rinNorthfell);
 
         expect(this.rinNorthfell.exhausted).toBe(true);
         expect(this.rinNorthfell.damage).toBe(1);
@@ -35,7 +33,8 @@ describe('Choke', function () {
         this.player1.clickCard(this.choke);
         this.player1.clickPrompt('Play this action');
 
-        expect(this.player1).not.toBeAbleToSelect(this.rinNorthfell);
+        // warning confirmation
+        this.player1.clickYes();
 
         // will drop out because rin can't be targetted
         expect(this.player1).toHaveDefaultPrompt();

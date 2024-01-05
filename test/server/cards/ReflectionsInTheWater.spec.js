@@ -17,20 +17,23 @@ describe('Reflections In the Water', function () {
             });
         });
 
-        it('reflections in the water blanks hypnotize bypass effect', function () {
-            expect(this.ironWorker.anyEffect('bypass')).toBe(false);
+        it('reflections in the water blanks hypnotize preventGuard, preventBlock effect', function () {
+            expect(this.ironWorker.anyEffect('preventGuard')).toBe(false);
+            expect(this.ironWorker.anyEffect('preventBlock')).toBe(false);
             this.player1.clickCard(this.hypnotize);
             this.player1.clickPrompt('Hypnotize a unit');
             this.player1.clickCard(this.ironWorker);
 
-            expect(this.ironWorker.anyEffect('bypass')).toBe(true);
+            expect(this.ironWorker.anyEffect('preventGuard')).toBe(true);
+            expect(this.ironWorker.anyEffect('preventBlock')).toBe(true);
 
             this.player1.actions.side += 1;
             this.player1.play(this.reflectionsInTheWater);
             this.player1.clickDie(2);
             this.player1.clickCard(this.ironWorker);
             expect(this.ironWorker.upgrades.length).toBe(1);
-            expect(this.ironWorker.anyEffect('bypass')).toBe(false);
+            expect(this.ironWorker.anyEffect('preventGuard')).toBe(false);
+            expect(this.ironWorker.anyEffect('preventBlock')).toBe(false);
         });
 
         it('blanks printed ability - overkill', function () {
