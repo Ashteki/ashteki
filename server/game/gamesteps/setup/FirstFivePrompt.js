@@ -11,7 +11,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
         _.each(game.getPlayers(), (player) => {
             this.selectedCards[player.name] = [];
             player.deckData.cards.forEach((c) => {
-                if (c.ff) {
+                if (c.ff && this.selectedCards[player.name].length < 5) {
                     const card = player.deck.find((card) => card.id === c.card.stub);
                     if (card) {
                         this.addChosenCard(player, card);
