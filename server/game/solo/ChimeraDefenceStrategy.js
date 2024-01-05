@@ -38,7 +38,7 @@ class ChimeraDefenceStrategy {
             // there is not an existing guard
             !attack.battles[0].guard &&
             // guard is not prevented by the attacker
-            !attack.battles[0].attacker.anyEffect('preventGuard') &&
+            !attack.battles[0].attacker.anyEffect('preventGuard', { card: attack.target }) &&
             // or the target cannot be guarded
             !attack.target.anyEffect('cannotBeGuarded') &&
             // and the target is an aspect (chimera won't guard tourists like blood puppet)

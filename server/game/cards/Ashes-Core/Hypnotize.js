@@ -18,7 +18,7 @@ class Hypnotize extends Card {
                 gameAction: ability.actions.cardLastingEffect({
                     duration: 'untilEndOfTurn',
                     effect: ability.effects.gainAbility('persistentEffect', {
-                        effect: ability.effects.bypass()
+                        effect: [ability.effects.preventBlock(), ability.effects.preventGuard()]
                     })
                 })
             }

@@ -1,0 +1,351 @@
+{
+    "results": [
+        {
+            "name": "Arrogance",
+            "stub": "arrogance",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:class": 1
+            },
+            "text": "You may play this spell after you declare attackers. Choose an attacking unit. For the remainder of the turn, the chosen unit cannot be blocked or guarded against by units with a charm die on them."
+        },
+        {
+            "name": "Bastion Badger",
+            "stub": "bastion-badger",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Battlefield",
+            "text": "Unit Guard: This unit may guard a unit that is being attacked.\n\nExploit 2: While this unit is in battle with a unit with a charm die on it, the attack value of this unit is increased by 2.",
+            "attack": 1,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Chimera Charmer",
+            "stub": "chimera-charmer",
+            "type": "Ally",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[charm:power]]",
+                "1 [[charm:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "charm:class": 1,
+                "charm:power": 1
+            },
+            "text": "Subdue: When this unit comes into play, you may choose a charm die in your exhausted pool and resolve its dice power without paying its cost.\n\nImbued: This unit's attack value is increase by 1 for each unit an opponent controls with a charm die on it.",
+            "attack": 2,
+            "life": 4,
+            "recover": 2
+        },
+        {
+            "name": "Dealer's Choice",
+            "stub": "dealers-choice",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:class": 1
+            },
+            "text": "Choose two cards a target opponent controls, at least one of which must be a unit. If you do, that opponent must place 1 exhaustion token on one of the chosen cards."
+        },
+        {
+            "name": "Embrace",
+            "stub": "embrace",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Phoenixborn",
+            "cost": [
+                "[[side]]",
+                "1 [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:class": 1
+            },
+            "text": "After any player's Phoenixborn is dealt damage by an attack, spell, ability, or dice power another player controls, discard this spell and prevent that damage from being received."
+        },
+        {
+            "name": "Eternity Flame",
+            "stub": "eternity-flame",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Battlefield",
+            "text": "Engulf: When this unit comes into play, you may destroy a target unit an opponent controls with a charm die on it. If you do, deal 2 damage to that opponent's target Phoenixborn.",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 1
+        },
+        {
+            "name": "Farewell",
+            "stub": "farewell",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "[[side]]",
+                "X [[charm:class]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "text": "Discard a target unit an opponent controls with a life value of X. If you do, discard X cards off the top of that target opponent's draw pile."
+        },
+        {
+            "name": "Gifted Rose",
+            "stub": "gifted-rose",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Phoenixborn",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "* The attached Phoenixborn cannot guard.\n\n* Reject: [[side]] - 1 [[basic]] or 1 [[discard]]: Discard this spell.",
+            "phoenixborn": "Leo Sunshadow"
+        },
+        {
+            "name": "Judgment",
+            "stub": "judgment",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "[[side]]",
+                "2 [[basic]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "text": "Destroy all units.",
+            "phoenixborn": "Astrea"
+        },
+        {
+            "name": "Rose Gardener",
+            "stub": "rose-gardener",
+            "type": "Ally",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Prune 1: When this unit comes into play, you may remove 1 status token from a target unit or spell.\n\nCultivate 1: [[side]]: Change 1 charm die in your active pool to a side of your choice.",
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
+            "name": "Shimmer Wing",
+            "stub": "shimmer-wing",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Battlefield",
+            "text": "Ritual Flames: [[main]] - 1 [[basic]]: Discard this unit and another [[Shimmer Wing]] you control to place an [[Eternity Flame]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Eternity Flame",
+                    "stub": "eternity-flame"
+                }
+            ],
+            "attack": 0,
+            "life": 2,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Snake Bite",
+            "stub": "snake-bite",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[charm:power]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "magicCost": {
+                "charm:power": 1
+            },
+            "text": "When this spell comes into play, you may choose a charm die in your exhausted pool and resolve its dice power without paying its cost.\n\n[[main]] - [[exhaust]]: Deal 1 damage to a target unit with a charm die on it.\n\nFocus 1: You may instead deal 1 damage to a target Phoenixborn whose owner has no cards in their draw pile."
+        },
+        {
+            "name": "Summon Bastion Badger",
+            "stub": "summon-bastion-badger",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "effectMagicCost": {
+                "charm:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[charm:class]] - 1 [[basic]]: Place a [[Bastion Badger]] conjuration onto your battlefield. Then, you may raise 1 charm die in your active pool one level.",
+            "conjurations": [
+                {
+                    "name": "Bastion Badger",
+                    "stub": "bastion-badger"
+                }
+            ]
+        },
+        {
+            "name": "Summon Shimmer Wing",
+            "stub": "summon-shimmer-wing",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "charm"
+            ],
+            "effectMagicCost": {
+                "charm:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[charm:class]]: Draw 1 card. Place a [[Shimmer Wing]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Shimmer Wing",
+                    "stub": "shimmer-wing"
+                }
+            ]
+        },
+        {
+            "name": "Venom Strike",
+            "stub": "venom-strike",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Choose a target opponent. Discard X cards off the top of their draw pile. Deal X damage to their Phoenixborn. Then, place each charm die on that opponent's exhausted units into its owner's exhausted pool.\n\nX = the number of charm dice on units that opponent controls.",
+            "phoenixborn": "Maeoni Viper"
+        },
+        {
+            "name": "Willpower",
+            "stub": "willpower",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Deal damage to a target unit an opponent controls equal to the number of cards in your hand.",
+            "phoenixborn": "Saria Guideman"
+        }
+    ]
+}

@@ -6,7 +6,7 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes } = require('../constants');
+const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes, Magic } = require('../constants');
 const moment = require('moment');
 
 class Player extends GameObject {
@@ -215,7 +215,13 @@ class Player extends GameObject {
         );
     }
 
-    // this gets sent to the client
+    get charmedUnits() {
+        return this.unitsInPlay.filter((card) =>
+            card.dieUpgrades.some((d) => d.magic === Magic.Charm)
+        );
+    }
+
+    // this gets sent to the client ONLY
     // CAUTION: it includes facedown cards vs chimera
     get battlefield() {
         return this.cardsInPlay.filter(

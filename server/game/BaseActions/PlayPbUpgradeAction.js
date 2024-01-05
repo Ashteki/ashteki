@@ -4,7 +4,7 @@ const AttachToPbAction = require('../GameActions/AttachToPbAction');
 class PlayPbUpgradeAction extends BasePlayAction {
     constructor(card) {
         super(card, {
-            autoTarget: (context) => context.player.phoenixborn,
+            autoTarget: card.autoTarget ? card.autoTarget : (context) => context.player.phoenixborn,
             gameAction: new AttachToPbAction((context) => ({ upgrade: context.source }))
         });
         this.title = 'Play this alteration';

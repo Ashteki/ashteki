@@ -19,13 +19,13 @@ const Effects = {
     blank: () => EffectBuilder.card.static('blank'),
     bonusDamage: (match) => EffectBuilder.card.static('bonusDamage', match),
     bound: () => EffectBuilder.card.static('bound'),
-    bypass: () => EffectBuilder.card.static('bypass'),
     canGuard: () => EffectBuilder.card.static('canGuard'),
     canPlayAsUpgrade: () => EffectBuilder.card.static('canPlayAsUpgrade'),
     cannotBeAbilityTarget: () => EffectBuilder.card.static('cannotBeAbilityTarget'),
     cannotBeAffectedBySpells: () => EffectBuilder.card.static('cannotBeAffectedBySpells'), //implement this to fix issue #613
     cannotBeAttackTarget: () => EffectBuilder.card.static('cannotBeAttackTarget'),
     cannotBeDicePowerTarget: () => EffectBuilder.card.static('cannotBeDicePowerTarget'),
+    // This unit cannot be guarded when an attack target
     cannotBeGuarded: () => EffectBuilder.card.static('cannotBeGuarded'),
     cannotBeReactionTarget: () => EffectBuilder.card.static('cannotBeReactionTarget'),
     cannotBeSpellTarget: () => EffectBuilder.card.static('cannotBeSpellTarget'),
@@ -52,10 +52,24 @@ const Effects = {
     modifyRecover: (amount) => EffectBuilder.card.flexible('modifyRecover', amount),
     modifyArmor: (amount) => EffectBuilder.card.flexible('modifyArmor', amount),
     multiplyDamage: (amount) => EffectBuilder.card.flexible('multiplyDamage', amount),
-    preventAllDamage: (shield, contextFunc) => EffectBuilder.card.static('preventAllDamage', shield, contextFunc),
-    preventBlock: () => EffectBuilder.card.static('preventBlock'),
     preventDamage: (amount) => EffectBuilder.card.static('preventDamage', amount),
-    preventGuard: () => EffectBuilder.card.static('preventGuard'),
+    preventAllDamage: (shield, contextFunc) => EffectBuilder.card.static('preventAllDamage', shield, contextFunc),
+    // attacks from this unit may not be blocked
+    preventBlock: (contextFunc) => EffectBuilder.card.static('preventBlock', 0, contextFunc),
+    preventBlockByCharmedUnit: () =>
+        EffectBuilder.card.static(
+            'preventBlock',
+            0,
+            (eventContext) => eventContext.card.hasCharmDie
+        ),
+    // attacks from this unit may not be guarded (e.g. stalk).
+    preventGuard: (contextFunc) => EffectBuilder.card.static('preventGuard', 0, contextFunc),
+    preventGuardByCharmedUnit: () =>
+        EffectBuilder.card.static(
+            'preventGuard',
+            0,
+            (eventContext) => eventContext.card.hasCharmDie
+        ),
     preventNonAttackDamage: (amount) => EffectBuilder.card.static('preventNonAttackDamage', amount),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
