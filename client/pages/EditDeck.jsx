@@ -13,7 +13,7 @@ class InnerEditDeck extends React.Component {
     constructor() {
         super();
 
-        this.onEditDeck = this.onEditDeck.bind(this);
+        this.onSaveDeck = this.onSaveDeck.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +34,7 @@ class InnerEditDeck extends React.Component {
         }
     }
 
-    onEditDeck(deck) {
+    onSaveDeck(deck) {
         this.props.saveDeck(deck);
     }
 
@@ -54,10 +54,10 @@ class InnerEditDeck extends React.Component {
                         <Col lg={6} className='full-height'>
                             <div className='lobby-card'>
                                 <div className='lobby-header'>Deck Editor</div>
-                                <DeckEditor mode='Save' onDeckSave={this.onEditDeck} />
+                                <DeckEditor mode='Save' onDeckSave={this.onSaveDeck} />
                             </div>
                         </Col>
-                        <Col lg={6}>{<ViewDeck deck={this.props.deck} />}</Col>
+                        <Col lg={6}>{<ViewDeck deck={this.props.deck} editMode={true} />}</Col>
                     </Row>
                 </div>
             );

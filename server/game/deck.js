@@ -20,6 +20,9 @@ class Deck {
             if (card.imageStub) {
                 result.card.imageStub = card.imageStub;
             }
+            if (card.ff) {
+                result.ff = true;
+            }
 
             if (!result.card) {
                 logger.error(`Corrupt card ${card.name}: ${card}`);

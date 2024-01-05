@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faStarOfLife } from '@fortawesome/free-solid-svg-icons';
 import CardImage from '../GameBoard/CardImage';
 import classNames from 'classnames';
 
-const CardListText = ({ deckCards }) => {
+const CardListText = ({ deckCards, highlight, onFFClick }) => {
     let [zoomCard, setZoomCard] = useState(null);
     let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -37,8 +37,18 @@ const CardListText = ({ deckCards }) => {
                         <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
                     );
                 }
+                let ffIcon = null;
+                if (card.ff) {
+                    ffIcon = <FontAwesomeIcon
+                        className='card-ff'
+                        icon={faStarOfLife}
+                        title='This card is in your first five'
+                        onClick={() => onFFClick(card.id)}
+                    />
+                }
                 const linkClasses = classNames('card-link', {
-                    unique: card.phoenixborn
+                    unique: card.phoenixborn,
+                    highlight: card.card.dice && card.card.dice.includes(highlight)
                 });
                 const countClass = card.count > 3 && !card.card.type.includes('Conjur') ? 'invalidCount' : '';
 
@@ -64,6 +74,7 @@ const CardListText = ({ deckCards }) => {
                         </span>
                         &nbsp;
                         {chainedIcon}
+                        {ffIcon}
                     </div>
                 );
                 count += parseInt(card.count);

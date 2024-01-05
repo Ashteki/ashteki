@@ -33,7 +33,8 @@ function processDecks(decks, state) {
                 card: c,
                 id: card.id,
                 conjurations: c.conjurations,
-                phoenixborn: c.phoenixborn
+                phoenixborn: c.phoenixborn,
+                ff: card.ff
             };
         });
 

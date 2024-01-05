@@ -4,7 +4,7 @@ import { imageUrl } from '../../util';
 import CardImage from '../GameBoard/CardImage';
 
 // pbStub should be the imageStub from the card as loaded by AshesCardService
-const ZoomableCard = ({ card }) => {
+const ZoomableCard = ({ card, noIndex }) => {
     let pbImage = imageUrl(card.imageStub);
     const [imageZoom, setImageZoom] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -29,7 +29,7 @@ const ZoomableCard = ({ card }) => {
                 }}
                 onMouseOut={() => setImageZoom(false)}
             >
-                <CardImage card={card} />
+                <CardImage card={card} noIndex={noIndex} />
             </span>
             {imageZoom && (
                 <div

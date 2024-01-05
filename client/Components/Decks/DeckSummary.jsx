@@ -7,16 +7,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faList } from '@fortawesome/free-solid-svg-icons';
 import DeckDice from './DeckDice';
 
-const DeckSummary = ({ deck }) => {
+const DeckSummary = ({ deck, editMode }) => {
+
     const [radioValue, setRadioValue] = useState(false);
+    const [magicHover, setMagicHover] = useState('');
 
     if (!deck) return null;
+
+    const onDieClick = (die) => {
+        if (editMode) {
+            alert(die.magic);
+        }
+    };
+
+    const onDieHover = (die) => {
+        // highlight cards with dice type
+        setMagicHover(die.magic);
+    };
+
+    const onFFClick = (cardId) => {
+        if (editMode) {
+            const card = deck.cards.find((c) => c.id === cardId);
+            if (card) {
+                card.ff = !card.ff;
+                // udpate state & save etc
+            }
+        }
+    };
 
     const combinedCards = deck.cards.concat(deck.conjurations);
     const cardCount = deck.cards.reduce((agg, val) => agg += val.count, 0);
     return (
         <Col xs='12' className='deck-summary'>
-            <DeckDice deck={deck} slotCount={10} />
+            <DeckDice deck={deck} slotCount={10} onDieClick={onDieClick} onDieHover={onDieHover} />
             <div className='deck-cards-header'>
                 <ToggleButtonGroup name="radio" value={radioValue}>
                     <ToggleButton
@@ -47,13 +70,18 @@ const DeckSummary = ({ deck }) => {
                 <div className='total-box'>Total: {cardCount}</div>
             </div>
             <Row className='deck-cards'>
-                {radioValue ? (<>
-                    <CardListImg deckCards={deck.cards} />
-                    <div className='basic-title'>Conjurations</div>
-                    <CardListImg deckCards={deck.conjurations} />
-                </>
+                {radioValue ? (
+                    <>
+                        <div className='basic-title'>First Five</div>
+                        <CardListImg deckCards={deck.cards.filter((c) => c.ff)} noIndex={true} />
+                        <div className='basic-title'>All Cards</div>
+
+                        <CardListImg deckCards={deck.cards} />
+                        <div className='basic-title'>Conjurations</div>
+                        <CardListImg deckCards={deck.conjurations} />
+                    </>
                 ) : (
-                    <CardListText deckCards={combinedCards} />
+                    <CardListText deckCards={combinedCards} highlight={magicHover} onFFClick={onFFClick} />
                 )}
             </Row>
             <Row>

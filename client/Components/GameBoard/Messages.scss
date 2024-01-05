@@ -167,10 +167,21 @@
     &.unique {
         color: goldenrod;
     }
+
+    &.highlight {
+        color: #DDD;
+    }
 }
 
 .card-link:hover {
     color: theme-color(info);
+}
+
+.card-ff {
+    // position: absolute;
+    // right: 2px;
+    // width: 10px;
+    // height: 10px;
 }
 
 .alert {

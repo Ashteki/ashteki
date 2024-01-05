@@ -21,7 +21,7 @@ import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 /**
  * @param {ViewDeckProps} props
  */
-const ViewDeck = ({ deck }) => {
+const ViewDeck = ({ deck, editMode }) => {
     const dispatch = useDispatch();
 
     const handleDeleteClick = () => {
@@ -59,15 +59,6 @@ const ViewDeck = ({ deck }) => {
         );
     }
 
-    let updateButton = null;
-    if (deck.ashesLiveUuid) {
-        updateButton = (
-            <button className='btn btn-extra def' onClick={handleUpdateClick}>
-                Update
-            </button>
-        );
-    }
-
     const ashesLiveLink = ashesLiveShareUrl + deck.ashesLiveUuid;
 
     const writeLinkToClipboard = (event) => {
@@ -86,45 +77,47 @@ const ViewDeck = ({ deck }) => {
 
             <div className='lobby-card'>
                 <DeckHeader deck={deck} />
-                <div className='deck-buttons text-center'>
-                    <button className='btn btn-primary def' onClick={handleEditClick}>
-                        <FontAwesomeIcon icon={faPen} /> Edit
-                    </button>
-                    <button className='btn btn-primary def' onClick={handleDuplicateClick}>
-                        <FontAwesomeIcon icon={faCopy} /> Copy
-                    </button>
+                {!editMode && (
+                    <div className='deck-buttons text-center'>
+                        <button className='btn btn-primary def' onClick={handleEditClick}>
+                            <FontAwesomeIcon icon={faPen} /> Edit
+                        </button>
+                        <button className='btn btn-primary def' onClick={handleDuplicateClick}>
+                            <FontAwesomeIcon icon={faCopy} /> Copy
+                        </button>
 
-                    {deleteButton}
-                    {deck.ashesLiveUuid && (
-                        <Dropdown
-                            variant='extra'
-                            className='ashes-live def'
-                            title='ashes.live'
-                            as={ButtonGroup}
-                        >
-                            <Dropdown.Toggle
-                                split
+                        {deleteButton}
+                        {deck.ashesLiveUuid && (
+                            <Dropdown
                                 variant='extra'
-                                className='def'
-                                id='dropdown-basic'
+                                className='ashes-live def'
+                                title='ashes.live'
+                                as={ButtonGroup}
                             >
-                                <span className='phg-basic-magic'></span>&nbsp;
-                            </Dropdown.Toggle>
+                                <Dropdown.Toggle
+                                    split
+                                    variant='extra'
+                                    className='def'
+                                    id='dropdown-basic'
+                                >
+                                    <span className='phg-basic-magic'></span>&nbsp;
+                                </Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                                <Dropdown.Item href='#' onClick={handleUpdateClick}>
-                                    Update
-                                </Dropdown.Item>
-                                <Dropdown.Item href={ashesLiveLink}>Go to ashes.live</Dropdown.Item>
-                                <Dropdown.Item href='#' onClick={writeLinkToClipboard}>
-                                    Copy ashes.live url
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    )}
-                </div>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href='#' onClick={handleUpdateClick}>
+                                        Update
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href={ashesLiveLink}>Go to ashes.live</Dropdown.Item>
+                                    <Dropdown.Item href='#' onClick={writeLinkToClipboard}>
+                                        Copy ashes.live url
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        )}
+                    </div>
+                )}
 
-                <DeckSummary deck={deck} />
+                <DeckSummary deck={deck} editMode={editMode} />
             </div>
         </>
     );

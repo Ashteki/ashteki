@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './Die.scss';
 
-const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver, simpleText }) => {
+const DieIcon = ({ die, onClick, disableMouseOver, onMouseOut, onMouseOver, simpleText }) => {
     let diceFont = 'phg-basic-magic';
     const simpleDesc = die.magic;
     let description = die.magic ? die.magic + ' basic' : 'basic die';
@@ -51,6 +51,7 @@ const DieIcon = ({ die, disableMouseOver, onMouseOut, onMouseOver, simpleText })
             className={dieClass}
             onMouseOver={!disableMouseOver && onMouseOver ? () => onMouseOver(die) : undefined}
             onMouseOut={!disableMouseOver ? onMouseOut : undefined}
+            onClick={onClick}
         >
             <span className={diceFont} title={description}>{readerSpan}</span>
         </span>

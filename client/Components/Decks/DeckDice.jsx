@@ -3,7 +3,7 @@ import DieIcon from '../GameBoard/DieIcon';
 import DieSlot from '../GameBoard/DieSlot';
 import './DeckDice.scss';
 
-const DeckDice = ({ deck }) => {
+const DeckDice = ({ deck, onDieClick, onDieHover }) => {
     const getDiceToRender = () => {
         const diceToRender = [];
         if (deck.dicepool) {
@@ -12,7 +12,12 @@ const DeckDice = ({ deck }) => {
                 .forEach((diceCount) => {
                     for (let i = 0; i < diceCount.count; i++) {
                         diceToRender.push(
-                            <DieIcon die={{ magic: diceCount.magic, level: 'power' }} />
+                            <DieIcon
+                                die={{ magic: diceCount.magic, level: 'power' }}
+                                onClick={() => onDieClick({ magic: diceCount.magic })}
+                                onMouseOver={() => onDieHover({ magic: diceCount.magic })}
+                                onMouseOut={() => onDieHover({ magic: '' })}
+                            />
                         );
                     }
                 });
@@ -27,7 +32,7 @@ const DeckDice = ({ deck }) => {
 
     var diceToRender = getDiceToRender();
 
-    return <div className='deck-dice'><div className='large'>{diceToRender}</div></div>;
+    return <div className='deck-dice large'>{diceToRender}</div>;
 };
 
 export default DeckDice;
