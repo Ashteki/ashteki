@@ -16,7 +16,7 @@ class ChimeraCharmer extends Card {
         });
 
         this.persistentEffect({
-            match: this,
+            condition: () => !this.exhausted,
             effect: ability.effects.modifyAttack((c) => this.getOpponentCharmedUnits(c))
         });
     }
