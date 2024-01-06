@@ -36,7 +36,9 @@ class TriggerUltimateAction extends CardGameAction {
                 context.game.actions.discard().resolve(alienUnits, context);
             }
             const alienUpgrades = context.player.unitsInPlay.reduce((accumulator, curValue) => {
-                return accumulator.concat(curValue.upgrades);
+                return accumulator.concat(
+                    curValue.upgrades.filter((u) => u.owner !== u.controller)
+                );
             }, []);
 
             if (alienUpgrades.length) {

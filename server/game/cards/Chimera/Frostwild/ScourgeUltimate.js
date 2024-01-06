@@ -33,7 +33,8 @@ class ScourgeUltimate extends UltimateCard {
                     title: 'Ultimate',
                     gameAction: AbilityDsl.actions.dealDamage((context) => ({
                         target: context.player.opponent.phoenixborn,
-                        amount: 3
+                        amount: 3,
+                        showMessage: true
                     })),
                     then: {
                         alwaysTriggers: true,
