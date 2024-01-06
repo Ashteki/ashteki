@@ -16,6 +16,7 @@ class RoseGardener extends Card {
 
         this.action({
             title: 'Cultivate',
+            cost: [ability.costs.sideAction()],
             gameAction: ability.actions.changeDice({
                 dieCondition: (die) => !die.exhausted && die.magic === Magic.Charm,
                 owner: 'self'

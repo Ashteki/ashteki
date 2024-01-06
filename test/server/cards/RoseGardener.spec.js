@@ -63,6 +63,7 @@ describe('Rose Gardener', function () {
             this.player1.clickDie(2);
             this.player1.clickDone();
             expect(this.player1.dicepool[2].level).toBe('power');
+            expect(this.player1.player.actions.side).toBe(0);
         });
     });
 });
