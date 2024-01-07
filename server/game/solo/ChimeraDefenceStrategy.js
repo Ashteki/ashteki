@@ -33,6 +33,8 @@ class ChimeraDefenceStrategy {
             !attack.isPBAttack &&
             // not targetting a defender
             !attack.target.anyEffect('defender') &&
+            // doesn't have guard restriction from cardCannot effect (e.g. giftedrose)
+            this.player.phoenixborn.checkRestrictions('guard') &&
             // battle has not been pruned (e.g. by card reaction) - (Sentry log error)
             attack.battles[0] &&
             // there is not an existing guard
