@@ -35,33 +35,33 @@ class ResolveBattleAction extends GameAction {
 
         this.events.push(
             context.game.getEvent('onFight', params, (event) => {
-                let defenderAmount = event.attackerTarget.attack;
-                if (event.card.anyEffect('limitFightDamage')) {
-                    defenderAmount = Math.min(
-                        defenderAmount,
-                        ...event.card.getEffects('limitFightDamage')
+                let defenderAmountDealt = event.attackerTarget.attack;
+                if (event.attackerTarget.anyEffect('limitFightDamageDealt')) {
+                    defenderAmountDealt = Math.min(
+                        defenderAmountDealt,
+                        ...event.attackerTarget.getEffects('limitFightDamageDealt')
                     );
                 }
 
                 let defenderParams = {
-                    amount: defenderAmount,
+                    amount: defenderAmountDealt,
                     fightEvent: event,
                     damageSource: event.attackerTarget,
                     showMessage: true
                 };
 
-                let attackerAmount = event.attacker.exhausted
+                let attackerAmountDealt = event.attacker.exhausted
                     ? 0
                     : event.attacker.attack + event.attacker.getBonusDamage(event.attackerTarget);
-                if (event.attacker.anyEffect('limitFightDamage')) {
-                    attackerAmount = Math.min(
-                        attackerAmount,
-                        ...event.attacker.getEffects('limitFightDamage')
+                if (event.attacker.anyEffect('limitFightDamageDealt')) {
+                    attackerAmountDealt = Math.min(
+                        attackerAmountDealt,
+                        ...event.attacker.getEffects('limitFightDamageDealt')
                     );
                 }
 
                 let attackerParams = {
-                    amount: attackerAmount,
+                    amount: attackerAmountDealt,
                     fightEvent: event,
                     damageSource: event.attacker,
                     showMessage: true
@@ -87,7 +87,7 @@ class ResolveBattleAction extends GameAction {
                     // quickstrike in a fight skips counter damage
                     !(
                         event.attacker?.attacksFirst() &&
-                        this.damageWillDestroyTarget(attackerAmount, event.card)
+                        this.damageWillDestroyTarget(event.attacker, attackerAmountDealt, event.card)
                     ) &&
                     defenderParams.amount > 0 &&
                     // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
@@ -131,11 +131,18 @@ class ResolveBattleAction extends GameAction {
         );
     }
 
-    damageWillDestroyTarget(attackerAmount, target) {
-        let amountReceived = attackerAmount;
+    damageWillDestroyTarget(attacker, attackAmount, target) {
+        let amountReceived = attackAmount;
         if (target.anyEffect('multiplyDamage')) {
             amountReceived = amountReceived * target.sumEffects('multiplyDamage');
         }
+        if (!attacker.anyEffect())
+            if (target.anyEffect('limitDamageReceived')) {
+                amountReceived = Math.min(
+                    amountReceived,
+                    ...target.getEffects('limitDamageReceived')
+                );
+            }
         return amountReceived + target.damage - target.armor >= target.life;
     }
 

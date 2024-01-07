@@ -1,5 +1,5 @@
 describe('Chimera Charmer', function () {
-    describe('Enters play effect', function () {
+    describe('Enters play effect and imbued ability (exhaustible)', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -32,6 +32,11 @@ describe('Chimera Charmer', function () {
 
             // imbued attack modification
             expect(this.chimeraCharmer.attack).toBe(3);
+            this.chimeraCharmer.tokens.exhaustion = 1;
+            this.player1.endTurn(); // fudge for token exhaustion to update persistentEffect
+
+            expect(this.chimeraCharmer.exhausted).toBe(true);
+            expect(this.chimeraCharmer.attack).toBe(2);
         });
     });
 });

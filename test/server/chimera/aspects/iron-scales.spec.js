@@ -7,7 +7,7 @@ describe('Iron Scales', function () {
                 mode: 'solo',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['anchornaut', 'hammer-knight'],
+                    inPlay: ['anchornaut', 'hammer-knight', 'light-swordsman'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
                     hand: ['summon-iron-rhino']
@@ -33,6 +33,16 @@ describe('Iron Scales', function () {
             this.player1.clickCard(this.hammerKnight);
 
             expect(this.ironScales.damage).toBe(1);
+        });
+
+        it('quickstrike vs damage limitation. should counter vs light swordsman', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(1); // no guard
+
+            this.player1.clickAttack(this.ironScales);
+            this.player1.clickCard(this.lightSwordsman);
+
+            expect(this.ironScales.damage).toBe(1);
+            expect(this.lightSwordsman.location).toBe('discard');
         });
     });
 });

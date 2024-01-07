@@ -21,7 +21,8 @@ describe('Scourge ultimate', function () {
                     spellboard: [],
                     threatZone: ['storm-bolt', 'hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
-                    archives: ['stun', 'stun', 'stun', 'stun']
+                    archives: ['stun', 'stun', 'stun', 'stun', 'vigor', 'vigor'],
+                    deck: ['rampage']
                 }
             });
         });
@@ -80,8 +81,8 @@ describe('Scourge ultimate', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('phase 2', function () {
-            spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
+        it('phase 2 keeps vigor / own upgrades', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(7); // set behaviour roll
             this.player2.player.chimeraPhase = 2;
             this.player2.phoenixborn.tokens.redRains = 2;
             expect(this.player2.phoenixborn.redRains).toBe(2);
@@ -89,13 +90,19 @@ describe('Scourge ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
+            expect(this.stormBolt.upgrades.length).toBe(1);
+
+            this.stormcall.tokens.status = 1;
+            this.player1.endTurn();
+            this.player1.clickPrompt('Ok');
             this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 2
             expect(this.blueJaguar.location).toBe('play area');
+            expect(this.stormBolt.upgrades.length).toBe(1);
 
             expect(this.aradelSummergaard.upgrades.length).toBe(1);
-            expect(this.aradelSummergaard.damage).toBe(3);
+            expect(this.aradelSummergaard.damage).toBe(4); // 1 from stormcall, 3 from ult
             expect(this.mistSpirit.upgrades.length).toBe(1);
             expect(this.aradelSummergaard.exhausted).toBe(true);
             expect(this.mistSpirit.exhausted).toBe(true);
