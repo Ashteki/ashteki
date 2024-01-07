@@ -1,3 +1,5 @@
+const Dice = require("../../../server/game/dice");
+
 describe('Gifted Rose', function () {
     describe('attached to pb', function () {
         beforeEach(function () {
@@ -61,6 +63,46 @@ describe('Gifted Rose', function () {
             this.player2.clickCard(this.choke);
             expect(this.giftedRose.location).toBe('discard');
             expect(this.choke.location).toBe('discard');
+        });
+    });
+
+    describe('attached to chimera', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['mist-spirit', 'raptor-herder', 'time-hopper', 'iron-rhino'],
+                    hand: ['gifted-rose'],
+                    dicepool: ['ceremonial', 'charm']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['rampage'],
+                    spellboard: [],
+                    threatZone: ['hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(9);
+        });
+
+        it('attach. cannot guard.', function () {
+            this.player1.play(this.giftedRose);
+            this.player1.clickDie(0);
+
+            expect(this.corpseOfViros.upgrades.length).toBe(1);
+
+            this.player1.clickAttack(this.rampage);
+            this.player1.clickCard(this.ironRhino);
+
+            expect(this.ironRhino.damage).toBe(2);
+            expect(this.rampage.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
