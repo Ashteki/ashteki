@@ -45,15 +45,17 @@ const Effects = {
         ),
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
-    limitFightDamage: (amount) => EffectBuilder.card.flexible('limitFightDamage', amount),
+    limitFightDamageDealt: (amount) => EffectBuilder.card.flexible('limitFightDamageDealt', amount),
     magnify: (amountFunc) => EffectBuilder.card.dynamic('magnify', amountFunc),
     modifyAttack: (amount) => EffectBuilder.card.flexible('modifyAttack', amount),
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
     modifyRecover: (amount) => EffectBuilder.card.flexible('modifyRecover', amount),
     modifyArmor: (amount) => EffectBuilder.card.flexible('modifyArmor', amount),
     multiplyDamage: (amount) => EffectBuilder.card.flexible('multiplyDamage', amount),
-    preventDamage: (amount) => EffectBuilder.card.static('preventDamage', amount),
+    preventDamage: (amount) => EffectBuilder.card.flexible('preventDamage', amount),
     preventAllDamage: (shield, contextFunc) => EffectBuilder.card.static('preventAllDamage', shield, contextFunc),
+    limitDamageReceived: (amount) => EffectBuilder.card.static('limitDamageReceived', amount),
+
     // attacks from this unit may not be blocked
     preventBlock: (contextFunc) => EffectBuilder.card.static('preventBlock', 0, contextFunc),
     preventBlockByCharmedUnit: () =>
