@@ -1,6 +1,6 @@
 const Dice = require('../../server/game/dice.js');
 const DiceCount = require('../../server/game/DiceCount.js');
-const { Magic, Level } = require('../../server/constants');
+const { Magic, Level } = require('../../server/constants.js');
 
 describe('dice matching', function () {
     const dice = [

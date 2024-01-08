@@ -94,7 +94,7 @@ class Dice {
         return matchedDice;
     }
 
-    static findADie(availableDice, req, matchedDice) {
+    static findADie(availableDice, req, matchedDice = []) {
         const die = this.findDie(availableDice, req);
 
         if (die) {
