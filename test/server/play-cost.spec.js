@@ -1,8 +1,8 @@
 const { parseCosts, parseDiceCost } = require('../../server/game/costs.js');
-const DiceCost = require('../../server/game/Costs/dicecost');
-const XDiceCost = require('../../server/game/Costs/xdicecost');
-const DiceCount = require('../../server/game/DiceCount');
-const { Magic, Level } = require('../../server/constants');
+const DiceCost = require('../../server/game/Costs/dicecost.js');
+const XDiceCost = require('../../server/game/Costs/xdicecost.js');
+const DiceCount = require('../../server/game/DiceCount.js');
+const { Magic, Level } = require('../../server/constants.js');
 
 describe('playcost parsing', function () {
     it('should understand parallel dice cost', function () {
@@ -31,6 +31,23 @@ describe('playcost parsing', function () {
         expect(Array.isArray(diceReq)).toBe(false);
         // that entry is an array of choices
         expect(diceReq.level).toBe('basic');
+        expect(diceReq.count).toBe(null); // implies unlimited
+
+        const dc = new parseCosts([costSpec]);
+
+        expect(dc[0] instanceof XDiceCost).toBe(true);
+    });
+
+    it('should understand X dice cost with level restriction', function () {
+        // parallel dice cost - stored as an array literal
+        const costSpec = 'X [[charm:class]]';
+
+        let diceReq = parseDiceCost(costSpec);
+
+        // dice cost is potentially multiples
+        expect(Array.isArray(diceReq)).toBe(false);
+        // that entry is an array of choices
+        expect(diceReq.level).toBe('class');
         expect(diceReq.count).toBe(null); // implies unlimited
 
         const dc = new parseCosts([costSpec]);
@@ -108,5 +125,45 @@ describe('playcost parsing', function () {
         };
         const canpay = diceCosts[0].canPay({ player: p });
         expect(canpay).toBe(true);
+    });
+
+    it('understands x basics in canPay', function () {
+        const playCost = ['x [[basic]]'];
+        const diceCosts = parseCosts(playCost);
+
+        expect(diceCosts.length).toBe(1);
+        const playerDice = [
+            { uuid: '1', magic: 'natural', level: 'power' },
+            { uuid: '2', magic: 'charm', level: 'class' },
+            { uuid: '3', magic: 'charm', level: 'basic' },
+            { uuid: '4', magic: 'charm', level: 'class' },
+            { uuid: '5', magic: 'natural', level: 'power' }
+        ];
+        const p = {
+            dice: playerDice,
+            getSpendableDice: () => playerDice
+        };
+        const canpay = diceCosts[0].canPay({ player: p });
+        expect(canpay).toBe(true);
+    });
+
+    it('understands x dice level/type restriction in canPay', function () {
+        const playCost = ['x [[ceremonial:class]]'];
+        const diceCosts = parseCosts(playCost);
+
+        expect(diceCosts.length).toBe(1);
+        const playerDice = [
+            { uuid: '1', magic: 'natural', level: 'power' },
+            { uuid: '2', magic: 'charm', level: 'class' },
+            { uuid: '3', magic: 'charm', level: 'basic' },
+            { uuid: '4', magic: 'charm', level: 'class' },
+            { uuid: '5', magic: 'natural', level: 'power' }
+        ];
+        const p = {
+            dice: playerDice,
+            getSpendableDice: () => playerDice
+        };
+        const canpay = diceCosts[0].canPay({ player: p });
+        expect(canpay).toBe(false);
     });
 });

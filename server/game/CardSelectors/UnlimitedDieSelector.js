@@ -1,3 +1,4 @@
+const Dice = require('../dice.js');
 const BaseDieSelector = require('./BaseDieSelector.js');
 
 class UnlimitedDieSelector extends BaseDieSelector {
@@ -11,6 +12,15 @@ class UnlimitedDieSelector extends BaseDieSelector {
 
     hasEnoughTargets() {
         return true;
+    }
+
+    canTarget(die, context) {
+        if (!Dice.findADie([die], this.diceReq[0])) {
+            return false;
+        }
+
+
+        return super.canTarget(die, context);
     }
 }
 
