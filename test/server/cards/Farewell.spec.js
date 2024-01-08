@@ -38,7 +38,7 @@ describe('Farewell', function () {
             this.player1.clickCard(this.farewell);
             this.player1.clickPrompt('Play this action');
 
-            this.player1.clickDie(0);
+            this.player1.clickDie(1);
             this.player1.clickDone();
 
             this.player1.clickCard(this.butterflyMonk);
@@ -72,7 +72,7 @@ describe('Farewell', function () {
             this.player1.clickCard(this.farewell);
             this.player1.clickPrompt('Play this action');
 
-            this.player1.clickDie(0);
+            this.player1.clickDie(1);
             this.player1.clickDone();
 
             this.player1.clickCard(this.butterflyMonk);

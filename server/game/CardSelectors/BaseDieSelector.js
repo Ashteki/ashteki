@@ -2,6 +2,7 @@ class BaseDieSelector {
     constructor(properties) {
         this.dieCondition = properties.dieCondition;
         this.dieType = properties.dieType;
+        this.diceReq = properties.diceReq;
         this.optional = properties.optional;
         this.owner = properties.owner || 'any';
         this.player = properties.player || 'self';

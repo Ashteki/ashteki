@@ -1,4 +1,4 @@
-const Dice = require("../dice");
+const Dice = require('../dice');
 
 class XDiceCost {
     constructor(properties) {
@@ -8,6 +8,7 @@ class XDiceCost {
     }
 
     canPay(context) {
+        // assumption that xdice is only one req, of one type
         return Dice.findADie(context.player.getSpendableDice(context), this.getDiceReq(context)[0]);
         // return Dice.canMatch(context.player.getSpendableDice(context), this.getDiceReq(context));
     }
