@@ -1,21 +1,11 @@
 const Dice = require('../dice');
+const DiceCost = require('./dicecost');
 
-class XDiceCost {
-    constructor(properties) {
-        this.diceReq = properties.diceReq;
-        this.properties = properties;
-        this.promptsPlayer = true;
-    }
-
+class XDiceCost extends DiceCost {
     canPay(context) {
         // assumption that xdice is only one req, of one type
         return Dice.findADie(context.player.getSpendableDice(context), this.getDiceReq(context)[0]);
         // return Dice.canMatch(context.player.getSpendableDice(context), this.getDiceReq(context));
-    }
-
-    // eslint-disable-next-line no-unused-vars
-    getDiceReq(context) {
-        return this.diceReq;
     }
 
     resolve(context, result) {
@@ -56,12 +46,6 @@ class XDiceCost {
             });
         };
         promptPlayer();
-    }
-
-    payEvent(context) {
-        return context.game.actions
-            .exhaustDie({ target: context.costs.returnDice })
-            .getEventArray(context);
     }
 }
 
