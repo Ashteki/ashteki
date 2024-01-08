@@ -23,16 +23,21 @@ describe('Venom Strike action spell', function () {
         this.player1.clickCard(this.ironWorker);
         this.player1.useDie(1); // now the last in the array
         this.player1.clickCard(this.butterflyMonk);
-
+        this.butterflyMonk.tokens.exhaustion = 1;
+        expect(this.ironWorker.exhausted).toBe(false);
+        expect(this.butterflyMonk.exhausted).toBe(true);
         expect(this.butterflyMonk.dieUpgrades.length).toBe(1);
 
         this.player1.play(this.venomStrike);
         this.player1.clickDie(0);
         expect(this.aradelSummergaard.damage).toBe(2);
         expect(this.player2.deck.length).toBe(deckSize - 2);
-        expect(this.player2.charmedUnits.length).toBe(0);
+
+        expect(this.player2.charmedUnits.length).toBe(1);
+        expect(this.player1.dicepool.length).toBe(2);
         expect(this.player1.dicepool[0].exhausted).toBe(true);
         expect(this.player1.dicepool[1].exhausted).toBe(true);
-        expect(this.player1.dicepool[2].exhausted).toBe(true);
+        expect(this.butterflyMonk.dieUpgrades.length).toBe(0);
+        expect(this.ironWorker.dieUpgrades.length).toBe(1);
     });
 });

@@ -16,7 +16,7 @@ class VenomStrike extends Card {
                         amount: this.getXNumber(context)
                     })),
                     ability.actions.sequentialForEach((context) => ({
-                        forEach: this.getAllDieUpgrades(context),
+                        forEach: this.getAllExhaustedUnitDieUpgrades(context),
                         action: ability.actions.detachDie()
                     }))
                 ]
@@ -28,11 +28,13 @@ class VenomStrike extends Card {
         return context.player.opponent.charmedUnits.length;
     }
 
-    getAllDieUpgrades(context) {
-        return context.player.opponent.charmedUnits.reduce(
-            (agg, card) => agg.concat(card.dieUpgrades.filter(u => u.magic === Magic.Charm)),
-            []
-        );
+    getAllExhaustedUnitDieUpgrades(context) {
+        return context.player.opponent.charmedUnits
+            .filter((u) => u.exhausted)
+            .reduce(
+                (agg, card) => agg.concat(card.dieUpgrades.filter((u) => u.magic === Magic.Charm)),
+                []
+            );
     }
 }
 
