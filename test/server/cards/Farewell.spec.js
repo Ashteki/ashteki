@@ -75,11 +75,13 @@ describe('Farewell', function () {
             this.player1.clickDie(1);
             this.player1.clickDone();
 
+            this.player1.clickDie(1); // royal charm
             this.player1.clickCard(this.butterflyMonk);
 
             expect(this.butterflyMonk.location).toBe('archives');
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.player2.deck.length).toBe(3);
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
         });
     });
 });
