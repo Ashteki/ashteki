@@ -54,7 +54,6 @@ describe('Chained Creations', function () {
             expect(this.summonMaskedWolf.tokens.exhaustion).toBe(2);
         });
 
-
         it('destroys Monk Spirit and cannot exhaust ready spell', function () {
             this.player1.clickCard(this.chainedCreations); // play card
             this.player1.clickPrompt('Play this action');
