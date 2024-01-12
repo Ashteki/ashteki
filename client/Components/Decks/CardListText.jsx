@@ -50,7 +50,7 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                     unique: card.phoenixborn,
                     highlight: card.card.dice && card.card.dice.includes(highlight)
                 });
-                const countClass = card.count > 3 && !card.card.type.includes('Conjur') ? 'invalidCount' : '';
+                const countClass = card.count > 3 && !card.card?.type.includes('Conjur') ? 'invalidCount' : '';
 
                 cards.push(
                     <div key={'text-' + card.card.id}>
