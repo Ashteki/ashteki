@@ -24,7 +24,8 @@ class SummonBastionBadger extends Card {
                     activePromptTitle: 'Choose a charm class die to raise',
                     optional: true,
                     toSelect: 'die',
-                    dieCondition: (die) => !die.exhausted && die.level === Level.Class,
+                    dieCondition: (die) =>
+                        !die.exhausted && die.level === Level.Class && die.magic === Magic.Charm,
                     owner: 'self',
                     gameAction: ability.actions.raiseDie()
                 }
