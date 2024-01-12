@@ -21,6 +21,7 @@ describe('Summon Bastion Badger', function () {
             this.player1.dicepool[2].level = 'basic';
             this.player1.dicepool[3].level = 'class';
             this.player1.dicepool[1].level = 'class';
+            this.player1.dicepool[5].level = 'class';
         });
 
         it('summon then raise one active charm class die', function () {
@@ -32,6 +33,7 @@ describe('Summon Bastion Badger', function () {
             //don't require action type selection
             expect(this.bastionBadger.location).toBe('play area');
             expect(this.player1).toHavePrompt('Choose a charm class die to raise');
+            expect(this.player1).not.toBeAbleToSelectDie(this.player1.dicepool[5]);
             this.player1.clickDie(2);
             expect(this.player1.dicepool[2].level).toBe('basic');
             this.player1.clickDie(3);

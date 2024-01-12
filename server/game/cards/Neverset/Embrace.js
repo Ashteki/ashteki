@@ -5,7 +5,9 @@ class Embrace extends Card {
     setupCardAbilities(ability) {
         this.forcedInterrupt({
             when: {
-                onDamageApplied: (event, context) => event.card == context.player.phoenixborn
+                onDamageApplied: (event, context) =>
+                    PhoenixbornTypes.includes(event.card.type) &&
+                    event.damageSource.controller !== event.card.owner
             },
             gameAction: [
                 ability.actions.discard({ target: this }),
@@ -17,7 +19,7 @@ class Embrace extends Card {
         });
     }
 
-    canAttach(card, context) {
+    canAttach(card) {
         return card && PhoenixbornTypes.includes(card.getType()) && this.canPlayAsUpgrade();
     }
 }
