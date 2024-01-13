@@ -18,11 +18,11 @@ class ChosenDieOrDiscardCost {
     }
 
     canPayWithBasicDie(context) {
-        return context.player.actions.main && this.dieCost.canPay(context);
+        return this.dieCost.canPay(context);
     }
 
     canPayWithDiscard(context) {
-        return context.player.actions.side && this.discardCost.canPay(context);
+        return this.discardCost.canPay(context);
     }
 
     resolve(context, result) {
@@ -33,6 +33,8 @@ class ChosenDieOrDiscardCost {
         }
         if (!this.canPayWithDiscard(context)) {
             context.costs.dieOrDiscard = 'die';
+            this.dieCost.resolve(context, result);
+
             return true;
         }
         // or prompt if there's a choice to be made
@@ -43,7 +45,7 @@ class ChosenDieOrDiscardCost {
                 handlers: [
                     () => {
                         context.costs.dieOrDiscard = 'die';
-                        this.dieCost.resolve(context, result)
+                        this.dieCost.resolve(context, result);
                     },
                     () => (context.costs.dieOrDiscard = 'discard'),
                     () => {
