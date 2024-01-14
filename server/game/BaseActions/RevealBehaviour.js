@@ -33,10 +33,6 @@ class RevealBehaviour extends BaseAbility {
     addSubEvent(event, context) {
         let action = context.game.actions.revealAspect();
         const playEvent = action.getEvent(context.source, context);
-        if (context.source.statusCount) {
-            const tokenAction = AbilityDsl.actions.addStatusToken({ amount: context.source.statusCount, target: context.card });
-            playEvent.addSubEvent(tokenAction.getEvent(context.source, context));
-        }
         event.addChildEvent(playEvent);
     }
 

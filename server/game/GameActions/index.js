@@ -72,7 +72,6 @@ module.exports = {
     ReturnToHandAction: require('./ReturnToHandAction'),
     RemoveDieAction: require('./RemoveDieAction'),
     RevealAction: require('./RevealAction'),
-    RevealAspectAction: require('./RevealAspectAction'),
     SearchAction: require('./SearchAction'),
     SequentialAction: require('./SequentialAction'),
     SequentialForEachAction: require('./SequentialForEachAction'),
