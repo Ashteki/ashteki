@@ -11,7 +11,7 @@
     max-height: $keyteki-card-height;
     max-width: $keyteki-card-width;
     overflow: hidden;
-    position:relative;
+    position: relative;
 }
 
 .prompt-control-targeting {
@@ -19,4 +19,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    svg {
+        margin: 3px;
+    }
 }

@@ -163,6 +163,7 @@ class ActivePlayerPrompt extends React.Component {
                             onMouseOver={this.props.onMouseOver}
                             source={control.source}
                             targets={control.targets}
+                            trigger={control.trigger}
                         />
                     );
                 case 'options-select':

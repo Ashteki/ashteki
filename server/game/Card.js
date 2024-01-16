@@ -542,6 +542,17 @@ class Card extends PlayableObject {
         }
     }
 
+    flip() {
+        this.facedown = !this.facedown;
+        this.getReactions(true).forEach((reaction) => {
+            if (reaction.location.includes(this.location) && !this.facedown) {
+                reaction.registerEvents();
+            } else {
+                reaction.unregisterEvents();
+            }
+        });
+    }
+
     getMenu() {
         var menu = [];
 

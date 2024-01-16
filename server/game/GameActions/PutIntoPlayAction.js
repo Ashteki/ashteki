@@ -69,7 +69,7 @@ class PutIntoPlayAction extends CardGameAction {
 
             const targetLocation = card.type.includes('Spell') ? 'spellboard' : 'play area';
             if (CardType.Aspect === card.type && card.facedown && card.location === 'play area') {
-                event.card.facedown = false;
+                event.card.flip();
             } else {
                 player.moveCard(card, targetLocation, { myControl: control });
             }

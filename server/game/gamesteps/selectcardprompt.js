@@ -61,6 +61,15 @@ class SelectCardPrompt extends UiPrompt {
             }
         }
 
+        this.trigger = null;
+        if (properties.trigger) {
+            if (typeof properties.trigger === 'function') {
+                this.trigger = properties.trigger(properties.context);
+            } else {
+                this.trigger = properties.trigger;
+            }
+        }
+
         if (properties.promptTitle) {
             this.promptTitle = properties.promptTitle;
         }
@@ -121,6 +130,7 @@ class SelectCardPrompt extends UiPrompt {
         return [
             {
                 type: 'targeting',
+                trigger: this.trigger?.getShortSummary(),
                 source: this.source.getShortSummary(),
                 targets: targets.map((target) => target.getShortSummary())
             }
