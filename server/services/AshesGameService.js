@@ -137,6 +137,17 @@ class GameService {
         });
     }
 
+    getLeagueGame(id) {
+        const findSpec = {
+            'pairing.id': id,
+            finishedAt: { $ne: null }
+        };
+        return this.games.findOne(findSpec).catch((err) => {
+            logger.error('Unable to get league game: ', id, err);
+            throw new Error('Unable to get league game');
+        });
+    }
+
     async findByUserName(username, options = {}) {
         const findSpec = {
             'players.name': username

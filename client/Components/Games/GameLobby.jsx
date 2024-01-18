@@ -13,9 +13,10 @@ import discordTextLogo from '../../assets/img/discord-logo-white.svg';
 
 import './GameLobby.scss';
 import { useEffect } from 'react';
-import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl, navigate } from '../../redux/actions';
+import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl, navigate, getLeaguePairings } from '../../redux/actions';
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
+import LeaguePairings from './LeaguePairings';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
@@ -30,12 +31,13 @@ const GameLobby = ({ gameId }) => {
         filterDefaults[filter.name] = true;
     }
 
-    const { games, newGame, newGameType, currentGame, passwordGame } = useSelector((state) => ({
+    const { games, newGame, newGameType, currentGame, passwordGame, pairings } = useSelector((state) => ({
         games: state.lobby.games,
         newGame: state.lobby.newGame,
         newGameType: state.lobby.newGameType,
         currentGame: state.lobby.currentGame,
-        passwordGame: state.lobby.passwordGame
+        passwordGame: state.lobby.passwordGame,
+        pairings: state.lobby.leaguePairings
     }));
     const user = useSelector((state) => state.account.user);
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
@@ -84,10 +86,14 @@ const GameLobby = ({ gameId }) => {
             return;
         }
 
-        dispatch(startNewGame(gameType));
+        if (gameType === 'league') {
+            dispatch(getLeaguePairings('PHX'));
+        } else {
+            dispatch(startNewGame(gameType));
+        }
     };
 
-    const newGameText = currentGame?.started === false ? currentGame.name : 'Start a new game vs:';
+    const newGameText = currentGame?.started === false ? currentGame.name : 'Start a new game';
     return (
         <Row>
             <Col md='6'>
@@ -100,13 +106,19 @@ const GameLobby = ({ gameId }) => {
                         </div>
                     )}
                     <div className='lobby-header'>{newGameText}</div>
-                    {!newGame && currentGame?.started !== false && (
+                    {!newGame && !pairings && currentGame?.started !== false && (
                         <>
                             <div className='game-buttons'>
                                 <PictureButton
                                     text='Player'
                                     imageClass='pvp'
                                     onClick={() => handleNewGameClick('pvp')}
+                                />
+                                <PictureButton
+                                    text='League'
+                                    // header='Premium'
+                                    imageClass='league'
+                                    onClick={() => handleNewGameClick('league')}
                                 />
                                 <PictureButton
                                     text='Chimera'
@@ -136,7 +148,7 @@ const GameLobby = ({ gameId }) => {
 
                     {newGame && <NewGame />}
                     {currentGame?.started === false && <PendingGame />}
-
+                    {pairings && <LeaguePairings pairings={pairings} />}
                 </div>
                 <div ref={topRef}>
                     {passwordGame && <PasswordGame />}
