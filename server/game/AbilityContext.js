@@ -10,6 +10,7 @@ class AbilityContext {
         this.targets = properties.targets || {};
         this.selects = properties.selects || {};
         this.costs = properties.costs || {};
+        this.priorContext = properties.priorContext;
     }
 
     copy(newProps) {
@@ -29,7 +30,8 @@ class AbilityContext {
             ability: this.ability,
             targets: Object.assign({}, this.targets),
             selects: Object.assign({}, this.selects),
-            costs: Object.assign({}, this.costs)
+            costs: Object.assign({}, this.costs),
+            priorContext: Object.assign({}, this.priorContext)
         };
     }
 }

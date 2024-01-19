@@ -10,12 +10,13 @@ class ThenAbility extends BaseAbility {
         this.handler = properties.handler || this.executeGameActionPrehandlers;
     }
 
-    createContext(player = this.card.controller) {
+    createContext(player = this.card.controller, priorContext) {
         return new AbilityContext({
             ability: this,
             game: this.game,
             player: player,
-            source: this.card
+            source: this.card,
+            priorContext: priorContext
         });
     }
 
@@ -106,7 +107,7 @@ class ThenAbility extends BaseAbility {
                 this.game.queueSimpleStep(() => {
                     if (then.alwaysTriggers || events.every((event) => !event.cancelled)) {
                         let thenAbility = new ThenAbility(this.game, this.card, then);
-                        let thenContext = thenAbility.createContext(context.player);
+                        let thenContext = thenAbility.createContext(context.player, context);
                         thenContext.preThenEvents = events;
                         thenContext.preThenEvent = events[0];
                         if (
@@ -120,7 +121,7 @@ class ThenAbility extends BaseAbility {
             }
         } else if (then && then.alwaysTriggers) {
             let thenAbility = new ThenAbility(this.game, this.card, then);
-            let thenContext = thenAbility.createContext(context.player);
+            let thenContext = thenAbility.createContext(context.player, context);
             if (!thenAbility.meetsRequirements(thenContext) && thenAbility.condition(thenContext)) {
                 this.game.resolveAbility(thenContext);
             }

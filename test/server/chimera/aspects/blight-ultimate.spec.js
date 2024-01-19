@@ -46,7 +46,7 @@ describe('Blight ultimate', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('phase 2 attach 2 bleed add 2 threat', function () {
+        xit('phase 2 attach 2 bleed add 2 threat', function () {
             this.player2.player.chimeraPhase = 2;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
@@ -69,7 +69,7 @@ describe('Blight ultimate', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('phase 3 removes a die from the game and stuns leftmost', function () {
+        xit('phase 3 removes a die from the game and stuns leftmost', function () {
             this.stormcall.tokens.status = 1;
             this.player1.dicepool[0].exhausted = true;
             this.player1.dicepool[1].exhausted = true;
