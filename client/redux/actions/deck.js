@@ -242,3 +242,14 @@ export function loadChimeraDecks() {
         }
     };
 }
+
+export function loadMSUDecks() {
+    return {
+        types: ['LOAD_MSU_DECKS', 'MSU_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/msu-decks',
+            type: 'GET'
+        }
+    };
+}

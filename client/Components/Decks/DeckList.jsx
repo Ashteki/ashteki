@@ -17,7 +17,8 @@ import {
     loadBuildingBasicsDecks,
     loadFirstAdventureDecks,
     loadPveDecks,
-    loadChimeraDecks
+    loadChimeraDecks,
+    loadMSUDecks
 } from '../../redux/actions';
 
 import './DeckList.scss';
@@ -54,6 +55,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 return state.cards.chimeraDecks.filter((d) => showRestricted || !d.restricted);
             case 6:
                 return state.cards.pveDecks;
+            case 7:
+                return state.cards.msuDecks;
             default:
                 return state.cards.decks;
         }
@@ -80,6 +83,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
             dispatch(loadChimeraDecks());
         } else if (standaloneDecks == 6) {
             dispatch(loadPveDecks());
+        } else if (standaloneDecks == 7) {
+            dispatch(loadMSUDecks());
         } else {
             dispatch(loadDecks(pagingDetails));
         }

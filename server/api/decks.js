@@ -63,6 +63,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/msu-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(7);
+            } catch (err) {
+                logger.error('Failed to get msu precon decks', err);
+
+                throw new Error('Failed to get msu precon decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/adventuringparty-decks',
         wrapAsync(async function (req, res) {
             let decks;

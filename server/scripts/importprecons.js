@@ -95,6 +95,18 @@ class ImportPrecons {
 
             console.log('Done importing pvE precon decks');
             console.log('----------');
+
+            for (let deck of this.loadMSUDecks()) {
+                deck.preconGroup = 7;
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing MSU precon decks');
+            console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -132,6 +144,12 @@ class ImportPrecons {
 
     loadChimeraDecks() {
         let file = 'chimera.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadMSUDecks() {
+        let file = 'master-set-upgrade.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }

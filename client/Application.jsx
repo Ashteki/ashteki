@@ -55,6 +55,7 @@ class Application extends React.Component {
         this.props.loadFirstAdventureDecks();
         this.props.loadChimeraDecks();
         this.props.loadPveDecks();
+        this.props.loadMSUDecks();
 
         $(document).ajaxError((event, xhr) => {
             if (xhr.status === 403) {
