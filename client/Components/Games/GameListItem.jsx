@@ -185,7 +185,6 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
 
     return (
         <div key={game.id}>
-            <hr />
             <div className={rowClass}>
                 <div className='game-header-row'>
                     <span className={formatBadgeClass}>{getFormatLabel(game.gameFormat)}</span>
