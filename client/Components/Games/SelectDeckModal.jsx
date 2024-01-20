@@ -21,8 +21,10 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Tab>Red Rains Precons</Tab>
                     <Tab>Building Basics</Tab>
                     <Tab style={{ backgroundColor: 'rgb(0, 153, 255)', color: '#FFF' }}>
-                        {/* <img src={igcircle} alt='Adventuring Party' height='22' width='22' />{' '} */}
                         Adventuring Party
+                    </Tab>
+                    <Tab style={{ backgroundColor: 'rgb(0, 99, 48)', color: '#FFF' }}>
+                        Master Set Upgrade
                     </Tab>
                 </TabList>
 
@@ -45,6 +47,10 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(2)}>Choose for me</Button>
                     <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(7)}>Choose for me</Button>
+                    <DeckList standaloneDecks={7} onDeckSelected={onDeckSelected} />
                 </TabPanel>
             </Tabs>
         );
