@@ -5,7 +5,6 @@ import './Results.scss';
 import EloLadder from './EloLadder';
 import MyResults from './MyResults';
 import UserAlts from './profile/UserAlts';
-import League from './League';
 
 const Results = () => {
     return (
