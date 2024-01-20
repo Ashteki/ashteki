@@ -28,19 +28,21 @@ class Card extends PlayableObject {
 
         this.cardData = cardData;
         this.isChained = cardData.isChained;
+        this.imageStub = cardData.imageStub || cardData.stub;
         if (owner.user.altArts) {
             if (
                 owner.user.altArts[this.cardData.stub] &&
                 owner.user.altArts[this.cardData.stub].length
             ) {
                 this.altArts = [cardData.stub, ...owner.user.altArts[this.cardData.stub]];
+                // default to first alt
+                this.imageStub = this.altArts[1];
             }
         }
 
         this.id = cardData.stub;
         this.printedName = cardData.name;
         // this is the default imageStub for the card - this can be overridden by alt arts later
-        this.imageStub = cardData.imageStub || cardData.stub;
         this.printedType = cardData.type;
         this.index = 0;
 
