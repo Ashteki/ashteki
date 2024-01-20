@@ -8,6 +8,10 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
     let [zoomCard, setZoomCard] = useState(null);
     let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
 
+    const usesHighlightMagic = (card) => {
+        return card.card.dice?.includes(highlight) || card.card.altDice?.includes(highlight);
+    };
+
     const getCardsToRender = () => {
         let cardsToRender = [];
         let groupedCards = {};
@@ -48,7 +52,7 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                 }
                 const linkClasses = classNames('card-link', {
                     unique: card.phoenixborn,
-                    highlight: card.card.dice && card.card.dice.includes(highlight)
+                    highlight: usesHighlightMagic(card)
                 });
                 const countClass = card.count > 3 && !card.card?.type.includes('Conjur') ? 'invalidCount' : '';
 

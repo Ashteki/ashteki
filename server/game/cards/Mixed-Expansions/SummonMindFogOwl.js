@@ -21,13 +21,14 @@ class SummonMindFogOwl extends Card {
                 conjuration: 'mind-fog-owl'
             }),
             then: {
+                alwaysTriggers: true,
                 condition: (context) =>
                     context.source.focus > 0 &&
-                    context.preThenEvent.context.costs.returnDice.some(
+                    context.priorContext.costs.returnDice.some(
                         (d) => d.level === Level.Power && d.magic === Magic.Charm
                     ),
                 gameAction: this.game.actions.resolveDieAbility((context) => ({
-                    target: context.preThenEvent.context.costs.returnDice.find(
+                    target: context.priorContext.costs.returnDice.find(
                         (d) => d.level === Level.Power && d.magic === Magic.Charm
                     )
                 }))

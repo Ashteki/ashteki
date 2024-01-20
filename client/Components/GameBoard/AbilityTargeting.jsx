@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardImage from './CardImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import spellback from '../../assets/img/cardback-spell.png';
 
 import './AbilityTargetting.scss';
@@ -22,6 +22,9 @@ class AbilityTargeting extends React.Component {
     }
 
     renderSimpleCard(card) {
+        if (!card) {
+            return;
+        }
         if (card.type === 'die') {
             return (
                 <div className='target-die x-large  mb-2'>
@@ -50,6 +53,8 @@ class AbilityTargeting extends React.Component {
         }
         return (
             <div className='prompt-control-targeting'>
+                {this.renderSimpleCard(this.props.trigger)}
+                {this.props.trigger && <FontAwesomeIcon icon={faChevronRight} />}
                 {this.renderSimpleCard(this.props.source)}
                 {targetCards.length > 0 && <FontAwesomeIcon icon={faArrowRight} />}
                 {targetCards}

@@ -12,12 +12,15 @@ class BallisticSeeds extends AspectCard {
                 }
             },
             target: {
+                activePromptTitle: (context) =>
+                    'Choose a card to receive 1 wound',
                 player: 'opponent',
                 targetsPlayer: true,
                 controller: 'opponent',
                 cardCondition: (card, context) =>
                     card.type === CardType.Phoenixborn || this.checkRightmost(card, context),
-                gameAction: ability.actions.addDamageToken({ amount: 1, showMessage: true })
+                gameAction: ability.actions.addDamageToken({ amount: 1, showMessage: true }),
+                trigger: (context) => context.event.card
             }
         });
     }

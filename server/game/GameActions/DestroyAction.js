@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../constants');
+const { BattlefieldTypes, ConjuredCardTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class DestroyAction extends CardGameAction {
@@ -39,8 +39,11 @@ class DestroyAction extends CardGameAction {
             purge: this.purge
         };
         return super.createEvent('onCardDestroyed', params, (event) => {
-            const newDestination =
-                event.card.type == 'Conjuration' ? 'archives' : event.purge ? 'purged' : 'discard';
+            const newDestination = ConjuredCardTypes.includes(event.card.type)
+                ? 'archives'
+                : event.purge
+                    ? 'purged'
+                    : 'discard';
 
             let message = '{0} is destroyed';
             if (event.purge) {

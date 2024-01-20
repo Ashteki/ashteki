@@ -50,9 +50,10 @@ class PlayableObject extends EffectSource {
 
     updateAbilityEvents(from, to) {
         _.each(this.getReactions(true), (reaction) => {
+            // setup reactions in hand
             if (this.type === CardType.ReactionSpell) {
                 if (
-                    to === 'deck' ||
+                    // to === 'deck' ||
                     this.controller.isCardInPlayableLocation(this) ||
                     (this.controller.opponent &&
                         this.controller.opponent.isCardInPlayableLocation(this))
@@ -62,7 +63,12 @@ class PlayableObject extends EffectSource {
                     reaction.unregisterEvents();
                 }
             }
-            if (reaction.location.includes(to) && !reaction.location.includes(from)) {
+            // setup abilities that dictate location
+            if (
+                reaction.location.includes(to) &&
+                !reaction.location.includes(from) &&
+                !this.facedown
+            ) {
                 reaction.registerEvents();
             } else if (!reaction.location.includes(to) && reaction.location.includes(from)) {
                 reaction.unregisterEvents();

@@ -52,7 +52,8 @@ class AshesCardService {
                             phoenixborn: card.phoenixborn,
                             copies: card.copies,
                             deckType: card.deckType,
-                            dice: card.dice
+                            dice: card.dice,
+                            altDice: card.altDice
                         };
                     } else {
                         cards[card.stub] = card;

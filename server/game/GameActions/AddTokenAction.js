@@ -1,3 +1,4 @@
+const { BattlefieldTypes, PhoenixbornTypes, UpgradeCardTypes, CardType } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class AddTokenAction extends CardGameAction {
@@ -15,8 +16,12 @@ class AddTokenAction extends CardGameAction {
 
     setup() {
         this.name = 'addToken';
-        this.targetType = ['Ally', 'Conjuration', 'Ready Spell', 'Phoenixborn',
-            'Alteration Spell', 'Aspect', 'Chimera'];
+        this.targetType = [
+            ...BattlefieldTypes,
+            ...PhoenixbornTypes,
+            ...UpgradeCardTypes,
+            CardType.ReadySpell
+        ];
 
         let type = this.type;
         if (this.type === 'status') {

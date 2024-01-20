@@ -81,4 +81,36 @@ describe('Summon Mind Fog Owl', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('Focus summon without owl in archives', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    spellboard: ['summon-mind-fog-owl', 'summon-mind-fog-owl'],
+                    dicepool: ['charm', 'divine', 'illusion'],
+                    archives: [],
+                    inPlay: ['mind-fog-owl']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'holy-knight'],
+                    spellboard: []
+                }
+            });
+        });
+
+        it('can resolve a charm die if power used', function () {
+            this.player1.clickCard(this.summonMindFogOwl);
+            this.player1.clickPrompt('Summon Mind Fog Owl');
+            this.player1.clickDie(2);
+            this.player1.clickPrompt('Done');
+            expect(this.player1).not.toHaveDefaultPrompt();
+
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.attack).toBe(2);
+            expect(this.hammerKnight.dieUpgrades.length).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

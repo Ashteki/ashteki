@@ -57,6 +57,51 @@ describe('Ballistic Seeds Aspect', function () {
         });
     });
 
+    describe('In threatzone', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut', 'hammer-knight'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['summon-iron-rhino'],
+                    deck: ['summon-gilder', 'flute-mage']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
+                    inPlay: ['allure'],
+                    spellboard: [],
+                    threatZone: ['rampage', 'ballistic-seeds'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+            spyOn(Dice, 'getRandomInt').and.returnValue(5); // basic
+
+            this.allure.tokens.status = 2;
+        });
+
+        it('no trigger from token spend when facedown', function () {
+            expect(this.coalRoarkwin.damage).toBe(0);
+            expect(this.allure.status).toBe(2);
+            this.player1.endTurn();
+            // this.player1.clickCard(this.coalRoarkwin);
+
+            this.player1.clickOk(); // reveal behaviour alert
+
+            expect(this.ballisticSeeds.facedown).toBe(true);
+            expect(this.allure.status).toBe(1);
+            expect(this.coalRoarkwin.damage).toBe(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
     describe('Cannot attack', function () {
         beforeEach(function () {
             this.setupTest({

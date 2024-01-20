@@ -11,7 +11,6 @@ class Warcry extends AspectCard {
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
-                        !context.source.facedown &&
                         event.attackingPlayer === context.source.controller &&
                         (context.source.isAttacker ||
                             event.battles.some((b) =>

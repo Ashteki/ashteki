@@ -25,11 +25,19 @@ class PutIntoPlayAction extends CardGameAction {
             return false;
         } else if (!context.player) {
             return false;
-        } else if (card.location === 'play area' || card.location === 'spellboard') {
+        } else if (this.cardIsInPlay(card)) {
             return false;
         }
 
         return true;
+    }
+
+    cardIsInPlay(card) {
+        if (card.type === CardType.Aspect && card.location === 'play area' && card.facedown) {
+            return false;
+        } else {
+            return card.location === 'play area' || card.location === 'spellboard';
+        }
     }
 
     getEvent(card, context) {
@@ -60,7 +68,15 @@ class PutIntoPlayAction extends CardGameAction {
             }
 
             const targetLocation = card.type.includes('Spell') ? 'spellboard' : 'play area';
-            player.moveCard(card, targetLocation, { myControl: control });
+            if (CardType.Aspect === card.type && card.facedown && card.location === 'play area') {
+                event.card.flip();
+            } else {
+                player.moveCard(card, targetLocation, { myControl: control });
+            }
+
+            if (event.card.statusCount) {
+                card.addToken('status', card.statusCount);
+            }
 
             if (this.showMessage) {
                 context.game.addMessage('{0} puts {1} into play', player, card);

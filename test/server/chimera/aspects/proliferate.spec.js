@@ -39,6 +39,7 @@ describe('Proliferate Aspect', function () {
             this.player1.clickPrompt('Ok');
 
             expect(this.scarletSeed.location).toBe('play area');
+            expect(this.scarletSeed.status).toBe(3);
             expect(this.proliferate.facedown).toBe(false);
         });
     });
