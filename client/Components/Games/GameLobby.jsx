@@ -110,7 +110,7 @@ const GameLobby = ({ gameId }) => {
                         <>
                             <div className='game-buttons'>
                                 <PictureButton
-                                    text='Player'
+                                    text='2 Player'
                                     imageClass='pvp'
                                     onClick={() => handleNewGameClick('pvp')}
                                 />
