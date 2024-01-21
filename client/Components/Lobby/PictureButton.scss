@@ -1,7 +1,8 @@
 .game-buttons {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap: 10px
 }
 
 .image-button {
@@ -16,10 +17,6 @@
     filter: grayscale(.5);
     -webkit-filter: grayscale(.5);
 
-    &:not(:last-of-type) {
-        margin-right: 20px;
-    }
-
     &.pvp {
         background-image: url('https://cdn.ashes.live/images/cards/clashing-tempers.jpg');
         background-position: center;
@@ -29,6 +26,12 @@
         background-image: url('https://cdn.ashes.live/images/cards/corpse-of-viros-1p-standard-1.jpg');
         background-position: 50% 40%;
         background-size: 150%;
+    }
+
+    &.league {
+        background-image: url('https://cdn.ashteki.com/300/survival-of-the-fittest.jpg');
+        background-position: 35% 50%;
+        background-size: 200%;
     }
 
     .img-button-label {
@@ -71,6 +74,16 @@
         .img-button-label {
             color: #FFF;
         }
+    }
+}
+
+@media screen and (max-width: 1280px) {
+
+    /* For general iPad layouts */
+    .image-button {
+        width: 130px;
+        min-width: 130px; // don't resize smaller
+        height: 150px;
     }
 }
 

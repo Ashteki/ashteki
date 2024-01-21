@@ -19,27 +19,15 @@ const GameNameMaxLength = 64;
 
 /**
  * @typedef NewGameProps
- * @property {any} [tournament] Whether or not we're operating under the tournament UI
  * @property {import("../../typedefs").GameType} [defaultGameType] The default game type to use
  * @property {number} [defaultTimeLimit] The default time limit to use
  * @property {boolean} [defaultPrivate] Whether or not the game defaults to private
- * @property {function(string): string} [getParticipantName] A function to get the participant name of a participant in a tournament
- * @property {any[]} [matches] A list of tournament matches
- * @property {function(boolean): void} [onClosed] A callback to be called when the window is closed
  */
 
 /**
  * @param {NewGameProps} props
  */
-const NewGame = ({
-    tournament,
-    defaultGameType,
-    defaultPrivate,
-    defaultTimeLimit,
-    getParticipantName,
-    matches,
-    onClosed
-}) => {
+const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }) => {
     const lobbySocket = useSelector((state) => state.lobby.socket);
     const username = useSelector((state) => state.account.user?.username);
     const newGameType = useSelector((state) => state.lobby.newGameType);
@@ -107,11 +95,6 @@ const NewGame = ({
         setFieldValue('gameTimeLimit', defaultTime[value]);
     };
 
-    const onOptionChange = (option, value, setFieldValue) => {
-        // setFieldValue("clockType", value);
-        // setFieldValue("gameTimeLimit", defaultTime[value]);
-    };
-
     const handlePresetChange = (value, setFieldValue) => {
         // update the values to the presets for this game type
         switch (value) {
@@ -145,7 +128,6 @@ const NewGame = ({
                 // inline
                 onChange={(e) => {
                     formProps.handleChange(e);
-                    onOptionChange(option.name, e.value, formProps.setFieldValue);
                 }}
                 value='true'
                 checked={formProps.values[option.name]}
@@ -170,23 +152,7 @@ const NewGame = ({
                 enableReinitialize={true}
                 validationSchema={schema}
                 onSubmit={(values) => {
-                    if (tournament) {
-                        for (let match of matches) {
-                            dispatch(
-                                sendSocketMessage('newgame', {
-                                    ...values,
-                                    name: `${getParticipantName(
-                                        match.player1_id
-                                    )} vs ${getParticipantName(match.player2_id)}`,
-                                    tournament: true
-                                })
-                            );
-
-                            onClosed(true);
-                        }
-                    } else {
-                        dispatch(sendSocketMessage('newgame', values));
-                    }
+                    dispatch(sendSocketMessage('newgame', values));
                 }}
                 initialValues={initialValues}
             >

@@ -50,22 +50,26 @@ class Game extends EventEmitter {
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
         this.auditHelper = new AuditHelper(this);
+        this.cardVisibility = new CardVisibility(this.showHand, this.openHands, this.solo);
         this.solo = details.solo;
         if (this.solo) {
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
         }
+
         this.showHand = details.showHand;
         this.openHands = details.openHands;
-        this.cardVisibility = new CardVisibility(this.showHand, this.openHands, this.solo);
-
         this.allowSpectators = details.allowSpectators;
+
         this.cancelPromptUsed = false;
-        this.createdAt = new Date();
         this.currentAbilityWindow = null;
         this.currentActionWindow = null;
         this.currentEventWindow = null;
         this.currentPhase = '';
+
+        this.createdAt = new Date();
+        this.league = details.league;
+        this.pairing = details.pairing;
         // disable fatigue for tests
         this.disableFatigue = options.disableFatigue;
         this.gamePrivate = details.gamePrivate;
@@ -1746,7 +1750,10 @@ class Game extends EventEmitter {
             winReason: this.winReason,
             winner: this.winner ? this.winner.name : undefined,
             swap: this.swap,
-            solo: this.solo
+            solo: this.solo,
+            // one of the phx / ffl league games?
+            league: this.league,
+            pairingId: this.pairing.id
         };
 
         if (this.gameType === GameType.Competitive) {

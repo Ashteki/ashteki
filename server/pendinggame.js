@@ -37,7 +37,8 @@ class PendingGame {
         this.started = false;
         this.swap = !!details.swap;
         this.rematch = false;
-        this.tournament = details.tournament;
+        this.league = details.league;
+        this.pairing = details.pairing;
 
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.gameTimeLimit = details.gameTimeLimit;
@@ -94,7 +95,8 @@ class PendingGame {
             players: players,
             startedAt: this.createdAt,
             swap: this.swap,
-            solo: this.solo
+            solo: this.solo,
+            pairing: this.pairing
         };
     }
 
@@ -325,10 +327,6 @@ class PendingGame {
             return true;
         }
 
-        if (this.gamePrivate && !this.started) {
-            return user.permissions && user.permissions.canManageTournaments && this.tournament;
-        }
-
         let players = Object.values(this.players);
         return (
             !this.owner.hasUserBlocked(user) &&
@@ -459,7 +457,9 @@ class PendingGame {
             clockType: this.clockType,
             solo: this.solo,
             soloLevel: this.soloLevel,
-            soloStage: this.soloStage
+            soloStage: this.soloStage,
+            pairing: this.pairing,
+            league: this.league
         };
     }
 }

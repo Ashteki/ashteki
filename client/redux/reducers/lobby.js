@@ -100,6 +100,12 @@ export default function (state = defaultState, action) {
             newState.currentGame.opponentTyping = action.active;
 
             break;
+        case 'RECEIVE_PAIRINGS':
+            newState.leaguePairings = action.response.pairings;
+            break;
+        case 'CLEAR_PAIRINGS':
+            newState.leaguePairings = null;
+            break;
         default:
             return state;
     }
