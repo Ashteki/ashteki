@@ -1753,7 +1753,7 @@ class Game extends EventEmitter {
             solo: this.solo,
             // one of the phx / ffl league games?
             league: this.league,
-            pairingId: this.pairing.id
+            pairingId: this.pairing?.id
         };
 
         if (this.gameType === GameType.Competitive) {
