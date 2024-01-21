@@ -30,3 +30,23 @@ export function removeLobbyMessage(messageId) {
         }
     };
 }
+
+export function getLeaguePairings(tag) {
+    return {
+        types: ['REQUEST_PAIRINGS', 'RECEIVE_PAIRINGS'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: `/api/league/${tag.toLowerCase()}/pairings`,
+            cache: false,
+            data: {
+                tag: tag
+            }
+        }
+    };
+}
+
+export function clearLeaguePairings() {
+    return {
+        type: 'CLEAR_PAIRINGS'
+    };
+}

@@ -74,7 +74,14 @@ export const getRankedLabel = (name) => {
 };
 
 export const getGameTypeLabel = (gameType) => {
-    return gameType === 'chimera' ? 'Chimera' : 'Player';
+    switch (gameType) {
+        case 'chimera':
+            return 'Chimera';
+        case 'league':
+            return 'League';
+        default:
+            return 'Player';
+    }
 };
 
 export const gameFormats = [
