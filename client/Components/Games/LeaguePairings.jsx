@@ -54,6 +54,18 @@ const LeaguePairings = ({ pairings }) => {
         dispatch(clearLeaguePairings());
     };
 
+    const getPlayerName = (name, ashtekiName) => {
+        let result = ashtekiName || name;
+        if (ashtekiName && ashtekiName !== name) {
+            return (
+                <span>
+                    {result} <i>({name})</i>
+                </span>
+            );
+        }
+        return result;
+    };
+
     return (
         <div>
             <h2 className='lobby-header'>{getLeagueName(pairings.tag)}</h2>
@@ -69,8 +81,9 @@ const LeaguePairings = ({ pairings }) => {
                             ) : (
                                 <FontAwesomeIcon icon={faSquare} />
                             )}
-                            <div className='player'>{p.player1}{p.ashtekiP1 && ` (${p.ashtekiP1})`}</div><span>vs</span>
-                            <div className='player'>{p.player2}{p.ashtekiP2 && ` (${p.ashtekiP2})`}</div>
+                            <div className='player'>{getPlayerName(p.player1, p.ashtekiP1)}</div>
+                            <b>vs</b>
+                            <div className='player'>{getPlayerName(p.player2, p.ashtekiP2)}</div>
                             {playable && (
                                 <button
                                     className='btn btn-success def'
