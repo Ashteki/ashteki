@@ -82,7 +82,7 @@ describe('Maeoni Viper command strike', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'maeoni-viper',
-                    inPlay: ['silver-snake'],
+                    inPlay: ['silver-snake', 'anchornaut'],
                     hand: ['mist-typhoon'],
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
                 },
@@ -97,10 +97,18 @@ describe('Maeoni Viper command strike', function () {
             this.game.checkGameState(true);
         });
 
-        it('should not be available', function () {
+        it('should be available (to target my own units)', function () {
             expect(this.player1).not.toBeAbleToSelect(this.maeoniViper);
             this.player1.clickCard(this.maeoniViper);
-            expect(this.player1).not.toHavePromptButton('Command Strike');
+            expect(this.player1).toHavePromptButton('Command Strike');
+            this.player1.clickPrompt('Command Strike');
+            this.player1.clickDie(0);
+            this.player1.clickDie(1);
+            this.player1.clickPrompt('Done');
+
+            this.player1.clickCard(this.silverSnake);
+            this.player1.clickCard(this.anchornaut);
+            expect(this.anchornaut.location).toBe('discard');
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
