@@ -37,7 +37,8 @@
       },
       {
         "id": "fade-away",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "final-cry",
@@ -61,19 +62,23 @@
       },
       {
         "id": "summon-blue-jaguar",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-false-demon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-gilder",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-mist-spirit",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-sleeping-widows",
@@ -133,7 +138,8 @@
     "cards": [
       {
         "id": "abundance",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "blood-archer",
@@ -153,7 +159,8 @@
       },
       {
         "id": "hammer-knight",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "iron-worker",
@@ -169,15 +176,18 @@
       },
       {
         "id": "summon-butterfly-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-seaside-raven",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-three-eyed-owl",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "sympathy-pain",

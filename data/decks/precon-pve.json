@@ -35,11 +35,13 @@
       },
       {
         "id": "old-salt",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "phoenix-attendant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "serve-the-city",
@@ -47,15 +49,18 @@
       },
       {
         "id": "shadowblade",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-bone-crow",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-calamity-golem",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -110,15 +115,18 @@
       },
       {
         "id": "old-salt",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "phoenix-attendant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "playtime",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "serve-the-city",
@@ -126,11 +134,13 @@
       },
       {
         "id": "summon-bone-crow",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-calamity-golem",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -181,7 +191,8 @@
       },
       {
         "id": "final-stand",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "infuriate",
@@ -189,11 +200,13 @@
       },
       {
         "id": "old-salt",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "phoenix-attendant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "serve-the-city",
@@ -201,11 +214,13 @@
       },
       {
         "id": "summon-bone-crow",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-calamity-golem",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -252,7 +267,8 @@
       },
       {
         "id": "change-of-heart",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "chant-of-transfusion",
@@ -264,11 +280,13 @@
       },
       {
         "id": "old-salt",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "phoenix-attendant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "serve-the-city",
@@ -276,11 +294,13 @@
       },
       {
         "id": "summon-bone-crow",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-calamity-golem",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
