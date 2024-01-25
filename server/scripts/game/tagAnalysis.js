@@ -22,28 +22,31 @@ gameService
                 continue;
             }
 
+            if (!pbStats[game.players[0].deck]) {
+                pbStats[game.players[0].deck] = { wins: 0, losses: 0 };
+            }
+            if (!pbStats[game.players[1].deck]) {
+                pbStats[game.players[1].deck] = { wins: 0, losses: 0 };
+            }
+
             if (game.winner === game.players[0].name) {
-                if (pbStats[game.players[0].deck]) {
-                    pbStats[game.players[0].deck].wins++;
-                } else {
-                    pbStats[game.players[0].deck] = { wins: 1 };
-                }
+                pbStats[game.players[0].deck].wins++;
+                pbStats[game.players[1].deck].losses++;
             }
 
             if (game.winner === game.players[1].name) {
-                if (pbStats[game.players[1].deck]) {
-                    pbStats[game.players[1].deck].wins++;
-                } else {
-                    pbStats[game.players[1].deck] = { wins: 1 };
-                }
+                pbStats[game.players[1].deck].wins++;
+                pbStats[game.players[0].deck].losses++;
             }
         }
 
         console.log(`Mirrors: ${rejects.mirror}, NoWins: ${rejects.nowin}`);
-        console.log('Pb | wins');
+        console.log('Pb | wins | losses');
         for (const [key, value] of Object.entries(pbStats)) {
-            console.log(`${key}| ${value.wins}`);
+            console.log(`${key}| ${value.wins}| ${value.losses}`);
         }
+
+        process.exit();
     })
     .catch((error) => {
         console.log(error);
