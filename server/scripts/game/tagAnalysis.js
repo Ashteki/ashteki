@@ -29,6 +29,14 @@ gameService
                     pbStats[game.players[0].deck] = { wins: 1 };
                 }
             }
+
+            if (game.winner === game.players[1].name) {
+                if (pbStats[game.players[1].deck]) {
+                    pbStats[game.players[1].deck].wins++;
+                } else {
+                    pbStats[game.players[1].deck] = { wins: 1 };
+                }
+            }
         }
 
         console.log(`Mirrors: ${rejects.mirror}, NoWins: ${rejects.nowin}`);
