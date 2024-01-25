@@ -10,11 +10,15 @@ gameService
     .getTaggedGames(inputTag, {})
     .then(async (games) => {
         const pbStats = {};
-        const rejects = { mirror: 0 };
+        const rejects = { mirror: 0, nowin: 0 };
 
         for (const game of games) {
             if (game.players[0].deck === game.players[1].deck) {
                 rejects.mirror++;
+                continue;
+            }
+            if (!game.winner) {
+                rejects.nowin++;
                 continue;
             }
 
@@ -27,6 +31,7 @@ gameService
             }
         }
 
+        console.log(`Mirrors: ${rejects.mirror}, NoWins: ${rejects.nowin}`);
         console.log('Pb | wins');
         for (const [key, value] of Object.entries(pbStats)) {
             console.log(`${key}| ${value.wins}`);

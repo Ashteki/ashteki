@@ -10,7 +10,7 @@ let args = process.argv.slice(2);
 const inputTag = args[0];
 
 const gameLabels = {};
-gameService.getTaggedGames(inputTag)
+gameService.getTaggedGames(inputTag, {})
     .then(async (games) => {
         console.log('Date | player 1 | p1 deck | player 2 | p2 deck | winner');
         games.forEach((game) => {
