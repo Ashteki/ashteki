@@ -25,7 +25,8 @@
     "cards": [
       {
         "id": "anchornaut",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "blood-chains",
@@ -41,7 +42,8 @@
       },
       {
         "id": "fire-archer",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "hammer-knight",
@@ -77,15 +79,18 @@
       },
       {
         "id": "summon-cerasaurus-mount",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-frostback-bear",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-winged-lioness",
-        "count": 1
+        "count": 1,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -161,7 +166,8 @@
       },
       {
         "id": "mind-maze",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "molten-gold",
@@ -181,11 +187,13 @@
       },
       {
         "id": "summon-frostback-bear",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-mind-fog-owl",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-ruby-cobra",
@@ -193,11 +201,13 @@
       },
       {
         "id": "summon-salamander-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-three-eyed-owl",
-        "count": 1
+        "count": 1,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -285,7 +295,8 @@
       },
       {
         "id": "master-vampire",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "psychic-vampire",
@@ -293,7 +304,8 @@
       },
       {
         "id": "raptor-herder",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "reclaim-soul",
@@ -301,15 +313,18 @@
       },
       {
         "id": "summon-salamander-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-sleeping-widows",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "summon-vampire-bat-swarm",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "sympathy-pain",
@@ -369,7 +384,8 @@
     "cards": [
       {
         "id": "blink",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "explosive-growth",
@@ -389,7 +405,8 @@
       },
       {
         "id": "hunt-master",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "invigorate",
@@ -409,15 +426,18 @@
       },
       {
         "id": "summon-gilder",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-squall-stallion",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-wishing-wing",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "swift-messenger",
@@ -513,23 +533,28 @@
       },
       {
         "id": "sonic-swordsman",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-ancestor-spirit",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-false-demon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-light-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-shadow-spirit",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "to-shadows",
@@ -589,7 +614,8 @@
       },
       {
         "id": "celestial-knight",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "fade-away",
@@ -613,7 +639,8 @@
       },
       {
         "id": "holy-knight",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "meteor",
@@ -621,7 +648,8 @@
       },
       {
         "id": "root-armor",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "shepherd-of-lost-souls",
@@ -629,11 +657,13 @@
       },
       {
         "id": "summon-butterfly-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-light-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "sword-of-virtue",
@@ -677,7 +707,8 @@
     "cards": [
       {
         "id": "battle-seer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "chaos-gravity",
@@ -717,19 +748,23 @@
       },
       {
         "id": "sonic-swordsman",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-false-demon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-light-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-salamander-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "to-shadows",
@@ -781,7 +816,8 @@
     "cards": [
       {
         "id": "amplify",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "anguish",
@@ -801,7 +837,8 @@
       },
       {
         "id": "essence-druid",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "flock-shepherd",
@@ -829,15 +866,18 @@
       },
       {
         "id": "summon-ruby-cobra",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-salamander-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-three-eyed-owl",
-        "count": 1
+        "count": 1,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -893,7 +933,8 @@
     "cards": [
       {
         "id": "abundance",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "chant-of-revenge",
@@ -901,7 +942,8 @@
       },
       {
         "id": "crimson-bomber",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "fester",
@@ -921,7 +963,8 @@
       },
       {
         "id": "open-memories",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "psychic-vampire",
@@ -945,11 +988,13 @@
       },
       {
         "id": "summon-fallen",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "swift-messenger",
-        "count": 2
+        "count": 2,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -1021,7 +1066,8 @@
       },
       {
         "id": "raptor-herder",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "redirect",
@@ -1029,19 +1075,23 @@
       },
       {
         "id": "summon-emberoot-lizard",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-frostback-bear",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-gilder",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-mind-fog-owl",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "sympathy-pain",
@@ -1109,7 +1159,8 @@
       },
       {
         "id": "flash-strike",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "generosity",
@@ -1137,15 +1188,18 @@
       },
       {
         "id": "summon-frostback-bear",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-omen-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-time-hopper",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "survival-of-the-fittest",
@@ -1153,7 +1207,8 @@
       },
       {
         "id": "swift-messenger",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "sympathy-pain",
@@ -1221,7 +1276,8 @@
       },
       {
         "id": "concentration",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "fate-reflection",
@@ -1249,19 +1305,23 @@
       },
       {
         "id": "small-sacrifice",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-butterfly-monk",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-light-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-turtle-guard",
-        "count": 1
+        "count": 1,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -1329,7 +1389,8 @@
       },
       {
         "id": "guilt-link",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "hunt-master",
@@ -1345,19 +1406,23 @@
       },
       {
         "id": "summon-gilder",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-indiglow-creeper",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-time-hopper",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-wishing-wing",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "survival-of-the-fittest",
@@ -1457,11 +1522,13 @@
       },
       {
         "id": "grave-knight",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "hammer-knight",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "piercing-light",
@@ -1481,15 +1548,18 @@
       },
       {
         "id": "summon-butterfly-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-cloudburst-gryphon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-light-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -1541,7 +1611,8 @@
     "cards": [
       {
         "id": "abundance",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "dreamlock-mage",
@@ -1581,19 +1652,23 @@
       },
       {
         "id": "sonic-swordsman",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "summon-orchid-dove",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-ruby-cobra",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-seaside-raven",
-        "count": 1
+        "count": 1,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -1657,7 +1732,8 @@
       },
       {
         "id": "fear",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "final-cry",
@@ -1665,7 +1741,8 @@
       },
       {
         "id": "fire-archer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "iron-worker",
@@ -1681,15 +1758,18 @@
       },
       {
         "id": "summon-false-demon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-salamander-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-vampire-bat-swarm",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "sympathy-pain",
@@ -1781,7 +1861,8 @@
       },
       {
         "id": "realm-walker",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "rose-fire-dancer",
@@ -1789,11 +1870,13 @@
       },
       {
         "id": "summon-false-demon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-fox-spirit",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-frostback-bear",
@@ -1801,11 +1884,13 @@
       },
       {
         "id": "summon-salamander-monk",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-shadow-spirit",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "to-shadows",
@@ -1877,7 +1962,8 @@
       },
       {
         "id": "crimson-bomber",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "frost-bite",
@@ -1885,7 +1971,8 @@
       },
       {
         "id": "immortal-commander",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "natures-wrath",
@@ -1893,7 +1980,8 @@
       },
       {
         "id": "open-memories",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "psychic-vampire",
@@ -1901,7 +1989,8 @@
       },
       {
         "id": "raptor-herder",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "rayward-knight",
@@ -1917,7 +2006,8 @@
       },
       {
         "id": "summon-fallen",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-sleeping-widows",
@@ -2009,7 +2099,8 @@
       },
       {
         "id": "summon-light-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-radiant-leviathan",
@@ -2017,15 +2108,18 @@
       },
       {
         "id": "summon-seafoam-snapper",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-tidal-crab",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-wishing-wing",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "survival-of-the-fittest",
@@ -2033,7 +2127,8 @@
       },
       {
         "id": "tidal-shift",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "wave-crash",
@@ -2098,7 +2193,8 @@
     "cards": [
       {
         "id": "abundance",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "call-upon-the-realms",
@@ -2130,7 +2226,8 @@
       },
       {
         "id": "rising-horde",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "seeds-of-aggression",
@@ -2146,15 +2243,18 @@
       },
       {
         "id": "summon-false-demon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-ruin-dweller",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-turtle-guard",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "swift-messenger",
@@ -2235,7 +2335,8 @@
       },
       {
         "id": "enchanted-violinist",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "hunt-master",
@@ -2263,7 +2364,8 @@
       },
       {
         "id": "summon-frostback-bear",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-gilder",
@@ -2271,15 +2373,18 @@
       },
       {
         "id": "summon-prism-tetra",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-ruby-cobra",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "tsunami-shot",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -2348,7 +2453,8 @@
       },
       {
         "id": "fire-archer",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "frost-fang",
@@ -2364,7 +2470,8 @@
       },
       {
         "id": "raptor-herder",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "rapture",
@@ -2372,15 +2479,18 @@
       },
       {
         "id": "summon-frostback-bear",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-gilder",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-mind-fog-owl",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-sleeping-widows",
@@ -2461,7 +2571,8 @@
       },
       {
         "id": "crystal-archer",
-        "count": 2
+        "count": 2,
+        "ff": true
       },
       {
         "id": "crystal-armor",
@@ -2489,7 +2600,8 @@
       },
       {
         "id": "realm-walker",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "rose-fire-dancer",
@@ -2501,15 +2613,18 @@
       },
       {
         "id": "summon-cloudburst-gryphon",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-fox-spirit",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-light-bringer",
-        "count": 1
+        "count": 1,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -2570,7 +2685,8 @@
       },
       {
         "id": "crypt-guardian",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "eras-end",
@@ -2590,7 +2706,8 @@
       },
       {
         "id": "hypnotize",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "natures-wrath",
@@ -2610,15 +2727,18 @@
       },
       {
         "id": "summon-ruby-cobra",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-ruin-dweller",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-silver-snake",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "sunshield-sentry",
@@ -2679,7 +2799,8 @@
       },
       {
         "id": "dream-fracture",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "dreamlock-mage",
@@ -2691,7 +2812,8 @@
       },
       {
         "id": "gates-thrown-open",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "hollow",
@@ -2699,7 +2821,8 @@
       },
       {
         "id": "keepsake",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "particle-shield",
@@ -2715,11 +2838,13 @@
       },
       {
         "id": "summon-ancestor-spirit",
-        "count": 1
+        "count": 1,
+        "ff": true
       },
       {
         "id": "summon-shadow-spirit",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "to-shadows",

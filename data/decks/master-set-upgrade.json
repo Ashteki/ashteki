@@ -32,7 +32,8 @@
             },
             {
                 "id": "mist-typhoon",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "molten-gold",
@@ -52,19 +53,23 @@
             },
             {
                 "id": "steady-gaze",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-blue-jaguar",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-butterfly-monk",
-                "count": 2
+                "count": 2,
+                "ff": true
             },
             {
                 "id": "summon-mist-spirit",
-                "count": 1
+                "count": 1,
+                "ff": true
             }
         ],
         "conjurations": [
@@ -112,11 +117,13 @@
         "cards": [
             {
                 "id": "blood-archer",
-                "count": 2
+                "count": 2,
+                "ff": true
             },
             {
                 "id": "blood-shaman",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "bound-soul",
@@ -124,7 +131,8 @@
             },
             {
                 "id": "chant-of-revenge",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "cut-the-strings",
@@ -132,7 +140,8 @@
             },
             {
                 "id": "fear",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "final-cry",
@@ -148,7 +157,8 @@
             },
             {
                 "id": "summon-butterfly-monk",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "sympathy-pain",
@@ -200,7 +210,8 @@
         "cards": [
             {
                 "id": "blood-archer",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "call-upon-the-realms",
@@ -212,7 +223,8 @@
             },
             {
                 "id": "fade-away",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "open-memories",
@@ -232,15 +244,18 @@
             },
             {
                 "id": "summon-false-demon",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-masked-wolf",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-mist-spirit",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "summon-sleeping-widows",
@@ -308,7 +323,8 @@
             },
             {
                 "id": "enchanted-violinist",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "open-memories",
@@ -324,11 +340,13 @@
             },
             {
                 "id": "resummon",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "rose-fire-dancer",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "strange-copy",
@@ -336,11 +354,13 @@
             },
             {
                 "id": "summon-seaside-raven",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-three-eyed-owl",
-                "count": 3
+                "count": 3,
+                "ff": true
             }
         ],
         "conjurations": [
@@ -396,11 +416,13 @@
             },
             {
                 "id": "golden-veil",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "hammer-knight",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "hypnotize",
@@ -416,15 +438,18 @@
             },
             {
                 "id": "root-armor",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-gilder",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-silver-snake",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "undying-heart",
@@ -472,7 +497,8 @@
         "cards": [
             {
                 "id": "anchornaut",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "expand-energy",
@@ -480,7 +506,8 @@
             },
             {
                 "id": "hammer-knight",
-                "count": 2
+                "count": 2,
+                "ff": true
             },
             {
                 "id": "hidden-power",
@@ -488,7 +515,8 @@
             },
             {
                 "id": "iron-worker",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "one-hundred-blades",
@@ -504,7 +532,8 @@
             },
             {
                 "id": "strengthen",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-iron-rhino",
@@ -512,7 +541,8 @@
             },
             {
                 "id": "summon-mist-spirit",
-                "count": 1
+                "count": 1,
+                "ff": true
             }
         ],
         "conjurations": [
