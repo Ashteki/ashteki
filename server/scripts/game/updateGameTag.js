@@ -18,7 +18,7 @@ collection
         },
         {
             $set: {
-                tag: args[1]
+                label: args[1]
             }
         }
     )
