@@ -50,14 +50,13 @@ const FAQ = () => {
                         first five, or played in the first round of the game. The current chained list
                         is:
                         <ul style={{ columns: 2 }}>
-                            <li>Exhortation</li>
                             <li>Explosive Growth</li>
-                            <li>Massive Growth</li>
+                            <li>Golden Veil</li>
+                            <li>Hypnotize</li>
                             <li>Meteor</li>
                             <li>Psychic Vampire</li>
                             <li>River Skald</li>
                             <li>Summon Shining Hydra</li>
-                            <li>Summon Sleeping Widows</li>
                         </ul>
                         <p>
                             In Ashteki, decks that include chained cards will display a chain link icon in the decklist and the card list
