@@ -61,6 +61,7 @@ class Player extends GameObject {
         this.expectedScore = undefined;
 
         this.suddenDeath = false;
+        this.loseOnTurnEnd = false;
         this.behaviourRoll = undefined;
     }
 
@@ -123,6 +124,12 @@ class Player extends GameObject {
         }
 
         return result;
+    }
+
+    outOfTime() {
+        if (!this.loseOnTurnEnd) {
+            this.loseOnTurnEnd = true;
+        }
     }
 
     /**

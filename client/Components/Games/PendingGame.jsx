@@ -184,7 +184,7 @@ const PendingGame = () => {
             <h3>
                 Time Limit:{' '}
                 <span className='unbold'>
-                    {currentGame.useGameTimeLimit ? currentGame.gameTimeLimit : 'None'}
+                    {currentGame.useGameTimeLimit ? currentGame.gameTimeLimit + ', ' + currentGame.clockType : 'None'}
                 </span>
             </h3>
         );

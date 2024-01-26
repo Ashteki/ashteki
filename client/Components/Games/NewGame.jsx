@@ -107,8 +107,8 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
             case 'PHX':
                 setFieldValue('ranked', true);
                 setFieldValue('useGameTimeLimit', true);
-                setFieldValue('clockType', 'timer');
-                setFieldValue('gameTimeLimit', 60);
+                setFieldValue('clockType', 'chess');
+                setFieldValue('gameTimeLimit', 30);
                 setFieldValue('gameFormat', 'constructed');
 
                 break;
