@@ -1016,20 +1016,12 @@ class Game extends EventEmitter {
 
     /**
      * This function is called by the client when a player chess clock hits Zero.
-     * It triggers a gamestatecheck (in gameserver) and doesn't really need to do much else
+     * It doesn't do anything, but needs to exist for the message handler to stop the clocks
      * This needs to exist for gameserver to trigger the state check (and immediate win/loss)
      * @param {String} playerName
      */
     clockZero(playerName) {
         logger.info(playerName, ' clockZero message recived');
-        let player = this.getPlayerByName(playerName);
-        if (!player) {
-            return false;
-        }
-
-        if (this.clockType === 'chess') {
-            player.clock.checkForGameLoss();
-        }
     }
     /*
      * This function is called by the client when a player clicks an option setting
@@ -1588,8 +1580,13 @@ class Game extends EventEmitter {
     }
 
     raiseEndTurnEvent() {
-        this.raiseEvent('onTurnEnded', { player: this.activePlayer }, () => {
-            this.endTurn();
+        this.raiseEvent('onTurnEnded', { player: this.activePlayer }, (event) => {
+            // game loss for player out of time
+            if (event.player.loseOnTurnEnd) {
+                this.recordWinner(event.player.opponent, 'clock');
+            } else {
+                this.endTurn();
+            }
         });
     }
 
