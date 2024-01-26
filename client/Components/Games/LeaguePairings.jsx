@@ -25,7 +25,11 @@ const LeaguePairings = ({ pairings }) => {
     };
 
     const getLeagueName = (tag) => {
-        return tag === 'phx' ? 'Phoenix League' : 'First Five League'
+        return tag === 'phx' ? 'Phoenix League' : 'First Five League';
+    };
+
+    const playersAreTimerExempt = (pairing) => {
+        return [pairing.ashtekiP1, pairing.ashtekiP2].includes('shadowfire');
     };
 
     const onPlayClick = (pairing) => {
@@ -38,13 +42,17 @@ const LeaguePairings = ({ pairings }) => {
             gameType: pairings.tag === 'phx' ? 'ranked' : 'casual',
             newGameType: 'league',
             gameFormat: 'constructed',
-            useGameTimeLimit: true,
-            gameTimeLimit: 60,
-            clockType: 'timer',
+            useGameTimeLimit: false,
             ranked: true,
             pairing: pairing,
             league: pairings.tag
         };
+        if (!playersAreTimerExempt(pairing)) {
+            values.useGameTimeLimit = true;
+            values.gameTimeLimit = 30;
+            values.clockType = 'chess';
+        }
+
         // create and then join the game
         dispatch(sendSocketMessage('newgame', values));
         dispatch(clearLeaguePairings());
