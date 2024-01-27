@@ -58,6 +58,7 @@ export default function (state = defaultState, action) {
         case 'PROFILE_SAVED':
             if (state.socket) {
                 state.socket.emit('authenticate', action.response.token);
+                state.socket.user = action.response.user;
             }
 
             break;
