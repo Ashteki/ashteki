@@ -29,7 +29,7 @@ class Card extends PlayableObject {
         this.cardData = cardData;
         this.isChained = cardData.isChained;
         this.imageStub = cardData.imageStub || cardData.stub;
-        if (owner.user.altArts) {
+        if (owner.user.altArts && !owner.user.settings.optionSettings?.manualAlts) {
             if (
                 owner.user.altArts[this.cardData.stub] &&
                 owner.user.altArts[this.cardData.stub].length

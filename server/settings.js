@@ -6,7 +6,8 @@ const defaultOptionSettings = {
     compactLayout: false,
     bluffTimer: 0,
     alertTimer: 5,
-    alwaysGroupTactics: true
+    alwaysGroupTactics: true,
+    manualAlts: false
 };
 
 const defaultSettings = {
