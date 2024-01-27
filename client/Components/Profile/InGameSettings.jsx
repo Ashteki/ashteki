@@ -60,6 +60,15 @@ const InGameSettings = ({ formProps }) => {
                 onBlur={formProps.handleBlur}
             />
             <Form.Check
+                id='manualAlts'
+                name='gameOptions.manualAlts'
+                label="Don't use alt arts by default"
+                type='switch'
+                checked={formProps.values.gameOptions.manualAlts}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <Form.Check
                 id='leftMode'
                 name='gameOptions.leftMode'
                 label='Show the prompt area on left'

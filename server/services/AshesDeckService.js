@@ -257,6 +257,7 @@ class AshesDeckService {
                 decks = await this.getPreconDecks(deckType);
                 break;
         }
+        decks = decks.filter((d) => !d.restricted);
         const i = Math.floor(Math.random() * decks.length);
         return decks[i];
     }

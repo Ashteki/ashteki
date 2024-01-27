@@ -79,7 +79,8 @@ const initialValues = {
         dontIceTrapOwnUnits: true,
         noAttackAlerts: false,
         leftMode: false,
-        compactLayout: false
+        compactLayout: false,
+        manualAlts: false
     }
 };
 
@@ -231,10 +232,6 @@ const Profile = ({ onSubmit, isLoading }) => {
                                 selectedCardSize={localCardSize || user.settings.cardSize}
                                 onCardSizeSelected={(name) => setCardSize(name)}
                             />
-                        </Col>
-                        <Col sm='6'>
-                            <InGameSettings formProps={formProps} user={user} />
-
                             <Panel title='Bluff timer'>
                                 <RangeSlider
                                     min='0'
@@ -245,6 +242,10 @@ const Profile = ({ onSubmit, isLoading }) => {
                                 />
                                 <br />
                             </Panel>
+                        </Col>
+                        <Col sm='6'>
+                            <InGameSettings formProps={formProps} user={user} />
+
                             <Panel title='Alert timer'>
                                 <RangeSlider
                                     min='0'

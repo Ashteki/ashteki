@@ -64,6 +64,16 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         }
                     />
                     <Form.Check
+                        id='manualAlts'
+                        name='gameOptions.manualAlts'
+                        label="Don't use alt arts by default"
+                        type='switch'
+                        checked={optionSettings.manualAlts}
+                        onChange={(event) =>
+                            onOptionSettingToggle('manualAlts', event.target.checked)
+                        }
+                    />
+                    <Form.Check
                         id='leftMode'
                         name='gameOptions.leftMode'
                         label='Show the prompt area on left'
