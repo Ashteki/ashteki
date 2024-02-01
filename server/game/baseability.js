@@ -32,6 +32,7 @@ class BaseAbility {
         this.buildTargets(properties);
         this.cost = this.buildCost(properties.cost);
         this.nonDependentTargets = this.targets.filter((target) => !target.properties.dependsOn);
+        this.ignoreTargetCheck = properties.ignoreTargetCheck;
     }
 
     buildCost(cost) {
@@ -122,7 +123,7 @@ class BaseAbility {
         ) {
             return '';
         } else if (this.targets.length > 0) {
-            return this.canResolveTargets(context) ? '' : 'target';
+            return (this.ignoreTargetCheck || this.canResolveTargets(context)) ? '' : 'target';
         }
 
         return this.gameAction.length > 0 ? 'condition' : '';
@@ -222,10 +223,6 @@ class BaseAbility {
 
     hasLegalTargets(context) {
         return this.nonDependentTargets.every((target) => target.hasLegalTarget(context));
-    }
-
-    checkAllTargets(context) {
-        return this.nonDependentTargets.every((target) => target.checkTarget(context));
     }
 
     // eslint-disable-next-line no-unused-vars

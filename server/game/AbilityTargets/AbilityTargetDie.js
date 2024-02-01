@@ -131,10 +131,7 @@ class AbilityTargetDie extends AbilityTarget {
             player = player.opponent;
         }
 
-        context.game.promptForDieSelect(
-            player,
-            Object.assign(promptProperties, otherProperties)
-        );
+        context.game.promptForDieSelect(player, Object.assign(promptProperties, otherProperties));
     }
 
     checkTarget(context) {

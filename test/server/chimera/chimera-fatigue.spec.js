@@ -40,5 +40,21 @@ describe('Chimera fatigue', function () {
             expect(this.player2.threatZone.length).toBe(4); // refilled from reshuffled deck
             expect(this.player2.fatigued).toBe(true);
         });
+
+        it('BUG: player meditation should not cause damage', function () {
+            this.player1.dicepool[0].level = 'basic';
+            this.player2.player.deck = [this.rampage];
+            expect(this.player2.deck.length).toBe(1);
+            expect(this.player2.discard.length).toBe(4);
+            this.player2.player.fatigued = true;
+
+            this.player1.clickPrompt('Meditate');
+            this.player1.clickPrompt('Choose top Of Deck');
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Confirm');
+            this.player1.clickPrompt('Stop meditating');
+
+            expect(this.player2.phoenixborn.damage).toBe(0);
+        });
     });
 });
