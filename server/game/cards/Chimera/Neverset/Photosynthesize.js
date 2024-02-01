@@ -10,7 +10,6 @@ class Photosynthesize extends AspectCard {
                 target: context.source.owner.getBasicDie(Magic.Rage),
                 showMessage: true
             }))
-
         });
     };
 

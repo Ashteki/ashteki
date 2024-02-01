@@ -100,7 +100,6 @@ describe('Charge Fist Aspect', function () {
             this.player1.clickPrompt('Ok');
 
             expect(this.coalRoarkwin.damage).toBe(0);
-            // all non-basic dice are rerolled
             expect(this.player1.activeNonBasicDiceCount).toBe(6);
             expect(this.chargeFist.status).toBe(1);
         });

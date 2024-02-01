@@ -1,3 +1,4 @@
+const { Level } = require('../../../../server/constants');
 const Dice = require('../../../../server/game/dice');
 
 describe('Galeforce Aspect', function () {
@@ -95,6 +96,22 @@ describe('Galeforce Aspect', function () {
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
+        });
+
+        it('with no dice to lower, status is still lost', function () {
+            this.player1.dicepool.forEach((d) => {
+                d.level = Level.Basic;
+            });
+            expect(this.player1.dicepool[0].level).toBe('basic');
+
+            expect(this.galeforce.location).toBe('play area');
+            this.player1.endTurn();
+
+            expect(this.galeforce.status).toBe(2);
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });

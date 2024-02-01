@@ -7,6 +7,7 @@ class Galeforce extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            ignoreTargetCheck: true,
             target: {
                 activePromptTitle: 'Choose a die to lower one level',
                 player: 'opponent',
