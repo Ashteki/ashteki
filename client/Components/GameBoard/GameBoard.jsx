@@ -434,27 +434,27 @@ const GameBoard = () => {
     const compactLayout = optionSettings?.compactLayout;
     const leftMode = optionSettings?.leftMode || currentGame.solo || compactLayout;
 
-    const getOtherPlayerPrompt = (otherPlayer) => {
-        let otherPlayerPrompt = null;
-        if (currentGame.solo) {
-            const otherState = otherPlayer.promptState;
-            otherState.style = 'warning';
-            otherPlayerPrompt = (
-                <div className='inset-pane'>
-                    <ActivePlayerPrompt
-                        cards={cards}
-                        promptState={otherState}
-                        onButtonClick={onCommand}
-                        onMouseOver={onMouseOver}
-                        onMouseOut={onMouseOut}
-                        onTimerExpired={onTimerExpired.bind(this)}
-                        phase={currentGame.currentPhase}
-                    />
-                </div>
-            );
-        }
-        return otherPlayerPrompt;
-    };
+    // const getOtherPlayerPrompt = (otherPlayer) => {
+    //     let otherPlayerPrompt = null;
+    //     if (currentGame.solo) {
+    //         const otherState = otherPlayer.promptState;
+    //         otherState.style = 'warning';
+    //         otherPlayerPrompt = (
+    //             <div className='inset-pane'>
+    //                 <ActivePlayerPrompt
+    //                     cards={cards}
+    //                     promptState={otherState}
+    //                     onButtonClick={onCommand}
+    //                     onMouseOver={onMouseOver}
+    //                     onMouseOut={onMouseOut}
+    //                     onTimerExpired={onTimerExpired.bind(this)}
+    //                     phase={currentGame.currentPhase}
+    //                 />
+    //             </div>
+    //         );
+    //     }
+    //     return otherPlayerPrompt;
+    // };
 
     return (
         <div className={boardClass}>
