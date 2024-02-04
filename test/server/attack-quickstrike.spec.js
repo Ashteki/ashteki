@@ -173,4 +173,42 @@ describe('Quick Strike', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('QS with charm vs defender', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['bastion-badger'],
+                    spellboard: [],
+                    dicepool: ['charm', 'natural', 'natural', 'charm'],
+                    hand: ['anchornaut']
+                },
+                player2: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['seaside-raven', 'mist-spirit', 'iron-worker', 'light-swordsman'],
+                    spellboard: ['summon-butterfly-monk']
+                }
+            });
+        });
+
+        it('defender may choose to counter', function () {
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Charm Dice Power');
+            this.player1.clickCard(this.seasideRaven); // single attacker
+            expect(this.seasideRaven.attack).toBe(2);
+
+            this.player1.endTurn();
+
+            this.player2.clickAttack(this.bastionBadger);
+            this.player2.clickCard(this.seasideRaven);
+
+            this.player1.clickDone();
+            this.player1.clickYes();
+
+            // seaside is dead
+            expect(this.seasideRaven.location).toBe('archives');
+            expect(this.bastionBadger.damage).toBe(2);
+        });
+    });
 });

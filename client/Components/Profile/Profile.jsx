@@ -78,8 +78,8 @@ const initialValues = {
         alwaysGroupTactics: false,
         dontIceTrapOwnUnits: true,
         noAttackAlerts: false,
-        leftMode: false,
-        compactLayout: false,
+        leftMode: true,
+        compactLayout: true,
         manualAlts: false
     }
 };
