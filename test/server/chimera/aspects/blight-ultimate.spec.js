@@ -46,7 +46,7 @@ describe('Blight ultimate', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        xit('phase 2 attach 2 bleed add 2 threat', function () {
+        it('phase 2 attach 2 bleed to rightmost add 2 threat', function () {
             this.player2.player.chimeraPhase = 2;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
@@ -58,7 +58,7 @@ describe('Blight ultimate', function () {
             this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 1
-            expect(this.blueJaguar.upgrades.length).toBe(1);
+            expect(this.fluteMage.upgrades.length).toBe(1);
             expect(this.mistSpirit.upgrades.length).toBe(1);
 
             expect(this.proliferate.location).toBe('play area');

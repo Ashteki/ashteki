@@ -32,11 +32,12 @@ class AbilityTargetCard extends AbilityTarget {
 
             this.resetGameActions();
             return (
-                (!properties.cardCondition || properties.cardCondition(card, contextCopy)) &&
-                (properties.gameAction.length === 0 ||
-                    properties.gameAction.some((gameAction) =>
-                        gameAction.hasLegalTarget(contextCopy)
-                    ))
+                (!properties.cardCondition || properties.cardCondition(card, contextCopy))
+                // &&
+                // (properties.gameAction.length === 0 ||
+                //     properties.gameAction.some((gameAction) =>
+                //         gameAction.hasLegalTarget(contextCopy)
+                //     ))
             );
         };
 
@@ -82,6 +83,42 @@ class AbilityTargetCard extends AbilityTarget {
                 targetResults.cancelled = true;
             }
             return;
+        }
+
+        if (this.properties.mode === 'auto') {
+            const controller = this.properties.controller || 'opponent';
+
+            const possibleUnits =
+                controller === 'self'
+                    ? [...context.player.unitsInPlay]
+                    : [...context.player.opponent.unitsInPlay];
+
+            // reverse for L2R
+            if (this.properties.aim === 'right') {
+                possibleUnits.reverse();
+            }
+
+            let selectedTargets = [];
+            // loop
+            for (const unit of possibleUnits) {
+                if (
+                    this.selector.canTarget(unit, context) &&
+                    !this.selector.hasReachedLimit(selectedTargets, context)
+                ) {
+                    selectedTargets.push(unit);
+                }
+            }
+            if (!(this.properties.numCards > 1)) {
+                if (selectedTargets.length === 1) {
+                    selectedTargets = selectedTargets[0];
+                } else if (selectedTargets.length === 0) {
+                    selectedTargets = null;
+                }
+            }
+
+            this.setSelected(context, selectedTargets);
+
+            return true;
         }
 
         if (this.random) {

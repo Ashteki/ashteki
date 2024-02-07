@@ -37,7 +37,7 @@ class SummonFallen extends Card {
             then: (context) => ({
                 gameAction: ability.actions.summon({
                     conjuration: 'fallen',
-                    count: context.target.length
+                    count: context.target.length || 0
                 })
             })
         });

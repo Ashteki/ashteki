@@ -21,9 +21,13 @@ class NeversetUltimate extends UltimateCard {
                 return this.ultimate({
                     target: {
                         mode: 'auto',
-                        aim: 'left',
-                        gameAction: AbilityDsl.actions.attachConjuredAlteration({
-                            conjuredAlteration: 'bleed'
+                        aim: 'right',
+                        numCards: 2,
+                        gameAction: AbilityDsl.actions.sequentialForEach({
+                            forEach: (context) => context.target,
+                            action: AbilityDsl.actions.attachConjuredAlteration({
+                                conjuredAlteration: 'bleed'
+                            })
                         })
                     },
                     then: {
