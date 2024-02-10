@@ -7,8 +7,7 @@ class SequentialForEachAction extends GameAction {
     }
 
     setup() {
-        super.setup();
-        if (!Array.isArray(this.forEach)) {
+        if (typeof this.forEach !== 'function' && !Array.isArray(this.forEach)) {
             this.forEach = [this.forEach];
         }
 
@@ -27,6 +26,9 @@ class SequentialForEachAction extends GameAction {
     getEventArray(context) {
         return [
             super.createEvent('unnamedEvent', {}, () => {
+                if (typeof this.forEach === 'function') {
+                    this.forEach = this.forEach(context);
+                }
                 if (this.forEach.length > 0) {
                     for (let element of this.forEach) {
                         let action = this.action;

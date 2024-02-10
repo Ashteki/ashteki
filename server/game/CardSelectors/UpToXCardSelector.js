@@ -4,7 +4,7 @@ class UpToXCardSelector extends BaseCardSelector {
     constructor(numCards, properties) {
         super(properties);
 
-        this.numCards = numCards;
+        this.numCards = numCards || 1;
         this.optional = true;
     }
 

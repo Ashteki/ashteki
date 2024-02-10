@@ -6,7 +6,6 @@ const AbilityTargetDie = require('./AbilityTargets/AbilityTargetDie');
 const ActionCost = require('./Costs/actioncost');
 const DiceCost = require('./Costs/dicecost');
 const AbilityTargetPlayer = require('./AbilityTargets/AbilityTargetPlayer');
-const AbilityTargetAutoCard = require('./AbilityTargets/AbilityTargetAutoCard');
 
 /**
  * Base class representing an ability that can be done by the player. This
@@ -84,8 +83,6 @@ class BaseAbility {
             return new AbilityTargetAbility(name, properties, this);
         } else if (properties.mode === 'options') {
             return new AbilityTargetOptions(name, properties, this);
-        } else if (properties.mode === 'auto') {
-            return new AbilityTargetAutoCard(name, properties, this);
         }
 
         return new AbilityTargetCard(name, properties, this);

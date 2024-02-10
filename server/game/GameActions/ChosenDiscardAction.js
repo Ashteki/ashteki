@@ -4,6 +4,8 @@ class ChosenDiscardAction extends PlayerAction {
     setDefaultProperties() {
         this.amount = 1;
         this.asCost = false;
+        this.allowTopOfDeck = false;
+        this.location = ['hand'];
     }
 
     setup() {
@@ -14,7 +16,7 @@ class ChosenDiscardAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        if (player.getHand().length === 0 || this.amount === 0) {
+        if (!this.playerCanDiscard(player) || this.amount === 0) {
             return false;
         }
 
@@ -27,18 +29,17 @@ class ChosenDiscardAction extends PlayerAction {
             if (hand.length > 0) {
                 let amount = Math.min(hand.length, this.amount);
                 if (amount > 0) {
-                    context.game.promptForSelect(player, {
-                        activePromptTitle:
-                            amount === 1
-                                ? 'Choose a card to discard'
-                                : {
-                                    text: 'Choose {{amount}} cards to discard',
-                                    values: { amount: amount }
-                                },
+                    const promptProps = {
+                        activePromptTitle: amount === 1
+                            ? 'Choose a card to discard'
+                            : {
+                                text: 'Choose {{amount}} cards to discard',
+                                values: { amount: amount }
+                            },
                         context: context,
                         mode: 'exactly',
                         numCards: amount,
-                        location: 'hand',
+                        location: this.location,
                         controller: player === context.player ? 'self' : 'opponent',
                         cardCondition: (card, context) => card !== context.source,
                         onSelect: (player, cards) => {
@@ -52,10 +53,26 @@ class ChosenDiscardAction extends PlayerAction {
                                 .resolve(player.opponent, context);
                             return true;
                         }
-                    });
+                    };
+                    if (this.allowTopOfDeck && player.deck.length > 0) {
+                        promptProps.buttons = [{ text: 'Top of deck', command: 'topdeck' }];
+                        promptProps.onMenuCommand = () => {
+                            context.game.actions.discardTopOfDeck().resolve(player, context);
+                        };
+                    }
+                    context.game.promptForSelect(player, promptProps);
                 }
             }
         });
+    }
+
+    playerCanDiscard(player) {
+        const hand = player.getHand();
+        return (
+            (hand.length > 0 && this.location.includes('hand')) ||
+            (this.location.includes('spellboard') && player.spellboard.length > 0) ||
+            (this.allowTopOfDeck && player.deck.length > 0)
+        );
     }
 }
 

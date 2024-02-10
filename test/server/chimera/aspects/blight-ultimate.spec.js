@@ -9,8 +9,10 @@ describe('Blight ultimate', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit', 'flute-mage'],
                     dicepool: ['natural', 'natural', 'charm', 'ceremonial'],
-                    spellboard: ['summon-blood-puppet'],
-                    archives: ['blood-puppet']
+                    spellboard: ['summon-blood-puppet', 'summon-admonisher'],
+                    archives: ['blood-puppet'],
+                    hand: ['purge', 'summon-gilder'],
+                    deck: ['anchornaut', 'hammer-knight', 'rose-fire-dancer']
                 },
                 player2: {
                     dummy: true,
@@ -46,7 +48,7 @@ describe('Blight ultimate', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        xit('phase 2 attach 2 bleed add 2 threat', function () {
+        it('phase 2 attach 2 bleed to rightmost add 2 threat', function () {
             this.player2.player.chimeraPhase = 2;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
@@ -58,7 +60,7 @@ describe('Blight ultimate', function () {
             this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 1
-            expect(this.blueJaguar.upgrades.length).toBe(1);
+            expect(this.fluteMage.upgrades.length).toBe(1);
             expect(this.mistSpirit.upgrades.length).toBe(1);
 
             expect(this.proliferate.location).toBe('play area');
@@ -69,12 +71,7 @@ describe('Blight ultimate', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        xit('phase 3 removes a die from the game and stuns leftmost', function () {
-            this.stormcall.tokens.status = 1;
-            this.player1.dicepool[0].exhausted = true;
-            this.player1.dicepool[1].exhausted = true;
-
-            const diceCount = this.player1.dicepool.length;
+        it('phase 3 forces discard - hand', function () {
             this.player2.player.chimeraPhase = 3;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
@@ -82,15 +79,44 @@ describe('Blight ultimate', function () {
 
             this.player1.endTurn();
             // informs real player of behaviour roll
+            this.player1.clickPrompt('Ok');
             this.player1.clickPrompt('Ok'); // ultimate
-            // click die to remove - forces active if available
-            this.player1.clickDie(0); // ignored
-            expect(this.player1.dicepool.length).toBe(diceCount);
 
-            this.player1.clickDie(2);
-            expect(this.player1.dicepool.length).toBe(diceCount - 1);
-            expect(this.blueJaguar.upgrades.length).toBe(1);
-            expect(this.blueJaguar.exhausted).toBe(true);
+            this.player1.clickCard(this.summonGilder);
+
+            expect(this.summonGilder.location).toBe('discard');
+        });
+
+        it('phase 3 forces discard - spellboard', function () {
+            this.player2.player.chimeraPhase = 3;
+            spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
+            this.player2.phoenixborn.tokens.redRains = 2;
+            expect(this.player2.player.chimeraPhase).toBe(3);
+
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            this.player1.clickPrompt('Ok');
+            this.player1.clickPrompt('Ok'); // ultimate
+
+            this.player1.clickCard(this.summonAdmonisher);
+
+            expect(this.summonAdmonisher.location).toBe('discard');
+        });
+
+        it('phase 3 forces discard - top of deck', function () {
+            const topCard = this.player1.deck[0];
+            this.player2.player.chimeraPhase = 3;
+            spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
+            this.player2.phoenixborn.tokens.redRains = 2;
+            expect(this.player2.player.chimeraPhase).toBe(3);
+
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            this.player1.clickPrompt('Ok');
+            this.player1.clickPrompt('Ok'); // ultimate
+
+            this.player1.clickPrompt('Top of deck');
+            expect(topCard.location).toBe('discard');
         });
     });
 });
