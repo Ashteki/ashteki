@@ -34,6 +34,12 @@ class NeversetUltimate extends UltimateCard {
                         gameAction: AbilityDsl.actions.addToThreatZone({ amount: 2 })
                     }
                 });
+            case 3: return this.ultimate({
+                gameAction: AbilityDsl.actions.chosenDiscard({
+                    location: ['hand', 'spellboard'],
+                    allowTopOfDeck: true
+                })
+            })
         }
     }
 }

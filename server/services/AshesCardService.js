@@ -24,7 +24,14 @@ class AshesCardService {
 
     getAltArts() {
         return this.alts
-            .find({})
+            .find(
+                {},
+                {
+                    sort: {
+                        name: 1
+                    }
+                }
+            )
             .then((results) => {
                 return results;
             })
