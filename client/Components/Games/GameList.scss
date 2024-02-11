@@ -4,8 +4,9 @@
 @import '~bootstrap/scss/variables';
 
 .game-row {
-    min-height: 130px;
+    // min-height: 130px;
     padding: 10px 5px;
+    border-bottom: 1px solid grey;
 }
 
 .game-player-row {
