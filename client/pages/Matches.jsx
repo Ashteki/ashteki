@@ -43,6 +43,9 @@ const Matches = () => {
     };
 
     const gameApiRoot = `${window.location.protocol}//${window.location.host}/api/game/`;
+    const computeWinnerIndex = (game) => {
+        return game.winner === game.players[0].name ? 0 : 1;
+    };
 
     return (
         <div className='col-sm-offset-1 profile full-height'>
@@ -73,6 +76,7 @@ const Matches = () => {
                             <th>Opponent</th>
                             <th>Winner</th>
                             <th>Ranked</th>
+                            <th>Blood Pts</th>
                             <th>details</th>
                         </tr>
                     </thead>
@@ -82,6 +86,7 @@ const Matches = () => {
                                 const startedAt = moment(game.startedAt);
                                 const finishedAt = moment(game.finishedAt);
                                 const duration = moment.duration(finishedAt.diff(startedAt));
+                                const winnerIndex = game.winner ? computeWinnerIndex(game) : -1;
 
                                 return (
                                     <tr key={game.gameId}>
@@ -99,6 +104,9 @@ const Matches = () => {
                                         </td>
                                         <td style={{ whiteSpace: 'nowrap' }}>
                                             {game.gameType === 'competitive' ? 'Y' : ''}
+                                        </td>
+                                        <td style={{ whiteSpace: 'nowrap' }}>
+                                            {game.players[winnerIndex]?.wounds}
                                         </td>
                                         <td style={{ whiteSpace: 'nowrap' }}>
                                             <a href={gameApiRoot + game.gameId} download={true}>
