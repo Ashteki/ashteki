@@ -14,10 +14,11 @@ const DeckDice = ({ deck, onDieClick, onDieHover, size }) => {
                     for (let i = 0; i < diceCount.count; i++) {
                         diceToRender.push(
                             <DieIcon
+                                // key={deck._id + 'die' + i}
                                 die={{ magic: diceCount.magic, level: 'power' }}
-                                onClick={() => onDieClick({ magic: diceCount.magic })}
-                                onMouseOver={() => onDieHover({ magic: diceCount.magic })}
-                                onMouseOut={() => onDieHover({ magic: '' })}
+                                onClick={() => onDieClick && onDieClick({ magic: diceCount.magic })}
+                                onMouseOver={() => onDieHover && onDieHover({ magic: diceCount.magic })}
+                                onMouseOut={() => onDieHover && onDieHover({ magic: '' })}
                             />
                         );
                     }
