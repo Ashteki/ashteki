@@ -38,8 +38,14 @@ const DeckSummary = ({ deck, editMode }) => {
     const combinedCards = deck.cards.concat(deck.conjurations);
     const cardCount = deck.cards.reduce((agg, val) => agg += val.count, 0);
     return (
-        <Col xs='12' className='deck-summary'>
-            <DeckDice deck={deck} slotCount={10} onDieClick={onDieClick} onDieHover={onDieHover} />
+        <Col className='deck-summary'>
+            <DeckDice
+                size='large'
+                deck={deck}
+                slotCount={10}
+                onDieClick={onDieClick}
+                onDieHover={onDieHover}
+            />
             <div className='deck-cards-header'>
                 <ToggleButtonGroup name="radio" value={radioValue}>
                     <ToggleButton

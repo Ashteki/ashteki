@@ -22,8 +22,8 @@ import {
 } from '../../redux/actions';
 
 import './DeckList.scss';
-import DiceRack from './DiceRack';
 import { PatreonStatus } from '../../types';
+import DeckDice from './DeckDice';
 
 const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     const [pagingDetails, setPagingDetails] = useState({
@@ -197,7 +197,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                 const icon = hasChained ? (
                     <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
                 ) : null;
-                const dice = row.mode !== 'chimera' && <DiceRack dice={row.dicepool} />;
+                const dice = row.mode !== 'chimera' && <DeckDice deck={row} />;
                 const output = (
                     <div className='decklist-entry'>
                         {/* <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div> */}
@@ -297,7 +297,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     return (
         <div className='deck-list'>
             {!standaloneDecks && (
-                <Col md={12}>
+                <div >
                     <Form>
                         <Form.Row>
                             <Form.Group as={Col} controlId='formGridName'>
@@ -343,9 +343,9 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                             </Form.Group>
                         </Form.Row>
                     </Form>
-                </Col>
+                </div>
             )}
-            <Col md={12}>
+            <div>
                 <BootstrapTable
                     bootstrap4
                     remote
@@ -371,7 +371,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                     onTableChange={onTableChange}
                     defaultSorted={[{ dataField: 'datePublished', order: 'desc' }]}
                 />
-            </Col>
+            </div>
         </div>
     );
 };
