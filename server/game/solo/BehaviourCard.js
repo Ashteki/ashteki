@@ -1,4 +1,4 @@
-const { Level, Magic } = require('../../constants');
+const { Magic } = require('../../constants');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
 const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
@@ -44,6 +44,10 @@ class BehaviourCard extends Card {
     }
 
     doAttack(attackWith) {
+        if (attackWith && !attackWith.canAttack()) {
+            return;
+        }
+
         const attackAbility = this.behaviour({
             title: 'Attack',
             gameAction: AbilityDsl.actions.attack((context) => {
