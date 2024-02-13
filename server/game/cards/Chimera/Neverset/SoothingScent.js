@@ -5,7 +5,7 @@ class SoothingScent extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.defender();
-        this.tame(1);
+        this.tame({ amount: 1 });
     }
 
 }
