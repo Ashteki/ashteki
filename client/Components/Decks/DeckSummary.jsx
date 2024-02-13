@@ -97,18 +97,20 @@ const DeckSummary = ({ deck, editMode }) => {
                 <Row>
                     <Col xs='10' sm='9'>
                         <table style={{ width: '100%' }}>
-                            <tr>
-                                <th>Win</th>
-                                <th>Loss</th>
-                                <th>Total</th>
-                                <th>Win Rate</th>
-                            </tr>
-                            <tr>
-                                <td>{deck.wins}</td>
-                                <td>{deck.played - deck.wins}</td>
-                                <td>{parseInt(deck.played)}</td>
-                                <td>{deck.winRate?.toFixed(0)}%</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th>Win</th>
+                                    <th>Loss</th>
+                                    <th>Total</th>
+                                    <th>Win Rate</th>
+                                </tr>
+                                <tr>
+                                    <td>{deck.wins}</td>
+                                    <td>{deck.played - deck.wins}</td>
+                                    <td>{parseInt(deck.played)}</td>
+                                    <td>{deck.winRate?.toFixed(0)}%</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </Col>
                 </Row>
