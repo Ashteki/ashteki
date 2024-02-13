@@ -2,8 +2,9 @@ import React from 'react';
 import DieIcon from '../GameBoard/DieIcon';
 import DieSlot from '../GameBoard/DieSlot';
 import './DeckDice.scss';
+import classNames from 'classnames';
 
-const DeckDice = ({ deck, onDieClick, onDieHover }) => {
+const DeckDice = ({ deck, onDieClick, onDieHover, size }) => {
     const getDiceToRender = () => {
         const diceToRender = [];
         if (deck.dicepool) {
@@ -25,14 +26,14 @@ const DeckDice = ({ deck, onDieClick, onDieHover }) => {
         for (let i = diceToRender.length; i < 10; i++) {
             diceToRender.push(<DieSlot />);
         }
-        return (
-            <div className='flex'> {diceToRender}</div>
-        );
+        return diceToRender;
     };
 
     var diceToRender = getDiceToRender();
-
-    return <div className='deck-dice large'>{diceToRender}</div>;
+    const ddClasses = classNames('deck-dice', {
+        large: size === 'large'
+    });
+    return <div className={ddClasses}>{diceToRender}</div>;
 };
 
 export default DeckDice;
