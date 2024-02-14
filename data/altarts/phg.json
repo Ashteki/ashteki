@@ -68,6 +68,41 @@
             "stub": "hammer-knight",
             "alt": "alt/hammer-knight-green",
             "use": "Metal and Mist OP Kit. Early tournament reward"
+        },
+        {
+            "name": "Beast Tamer - Odette style",
+            "stub": "beast-tamer",
+            "alt": "alt/beast-tamer"
+        },
+        {
+            "name": "Brennen Blackcloud",
+            "stub": "brennen-blackcloud",
+            "alt": "alt/brennen-blackcloud"
+        },
+        {
+            "name": "Fire Archer - Odette style",
+            "stub": "fire-archer",
+            "alt": "alt/fire-archer"
+        },
+        {
+            "name": "Frost Fang - Skull hat",
+            "stub": "frost-fang",
+            "alt": "alt/frost-fang"
+        },
+        {
+            "name": "Odette Diamondcrest - Big Sword",
+            "stub": "odette-diamondcrest",
+            "alt": "alt/odette-diamondcrest"
+        },
+        {
+            "name": "Rin Northfell - Ice hand",
+            "stub": "rin-northfell",
+            "alt": "alt/rin-northfell"
+        },
+        {
+            "name": "Victoria Glassfire - Straightjacket",
+            "stub": "victoria-glassfire",
+            "alt": "alt/victoria-glassfire"
         }
     ]
 }

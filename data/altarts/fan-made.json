@@ -32,37 +32,37 @@
             "alt": "alt/gilder-fan-art"
         },
         {
-            "name": "Marbled Donut Dog",
+            "name": "Donut Dog - Marbled",
             "stub": "mirror-spirit",
             "alt": "alt/mirror-spirit-marbled"
         },
         {
-            "name": "Powdered Donut Dog",
+            "name": "Donut Dog - Powdered",
             "stub": "mirror-spirit",
             "alt": "alt/mirror-spirit-powdered"
         },
         {
-            "name": "Sprinkles Donut Dog",
+            "name": "Donut Dog - Sprinkles",
             "stub": "mirror-spirit",
             "alt": "alt/mirror-spirit-sprinkles"
         },
         {
-            "name": "Accelerate Blitz",
+            "name": "Accelerate - Blitz",
             "stub": "accelerate",
             "alt": "alt/accelerate-fanmade"
         },
         {
-            "name": "Accelerate Blitz Winner",
+            "name": "Accelerate - Blitz Winner",
             "stub": "accelerate",
             "alt": "alt/accelerate-blitz.gif"
         },
         {
-            "name": "NSM Time Hopper",
+            "name": "Time Hopper - Blitz",
             "stub": "time-hopper",
             "alt": "alt/time-hopper-fanmade"
         },
         {
-            "name": "NSM Turtle Guard",
+            "name": "Turtle Guard - Blitz",
             "stub": "turtle-guard",
             "alt": "alt/turtle-guard-fanmade"
         },
@@ -70,6 +70,16 @@
             "name": "Lark Harold for Collection '23",
             "stub": "harold-westraven",
             "alt": "alt/harold-westraven-squishy"
+        },
+        {
+            "name": "Anchornaut - Slashfest",
+            "stub": "anchornaut",
+            "alt": "alt/anchornaut-fanmade"
+        },
+        {
+            "name": "Coal Roarkwin - Slashfest",
+            "stub": "coal-roarkwin",
+            "alt": "alt/coal-roarkwin-santa"
         }
     ]
 }
