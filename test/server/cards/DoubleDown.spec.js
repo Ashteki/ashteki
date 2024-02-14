@@ -159,7 +159,7 @@ describe('Double Down', function () {
             //Last Request 2
             this.player2.clickPrompt('Yes');
 
-            // cannot trigger summonAction reaction without cards in archives 
+            // cannot trigger summonAction reaction without cards in archives
             // expect(this.player2).toHavePrompt('Any Reactions to Glow Finch being destroyed?');
             // this.player2.clickCard(this.doubleDown);
 
@@ -333,6 +333,57 @@ describe('Double Down', function () {
 
             expect(this.player1).toHaveDefaultPrompt(); // no prompt for DD
             expect(this.player2.inPlay.length).toBe(0); // no trigger
+        });
+    });
+
+    describe('frost frog double down vs whiplash', function () {
+        // https://github.com/Ashteki/ashteki/issues/1471
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['frost-frog'],
+                    spellboard: [],
+                    hand: ['double-down'],
+                    dicepool: ['natural', 'natural', 'ceremonial', 'time', 'illusion'],
+                    archives: ['frost-frog', 'frost-frog']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['whiplash'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: [],
+                    dicepool: ['basic', 'basic', 'basic', 'basic', 'basic']
+                }
+            });
+        });
+
+        it('places 2 frost frogs into play from conjuration pile', function () {
+            expect(this.player1.inPlay.length).toBe(1); // Frost Frog
+            const firstFrog = this.player1.inPlay[0];
+            const secondFrog = this.player1.archives[0];
+            const thirdFrog = this.player1.archives[1];
+
+            this.player1.endTurn();
+            expect(this.game.attackState.battles.length).toBe(1);
+            expect(this.whiplash.isAttacker).toBe(true); // Whiplash attacks Frost Frog
+            this.player1.clickDone(); // Choose a guard? --> No guard
+            this.player1.clickYes(); // Do you want to counter? --> Yes
+
+            expect(this.player1).toHavePrompt('Any Reactions to Frost Frog being destroyed?');
+            this.player1.clickCard(this.doubleDown);
+
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(firstFrog.location).toBe('archives');
+            expect(secondFrog.location).toBe('play area');
+            expect(thirdFrog.location).toBe('play area');
+            expect(this.player1.inPlay.length).toBe(2); // 2 Frogs
         });
     });
 });
