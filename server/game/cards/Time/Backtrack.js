@@ -14,7 +14,8 @@ class Backtrack extends Card {
             target: {
                 activePromptTitle: 'Choose an attacker to return to hand',
                 cardType: BattlefieldTypes,
-                cardCondition: (card) => card.isAttacker && card.type === CardType.Ally,
+                cardCondition: (card) => card.isAttacker &&
+                    [CardType.Ally, CardType.Aspect].includes(card.type),
                 controller: 'opponent',
                 gameAction: [ability.actions.removeFromBattle(), ability.actions.returnToHand()]
             }

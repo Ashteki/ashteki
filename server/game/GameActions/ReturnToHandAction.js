@@ -35,7 +35,9 @@ class ReturnToHandAction extends CardGameAction {
             eventName,
             { card: card, player: card.owner, context: context },
             (event) => {
-                event.player.moveCard(event.card, 'hand')
+                const hand = event.player.getHand();
+
+                event.player.moveCard(event.card, 'hand');
                 if (this.showMessage) {
                     context.game.addMessage(
                         "{0} is returned to {1}'s hand",
@@ -43,6 +45,8 @@ class ReturnToHandAction extends CardGameAction {
                         event.player
                     );
                 }
+
+                context.game.actions.releaseChimeraHand().resolve(event.player, context);
             }
         );
     }
