@@ -85,9 +85,9 @@ export const getGameTypeLabel = (gameType) => {
 };
 
 export const gameFormats = [
+    { name: 'precon', label: 'Precon' },
     { name: 'firstadventure', label: 'First Adventure' },
     { name: 'aparty', label: 'Adventuring Party' },
-    { name: 'precon', label: 'Precon' },
     { name: 'constructed', label: 'Constructed' },
     { name: 'coaloff', label: 'Coal Off!' },
     { name: 'solo', label: 'Solo' }
