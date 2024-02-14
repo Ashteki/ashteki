@@ -12,7 +12,6 @@ class BloodArcher extends Card {
             then: {
                 target: {
                     promptTitle: 'Choose a target unit to receive one damage',
-                    location: ['play area', 'discard'],
                     activePromptTitle: 'Blood Shot',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage((context) => ({

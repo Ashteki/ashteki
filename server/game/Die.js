@@ -41,7 +41,6 @@ class Die extends PlayableObject {
     }
 
     getSummary(activePlayer) {
-        let isOwner = activePlayer === this.owner;
         let selectionState = activePlayer.getDieSelectionState(this);
 
         let state = {
@@ -51,15 +50,28 @@ class Die extends PlayableObject {
             level: this.level,
             location: this.location,
             exhausted: this.exhausted,
-            canPlay: !!(
-                activePlayer === this.game.activePlayer &&
-                isOwner &&
-                this.getLegalActions(activePlayer).length > 0
-            ),
+            canPlay: this.canPlay(activePlayer),
             menu: this.getMenu()
         };
 
         return Object.assign(state, selectionState);
+    }
+
+    canPlay(activePlayer) {
+        let isOwner = activePlayer === this.owner;
+        let canPlay = false;
+        // using try catch to prevent more errors when saving state on Gameserver.handleError
+        try {
+            canPlay = !!(
+                activePlayer === this.game.activePlayer &&
+                isOwner &&
+                this.getLegalActions(activePlayer).length > 0
+            );
+        } catch {
+            // using null for error state
+            canPlay = null;
+        }
+        return canPlay;
     }
 
     getShortSummary() {
