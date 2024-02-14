@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class FrostFrog extends Card {
@@ -21,6 +22,7 @@ class FrostFrog extends Card {
                     })),
                     Exhaust: ability.actions.exhaust({
                         promptForSelect: {
+                            cardType: BattlefieldTypes,
                             cardCondition: (card) => card.life <= this.getAbilityNumeric(1),
                             controller: 'opponent'
                         }
