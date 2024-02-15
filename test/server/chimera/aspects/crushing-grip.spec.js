@@ -28,7 +28,7 @@ describe('Constrict Aspect', function () {
 
         it('reveal to in play makes opp leftmost considered exhausted', function () {
             expect(this.anchornaut.exhausted).toBe(false);
-            expect(this.player1.player.isLeftmost(this.anchornaut)).toBe(true);
+            expect(this.player1.player.isLeftmostUnit(this.anchornaut)).toBe(true);
 
             spyOn(Dice, 'd12Roll').and.returnValue(1);
             this.player1.endTurn();

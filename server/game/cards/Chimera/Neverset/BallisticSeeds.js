@@ -1,4 +1,4 @@
-const { CardType } = require('../../../../constants');
+const { CardType, BattlefieldTypes } = require('../../../../constants');
 const AspectCard = require('../../../solo/AspectCard');
 
 class BallisticSeeds extends AspectCard {
@@ -17,6 +17,7 @@ class BallisticSeeds extends AspectCard {
                 player: 'opponent',
                 targetsPlayer: true,
                 controller: 'opponent',
+                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 cardCondition: (card, context) =>
                     card.type === CardType.Phoenixborn || this.checkRightmost(card, context),
                 gameAction: ability.actions.addDamageToken({ amount: 1, showMessage: true }),
@@ -26,7 +27,7 @@ class BallisticSeeds extends AspectCard {
     }
 
     checkRightmost(card, context) {
-        return card.owner.isRightmost(card);
+        return card.owner.isRightmostUnit(card);
     }
 }
 

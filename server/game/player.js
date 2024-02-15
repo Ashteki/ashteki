@@ -240,12 +240,13 @@ class Player extends GameObject {
         return this.battlefield.indexOf(card);
     }
 
-    isRightmost(card) {
-        return this.indexOf(card) === this.battlefield.length - 1;
+    isRightmostUnit(card) {
+        const cardPosition = this.indexOf(card);
+        return cardPosition > 0 && cardPosition === this.battlefield.length - 1;
     }
 
-    isLeftmost(card) {
-        return this.indexOf(card) === 0;
+    isLeftmostUnit(card) {
+        return BattlefieldTypes.includes(card.type) && this.indexOf(card) === 0;
     }
 
     areCardsAdjacent(card, anotherCard) {
