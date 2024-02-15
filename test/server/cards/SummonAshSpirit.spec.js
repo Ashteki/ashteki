@@ -102,6 +102,7 @@ describe('Summon Ash Spirit', function () {
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.player2).toHavePrompt('Waiting for opponent');
 
+            expect(this.ashSpirit.location).toBe('play area');
             expect(this.player1.player.deck.length).toBe(0);
             expect(this.player1.hand.length).toBe(p1HandSize);
         });
@@ -120,6 +121,42 @@ describe('Summon Ash Spirit', function () {
 
             expect(this.player2.deck.length).toBe(0);
             expect(this.player2.hand.length).toBe(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
+    describe('Focus 1 Summon vs fatigued Chimera', function () {
+        beforeEach(function () {
+            this.setupTest({
+                solo: true,
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    spellboard: ['summon-ash-spirit', 'summon-ash-spirit'],
+                    dicepool: ['charm', 'time', 'natural', 'natural'],
+                    archives: ['ash-spirit']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: [],
+                    spellboard: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+            this.player2.player.fatigued = true;
+        });
+
+        it('draw and discard cause damage to chimera', function () {
+            this.player1.clickCard(this.summonAshSpirit);
+            this.player1.clickPrompt('Summon Ash Spirit');
+            expect(this.ashSpirit.location).toBe('play area');
+            this.player1.clickCard(this.player2.hand[0]);
+
+            expect(this.corpseOfViros.damage).toBe(2); // one from draw, then one from focus 1
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player2).toHavePrompt('Waiting for opponent');
         });
     });
 });

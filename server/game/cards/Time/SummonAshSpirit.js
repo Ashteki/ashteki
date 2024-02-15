@@ -17,28 +17,24 @@ class SummonAshSpirit extends Card {
             }),
             then: {
                 alwaysTriggers: true,
-                gameAction: ability.actions.draw(),
+                gameAction: ability.actions.draw((context) => ({
+                    target: [context.player, context.player.opponent]
+                })),
                 message: '{0} draws 1 card',
-                then: (context) => {
-                    let result = {
-                        alwaysTriggers: true
-                    };
-
-                    if (!context.player.opponent.deckIsEmpty) {
-                        result.gameAction = ability.actions.draw((context) => ({
-                            target: [context.player.opponent]
-                        }));
-                        result.message = '{3} draws 1 card';
-                        result.messageArgs = (innerContext) => {
-                            return innerContext.player.opponent;
-                        };
-                    } else {
-                        result.condition = () => this.focus > 0;
-                        result.gameAction = ability.actions.chosenDiscard({
+                then: {
+                    alwaysTriggers: true,
+                    condition: () => this.focus > 0,
+                    gameAction: ability.actions.conditional({
+                        condition: (context) => {
+                            const opponentEvent = context.preThenEvents.find(
+                                (e) => e.player === context.player.opponent
+                            );
+                            return opponentEvent.context.drawResult.cardsDrawn == 0;
+                        },
+                        trueGameAction: ability.actions.chosenDiscard({
                             player: this.controller.opponent
-                        });
-                    }
-                    return result;
+                        })
+                    })
                 }
             }
         });
