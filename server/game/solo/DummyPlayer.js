@@ -37,8 +37,13 @@ class DummyPlayer extends Player {
         this.chimera.stage = this.stage;
     }
 
+    //CAUTION: NEED BOTH OF THESE BECAUSE OF DIFFERENT USE CASES. NAMING IS UNFORTUNATE
     get aspectsInPlay() {
         return this.cardsInPlay.filter((card) => CardType.Aspect === card.type);
+    }
+
+    getAspectsInPlay() {
+        return this.unitsInPlay.filter((u) => u.type === CardType.Aspect);
     }
 
     getHand() {
@@ -225,10 +230,6 @@ class DummyPlayer extends Player {
         }
 
         return null;
-    }
-
-    getAspectsInPlay() {
-        return this.unitsInPlay.filter((u) => u.type === CardType.Aspect);
     }
 
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {

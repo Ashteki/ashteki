@@ -64,7 +64,7 @@ class RecoveryPhase extends Phase {
 
         const dummyPlayer = this.game.getDummyPlayer();
         // Place 1 Red Rains token on the Chimera for each aspect in play, resolving the Ultimate card, if applicable
-        const aspectCount = dummyPlayer.unitsInPlay.filter(u => u.type === CardType.Aspect).length;
+        const aspectCount = dummyPlayer.getAspectsInPlay().length;
         this.game.addMessage('Chimera receives {0} red rains tokens for Aspects in play', aspectCount)
         this.game.actions
             .addRedRainsToken({ amount: aspectCount, showMessage: true, shortMessage: true })

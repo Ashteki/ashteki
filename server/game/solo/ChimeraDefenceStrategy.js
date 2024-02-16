@@ -1,4 +1,4 @@
-const { CardType } = require("../../constants");
+const { CardType, AspectTypes } = require("../../constants");
 const DefenceRules = require("../DefenceRules");
 const Dice = require("../dice");
 
@@ -15,7 +15,7 @@ class ChimeraDefenceStrategy {
         // defenders guard for aspects or the chimera
         const battlesToGuard = attack.battles.filter(
             (b) => !b.target.anyEffect('defender') &&
-                [CardType.Chimera, CardType.Aspect].includes(b.target.type)
+                [CardType.Chimera, ...AspectTypes].includes(b.target.type)
         );
         // get threatening battles to block first
         const threateningBattles = battlesToGuard.filter((b) =>
@@ -44,7 +44,7 @@ class ChimeraDefenceStrategy {
             // or the target cannot be guarded
             !attack.target.anyEffect('cannotBeGuarded') &&
             // and the target is an aspect (chimera won't guard tourists like blood puppet)
-            attack.target.type === CardType.Aspect
+            AspectTypes.includes(attack.target.type)
         ) {
             const d12Roll = Dice.d12Roll();
             let guardText = '\nNo guard';

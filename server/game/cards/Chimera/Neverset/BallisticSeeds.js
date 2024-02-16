@@ -1,4 +1,4 @@
-const { CardType, BattlefieldTypes } = require('../../../../constants');
+const { CardType, BattlefieldTypes, AspectTypes } = require('../../../../constants');
 const AspectCard = require('../../../solo/AspectCard');
 
 class BallisticSeeds extends AspectCard {
@@ -8,7 +8,7 @@ class BallisticSeeds extends AspectCard {
         this.forcedReaction({
             when: {
                 onLoseStatusCost: (event, context) => {
-                    return [CardType.Aspect, CardType.ConjuredAspect].includes(event.card.type);
+                    return AspectTypes.includes(event.card.type);
                 }
             },
             target: {
