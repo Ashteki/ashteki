@@ -241,7 +241,14 @@ class Player extends GameObject {
     }
 
     isRightmostUnit(card) {
+        if (this.battlefield.length === 0) {
+            return false;
+        }
         const cardPosition = this.indexOf(card);
+        if (this.battlefield.length === 1 && cardPosition === 0) {
+            return true;
+        }
+
         return cardPosition > 0 && cardPosition === this.battlefield.length - 1;
     }
 

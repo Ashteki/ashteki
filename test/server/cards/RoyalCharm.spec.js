@@ -1,12 +1,14 @@
+const Dice = require("../../../server/game/dice");
+
 describe('Royal Charm', function () {
     describe('on dice spent', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    hand: ['mist-spirit', 'enchanted-violinist', 'rayward-recruit'],
+                    hand: ['mist-spirit', 'enchanted-violinist', 'rayward-recruit', 'meteor'],
                     spellboard: ['royal-charm', 'piercing-light'],
-                    dicepool: ['divine', 'natural', 'charm', 'charm'],
+                    dicepool: ['divine', 'natural', 'charm', 'charm', 'divine'],
                     archives: ['butterfly-monk']
                 },
                 player2: {
@@ -64,7 +66,18 @@ describe('Royal Charm', function () {
             this.player1.clickDie(2);
             // check spellboard is still just 1
             expect(this.royalCharm.dieUpgrades.length).toBe(1);
-            expect(this.player1.dicepool.length).toBe(3);
+            expect(this.player1.dicepool.length).toBe(4);
+        });
+
+        it('when playing meteor with one lion', function () {
+            this.player1.play(this.meteor);
+            // choose die for royal charm
+            this.player1.clickDone();
+            this.player1.clickDie(0);
+            // check spellboard is still just 1
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.player1.dicepool.length).toBe(4);
+            expect(this.player1).toHavePromptTitle('Meteor'); // choose AoE order
         });
 
         it('hosted dice clicks should trigger card ability not dice power', function () {
@@ -104,4 +117,126 @@ describe('Royal Charm', function () {
             expect(this.raywardRecruit.attack).toBe(1);
         });
     });
+
+    describe('on dice spent with 2 royal charm', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    hand: ['mist-spirit', 'enchanted-violinist', 'rayward-recruit', 'meteor'],
+                    spellboard: ['royal-charm', 'royal-charm', 'piercing-light'],
+                    dicepool: ['divine', 'natural', 'charm', 'charm', 'divine'],
+                    archives: ['butterfly-monk']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'holy-knight'],
+                    spellboard: []
+                }
+            });
+            this.player1.dicepool[3].level = 'class';
+        });
+
+        it('when playing meteor with 2 lions', function () {
+            this.player1.play(this.meteor);
+            // choose die for royal charm
+            this.player1.clickDone();
+            this.player1.clickDie(0);
+            this.player1.clickDie(3);
+            // check spellboard is still just 1
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.player1.dicepool.length).toBe(3);
+            expect(this.player1).toHavePromptTitle('Meteor'); // choose AoE order
+        });
+    });
+
+    describe('vs Chimera: on dice spent with 2 royal charm', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    hand: ['mist-spirit', 'enchanted-violinist', 'rayward-recruit', 'meteor'],
+                    spellboard: ['royal-charm', 'royal-charm', 'piercing-light'],
+                    dicepool: ['divine', 'natural', 'charm', 'charm', 'divine'],
+                    archives: ['butterfly-monk']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
+                    inPlay: [
+                        'photosynthesize',
+                        'photosynthesize',
+                        'allure',
+                        'sowing-strike',
+                        'allure'
+                    ],
+                    deck: ['rampage'],
+                    threatZone: ['ballistic-seeds', 'regenerate'],
+                    dicepool: ['basic', 'basic', 'basic', 'basic', 'basic'],
+                    archives: ['scarlet-seed']
+                }
+            });
+        });
+
+        it('when playing meteor with 0 lions', function () {
+            this.player1.dicepool[0].level = 'class';
+            this.player1.dicepool[4].level = 'class';
+            spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll to 1 pb damage
+
+            this.player1.endTurn();
+            this.player1.clickOk();
+            expect(this.ballisticSeeds.facedown).toBe(false);
+            expect(this.scarletSeed.location).toBe('play area');
+            this.player1.play(this.meteor);
+            this.player1.clickDone();
+            // choose die for royal charm
+            // this.player1.clickDie(4);
+            // this.player1.clickDone();
+            // check spellboard is still just 1
+            expect(this.royalCharm.dieUpgrades.length).toBe(0);
+            expect(this.player1.dicepool.length).toBe(5);
+            expect(this.player1).toHavePromptTitle('Meteor'); // choose AoE order
+        });
+
+        it('when playing meteor with 1 lions', function () {
+            this.player1.dicepool[0].level = 'class';
+            spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll to 1 pb damage
+
+            this.player1.endTurn();
+            this.player1.clickOk();
+            expect(this.ballisticSeeds.facedown).toBe(false);
+            expect(this.scarletSeed.location).toBe('play area');
+            this.player1.play(this.meteor);
+            // choose die for royal charm
+            this.player1.clickDone();
+            this.player1.clickDie(4);
+            // this.player1.clickDone();
+            // check spellboard is still just 1
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.player1.dicepool.length).toBe(4);
+            expect(this.player1).toHavePromptTitle('Meteor'); // choose AoE order
+        });
+
+        it('when playing meteor with 2 lions', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll to 1 pb damage
+
+            this.player1.endTurn();
+            this.player1.clickOk();
+            expect(this.ballisticSeeds.facedown).toBe(false);
+            expect(this.scarletSeed.location).toBe('play area');
+            this.player1.play(this.meteor);
+            // choose die for royal charm
+            this.player1.clickDone();
+            this.player1.clickDie(0);
+            this.player1.clickDie(3);
+            // check spellboard is still just 1
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.player1.dicepool.length).toBe(3);
+            expect(this.player1).toHavePromptTitle('Meteor'); // choose AoE order
+        });
+    });
+
 });
