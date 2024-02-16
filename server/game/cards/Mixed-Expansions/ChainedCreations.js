@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { CardType, AspectTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class ChainedCreations extends Card {
@@ -6,7 +6,7 @@ class ChainedCreations extends Card {
         this.play({
             target: {
                 controller: 'opponent',
-                cardType: [CardType.Conjuration, CardType.Aspect],
+                cardType: [CardType.Conjuration, ...AspectTypes],
                 gameAction: ability.actions.dealDamage({ amount: 2 })
             },
             then: {

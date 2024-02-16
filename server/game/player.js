@@ -215,7 +215,7 @@ class Player extends GameObject {
         );
     }
 
-    // CAUTION! overridden in DummyPlayer
+    // CAUTION! sort of overridden in DummyPlayer
     get unitsInPlay() {
         return this.cardsInPlay.filter(
             (card) => BattlefieldTypes.includes(card.type) && !card.facedown && !card.moribund

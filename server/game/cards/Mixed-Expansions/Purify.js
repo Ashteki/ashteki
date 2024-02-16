@@ -1,4 +1,4 @@
-const { CardType } = require('../../../constants.js');
+const { CardType, AspectTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Purify extends Card {
@@ -19,7 +19,7 @@ class Purify extends Card {
                 target: {
                     activePromptTitle: 'Choose a conjuration to destroy',
                     controller: 'opponent',
-                    cardType: [CardType.Conjuration, CardType.Aspect],
+                    cardType: [CardType.Conjuration, ...AspectTypes],
                     gameAction: ability.actions.destroy()
                 }
             }

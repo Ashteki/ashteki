@@ -1,4 +1,4 @@
-describe('Tame vs Defender', function () {
+describe('Defender behaviour', function () {
     describe('discard 2 or discard the shown', function () {
         beforeEach(function () {
             this.setupTest({
@@ -15,7 +15,7 @@ describe('Tame vs Defender', function () {
                     phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
-                    inPlay: ['iron-scales'],
+                    inPlay: ['iron-scales', 'scarlet-seed'],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
@@ -27,6 +27,15 @@ describe('Tame vs Defender', function () {
             this.player1.clickAttack(this.corpseOfViros);
             this.player1.clickCard(this.essenceDruid);
             this.player1.clickDone();
+            expect(this.ironScales.damage).toBe(1);
+            expect(this.essenceDruid.damage).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('defender will guard for scarlet seed', function () {
+            this.player1.clickAttack(this.scarletSeed);
+            this.player1.clickCard(this.essenceDruid);
+            this.player1.clickOk(); // guard!
             expect(this.ironScales.damage).toBe(1);
             expect(this.essenceDruid.damage).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();

@@ -32,6 +32,7 @@ const BattlefieldTypes = [
     CardType.Aspect,
     CardType.ConjuredAspect
 ];
+const AspectTypes = [CardType.Aspect, CardType.ConjuredAspect];
 const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [
@@ -94,6 +95,7 @@ module.exports = {
     PhoenixbornTypes,
     UpgradeCardTypes,
     ConjuredCardTypes,
+    AspectTypes,
     AbilityType,
     Magic,
     Level,
