@@ -27,11 +27,11 @@ describe('Proliferate Aspect', function () {
                 }
             });
 
-            // dictate behaviour roll
-            spyOn(Dice, 'd12Roll').and.returnValue(1);
         });
 
         it('place scarlet seed into play', function () {
+            // dictate behaviour roll
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
             expect(this.scarletSeed.location).toBe('archives');
             expect(this.proliferate.facedown).toBe(true);
             this.player1.endTurn();
@@ -40,6 +40,20 @@ describe('Proliferate Aspect', function () {
 
             expect(this.scarletSeed.location).toBe('play area');
             expect(this.scarletSeed.status).toBe(3);
+            expect(this.proliferate.facedown).toBe(false);
+        });
+
+        it('on behaviour 8 place scarlet seed into play and immediately use status ability', function () {
+            // dictate behaviour roll
+            spyOn(Dice, 'd12Roll').and.returnValue(8);
+            expect(this.scarletSeed.location).toBe('archives');
+            expect(this.proliferate.facedown).toBe(true);
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            this.player1.clickPrompt('Ok');
+
+            expect(this.scarletSeed.location).toBe('play area');
+            expect(this.scarletSeed.status).toBe(2);
             expect(this.proliferate.facedown).toBe(false);
         });
     });
