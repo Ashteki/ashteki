@@ -32,6 +32,8 @@ describe('Blight ultimate', function () {
         it('phase 1. attach bleed and add threat', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
+            const aspectCount = this.player2.player.aspectsInPlay.length;
+
             expect(this.player2.phoenixborn.redRains).toBe(2);
 
             this.player1.endTurn();
@@ -44,13 +46,15 @@ describe('Blight ultimate', function () {
 
             expect(this.proliferate.location).toBe('play area');
             expect(this.proliferate.facedown).toBe(true);
+            expect(this.player2.player.aspectsInPlay.length).toBe(aspectCount + 1);
 
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('phase 2 attach 2 bleed to rightmost add 2 threat', function () {
+        it('phase 2 attach 2 bleed to rightmost add 1 threat', function () {
             this.player2.player.chimeraPhase = 2;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
+            const aspectCount = this.player2.player.aspectsInPlay.length;
             this.player2.phoenixborn.tokens.redRains = 2;
             expect(this.player2.phoenixborn.redRains).toBe(2);
 
@@ -65,8 +69,7 @@ describe('Blight ultimate', function () {
 
             expect(this.proliferate.location).toBe('play area');
             expect(this.proliferate.facedown).toBe(true);
-            expect(this.rampage.location).toBe('play area');
-            expect(this.rampage.facedown).toBe(true);
+            expect(this.player2.player.aspectsInPlay.length).toBe(aspectCount + 1);
 
             expect(this.player1).toHaveDefaultPrompt();
         });
@@ -74,6 +77,7 @@ describe('Blight ultimate', function () {
         it('phase 3 forces discard - hand', function () {
             this.player2.player.chimeraPhase = 3;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
+            const aspectCount = this.player2.player.aspectsInPlay.length;
             this.player2.phoenixborn.tokens.redRains = 2;
             expect(this.player2.player.chimeraPhase).toBe(3);
 
@@ -83,6 +87,7 @@ describe('Blight ultimate', function () {
             this.player1.clickPrompt('Ok'); // ultimate
 
             this.player1.clickCard(this.summonGilder);
+            expect(this.player2.player.aspectsInPlay.length).toBe(aspectCount + 1);
 
             expect(this.summonGilder.location).toBe('discard');
         });

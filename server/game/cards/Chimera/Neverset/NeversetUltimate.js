@@ -31,15 +31,19 @@ class NeversetUltimate extends UltimateCard {
                         })
                     },
                     then: {
-                        gameAction: AbilityDsl.actions.addToThreatZone({ amount: 2 })
+                        gameAction: AbilityDsl.actions.addToThreatZone({ amount: 1 })
                     }
                 });
-            case 3: return this.ultimate({
-                gameAction: AbilityDsl.actions.chosenDiscard({
-                    location: ['hand', 'spellboard'],
-                    allowTopOfDeck: true
-                })
-            })
+            case 3:
+                return this.ultimate({
+                    gameAction: AbilityDsl.actions.chosenDiscard({
+                        location: ['hand', 'spellboard'],
+                        allowTopOfDeck: true
+                    }),
+                    then: {
+                        gameAction: AbilityDsl.actions.addToThreatZone({ amount: 1 })
+                    }
+                });
         }
     }
 }
