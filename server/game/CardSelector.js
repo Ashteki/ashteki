@@ -20,7 +20,8 @@ const defaultProperties = {
         'Phoenixborn',
         'Reaction Spell',
         'Aspect',
-        'Chimera'
+        'Chimera',
+        'Conjured Aspect'
     ],
     multiSelect: false
 };
