@@ -1,5 +1,3 @@
-const logger = require("../log");
-
 const OpenInformationLocations = ['play area', 'spellboard', 'purged', 'discard'];
 
 class CardVisibility {

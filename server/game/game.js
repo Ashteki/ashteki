@@ -50,7 +50,7 @@ class Game extends EventEmitter {
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
         this.auditHelper = new AuditHelper(this);
-        this.cardVisibility = new CardVisibility(this.showHand, this.openHands, this.solo);
+        this.cardVisibility = new CardVisibility(details.showHand, details.openHands, details.solo);
         this.solo = details.solo;
         if (this.solo) {
             this.soloLevel = details.soloLevel;
