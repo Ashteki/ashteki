@@ -331,6 +331,11 @@ class Player extends GameObject {
         }
     }
 
+    // overridden in dummyplayer
+    get canDiscardFromHand() {
+        return this.hand.length > 0;
+    }
+
     canPlayToSpellboard(card) {
         const spellSet = new Set(this.spellboard.map((s) => s.cardSlot));
         const spellCount = spellSet.size;

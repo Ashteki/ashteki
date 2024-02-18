@@ -53,6 +53,11 @@ class DummyPlayer extends Player {
         return this.hand;
     }
 
+    get canDiscardFromHand() {
+        // forms a hand from deck when needed, so can discard if hand exists or deck has cards
+        return this.hand.length > 0 || this.deck.length > 0;
+    }
+
     cardMovedListener(event) {
         if (
             // moved from my deck
