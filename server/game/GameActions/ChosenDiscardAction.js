@@ -67,9 +67,8 @@ class ChosenDiscardAction extends PlayerAction {
     }
 
     playerCanDiscard(player) {
-        const hand = player.getHand();
         return (
-            (hand.length > 0 && this.location.includes('hand')) ||
+            (this.location.includes('hand') && player.canDiscardFromHand) ||
             (this.location.includes('spellboard') && player.spellboard.length > 0) ||
             (this.allowTopOfDeck && player.deck.length > 0)
         );

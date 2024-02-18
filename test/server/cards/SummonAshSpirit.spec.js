@@ -149,6 +149,7 @@ describe('Summon Ash Spirit', function () {
         });
 
         it('draw and discard cause damage to chimera', function () {
+            expect(this.player2.hand.length).toBe(0);
             this.player1.clickCard(this.summonAshSpirit);
             this.player1.clickPrompt('Summon Ash Spirit');
             expect(this.ashSpirit.location).toBe('play area');
@@ -157,6 +158,7 @@ describe('Summon Ash Spirit', function () {
             expect(this.corpseOfViros.damage).toBe(2); // one from draw, then one from focus 1
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.player2).toHavePrompt('Waiting for opponent');
+            expect(this.player2.hand.length).toBe(0);
         });
     });
 });
