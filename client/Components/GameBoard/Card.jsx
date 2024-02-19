@@ -61,7 +61,7 @@ const Card = ({
     });
 
     const isAllowedMenuSource = () => {
-        return source === 'play area' || source === 'spellboard';
+        return source === 'play area' || source === 'spellboard' || 'hand';
     };
 
     const onCardClicked = (event, card) => {
