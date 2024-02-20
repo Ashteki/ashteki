@@ -41,25 +41,19 @@ class MenuCommands {
                 card.removeLastingEffects();
                 break;
             case 'move-hand':
-                if (
-                    card.type != 'phoenixborn'
-                ) {
+                if (card.type != 'phoenixborn') {
                     game.addAlert('danger', '{0} moves {1} from the {2} to hand', player, card, card.location);
                     card.owner.moveCard(card, 'hand');
                 }
                 break;
             case 'move-discard':
-                if (
-                    card.controller != player.opponent
-                ) {
+                if (card.controller != player.opponent) {
                     game.addAlert('danger', '{0} moves {1} from their {2} to their discard pile', player, card, card.location);
                     card.owner.moveCard(card, 'discard');
                 }
                 break;
             case 'move-play area':
-                if (
-                    card.controller != player.opponent
-                ) {
+                if (card.controller != player.opponent) {
                     game.addAlert('danger', '{0} moves {1} from their {2} to play', player, card, card.location);
                     card.owner.moveCard(card, 'play area');
                 }

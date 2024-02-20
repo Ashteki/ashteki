@@ -90,7 +90,6 @@ class Die extends PlayableObject {
             return undefined;
         }
 
-        menu.push({ command: 'click', text: 'Select Die', menu: 'main' });
         if (this.magic !== Magic.Rage) {
             menu.push({ command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' });
         }

@@ -546,24 +546,22 @@ class Card extends PlayableObject {
             { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' },
             { command: 'remEffects', text: 'Remove temporary effects', menu: 'main' }
         ];
-        // PBs can't move
+        // e.g. PBs can't move
         if (this.isMovable) {
             thisMenu.push(
                 { command: 'moves', text: 'Move', menu: 'main' },
                 { command: 'main', text: 'Back', menu: 'moves' }
             );
             LegalLocations[this.type].forEach((loc) => {
+                // only show for other locations
                 if (loc !== 'being played' && loc !== this.location) {
                     thisMenu.push({
                         command: 'move-' + loc,
-                        text: 'Move to ' + loc,
+                        text: 'Move to ' + loc === 'archives' ? 'conjuration pile' : loc,
                         menu: 'moves'
                     });
                 }
             });
-        }
-        if (ConjuredCardTypes.includes(this.type)) {
-            thisMenu.push({ command: 'moveConjuration', text: 'Move to conjuration pile', menu: 'moves' });
         }
         if (this.type === CardType.Phoenixborn) {
             thisMenu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
@@ -590,8 +588,6 @@ class Card extends PlayableObject {
         if (this.facedown) {
             return [{ command: 'reveal', text: 'Reveal', menu: 'main' }];
         }
-
-        menu.push({ command: 'click', text: 'Select card', menu: 'main' });
         if (this.dieUpgrades.length) {
             menu.push({ command: 'detachDie', text: 'Remove die', menu: 'main' });
         }
@@ -599,7 +595,7 @@ class Card extends PlayableObject {
             if (!this.parent) {
                 menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
             } else {
-                menu.push({ command: 'moveHand', text: 'Remove', menu: 'main' });
+                menu.push({ command: 'move-hand', text: 'Remove', menu: 'main' });
             }
         }
         if (
