@@ -9,6 +9,10 @@ class BehaviourCard extends Card {
         return false;
     }
 
+    getMenu() {
+        return undefined;
+    }
+
     getImageStub() {
         return this.imageStub.replace('%s', this.owner.chimeraPhase);
     }

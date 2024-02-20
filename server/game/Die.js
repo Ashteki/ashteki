@@ -17,11 +17,6 @@ class Die extends PlayableObject {
         this.level = level;
         this.exhausted = false;
         this.pinned = false;
-
-        this.menu = [
-            { command: 'raise', text: 'Raise', menu: 'main' },
-            { command: 'lower', text: 'Lower', menu: 'main' }
-        ];
     }
 
     clone() {
@@ -84,15 +79,18 @@ class Die extends PlayableObject {
     }
 
     getMenu() {
-        var menu = [];
-
-        if (!this.menu.length || !this.game.manualMode) {
+        if (!this.game.manualMode) {
             return undefined;
         }
-
+        const menu = [];
         if (this.magic !== Magic.Rage) {
             menu.push({ command: 'exhaust', text: 'Exhaust/Ready', menu: 'main' });
         }
+
+        menu.push(
+            { command: 'raise', text: 'Raise', menu: 'main' },
+            { command: 'lower', text: 'Lower', menu: 'main' }
+        );
 
         if ([Magic.Divine, Magic.Charm].includes(this.magic)) {
             if (this.parent) {
@@ -101,7 +99,7 @@ class Die extends PlayableObject {
                 menu.push({ command: 'attach', text: 'Attach to card', menu: 'main' });
             }
         }
-        menu = menu.concat(this.menu);
+        menu.push({ command: 'click', text: 'Select Die', menu: 'main' });
 
         return menu;
     }

@@ -46,6 +46,12 @@ class MenuCommands {
                     card.owner.moveCard(card, 'hand');
                 }
                 break;
+            case 'move-deck':
+                if (card.controller != player.opponent) {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to their draw pile', player, card, card.location);
+                    card.owner.moveCard(card, 'deck');
+                }
+                break;
             case 'move-discard':
                 if (card.controller != player.opponent) {
                     game.addAlert('danger', '{0} moves {1} from their {2} to their discard pile', player, card, card.location);
@@ -58,6 +64,14 @@ class MenuCommands {
                     card.owner.moveCard(card, 'play area');
                 }
                 break;
+
+            case 'move-spellboard':
+                if (card.controller != player.opponent) {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to their spellboard', player, card, card.location);
+                    card.owner.moveCard(card, 'spellboard');
+                }
+                break;
+
             case 'move-archives':
             case 'moveConjuration':
                 if (card.controller != player.opponent) {

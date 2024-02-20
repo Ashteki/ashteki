@@ -533,21 +533,9 @@ class Card extends PlayableObject {
     }
 
     getMenu() {
-        const thisMenu = [
-            { command: 'tokens', text: 'Modify tokens', menu: 'main' },
-            { command: 'main', text: 'Back', menu: 'tokens' },
-            { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
-            { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
-            { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
-            { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
-            { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
-            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
-            { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
-            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' },
-            { command: 'remEffects', text: 'Remove temporary effects', menu: 'main' }
-        ];
-        // e.g. PBs can't move
-        if (this.isMovable) {
+        const thisMenu = [];
+        // Move
+        if (this.isMovable) { // e.g. PBs can't move
             thisMenu.push(
                 { command: 'moves', text: 'Move', menu: 'main' },
                 { command: 'main', text: 'Back', menu: 'moves' }
@@ -557,34 +545,42 @@ class Card extends PlayableObject {
                 if (loc !== 'being played' && loc !== this.location) {
                     thisMenu.push({
                         command: 'move-' + loc,
-                        text: 'Move to ' + loc === 'archives' ? 'conjuration pile' : loc,
+                        text: 'Move to ' + (loc === 'archives' ? 'conjuration pile' : loc),
                         menu: 'moves'
                     });
                 }
             });
         }
+
         if (this.type === CardType.Phoenixborn) {
             thisMenu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
         }
+
+        thisMenu.push(
+            { command: 'tokens', text: 'Modify tokens', menu: 'main' },
+            { command: 'main', text: 'Back', menu: 'tokens' },
+            { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
+            { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
+            { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
+            { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
+            { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
+            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
+            { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
+            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' }
+        );
+
+        thisMenu.push({ command: 'remEffects', text: 'Remove temporary effects', menu: 'main' });
 
         if (BattlefieldTypes.includes(this.type)) {
             thisMenu.push({ command: 'control', text: 'Give control', menu: 'main' });
         }
 
-        var menu = [];
 
-        if (
-            !thisMenu.length ||
-            !this.game.manualMode ||
-            (this.location !== 'play area' &&
-                this.location !== 'spellboard' &&
-                this.location !== 'hand' &&
-                this.location !== 'discard' &&
-                this.location !== 'archives')
-        ) {
+        if (!thisMenu.length || !this.game.manualMode) {
             return undefined;
         }
 
+        var menu = [];
         if (this.facedown) {
             return [{ command: 'reveal', text: 'Reveal', menu: 'main' }];
         }
@@ -598,15 +594,8 @@ class Card extends PlayableObject {
                 menu.push({ command: 'move-hand', text: 'Remove', menu: 'main' });
             }
         }
-        if (
-            this.location === 'play area' ||
-            this.location === 'spellboard' ||
-            this.location === 'hand' ||
-            this.location === 'discard' ||
-            this.location === 'archives'
-        ) {
-            menu = menu.concat(thisMenu);
-        }
+
+        menu = menu.concat(thisMenu);
 
         return menu;
     }

@@ -42,14 +42,13 @@ const CardInspector = ({ card }) => {
         );
     };
 
+    const showDamage = card.type !== 'Ready Spell';
     return (
         <Panel title='Card Inspector' cardClass='card-inspector'>
-
-            {/* <div > */}
             <div className='simple-card vertical mb-2'>
                 <CardImage card={card} />
             </div>
-            {getInspectorControl('damage')}
+            {showDamage && getInspectorControl('damage')}
             {getInspectorControl('exhaustion')}
             {getInspectorControl('status')}
             {card.type === 'Chimera' && getInspectorControl('redRains')}
@@ -62,7 +61,6 @@ const CardInspector = ({ card }) => {
                     Close
                 </button>
             </div>
-            {/* </div> */}
         </Panel>
     );
 };
