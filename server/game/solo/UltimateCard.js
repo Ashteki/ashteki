@@ -2,6 +2,10 @@ const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
 
 class UltimateCard extends Card {
+    get isMovable() {
+        return false;
+    }
+
     getImageStub() {
         return this.imageStub.replace('%s', this.owner.chimeraPhase);
     }

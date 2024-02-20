@@ -137,6 +137,7 @@ const CardPile = ({
                         setManualPopup(!showPopup);
                     }}
                     onDragDrop={onDragDrop}
+                    onMenuItemClick={onMenuItemClick}
                     onMouseOut={onMouseOut}
                     onMouseOver={onMouseOver}
                     onTouchMove={onTouchMove}

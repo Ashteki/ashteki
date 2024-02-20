@@ -14,7 +14,8 @@ const {
     ConjuredCardTypes,
     Magic,
     PhoenixbornTypes,
-    FaceUpLocations
+    FaceUpLocations,
+    LegalLocations
 } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
@@ -86,40 +87,6 @@ class Card extends PlayableObject {
 
         this.moribund = false;
 
-        this.menu = [
-            { command: 'tokens', text: 'Modify tokens', menu: 'main' },
-            { command: 'main', text: 'Back', menu: 'tokens' },
-            { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
-            { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
-            { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
-            { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
-            { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
-            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
-            { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
-            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' },
-        ];
-        // PBs can't move
-        if (!PhoenixbornTypes.includes(this.type)) {
-            this.menu.push(
-                { command: 'moves', text: 'Move', menu: 'main' },
-                { command: 'main', text: 'Back', menu: 'moves' },
-                { command: 'moveHand', text: 'Move to hand', menu: 'moves' },
-                { command: 'moveDiscard', text: 'Move to discard', menu: 'moves' },
-                { command: 'movePlay', text: 'Move to play area', menu: 'moves' },
-                { command: 'remEffects', text: 'Remove temporary effects', menu: 'main' }
-            );
-        }
-        if (ConjuredCardTypes.includes(this.type)) {
-            this.menu.push({ command: 'moveConjuration', text: 'Move to conjuration pile', menu: 'moves' });
-        }
-        if (this.type === CardType.Phoenixborn) {
-            this.menu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
-        }
-
-        if (BattlefieldTypes.includes(this.type)) {
-            this.menu.push({ command: 'control', text: 'Give control', menu: 'main' });
-        }
-
         this.endRound();
         this.modifiedAttack = undefined;
         this.modifiedLife = undefined;
@@ -128,6 +95,10 @@ class Card extends PlayableObject {
         this.modifiedRecover = undefined;
         this.usedGuardThisRound = false;
         this.actsAs = undefined;
+    }
+
+    get isMovable() {
+        return !PhoenixbornTypes.includes(this.type);
     }
 
     getImageStub() {
@@ -562,10 +533,50 @@ class Card extends PlayableObject {
     }
 
     getMenu() {
+        const thisMenu = [
+            { command: 'tokens', text: 'Modify tokens', menu: 'main' },
+            { command: 'main', text: 'Back', menu: 'tokens' },
+            { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
+            { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
+            { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
+            { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
+            { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
+            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
+            { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
+            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' },
+            { command: 'remEffects', text: 'Remove temporary effects', menu: 'main' }
+        ];
+        // PBs can't move
+        if (this.isMovable) {
+            thisMenu.push(
+                { command: 'moves', text: 'Move', menu: 'main' },
+                { command: 'main', text: 'Back', menu: 'moves' }
+            );
+            LegalLocations[this.type].forEach((loc) => {
+                if (loc !== 'being played' && loc !== this.location) {
+                    thisMenu.push({
+                        command: 'move-' + loc,
+                        text: 'Move to ' + loc,
+                        menu: 'moves'
+                    });
+                }
+            });
+        }
+        if (ConjuredCardTypes.includes(this.type)) {
+            thisMenu.push({ command: 'moveConjuration', text: 'Move to conjuration pile', menu: 'moves' });
+        }
+        if (this.type === CardType.Phoenixborn) {
+            thisMenu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
+        }
+
+        if (BattlefieldTypes.includes(this.type)) {
+            thisMenu.push({ command: 'control', text: 'Give control', menu: 'main' });
+        }
+
         var menu = [];
 
         if (
-            !this.menu.length ||
+            !thisMenu.length ||
             !this.game.manualMode ||
             (this.location !== 'play area' &&
                 this.location !== 'spellboard' &&
@@ -598,7 +609,7 @@ class Card extends PlayableObject {
             this.location === 'discard' ||
             this.location === 'archives'
         ) {
-            menu = menu.concat(this.menu);
+            menu = menu.concat(thisMenu);
         }
 
         return menu;

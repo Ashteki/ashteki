@@ -6,7 +6,7 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes, Magic } = require('../constants');
+const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes, Magic, LegalLocations } = require('../constants');
 const moment = require('moment');
 
 class Player extends GameObject {
@@ -554,20 +554,7 @@ class Player extends GameObject {
             return false;
         }
 
-        const cardLocations = ['hand', 'deck', 'discard', 'purged', 'grafted'];
-        const legalLocations = {
-            'Action Spell': [...cardLocations, 'being played'],
-            'Alteration Spell': [...cardLocations, 'being played', 'play area'],
-            'Ready Spell': [...cardLocations, 'spellboard'], // To do: The Awakened State is a ready spell that starts in archives
-            'Reaction Spell': [...cardLocations, 'being played'],
-            Ally: [...cardLocations, 'play area'],
-            Conjuration: ['play area', 'archives', 'purged'],
-            'Conjured Alteration Spell': ['play area', 'archives'],
-            Aspect: ['deck', 'discard', 'purged', 'play area', 'hand'],
-            'Conjured Aspect': ['play area', 'archives', 'purged']
-        };
-
-        return legalLocations[card.type] && legalLocations[card.type].includes(location);
+        return LegalLocations[card.type] && LegalLocations[card.type].includes(location);
     }
 
     /**

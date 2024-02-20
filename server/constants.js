@@ -42,15 +42,7 @@ const ConjuredCardTypes = [
 ];
 const EffectLocations = ['play area', 'spellboard'];
 const DamageDealingLocations = ['play area', 'being played', 'spellboard'];
-const FaceUpLocations = [
-    'play area',
-    'spellboard',
-    'discard',
-    'hand',
-    'purged',
-    'grafted',
-    'archives'
-];
+const FaceUpLocations = ['play area', 'spellboard', 'discard', 'hand', 'purged', 'archives'];
 
 const AbilityType = {
     Action: 'action', // not used
@@ -86,6 +78,19 @@ const GameType = {
     Competitive: 'competitive'
 };
 
+const cardLocations = ['hand', 'deck', 'discard', 'purged'];
+const LegalLocations = {
+    'Action Spell': [...cardLocations, 'being played'],
+    'Alteration Spell': [...cardLocations, 'being played', 'play area'],
+    'Ready Spell': [...cardLocations, 'spellboard'], // To do: The Awakened State is a ready spell that starts in archives
+    'Reaction Spell': [...cardLocations, 'being played'],
+    Ally: [...cardLocations, 'play area'],
+    Conjuration: ['play area', 'archives', 'purged'],
+    'Conjured Alteration Spell': ['play area', 'archives'],
+    Aspect: ['deck', 'discard', 'purged', 'play area', 'hand'],
+    'Conjured Aspect': ['play area', 'archives', 'purged']
+};
+
 module.exports = {
     Constants,
     CardType,
@@ -103,5 +108,6 @@ module.exports = {
     BluffAbilityTypes,
     DamageDealingLocations,
     FaceUpLocations,
+    LegalLocations,
     GameType
 };

@@ -61,6 +61,7 @@ const PlayerRow = ({
         onCardClick: onCardClick,
         onCardAltClick: onCardAltClick,
         onDragDrop: onDragDrop,
+        onMenuItemClick: onMenuItemClick,
         onMouseOut: onMouseOut,
         onMouseOver: onMouseOver,
         popupLocation: side,
