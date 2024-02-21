@@ -61,6 +61,7 @@ const PlayerRow = ({
         onCardClick: onCardClick,
         onCardAltClick: onCardAltClick,
         onDragDrop: onDragDrop,
+        onMenuItemClick: onMenuItemClick,
         onMouseOut: onMouseOut,
         onMouseOver: onMouseOver,
         popupLocation: side,
@@ -75,6 +76,7 @@ const PlayerRow = ({
             manualMode={manualMode}
             maxCards={5}
             onCardClick={onCardClick}
+            onMenuItemClick={onMenuItemClick}
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
             rotateHeader={true}

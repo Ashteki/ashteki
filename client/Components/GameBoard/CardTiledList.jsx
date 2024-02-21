@@ -17,6 +17,7 @@ function CardTiledList(props) {
                     key={index}
                     onClick={props.onCardClick}
                     onAltClick={props.onCardAltClick}
+                    onMenuItemClick={props.onMenuItemClick}
                     onMouseOut={props.onCardMouseOut}
                     onMouseOver={props.onCardMouseOver}
                     onTouchMove={props.onTouchMove}

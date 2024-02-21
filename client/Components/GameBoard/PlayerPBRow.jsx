@@ -54,6 +54,7 @@ const PlayerPBRow = ({
         onDragDrop: onDragDrop,
         onMouseOut: onMouseOut,
         onMouseOver: onMouseOver,
+        onMenuItemClick: onMenuItemClick,
         popupLocation: side,
         size: cardSize
     };

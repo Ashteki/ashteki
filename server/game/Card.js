@@ -14,7 +14,8 @@ const {
     ConjuredCardTypes,
     Magic,
     PhoenixbornTypes,
-    FaceUpLocations
+    FaceUpLocations,
+    LegalLocations
 } = require('../constants.js');
 const PlayableObject = require('./PlayableObject.js');
 const { parseCosts } = require('./costs.js');
@@ -86,34 +87,6 @@ class Card extends PlayableObject {
 
         this.moribund = false;
 
-        this.menu = [
-            { command: 'tokens', text: 'Modify tokens', menu: 'main' },
-            { command: 'moves', text: 'Move', menu: 'main' },
-            { command: 'main', text: 'Back', menu: 'tokens' },
-            { command: 'main', text: 'Back', menu: 'moves' },
-            { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
-            { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
-            { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
-            { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
-            { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
-            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
-            { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
-            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' },
-            { command: 'moveHand', text: 'Move to hand', menu: 'moves' },
-            { command: 'moveDiscard', text: 'Move to discard', menu: 'moves' },
-            { command: 'movePlay', text: 'Move to play area', menu: 'moves' },
-            { command: 'remEffects', text: 'Remove temporary effects', menu: 'main' }
-        ];
-        if (ConjuredCardTypes.includes(this.type)) {
-            this.menu.push({ command: 'moveConjuration', text: 'Move to conjuration pile', menu: 'moves' });
-        }
-        if (this.type === CardType.Phoenixborn) {
-            this.menu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
-        }
-        if (BattlefieldTypes.includes(this.type)) {
-            this.menu.push({ command: 'control', text: 'Give control', menu: 'main' });
-        }
-
         this.endRound();
         this.modifiedAttack = undefined;
         this.modifiedLife = undefined;
@@ -122,6 +95,10 @@ class Card extends PlayableObject {
         this.modifiedRecover = undefined;
         this.usedGuardThisRound = false;
         this.actsAs = undefined;
+    }
+
+    get isMovable() {
+        return !PhoenixbornTypes.includes(this.type);
     }
 
     getImageStub() {
@@ -556,25 +533,57 @@ class Card extends PlayableObject {
     }
 
     getMenu() {
-        var menu = [];
+        const thisMenu = [];
+        // Move
+        if (this.isMovable) { // e.g. PBs can't move
+            thisMenu.push(
+                { command: 'moves', text: 'Move', menu: 'main' },
+                { command: 'main', text: 'Back', menu: 'moves' }
+            );
+            LegalLocations[this.type].forEach((loc) => {
+                // only show for other locations
+                if (loc !== 'being played' && loc !== this.location) {
+                    thisMenu.push({
+                        command: 'move-' + loc,
+                        text: 'Move to ' + (loc === 'archives' ? 'conjuration pile' : loc),
+                        menu: 'moves'
+                    });
+                }
+            });
+        }
 
-        if (
-            !this.menu.length ||
-            !this.game.manualMode ||
-            (this.location !== 'play area' &&
-                this.location !== 'spellboard' &&
-                this.location !== 'hand' &&
-                this.location !== 'discard' &&
-                this.location !== 'archives')
-        ) {
+        if (this.type === CardType.Phoenixborn) {
+            thisMenu.push({ command: 'guarded', text: 'Toggle guarded', menu: 'main' });
+        }
+
+        thisMenu.push(
+            { command: 'tokens', text: 'Modify tokens', menu: 'main' },
+            { command: 'main', text: 'Back', menu: 'tokens' },
+            { command: 'addExhaustion', text: 'Add 1 exhaustion', menu: 'tokens' },
+            { command: 'remExhaustion', text: 'Remove 1 exhaustion', menu: 'tokens' },
+            { command: 'addDamage', text: 'Add 1 damage', menu: 'tokens' },
+            { command: 'remDamage', text: 'Remove 1 damage', menu: 'tokens' },
+            { command: 'addStatus', text: 'Add 1 status', menu: 'tokens' },
+            { command: 'remStatus', text: 'Remove 1 status', menu: 'tokens' },
+            { command: 'addGravityFlux', text: 'Add 1 gravity flux exhaustion', menu: 'tokens' },
+            { command: 'remGravityFlux', text: 'Remove gravity flux exhaustion', menu: 'tokens' }
+        );
+
+        thisMenu.push({ command: 'remEffects', text: 'Remove temporary effects', menu: 'main' });
+
+        if (BattlefieldTypes.includes(this.type)) {
+            thisMenu.push({ command: 'control', text: 'Give control', menu: 'main' });
+        }
+
+
+        if (!thisMenu.length || !this.game.manualMode) {
             return undefined;
         }
 
+        var menu = [];
         if (this.facedown) {
             return [{ command: 'reveal', text: 'Reveal', menu: 'main' }];
         }
-
-        menu.push({ command: 'click', text: 'Select card', menu: 'main' });
         if (this.dieUpgrades.length) {
             menu.push({ command: 'detachDie', text: 'Remove die', menu: 'main' });
         }
@@ -582,18 +591,11 @@ class Card extends PlayableObject {
             if (!this.parent) {
                 menu.push({ command: 'attach', text: 'Attach', menu: 'main' });
             } else {
-                menu.push({ command: 'moveHand', text: 'Remove', menu: 'main' });
+                menu.push({ command: 'move-hand', text: 'Remove', menu: 'main' });
             }
         }
-        if (
-            this.location === 'play area' ||
-            this.location === 'spellboard' ||
-            this.location === 'hand' ||
-            this.location === 'discard' ||
-            this.location === 'archives'
-        ) {
-            menu = menu.concat(this.menu);
-        }
+
+        menu = menu.concat(thisMenu);
 
         return menu;
     }
