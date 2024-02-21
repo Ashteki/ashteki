@@ -5,6 +5,14 @@ const ThenAbility = require('../ThenAbility');
 const AbilityDsl = require('../abilitydsl');
 
 class BehaviourCard extends Card {
+    get isMovable() {
+        return false;
+    }
+
+    getMenu() {
+        return undefined;
+    }
+
     getImageStub() {
         return this.imageStub.replace('%s', this.owner.chimeraPhase);
     }

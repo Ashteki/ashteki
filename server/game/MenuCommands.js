@@ -40,43 +40,49 @@ class MenuCommands {
                 game.addAlert('danger', '{0} removes temporary effects from {1}', player, card);
                 card.removeLastingEffects();
                 break;
-            // I can't click on cards in my Discard pile in manual mode and receive a menu
-            // In manual mode, I can't click on cards in hand and receive a menu (drag & drop required)
-            case 'moveHand':
-                if (
-                    // card.controller != player.opponent &&
-                    ((card.location === 'play area' && card.type != 'phoenixborn') ||
-                        card.location === 'spellboard' ||
-                        card.location === 'discard')
-                ) {
+            case 'move-hand':
+                if (card.type != 'phoenixborn') {
                     game.addAlert('danger', '{0} moves {1} from the {2} to hand', player, card, card.location);
                     card.owner.moveCard(card, 'hand');
                 }
                 break;
-            case 'moveDiscard':
-                if (
-                    card.controller != player.opponent &&
-                    ((card.location === 'play area' && card.type != 'phoenixborn') ||
-                        card.location === 'spellboard' ||
-                        card.location === 'hand')
-                ) {
+            case 'move-deck':
+                if (card.controller != player.opponent) {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to their draw pile', player, card, card.location);
+                    card.owner.moveCard(card, 'deck');
+                }
+                break;
+            case 'move-discard':
+                if (card.controller != player.opponent) {
                     game.addAlert('danger', '{0} moves {1} from their {2} to their discard pile', player, card, card.location);
                     card.owner.moveCard(card, 'discard');
                 }
                 break;
-            case 'movePlay':
-                if (
-                    card.controller != player.opponent &&
-                    (card.location === 'hand' || card.location === 'discard')
-                ) {
+            case 'move-play area':
+                if (card.controller != player.opponent) {
                     game.addAlert('danger', '{0} moves {1} from their {2} to play', player, card, card.location);
                     card.owner.moveCard(card, 'play area');
                 }
                 break;
+
+            case 'move-spellboard':
+                if (card.controller != player.opponent) {
+                    game.addAlert('danger', '{0} moves {1} from their {2} to their spellboard', player, card, card.location);
+                    card.owner.moveCard(card, 'spellboard');
+                }
+                break;
+
+            case 'move-archives':
             case 'moveConjuration':
-                if (card.controller != player.opponent && card.location === 'play area') {
+                if (card.controller != player.opponent) {
                     game.addAlert('danger', '{0} moves {1} from their {2} to their conjuration pile', player, card, card.location);
                     card.owner.moveCard(card, 'archives');
+                }
+                break;
+            case 'move-purged':
+                if (card.controller != player.opponent) {
+                    game.addAlert('danger', '{0} removes {1} from the game', player, card);
+                    card.owner.moveCard(card, 'purged');
                 }
                 break;
             case 'control':

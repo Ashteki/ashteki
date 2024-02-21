@@ -61,7 +61,7 @@ const Card = ({
     });
 
     const isAllowedMenuSource = () => {
-        return source === 'play area' || source === 'spellboard';
+        return source === 'play area' || source === 'spellboard' || 'hand';
     };
 
     const onCardClicked = (event, card) => {
@@ -394,6 +394,8 @@ const Card = ({
                     onMouseOut={!disableMouseOver && !isFacedown() ? onMouseOut : undefined}
                     onClick={(event) => onCardClicked(event, card)}
                 >
+                    {getMenuBox(card)}
+
                     <div>
                         <span className='card-name'>{card.name}</span>
                         {image}
@@ -452,7 +454,6 @@ const Card = ({
         return (
             <div className={classNames('card-wrapper', sizeClass)} style={style}>
                 {getAltIcon(card)}
-                {getMenuBox(card)}
                 {getCard()}
                 {getupgrades()}
                 {renderUnderneathCards()}
