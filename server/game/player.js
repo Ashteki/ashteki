@@ -505,6 +505,11 @@ class Player extends GameObject {
         let sourceList = this.getSourceList(source);
         let card = sourceList.find((card) => card.uuid === cardId);
 
+        if (source === 'deck' && target === 'hand' && !cardId) {
+            // dragging top of deck for draw
+            card = sourceList[0];
+        }
+
         if (!card) {
             return;
         }
