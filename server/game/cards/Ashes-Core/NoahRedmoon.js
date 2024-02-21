@@ -12,6 +12,7 @@ class NoahRedmoon extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
             target: {
+                targetsPlayer: true,
                 // target a ready spell
                 // (though technically the ability targets a PB so it should be able to be vanished)
                 cardType: [CardType.ReadySpell],
