@@ -58,6 +58,7 @@ class ChosenDiscardAction extends PlayerAction {
                         promptProps.buttons = [{ text: 'Top of deck', command: 'topdeck' }];
                         promptProps.onMenuCommand = () => {
                             context.game.actions.discardTopOfDeck().resolve(player, context);
+                            return true;
                         };
                     }
                     context.game.promptForSelect(player, promptProps);
