@@ -122,6 +122,7 @@ describe('Blight ultimate', function () {
 
             this.player1.clickPrompt('Top of deck');
             expect(topCard.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
