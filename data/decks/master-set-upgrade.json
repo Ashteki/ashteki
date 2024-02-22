@@ -23,7 +23,7 @@
         ],
         "cards": [
             {
-                "id": "cover",
+                "id": "strange-copy",
                 "count": 3
             },
             {
@@ -349,7 +349,7 @@
                 "ff": true
             },
             {
-                "id": "strange-copy",
+                "id": "golden-veil",
                 "count": 3
             },
             {
@@ -415,9 +415,8 @@
                 "count": 3
             },
             {
-                "id": "golden-veil",
-                "count": 3,
-                "ff": true
+                "id": "cover",
+                "count": 3
             },
             {
                 "id": "hammer-knight",
