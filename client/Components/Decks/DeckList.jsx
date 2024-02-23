@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Col, Form } from 'react-bootstrap';
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Accordion, AccordionContext, Card, Col, Form, useAccordionToggle } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faLink, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp, faHeart, faLink, faLock } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
+import Pagination from 'react-bootstrap-4-pagination';
 
 import {
     loadDecks,
@@ -25,7 +24,23 @@ import './DeckList.scss';
 import { PatreonStatus } from '../../types';
 import DeckDice from './DeckDice';
 
-const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
+function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionToggle(eventKey, () => callback && callback(eventKey));
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+    const icon = isCurrentEventKey ? faAngleUp : faAngleDown;
+    return (
+        <FontAwesomeIcon
+            className='toggle'
+            icon={icon}
+            onClick={decoratedOnClick}
+        ></FontAwesomeIcon>
+    );
+}
+
+const DeckList = ({ onDeckSelected, showToggle, standaloneDecks = 0 }) => {
     const [pagingDetails, setPagingDetails] = useState({
         pageSize: 10,
         page: 1,
@@ -37,8 +52,8 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
     const showRestricted = user?.permissions.canVerifyDecks;
     const [showFaves, setShowFaves] = useState(false);
-    const pbFilter = useRef(null);
-    const nameFilter = useRef(null);
+    const [pbFilter, setPbFilter] = useState('');
+    const [nameFilter, setNameFilter] = useState('');
     const dispatch = useDispatch();
 
     const getDecks = (state) => {
@@ -92,197 +107,46 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         $('.filter-label').parent().parent().hide();
     }, [pagingDetails, dispatch, standaloneDecks, deckReload]);
 
-    const selectRow = {
-        mode: 'radio',
-        clickToSelect: true,
-        hideSelectColumn: true,
-        selected: decks && selectedDeck ? [decks.find((d) => d._id === selectedDeck._id)?._id] : [],
-        classes: 'selected-deck',
-        onSelect: (deck, isSelect) => {
-            if (isSelect) {
-                dispatch(selectDeck(deck));
-            }
-        }
+    const doClick = (event, deck) => {
+        dispatch(selectDeck(deck));
+        (!deck.premium || allowPremium) && onDeckSelected && onDeckSelected(deck);
     };
 
-    const rowEvents = {
-        onClick: (event, deck) => {
-            (!deck.premium || allowPremium) && onDeckSelected && onDeckSelected(deck);
-        }
-    };
-
-    // eslint-disable-next-line no-unused-vars
-    const rowClasses = (row) => {
-        const classes = ['deck-list-entry'];
-        if (row.mode === 'chimera') {
-            if (row.premium && !allowPremium) {
-                classes.push('premium');
-            }
-        } else {
-            if (!row.status.basicRules) {
-                classes.push('invalid');
-            }
-
-            if (!row.status.hasConjurations) {
-                classes.push('conjurations');
-            }
-        }
-        return classes.join(' ');
-    };
-
-    /**
-     * @param {any} type
-     * @param {PagingDetails} data
-     */
-    const onTableChange = (type, data) => {
+    const onPageClick = (page) => {
         let newPageData = Object.assign({}, pagingDetails);
-        switch (type) {
-            case 'pagination':
-                if (
-                    (pagingDetails.page !== data.page && data.page !== 0) ||
-                    (pagingDetails.pageSize !== data.sizePerPage && data.sizePerPage !== 0)
-                ) {
-                    newPageData.page = data.page || pagingDetails.page;
-                    newPageData.pageSize = data.sizePerPage;
-                }
-
-                break;
-            case 'sort':
-                newPageData.sort = data.sortField;
-                newPageData.sortDir = data.sortOrder;
-
-                break;
-            case 'filter':
-                newPageData.filter = Object.keys(data.filters).map((k) => ({
-                    name: k,
-                    value: data.filters[k].filterVal
-                }));
-
-                break;
-        }
-
+        newPageData.page = page;
         setPagingDetails(newPageData);
     };
 
-    const columns = [
-        {
-            dataField: 'pb',
-            headerStyle: {
-                width: '80px'
-            },
-            text: 'Pb',
-            sort: !standaloneDecks,
-            filter: textFilter({
-                getFilter: (filter) => {
-                    pbFilter.current = filter;
-                }
-            }),
-            // eslint-disable-next-line react/display-name
-            formatter: (pb, row) => {
-                const idClass = row.listClass || row.phoenixborn[0].id;
-                return <div className={`decklist-entry-image ${idClass}`} title={row.phoenixborn[0].card.name}><span className='sr-only'>{row.phoenixborn[0].card.name}</span></div>
-            }
-        },
-        {
-            dataField: 'name',
-            text: 'Name',
-            sort: !standaloneDecks,
-            filter: textFilter({
-                getFilter: (filter) => {
-                    nameFilter.current = filter;
-                }
-            }),
-            formatter: (item, row) => {
-                const hasChained = row.cards.some((c) => c.card.isChained);
-                const icon = hasChained ? (
-                    <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
-                ) : null;
-                const dice = row.mode !== 'chimera' && <DeckDice deck={row} />;
-                const output = (
-                    <div className='decklist-entry'>
-                        {/* <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div> */}
-                        <div>
-                            <span className='decklist-title'>{item}</span>&nbsp;
-                            {icon}
-                            <br />
-                            {dice}
-                            {row.premium && !allowPremium && (
-                                <div className='premium-lozenge'>
-                                    <FontAwesomeIcon icon={faLock} />
-                                    &nbsp;Premium
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                );
-                return output;
-            }
-        },
-        // {
-        //     dataField: 'lastUpdated',
-        //     headerStyle: {
-        //         width: '20%'
-        //     },
-        //     style: {
-        //         fontSize: '0.7rem'
-        //     },
-        //     align: 'center',
-        //     text: 'Updated',
-        //     sort: !standaloneDecks,
-        //     hidden: standaloneDecks,
-
-        //     /**
-        //      * @param {Date} cell
-        //      */
-        //     formatter: (cell) => moment(cell).format('YYYY-MM-DD')
-        // },
-        {
-            dataField: 'winRate',
-            align: 'center',
-            text: 'Win Rate',
-            headerStyle: {
-                width: '60px'
-            },
-            style: {
-                fontSize: '0.8rem'
-            },
-            sort: !standaloneDecks,
-            hidden: standaloneDecks,
-            /**
-             * @param {number} cell
-             */
-            formatter: (item, row) => {
-                const output = (
-                    <>
-                        <span className='win-rate'>{item}%</span>
-                        <br />
-                        (of {row.played})
-                    </>
-                );
-                return output;
-            }
-        }
-    ];
-
     let onNameChange = debounce((event) => {
-        nameFilter.current(event.target.value);
+        event.preventDefault();
+        event.stopPropagation();
+        const newPageData = Object.assign({}, pagingDetails);
+        updateFilter(newPageData, 'name', event.target.value);
+        setPagingDetails(newPageData);
     }, 500);
 
     let onPbChange = debounce((event) => {
-        pbFilter.current(event.target.value);
+        const newPageData = Object.assign({}, pagingDetails);
+        updateFilter(newPageData, 'pb', event.target.value);
+        setPagingDetails(newPageData);
     }, 500);
 
-    const handleFaveChange = () => {
-        setShowFaves(!showFaves);
-        const newPageData = Object.assign({}, pagingDetails);
-        const i = newPageData.filter.findIndex((f) => f.name === 'favourite');
+    const updateFilter = (newPageData, key, value) => {
+        const i = newPageData.filter.findIndex((f) => f.name === key);
         if (i > -1) {
             newPageData.filter.splice(i, 1);
         }
         newPageData.filter.push({
-            name: 'favourite',
-            value: !showFaves
+            name: key,
+            value: value
         });
+    }
+
+    const handleFaveChange = () => {
+        setShowFaves(!showFaves);
+        const newPageData = Object.assign({}, pagingDetails);
+        updateFilter(newPageData, 'favourite', !showFaves);
         setPagingDetails(newPageData);
     };
 
@@ -298,7 +162,7 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
         <div className='deck-list'>
             {!standaloneDecks && (
                 <div >
-                    <Form>
+                    <Form onSubmit={(event) => event.preventDefault()}>
                         <Form.Row>
                             <Form.Group as={Col} controlId='formGridName'>
                                 <Form.Control
@@ -345,31 +209,60 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
                     </Form>
                 </div>
             )}
-            <div>
-                <BootstrapTable
-                    bootstrap4
-                    remote
-                    hover
-                    keyField='_id'
-                    data={decks}
-                    escape='false'
-                    columns={columns}
-                    selectRow={selectRow}
-                    rowEvents={rowEvents}
-                    rowClasses={rowClasses}
-                    pagination={
-                        standaloneDecks
-                            ? null
-                            : paginationFactory({
-                                page: pagingDetails.page,
-                                sizePerPage: pagingDetails.pageSize,
-                                totalSize: numDecks
-                            })
-                    }
-                    filter={filterFactory()}
-                    filterPosition='top'
-                    onTableChange={onTableChange}
-                    defaultSorted={[{ dataField: 'datePublished', order: 'desc' }]}
+
+            <Accordion>
+                {decks.map((d, index) => {
+                    const idClass = d.listClass || d.phoenixborn[0].id;
+                    const hasChained = d.cards.some((c) => c.card.isChained);
+                    const icon = hasChained ? (
+                        <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
+                    ) : null;
+                    const dice = d.mode !== 'chimera' && <DeckDice deck={d} />;
+                    const isSelected = selectedDeck === d;
+                    const cardClasses = classNames('decklist-card', {
+                        'selected-deck': isSelected
+                    });
+                    return (
+                        <Card key={d} className={cardClasses}>
+                            <Card.Header className='decklist-accordion-header' onClick={(event) => doClick(event, d)}>
+                                <div className={`decklist-entry-image ${idClass}`} title={d.phoenixborn[0].card.name}><span className='sr-only'>{d.phoenixborn[0].card.name}</span></div>
+                                <div className='decklist-entry'>
+                                    {/* <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div> */}
+                                    <div>
+                                        <span className='decklist-title'>{d.name}</span>&nbsp;
+                                        {icon}
+                                        <br />
+                                        {dice}
+                                        {d.premium && !allowPremium && (
+                                            <div className='premium-lozenge'>
+                                                <FontAwesomeIcon icon={faLock} />
+                                                &nbsp;Premium
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                                <div className='win-rate'>
+                                    <span>{d.winRate}%</span>
+                                    <br />
+                                    (of {d.played})
+                                </div>
+                                {showToggle && <ContextAwareToggle eventKey={index + 1}>Click me!</ContextAwareToggle>}
+                            </Card.Header>
+                            <Accordion.Collapse eventKey={index + 1}>
+                                <Card.Body>Hello! I'm the body</Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    )
+                })}
+            </Accordion>
+            <div className='pagination-wrapper'>
+                <Pagination
+                    className='pager'
+                    totalPages={numDecks / 10}
+                    currentPage={pagingDetails.page}
+                    showMax={7}
+                    onClick={onPageClick}
+                    prevNext={false}
                 />
             </div>
         </div>
@@ -378,3 +271,5 @@ const DeckList = ({ onDeckSelected, standaloneDecks = 0 }) => {
 
 DeckList.displayName = 'DeckList';
 export default DeckList;
+
+

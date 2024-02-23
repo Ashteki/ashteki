@@ -45,6 +45,64 @@
     .invalid {
         background-color: rgba(theme-color(danger), 0.6);
     }
+
+    .decklist-card {
+        background-color: unset;
+        margin: unset;
+        border-bottom: 1px solid grey !important;
+
+        &.selected-deck {
+            .card-header {
+                background-color: rgba(theme-color('primary'), 0.7);
+            }
+        }
+
+        .die {
+            margin: 2px;
+            height: 22px;
+            width: 22px;
+        }
+
+        .card-header {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px;
+
+            .toggle {
+                width: 20px;
+                height: 20px;
+                margin-top: auto;
+                // margin-bottom: auto;
+                border: 1px solid grey;
+                border-radius: 3px;
+            }
+        }
+
+        .decklist-title {
+            font-size: 15px;
+        }
+
+    }
+
+    .card {
+        box-shadow: unset !important;
+
+        .win-rate {
+            width: 50px;
+            margin-left: auto;
+            text-align: center;
+        }
+    }
+
+}
+
+.pager {
+    justify-content: right !important;
+    padding: 10px 15px;
+}
+
+.decklist-accordion-header {
+    display: flex;
+    gap: 10px;
 }
 
 .invalidCount {

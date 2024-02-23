@@ -7,8 +7,6 @@ import 'react-redux-toastr/src/styles/index.scss';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import './styles/index.scss';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 
 $.validator.setDefaults({
     highlight: function (element) {
