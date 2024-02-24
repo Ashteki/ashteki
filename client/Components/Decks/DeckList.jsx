@@ -255,7 +255,7 @@ const DeckList = ({ onDeckSelected, showToggle, standaloneDecks = 0 }) => {
                     )
                 })}
             </Accordion>
-            <div className='pagination-wrapper'>
+            {decks?.length > 0 && <div className='pagination-wrapper'>
                 <Pagination
                     className='pager'
                     totalPages={numDecks / 10}
@@ -264,7 +264,7 @@ const DeckList = ({ onDeckSelected, showToggle, standaloneDecks = 0 }) => {
                     onClick={onPageClick}
                     prevNext={false}
                 />
-            </div>
+            </div>}
         </div>
     );
 };
