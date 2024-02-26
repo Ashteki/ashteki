@@ -21,7 +21,7 @@ import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 /**
  * @param {ViewDeckProps} props
  */
-const ViewDeck = ({ deck, editMode }) => {
+const ViewDeck = ({ deck, editMode, allowEdit }) => {
     const dispatch = useDispatch();
 
     const handleDeleteClick = () => {
@@ -77,7 +77,7 @@ const ViewDeck = ({ deck, editMode }) => {
 
             <div className='lobby-card'>
                 <DeckHeader deck={deck} />
-                {!editMode && (
+                {!editMode && allowEdit && (
                     <div className='deck-buttons text-center'>
                         <button className='btn btn-primary def' onClick={handleEditClick}>
                             <FontAwesomeIcon icon={faPen} /> Edit

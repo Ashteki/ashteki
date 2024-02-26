@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Button } from 'react-bootstrap';
-import igcircle from '../../assets/img/igcircle.png';
 import DeckList from '../Decks/DeckList.jsx';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './SelectDeckModal.scss';
+import GameFormatInfo from './GameFormatInfo.jsx';
 
 const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
     const { t } = useTranslation();
@@ -33,6 +33,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <DeckList onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
+                    <GameFormatInfo gameType='precon' />
                     <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
                     <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
                 </TabPanel>
@@ -45,6 +46,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <DeckList standaloneDecks={3} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
+                    <GameFormatInfo gameType='aparty' />
                     <Button onClick={() => onChooseForMe(2)}>Choose for me</Button>
                     <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
                 </TabPanel>
