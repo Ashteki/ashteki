@@ -12,6 +12,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import DeckTypeInfo from '../Components/Decks/DeckTypeInfo';
 import DeckFilter from '../Components/Decks/DeckFilter';
 import debounce from 'lodash.debounce';
+import './Decks.scss';
 
 const DecksComponent = ({ onDeckSelected }) => {
     const { t } = useTranslation();
@@ -136,7 +137,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                 </Col>
 
                 <div className='lobby-header'> Decks</div>
-                <Tabs onSelect={onTabChange}>
+                <Tabs onSelect={onTabChange} >
                     <TabList>
                         <Tab>My Decks</Tab>
                         <Tab>Precons</Tab>
