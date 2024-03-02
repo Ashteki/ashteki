@@ -1,14 +1,77 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import igcircle from '../../assets/img/igcircle.png';
 import DeckList from '../Decks/DeckList.jsx';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './SelectDeckModal.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadDecks } from '../../redux/actions/deck.js';
+import DeckFilter from '../Decks/DeckFilter.jsx';
+import Pagination from 'react-bootstrap-4-pagination';
+import debounce from 'lodash.debounce';
 
 const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
-    const { t } = useTranslation();
+    const user = useSelector((state) => state.account.user);
+    const showRestricted = user?.permissions.canVerifyDecks;
+
+    const {
+        myDecks,
+        standaloneDecks,
+        adventuringPartyDecks,
+        buildingBasicsDecks,
+        firstAdventureDecks,
+        chimeraDecks,
+        pveDecks,
+        msuDecks
+    } = useSelector((state) => ({
+        myDecks: state.cards.decks,
+        standaloneDecks: state.cards.standaloneDecks,
+        adventuringPartyDecks: state.cards.adventuringPartyDecks,
+        buildingBasicsDecks: state.cards.buildingBasicsDecks,
+        firstAdventureDecks: state.cards.firstAdventureDecks,
+        chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
+        pveDecks: state.cards.pveDecks,
+        msuDecks: state.cards.msuDecks
+    }));
+    const [pbFilter, setPbFilter] = useState('');
+    const [nameFilter, setNameFilter] = useState('');
+    const [showFaves, setShowFaves] = useState(false);
+    const [pageNumber, setPageNumber] = useState(1);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const filter = [
+            { name: 'pb', value: pbFilter },
+            { name: 'name', value: nameFilter },
+            { name: 'favourite', value: showFaves }
+        ];
+        const pagingDetails = {
+            pageSize: 80,
+            page: pageNumber,
+            sort: 'lastUpdated',
+            sortDir: 'desc',
+            filter: filter
+        };
+
+        dispatch(loadDecks(pagingDetails));
+    }, [nameFilter, pbFilter, showFaves, dispatch, pageNumber]);
+
+    let onNameChange = debounce((event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setNameFilter(event.target.value);
+    }, 500);
+
+    let onPbChange = (event) => {
+        setPbFilter(event.target.value);
+    };
+
+    const handleFaveChange = () => {
+        setShowFaves(!showFaves);
+    };
+    const onPageClick = (page) => {
+        setPageNumber(page);
+    };
 
     let deckList = null;
     let setIndex = 0;
@@ -20,37 +83,51 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Tab>Precons</Tab>
                     <Tab>Red Rains Precons</Tab>
                     <Tab>Building Basics</Tab>
-                    <Tab style={{ backgroundColor: 'rgb(0, 153, 255)', color: '#FFF' }}>
-                        Adventuring Party
-                    </Tab>
-                    <Tab style={{ backgroundColor: 'rgb(0, 99, 48)', color: '#FFF' }}>
-                        Master Set Upgrade
-                    </Tab>
+                    <Tab>Adventuring Party</Tab>
+                    <Tab>Master Set Upgrade</Tab>
                 </TabList>
 
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(0)}>Choose for me</Button>
-                    <DeckList onDeckSelected={onDeckSelected} />
+                    <DeckFilter
+                        onNameChange={onNameChange}
+                        onPbChange={onPbChange}
+                        handleFaveChange={handleFaveChange}
+                        showButtons={false}
+                    />
+
+                    <DeckList onDeckSelected={onDeckSelected} decks={myDecks} showWinRate={true} />
+                    <div className='pagination-wrapper'>
+                        <Pagination
+                            className='pager'
+                            totalPages={myDecks.length / 8}
+                            currentPage={pageNumber}
+                            showMax={7}
+                            onClick={onPageClick}
+                            prevNext={false}
+                        />
+                    </div>
+
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
-                    <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
+                    <DeckList decks={standaloneDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(6)}>Choose for me</Button>
-                    <DeckList standaloneDecks={6} onDeckSelected={onDeckSelected} />
+                    <DeckList decks={pveDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(3)}>Choose for me</Button>
-                    <DeckList standaloneDecks={3} onDeckSelected={onDeckSelected} />
+                    <DeckList decks={buildingBasicsDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(2)}>Choose for me</Button>
-                    <DeckList standaloneDecks={2} onDeckSelected={onDeckSelected} />
+                    <DeckList decks={adventuringPartyDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(7)}>Choose for me</Button>
-                    <DeckList standaloneDecks={7} onDeckSelected={onDeckSelected} />
+                    <DeckList decks={msuDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
             </Tabs>
         );
@@ -64,31 +141,35 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
-                    <DeckList standaloneDecks={1} onDeckSelected={onDeckSelected} />
+                    <DeckList decks={standaloneDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(6)}>Choose for me</Button>
-                    <DeckList standaloneDecks={6} onDeckSelected={onDeckSelected} />
+                    <DeckList decks={pveDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
             </Tabs>
         );
     } else {
+        let decks = null;
         switch (gameFormat) {
             case 'solo':
                 setIndex = 5;
+                decks = chimeraDecks;
                 break;
             case 'firstadventure':
                 setIndex = 4;
+                decks = firstAdventureDecks;
                 break;
             case 'aparty':
                 setIndex = 2;
+                decks = adventuringPartyDecks;
                 break;
         }
 
         deckList = (
             <div>
                 <Button onClick={() => onChooseForMe(setIndex)}>Choose for me</Button>
-                <DeckList standaloneDecks={setIndex} onDeckSelected={onDeckSelected} />
+                <DeckList decks={decks} onDeckSelected={onDeckSelected} />
             </div>
         );
     }
@@ -97,7 +178,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         <>
             <Modal show={true} onHide={onClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{t('Select Deck')}</Modal.Title>
+                    <Modal.Title>Select Deck</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>{deckList}</div>

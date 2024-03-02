@@ -2,116 +2,12 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
-.main-header {
-    background-color: rgba(theme-color('primary'), 0.5);
-    height: 100%;
-    vertical-align: center;
-    margin-bottom: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 4px;
-    height: 55px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-origin: content-box;
-}
-
-.event-banner {
-    padding-top: 0px;
-    margin-top: 0px;
-    margin-bottom: 4px;
-    border-radius: 10px;
-    height: 140px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-origin: content-box;
-    background-size: contain;
-}
-
-.chat-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 200px;
-
-    .card {
-        flex: 1;
-        margin-bottom: 10px;
-    }
-}
-
-.flex-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.flex-container-centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.chat-box {
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
-}
-
-.chat-box-container {
-    position: absolute;
-    bottom: 0;
-    left: 15px;
-    right: 15px;
-}
 
 .textlogo {
     // background-color: #7289DA;
     background-color: rgba(0, 0, 0, 0.5);
     height: 60px;
     border-radius: 5px;
-}
-
-.bookTextlogo {
-    height: 60px;
-    padding: 10px;
-}
-
-.cardsTextlogo {
-    height: 60px;
-    padding: 5px;
-}
-
-.discord-textlogo {
-    background-color: #7289DA;
-    // background-color: black;
-    height: 60px;
-    border-radius: 5px;
-}
-
-.ashes-live-textlogo {
-    color: white;
-    // background-color: black;
-    border-radius: 5px;
-    min-width: 60px;
-    font-size: 40px;
-    padding: 0 10px;
-    line-height: 40px;
-    vertical-align: middle;
-}
-
-.link-box {}
-
-.link-box-half {
-    width: 50%;
-}
-
-.link-box .caption {
-    padding: 5px;
-}
-
-.link-box img {
-    display: inline-block;
 }
 
 .link-box-item {
@@ -127,33 +23,9 @@
     padding-left: 20px;
 }
 
-.flex-container-row {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-.learn-video {
-    width: 33%;
-}
-
 .two-column {
     columns: 2;
     width: 100%;
-}
-
-.three-column-item {
-    width: 32%;
-
-}
-
-.three-column-item p {
-    padding: 5px 15px 5px 0;
-
-}
-
-.three-column-item li {
-    padding: 0px 10px;
 }
 
 .lobby-content h2 {
@@ -175,10 +47,6 @@
 .lobby-row {
     margin-bottom: 20px;
 
-}
-
-.learn h2 {
-    margin-bottom: 8px;
 }
 
 .decklist-img {

@@ -13,7 +13,7 @@
  */
 export const LeftMenu = [
     { path: '/', title: 'Play' },
-    { path: '/decks', title: 'My Decks', showOnlyWhenLoggedIn: true },
+    { path: '/decks', title: 'Decks', showOnlyWhenLoggedIn: true },
     { path: '/results', title: 'Results', showOnlyWhenLoggedIn: true },
     { path: '/faq', title: 'Help' },
     {
