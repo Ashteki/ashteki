@@ -80,6 +80,26 @@
             "name": "Coal Roarkwin - Slashfest",
             "stub": "coal-roarkwin",
             "alt": "alt/coal-roarkwin-santa"
+        },
+        {
+            "name": "Anchornaut - Aradel",
+            "stub": "anchornaut",
+            "alt": "alt/anchornaut-aradel"
+        },
+        {
+            "name": "Frost Bite - NSM",
+            "stub": "frost-bite",
+            "alt": "alt/frost-bite-fanmade"
+        },
+        {
+            "name": "Iron Rhino - Infuriated",
+            "stub": "iron-rhino",
+            "alt": "alt/iron-rhino-orange"
+        },
+        {
+            "name": "Nature's Wrath - NSM",
+            "stub": "natures-wrath",
+            "alt": "alt/natures-wrath-fanmade"
         }
     ]
 }
