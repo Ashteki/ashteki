@@ -136,7 +136,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                     />
                 </Col>
 
-                <div className='lobby-header'> Decks</div>
+                {/* <div className='lobby-header'> Decks</div> */}
                 <Tabs onSelect={onTabChange} >
                     <TabList>
                         <Tab>My Decks</Tab>

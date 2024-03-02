@@ -130,7 +130,7 @@ const GameLobby = ({ gameId }) => {
                             <div className='lobby-header'><hr /></div>
                             <div className='game-buttons'>
                                 <PictureButton
-                                    text='My Decks'
+                                    text='Decks'
                                     imageClass='decks-link'
                                     onClick={() => dispatch(navigate('/decks'))}
                                 />
