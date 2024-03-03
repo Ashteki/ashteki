@@ -101,6 +101,7 @@ class AddTokenAction extends CardGameAction {
                                 !event.card.moribund &&
                                 event.card.tokens.damage >= event.card.life
                             ) {
+                                event.tokenEvent.context.destroyedTarget = true;
                                 const destroyEvent = context.game.actions
                                     .destroy({
                                         damageEvent: this.damageDealtEvent,
@@ -121,7 +122,7 @@ class AddTokenAction extends CardGameAction {
                             }
                         }
                     );
-                    // tokenEvent.addSubEvent(killerEvent);
+
                     context.game.openEventWindow(killerEvent);
                 }
             }

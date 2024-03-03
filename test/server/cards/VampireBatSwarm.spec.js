@@ -227,4 +227,55 @@ describe('Vampire Bat Swarm', function () {
             expect(this.vampireBatSwarm.isDefender).toBe(false);
         });
     });
+
+    // https://github.com/Ashteki/ashteki/issues/1541
+    describe('Flash strike HK vs bats reswarm', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['hammer-knight', 'raptor-hatchling', 'raptor-herder'],
+                    dicepool: ['natural', 'time'],
+                    hand: ['flash-strike']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['vampire-bat-swarm', 'sleeping-widow'],
+                    dicepool: ['natural', 'ceremonial']
+                }
+            });
+        });
+
+        it('bats should die, reswarm, and hammer knight should not take damage', function () {
+            this.hammerKnight.tokens.status = 1;
+            this.player1.clickAttack(this.maeoniViper);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.raptorHatchling);
+            this.player1.clickCard(this.player1.inPlay[2]);
+            this.player1.clickDone();
+            this.player1.clickYes();
+
+            this.player2.clickCard(this.vampireBatSwarm);
+            this.player2.clickCard(this.hammerKnight);
+            this.player2.clickCard(this.sleepingWidow);
+            this.player2.clickCard(this.raptorHatchling);
+            this.player2.clickDone(); // defenders chosen
+
+            this.player1.clickCard(this.flashStrike);
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.attack).toBe(5);
+
+            //resolve
+            this.player1.clickCard(this.hammerKnight);
+
+            expect(this.player2).toHavePrompt('Do you wish to activate Swarm?');
+            this.player2.clickYes();
+            // aftershock
+            this.player1.clickCard(this.sleepingWidow);
+            expect(this.sleepingWidow.location).toBe('archives');
+            expect(this.vampireBatSwarm.location).toBe('play area');
+            expect(this.hammerKnight.damage).toBe(0);
+            expect(this.hammerKnight.location).toBe('play area');
+        });
+    });
 });

@@ -138,7 +138,6 @@ describe('Quick Strike', function () {
         });
     });
 
-
     describe('BUG: 1011 QS vs particle shield part 2', function () {
         beforeEach(function () {
             this.setupTest({
