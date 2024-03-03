@@ -83,7 +83,7 @@ class DealDamageAction extends CardGameAction {
             params.amount -= armorPrevented;
         }
 
-        params.condition = (event) => this.canDealDamage(event.damageSource);
+        params.condition = (event) => this.canDealDamage(event.damageSource, event);
 
         return super.createEvent('onDamageDealt', params, (damageDealtEvent) => {
             let damageAppliedParams = Object.assign(params, {
@@ -140,7 +140,7 @@ class DealDamageAction extends CardGameAction {
         });
     }
 
-    canDealDamage(source) {
+    canDealDamage(source, event) {
         return (
             // it's not a card effect
             !Object.values(CardType).includes(source.type) ||
@@ -149,6 +149,8 @@ class DealDamageAction extends CardGameAction {
                 BattlefieldTypes.includes(source.type) &&
                 !DamageDealingLocations.includes(source.location)
             )
+            &&
+            !event.fightEvent?.attackerDamageEvent?.destroyEvent
         );
     }
 }

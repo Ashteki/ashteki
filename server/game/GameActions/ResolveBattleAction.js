@@ -84,11 +84,6 @@ class ResolveBattleAction extends GameAction {
 
                 let counterDamageEvent;
                 if (
-                    // quickstrike in a fight skips counter damage
-                    !(
-                        event.attacker?.attacksFirst() &&
-                        this.damageWillDestroyTarget(event.attacker, attackerAmountDealt, event.card)
-                    ) &&
                     defenderParams.amount > 0 &&
                     // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
                     event.defenderTarget === event.attacker &&
@@ -102,11 +97,6 @@ class ResolveBattleAction extends GameAction {
                         .getEvent(event.defenderTarget, event.context);
 
                     event.counterDamageEvent = counterDamageEvent;
-                    // if (damageEvent) {
-                    //     damageEvent.addChildEvent(counterDamageEvent);
-                    // } else {
-                    //     damageEvent = counterDamageEvent;
-                    // }
                 }
 
                 // If anyone is getting damaged...
