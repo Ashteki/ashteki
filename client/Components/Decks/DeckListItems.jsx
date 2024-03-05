@@ -59,7 +59,7 @@ const DeckListItems = ({ decks, selectedDeck, allowPremium, showToggle, showWinR
                             <div className='decklist-entry'>
                                 {/* <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div> */}
                                 <div>
-                                    <span className='decklist-title'>{d.name}</span>&nbsp;
+                                    <button className='decklist-title' tabIndex={0}>{d.name}</button>&nbsp;
                                     {icon}
                                     <br />
                                     {dice}
