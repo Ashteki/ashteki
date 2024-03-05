@@ -91,9 +91,9 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     if (isMe || currentGame.solo) {
                         const deckName = player.deck.name;
                         deck = (
-                            <span className={clickClasses} title='Select Deck' onClick={() => clickHandler(isMe)}>
+                            <button className={clickClasses} title='Select Deck' onClick={() => clickHandler(isMe)}>
                                 {deckName}
-                            </span>
+                            </button>
                         );
                     } else {
                         const deckName =
