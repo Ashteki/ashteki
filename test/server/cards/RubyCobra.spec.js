@@ -128,4 +128,47 @@ describe('Ruby Cobra', function () {
         });
     });
 
+    describe('Charming ability vs Chimera', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'lulu-firststone',
+                    inPlay: ['anchornaut', 'ruby-cobra'],
+                    dicepool: ['charm', 'time', 'charm', 'charm', 'time'],
+                    spellboard: ['captivate'],
+                    hand: []
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['rampage'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+        });
+
+        it('restrict attack from charm dice bearer', function () {
+            this.player1.clickDie(0);
+            this.player1.clickPrompt('Charm Dice Power');
+            this.player1.clickCard(this.rampage);
+            expect(this.rampage.dieUpgrades.length).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+
+            this.player1.endTurn();
+            // chimera should attack with rampage
+
+            this.player1.clickDone(); // guard
+            this.player1.clickNo(); // counter
+            expect(this.rubyCobra.location).toBe('play area');
+            expect(this.rubyCobra.damage).toBe(0);
+            expect(this.anchornaut.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

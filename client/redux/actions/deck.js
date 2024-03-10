@@ -253,3 +253,14 @@ export function loadMSUDecks() {
         }
     };
 }
+
+export function loadDualDuelDecks() {
+    return {
+        types: ['LOAD_DUALDUEL_DECKS', 'DUALDUEL_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/dualduel-decks',
+            type: 'GET'
+        }
+    };
+}
