@@ -13,7 +13,7 @@ class BoneCrow extends Card {
             gameAction: ability.actions.conditional({
                 condition: (context) => {
                     const target = context.game.attackState.getTargetFor(context.source);
-                    return target.damage
+                    return target.damage;
                 },
                 trueGameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',

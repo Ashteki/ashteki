@@ -22,7 +22,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         firstAdventureDecks,
         chimeraDecks,
         pveDecks,
-        msuDecks
+        msuDecks,
+        dualDuelDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
@@ -31,7 +32,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         firstAdventureDecks: state.cards.firstAdventureDecks,
         chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
         pveDecks: state.cards.pveDecks,
-        msuDecks: state.cards.msuDecks
+        msuDecks: state.cards.msuDecks,
+        dualDuelDecks: state.cards.dualDuelDecks
     }));
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
@@ -85,6 +87,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Tab>Building Basics</Tab>
                     <Tab>Adventuring Party</Tab>
                     <Tab>Master Set Upgrade</Tab>
+                    <Tab>Dual Duel</Tab>
                 </TabList>
 
                 <TabPanel>
@@ -128,6 +131,10 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(7)}>Choose for me</Button>
                     <DeckList decks={msuDecks} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(8)}>Choose for me</Button>
+                    <DeckList decks={dualDuelDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
             </Tabs>
         );

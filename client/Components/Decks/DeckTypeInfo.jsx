@@ -59,6 +59,14 @@ const DeckTypeInfo = ({ deckType }) => {
                     more fun, unique, and refined decks than just the precons.
                 </AlertPanel>
             );
+        case 'dualduel':
+            return (
+                <AlertPanel type='info'>
+                    <strong>Dual Duel</strong> Decks that use only two dice colours made by
+                    KillerCactus. These are good decks for beginners and intermediate players who
+                    want to move on from precons.
+                </AlertPanel>
+            );
     }
 };
 

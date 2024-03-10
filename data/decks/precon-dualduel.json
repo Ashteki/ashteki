@@ -1,0 +1,2378 @@
+[
+    {
+        "precon_id": 601,
+        "mode": null,
+        "name": "Dual Duel Aradel - Build-a-Bear",
+        "phoenixborn": [
+            {
+                "id": "aradel-summergaard",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "charm",
+                "count": 2
+            },
+            {
+                "magic": "natural",
+                "count": 8
+            }
+        ],
+        "cards": [
+            {
+                "id": "change-psyche",
+                "count": 3
+            },
+            {
+                "id": "golden-veil",
+                "count": 3
+            },
+            {
+                "id": "ice-trap",
+                "count": 2
+            },
+            {
+                "id": "inflame",
+                "count": 2
+            },
+            {
+                "id": "massive-growth",
+                "count": 3
+            },
+            {
+                "id": "molten-gold",
+                "count": 3
+            },
+            {
+                "id": "natures-wrath",
+                "count": 3
+            },
+            {
+                "id": "pain-shaman",
+                "count": 3
+            },
+            {
+                "id": "raptor-herder",
+                "count": 3
+            },
+            {
+                "id": "summon-blue-jaguar",
+                "count": 1
+            },
+            {
+                "id": "summon-butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "summon-frostback-bear",
+                "count": 1
+            },
+            {
+                "id": "summon-gilder",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "blue-jaguar",
+                "count": 2
+            },
+            {
+                "id": "butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "frostback-bear",
+                "count": 2
+            },
+            {
+                "id": "gilder",
+                "count": 2
+            },
+            {
+                "id": "raptor-hatchling",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play. \n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion.  I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.  \n\nHere’s a breakdown of my different Styles and Pressure Tactics - I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn. \n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn. \n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.  \n\nPressure Tactics:\n\nBypass:  Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through. \n\nBurn:  Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn. \n\nMill:  Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it.  This forces the opponent into fatigue faster. \n\n——————————————————————————-\nStyle: Tall / Control\n\nPressure: Bypass\n\nThis deck is designed to control the opponents small units with Aradel’s ability, Nature’s Wrath and Ice Trap, and ping damage through Summon Gilder, Pain Shamans, and the Natural dice power while building up a large swing past the opponents board with some combination of Frostback Bear (with its Terrifying ability giving it evasion), Blue Jaguar (whose Gaze ability can prevent bigger units from blocking Frostback Bear or something else large), Massive Growth to make the unit huge, and Inflame to force the opponent to block something little instead of something big.  \n\nMolten Gold is a good finishing blow for the deck if your Bear swings can get them down to 3 or less life, and can also function as a removal spell if needed. Change Psyche is a very flexible spell allowing you to either refresh your massive bear after it’s swung for another swing, or exhaust a big unit to get a bear past their board.  Lastly, Golden Veil is a must to protect your big threats from removal. \n\nYour first 5 should always include Summon Frostback Bear, Summon Blue Jaguar and Summon Gilder.  That, plus your Water Blast ability which you should try to use each round, costs 8 dice. Your last two cards should cost 1 die each and can vary based on the matchup.  Until you get used to the deck and the matchups, I’d suggest Summon Butterfly Monk and either Raptor Herder or Ice Trap.  These are going to be useful nearly all of the time, and opening with a Butterfly book ensures you have it all game.  Against Tristan Darkwater, Xander Heartsblood, Odette Diamondcrest and maybe Hope Everthorn, I might look at starting a Golden Veil to protect my units from their devastating unique spells.  Against an expected swarm, Nature’s Wrath is helpful. Getting used to the matchups will help you make these decisions going forward.  Do note that Massive Growth is a Chained card (a list of cards that, for organized play, are not allowed to be chosen in your First Five or played in Round 1.  Check the Plaid Hat Games Organized Play rules for a complete list of chained cards), so don’t choose that in your First Five. "
+    },
+    {
+        "precon_id": 602,
+        "mode": null,
+        "name": "Dual Duelling Rin - Scourge of Northfell",
+        "phoenixborn": [
+            {
+                "id": "rin-northfell",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "charm",
+                "count": 2
+            },
+            {
+                "magic": "natural",
+                "count": 8
+            }
+        ],
+        "cards": [
+            {
+                "id": "clashing-tempers",
+                "count": 2
+            },
+            {
+                "id": "ember-heart",
+                "count": 2
+            },
+            {
+                "id": "golden-veil",
+                "count": 3
+            },
+            {
+                "id": "ice-trap",
+                "count": 3
+            },
+            {
+                "id": "massive-growth",
+                "count": 2
+            },
+            {
+                "id": "molten-gold",
+                "count": 3
+            },
+            {
+                "id": "natures-wrath",
+                "count": 2
+            },
+            {
+                "id": "raptor-herder",
+                "count": 2
+            },
+            {
+                "id": "shattering-fist",
+                "count": 3
+            },
+            {
+                "id": "summon-adaptodon",
+                "count": 1
+            },
+            {
+                "id": "summon-frostback-bear",
+                "count": 1
+            },
+            {
+                "id": "summon-gilder",
+                "count": 1
+            },
+            {
+                "id": "summon-mind-fog-owl",
+                "count": 3
+            },
+            {
+                "id": "wallop",
+                "count": 2
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "adaptodon",
+                "count": 2
+            },
+            {
+                "id": "fire-adaptation",
+                "count": 2
+            },
+            {
+                "id": "frostback-bear",
+                "count": 2
+            },
+            {
+                "id": "gilder",
+                "count": 2
+            },
+            {
+                "id": "ice-adaptation",
+                "count": 2
+            },
+            {
+                "id": "ice-buff",
+                "count": 5
+            },
+            {
+                "id": "mind-fog-owl",
+                "count": 2
+            },
+            {
+                "id": "raptor-hatchling",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass / Burn\n\nMy first Dual Duelling deck using Scourge is here!  I wanted in Rin specifically for Shattering Fist, which I think is an amazing card that catapults Rin up the competitive ladder. \n\nThe idea here is to control the board through your efficient removal in Adaptadon, Shattering Fist, Ice Trap, Gilder and Clashing Tempers. Try to target down specifically opposing units with 2+ attack so that your Frostback Bear + Mind Fog Owl can get through to face, hopefully with a Massive Growth or Wallop attached. \n\nRin’s ability, Ice Buff, is key to the gameplay here. I normally like attaching Ice Buff to 1-life units as it doubles their life and seems to get the most value that way. However, this deck doesn’t have many of those. So instead, you’ll need to pay attention to the board state and use it where you can swing a trade into your favor by doing so.  Need to swing a bear into a 2-life 3/4 knight?  Here’s your chance to use Ice Buff.  It’s important that you use it every round though even if you can’t find that perfect trade, but keep your eyes peeled for it. \n\nFirst five is just the 4 books and a flex 1-die card based on matchup. Ice Trap, Raptor Herder, Wallop, and Shattering Fist all seem good here. \n\n"
+    },
+    {
+        "precon_id": 603,
+        "mode": null,
+        "name": "Dual Duel Maeoni - Ode to Biter",
+        "phoenixborn": [
+            {
+                "id": "maeoni-viper",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "charm",
+                "count": 5
+            },
+            {
+                "magic": "natural",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "beast-tamer",
+                "count": 3
+            },
+            {
+                "id": "call-to-action",
+                "count": 1
+            },
+            {
+                "id": "call-upon-the-realms",
+                "count": 3
+            },
+            {
+                "id": "frost-fang",
+                "count": 1
+            },
+            {
+                "id": "golden-veil",
+                "count": 3
+            },
+            {
+                "id": "hypnotize",
+                "count": 1
+            },
+            {
+                "id": "ice-trap",
+                "count": 3
+            },
+            {
+                "id": "natures-wrath",
+                "count": 3
+            },
+            {
+                "id": "redirect",
+                "count": 2
+            },
+            {
+                "id": "root-armor",
+                "count": 3
+            },
+            {
+                "id": "seeds-of-aggression",
+                "count": 3
+            },
+            {
+                "id": "summon-biter",
+                "count": 1
+            },
+            {
+                "id": "summon-frostback-bear",
+                "count": 1
+            },
+            {
+                "id": "summon-gilder",
+                "count": 1
+            },
+            {
+                "id": "summon-silver-snake",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "biter",
+                "count": 4
+            },
+            {
+                "id": "frostback-bear",
+                "count": 2
+            },
+            {
+                "id": "gilder",
+                "count": 2
+            },
+            {
+                "id": "silver-snake",
+                "count": 1
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Tall\n\nPressure: Bypass\n\nI put Maeoni off for a bit in this series, even though she’s likely the simplest deck to choose 2 colors for.  I’ve played very, very little Maeoni in my Ashes life. That being said, there are still universal truths that I can apply to her and this deck, and the games I have played with Maeoni have been successful. \n\nIn my opinion, you can’t really build Maeoni without building around Summon Silver Snake.  It’s just too good. So good that not including it as your focal point likely makes your deck worse.  So that’s where we start, and it locks us into Nature and Charm. The strategy is then simple - kill everything you can on their board to grow your snake until it’s ready to strike. \n\nGilder is an auto-include in any Snake deck. It’s probably already the best Unit Guard in Ashes without its Inheritance ability even being useful in your deck, but here it’ll always have a use, and it’s ping on entry often boosts the Snake up. It’s in every first 5 every time with Snake. \n\nFrostback Bear is just so consistent that I had to include it.  I don’t know that you play it every game, but I would feel wrong to not have it here as an option.  Biter is another story though - this is a very cheeky include on my part, but I think an interesting one.  Maeoni’s Command Strike ability is very strong, but only if you have a unit with good attack on the board. Early on, if the opponent is able to remove Snake, there’s not a ton in these colors that will get Command Strike up over two, and especially not in the form of conjurations. Biter can come in for 2 dice on command (pun totally intended), allow you to immediately fire off Command Strike for 3. Just by having this book down, the opponent has to be extremely careful with putting 3 health units into the board, knowing that you can just Biter + Command Strike if you want to.  This pairs really well with the 3x Ice Trap to deal with smaller stuff.  It’s also excellent for the same reason with Seeds of Aggression, and there it’s lower 2 life is a bit of a benefit because sometimes you need to clear up battlefield space for another unit. And it’s a Unit Guard, and Snake is your attacking threat anyway so you don’t really need to swing.  For all those reasons (and the fact that I’m just playing these two colors), I think Biter has a home here. \n\nHypnotize is just a way to get your Snake into face if you run into a wall you can’t clear out. \n\nFrost Fang and Beast Tamer are a couple of techy ally choices here.  Frost Fang can replace Biter in a first five where you feel like you need to go a bit faster.  Beast Tamer provides an Alert unit, which I think is very important in decks with small battlefields to maximize the efficiency of each battlefield slot. \n\nThis deck is very dice power side hungry, and these colors have no dice fixing, so I think Call Upon the Realms x3 is a must. Nature’s Wrath x3 is also a must - the deck needs AoE to handle swarms, and it has the side benefit of helping with self-clear and boosting the Snek up as well. \n\nRoot Armor is a key card to keeping the Snake alive and growing. It’s SO much harder to kill a Snake with armor on it. \n\nThe Golden Veils are going to be a staple in any Tall deck to protect your threat, so you get 3 here. The 1x Call to Action is a cheeky include - when it’s in hand sometimes you can get a really big refresh on Snake when they think you’re holding Veil instead and it’s a huge blowout. And if it gets medded into the discard, now the opponent sees that and will be much more tentative with their attacks when you have a Snake die showing, so you get indirect benefit. For that reason (and to bluff Veil), try to keep a Snake die showing as often as you can. Redirect is another great use for that Snake die, helping with self-clear and the small battlefield. \n\nFirst Five always has Snake and Gilder. From there, you’ve got options.  Biter/Frost Fang/Beast Tamer + Root Armor + Golden Veil + Command Strike is one good one. Frostback Bear + Golden Veil + Hypnotize + Command Strike is another.  You can forego Command Strike altogether in round 1 and go Bear, Biter / Beast Tamer, Veil.  I think they’re all good and it’s going to depend on what you’re up against.  If you’re up against a swarm (maybe Hope or James), the last one with a Tamer and no Command Strike might be best.  If you up against Echo in time/illusion, I think I’d go with Frost Fang + Command Strike to try and deal with an opening Realm Walker.  Against others, the first one might be the way to go. "
+    },
+    {
+        "precon_id": 604,
+        "mode": null,
+        "name": "Dual Duel Saria - Passive Aggression",
+        "phoenixborn": [
+            {
+                "id": "saria-guideman",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "charm",
+                "count": 6
+            },
+            {
+                "magic": "divine",
+                "count": 4
+            }
+        ],
+        "cards": [
+            {
+                "id": "beast-tamer",
+                "count": 2
+            },
+            {
+                "id": "call-upon-the-realms",
+                "count": 2
+            },
+            {
+                "id": "enchanted-violinist",
+                "count": 2
+            },
+            {
+                "id": "flock-shepherd",
+                "count": 1
+            },
+            {
+                "id": "golden-veil",
+                "count": 1
+            },
+            {
+                "id": "imperial-ninja",
+                "count": 1
+            },
+            {
+                "id": "kneel",
+                "count": 2
+            },
+            {
+                "id": "meteor",
+                "count": 2
+            },
+            {
+                "id": "rally-the-troops",
+                "count": 2
+            },
+            {
+                "id": "redirect",
+                "count": 2
+            },
+            {
+                "id": "return-to-soil",
+                "count": 3
+            },
+            {
+                "id": "seeds-of-aggression",
+                "count": 2
+            },
+            {
+                "id": "shepherd-of-lost-souls",
+                "count": 2
+            },
+            {
+                "id": "summon-light-bringer",
+                "count": 1
+            },
+            {
+                "id": "summon-ruby-cobra",
+                "count": 1
+            },
+            {
+                "id": "summon-seaside-raven",
+                "count": 1
+            },
+            {
+                "id": "summon-three-eyed-owl",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "light-bringer",
+                "count": 2
+            },
+            {
+                "id": "ruby-cobra",
+                "count": 3
+            },
+            {
+                "id": "seaside-raven",
+                "count": 1
+            },
+            {
+                "id": "three-eyed-owl",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Mill\n\nWelcome to Saria’s dinner party, where all the passive aggressive banter one could ever wish for will ensue!\n\nThis deck is all about controlling your opponent until they get tired and start taking fatigue damage.  Of all the DD decks, this is probably the most advanced so far. I’d recommend playing a few of the other Control style decks before picking this one up. \n\nThe idea here is to use Light Bringer and Seaside Raven to keep your opponents units under control, while Cobra and Saria’s Hearts Pull ability keep on a steady stream of discarding your opponents deck. Three-Eyed Owl is great for this as well - it provides a lot of extra discard pressure, especially when it’s summoned later in the round. That’s kind of a theme to this deck which makes it a bit tougher to pilot I think - the timing and sequencing of each of these summon books can be tough.  LB wants to exhaust a prime target. Cobra wants to make sure it swings and, ideally, survives to keep on the pressure. Owl needs to live through the end of the round, and Raven doesn’t want to come down until there’s something juicy to eat. \n\nEven though it’s not a mill card, Raven is very important to the deck. Not only is it a great control card, but it eats up 3 basic dice.  It’s a great way to spend those without having to meditate, and since we’re a fatigue deck, we want to meditate as little as possible.  We also want to play as few cards from hand as possible, so being able to spend 3 dice per round that don’t need to be meditated and don’t cost a card from our deck is big.  Its problem is Ice Trap - that card just blows Raven out. There is a Veil in here for Round 1 if you’re certain it’s coming, but after that you’ve got to be very careful about when you summon Raven. Try to bait out ice trap with Cobra and Owl if you can - this will be easier to do later in the game when the opponent is afraid of those cards because they don’t want to get milled. \n\nThe action spells in here are all good, but you need to be very careful playing them. Every one played is another card gone, and we’re trying to be ahead on cards.  Call Upon the Realms might be an exception since it’ll save you 2 cards if you spin up 3 dice that you needed to spin up anyway, but again make sure you need those dice.  Also Return to Soil is usually always a good play if you can kill something with it, since that goes even on cards with your opponent and works as removal.\n\nSaria’s 5 battlefield can be an issue with so many books and allies, so the deck has a bunch of self-clear spells.  The trick here is getting value out of your units before you clear them out for new, fresh ones. Meteor is obviously the most powerful - this is either a good reset button to slow down the game, or can be one-sided if you can get value out of your units early and then Meteor the board before they get to use theirs.  Kneel is very similar in this regard, but only lasts the round. Seeds of Aggression is great for use on an exhausted Seaside Raven - try to kill something with 2AV or more if your Raven book is unexhausted, so your Raven dies and you can summon a new one. Lastly, Rally the Troops is a cheeky spell that will surprise an opponent and punish them for not clearing off your exhausted Violinists or Shepherds, allowing you to use them again AND heal. \n\nSpeaking of the allies, they’re a toolbox to supplement the spellboard, much like the action spells are. Be careful with them just like the spells.  Ninja is a really cool round 1 card - dropping this early creates a lot of pressure, and the opponent will almost never want to discard a first five card, so if he swings he almost always gets to mill 2.  Beast Tamer is your best Frostback Bear blocker and also your best counter to little guys like Fallen. Flock Shepherd works well to keep your cobras and owls safe so they get to survive rounds and get value from their abilities. Violinist is just like Soil - goes even on cards, adds mill pressure and leaves a body behind that they either have to remove or face it again, or it’s there for Seeds or Rally.  Shepherd enables the deck to run 1-2 of each of these and grab whichever you need from the discard for the situation. \n\nLastly Redirect does a few good things. It provides protection against a big swing from Snake, a Massive Growthed Bear, or a big Fighting Spirit attack.  It also functions as a pseudo-healing spell and a self-clear spell wrapped into one. Very nice spell for the deck. \n\nThe first five for this deck is a bit tough. I’d say it’s usually Raven, Light Bringer, Cobra, Ninja, Beast Tamer, Hearts Pull.  You can start an Owl book if you want, and then either hope to draw into a one-die card with Hearts Pull, or just use a dice power. But you have 3 Owl books so if you don’t open it, you have good odds to draw into it Round 2 and get them going.  If you’re really scared of Ice Trap in round 1, you can start Golden Veil instead of one of the allies and again either use a dice power or get lucky on the Hearts Pull draw. "
+    },
+    {
+        "precon_id": 605,
+        "mode": null,
+        "name": "Dual Duel Leo - Finch Up",
+        "phoenixborn": [
+            {
+                "id": "leo-sunshadow",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "charm",
+                "count": 9
+            },
+            {
+                "magic": "illusion",
+                "count": 1
+            }
+        ],
+        "cards": [
+            {
+                "id": "abundance",
+                "count": 3
+            },
+            {
+                "id": "anguish",
+                "count": 2
+            },
+            {
+                "id": "beast-tamer",
+                "count": 1
+            },
+            {
+                "id": "enchanted-violinist",
+                "count": 2
+            },
+            {
+                "id": "flock-shepherd",
+                "count": 3
+            },
+            {
+                "id": "generosity",
+                "count": 3
+            },
+            {
+                "id": "imperial-ninja",
+                "count": 1
+            },
+            {
+                "id": "redirect",
+                "count": 2
+            },
+            {
+                "id": "remorse",
+                "count": 2
+            },
+            {
+                "id": "return-to-soil",
+                "count": 2
+            },
+            {
+                "id": "rile-the-meek",
+                "count": 3
+            },
+            {
+                "id": "summon-orchid-dove",
+                "count": 3
+            },
+            {
+                "id": "summon-three-eyed-owl",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "glow-finch",
+                "count": 1
+            },
+            {
+                "id": "orchid-dove",
+                "count": 3
+            },
+            {
+                "id": "three-eyed-owl",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n——————————————————————————-\n\nStyle: Control\n\nPressure: Mill\n\nThis deck is a “turbo-mill” deck partly inspired by TheTreatment.  The idea here is to just empty your opponents deck as quickly as possible.  You attack their deck with Doves and Glow Finch, along with Return to Soil, Remorse, Imperial Ninja and Violinists. You attack there hand with Owls and Anguish, with accomplishes the same thing as they’ll have to draw more at the beginning of the round.  You end the game by using Summon Orchid Dove and Abundance to deal damage directly to the Phoenixborn if their deck is empty, and also by Fatigue damage, not to mention you’re removing their options by discarding cards from their hand and deck. \n\nBe very careful about meditating from deck - you really don’t want to lose Abundance or Dove books as the Focus 2 effects are big for the deck. Meditate from hand whenever possible. If you want to go to 3 colors, adding in Sympathy for Essence Druid or Time for Recollect can help with this, but in these colors there’s no way to get any lost cards back, so meditate as little as possible. This deck uses very few Power dice for costs (just the four reaction spells, and you have 9 charm dice to roll those Power sides), and a lot of basic costs once Orchid Dove is focused, so hopefully you don’t need to meditate often. This also helps you stay ahead of your opponent in cards, which you should always be monitoring when playing a mill deck. You need to be able to outlast your opponent. \n\nSpeaking of that, Generosity is an all-star card in this deck. Playing it can heal your Phoenixborn for 2, which helps extend the game.  However, oftentimes your opponent won’t have any damage on their Phoenixborn since you aren’t attacking them. Therefore if you’re not low on life, it might be better to choose the Unexhaust option first, refreshing either Abundance or Leo himself to get another Glow Finch if the one you summoned this round is dead already. They are then stuck with choosing heal, which doesn’t help them, or draw 3, which advances your win condition.  And if they allow to draw, that helps you get your Abundance and Dove spells focused. \n\nAs this deck doesn’t run many units with more than 1 attack value, Terrifying units like Frostback Bear or Shining Hydra can bypass your birds easily.  To counter this, you’ve got 3 Flock Shepherds to allow your 0-attack birds to block bears and also be protected from targeted ping. Additionally, Redirect can both save you from a big bypass swing and also self-kill a bird to mill your opponent more. Lastly, Beast Tamer is a very difficult to kill unit that can block something with Terrifying 1. \n\nFirst Five should include the three ready spells, and Imperial Ninja as he’ll almost always mill the opponent for two in round 1. Your fifth card can go a lot of ways. Anguish if you think you’re against another slow deck, Beast Tamer for swarms. Violinist for weenies, etc.  Even if you start another 2-die ally, you’ll have a couple dice left over that can either be used on cards drawn with Abundance or on Charm dice powers to slow down the opponents opening units. "
+    },
+    {
+        "precon_id": 606,
+        "mode": null,
+        "name": "Dual Duel Lulu - Pact of Pinging",
+        "phoenixborn": [
+            {
+                "id": "lulu-firststone",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 4
+            },
+            {
+                "magic": "natural",
+                "count": 6
+            }
+        ],
+        "cards": [
+            {
+                "id": "chant-of-transfusion",
+                "count": 2
+            },
+            {
+                "id": "fester",
+                "count": 2
+            },
+            {
+                "id": "final-cry",
+                "count": 3
+            },
+            {
+                "id": "fire-archer",
+                "count": 2
+            },
+            {
+                "id": "ice-trap",
+                "count": 3
+            },
+            {
+                "id": "molten-gold",
+                "count": 3
+            },
+            {
+                "id": "natures-wrath",
+                "count": 2
+            },
+            {
+                "id": "old-salt",
+                "count": 3
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 2
+            },
+            {
+                "id": "phoenix-barrage",
+                "count": 3
+            },
+            {
+                "id": "raptor-herder",
+                "count": 1
+            },
+            {
+                "id": "ritualist",
+                "count": 1
+            },
+            {
+                "id": "summon-butterfly-monk",
+                "count": 1
+            },
+            {
+                "id": "summon-emberoot-lizard",
+                "count": 1
+            },
+            {
+                "id": "summon-frostback-bear",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "emberoot-lizard",
+                "count": 3
+            },
+            {
+                "id": "frostback-bear",
+                "count": 2
+            },
+            {
+                "id": "raptor-hatchling",
+                "count": 3
+            },
+            {
+                "id": "spark",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Burn\n\nI’ve always liked playing Lulu as a nature / ceremony deck - she feels very comfortable with a burn package thanks to her unique Phoenix Barrage, and that strategy was only helped by Chant of Transfusion. \n\nEmberoot Lizard functions somewhat as a secondary Lulu unique card, as it combos very well with her Spark ability. Frostback Bear is another great use of Spark though, so don’t always default directly to putting it on the lizard. \n\nThis deck benefits from a bit of healing as well with Butterflies and Phoenix Attendant. Lulu needs it at 16 life, and it slots in nicely with the rest of the burn package. \n\nOther than that, it’s a pretty simple list. Run the burn cards in the colors. 3 Old Salt because they’re amazing and perfect with Transfusion. Ice traps because they’re awesome and Natures Wrath because it’s awesome. One Raptor Herder to include in the first five if you want it.  Try to apply early pressure while playing burn spells - Phoenix Barrage is amazing because it does both. \n\nFirst five is probably the 3 books, Ritualist and Raptor Herder / Ice Trap. Spark the Lizard or the Bear.  You can also open with Old Salt instead of the Herder if you skip either Spark or the Butterfly. "
+    },
+    {
+        "precon_id": 607,
+        "mode": null,
+        "name": "Dual Duel Rimea - Ritualist Rimea List",
+        "phoenixborn": [
+            {
+                "id": "rimea-careworn",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 5
+            },
+            {
+                "magic": "natural",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "ancestral-army",
+                "count": 3
+            },
+            {
+                "id": "blood-chains",
+                "count": 3
+            },
+            {
+                "id": "channel-magic",
+                "count": 2
+            },
+            {
+                "id": "chant-of-revenge",
+                "count": 2
+            },
+            {
+                "id": "clashing-tempers",
+                "count": 3
+            },
+            {
+                "id": "crimson-bomber",
+                "count": 2
+            },
+            {
+                "id": "final-cry",
+                "count": 3
+            },
+            {
+                "id": "fire-archer",
+                "count": 3
+            },
+            {
+                "id": "ice-trap",
+                "count": 1
+            },
+            {
+                "id": "molten-gold",
+                "count": 3
+            },
+            {
+                "id": "natures-wrath",
+                "count": 2
+            },
+            {
+                "id": "ritualist",
+                "count": 1
+            },
+            {
+                "id": "summon-butterfly-monk",
+                "count": 1
+            },
+            {
+                "id": "summon-frostback-bear",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "ancestor-spirit",
+                "count": 2
+            },
+            {
+                "id": "butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "fire-adaptation",
+                "count": 2
+            },
+            {
+                "id": "frostback-bear",
+                "count": 2
+            },
+            {
+                "id": "ice-adaptation",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Burn\n\nRimea is one of the harder Phoenixborn to pilot for sure. In that vein, I’ve given her a bit of a simple deck to try and play.  It’s easy to get caught up in using her ability, Visions, and basing a deck around that. But this list is really all about her 20 life and her unique, Ancestral Army. \n\nArmy is the only card in the game that lets you put 3 blockers on the board in one main action.  Burn decks often struggle because they spend cards and dice doing direct Phoenixborn damage and not playing to the board.  Army helps alleviate that, allowing Rimea to put out a bunch of units efficiently and still have cards and dice left over to play burn spells. \n\nThat being said, Visions is still very useful. It can be used before summoning Ancestral Army to setup your draws off of Ancestor Spirits.  Also, these burn spells and butterflies cost power dice, and you’ll be using ceremonial power dice to recur Armies. You’ll need to meditate for those, but using Visions early in the round will allow you to control what cards you meditate away to an extent. Make use of that - if you aren’t taking a side action, you should be using Visions. Note that Rimea doesn’t exhaust unless you spend a die to move a card to the bottom, which you should basically never do. \n\nChant of Revenge is a big burn engine for you. You want 2 down in round 1 and to try  to get them to fire each round. You’ve got a bunch of self-kill options to make this happen if you need to.  Bear is as solid a summon spell as you can find, and Butterfly Monk can be used to extend that already high life total when needed, or offset the cost of using the ceremonial die power. \n\nI’ve already discussed Ancestral Army.  Ritualist goes into the first five to double up your revenge in round 1. Fire Archer is the best burn spell because it comes with a body, too.  Crimson Bomber does triple duty as a high attack unit, an AoE spell and a way to turn on your own chants. \n\nMolten Gold is one of the best burn spells and the preferred finisher of the deck. Blood Chains is excellent hard removal and also can turn on chants and/or fire off Final Cry for more burn.  Clashing Tempers is great with the three units provided with Ancestral Army, and helps out Bomber and Nature’s Wrath with crowd control.  Rimea’s 4 BF can sometimes make dealing with an opposing wide board difficult, but with bombers, wrath and tempers, hopefully Rimea can keep it in check. Lastly, as I said above there will be lots of meditation and tanking damage - Channel Magic can help with that. Also, it draws a card, so you can use Visions as your side action first to draw the card you want. \n\nLastly, Final Cry is pretty self-explanatory here, and there’s 1 Ice Trap in case you want to flex it into a first five against something scary, like maybe Adaptadon. \n\nFirst five here is typically Bear, Butterfly, Chant, Ritualist (grab second chant), Ancestral Army.  That’s 6 units, so you either need to naturally trade some off, or pivot away from summoning a butterfly and into a frog ping to either self-kill your Ritualist or use it against the opponent. \n\n"
+    },
+    {
+        "precon_id": 608,
+        "mode": null,
+        "name": "Dual Duel Harold - Candyman Candyman Candyman",
+        "phoenixborn": [
+            {
+                "id": "harold-westraven",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 6
+            },
+            {
+                "magic": "sympathy",
+                "count": 4
+            }
+        ],
+        "cards": [
+            {
+                "id": "blood-chains",
+                "count": 3
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 3
+            },
+            {
+                "id": "consume-soul",
+                "count": 3
+            },
+            {
+                "id": "final-cry",
+                "count": 3
+            },
+            {
+                "id": "fire-archer",
+                "count": 3
+            },
+            {
+                "id": "master-vampire",
+                "count": 2
+            },
+            {
+                "id": "old-salt",
+                "count": 3
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 2
+            },
+            {
+                "id": "rapture",
+                "count": 1
+            },
+            {
+                "id": "ritualist",
+                "count": 1
+            },
+            {
+                "id": "summon-mirror-spirit",
+                "count": 3
+            },
+            {
+                "id": "summon-salamander-monk",
+                "count": 1
+            },
+            {
+                "id": "sympathy-pain",
+                "count": 2
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "hunters-mark",
+                "count": 1
+            },
+            {
+                "id": "mirror-spirit",
+                "count": 3
+            },
+            {
+                "id": "salamander-monk",
+                "count": 2
+            },
+            {
+                "id": "salamander-monk-spirit",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics  I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n——————————————————————————-\n\nStyle: Control\n\nPressure: Burn\n\nThe idea of this deck is to dominate the battlefield through Harold’s Mary Prey ability taking down big threats, Old Salt coming in with damage and being a great attacker (especially when combined with Mark Prey), Chant of Transfusion ping damage, Master Vampires stalking important targets, Mirror Spirit potentially exhausting units once it is focused, and Consume Soul allowing resets of Mark Prey.  You win by getting damage through their empty board and finishing off with burn damage from Fire Archers, Final Cry and Sympathy Pain. \n\nThis deck also has a large amount of Phoenixborn healing with Master Vampire, Consume Soul and Phoenix Attendant. Phoenix Attendant combos with Chant of Transfusion exceptionally well. The healing is important because control decks need to be patient - they want to incrementally gain advantage over time by eliminating the opponents board and slowly building up a dominating battlefield, so Harold needs to survive a while to do that. \n\nMirror Spirit is a very large threat against the opponent here. When you build up that dominating board, there are often times where your opponents board is close to empty and yours has 4-5 exhausted guys on it. This is when Mirror Spirit comes out for big damage.  This makes it advantageous for you to use your units to destroy theirs but survive, sitting there exhausted to pump your late round Mirror Spirit. That means you should be actively looking for opportunities to use Hunters Mark and Stalk on the Master Vampire to eliminate your opponents units while keeping yours alive.  Mirror Spirit also pairs nicely with Salamander Monk, as the opponent is likely to want to leave a Salamander exhausted, because destroying it will allow the Spirit to come out and give you another blocker. And even if the spirit does come out, you can always just attack with it for 0 later in the round to exhaust it and boost up your Mirror Spirit anyway. \n\nBlood Chains is an excellent card in this deck to not only lock down big threats, but also potentially power up your Mirror Spirits and turn on your Chants of Transfusion and Final Cries. Plus the beefy units in here give good opportunities for the double-exhaust effect of Blood Chains. \n\nThe 1x Rapture in here is a panic button. If you’re getting overwhelmed with little units, sometimes this card can be a life saver. \n\nThe first five here is normally Summon Salamander Monk, Summon Mirror Spirit, Ritualist (to search out and play Chant of Transfusion), Old Salt and Master Vampire. That uses up all 10 dice.  If you expect your opponent to come out with a big threat, you’ll want to deploy the Vampire early to combat it. "
+    },
+    {
+        "precon_id": 609,
+        "mode": null,
+        "name": "Dual Duel Tristan - Fish Fry",
+        "phoenixborn": [
+            {
+                "id": "tristan-darkwater",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 4
+            },
+            {
+                "magic": "sympathy",
+                "count": 6
+            }
+        ],
+        "cards": [
+            {
+                "id": "beast-warrior",
+                "count": 2
+            },
+            {
+                "id": "blood-chains",
+                "count": 3
+            },
+            {
+                "id": "choke",
+                "count": 1
+            },
+            {
+                "id": "dark-reaping",
+                "count": 2
+            },
+            {
+                "id": "final-cry",
+                "count": 3
+            },
+            {
+                "id": "fire-archer",
+                "count": 3
+            },
+            {
+                "id": "raptor-herder",
+                "count": 3
+            },
+            {
+                "id": "summon-mirror-spirit",
+                "count": 3
+            },
+            {
+                "id": "summon-prism-tetra",
+                "count": 1
+            },
+            {
+                "id": "summon-sleeping-widows",
+                "count": 2
+            },
+            {
+                "id": "summon-vampire-bat-swarm",
+                "count": 1
+            },
+            {
+                "id": "sympathy-pain",
+                "count": 3
+            },
+            {
+                "id": "tsunami-shot",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "mirror-spirit",
+                "count": 3
+            },
+            {
+                "id": "prism-tetra",
+                "count": 9
+            },
+            {
+                "id": "raptor-hatchling",
+                "count": 3
+            },
+            {
+                "id": "sleeping-widow",
+                "count": 6
+            },
+            {
+                "id": "vampire-bat-swarm",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n——————————————————————————-\n\nStyle: Wide\n\nPressure: Burn\n\nThis Tristan list is very similar to the Fish Fry deck that my son played this year at Gen Con to go 3-1 and take 4th place. The idea here is to attack hard and fast with a swarm of units that have the Group Tactics ability, which when combined with Tristan’s Magnify ability can sling out a ton of damage quickly. Prism Tetra, Vampire Bats, Raptor Herder / Hatchling and Beast Warriors all have this ability and can swarm the board very fast. Once you punch through quickly with wide swings, you can finish off with burn spells to deal the remaining damage to the PB, but you also have Mirror Spirit to come in towards the end of the round as a heavy hitter. \n\nI really like the synergy between Prism Tetra and Mirror Spirit. Because the Tetra kill themselves at the end of the round, the opponent oftentimes doesn’t want to block them with non 0-attack units, because there’s no need to be able to counter and kill them. Mirror Spirit punishes them for that, as it gets stronger the more exhausted units that are on the board.  If the opponent is keeping your units under control, you also have Blood Chains to exhaust their units instead, and use their exhaustion for Mirror Spirit. \n\nDark Reaping provides some dice fixing if needed, but it’s here even more for being able to self-trigger Final Cry and Summon Sleeping Widows, as you want to be as proactive with your burn as you can be. As a side action, it’s especially good with Widows as you can blow up an exhausted Tetra or something, react with Widows and swing right away for an unexpected 4 damage coming in.  If you don’t like Dark Reaping, it can be switched out of the list for Crescendo, which can still self-trigger those spells (though not at side action speed) and provides more removal. \n\nThe 1x Choke can be a cheeky first five card against someone like Coal, who will draw a bunch of cards and slash down your weak units. It’s also great late game against Jessa and just generically useful in other places, if for nothing else than a 1 damage burn spell. \n\nLastly, Tsunami Shot is one of the best cards in the game. It’s basically never bad and is super flexible as removal for either tall or wide units. \n\nYour first five probably always includes the 3 books and Magnify, which is 7 dice. You can spend the last 3 on something like Tsunami Shot and either Raptor Herder or Choke. You could also go more all-out on units and go Raptor and Beast Warrior, and then plan to try and spend a die to respawn the Vampire Bats once.  Ideally, try to hang onto the Mirror Spirit book until later in the round to hide it from the opponents knowledge and surprise them with a big hitter.  If your board gets cleared, as long as you save a ceremonial and a sympathy die to use on it, you can always pivot instead to using the Ceremonial power to recur a Raptor Herder and then replay it instead of summoning the Mirror Spirit if it wouldn’t be doing much. But you want to get that Mirror Spirit book down in round 1, as if it’s Focus ability comes online in round 2, it can be great for exhausting out big alert units so you can swing through them. \n\n"
+    },
+    {
+        "precon_id": 610,
+        "mode": null,
+        "name": "Dual Duelling Orrick - Chant of Vitality",
+        "phoenixborn": [
+            {
+                "id": "orrick-gilstream",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 6
+            },
+            {
+                "magic": "divine",
+                "count": 4
+            }
+        ],
+        "cards": [
+            {
+                "id": "angelic-rescue",
+                "count": 3
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 3
+            },
+            {
+                "id": "concentration",
+                "count": 3
+            },
+            {
+                "id": "drain-vitality",
+                "count": 3
+            },
+            {
+                "id": "heal",
+                "count": 3
+            },
+            {
+                "id": "law-of-fear",
+                "count": 3
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 3
+            },
+            {
+                "id": "reclaim-soul",
+                "count": 3
+            },
+            {
+                "id": "ritualist",
+                "count": 2
+            },
+            {
+                "id": "shepherd-of-lost-souls",
+                "count": 3
+            },
+            {
+                "id": "summon-light-bringer",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "light-bringer",
+                "count": 2
+            },
+            {
+                "id": "the-awakened-state",
+                "count": 1
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Burn\n\nThis deck is all about healing and delaying until Orrick wakes up.   I’m going to preface this by saying I think the deck is a lot better with some nature dice to add in Summon Butterfly Monk and Root Armor, so when you’re ready to go to 3 colors and you’ve seen which cards you like the least here, I suggest that swap. Light Bringer is the first card to go, and I think you want 3x Butterfly books.  From there, cut what feels like you use it the least, but probably not from the spellboard. \n\nThe main combo centers around Phoenix Attendant, Chant of Transfusion and Drain Vitality. That’s your engine - try to continually use this combo to heal and ping and just abuse it as much as possible.  Ritualist helps get the chants going while giving you a body to fuel them, and Shepherd just gets back your Attendants, or your Ritualist to go get another chant. \n\nThe action spells are just to heal you more. Reclaim Soul has the added benefit of activating your Chants if they aren’t already. \n\nLaw of Fear is like, the ultimate “slow down the game” card.  You want to play it in round 1 against anything you feel might be at all aggressive on the battlefield. \n\nConcentration is your win condition.  You need to focus it, so be careful not to lose 2 of them. This deck should almost never need to meditate more than one per round between Concentration fixing dice and only being 2 colors, and Orrick’s ability can get you back the card you lost. You should med that 1 per round at least every round just to get an extra card pull with Orrick, but hopefully not more than that.  Heal and slow the game down until focused Concentration is online, which won’t take that long since you’re drawing at least 2 extra cards per round.  Once that’s online, your ping damage just gets crazy and you’ll start burning the opponent out. \n\nMy constructed list for this actually also splashes a Charm die for 3x Golden Veil to protect the Attendant. I don’t have that here, so I had to settle for Angelic Rescue.  This won’t protect against hard removal though like Fester or Fade Away. So again if you’re comfortable, I recommend a 1x Charm splash just to get access to Golden Veil. Again with Orrick’s ability and Concentration, dice fixing usually isn’t an issue. \n\nYour First Five here is Concentration, Light Bringer, Ritualist, Phoenix Attendant, Law of Fear / Drain Vitality.  Law of Fear if you think they’re gonna play battlefield threats, and Vitality if they’re some kind of mill deck.  You’ll get 2 extra cards with Orrick’s ability and Concentration that you’ll likely be able to play with your leftover dice. Also consider using the Ceremonial Power to recur and replay the Ritualist it it’s killed. "
+    },
+    {
+        "precon_id": 611,
+        "mode": null,
+        "name": "Dual Duel Brennen - Bounce to the Heavens",
+        "phoenixborn": [
+            {
+                "id": "brennen-blackcloud",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 4
+            },
+            {
+                "magic": "divine",
+                "count": 6
+            }
+        ],
+        "cards": [
+            {
+                "id": "anchornaut",
+                "count": 2
+            },
+            {
+                "id": "change-of-heart",
+                "count": 3
+            },
+            {
+                "id": "channel-magic",
+                "count": 2
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 2
+            },
+            {
+                "id": "fester",
+                "count": 2
+            },
+            {
+                "id": "fire-archer",
+                "count": 1
+            },
+            {
+                "id": "grave-knight",
+                "count": 1
+            },
+            {
+                "id": "heal",
+                "count": 2
+            },
+            {
+                "id": "light-swordsman",
+                "count": 2
+            },
+            {
+                "id": "meteor",
+                "count": 1
+            },
+            {
+                "id": "old-salt",
+                "count": 2
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 2
+            },
+            {
+                "id": "polarity-mage",
+                "count": 1
+            },
+            {
+                "id": "rapture",
+                "count": 1
+            },
+            {
+                "id": "ritualist",
+                "count": 1
+            },
+            {
+                "id": "shepherd-of-lost-souls",
+                "count": 3
+            },
+            {
+                "id": "summon-light-bringer",
+                "count": 1
+            },
+            {
+                "id": "summon-winged-lioness",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "light-bringer",
+                "count": 2
+            },
+            {
+                "id": "winged-lioness",
+                "count": 4
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass\n\nI decided to go the Change of Heart route with the DD Brennen. I think the burn decks that use Spirit Burn have very thin margins of error. This deck should be a bit more forgiving. \n\nThe deck wants to control the board with its allies, leveraging the enter the battlefield effects of cards like Anchornaut, Old Salt, Polarity Mage and Shepherd of Lost Souls to create insane value on top of the ping damage from Change of Heart recycling them.  Shepherd is especially important, and she will help recycle your allies from the discard and make sure you have a steady stream of them. \n\nFire Archer is just a little bit of burn and reach, but even at 1x it can be impactful when recycled.  Ritualist is to get your Chants online. Light Swordsman is amazing here - drop him and swing right away and, if they don’t kill him, you get to pick him up and do it again!  Grave Knight can be a surprise turn 1, and is also a really nice control card in some circumstances.  Use Polarity Mage to get your Change if Hearts back if you lose them from meditating. \n\nLight Bringer and Lioness are just additional divine control tools that you can have on tap every round.  Chant of Transfusion is great with the Old Salts, Attendants and Lionesses to generate more ping. \n\nYou have some healing in the deck as well with Attendant, Heal and Channel Magic. Brennen will be happy to have that with their 16 life.  Fester is needed to deal with armored stuff where the pings won’t work. Sneak a wound on with Transfusion and then Fester. It’s also amazing on non-armored Knights alongside Change of Heart. You don’t need the frogs in this deck to get the pings. \n\nAdd on Meteor and Rapture for some crowd control and bounce your way to victory!\n\nFirst Five is Ritualist, Light Bringer, Lioness, Anchornaut, Change of Heart.  You’ll have a couple dice left to recur / replay an ally, or get both chants out in round 1 by playing Ritualist twice.  Could swap in Old Salty for the Anchornaut as well. "
+    },
+    {
+        "precon_id": 612,
+        "mode": null,
+        "name": "Dual Duel Dimona - A Different Reanimation",
+        "phoenixborn": [
+            {
+                "id": "dimona-odinstar",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 7
+            },
+            {
+                "magic": "illusion",
+                "count": 3
+            }
+        ],
+        "cards": [
+            {
+                "id": "anchornaut",
+                "count": 1
+            },
+            {
+                "id": "blood-brawl",
+                "count": 2
+            },
+            {
+                "id": "blood-chains",
+                "count": 2
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 3
+            },
+            {
+                "id": "crimson-bomber",
+                "count": 1
+            },
+            {
+                "id": "fate-reflection",
+                "count": 3
+            },
+            {
+                "id": "fire-archer",
+                "count": 3
+            },
+            {
+                "id": "old-salt",
+                "count": 3
+            },
+            {
+                "id": "particle-shield",
+                "count": 3
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 2
+            },
+            {
+                "id": "rayward-knight",
+                "count": 3
+            },
+            {
+                "id": "resummon",
+                "count": 1
+            },
+            {
+                "id": "ritualist",
+                "count": 1
+            },
+            {
+                "id": "summon-calamity-golem",
+                "count": 1
+            },
+            {
+                "id": "summon-false-demon",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "calamity-golem",
+                "count": 1
+            },
+            {
+                "id": "empyrean-mount",
+                "count": 3
+            },
+            {
+                "id": "false-demon",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass\n\nI wanted to do something a bit different with this Dimona - I think the current most competitive version of Dimona is a Fallen build. Check out nosuchmethod’s Dimona that won a recent tournament.  That’s a 3-color list with Charm for Open Memories and Divine for stuff like Shepherd of Lost Souls, and both of those are needed. If you want to run a 2-color Dimona Fallen, you could port most or all of the James Dual Duel list into Dimona and try that. \n\nInstead of Fallen, I’m punishing the opponent for killing my allies with Chant of Transfusion. If they kill them, I get Chant tokens. If they don’t, then I get Empyrean Mounts.  That’s the basic gist of the deck, apart from Resummon, which is my favorite pet Dimona card. I love attacking with an Empyrean Mount, forcing something with 2 attack to block it, surviving, then Resummoning the Mount to get a fresh one and the ally back into hand to be used again. It’s one of my favorite plays in all of Ashes.  \n\nFalse Demon rounds out the spellboard as a consistently good book that can help trigger your chants by self-killing an exhausted ally if you want, or do more damage to the opponent. It also helps to have a use for basic dice on the spellboard. \n\nThe allies are the meat of the deck, and playing them well will make or break it. Anchornaut is typically just a first five card, but helps in a pinch later. Remember you can attack with him to get him exhausted so he can mount up. Bomber is a nice AoE tool and self-turns on chants.  Fire Archer is the main ally you want to be using to mount, but Anchornaut works well, too.  Old Salt is a staple in any Chant of Transfusion list, as is Phoenix Attendant. Attendant is especially helpful with Dimona’s low life.  Rayward Knight is an excellent ally to keep your deck healthy, and also to attack into something with 2 or less attack to survive with wounds. Ritualist is just there to grab a Chant in round 1, but you can mount up with her so she comes back to grab more chants. \n\nBlood Brawl is a really great card here. Empyrean Mount and Rayward Knight are both excellent at attacking units and surviving the encounter with a wound or two. Combine that with Old Salts and Attendants sounding themselves, and Blood Brawl starts to look excellent.  Same goes for Blood Chains - it’s very easy to get the double exhaustion in this list.  Lastly, since you want your guys to be hanging around with damage on them, I leaned heavy into the ping protection spells with 3x each Particle Shield and Fate Reflection.  Keep those guys alive to either recover at the end of the round, or unleash the big Blood Brawl or Blood Chains.  I also added in a cheeky Calamity Golem - this guy can be a blowout in some situations, especially with the Rayward Knights and Attendants in here being good targets for him. \n\nAgain remember, this is another control deck that wants to eliminate the opponents units and then swing through. Use your Mounts to eliminate key targets and hopefully survive, and send your Knights with their Charge ability into units the same way.  Don’t be too tempted to swing at the Phoenixborn if there are guys to kill. \n\nFirst five has some options, but I like Ritualist, Resummon, Demon, Fire Archer, Anchornaut.  With Chant, that’s 6 dice before you use Resummon. Now you’ll have flexibility in how you spend the last 4 dice. You can Mount + Resummon, or you can Mount + Ceremonial Power / replay an ally, or you can Ceremonial Power / replay an ally + Resummon the False Demon. See how the round goes and do whatever works best for the situation, with the default plan being Mount + Resummon unless it doesn’t work out that way. \n\n\n"
+    },
+    {
+        "precon_id": 613,
+        "mode": null,
+        "name": "Dual Duel James - Death Pact",
+        "phoenixborn": [
+            {
+                "id": "james-endersight",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 9
+            },
+            {
+                "magic": "charm",
+                "count": 1
+            }
+        ],
+        "cards": [
+            {
+                "id": "anchornaut",
+                "count": 1
+            },
+            {
+                "id": "blood-archer",
+                "count": 2
+            },
+            {
+                "id": "blood-chains",
+                "count": 2
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 3
+            },
+            {
+                "id": "choke",
+                "count": 1
+            },
+            {
+                "id": "crimson-bomber",
+                "count": 3
+            },
+            {
+                "id": "old-salt",
+                "count": 3
+            },
+            {
+                "id": "open-memories",
+                "count": 1
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 3
+            },
+            {
+                "id": "rising-horde",
+                "count": 1
+            },
+            {
+                "id": "ritualist",
+                "count": 2
+            },
+            {
+                "id": "summon-fallen",
+                "count": 3
+            },
+            {
+                "id": "summon-sleeping-widows",
+                "count": 3
+            },
+            {
+                "id": "vengeance",
+                "count": 2
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "fallen",
+                "count": 7
+            },
+            {
+                "id": "sleeping-widow",
+                "count": 6
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle:  Control / Wide\n\nPressure:  Bypass\n\nThis James deck is very simple and sticks almost to one color - it wants to play allies and have them die, fueling your Summon Fallen books and Chants of Transfusion to create a ton of value from two of the best value engines in Ashes. \n\nFallen are the most efficient unit in the game.  They’re strong enough to dip into Charm for one die, just really for Open Memories in order to go and get a second Fallen book in round 1.  You want two books online before your allies start dying to max out the value.  James can use his ability to fuel allies to the board to keep the tokens coming. \n\nThere’s a little bit of an ally toolbox here. I like having one Anchornaut to pull out in a pinch or in round 1. Old Salt is just a beast and great with Chant of Transfusion. Phoenix Attendant is likely the all-star - its combo potential with Chant of Transfusion is excellent. The same goes for Blood Archer, which also takes advantage of the Charm splash. \n\nCrimson Bomber is a great unit to get some AoE damage, and also self-kills to fuel the Fallen and Chants.  Ritualist is a must to get the Chants online early, and Rising Horde is good value for 2 dice, easily searchable for James, and combos nicely with Vengeance, allowing itself to blow up into 2 more attackers. \n\nSpeaking of Vengeance, that’s the preferred way to win the game. Ideally, you use your Uber-efficient Fallen and Chant engine to thin out their board until you get to the beginning of a round where you go first.  You can side action Vengeance, hopefully blowing up a Rising Horde or two and maybe another ally, react with Summon Sleeping Widows, and then swing in for massive damage. Even without that play, Vengeance into Widows is a big surprise attack just by itself, especially if a Horde is destroyed. \n\nThe 1x Choke is really just there maybe for Coal or Jessa to turn off their annoying abilities.  Blood Chains is a good hard removal spell which also triggers your Fallen books and Chants. \n\nFirst five - I’d suggest Summon Fallen, Open Memories (grab a second Fallen book), Ritualist, Blood Chains, Old Salt.  Use James’ ability to get another Ritualist to pull another Chant, or just grab the Anchornaut to ping something. You should have 1 or 2 ceremonial dice left to play Fallen depending on whether you went Ritualist + Chant #2, or Anchornaut, and you’ll be guaranteed at least one token on the books thanks to Blood Chains killing an ally if your opponent doesn’t take out an ally for you. \n\nEDIT:  this list should be 3x Blood Chains and 2x Crimson Bomber"
+    },
+    {
+        "precon_id": 614,
+        "mode": null,
+        "name": "Dual Duel Koji - Fallen Wolves",
+        "phoenixborn": [
+            {
+                "id": "koji-wolfcub",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 7
+            },
+            {
+                "magic": "charm",
+                "count": 3
+            }
+        ],
+        "cards": [
+            {
+                "id": "beast-tamer",
+                "count": 1
+            },
+            {
+                "id": "blood-archer",
+                "count": 3
+            },
+            {
+                "id": "blood-chains",
+                "count": 3
+            },
+            {
+                "id": "enchanted-violinist",
+                "count": 3
+            },
+            {
+                "id": "iron-worker",
+                "count": 2
+            },
+            {
+                "id": "old-salt",
+                "count": 3
+            },
+            {
+                "id": "open-memories",
+                "count": 1
+            },
+            {
+                "id": "reclaim-soul",
+                "count": 2
+            },
+            {
+                "id": "redirect",
+                "count": 3
+            },
+            {
+                "id": "summon-bone-crow",
+                "count": 1
+            },
+            {
+                "id": "summon-fallen",
+                "count": 3
+            },
+            {
+                "id": "summon-sleeping-widows",
+                "count": 2
+            },
+            {
+                "id": "wolfpack-leader",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "bone-crow",
+                "count": 4
+            },
+            {
+                "id": "fallen",
+                "count": 7
+            },
+            {
+                "id": "pack-wolf",
+                "count": 3
+            },
+            {
+                "id": "sleeping-widow",
+                "count": 6
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass\n\nThis deck attempts to win through sheer efficiency. Fallen and Wolfpack Leader are among the most efficient units in the game, and together they guarantee a bunch of free 1/1s, and these can be used to out-trade the opponent by killing their units they actually have to spend dice on. \n\nThe ally suite is the backbone of the deck, and is crafted of units that the opponent really wants to get rid of or, in Old Salt’s case, has removal on play.  Beast Tamer, Blood Archer, Iron Worker and Wolfpack Leader all demand a response, otherwise you get a lasting benefit.  And if they do kill them, you get zombies. \n\nBlood Chains and Reclaim Soul can force the issue if they try to avoid killing your allies, while still providing you with benefits. Open Memories is solely for the first five to make sure two Fallen Books are setup immediately. \n\nLastly, Koji’s low life makes him susceptible to big bypass swings or burn, so the Redirects help with that, along with serving as another way to kill your own allies and accrue fallen tokens. And if you want your guys to die, you might as well make some spiders. \n\nIf you’re ready for a third color, this deck really benefits from Guilt Link in Sympathy, as Koji can use his ability to turn it on without needing to be attacked.  Without that, Koji’s ability is best on Wolfpack Leader here, but can also be used on a Fallen book. \n\nFirst five is Fallen, Open Memories (second Fallen book), Bone Crow, Wolfpack Leader and Blood Chains. The remaining 3 dice should be a ceremonial power to resurrect Wolfpack Leader and play it again. "
+    },
+    {
+        "precon_id": 615,
+        "mode": null,
+        "name": "Dual Duel Jessa - Turtle Soup",
+        "phoenixborn": [
+            {
+                "id": "jessa-na-ni",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 5
+            },
+            {
+                "magic": "time",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "blood-chains",
+                "count": 2
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 3
+            },
+            {
+                "id": "crimson-bomber",
+                "count": 2
+            },
+            {
+                "id": "crypt-guardian",
+                "count": 2
+            },
+            {
+                "id": "fate-reflection",
+                "count": 2
+            },
+            {
+                "id": "fear",
+                "count": 3
+            },
+            {
+                "id": "final-cry",
+                "count": 2
+            },
+            {
+                "id": "old-salt",
+                "count": 3
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 3
+            },
+            {
+                "id": "reclaim-soul",
+                "count": 2
+            },
+            {
+                "id": "ritualist",
+                "count": 3
+            },
+            {
+                "id": "summon-seafoam-snapper",
+                "count": 1
+            },
+            {
+                "id": "summon-turtle-guard",
+                "count": 1
+            },
+            {
+                "id": "summon-wishing-wing",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "seafoam-snapper",
+                "count": 2
+            },
+            {
+                "id": "turtle-guard",
+                "count": 2
+            },
+            {
+                "id": "wishing-wing",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Burn\n\nJessa is, IMO, just one of the coolest Phoenixborn in the game, and I tried for an old-school Jessa vibe here.  This deck wants to control the game with efficient units, using Screams of the Departed when they die, slowly whittling the opponent down while Jessa stays healthy with healing. \n\nJessa is one of the few Phoenixborn with a Pressure point built into her ability, so we don’t have to really run many cards to apply non-battlefield pressure. Final Cry sneaks into the list really just because there are so many self-kill spells here to activate it. \n\nTurtle Guard and Snapper are both great Jessa units. Snapper helps her manage her 4 battlefield by wiping out exhausted wishing wings or other turtles, and Turtle Guard provides a great unit guarder, excellent synergy with Chant of Transfusion and Blood Chains, and it also has 1 Recover, making it a great unit to use with Fear, as Jessa will heal 1. \n\nThe allies are all high in synergy as well, particularly with Chant of Transfusion.  I went heavy on Ritualists because I think it’s important to get a lot of chants out fast.  Old Salt is just a beast. Phoenix attendant is an all-star, comboing with Chant for healing and damage, and is another fantastic Blood Chains and Fear Target. Bomber gives the deck a little bit of AoE and more self-clear.  Crypt Guardian helps even up the battlefield size discrepancy when he survives the round. \n\nReclaim Soul is just more healing and self-kill to open battlefield, trigger chants and activate Screams. Fate Reflection rounds out the deck with some protection for your important units. \n\nThe last thing I’ll say is be careful about when you scream. A lot of times, you don’t need to scream a lot early - just organically get some damage through with attacks and final cry, and then start screaming to close out the game. But it’s always there as a way to spend dice that you can’t utilize in a given round. Play around with it some and soon you’ll have a good feel for when it’s good to scream and when it’s not. \n\nFirst five here is likely the 3 books, Ritualist and either Crypt Guardian or Fear. If it’s Fear, plan to use a Ceremonial Power to recur the Ritualist and replay it, getting out a second Chant in round 1. "
+    },
+    {
+        "precon_id": 616,
+        "mode": null,
+        "name": "Dual Duelling Jericho - Horse Swag",
+        "phoenixborn": [
+            {
+                "id": "jericho-reborn",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "sympathy",
+                "count": 5
+            },
+            {
+                "magic": "time",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "blink",
+                "count": 3
+            },
+            {
+                "id": "crescendo",
+                "count": 2
+            },
+            {
+                "id": "fate-reflection",
+                "count": 2
+            },
+            {
+                "id": "fighting-spirit",
+                "count": 1
+            },
+            {
+                "id": "flute-mage",
+                "count": 1
+            },
+            {
+                "id": "generosity",
+                "count": 2
+            },
+            {
+                "id": "oceans-gift",
+                "count": 2
+            },
+            {
+                "id": "raptor-herder",
+                "count": 3
+            },
+            {
+                "id": "river-skald",
+                "count": 2
+            },
+            {
+                "id": "seeds-of-aggression",
+                "count": 2
+            },
+            {
+                "id": "stand-still",
+                "count": 2
+            },
+            {
+                "id": "standard-bearer",
+                "count": 2
+            },
+            {
+                "id": "summon-radiant-leviathan",
+                "count": 2
+            },
+            {
+                "id": "summon-squall-stallion",
+                "count": 1
+            },
+            {
+                "id": "summon-time-hopper",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "prism-tetra",
+                "count": 9
+            },
+            {
+                "id": "radiant-leviathan",
+                "count": 1
+            },
+            {
+                "id": "raptor-hatchling",
+                "count": 3
+            },
+            {
+                "id": "squall-stallion",
+                "count": 2
+            },
+            {
+                "id": "time-hopper",
+                "count": 4
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Tall / Wide\n\nPressure: Bypass\n\nFor this Jericho, I went back to the past a bit.  The first Ashes Reborn deck my son ever built was a Jericho list he called “Swag Status Up” that was based on Squall Stallion and Time Hopper. He took it to a local meetup we had at a store near us back then, and cleaned up pretty well even though he had no real Ashes experience.  So Jericho + Stallion holds a bit of a soft spot in my heart. \n\nThe idea here is that Summon Squall Stallion draws a card on activation, meaning that Jericho’s Prepare ability to search her deck for a card and put it on top can be combined with Stallion to always put that card right into hand.  The Time Hoppers then can feed tokens to the horse, and Jericho can Prepare a second Hopper book in round 1 to focus them immediately and make sure you’ve got Rabbits for days. \n\nWhen my son built the deck, he didn’t have Fighting Spirit as it wasn’t printed yet, so he used Hypnotize and charm dice to threaten a big horse swing. But now, Fighting Spirit is here to let our Hoppers throw tokens everywhere and give us multiple different Tall threats throughout the game, and we can use Stand Still as the bypass tool instead. Fighting Spirit is nice here as our two books put tokens into the board, and we’ve got more token generators in Standard Bearer, Ocean’s Gift and even Radiant Leviathan. \n\nIf you noticed, I listed the style as “Tall / Wide, which is a little weird.  However, that’s because we do have multiple Tall threats in Squall Stallions growing organically through their ability and extra Hopper tokens, and also Fighting Spirit being able to turn any unit into a big threat after some time.  But sometimes you can make wise swings with lots of Hoppers + Standard Bearer, and potentially a Radiant Leviathan that explodes into a bunch of fish. I think your main win con though should be a tall bypass finishing blow, and more often than not you’ll want to send your hoppers one at a time into units instead, but be on the lookout for a wide swing opportunity where you don’t leave yourself open for retaliation. \n\nSpeaking of Leviathan, it’s a really cool card in here for a lot of reasons. First, all of our Bunnies could mean that Leviathan comes into play with a bunch of tokens on it. That’s both good for charging Fighting Spirit and for leaving a bunch of Prism Tetra behind when it dies. Those fish might not seem like a huge deal, but remember that Fighting Spirit can make it swing hard. Also, River Skalds love to yeet Whale spells at opposing knights for 4 damage, and Jericho can set this up with Prepare, so that you draw the Whale spell with River Skald’s ability. \n\nThe rest of the cards are tools for situations that can be pulled out when needed. Note that Blink is bad with Stallion and Leviathan as it will remove the tokens from them, so that’s why there’s only 2. But it’s still good to reset some units (Raptor Herder is great) or as a bypass tool to remove an opponents unit before you swing. Seeds gives you a bit of self-clear, which this deck lacks a bit as these colors aren’t great for it. Crescendo helps there, too along with providing more bypass, and Fate Reflection can save a big horse that would die. Lastly, 1x Accelerate to pull out that big combo turn, and Generosity to draw cards and fuel your horses. \n\nIf you’re interested in going into a 3rd color, look to Nature. Root Armor, Hunt Master, Natures Wrath and Explosive Growth would all be great additions here. \n\nFirst 5 is probably Stallion, Hopper, Fighting Spirit, Raptor Herder, Generosity. Prepare a second Hopper book and draw it with the horse. Generosity early to draw 3 to fuel your horse and so they can’t heal or unexhaust. "
+    },
+    {
+        "precon_id": 617,
+        "mode": null,
+        "name": "Dual Duel Coal - Time to Cut a Fool",
+        "phoenixborn": [
+            {
+                "id": "coal-roarkwin",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "illusion",
+                "count": 3
+            },
+            {
+                "magic": "time",
+                "count": 7
+            }
+        ],
+        "cards": [
+            {
+                "id": "adept-duelist",
+                "count": 1
+            },
+            {
+                "id": "double-down",
+                "count": 2
+            },
+            {
+                "id": "fade-away",
+                "count": 1
+            },
+            {
+                "id": "fighting-spirit",
+                "count": 3
+            },
+            {
+                "id": "flash-strike",
+                "count": 3
+            },
+            {
+                "id": "gates-thrown-open",
+                "count": 1
+            },
+            {
+                "id": "oceans-gift",
+                "count": 3
+            },
+            {
+                "id": "one-hundred-blades",
+                "count": 3
+            },
+            {
+                "id": "particle-shield",
+                "count": 3
+            },
+            {
+                "id": "realm-walker",
+                "count": 1
+            },
+            {
+                "id": "summon-false-demon",
+                "count": 1
+            },
+            {
+                "id": "summon-time-hopper",
+                "count": 3
+            },
+            {
+                "id": "summon-wishing-wing",
+                "count": 3
+            },
+            {
+                "id": "to-shadows",
+                "count": 2
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "false-demon",
+                "count": 2
+            },
+            {
+                "id": "time-hopper",
+                "count": 4
+            },
+            {
+                "id": "wishing-wing",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass\n\nThis list feels a bit more straightforward maybe than others, but that what these decks are for!  The idea here is to put out a ton of efficient weenies and trade favorably into your opponents units, all while pumping up your Fighting Spirits to constantly threaten a massive swing. \n\nWishing Wing is the star here. You always want to be putting these down, and probably following that up with a Time Hopper summon to boost it.  Then you have a 2/1 that charges Fighting Spirit when it dies and also draws you 2 cards, which Coal can turn into more damage. \n\nWe should probably talk about Coal here - Slash is an extremely powerful ability, and you can’t be afraid to use it. Your rule of thumb should be that if you can’t play or aren’t going to play a card in a given round, you should discard it to Slash. Wishing Wing is going to draw you a bunch of cards to allow Slashes (as is 100 Blades and Particle Shield), and if you don’t plan on putting them onto the board, you should slash them at the opponents board. Your wincon is to eliminate the opponents board and swing through it, so use Slash to do that.  This deck will burn brightly and fast though - be aggressive!!\n\nOceans Gift is a really nice card both for dice fixing and token generation, as well as giving an attack boost. One of the all-stars of the deck. \n\nThe allies aren’t needed much here, but they each can be great in the right situation - use them wisely. \n\nParticle Shield is really nice to save one of your small units from a ping or 1-die attack, and draw a card that Coal can slash with. Additionally, Flash Strike is the ultimate trade-up card, or is just great for 2 damage on the PB if your guy gets through.  Double Down is excellent on Wishing Wings to continue that engine (make sure you have a Time power die showing so the new wishing wings get their boost when they enter play), but can also be good on Time Hoppers to throw a bunch of status tokens around and get 2 new, unexpected attackers. \n\nAlso, just like Slash, don’t be afraid to use Fighting Spirit each round. It’s true that it will reduce it down and stop charging, but many times it’s more important to use it as a tool to trade up into a bigger threat. Also, remember it puts a token on the unit, so it will boost the wishing wings up further and can be used to get a token onto a demon or something so that it charges Fighting Spirit or can use Flash Strike.  False Demon is nice here as a basic sink and it’s great for clearing out exhausted Wishing Wings to draw cards, or exhausted Time Hoppers to make room for more units.  Or you know, it can just be more ping damage to clear opposing units out. \n\nLastly, you’re going to have a bunch of little bodies running around, but remember this isn’t a wide deck. This is a control deck that builds up to one big strike. You want to eliminate the opponents board first, so try to direct most or all of your attacks at enemy units instead of at the Phoenixborn. Try to find situations where you’re attacking a 2 or 3 dice unit with your 1-die unit and threatening to kill it, or even just take it down to 1 life, knowing that a Slash can finish it off. This will put immense pressure on your opponents Phoenixborn to use their one guard for the round, giving you free rein to go to town on their units and clear the way for the big Fighting Spirit swing. \n\nFirst five is almost always going to be the 3 books, Fighting Spirit and Gates Thrown Open."
+    },
+    {
+        "precon_id": 618,
+        "mode": null,
+        "name": "Dual Duel Noah - Reaction Time",
+        "phoenixborn": [
+            {
+                "id": "noah-redmoon",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "illusion",
+                "count": 2
+            },
+            {
+                "magic": "time",
+                "count": 8
+            }
+        ],
+        "cards": [
+            {
+                "id": "accelerate",
+                "count": 2
+            },
+            {
+                "id": "adept-duelist",
+                "count": 1
+            },
+            {
+                "id": "excavate",
+                "count": 2
+            },
+            {
+                "id": "fighting-spirit",
+                "count": 3
+            },
+            {
+                "id": "flash-strike",
+                "count": 3
+            },
+            {
+                "id": "gates-thrown-open",
+                "count": 3
+            },
+            {
+                "id": "particle-shield",
+                "count": 2
+            },
+            {
+                "id": "realm-walker",
+                "count": 1
+            },
+            {
+                "id": "shadowblade",
+                "count": 3
+            },
+            {
+                "id": "stand-still",
+                "count": 3
+            },
+            {
+                "id": "summon-seafoam-snapper",
+                "count": 1
+            },
+            {
+                "id": "summon-time-hopper",
+                "count": 3
+            },
+            {
+                "id": "summon-wishing-wing",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "seafoam-snapper",
+                "count": 2
+            },
+            {
+                "id": "time-hopper",
+                "count": 4
+            },
+            {
+                "id": "wishing-wing",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n——————————————————————————-\n\nStyle: Tall\n\nPressure: Bypass\n\nThis Noah deck is designed to use its plentiful cheap, but efficient units with status tokens to out-trade the opponent while building up tokens on Fighting Spirit to eventually get through with a couple large, Fighting Spirit boosted swings to end the game, probably assisted by a Realm Walker or by casting Stand Still to prevent an opposing unit from blocking. This is accomplished by using Wishing Wing as a cheap, but very threatening unit due to its attack value scaling to the number of tokens on it. The opponent is often forced to kill these before they get too big, but that charges up your Fighting Spirit spells and draws you cards, helping you to find your additional Wishing Wing and Time Hopper books to just keep the pressure coming. And if they don’t kill them, attack with them yourself, trading up into more expensive units, and then use the Hungry Seafoam Snapper to kill them yourself. \n\nThe deck has a lot of additional card draw with Shadowblade, Accelerate, Excavate and Particle Shield. Along with helping you focus your Spellboard books, this helps the secondary theme of the deck, which is cheap reaction spells. You want to be able to have these reactions in hand when the opportune moment arises, and the card draw facilitates that.  Additionally, Accelerate can provide opportunities for explosive turns where you maybe use two separate Fighting Spirits for a huge attack, or drop an Adept Duelist and a Time Hopper before attacking with your main action. \n\nNoah’s Shadow Target ability is a very good tool for dealing with problematic Ready Spells. Shutting off unit guard books like Summon Gilder, Butterfly Monk or Steadfast Guardian especially can really help keep those units off the board and be able to select your targets. Beefier units like Frostback Bears, Tidal Crabs or Indiglow Creepers are also excellent targets. \n\nIt’s important to note that in the early game, you’ll want to be directing your attacks at units and not at the Phoenixborn.  This isn’t a Wide deck, even though it’s got a ton of small bodies. You want to thin your opponent out - as Fighting Spirit grows larger, even the smallest unit on your battlefield presents a huge threat. Your opponent will need to keep multiple different blockers up at all times later in the game, or risk you swinging through with Fighting Spirit and Stand Still, so use your units to attack and remove theirs, ideally only swinging at the Phoenixborn once there aren’t anymore good targets, or you can get a massive swing through.  This is especially true for the Time Hoppers, which can’t block. Try to find good times to attack something with them and threaten killing their unit with your little bunny to make them thing about using their Phoenixborn guard.  Also, Flash Strike is an amazing tool to swing a smaller unit into their big one, but then surprise them with Flash Strike to kill their big unit and save yours. \n\nThe first five here is usually going to be the four Ready Spells and Gates Thrown Open, which will reset all your Ready Spells and let you use them again. That will cost 8 dice, giving you a die to use on Shadow Target and also one to either play a card that you draw if/when a Wishing Wing is destroyed, or to use a dice power.  If it’s a dice power, I recommend a Time dice power to put a token on a Time Hopper to help charge up Fighting Spirit when it dies, but be on the lookout for opportunities to boost up a Wishing swing as well to 2-3 attack and swing into something bigger. "
+    },
+    {
+        "precon_id": 619,
+        "mode": null,
+        "name": "Dual Duel Hope - Mist and Shadow…",
+        "phoenixborn": [
+            {
+                "id": "hope-everthorn",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "illusion",
+                "count": 7
+            },
+            {
+                "magic": "natural",
+                "count": 3
+            }
+        ],
+        "cards": [
+            {
+                "id": "dream-fracture",
+                "count": 3
+            },
+            {
+                "id": "dreamlock-mage",
+                "count": 2
+            },
+            {
+                "id": "fate-reflection",
+                "count": 2
+            },
+            {
+                "id": "hollow",
+                "count": 2
+            },
+            {
+                "id": "ice-trap",
+                "count": 3
+            },
+            {
+                "id": "iron-worker",
+                "count": 1
+            },
+            {
+                "id": "mist-typhoon",
+                "count": 3
+            },
+            {
+                "id": "particle-shield",
+                "count": 2
+            },
+            {
+                "id": "raptor-herder",
+                "count": 3
+            },
+            {
+                "id": "shifting-mist",
+                "count": 1
+            },
+            {
+                "id": "summon-butterfly-monk",
+                "count": 1
+            },
+            {
+                "id": "summon-false-demon",
+                "count": 1
+            },
+            {
+                "id": "summon-shadow-hound",
+                "count": 3
+            },
+            {
+                "id": "void-pulse",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "false-demon",
+                "count": 2
+            },
+            {
+                "id": "raptor-hatchling",
+                "count": 3
+            },
+            {
+                "id": "shadow-hound",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control / Wide\n\nPressure: Mill / Bypass\n\nThis deck is one of the few times that I build something and think it can play in a couple of different styles / pressure points. It really speaks to how flexible Hope can be, and all of the different things that their unique, Void Pulse, does. \n\nThis list aims to take advantage of Hope’s ability Duplicate to its highest degree, and planning to play more of a control / mill game, but potentially pivoting into a wide swing deck if it sees an opportunity. \n\nThe Control + Mill plan is based on Shadow Hound combined with Hope’s Duplicate ability to keep the opponents mid-range and large units down and control their battlefield while, in the background, you’re spinning down their dice with Dreamlock Mage, Hollow, Dream Fracture and Void Pulse, forcing them to meditate a bunch and mill themselves, while you sit back with your Shifting Mist not needing to meditate much at all.  Duplicate also works great on Butterfly Monk to keep Hope’s life total strong and prolong the game while you focus on spindown. \n\nThere’s also a decent amount of draw in the deck between Void Pulse, Iron Worker, Particle Shield and Mist Typhoon to try and draw into your extra Shadow Hound books and Dream Fractures to add additional control pressure. \n\nHowever, if your control is working well enough that you have an opening for a big swing, Raptor Herder is there to help make that wide swing bigger, and Duplicate is also great there on the Hatchling. Ice Trap and Void Pulse are nice bypass cards, taking out units at reaction speed. Keep an eye out for an opportunity to get big damage in with a swing, but your main focus should be control. \n\nI haven’t talked about False Demon. Demon is here for consistency, some additional control, and also self-clear in a pinch.  Hope’s Battlefield can get bogged down sometimes and you need an extra slot for Duplicate. Demon is great at pinging away one of your own exhausted little guys to get some space. And if you don’t need that, it’s a good body, a basic dice sink, and another good control tool so it fits in well. \n\nFirst five:  Shadow Hound, Butterfly, Demon, Dreamlock Mage, Flex, Duplicate. The flex can be any 1-die card - Shifting Mist / Raptor Herder / Ice Trap / Void Pulse.  You could also swap the Iron Worker in for the Dreamlock if you want to try to focus your Shadow Hound book quicker and aren’t afraid of Ice Trap in round 1.  I’d plan on starting Shifting Mist most of the time as the flex spot, but those other flex options are available if you think they’ll be a blowout round 1 play. \n\n"
+    },
+    {
+        "precon_id": 620,
+        "mode": null,
+        "name": "Dual Duel Echo - Purple Exhaustion Tricks",
+        "phoenixborn": [
+            {
+                "id": "echo-greystorm",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "illusion",
+                "count": 5
+            },
+            {
+                "magic": "divine",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "celestial-knight",
+                "count": 3
+            },
+            {
+                "id": "chained-creations",
+                "count": 2
+            },
+            {
+                "id": "chaos-gravity",
+                "count": 3
+            },
+            {
+                "id": "dreamlock-mage",
+                "count": 2
+            },
+            {
+                "id": "fate-reflection",
+                "count": 3
+            },
+            {
+                "id": "figures-in-the-fog",
+                "count": 2
+            },
+            {
+                "id": "light-swordsman",
+                "count": 3
+            },
+            {
+                "id": "meteor",
+                "count": 3
+            },
+            {
+                "id": "rose-fire-dancer",
+                "count": 2
+            },
+            {
+                "id": "shepherd-of-lost-souls",
+                "count": 2
+            },
+            {
+                "id": "steady-gaze",
+                "count": 2
+            },
+            {
+                "id": "summon-false-demon",
+                "count": 1
+            },
+            {
+                "id": "summon-fox-spirit",
+                "count": 1
+            },
+            {
+                "id": "summon-light-bringer",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "false-demon",
+                "count": 2
+            },
+            {
+                "id": "fox-spirit",
+                "count": 3
+            },
+            {
+                "id": "light-bringer",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass\n\nI’m going to admit right away that Echo isn’t a Phoenixborn I’m super comfortable with. That being said, I really like the different ways in which this deck can utilize his ability and his unique card, Chaos Gravity. \n\nThis deck should be very good at exhausting opposing units and swinging past them WHEN YOU NEED TO. However, the great thing about exhausted units is that they can’t counter - use this fact to your advantage and still send your attacks into opposing units rather than all at the Phoenixborn. This will allow you to build up a commanding board presence and eventually push through. \n\nKnowing when and how to use Echo’s ability, Gravity Flux, is the key to making this deck sing. You’re equipped with many tricks to take advantage of it. False Demon and Fox Spirit both have abilities that come online when the opposing unit is exhausted.  You can use Gravity Flux as your side action, and then False Demon as a main to get a ping damage. Or attack with a Fox Spirit as a main to get its boost. Also, Gravity Flux can exhaust a Unit Guard like a Butterfly or Gilder, allowing you to attack the target you want.  You can also use it to exhaust the unit you want to attack, so it can’t counter you. Lastly, it’s always available to exhaust their only blocker so you can swing through.  Practice getting a feel for the best way to use it each round, since you only get one use of it and all of these tricks are great. \n\nLight bringer is even more exhaustion. Keep an eye out for when the opponent only had one fresh unit that they don’t want exhausted - that’s when you play your light bringer to force it to attack and exhaust. \n\nAnother toolbox of allies here, but many of them excel at combining with Echo’s unique spell, Chaos Gravity.  To get the most out of this spell, you ideally need to have a good use for all 3 effects.  I find the second effect - moving an exhaustion - to be the toughest to use.  Oftentimes, I like to try to swing a couple bigger units and a small one like a Light Bringer early in the round. Then when you play Chaos Gravity, you can refresh one of them, and move a token from the other big guy to your light bringer, to refresh both of them.  The light bringer will be double-exhausted, but you can always ping it away with a demon later. \n\nCelestial Knight is difficult to kill, so it will usually survive an attack to be refreshed with Chaos Gravity.  Dreamlock is a great body for 2 dice, and you can use Restrict to spin down a snake die to avoid Golden Veil. Light Swordsman is great at attacking and not dying, which makes him perfect to refresh with Chaos Gravity.  Rose Fire Dancer is just a nice exhaustion spell that leaves a body waiting to be refreshed, and Shepherd is great to pull what you need. \n\nMeteor works here as a nice reset button, and it has extra synergy with Celestial Knight, who will survive it.  Chained Creations is a slept-on action spell that takes out a lot of good conjurations.  Steady Gaze furthers the exhaustion theme and allows you to move a token off of that unit with Chaos Gravity to exhaust something else if you can pull them off in the same round. If not, it’s just a great hard-removal spell. \n\nFate Reflection for some protection against damage on your exhausted units so you can refresh them, and Figures for a surprise 1-die exhaust. \n\nFirst five is going to be the 3 books, Celestial Knight and a flex.  This can be any 2-dice spell or ally based on what you think you’ll face. Dreamlock, Chained Creations, Rose Fire, Chaos Gravity annd Steady Gaze are all good here. \n"
+    },
+    {
+        "precon_id": 621,
+        "mode": null,
+        "name": "Dual Duel Astrea - I’ve Got No Strings",
+        "phoenixborn": [
+            {
+                "id": "astrea",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 5
+            },
+            {
+                "magic": "time",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "blood-chains",
+                "count": 3
+            },
+            {
+                "id": "blood-puppeteer",
+                "count": 3
+            },
+            {
+                "id": "chant-of-sacrifice",
+                "count": 1
+            },
+            {
+                "id": "crypt-guardian",
+                "count": 3
+            },
+            {
+                "id": "eras-end",
+                "count": 3
+            },
+            {
+                "id": "final-cry",
+                "count": 3
+            },
+            {
+                "id": "fire-archer",
+                "count": 2
+            },
+            {
+                "id": "mark-of-the-goddess",
+                "count": 3
+            },
+            {
+                "id": "ritualist",
+                "count": 1
+            },
+            {
+                "id": "summon-blood-puppet",
+                "count": 3
+            },
+            {
+                "id": "summon-seafoam-snapper",
+                "count": 1
+            },
+            {
+                "id": "summon-turtle-guard",
+                "count": 1
+            },
+            {
+                "id": "to-shadows",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "blood-puppet",
+                "count": 5
+            },
+            {
+                "id": "seafoam-snapper",
+                "count": 2
+            },
+            {
+                "id": "turtle-guard",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Burn\n\nThis deck focuses on cheap exhaustion effects and burn damage through Mark, Fire Archers, Final Cry, Puppets and Era’s End.  Even with just a Crypt Guard out, Era’s End exhausts a unit for one die, which is great.  Blood Chains and Astrea also can exhaust a unit for just one die.  Tire them out and burn them down!\n\nReady spells:  Blood Puppet is just another way to look at exhaustion - you’re exhausting a battlefield slot rather than exhausting a unit, plus it comes with extra burn damage. It might not go in the first 5 unless you’re against another small BF phoenixborn, but it can be great in round 2-3 to help choke their BF.  You get both turtles with Snapper and Turtle Guard - these are just good stat bodies for the dice, and Snapper clears out extra turtles to help with the 4 BF, and also self-triggers Final Cry.  Chant of Sacrifice is a techy way to clean up BF slots and also utilize Blood Puppeteers as more pseudo-exhaustion, plus again triggering Final Cry. \n\nAllies:  Crypt Guardian is the MVP here. The end of round exhaustion is amazing for BF choking, and can setup big top of round Mark of the Goddess shots to the opposing Phoenixborn.  Blood Puppeteer as mentioned above is another piece of choke tech, plus it can give you extra blockers in a pinch, and with Snapper and all of the other self-clear in here you don’t need to worry too much about a puppet ending up on your BF.  Fire Archer is just some more good burn damage, and the Ritualist gives you a round 1 body to start with your Chant of Sacrifice if you want it. \n\nAction spells:  a lot of these since you only have 4 BF, but all of them do multiple things. Mark of the Goddess doubles as a burn spell and a removal spell, and is amazing with Crypt Guardian. Blood Chains helps with battlefield clear, which is needed with the 4 BF, and also doubles to choke their board. Era’s End can be a burn spell with Puppets, an exhaustion / choke spell with Crypt Guardian, or a removal spell against Creepers.  Lastly, To Shadows can get rid of stuff exhausted by Beguile or otherwise, and can be self-clear in a pinch.  Note that when combined with Beguile, it’s even better than Frog Ping + Fester is, but be careful as you might want to keep that battlefield slot locked down until the end of the round. Side action To Shadows, main action Pass to end the round is one of the best feelings ever. \n\nReactions: Final Cry is great burn reach, able to be self-triggered by Chant of Sacrifice, Snapper or Blood Chains. In this deck, it’s so easy to trigger yourself that it’s basically an action spell that doesn’t cost you an action. \n\nFirst five: a standard open would be Snapper, Turtle, Crypt Guardian, Ritualist, Blood Puppeteer/To Shadows/Blood Puppet book, Beguile.  That last spot is a bit of a flex - if you think a knight is coming, start the To Shadows. If it’s a small BF, you might want the book. "
+    },
+    {
+        "precon_id": 622,
+        "mode": null,
+        "name": "Dual Duel Xander - Life Will Find a Way",
+        "phoenixborn": [
+            {
+                "id": "xander-heartsblood",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "natural",
+                "count": 7
+            },
+            {
+                "magic": "divine",
+                "count": 3
+            }
+        ],
+        "cards": [
+            {
+                "id": "anchornaut",
+                "count": 3
+            },
+            {
+                "id": "earthquake",
+                "count": 3
+            },
+            {
+                "id": "ember-heart",
+                "count": 2
+            },
+            {
+                "id": "ice-trap",
+                "count": 2
+            },
+            {
+                "id": "molten-gold",
+                "count": 3
+            },
+            {
+                "id": "natures-wrath",
+                "count": 2
+            },
+            {
+                "id": "pain-shaman",
+                "count": 1
+            },
+            {
+                "id": "power-through",
+                "count": 2
+            },
+            {
+                "id": "raptor-herder",
+                "count": 3
+            },
+            {
+                "id": "rayward-recruit",
+                "count": 2
+            },
+            {
+                "id": "summon-butterfly-monk",
+                "count": 1
+            },
+            {
+                "id": "summon-cerasaurus-mount",
+                "count": 1
+            },
+            {
+                "id": "summon-frostback-bear",
+                "count": 1
+            },
+            {
+                "id": "wallop",
+                "count": 1
+            },
+            {
+                "id": "will-to-survive",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "cerasaurus-mount",
+                "count": 2
+            },
+            {
+                "id": "frostback-bear",
+                "count": 2
+            },
+            {
+                "id": "raptor-hatchling",
+                "count": 3
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass\n\nXander is one of the most generically good Phoenixborn out there - he doesn’t have a ton of amazing things going for him, but his stats are excellent and his ability is nice to save him life vs using the ceremonial power.  To that end, we want to capitalize on his high life total and use his ability to fuel Cerasaurus Mount.  As that puts us into divine and nature, we’ll play some strong alterations to our midrange units. \n\nThe spellboard is the crux of the deck here - it has our two strongest units in Bear and Cerasaurus that represent our wincon with their bypass, and the Butterfly to protect them and beef up Xander’s life total.  Cerasaurus is better here than in other decks because Xander can use his ability to always have ally fuel. \n\nBe careful how you play your Cerasaurus Mounts. It’s very powerful to be able to summon a Dino as a side action and then attack with your main action, but that means your ally has to survive a turn. Don’t try this if they have Frog dice showing, or against ceremonial at all due to Old Salt. However, that’s one place the Rayward Recruits (or Jungle Foragers if you swap them in) shine - with 2 life, they have a shot to survive a turn and setup that play. \n\nSpeaking of the Allies, they work in conjunction with the spellboard cards to apply pressure. You have 8 good mount targets in Anchornaut, Raptor and Rayward Recruit. It’s important when playing Recruit to put the divine die on something else if you’re planning to mount it up. Ember Heart is good as well to reuse some of our alterations after a swing.  \n\nEDIT: Jungle Forager might be a better card here than Rayward Recruit, allowing you to pull alterations into hand and that also gives you something to do with your extra die round 1. Credit to Fred for that suggestion. \n\nThe alterations are all good at making good trades and pressuring damage on the PB if they’re on a terrifying Bear.  As a control deck though, you should be aiming to run your units into theirs unless you have nothing good to attack or the bypass ends the game. \n\nMolten Gold is a nice finisher that can be a removal spell in a pinch. Earthquake and Nature’s Wrath keep swarms under control with Earthquake doubling as spot removal. Also try to use these to open up battlefield slots on your board when you need to. \n\nIce Trap can be first fived if you know it will trade up, otherwise it’s just solid mid-game removal. \n\nFirst five is probably the three books, two 1-cost Allies and a Frog dice power.  You can go any of the 1-cost guys, but I’d probably always have Raptor Herder.  Conversely if you’re confident there’s not an Ice Trap, you can go Herder + Pain Shaman.  Shaman isn’t a guy you want to mount often, but he comes with a bit bigger body and a built-in ping and a heal - you just want to make sure you don’t lose your Cerasauru for the round. But if you do, you can always pivot into Xander’s ability and replaying the ally, which isn’t the worst thing. \n\n"
+    },
+    {
+        "precon_id": 623,
+        "mode": null,
+        "name": "Dual Duel Victoria - Spin to Win",
+        "phoenixborn": [
+            {
+                "id": "victoria-glassfire",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "illusion",
+                "count": 10
+            }
+        ],
+        "cards": [
+            {
+                "id": "abundance",
+                "count": 3
+            },
+            {
+                "id": "channel-magic",
+                "count": 2
+            },
+            {
+                "id": "copycat",
+                "count": 1
+            },
+            {
+                "id": "dream-fracture",
+                "count": 3
+            },
+            {
+                "id": "figures-in-the-fog",
+                "count": 3
+            },
+            {
+                "id": "gates-thrown-open",
+                "count": 3
+            },
+            {
+                "id": "keepsake",
+                "count": 3
+            },
+            {
+                "id": "particle-shield",
+                "count": 3
+            },
+            {
+                "id": "shadow-guard",
+                "count": 2
+            },
+            {
+                "id": "steady-gaze",
+                "count": 2
+            },
+            {
+                "id": "summon-mist-spirit",
+                "count": 1
+            },
+            {
+                "id": "summon-shadow-hound",
+                "count": 3
+            },
+            {
+                "id": "to-shadows",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "mist-spirit",
+                "count": 10
+            },
+            {
+                "id": "shadow-hound",
+                "count": 2
+            }
+        ],
+        "notes": "This is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Mill\n\nDisclaimer 1: I won’t beat around the bush - in my opinion, there’s very little reason to play Victoria outside of just fun.  If you’re trying to win, Hope will do everything Victoria can but better. However, if you’re here for the chaos, then strap in!\n\nDisclaimer 2: I’m looking forward to revamping this one once Vicky gets a new unique card that hopefully drives her stock up. \n\nNow, onto the chaos!  When looking at Victoria, I see two potential things that she can do better than other Phoenixborn: avoid reactions when they have more than 2 power dice showing, and activate Dream Fracture when they have more than 2 power dice showing. That’s about it.  I tried to lean into those when constructing this list.  The idea here is to just spin down all the dice - you need to force them to meditate a lot of cards while you put up a wall, and slowly burn them out with Dream Fracture and eventual fatigue damage.  This plays like a mill deck and not a burn deck because Dream Fracture just isn’t enough to get you there on its own, so you’ll need to fatigue them out. \n\nThe Shadow Hound and Mist Spirit books are control tools against midrange and swarm units respectively.  Abundance helps focus your books and threaten your reactions.  Dream Fracture is the eventual wincon of the deck. Lastly, Keepsake has great synergy in this deck and, once setup, can be a good deterrent for knights and other big units to be played, as Vicky can always just Surprise + pop Keepsake to not only kill a big threat, but probably avoid Golden Veil or Fate Reflection thanks to Surprise spinning down dice. \n\nMill decks tend to want healing, and illusion / sympathy has basically none of that, so Channel Magic makes it in. The draw and spin up are also helpful in a long game. Gates is a first 5 card, but also great later game as a spindown card to get more uses out of Fracture and Abundance, and more Misties if you need them.  Steady Gaze is a very underrated card that needs more play and, with 10 illusion dice, it makes sense here. Spin down the snake dice and gaze down those big threats. \n\nI’m running 1 Copycat here, just for a surprise usage or maybe a first 5 against a PB with a nasty action spell. Particle Shield and Figures in the Fog are great answers though to pinging away your misties and exhausted hounds while drawing more cards, and Figures is an excellent pseudo-removal spell to deal with particularly frustrating units like Sonic Swordsman if you can’t Keepsake or Gaze them.  The Shadow Guards are just a couple more surprise answers to midrange units. \n\nThe normal first five here is probably Abundance, Fracture, Hound, Mist Spirit, Gates. Don’t plan to use Surprise - either make more mist spirits or play something you draw with abundance. Steady Gaze and Copycat can slide in for Gates or Fracture if you think they’ll help. "
+    },
+    {
+        "precon_id": 624,
+        "mode": null,
+        "name": "Dual Duelling Odette - Big Butts… of Virtue",
+        "phoenixborn": [
+            {
+                "id": "odette-diamondcrest",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 4
+            },
+            {
+                "magic": "natural",
+                "count": 6
+            }
+        ],
+        "cards": [
+            {
+                "id": "blood-chains",
+                "count": 3
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 1
+            },
+            {
+                "id": "clashing-tempers",
+                "count": 3
+            },
+            {
+                "id": "hammer-knight",
+                "count": 3
+            },
+            {
+                "id": "ice-trap",
+                "count": 3
+            },
+            {
+                "id": "natures-wrath",
+                "count": 2
+            },
+            {
+                "id": "old-salt",
+                "count": 3
+            },
+            {
+                "id": "pain-shaman",
+                "count": 2
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 3
+            },
+            {
+                "id": "ritualist",
+                "count": 1
+            },
+            {
+                "id": "root-armor",
+                "count": 1
+            },
+            {
+                "id": "summon-butterfly-monk",
+                "count": 1
+            },
+            {
+                "id": "summon-frostback-bear",
+                "count": 1
+            },
+            {
+                "id": "sword-of-virtue",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "fire-adaptation",
+                "count": 2
+            },
+            {
+                "id": "frostback-bear",
+                "count": 2
+            },
+            {
+                "id": "ice-adaptation",
+                "count": 2
+            }
+        ],
+        "notes": "\nThis is a deck in my Dual Duel series. These decks are designed for newer players to get into deckbuilding and understand how more competitive Ashes decks work while sticking to just 2 colors and straightforward lines of play.\n\nEach deck will be laid out defining the Style I’ve built the deck in that helps point towards how to pilot it, and the Pressure Tactic the deck uses to force the game to a conclusion. I believe that all Ashes decks should be built with these two things in mind, and pilots should understand them going into a game.\n\nHere’s a breakdown of my different Styles and Pressure Tactics I believe that most Ashes decks can be divided into these buckets:\n\nStyles:\n\nTall: Create one or two really big units and protect them until they’re ready to strike or use them to protect your Phoenixborn.\n\nWide: Create many small, efficient units to overwhelm your opponents battlefield and potentially attack around their blockers to hit the Phoenixborn.\n\nControl: Focus on limiting the opponent’s options and keeping opponent’s units down either by continually destroying them with spells or unit attacks, or by continually exhausting them.\n\nPressure Tactics:\n\nBypass: Swinging past your opponent’s units to damage the Phoenixborn. This can be done by giving your units evasion so they cannot be blocked, or by destroying or exhausting all of your opponents units to allow yours to swing through.\n\nBurn: Deal damage to the opposing Phoenixborn using spells or abilities that directly deal damage to or place wounds on a Phoenixborn.\n\nMill: Focus on removing cards from the opponent’s deck either by discarding them from the deck directly, forcing the opponent to draw them, or manipulating the opponents dice to make them meditate more and discard their own cards to do it. This forces the opponent into fatigue faster.\n\n—————————————————————\n\nStyle: Control\n\nPressure: Bypass\n\nThis deck attempts to overwhelm the battlefield by flooding life into it that’s accompanied by a ton of ping damage and removal, eventually swinging through the open hole. \n\nOdette’s Enter the Fray ability lends itself very well to this - the power of being able to deal 2 damage for no dice can’t be overstated. It costs you PB life, but you need to use that life as a resource. Also, you have Butterfly Monk and Phoenix Attendant to replenish that resource. \n\nThis deck also actively tries to avoid Ice Trap, by having only 1x Ritualist and Butterfly Monks as eligible targets, and neither of those really feels good to spend an Ice Trap on. \n\nFrostback Bear provides a bit of natural bypass to the PB, but this should be used sparingly. Bear is better here as a control tool - use its good stat line to try to make favorable trades and avoid unit guards with Terrifying.  Remember you’re a control deck:  your win condition isn’t swinging past the blockers - it’s removing them and then swinging when the pathway is clear. \n\nThe ally suite is designed to offer both high life and removal with each play.  Even Phoenix Attendant can be combined with Chant of Transfusion to generate removal. \n\nBlood Chains and Sword of Virtue both do multiple things with one card as well - they’re hard removal that gets around armor and alterations, which are very popular right now. They can also both help with managing Odette’s small battlefield by either destroying or refreshing exhausted units. Clashing Tempers is just a fantastic card in lots of different situations, and fits seamlessly into a deck that wants to pump out life and damage at the same time, as it does both of those in one card.  Wrath (along with Tempers) can help get the board back under control if you start getting outnumbered. Lastly, Ice Trap is just almost a must in this day and age, and it represents even more removal that isn’t damage-based. \n\nFirst Five always includes Bear, Butterfly and Ritualist to grab Chant of Transfusion. From there, you want either Old Salt or a Hammer Knight, and then probably either Ice Trap, Root Armor for the Hammer Knight, or maybe Nature’s Wrath if you’re against a sympathy Tristan or a sympathy / ceremonial Hope that might try to swarm you. If you start Old Salt and a 1-die spell, use a Frog dice power as well in round 1. "
+    }
+]

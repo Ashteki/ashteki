@@ -107,6 +107,18 @@ class ImportPrecons {
 
             console.log('Done importing MSU precon decks');
             console.log('----------');
+
+            for (let deck of this.loadDualDuelDecks()) {
+                deck.preconGroup = 8;
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing Dual Duel decks');
+            console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -150,6 +162,12 @@ class ImportPrecons {
 
     loadMSUDecks() {
         let file = 'master-set-upgrade.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadDualDuelDecks() {
+        let file = 'precon-dualduel.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }
