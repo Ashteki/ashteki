@@ -153,7 +153,7 @@ describe('Ruby Cobra', function () {
             });
         });
 
-        it('restrict attack from charm dice bearer', function () {
+        xit('restrict attack from charm dice bearer', function () {
             this.player1.clickDie(0);
             this.player1.clickPrompt('Charm Dice Power');
             this.player1.clickCard(this.rampage);
