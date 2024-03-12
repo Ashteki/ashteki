@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import Card from './Card';
 import './PlayerBoard.scss';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const PlayerBoard = ({
     active,
@@ -28,37 +29,6 @@ const PlayerBoard = ({
         );
     };
 
-    const renderRow = (row) => {
-        if (!row) {
-            return null;
-        }
-
-        const results = [];
-        // render the cards not involved in an attack
-        let rowCards = row.filter((c) => !attackInvolvesCard(c));
-        const renderedCards = rowCards.map((card) => renderCard(card));
-        return results.concat(renderedCards);
-    };
-
-    const renderCard = (card) => {
-        if (!card) return;
-        return (
-            <Card
-                key={card.uuid}
-                canDrag={manualMode}
-                card={card}
-                disableMouseOver={card.facedown && !card.code}
-                onClick={onCardClick}
-                onMenuItemClick={onMenuItemClick}
-                onMouseOut={onMouseOut}
-                onMouseOver={onMouseOver}
-                size={cardSize}
-                source='play area'
-                side={side}
-            />
-        );
-    };
-
     let className = classNames('player-board', {
         'our-side': rowDirection === 'default',
         'active-player': active
@@ -67,12 +37,29 @@ const PlayerBoard = ({
     let maxUpgrades = Math.max(...cardsInPlay.map((c) => (c.upgrades ? c.upgrades.length : 0)));
     let topMargin = maxUpgrades * 15;
     let style = { marginTop: topMargin + 'px' };
-    let allCardsInBoard = cardsInPlay;
     return (
         <div className={className}>
-            <div className='card-row' style={style}>
-                {renderRow(allCardsInBoard)}
-            </div>
+            <TransitionGroup component='div' className='card-row' style={style}>
+                {cardsInPlay &&
+                    cardsInPlay
+                        .filter((c) => !attackInvolvesCard(c))
+                        .map((card) => (
+                            <CSSTransition key={card.uuid} timeout={300} classNames='cardTran'>
+                                <Card
+                                    canDrag={manualMode}
+                                    card={card}
+                                    disableMouseOver={card.facedown && !card.code}
+                                    onClick={onCardClick}
+                                    onMenuItemClick={onMenuItemClick}
+                                    onMouseOut={onMouseOut}
+                                    onMouseOver={onMouseOver}
+                                    size={cardSize}
+                                    source='play area'
+                                    side={side}
+                                />
+                            </CSSTransition>
+                        ))}
+            </TransitionGroup>
         </div>
     );
 };

@@ -61,8 +61,8 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         newGameType: newGameType,
         gameFormat: newGameType === 'chimera' ? 'solo' : 'constructed',
         useGameTimeLimit: !!defaultTimeLimit,
-        gameTimeLimit: defaultTimeLimit || 50,
-        clockType: 'timer',
+        gameTimeLimit: defaultTimeLimit || 30,
+        clockType: 'chess',
         gamePrivate: defaultPrivate,
         ranked: false,
         solo: newGameType === 'chimera'
@@ -79,13 +79,13 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     const soloOptions = [{ name: 'allowSpectators', label: t('Allow spectators') }];
 
     let clockType = [
-        { name: 'timer', label: t('Shared') },
-        { name: 'chess', label: t('Chess Clock (each)') }
+        { name: 'chess', label: t('Chess Clock (each)') },
+        { name: 'timer', label: t('Shared') }
     ];
 
     const defaultTime = {
         timer: '50',
-        chess: '15',
+        chess: '30',
         hourglass: '15',
         byoyomi: '0'
     };

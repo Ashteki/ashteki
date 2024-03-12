@@ -40,3 +40,10 @@
         // background-color: $active-player-color;
     }
 }
+
+.cardTran-exit-active {
+    opacity: 0;
+    transition: opacity 700ms ease-out;
+    filter: grayscale(100%);
+
+}

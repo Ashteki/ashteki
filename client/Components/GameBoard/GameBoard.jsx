@@ -13,7 +13,6 @@ import {
 import PlayerStats from './PlayerStats';
 import PlayerRow from './PlayerRow';
 import DiceHistory from './DiceHistory';
-import ActivePlayerPrompt from './ActivePlayerPrompt';
 import CardZoom from './CardZoom';
 import PlayerBoard from './PlayerBoard';
 import GameChat from './GameChat';
