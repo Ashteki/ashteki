@@ -12,17 +12,16 @@ const EloLadder = () => {
     }, []);
 
     const data = useSelector((state) => state.stats.elo);
-    const output = data && data.map((d, index) => {
-        return <tr key={d.username}><td>{index + 1}</td><td> {d.username}</td><td>{d.eloRating}</td></tr>;
-    });
 
     return (
         <Col className='full-height lobby-content' xs='12'>
 
             <div className='lobby-header'>Elo Standings</div>
-            <table className='elo-ladder'>
-                {output}
-            </table>
+            <ol className='elo-ladder-list'>
+                {data && data.map((d) => {
+                    return <li key={d.username}><span className='elo-username'>{d.username}</span>{d.eloRating}</li>;
+                })}
+            </ol>
             <p>
                 Note: Only &apos;Ranked&apos; games count toward a player&apos;s elo score. Players who do not play a
                 ranked game for 3 months will not appear on this list. Inactive players may pick up

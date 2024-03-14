@@ -219,7 +219,7 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
                                 title={'Time limit used'}
                             />
                         )}
-                        {game.clockType === 'chess' && (
+                        {game.useGameTimeLimit && game.clockType === 'chess' && (
                             <FontAwesomeIcon icon={faChessKnight} title='Chess Clock' />
                         )}
                         {!game.allowSpectators && (
