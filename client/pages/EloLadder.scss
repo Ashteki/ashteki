@@ -5,4 +5,17 @@
     td {
         padding: 5px;
     }
+
+
+}
+
+.elo-ladder-list {
+    columns: 2;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+
+    .elo-username {
+        display: inline-block;
+        width: 200px;
+    }
 }
