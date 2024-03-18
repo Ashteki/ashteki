@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './LeaguePairings.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearLeaguePairings, sendSocketMessage } from '../../redux/actions';
+import { clearLeaguePairings, getLeaguePairings, sendSocketMessage } from '../../redux/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 import moment from 'moment';
+import MyPairings from './MyPairings';
 
-const LeaguePairings = ({ pairings }) => {
+const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
     const user = useSelector((state) => state.account.user);
+    const { pairings } = useSelector((state) => ({
+        pairings: state.lobby.leaguePairings
+    }));
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getLeaguePairings('PHX'));
+    }, [dispatch]);
 
     const userIsInPairing = (name, pairing) => {
         if (
@@ -32,7 +40,8 @@ const LeaguePairings = ({ pairings }) => {
         return [pairing.ashtekiP1, pairing.ashtekiP2].includes('shadowfire');
     };
 
-    const onPlayClick = (pairing) => {
+    const handlePlayClick = (pairing) => {
+        onPlayClick();
         const gameName = `${getLeagueName(pairings.tag)}: ${pairing.ashtekiP1 || pairing.player1} vs ${pairing.ashtekiP2 || pairing.player2}`
         const values = {
             name: gameName,
@@ -74,8 +83,31 @@ const LeaguePairings = ({ pairings }) => {
         return result;
     };
 
+    const myPairings = [
+        {
+            date: '15 Mar 2024',
+            source: 'Phoenix League',
+            player1: 'kevin',
+            player2: 'dijon',
+            tag: 'phx',
+            played: true
+        },
+        {
+            date: '15 Mar 2024',
+            source: 'FFL',
+            player1: 'NoSuchMethod',
+            player2: 'dijon',
+            tag: 'ffl'
+        }
+    ];
+
+    if (!pairings) {
+        return null;
+    }
     return (
         <div>
+            <MyPairings pairings={myPairings} onPlayClick={handlePlayClick} />
+
             <h2 className='lobby-header'>{getLeagueName(pairings.tag)}</h2>
             <h3>Latest pairings ({moment(pairings.datePaired).format('DD MMM YYYY')})</h3>
             <div className='league-pairings'>
@@ -95,7 +127,7 @@ const LeaguePairings = ({ pairings }) => {
                             {playable && (
                                 <button
                                     className='btn btn-success def'
-                                    onClick={() => onPlayClick(p)}
+                                    onClick={() => handlePlayClick(p)}
                                 >
                                     Play
                                 </button>
@@ -105,7 +137,7 @@ const LeaguePairings = ({ pairings }) => {
                 })}
             </div>
             <div className='text-center newgame-buttons'>
-                <button className='btn btn-primary def' onClick={handleCancelClick}>
+                <button className='btn btn-primary def' onClick={onCancelClick}>
                     Cancel
                 </button>
             </div>

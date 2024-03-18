@@ -349,11 +349,22 @@
         background-size: 120%;
     }
 
-
     &.kevin {
         background-image: url('https://cdn.ashteki.com/KEVIN/kevin.jpg');
         background-position: 65% 20%;
         background-size: 200%;
+    }
+
+    &.phx {
+        background-image: url('https://cdn.ashes.live/images/cards/survival-of-the-fittest.jpg');
+        background-position: 50% 25%;
+        background-size: 250%;
+    }
+
+    &.ffl {
+        background-image: url('https://cdn.ashes.live/images/cards/sacred-ground.jpg');
+        background-position: 50% 45%;
+        background-size: 150%;
     }
 }
 

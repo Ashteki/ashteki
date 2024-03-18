@@ -13,7 +13,13 @@ import discordTextLogo from '../../assets/img/discord-logo-white.svg';
 
 import './GameLobby.scss';
 import { useEffect } from 'react';
-import { startNewGame, joinPasswordGame, sendSocketMessage, setUrl, navigate, getLeaguePairings } from '../../redux/actions';
+import {
+    startNewGame,
+    joinPasswordGame,
+    sendSocketMessage,
+    setUrl,
+    navigate
+} from '../../redux/actions';
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
 import LeaguePairings from './LeaguePairings';
@@ -31,16 +37,16 @@ const GameLobby = ({ gameId }) => {
         filterDefaults[filter.name] = true;
     }
 
-    const { games, newGame, newGameType, currentGame, passwordGame, pairings } = useSelector((state) => ({
+    const { games, newGame, newGameType, currentGame, passwordGame } = useSelector((state) => ({
         games: state.lobby.games,
         newGame: state.lobby.newGame,
         newGameType: state.lobby.newGameType,
         currentGame: state.lobby.currentGame,
-        passwordGame: state.lobby.passwordGame,
-        pairings: state.lobby.leaguePairings
+        passwordGame: state.lobby.passwordGame
     }));
     const user = useSelector((state) => state.account.user);
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
+    const [showPairings, setShowPairings] = useState(false);
     const topRef = useRef(null);
 
     useEffect(() => {
@@ -87,10 +93,14 @@ const GameLobby = ({ gameId }) => {
         }
 
         if (gameType === 'league') {
-            dispatch(getLeaguePairings('PHX'));
+            setShowPairings(!showPairings);
         } else {
             dispatch(startNewGame(gameType));
         }
+    };
+
+    const hidePairings = () => {
+        setShowPairings(false);
     };
 
     const newGameText = currentGame?.started === false ? currentGame.name : 'Start a new game';
@@ -105,8 +115,8 @@ const GameLobby = ({ gameId }) => {
                             </AlertPanel>
                         </div>
                     )}
-                    <div className='lobby-header'>{newGameText}</div>
-                    {!newGame && !pairings && currentGame?.started !== false && (
+                    {!showPairings && <div className='lobby-header'>{newGameText}</div>}
+                    {!newGame && !showPairings && currentGame?.started !== false && (
                         <>
                             <div className='game-buttons'>
                                 <PictureButton
@@ -116,13 +126,13 @@ const GameLobby = ({ gameId }) => {
                                 />
                                 <PictureButton
                                     text='League'
-                                    // header='Premium'
+                                    header='Discord'
+                                    headerClass='discord'
                                     imageClass='league'
                                     onClick={() => handleNewGameClick('league')}
                                 />
                                 <PictureButton
                                     text='Chimera'
-                                    // header='Premium'
                                     imageClass='chimera'
                                     onClick={() => handleNewGameClick('chimera')}
                                 />
@@ -148,7 +158,7 @@ const GameLobby = ({ gameId }) => {
 
                     {newGame && <NewGame />}
                     {currentGame?.started === false && <PendingGame />}
-                    {pairings && <LeaguePairings pairings={pairings} />}
+                    {showPairings && <LeaguePairings onCancelClick={hidePairings} onPlayClick={hidePairings} />}
                 </div>
                 <div ref={topRef}>
                     {passwordGame && <PasswordGame />}

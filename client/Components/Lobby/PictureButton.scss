@@ -57,13 +57,18 @@
         text-align: center;
         // color: #EEE;
         font-size: 16px;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
         filter: unset;
         -webkit-filter: unset;
 
         top: 0px;
         position: absolute;
+
+        &.discord {
+            background-color: rgba(150, 150, 150, 0.5);
+            color: white;
+        }
     }
 
     &:hover {

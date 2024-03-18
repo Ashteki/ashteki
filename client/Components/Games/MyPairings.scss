@@ -1,0 +1,33 @@
+.pairing {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 8px;
+    font-size: 1.2em;
+
+    .pairing-header {
+        font-size: 20px;
+    }
+
+    button {
+        margin: auto 2px auto auto;
+    }
+
+
+    .fa-check {
+        color: olivedrab;
+    }
+
+    .check-holder {
+        width: 100px;
+        margin: auto 10px auto auto;
+        justify-content: center;
+
+        svg {
+            height: 32px;
+            width: 32px;
+            margin: 2px auto;
+            display: block;
+        }
+    }
+}
