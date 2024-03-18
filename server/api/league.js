@@ -41,7 +41,7 @@ module.exports.init = function (server) {
             const pairings = {};
             for await (const tag of leagues) {
                 const results = await leagueService.getPrevious(tag);
-                results.forEach(async (result) => {
+                for await (const result of results) {
                     for (let p of result.pairings) {
                         p.ashtekiP1 = nameLinks.find((l) => l.discordName === p.player1)?.ashtekiName;
                         p.ashtekiP2 = nameLinks.find((l) => l.discordName === p.player2)?.ashtekiName;
@@ -53,7 +53,7 @@ module.exports.init = function (server) {
                             }
                         }
                     }
-                });
+                }
                 pairings[tag] = results;
             }
 

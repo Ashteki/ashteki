@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './LeaguePairings.scss';
 import './MyPairings.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { sendSocketMessage } from '../../redux/actions';
+import { getAllPairings, sendSocketMessage } from '../../redux/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
@@ -14,10 +14,14 @@ const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
         allPairings: state.lobby.allPairings,
         user: state.account.user
     }));
+
+    useEffect(() => {
+        dispatch(getAllPairings());
+    }, [dispatch]);
+
     if (!user) {
         return null;
     }
-
     const playersAreTimerExempt = (pairing) => {
         return [pairing.ashtekiP1, pairing.ashtekiP2].includes('shadowfire');
     };
