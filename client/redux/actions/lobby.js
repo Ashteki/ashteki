@@ -50,3 +50,14 @@ export function clearLeaguePairings() {
         type: 'CLEAR_PAIRINGS'
     };
 }
+
+export function getAllPairings() {
+    return {
+        types: ['REQUEST_ALL_PAIRINGS', 'RECEIVE_ALL_PAIRINGS'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: `/api/league/pairings`,
+            cache: false
+        }
+    };
+}

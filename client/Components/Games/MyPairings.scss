@@ -30,4 +30,12 @@
             display: block;
         }
     }
+
+    &.none {
+        justify-content: center;
+    }
+}
+
+.pairing-list {
+    padding-inline-start: 0px;
 }

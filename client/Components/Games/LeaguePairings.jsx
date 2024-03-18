@@ -1,24 +1,53 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './LeaguePairings.scss';
+import './MyPairings.scss';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { clearLeaguePairings, getLeaguePairings, sendSocketMessage } from '../../redux/actions';
+import { sendSocketMessage } from '../../redux/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import classNames from 'classnames';
 import moment from 'moment';
-import MyPairings from './MyPairings';
 
 const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
-    const user = useSelector((state) => state.account.user);
-    const { pairings } = useSelector((state) => ({
-        pairings: state.lobby.leaguePairings
-    }));
     const dispatch = useDispatch();
+    const { allPairings, user } = useSelector((state) => ({
+        allPairings: state.lobby.allPairings,
+        user: state.account.user
+    }));
+    if (!user) {
+        return null;
+    }
 
-    useEffect(() => {
-        dispatch(getLeaguePairings('PHX'));
-    }, [dispatch]);
+    const playersAreTimerExempt = (pairing) => {
+        return [pairing.ashtekiP1, pairing.ashtekiP2].includes('shadowfire');
+    };
+
+    const handlePlayClick = (pairing, tag) => {
+        onPlayClick();
+        const gameName = `${getLeagueName(tag)}: ${pairing.ashtekiP1 || pairing.player1} vs ${pairing.ashtekiP2 || pairing.player2}`
+        const values = {
+            name: gameName,
+            password: '',
+            label: tag.toUpperCase(),
+            allowSpectators: true,
+            gameType: tag === 'phx' ? 'ranked' : 'casual',
+            newGameType: 'league',
+            gameFormat: 'constructed',
+            useGameTimeLimit: false,
+            ranked: tag === 'phx',
+            pairing: pairing,
+            league: tag
+        };
+        // apply time limit to phx
+        if (tag === 'phx' && !playersAreTimerExempt(pairing)) {
+            values.useGameTimeLimit = true;
+            values.gameTimeLimit = 30;
+            values.clockType = 'chess';
+        }
+
+        // create and then join the game
+        dispatch(sendSocketMessage('newgame', values));
+    };
 
     const userIsInPairing = (name, pairing) => {
         if (
@@ -32,110 +61,72 @@ const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
         return false;
     };
 
+    const userIsInLeague = (league) => {
+        return allPairings[league].some((p) => p.pairings.some(pa => userIsInPairing(user.username, pa)));
+    };
+
     const getLeagueName = (tag) => {
         return tag === 'phx' ? 'Phoenix League' : 'First Five League';
     };
 
-    const playersAreTimerExempt = (pairing) => {
-        return [pairing.ashtekiP1, pairing.ashtekiP2].includes('shadowfire');
-    };
-
-    const handlePlayClick = (pairing) => {
-        onPlayClick();
-        const gameName = `${getLeagueName(pairings.tag)}: ${pairing.ashtekiP1 || pairing.player1} vs ${pairing.ashtekiP2 || pairing.player2}`
-        const values = {
-            name: gameName,
-            password: '',
-            label: pairings.tag,
-            allowSpectators: true,
-            gameType: pairings.tag === 'phx' ? 'ranked' : 'casual',
-            newGameType: 'league',
-            gameFormat: 'constructed',
-            useGameTimeLimit: false,
-            ranked: true,
-            pairing: pairing,
-            league: pairings.tag
-        };
-        if (!playersAreTimerExempt(pairing)) {
-            values.useGameTimeLimit = true;
-            values.gameTimeLimit = 30;
-            values.clockType = 'chess';
-        }
-
-        // create and then join the game
-        dispatch(sendSocketMessage('newgame', values));
-        dispatch(clearLeaguePairings());
-    };
-
-    const handleCancelClick = () => {
-        dispatch(clearLeaguePairings());
-    };
-
-    const getPlayerName = (name, ashtekiName) => {
-        let result = ashtekiName || name;
-        if (ashtekiName && ashtekiName !== name) {
-            return (
-                <span>
-                    {result} <i>({name})</i>
-                </span>
-            );
-        }
-        return result;
-    };
-
-    const myPairings = [
-        {
-            date: '15 Mar 2024',
-            source: 'Phoenix League',
-            player1: 'kevin',
-            player2: 'dijon',
-            tag: 'phx',
-            played: true
-        },
-        {
-            date: '15 Mar 2024',
-            source: 'FFL',
-            player1: 'NoSuchMethod',
-            player2: 'dijon',
-            tag: 'ffl'
-        }
-    ];
-
-    if (!pairings) {
-        return null;
-    }
+    const leagues = ['phx', 'ffl'];
     return (
         <div>
-            <MyPairings pairings={myPairings} onPlayClick={handlePlayClick} />
+            <div>
+                <div className='lobby-header'>My Pairings</div>
 
-            <h2 className='lobby-header'>{getLeagueName(pairings.tag)}</h2>
-            <h3>Latest pairings ({moment(pairings.datePaired).format('DD MMM YYYY')})</h3>
-            <div className='league-pairings'>
-                {pairings.pairings.map((p) => {
-                    const playable = !p.played && userIsInPairing(user.username, p);
-                    const pairingClass = classNames('pairing', { playable: playable })
+                {leagues.map((l) => {
+                    const userInLeague = userIsInLeague(l);
                     return (
-                        <div key={p} className={pairingClass}>
-                            {p.played ? (
-                                <FontAwesomeIcon icon={faCheck} />
-                            ) : (
-                                <FontAwesomeIcon icon={faSquare} />
-                            )}
-                            <div className='player'>{getPlayerName(p.player1, p.ashtekiP1)}</div>
-                            <b>vs</b>
-                            <div className='player'>{getPlayerName(p.player2, p.ashtekiP2)}</div>
-                            {playable && (
-                                <button
-                                    className='btn btn-success def'
-                                    onClick={() => handlePlayClick(p)}
-                                >
-                                    Play
-                                </button>
-                            )}
-                        </div>
-                    );
-                })}
+                        <ul className='pairing-list' key={l}>
+                            <div className='lobby-header'>{getLeagueName(l)}</div>
+
+                            {userInLeague ? allPairings[l].map((p) => {
+                                return (
+                                    <div key={p}>
+                                        {p.pairings
+                                            .filter((p) => userIsInPairing(user.username, p))
+                                            .map((i) => {
+                                                const playable = !i.played;
+                                                return (
+
+                                                    <li className='pairing' key={i}>
+                                                        <div
+                                                            className={`decklist-entry-image ${p.tag.toLowerCase()}`}
+                                                            title='Phoenix league'
+                                                        >
+                                                            <span className='sr-only'>PHX</span>
+                                                        </div>
+                                                        <div>
+                                                            <div className='pairing-header'>{i.player1} vs {i.player2}</div>
+                                                            <div>{moment(p.datePaired).format('DD-MMM-yy')}</div>
+                                                        </div>
+                                                        {playable ? (
+                                                            <button
+                                                                className='btn btn-success def'
+                                                                onClick={() => handlePlayClick(i, l)}
+                                                            >
+                                                                Play
+                                                            </button>
+                                                        ) : (
+                                                            <div className='check-holder'>
+                                                                <FontAwesomeIcon icon={faCheck} /></div>
+                                                        )}
+                                                    </li>
+                                                )
+                                            })}
+                                    </div>
+                                )
+                            })
+                                :
+                                <li className='pairing none'>No pairings found. Sign up in the discord!</li>
+                            }
+                        </ul>)
+                }
+                )}
             </div>
+
+
             <div className='text-center newgame-buttons'>
                 <button className='btn btn-primary def' onClick={onCancelClick}>
                     Cancel
