@@ -57,6 +57,7 @@ class Application extends React.Component {
         this.props.loadPveDecks();
         this.props.loadMSUDecks();
         this.props.loadDualDuelDecks();
+        this.props.getAllPairings();
 
         $(document).ajaxError((event, xhr) => {
             if (xhr.status === 403) {

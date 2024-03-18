@@ -104,6 +104,9 @@ export default function (state = defaultState, action) {
         case 'RECEIVE_PAIRINGS':
             newState.leaguePairings = action.response.pairings;
             break;
+        case 'RECEIVE_ALL_PAIRINGS':
+            newState.allPairings = action.response.pairings;
+            break;
         case 'CLEAR_PAIRINGS':
             newState.leaguePairings = null;
             break;
