@@ -51,7 +51,7 @@ These commands import card data, and precons respectively. They can be run from 
 #### Required Software
 
 -   Git
--   Node.js 16
+-   Node.js 18
 -   mongodb
 -   Redis
 
