@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loadTaggedGames } from '../../redux/actions';
+import { loadLeague, loadTaggedGames } from '../../redux/actions';
 import Panel from '../../Components/Site/Panel';
 import { Button, Form } from 'react-bootstrap';
 import TaggedGameList from './TaggedGameList';
@@ -14,18 +14,23 @@ const TaggedGames = () => {
 
     const onSubmitClick = (event) => {
         dispatch(loadTaggedGames(tag, term));
+        dispatch(loadLeague(tag, term));
         event.stopPropagation();
     };
 
     const doShortcut = (event) => {
         setTag(event.target.value);
         dispatch(loadTaggedGames(event.target.value, term));
+        dispatch(loadLeague(event.target.value, term));
+
         event.stopPropagation();
     };
 
     const handleTermChange = (event) => {
         setTerm(event.target.value);
         dispatch(loadTaggedGames(tag, event.target.value));
+        dispatch(loadLeague(tag, event.target.value));
+
         event.stopPropagation();
     };
 

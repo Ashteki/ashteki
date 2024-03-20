@@ -21,14 +21,14 @@ export function loadUserGames(months, gameType) {
         }
     };
 }
-export function loadLeague(tag, season) {
+export function loadLeague(tag, months) {
     return {
         types: ['REQUEST_TAGREPORT', 'RECEIVE_TAGREPORT'],
         shouldCallAPI: () => true,
         APIParams: {
             url: 'api/games/report/' + tag,
             data: {
-                season: season
+                months: months
             },
             cache: false
         },

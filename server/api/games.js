@@ -36,7 +36,8 @@ module.exports.init = function (server) {
         // passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
             let report = await gameService.getTagReport(req.params.tag, {
-                season: req.query.season
+                months: req.query.months,
+                pairings: req.query.pairings
             });
             res.send({ success: true, tag: req.params.tag, report: report });
         })
