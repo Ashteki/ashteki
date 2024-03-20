@@ -6,7 +6,7 @@ Web based implementation of the Ashes Reborn card game
 
 ### What is it?
 
-This is the respository for the code internally known as ashteki which allows people to play Ashes Reborn using only their browser
+This is the respository for the code that runs ashteki.com, which allows people to play Ashes Reborn in their browser
 
 ### Doesn't this look a lot like The Crucible Online and other sites like it?
 
@@ -14,12 +14,9 @@ Yep. This is a fork of the Keyteki source, with some retrofitting from ringteki.
 
 ### Can I contribute?
 
-Sure! The code is written in node.js(server) and react.js(client). Feel free to make suggestions, implement new cards, refactor bits of the code, raise pull requests or submit bug reports
+Sure! The code is written in node.js(server) and react.js(client). Feel free to make suggestions, implement new cards, refactor bits of the code, raise pull requests or submit bug reports. If you are going to contribute code, try and follow the style of the existing code as much as possible and talk to dijon before engaging in any big refactors. Also bear in mind there is an .eslintrc file in the project so try to follow those rules.
 
-If you are going to contribute code, try and follow the style of the existing code as much as possible and talk to me before engaging in any big refactors. Also bear in mind there is an .eslintrc file in the project so try to follow those rules.
-
-There's some info on writing cards from the keyteki project:
-[Documentation for implementing cards from keyteki](https://github.com/keyteki/keyteki/blob/master/docs/implementing-cards.md)
+There's some info that may help getting started in the /docs folder.
 
 If you're not coding inclined, then just playing games on the site, and reporting bugs and issues that you find is a big help
 
@@ -29,7 +26,7 @@ If there's anything you can't do that you need to be able to do, let me know by 
 
 ## Development
 
-This is an overview that *should* work, but get in touch as soon as you run into any hiccups because this page hasn't be reviewed in ages.
+This is an overview that *should* work, but get in touch as soon as you run into any hiccups.
 
 ### Docker
 
@@ -54,7 +51,7 @@ These commands import card data, and precons respectively. They can be run from 
 #### Required Software
 
 -   Git
--   Node.js 16
+-   Node.js 18
 -   mongodb
 -   Redis
 

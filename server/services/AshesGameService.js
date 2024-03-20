@@ -96,6 +96,19 @@ class GameService {
             findSpec.startedAt = { $gt: fromDate };
         }
 
+        // return only those from paired matchups
+        if (options.pairings) {
+            findSpec.pairing = { $ne: null };
+        }
+
+        // limit date by latest x months
+        if (options.months) {
+            if (options.months && options.months > 0) {
+                const fromDate = moment().subtract(options.months, 'months');
+                findSpec.startedAt = { $gt: fromDate.toDate() };
+            }
+        }
+
         return this.games
             .find(findSpec, {
                 sort: {
