@@ -79,7 +79,7 @@ const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
             <div>
                 <div className='lobby-header'>My Pairings</div>
 
-                {leagues.map((l) => {
+                {allPairings && leagues.map((l) => {
                     const userInLeague = userIsInLeague(l);
                     return (
                         <ul className='pairing-list' key={l}>
