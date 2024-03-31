@@ -4,8 +4,12 @@ class Overgrowth extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
-        this.persistentEffect({
-            effect: ability.effects.addKeyword({ overkill: 1 })
+        this.afterSelfOrAdjacentDestroysFighting({
+            autoResolve: true,
+            target: {
+                autoTarget: (context) => context.player.opponent.phoenixborn,
+                gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
+            }
         });
     }
 }

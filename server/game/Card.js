@@ -363,6 +363,35 @@ class Card extends PlayableObject {
         );
     }
 
+    afterSelfOrAdjacentDestroysFighting(properties) {
+        return this.forcedInterrupt(
+            Object.assign(
+                {
+                    when: {
+                        onCardLeavesPlay: (event, context) =>
+                            event.triggeringEvent &&
+                            event.triggeringEvent.name === 'onCardDestroyed' &&
+                            event.triggeringEvent.damageEvent &&
+                            event.triggeringEvent.damageEvent.fightEvent &&
+                            (event.triggeringEvent.damageEvent.damageSource === context.source ||
+                                context.source.owner.areCardsAdjacent(
+                                    event.triggeringEvent.damageEvent.damageSource,
+                                    context.source
+                                )) &&
+                            (event.triggeringEvent.damageEvent.fightEvent.attacker ===
+                                context.source ||
+                                context.source.owner.areCardsAdjacent(
+                                    event.triggeringEvent.damageEvent.fightEvent.attacker,
+                                    context.source
+                                ))
+                    }
+                },
+                properties
+            )
+        );
+    }
+
+
     afterDestroyedDefending(properties) {
         // NOTE: this is not AFTER Destroy ==> forcedReaction to destroy.
         // This has to happen before the onCardLeavesPlay because when a card is moved the event
