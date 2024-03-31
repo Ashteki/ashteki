@@ -7,7 +7,7 @@ class ExplosivePods extends AspectCard {
         this.statusAbility({
             target: {
                 ignoreTargetCheck: true,
-                autoTarget: (context) => context.game.unitsInPlay,
+                autoTarget: (context) => context.player.opponent.unitsInPlay,
                 gameAction: ability.actions.conditional({
                     condition: (context) => context.source.status === 0,
                     trueGameAction: ability.actions.orderedAoE({

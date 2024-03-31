@@ -9,7 +9,7 @@ class HorrificGaze extends AspectCard {
             condition: () => !this.exhausted,
             match: (card) => card.type === CardType.Phoenixborn,
             targetController: 'opponent',
-            effect: ability.effects.exhausted()
+            effect: [ability.effects.exhausted(), ability.effects.cardCannot('guard')]
         });
     }
 }

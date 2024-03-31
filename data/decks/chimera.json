@@ -368,6 +368,10 @@
     ],
     "conjurations": [
       {
+        "id": "scarlet-seed",
+        "count": 1
+      },
+      {
         "id": "bleed",
         "count": 3
       }
