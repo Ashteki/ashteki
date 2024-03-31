@@ -309,5 +309,68 @@
         "count": 3
       }
     ]
+  },
+  {
+    "precon_id": 806,
+    "premium": true,
+    "restricted": true,
+    "mode": "chimera",
+    "name": "The Blight of Neverset - Thorn",
+    "phoenixborn": [
+      {
+        "id": "blight-of-neverset",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "neverset-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "neverset-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "vine-whip",
+        "count": 3
+      },
+      {
+        "id": "horrific-gaze",
+        "count": 3
+      },
+      {
+        "id": "overgrowth",
+        "count": 3
+      },
+      {
+        "id": "vampiric-roots",
+        "count": 3
+      },
+      {
+        "id": "explosive-pods",
+        "count": 3
+      },
+      {
+        "id": "withering-rot",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "bleed",
+        "count": 3
+      }
+    ]
   }
 ]
