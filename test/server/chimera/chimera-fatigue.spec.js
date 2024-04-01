@@ -8,7 +8,8 @@ describe('Chimera fatigue', function () {
                     inPlay: ['blue-jaguar', 'mist-spirit'],
                     dicepool: ['natural', 'natural', 'charm', 'charm'],
                     spellboard: ['summon-butterfly-monk', 'summon-orchid-dove', 'summon-orchid-dove', 'summon-orchid-dove'],
-                    archives: ['orchid-dove']
+                    archives: ['orchid-dove'],
+                    deck: ['purge', 'summon-gilder']
                 },
                 player2: {
                     dummy: true,
