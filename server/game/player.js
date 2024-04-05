@@ -309,6 +309,10 @@ class Player extends GameObject {
         return result;
     }
 
+    cannotDraw() {
+        return !this.checkRestrictions('draw', this.game.getFrameworkContext(this));
+    }
+
     doDrawCards(numCards, singleCopy) {
         let remainingCards = numCards;
 

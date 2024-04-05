@@ -27,7 +27,7 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
 
         // if player cannot draw then bid 0
         game.getPlayers().forEach(p => {
-            if (!p.checkRestrictions('draw', game.getFrameworkContext(p))) {
+            if (p.cannotDraw()) {
                 this.bid[p.uuid] = 0;
             }
         });

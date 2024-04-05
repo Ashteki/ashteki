@@ -6,10 +6,11 @@ describe('Chimera fatigue', function () {
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
-                    dicepool: ['natural', 'natural', 'charm', 'charm'],
-                    spellboard: ['summon-butterfly-monk', 'summon-orchid-dove', 'summon-orchid-dove', 'summon-orchid-dove'],
-                    archives: ['orchid-dove'],
-                    deck: ['purge', 'summon-gilder']
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'time', 'time'],
+                    spellboard: ['summon-ash-spirit', 'summon-butterfly-monk', 'summon-orchid-dove', 'summon-orchid-dove', 'summon-orchid-dove'],
+                    archives: ['orchid-dove', 'ash-spirit'],
+                    deck: ['purge', 'summon-gilder'],
+                    hand: ['generosity']
                 },
                 player2: {
                     dummy: true,
@@ -18,7 +19,7 @@ describe('Chimera fatigue', function () {
                     ultimate: 'viros-ultimate',
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
                     discard: ['iron-scales', 'constrict', 'firebelly', 'lurk'],
-                    deck: ['rampage']
+                    deck: ['rampage', 'hunting-instincts', 'warcry']
                 }
             });
         });
@@ -43,12 +44,53 @@ describe('Chimera fatigue', function () {
             expect(this.player2.fatigued).toBe(true);
         });
 
+        it('BUG: should trigger when emptied by draw card', function () {
+            // trim filler cards
+            this.player2.player.deck = [this.rampage];
+            expect(this.player2.deck.length).toBe(1);
+            expect(this.player2.discard.length).toBe(4);
+            expect(this.player2.fatigued).toBe(false);
+
+            this.player1.play(this.generosity);
+            this.player1.clickDie(5);
+            this.player1.clickPrompt('heal');
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('draw'); // chimera choice;
+
+            this.player1.clickPrompt('Ok'); // fatigue alert
+            expect(this.game.round).toBe(1);
+            // deck is empty
+            expect(this.player2.deck.length).toBe(5); // reshuffled from discard
+            expect(this.player2.fatigued).toBe(true);
+        });
+
+        it('BUG: should trigger when exactly emptied by draw card', function () {
+            // trim filler cards
+            this.player2.player.deck = [this.rampage, this.huntingInstincts, this.warcry];
+            expect(this.player2.deck.length).toBe(3);
+            expect(this.player2.discard.length).toBe(4);
+            expect(this.player2.fatigued).toBe(false);
+
+            this.player1.play(this.generosity);
+            this.player1.clickDie(5);
+
+            this.player1.clickPrompt('heal');
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickPrompt('draw'); // chimera choice;
+
+            this.player1.clickPrompt('Ok'); // fatigue alert
+            expect(this.game.round).toBe(1);
+            // deck is refilled empty
+            expect(this.player2.deck.length).toBe(7); // reshuffled from discard
+            expect(this.player2.fatigued).toBe(true);
+        });
+
         it('BUG: player meditation should not cause damage', function () {
             this.player1.dicepool[0].level = 'basic';
             this.player2.player.deck = [this.rampage];
             expect(this.player2.deck.length).toBe(1);
             expect(this.player2.discard.length).toBe(4);
-            this.player2.player.fatigued = true;
+            this.player2.player.applyFatigue();
 
             this.player1.clickPrompt('Meditate');
             this.player1.clickPrompt('Choose top Of Deck');
@@ -63,7 +105,7 @@ describe('Chimera fatigue', function () {
             this.player2.player.deck = [this.rampage];
             expect(this.player2.deck.length).toBe(1); // not empty but considered empty
             expect(this.player2.discard.length).toBe(4);
-            this.player2.player.fatigued = true;
+            this.player2.player.applyFatigue();
             expect(this.player2.fatigued).toBe(true);
 
             this.player1.clickCard(this.summonOrchidDove);
@@ -75,10 +117,20 @@ describe('Chimera fatigue', function () {
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.player2.phoenixborn.damage).toBe(1);
         });
+
+        it('fatigued Chimera cannot draw: summon ash spirit does not chimera draw', function () {
+            this.player2.player.applyFatigue();
+
+            this.player1.clickCard(this.summonAshSpirit);
+            this.player1.clickPrompt('Summon Ash Spirit');
+
+            expect(this.ashSpirit.location).toBe('play area');
+            expect(this.corpseOfViros.damage).toBe(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 
     describe('empty deck at recovery phase refill', function () {
-
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -86,7 +138,12 @@ describe('Chimera fatigue', function () {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['orchid-dove', 'mist-spirit'],
                     dicepool: ['natural', 'natural', 'charm', 'charm'],
-                    spellboard: ['summon-butterfly-monk', 'summon-orchid-dove', 'summon-orchid-dove', 'summon-orchid-dove'],
+                    spellboard: [
+                        'summon-butterfly-monk',
+                        'summon-orchid-dove',
+                        'summon-orchid-dove',
+                        'summon-orchid-dove'
+                    ],
                     archives: []
                 },
                 player2: {
@@ -101,11 +158,11 @@ describe('Chimera fatigue', function () {
             });
         });
 
-        it('BUG: orchid dove death draw should deal 1 damage to fatigued chimera', function () {
+        it('BUG: orchid dove death discard should deal 1 damage to fatigued chimera', function () {
             this.player2.player.deck = [this.rampage];
             expect(this.player2.deck.length).toBe(1); // not empty but considered empty
             expect(this.player2.discard.length).toBe(4);
-            this.player2.player.fatigued = true;
+            this.player2.player.applyFatigue();
             expect(this.player2.fatigued).toBe(true);
 
             this.player1.clickDie(0);
