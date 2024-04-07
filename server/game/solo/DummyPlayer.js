@@ -239,11 +239,12 @@ class DummyPlayer extends Player {
 
     drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
         // all cards are discarded
-        const context = this.game.getFrameworkContext(this);
-        this.game.actions.discardTopOfDeck({ amount: numCards }).resolve(this, context);
+        if (!this.cannotDraw()) {
+            const context = this.game.getFrameworkContext(this);
+            this.game.actions.discardTopOfDeck({ amount: numCards }).resolve(this, context);
+        }
 
-        const dummyResult = { cardsDrawn: 0 };
-        return dummyResult;
+        return { cardsDrawn: 0 };
     }
 
     get ultimateThreshold() {
