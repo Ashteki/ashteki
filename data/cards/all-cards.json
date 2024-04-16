@@ -4731,7 +4731,8 @@
                 "ceremonial"
             ],
             "magicCost": {
-                "basic": 1
+                "basic": 1,
+                "ceremonial:class": 1
             },
             "text": "Wounded 1: When this unit comes into play, place 1 wound token onto it.\n\nThrow 1: When this unit comes into play, you may deal 1 damage to another target unit.",
             "attack": 2,
