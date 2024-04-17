@@ -176,10 +176,12 @@ class Card extends PlayableObject {
                     title: 'overkill',
                     condition: (context) => context.source.getKeywordValue('overkill'),
                     autoResolve: true,
-                    gameAction: ability.actions.dealDamage((context) => ({
-                        amount: context.source.getKeywordValue('overkill'),
-                        target: context.player.opponent.phoenixborn
-                    }))
+                    target: {
+                        autoTarget: (context) => context.player.opponent.phoenixborn,
+                        gameAction: ability.actions.dealDamage((context) => ({
+                            amount: context.source.getKeywordValue('overkill')
+                        }))
+                    }
                 })
             );
         }
