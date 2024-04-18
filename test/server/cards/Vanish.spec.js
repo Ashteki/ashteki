@@ -352,4 +352,34 @@ describe('Vanish', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
         });
     });
+
+    describe('BUG: vs overkill', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'saria-guideman',
+                    inPlay: ['enchanted-violinist', 'raptor-hatchling', 'iron-rhino'],
+                    dicepool: ['ceremonial', 'natural', 'divine', 'charm', 'illusion'],
+                    hand: ['fear', 'one-hundred-blades']
+                },
+                player2: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['hammer-knight', 'mist-spirit'],
+                    dicepool: ['charm', 'natural', 'illusion'],
+                    hand: ['vanish', 'anchornaut']
+                }
+            });
+        });
+
+        it('overkill should trigger vanish', function () {
+            this.player1.clickAttack(this.mistSpirit);
+            this.player1.clickCard(this.ironRhino);
+
+            this.player2.clickDone();
+            this.player2.clickYes();
+            expect(this.player2).toBeAbleToSelect(this.vanish);
+            this.player2.clickCard(this.vanish);
+            expect(this.rinNorthfell.damage).toBe(0);
+        });
+    });
 });
