@@ -365,6 +365,38 @@ class Card extends PlayableObject {
         );
     }
 
+    afterDestroysInMyTurn(properties) {
+        // NOTE: this is not AFTER Destroy ==> forcedReaction to destroy.
+        // This has to happen before the onCardLeavesPlay because when a card is moved the event
+        // listeners are removed from the game - so a card like iron Rhino can't overkill if it is
+        // destroyed in the simultaneous damage.
+        return this.forcedInterrupt(
+            Object.assign(
+                {
+                    when: {
+                        onCardLeavesPlay: (event, context) =>
+                            // my turn
+                            context.source.controller === context.game.activePlayer &&
+                            // after card destroyed event
+                            event.triggeringEvent &&
+                            event.triggeringEvent.name === 'onCardDestroyed' &&
+                            (
+                                // destroy ability
+                                event.triggeringEvent.context.source === context.source ||
+                                (
+                                    // destroyed through damage taken (e.g. fight)
+                                    event.triggeringEvent.damageEvent &&
+                                    event.triggeringEvent.damageEvent.damageSource === context.source
+                                )
+                            )
+                    }
+                },
+                properties
+            )
+        );
+    }
+
+
     afterSelfOrAdjacentDestroysFighting(properties) {
         return this.forcedInterrupt(
             Object.assign(
@@ -392,7 +424,6 @@ class Card extends PlayableObject {
             )
         );
     }
-
 
     afterDestroyedDefending(properties) {
         // NOTE: this is not AFTER Destroy ==> forcedReaction to destroy.
