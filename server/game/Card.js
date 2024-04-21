@@ -280,6 +280,18 @@ class Card extends PlayableObject {
         });
     }
 
+    flicker() {
+        return this.forcedInterrupt({
+            autoResolve: true,
+            inexhaustible: true,
+            title: 'Flicker',
+            when: {
+                onRoundEnded: () => true
+            },
+            gameAction: AbilityDsl.actions.returnToDeck()
+        });
+    }
+
     fade() {
         return this.forcedInterrupt({
             inexhaustible: true,
