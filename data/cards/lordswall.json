@@ -164,7 +164,7 @@
             "placement": "Discard",
             "cost": [
                 "[[side]]",
-                "2 [[divine:class]]"
+                "1 [[divine:class]]"
             ],
             "dice": [
                 "divine"
