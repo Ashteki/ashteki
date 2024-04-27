@@ -72,7 +72,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
         if (
             !this.selectedCards[player.name].includes(card) && // only add if it's not already there
             this.selectedCards[player.name].length < 5 && // only choose 5
-            !this.selectedCards[player.name].some((c) => c.name == card.name) // only one copy
+            !this.selectedCards[player.name].some((c) => c.name == card.name || (card.phoenixborn && c.phoenixborn)) // only one copy
         ) {
             // add
             this.addChosenCard(player, card);
@@ -84,7 +84,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
             if (card.location == 'hand') {
                 player.moveCard(card, 'deck');
 
-                for (const c of player.deck.filter((c) => c.name == card.name)) {
+                for (const c of player.deck.filter((c) => c.name == card.name || (card.phoenixborn && c.phoenixborn))) {
                     this.selectableCards[player.name].push(c);
                 }
             }
@@ -99,7 +99,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
             player.moveCard(card, 'hand');
         }
         this.selectableCards[player.name] = this.selectableCards[player.name].filter(
-            (c) => c.name !== card.name
+            (c) => c.name !== card.name && !(card.phoenixborn && c.phoenixborn)
         );
         this.selectableCards[player.name].push(card);
     }
