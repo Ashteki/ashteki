@@ -77,7 +77,7 @@
         },
         {
             "name": "Ptera Herder",
-            "stub": "ptera-hatchling",
+            "stub": "ptera-herder",
             "type": "Ally",
             "placement": "Battlefield",
             "cost": [
