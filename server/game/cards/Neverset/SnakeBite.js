@@ -25,7 +25,8 @@ class SnakeBite extends Card {
                 controller: 'any',
                 cardCondition: (card, context) =>
                     card.hasCharmDie ||
-                    (PhoenixbornTypes.includes(card.type) &&
+                    (context.source.focus > 0 &&
+                        PhoenixbornTypes.includes(card.type) &&
                         card.owner.deckIsEmpty &&
                         card.owner !== context.player),
                 gameAction: ability.actions.dealDamage({ amount: 1 })
