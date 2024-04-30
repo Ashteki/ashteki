@@ -55,6 +55,22 @@ describe('Snake Bite', function () {
             this.player1.clickCard(this.snakeBite);
             this.player1.clickPrompt('Snake Bite');
             expect(this.player1).not.toBeAbleToSelect(this.frostFang);
+            expect(this.player1).not.toBeAbleToSelect(this.aradelSummergaard);
+
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.damage).toBe(1);
+        });
+
+        it('cant target opp. pb if not focussed', function () {
+            this.player2.player.deck = [];
+            this.player1.useDie(1);
+            this.player1.clickCard(this.ironWorker);
+
+            this.player1.clickCard(this.snakeBite);
+            this.player1.clickPrompt('Snake Bite');
+            expect(this.player1).not.toBeAbleToSelect(this.frostFang);
+            expect(this.player1).not.toBeAbleToSelect(this.aradelSummergaard);
+
             this.player1.clickCard(this.ironWorker);
             expect(this.ironWorker.damage).toBe(1);
         });
