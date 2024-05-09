@@ -17,7 +17,8 @@ class DealersChoice extends Card {
                     ignoreTargetCheck: true,
                     activePromptTitle: 'Choose another card controlled by your opponent',
                     controller: 'opponent',
-                    location: ['play area', 'spellboard']
+                    location: ['play area', 'spellboard'],
+                    cardCondition: (card, context) => card !== context.targets.unit
                 },
                 exhaust: {
                     player: 'opponent',

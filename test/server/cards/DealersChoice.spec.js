@@ -24,6 +24,7 @@ describe('Dealers Choice', function () {
         it('pick 2, opponent chooses to exhaust one', function () {
             this.player1.play(this.dealersChoice);
             this.player1.clickCard(this.fluteMage);
+            expect(this.player1).not.toBeAbleToSelect(this.fluteMage);
             this.player1.clickCard(this.summonGilder);
 
             this.player2.clickCard(this.sariaGuideman); // does nothing
@@ -34,6 +35,7 @@ describe('Dealers Choice', function () {
         it('pick 2, opponent chooses to exhaust the other', function () {
             this.player1.play(this.dealersChoice);
             this.player1.clickCard(this.fluteMage);
+            expect(this.player1).not.toBeAbleToSelect(this.fluteMage);
             this.player1.clickCard(this.summonGilder);
 
             this.player2.clickCard(this.hammerKnight); // does nothing
@@ -111,5 +113,4 @@ describe('Dealers Choice', function () {
             expect(this.summonGilder.exhausted).toBe(true);
         });
     });
-
 });
