@@ -988,6 +988,13 @@ class Player extends GameObject {
         }
         // Ready => Ally => Alteration => Action => Reaction
     }
+
+    mayMoveCard(card) {
+        if (card.controller === this || (this.game.manualMode && this.game.solo)) {
+            return true;
+        }
+        return false;
+    }
 }
 
 module.exports = Player;

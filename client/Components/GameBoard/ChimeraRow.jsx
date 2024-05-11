@@ -51,6 +51,7 @@ const ChimeraRow = ({
     let cardPileProps = {
         manualMode: manualMode,
         onCardClick: onCardClick,
+        onMenuItemClick: onMenuItemClick,
         onDragDrop: onDragDrop,
         onMouseOut: onMouseOut,
         onMouseOver: onMouseOver,
