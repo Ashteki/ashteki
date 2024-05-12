@@ -10,7 +10,7 @@ class WillToSurvive extends Card {
                     autoResolve: true,
                     gameAction: ability.actions.removeDamage((context) => ({
                         target: context.player.phoenixborn,
-                        amount: this.getAbilityNumeric(1)
+                        amount: context.source.getAbilityNumeric(1)
                     }))
                 })
             ]
