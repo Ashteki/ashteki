@@ -947,5 +947,309 @@
         "count": 1
       }
     ]
+  },
+  {
+    "precon_id": 413,
+    "name": "The Siege of Lordswall: Odette",
+    "phoenixborn": [
+      {
+        "id": "odette-diamondcrest",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "armor-of-valor",
+        "count": 3
+      },
+      {
+        "id": "glory-aspirant",
+        "count": 3
+      },
+      {
+        "id": "silver-paladin",
+        "count": 3
+      },
+      {
+        "id": "radiant-light",
+        "count": 3
+      },
+      {
+        "id": "summon-shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-herder",
+        "count": 3
+      },
+      {
+        "id": "hand-of-spear",
+        "count": 3
+      },
+      {
+        "id": "pride",
+        "count": 3
+      },
+      {
+        "id": "fork-lightning",
+        "count": 3
+      },
+      {
+        "id": "intercession",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-hatchling",
+        "count": 3
+      },
+      {
+        "id": "hand-of-shield",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 414,
+    "name": "The Siege of Lordswall: James",
+    "phoenixborn": [
+      {
+        "id": "james-endersight",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "soulfire",
+        "count": 3
+      },
+      {
+        "id": "glory-aspirant",
+        "count": 3
+      },
+      {
+        "id": "silver-paladin",
+        "count": 3
+      },
+      {
+        "id": "radiant-light",
+        "count": 3
+      },
+      {
+        "id": "summon-shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-herder",
+        "count": 3
+      },
+      {
+        "id": "hand-of-spear",
+        "count": 3
+      },
+      {
+        "id": "pride",
+        "count": 3
+      },
+      {
+        "id": "fork-lightning",
+        "count": 3
+      },
+      {
+        "id": "intercession",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-hatchling",
+        "count": 3
+      },
+      {
+        "id": "hand-of-shield",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 415,
+    "name": "The Siege of Lordswall: Xander",
+    "phoenixborn": [
+      {
+        "id": "xander-heartsblood",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "bravery",
+        "count": 3
+      },
+      {
+        "id": "glory-aspirant",
+        "count": 3
+      },
+      {
+        "id": "silver-paladin",
+        "count": 3
+      },
+      {
+        "id": "radiant-light",
+        "count": 3
+      },
+      {
+        "id": "summon-shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-herder",
+        "count": 3
+      },
+      {
+        "id": "hand-of-spear",
+        "count": 3
+      },
+      {
+        "id": "pride",
+        "count": 3
+      },
+      {
+        "id": "fork-lightning",
+        "count": 3
+      },
+      {
+        "id": "intercession",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-hatchling",
+        "count": 3
+      },
+      {
+        "id": "hand-of-shield",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 416,
+    "name": "The Siege of Lordswall: Dimona",
+    "phoenixborn": [
+      {
+        "id": "dimona-odinstar",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "take-to-the-skies",
+        "count": 3
+      },
+      {
+        "id": "glory-aspirant",
+        "count": 3
+      },
+      {
+        "id": "silver-paladin",
+        "count": 3
+      },
+      {
+        "id": "radiant-light",
+        "count": 3
+      },
+      {
+        "id": "summon-shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-herder",
+        "count": 3
+      },
+      {
+        "id": "hand-of-spear",
+        "count": 3
+      },
+      {
+        "id": "pride",
+        "count": 3
+      },
+      {
+        "id": "fork-lightning",
+        "count": 3
+      },
+      {
+        "id": "intercession",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shining-stag-mount",
+        "count": 3
+      },
+      {
+        "id": "ptera-hatchling",
+        "count": 3
+      },
+      {
+        "id": "hand-of-shield",
+        "count": 1
+      },
+      {
+        "id": "empyrean-mount",
+        "count": 3
+      },
+      {
+        "id": "divinity-mount",
+        "count": 1
+      }
+    ]
   }
 ]
