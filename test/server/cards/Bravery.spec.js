@@ -34,8 +34,25 @@ describe('Bravery reaction spell', function () {
         this.player2.clickPrompt('No'); // no counter
 
         expect(this.player2).toBeAbleToSelect(this.bravery);
-        this.player2.clickCard(this.bravery); // click cover to play as reaction
+        this.player2.clickCard(this.bravery); // click bravery to play as reaction
 
         expect(this.hammerKnight.damage).toBe(0);
+    });
+
+    it('cannot be played when opponents unit takes damage', function () {
+        this.player1.endTurn();
+
+        this.player2.clickAttack(this.ironWorker);
+        this.player2.clickCard(this.hammerKnight); // single attacker
+
+        this.player1.clickPrompt('Done'); // no guard
+        this.player1.clickPrompt('No'); // no counter
+
+        this.player2.clickPrompt('Done'); // aftershock
+        expect(this.player2).not.toBeAbleToSelect(this.bravery);
+        this.player2.clickCard(this.bravery); // click bravery to play as reaction
+
+        expect(this.hammerKnight.damage).toBe(0);
+        expect(this.player2).toHaveDefaultPrompt();
     });
 });
