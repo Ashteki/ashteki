@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import RangeSlider from 'react-bootstrap-range-slider';
 import Panel from '../Site/Panel';
 
-import ProfileMain from './ProfileMain';
+import ProfileMain, { EloContext } from './ProfileMain';
 import ProfileBackground from './ProfileBackground';
 import InGameSettings from './InGameSettings';
 import ProfileCardSize from './ProfileCardSize';
@@ -67,7 +67,8 @@ const initialValues = {
     username: '',
     settings: {
         background: '',
-        cardSize: ''
+        cardSize: '',
+        eloOptOut: false
     },
     gameOptions: {
         confirmOneClick: false,
@@ -83,6 +84,7 @@ const initialValues = {
         manualAlts: false
     }
 };
+
 
 /**
  * @param {ProfileProps} props
@@ -101,6 +103,7 @@ const Profile = ({ onSubmit, isLoading }) => {
         defaultAlertTimer = user?.settings.optionSettings.alertTimer;
     }
     const [alertTimer, setAlertTimer] = useState(defaultAlertTimer);
+    const [eloOptOut, setEloOptOut] = useState(user?.settings?.eloOptOut);
 
     const backgrounds = [{ name: 'none', label: 'none', imageUrl: BlankBg }];
 
@@ -118,6 +121,10 @@ const Profile = ({ onSubmit, isLoading }) => {
     initialValues.username = user.username;
     if (user?.settings?.optionSettings) {
         initialValues.gameOptions = user.settings.optionSettings;
+    }
+
+    const handleEloChange = (event) => {
+        setEloOptOut(event.target.checked);
     }
 
     const schema = yup.object({
@@ -189,6 +196,8 @@ const Profile = ({ onSubmit, isLoading }) => {
                     submitValues.settings.optionSettings.alertTimer = alertTimer;
                 }
 
+                submitValues.settings.eloOptOut = eloOptOut;
+
                 onSubmit(submitValues);
 
                 topRowRef?.current?.scrollIntoView(false);
@@ -205,7 +214,9 @@ const Profile = ({ onSubmit, isLoading }) => {
                 >
                     <Row ref={topRowRef}>
                         <Col sm='12'>
-                            <ProfileMain formProps={formProps} user={user} />
+                            <EloContext.Provider value={eloOptOut}>
+                                <ProfileMain formProps={formProps} user={user} handleEloChange={handleEloChange} />
+                            </EloContext.Provider>
                         </Col>
                     </Row>
                     <Row>

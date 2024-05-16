@@ -53,7 +53,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons })
                         </Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} controlId='favourite' xs='1' className='fave-hdr'>
-                        <FontAwesomeIcon icon={faHeart} title='Remove from favourites' />
+                        <FontAwesomeIcon icon={faHeart} title='Favourites' />
                         <Form.Check // prettier-ignore
                             type='switch'
                             id='custom-switch'
