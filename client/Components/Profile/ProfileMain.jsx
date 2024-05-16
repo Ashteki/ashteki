@@ -40,6 +40,10 @@ const ProfileMain = ({ user, formProps }) => {
         inputFile.current.click();
     };
 
+    let eloRating = '(calibrating)';
+    if (user.rankedGamesPlayed >= 6) {
+        eloRating = user?.eloRating ? Math.round(user.eloRating) : '';
+    };
     return (
         <Panel title={t('Profile')}>
             <Form.Row>
@@ -134,6 +138,11 @@ const ProfileMain = ({ user, formProps }) => {
                             </Button>
                         )}
                     </div>
+                </Form.Group>
+                <Form.Group as={Col} md='3'>
+                    <Form.Label>{t('Elo Rating')}</Form.Label>
+                    <div>{eloRating}&nbsp;- <Link href='/results'>View Elo Leaderboard</Link></div>
+
                 </Form.Group>
             </Form.Row>
             <Form.Row>
