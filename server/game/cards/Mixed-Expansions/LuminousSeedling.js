@@ -10,13 +10,15 @@ class LuminousSeedling extends Card {
             title: 'Blossom',
             cost: [
                 ability.costs.mainAction(),
-                ability.costs.loseStatus(2),
-                ability.costs.destroy()
+                ability.costs.loseStatus(2)
             ],
-            gameAction: ability.actions.summon({
-                conjuration: 'brilliant-thorn',
-                count: 2
-            })
+            gameAction: ability.actions.destroy(),
+            then: {
+                gameAction: ability.actions.summon({
+                    conjuration: 'brilliant-thorn',
+                    count: 2
+                })
+            }
         });
     }
 }
