@@ -27,14 +27,14 @@ describe('Withering Rot', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(1);
         });
 
-        it('the last status triggers - can discard from hand', function () {
-            this.witheringRot.tokens.status = 1;
+        it('each status triggers - can discard from hand', function () {
+            this.witheringRot.tokens.status = 2;
             expect(this.witheringRot.location).toBe('play area');
             this.player1.endTurn();
             this.player1.clickPrompt('Discard');
             this.player1.clickCard(this.purge); // chosen discard
             expect(this.witheringRot.location).toBe('play area');
-            expect(this.witheringRot.status).toBe(0);
+            expect(this.witheringRot.status).toBe(1);
             expect(this.purge.location).toBe('discard');
             this.player1.clickOk();
             expect(this.player1).toHaveDefaultPrompt();
@@ -49,14 +49,6 @@ describe('Withering Rot', function () {
             expect(this.witheringRot.status).toBe(0);
             expect(this.coalRoarkwin.damage).toBe(1);
             this.player1.clickOk();
-            expect(this.player1).toHaveDefaultPrompt();
-        });
-
-        it('if status remains then nothing', function () {
-            this.witheringRot.tokens.status = 2;
-            expect(this.witheringRot.location).toBe('play area');
-            this.player1.endTurn();
-            this.player1.clickOk(); // rage / behaviour roll
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
