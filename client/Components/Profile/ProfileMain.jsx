@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { createContext, useContext, useRef, useState } from 'react';
 import { Col, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -12,6 +12,7 @@ import PatreonImage from '../../assets/img/Patreon_Mark_Coral.jpg';
 import './ProfileMain.scss';
 import Link from '../Navigation/Link';
 import { patreonUrl } from '../../constants';
+export const EloContext = createContext(false);
 
 /**
  * @typedef { import('./Profile').ProfileDetails } ProfileDetails
@@ -26,7 +27,7 @@ import { patreonUrl } from '../../constants';
 /**
  * @param {ProfileMainProps} props
  */
-const ProfileMain = ({ user, formProps }) => {
+const ProfileMain = ({ user, formProps, handleEloChange }) => {
     const { t } = useTranslation();
     const inputFile = useRef(null);
     const [localAvatar, setAvatar] = useState(null);
@@ -40,6 +41,14 @@ const ProfileMain = ({ user, formProps }) => {
         inputFile.current.click();
     };
 
+    let eloRating = '(calibrating)';
+    if (user.rankedGamesPlayed >= 6) {
+        eloRating = user?.eloRating ? Math.round(user.eloRating) : '';
+    };
+    const optOut = useContext(EloContext);
+    if (optOut) {
+        eloRating = 'Opted out - your Elo will not be displayed in the leaderboard';
+    }
     return (
         <Panel title={t('Profile')}>
             <Form.Row>
@@ -135,6 +144,21 @@ const ProfileMain = ({ user, formProps }) => {
                         )}
                     </div>
                 </Form.Group>
+                <Form.Group as={Col} md='4'>
+                    <Form.Label>{t('Elo Rating')}</Form.Label>
+                    <div>{eloRating}&nbsp; {!optOut && <Link href='/results'>View Elo Leaderboard</Link>}                    </div>
+                </Form.Group>
+                <Form.Group as={Col} md='2'>
+                    <div>
+                        <Form.Label>Elo Ladder Opt Out</Form.Label>
+                        <Form.Check // prettier-ignore
+                            type='switch'
+                            id='custom-switch'
+                            onChange={handleEloChange}
+                            checked={optOut}
+                        />
+                    </div>
+                </Form.Group>
             </Form.Row>
             <Form.Row>
                 <Form.Group as={Col} md='6' controlId='formGridPassword'>
@@ -170,7 +194,7 @@ const ProfileMain = ({ user, formProps }) => {
                     </Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
-        </Panel>
+        </Panel >
     );
 };
 

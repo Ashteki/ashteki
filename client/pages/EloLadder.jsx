@@ -27,7 +27,8 @@ const EloLadder = () => {
                 ranked game for 3 months will not appear on this list. Inactive players may pick up
                 where they left off as soon as they play a ranked game. New players begin with a
                 score of 1500, but will typically dip below that value while learning the ropes.
-                Players need 6 ranked games before they will appear on this list.
+                Players need 6 ranked games before they will appear on this list. Players can opt
+                out of the Elo leaderboard in their profile page.
             </p>
         </Col>
     );
