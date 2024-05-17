@@ -6,6 +6,7 @@ class JamesEndersight extends Card {
             title: 'Convene with Souls',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             target: {
+                optional: true,
                 controller: 'self',
                 cardType: 'Ally',
                 location: 'deck',
