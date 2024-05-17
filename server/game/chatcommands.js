@@ -4,6 +4,7 @@ const Deck = require('./deck');
 const RematchPrompt = require('./gamesteps/RematchPrompt');
 const { CardType, UpgradeCardTypes, BattlefieldTypes } = require('../constants');
 const EndGamePrompt = require('./gamesteps/EndGamePrompt');
+const AbilityDsl = require('./abilitydsl');
 
 class ChatCommands {
     constructor(game) {
@@ -33,7 +34,8 @@ class ChatCommands {
             '/revealaspect': this.revealAspect,
             '/shuffle': this.shuffle,
             '/suddendeath': this.suddenDeath,
-            '/token': this.setToken
+            '/token': this.setToken,
+            '/setlife': this.setLife
         };
         this.tokens = ['damage', 'exhaust', 'status'];
     }
@@ -395,6 +397,17 @@ class ChatCommands {
                 return true;
             }
         });
+    }
+
+    setLife(player, args) {
+        if (!args[1] || isNaN(args[1])) {
+            return;
+        }
+        let num = this.getNumberOrDefault(args[1], player.phoenixborn.life);
+        const effect = player.phoenixborn.persistentEffect({
+            effect: AbilityDsl.effects.setLife(num)
+        });
+        player.phoenixborn.updateEffects('', 'play area');
     }
 
     revealAspect(player) {
