@@ -928,7 +928,7 @@ class Card extends PlayableObject {
 
     hasModifiedLife() {
         return (
-            BattlefieldTypes.includes(this.type) &&
+            // BattlefieldTypes.includes(this.type) &&
             (this.anyEffect('setLife') ||
                 this.anyEffect('copyCard') ||
                 this.anyEffect('setPrintedLife') ||
