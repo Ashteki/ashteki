@@ -7,7 +7,16 @@ describe('James Endersight', function () {
                 spellboard: [],
                 dicepool: ['natural', 'natural', 'charm', 'charm'],
                 hand: ['cover', 'molten-gold'],
-                deck: ['iron-worker']
+                deck: [
+                    'iron-worker',
+                    'encore',
+                    'purge',
+                    'accelerate',
+                    'regress',
+                    'heal',
+                    'refresh',
+                    'safeguard'
+                ]
             },
             player2: {
                 phoenixborn: 'saria-guideman',
@@ -36,4 +45,31 @@ describe('James Endersight', function () {
         expect(this.jamesEndersight.damage).toBe(0);
         expect(this.player1).toHaveDefaultPrompt();
     });
+
+    it('no allies in deck should shuffle', function () {
+        this.player1.player.deck = [
+            this.encore,
+            this.purge,
+            this.accelerate,
+            this.regress,
+            this.heal,
+            this.refresh,
+            this.safeguard
+        ];
+
+        expect(getCardOrder(this.player1.deck)).toBe('EPARHRS');
+
+        this.player1.clickCard(this.jamesEndersight); // use ability
+        this.player1.clickPrompt('Convene With Souls');
+
+        expect(this.jamesEndersight.damage).toBe(0);
+
+        expect(getCardOrder(this.player1.deck)).not.toBe('EPARHRS');
+
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    function getCardOrder(cards) {
+        return cards.reduce((agg, card) => agg + card.name[0], '');
+    }
 });

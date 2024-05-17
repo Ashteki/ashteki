@@ -11,19 +11,18 @@ class JamesEndersight extends Card {
                 location: 'deck',
                 gameAction: [
                     ability.actions.reveal(),
-                    ability.actions.moveCard({ destination: 'hand', showMessage: true })
+                    ability.actions.moveCard({ destination: 'hand', showMessage: true }),
+                    ability.actions.addDamageToken((context) => ({
+                        amount: context.target?.life || 0,
+                        target: context.player.phoenixborn,
+                        showMessage: true,
+                        shortMessage: true
+                    }))
                 ]
             },
             then: {
-                gameAction: ability.actions.addDamageToken((context) => ({
-                    amount: context.preThenEvent.context.target?.life || 0,
-                    target: context.player.phoenixborn,
-                    showMessage: true,
-                    shortMessage: true
-                })),
-                then: {
-                    gameAction: ability.actions.shuffleDeck()
-                }
+                alwaysTriggers: true,
+                gameAction: ability.actions.shuffleDeck()
             },
 
             message: '{0} uses {1} to Convene with Souls',

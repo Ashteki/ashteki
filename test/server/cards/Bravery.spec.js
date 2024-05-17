@@ -39,6 +39,19 @@ describe('Bravery reaction spell', function () {
         expect(this.hammerKnight.damage).toBe(0);
     });
 
+    it('cannot be played when a pb takes damage', function () {
+        this.player1.clickAttack(this.rinNorthfell);
+        this.player1.clickCard(this.ironWorker); // single attacker
+        this.player1.clickDone();
+
+        this.player2.clickDone();
+
+        expect(this.player2).not.toBeAbleToSelect(this.bravery);
+        this.player2.clickCard(this.bravery); // click bravery to play as reaction
+
+        expect(this.rinNorthfell.damage).toBe(2);
+    });
+
     it('cannot be played when opponents unit takes damage', function () {
         this.player1.endTurn();
 
