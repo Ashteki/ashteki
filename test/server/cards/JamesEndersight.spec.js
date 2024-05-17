@@ -69,6 +69,28 @@ describe('James Endersight', function () {
         expect(this.player1).toHaveDefaultPrompt();
     });
 
+    it('optional search, should shuffle', function () {
+        this.player1.player.deck = [
+            this.ironWorker,
+            this.purge,
+            this.accelerate,
+            this.regress,
+            this.heal,
+            this.refresh,
+            this.safeguard
+        ];
+        expect(getCardOrder(this.player1.deck)).toBe('IPARHRS');
+
+        this.player1.clickCard(this.jamesEndersight); // use ability
+        this.player1.clickPrompt('Convene With Souls');
+        this.player1.clickDone();
+
+        expect(this.jamesEndersight.damage).toBe(0);
+
+        expect(getCardOrder(this.player1.deck)).not.toBe('IPARHRS');
+
+        expect(this.player1).toHaveDefaultPrompt();
+    });
     function getCardOrder(cards) {
         return cards.reduce((agg, card) => agg + card.name[0], '');
     }
