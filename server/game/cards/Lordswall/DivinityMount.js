@@ -30,15 +30,6 @@ class DivinityMount extends Card {
                     })
                 }))
             }
-
-            // target: {
-            //     targetsPlayer: true,
-            //     autoTarget: (context) => context.player.opponent.unitsInPlay,
-            //     gameAction: ability.actions.orderedAoE({
-            //         gameAction: ability.actions.dealDamage({ showMessage: true }),
-            //         promptTitle: 'Mist Typhoon'
-            //     })
-            // }
         });
     }
 }

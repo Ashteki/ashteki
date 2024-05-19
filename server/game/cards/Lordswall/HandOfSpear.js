@@ -1,6 +1,6 @@
 const Card = require('../../Card.js');
 
-class PteraHerder extends Card {
+class HandOfSpear extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
             gameAction: ability.actions.summon({
@@ -14,6 +14,6 @@ class PteraHerder extends Card {
     }
 }
 
-PteraHerder.id = 'hand-of-spear';
+HandOfSpear.id = 'hand-of-spear';
 
-module.exports = PteraHerder;
+module.exports = HandOfSpear;
