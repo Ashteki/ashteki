@@ -7,7 +7,7 @@ class ForkLightning extends Card {
             targets: {
                 myUnit: {
                     optional: true,
-                    activePromptTitle: 'Choose an opponent\'s unit',
+                    activePromptTitle: "Choose an opponent's unit",
                     cardType: BattlefieldTypes,
                     controller: 'opponent'
                 },
@@ -17,6 +17,7 @@ class ForkLightning extends Card {
                     activePromptTitle: "Choose another opponent's unit",
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
+                    cardCondition: (card, context) => card != context.targets.myUnit,
                     gameAction: ability.actions.conditional({
                         condition: (context) => context.targets.theirs,
                         trueGameAction: [

@@ -25,6 +25,7 @@ class GloryAspirant extends Card {
                 })
             },
             then: {
+                alwaysTriggers: true,
                 gameAction: ability.actions.changeDice({
                     dieCondition: (die) => !die.exhausted && die.magic === Magic.Divine,
                     numDice: 1,

@@ -19,13 +19,15 @@ class SeedsOfAggression extends Card {
                         ability.actions.dealDamage((context) => ({
                             target: context.targets.theirs,
                             amount: context.targets.myUnit.attack,
-                            sourceType: 'unit'
+                            sourceType: 'unit',
+                            damageSource: context.targets.myUnit
                         })),
                         ability.actions.dealDamage((context) => ({
                             target: context.targets.myUnit,
                             amount: context.targets.theirs.attack,
                             showMessage: true,
-                            sourceType: 'unit'
+                            sourceType: 'unit',
+                            damageSource: context.targets.theirs
                         }))
                     ]
                 }
