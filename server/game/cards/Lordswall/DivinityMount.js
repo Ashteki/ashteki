@@ -3,6 +3,7 @@ const Card = require('../../Card.js');
 class DivinityMount extends Card {
     setupCardAbilities(ability) {
         this.destroyed({
+            inexhaustible: true,
             gameAction: ability.actions.dealDamage((context) => ({
                 amount: 3,
                 target: context.player.phoenixborn

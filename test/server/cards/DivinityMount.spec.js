@@ -76,5 +76,15 @@ describe('Divinity Mount', function () {
             expect(this.divinityMount.location).toBe('archives');
             expect(this.dimonaOdinstar.damage).toBe(3);
         });
+
+        it('when destroyed ability is inexhaustible', function () {
+            this.divinityMount.tokens.exhaustion = 1;
+
+            this.player1.play(this.moltenGold);
+            this.player1.clickCard(this.divinityMount);
+
+            expect(this.divinityMount.location).toBe('archives');
+            expect(this.dimonaOdinstar.damage).toBe(3);
+        });
     });
 });
