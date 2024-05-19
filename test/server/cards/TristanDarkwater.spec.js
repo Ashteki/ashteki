@@ -12,10 +12,11 @@ describe('Tristan Darkwater, magnify', function () {
                     'shadow-spirit',
                     'psychic-vampire',
                     'beast-warrior',
-                    'frost-frog'
+                    'frost-frog',
+                    'ptera-hatchling'
                 ],
                 spellboard: [],
-                dicepool: ['time', 'natural', 'charm', 'charm', 'natural'],
+                dicepool: ['time', 'natural', 'charm', 'divine', 'natural'],
                 hand: ['cover', 'molten-gold'],
                 deck: ['golden-veil', 'choke', 'fester', 'abundance', 'raptor-herder']
             },
@@ -156,5 +157,24 @@ describe('Tristan Darkwater, magnify', function () {
         this.player1.clickPrompt('+1 Attack');
         this.player2.clickDone();
         expect(this.frostFrog.attack).toBe(3);
+    });
+
+    it('magnify ptera hatchling', function () {
+        this.player1.attachDie(3, this.pteraHatchling); //setup
+        expect(this.pteraHatchling.attack).toBe(1);
+
+        this.player1.clickCard(this.tristanDarkwater);
+        this.player1.clickPrompt('Magnify');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.pteraHatchling);
+        this.player1.clickDone();
+
+        this.player1.clickPrompt('Attack');
+        this.player1.clickCard(this.fluteMage);
+        this.player1.clickCard(this.pteraHatchling);
+        this.player1.clickCard(this.hammerKnight);
+
+        this.player2.clickDone();
+        expect(this.hammerKnight.damage).toBe(2);
     });
 });

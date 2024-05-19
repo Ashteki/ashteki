@@ -611,6 +611,18 @@ class PlayerInteractionWrapper {
         this.game.continue();
     }
 
+    attachDie(index, target) {
+        let die = this.player.dice[index];
+
+        this.game.actions
+            .attachDie({
+                target: target,
+                upgradeDie: die
+            })
+            .resolve(die, this.game.getFrameworkContext(this.player));
+        this.game.continue();
+    }
+
     /**
      * Player's action of passing priority
      */
