@@ -264,6 +264,9 @@ class Player extends GameObject {
 
         const cardIndex = this.battlefield.indexOf(card);
         const anotherCardIndex = this.battlefield.indexOf(anotherCard);
+        if (cardIndex === -1 || anotherCardIndex === -1) {
+            return false;
+        }
         if (Math.abs(cardIndex - anotherCardIndex) === 1) {
             return true;
         }
