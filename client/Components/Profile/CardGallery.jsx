@@ -1,16 +1,15 @@
 import React from 'react';
 
-import CardImage from '../GameBoard/CardImage';
-
 import './CardGallery.scss';
+import ZoomableCard from '../Decks/ZoomableCard';
 
-function CardGallery({ onAltClick, cards = [] }) {
+function CardGallery({ onAltClick = () => true, cards = [] }) {
     const cardList = cards;
     return (
         <div className='card-gallery'>
             {cardList.map((c) => (
                 <div key={'alt' + (c.alt || c.imageStub)} onClick={() => onAltClick(c.id, c.alt)}>
-                    <CardImage card={c} />
+                    <ZoomableCard card={c} noIndex={true} />
                 </div>
             ))}
         </div>

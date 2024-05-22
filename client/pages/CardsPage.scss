@@ -1,0 +1,21 @@
+@import '../styles/variables';
+
+.card-browser {
+    .card-gallery {
+        .img-card {
+            height: $keyteki-card-xl-height;
+            width: $keyteki-card-xl-width;
+
+            border-radius: 4px;
+        }
+    }
+}
+
+.cards-filter {
+    .mini {
+        &.active {
+            background-color: #2a55b7 !important;
+            border-color: #2a55b7 !important;
+        }
+    }
+}
