@@ -24,6 +24,7 @@ import BanlistAdmin from './pages/BanlistAdmin';
 import Patreon from './pages/Patreon';
 import FAQ from './pages/faq';
 import TaggedGames from './pages/admin/TaggedGames.jsx';
+import CardsPage from './pages/CardsPage.jsx';
 
 const routes = [
     {
@@ -41,6 +42,7 @@ const routes = [
             <Activation key='activation' id={context.params.id} token={context.params.token} />
         )
     },
+    { path: '/cards', action: () => <CardsPage key='cards' /> },
     { path: '/decks', action: () => <Decks key='decks' /> },
     { path: '/decks/add', action: () => <AddDeck /> },
     { path: '/decks/edit', action: (params) => <EditDeck deckId={params.deckId} /> },
