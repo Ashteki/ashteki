@@ -25,7 +25,7 @@ describe('Spectral Charger Mount ', function () {
 
             this.player1.clickCard(this.fireArcher);
             this.player1.clickCard(this.spectralChargerMount);
-            expect(this.spectralChargerMount.location).toBe('play area')
+            expect(this.spectralChargerMount.location).toBe('play area');
             this.player2.clickCard(this.iceTrap);
 
             expect(this.spectralChargerMount.location).toBe('archives');
