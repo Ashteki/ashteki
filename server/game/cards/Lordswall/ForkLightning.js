@@ -20,17 +20,13 @@ class ForkLightning extends Card {
                     cardCondition: (card, context) => card != context.targets.myUnit,
                     gameAction: ability.actions.conditional({
                         condition: (context) => context.targets.theirs,
-                        trueGameAction: [
-                            ability.actions.dealDamage((context) => ({
-                                target: context.targets.theirs,
-                                amount: 1
-                            })),
-                            ability.actions.dealDamage((context) => ({
-                                target: context.targets.myUnit,
-                                amount: 1,
+                        trueGameAction: ability.actions.orderedAoE((context) => ({
+                            target: [context.targets.theirs, context.targets.myUnit],
+                            gameAction: ability.actions.dealDamage({
                                 showMessage: true
-                            }))
-                        ]
+                            }),
+                            promptTitle: "Fork Lightning"
+                        }))
                     })
                 }
             }
