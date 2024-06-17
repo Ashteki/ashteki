@@ -119,6 +119,7 @@ const Navigation = (props) => {
                 <Nav.Link
                     key={menuItem.path || menuItem.title}
                     href={menuItem.path}
+                    as={Link}
                     className={window.location.pathname === menuItem.path ? 'active' : ''}
                 >
                     {menuItem.title}
