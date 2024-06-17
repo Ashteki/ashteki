@@ -27,7 +27,8 @@ class CrystalArmor extends Card {
                 ignoreDiceCost: true,
                 isLimited: true,
                 playedAsReaction: true
-            }))
+            })),
+            preferActionPromptMessage: true
         });
     }
 }

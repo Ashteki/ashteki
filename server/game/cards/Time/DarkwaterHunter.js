@@ -20,7 +20,8 @@ class DarkwaterHunter extends Card {
                 ignoreActionCost: true,
                 isLimited: true,
                 playedAsReaction: true
-            }))
+            })),
+            preferActionPromptMessage: true
         });
     }
 }

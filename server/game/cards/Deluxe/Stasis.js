@@ -18,7 +18,8 @@ class Stasis extends Card {
                 ignoreActionCost: true,
                 isLimited: true,
                 playedAsReaction: true
-            }))
+            })),
+            preferActionPromptMessage: true
         });
 
         this.whileAttached({
