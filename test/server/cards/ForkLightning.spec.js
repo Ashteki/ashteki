@@ -21,6 +21,9 @@ describe('Fork Lightning', function () {
             this.player1.clickCard(this.gilder);
             expect(this.player1).not.toBeAbleToSelect(this.fluteMage);
             this.player1.clickCard(this.hammerKnight);
+            // AoE
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.gilder);
 
             expect(this.hammerKnight.damage).toBe(1);
             expect(this.gilder.damage).toBe(1);
@@ -32,6 +35,10 @@ describe('Fork Lightning', function () {
             expect(this.player1).not.toBeAbleToSelect(this.fluteMage);
             expect(this.player1).not.toBeAbleToSelect(this.gilder);
             this.player1.clickCard(this.hammerKnight);
+            // AoE
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.gilder);
+
 
             expect(this.hammerKnight.damage).toBe(1);
             expect(this.gilder.damage).toBe(1);
