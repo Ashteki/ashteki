@@ -163,7 +163,9 @@ class DummyPlayer extends Player {
     replenishAspects() {
         const amount = this.chimera.threat - this.aspectsInPlay.length;
 
-        this.moveCardsToThreatZone(amount);
+        if (amount > 0) {
+            this.moveCardsToThreatZone(amount);
+        }
     }
 
     moveCardsToThreatZone(numCards) {
