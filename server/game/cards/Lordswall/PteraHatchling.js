@@ -19,6 +19,7 @@ class PteraHatchling extends Card {
                 activePromptTitle: 'Shock 1: choose a unit to deal 1 damage to',
                 waitingPromptTitle: 'Shock 1: waiting for opponent',
                 cardType: BattlefieldTypes,
+                controller: 'opponent',
                 gameAction: ability.actions.dealDamage(() => ({
                     amount: this.getAbilityNumeric(1),
                     showMessage: true

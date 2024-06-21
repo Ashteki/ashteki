@@ -34,6 +34,7 @@ describe('Shock ability', function () {
         this.player1.clickAttack(this.fluteMage);
         this.player1.clickCard(this.pteraHatchling);
 
+        expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
         this.player1.clickCard(this.hammerKnight);
         expect(this.hammerKnight.damage).toBe(1); // ping
 
