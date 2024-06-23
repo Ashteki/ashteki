@@ -25,17 +25,19 @@ class FightingSpirit extends Card {
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'self',
-                gameAction: ability.actions.sequential([
-                    ability.actions.cardLastingEffect((context) => ({
-                        duration: 'untilEndOfTurn',
-                        effect: ability.effects.modifyAttack(context.source.status)
-                    })),
-                    ability.actions.moveToken((context) => ({
-                        from: context.source,
-                        to: context.target,
-                        type: 'status'
-                    }))
-                ])
+                gameAction: ability.actions.cardLastingEffect((context) => ({
+                    duration: 'untilEndOfTurn',
+                    effect: ability.effects.modifyAttack(context.source.status)
+                }))
+            },
+            effect: 'add {1} attack to {0}',
+            effectArgs: (context) => [context.source.status],
+            then: {
+                gameAction: ability.actions.moveToken((context) => ({
+                    from: context.preThenEvent.context.source,
+                    to: context.preThenEvent.context.target,
+                    type: 'status'
+                }))
             }
         });
     }
