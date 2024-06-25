@@ -30,6 +30,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
     const unlinked = !user?.patreon || user?.patreon === PatreonStatus.Unlinked;
     const showPatreonAdvice = !allowPremium;
+    const isSolo = currentGame.solo;
 
     let firstPlayer = true;
     // need to account for coaloff, and player index
@@ -50,6 +51,10 @@ const PendingGamePlayers = ({ currentGame, user }) => {
     };
 
     const chooseForMeHandler = (deckType) => {
+        // guard for unsubscribed user getting access to a random premium deck
+        if (!playerIsMe && isSolo && !allowPremium) {
+            return;
+        }
         setShowModal(false);
         dispatch(sendSocketMessage('selectdeck', currentGame.id, playerIsMe, -1, 0, deckType));
     };
