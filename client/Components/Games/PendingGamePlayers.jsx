@@ -96,6 +96,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     clickable: currentGame.gameFormat !== 'coaloff'
                 });
 
+                // deck selected
                 if (player && player.deck && player.deck.selected) {
                     if (!userIsSpectator && (isMe || currentGame.solo)) {
                         const deckName = player.deck.name;
@@ -112,7 +113,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         deck = <span className='deck-selection'>{deckName}</span>;
                     }
 
-                    status = !(currentGame.solo && !isMe) && (
+                    status = !player.deck.isChimera && (
                         <DeckStatus
                             deck={player.deck}
                             status={player.deck.status}
@@ -149,13 +150,11 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                             );
                         }
                     }
-                } else if (player && isMe) {
+                } else if (player && (isMe || currentGame.newGameType === 'bot')) {
                     selectLink = (
-                        <>
-                            <Button onClick={() => clickHandler(isMe)} className='btn-focus def'>
-                                Select Deck
-                            </Button>
-                        </>
+                        <Button onClick={() => clickHandler(isMe)} className='btn-focus def'>
+                            Select Deck
+                        </Button>
                     );
                 }
 

@@ -101,7 +101,7 @@ export const gameFormats = [
     { name: 'precon', label: 'Precon' },
     { name: 'hl2pvp', label: 'Heroic Level 2' },
     { name: 'constructed', label: 'Constructed' },
-    { name: 'coaloff', label: 'Coal Off!' },
+    { name: 'coaloff', label: 'Coal Off!' }
     { name: 'onecollection', label: 'One Collection Battlebox' }
 ];
 

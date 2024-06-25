@@ -70,6 +70,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         gamePrivate: defaultPrivate,
         ranked: false,
         solo: isSolo,
+        solo: ['chimera', 'bot'].includes(newGameType)
         saveReplay: false
     };
 
@@ -199,6 +200,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                             </Form.Control.Feedback>
 
                                             {newGameType === 'chimera' &&
+                                        {['chimera', 'bot'].includes(newGameType) &&
                                                 soloOptions.map((option) =>
                                                     getOptionToggle(option, formProps)
                                                 )}

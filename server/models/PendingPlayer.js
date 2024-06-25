@@ -1,10 +1,12 @@
 class PendingPlayer {
-    constructor(id, name, isOwner, user,) {
+    constructor(id, name, isOwner, user) {
         this.id = id;
         this.name = name;
         this.owner = isOwner;
         this.user = user;
-        this.playerType = user.isDummy ? 'dummy' : null;
+        this.isChimera = user.isChimera;
+        this.isBot = user.isBot;
+        this.isDummy = user.isDummy;
     }
 }
 

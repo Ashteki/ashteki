@@ -145,6 +145,12 @@ const GameLobby = ({ gameId }) => {
                                         imageClass='league'
                                         onClick={() => handleNewGameClick(gameTypes.league)}
                                     />
+                                    text='Bound Soul'
+                                    // header='Premium'
+                                    imageClass='bot'
+                                    onClick={() => handleNewGameClick('bot')}
+                                />
+                                <PictureButton
                                 </div>
                                 <div className='game-buttons nav-buttons'>
                                     <PictureButton

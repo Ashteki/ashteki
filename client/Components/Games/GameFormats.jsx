@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 const GameFormats = ({ formProps, solo }) => {
     let formats = getFormats(solo);
-
     return (
         <>
             <Row>

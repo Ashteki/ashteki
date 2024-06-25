@@ -19,6 +19,7 @@ class GameFlowWrapper {
             owner: 'player1',
             solo: options.mode === 'solo',
             gameFormat: options.gameFormat,
+            newGameType: options.mode === 'solo' ? 'chimera' : 'pvp',
             saveGameId: 12345,
             players: [
                 {
@@ -43,11 +44,12 @@ class GameFlowWrapper {
         };
 
         if (options.player1.dummy) {
-            details.players[0].playerType = 'dummy';
+            details.players[1].isDummy = true;
         }
 
         if (options.player2.dummy) {
-            details.players[1].playerType = 'dummy';
+            details.players[1].isDummy = true;
+            details.players[1].isChimera = true;
         }
 
         this.game = new Game(details, {

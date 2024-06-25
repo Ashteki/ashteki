@@ -476,9 +476,13 @@ class Lobby {
         }
 
         if (game.solo) {
-            const dummy = new DummyUser();
+            const dummyUsername = game.newGameType === 'bot' ? DummyUser.BOT_USERNAME : DummyUser.CHIMERA_USERNAME;
+            const dummy = new DummyUser(dummyUsername);
             game.addPlayer(0, dummy);
-            await this.selectDeck(game, dummy, true, -1, 0, game.gameFormat);
+            if (game.newGameType === 'chimera') {
+                // load chimera deck
+                await this.selectDeck(game, dummy, true, -1, 0, game.gameFormat);
+            }
         }
 
         this.sendGameState(game);
@@ -618,7 +622,11 @@ class Lobby {
         }
 
         if (game.solo && !game.isSpectator(username)) {
-            game.leave(DummyUser.DUMMY_USERNAME);
+            if (game.newGameType === 'bot') {
+                game.leave(DummyUser.BOT_USERNAME);
+            } else {
+                game.leave(DummyUser.CHIMERA_USERNAME);
+            }
         }
         game.leave(username);
         socket.send('cleargamestate');

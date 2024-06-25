@@ -41,6 +41,9 @@ const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
 const PlayableObject = require('./PlayableObject');
 const EndGamePrompt = require('./gamesteps/EndGamePrompt');
+const BotPlayer = require('./solo/BotPlayer');
+const ChimeraPlayer = require('./solo/ChimeraPlayer');
+
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -53,7 +56,9 @@ class Game extends EventEmitter {
         this.router = options.router;
         this.saveReplay = details.saveReplay;
         this.solo = details.solo;
-        if (this.solo) {
+        this.isChimera = details.newGameType === 'chimera';
+        this.isBot = details.newGameType === 'bot';
+        if (this.solo && this.isChimera) {
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
             this.isSurvival = details.gameFormat === 'survival';
@@ -138,8 +143,11 @@ class Game extends EventEmitter {
 
     createPlayer(player, clockDetails) {
         const isOwner = this.owner === player.user.username;
-        if (player.playerType === 'dummy') {
-            return new DummyPlayer(player.id, player.user, isOwner, this, clockDetails);
+        if (player.isChimera) {
+            return new ChimeraPlayer(player.id, player.user, isOwner, this, clockDetails);
+        }
+        if (player.isBot) {
+            return new BotPlayer(player.id, player.user, isOwner, this, clockDetails);
         }
 
         return new Player(player.id, player.user, isOwner, this, clockDetails);
@@ -1126,7 +1134,7 @@ class Game extends EventEmitter {
             this.getPlayers(),
             (cards, player) => {
                 let result = cards.concat(player.deck, player.archives, player.phoenixborn);
-                if (this.solo && player instanceof DummyPlayer) {
+                if (this.solo && player instanceof ChimeraPlayer) {
                     result = result.concat(player.ultimate);
                 }
                 return result;
