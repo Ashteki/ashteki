@@ -9,10 +9,12 @@ import { loadDecks } from '../../redux/actions/deck.js';
 import DeckFilter from '../Decks/DeckFilter.jsx';
 import Pagination from 'react-bootstrap-4-pagination';
 import debounce from 'lodash.debounce';
+import { PatreonStatus } from '../../types/patreon.js';
 
 const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
     const user = useSelector((state) => state.account.user);
     const showRestricted = user?.permissions.canVerifyDecks;
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
 
     const {
         myDecks,
@@ -40,6 +42,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
     const [showFaves, setShowFaves] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
     const dispatch = useDispatch();
+    let showChooseForMe = true;
 
     useEffect(() => {
         const filter = [
@@ -162,6 +165,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             case 'solo':
                 setIndex = 5;
                 decks = chimeraDecks;
+                showChooseForMe = allowPremium;
                 break;
             case 'firstadventure':
                 setIndex = 4;
@@ -175,7 +179,9 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
         deckList = (
             <div>
-                <Button onClick={() => onChooseForMe(setIndex)}>Choose for me</Button>
+                {showChooseForMe && (
+                    <Button onClick={() => onChooseForMe(setIndex)}>Choose for me</Button>
+                )}
                 <DeckList decks={decks} onDeckSelected={onDeckSelected} />
             </div>
         );
