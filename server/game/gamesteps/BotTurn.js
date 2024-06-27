@@ -9,18 +9,28 @@ class BotTurn extends DummyTurn {
         }
 
         // shuffle hand for random?
+        const actions = this.getAllActions()[0];
+        const fave = actions[0];
 
-        // play a ready spell
-        const readySpell = this.player.hand.find(
-            (card) => card.type === CardType.ReadySpell && card.canPlay(this.player)
-        );
-        if (readySpell) {
-            readySpell.use(this.player);
-
-
-        } else {
-            // pass (log is handled in player.endTurn)
+        if (fave) {
+            let context = fave.createContext(this.player);
+            this.game.resolveAbility(context);
         }
+        // play a ready spell
+        // const readySpell = this.player.hand.find(
+        //     (card) => card.type === CardType.ReadySpell && card.canPlay(this.player)
+        // );
+        // if (readySpell) {
+        //     readySpell.use(this.player);
+
+
+        // } else {
+        //     // pass (log is handled in player.endTurn)
+        // }
+    }
+
+    getAllActions() {
+        return this.player.hand.map((card) => card.getLegalActions(this.player))
     }
 }
 

@@ -29,6 +29,7 @@ import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
 import Sidebar from './Sidebar';
 import AlertSplash from './AlertSplash';
+import ActivePlayerPrompt from './ActivePlayerPrompt';
 import { useNavigate } from 'react-router-dom';
 
 const placeholderPlayer = {
@@ -439,6 +440,27 @@ const GameBoard = () => {
     const compactLayout = optionSettings?.compactLayout;
     const leftMode = optionSettings?.leftMode || currentGame.solo;
 
+    const getOtherPlayerPrompt = (otherPlayer) => {
+        let otherPlayerPrompt = null;
+        if (currentGame.solo) {
+            const otherState = otherPlayer.promptState;
+            otherState.style = 'warning';
+            otherPlayerPrompt = (
+                <div className='inset-pane'>
+                    <ActivePlayerPrompt
+                        cards={cards}
+                        promptState={otherState}
+                        onButtonClick={onCommand}
+                        onMouseOver={onMouseOver}
+                        onMouseOut={onMouseOut}
+                        onTimerExpired={onTimerExpired.bind(this)}
+                        phase={currentGame.currentPhase}
+                    />
+                </div>
+            );
+        }
+        return otherPlayerPrompt;
+    };
     return (
         <div className={boardClass}>
             {showModal && (
@@ -571,7 +593,7 @@ const GameBoard = () => {
 
                     {showChatLog && (
                         <div className='gamechat'>
-                            {/* {getOtherPlayerPrompt(otherPlayer)} */}
+                            {getOtherPlayerPrompt(otherPlayer)}
                             <GameChat
                                 key='gamechat'
                                 messages={currentGame.messages}
