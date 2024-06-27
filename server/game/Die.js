@@ -77,7 +77,7 @@ class Die extends PlayableObject {
             return false;
         } else if (legalActions.length === 1) {
             let action = legalActions[0];
-            if (!this.game.activePlayer.optionSettings.confirmOneClick) {
+            if (!this.game.activePlayer.confirmOneClick) {
                 let context = action.createContext(player);
                 this.game.resolveAbility(context);
                 return true;

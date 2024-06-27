@@ -1,10 +1,12 @@
-const { Level, CardType } = require('../../constants');
+const { Level, CardType, AspectTypes } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
+const ChimeraFFStrategy = require('./ChimeraFFStrategy');
 const DummyPlayer = require('./DummyPlayer');
 
 class ChimeraPlayer extends DummyPlayer {
     constructor(id, user, owner, game, clockdetails) {
         super(id, user, owner, game, clockdetails);
+        this.firstFiveStrategy = new ChimeraFFStrategy(this);
 
         this.behaviourRoll = 0;
         this.fatigued = false;
@@ -35,7 +37,7 @@ class ChimeraPlayer extends DummyPlayer {
 
     //CAUTION: NEED BOTH OF THESE BECAUSE OF DIFFERENT USE CASES. NAMING IS UNFORTUNATE
     get aspectsInPlay() {
-        return this.cardsInPlay.filter((card) => CardType.Aspect === card.type);
+        return this.cardsInPlay.filter((card) => AspectTypes.includes(card.type));
     }
 
     getAspectsInPlay() {

@@ -144,26 +144,30 @@ class FirstFivePrompt extends AllPlayerPrompt {
             player.setSelectableCards(this.selectableCards[player.name]);
         }
         if (arg === 'done') {
-            for (const card of this.selectedCards[player.name]) {
-                if (card.location != 'hand') {
-                    player.moveCard(card, 'hand');
-                }
-            }
-
-            this.game.addMessage('{0} has chosen their first five', player);
-
-            // random fill if they didn't choose 5
-            player.shuffleDeck();
-            this.game.actions
-                .draw({ refill: true, singleCopy: true })
-                .resolve(player, this.game.getFrameworkContext());
-
-            player.clearSelectedCards();
-            player.clearSelectableCards();
-            player.firstFiveChosen = true;
+            this.handleDoneCommand(player);
             return true;
         }
         return false;
+    }
+
+    handleDoneCommand(player) {
+        for (const card of this.selectedCards[player.name]) {
+            if (card.location != 'hand') {
+                player.moveCard(card, 'hand');
+            }
+        }
+
+        this.game.addMessage('{0} has chosen their first five', player);
+
+        // random fill if they didn't choose 5
+        player.shuffleDeck();
+        this.game.actions
+            .draw({ refill: true, singleCopy: true })
+            .resolve(player, this.game.getFrameworkContext());
+
+        player.clearSelectedCards();
+        player.clearSelectableCards();
+        player.firstFiveChosen = true;
     }
 }
 

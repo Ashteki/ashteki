@@ -90,6 +90,10 @@ class Player extends GameObject {
         return difference > 3;
     }
 
+    get confirmOneClick() {
+        return this.optionSettings.confirmOneClick;
+    }
+
     isSpectator() {
         return false;
     }

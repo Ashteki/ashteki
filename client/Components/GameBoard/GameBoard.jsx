@@ -280,7 +280,7 @@ const GameBoard = () => {
     ) => {
         return [
             <div key='board-middle' className='board-middle'>
-                {currentGame.solo
+                {currentGame.isChimera
                     ? getChimeraRow(otherPlayer, compactLayout, leftMode, cardSize, spectating)
                     : getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating)}
 

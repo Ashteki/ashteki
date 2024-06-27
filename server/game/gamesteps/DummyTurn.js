@@ -13,45 +13,8 @@ class DummyTurn extends BaseStepWithPipeline {
     }
 
     beginTurn() {
-        if (this.player.anyEffect('mustAttack') && this.canAttack()) {
-            this.player.doAttack();
-            return;
-        }
+        // do something here...
 
-        if (this.player.threatCards.length) {
-            this.rollForBehaviour();
-        } else if (this.canAttack()) {
-            // attack
-            this.player.doAttack();
-        } else {
-            // pass (log is handled in player.endTurn)
-        }
-    }
-
-    rollForBehaviour() {
-        // Reroll a basic die
-        // queue an action because of redrains trigger
-        const basicDie = this.player.dice.find((die) => die.level === Level.Basic);
-        const result = AbilityDsl.actions
-            .rerollDice({ target: basicDie })
-            .resolve(basicDie, this.game.getFrameworkContext(this.player));
-
-        // Roll for behaviour
-        this.queueStep(
-            new SimpleStep(this.game, () => {
-                const d12Roll = this.player.getBehaviourRoll();
-                // roll behaviour dice and determine
-
-                const context = this.game.getFrameworkContext(this.player);
-
-                const rolledRageDie = result.event.childEvent.dice[0];
-                const clonedRageDie = result.event.childEvent.diceCopy[0];
-
-                // get actions from behaviour card and queue
-                const behaviour = this.player.behaviour.getBehaviour(
-                    d12Roll,
-                    this.player.chimeraPhase
-                );
                 this.game.addAlert(
                     'info',
                     '{0} rolls {1} for behaviour:\n{2}',
@@ -60,26 +23,7 @@ class DummyTurn extends BaseStepWithPipeline {
                     behaviour
                 );
 
-                this.game.queueUserAlert(context, {
-                    style: 'danger',
-                    promptTitle: 'Chimera Turn',
-                    menuTitle: 'Chimera rolls rage and behavior dice',
-                    controls: [
-                        {
-                            type: 'targeting',
-                            source: clonedRageDie.getShortSummary(),
-                            targets: [rolledRageDie.getShortSummary()] // [this.attack.target.getShortSummary()]
-                        },
-                        {
-                            type: 'behaviour',
-                            behaviour: behaviour.getShortSummary()
-                        }
-                    ]
-                });
-
-                behaviour.execute();
-            })
-        );
+        // default to pass (log is handled in player.endTurn)
     }
 
     getChatMessage(behaviour) {

@@ -52,7 +52,6 @@ class Game extends EventEmitter {
         this.effectEngine = new EffectEngine(this);
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
-        this.cardVisibility = new CardVisibility(details.showHand, details.openHands, details.solo);
         this.router = options.router;
         this.saveReplay = details.saveReplay;
         this.solo = details.solo;
@@ -72,6 +71,12 @@ class Game extends EventEmitter {
 
         this.showHand = details.showHand;
         this.openHands = details.openHands;
+        this.cardVisibility = new CardVisibility(
+            details.showHand,
+            details.openHands,
+            this.isChimera
+        );
+
         this.allowSpectators = details.allowSpectators;
 
         this.currentAbilityWindow = null;
@@ -1899,6 +1904,8 @@ class Game extends EventEmitter {
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
             id: this.id,
+            isChimera: this.isChimera,
+            isBot: this.isBot,
             label: this.label,
             manualMode: this.manualMode,
             messages: this.gameChat.messages,

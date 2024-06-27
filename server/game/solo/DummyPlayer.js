@@ -2,15 +2,15 @@ const { CardType, Level, AspectTypes } = require('../../constants');
 const Dice = require('../dice');
 const Player = require('../player');
 const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
-const ChimeraFFStrategy = require('./ChimeraFFStrategy');
-const ChimeraPinStrategy = require('./ChimeraPinStrategy');
+const DefaultPinStrategy = require('./DefaultPinStrategy');
 const NullPromptStrategy = require('./NullPromptStrategy');
 
 class DummyPlayer extends Player {
     constructor(id, user, owner, game, clockdetails) {
         super(id, user, owner, game, clockdetails);
-        this.firstFiveStrategy = new ChimeraFFStrategy(this);
-        this.dicePinStrategy = new ChimeraPinStrategy(this);
+        // set this in descendent class constructor
+        this.firstFiveStrategy = null;
+        this.dicePinStrategy = new DefaultPinStrategy(this);
         this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
         this.disStrategy = new NullPromptStrategy(this, 'no');
     }
