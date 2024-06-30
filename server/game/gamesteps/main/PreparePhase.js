@@ -32,7 +32,7 @@ class PreparePhase extends Phase {
     drawCards() {
         const players = [this.game.roundFirstPlayer, this.game.roundFirstPlayer.opponent];
         players.forEach(p => {
-            if (!p.isDummy) {
+            if (!p.isChimera) {
                 this.game.actions
                     .draw({ refill: true })
                     .resolve(p, this.game.getFrameworkContext());

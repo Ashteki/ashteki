@@ -1,4 +1,4 @@
-const { CardType } = require('../../constants');
+const { CardType, Aim, ActionType } = require('../../constants');
 const DummyTurn = require('./DummyTurn');
 
 class BotTurn extends DummyTurn {
@@ -9,28 +9,45 @@ class BotTurn extends DummyTurn {
         }
 
         // shuffle hand for random?
-        const actions = this.getAllActions()[0];
-        const fave = actions[0];
+        const fave = this.getAllActions()[0];
 
         if (fave) {
-            let context = fave.createContext(this.player);
-            this.game.resolveAbility(context);
+            this.doAction(fave);
+            return;
+        } else {
+            const medFave = this.getAllActions({ ignoreDiceCost: true })[0];
+            if (medFave) {
+                // do meditation
+
+                // this.doAction(medFave);
+            }
         }
-        // play a ready spell
-        // const readySpell = this.player.hand.find(
-        //     (card) => card.type === CardType.ReadySpell && card.canPlay(this.player)
-        // );
-        // if (readySpell) {
-        //     readySpell.use(this.player);
+        // do an attack?
+        if (this.player.canAttack()) {
+            this.game.initiateAttack(this.player.opponent.phoenixborn, this.player.getAttacker());
+        }
 
+        // else no action will pass turn
 
-        // } else {
-        //     // pass (log is handled in player.endTurn)
-        // }
     }
 
-    getAllActions() {
-        return this.player.hand.map((card) => card.getLegalActions(this.player))
+    doAction(fave) {
+        let context = fave.createContext(this.player);
+        this.game.resolveAbility(context);
+    }
+
+    getAllActions(options = {}) {
+        const ignoredRequirements = options.ignoreDiceCost ? ['diceCost'] : [];
+        const usableCards = [
+            ...this.player.hand,
+            ...this.player.spellboard,
+            ...this.player.unitsInPlay
+        ];
+        const result = usableCards.reduce(
+            (agg, card) => agg.concat(card.getLegalActions(this.player, ignoredRequirements)),
+            []
+        );
+        return result;
     }
 }
 

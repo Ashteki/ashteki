@@ -183,7 +183,7 @@ var customMatchers = {
 
                 let result = {};
 
-                result.pass = card.getLegalActions(player.player, false).length > 0;
+                result.pass = card.getLegalActions(player.player).length > 0;
 
                 if (result.pass) {
                     result.message = `Expected ${card.name} not to be playable by ${player.name} but it was.`;
@@ -204,7 +204,7 @@ var customMatchers = {
 
                 let result = {};
 
-                result.pass = card.getLegalActions(player.player, false).length > 0;
+                result.pass = card.getLegalActions(player.player).length > 0;
 
                 if (result.pass) {
                     result.message = `Expected ${card.name} not to be playable by ${player.name} but it was.`;

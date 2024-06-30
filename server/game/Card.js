@@ -1413,11 +1413,11 @@ class Card extends PlayableObject {
         );
     }
 
-    getLegalActions(player) {
+    getLegalActions(player, ignoredRequirements = []) {
         let actions = this.getActions();
         actions = actions.filter((action) => {
             let context = action.createContext(player);
-            return !action.meetsRequirements(context);
+            return !action.meetsRequirements(context, ignoredRequirements);
         });
 
         return actions;

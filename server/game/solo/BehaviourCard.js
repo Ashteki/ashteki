@@ -1,4 +1,4 @@
-const { Magic, Level } = require('../../constants');
+const { Magic, Level, ActionType } = require('../../constants');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
 const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
@@ -94,11 +94,7 @@ class BehaviourCard extends Card {
         const act = this.action({
             cost: AbilityDsl.costs.sideAction(),
             target: {
-                autoTarget: (context) =>
-                    context.player.getTargetUnit(
-                        aim,
-                        (u) => !u.anyEffect('cannotBeDicePowerTarget')
-                    ),
+                autoTarget: (context) => context.player.getTargetUnit(aim, ActionType.DicePower),
                 gameAction: AbilityDsl.actions.dealDamage({ amount: amount })
             }
         });

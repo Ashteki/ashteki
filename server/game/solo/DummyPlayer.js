@@ -1,4 +1,4 @@
-const { CardType, Level, AspectTypes } = require('../../constants');
+const { CardType, ActionType } = require('../../constants');
 const Dice = require('../dice');
 const Player = require('../player');
 const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
@@ -76,22 +76,24 @@ class DummyPlayer extends Player {
             return this.opponent.phoenixborn;
         }
 
-        const targetUnit = this.getTargetUnit(
-            attacker.target,
-            (u) => !u.anyEffect('cannotBeAttackTarget')
-        );
+        const targetUnit = this.getTargetUnit(attacker.target, ActionType.Attack);
 
         return targetUnit || this.opponent.phoenixborn;
     }
 
-    getTargetUnit(direction, condition) {
+    getTargetUnit(direction, targetType) {
         const unitsCopy = [...this.opponent.unitsInPlay];
         if (direction === 'right') {
             unitsCopy.reverse();
         }
 
+        const targetConditions = {
+            [ActionType.DicePower]: (u) => !u.anyEffect('cannotBeDicePowerTarget'),
+            [ActionType.Attack]: (u) => !u.anyEffect('cannotBeAttackTarget')
+        };
+
         for (const unit of unitsCopy) {
-            if (condition(unit)) {
+            if (targetConditions[targetType](unit)) {
                 return unit;
             }
         }

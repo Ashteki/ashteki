@@ -101,6 +101,17 @@ const GameTypes = Object.freeze({
     bot: 'bot'
 });
 
+const Aim = {
+    Left: 'left',
+    Right: 'right',
+    Phoenixborn: 'jaw'
+};
+
+const ActionType = {
+    Attack: 'attack',
+    DicePower: 'dicePower'
+};
+
 module.exports = {
     Constants,
     CardType,
@@ -120,5 +131,7 @@ module.exports = {
     FaceUpLocations,
     LegalLocations,
     GameTypes,
-    GameType
+    GameType,
+    Aim,
+    ActionType
 };
