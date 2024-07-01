@@ -1,3 +1,4 @@
+const { CardType } = require('../../constants');
 const { checkTarget } = require('../targetting');
 
 class BaseCardSelector {
@@ -120,6 +121,14 @@ class BaseCardSelector {
             if (selection.some((c) => c.name === card.name)) {
                 return false;
             }
+        }
+
+        if (
+            context.source?.type === CardType.Upgrade &&
+            context.ability?.willAttach &&
+            !context.source.canAttach(card, context)
+        ) {
+            return false;
         }
 
         return (

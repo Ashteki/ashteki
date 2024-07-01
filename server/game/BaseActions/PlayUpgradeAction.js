@@ -13,6 +13,7 @@ class PlayUpgradeAction extends BasePlayAction {
             gameAction: new AttachAction((context) => ({ upgrade: context.source }))
         });
         this.title = 'Play this alteration';
+        this.willAttach = true;
     }
 
     displayMessage(context) {

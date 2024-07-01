@@ -895,7 +895,7 @@ class Player extends GameObject {
     }
 
     canAttack() {
-        return this.unitsInPlay.some((c) => c.canAttack());
+        return this.actions.main && this.unitsInPlay.some((c) => c.canAttack());
     }
 
     canSummon(stub) {

@@ -1,4 +1,3 @@
-const { CardType, Aim, ActionType } = require('../../constants');
 const DummyTurn = require('./DummyTurn');
 
 class BotTurn extends DummyTurn {
@@ -8,26 +7,35 @@ class BotTurn extends DummyTurn {
             return;
         }
 
+        // side and main should be considered
+        this.game.queueSimpleStep(() => {
+            this.considerAction();
+        });
+        this.game.queueSimpleStep(() => {
+            this.considerAction();
+        });
+    }
+
+    considerAction() {
         // shuffle hand for random?
         const fave = this.getAllActions()[0];
 
         if (fave) {
             this.doAction(fave);
             return;
-        } else {
-            const medFave = this.getAllActions({ ignoreDiceCost: true })[0];
-            if (medFave) {
-                // do meditation
-
-                // this.doAction(medFave);
-            }
         }
+        // else {
+        //     const medFave = this.getAllActions({ ignoreDiceCost: true })[0];
+        //     if (medFave) {
+        //         // do meditation
+
+        //         // this.doAction(medFave);
+        //     }
+        // }
         // do an attack?
         if (this.player.canAttack()) {
             this.game.initiateAttack(this.player.opponent.phoenixborn, this.player.getAttacker());
         }
-
-        // else no action will pass turn
 
     }
 

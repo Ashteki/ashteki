@@ -133,11 +133,12 @@ class AbilityTargetCard extends AbilityTarget {
             let amount = Math.min(this.selector.numCards, cardList.length);
             let cards = _.shuffle(cardList).slice(0, amount);
 
-            context.targets[this.name] = cards;
-            if (this.name === 'target') {
-                context.target = cards;
+            if (Array.isArray(cards) && amount === 1) {
+                cards = cards[0];
             }
-            return;
+            this.setSelected(context, cards);
+
+            return true;
         }
 
         let otherProperties = _.omit(this.properties, 'cardCondition', 'player');

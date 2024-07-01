@@ -7,8 +7,12 @@ import passIcon from '../../assets/img/pass-icon.png';
 import './CardZoom.scss';
 import './Cardlog.scss';
 import DieIcon from './DieIcon';
+import { useSelector } from 'react-redux';
 
 const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
+    const owner = useSelector(
+        (state) => state.lobby.currentGame.players[state.lobby.currentGame.owner]
+    );
     if (!items) {
         return null;
     }
@@ -87,11 +91,13 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
         if (!item.obj.id) return '';
 
         const actionText = item.type === 'play' ? 'plays' : 'uses';
-
+        let className = classNames('log-card', {
+            'other-player': item.p && item.p !== owner.name,
+        });
         return (
             <div
                 key={item.id}
-                className='log-card'
+                className={className}
                 onMouseOut={() => onMouseOut && onMouseOut(item.obj)}
                 onMouseOver={() => onMouseOver && onMouseOver(item.obj)}
             >

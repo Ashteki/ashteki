@@ -200,8 +200,19 @@ class PlayableObject extends EffectSource {
         return (
             card &&
             [...BattlefieldTypes, CardType.ReadySpell, CardType.Phoenixborn].includes(card.getType()) &&
-            this.canPlayAsUpgrade()
+            this.canPlayAsUpgrade() &&
+            (
+                !context.player.isBot ||
+                this.botTarget === 'any' ||
+                (this.botTarget === 'mine' && card.controller === context.player) ||
+                (this.botTarget === 'opponent' && card.controller === context.player.opponent)
+            )
         );
+    }
+
+    // what should a bot prefer when targetting / attaching
+    get botTarget() {
+        return 'any';
     }
 
     canPlayAsUpgrade() {

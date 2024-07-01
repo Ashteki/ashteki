@@ -11,6 +11,10 @@ class RootArmor extends Card {
             effect: ability.effects.modifyArmor(1)
         });
     }
+
+    get botTarget() {
+        return 'mine';
+    }
 }
 
 RootArmor.id = 'root-armor';
