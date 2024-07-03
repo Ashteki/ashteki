@@ -19,7 +19,7 @@ class GameFlowWrapper {
             owner: 'player1',
             solo: options.mode === 'solo',
             gameFormat: options.gameFormat,
-            newGameType: options.mode === 'solo' ? 'chimera' : 'pvp',
+            newGameType: 'pvp',
             saveGameId: 12345,
             players: [
                 {
@@ -42,6 +42,13 @@ class GameFlowWrapper {
                 }
             ]
         };
+        if (options.mode === 'bot') {
+            details.newGameType = 'bot';
+        }
+        if (options.mode === 'solo') {
+            details.newGameType = 'chimera';
+
+        }
 
         if (options.player1.dummy) {
             details.players[1].isDummy = true;
@@ -49,7 +56,8 @@ class GameFlowWrapper {
 
         if (options.player2.dummy) {
             details.players[1].isDummy = true;
-            details.players[1].isChimera = true;
+            details.players[1].isChimera = !options.player2.bot;
+            details.players[1].isBot = options.player2.bot;
         }
 
         this.game = new Game(details, {

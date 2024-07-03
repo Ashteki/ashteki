@@ -18,6 +18,14 @@ class PlayerInteractionWrapper {
         return this.player.isDummy;
     }
 
+    get isChimera() {
+        return this.player.isChimera;
+    }
+
+    get isBot() {
+        return this.player.isBot;
+    }
+
     get name() {
         return this.player.name;
     }

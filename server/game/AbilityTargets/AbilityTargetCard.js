@@ -128,17 +128,14 @@ class AbilityTargetCard extends AbilityTarget {
         }
 
         // bot does random card selection
-        if (this.random || player.isBot) {
-            const cardList = this.selector.getAllLegalTargets(context);
-            let amount = Math.min(this.selector.numCards, cardList.length);
-            let cards = _.shuffle(cardList).slice(0, amount);
-
-            if (Array.isArray(cards) && amount === 1) {
-                cards = cards[0];
-            }
-            this.setSelected(context, cards);
+        if (this.random) {
+            this.doRandomSelection(context);
 
             return true;
+        }
+
+        if (player.isBot) {
+            return player.targetCardStrategy.execute(this, context);
         }
 
         let otherProperties = _.omit(this.properties, 'cardCondition', 'player');
@@ -173,6 +170,17 @@ class AbilityTargetCard extends AbilityTarget {
 
 
         context.game.promptForSelect(player, Object.assign(promptProperties, otherProperties));
+    }
+
+    doRandomSelection(context) {
+        const cardList = this.selector.getAllLegalTargets(context);
+        let amount = Math.min(this.selector.numCards, cardList.length);
+        let cards = _.shuffle(cardList).slice(0, amount);
+
+        if (Array.isArray(cards) && amount === 1) {
+            cards = cards[0];
+        }
+        this.setSelected(context, cards);
     }
 
     setSelectedCard(context, card) {

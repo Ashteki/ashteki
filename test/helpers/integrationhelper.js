@@ -288,7 +288,7 @@ beforeEach(function () {
         this.player2.player.optionSettings.alertTimer = 0;
         this.player2.player.optionSettings.alwaysGroupTactics = false;
         this.player2.player.optionSettings.dontIceTrapOwnUnits = false;
-        if (this.player2.isDummy && !options.allowSetup) {
+        if (this.player2.isChimera && !options.allowSetup) {
             spyOn(this.player2.player, 'setupAspects');
         }
         this.startGame();
@@ -309,12 +309,12 @@ beforeEach(function () {
         if (!this.player1.isDummy) {
             this.player1.spellboard = options.player1.spellboard;
         }
-        if (!this.player2.isDummy) {
+        if (!this.player2.isChimera) {
             this.player2.spellboard = options.player2.spellboard;
         }
         this.player1.dicepool = options.player1.dicepool;
         this.player2.dicepool = options.player2.dicepool;
-        if (this.player2.isDummy) {
+        if (this.player2.isChimera) {
             if (this.player2.dicepool.length === 0) {
                 this.player2.dicepool = ['rage', 'rage', 'rage', 'rage', 'rage'];
             }
@@ -326,7 +326,7 @@ beforeEach(function () {
         this.player2.discard = options.player2.discard;
         this.player1.archives = options.player1.archives;
         this.player2.archives = options.player2.archives;
-        if (this.player2.isDummy && options.player2.threatZone) {
+        if (this.player2.isChimera && options.player2.threatZone) {
             this.player2.threatZone = options.player2.threatZone;
         }
 
