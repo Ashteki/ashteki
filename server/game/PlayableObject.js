@@ -183,6 +183,14 @@ class PlayableObject extends EffectSource {
         return ability;
     }
 
+    removeAbility(ability) {
+        this.abilities.reactions = this.abilities.reactions.filter((it) => it !== ability);
+        this.abilities.actions = this.abilities.actions.filter((it) => it !== ability);
+        this.abilities.persistentEffects = this.abilities.persistentEffects.filter(
+            (it) => it !== ability
+        );
+    }
+
     /**
      * Checks whether the passed card meets the upgrade restrictions (e.g.
      * Opponent cards only etc) for this card.

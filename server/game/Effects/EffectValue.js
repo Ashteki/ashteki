@@ -13,7 +13,7 @@ class EffectValue {
     }
 
     // eslint-disable-next-line no-unused-vars
-    getValue(target) {
+    getValue(target, state) {
         return this.value;
     }
 
@@ -22,10 +22,10 @@ class EffectValue {
     }
 
     // eslint-disable-next-line no-unused-vars
-    apply(target) {}
+    apply(target, state) { }
 
     // eslint-disable-next-line no-unused-vars
-    unapply(target) {}
+    unapply(target, state) { }
 }
 
 module.exports = EffectValue;
