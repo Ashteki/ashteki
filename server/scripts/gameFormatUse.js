@@ -49,7 +49,7 @@ gameService
             if (game.solo) {
                 monthCount[month].solo += 1;
             } else {
-                console.log(game.gameFormat);
+                // console.log(game.gameFormat);
                 monthCount[month][game.gameFormat] += 1;
             }
         });

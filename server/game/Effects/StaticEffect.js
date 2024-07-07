@@ -14,20 +14,22 @@ class StaticEffect {
         this.contextFunc = contextFunc;
         this.context = null;
         this.duration = '';
+        this.state = {};
+
     }
 
     apply(target) {
         target.addEffect(this);
-        this.value.apply(target);
+        this.value.apply(target, this.state);
     }
 
     unapply(target) {
         target.removeEffect(this);
-        this.value.unapply(target);
+        this.value.unapply(target, this.state);
     }
 
     getValue(target) {
-        return this.value.getValue(target);
+        return this.value.getValue(target, this.state);
     }
 
     recalculate() {
