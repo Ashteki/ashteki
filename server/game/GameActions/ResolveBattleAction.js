@@ -59,32 +59,38 @@ class ResolveBattleAction extends GameAction {
                     context.game.openEventWindow(damageEvent);
                 }
 
-                let defenderAmountDealt = event.attackerTarget.attack;
-                if (defenderAmountDealt > 0 && event.battle.counter) {
+                if (event.battle.counter) {
                     // Counter damage event
-                    let defenderParams = {
-                        amount: defenderAmountDealt,
-                        fightEvent: event,
-                        damageSource: event.attackerTarget,
-                        showMessage: true
-                    };
-
-                    const counterDamageEvent = context.game.actions
-                        .dealDamage(defenderParams)
-                        .getEvent(event.defenderTarget, event.context);
-
                     if (event.attacker.attacksFirst() || !damageEvent) {
-                        // add as second event
-                        context.game.openEventWindow(counterDamageEvent);
+                        // e.g. quickstrike means do this as a later step
+                        context.game.queueSimpleStep(() => {
+                            // update target e.g. dread wraith
+                            context.game.checkGameState(true);
+                            context.game.openEventWindow(this.getCounterEvent(event, context));
+                        });
                     } else {
-                        // add as child event for sim. resolution
-                        damageEvent.addChildEvent(counterDamageEvent);
+                        // simultaneous resolution as default
+                        damageEvent.addChildEvent(this.getCounterEvent(event, context));
                     }
                 }
 
                 this.battle.resolved = true;
             })
         );
+    }
+
+    getCounterEvent(event, context) {
+        let defenderParams = {
+            amount: event.attackerTarget.attack,
+            fightEvent: event,
+            damageSource: event.attackerTarget,
+            showMessage: true
+        };
+
+        const counterDamageEvent = context.game.actions
+            .dealDamage(defenderParams)
+            .getEvent(event.defenderTarget, event.context);
+        return counterDamageEvent;
     }
 
     damageWillDestroyTarget(attacker, attackAmount, target) {
