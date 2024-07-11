@@ -35,90 +35,62 @@ class ResolveBattleAction extends GameAction {
 
         this.events.push(
             context.game.getEvent('onFight', params, (event) => {
-                let defenderAmountDealt = event.attackerTarget.attack;
-                if (event.attackerTarget.anyEffect('limitFightDamageDealt')) {
-                    defenderAmountDealt = Math.min(
-                        defenderAmountDealt,
-                        ...event.attackerTarget.getEffects('limitFightDamageDealt')
-                    );
-                }
-
-                let defenderParams = {
-                    amount: defenderAmountDealt,
-                    fightEvent: event,
-                    damageSource: event.attackerTarget,
-                    showMessage: true
-                };
-
+                // attack damage event to be queued later
+                let damageEvent;
                 let attackerAmountDealt = event.attacker.exhausted
                     ? 0
                     : event.attacker.attack + event.attacker.getBonusDamage(event.attackerTarget);
-                if (event.attacker.anyEffect('limitFightDamageDealt')) {
-                    attackerAmountDealt = Math.min(
-                        attackerAmountDealt,
-                        ...event.attacker.getEffects('limitFightDamageDealt')
-                    );
-                }
+                if (attackerAmountDealt > 0) {
+                    let attackerParams = {
+                        amount: attackerAmountDealt,
+                        fightEvent: event,
+                        damageSource: event.attacker,
+                        showMessage: true
+                    };
 
-                let attackerParams = {
-                    amount: attackerAmountDealt,
-                    fightEvent: event,
-                    damageSource: event.attacker,
-                    showMessage: true
-                };
-
-                let damageEvent;
-
-                // if attacker CAN dealFightDamage
-                if (
-                    event.attacker.checkRestrictions('dealFightDamage') &&
-                    attackerParams.amount > 0
-                ) {
                     let attackerDamageEvent = context.game.actions
                         .dealDamage(attackerParams)
                         .getEvent(event.attackerTarget, event.context);
 
                     event.attackerDamageEvent = attackerDamageEvent;
                     damageEvent = attackerDamageEvent;
-                }
 
-                let counterDamageEvent;
-                if (
-                    defenderParams.amount > 0 &&
-                    // The attacker is still the defender's target (this could be switched in beforeFight interrupts?)
-                    event.defenderTarget === event.attacker &&
-                    event.battle.counter &&
-                    event.card.checkRestrictions('dealFightDamage') && // declared target can deal damage
-                    event.attackerTarget.checkRestrictions('dealFightDamageWhenDefending') // or defender can't deal damage when defending
-                ) {
-                    // Counter damage event
-                    counterDamageEvent = context.game.actions
-                        .dealDamage(defenderParams)
-                        .getEvent(event.defenderTarget, event.context);
-
-                    event.counterDamageEvent = counterDamageEvent;
-                }
-
-                // If anyone is getting damaged...
-                if (damageEvent) {
+                    // queue attacker damage
                     context.game.openEventWindow(damageEvent);
                 }
 
-                if (counterDamageEvent) {
+                if (event.battle.counter) {
+                    // Counter damage event
                     if (event.attacker.attacksFirst() || !damageEvent) {
-                        // add as second event
-                        context.game.openEventWindow(counterDamageEvent);
+                        // e.g. quickstrike means do this as a later step
+                        context.game.queueSimpleStep(() => {
+                            // update target e.g. dread wraith
+                            context.game.checkGameState(true);
+                            context.game.openEventWindow(this.getCounterEvent(event, context));
+                        });
                     } else {
-                        // add as child event for sim. resolution
-                        if (damageEvent) {
-                            damageEvent.addChildEvent(counterDamageEvent);
-                        }
+                        // simultaneous resolution as default
+                        damageEvent.addChildEvent(this.getCounterEvent(event, context));
                     }
                 }
 
                 this.battle.resolved = true;
             })
         );
+    }
+
+    getCounterEvent(event, context) {
+        let defenderParams = {
+            amount: event.attackerTarget.attack,
+            fightEvent: event,
+            damageSource: event.attackerTarget,
+            showMessage: true
+        };
+
+        const counterDamageEvent = context.game.actions
+            .dealDamage(defenderParams)
+            .getEvent(event.defenderTarget, event.context);
+        return counterDamageEvent;
     }
 
     damageWillDestroyTarget(attacker, attackAmount, target) {

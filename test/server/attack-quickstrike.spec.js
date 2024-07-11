@@ -210,4 +210,40 @@ describe('Quick Strike', function () {
             expect(this.bastionBadger.damage).toBe(2);
         });
     });
+
+    describe('BUG: QS vs dread wraith', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['seaside-raven', 'cloudburst-gryphon'],
+                    spellboard: ['summon-butterfly-monk']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['dread-wraith', 'iron-rhino'],
+                    spellboard: [],
+                    dicepool: ['natural', 'illusion', 'charm', 'charm'],
+                    hand: ['anchornaut']
+                }
+            });
+        });
+
+        it('dread wraith defender should deal adjusted damage', function () {
+            expect(this.dreadWraith.attack).toBe(1);
+            expect(this.cloudburstGryphon.damage).toBe(0);
+
+            this.player1.clickPrompt('Attack');
+            this.player1.clickCard(this.dreadWraith);
+            this.player1.clickCard(this.cloudburstGryphon);
+            this.player2.clickDone(); // no guard
+            this.player2.clickYes();
+
+            // cloudburstryphon is dead - dread wraith takes damage first then counters with buffed attack
+            expect(this.cloudburstGryphon.location).toBe('archives');
+            expect(this.dreadWraith.attack).toBe(4);
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });
