@@ -1,5 +1,5 @@
 describe('Bot Action Spells', function () {
-    describe('Steady gaze', function () {
+    describe('Steady gaze example', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'bot',
@@ -17,17 +17,16 @@ describe('Bot Action Spells', function () {
                     inPlay: ['iron-worker'],
                     spellboard: [],
                     dicepool: ['illusion', 'illusion', 'charm', 'charm'],
-                    hand: ['steady-gaze']
+                    hand: ['steady-gaze', 'summon-false-demon']
                 }
             });
         });
 
-        it('bot requires target to play action spell', function () {
+        it('bot should play spellbook if no target for SG', function () {
             this.player1.endTurn();
 
-            // bot does not play steady gaze - no targets
-
             expect(this.steadyGaze.location).toBe('hand'); // not played
+            expect(this.summonFalseDemon.location).toBe('spellboard'); // not played
         });
     });
 });

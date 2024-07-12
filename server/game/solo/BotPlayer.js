@@ -18,6 +18,19 @@ class BotPlayer extends DummyPlayer {
     get isBot() {
         return true;
     }
+
+    getAllActions(options = {}) {
+        const ignoredRequirements = options.ignoreDiceCost ? ['diceCost'] : [];
+        if (options.ignoreActionCost) {
+            ignoredRequirements.push('actionCost');
+        }
+        const usableCards = [...this.hand, ...this.spellboard, ...this.unitsInPlay];
+        const result = usableCards.reduce(
+            (agg, card) => agg.concat(card.getLegalActions(this, ignoredRequirements)),
+            []
+        );
+        return result;
+    }
 }
 
 module.exports = BotPlayer;

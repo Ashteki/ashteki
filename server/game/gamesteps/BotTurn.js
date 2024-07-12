@@ -1,6 +1,12 @@
+const BotBrain = require('../solo/BotBrain');
 const DummyTurn = require('./DummyTurn');
 
 class BotTurn extends DummyTurn {
+    constructor(game) {
+        super(game);
+        this.botBrain = new BotBrain();
+    }
+
     beginTurn() {
         if (this.player.anyEffect('mustAttack') && this.canAttack()) {
             this.player.doAttack();
@@ -17,21 +23,23 @@ class BotTurn extends DummyTurn {
     }
 
     considerAction() {
+        const botParams = {
+            legalActions: this.player.getAllActions(),
+            allActions: this.player.getAllActions({ ignoreDiceCost: true, ignoreActionCost: true }),
+            context: this.game.getFrameworkContext(this.player)
+        }
+
+        this.botBrain.weightActions(botParams);
+
         // shuffle hand for random?
-        const fave = this.getAllActions()[0];
+        botParams.legalActions.sort((a, b) => (a.weight > b.weight ? -1 : 1));
+        const fave = botParams.legalActions.filter(l => l.weight > 0)[0];
 
         if (fave) {
             this.doAction(fave);
             return;
         }
-        // else {
-        //     const medFave = this.getAllActions({ ignoreDiceCost: true })[0];
-        //     if (medFave) {
-        //         // do meditation
 
-        //         // this.doAction(medFave);
-        //     }
-        // }
         // do an attack?
         if (this.player.canAttack()) {
             this.game.initiateAttack(this.player.opponent.phoenixborn, this.player.getAttacker());
@@ -44,19 +52,7 @@ class BotTurn extends DummyTurn {
         this.game.resolveAbility(context);
     }
 
-    getAllActions(options = {}) {
-        const ignoredRequirements = options.ignoreDiceCost ? ['diceCost'] : [];
-        const usableCards = [
-            ...this.player.hand,
-            ...this.player.spellboard,
-            ...this.player.unitsInPlay
-        ];
-        const result = usableCards.reduce(
-            (agg, card) => agg.concat(card.getLegalActions(this.player, ignoredRequirements)),
-            []
-        );
-        return result;
-    }
+
 }
 
 module.exports = BotTurn;
