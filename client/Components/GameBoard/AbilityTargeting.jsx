@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import CardImage from './CardImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import spellback from '../../assets/img/cardback-spell.png';
 
 import './AbilityTargetting.scss';
 import DieIcon from './DieIcon';
@@ -41,7 +40,7 @@ class AbilityTargeting extends React.Component {
                 onMouseOut={(event) => this.onMouseOut(event, checkCard)}
                 onMouseOver={(event) => this.onMouseOver(event, checkCard)}
             >
-                <CardImage card={checkCard} cardBack={spellback} />
+                <CardImage card={checkCard} />
             </div>
         );
     }

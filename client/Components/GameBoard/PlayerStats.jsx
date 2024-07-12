@@ -21,8 +21,6 @@ import CardPileLink from './CardPileLink';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendGameMessage } from '../../redux/actions';
 import Droppable from './Droppable';
-import conjback from '../../assets/img/cardback-conjuration.png';
-import spellback from '../../assets/img/cardback-spell.png';
 import ConcedeLeave from './ConcedeLeave';
 import GameCountMenu from '../Navigation/GameCountMenu';
 import SpectatorIcon from './SpectatorIcon';
@@ -31,7 +29,6 @@ import ServerStatus from '../Navigation/ServerStatus';
 const PlayerStats = ({
     activePlayer,
     actions,
-    cardBack,
     clockState,
     compactLayout,
     firstPlayer,
@@ -266,7 +263,6 @@ const PlayerStats = ({
         onMenuItemClick,
         onPopupChange,
         onTouchMove,
-        cardBack,
         manualMode: manualModeEnabled,
         onCardClick,
         onDragDrop,
@@ -280,7 +276,6 @@ const PlayerStats = ({
         <CardPileLink
             {...pileProps}
             cards={cardPiles.archives}
-            cardBack={conjback}
             className='archives'
             title='Conjurations'
             source='archives'
@@ -291,7 +286,6 @@ const PlayerStats = ({
         <CardPileLink
             {...pileProps}
             cards={cardPiles.deck}
-            cardBack={spellback}
             className='draw'
             numDeckCards={player.numDeckCards}
             title='Draw'
@@ -303,7 +297,6 @@ const PlayerStats = ({
         <CardPileLink
             {...pileProps}
             cards={cardPiles.hand}
-            cardBack={spellback}
             className='hand-popup'
             title='Hand'
             source='hand'
