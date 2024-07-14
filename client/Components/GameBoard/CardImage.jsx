@@ -1,15 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
-import { imageUrl } from '../../util';
+import { getCardBack, imageUrl } from '../../util';
 
 import './CardImage.scss';
 
-const CardImage = ({ card, cardBack, override, noIndex }) => {
+const CardImage = ({ card, override, noIndex }) => {
     if (!card) {
         return null;
     }
 
-    let imgPath = card.facedown && !override ? cardBack : imageUrl(card.imageStub || card.id || card.alt);
+    let imgPath =
+        card.facedown && !override
+            ? imageUrl(getCardBack(card))
+            : imageUrl(card.imageStub || card.id || card.alt);
     const cardIndex =
         card.index && !card.facedown ? (
             <div className='card-index' aria-hidden='true'>

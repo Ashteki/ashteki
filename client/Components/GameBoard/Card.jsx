@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import 'jquery-migrate';
@@ -10,10 +10,6 @@ import CardCounters from './CardCounters';
 import CardImage from './CardImage';
 import { ItemTypes, UpgradeCardTypes } from '../../constants';
 import SquishableCardPanel from './SquishableCardPanel';
-import spellback from '../../assets/img/cardback-spell.png';
-import conjback from '../../assets/img/cardback-conjuration.png';
-import blood1back from '../../assets/img/cardback-aspect-blood1.png';
-import blood2back from '../../assets/img/cardback-aspect-blood2.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faLink } from '@fortawesome/free-solid-svg-icons';
@@ -369,7 +365,7 @@ const Card = ({
         });
         const image = card ? (
             <div className={imageClass}>
-                <CardImage card={card} cardBack={getCardBack(card)} />
+                <CardImage card={card} />
                 {getChainIcon(card)}
                 {getBoostedFlags(card)}
             </div>
@@ -418,12 +414,7 @@ const Card = ({
             </div>
         );
     };
-    const getCardBack = (card) => {
-        if (card.blood) {
-            return card.blood === 2 ? blood2back : blood1back;
-        }
-        return card.isConjuration ? conjback : spellback;
-    }
+
     const getStatusClass = () => {
         if (!card) {
             return undefined;

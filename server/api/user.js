@@ -122,4 +122,86 @@ module.exports.init = function (server) {
             res.send({ success: true });
         })
     );
+
+    server.get(
+        '/api/user/:username/alts/',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async (req, res) => {
+            if (
+                !(
+                    req.user.permissions &&
+                    (req.user.permissions.canManageUsers ||
+                        req.user.permissions.canManageTournaments)
+                )
+            ) {
+                return res.status(403);
+            }
+
+            let user;
+            let retUser;
+            try {
+                user = await userService.getFullUserByUsername(req.params.username);
+
+                if (!user) {
+                    return res.status(404).send({ message: 'Not found' });
+                }
+
+                retUser = user.getAltDetails();
+            } catch (error) {
+                logger.error(error);
+
+                return res.send({
+                    success: false,
+                    message: 'An error occurred searching the user.  Please try again later.'
+                });
+            }
+
+            res.send({
+                success: true,
+                user: retUser
+            });
+        })
+    );
+
+    server.patch(
+        '/api/user/:username/alts',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async (req, res) => {
+            if (
+                !req.user ||
+                !req.user.permissions ||
+                !(req.user.permissions.canManageUsers || req.user.permissions.canManageTournaments)
+            ) {
+                return res.status(401).send({ message: 'Unauthorized' });
+            }
+
+            if (!req.body.userToChange) {
+                return res.send({ success: false, message: 'You must specify the user data' });
+            }
+
+            let userToSet = req.body.userToChange;
+
+            userService
+                .getUserByUsername(req.params.username)
+                .then((user) => {
+                    if (!user) {
+                        return res.status(404).send({ message: 'Not found' });
+                    }
+
+                    user.altArts = userToSet.altArts;
+
+                    return userService.update(user);
+                })
+                .then(() => {
+                    res.send({ success: true });
+                })
+                .catch(() => {
+                    return res.send({
+                        success: false,
+                        message: 'An error occured saving the user alts'
+                    });
+                });
+        })
+    );
+
 };

@@ -7,7 +7,6 @@ import CardImage from './CardImage';
 import './CardPileLink.scss';
 
 const CardPileLink = ({
-    cardBack,
     cards,
     className,
     closeOnClick,
@@ -74,7 +73,7 @@ const CardPileLink = ({
         >
             {card && (
                 <div className='icon'>
-                    <CardImage card={card} cardBack={cardBack} orientation='vertical' size='icon' />
+                    <CardImage card={card} orientation='vertical' size='icon' />
                 </div>
             )}
             <div className={'text ' + title.toLowerCase()}>{title}:</div>
@@ -83,7 +82,6 @@ const CardPileLink = ({
             </div>
             {!disablePopup && showPopup && (
                 <CardPilePopup
-                    cardBack={cardBack}
                     cards={cards}
                     disableMouseOver={disableMouseOver}
                     manualMode={manualMode}

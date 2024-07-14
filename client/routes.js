@@ -25,6 +25,7 @@ import Patreon from './pages/Patreon';
 import FAQ from './pages/faq';
 import TaggedGames from './pages/admin/TaggedGames.jsx';
 import CardsPage from './pages/CardsPage.jsx';
+import UserAltAdmin from './pages/UserAltAdmin.jsx';
 
 const routes = [
     {
@@ -74,6 +75,11 @@ const routes = [
     { path: '/security', action: () => <Security key='security' /> },
     // admin
     { path: '/users', action: () => <UserAdmin key='useradmin' />, permission: 'canManageUsers' },
+    {
+        path: '/useralts',
+        action: () => <UserAltAdmin key='useralts' />,
+        permission: 'canManageTournaments'
+    },
     { path: '/nodes', action: () => <NodesAdmin key='nodesadmin' />, permission: 'canManageNodes' },
     {
         path: '/banlist',

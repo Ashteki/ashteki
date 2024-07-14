@@ -15,6 +15,13 @@ export function imageUrl(cardStub) {
     return `https://cdn.ashes.live/images/cards/${cardStub}.jpg`;
 }
 
+export const getCardBack = (card) => {
+    if (card.blood) {
+        return card.blood === 2 ? 'back-blood-2' : 'back-blood-2';
+    }
+    return card.isConjuration ? 'back-conjuration' : 'back';
+};
+
 export function effectUrl(effect) {
     return `/effects/${effect}.svg`;
 }
