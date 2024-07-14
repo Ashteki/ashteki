@@ -210,6 +210,15 @@ class User {
 
         return user;
     }
+
+    getAltDetails() {
+        let user = this.getShortSummary();
+
+        user.altArts = this.userData.altArts;
+
+        return user;
+    }
+
 }
 
 module.exports = User;

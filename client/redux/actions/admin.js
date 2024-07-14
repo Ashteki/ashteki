@@ -8,6 +8,15 @@ export function findUser(username) {
     };
 }
 
+export function findUserAlts(username) {
+    return {
+        types: [Admin.FindUser, Admin.UserFound],
+        shouldCallAPI: () => true,
+        APIParams: { url: `/api/user/${username}/alts`, cache: false }
+    };
+}
+
+
 export function clearUserSessions(username) {
     return (dispatch, getState) => {
         var socket = getState().lobby.socket;
@@ -32,6 +41,20 @@ export function saveUser(user) {
         }
     };
 }
+
+export function saveUserAlts(user) {
+    return {
+        types: [Admin.SaveUser, Admin.UserSaved],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: `/api/user/${user.username}/alts`,
+            cache: false,
+            type: 'PATCH',
+            data: JSON.stringify({ userToChange: user })
+        }
+    };
+}
+
 
 export function clearUserStatus() {
     return {

@@ -22,6 +22,7 @@ export const LeftMenu = [
         showOnlyWhenLoggedIn: true,
         childItems: [
             { path: '/users', title: 'Users', permission: 'canManageUsers' },
+            { path: '/useralts', title: 'User Alts', permission: 'canManageTournaments' },
             { path: '/nodes', title: 'Nodes', permission: 'canManageNodes' },
             { path: '/banlist', title: 'Ban List', permission: 'canManageBanlist' },
             { path: '/taggedgames', title: 'Tagged Games', permission: 'canManageTournaments' }
