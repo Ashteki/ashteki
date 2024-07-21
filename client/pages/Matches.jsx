@@ -109,19 +109,29 @@ const Matches = () => {
                                             {game.players[winnerIndex]?.wounds}
                                         </td>
                                         <td style={{ whiteSpace: 'nowrap' }}>
-                                            <a href={gameApiRoot + game.gameId} download={true}>
-                                                {game.gameId}
-                                            </a>
-                                            <br />
+                                            {game.gameId}<br />
                                             {duration.get('hours')}h {duration.get('minutes')}m
+                                            &nbsp;|&nbsp;
+                                            <a href={gameApiRoot + game.gameId} download={true}>data
+                                            </a>&nbsp;|&nbsp;
+                                            {game.chat && <><a
+                                                href={gameApiRoot + game.gameId + '/chat'}
+                                                target='blank'
+                                            >
+                                                Game Chat
+                                            </a>
+                                                &nbsp;</>
+                                            }
+
                                         </td>
                                     </tr>
                                 );
                             })}
                     </tbody>
                 </table>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 };
 

@@ -11,6 +11,51 @@ class GameChat {
         this.msgSeq = 0;
     }
 
+    getChatAsText() {
+        const textMessages = this.messages.map((m) => this.getMessageAsText(m.message));
+        return textMessages.join('\n');
+    }
+
+    getMessageAsText(message) {
+        const messageParts = [];
+        for (const [key, fragment] of Object.entries(message)) {
+            if (fragment === null || fragment === undefined) {
+                // messages.push('');
+
+                continue;
+            }
+            if (fragment.message) {
+                messageParts.push(this.getMessageAsText(fragment.message));
+
+            } else if (fragment.link && fragment.label) {
+                continue;
+            } else if (fragment.argType === 'card') {
+                const indexLabel = fragment.index > 0 ? ' (' + fragment.index + ')' : '';
+                messageParts.push(
+                    fragment.name + indexLabel
+
+                );
+            } else if (fragment.name && fragment.argType === 'player') {
+                continue;
+                // messageParts.push(formatPlayerChatMsg(fragment));
+            } else if (fragment.argType === 'nonAvatarPlayer') {
+                messageParts.push(fragment.name);
+            } else if (fragment.argType === 'die') {
+                messageParts.push(fragment.name
+                );
+            } else if (fragment.argType === 'actions') {
+                messageParts.push(
+                    //
+                );
+            } else {
+                let messageFragment = fragment.toString();
+                messageParts.push(messageFragment);
+            }
+
+        }
+        return messageParts.join('');
+    }
+
     pushMessage(message, activePlayer) {
         this.msgSeq++;
         const msg = { mid: this.msgSeq, date: new Date(), message: message };

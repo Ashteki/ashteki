@@ -26,10 +26,19 @@
 
 .message.this-player {
     background: #0035734d;
+
+    &:hover {
+        background: #0d3c7180;
+
+    }
 }
 
 .message.other-player {
     background: #791e1e4d;
+}
+
+.message.other-player:hover {
+    background: #791e1e85;
 }
 
 .message-chat {
