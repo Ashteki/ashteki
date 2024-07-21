@@ -53,4 +53,14 @@ module.exports.init = function (server) {
         })
     );
 
+    server.get(
+        '/api/game/:id/chat',
+        wrapAsync(async function (req, res) {
+            let game = await gameService.getGameById(req.params.id);
+            // res.attachment(req.params.id + '-chat.txt');
+            // res.type('.json');
+            res.send('<pre>' + game.chat + '</pre>');
+        })
+    );
+
 };

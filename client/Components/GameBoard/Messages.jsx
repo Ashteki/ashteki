@@ -13,23 +13,6 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     );
     const users = useSelector((state) => state.lobby.users);
 
-    const getMessage = () => {
-        return messages.map((message, index) => {
-            let className = classNames('message', {
-                'this-player': message.activePlayer && message.activePlayer == owner.name,
-                'other-player': message.activePlayer && message.activePlayer !== owner.name,
-                'chat-bubble': Object.values(message.message).some(
-                    (m) => m.name && m.argType === 'player'
-                )
-            });
-            return (
-                <div key={message.mid} className={className}>
-                    {formatMessageText(message.message, index)}
-                </div>
-            );
-        });
-    };
-
     const getUserDetails = (name) => {
         return users.find((u) => u.username === name);
     };
@@ -200,7 +183,24 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
         return messages;
     };
 
-    return <div>{getMessage()}</div>;
+    return (
+        <div>
+            {messages.map((message, index) => {
+                let className = classNames('message', {
+                    'this-player': message.activePlayer && message.activePlayer == owner.name,
+                    'other-player': message.activePlayer && message.activePlayer !== owner.name,
+                    'chat-bubble': Object.values(message.message).some(
+                        (m) => m.name && m.argType === 'player'
+                    )
+                });
+                return (
+                    <div key={message.mid} className={className}>
+                        {formatMessageText(message.message, index)}
+                    </div>
+                );
+            })}
+        </div>
+    );
 };
 
 Messages.displayName = 'Messages';

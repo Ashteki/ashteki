@@ -1756,6 +1756,11 @@ class Game extends EventEmitter {
         if (this.gameType === GameType.Competitive) {
             state.auditReport = this.auditHelper.getReport();
         }
+        try {
+            state.chat = this.gameChat.getChatAsText();
+        } catch (error) {
+            state.chat = 'ERROR:' + error.message;
+        }
 
         return state;
     }
