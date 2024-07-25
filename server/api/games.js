@@ -72,7 +72,7 @@ module.exports.init = function (server) {
             let replay = await replayService.getReplayForGame(req.params.username, req.params.id);
             // res.attachment(req.params.id + '-chat.txt');
             // res.type('.json');
-            res.send(replay);
+            res.send({ success: true, replay: replay });
         })
     );
 

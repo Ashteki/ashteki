@@ -35,6 +35,9 @@ export default function (state = defaultState, action) {
             return handleMessage(action, state);
         case 'LOBBY_MESSAGE_DELETED':
             return handleMessage(action, state);
+        case 'RECEIVE_GAMEREPLAY':
+            return handleReplay(action, state);
+
         case 'JOIN_PASSWORD_GAME':
             newState.passwordGame = action.game;
             newState.passwordJoinType = action.joinType;
@@ -260,3 +263,15 @@ function handleMessage(action, state) {
 
     return newState;
 }
+
+function handleReplay(action, state) {
+    const replay = action.response.replay;
+    const stepState = replay[0].state;
+    stepState.isReplay = true;
+    let retState = Object.assign({}, state, {
+        currentGame: stepState
+    });
+    return retState;
+}
+
+

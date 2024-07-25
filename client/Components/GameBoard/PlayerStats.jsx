@@ -63,6 +63,7 @@ const PlayerStats = ({
 }) => {
     const dispatch = useDispatch();
     const currentGame = useSelector((state) => state.lobby.currentGame);
+    const isReplay = currentGame.isReplay;
     const user = useSelector((state) => state.account.user);
     const isSpectating = !currentGame?.players[user?.username];
     const { gameConnected, gameConnecting, gameResponse } = useSelector((state) => ({
@@ -214,7 +215,7 @@ const PlayerStats = ({
     };
 
     const playerAwol = player.awol ? 'awol' : '';
-    let playerDisconnect = player.disconnected && (
+    let playerDisconnect = player.disconnected && !isReplay && (
         <div className='state'>
             <div className={`disconnected ${playerAwol}`}>Disconnected!</div>
         </div>
@@ -387,7 +388,7 @@ const PlayerStats = ({
                     </div>
                 </>
             )}
-            {!showMessages && leftMode && (
+            {!showMessages && leftMode && !isReplay && (
                 <div className='state chat-status'>
                     <ServerStatus
                         connected={gameConnected}
@@ -398,7 +399,7 @@ const PlayerStats = ({
 
                 </div>
             )}
-
+            {!showMessages && leftMode && isReplay && <div className='state chat-status'>REPLAY</div>}
         </div>
     );
 };

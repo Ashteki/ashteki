@@ -275,9 +275,21 @@ export function loadTaggedGames(tag, months) {
         APIParams: {
             url: 'api/games/' + tag,
             data: {
-                months: months,
+                months: months
             },
             cache: false
+        },
+        type: 'GET'
+    };
+}
+
+export function loadGameReplay(gameId, username) {
+    return {
+        types: ['REQUEST_GAMEREPLAY', 'RECEIVE_GAMEREPLAY'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: 'api/game/' + gameId + '/replay/' + username,
+            cache: true
         },
         type: 'GET'
     };

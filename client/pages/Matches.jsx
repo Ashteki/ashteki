@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-import { loadUserGames } from '../redux/actions';
+import { loadGameReplay, loadUserGames, navigate } from '../redux/actions';
 
 const Matches = () => {
     const dispatch = useDispatch();
@@ -125,13 +125,22 @@ const Matches = () => {
                                             </a>
                                             }
                                             &nbsp;|&nbsp;
-                                            {<a
+                                            <a
                                                 href={gameApiRoot + game.gameId + '/replay/' + username}
                                                 target='blank'
                                             >
                                                 replay data
                                             </a>
-                                            }
+                                            &nbsp;|&nbsp;
+                                            <a href='#'
+                                                onClick={() => {
+                                                    dispatch(loadGameReplay(game.gameId, username));
+                                                    dispatch(navigate('/'));
+                                                }
+                                                }
+                                            >
+                                                load replay
+                                            </a>
 
                                         </td>
                                     </tr>

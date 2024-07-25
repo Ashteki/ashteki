@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 import CardLog from './CardLog';
 import GameMenu from './GameMenu';
 import CardLogEx from './CardLogEx';
+import ReplayControls from './ReplayControls';
 import classNames from 'classnames';
-
 
 const Sidebar = ({
     thisPlayer,
@@ -23,6 +23,7 @@ const Sidebar = ({
     leftMode
 }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
+    const isReplay = currentGame.isReplay;
     const manualMode = useSelector((state) => state.lobby.currentGame.manualMode);
 
     const getTimer = (player) => {
@@ -92,14 +93,16 @@ const Sidebar = ({
             )}
             {logArea}
             <div className='inset-pane'>
-                <ActivePlayerPrompt
-                    promptState={thisPlayer.promptState}
-                    onButtonClick={onCommand}
-                    onMouseOver={onMouseOver}
-                    onMouseOut={onMouseOut}
-                    onTimerExpired={onTimerExpired}
-                    phase={currentGame.currentPhase}
-                />
+                {isReplay ?
+                    <ReplayControls /> :
+                    <ActivePlayerPrompt
+                        promptState={thisPlayer.promptState}
+                        onButtonClick={onCommand}
+                        onMouseOver={onMouseOver}
+                        onMouseOut={onMouseOut}
+                        onTimerExpired={onTimerExpired}
+                        phase={currentGame.currentPhase}
+                    />}
                 {getTimer(thisPlayer)}
             </div>
         </div>
