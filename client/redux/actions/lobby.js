@@ -61,3 +61,9 @@ export function getAllPairings() {
         }
     };
 }
+
+export function replayStepForward() {
+    return {
+        type: 'REPLAY_FORWARD'
+    };
+}

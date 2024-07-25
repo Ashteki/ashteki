@@ -23,7 +23,7 @@ const Sidebar = ({
     leftMode
 }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
-    const isReplay = currentGame.isReplay;
+    const isReplay = currentGame?.isReplay;
     const manualMode = useSelector((state) => state.lobby.currentGame.manualMode);
 
     const getTimer = (player) => {

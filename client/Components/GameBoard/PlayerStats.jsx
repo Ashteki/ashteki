@@ -63,7 +63,7 @@ const PlayerStats = ({
 }) => {
     const dispatch = useDispatch();
     const currentGame = useSelector((state) => state.lobby.currentGame);
-    const isReplay = currentGame.isReplay;
+    const isReplay = currentGame?.isReplay;
     const user = useSelector((state) => state.account.user);
     const isSpectating = !currentGame?.players[user?.username];
     const { gameConnected, gameConnecting, gameResponse } = useSelector((state) => ({

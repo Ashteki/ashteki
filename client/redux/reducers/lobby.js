@@ -38,6 +38,8 @@ export default function (state = defaultState, action) {
         case 'RECEIVE_GAMEREPLAY':
             return handleReplay(action, state);
 
+        case 'REPLAY_FORWARD':
+            return handleReplayForward(action, state);
         case 'JOIN_PASSWORD_GAME':
             newState.passwordGame = action.game;
             newState.passwordJoinType = action.joinType;
@@ -266,12 +268,24 @@ function handleMessage(action, state) {
 
 function handleReplay(action, state) {
     const replay = action.response.replay;
-    const stepState = replay[0].state;
+    const stepIndex = 0;
+    const stepState = replay[stepIndex].state;
     stepState.isReplay = true;
     let retState = Object.assign({}, state, {
+        replayData: replay,
+        stepIndex: stepIndex,
         currentGame: stepState
     });
     return retState;
 }
 
-
+function handleReplayForward(action, state) {
+    const newStepIndex = state.stepIndex + 1;
+    const newGameState = state.replayData[newStepIndex].state;
+    newGameState.isReplay = true;
+    let newState = Object.assign({}, state, {
+        stepIndex: newStepIndex,
+        currentGame: newGameState
+    });
+    return newState;
+}

@@ -29,6 +29,17 @@
         }
     }
 
+    &.border-purple {
+        .card-header {
+            background-image: url('~assets/img/panel-purple.png');
+            border-color: purple !important;
+        }
+
+        .menu-pane-source {
+            background-color: purple;
+        }
+    }
+
     &.border-border {
         box-shadow: 1px 1px 1px theme-color('border') !important;
 

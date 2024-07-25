@@ -283,6 +283,13 @@ export function loadTaggedGames(tag, months) {
     };
 }
 
+export function playerTyping(username, active) {
+    return {
+        type: 'PLAYER_TYPED',
+        active: active
+    };
+}
+
 export function loadGameReplay(gameId, username) {
     return {
         types: ['REQUEST_GAMEREPLAY', 'RECEIVE_GAMEREPLAY'],
@@ -292,12 +299,5 @@ export function loadGameReplay(gameId, username) {
             cache: true
         },
         type: 'GET'
-    };
-}
-
-export function playerTyping(username, active) {
-    return {
-        type: 'PLAYER_TYPED',
-        active: active
     };
 }

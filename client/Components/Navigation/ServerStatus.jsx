@@ -11,7 +11,7 @@ const ServerStatus = (props) => {
     const { connecting, connected, responseTime, serverType } = props;
     const { t } = useTranslation();
     const currentGame = useSelector((state) => state.lobby.currentGame);
-    const isReplay = currentGame.isReplay;
+    const isReplay = currentGame?.isReplay;
 
 
     let className = '';

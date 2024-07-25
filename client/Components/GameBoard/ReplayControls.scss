@@ -1,0 +1,17 @@
+.replay-header {
+    // background-color: red;
+}
+
+.replay-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+}
+
+.replay-control {
+    width: 32px !important;
+    height: 32px;
+    border-color: white;
+    cursor: pointer;
+}
