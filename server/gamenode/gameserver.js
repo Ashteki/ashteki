@@ -286,6 +286,14 @@ class GameServer {
         });
     }
 
+    saveReplayState(game, player, tag) {
+        this.gameSocket.send('REPLAY_STATE', {
+            game: game.getState(player),
+            username: player.user.username,
+            tag: tag
+        });
+    }
+
     /**
      * @param {import("../game/game")} game
      */

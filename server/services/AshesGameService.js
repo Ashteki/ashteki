@@ -164,7 +164,9 @@ class GameService {
 
     async findByUserName(username, options = {}) {
         const findSpec = {
-            'players.name': username
+            'players.name': username,
+            gameType: { $ne: 'beginner' },
+            solo: { $ne: true }
         };
         if (!options.includeNonWins) {
             findSpec.winner = { $exists: true };
@@ -178,7 +180,11 @@ class GameService {
             findSpec.solo = { $ne: true };
         }
         if (options.gameType) {
-            findSpec.gameType = options.gameType;
+            if (options.gameType === 'solo') {
+                findSpec.solo = true;
+            } else {
+                findSpec.gameType = options.gameType;
+            }
         }
 
         return this.games

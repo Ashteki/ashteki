@@ -6,6 +6,8 @@ import { loadUserGames } from '../redux/actions';
 
 const Matches = () => {
     const dispatch = useDispatch();
+    const username = useSelector((state) => state.account.user.username);
+
     const games = useSelector((state) => state.games.games);
     const [term, setTerm] = useState(1);
     const [gameType, setGameType] = useState('');
@@ -62,6 +64,7 @@ const Matches = () => {
                     <option value=''>All Types</option>
                     <option value='competitive'>Ranked</option>
                     <option value='casual'>Casual</option>
+                    <option value='solo'>Solo</option>
                 </select>
             </div>
 
@@ -114,13 +117,20 @@ const Matches = () => {
                                             &nbsp;|&nbsp;
                                             <a href={gameApiRoot + game.gameId} download={true}>data
                                             </a>&nbsp;|&nbsp;
-                                            {game.chat && <><a
+                                            {game.chat && <a
                                                 href={gameApiRoot + game.gameId + '/chat'}
                                                 target='blank'
                                             >
                                                 Game Chat
                                             </a>
-                                                &nbsp;</>
+                                            }
+                                            &nbsp;|&nbsp;
+                                            {<a
+                                                href={gameApiRoot + game.gameId + '/replay/' + username}
+                                                target='blank'
+                                            >
+                                                replay data
+                                            </a>
                                             }
 
                                         </td>

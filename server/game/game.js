@@ -41,6 +41,7 @@ const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
 const AuditHelper = require('./audithelper');
+const ReplayHelper = require('./ReplayHelper');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -50,6 +51,7 @@ class Game extends EventEmitter {
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
         this.auditHelper = new AuditHelper(this);
+        this.replayHelper = new ReplayHelper();
         this.cardVisibility = new CardVisibility(details.showHand, details.openHands, details.solo);
         this.solo = details.solo;
         if (this.solo) {
@@ -672,6 +674,13 @@ class Game extends EventEmitter {
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
         this.auditHelper.snapshotState('end');
+        this.saveReplayState('end');
+    }
+
+    saveReplayState(tag) {
+        this.getPlayers().forEach((player) => {
+            this.router.saveReplayState(this, player, tag);
+        });
     }
 
     /**
@@ -1091,9 +1100,12 @@ class Game extends EventEmitter {
 
         this.playersAndSpectators = players;
 
-        if (this.useGameTimeLimit && this.timeLimit) {
-            this.on('onGameStarted', () => this.timeLimit && this.timeLimit.startTimer());
-        }
+        this.on('onGameStarted', () => {
+            if (this.useGameTimeLimit && this.timeLimit) {
+                this.timeLimit && this.timeLimit.startTimer();
+            }
+            this.replayHelper.recordState(this.getState());
+        });
 
         for (let player of this.getPlayers()) {
             player.initialise();
@@ -1245,7 +1257,9 @@ class Game extends EventEmitter {
 
         this.getPlayers().forEach((p) => (p.limitedPlayed = 0)); // reset reaction count for next turn
 
-        this.raiseEvent('onBeginTurn', { player: this.activePlayer });
+        this.raiseEvent('onBeginTurn', { player: this.activePlayer }, () => {
+            this.saveReplayState('begin-turn');
+        });
         if (
             this.triggerSuddenDeath &&
             this.activePlayer === this.roundFirstPlayer &&
