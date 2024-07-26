@@ -904,7 +904,8 @@ class Lobby {
             allowSpectators: game.allowSpectators,
             swap: oldGame.swap,
             useGameTimeLimit: game.useGameTimeLimit,
-            clockType: game.clockType
+            clockType: game.clockType,
+            saveReplay: game.saveReplay
         });
         newGame.rematch = true;
 

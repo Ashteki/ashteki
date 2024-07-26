@@ -129,8 +129,6 @@ class AttackFlow extends BaseStepWithPipeline {
             this.game.openEventWindow(costEvent);
         }
 
-        this.game.saveReplayState('attackers-declared');
-
         this.game.doAttackersDeclared(this.attackingPlayer, this.attack);
     }
 

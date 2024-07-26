@@ -125,22 +125,19 @@ const Matches = () => {
                                             </a>
                                             }
                                             &nbsp;|&nbsp;
-                                            <a
-                                                href={gameApiRoot + game.gameId + '/replay/' + username}
-                                                target='blank'
-                                            >
-                                                replay data
-                                            </a>
-                                            &nbsp;|&nbsp;
-                                            <a href='#'
-                                                onClick={() => {
-                                                    dispatch(loadGameReplay(game.gameId, username));
-                                                    dispatch(navigate('/'));
-                                                }
-                                                }
-                                            >
-                                                load replay
-                                            </a>
+
+                                            {game.hasReplay && (
+                                                <a
+                                                    href='#'
+                                                    onClick={() => {
+                                                        dispatch(loadGameReplay(game.gameId, username));
+                                                        dispatch(navigate('/'));
+                                                    }
+                                                    }
+                                                >
+                                                    load replay
+                                                </a>)
+                                            }
 
                                         </td>
                                     </tr>

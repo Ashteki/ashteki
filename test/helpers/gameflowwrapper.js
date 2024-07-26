@@ -7,7 +7,8 @@ class GameFlowWrapper {
         var gameRouter = jasmine.createSpyObj('gameRouter', [
             'gameWon',
             'playerLeft',
-            'handleError'
+            'handleError',
+            'saveReplayState'
         ]);
         gameRouter.handleError.and.callFake((game, error) => {
             throw error;

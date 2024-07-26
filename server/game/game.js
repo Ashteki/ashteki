@@ -53,11 +53,15 @@ class Game extends EventEmitter {
         this.auditHelper = new AuditHelper(this);
         this.replayHelper = new ReplayHelper();
         this.cardVisibility = new CardVisibility(details.showHand, details.openHands, details.solo);
+        this.router = options.router;
+        this.saveReplay = details.saveReplay;
         this.solo = details.solo;
         if (this.solo) {
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
         }
+        // disable fatigue for tests
+        this.disableFatigue = options.disableFatigue;
 
         this.showHand = details.showHand;
         this.openHands = details.openHands;
@@ -72,8 +76,6 @@ class Game extends EventEmitter {
         this.createdAt = new Date();
         this.league = details.league;
         this.pairing = details.pairing;
-        // disable fatigue for tests
-        this.disableFatigue = options.disableFatigue;
         this.gamePrivate = details.gamePrivate;
         this.gameFormat = details.gameFormat;
         this.gameType = details.gameType;
@@ -104,7 +106,6 @@ class Game extends EventEmitter {
         this.gameFirstPlayer = null;
         this.roundFirstPlayer = null;
         this.jsonForUsers = {};
-        this.router = options.router;
         this.attackState = null;
         this.cardData = options.cardData || [];
 
@@ -678,9 +679,11 @@ class Game extends EventEmitter {
     }
 
     saveReplayState(tag) {
-        this.getPlayers().forEach((player) => {
-            this.router.saveReplayState(this, player, tag);
-        });
+        if (this.saveReplay) {
+            this.getPlayers().forEach((player) => {
+                this.router.saveReplayState(this, player, tag);
+            });
+        }
     }
 
     /**
@@ -1674,12 +1677,14 @@ class Game extends EventEmitter {
             attackingPlayer: attackingPlayer,
             battles: attackState.battles
         };
-        this.raiseEvent('onAttackersDeclared', params);
-        this.gameLog.push({
-            id: 'cl' + this.getCardLogIndex(),
-            act: 'attack',
-            obj: attackState.target,
-            player: attackingPlayer
+        this.raiseEvent('onAttackersDeclared', params, () => {
+            this.gameLog.push({
+                id: 'cl' + this.getCardLogIndex(),
+                act: 'attack',
+                obj: attackState.target,
+                player: attackingPlayer
+            });
+            this.saveReplayState('attackers-declared');
         });
     }
 

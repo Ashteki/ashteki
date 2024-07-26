@@ -270,14 +270,12 @@ function handleMessage(action, state) {
 
 function handleReplay(action, state) {
     const replay = action.response.replay;
-    const stepIndex = 0;
-    const stepState = replay[stepIndex].state;
-    stepState.isReplay = true;
     let retState = Object.assign({}, state, {
-        replayData: replay,
-        stepIndex: stepIndex,
-        currentGame: stepState
+        replayData: replay
     });
+    if (replay && replay.length > 0) {
+        retState = updateReplayState(retState, 0);
+    }
     return retState;
 }
 

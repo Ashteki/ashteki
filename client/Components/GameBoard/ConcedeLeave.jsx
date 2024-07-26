@@ -55,7 +55,7 @@ const ConcedeLeave = ({ showText }) => {
     };
 
     const onLeaveClick = () => {
-        if (!isSpectating && isGameActive()) {
+        if (!isSpectating && !currentGame.isReplay && isGameActive()) {
             toastr.confirm(
                 t(
                     'Your game is not finished. If you leave you will concede the game. Are you sure you want to leave?'
@@ -81,7 +81,7 @@ const ConcedeLeave = ({ showText }) => {
     if (!currentGame || !currentGame.started) {
         return null;
     }
-    return !isSpectating && isGameActive() && !currentGame.solo ? (
+    return !isSpectating && !currentGame.isReplay && isGameActive() && !currentGame.solo ? (
         <a
             href='#'
             className='pr-1 pl-1 game-menu-item concede'

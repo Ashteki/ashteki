@@ -14,22 +14,35 @@ const ReplayControls = () => {
     const doBackStep = () => {
         dispatch(replayStepBack());
     };
+
+    const tagToTitle = {
+        prepare: 'Start of Round',
+        ability: 'Player Action',
+        'begin-turn': 'Start of Turn',
+        'attackers-declared': 'Attackers Declared',
+        'defenders-declared': 'Defenders Declared',
+        'battle-resolved': 'Battle Resolved',
+        end: 'Game End'
+    }
     const { stepIndex, stepTag } = useSelector((state) => ({
         stepIndex: state.lobby.stepIndex,
-        stepTag: state.lobby.stepTag
-    }))
-    return <Panel title='REPLAY' cardClass='border-purple'>
-        <div>{stepTag}</div>
-        <div className='replay-controls'>
-            <button onClick={() => doBackStep()} className='replay-control  btn-primary'>
-                <FontAwesomeIcon icon={faBackwardStep} />
-            </button>
+        stepTag: tagToTitle[state.lobby.stepTag] || state.lobby.stepTag
+    }));
 
-            <button onClick={() => doForwardStep()} className='replay-control  btn-primary'>
-                <FontAwesomeIcon icon={faForwardStep} />
-            </button>
-        </div>
-    </Panel>;
+    return (
+        <Panel title='REPLAY' cardClass='border-purple'>
+            <div className='replay-step-title'>{stepTag}</div>
+            <div className='replay-controls'>
+                <button onClick={() => doBackStep()} className='replay-control  btn-primary'>
+                    <FontAwesomeIcon icon={faBackwardStep} />
+                </button>
+                <div className='replay-index'>{stepIndex}</div>
+                <button onClick={() => doForwardStep()} className='replay-control  btn-primary'>
+                    <FontAwesomeIcon icon={faForwardStep} />
+                </button>
+            </div>
+        </Panel>
+    );
 };
 
 export default ReplayControls;

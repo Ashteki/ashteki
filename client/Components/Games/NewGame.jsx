@@ -14,6 +14,7 @@ import TimeLimitIcon from '../../assets/img/Timelimit.png';
 
 import './NewGame.scss';
 import PictureButton from '../Lobby/PictureButton';
+import { PatreonStatus } from '../../types';
 
 const GameNameMaxLength = 64;
 
@@ -31,6 +32,8 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     const lobbySocket = useSelector((state) => state.lobby.socket);
     const username = useSelector((state) => state.account.user?.username);
     const newGameType = useSelector((state) => state.lobby.newGameType);
+    const user = useSelector((state) => state.account.user);
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
 
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -75,6 +78,10 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         { name: 'showHand', label: t('Show hands to spectators') },
         { name: 'openHands', label: 'Play with open hands' }
     ];
+
+    if (allowPremium) {
+        options.push({ name: 'saveReplay', label: 'Save a replay of your game' });
+    }
 
     const soloOptions = [{ name: 'allowSpectators', label: t('Allow spectators') }];
 
