@@ -16,6 +16,7 @@ class PendingGame {
             this.soloStage = '1';
         }
         this.allowSpectators = details.allowSpectators;
+        this.saveReplay = details.saveReplay
         this.createdAt = new Date();
         this.startedAt = null;
         this.finishedAt = null;
@@ -408,7 +409,8 @@ class PendingGame {
             startedAt: this.startedAt,
             solo: this.solo,
             useGameTimeLimit: this.useGameTimeLimit,
-            clockType: this.clockType
+            clockType: this.clockType,
+            saveReplay: this.saveReplay
         };
     }
 
@@ -436,6 +438,7 @@ class PendingGame {
 
         return {
             allowSpectators: this.allowSpectators,
+            saveReplay: this.saveReplay,
             createdAt: this.createdAt,
             gameFormat: this.gameFormat,
             gamePrivate: this.gamePrivate,

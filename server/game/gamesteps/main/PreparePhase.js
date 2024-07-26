@@ -8,11 +8,16 @@ class PreparePhase extends Phase {
         this.initialise([
             new SimpleStep(game, () => this.rollDice()),
             new SimpleStep(game, () => this.determineFirstPlayer()),
+            new SimpleStep(game, () => this.saveReplayState()),
             new AllPlayerDiscardPrompt(game),
             new SimpleStep(game, () => this.drawCards()),
             new SimpleStep(game, () => this.fatigueDamage()),
             new SimpleStep(game, () => this.additionalDraw())
         ]);
+    }
+
+    saveReplayState() {
+        this.game.saveReplayState('prepare');
     }
 
     determineFirstPlayer() {

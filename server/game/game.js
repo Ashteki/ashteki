@@ -41,6 +41,7 @@ const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
 const AuditHelper = require('./audithelper');
+const ReplayHelper = require('./ReplayHelper');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -50,12 +51,17 @@ class Game extends EventEmitter {
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
         this.auditHelper = new AuditHelper(this);
+        this.replayHelper = new ReplayHelper();
         this.cardVisibility = new CardVisibility(details.showHand, details.openHands, details.solo);
+        this.router = options.router;
+        this.saveReplay = details.saveReplay;
         this.solo = details.solo;
         if (this.solo) {
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
         }
+        // disable fatigue for tests
+        this.disableFatigue = options.disableFatigue;
 
         this.showHand = details.showHand;
         this.openHands = details.openHands;
@@ -70,8 +76,6 @@ class Game extends EventEmitter {
         this.createdAt = new Date();
         this.league = details.league;
         this.pairing = details.pairing;
-        // disable fatigue for tests
-        this.disableFatigue = options.disableFatigue;
         this.gamePrivate = details.gamePrivate;
         this.gameFormat = details.gameFormat;
         this.gameType = details.gameType;
@@ -102,7 +106,6 @@ class Game extends EventEmitter {
         this.gameFirstPlayer = null;
         this.roundFirstPlayer = null;
         this.jsonForUsers = {};
-        this.router = options.router;
         this.attackState = null;
         this.cardData = options.cardData || [];
 
@@ -672,6 +675,15 @@ class Game extends EventEmitter {
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
         this.auditHelper.snapshotState('end');
+        this.saveReplayState('end');
+    }
+
+    saveReplayState(tag) {
+        if (this.saveReplay) {
+            this.getPlayers().forEach((player) => {
+                this.router.saveReplayState(this, player, tag);
+            });
+        }
     }
 
     /**
@@ -1091,9 +1103,12 @@ class Game extends EventEmitter {
 
         this.playersAndSpectators = players;
 
-        if (this.useGameTimeLimit && this.timeLimit) {
-            this.on('onGameStarted', () => this.timeLimit && this.timeLimit.startTimer());
-        }
+        this.on('onGameStarted', () => {
+            if (this.useGameTimeLimit && this.timeLimit) {
+                this.timeLimit && this.timeLimit.startTimer();
+            }
+            this.replayHelper.recordState(this.getState());
+        });
 
         for (let player of this.getPlayers()) {
             player.initialise();
@@ -1245,7 +1260,9 @@ class Game extends EventEmitter {
 
         this.getPlayers().forEach((p) => (p.limitedPlayed = 0)); // reset reaction count for next turn
 
-        this.raiseEvent('onBeginTurn', { player: this.activePlayer });
+        this.raiseEvent('onBeginTurn', { player: this.activePlayer }, () => {
+            this.saveReplayState('begin-turn');
+        });
         if (
             this.triggerSuddenDeath &&
             this.activePlayer === this.roundFirstPlayer &&
@@ -1660,12 +1677,14 @@ class Game extends EventEmitter {
             attackingPlayer: attackingPlayer,
             battles: attackState.battles
         };
-        this.raiseEvent('onAttackersDeclared', params);
-        this.gameLog.push({
-            id: 'cl' + this.getCardLogIndex(),
-            act: 'attack',
-            obj: attackState.target,
-            player: attackingPlayer
+        this.raiseEvent('onAttackersDeclared', params, () => {
+            this.gameLog.push({
+                id: 'cl' + this.getCardLogIndex(),
+                act: 'attack',
+                obj: attackState.target,
+                player: attackingPlayer
+            });
+            this.saveReplayState('attackers-declared');
         });
     }
 

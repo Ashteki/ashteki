@@ -5,10 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle, faBan } from '@fortawesome/free-solid-svg-icons';
 
 import './ServerStatus.scss';
+import { useSelector } from 'react-redux';
 
 const ServerStatus = (props) => {
     const { connecting, connected, responseTime, serverType } = props;
     const { t } = useTranslation();
+    const currentGame = useSelector((state) => state.lobby.currentGame);
+    const isReplay = currentGame?.isReplay;
+
 
     let className = '';
     let toolTip = `${serverType} is`;
@@ -60,7 +64,7 @@ const ServerStatus = (props) => {
                 <span className='text-danger'>{t('Disconnected')}</span>
             </React.Fragment>
         );
-        splash = <div className='disconnect-splash panel'><span className='text-danger'>Disconnected!</span></div>
+        splash = !isReplay && <div className='disconnect-splash panel'><span className='text-danger'>Disconnected!</span></div>
     }
 
     return (

@@ -9,6 +9,7 @@ class GameService {
         const mongoUrl = process.env.MONGO_URL || configService.getValue('mongo');
         let db = monk(mongoUrl);
         this.games = db.get('games');
+        this.replays = db.get('replays');
     }
 
     create(game) {
@@ -164,7 +165,9 @@ class GameService {
 
     async findByUserName(username, options = {}) {
         const findSpec = {
-            'players.name': username
+            'players.name': username,
+            gameType: { $ne: 'beginner' },
+            solo: { $ne: true }
         };
         if (!options.includeNonWins) {
             findSpec.winner = { $exists: true };
@@ -178,7 +181,11 @@ class GameService {
             findSpec.solo = { $ne: true };
         }
         if (options.gameType) {
-            findSpec.gameType = options.gameType;
+            if (options.gameType === 'solo') {
+                findSpec.solo = true;
+            } else {
+                findSpec.gameType = options.gameType;
+            }
         }
 
         return this.games
@@ -187,9 +194,9 @@ class GameService {
                     finishedAt: -1
                 }
             })
-            .then((games) => {
+            .then(async (games) => {
                 // Make sure position zero is always the given username
-                games.forEach((game) => {
+                for (const game of games) {
                     if (game.players && game.players[0] && game.players[1]) {
                         if (game.players[1].name === username) {
                             let opponent = game.players[0];
@@ -197,7 +204,10 @@ class GameService {
                             game.players[1] = opponent;
                         }
                     }
-                });
+
+                    const hasReplay = await this.replays.findOne({ gameId: game.id });
+                    game.hasReplay = !!hasReplay;
+                };
 
                 return games;
             });

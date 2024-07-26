@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-import { loadUserGames } from '../redux/actions';
+import { loadGameReplay, loadUserGames, navigate } from '../redux/actions';
 
 const Matches = () => {
     const dispatch = useDispatch();
+    const username = useSelector((state) => state.account.user.username);
+
     const games = useSelector((state) => state.games.games);
     const [term, setTerm] = useState(1);
     const [gameType, setGameType] = useState('');
@@ -62,6 +64,7 @@ const Matches = () => {
                     <option value=''>All Types</option>
                     <option value='competitive'>Ranked</option>
                     <option value='casual'>Casual</option>
+                    <option value='solo'>Solo</option>
                 </select>
             </div>
 
@@ -114,13 +117,26 @@ const Matches = () => {
                                             &nbsp;|&nbsp;
                                             <a href={gameApiRoot + game.gameId} download={true}>data
                                             </a>&nbsp;|&nbsp;
-                                            {game.chat && <><a
+                                            {game.chat && <a
                                                 href={gameApiRoot + game.gameId + '/chat'}
                                                 target='blank'
                                             >
                                                 Game Chat
                                             </a>
-                                                &nbsp;</>
+                                            }
+                                            &nbsp;|&nbsp;
+
+                                            {game.hasReplay && (
+                                                <a
+                                                    href='#'
+                                                    onClick={() => {
+                                                        dispatch(loadGameReplay(game.gameId, username));
+                                                        dispatch(navigate('/'));
+                                                    }
+                                                    }
+                                                >
+                                                    load replay
+                                                </a>)
                                             }
 
                                         </td>

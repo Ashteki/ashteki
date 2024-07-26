@@ -9,11 +9,9 @@ try {
     collection
         .find({ 'players.name': process.argv[2] })
         .then((result) => {
-            console.log('hello');
             result.forEach(game => {
                 console.log(game);
             })
-            // console.log(result);
         })
         .then(() => db.close());
 } catch (e) {

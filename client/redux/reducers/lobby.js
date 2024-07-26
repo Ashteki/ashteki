@@ -35,6 +35,13 @@ export default function (state = defaultState, action) {
             return handleMessage(action, state);
         case 'LOBBY_MESSAGE_DELETED':
             return handleMessage(action, state);
+        case 'RECEIVE_GAMEREPLAY':
+            return handleReplay(action, state);
+
+        case 'REPLAY_FORWARD':
+            return handleReplayForward(action, state);
+        case 'REPLAY_BACK':
+            return handleReplayBack(action, state);
         case 'JOIN_PASSWORD_GAME':
             newState.passwordGame = action.game;
             newState.passwordJoinType = action.joinType;
@@ -257,6 +264,43 @@ function handleMessage(action, state) {
 
             break;
     }
+
+    return newState;
+}
+
+function handleReplay(action, state) {
+    const replay = action.response.replay;
+    let retState = Object.assign({}, state, {
+        replayData: replay
+    });
+    if (replay && replay.length > 0) {
+        retState = updateReplayState(retState, 0);
+    }
+    return retState;
+}
+
+function handleReplayForward(action, state) {
+    const newStepIndex = state.stepIndex + 1;
+
+    let newState = updateReplayState(state, newStepIndex);
+    return newState;
+}
+function updateReplayState(state, newStepIndex) {
+    const newReplayStep = state.replayData[newStepIndex];
+    const stepTag = newReplayStep.tag;
+    const newGameState = newReplayStep.state;
+    newGameState.isReplay = true;
+    let newState = Object.assign({}, state, {
+        stepIndex: newStepIndex,
+        stepTag: stepTag,
+        currentGame: newGameState
+    });
+    return newState;
+}
+
+function handleReplayBack(action, state) {
+    const newStepIndex = state.stepIndex > 0 ? state.stepIndex - 1 : 0;
+    let newState = updateReplayState(state, newStepIndex);
 
     return newState;
 }
