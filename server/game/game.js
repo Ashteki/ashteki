@@ -1806,6 +1806,8 @@ class Game extends EventEmitter {
                 })),
                 currentPhase: this.currentPhase,
                 round: this.round,
+                activePlayerName: activePlayerName,
+                activePlayerTurn: activePlayer.turn,
                 id: this.id,
                 name: this.name,
                 label: this.label,
