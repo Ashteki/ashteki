@@ -40,6 +40,8 @@ export default function (state = defaultState, action) {
 
         case 'REPLAY_FORWARD':
             return handleReplayForward(action, state);
+        case 'REPLAY_BACK':
+            return handleReplayBack(action, state);
         case 'JOIN_PASSWORD_GAME':
             newState.passwordGame = action.game;
             newState.passwordJoinType = action.joinType;
@@ -281,11 +283,26 @@ function handleReplay(action, state) {
 
 function handleReplayForward(action, state) {
     const newStepIndex = state.stepIndex + 1;
-    const newGameState = state.replayData[newStepIndex].state;
+
+    let newState = updateReplayState(state, newStepIndex);
+    return newState;
+}
+function updateReplayState(state, newStepIndex) {
+    const newReplayStep = state.replayData[newStepIndex];
+    const stepTag = newReplayStep.tag;
+    const newGameState = newReplayStep.state;
     newGameState.isReplay = true;
     let newState = Object.assign({}, state, {
         stepIndex: newStepIndex,
+        stepTag: stepTag,
         currentGame: newGameState
     });
+    return newState;
+}
+
+function handleReplayBack(action, state) {
+    const newStepIndex = state.stepIndex > 0 ? state.stepIndex - 1 : 0;
+    let newState = updateReplayState(state, newStepIndex);
+
     return newState;
 }

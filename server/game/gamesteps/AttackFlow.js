@@ -34,6 +34,7 @@ class AttackFlow extends BaseStepWithPipeline {
             new SimpleStep(this.game, () => {
                 if (!this.cancelled) {
                     this.game.raiseEvent('onDefendersDeclared', { attack: this.attack });
+                    this.game.saveReplayState('defenders-declared');
                 }
             }),
             new SimpleStep(this.game, () => {
@@ -127,6 +128,8 @@ class AttackFlow extends BaseStepWithPipeline {
             );
             this.game.openEventWindow(costEvent);
         }
+
+        this.game.saveReplayState('attackers-declared');
 
         this.game.doAttackersDeclared(this.attackingPlayer, this.attack);
     }

@@ -253,7 +253,7 @@ class GameRouter extends EventEmitter {
 
                 break;
             case 'REPLAY_STATE':
-                this.handleReplayState(message.arg.username, message.arg.game, message.arg.game);
+                this.handleReplayState(message.arg.username, message.arg.game, message.arg.tag);
                 break;
             case 'REMATCH':
                 this.gameService.update(message.arg.game);

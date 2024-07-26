@@ -67,3 +67,9 @@ export function replayStepForward() {
         type: 'REPLAY_FORWARD'
     };
 }
+
+export function replayStepBack() {
+    return {
+        type: 'REPLAY_BACK'
+    };
+}

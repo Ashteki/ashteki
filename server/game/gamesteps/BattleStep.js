@@ -42,6 +42,9 @@ class BattleStep extends BaseStepWithPipeline {
         this.queueStep(new SimpleStep(this.game, () => this.promptForCounter()));
         this.queueStep(new SimpleStep(this.game, () => this.resolveBattle()));
         this.queueStep(new SimpleStep(this.game, () => this.exhaustParticipants()));
+        this.queueStep(
+            new SimpleStep(this.game, () => this.game.saveReplayState('battle-resolved'))
+        );
     }
 
     promptForCounter() {
