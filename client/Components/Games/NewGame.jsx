@@ -79,10 +79,12 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         { name: 'allowSpectators', label: t('Allow spectators') },
         { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
         { name: 'showHand', label: t('Show hands to spectators') },
-        { name: 'openHands', label: 'Play with open hands' },
-        { name: 'saveReplay', label: 'Save a replay', disabled: !allowPremium }
+        { name: 'openHands', label: 'Play with open hands' }
     ];
 
+    if (allowPremium) {
+        options.push({ name: 'saveReplay', label: 'Save a replay' });
+    }
     const soloOptions = [{ name: 'allowSpectators', label: t('Allow spectators') }];
 
     let clockType = [
@@ -138,7 +140,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                 // inline
                 onChange={(e) => {
                     formProps.handleChange(e);
-                    if (option.name === 'ranked') {
+                    if (option.name === 'ranked' && allowPremium) {
                         formProps.setFieldValue('saveReplay', e.target.checked);
                     }
                 }}
