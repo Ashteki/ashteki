@@ -7,7 +7,6 @@ import { loadGameReplay, loadUserGames, navigate } from '../redux/actions';
 const Matches = () => {
     const dispatch = useDispatch();
     const username = useSelector((state) => state.account.user.username);
-
     const games = useSelector((state) => state.games.games);
     const [term, setTerm] = useState(1);
     const [gameType, setGameType] = useState('');
@@ -80,7 +79,7 @@ const Matches = () => {
                             <th>Winner</th>
                             <th>Ranked</th>
                             <th>Blood Pts</th>
-                            <th>details</th>
+                            <th>More</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,33 +111,37 @@ const Matches = () => {
                                             {game.players[winnerIndex]?.wounds}
                                         </td>
                                         <td style={{ whiteSpace: 'nowrap' }}>
-                                            {game.gameId}<br />
-                                            {duration.get('hours')}h {duration.get('minutes')}m
-                                            &nbsp;|&nbsp;
-                                            <a href={gameApiRoot + game.gameId} download={true}>data
-                                            </a>&nbsp;|&nbsp;
-                                            {game.chat && <a
-                                                href={gameApiRoot + game.gameId + '/chat'}
-                                                target='blank'
-                                            >
-                                                Game Chat
-                                            </a>
-                                            }
-                                            &nbsp;|&nbsp;
-
-                                            {game.hasReplay && (
+                                            {game.chat && (
                                                 <a
-                                                    href='#'
-                                                    onClick={() => {
-                                                        dispatch(loadGameReplay(game.gameId, username));
-                                                        dispatch(navigate('/'));
-                                                    }
-                                                    }
+                                                    href={gameApiRoot + game.gameId + '/chat'}
+                                                    target='blank'
                                                 >
-                                                    load replay
-                                                </a>)
-                                            }
-
+                                                    Game Chat
+                                                </a>
+                                            )}
+                                            {game.hasReplay && (
+                                                <>
+                                                    &nbsp;|&nbsp;
+                                                    <a
+                                                        href='#'
+                                                        onClick={() => {
+                                                            dispatch(loadGameReplay(game.gameId, username));
+                                                            dispatch(navigate('/'));
+                                                        }}
+                                                    >
+                                                        Load replay
+                                                    </a>
+                                                    &nbsp;|&nbsp;
+                                                    <a
+                                                        href={gameApiRoot + game.gameId + '/replay/' + username}
+                                                        download={game.gameId + '.ashteki'}
+                                                    >
+                                                        Download replay
+                                                    </a>
+                                                </>
+                                            )}
+                                            <br />
+                                            {duration.get('hours')}h {duration.get('minutes')}m
                                         </td>
                                     </tr>
                                 );

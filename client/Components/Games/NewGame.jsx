@@ -68,7 +68,8 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         clockType: 'chess',
         gamePrivate: defaultPrivate,
         ranked: false,
-        solo: newGameType === 'chimera'
+        solo: newGameType === 'chimera',
+        saveReplay: false
     };
 
     const options = [
