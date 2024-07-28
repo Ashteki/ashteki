@@ -302,6 +302,12 @@ export function loadGameReplay(gameId, username) {
     };
 }
 
+export function startGameReplay(replayData) {
+    return {
+        type: 'START_REPLAY',
+        replayData: replayData
+    }
+}
 export function clearGameReplay() {
     return {
         type: 'CLEAR_GAMEREPLAY'

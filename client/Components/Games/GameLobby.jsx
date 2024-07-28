@@ -23,6 +23,7 @@ import {
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
 import LeaguePairings from './LeaguePairings';
+import LoadReplay from './LoadReplay';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
@@ -47,6 +48,7 @@ const GameLobby = ({ gameId }) => {
     const user = useSelector((state) => state.account.user);
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
     const [showPairings, setShowPairings] = useState(false);
+    const [replayLoad, setReplayLoad] = useState(false);
     const topRef = useRef(null);
 
     useEffect(() => {
@@ -99,6 +101,14 @@ const GameLobby = ({ gameId }) => {
         }
     };
 
+    const handleReplayClick = () => {
+        if (!user) {
+            return;
+        }
+
+        setReplayLoad(true);
+    }
+
     const hidePairings = () => {
         setShowPairings(false);
     };
@@ -116,7 +126,7 @@ const GameLobby = ({ gameId }) => {
                         </div>
                     )}
                     {!showPairings && <div className='lobby-header'>{newGameText}</div>}
-                    {!newGame && !showPairings && currentGame?.started !== false && (
+                    {!newGame && !replayLoad && !showPairings && currentGame?.started !== false && (
                         <>
                             <div className='game-buttons'>
                                 <PictureButton
@@ -125,16 +135,16 @@ const GameLobby = ({ gameId }) => {
                                     onClick={() => handleNewGameClick('pvp')}
                                 />
                                 <PictureButton
+                                    text='Chimera'
+                                    imageClass='chimera'
+                                    onClick={() => handleNewGameClick('chimera')}
+                                />
+                                <PictureButton
                                     text='League'
                                     header='Discord'
                                     headerClass='discord'
                                     imageClass='league'
                                     onClick={() => handleNewGameClick('league')}
-                                />
-                                <PictureButton
-                                    text='Chimera'
-                                    imageClass='chimera'
-                                    onClick={() => handleNewGameClick('chimera')}
                                 />
                             </div>
                             <div className='lobby-header'><hr /></div>
@@ -144,18 +154,22 @@ const GameLobby = ({ gameId }) => {
                                     imageClass='decks-link'
                                     onClick={() => dispatch(navigate('/decks'))}
                                 />
-                            </div>
-                            <div className='game-buttons'>
                                 <PictureButton
                                     text='Results'
                                     imageClass='records-link'
                                     onClick={() => dispatch(navigate('/results'))}
+                                />
+                                <PictureButton
+                                    text='Replay'
+                                    imageClass='replay'
+                                    onClick={() => handleReplayClick('replay')}
                                 />
                             </div>
                         </>
 
                     )}
 
+                    {replayLoad && <LoadReplay />}
                     {newGame && <NewGame />}
                     {currentGame?.started === false && <PendingGame />}
                     {showPairings && <LeaguePairings onCancelClick={hidePairings} onPlayClick={hidePairings} />}
