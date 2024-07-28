@@ -37,7 +37,10 @@ export default function (state = defaultState, action) {
             return handleMessage(action, state);
         case 'RECEIVE_GAMEREPLAY':
             return handleReplay(action, state);
-
+        case 'START_REPLAY':
+            return handleReplayRaw(action, state);
+        case 'CLEAR_GAMEREPLAY':
+            return clearGameReplay(action, state);
         case 'REPLAY_FORWARD':
             return handleReplayForward(action, state);
         case 'REPLAY_BACK':
@@ -270,12 +273,32 @@ function handleMessage(action, state) {
 
 function handleReplay(action, state) {
     const replay = action.response.replay;
+    return startReplay(state, replay);
+}
+
+function handleReplayRaw(action, state) {
+    const replay = action.replayData;
+    return startReplay(state, replay);
+}
+
+function startReplay(state, replay) {
     let retState = Object.assign({}, state, {
         replayData: replay
     });
     if (replay && replay.length > 0) {
         retState = updateReplayState(retState, 0);
     }
+    return retState;
+}
+
+function clearGameReplay(action, state) {
+    let retState = Object.assign({}, state, {
+        replayData: undefined,
+        stepIndex: undefined,
+        stepTag: undefined,
+        currentGame: undefined
+    });
+
     return retState;
 }
 

@@ -40,8 +40,6 @@ const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt')
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
-const AuditHelper = require('./audithelper');
-const ReplayHelper = require('./ReplayHelper');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -50,8 +48,6 @@ class Game extends EventEmitter {
         this.effectEngine = new EffectEngine(this);
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
-        this.auditHelper = new AuditHelper(this);
-        this.replayHelper = new ReplayHelper();
         this.cardVisibility = new CardVisibility(details.showHand, details.openHands, details.solo);
         this.router = options.router;
         this.saveReplay = details.saveReplay;
@@ -674,7 +670,6 @@ class Game extends EventEmitter {
         }
         this.addMessage('Game finished at: {0}', moment(this.finishedAt).format('DD-MM-yy hh:mm'));
         this.winReason = reason;
-        this.auditHelper.snapshotState('end');
         this.saveReplayState('end');
     }
 
@@ -1107,7 +1102,6 @@ class Game extends EventEmitter {
             if (this.useGameTimeLimit && this.timeLimit) {
                 this.timeLimit && this.timeLimit.startTimer();
             }
-            this.replayHelper.recordState(this.getState());
         });
 
         for (let player of this.getPlayers()) {
@@ -1616,7 +1610,6 @@ class Game extends EventEmitter {
         for (let card of this.cardsInPlay) {
             card.endTurn();
         }
-        this.auditHelper.snapshotState('turn');
         this.checkForTimeExpired();
     }
 
@@ -1631,7 +1624,6 @@ class Game extends EventEmitter {
         }
 
         this.addAlert('endofround', `End of round ${this.round}`);
-        this.auditHelper.snapshotState('round');
         this.checkForTimeExpired();
     }
 
@@ -1772,9 +1764,6 @@ class Game extends EventEmitter {
             pairingId: this.pairing?.id
         };
 
-        if (this.gameType === GameType.Competitive) {
-            state.auditReport = this.auditHelper.getReport();
-        }
         try {
             state.chat = this.gameChat.getChatAsText();
         } catch (error) {
@@ -1806,6 +1795,8 @@ class Game extends EventEmitter {
                 })),
                 currentPhase: this.currentPhase,
                 round: this.round,
+                activePlayerName: activePlayerName,
+                activePlayerTurn: activePlayer.turn,
                 id: this.id,
                 name: this.name,
                 label: this.label,

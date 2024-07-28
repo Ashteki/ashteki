@@ -24,14 +24,20 @@ const ReplayControls = () => {
         'battle-resolved': 'Battle Resolved',
         end: 'Game End'
     }
-    const { stepIndex, stepTag } = useSelector((state) => ({
+    const { stepIndex, stepTag, round, turn, activePlayer } = useSelector((state) => ({
         stepIndex: state.lobby.stepIndex,
-        stepTag: tagToTitle[state.lobby.stepTag] || state.lobby.stepTag
+        stepTag: state.lobby.stepTag,
+        round: state.lobby.currentGame.round,
+        turn: state.lobby.currentGame.activePlayerTurn,
+        activePlayer: state.lobby.currentGame.activePlayerName
     }));
+
+    const title = tagToTitle[stepTag] || stepTag;
 
     return (
         <Panel title='REPLAY' cardClass='border-purple'>
-            <div className='replay-step-title'>{stepTag}</div>
+            <div className='replay-step-title'>Round {round} {turn && ', Turn' + turn}</div>
+            <div className='replay-step-title'>{title}</div>
             <div className='replay-controls'>
                 <button onClick={() => doBackStep()} className='replay-control  btn-primary'>
                     <FontAwesomeIcon icon={faBackwardStep} />

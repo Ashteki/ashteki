@@ -15,6 +15,8 @@ import TimeLimitIcon from '../../assets/img/Timelimit.png';
 import './NewGame.scss';
 import PictureButton from '../Lobby/PictureButton';
 import { PatreonStatus } from '../../types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 const GameNameMaxLength = 64;
 
@@ -68,7 +70,8 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         clockType: 'chess',
         gamePrivate: defaultPrivate,
         ranked: false,
-        solo: newGameType === 'chimera'
+        solo: newGameType === 'chimera',
+        saveReplay: false
     };
 
     const options = [
@@ -76,12 +79,9 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         { name: 'allowSpectators', label: t('Allow spectators') },
         { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
         { name: 'showHand', label: t('Show hands to spectators') },
-        { name: 'openHands', label: 'Play with open hands' }
+        { name: 'openHands', label: 'Play with open hands' },
+        { name: 'saveReplay', label: 'Save a replay', disabled: !allowPremium }
     ];
-
-    if (allowPremium) {
-        options.push({ name: 'saveReplay', label: 'Save a replay of your game' });
-    }
 
     const soloOptions = [{ name: 'allowSpectators', label: t('Allow spectators') }];
 
@@ -107,12 +107,14 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         switch (value) {
             case 'FFL':
                 setFieldValue('ranked', false);
+                setFieldValue('saveReplay', false);
                 setFieldValue('useGameTimeLimit', false);
 
                 break;
 
             case 'PHX':
                 setFieldValue('ranked', true);
+                setFieldValue('saveReplay', true);
                 setFieldValue('useGameTimeLimit', true);
                 setFieldValue('clockType', 'chess');
                 setFieldValue('gameTimeLimit', 30);
@@ -132,9 +134,13 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                 type='switch'
                 id={option.name}
                 label={option.label}
+                disabled={option.disabled}
                 // inline
                 onChange={(e) => {
                     formProps.handleChange(e);
+                    if (option.name === 'ranked') {
+                        formProps.setFieldValue('saveReplay', e.target.checked);
+                    }
                 }}
                 value='true'
                 checked={formProps.values[option.name]}
@@ -229,6 +235,12 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                 {options.map((option) => (
                                                     <Col key={option.name} lg='6'>
                                                         {getOptionToggle(option, formProps)}
+                                                        {option.disabled && (
+                                                            <span className='premium-lozenge sm'>
+                                                                <FontAwesomeIcon icon={faLock} />
+                                                                &nbsp;Premium
+                                                            </span>
+                                                        )}
                                                     </Col>
                                                 ))}
                                             </Form.Row>

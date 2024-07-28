@@ -287,8 +287,9 @@ class GameServer {
     }
 
     saveReplayState(game, player, tag) {
+        const playerName = player.user.username;
         this.gameSocket.send('REPLAY_STATE', {
-            game: game.getState(player),
+            game: game.getState(playerName),
             username: player.user.username,
             tag: tag
         });

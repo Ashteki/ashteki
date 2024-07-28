@@ -301,3 +301,15 @@ export function loadGameReplay(gameId, username) {
         type: 'GET'
     };
 }
+
+export function startGameReplay(replayData) {
+    return {
+        type: 'START_REPLAY',
+        replayData: replayData
+    }
+}
+export function clearGameReplay() {
+    return {
+        type: 'CLEAR_GAMEREPLAY'
+    };
+}
