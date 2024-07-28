@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import PictureButton from '../Lobby/PictureButton';
-import { Col, FormFile } from 'react-bootstrap';
+import { Button, Col, FormFile } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { startGameReplay } from '../../redux/actions';
-import Form from '../Form/Form';
 
-const LoadReplay = () => {
+const LoadReplay = ({ onCancel }) => {
     const dispatch = useDispatch();
     const [replayData, setReplayData] = useState();
     const onFileChange = (event) => {
@@ -46,11 +45,16 @@ const LoadReplay = () => {
                     onChange={onFileChange}
                 />
 
-                <button style={{ marginTop: '20px' }}
-                    className='btn btn-primary def' onClick={onFileUpload}>
-                    Start
-                </button>
-            </Col>
+                <div className='newgame-buttons'>
+                    <Button variant='primary' className='def' onClick={() => onCancel && onCancel()}>
+                        Cancel
+                    </Button>
+                    <button
+                        className='btn btn-secondary def' onClick={onFileUpload}>
+                        Start
+                    </button>
+                </div>
+            </Col >
 
         </div >
     );

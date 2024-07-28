@@ -169,14 +169,14 @@ const GameLobby = ({ gameId }) => {
 
                     )}
 
-                    {replayLoad && <LoadReplay />}
+                    {replayLoad && <LoadReplay onCancel={() => setReplayLoad(false)} />}
                     {newGame && <NewGame />}
                     {currentGame?.started === false && <PendingGame />}
-                    {showPairings && <LeaguePairings onCancelClick={hidePairings} onPlayClick={hidePairings} />}
+                    {showPairings && (
+                        <LeaguePairings onCancelClick={hidePairings} onPlayClick={hidePairings} />
+                    )}
                 </div>
-                <div ref={topRef}>
-                    {passwordGame && <PasswordGame />}
-                </div>
+                <div ref={topRef}>{passwordGame && <PasswordGame />}</div>
             </Col>
             <Col md='6'>
                 <div className='lobby-card'>
