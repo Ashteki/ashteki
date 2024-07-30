@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+import * as JSZip from 'jszip';
+import * as JSZipUtils from 'jszip-utils';
+import saveAs from 'file-saver';
 
 import { loadGameReplay, loadUserGames, navigate } from '../redux/actions';
+
+function urlToPromise(url) {
+    return new Promise(function (resolve, reject) {
+        JSZipUtils.getBinaryContent(url, function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+}
 
 const Matches = () => {
     const dispatch = useDispatch();
@@ -48,6 +63,35 @@ const Matches = () => {
         return game.winner === game.players[0].name ? 0 : 1;
     };
 
+    const downloadFile = (game) => {
+        const replayUrl = gameApiRoot + game.gameId + '/replay/' + username;
+        var zip = new JSZip();
+
+        // find every checked item
+
+        zip.file(game.gameId + '.replay', urlToPromise(replayUrl), { binary: true });
+
+        // when everything has been downloaded, we can trigger the dl
+        zip.generateAsync({ type: "blob" }, function updateCallback(metadata) {
+            // var msg = "progression : " + metadata.percent.toFixed(2) + " %";
+            // if (metadata.currentFile) {
+            //     msg += ", current file = " + metadata.currentFile;
+            // }
+            // showMessage(msg);
+            // updatePercent(metadata.percent | 0);
+        })
+            .then(function callback(blob) {
+
+                // see FileSaver.js
+                saveAs(blob, game.gameId + '.ashteki');
+
+                // showMessage("done !");
+            }, function (e) {
+                // showError(e);
+            });
+
+        return false;
+    }
     return (
         <div className='col-sm-offset-1 profile full-height'>
             <div className='col-md-6 inline'>
@@ -128,13 +172,11 @@ const Matches = () => {
                                                             dispatch(loadGameReplay(game.gameId, username));
                                                             dispatch(navigate('/'));
                                                         }}
-                                                    >
-                                                        Load replay
-                                                    </a>
+                                                    >Load replay</a>
                                                     &nbsp;|&nbsp;
                                                     <a
-                                                        href={gameApiRoot + game.gameId + '/replay/' + username}
-                                                        download={game.gameId + '.ashteki'}
+                                                        href='#'
+                                                        onClick={() => downloadFile(game)}
                                                     >
                                                         Download replay
                                                     </a>

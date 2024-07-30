@@ -3,24 +3,33 @@ import PictureButton from '../Lobby/PictureButton';
 import { Button, Col, FormFile } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { startGameReplay } from '../../redux/actions';
+import * as JSZip from 'jszip';
 
 const LoadReplay = ({ onCancel }) => {
     const dispatch = useDispatch();
     const [replayData, setReplayData] = useState();
+
     const onFileChange = (event) => {
+
         // Update the state
         var file = event.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function (event) {
-            // The file's text will be printed here
-            const replayFileText = event.target.result;
-            const jsonReplay = JSON.parse(replayFileText);
-            if (jsonReplay.success) {
-                setReplayData(jsonReplay.replay);
-            }
-        };
-
-        reader.readAsText(file);
+        var zip = new JSZip();
+        zip.loadAsync(file) // read the blob
+            .then(
+                (zip) => {
+                    Object.values(zip.files)[0]
+                        .async('string')
+                        .then((fileData) => {
+                            const jsonReplay = JSON.parse(fileData);
+                            if (jsonReplay.success) {
+                                setReplayData(jsonReplay.replay);
+                            }
+                        });
+                },
+                () => {
+                    alert('Not a valid zip file');
+                }
+            );
     };
 
     // On file upload (click the upload button)
