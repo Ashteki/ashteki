@@ -205,8 +205,8 @@ class GameService {
                         }
                     }
 
-                    const hasReplay = await this.replays.findOne({ gameId: game.id });
-                    game.hasReplay = !!hasReplay;
+                  //  const hasReplay = await this.replays.findOne({ gameId: game.id });
+                  //  game.hasReplay = !!hasReplay;
                 };
 
                 return games;
