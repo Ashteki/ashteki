@@ -1840,28 +1840,15 @@ class Game extends EventEmitter {
         return this.getSummary(activePlayerName);
     }
 
-    getSummary(activePlayerName, options = {}) {
+    getSummary(options = {}) {
         let playerSummaries = {};
 
         for (const player of this.getPlayers()) {
-            let deck = {};
             if (player.left) {
                 continue;
             }
 
-            if (player.deck) {
-                deck = {
-                    selected: player.deck.selected,
-                    name: null
-                };
-                if (activePlayerName === player.name) {
-                    deck.name = player.deck.name;
-                }
-            }
-
             playerSummaries[player.name] = {
-                deck: deck,
-                emailHash: player.emailHash,
                 id: player.id,
                 left: player.left,
                 lobbyId: player.lobbyId,
