@@ -49,9 +49,9 @@ const getProfilePics = async () => {
         );
         console.info('loaded', _.size(users), 'users');
         for (let user of users) {
-            let emailHash = crypto.randomBytes(32).toString('hex');
+            let randomHash = crypto.randomBytes(32).toString('hex');
             let avatar = await httpRequest(
-                `https://www.gravatar.com/avatar/${emailHash}?d=identicon&s=24`,
+                `https://www.gravatar.com/avatar/${randomHash}?d=identicon&s=24`,
                 { encoding: null }
             );
             await writeFile(`public/img/avatar/${user.username}.png`, avatar, 'binary');
