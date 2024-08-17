@@ -1837,7 +1837,7 @@ class Game extends EventEmitter {
             return result;
         }
 
-        return this.getSummary(activePlayerName);
+        return this.getSummary();
     }
 
     getSummary(options = {}) {
