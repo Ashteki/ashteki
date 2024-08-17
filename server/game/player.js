@@ -891,20 +891,19 @@ class Player extends GameObject {
 
     /**
      * This information is passed to the UI
-     * @param {Player} activePlayer
+     * @param {Player} forPlayer
      */
-
-    getState(activePlayer) {
-        let isActivePlayer = activePlayer === this;
-        let promptState = (isActivePlayer || (this.game.solo && this.isDummy)) ? this.promptState.getState() : {};
+    getState(forPlayer, options = {}) {
+        let isForMe = forPlayer === this;
+        let promptState = this.includePromptState(isForMe) ? this.promptState.getState() : {};
         let playerState = {
             cardPiles: {
-                archives: this.getSummaryForCardList(this.archives, activePlayer, true),
-                cardsInPlay: this.getSummaryForCardList(this.battlefield, activePlayer),
-                discard: this.getSummaryForCardList(this.discard, activePlayer),
-                hand: this.getSummaryForCardList(this.hand, activePlayer),
-                purged: this.getSummaryForCardList(this.purged, activePlayer),
-                spells: this.getSummaryForCardList(this.spellboard, activePlayer)
+                archives: this.getSummaryForCardList(this.archives, forPlayer, true),
+                cardsInPlay: this.getSummaryForCardList(this.battlefield, forPlayer),
+                discard: this.getSummaryForCardList(this.discard, forPlayer),
+                hand: this.getSummaryForCardList(this.hand, forPlayer),
+                purged: this.getSummaryForCardList(this.purged, forPlayer),
+                spells: this.getSummaryForCardList(this.spellboard, forPlayer)
             },
             deckNotes: this.game.currentPhase === 'setup' ? this.deckNotes : '',
             disconnected: !!this.disconnectedAt,
@@ -928,22 +927,22 @@ class Player extends GameObject {
                 faveColor: this.user.faveColor,
                 eloRating: this.user.eloRating
             },
-            deckData: isActivePlayer ? this.deckData : null,
+            deckData: isForMe ? this.deckData : null,
             wins: this.wins,
-            dice: this.getSummaryForDiceList(this.dice, activePlayer),
+            dice: this.getSummaryForDiceList(this.dice, forPlayer),
             diceCounts: this.diceCounts,
             actions: this.actions,
             limitedPlayed: this.limitedPlayed,
-            phoenixborn: this.phoenixborn.getSummary(activePlayer),
-            ultimate: this.ultimate && this.ultimate.getSummary(activePlayer),
-            behaviour: this.behaviour && this.behaviour.getSummary(activePlayer),
+            phoenixborn: this.phoenixborn.getSummary(forPlayer),
+            ultimate: this.ultimate && this.ultimate.getSummary(forPlayer),
+            behaviour: this.behaviour && this.behaviour.getSummary(forPlayer),
             medCount: this.medCount,
             totalDiceSpend: this.totalDiceSpend,
             totalCardsPlayed: this.totalCardsPlayed,
             firstPlayer: this.firstPlayer
         };
 
-        if (isActivePlayer || this.game.solo) {
+        if (isForMe || this.game.solo) {
             let sortedDeck = this.deck.slice();
             sortedDeck.sort((a, b) => {
                 const typeValueA = this.getTypeValue(a.type);
@@ -956,13 +955,13 @@ class Player extends GameObject {
 
                 return 0;
             });
-            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, activePlayer);
+            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, forPlayer);
             playerState.firstFive = this.firstFive;
             playerState.diceHistory = this.diceHistory;
-            playerState.inspectionCard = this.inspectionCard?.getSummary(activePlayer);
+            playerState.inspectionCard = this.inspectionCard?.getSummary(forPlayer);
         }
 
-        if (!isActivePlayer) {
+        if (!isForMe) {
             playerState.behaviour = this.behaviourRoll;
         }
         if (this.clock) {
@@ -971,6 +970,10 @@ class Player extends GameObject {
         playerState.promptState = promptState;
 
         return _.extend(playerState, promptState);
+    }
+
+    includePromptState(isForMe) {
+        return isForMe || (this.game.solo && this.isDummy);
     }
 
     getTypeValue(cardType) {

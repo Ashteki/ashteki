@@ -4,6 +4,7 @@ const _ = require('underscore');
 const { matchCardByNameAndPack } = require('./cardutil.js');
 const { detectBinary } = require('../../server/util');
 const Die = require('../../server/game/Die.js');
+const GameStateWriter = require('../../server/gamenode/GameStateWriter.js');
 
 class PlayerInteractionWrapper {
     constructor(game, player) {
@@ -726,7 +727,7 @@ class PlayerInteractionWrapper {
     }
 
     checkUnserializableGameState() {
-        let state = this.game.getState(this.player.name);
+        let state = new GameStateWriter(this.game).getState(this.player.name);
         let results = detectBinary(state);
 
         if (results.length !== 0) {

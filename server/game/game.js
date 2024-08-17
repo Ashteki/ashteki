@@ -7,7 +7,6 @@ const GameChat = require('./gamechat');
 const EffectEngine = require('./effectengine');
 const Player = require('./player');
 const Spectator = require('./spectator');
-const AnonymousSpectator = require('./anonymousspectator');
 const GamePipeline = require('./gamepipeline');
 const SetupPhase = require('./gamesteps/setup/setupphase');
 const RecoveryPhase = require('./gamesteps/main/RecoveryPhase');
@@ -32,7 +31,7 @@ const PlayerTurnsPhase = require('./gamesteps/main/PlayerTurnsPhase');
 const Dice = require('./dice');
 const SelectDiePrompt = require('./gamesteps/selectdieprompt');
 const MeditatePrompt = require('./gamesteps/MeditatePrompt');
-const { BattlefieldTypes, PhoenixbornTypes, ActionSpellTypes, GameType } = require('../constants');
+const { BattlefieldTypes, PhoenixbornTypes, ActionSpellTypes } = require('../constants');
 const AttackFlow = require('./gamesteps/AttackFlow');
 const ChosenDrawPrompt = require('./gamesteps/chosendrawprompt.js');
 const FirstPlayerSelection = require('./gamesteps/setup/FirstPlayerSelection');
@@ -63,7 +62,6 @@ class Game extends EventEmitter {
         this.openHands = details.openHands;
         this.allowSpectators = details.allowSpectators;
 
-        this.cancelPromptUsed = false;
         this.currentAbilityWindow = null;
         this.currentActionWindow = null;
         this.currentEventWindow = null;
@@ -675,9 +673,7 @@ class Game extends EventEmitter {
 
     saveReplayState(tag) {
         if (this.saveReplay) {
-            this.getPlayers().forEach((player) => {
-                this.router.saveReplayState(this, player, tag);
-            });
+            this.router.saveReplayState(this, tag);
         }
     }
 
@@ -1771,73 +1767,6 @@ class Game extends EventEmitter {
         }
 
         return state;
-    }
-
-    /**
-     * This information is sent to the client
-     */
-    getState(activePlayerName) {
-        let activePlayer = this.playersAndSpectators[activePlayerName] || new AnonymousSpectator();
-        let playerState = {};
-
-        if (this.started) {
-            for (const player of this.getPlayers()) {
-                playerState[player.name] = player.getState(activePlayer);
-                playerState[player.name].connected = !!player.socket;
-            }
-
-            const result = {
-                cancelPromptUsed: this.cancelPromptUsed,
-                cardLog: this.gameLog.map((i) => ({
-                    type: i.act,
-                    obj: i.obj.getShortSummary(),
-                    p: i.player?.name
-                })),
-                currentPhase: this.currentPhase,
-                round: this.round,
-                activePlayerName: activePlayerName,
-                activePlayerTurn: activePlayer.turn,
-                id: this.id,
-                name: this.name,
-                label: this.label,
-                solo: this.solo,
-                owner: this.owner,
-                players: playerState,
-                spectators: this.getSpectators().map((spectator) => {
-                    return {
-                        id: spectator.id,
-                        name: spectator.name
-                    };
-                }),
-                // game options
-                gameFormat: this.gameFormat,
-                gamePrivate: this.gamePrivate,
-                muteSpectators: this.muteSpectators,
-                openHands: this.openHands,
-                showHand: this.showHand,
-                useGameTimeLimit: this.useGameTimeLimit,
-                clockType: this.clockType,
-
-                started: this.started,
-                finishedAt: this.finishedAt,
-
-                swap: this.swap,
-                manualMode: this.manualMode,
-                messages: this.gameChat.messages,
-                attack: this.attackState ? this.attackState.getSummary() : null,
-                winner: this.winner ? this.winner.name : undefined
-            };
-
-            if (this.useGameTimeLimit && this.timeLimit) {
-                this.timeLimit.checkForTimeLimitReached();
-                result.gameTimeLimitStarted = this.timeLimit.started;
-                result.gameTimeLimitStartedAt = this.timeLimit.startedAt;
-                result.gameTimeLimit = this.timeLimit.timeLimitInMinutes;
-            }
-            return result;
-        }
-
-        return this.getSummary();
     }
 
     getSummary(options = {}) {
