@@ -340,19 +340,6 @@ class Game extends EventEmitter {
     }
 
     /**
-     * Returns the visitbility of the card for a given player.
-     * @param {Card} card
-     * @param {Player} player
-     */
-    isCardVisible(card, player) {
-        return this.cardVisibility.isVisible(card, player);
-    }
-
-    isCardPublic(card) {
-        return this.cardVisibility.isOpenInformation(card);
-    }
-
-    /**
      * Returns the card (i.e. character) with matching uuid from either players
      * 'in play' area.
      * @param {String} cardId

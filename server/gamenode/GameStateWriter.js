@@ -4,6 +4,7 @@ const PlayerStateWriter = require('./PlayerStateWriter');
 class GameStateWriter {
     constructor(game) {
         this.game = game;
+        this.cardVisibility = game.cardVisibility;
     }
 
     getStateForPlayer(player) {
@@ -16,10 +17,15 @@ class GameStateWriter {
     getState(userName, options = { replay: false }) {
         const userPlayer = this.game.playersAndSpectators[userName] || new AnonymousSpectator();
         const playerState = {};
+        const playerOptions = { deckNotes: this.game.currentPhase === 'setup' };
 
         if (this.game.started) {
             for (const player of this.game.getPlayers()) {
-                playerState[player.name] = new PlayerStateWriter(player).getState(userPlayer);
+                playerState[player.name] = new PlayerStateWriter(
+                    player,
+                    this.cardVisibility,
+                    this.game.solo
+                ).getState(userPlayer, this.game.activePlayer, playerOptions);
                 playerState[player.name].connected = !!player.socket;
             }
 

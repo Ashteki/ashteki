@@ -6,7 +6,14 @@ const ClockSelector = require('./Clocks/ClockSelector');
 const PlayableLocation = require('./playablelocation');
 const PlayerPromptState = require('./playerpromptstate');
 const GameActions = require('./GameActions');
-const { BattlefieldTypes, CardType, Location, Level, PhoenixbornTypes, Magic, LegalLocations } = require('../constants');
+const {
+    BattlefieldTypes,
+    Location,
+    Level,
+    PhoenixbornTypes,
+    Magic,
+    LegalLocations
+} = require('../constants');
 const moment = require('moment');
 
 class Player extends GameObject {
@@ -798,29 +805,6 @@ class Player extends GameObject {
         this.promptState.clearSelectableDice();
     }
 
-    getSummaryForCardList(list, activePlayer, sort = false) {
-        let returnList = list;
-        if (sort) {
-            returnList = list.sort((a, b) => {
-                if (a.id < b.id) {
-                    return -1;
-                } else if (a.id > b.id) {
-                    return 1;
-                }
-                return 0;
-            });
-        }
-        return returnList.map((card) => {
-            return card.getSummary(activePlayer);
-        });
-    }
-
-    getSummaryForDiceList(list, activePlayer) {
-        return list.map((die) => {
-            return die.getSummary(activePlayer);
-        });
-    }
-
     getCardSelectionState(card) {
         return this.promptState.getCardSelectionState(card);
     }
@@ -889,117 +873,36 @@ class Player extends GameObject {
         this.inspectionCard = null;
     }
 
-    /**
-     * This information is passed to the UI
-     * @param {Player} forPlayer
-     */
-    getState(forPlayer, options = {}) {
-        let isForMe = forPlayer === this;
-        let promptState = this.includePromptState(isForMe) ? this.promptState.getState() : {};
-        let playerState = {
-            cardPiles: {
-                archives: this.getSummaryForCardList(this.archives, forPlayer, true),
-                cardsInPlay: this.getSummaryForCardList(this.battlefield, forPlayer),
-                discard: this.getSummaryForCardList(this.discard, forPlayer),
-                hand: this.getSummaryForCardList(this.hand, forPlayer),
-                purged: this.getSummaryForCardList(this.purged, forPlayer),
-                spells: this.getSummaryForCardList(this.spellboard, forPlayer)
-            },
-            deckNotes: this.game.currentPhase === 'setup' ? this.deckNotes : '',
-            disconnected: !!this.disconnectedAt,
-            awol: !!this.isAwol,
-            activePlayer: this.game.activePlayer === this,
-            gamesPlayed: this.user.gamesPlayed ? this.user.gamesPlayed : 0,
-            avatar: this.user.avatar,
-            id: this.id,
-            left: this.left,
-            name: this.name,
-            numDeckCards: this.deck.length, // used for opponent display when deck not sent
-            optionSettings: this.optionSettings,
-            stats: this.getStats(),
-            timerSettings: {},
-            user: {
-                id: this.user.id,
-                username: this.user.username,
-                settings: this.user.settings,
-                role: this.user.role,
-                avatar: this.user.avatar,
-                faveColor: this.user.faveColor,
-                eloRating: this.user.eloRating
-            },
-            deckData: isForMe ? this.deckData : null,
-            wins: this.wins,
-            dice: this.getSummaryForDiceList(this.dice, forPlayer),
-            diceCounts: this.diceCounts,
-            actions: this.actions,
-            limitedPlayed: this.limitedPlayed,
-            phoenixborn: this.phoenixborn.getSummary(forPlayer),
-            ultimate: this.ultimate && this.ultimate.getSummary(forPlayer),
-            behaviour: this.behaviour && this.behaviour.getSummary(forPlayer),
-            medCount: this.medCount,
-            totalDiceSpend: this.totalDiceSpend,
-            totalCardsPlayed: this.totalCardsPlayed,
-            firstPlayer: this.firstPlayer
-        };
-
-        if (isForMe || this.game.solo) {
-            let sortedDeck = this.deck.slice();
-            sortedDeck.sort((a, b) => {
-                const typeValueA = this.getTypeValue(a.type);
-                const typeValueB = this.getTypeValue(b.type);
-                if (typeValueA + a.id < typeValueB + b.id) {
-                    return -1;
-                } else if (typeValueA + a.id > typeValueB + b.id) {
-                    return 1;
-                }
-
-                return 0;
-            });
-            playerState.cardPiles.deck = this.getSummaryForCardList(sortedDeck, forPlayer);
-            playerState.firstFive = this.firstFive;
-            playerState.diceHistory = this.diceHistory;
-            playerState.inspectionCard = this.inspectionCard?.getSummary(forPlayer);
-        }
-
-        if (!isForMe) {
-            playerState.behaviour = this.behaviourRoll;
-        }
-        if (this.clock) {
-            playerState.clock = this.clock.getState();
-        }
-        playerState.promptState = promptState;
-
-        return _.extend(playerState, promptState);
-    }
-
-    includePromptState(isForMe) {
-        return isForMe || (this.game.solo && this.isDummy);
-    }
-
-    getTypeValue(cardType) {
-        switch (cardType) {
-            case CardType.ReadySpell:
-                return '100';
-            case CardType.Ally:
-                return '200';
-            case CardType.Upgrade:
-            case CardType.ConjuredAlteration:
-                return '300';
-            case CardType.ActionSpell:
-                return '400';
-            case CardType.ReactionSpell:
-                return '500';
-            default:
-                return 600;
-        }
-        // Ready => Ally => Alteration => Action => Reaction
-    }
-
     mayMoveCard(card) {
         if (card.controller === this || (this.game.manualMode && this.game.solo)) {
             return true;
         }
         return false;
+    }
+
+    canPlayCard(card) {
+        // I'm the controller and there's a legal (use) action
+        return !!(
+            this.game.activePlayer === this &&
+            card.controller === this &&
+            card.getLegalActions(this).length > 0
+        );
+    }
+
+    canPlayDie(die) {
+        let canPlay = false;
+        // using try catch to prevent more errors when saving state on Gameserver.handleError
+        try {
+            canPlay = !!(
+                this.game.activePlayer === this &&
+                this === die.owner &&
+                die.getLegalActions(this).length > 0
+            );
+        } catch {
+            // using null for error state
+            canPlay = null;
+        }
+        return canPlay;
     }
 }
 

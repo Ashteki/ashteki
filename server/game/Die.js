@@ -35,40 +35,6 @@ class Die extends PlayableObject {
         return `${this.magic} ${this.level} die`;
     }
 
-    getSummary(activePlayer) {
-        let selectionState = activePlayer.getDieSelectionState(this);
-
-        let state = {
-            id: this.magic + '-magic',
-            uuid: this.uuid,
-            magic: this.magic,
-            level: this.level,
-            location: this.location,
-            exhausted: this.exhausted,
-            canPlay: this.canPlay(activePlayer),
-            menu: this.getMenu()
-        };
-
-        return Object.assign(state, selectionState);
-    }
-
-    canPlay(activePlayer) {
-        let isOwner = activePlayer === this.owner;
-        let canPlay = false;
-        // using try catch to prevent more errors when saving state on Gameserver.handleError
-        try {
-            canPlay = !!(
-                activePlayer === this.game.activePlayer &&
-                isOwner &&
-                this.getLegalActions(activePlayer).length > 0
-            );
-        } catch {
-            // using null for error state
-            canPlay = null;
-        }
-        return canPlay;
-    }
-
     getShortSummary() {
         return Object.assign(super.getShortSummary(), {
             uuid: this.uuid,

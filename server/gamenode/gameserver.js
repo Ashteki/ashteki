@@ -148,7 +148,11 @@ class GameServer {
             debugData.game.messages = undefined;
 
             for (const player of game.getPlayers()) {
-                debugData[player.name] = new PlayerStateWriter(player).getState(player);
+                debugData[player.name] = new PlayerStateWriter(
+                    player,
+                    game.cardVisibility,
+                    game.solo
+                ).getState(player, game.activePlayer);
             }
         }
 
