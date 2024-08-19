@@ -4,15 +4,16 @@ const CardStateWriter = require('./CardStateWriter');
 const DieStateWriter = require('./DieStateWriter');
 
 class PlayerStateWriter {
-    constructor(player, cardVisibility, isSolo) {
+    constructor(player, cardVisibility, isSolo, isReplay) {
         this.player = player;
         this.cardVisibility = cardVisibility;
         this.isSolo = isSolo;
+        this.isReplay = isReplay;
     }
 
     getState(forPlayer, activePlayer, options = {}) {
         const isForMe = forPlayer === this.player;
-        const showPrivateInfo = isForMe || this.isSolo;
+        const showPrivateInfo = isForMe || this.isSolo || this.isReplay;
         const promptState =
             isForMe || (this.isSolo && this.player.isDummy)
                 ? this.player.promptState.getState()
@@ -156,7 +157,8 @@ class PlayerStateWriter {
         const writer = new CardStateWriter(card);
         if (
             !this.cardVisibility.isVisible(card, activePlayer) &&
-            !this.cardVisibility.isOpenInformation(card)
+            !this.cardVisibility.isOpenInformation(card) &&
+            !this.isReplay
         ) {
             return writer.getRestrictedSummary();
         }

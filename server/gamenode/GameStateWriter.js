@@ -8,7 +8,11 @@ class GameStateWriter {
     }
 
     getStateForPlayer(player) {
-        return this.getState(player);
+        return this.getState(player.name);
+    }
+
+    getStateForReplay() {
+        return this.getState(null, { replay: true });
     }
 
     /**
@@ -17,14 +21,17 @@ class GameStateWriter {
     getState(userName, options = { replay: false }) {
         const userPlayer = this.game.playersAndSpectators[userName] || new AnonymousSpectator();
         const playerState = {};
-        const playerOptions = { deckNotes: this.game.currentPhase === 'setup' };
+        const playerOptions = {
+            deckNotes: this.game.currentPhase === 'setup'
+        };
 
         if (this.game.started) {
             for (const player of this.game.getPlayers()) {
                 playerState[player.name] = new PlayerStateWriter(
                     player,
                     this.cardVisibility,
-                    this.game.solo
+                    this.game.solo,
+                    options.replay
                 ).getState(userPlayer, this.game.activePlayer, playerOptions);
                 playerState[player.name].connected = !!player.socket;
             }

@@ -240,7 +240,7 @@ class GameServer {
                 continue;
             }
 
-            const gameState = new GameStateWriter(game).getStateForPlayer(player.name);
+            const gameState = new GameStateWriter(game).getStateForPlayer(player);
             player.socket.send('gamestate', gameState);
         }
     }
@@ -296,7 +296,7 @@ class GameServer {
     }
 
     saveReplayState(game, tag) {
-        const gameState = new GameStateWriter(game).getState();
+        const gameState = new GameStateWriter(game).getStateForReplay();
         this.gameSocket.send('REPLAY_STATE', {
             gameId: game.id,
             game: gameState,
