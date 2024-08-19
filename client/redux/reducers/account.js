@@ -54,8 +54,11 @@ export default function (state = {}, action) {
                 user: u
             });
         case 'ACCOUNT_LINK_RESPONSE':
+            var u = Object.assign({}, action.response.user);
+            u.patreon = action.response.status;
             return Object.assign({}, state, {
-                accountLinked: true
+                accountLinked: true,
+                user: u
             });
         case 'CLEAR_LINK_STATUS':
             return Object.assign({}, state, {

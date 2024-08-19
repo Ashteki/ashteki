@@ -1120,7 +1120,7 @@ module.exports.init = function (server, options) {
                 // eslint-disable-next-line no-empty
             } catch (err) { }
 
-            return res.send({ success: true });
+            return res.send({ success: true, user: user, status: status });
         })
     );
 
