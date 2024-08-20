@@ -64,7 +64,7 @@ const Matches = () => {
     };
 
     const downloadFile = (game) => {
-        const replayUrl = gameApiRoot + game.gameId + '/replay/' + username;
+        const replayUrl = gameApiRoot + game.gameId + '/replay/';
         var zip = new JSZip();
 
         // find every checked item
@@ -163,25 +163,25 @@ const Matches = () => {
                                                     Game Chat
                                                 </a>
                                             )}
-                                            {game.hasReplay && (
-                                                <>
-                                                    &nbsp;|&nbsp;
-                                                    <a
-                                                        href='#'
-                                                        onClick={() => {
-                                                            dispatch(loadGameReplay(game.gameId, username));
-                                                            dispatch(navigate('/'));
-                                                        }}
-                                                    >Load replay</a>
-                                                    &nbsp;|&nbsp;
-                                                    <a
-                                                        href='#'
-                                                        onClick={() => downloadFile(game)}
-                                                    >
-                                                        Download replay
-                                                    </a>
-                                                </>
-                                            )}
+                                            {/* {game.hasReplay && ( */}
+                                            <>
+                                                &nbsp;|&nbsp;
+                                                <a
+                                                    href='#'
+                                                    onClick={() => {
+                                                        dispatch(loadGameReplay(game.gameId));
+                                                        dispatch(navigate('/'));
+                                                    }}
+                                                >Load replay</a>
+                                                &nbsp;|&nbsp;
+                                                <a
+                                                    href='#'
+                                                    onClick={() => downloadFile(game)}
+                                                >
+                                                    Download replay
+                                                </a>
+                                            </>
+                                            {/* )} */}
                                             <br />
                                             {duration.get('hours')}h {duration.get('minutes')}m
                                         </td>
