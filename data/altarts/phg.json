@@ -103,6 +103,11 @@
             "name": "Victoria Glassfire - Straightjacket",
             "stub": "victoria-glassfire",
             "alt": "alt/victoria-glassfire"
+        },
+        {
+            "name": "Enchanted Violinist - 1.0",
+            "stub": "enchanted-violinist",
+            "alt": "alt/enchanted-violinist"
         }
     ]
 }
