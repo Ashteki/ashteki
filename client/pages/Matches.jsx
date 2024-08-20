@@ -163,25 +163,25 @@ const Matches = () => {
                                                     Game Chat
                                                 </a>
                                             )}
-                                            {/* {game.hasReplay && ( */}
-                                            <>
-                                                &nbsp;|&nbsp;
-                                                <a
-                                                    href='#'
-                                                    onClick={() => {
-                                                        dispatch(loadGameReplay(game.gameId));
-                                                        dispatch(navigate('/'));
-                                                    }}
-                                                >Load replay</a>
-                                                &nbsp;|&nbsp;
-                                                <a
-                                                    href='#'
-                                                    onClick={() => downloadFile(game)}
-                                                >
-                                                    Download replay
-                                                </a>
-                                            </>
-                                            {/* )} */}
+                                            {game.saveReplay && (
+                                                <>
+                                                    &nbsp;|&nbsp;
+                                                    <a
+                                                        href='#'
+                                                        onClick={() => {
+                                                            dispatch(loadGameReplay(game.gameId));
+                                                            dispatch(navigate('/'));
+                                                        }}
+                                                    >Load replay</a>
+                                                    &nbsp;|&nbsp;
+                                                    <a
+                                                        href='#'
+                                                        onClick={() => downloadFile(game)}
+                                                    >
+                                                        Download replay
+                                                    </a>
+                                                </>
+                                            )}
                                             <br />
                                             {duration.get('hours')}h {duration.get('minutes')}m
                                         </td>
