@@ -64,7 +64,7 @@ const Matches = () => {
     };
 
     const downloadFile = (game) => {
-        const replayUrl = gameApiRoot + game.gameId + '/replay/' + username;
+        const replayUrl = gameApiRoot + game.gameId + '/replay/';
         var zip = new JSZip();
 
         // find every checked item
@@ -163,13 +163,13 @@ const Matches = () => {
                                                     Game Chat
                                                 </a>
                                             )}
-                                            {game.hasReplay && (
+                                            {game.saveReplay && (
                                                 <>
                                                     &nbsp;|&nbsp;
                                                     <a
                                                         href='#'
                                                         onClick={() => {
-                                                            dispatch(loadGameReplay(game.gameId, username));
+                                                            dispatch(loadGameReplay(game.gameId));
                                                             dispatch(navigate('/'));
                                                         }}
                                                     >Load replay</a>

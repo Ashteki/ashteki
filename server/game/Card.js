@@ -26,6 +26,7 @@ class Card extends PlayableObject {
         super(owner.game);
         this.owner = owner;
         this.setDefaultController(owner);
+        this.facedown = false;
 
         this.cardData = cardData;
         this.isChained = cardData.isChained;
@@ -1362,18 +1363,6 @@ class Card extends PlayableObject {
         return this.abilities.reactions.find(a => a.properties.status);
     }
 
-    canPlay(activePlayer) {
-        // fudge - the getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
-        // see order of call in getState
-        let isController = activePlayer === this.controller;
-
-        return !!(
-            activePlayer === this.game.activePlayer &&
-            isController &&
-            this.getLegalActions(activePlayer).length > 0
-        )
-    }
-
     getModifiedController() {
         if (this.location === 'play area' || this.location === 'spellboard') {
             return this.mostRecentEffect('takeControl') || this.defaultController;
@@ -1392,96 +1381,12 @@ class Card extends PlayableObject {
 
     getShortSummary() {
         let result = super.getShortSummary();
-
         // Include card specific information useful for UI rendering
+        result.facedown = this.facedown;
         result.location = this.location;
         result.isChained = this.isChained;
         result.index = this.index;
         return result;
-    }
-
-    getSummary(activePlayer) {
-        let selectionState = activePlayer.getCardSelectionState(this);
-
-        if (!this.game.isCardVisible(this, activePlayer) && !this.game.isCardPublic(this)) {
-            const result = {
-                controller: this.controller.name,
-                location: this.location,
-                facedown: true,
-                uuid: this.uuid,
-                // tokens: this.tokens,
-                // armor: this.armor,
-                isConjuration: ConjuredCardTypes.includes(this.type),
-                ...selectionState
-            };
-            if (this.blood) {
-                result.blood = this.blood;
-            }
-            return result;
-        }
-
-        const canPlay =
-            activePlayer === this.game.activePlayer && // I'm the active player
-            activePlayer.promptState && // defensive for next line errors
-            activePlayer.promptState.promptTitle === 'Play phase' &&
-            this.canPlay(activePlayer);
-        // !!(
-        //     activePlayer === this.game.activePlayer &&
-        //     isController &&
-        //     //TODO: this is a bit of a fudge - the getLegalActions destroys a PlayerAction target
-        //     // and properties when interrupted mid-resolution
-        //     activePlayer.promptState.promptTitle === 'Play phase' &&
-        //     this.getLegalActions(activePlayer).length > 0
-        // );
-
-        let state = {
-            id: this.id,
-            index: this.index,
-            imageStub: this.getImageStub(),
-            altArts: this.altArts,
-            // FUDGE - Order matters here. The getLegalActions inside canPlay() destroys a PlayerAction target and properties when interrupted mid-resolution
-            canPlay: canPlay,
-            childCards: this.childCards.map((card) => {
-                return card.getSummary(activePlayer);
-            }),
-            controlled: this.owner !== this.controller,
-            facedown: this.facedown,
-            location: this.location,
-            menu: this.getMenu(),
-            name: this.name,
-            label: this.name,
-            new: this.new,
-            type: this.getType(),
-            upgrades: this.upgrades.map((upgrade) => {
-                return upgrade.getSummary(activePlayer);
-            }),
-            dieUpgrades: this.dieUpgrades.map((die) => {
-                return die.getSummary(activePlayer);
-            }),
-            tokens: this.tokens,
-            flags: this.getFlags(),
-            acquiredEffects: this.getAcquiredEffects(),
-            uuid: this.uuid,
-            isAttacker: this.isAttacker,
-            isDefender: this.isDefender,
-            isConjuration: ConjuredCardTypes.includes(this.type),
-            isChained: this.isChained,
-            conjurations: this.conjurations //?? .map((c) => c.stub),
-        };
-
-        if (this.armor > 0) {
-            state.armor = this.armor;
-        }
-        if (PhoenixbornTypes.includes(this.type)) {
-            state.life = this.life;
-            state.guarded = this.usedGuardThisRound;
-            state.damage = this.damage;
-        }
-        if (this.type === CardType.ReadySpell) {
-            state.cardSlot = this.cardSlot;
-        }
-
-        return Object.assign(state, selectionState);
     }
 }
 

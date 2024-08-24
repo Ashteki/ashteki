@@ -21,7 +21,10 @@ class CardVisibility {
     }
 
     isOpenInformation(card) {
-        return OpenInformationLocations.includes(card.location) && !(card.facedown && card.type === 'Aspect');
+        return (
+            OpenInformationLocations.includes(card.location) &&
+            !(card.facedown && card.type === 'Aspect')
+        );
     }
 
     addRule(rule) {
