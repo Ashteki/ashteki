@@ -66,10 +66,10 @@ module.exports.init = function (server) {
     );
 
     server.get(
-        '/api/game/:id/replay/:username',
+        '/api/game/:id/replay',
         // passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            let replay = await replayService.getReplayForGame(req.params.username, req.params.id);
+            let replay = await replayService.getReplayForGame(req.params.id);
             // res.attachment(req.params.id + '-chat.txt');
             // res.type('.json');
             res.send({ success: true, replay: replay });

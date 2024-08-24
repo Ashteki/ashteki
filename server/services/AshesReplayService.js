@@ -25,9 +25,8 @@ class ReplayService {
             });
     }
 
-    getReplayForGame(username, gameId) {
+    getReplayForGame(gameId) {
         const findSpec = {
-            username: username,
             gameId: gameId
         };
 

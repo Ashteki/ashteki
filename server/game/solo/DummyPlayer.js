@@ -270,15 +270,6 @@ class DummyPlayer extends Player {
         const context = ultAbility.createContext(this);
         this.game.resolveAbility(context);
     }
-
-    getState(activePlayer) {
-        const result = super.getState(activePlayer);
-        // result.cardPiles.threatZone = this.getSummaryForCardList(this.threatZone, activePlayer)
-        result.fatigued = this.fatigued;
-        result.chimeraPhase = this.chimeraPhase;
-
-        return result;
-    }
 }
 
 module.exports = DummyPlayer;
