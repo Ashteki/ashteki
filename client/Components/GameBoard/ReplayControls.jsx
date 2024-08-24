@@ -24,12 +24,12 @@ const ReplayControls = () => {
         'battle-resolved': 'Battle Resolved',
         end: 'Game End'
     }
-    const { stepIndex, stepTag, round, turn, activePlayer } = useSelector((state) => ({
+    const { stepIndex, stepTag, round, turn } = useSelector((state) => ({
         stepIndex: state.lobby.stepIndex,
         stepTag: state.lobby.stepTag,
         round: state.lobby.currentGame.round,
-        turn: state.lobby.currentGame.activePlayerTurn,
-        activePlayer: state.lobby.currentGame.activePlayerName
+        turn: state.lobby.currentGame.activePlayerTurn
+
     }));
 
     const title = tagToTitle[stepTag] || stepTag;

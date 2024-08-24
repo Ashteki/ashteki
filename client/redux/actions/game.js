@@ -290,12 +290,12 @@ export function playerTyping(username, active) {
     };
 }
 
-export function loadGameReplay(gameId, username) {
+export function loadGameReplay(gameId) {
     return {
         types: ['REQUEST_GAMEREPLAY', 'RECEIVE_GAMEREPLAY'],
         shouldCallAPI: () => true,
         APIParams: {
-            url: 'api/game/' + gameId + '/replay/' + username,
+            url: 'api/game/' + gameId + '/replay/',
             cache: true
         },
         type: 'GET'

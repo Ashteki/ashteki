@@ -366,7 +366,6 @@ class ChatCommands {
     cancelPrompt(player) {
         this.game.addAlert('danger', '{0} skips the current step.', player);
         this.game.pipeline.cancelStep();
-        this.game.cancelPromptUsed = true;
     }
 
     setToken(player, args) {

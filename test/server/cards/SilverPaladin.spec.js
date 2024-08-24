@@ -82,6 +82,99 @@ describe('Silver Paladin', function () {
         });
     });
 
+    describe('Exalt on redirect', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['anchornaut', 'silver-paladin'],
+                    dicepool: ['divine', 'natural']
+                },
+                player2: {
+                    phoenixborn: 'maeoni-viper',
+                    inPlay: ['mist-spirit', 'living-doll', 'orchid-dove', 'ash-spirit'],
+                    hand: ['redirect'],
+                    dicepool: ['charm']
+                }
+            });
+        });
+
+        it('Resolve divine die when destroying unit via redirect', function () {
+            this.player1.dicepool[0].exhausted = true;
+            expect(this.player1.dicepool[0].exhausted).toBe(true);
+            expect(this.anchornaut.dieUpgrades.length).toBe(0);
+            expect(this.anchornaut.attack).toBe(0);
+
+            this.player1.clickAttack(this.maeoniViper);
+            this.player1.clickCard(this.silverPaladin);
+            this.player1.clickDone();
+
+            this.player2.clickDone(); // no blockers
+            this.player2.clickCard(this.redirect);
+            this.player2.clickCard(this.livingDoll);
+
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.anchornaut);
+
+            expect(this.livingDoll.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.anchornaut.dieUpgrades.length).toBe(1);
+            expect(this.anchornaut.attack).toBe(1);
+        });
+
+        it('BUG REPORT: redirect into orchid dove then pally ability', function () {
+            this.player1.dicepool[0].exhausted = true;
+            expect(this.player1.dicepool[0].exhausted).toBe(true);
+            expect(this.anchornaut.dieUpgrades.length).toBe(0);
+            expect(this.anchornaut.attack).toBe(0);
+
+            this.player1.clickAttack(this.maeoniViper);
+            this.player1.clickCard(this.silverPaladin);
+            this.player1.clickDone();
+
+            this.player2.clickDone(); // no blockers
+            this.player2.clickCard(this.redirect);
+            this.player2.clickCard(this.orchidDove);
+            this.player2.clickYes();
+
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.anchornaut);
+
+            expect(this.orchidDove.location).toBe('archives');
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.anchornaut.dieUpgrades.length).toBe(1);
+            expect(this.anchornaut.attack).toBe(1);
+        });
+
+        it('BUG REPORT: redirect into ash spirit destroys pally', function () {
+            this.player1.dicepool[0].exhausted = true;
+            this.player1.dicepool[0].level = 'basic';
+            expect(this.player1.dicepool[0].exhausted).toBe(true);
+            expect(this.anchornaut.dieUpgrades.length).toBe(0);
+            expect(this.anchornaut.attack).toBe(0);
+
+            this.player1.clickAttack(this.maeoniViper);
+            this.player1.clickCard(this.silverPaladin);
+            this.player1.clickDone();
+
+            this.player2.clickDone(); // no blockers
+            this.player2.clickCard(this.redirect);
+            this.player2.clickCard(this.ashSpirit);
+
+            this.player1.clickDie(0);
+            this.player1.clickCard(this.anchornaut);
+
+            expect(this.ashSpirit.location).toBe('archives');
+            expect(this.player1).toHaveDefaultPrompt();
+
+            expect(this.silverPaladin.location).toBe('discard');
+            expect(this.anchornaut.dieUpgrades.length).toBe(1);
+            expect(this.anchornaut.attack).toBe(1);
+        });
+    });
+
     describe('Exalt on defence', function () {
         beforeEach(function () {
             this.setupTest({

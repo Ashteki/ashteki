@@ -27,7 +27,8 @@ class GameService {
             winReason: game.winReason,
             finishedAt: new Date(game.finishedAt),
             auditReport: game.auditReport,
-            chat: game.chat
+            chat: game.chat,
+            saveReplay: game.saveReplay
         };
         return this.games.update({ gameId: game.gameId }, { $set: properties }).catch((err) => {
             logger.error('Unable to update game', err);
@@ -205,8 +206,7 @@ class GameService {
                         }
                     }
 
-                  //  const hasReplay = await this.replays.findOne({ gameId: game.id });
-                  //  game.hasReplay = !!hasReplay;
+                    game.chat = !!game.chat;
                 };
 
                 return games;

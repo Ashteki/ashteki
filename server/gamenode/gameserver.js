@@ -13,10 +13,13 @@ const Socket = require('../socket');
 const ConfigService = require('../services/ConfigService');
 const version = require('../../version');
 const DummyUser = require('../models/DummyUser');
+const GameStateWriter = require('./GameStateWriter');
+const PlayerStateWriter = require('./PlayerStateWriter');
 
 class GameServer {
     constructor() {
         this.configService = new ConfigService();
+
         const sentryDsn = process.env.SENTRY_DSN || this.configService.getValue('sentryDsn');
 
         if (sentryDsn) {
@@ -131,7 +134,8 @@ class GameServer {
     handleError(game, e) {
         logger.error(e);
 
-        let gameState = game.getState();
+        let gameState = new GameStateWriter(game).getState();
+
         let debugData = {};
 
         if (e.message.includes('Maximum call stack')) {
@@ -144,7 +148,11 @@ class GameServer {
             debugData.game.messages = undefined;
 
             for (const player of game.getPlayers()) {
-                debugData[player.name] = player.getState(player);
+                debugData[player.name] = new PlayerStateWriter(
+                    player,
+                    game.cardVisibility,
+                    game.solo
+                ).getState(player, game.activePlayer);
             }
         }
 
@@ -232,7 +240,8 @@ class GameServer {
                 continue;
             }
 
-            player.socket.send('gamestate', game.getState(player.name));
+            const gameState = new GameStateWriter(game).getStateForPlayer(player);
+            player.socket.send('gamestate', gameState);
         }
     }
 
@@ -286,11 +295,11 @@ class GameServer {
         });
     }
 
-    saveReplayState(game, player, tag) {
-        const playerName = player.user.username;
+    saveReplayState(game, tag) {
+        const gameState = new GameStateWriter(game).getStateForReplay();
         this.gameSocket.send('REPLAY_STATE', {
-            game: game.getState(playerName),
-            username: player.user.username,
+            gameId: game.id,
+            game: gameState,
             tag: tag
         });
     }
