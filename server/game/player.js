@@ -659,7 +659,11 @@ class Player extends GameObject {
         } else if (['discard', 'purged'].includes(targetLocation)) {
             targetPile.unshift(card);
         } else if (targetPile) { // 'being played' does not have a target pile
-            targetPile.push(card);
+            if (options.leftmost) {
+                targetPile.unshift(card);
+            } else {
+                targetPile.push(card);
+            }
         }
 
         card.moveTo(targetLocation, options.facedown);
