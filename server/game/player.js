@@ -243,6 +243,12 @@ class Player extends GameObject {
         );
     }
 
+    getHordeAttackers(excludeList) {
+        return this.unitsInPlay.filter(
+            (u) => u.anyEffect('hordeAttack') && !excludeList.includes(u) && u.canAttack()
+        );
+    }
+
     indexOf(card) {
         return this.battlefield.indexOf(card);
     }

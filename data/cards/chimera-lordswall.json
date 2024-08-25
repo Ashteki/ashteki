@@ -1,0 +1,158 @@
+{
+    "deckType": "chimera",
+    "results": [
+        {
+            "name": "This Siege of Lordswall",
+            "stub": "siege-of-lordswall",
+            "type": "Chimera",
+            "level": "standard",
+            "rank": 1,
+            "threat": 6,
+            "life": 30,
+            "ultimate": 3,
+            "imageStub": "siege-of-lordswall-1p-standard-1.jpg"
+        },
+        {
+            "name": "Lordswall Ultimate",
+            "stub": "lordswall-ultimate",
+            "type": "Ready Spell",
+            "imageStub": "siege-of-lordswall-ultimate-%s.jpg"
+        },
+        {
+            "name": "Viros Behaviour",
+            "stub": "viros-behaviour",
+            "type": "Behaviour",
+            "imageStub": "siege-of-lordswall-behavior-%s.jpg"
+        },
+        {
+            "name": "Rainwalker",
+            "stub": "rainwalker",
+            "type": "Conjured Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 1,
+            "life": 1,
+            "blood": 0
+        },
+        {
+            "name": "At the Gates",
+            "stub": "at-the-gates",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Carrion Call",
+            "stub": "carrion-call",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Charging Horde",
+            "stub": "charging-horde",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Thunderclap",
+            "stub": "thunderclap",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Flanking Strike",
+            "stub": "flanking-strike",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Heartpiece",
+            "stub": "heartpiece",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Skeletal Wall",
+            "stub": "skeletal-wall",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 1,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Unending Forces",
+            "stub": "unending-forces",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Convert",
+            "stub": "convert",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 3,
+            "life": 4,
+            "blood": 2
+        },
+        {
+            "name": "Torrential Sacrifice",
+            "stub": "torrential-sacrifice",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Crimson Pyre",
+            "stub": "crimson-pyre",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Death Knell",
+            "stub": "death-knell",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 2,
+            "blood": 1
+        }
+    ]
+}

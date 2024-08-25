@@ -21,7 +21,12 @@ class BattleStep extends BaseStepWithPipeline {
             return true;
         }
 
-        if (this.attack.isPBAttack && this.attack.battles.length > 1) {
+        if (
+            this.attack.isPBAttack &&
+            this.attack.battles.length > 1 &&
+            //TODO: convert this check to a strategy call, or handle in selectcardprompt
+            !this.attack.attackingPlayer.isDummy
+        ) {
             this.game.promptForSelect(this.attack.attackingPlayer, {
                 activePromptTitle: 'Choose a fight to resolve',
                 controller: 'self',
@@ -95,14 +100,19 @@ class BattleStep extends BaseStepWithPipeline {
         // Correction... they may have been exhausted mid fight
         // EXCEPTION! not if it's a phoenixborn - no counter or exhaust
         if (battle.guard && !PhoenixbornTypes.includes(battle.guard.type)) {
-            if (battle.counter && battle.guard.exhaustsOnCounter()) {
+            if (
+                battle.counter &&
+                battle.guard.exhaustsOnCounter() &&
+                !battle.attackerClone.isFeeble()
+            ) {
                 participants.push(battle.guard);
             }
         } else if (
             !this.attack.isPBAttack &&
             battle.counter &&
             battle.target &&
-            battle.target.exhaustsOnCounter()
+            battle.target.exhaustsOnCounter() &&
+            !battle.attackerClone.isFeeble()
         ) {
             // otherwise if the target counters (was not guarded or blocked) they exhaust
             participants.push(battle.target);

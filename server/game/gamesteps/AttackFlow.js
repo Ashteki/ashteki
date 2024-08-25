@@ -18,11 +18,19 @@ class AttackFlow extends BaseStepWithPipeline {
 
         let steps = [];
         if (attackers) {
+            // apply attackers and skip the declare attackers step
             let attackerArray = attackers;
-            // add an attacker and skip the declare attackers
             if (!Array.isArray(attackers)) {
                 attackerArray = [attackers];
             }
+            // check for horde attack
+            if (attackerArray.some((unit) => unit.anyEffect('hordeAttack'))) {
+                const hordeAttackers = this.attackingPlayer.getHordeAttackers(attackerArray);
+                if (hordeAttackers.length > 0) {
+                    attackerArray.push(...hordeAttackers);
+                }
+            }
+
             this.assignAttackers(attackerArray);
         } else {
             steps.push(new SimpleStep(this.game, () => this.declareAttackers()));
@@ -112,6 +120,7 @@ class AttackFlow extends BaseStepWithPipeline {
             this.attack.battles.push({
                 key: key,
                 attacker: c,
+                attackerClone: c.createSnapshot(),
                 target: this.target,
                 guard: null,
                 counter: false,
@@ -136,7 +145,7 @@ class AttackFlow extends BaseStepWithPipeline {
         if (this.game.solo && !this.attackingPlayer.isDummy) {
             return new SimpleStep(this.game, () => this.attackingPlayer.opponent.defenderStrategy.execute(this.attack))
         }
-        return new ChooseDefendersPrompt(this.game, this.attack)
+        return new ChooseDefendersPrompt(this.game, this.attack);
     }
 }
 
