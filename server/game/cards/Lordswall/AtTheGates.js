@@ -6,6 +6,13 @@ class AtTheGates extends AspectCard {
 
         this.entersPlay({
             title: 'AtTheGates',
+            gameAction: ability.actions.summon({
+                conjuration: 'rainwalker',
+                leftmost: true
+            })
+        });
+
+        this.forcedInterrupt({
             when: { onRoundEnded: () => true },
             gameAction: ability.actions.summon({
                 conjuration: 'rainwalker',
