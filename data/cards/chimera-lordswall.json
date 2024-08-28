@@ -85,8 +85,8 @@
             "blood": 2
         },
         {
-            "name": "Heartpiece",
-            "stub": "heartpiece",
+            "name": "Heartpierce",
+            "stub": "heartpierce",
             "type": "Aspect",
             "placement": "battlefield",
             "target": "jaw",

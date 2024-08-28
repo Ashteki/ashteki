@@ -1,9 +1,8 @@
-const AspectCard = require("../../solo/AspectCard");
+const AspectCard = require("../../../solo/AspectCard");
 
-class ChargingHorde extends AspectCard {
+class Heartpierce extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
-        this.hordeAttack();
 
         this.forcedReaction({
             when: {
@@ -14,14 +13,19 @@ class ChargingHorde extends AspectCard {
                     );
                 }
             },
-            gameAction: ability.actions.summon({
-                conjuration: 'rainwalker'
-            })
+            target: {
+                mode: 'auto',
+                aim: 'right',
+                gameAction: ability.actions.dealDamage({
+                    amount: 2
+                })
+            },
+
         });
     }
 
 }
 
-ChargingHorde.id = 'charging-horde';
+Heartpierce.id = 'heartpierce';
 
-module.exports = ChargingHorde;
+module.exports = Heartpierce;

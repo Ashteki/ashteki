@@ -1,5 +1,5 @@
-const { Level } = require('../../../constants');
-const AspectCard = require('../../solo/AspectCard');
+const { Level } = require('../../../../constants');
+const AspectCard = require('../../../solo/AspectCard');
 
 class Thunderclap extends AspectCard {
     setupCardAbilities(ability) {
