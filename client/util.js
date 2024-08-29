@@ -17,7 +17,7 @@ export function imageUrl(cardStub) {
 
 export const getCardBack = (card) => {
     if (card.blood) {
-        return card.blood === 2 ? 'back-blood-2' : 'back-blood-2';
+        return card.blood === 2 ? 'back-blood-2' : 'back-blood-1';
     }
     return card.isConjuration ? 'back-conjuration' : 'back';
 };
