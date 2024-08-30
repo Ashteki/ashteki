@@ -19,8 +19,8 @@
             "imageStub": "siege-of-lordswall-ultimate-%s.jpg"
         },
         {
-            "name": "Viros Behaviour",
-            "stub": "viros-behaviour",
+            "name": "Lordswall Behaviour",
+            "stub": "lordswall-behaviour",
             "type": "Behaviour",
             "imageStub": "siege-of-lordswall-behavior-%s.jpg"
         },

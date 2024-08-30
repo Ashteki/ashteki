@@ -1,4 +1,4 @@
-const { Magic } = require('../../constants');
+const { Magic, Level } = require('../../constants');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
 const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
@@ -51,7 +51,7 @@ class BehaviourCard extends Card {
         return this.owner.canAttack();
     }
 
-    doAttack(attackWith) {
+    doAttack(attackWith, from) {
         if (attackWith && !attackWith.canAttack()) {
             return;
         }
@@ -59,7 +59,7 @@ class BehaviourCard extends Card {
         const attackAbility = this.behaviour({
             title: 'Attack',
             gameAction: AbilityDsl.actions.attack((context) => {
-                const attacker = attackWith || context.player.getAttacker();
+                const attacker = attackWith || context.player.getAttacker(from);
                 return {
                     attacker: attacker,
                     target: context.player.getAttackTarget(attacker)
@@ -113,6 +113,20 @@ class BehaviourCard extends Card {
                 }
             });
         }
+    }
+
+    doBasicRageReroll(numDice = 1) {
+        const act = this.action({
+            target: {
+                toSelect: 'die',
+                autoTarget: (context) =>
+                    context.player.dice.filter((d) => d.level === Level.Basic).slice(0, numDice),
+                gameAction: AbilityDsl.actions.rerollDice()
+            }
+        });
+
+        const context = act.createContext(this.owner);
+        this.game.resolveAbility(context);
     }
 
     doSummon(cardId) {

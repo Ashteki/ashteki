@@ -186,8 +186,9 @@ class DummyPlayer extends Player {
         }
     }
 
-    getAttacker() {
-        for (const card of this.unitsInPlay) {
+    getAttacker(from = 'left') {
+        const candidates = from === 'right' ? this.unitsInPlay.slice().reverse() : this.unitsInPlay;
+        for (const card of candidates) {
             if (card.canAttack()) {
                 return card;
             }
