@@ -3,26 +3,37 @@ const UltimateCard = require('../../../solo/UltimateCard');
 
 class LordswallUltimate extends UltimateCard {
     getUltimateAbility(phase) {
-        if (phase < 3) {
-            return this.ultimate({
-                effect: 'deal {0} damage to all opponent units and phoenixborn',
-                effectArgs: () => phase,
-                target: {
-                    ignoreTargetCheck: true,
-                    autoTarget: (context) => [
-                        ...context.player.opponent.unitsInPlay,
-                        context.player.opponent.phoenixborn
-                    ],
-                    gameAction: AbilityDsl.actions.orderedAoE({
-                        gameAction: AbilityDsl.actions.dealDamage({ amount: phase, showMessage: true }),
-                        promptTitle: 'Chimera Ultimate'
+        switch (phase) {
+            case 1:
+            case 2:
+                return this.ultimate({
+                    effect: 'deal {0} damage to all opponent units',
+                    effectArgs: () => phase,
+                    target: {
+                        ignoreTargetCheck: true,
+                        autoTarget: (context) => context.player.opponent.unitsInPlay,
+                        gameAction: AbilityDsl.actions.orderedAoE({
+                            gameAction: AbilityDsl.actions.dealDamage({
+                                amount: phase,
+                                showMessage: true
+                            }),
+                            promptTitle: 'Chimera Ultimate'
+                        })
+                    },
+                    then: {
+                        gameAction: AbilityDsl.actions.summon({
+                            conjuration: 'rainwalker',
+                            count: 2
+                        })
+                    }
+                });
+            case 3:
+                return this.ultimate({
+                    gameAction: AbilityDsl.actions.summon({
+                        conjuration: 'rainwalker',
+                        count: 3
                     })
-                }
-            });
-        } else {
-            return this.ultimate({
-                gameAction: AbilityDsl.actions.addToThreatZone({ amount: 1 })
-            });
+                });
         }
     }
 }

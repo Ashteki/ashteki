@@ -1,4 +1,4 @@
-const { CardType, Level } = require('../../constants');
+const { CardType, Level, AspectTypes } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
 const Player = require('../player');
@@ -39,7 +39,7 @@ class DummyPlayer extends Player {
 
     //CAUTION: NEED BOTH OF THESE BECAUSE OF DIFFERENT USE CASES. NAMING IS UNFORTUNATE
     get aspectsInPlay() {
-        return this.cardsInPlay.filter((card) => CardType.Aspect === card.type);
+        return this.cardsInPlay.filter((card) => AspectTypes.includes(card.type));
     }
 
     getAspectsInPlay() {

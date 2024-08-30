@@ -129,10 +129,11 @@ class BehaviourCard extends Card {
         this.game.resolveAbility(context);
     }
 
-    doSummon(cardId) {
+    doSummon(cardId, count = 1) {
         const act = this.action({
             gameAction: AbilityDsl.actions.summon({
-                conjuration: cardId
+                conjuration: cardId,
+                count: count
             })
         });
 
