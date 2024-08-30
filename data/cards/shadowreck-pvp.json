@@ -1,0 +1,75 @@
+{
+    "results": [
+        {
+            "name": "Summon Shade Prowler",
+            "stub": "summon-shade-prowler",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "illusion:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Shade Prowler",
+                    "stub": "shade-prowler"
+                }
+            ]
+        },
+        {
+            "name": "Shade Prowler",
+            "stub": "shade-prowler",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Umbral Acrobat",
+            "stub": "umbral-acrobat",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:power]]",
+                "1 [[illusion:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "illusion:class": 1,
+                "illusion:power": 1
+            },
+            "attack": 3,
+            "life": 4,
+            "recover": 2
+        },
+        {
+            "name": "Backflip",
+            "stub": "backflip",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            }
+        }
+    ]
+}
