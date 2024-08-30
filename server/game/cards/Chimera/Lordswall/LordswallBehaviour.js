@@ -1,9 +1,9 @@
-const { Level } = require('../../../constants');
-const AbilityDsl = require('../../abilitydsl');
-const Behaviour = require('../../solo/Behaviour');
-const BehaviourCard = require('../../solo/BehaviourCard');
+const { Level, BattlefieldTypes, CardType } = require('../../../../constants');
+const AbilityDsl = require('../../../abilitydsl');
+const Behaviour = require('../../../solo/Behaviour');
+const BehaviourCard = require('../../../solo/BehaviourCard');
 
-class VirosBehaviour extends BehaviourCard {
+class LordswallBehaviour extends BehaviourCard {
     getBehaviour(behaviourRoll, phase) {
         switch (phase) {
             case 1:
@@ -24,8 +24,11 @@ class VirosBehaviour extends BehaviourCard {
                         // Main: Reveal. Attack with revealed aspect
                         return new Behaviour(
                             behaviourRoll,
-                            { main: 'Reveal. Attack with revealed aspect.' },
-                            () => this.doAttack(this.doReveal())
+                            { main: 'Reveal. Attack with rightmost aspect that can attack.' },
+                            () => {
+                                this.doReveal();
+                                this.doAttack(null, 'right');
+                            }
                         );
                     case 7:
                     case 8:
@@ -34,11 +37,11 @@ class VirosBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal',
-                                side: 'Target opposing player must lower 2 non-basic dice in their active pool one level'
+                                side: 'Re-roll 2 basic rage dice'
                             },
                             () => {
-                                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                                this.doLowerOpponentsDice();
+                                // Side: reroll 2 basic rage dice.
+                                this.doBasicRageReroll(2);
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -49,11 +52,12 @@ class VirosBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
-                                side: 'Raise 1 basic rage die one level'
+                                side: 'Summon a Rainwalker'
                             },
                             () => {
-                                // Side: Raise 1 basic rage die one level
-                                this.doRageRaise();
+                                // Side: summon a rainwalker.
+                                this.doSummon('rainwalker');
+
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -89,11 +93,13 @@ class VirosBehaviour extends BehaviourCard {
                         );
                     case 5:
                     case 6:
-                        // Main: Reveal. Attack with revealed aspect
                         return new Behaviour(
                             behaviourRoll,
-                            { main: 'Reveal. Attack with revealed aspect.' },
-                            () => this.doAttack(this.doReveal())
+                            { main: 'Reveal. Attack with rightmost aspect that can attack.' },
+                            () => {
+                                this.doReveal();
+                                this.doAttack(null, 'right');
+                            }
                         );
                     case 7:
                     case 8:
@@ -105,8 +111,8 @@ class VirosBehaviour extends BehaviourCard {
                                 side: "Deal 1 damage to the opposing player's target phoenixborn"
                             },
                             () => {
-                                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                                this.doPbBurnDamage(1);
+                                // Side: Target opposing player must place 1 wound on their pb or rightmost unit.
+                                this.doChosenWoundPlacement();
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -118,11 +124,12 @@ class VirosBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
-                                side: 'Raise 2 basic rage die one level'
+                                side: 'Summon a Rainwalker'
                             },
                             () => {
-                                // Side: Raise 1 basic rage die one level
-                                this.doRageRaise(2);
+                                // Side: summon a rainwalker.
+                                this.doSummon('rainwalker');
+
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -158,44 +165,33 @@ class VirosBehaviour extends BehaviourCard {
                     case 4:
                     case 5:
                     case 6:
-                        // Main: Reveal. Attack with revealed aspect
                         return new Behaviour(
                             behaviourRoll,
-                            { main: 'Reveal. Attack with revealed aspect.' },
-                            () => this.doAttack(this.doReveal())
+                            { main: 'Reveal. Attack with rightmost aspect that can attack.' },
+                            () => {
+                                this.doReveal();
+                                this.doAttack(null, 'right');
+                            }
                         );
                     case 7:
                     case 8:
                     case 9:
-                        return new Behaviour(
-                            behaviourRoll,
-                            {
-                                main: 'Reveal',
-                                side: "Deal 1 damage to the opposing player's leftmost target unit"
-                            },
-                            () => {
-                                // Side: Deal 1 damage to the opposing player's leftmost target unit.
-                                this.doUnitBurnDamage(1, 'left');
-                                // Main: Reveal
-                                this.doReveal();
-                            }
-                        );
                     case 10:
                     case 11:
                         return new Behaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
-                                side: 'Raise 3 basic rage die one level'
+                                side: 'Summon a Rainwalker'
                             },
                             () => {
-                                // Side: Raise 1 basic rage die one level
-                                this.doRageRaise(3);
+                                // Side: summon a rainwalker.
+                                this.doSummon('rainwalker');
+
                                 // Main: Reveal
                                 this.doReveal();
                             }
                         );
-
                     case 12:
                         return new Behaviour(
                             behaviourRoll,
@@ -219,31 +215,26 @@ class VirosBehaviour extends BehaviourCard {
         }
     }
 
-    doLowerOpponentsDice() {
-        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
-            return;
-        }
-
+    doChosenWoundPlacement() {
         const ability = this.behaviour({
             title: 'Chimera Behaviour',
             target: {
+                cardCondition: (card) =>
+                    card.type === CardType.Phoenixborn || card.controller.isRightmostUnit(card),
+                activePromptTitle: 'Choose a target to be dealt 1 damage',
+                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 player: 'opponent',
-                targetsPlayer: true,
-                toSelect: 'die',
-                mode: 'exactly',
-                numDice: Math.min(2, this.owner.opponent.activeNonBasicDiceCount),
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
-                owner: 'opponent',
-                gameAction: AbilityDsl.actions.lowerDie()
-            },
-            message: '{0} uses {1} to lower 2 opponent dice'
+                controller: 'opponent',
+                gameAction: AbilityDsl.actions.addDamageToken()
+            }
         });
 
         const context = ability.createContext(this.owner);
         this.game.resolveAbility(context);
+
     }
 }
 
-VirosBehaviour.id = 'viros-behaviour';
+LordswallBehaviour.id = 'lordswall-behaviour';
 
-module.exports = VirosBehaviour;
+module.exports = LordswallBehaviour;

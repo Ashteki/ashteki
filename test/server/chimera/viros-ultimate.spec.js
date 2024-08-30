@@ -1,6 +1,6 @@
 const Dice = require('../../../server/game/dice');
 
-describe('Chimera ultimate', function () {
+describe('Viros ultimate', function () {
     describe('value and exhaustion', function () {
         beforeEach(function () {
             this.setupTest({

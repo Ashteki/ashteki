@@ -51,6 +51,17 @@ class AspectCard extends Card {
             )
         );
     }
+
+    hordeAttack() {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.hordeAttack()
+        });
+    }
+    feeble() {
+        this.persistentEffect({
+            effect: AbilityDsl.effects.feeble()
+        });
+    }
 }
 
 module.exports = AspectCard;
