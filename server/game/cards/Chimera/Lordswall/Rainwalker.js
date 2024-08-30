@@ -13,7 +13,9 @@ class Rainwalker extends AspectCard {
             when: {
                 onCardExhausted: (event, context) => event.card === context.source
             },
-            gameAction: ability.actions.destroy()
+            gameAction: ability.actions.destroy(),
+            message: 'Ephemeral: {0} is destroyed',
+            messageArgs: (context) => context.source
         });
     }
 }

@@ -1632,22 +1632,6 @@ class Game extends EventEmitter {
     }
 
     doAttackersDeclared(attackingPlayer, attackers) {
-        if (!attackingPlayer.opponent.optionSettings.noAttackAlerts) {
-            this.queueUserAlert(this.getFrameworkContext(attackingPlayer), {
-                timed: false,
-                style: 'danger',
-                promptTitle: (this.attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
-                menuTitle: this.attackState.target.name + ' is being attacked',
-                controls: [
-                    {
-                        type: 'targeting',
-                        source: this.attackState.target.getShortSummary()
-                        // ,
-                        // targets: [attackState.target.getShortSummary()]
-                    }
-                ]
-            });
-        }
         const params = {
             attackingPlayer: attackingPlayer,
             attackers: attackers,
@@ -1686,6 +1670,23 @@ class Game extends EventEmitter {
                 c.wasAttacker = true;
                 key++;
             });
+
+            if (!event.attackingPlayer.opponent.optionSettings.noAttackAlerts) {
+                this.queueUserAlert(this.getFrameworkContext(event.attackingPlayer), {
+                    timed: false,
+                    style: 'danger',
+                    promptTitle: (this.attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
+                    menuTitle: this.attackState.target.name + ' is being attacked',
+                    controls: [
+                        {
+                            type: 'targeting',
+                            source: this.attackState.target.getShortSummary()
+                            // ,
+                            // targets: [attackState.target.getShortSummary()]
+                        }
+                    ]
+                });
+            }
 
             this.gameLog.push({
                 id: 'cl' + this.getCardLogIndex(),
