@@ -1,4 +1,4 @@
-const { Level } = require('../../../constants.js');
+const { Level, PhoenixbornTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class FoxSpirit extends Card {
@@ -19,11 +19,10 @@ class FoxSpirit extends Card {
             when: {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker
-                    return event.battles.some(
-                        (b) =>
-                            b.attacker === context.source &&
-                            b.target.exhausted &&
-                            b.target.type != 'Phoenixborn'
+                    return (
+                        event.attackers.includes(context.source) &&
+                        event.target.exhausted &&
+                        !PhoenixbornTypes.includes(event.target.type)
                     );
                 }
             },

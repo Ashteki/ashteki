@@ -8,7 +8,7 @@ class CrystalArcher extends Card {
             when: {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker
-                    return event.battles.some((b) => b.attacker === context.source);
+                    return event.attackers.includes(context.source);
                 },
                 onDefendersDeclared: (event, context) => {
                     return event.attack.battles.some((b) => b.guard === context.source);

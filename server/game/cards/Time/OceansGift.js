@@ -30,7 +30,7 @@ class OceansGift extends Card {
                     when: {
                         onAttackersDeclared: (event, context) =>
                             event.attackingPlayer === context.source.controller &&
-                            event.battles.some((b) => b.attacker === context.source)
+                            event.attackers.includes(context.source)
                     },
                     target: {
                         optional: true,

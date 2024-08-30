@@ -13,15 +13,15 @@ class Warcry extends AspectCard {
                     return (
                         event.attackingPlayer === context.source.controller &&
                         (context.source.isAttacker ||
-                            event.battles.some((b) =>
-                                event.attackingPlayer.areCardsAdjacent(b.attacker, context.source)
+                            event.attackers.some((a) =>
+                                event.attackingPlayer.areCardsAdjacent(a, context.source)
                             ))
                     );
                 }
             },
             gameAction: ability.actions.attachConjuredAlteration((context) => ({
                 conjuredAlteration: 'vigor',
-                target: context.event.battles[0]?.attacker
+                target: context.event.attackers[0]
             }))
         });
     }

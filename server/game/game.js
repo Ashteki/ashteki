@@ -1631,17 +1631,17 @@ class Game extends EventEmitter {
         this.pipeline.continue();
     }
 
-    doAttackersDeclared(attackingPlayer, attackState) {
+    doAttackersDeclared(attackingPlayer, attackers) {
         if (!attackingPlayer.opponent.optionSettings.noAttackAlerts) {
             this.queueUserAlert(this.getFrameworkContext(attackingPlayer), {
                 timed: false,
                 style: 'danger',
-                promptTitle: (attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
-                menuTitle: attackState.target.name + ' is being attacked',
+                promptTitle: (this.attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
+                menuTitle: this.attackState.target.name + ' is being attacked',
                 controls: [
                     {
                         type: 'targeting',
-                        source: attackState.target.getShortSummary()
+                        source: this.attackState.target.getShortSummary()
                         // ,
                         // targets: [attackState.target.getShortSummary()]
                     }
@@ -1650,13 +1650,47 @@ class Game extends EventEmitter {
         }
         const params = {
             attackingPlayer: attackingPlayer,
-            battles: attackState.battles
+            attackers: attackers,
+            target: this.attackState.target
         };
-        this.raiseEvent('onAttackersDeclared', params, () => {
+        this.raiseEvent('onAttackersDeclared', params, (event) => {
+            // check for horde attack
+            if (attackers.some((unit) => unit.anyEffect('hordeAttack'))) {
+                const hordeAttackers = event.attackingPlayer.getHordeAttackers(event.attackers);
+                if (hordeAttackers.length > 0) {
+                    event.attackers.push(...hordeAttackers);
+                }
+            }
+
+            this.addAlert(
+                'danger',
+                '{0} attacks {1} with {2} units: {3}',
+                this.attackState.attackingPlayer,
+                this.attackState.target,
+                attackers.length,
+                attackers
+            );
+
+            let key = 1;
+            attackers.forEach((c) => {
+                this.attackState.battles.push({
+                    key: key,
+                    attacker: c,
+                    attackerClone: c.createSnapshot(),
+                    target: this.attackState.target,
+                    guard: null,
+                    counter: false,
+                    resolved: false
+                });
+                c.isAttacker = true;
+                c.wasAttacker = true;
+                key++;
+            });
+
             this.gameLog.push({
                 id: 'cl' + this.getCardLogIndex(),
                 act: 'attack',
-                obj: attackState.target,
+                obj: this.attackState.target,
                 player: attackingPlayer
             });
             this.saveReplayState('attackers-declared');
