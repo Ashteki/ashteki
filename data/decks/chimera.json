@@ -379,6 +379,7 @@
   {
     "precon_id": 807,
     "premium": true,
+    "restricted": true,
     "mode": "chimera",
     "name": "The Siege of Lordswall - Horde",
     "phoenixborn": [
