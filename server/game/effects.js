@@ -37,6 +37,7 @@ const Effects = {
     entersPlayUnderOpponentsControl: () =>
         EffectBuilder.card.static('entersPlayUnderOpponentsControl'),
     exhausted: () => EffectBuilder.card.static('exhausted'),
+    feeble: () => EffectBuilder.card.static('feeble'),
     forceBlock: (card) =>
         EffectBuilder.card.static(
             'forceBlock',
@@ -45,6 +46,8 @@ const Effects = {
         ),
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
+
+    hordeAttack: () => EffectBuilder.card.static('hordeAttack'),
     magnify: (amountFunc) => EffectBuilder.card.dynamic('magnify', amountFunc),
     modifyAttack: (amount) => EffectBuilder.card.flexible('modifyAttack', amount),
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
