@@ -7,22 +7,16 @@ class ShadowStrike extends Card {
             when: {
                 onAttackersDeclared: (event, context) =>
                     event.attackingPlayer === context.source.owner.opponent &&
-                    event.attackingPlayer.unitsInPlay.some((c) =>
-                        this.notAttacking(c, event.battles)
-                    )
+                    event.attackingPlayer.unitsInPlay.some((c) => !event.attackers.includes(c))
             },
             effect: 'deal 3 damage to a non-attacker',
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                cardCondition: (card, context) => this.notAttacking(card, context.event.battles),
+                cardCondition: (card, context) => !context.event.attackers.includes(card),
                 gameAction: ability.actions.dealDamage({ amount: 3 })
             }
         });
-    }
-
-    notAttacking(card, battles) {
-        return !battles.some((b) => b.attacker === card);
     }
 }
 

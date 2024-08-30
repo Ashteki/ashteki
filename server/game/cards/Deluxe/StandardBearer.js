@@ -26,7 +26,7 @@ class StandardBearer extends Card {
             when: {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker
-                    return event.battles.some((b) => b.attacker === context.source);
+                    return event.attackers.includes(context.source);
                 }
             },
             target: {

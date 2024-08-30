@@ -5,7 +5,7 @@ class Infuriate extends Card {
         this.forcedReaction({
             when: {
                 onAttackersDeclared: (event, context) =>
-                    event.battles.some((b) => b.attacker === context.source.parent)
+                    event.attackers.includes(context.source.parent)
             },
             gameAction: ability.actions.dealDamage((context) => ({
                 target: context.source.parent,
