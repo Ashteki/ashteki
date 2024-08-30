@@ -826,6 +826,10 @@ class Card extends PlayableObject {
         return !this.anyEffect('alert');
     }
 
+    isFeeble() {
+        return this.anyEffect('feeble');
+    }
+
     createSnapshot() {
         let clone = new Card(this.owner, this.cardData);
         clone.upgrades = this.upgrades.map((upgrade) => upgrade.createSnapshot());

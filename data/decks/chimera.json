@@ -375,5 +375,67 @@
         "count": 3
       }
     ]
+  },
+  {
+    "precon_id": 807,
+    "premium": true,
+    "mode": "chimera",
+    "name": "The Siege of Lordswall - Horde",
+    "phoenixborn": [
+      {
+        "id": "siege-of-lordswall",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "lordswall-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "lordswall-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "at-the-gates",
+        "count": 3
+      },
+      {
+        "id": "carrion-call",
+        "count": 3
+      },
+      {
+        "id": "charging-horde",
+        "count": 3
+      },
+      {
+        "id": "thunderclap",
+        "count": 3
+      },
+      {
+        "id": "flanking-strike",
+        "count": 3
+      },
+      {
+        "id": "heartpierce",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "rainwalker",
+        "count": 7
+      }
+    ]
   }
 ]

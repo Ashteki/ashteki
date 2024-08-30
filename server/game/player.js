@@ -243,6 +243,12 @@ class Player extends GameObject {
         );
     }
 
+    getHordeAttackers(excludeList) {
+        return this.unitsInPlay.filter(
+            (u) => u.anyEffect('hordeAttack') && !excludeList.includes(u) && u.canAttack()
+        );
+    }
+
     indexOf(card) {
         return this.battlefield.indexOf(card);
     }
@@ -653,7 +659,11 @@ class Player extends GameObject {
         } else if (['discard', 'purged'].includes(targetLocation)) {
             targetPile.unshift(card);
         } else if (targetPile) { // 'being played' does not have a target pile
-            targetPile.push(card);
+            if (options.leftmost) {
+                targetPile.unshift(card);
+            } else {
+                targetPile.push(card);
+            }
         }
 
         card.moveTo(targetLocation, options.facedown);

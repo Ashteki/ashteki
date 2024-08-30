@@ -6,6 +6,7 @@ class PutIntoPlayAction extends CardGameAction {
         this.myControl = false;
         this.opponentControls = false;
         this.showMessage = false;
+        this.leftmost = false;
     }
 
     setup() {
@@ -71,7 +72,10 @@ class PutIntoPlayAction extends CardGameAction {
             if (CardType.Aspect === card.type && card.facedown && card.location === 'play area') {
                 event.card.flip();
             } else {
-                player.moveCard(card, targetLocation, { myControl: control });
+                player.moveCard(card, targetLocation, {
+                    myControl: control,
+                    leftmost: this.leftmost
+                });
             }
 
             if (event.card.statusCount) {
