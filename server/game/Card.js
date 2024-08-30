@@ -195,7 +195,7 @@ class Card extends PlayableObject {
                     condition: (context) => context.source.getKeywordValue('Hunt'),
                     when: {
                         onAttackersDeclared: (event, context) => {
-                            return event.battles.some((b) => b.attacker === context.source);
+                            return event.attackers.includes(context.source);
                         }
                     },
                     target: {
@@ -222,7 +222,7 @@ class Card extends PlayableObject {
                         onAttackersDeclared: (event, context) => {
                             return (
                                 event.attackingPlayer === context.source.controller &&
-                                event.battles.length >= 3
+                                event.attackers.length >= 3
                             );
                         }
                     },

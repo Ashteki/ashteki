@@ -23,14 +23,6 @@ class AttackFlow extends BaseStepWithPipeline {
             if (!Array.isArray(attackers)) {
                 attackerArray = [attackers];
             }
-            // check for horde attack
-            if (attackerArray.some((unit) => unit.anyEffect('hordeAttack'))) {
-                const hordeAttackers = this.attackingPlayer.getHordeAttackers(attackerArray);
-                if (hordeAttackers.length > 0) {
-                    attackerArray.push(...hordeAttackers);
-                }
-            }
-
             this.assignAttackers(attackerArray);
         } else {
             steps.push(new SimpleStep(this.game, () => this.declareAttackers()));
@@ -106,31 +98,6 @@ class AttackFlow extends BaseStepWithPipeline {
     }
 
     assignAttackers(cards) {
-        this.game.addAlert(
-            'danger',
-            '{0} attacks {1} with {2} units: {3}',
-            this.attackingPlayer,
-            this.target,
-            cards.length,
-            cards
-        );
-
-        let key = 1;
-        cards.forEach((c) => {
-            this.attack.battles.push({
-                key: key,
-                attacker: c,
-                attackerClone: c.createSnapshot(),
-                target: this.target,
-                guard: null,
-                counter: false,
-                resolved: false
-            });
-            c.isAttacker = true;
-            c.wasAttacker = true;
-            key++;
-        });
-
         if (!this.ignoreMainCost) {
             const costEvent = Costs.mainAction().payEvent(
                 this.game.getFrameworkContext(this.attackingPlayer)
@@ -138,7 +105,7 @@ class AttackFlow extends BaseStepWithPipeline {
             this.game.openEventWindow(costEvent);
         }
 
-        this.game.doAttackersDeclared(this.attackingPlayer, this.attack);
+        this.game.doAttackersDeclared(this.attackingPlayer, cards);
     }
 
     getDefendersStep() {

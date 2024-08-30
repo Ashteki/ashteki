@@ -5,12 +5,12 @@ class ChargingHorde extends AspectCard {
         super.setupCardAbilities(ability);
         this.hordeAttack();
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
                         event.attackingPlayer === context.source.controller &&
-                        context.source.isAttacker
+                        event.attackers.includes(context.source)
                     );
                 }
             },

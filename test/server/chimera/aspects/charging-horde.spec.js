@@ -24,7 +24,6 @@ describe('Charging Horde', function () {
                 archives: ['rainwalker']
             }
         });
-
     });
 
     it('on attack summons rainwalker', function () {
@@ -36,8 +35,8 @@ describe('Charging Horde', function () {
 
         expect(this.chargingHorde.isAttacker).toBe(true);
         expect(this.game.attackState.isPBAttack).toBe(true);
-
         expect(this.rainwalker.location).toBe('play area');
+        expect(this.rainwalker.isAttacker).toBe(true);
         expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
     });
 });
