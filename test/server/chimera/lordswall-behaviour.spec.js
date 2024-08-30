@@ -100,7 +100,8 @@ describe('Siege of Lordswall Behaviour Rolls', function () {
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(3); // one normal roll, plus 2 rerolls
+            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(4);
+            // one from pass with one aspect in play, one normal roll, plus 2 rerolls
             expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
@@ -146,7 +147,7 @@ describe('Siege of Lordswall Behaviour Rolls', function () {
                 mode: 'solo',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['anchornaut'],
+                    inPlay: ['anchornaut', 'hammer-knight'],
                     spellboard: ['summon-light-bringer'],
                     dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
                     hand: ['summon-iron-rhino'],
@@ -215,21 +216,36 @@ describe('Siege of Lordswall Behaviour Rolls', function () {
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
 
-        it('7 place 1 wound on Pb or rightmost unit', function () {
-            expect(false).toBe(true);
+        it('7 place 1 wound on Pb or rightmost unit - PB', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(7); // set behaviour roll
-            spyOn(Dice, 'getRandomInt').and.returnValue(0); // power
-
-            expect(this.regenerate.facedown).toBe(true);
-            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(0);
 
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.player2.dicepool.filter((d) => d.level === 'power').length).toBe(3); // one normal roll, plus 2 rerolls
-            expect(this.regenerate.facedown).toBe(false);
+            this.player1.clickCard(this.coalRoarkwin);
+            expect(this.coalRoarkwin.damage).toBe(1);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+        });
+
+        it('7 place 1 wound on Pb or rightmost unit - unit', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(7); // set behaviour roll
+
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.anchornaut.damage).toBe(0);
+            expect(this.anchornaut.location).toBe('play area');
+            expect(this.coalRoarkwin.damage).toBe(0);
+
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });

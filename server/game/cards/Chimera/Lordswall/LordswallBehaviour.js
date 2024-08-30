@@ -1,4 +1,4 @@
-const { Level } = require('../../../../constants');
+const { Level, BattlefieldTypes, CardType } = require('../../../../constants');
 const AbilityDsl = require('../../../abilitydsl');
 const Behaviour = require('../../../solo/Behaviour');
 const BehaviourCard = require('../../../solo/BehaviourCard');
@@ -111,8 +111,8 @@ class LordswallBehaviour extends BehaviourCard {
                                 side: "Deal 1 damage to the opposing player's target phoenixborn"
                             },
                             () => {
-                                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                                this.doPbBurnDamage(1);
+                                // Side: Target opposing player must place 1 wound on their pb or rightmost unit.
+                                this.doChosenWoundPlacement();
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -213,6 +213,25 @@ class LordswallBehaviour extends BehaviourCard {
             default:
                 throw new Error('Unexpected chimera phase (behaviour)');
         }
+    }
+
+    doChosenWoundPlacement() {
+        const ability = this.behaviour({
+            title: 'Chimera Behaviour',
+            target: {
+                cardCondition: (card) =>
+                    card.type === CardType.Phoenixborn || card.controller.isRightmostUnit(card),
+                activePromptTitle: 'Choose a target to be dealt 1 damage',
+                cardType: [...BattlefieldTypes, CardType.Phoenixborn],
+                player: 'opponent',
+                controller: 'opponent',
+                gameAction: AbilityDsl.actions.addDamageToken()
+            }
+        });
+
+        const context = ability.createContext(this.owner);
+        this.game.resolveAbility(context);
+
     }
 }
 

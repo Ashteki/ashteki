@@ -174,7 +174,7 @@ class VirosBehaviour extends BehaviourCard {
                                 side: "Deal 1 damage to the opposing player's leftmost target unit"
                             },
                             () => {
-                                // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
+                                // Side: Deal 1 damage to the opposing player's leftmost target unit.
                                 this.doUnitBurnDamage(1, 'left');
                                 // Main: Reveal
                                 this.doReveal();
