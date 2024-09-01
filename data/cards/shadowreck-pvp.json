@@ -70,6 +70,120 @@
             "magicCost": {
                 "illusion:class": 1
             }
+        },
+        {
+            "name": "Summon Whisperer",
+            "stub": "summon-whisperer",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "effectMagicCost": {
+                "illusion:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Whisperer",
+                    "stub": "whisperer"
+                }
+            ]
+        },
+        {
+            "name": "Whisperer",
+            "stub": "whisperer",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Juggle",
+            "stub": "juggle",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1,
+                "basic": 2
+            }
+        },
+        {
+            "name": "Shroud",
+            "stub": "shroud",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ]
+        },
+        {
+            "name": "Gate's Defender",
+            "stub": "gates-defender",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:power]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1,
+                "illusion:power": 1
+            },
+            "attack": 2,
+            "life": 3,
+            "recover": 1
+        },
+        {
+            "name": "Inkspill",
+            "stub": "inkspill",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[illusion:class]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            }
+        },
+        {
+            "name": "From Darkness",
+            "stub": "from-dearkness",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[illusion:power]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:power": 1
+            }
         }
     ]
 }

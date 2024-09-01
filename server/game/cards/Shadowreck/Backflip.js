@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class Backflip extends Card {
     setupCardAbilities(ability) {
         this.play({
-            title: 'Rally the Troops',
+            title: 'Backflip',
             target: {
                 cardType: 'Ally',
                 controller: 'self',
@@ -25,6 +25,6 @@ class Backflip extends Card {
     }
 }
 
-Backflip.id = 'rally-the-troops';
+Backflip.id = 'backflip';
 
 module.exports = Backflip;

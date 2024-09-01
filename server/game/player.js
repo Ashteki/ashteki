@@ -294,6 +294,10 @@ class Player extends GameObject {
         this.cardsInPlay.push(card);
     }
 
+    hasExhaustedUnit() {
+        return this.battlefield.some((c) => c.exhausted);
+    }
+
     getSpendableDice(context) {
         // this assumes all spendable dice are on ready spells
         const spendableUpgrades = this.spellboard

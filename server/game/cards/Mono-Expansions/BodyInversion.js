@@ -29,8 +29,8 @@ class BodyInversion extends Card {
                         ability.effects.setLife(() => {
                             const printedAttack =
                                 context.target.mostRecentEffect('setPrintedAttack') ||
-                                context.target.printedAttack == 'X' ? context.target.mostRecentEffect('setPrintedAttack'): 
-                                context.target.printedAttack;
+                                    context.target.printedAttack == 'X' ? context.target.mostRecentEffect('setPrintedAttack') :
+                                    context.target.printedAttack;
                             return Math.max(
                                 0,
                                 printedAttack + context.target.sumEffects('modifyLife')
