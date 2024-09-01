@@ -13,7 +13,9 @@ class Whisperer extends Card {
                     ),
                 trueGameAction: ability.actions.lowerDie({
                     promptForSelect: {
-                        // targetsPlayer: true,
+                        mode: 'upTo',
+                        numDice: this.getAbilityNumeric(1),
+                        activePromptTitle: 'Haunt: Choose a power die to lower',
                         dieCondition: (die) => die.level === Level.Power && !die.exhausted,
                         owner: 'opponent'
                     }
