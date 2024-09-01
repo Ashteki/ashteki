@@ -172,7 +172,7 @@
         },
         {
             "name": "From Darkness",
-            "stub": "from-dearkness",
+            "stub": "from-darkness",
             "type": "Reaction Spell",
             "placement": "Discard",
             "cost": [

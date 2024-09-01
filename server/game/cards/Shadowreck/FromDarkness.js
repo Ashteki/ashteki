@@ -8,7 +8,7 @@ class FromDarkness extends Card {
             when: {
                 onAttackersDeclared: (event, context) =>
                     event.attackingPlayer === context.source.owner.opponent &&
-                    event.source.owner.hasExhaustedUnit()
+                    context.source.owner.hasExhaustedUnit()
             },
             targets: {
                 myChar: {
