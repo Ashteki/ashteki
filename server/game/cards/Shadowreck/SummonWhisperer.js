@@ -10,8 +10,7 @@ class SummonWhisperer extends Card {
                 ability.costs.mainAction(),
                 ability.costs.exhaust(),
                 ability.costs.dice([
-                    new DiceCount(1, Level.Class, Magic.Illusion),
-                    new DiceCount(1, Level.Basic)
+                    new DiceCount(1, Level.Class, Magic.Illusion)
                 ])
             ],
             location: 'spellboard',
