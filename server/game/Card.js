@@ -275,8 +275,11 @@ class Card extends PlayableObject {
             when: {
                 onRoundEnded: () => true
             },
+            message: 'Fleeting: {0} is discarded',
+            messageArgs: (context) => context.source,
             gameAction: AbilityDsl.actions.discard((context) => ({
-                card: context.source
+                card: context.source,
+                showMessage: false
             }))
         });
     }
@@ -289,7 +292,9 @@ class Card extends PlayableObject {
             when: {
                 onRoundEnded: () => true
             },
-            gameAction: AbilityDsl.actions.returnToDeck()
+            gameAction: AbilityDsl.actions.returnToDeck({ showMessage: false }),
+            message: "Flicker: {0} is shuffled into {1}'s draw pile",
+            messageArgs: (context) => [context.source, context.player]
         });
     }
 
@@ -300,7 +305,12 @@ class Card extends PlayableObject {
             when: {
                 onRoundEnded: () => true
             },
-            gameAction: AbilityDsl.actions.destroy()
+            message: 'Fleeting: {0} is discarded',
+            messageArgs: (context) => context.source,
+            gameAction: AbilityDsl.actions.destroy((context) => ({
+                card: context.source,
+                showMessage: false
+            }))
         });
     }
 

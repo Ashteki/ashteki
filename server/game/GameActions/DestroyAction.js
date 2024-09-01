@@ -6,6 +6,7 @@ class DestroyAction extends CardGameAction {
         super(propertyFactory);
         this.name = isSacrifice ? 'sacrifice' : 'destroy';
         this.effectMsg = isSacrifice ? 'sacrifice {0}' : 'destroy {0}';
+        this.showMessage = true;
     }
 
     setDefaultProperties() {
@@ -49,7 +50,9 @@ class DestroyAction extends CardGameAction {
             if (event.purge) {
                 message = message + ', and removed from the game';
             }
-            event.context.game.addMessage(message, card);
+            if (this.showMessage) {
+                event.context.game.addMessage(message, card);
+            }
             event.context.game.onUnitDestroyed();
             event.card.moribund = true;
             event.card.skipDestroyCheck = false;
