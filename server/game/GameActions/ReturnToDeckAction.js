@@ -7,6 +7,7 @@ class ReturnToDeckAction extends CardGameAction {
         this.shuffle = true;
         this.chooseTopBottom = false;
         this.reveal = true;
+        this.showMessage = true;
     }
 
     setup() {
@@ -56,7 +57,9 @@ class ReturnToDeckAction extends CardGameAction {
                     : "{0} returns {1} to the {2} of owner's deck";
                 const dest = this.bottom ? 'bottom' : 'top';
                 const cardDescription = this.reveal ? event.card : 'a card';
-                event.context.game.addMessage(message, event.context.player, cardDescription, dest);
+                if (this.showMessage) {
+                    event.context.game.addMessage(message, event.context.player, cardDescription, dest);
+                }
                 card.owner.moveCard(card, destinationPile, { bottom: this.bottom });
                 let cardsByOwner = this.target.filter((c) => c.owner === card.owner);
                 if (
