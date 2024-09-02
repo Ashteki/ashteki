@@ -73,3 +73,24 @@ export function replayStepBack() {
         type: 'REPLAY_BACK'
     };
 }
+
+export function replayTurnForward() {
+    return {
+        type: 'REPLAY_TURN_FORWARD'
+    };
+}
+export function replayRoundForward() {
+    return {
+        type: 'REPLAY_ROUND_FORWARD'
+    };
+}
+export function replayTurnBack() {
+    return {
+        type: 'REPLAY_TURN_BACK'
+    };
+}
+export function replayRoundBack() {
+    return {
+        type: 'REPLAY_ROUND_BACK'
+    };
+}
