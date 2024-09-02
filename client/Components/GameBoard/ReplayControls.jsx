@@ -58,32 +58,48 @@ const ReplayControls = () => {
             <div className='replay-step-title'>Round {round} {turn && ', Turn' + turn}</div>
             <div className='replay-step-title'>{title}</div>
             <div className='replay-controls'>
-                <button onClick={() => doBackStep()} className='replay-control  btn-primary'>
+                <button
+                    onClick={() => doBackStep()}
+                    title='Step backward'
+                    className='replay-control  btn-primary'>
                     <FontAwesomeIcon icon={faBackwardStep} />
                 </button>
                 <div className='replay-index'>{stepIndex}</div>
-                <button onClick={() => doForwardStep()} className='replay-control  btn-primary'>
+                <button
+                    onClick={() => doForwardStep()}
+                    title='Step forward'
+                    className='replay-control  btn-primary'>
                     <FontAwesomeIcon icon={faForwardStep} />
                 </button>
             </div>
             <div className='replay-controls'>
-                <button onClick={() => doBackRoundStep()} className='replay-control  btn-primary'>
+                <button
+                    onClick={() => doBackRoundStep()}
+                    title='Round backward'
+                    className='replay-control  btn-primary'>
                     <FontAwesomeIcon icon={faBackwardFast} />
                 </button>
-                <button onClick={() => doBackTurnStep()} className='replay-control  btn-primary'>
+                <button
+                    onClick={() => doBackTurnStep()}
+                    title='Turn backward'
+                    className='replay-control  btn-primary'>
                     <FontAwesomeIcon icon={faBackward} />
                 </button>
-                <button onClick={() => doForwardTurnStep()} className='replay-control  btn-primary'>
+                <button
+                    onClick={() => doForwardTurnStep()}
+                    title='Turn forward'
+                    className='replay-control  btn-primary'>
                     <FontAwesomeIcon icon={faForward} />
                 </button>
                 <button
                     onClick={() => doForwardRoundStep()}
                     className='replay-control  btn-primary'
+                    title='Round forward'
                 >
                     <FontAwesomeIcon icon={faForwardFast} />
                 </button>
             </div>
-        </Panel>
+        </Panel >
     );
 };
 
