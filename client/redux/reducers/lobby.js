@@ -43,8 +43,16 @@ export default function (state = defaultState, action) {
             return clearGameReplay(action, state);
         case 'REPLAY_FORWARD':
             return handleReplayForward(action, state);
+        case 'REPLAY_TURN_FORWARD':
+            return handleReplayTurnForward(action, state);
+        case 'REPLAY_ROUND_FORWARD':
+            return handleReplayRoundForward(action, state);
         case 'REPLAY_BACK':
             return handleReplayBack(action, state);
+        case 'REPLAY_TURN_BACK':
+            return handleReplayTurnBack(action, state);
+        case 'REPLAY_ROUND_BACK':
+            return handleReplayRoundBack(action, state);
         case 'JOIN_PASSWORD_GAME':
             newState.passwordGame = action.game;
             newState.passwordJoinType = action.joinType;
@@ -308,6 +316,43 @@ function handleReplayForward(action, state) {
     let newState = updateReplayState(state, newStepIndex);
     return newState;
 }
+
+function handleReplayTurnForward(action, state) {
+    if (state.stepIndex === state.replayData.length - 1) {
+        return state;
+    }
+
+    let newStepIndex = state.stepIndex;
+    for (let i = state.stepIndex + 1; i < state.replayData.length; i++) {
+        const thisStep = state.replayData[i];
+        if (['begin-turn', 'end'].includes(thisStep.tag)) {
+            newStepIndex = i;
+            break;
+        }
+    }
+
+    let newState = updateReplayState(state, newStepIndex);
+    return newState;
+}
+
+function handleReplayRoundForward(action, state) {
+    if (state.stepIndex === state.replayData.length - 1) {
+        return state;
+    }
+
+    let newStepIndex = state.stepIndex;
+    for (let i = state.stepIndex + 1; i < state.replayData.length; i++) {
+        const thisStep = state.replayData[i];
+        if (['prepare', 'end'].includes(thisStep.tag)) {
+            newStepIndex = i;
+            break;
+        }
+    }
+
+    let newState = updateReplayState(state, newStepIndex);
+    return newState;
+}
+
 function updateReplayState(state, newStepIndex) {
     const newReplayStep = state.replayData[newStepIndex];
     const stepTag = newReplayStep.tag;
@@ -327,3 +372,38 @@ function handleReplayBack(action, state) {
 
     return newState;
 }
+function handleReplayTurnBack(action, state) {
+    if (state.stepIndex === 0) {
+        return state;
+    }
+
+    let newStepIndex = state.stepIndex;
+    for (let i = state.stepIndex - 1; i >= 0; i--) {
+        const thisStep = state.replayData[i];
+        if (['begin-turn', 'prepare'].includes(thisStep.tag)) {
+            newStepIndex = i;
+            break;
+        }
+    }
+
+    let newState = updateReplayState(state, newStepIndex);
+    return newState;
+};
+
+function handleReplayRoundBack(action, state) {
+    if (state.stepIndex === 0) {
+        return state;
+    }
+
+    let newStepIndex = state.stepIndex;
+    for (let i = state.stepIndex - 1; i >= 0; i--) {
+        const thisStep = state.replayData[i];
+        if (['prepare'].includes(thisStep.tag)) {
+            newStepIndex = i;
+            break;
+        }
+    }
+
+    let newState = updateReplayState(state, newStepIndex);
+    return newState;
+};

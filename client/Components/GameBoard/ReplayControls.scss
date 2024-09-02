@@ -4,15 +4,16 @@
 
 .replay-step-title {
     text-align: center;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
 }
 
 .replay-controls {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 30px;
-
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
 }
 
 .replay-control {
