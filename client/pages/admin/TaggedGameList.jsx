@@ -53,7 +53,8 @@ const TaggedGameList = () => {
 
                     return (
                         <tr key={game.gameId}>
-                            <td>{moment(game.startedAt).format('YYYY-MM-DD HH:mm')}</td>
+                            <td>{moment(game.startedAt).format('YYYY-MM-DD HH:mm')}<br />
+                                {game.label}</td>
                             <td>
                                 {game.players[0]?.name}
                                 <br />
@@ -72,9 +73,7 @@ const TaggedGameList = () => {
                                 {game.players[winnerIndex]?.wounds}
                             </td>
                             <td style={{ whiteSpace: 'nowrap' }}>
-                                <a href={gameApiRoot + game.gameId} download={true}>
-                                    {game.gameId}
-                                </a>
+                                Paired: {game.pairing ? 'Yes' : 'No'}
                                 <br />
                                 {duration.get('hours')}h {duration.get('minutes')}m
                             </td>
