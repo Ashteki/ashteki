@@ -80,8 +80,8 @@ class ChimeraDefenceStrategy {
                 attack.setGuard(d, bat);
             });
 
-            this.game.writeDefenceMessages(this.player);
         }
+        this.game.writeDefenceMessages(this.player);
     }
 
     getAvailableDefenders(attack) {
