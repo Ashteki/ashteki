@@ -21,6 +21,7 @@ describe('threatening', function () {
 
             // try to click to not block
             this.player2.clickDone();
+            this.player2.clickOk(); // alert box
             expect(this.player2).toHavePrompt('Choose a blocker');
 
             this.player2.clickCard(this.anchornaut);
@@ -92,6 +93,7 @@ describe('threatening', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
 
             this.player2.clickDone();
+            this.player2.clickOk(); // alert box
             expect(this.player2).toHavePrompt('Choose a blocker');
             this.player2.clickCard(this.anchornaut);
             this.player2.clickCard(this.graveKnight);
@@ -126,6 +128,8 @@ describe('threatening', function () {
             expect(this.player2).toHavePrompt('Choose a blocker');
 
             this.player2.clickDone();
+            this.player2.clickOk(); // alert box
+
             expect(this.player2).toHavePrompt('Choose a blocker');
             this.player2.clickCard(this.anchornaut);
             this.player2.clickCard(this.player1.inPlay[1]);

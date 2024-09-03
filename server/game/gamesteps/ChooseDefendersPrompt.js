@@ -234,6 +234,13 @@ class ChooseDefendersPrompt extends UiPrompt {
                     'info',
                     'Units with the Threatening ability must be blocked if able'
                 );
+                this.game.queueUserAlert(this.context, {
+                    self: true,
+                    style: 'danger',
+                    promptTitle: 'Threatening',
+                    menuTitle: 'Units with the Threatening ability must be blocked if able'
+                });
+
                 return false;
             }
 
