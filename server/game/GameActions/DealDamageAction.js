@@ -71,8 +71,7 @@ class DealDamageAction extends CardGameAction {
 
             if (card.anyEffect('limitDamageReceived')) {
                 const effects = card.getEffects('limitDamageReceived');
-                const limit = Math.min(...effects);
-                params.amount = limit || params.amount;
+                params.amount = Math.min(params.amount, ...effects);
             }
         }
 
