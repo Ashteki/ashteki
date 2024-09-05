@@ -184,6 +184,100 @@
             "magicCost": {
                 "illusion:power": 1
             }
+        },
+        {
+            "name": "Magnificence",
+            "stub": "magnificence",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:power]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:power": 1
+            },
+            "phoenixborn": "Victoria Glassfire"
+        },
+        {
+            "name": "Summon Scrawler",
+            "stub": "summon-scrawler",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "effectMagicCost": {
+                "basic": 1
+            },
+            "dice": [
+                "basic"
+            ],
+            "conjurations": [
+                {
+                    "name": "Scrawler",
+                    "stub": "scrawler"
+                }
+            ],
+            "phoenixborn": "Hope Everthorn"
+        },
+        {
+            "name": "Scrawler",
+            "stub": "scrawler",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
+        },
+        {
+            "name": "Seek the Depths",
+            "stub": "seek-the-depths",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "2 [[basic]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            }
+        },
+        {
+            "name": "Soul Delver",
+            "stub": "soul-delver",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 3,
+            "recover": 1,
+            "copies": 2
+        },
+        {
+            "name": "Dark Reflection",
+            "stub": "dark-reflection",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "attack": 3,
+            "life": 3,
+            "recover": 2
         }
     ]
 }
