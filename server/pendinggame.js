@@ -16,7 +16,7 @@ class PendingGame {
             this.soloStage = '1';
         }
         this.allowSpectators = details.allowSpectators;
-        this.saveReplay = details.saveReplay
+        this.saveReplay = details.saveReplay;
         this.createdAt = new Date();
         this.startedAt = null;
         this.finishedAt = null;
