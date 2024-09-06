@@ -249,6 +249,10 @@ class Player extends GameObject {
         );
     }
 
+    countUnits(stub) {
+        return this.unitsInPlay.filter((c) => c.id === stub).length;
+    }
+
     indexOf(card) {
         return this.battlefield.indexOf(card);
     }
