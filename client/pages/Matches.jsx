@@ -67,29 +67,29 @@ const Matches = () => {
         const replayUrl = gameApiRoot + game.gameId + '/replay/';
         var zip = new JSZip();
 
-        // find every checked item
-
         zip.file(game.gameId + '.replay', urlToPromise(replayUrl), { binary: true });
 
         // when everything has been downloaded, we can trigger the dl
-        zip.generateAsync({ type: "blob" }, function updateCallback(metadata) {
-            // var msg = "progression : " + metadata.percent.toFixed(2) + " %";
-            // if (metadata.currentFile) {
-            //     msg += ", current file = " + metadata.currentFile;
-            // }
-            // showMessage(msg);
-            // updatePercent(metadata.percent | 0);
-        })
-            .then(function callback(blob) {
+        zip.generateAsync(
+            {
+                type: "blob",
+                compression: "DEFLATE"
+            },
+            function updateCallback(metadata) {
+                //respond to progress callback
+            }
+        ).then(
+            function callback(blob) {
 
                 // see FileSaver.js
                 saveAs(blob, game.gameId + '.ashteki');
 
                 // showMessage("done !");
-            }, function (e) {
+            },
+            function (e) {
                 // showError(e);
-            });
-
+            }
+        );
         return false;
     }
     return (
