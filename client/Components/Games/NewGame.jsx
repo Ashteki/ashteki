@@ -140,7 +140,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                 // inline
                 onChange={(e) => {
                     formProps.handleChange(e);
-                    if (option.name === 'ranked' && allowPremium) {
+                    if (option.name === 'ranked') {
                         formProps.setFieldValue('saveReplay', e.target.checked);
                     }
                 }}
