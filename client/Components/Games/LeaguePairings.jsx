@@ -29,6 +29,7 @@ const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
     const handlePlayClick = (pairing, tag) => {
         onPlayClick();
         const gameName = `${getLeagueName(tag)}: ${pairing.ashtekiP1 || pairing.player1} vs ${pairing.ashtekiP2 || pairing.player2}`
+        const isRanked = tag === 'phx';
         const values = {
             name: gameName,
             password: '',
@@ -38,7 +39,8 @@ const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
             newGameType: 'league',
             gameFormat: 'constructed',
             useGameTimeLimit: false,
-            ranked: tag === 'phx',
+            ranked: isRanked,
+            saveReplay: isRanked,
             pairing: pairing,
             league: tag
         };
