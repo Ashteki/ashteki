@@ -6108,7 +6108,8 @@
             "text": "Visions: [[side]]: Look at the top 3 cards of a target draw pile. You may spend 1 [[basic]] and place 1 exhaustion token on this card to place 1 of those cards on the bottom of that draw pile. Place the remaining looked at cards on the top of that draw pile in the order of your choice.",
             "battlefield": 4,
             "life": 20,
-            "spellboard": 5
+            "spellboard": 5,
+            "imageStub": "https://cdn.ashteki.com/archive/rimea-careworn.jpg"
         },
         {
             "name": "Rin Northfell",
