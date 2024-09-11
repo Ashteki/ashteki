@@ -17,7 +17,7 @@ describe('Kneel vs Chimera', function () {
                     phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
-                    inPlay: ['iron-scales'],
+                    inPlay: ['iron-scales', 'rainwalker'],
                     deck: [],
                     spellboard: [],
                     threatZone: ['constrict', 'hunting-instincts'],
@@ -41,6 +41,7 @@ describe('Kneel vs Chimera', function () {
             expect(this.constrict.location).toBe('play area');
             expect(this.constrict.facedown).toBe(false);
             expect(this.constrict.exhausted).toBe(false);
+            expect(this.rainwalker.location).toBe('archives');
         });
     });
 });

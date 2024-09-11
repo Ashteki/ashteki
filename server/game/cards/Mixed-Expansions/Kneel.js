@@ -5,8 +5,7 @@ class Kneel extends Card {
         this.play({
             title: 'Kneel',
             effect: 'place 1 exhaustion token on each unexhausted unit',
-            gameAction: ability.actions.addExhaustionToken((context) => ({
-                amount: 1,
+            gameAction: ability.actions.exhaust((context) => ({
                 target: context.game.unitsInPlay.filter((u) => !u.exhausted)
             }))
         });
