@@ -1316,8 +1316,9 @@
         "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/from_darkness.png"
       },
       {
-        "id": "ancestral-army",
-        "count": 3
+        "id": "seek-the-depths",
+        "count": 3,
+        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/seek-the-depths.png"
       }
     ],
     "conjurations": [
@@ -1332,8 +1333,9 @@
         "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/whisperer.png"
       },
       {
-        "id": "ancestor-spirit",
-        "count": 2
+        "id": "soul-delver",
+        "count": 2,
+        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/soul-delver.png"
       }
     ]
   }
