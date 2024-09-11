@@ -17,10 +17,26 @@ class DarkReflection extends Card {
         });
 
         //TODO: war within
-        // this.destroyed({
-        //     title: 'War Within',
-
-        // });
+        this.destroyed({
+            title: 'War Within',
+            inexhaustible: true,
+            gameAction: ability.actions.conditional({
+                condition: (context) => context.player.dice.some(d => !d.exhausted),
+                trueGameAction: ability.actions.exhaustDie({
+                    promptForSelect: {
+                        mode: 'exactly',
+                        numDice: 1,
+                        dieCondition: (die) => !die.exhausted,
+                        owner: 'self',
+                        gameAction: ability.actions.exhaustDie()
+                    }
+                }),
+                falseGameAction: ability.actions.addDamageToken((context) => ({
+                    target: context.player.phoenixborn,
+                    amount: 2
+                }))
+            })
+        });
     }
 }
 
