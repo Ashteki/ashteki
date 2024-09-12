@@ -1254,7 +1254,7 @@
   },
   {
     "precon_id": 417,
-    "name": "The Spawn of Shadowreck: Rimea(draft)",
+    "name": "The Spawn of Shadowreck: Rimea",
     "phoenixborn": [
       {
         "id": "rimea-careworn",
@@ -1272,70 +1272,271 @@
     "cards": [
       {
         "id": "summon-shade-prowler",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/summon_shade_prowler.png"
+        "count": 3
       },
       {
         "id": "umbral-acrobat",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/umbral_acrobat.png"
+        "count": 3
       },
       {
         "id": "backflip",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/backflip.png"
+        "count": 3
       },
       {
         "id": "summon-whisperer",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/summon_whisperer.png"
+        "count": 3
       },
       {
         "id": "juggle",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/juggle.png"
+        "count": 3
       },
       {
         "id": "shroud",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/shroud.png"
+        "count": 3
       },
       {
         "id": "gates-defender",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/gates_defender.png"
+        "count": 3
       },
       {
         "id": "inkspill",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/inkspill.png"
+        "count": 3
       },
       {
         "id": "from-darkness",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/from_darkness.png"
+        "count": 3
       },
       {
         "id": "seek-the-depths",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/seek_the_depths.png"
+        "count": 3
       }
     ],
     "conjurations": [
       {
         "id": "shade-prowler",
-        "count": 2,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/shade_prowler.png"
+        "count": 2
       },
       {
         "id": "whisperer",
-        "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/whisperer.png"
+        "count": 3
       },
       {
         "id": "soul-delver",
-        "count": 2,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/soul_delver.png"
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 418,
+    "name": "The Spawn of Shadowreck: Sembali",
+    "phoenixborn": [
+      {
+        "id": "sembali-grimtongue",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-shade-prowler",
+        "count": 3
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 3
+      },
+      {
+        "id": "backflip",
+        "count": 3
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3
+      },
+      {
+        "id": "juggle",
+        "count": 3
+      },
+      {
+        "id": "shroud",
+        "count": 3
+      },
+      {
+        "id": "gates-defender",
+        "count": 3
+      },
+      {
+        "id": "inkspill",
+        "count": 3
+      },
+      {
+        "id": "from-darkness",
+        "count": 3
+      },
+      {
+        "id": "dark-reflection",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shade-prowler",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 419,
+    "name": "The Spawn of Shadowreck: Victoria",
+    "phoenixborn": [
+      {
+        "id": "victoria-glassfire",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-shade-prowler",
+        "count": 3
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 3
+      },
+      {
+        "id": "backflip",
+        "count": 3
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3
+      },
+      {
+        "id": "juggle",
+        "count": 3
+      },
+      {
+        "id": "shroud",
+        "count": 3
+      },
+      {
+        "id": "gates-defender",
+        "count": 3
+      },
+      {
+        "id": "inkspill",
+        "count": 3
+      },
+      {
+        "id": "from-darkness",
+        "count": 3
+      },
+      {
+        "id": "magnificence",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shade-prowler",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 420,
+    "name": "The Spawn of Shadowreck: Hope",
+    "phoenixborn": [
+      {
+        "id": "hope-everthorn",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-shade-prowler",
+        "count": 3
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 3
+      },
+      {
+        "id": "backflip",
+        "count": 3
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3
+      },
+      {
+        "id": "juggle",
+        "count": 3
+      },
+      {
+        "id": "shroud",
+        "count": 3
+      },
+      {
+        "id": "gates-defender",
+        "count": 3
+      },
+      {
+        "id": "inkspill",
+        "count": 3
+      },
+      {
+        "id": "from-darkness",
+        "count": 3
+      },
+      {
+        "id": "summon-scrawler",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shade-prowler",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      },
+      {
+        "id": "scrawler",
+        "count": 4
       }
     ]
   }

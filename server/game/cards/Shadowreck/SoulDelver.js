@@ -13,7 +13,7 @@ class SoulDelver extends Card {
                 targetsPlayer: true,
                 toSelect: 'die',
                 mode: 'upTo',
-                numDice: (context) => context.controller.phoenixborn.status,
+                numDice: (context) => context.player.phoenixborn.status,
                 dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()

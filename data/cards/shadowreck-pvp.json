@@ -232,7 +232,8 @@
             "attack": 1,
             "life": 1,
             "recover": 0,
-            "copies": 4
+            "copies": 4,
+            "phoenixborn": "Hope Everthorn"
         },
         {
             "name": "Seek the Depths",
@@ -249,7 +250,8 @@
             ],
             "magicCost": {
                 "basic": 2
-            }
+            },
+            "phoenixborn": "Rimea Careworn"
         },
         {
             "name": "Soul Delver",
@@ -259,7 +261,8 @@
             "attack": 2,
             "life": 3,
             "recover": 1,
-            "copies": 2
+            "copies": 2,
+            "phoenixborn": "Rimea Careworn"
         },
         {
             "name": "Dark Reflection",
@@ -278,7 +281,8 @@
             },
             "attack": 3,
             "life": 3,
-            "recover": 2
+            "recover": 2,
+            "phoenixborn": "Sembali Grimtongue"
         }
     ]
 }
