@@ -1318,7 +1318,7 @@
       {
         "id": "seek-the-depths",
         "count": 3,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/seek-the-depths.png"
+        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/seek_the_depths.png"
       }
     ],
     "conjurations": [
@@ -1335,7 +1335,7 @@
       {
         "id": "soul-delver",
         "count": 2,
-        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/soul-delver.png"
+        "imageStub": "https://cdn.ashteki.com/proofs/shadowreck/soul_delver.png"
       }
     ]
   }

@@ -240,6 +240,7 @@
             "type": "Action Spell",
             "placement": "Discard",
             "cost": [
+                "[[main]]",
                 "2 [[basic]]",
                 "1 [[discard]]"
             ],

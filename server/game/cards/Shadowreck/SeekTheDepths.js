@@ -6,7 +6,8 @@ class SeekTheDepths extends Card {
             title: 'Seek the Depths',
             gameAction: ability.actions.summon({
                 conjuration: 'soul-delver'
-            }),
+            })
+            ,
             then: {
                 alwaysTriggers: true,
                 gameAction: ability.actions.addStatusToken((context) => ({
@@ -23,6 +24,6 @@ class SeekTheDepths extends Card {
     }
 }
 
-SeekTheDepths.id = 'juggle';
+SeekTheDepths.id = 'seek-the-depths';
 
 module.exports = SeekTheDepths;
