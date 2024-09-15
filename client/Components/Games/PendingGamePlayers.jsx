@@ -109,7 +109,10 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     }
 
                     status = !(currentGame.solo && !isMe) && (
-                        <DeckStatus status={player.deck.status} />
+                        <DeckStatus
+                            status={player.deck.status}
+                            gameFormat={currentGame.gameFormat}
+                        />
                     );
 
                     if (player.deck.isChimera) {

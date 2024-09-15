@@ -80,7 +80,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
     let deckList = null;
     let setIndex = 0;
-    if ('constructed' === gameFormat || (gameFormat === 'solo' && playerIsMe)) {
+    if (['constructed', 'hl2pvp'].includes(gameFormat) || (gameFormat === 'solo' && playerIsMe)) {
         deckList = (
             <Tabs>
                 <TabList>

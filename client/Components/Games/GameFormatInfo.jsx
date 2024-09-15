@@ -61,6 +61,12 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
                     <strong>Solo</strong> Play single player against a chimera. (Beta / WIP)
                 </AlertPanel>
             );
+        case 'hl2pvp':
+            return (
+                <AlertPanel type='info'>
+                    <strong>Heroic Level 2 PvP</strong> Construct a deck using the PvE campaign rules for Heroic Level 2, and then play PvP!
+                </AlertPanel>
+            );
     }
 };
 
