@@ -209,6 +209,7 @@ class AshesDeckService {
             properties = Object.assign(properties, {
                 precon_id: deck.precon_id,
                 precon_group: deck.preconGroup,
+                precon_set: deck.precon_set,
                 premium: deck.premium,
                 listClass: deck.listClass,
                 restricted: deck.restricted
