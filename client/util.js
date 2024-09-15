@@ -97,7 +97,8 @@ export const gameFormats = [
     { name: 'aparty', label: 'Adventuring Party' },
     { name: 'constructed', label: 'Constructed' },
     { name: 'coaloff', label: 'Coal Off!' },
-    { name: 'solo', label: 'Solo' }
+    { name: 'solo', label: 'Solo' },
+    { name: 'hl2pvp', label: 'Heroic L2 PvP' }
 ];
 
 export const cardSizes = [

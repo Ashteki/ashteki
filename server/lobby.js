@@ -15,6 +15,7 @@ const ConfigService = require('./services/ConfigService');
 const User = require('./models/User');
 const { sortBy } = require('./Array');
 const DummyUser = require('./models/DummyUser.js');
+const DeckValidator = require('./DeckValidator.js');
 
 class Lobby {
     constructor(server, options = {}) {
@@ -51,6 +52,7 @@ class Lobby {
     async init() {
         // pre cache card list so the first user to the site doesn't have a slowdown
         this.cards = await this.cardService.getAllCards();
+        this.precons = await this.deckService.getPrecons();
     }
 
     // External methods
@@ -739,6 +741,12 @@ class Lobby {
             noUnreleasedCards: true,
             officialRole: true
         };
+
+        if (game.gameFormat === 'hl2pvp') {
+            const validator = new DeckValidator(this.cards, this.precons);
+            const hl2pvp = validator.validateRedRainsHeroicLevel2(deck).valid;
+            deck.status.hl2pvp = hl2pvp;
+        }
 
         game.selectDeck(user.username, deck, !isForMe);
     }

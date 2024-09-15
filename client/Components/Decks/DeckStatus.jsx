@@ -7,17 +7,35 @@ import DeckStatusSummary from './DeckStatusSummary';
 
 import './DeckStatus.scss';
 
-const DeckStatus = ({ status }) => {
+const DeckStatus = ({ status, gameFormat }) => {
     const { t } = useTranslation();
+    const formatCheck = () => {
+        return gameFormat !== 'hl2pvp' || !!status.hl2pvp;
+    };
+    const showFormat = gameFormat === 'hl2pvp';
 
+    const validFormat = formatCheck();
     let statusName;
     let className = classNames('deck-status', {
-        invalid: !status.basicRules || !status.maxThree || !status.hasConjurations || !status.tenDice || !status.uniques,
+        invalid:
+            !status.basicRules ||
+            !status.maxThree ||
+            !status.hasConjurations ||
+            !status.tenDice ||
+            !status.uniques ||
+            !validFormat,
         conjurations: !status.hasConjurations,
         valid: status.basicRules && status.hasConjurations && status.tenDice && status.uniques
     });
 
-    if (!status.basicRules || !status.maxThree || !status.hasConjurations || !status.tenDice || !status.uniques) {
+    if (
+        !status.basicRules ||
+        !status.maxThree ||
+        !status.hasConjurations ||
+        !status.tenDice ||
+        !status.uniques ||
+        !validFormat
+    ) {
         statusName = t('Invalid');
     } else {
         statusName = t('Valid');
@@ -27,7 +45,7 @@ const DeckStatus = ({ status }) => {
         <Popover id='deck-status-popover'>
             <Popover.Content>
                 <div>
-                    <DeckStatusSummary status={status} />
+                    <DeckStatusSummary status={status} showFormat={showFormat} />
                 </div>
             </Popover.Content>
         </Popover>
