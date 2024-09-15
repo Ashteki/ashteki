@@ -1,6 +1,7 @@
 [
   {
     "precon_id": 401,
+    "precon_set": "corpse",
     "name": "The Corpse of Viros: Noah",
     "phoenixborn": [
       {
@@ -81,6 +82,7 @@
   },
   {
     "precon_id": 402,
+    "precon_set": "corpse",
     "name": "The Corpse of Viros: Jessa",
     "phoenixborn": [
       {
@@ -161,6 +163,7 @@
   },
   {
     "precon_id": 403,
+    "precon_set": "corpse",
     "name": "The Corpse of Viros: Coal",
     "phoenixborn": [
       {
@@ -241,6 +244,7 @@
   },
   {
     "precon_id": 404,
+    "precon_set": "corpse",
     "name": "The Corpse of Viros: Brennen",
     "phoenixborn": [
       {
@@ -321,6 +325,7 @@
   },
   {
     "precon_id": 405,
+    "precon_set": "scourge",
     "name": "The Frostwild Scourge: Aradel",
     "phoenixborn": [
       {
@@ -400,6 +405,7 @@
   },
   {
     "precon_id": 406,
+    "precon_set": "scourge",
     "name": "The Frostwild Scourge: Koji",
     "phoenixborn": [
       {
@@ -483,6 +489,7 @@
   },
   {
     "precon_id": 407,
+    "precon_set": "scourge",
     "name": "The Frostwild Scourge: Lulu",
     "phoenixborn": [
       {
@@ -566,6 +573,7 @@
   },
   {
     "precon_id": 408,
+    "precon_set": "scourge",
     "name": "The Frostwild Scourge: Rin",
     "phoenixborn": [
       {
@@ -649,6 +657,7 @@
   },
   {
     "precon_id": 409,
+    "precon_set": "blight",
     "name": "The Blight of Neverset: Maeoni",
     "phoenixborn": [
       {
@@ -723,6 +732,7 @@
   },
   {
     "precon_id": 410,
+    "precon_set": "blight",
     "name": "The Blight of Neverset: Saria",
     "phoenixborn": [
       {
@@ -797,6 +807,7 @@
   },
   {
     "precon_id": 411,
+    "precon_set": "blight",
     "name": "The Blight of Neverset: Leo",
     "phoenixborn": [
       {
@@ -875,6 +886,7 @@
   },
   {
     "precon_id": 412,
+    "precon_set": "blight",
     "name": "The Blight of Neverset: Astrea",
     "restricted": true,
     "phoenixborn": [
@@ -950,6 +962,7 @@
   },
   {
     "precon_id": 413,
+    "precon_set": "siege",
     "name": "The Siege of Lordswall: Odette",
     "phoenixborn": [
       {
@@ -1024,6 +1037,7 @@
   },
   {
     "precon_id": 414,
+    "precon_set": "siege",
     "name": "The Siege of Lordswall: James",
     "phoenixborn": [
       {
@@ -1098,6 +1112,7 @@
   },
   {
     "precon_id": 415,
+    "precon_set": "siege",
     "name": "The Siege of Lordswall: Xander",
     "phoenixborn": [
       {
@@ -1172,6 +1187,7 @@
   },
   {
     "precon_id": 416,
+    "precon_set": "siege",
     "name": "The Siege of Lordswall: Dimona",
     "phoenixborn": [
       {
@@ -1249,6 +1265,298 @@
       {
         "id": "divinity-mount",
         "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 417,
+    "precon_set": "spawn",
+    "name": "The Spawn of Shadowreck: Rimea",
+    "phoenixborn": [
+      {
+        "id": "rimea-careworn",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-shade-prowler",
+        "count": 3
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 3
+      },
+      {
+        "id": "backflip",
+        "count": 3
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3
+      },
+      {
+        "id": "juggle",
+        "count": 3
+      },
+      {
+        "id": "shroud",
+        "count": 3
+      },
+      {
+        "id": "gates-defender",
+        "count": 3
+      },
+      {
+        "id": "inkspill",
+        "count": 3
+      },
+      {
+        "id": "from-darkness",
+        "count": 3
+      },
+      {
+        "id": "seek-the-depths",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shade-prowler",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      },
+      {
+        "id": "soul-delver",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 418,
+    "precon_set": "spawn",
+    "name": "The Spawn of Shadowreck: Sembali",
+    "phoenixborn": [
+      {
+        "id": "sembali-grimtongue",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-shade-prowler",
+        "count": 3
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 3
+      },
+      {
+        "id": "backflip",
+        "count": 3
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3
+      },
+      {
+        "id": "juggle",
+        "count": 3
+      },
+      {
+        "id": "shroud",
+        "count": 3
+      },
+      {
+        "id": "gates-defender",
+        "count": 3
+      },
+      {
+        "id": "inkspill",
+        "count": 3
+      },
+      {
+        "id": "from-darkness",
+        "count": 3
+      },
+      {
+        "id": "dark-reflection",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shade-prowler",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 419,
+    "precon_set": "spawn",
+    "name": "The Spawn of Shadowreck: Victoria",
+    "phoenixborn": [
+      {
+        "id": "victoria-glassfire",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-shade-prowler",
+        "count": 3
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 3
+      },
+      {
+        "id": "backflip",
+        "count": 3
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3
+      },
+      {
+        "id": "juggle",
+        "count": 3
+      },
+      {
+        "id": "shroud",
+        "count": 3
+      },
+      {
+        "id": "gates-defender",
+        "count": 3
+      },
+      {
+        "id": "inkspill",
+        "count": 3
+      },
+      {
+        "id": "from-darkness",
+        "count": 3
+      },
+      {
+        "id": "magnificence",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shade-prowler",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 420,
+    "precon_set": "spawn",
+    "name": "The Spawn of Shadowreck: Hope",
+    "phoenixborn": [
+      {
+        "id": "hope-everthorn",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-shade-prowler",
+        "count": 3
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 3
+      },
+      {
+        "id": "backflip",
+        "count": 3
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3
+      },
+      {
+        "id": "juggle",
+        "count": 3
+      },
+      {
+        "id": "shroud",
+        "count": 3
+      },
+      {
+        "id": "gates-defender",
+        "count": 3
+      },
+      {
+        "id": "inkspill",
+        "count": 3
+      },
+      {
+        "id": "from-darkness",
+        "count": 3
+      },
+      {
+        "id": "summon-scrawler",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shade-prowler",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      },
+      {
+        "id": "scrawler",
+        "count": 4
       }
     ]
   }

@@ -4,65 +4,6 @@ class DeckValidator {
         this.precons = precons;
     }
 
-    validateTrinityDeck(deck) {
-        const result = {
-            valid: null,
-            core: false,
-            deluxe: [],
-            packs: []
-        }
-        deck.cards.forEach(c => {
-            const card = this.cardsByCode[c.id];
-            const release = card.release.name;
-            if (release === 'Master Set') {
-                result.core = true;
-            } else {
-
-                if (['The Song of Soaksend', 'The Law of Lions', 'The Breaker of Fate'].includes(release)) {
-                    if (!result.deluxe.includes(release)) {
-                        result.deluxe.push(release);
-                    }
-                } else {
-                    if (!result.packs.includes(release)) {
-                        result.packs.push(release);
-                    }
-                }
-            }
-        });
-        result.valid = result.deluxe.length < 2 && result.packs.length < 4;
-        return result;
-    }
-
-    // validateCatSpill(deck) {
-    //     const result = {
-    //         valid: true,
-    //         banned: [],
-    //         partial: []
-    //     };
-    //     const cats = catSpill;
-    //     deck.cards.forEach(c => {
-    //         if (catSpill.banned.includes(c.id)) {
-    //             result.banned.push(c.id);
-    //             result.valid = false;
-    //         };
-
-    //         if (catSpill.partial.includes(c.id)) {
-    //             let entry = result.partial.find(e => e.id === c.id);
-    //             if (!entry) {
-    //                 entry = { id: c.id, count: 0 };
-    //                 result.partial.push(entry);
-    //             }
-    //             entry.count++;
-    //             if (entry.count > 1) {
-    //                 result.valid = false;
-    //             }
-    //         }
-    //     });
-
-
-    //     return result;
-    // }
-
     validateRedRainsHeroicLevel2(deck) {
         const result = {
             pbPrecon: '',
@@ -106,13 +47,22 @@ class DeckValidator {
 
         // get the precon with the most cards and belonging to the pb
         result.pbPrecon = result.precons
-            .filter(p => p.deck.phoenixborn[0].id === deck.phoenixborn[0].id)
+            .filter(p => p.deck.phoenixborn[0].id === deck.phoenixborn[0].id || p.deck.precon_set)
             .reduce(
                 (prev, current) => {
                     return prev?.count > current.count ? prev : current
                 },
                 null
             );
+
+        // if pbs don't match then replace with pb deck from set (red Rains)
+        if (result.pbPrecon
+            && result.pbPrecon.deck.phoenixborn[0].id !== deck.phoenixborn[0].id
+            && result.pbPrecon.deck.precon_set) {
+            const matchingPrecon = this.findPbPreconFromSet(deck.phoenixborn[0].id, result.pbPrecon.deck.precon_set);
+            result.pbPrecon.name = matchingPrecon.name;
+            result.pbPrecon.deck = matchingPrecon;
+        }
 
         result.valid = result.pbPrecon
             && result.precons.length <= 3
@@ -133,6 +83,13 @@ class DeckValidator {
     findCardPrecon(card) {
         const precons = Object.values(this.precons);
         return precons.find(p => p.cards.some(c => c.id === card.stub))
+    }
+
+    findPbPreconFromSet(pbId, preconSet) {
+        const precons = Object.values(this.precons);
+        return precons.find(p => p.precon_set === preconSet
+            && p.phoenixborn[0].id === pbId)
+
     }
 }
 
