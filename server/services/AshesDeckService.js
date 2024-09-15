@@ -47,6 +47,10 @@ class AshesDeckService {
         return this.preconDecks.find({ 'precon_group': preconGroup }, { sort: { precon_id: 1 } });
     }
 
+    getPrecons() {
+        return this.preconDecks.find({ precon_group: { $in: [1, 6] } }, { sort: { precon_id: 1 } });
+    }
+
     async findByUserName(userName, options, applyLimit = true) {
         let nameSearch = '';
         let pbSearch = '';
