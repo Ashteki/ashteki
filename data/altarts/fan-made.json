@@ -100,6 +100,16 @@
             "name": "Nature's Wrath - NSM",
             "stub": "natures-wrath",
             "alt": "alt/natures-wrath-fanmade"
+        },
+        {
+            "name": "Lark Victoria (1 & Done)",
+            "stub": "victoria-glassfire",
+            "alt": "alt/victoria-glassfire-fanmade"
+        },
+        {
+            "name": "Lark Hope (1 & Done)",
+            "stub": "hope-everthorn",
+            "alt": "alt/hope-everthorn-fanmade"
         }
     ]
 }
