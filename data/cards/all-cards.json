@@ -6266,8 +6266,7 @@
             "text": "Visions: [[side]] - [[exhaust]]: Draw 2 cards. Then, look at 2 random cards in a target opponent's hand.",
             "battlefield": 5,
             "life": 17,
-            "spellboard": 5,
-            "imageStub": "https://cdn.ashteki.com/archive/rimea-careworn.jpg"
+            "spellboard": 5
         },
         {
             "name": "Rin Northfell",
