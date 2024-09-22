@@ -3,8 +3,6 @@ const Card = require('../../Card.js');
 
 class Whisperer extends Card {
     setupCardAbilities(ability) {
-        this.fade();
-
         return this.destroyed({
             gameAction: ability.actions.conditional({
                 condition: (context) =>

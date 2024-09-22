@@ -27,6 +27,7 @@ class Juggle extends Card {
                 then: {
                     alwaysTriggers: true,
                     target: {
+                        activePlayerPrompt: 'Choose a card to deal 3 damage to',
                         cardType: BattlefieldTypes,
                         controller: 'opponent',
                         gameAction: ability.actions.dealDamage({ amount: 3 })
