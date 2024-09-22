@@ -396,6 +396,27 @@
             "text": "When this spell comes into play, place 3 status tokens on it.\n\n[[side]] - [[exhaust]]: Search your draw pile. You may reveal 1 card with a magic play cost of X and place it into your hand. If you do, remove 1 status token from this spell. Shuffle your draw pile.\n\nX = the number of status tokens on this spell."
         },
         {
+            "name": "Backflip",
+            "stub": "backflip",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            },
+            "text": "Return an ally you control to its owner's hand to add 3 to the attack value of another unit for the remainder of the turn."
+        },
+        {
             "name": "Backtrack",
             "stub": "backtrack",
             "type": "Reaction Spell",
@@ -1797,6 +1818,31 @@
             "text": "Destroy a unit you control to change 5 dice in your active pool to a side of your choice."
         },
         {
+            "name": "Dark Reflection",
+            "stub": "dark-reflection",
+            "type": "Ally",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "text": "Slay 2: [[side]] - [[exhaust]]: Deal 2 damage to a target unit an opponent controls.\n\n* War Within: When this unit is destroyed, exhaust one die in your active pool. If you cannot, place 2 wound tokens on your Phoenixborn.",
+            "phoenixborn": "Sembali Grimtongue",
+            "attack": 3,
+            "life": 3,
+            "recover": 2
+        },
+        {
             "name": "Darkwater Hunter",
             "stub": "darkwater-hunter",
             "type": "Ally",
@@ -2974,6 +3020,26 @@
             "text": "Deal 2 damage to a target unit. Remove 2 status tokens from that unit."
         },
         {
+            "name": "From Darkness",
+            "stub": "from-darkness",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[illusion:power]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:power": 1
+            },
+            "text": "You may play this spell after an opponent declares attackers. Deal damage to a target attacking unit equal to the attack value of an exhausted unit you control."
+        },
+        {
             "name": "Frostback Bear",
             "stub": "frostback-bear",
             "type": "Conjuration",
@@ -3069,6 +3135,32 @@
                 "natural:class": 1
             },
             "attack": "+3"
+        },
+        {
+            "name": "Gates Defender",
+            "stub": "gates-defender",
+            "type": "Ally",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:power]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1,
+                "illusion:power": 1
+            },
+            "text": "~ Hidden: After an opponent has declared attackers, you may play this unit from your hand without paying its main action cost.\n\nAlert: Do not place exhaustion tokens on this unit as a result of its countering.",
+            "attack": 2,
+            "life": 3,
+            "recover": 1
         },
         {
             "name": "Gates Thrown Open",
@@ -3847,6 +3939,27 @@
             "text": "This unit now has the following abilities:\n\nFrenzy 2: When this unit is declared as an attacker, deal 2 damage to it.\n\n* Rage 1: Add 1 to this unit's attack value for each wound token on this unit."
         },
         {
+            "name": "Inkspill",
+            "stub": "inkspill",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[illusion:class]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            },
+            "text": "You may play this spell after you declare attackers. Place 1 exhaustion token on up to 2 target units with an attack value of 1 or less."
+        },
+        {
             "name": "Intercession",
             "stub": "intercession",
             "type": "Reaction Spell",
@@ -4023,6 +4136,29 @@
             },
             "text": "Destroy all units.",
             "phoenixborn": "Astrea"
+        },
+        {
+            "name": "Juggle",
+            "stub": "juggle",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "basic": 2,
+                "illusion:class": 1
+            },
+            "text": "Raise 3 dice in your active pool one level. Lower 3 dice in a target opponent's active pool one level. Deal 3 damage to a target unit that opponent controls."
         },
         {
             "name": "Jungle Forager",
@@ -4456,6 +4592,28 @@
                 "sympathy:class": 1
             },
             "text": "[[side]] - [[exhaust]]: Change 1 die in your active pool to a side of your choice. Change 1 die in a target player's active pool to a side of your choice."
+        },
+        {
+            "name": "Magnificence",
+            "stub": "magnificence",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:power]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:power": 1
+            },
+            "text": "Re-roll up to 4 dice in a target player's active pool. Swap a target unit's printed attack value with its printed life value for the remainder of the turn. Deal 1 damage to a target unit an opponent controls. Then, deal 1 damage to a target unit an opponent controls.",
+            "phoenixborn": "Victoria Glassfire"
         },
         {
             "name": "Majestic Titan",
@@ -6105,11 +6263,10 @@
                 "name": "The Ghost Guardian",
                 "stub": "the-ghost-guardian"
             },
-            "text": "Visions: [[side]]: Look at the top 3 cards of a target draw pile. You may spend 1 [[basic]] and place 1 exhaustion token on this card to place 1 of those cards on the bottom of that draw pile. Place the remaining looked at cards on the top of that draw pile in the order of your choice.",
-            "battlefield": 4,
-            "life": 20,
-            "spellboard": 5,
-            "imageStub": "https://cdn.ashteki.com/archive/rimea-careworn.jpg"
+            "text": "Visions: [[side]] - [[exhaust]]: Draw 2 cards. Then, look at 2 random cards in a target opponent's hand.",
+            "battlefield": 5,
+            "life": 17,
+            "spellboard": 5
         },
         {
             "name": "Rin Northfell",
@@ -6459,6 +6616,22 @@
             "spellboard": 4
         },
         {
+            "name": "Scrawler",
+            "stub": "scrawler",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Battlefield",
+            "text": "Tag 1: When this unit comes into play, place 1 exhaustion token on a target unexhausted unit with an attack value less than the number of Scrawlers you control.",
+            "phoenixborn": "Hope Everthorn",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
+        },
+        {
             "name": "Seafoam Snapper",
             "stub": "seafoam-snapper",
             "type": "Conjuration",
@@ -6563,6 +6736,35 @@
             "text": "Choose a target unit you control and a target unit an opponent controls. Those units deal damage to each other equal to their attack value."
         },
         {
+            "name": "Seek the Depths",
+            "stub": "seek-the-depths",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "text": "Place a [[Soul Delver]] conjuration onto your battlefield and place 1 status token on your Phoenixborn. Then, shuffle this card into your draw pile.",
+            "conjurations": [
+                {
+                    "name": "Soul Delver",
+                    "stub": "soul-delver"
+                }
+            ],
+            "phoenixborn": "Rimea Careworn"
+        },
+        {
             "name": "Sembali Grimtongue",
             "stub": "sembali-grimtongue",
             "type": "Phoenixborn",
@@ -6595,6 +6797,21 @@
                 "ceremonial:class": 1
             },
             "text": "[[main]] - [[exhaust]]: Deal 1 damage to an unexhausted unit you control to add 1 to its attack value for the remainder of the turn. If that unit can attack, you may take an Attack action, declaring that unit as the only attacker."
+        },
+        {
+            "name": "Shade Prowler",
+            "stub": "shade-prowler",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Battlefield",
+            "text": "Predator 3: When this unit is declared as an attacker, you may deal 3 damage to a target unit an opponent controls with an attack value less than this unit's attack value.\n\n* Fade: Destroy this unit at the end of this round.",
+            "attack": 2,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
         },
         {
             "name": "Shadowblade",
@@ -6905,6 +7122,27 @@
             "copies": 3
         },
         {
+            "name": "Shroud",
+            "stub": "shroud",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            },
+            "text": "After a conjuration you control comes into play, you may place 1 exhaustion token on this spell. If you do, that unit cannot be targeted by attacks, spells, abilities, or dice powers an opponent controls until the start of your next turn or the next round."
+        },
+        {
             "name": "Silver Paladin",
             "stub": "silver-paladin",
             "type": "Ally",
@@ -7078,6 +7316,22 @@
             "attack": 3,
             "life": 4,
             "recover": 2
+        },
+        {
+            "name": "Soul Delver",
+            "stub": "soul-delver",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Battlefield",
+            "text": "Magic Current X: When this unit is declared as an attacker, raise or lower X dice in a targert player's active pool one level.\n\n* X = the number of status tokens on your Phoenixborn.",
+            "phoenixborn": "Rimea Careworn",
+            "attack": 2,
+            "life": 3,
+            "recover": 1,
+            "copies": 2
         },
         {
             "name": "Soulfire",
@@ -8580,6 +8834,33 @@
             ]
         },
         {
+            "name": "Summon Scrawler",
+            "stub": "summon-scrawler",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "effectMagicCost": {
+                "basic": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[basic]]: Place a [[Scrawler]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Scrawler",
+                    "stub": "scrawler"
+                }
+            ],
+            "phoenixborn": "Hope Everthorn"
+        },
+        {
             "name": "Summon Seafoam Snapper",
             "stub": "summon-seafoam-snapper",
             "type": "Ready Spell",
@@ -8628,6 +8909,33 @@
                 }
             ],
             "phoenixborn": "Saria Guideman"
+        },
+        {
+            "name": "Summon Shade Prowler",
+            "stub": "summon-shade-prowler",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "illusion:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[illusion:class]] - 1 [[basic]]: Place a [[Shade Prowler]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Shade Prowler",
+                    "stub": "shade-prowler"
+                }
+            ]
         },
         {
             "name": "Summon Shadow Hound",
@@ -9075,6 +9383,32 @@
                 {
                     "name": "Weeping Spirit",
                     "stub": "weeping-spirit"
+                }
+            ]
+        },
+        {
+            "name": "Summon Whisperer",
+            "stub": "summon-whisperer",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "effectMagicCost": {
+                "illusion:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[illusion:class]]: Place a [[Whisperer]] conjuration onto your battlefield.\n\nFocus 2: Then, you may lower 1 power die in a target opponent's active pool one level.",
+            "conjurations": [
+                {
+                    "name": "Whisperer",
+                    "stub": "whisperer"
                 }
             ]
         },
@@ -9549,6 +9883,34 @@
             "copies": 2
         },
         {
+            "name": "Umbral Acrobat",
+            "stub": "umbral-acrobat",
+            "type": "Ally",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:power]]",
+                "1 [[illusion:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "illusion:class": 1,
+                "illusion:power": 1
+            },
+            "text": "Unit Guard: This unit may guard a unit that is being attacked.\n\nInvert: When this unit is declared as an attacker, blocker, or guard, you may swap a target unit's printed attack value with its printed life value for the remainder of the turn.",
+            "attack": 3,
+            "life": 4,
+            "recover": 2
+        },
+        {
             "name": "Undying Heart",
             "stub": "undying-heart",
             "type": "Alteration Spell",
@@ -9744,6 +10106,21 @@
             "life": 2,
             "recover": 0,
             "copies": 4
+        },
+        {
+            "name": "Whisperer",
+            "stub": "whisperer",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Spawn of Shadowreck",
+                "stub": "the-spawn-of-shadowreck"
+            },
+            "placement": "Battlefield",
+            "text": "* Haunt 1: When this unit is destroyed, lower 1 power die in a target opponent's active pool one level. If you cannot, deal 1 damage to their target Phoenixborn.",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
         },
         {
             "name": "Willpower",

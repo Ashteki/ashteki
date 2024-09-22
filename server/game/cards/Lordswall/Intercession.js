@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class Intercession extends Card {
     setupCardAbilities(ability) {
         this.reaction({
-            title: 'Call To Action',
+            title: 'Intercession',
             when: {
                 // opponent declares attackers
                 onAttackersDeclared: (event, context) =>

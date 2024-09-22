@@ -638,8 +638,7 @@
         "phoenixborn": [
             {
                 "id": "rimea-careworn",
-                "count": 1,
-                "imageStub": "https://cdn.ashteki.com/archive/rimea-careworn.jpg"
+                "count": 1
             }
         ],
         "ultimate": null,

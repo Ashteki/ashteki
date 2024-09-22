@@ -249,6 +249,10 @@ class Player extends GameObject {
         );
     }
 
+    countUnits(stub) {
+        return this.unitsInPlay.filter((c) => c.id === stub).length;
+    }
+
     indexOf(card) {
         return this.battlefield.indexOf(card);
     }
@@ -292,6 +296,10 @@ class Player extends GameObject {
         const position = this.cardsInPlay.indexOf(card);
         this.cardsInPlay.splice(position, 1);
         this.cardsInPlay.push(card);
+    }
+
+    hasExhaustedUnit() {
+        return this.battlefield.some((c) => c.exhausted);
     }
 
     getSpendableDice(context) {
