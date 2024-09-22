@@ -1,18 +1,21 @@
-const { BattlefieldTypes, Level, Magic } = require('../../../constants.js');
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
-const DiceCount = require('../../DiceCount.js');
 
-class BodyInversion extends Card {
+class UmbralAcrobat extends Card {
     setupCardAbilities(ability) {
-        this.action({
-            title: 'Body Inversion a unit',
-            location: 'spellboard',
-            cost: [
-                ability.costs.sideAction(),
-                ability.costs.exhaust(),
-                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion)])
-            ],
+        this.unitGuard();
+
+        //TODO: Invert
+        this.forcedReaction({
+            title: 'Invert',
+            when: {
+                onAttackersDeclared: (event, context) => {
+                    return event.attackers.includes(context.source);
+                }
+            },
             target: {
+                activePromptTitle: 'Choose a unit to Invert',
+                optional: true,
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
@@ -29,8 +32,9 @@ class BodyInversion extends Card {
                         ability.effects.setLife(() => {
                             const printedAttack =
                                 context.target.mostRecentEffect('setPrintedAttack') ||
-                                    context.target.printedAttack == 'X' ? context.target.mostRecentEffect('setPrintedAttack') :
-                                    context.target.printedAttack;
+                                (context.target.printedAttack == 'X'
+                                    ? context.target.mostRecentEffect('setPrintedAttack')
+                                    : context.target.printedAttack);
                             return Math.max(
                                 0,
                                 printedAttack + context.target.sumEffects('modifyLife')
@@ -43,6 +47,6 @@ class BodyInversion extends Card {
     }
 }
 
-BodyInversion.id = 'body-inversion';
+UmbralAcrobat.id = 'umbral-acrobat';
 
-module.exports = BodyInversion;
+module.exports = UmbralAcrobat;
