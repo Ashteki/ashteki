@@ -5,8 +5,8 @@ class Magnificence extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Magnificence',
-            effect: "reroll {1} of their opponent's dice: {2}",
-            effectArgs: (context) => [context.target.length, context.target],
+            // effect: "reroll {1} of their opponent's dice: {2}",
+            // effectArgs: (context) => [context.target.length, context.target],
             target: {
                 targetsPlayer: true,
                 toSelect: 'die',
@@ -77,7 +77,17 @@ class Magnificence extends Card {
             }
         });
     }
+
+    getPlayerOptions(context) {
+        let choices = [context.player.name];
+
+        if (context.player.checkRestrictions('changeOpponentsDice')) {
+            choices.push(context.player.opponent.name);
+        }
+        return choices.map((t) => ({ text: t, value: t }));
+    }
 }
+
 
 Magnificence.id = 'magnificence';
 
