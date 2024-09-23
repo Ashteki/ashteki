@@ -25,6 +25,11 @@ class BaseDieSelector {
             return context.player.opponent.getSpendableDice(context);
         }
 
+        // only allow dice to be selected from one player
+        if (context.player.selectedDice.length > 0) {
+            return context.player.selectedDice[0].owner.getSpendableDice(context);
+        }
+
         return context.player
             .getSpendableDice(context)
             .concat(context.player.opponent.getSpendableDice(context));
