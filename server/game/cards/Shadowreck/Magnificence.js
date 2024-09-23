@@ -1,5 +1,6 @@
 const { Level, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
+const { player } = require('../../Effects/EffectBuilder.js');
 
 class Magnificence extends Card {
     setupCardAbilities(ability) {
@@ -13,7 +14,6 @@ class Magnificence extends Card {
                 dieCondition: (d) => !d.exhausted,
                 mode: 'upTo',
                 numDice: 4,
-                owner: 'opponent',
                 gameAction: ability.actions.rerollDice()
             },
             then: {
