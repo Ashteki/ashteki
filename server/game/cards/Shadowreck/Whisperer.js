@@ -4,6 +4,7 @@ const Card = require('../../Card.js');
 class Whisperer extends Card {
     setupCardAbilities(ability) {
         return this.destroyed({
+            inexhaustible: true,
             gameAction: ability.actions.conditional({
                 condition: (context) =>
                     context.player.opponent.dice.some(
@@ -19,7 +20,8 @@ class Whisperer extends Card {
                     }
                 }),
                 falseGameAction: ability.actions.dealDamage((context) => ({
-                    target: context.player.opponent.phoenixborn
+                    target: context.player.opponent.phoenixborn,
+                    showMessage: true
                 }))
             })
         });
