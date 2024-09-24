@@ -11,6 +11,9 @@ class UmbralAcrobat extends Card {
             when: {
                 onAttackersDeclared: (event, context) => {
                     return event.attackers.includes(context.source);
+                },
+                onDefendersDeclared: (event, context) => {
+                    return event.attack.battles.some((b) => b.guard === context.source);
                 }
             },
             target: {
