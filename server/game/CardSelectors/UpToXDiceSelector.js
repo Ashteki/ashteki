@@ -20,10 +20,10 @@ class UpToXDiceSelector extends BaseDieSelector {
     defaultActivePromptTitle(context) {
         let numDice = this.getNumDice(context);
         return numDice === 1
-            ? this.owner === 'self'
+            ? ['self', 'any'].includes(this.owner)
                 ? this.selectPrefix + ' a die'
                 : this.selectPrefix + " an opponent's die"
-            : this.owner === 'self'
+            : ['self', 'any'].includes(this.owner)
                 ? this.selectPrefix + ' up to ' + numDice + ' dice'
                 : this.selectPrefix + ' up to ' + numDice + " of your opponent's dice";
     }
