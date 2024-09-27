@@ -8,7 +8,8 @@ class Scrawler extends Card {
                 optional: true,
                 activePromptTitle: 'Choose a card to exhaust',
                 cardType: BattlefieldTypes,
-                cardCondition: (card, context) => card.attack < context.player.countUnits('scrawler'),
+                cardCondition: (card, context) =>
+                    !card.exhausted && card.attack < context.player.countUnits('scrawler'),
                 gameAction: ability.actions.exhaust({ showMessage: true })
             }
         });
