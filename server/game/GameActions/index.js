@@ -63,7 +63,7 @@ module.exports = {
     RemoveAttackerAction: require('./RemoveAttackerAction'),
     RemoveTokenAction: require('./RemoveTokenAction'),
     RerollDiceAction: require('./RerollDiceAction'),
-    RerollDieAction: require('./RerollDieAction'),
+    // RerollDieAction: require('./RerollDieAction'),
     ResolveAbilityAction: require('./ResolveAbilityAction'),
     ResolveStatusAbilityAction: require('./ResolveStatusAbilityAction'),
     ResolveDieAbilityAction: require('./ResolveDieAbilityAction'),

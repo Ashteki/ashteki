@@ -448,6 +448,11 @@ class Player extends GameObject {
         this.recoveryDicePinned = true;
     }
 
+    unpinAllDice() {
+        this.dice.forEach((die) => (die.pinned = false));
+        this.recoveryDicePinned = false;
+    }
+
     addPlayableLocation(type, player, location) {
         let playableLocation = new PlayableLocation(type, player, location);
         this.playableLocations.push(playableLocation);

@@ -26,6 +26,7 @@ class PreparePhase extends Phase {
 
     rollDice() {
         this.game.reRollPlayerDice();
+        this.game.unpinPlayerDice();
     }
 
     drawCards() {
@@ -36,7 +37,7 @@ class PreparePhase extends Phase {
                     .draw({ refill: true })
                     .resolve(p, this.game.getFrameworkContext());
             }
-        })
+        });
     }
 
     fatigueDamage() {

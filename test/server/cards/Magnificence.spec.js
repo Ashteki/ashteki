@@ -34,6 +34,8 @@ describe('Magnificence', function () {
     });
 
     it('can be played to reroll dice, invert and damage opponent', function () {
+        spyOn(Dice, 'getRandomInt').and.returnValue(4);
+
         this.player1.play(this.magnificence);
         this.player1.clickOpponentDie(0);
         this.player1.clickOpponentDie(1);
@@ -44,6 +46,10 @@ describe('Magnificence', function () {
         this.player1.clickCard(this.hammerKnight);
         expect(this.hammerKnight.damage).toBe(2);
         expect(this.player1).toHaveDefaultPrompt();
+        expect(Dice.getRandomInt).toHaveBeenCalledTimes(3);
+        expect(this.player2.dicepool[0].level).toBe('basic');
+        expect(this.player2.dicepool[1].level).toBe('basic');
+        expect(this.player2.dicepool[2].level).toBe('basic');
     });
 
     it('can be played to reroll MY OWN dice, invert and damage opponent', function () {
