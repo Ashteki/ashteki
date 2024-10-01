@@ -1,3 +1,5 @@
+const Dice = require('../../../server/game/dice');
+
 describe('Surprise ability', function () {
     beforeEach(function () {
         this.setupTest({
@@ -31,18 +33,48 @@ describe('Surprise ability', function () {
         });
     });
 
-    it('can be played to deal damage to a Unit', function () {
+    it('rerolls each die', function () {
+        spyOn(Dice, 'getRandomInt').and.returnValue(4);
+
         this.player1.clickCard(this.victoriaGlassfire);
         this.player1.clickPrompt('Surprise!');
         this.player1.clickOpponentDie(0);
         this.player1.clickOpponentDie(1);
         this.player1.clickOpponentDie(2);
         this.player1.clickPrompt('Done');
+        expect(Dice.getRandomInt).toHaveBeenCalledTimes(3);
         expect(this.player1).toHavePrompt('Choose 3 dice');
         this.player1.clickDie(0);
         this.player1.clickDie(1);
         this.player1.clickDie(2);
         this.player1.clickPrompt('Done');
+        expect(Dice.getRandomInt).toHaveBeenCalledTimes(6);
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('BUG: dice pin does not affect rerolls', function () {
+        spyOn(Dice, 'getRandomInt').and.returnValue(4);
+        this.player1.endTurn();
+        this.player2.endTurn();
+        this.player1.clickDone();
+        // keeping dice 0 and 1
+        this.player2.clickDie(0);
+        this.player2.clickDie(1);
+        this.player2.clickDone();
+        this.player1.clickNo();
+        this.player2.clickNo();
+        this.player2.endTurn();
+
+        this.player1.clickCard(this.victoriaGlassfire);
+        this.player1.clickPrompt('Surprise!');
+        this.player1.clickOpponentDie(0);
+        this.player1.clickOpponentDie(1);
+        this.player1.clickPrompt('Done');
+        this.player1.clickDie(0);
+        this.player1.clickDie(1);
+        this.player1.clickDie(2);
+        this.player1.clickPrompt('Done');
+        expect(Dice.getRandomInt).toHaveBeenCalledTimes(6);
         expect(this.player1).toHaveDefaultPrompt();
     });
 });
