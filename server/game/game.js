@@ -1180,6 +1180,12 @@ class Game extends EventEmitter {
         }
     }
 
+    unpinPlayerDice() {
+        for (let player of this.getPlayers().filter((p) => !p.isDummy)) {
+            player.unpinAllDice();
+        }
+    }
+
     // time limit / OP sudden death trigger
     checkForTimeExpired() {
         if (

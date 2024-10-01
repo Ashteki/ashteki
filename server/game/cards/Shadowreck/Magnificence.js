@@ -88,7 +88,6 @@ class Magnificence extends Card {
     }
 }
 
-
 Magnificence.id = 'magnificence';
 
 module.exports = Magnificence;
