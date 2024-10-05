@@ -207,8 +207,8 @@ module.exports.init = function (server) {
                         console.log(error);
                     });
 
-                const limit = req.query.pageSize * 1;
-                let skip = limit * (req.query.page - 1);
+                const limit = req.query.pageSize * 1 || 100;
+                let skip = limit * (req.query.page - 1) || 0;
                 if (skip > numDecks) {
                     skip = 0;
                 }
