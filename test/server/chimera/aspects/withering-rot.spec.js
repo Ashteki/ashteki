@@ -66,20 +66,20 @@ describe('Withering Rot', function () {
                 },
                 player2: {
                     dummy: true,
-                    phoenixborn: 'corpse-of-viros',
-                    behaviour: 'viros-behaviour',
-                    ultimate: 'viros-ultimate',
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
                     inPlay: ['withering-rot'],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
-
-            spyOn(Dice, 'd12Roll').and.returnValue(1);
         });
 
         it('the last status triggers - unable to discard damages', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+
             this.witheringRot.tokens.status = 1;
             expect(this.witheringRot.location).toBe('play area');
             this.player1.endTurn();
@@ -88,6 +88,19 @@ describe('Withering Rot', function () {
             expect(this.witheringRot.status).toBe(0);
             expect(this.coalRoarkwin.damage).toBe(1);
             this.player1.clickOk();
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('no status = no trigger - no damage', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(8);
+
+            this.witheringRot.tokens.status = 0;
+            expect(this.witheringRot.location).toBe('play area');
+            this.player1.endTurn();
+            expect(this.player1).not.toHavePrompt('Discard');
+            this.player1.clickOk();
+            expect(this.witheringRot.status).toBe(0);
+            expect(this.coalRoarkwin.damage).toBe(0);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });

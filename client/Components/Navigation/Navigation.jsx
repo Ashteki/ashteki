@@ -49,7 +49,15 @@ const Navigation = (props) => {
      * @returns {boolean} Whether or not the user can see this menu item
      */
     const userCanSeeMenu = (menuItem, user) => {
-        return !menuItem.permission || (!!user && user.permissions[menuItem.permission]);
+        // no permission required
+        if (!menuItem.permission) {
+            return true;
+        }
+        if (!user?.permissions) {
+            return false;
+        }
+
+        return !!user.permissions[menuItem.permission];
     };
 
     /**
