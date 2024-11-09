@@ -62,10 +62,10 @@ describe('Summon Shining Stag Mount', function () {
             this.player1.clickDone();
             this.player1.clickCard(this.anchornaut);
             expect(this.shiningStagMount.childCards.length).toBe(1);
-
             this.player1.clickDie(0);
-            this.player1.clickCard(this.shiningStagMount);
 
+            this.player1.clickCard(this.shiningStagMount);
+            expect(this.shiningStagMount.attack).toBe(3);
             this.player2.clickCard(this.iceTrap);
 
             expect(this.shiningStagMount.location).toBe('archives');

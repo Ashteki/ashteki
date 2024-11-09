@@ -23,15 +23,17 @@ class SummonShiningStagMount extends Card {
             },
             then: {
                 gameAction: [
-                    ability.actions.summon({
-                        conjuration: 'shining-stag-mount'
-                    }),
-                    ability.actions.placeUnder((context) => {
-                        return {
-                            parent: context.summoned[0],
-                            target: context.priorContext.target
-                        }
-                    })
+                    ability.actions.summon((context) => ({
+                        conjuration: 'shining-stag-mount',
+                        rider: context.priorContext.target
+                    }))
+                    // ,
+                    // ability.actions.placeUnder((context) => {
+                    //     return {
+                    //         parent: context.summoned[0],
+                    //         target: context.priorContext.target
+                    //     }
+                    // })
                 ]
             }
         });
