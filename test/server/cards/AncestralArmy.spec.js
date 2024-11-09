@@ -27,6 +27,8 @@ describe('Ancestral Army', function () {
             this.player1.clickDone();
             expect(this.ancestralArmy.location).toBe('play area');
             expect(this.ancestorSpirit.location).toBe('play area');
+            expect(this.player1.archives.length).toBe(1);
+            this.player1.clickNo();
             expect(this.player1.archives.length).toBe(0);
         });
     });

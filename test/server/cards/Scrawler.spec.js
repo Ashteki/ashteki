@@ -59,7 +59,6 @@ describe('Scrawler', function () {
             // reactions window
             this.player2.clickCard(this.doubleDown);
             //scrawler 1
-            this.player2.clickCard(this.player2.inPlay[0]); // simultaneous events - change this
             expect(this.player2).not.toBeAbleToSelect(this.ironWorker);
             expect(this.player2).not.toBeAbleToSelect(this.fluteMage);
             expect(this.player2).toBeAbleToSelect(this.ashSpirit);
