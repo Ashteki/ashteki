@@ -5,6 +5,7 @@ class SummonAction extends PlayerAction {
         this.count = 1;
         this.conjuration = null;
         this.leftmost = false;
+        this.rider = null;
         // this.opponentControls = false;
         // this.amount = 1;
     }
@@ -39,14 +40,18 @@ class SummonAction extends PlayerAction {
             cards: this.cards
         });
         if (this.cards && this.cards.length) {
-            const gameAction = context.game.actions.putIntoPlay({
-                target: this.cards,
-                showMessage: true,
-                opponentControls: context.target?.name === player.opponent.name,
-                leftmost: this.leftmost
-            });
-            for (let event of gameAction.getEventArray(context)) {
-                summonEvent.addChildEvent(event);
+            for (const card of this.cards) {
+                const action = context.game.actions.putIntoPlay({
+                    target: card,
+                    showMessage: true,
+                    opponentControls: context.target?.name === player.opponent.name,
+                    leftmost: this.leftmost,
+                    placeUnder: this.rider
+                });
+
+                context.game.queueSimpleStep(() =>
+                    context.game.openEventWindow(action.getEventArray(context))
+                );
             }
         }
         return summonEvent;

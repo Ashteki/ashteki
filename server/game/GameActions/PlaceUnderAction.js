@@ -18,8 +18,8 @@ class PlaceUnderAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent('onPlaceUnder', { card, context }, () => {
-            card.owner.placeCardUnder(card, this.parent);
+        return super.createEvent('onPlaceUnder', { card, context, parent: this.parent }, (event) => {
+            card.owner.placeCardUnder(card, event.parent);
         });
     }
 }

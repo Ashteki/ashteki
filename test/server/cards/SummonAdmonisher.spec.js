@@ -48,9 +48,9 @@ describe('Summon Admonisher', function () {
         it('should deal 1 damage to opponents PB', function () {
             this.player1.clickCard(this.summonAdmonisher);
             this.player1.clickPrompt('Summon Admonisher');
-            this.player1.clickCard(this.player1.archives[0]);
+            // this.player1.clickCard(this.player1.archives[0]);
             expect(this.player1.inPlay.length).toBe(2);
-            expect(this.coalRoarkwin.damage).toBe(0);
+            expect(this.coalRoarkwin.damage).toBe(1);
         });
     });
 
