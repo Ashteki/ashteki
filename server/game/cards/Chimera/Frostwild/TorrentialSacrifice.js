@@ -28,7 +28,6 @@ class TorrentialSacrifice extends AspectCard {
                         conjuration: 'rainwalker'
                     })
                 })
-                // do stuff
             }
         });
     }
