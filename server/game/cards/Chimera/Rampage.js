@@ -14,10 +14,6 @@ class Rampage extends AspectCard {
             effect: 'reroll all basic dice'
         });
     }
-
-    get statusCount() {
-        return 2;
-    }
 }
 
 Rampage.id = 'rampage';

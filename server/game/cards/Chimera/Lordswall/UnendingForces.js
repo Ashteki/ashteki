@@ -10,10 +10,6 @@ class UnendingForces extends AspectCard {
             })
         });
     }
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 UnendingForces.id = 'unending-forces';

@@ -22,10 +22,6 @@ class BonechillWind extends AspectCard {
 
         return result;
     }
-
-    get statusCount() {
-        return 2;
-    }
 }
 
 BonechillWind.id = 'bonechill-wind';

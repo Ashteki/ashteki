@@ -27,10 +27,6 @@ class CrimsonPyre extends AspectCard {
             }
         });
     }
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 CrimsonPyre.id = 'crimson-pyre';

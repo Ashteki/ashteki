@@ -85,7 +85,7 @@ class Card extends PlayableObject {
         this.target = cardData.target;
         this.printedBattlefield = cardData.battlefield;
         this.printedSpellboard = cardData.spellboard;
-
+        this.statusCount = cardData.statusCount;
         this.moribund = false;
 
         this.endRound();

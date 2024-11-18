@@ -21,10 +21,6 @@ class Galeforce extends AspectCard {
             }
         });
     };
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 Galeforce.id = 'galeforce';

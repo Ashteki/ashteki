@@ -52,7 +52,8 @@
             "target": "right",
             "attack": 1,
             "life": 2,
-            "blood": 1
+            "blood": 1,
+            "statusCount": 2
         },
         {
             "name": "Charging Horde",
@@ -112,7 +113,8 @@
             "target": "right",
             "attack": 2,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "statusCount": 3
         },
         {
             "name": "Convert",
@@ -142,7 +144,8 @@
             "target": "left",
             "attack": 3,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "statusCount": 3
         },
         {
             "name": "Death Knell",
@@ -152,7 +155,8 @@
             "target": "right",
             "attack": 1,
             "life": 2,
-            "blood": 1
+            "blood": 1,
+            "statusCount": 2
         }
     ]
 }
