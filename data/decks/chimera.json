@@ -437,5 +437,67 @@
         "count": 7
       }
     ]
+  },
+  {
+    "precon_id": 808,
+    "premium": true,
+    "mode": "chimera",
+    "name": "The Siege of Lordswall - Death",
+    "phoenixborn": [
+      {
+        "id": "siege-of-lordswall",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "lordswall-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "lordswall-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "skeletal-wall",
+        "count": 3
+      },
+      {
+        "id": "unending-forces",
+        "count": 3
+      },
+      {
+        "id": "convert",
+        "count": 3
+      },
+      {
+        "id": "torrential-sacrifice",
+        "count": 3
+      },
+      {
+        "id": "crimson-pyre",
+        "count": 3
+      },
+      {
+        "id": "death-knell",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "rainwalker",
+        "count": 7
+      }
+    ]
   }
 ]
