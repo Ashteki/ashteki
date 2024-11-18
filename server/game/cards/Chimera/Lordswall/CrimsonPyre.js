@@ -17,12 +17,21 @@ class CrimsonPyre extends AspectCard {
                 alwaysTriggers: true,
                 gameAction: ability.actions.conditional({
                     condition: (context) => context.preThenEvent?.context.target,
-                    trueGameAction: ability.actions.allocateDamage((context) => ({
-                        choosingPlayer: context.player.opponent,
-                        controller: 'opponent',
-                        numSteps: 2,
-                        cardType: [...BattlefieldTypes, CardType.Phoenixborn]
+                    trueGameAction: ability.actions.sequentialForEach((context) => ({
+                        num: 2,
+                        action: ability.actions.addDamageToken({
+                            promptForSelect: {
+                                activePromptTitle: 'Choose a card to deal 1 damage to',
+                                cardType: [...BattlefieldTypes, CardType.Phoenixborn]
+                            }
+                        })
                     }))
+                    // trueGameAction: ability.actions.allocateDamage((context) => ({
+                    //     choosingPlayer: context.player.opponent,
+                    //     controller: 'opponent',
+                    //     numSteps: 2,
+                    //     cardType: [...BattlefieldTypes, CardType.Phoenixborn]
+                    // }))
                 })
             }
         });
