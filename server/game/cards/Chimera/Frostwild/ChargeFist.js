@@ -23,10 +23,6 @@ class ChargeFist extends AspectCard {
             }
         });
     }
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 ChargeFist.id = 'charge-fist';

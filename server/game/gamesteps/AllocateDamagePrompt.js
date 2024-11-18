@@ -4,7 +4,7 @@ class AllocateDamagePrompt extends UiPrompt {
     constructor(game, properties) {
         super(game);
 
-        this.choosingPlayer = game.activePlayer;
+        this.choosingPlayer = properties.choosingPlayer || game.activePlayer;
         this.properties = properties;
         this.context = properties.context;
         this.selector = properties.selector;
@@ -37,7 +37,7 @@ class AllocateDamagePrompt extends UiPrompt {
             selectCard: true,
             selectOrder: false,
             menuTitle: {
-                text: 'Choose a creature to deal {{damageStep}} damage to',
+                text: 'Choose a unit to deal {{damageStep}} damage to',
                 values: { damageStep: this.properties.damageStep.toString() }
             },
             buttons: buttons,

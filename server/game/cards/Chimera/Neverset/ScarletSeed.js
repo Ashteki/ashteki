@@ -19,10 +19,6 @@ class ScarletSeed extends AspectCard {
             })
         });
     }
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 ScarletSeed.id = 'scarlet-seed';

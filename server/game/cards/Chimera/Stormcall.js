@@ -20,10 +20,6 @@ class Stormcall extends AspectCard {
             }
         });
     }
-
-    get statusCount() {
-        return 2;
-    }
 }
 
 Stormcall.id = 'stormcall';

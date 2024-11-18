@@ -17,6 +17,7 @@ class AllocateDamageAction extends GameAction {
         if (this.numSteps > 0 && this.damageStep > 0) {
             context.game.queueStep(
                 new AllocateDamagePrompt(context.game, {
+                    choosingPlayer: this.choosingPlayer,
                     damageStep: this.damageStep,
                     numSteps: this.numSteps,
                     selector: this.getSelector(),
@@ -41,7 +42,7 @@ class AllocateDamageAction extends GameAction {
 
     getSelector() {
         return CardSelector.for({
-            cardType: ['Ally', 'Conjuration'],
+            cardType: this.cardType,
             cardCondition: this.cardCondition,
             controller: this.controller
         });

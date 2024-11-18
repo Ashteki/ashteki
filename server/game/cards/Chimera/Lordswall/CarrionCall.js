@@ -14,10 +14,6 @@ class CarrionCall extends AspectCard {
             })
         });
     }
-
-    get statusCount() {
-        return 2;
-    }
 }
 
 CarrionCall.id = 'carrion-call';

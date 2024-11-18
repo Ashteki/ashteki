@@ -1,7 +1,7 @@
 const Dice = require('../../../../server/game/dice');
 
-describe('Rampage Aspect', function () {
-    describe('Rampage Reveal', function () {
+describe('Torrential Sacrifice Aspect', function () {
+    describe('Reveal with no destroy target', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -20,7 +20,8 @@ describe('Rampage Aspect', function () {
                     inPlay: [],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['rampage', 'hunting-instincts'],
+                    archives: ['rainwalker'],
+                    threatZone: ['torrential-sacrifice', 'hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -28,21 +29,20 @@ describe('Rampage Aspect', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(1);
         });
 
-        it('puts card into play with 2 status', function () {
-            expect(this.rampage.location).toBe('play area');
-            expect(this.rampage.facedown).toBe(true);
+        it('puts rainwalker into play', function () {
+            expect(this.torrentialSacrifice.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-            expect(this.rampage.location).toBe('play area');
-            expect(this.rampage.facedown).toBe(false);
-            expect(this.rampage.status).toBe(2);
+            expect(this.rainwalker.location).toBe('play area');
+            expect(this.torrentialSacrifice.location).toBe('play area');
+            expect(this.torrentialSacrifice.facedown).toBe(false);
         });
     });
 
-    describe('Rampage In Play', function () {
+    describe('Reveal with target to destroy', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -58,37 +58,31 @@ describe('Rampage Aspect', function () {
                     phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
-                    inPlay: ['rampage'],
+                    inPlay: ['scarlet-seed', 'rainwalker'],
+                    deck: [],
                     spellboard: [],
-                    threatZone: ['hunting-instincts'],
+                    archives: [],
+                    threatZone: ['torrential-sacrifice', 'hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
 
             spyOn(Dice, 'd12Roll').and.returnValue(1);
-            this.rampage.tokens.status = 2;
         });
 
-        it('start of turn rerolls basic dice', function () {
-            expect(this.rampage.location).toBe('play area');
+        it('destroy conjured aspect to gain 1 red rains token', function () {
+            expect(this.torrentialSacrifice.facedown).toBe(true);
             this.player1.endTurn();
-
-            expect(this.rampage.status).toBe(1);
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
             this.player1.clickPrompt('Ok');
 
-        });
-
-        it('status ability is inexhaustible', function () {
-            this.rampage.tokens.exhaustion = 1;
-            expect(this.rampage.location).toBe('play area');
-            this.player1.endTurn();
-
-            expect(this.rampage.status).toBe(1);
-            // informs real player of behaviour roll
-            expect(this.player2).toHavePrompt('Alerting opponent');
-            this.player1.clickPrompt('Ok');
+            expect(this.scarletSeed.location).toBe('play area');
+            expect(this.rainwalker.location).toBe('archives');
+            expect(this.torrentialSacrifice.location).toBe('play area');
+            expect(this.torrentialSacrifice.facedown).toBe(false);
+            expect(this.corpseOfViros.redRains).toBe(1);
         });
     });
+
 });

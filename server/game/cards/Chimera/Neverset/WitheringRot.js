@@ -35,10 +35,6 @@ class WitheringRot extends AspectCard {
             }
         });
     }
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 WitheringRot.id = 'withering-rot';
