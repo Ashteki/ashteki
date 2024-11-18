@@ -52,7 +52,8 @@
             "attack": 0,
             "life": 1,
             "blood": 0,
-            "copies": 6
+            "copies": 6,
+            "statusCount": 3
         },
         {
             "name": "Photosynthesize",
@@ -62,7 +63,8 @@
             "target": "jaw",
             "attack": 2,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "statusCount": 3
         },
         {
             "name": "Allure",
@@ -148,7 +150,8 @@
             "target": "jaw",
             "attack": 2,
             "life": 2,
-            "blood": 1
+            "blood": 1,
+            "statusCount": 3
         },
         {
             "name": "Withering Rot",
@@ -158,7 +161,8 @@
             "target": "left",
             "attack": 2,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "statusCount": 2
         }
     ]
 }

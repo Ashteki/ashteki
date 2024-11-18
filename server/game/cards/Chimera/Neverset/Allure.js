@@ -15,10 +15,6 @@ class Allure extends AspectCard {
             }
         });
     };
-
-    get statusCount() {
-        return 2;
-    }
 }
 
 Allure.id = 'allure';

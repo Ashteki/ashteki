@@ -12,10 +12,6 @@ class Photosynthesize extends AspectCard {
             }))
         });
     };
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 Photosynthesize.id = 'photosynthesize';

@@ -18,10 +18,6 @@ class ExplosivePods extends AspectCard {
             }
         });
     }
-
-    get statusCount() {
-        return 3;
-    }
 }
 
 ExplosivePods.id = 'explosive-pods';
