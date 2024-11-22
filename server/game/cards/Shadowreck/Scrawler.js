@@ -5,7 +5,6 @@ class Scrawler extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
             target: {
-                optional: true,
                 activePromptTitle: 'Choose a card to exhaust',
                 cardType: BattlefieldTypes,
                 cardCondition: (card, context) =>
