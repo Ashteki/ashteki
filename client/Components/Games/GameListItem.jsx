@@ -163,7 +163,7 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
 
     let players = getPlayers(game);
 
-    let isAdmin = user && user.permissions.canManageGames;
+    let isAdmin = user?.permissions.canManageGames;
     let rowClass = classNames('game-row', {
         [game.node]: game.node && isAdmin,
         ['private-game']: game.gamePrivate && isAdmin
