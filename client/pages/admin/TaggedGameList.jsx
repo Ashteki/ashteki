@@ -37,9 +37,13 @@ const TaggedGameList = () => {
                 <tr>
                     <th>Date</th>
                     <th>Player 1</th>
+                    <th>Pb 1</th>
                     <th>Player 2</th>
+                    <th>Pb 2</th>
                     <th>Winner</th>
-                    <th>Blood Points</th>
+                    <th>Reason</th>
+                    <th>BP</th>
+                    <th>Paired?</th>
                     <th>details</th>
                 </tr>
             </thead>
@@ -57,25 +61,32 @@ const TaggedGameList = () => {
                                 {game.label}</td>
                             <td>
                                 {game.players[0]?.name}
-                                <br />
+                            </td>
+                            <td>
                                 {game.players[0]?.deck}
                             </td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 {game.players[1]?.name}
-                                <br />
+                            </td>
+                            <td>
                                 {game.players[1]?.deck}
                             </td>
                             <td>
                                 {computeWinner(game)}
-                                <br />({game.winReason})
+                            </td>
+                            <td>
+                                {game.winReason}
                             </td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 {game.players[winnerIndex]?.wounds}
                             </td>
+                            <td>
+                                {game.pairing ? 'Yes' : 'No'}
+                            </td>
                             <td style={{ whiteSpace: 'nowrap' }}>
-                                Paired: {game.pairing ? 'Yes' : 'No'}
-                                <br />
-                                {duration.get('hours')}h {duration.get('minutes')}m
+                                <a href={gameApiRoot + game.gameId} download={true}>
+                                    {duration.get('hours')}h {duration.get('minutes')}m
+                                </a>
                             </td>
                         </tr>
                     );
