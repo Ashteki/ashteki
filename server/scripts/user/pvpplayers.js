@@ -4,7 +4,15 @@ const GameService = require('../../services/AshesGameService.js');
 const configService = new ConfigService();
 let start = new Date('2018-08-26T13:00:00');
 let end = new Date();
+
 const gameService = new GameService(configService);
+let args = process.argv.slice(2);
+if (args.length === 2) {
+    start = new Date(args[0]);
+    end = new Date(args[1]);
+}
+//console.info('Running stats between', args[0], 'and', args[1]);
+console.info('pvp players between', start, 'and', end);
 
 gameService
     .getAllGames(start, end)
