@@ -18,20 +18,22 @@ gameService
     .getAllGames(start, end)
     .then((games) => {
         // counting pvp players so pvp games only
-        const soloPlayers = games.filter(g => g.gameFormat !== 'solo').reduce(function (agg, game) {
-            if (game.players.length < 2) {
+        const soloPlayers = games
+            .filter(g => g.gameFormat !== 'solo' && g.winner)
+            .reduce(function (agg, game) {
+                if (game.players.length < 2) {
+                    return agg;
+                }
+                const p1Name = game.players[0].name;
+                const p2Name = game.players[1].name;
+
+                agg[p1Name] = agg[p1Name] || 0;
+                agg[p2Name] = agg[p2Name] || 0;
+
+                agg[p1Name]++;
+                agg[p2Name]++;
                 return agg;
-            }
-            const p1Name = game.players[0].name;
-            const p2Name = game.players[1].name;
-
-            agg[p1Name] = agg[p1Name] || 0;
-            agg[p2Name] = agg[p2Name] || 0;
-
-            agg[p1Name]++;
-            agg[p2Name]++;
-            return agg;
-        }, {});
+            }, {});
         console.log(soloPlayers);
 
         const pvpCount = Object.values(soloPlayers).length;
