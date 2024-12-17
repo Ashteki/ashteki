@@ -12,8 +12,6 @@ class Scrawler extends Card {
                 gameAction: ability.actions.exhaust({ showMessage: true })
             }
         });
-
-        this.fearful();
     }
 }
 
