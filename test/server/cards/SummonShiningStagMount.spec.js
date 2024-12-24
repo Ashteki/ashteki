@@ -32,6 +32,7 @@ describe('Summon Shining Stag Mount', function () {
             expect(this.anchornaut.facedown).toBe(true);
             expect(this.shiningStagMount.childCards.length).toBe(1);
             expect(this.shiningStagMount.dieUpgrades.length).toBe(1);
+            expect(this.summonShiningStagMount.exhausted).toBe(true);
         });
     });
 
