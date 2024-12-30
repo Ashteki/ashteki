@@ -20,7 +20,6 @@ console.info('Running stats between', start, 'and', end);
 
 gameService
     .getAllGames(start, end)
-    .filter(g => !!g.winner && g.gameFormat !== 'solo')
     .then((games) => {
         let rejected = { singlePlayer: 0, noWinner: 0 };
 
@@ -34,7 +33,7 @@ gameService
         let fpWinRates = { first: 0, second: 0 };
 
         _.each(games, (game) => {
-            if (_.size(game.players) !== 2) {
+            if (_.size(game.players) !== 2 || game.gameFormat === 'solo') {
                 rejected.singlePlayer++;
 
                 return;
