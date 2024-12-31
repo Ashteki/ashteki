@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class RubyCobra extends Card {
@@ -30,7 +31,7 @@ class RubyCobra extends Card {
                 context.game.attackState &&
                 context.game.attackState.target === context.source,
             targetController: 'Any',
-            match: (card) => card.hasCharmDie,
+            match: (card) => card.hasCharmDie && BattlefieldTypes.includes(card.type),
             effect: ability.effects.cardCannot('attack')
         });
     }
