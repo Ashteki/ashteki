@@ -5,7 +5,7 @@ class CoalRoarkwin extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Slash',
-            cost: [ability.costs.sideAction(), ability.costs.chosenDiscard()],
+            cost: [ability.costs.sideAction(), ability.costs.chosenDiscard(1, true)],
             target: {
                 // target a Unit, or if no units then the pb is valid
                 activePromptTitle: 'Choose a target to Slash',
