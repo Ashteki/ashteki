@@ -139,7 +139,7 @@
         "webpack-merge": "^4.2.2",
         "winston": "^3.3.3",
         "winston-daily-rotate-file": "^4.5.2",
-        "yup": "^0.32.9"
+        "yup": "^1.6.1"
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.22.15",
