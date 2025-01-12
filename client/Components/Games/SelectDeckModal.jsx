@@ -14,7 +14,7 @@ import { PatreonStatus } from '../../types/patreon.js';
 const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
     const user = useSelector((state) => state.account.user);
     const showRestricted = user?.permissions.canVerifyDecks;
-    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
 
     const {
         myDecks,
