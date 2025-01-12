@@ -35,7 +35,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     const username = useSelector((state) => state.account.user?.username);
     const newGameType = useSelector((state) => state.lobby.newGameType);
     const user = useSelector((state) => state.account.user);
-    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
 
     const { t } = useTranslation();
     const dispatch = useDispatch();

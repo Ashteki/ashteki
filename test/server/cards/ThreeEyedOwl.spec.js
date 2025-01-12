@@ -25,6 +25,7 @@ describe('Three Eyed Owl', function () {
             this.player2.clickPrompt('No');
             expect(this.player2).toHavePrompt('Three-Eyed Owl');
             expect(this.player2).toHavePrompt('Choose a card to discard');
+            expect(this.player2).not.toHavePromptButton('Cancel');
             expect(this.threeEyedOwl.location).toBe('play area');
             this.player2.clickCard(this.anchornaut);
             expect(this.player2).toHaveDefaultPrompt();

@@ -27,7 +27,7 @@ function ContextAwareToggle({ children, eventKey, callback }) {
 
 const DeckList = ({ decks, onDeckSelected, showWinRate, showToggle }) => {
     const user = useSelector((state) => state.account.user);
-    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
 
     const { selectedDeck } = useSelector((state) => ({
         selectedDeck: state.cards.selectedDeck
