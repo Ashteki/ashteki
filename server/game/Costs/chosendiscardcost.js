@@ -1,6 +1,7 @@
 class ChosenDiscardCost {
     constructor(properties) {
         this.amount = properties.amount;
+        this.allowCancel = !!properties.allowCancel;
     }
 
     canPay(context) {
@@ -9,7 +10,7 @@ class ChosenDiscardCost {
 
     payEvent(context) {
         return context.game.actions
-            .chosenDiscard({ amount: this.amount, asCost: true })
+            .chosenDiscard({ amount: this.amount, asCost: true, allowCancel: this.allowCancel })
             .getEvent(context.player, context);
     }
 }

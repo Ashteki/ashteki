@@ -27,7 +27,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
     const [showModal, setShowModal] = useState(false);
     const [playerIsMe, setPlayerIsMe] = useState(true);
     const dispatch = useDispatch();
-    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions.isSupporter;
+    const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
     const unlinked = !user?.patreon || user?.patreon === PatreonStatus.Unlinked;
     const showPatreonAdvice = !allowPremium;
     const isSolo = currentGame.solo;

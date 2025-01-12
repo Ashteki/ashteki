@@ -6,6 +6,7 @@ class ChosenDiscardAction extends PlayerAction {
         this.asCost = false;
         this.allowTopOfDeck = false;
         this.location = ['hand'];
+        this.allowCancel = false;
     }
 
     setup() {
@@ -52,7 +53,8 @@ class ChosenDiscardAction extends PlayerAction {
                                 .releaseChimeraHand()
                                 .resolve(player.opponent, context);
                             return true;
-                        }
+                        },
+                        showCancel: this.allowCancel
                     };
                     if (this.allowTopOfDeck && player.deck.length > 0) {
                         promptProps.buttons = [{ text: 'Top of deck', command: 'topdeck' }];

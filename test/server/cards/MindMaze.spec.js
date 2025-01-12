@@ -28,6 +28,7 @@ describe('Mind Maze', function () {
         this.player2.clickCard(this.mindMaze);
         this.player2.clickPrompt('Escape');
         this.player2.clickDie(0);
+        expect(this.player2).not.toHavePromptButton('Cancel');
         this.player2.clickCard(this.moltenGold);
 
         expect(this.player2.dicepool[0].exhausted).toBe(true);

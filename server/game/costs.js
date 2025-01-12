@@ -63,7 +63,7 @@ const Costs = {
         }
     }),
     // player chooses their own card to discard from hand
-    chosenDiscard: (amount = 1) => new ChosenDiscardCost({ amount: amount }),
+    chosenDiscard: (amount = 1, allowCancel = false) => new ChosenDiscardCost({ amount, allowCancel }),
     dice: (cost, title) => new DiceCost({ diceReq: cost, title: title }),
     xDice: (cost, title) => new XDiceCost({ diceReq: cost, title: title }),
     dynamicDice: (costFunc) => new DynamicDiceCost(costFunc),
