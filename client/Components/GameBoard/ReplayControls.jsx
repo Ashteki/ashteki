@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Panel from '../Site/Panel';
 import './ReplayControls.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward, faBackwardFast, faBackwardStep, faForward, faForwardFast, faForwardStep, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faBackwardFast, faBackwardStep, faForward, faForwardFast, faForwardStep, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     replayRoundBack,
@@ -15,6 +15,12 @@ import {
 
 const ReplayControls = () => {
     const dispatch = useDispatch();
+    const [isPlaying, setIsPlaying] = React.useState(false);
+
+    const togglePlay = () => {
+        setIsPlaying(!isPlaying);
+    };
+
     const doForwardStep = () => {
         dispatch(replayStepForward());
     };
@@ -33,6 +39,19 @@ const ReplayControls = () => {
     const doBackRoundStep = () => {
         dispatch(replayRoundBack());
     };
+
+    useEffect(() => {
+        if (!isPlaying) {
+            return;
+        }
+        //Implementing the setInterval method
+        const interval = setInterval(() => {
+            doForwardStep();
+        }, 1500);
+
+        //Clearing the interval
+        return () => clearInterval(interval);
+    }, [isPlaying, doForwardStep]);
 
     const tagToTitle = {
         prepare: 'Start of Round',
@@ -70,6 +89,12 @@ const ReplayControls = () => {
                     title='Step forward'
                     className='replay-control  btn-primary'>
                     <FontAwesomeIcon icon={faForwardStep} />
+                </button>
+                <button
+                    onClick={() => togglePlay()}
+                    title='Play / Pause'
+                    className='replay-control  btn-primary'>
+                    <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
                 </button>
             </div>
             <div className='replay-controls'>
