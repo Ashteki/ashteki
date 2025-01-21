@@ -6,6 +6,7 @@ const Dice = require('../dice.js');
 const DieSelector = require('../DieSelector.js');
 const EffectSource = require('../EffectSource.js');
 const UiPrompt = require('./uiprompt.js');
+const { level } = require('winston');
 
 /**
  * General purpose prompt that asks the user to select 1 or more cards.
@@ -101,6 +102,7 @@ class SelectDiePrompt extends UiPrompt {
         this.unexhaust = properties.unexhaust;
         this.sort = properties.sort;
         this.preventAuto = properties.preventAuto;
+        this.singleLevel = properties.singleLevel;
     }
 
     initLevelState(selectedDice) {
@@ -278,7 +280,9 @@ class SelectDiePrompt extends UiPrompt {
             this.levelState[die.uuid] = die.level;
             this.exhaustState[die.uuid] = die.exhausted;
             // set to power / basic on add.
-            if (this.cycleLevels) {
+            if (this.singleLevel && this.levelState[die.uuid] !== Level.Class) {
+                die.level = Level.Class;
+            } else if (this.cycleLevels) {
                 die.level = die.owner === this.choosingPlayer ? Level.Power : Level.Basic;
             }
             if (this.unexhaust) {
@@ -305,8 +309,13 @@ class SelectDiePrompt extends UiPrompt {
         return true;
     }
     cycleDie(die) {
-        // cycle the level if it's that kind of prompt
-        if (this.cycleLevels) {
+        if (this.singleLevel && this.levelState[die.uuid] === Level.Class) {
+            die.level =
+                die.owner === this.choosingPlayer // it's mine?
+                    ? Dice.levelUp(die.level)
+                    : Dice.levelDown(die.level);
+        } else if (this.cycleLevels) {
+            // cycle the level if it's that kind of prompt
             die.level =
                 die.owner === this.choosingPlayer // it's mine?
                     ? Dice.levelDown(die.level)
@@ -315,6 +324,19 @@ class SelectDiePrompt extends UiPrompt {
     }
 
     removalCheck(die) {
+        if (this.singleLevel) {
+            // singleLevel flag means on/off for non-class dice
+            if (this.levelState[die.uuid] !== Level.Class) {
+                return die.level !== this.levelState[die.uuid];
+            } else {
+                // it's a class die cycle
+                return (die.owner === this.choosingPlayer // it's mine?
+                    ? die.level === Level.Basic
+                    : die.level === Level.Power)
+
+            }
+        }
+
         return (
             !this.cycleLevels ||
             (die.owner === this.choosingPlayer // it's mine?
