@@ -6,6 +6,8 @@ class ChangeDiceAction extends PlayerAction {
         this.name = 'changeDice';
         this.eventName = 'onChangeDice';
         this.effect = 'changes dice';
+        this.singleLevel = false;
+        this.cycleLevels = true;
     }
 
     setDefaultProperties() {
@@ -29,7 +31,8 @@ class ChangeDiceAction extends PlayerAction {
             context: context,
             numDice: this.numDice,
             owner: this.owner,
-            cycleLevels: true,
+            cycleLevels: this.cycleLevels,
+            singleLevel: this.singleLevel,
             sort: true,
             preventAuto: true,
             dieCondition: this.dieCondition,

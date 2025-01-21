@@ -9,14 +9,24 @@ class SoulDelver extends Card {
                     return event.attackers.includes(context.source);
                 }
             },
+            // target: {
+            //     targetsPlayer: true,
+            //     toSelect: 'die',
+            //     mode: 'upTo',
+            //     dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+            //     owner: 'opponent',
+            //     gameAction: ability.actions.changeDice((context) => ({
+            //         numDice: context.player.phoenixborn.status
+
+            //     }))
+            // }
             target: {
-                targetsPlayer: true,
-                toSelect: 'die',
-                mode: 'upTo',
-                numDice: (context) => context.player.phoenixborn.status,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
-                owner: 'opponent',
-                gameAction: ability.actions.lowerDie()
+                toSelect: 'player',
+                activePromptTitle: "Choose which player's dice pool to affect",
+                gameAction: ability.actions.changeDice((context) => ({
+                    owner: context.target === context.player ? 'self' : 'opponent',
+                    singleLevel: true
+                }))
             }
         });
     }
