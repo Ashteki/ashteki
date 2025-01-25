@@ -23,6 +23,7 @@ describe('Discovery', function () {
             this.player1.play(this.discovery);
             this.player1.clickDie(0);
             this.player1.clickCard(this.purge); // discard cost
+            expect(this.purge.location).toBe('discard');
 
             expect(this.redRaindrop.location).toBe('play area');
             expect(this.rowanUmberend.upgrades.length).toBe(1);

@@ -25,6 +25,7 @@ describe('Slash ability', function () {
         this.player1.clickCard(this.fluteMage);
 
         expect(this.fluteMage.damage).toBe(1);
+        expect(this.cover.location).toBe('discard');
     });
 
     it('cannot be played without cards in hand', function () {
@@ -41,5 +42,6 @@ describe('Slash ability', function () {
 
         expect(this.cover.location).toBe('hand');
         expect(this.fluteMage.damage).toBe(0);
+        expect(this.player1).toHaveDefaultPrompt();
     });
 });

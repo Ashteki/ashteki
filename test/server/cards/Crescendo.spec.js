@@ -45,6 +45,7 @@ describe('Crescendo', function () {
             expect(this.mistSpirit.location).toBe('archives');
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.hammerKnight.isAttacker).toBe(false);
+            expect(this.hammerKnight.exhausted).toBe(true);
 
             expect(this.crescendo.location).toBe('discard');
             expect(this.moltenGold.location).toBe('discard');
