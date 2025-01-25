@@ -47,7 +47,10 @@ class ChosenDieOrDiscardCost {
                         context.costs.dieOrDiscard = 'die';
                         this.dieCost.resolve(context, result);
                     },
-                    () => (context.costs.dieOrDiscard = 'discard'),
+                    () => {
+                        context.costs.dieOrDiscard = 'discard';
+                        this.discardCost.resolve(context, result);
+                    },
                     () => {
                         context.costs.dieOrDiscard = '';
                         result.cancelled = true;

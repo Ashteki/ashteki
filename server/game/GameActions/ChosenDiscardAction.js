@@ -54,6 +54,10 @@ class ChosenDiscardAction extends PlayerAction {
                                 .resolve(player.opponent, context);
                             return true;
                         },
+                        onCancel: () => {
+                            context.costs.cancelled = true;
+                            return false;
+                        },
                         showCancel: this.allowCancel
                     };
                     if (this.allowTopOfDeck && player.deck.length > 0) {
