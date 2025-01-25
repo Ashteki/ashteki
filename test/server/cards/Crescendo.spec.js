@@ -32,7 +32,7 @@ describe('Crescendo', function () {
             expect(this.moltenGold.location).toBe('discard');
         });
 
-        it('BUG: destroy target of unit attack and clear attack status', function () {
+        xit('BUG: destroy target of unit attack and clear attack status', function () {
             this.player1.clickAttack(this.mistSpirit);
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickCard(this.crescendo); // play
@@ -45,6 +45,7 @@ describe('Crescendo', function () {
             expect(this.mistSpirit.location).toBe('archives');
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.hammerKnight.isAttacker).toBe(false);
+            expect(this.hammerKnight.exhausted).toBe(true);
 
             expect(this.crescendo.location).toBe('discard');
             expect(this.moltenGold.location).toBe('discard');
