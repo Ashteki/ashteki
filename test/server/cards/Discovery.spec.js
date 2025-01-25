@@ -21,8 +21,8 @@ describe('Discovery', function () {
 
         it('attach red raindrop to rowan', function () {
             this.player1.play(this.discovery);
-            this.player1.clickDie(0);
             this.player1.clickCard(this.purge); // discard cost
+            this.player1.clickDie(0);
             expect(this.purge.location).toBe('discard');
 
             expect(this.redRaindrop.location).toBe('play area');
