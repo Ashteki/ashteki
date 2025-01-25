@@ -107,8 +107,8 @@ describe('Eras End', function () {
 
         it('play triggers end round event', function () {
             this.player1.play(this.discovery);
-            this.player1.clickDie(0);
             this.player1.clickCard(this.purge); // discard cost
+            this.player1.clickDie(0);
             expect(this.redRaindrop.location).toBe('play area');
             expect(this.rowanUmberend.upgrades.length).toBe(1);
             this.player1.player.actions.main = true;

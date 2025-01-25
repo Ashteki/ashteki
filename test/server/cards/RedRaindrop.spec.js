@@ -21,8 +21,8 @@ describe('Red Raindrops', function () {
 
         it('deal 1 damage at the end of the round', function () {
             this.player1.play(this.discovery);
-            this.player1.clickDie(0);
             this.player1.clickCard(this.purge); // discard cost
+            this.player1.clickDie(0);
 
             expect(this.redRaindrop.location).toBe('play area');
             expect(this.rowanUmberend.upgrades.length).toBe(1);
@@ -42,22 +42,22 @@ describe('Red Raindrops', function () {
 
         it('deal 1 damage, summon chimera', function () {
             this.player1.play(this.player1.hand[0]);
-            this.player1.clickDie(0);
             this.player1.clickCard(this.purge); // discard cost
+            this.player1.clickDie(0);
 
             this.player1.endTurn();
             this.player2.endTurn();
 
             this.player1.play(this.player1.hand[0]);
-            this.player1.clickDie(1);
             this.player1.clickCard(this.kneel); // discard cost
+            this.player1.clickDie(1);
 
             this.player1.endTurn();
             this.player2.endTurn();
 
             this.player1.play(this.player1.hand[0]);
-            this.player1.clickDie(2);
             this.player1.clickCard(this.devotion); // discard cost
+            this.player1.clickDie(2);
 
             expect(this.rowanUmberend.upgrades.length).toBe(3);
 
@@ -79,22 +79,22 @@ describe('Red Raindrops', function () {
 
         it('skip damage, summon chimera', function () {
             this.player1.play(this.player1.hand[0]);
-            this.player1.clickDie(0);
             this.player1.clickCard(this.purge); // discard cost
+            this.player1.clickDie(0);
 
             this.player1.endTurn();
             this.player2.endTurn();
 
             this.player1.play(this.player1.hand[0]);
-            this.player1.clickDie(1);
             this.player1.clickCard(this.kneel); // discard cost
+            this.player1.clickDie(1);
 
             this.player1.endTurn();
             this.player2.endTurn();
 
             this.player1.play(this.player1.hand[0]);
-            this.player1.clickDie(2);
             this.player1.clickCard(this.devotion); // discard cost
+            this.player1.clickDie(2);
 
             expect(this.rowanUmberend.upgrades.length).toBe(3);
 

@@ -21,10 +21,10 @@ describe('Judgment', function () {
 
         it('destroys every unit', function () {
             this.player1.play(this.judgment);
+            this.player1.clickCard(this.purge);
             this.player1.clickDie(0);
             this.player1.clickDie(1);
             this.player1.clickDone();
-            this.player1.clickCard(this.purge);
 
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickCard(this.anchornaut);
