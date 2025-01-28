@@ -39,7 +39,7 @@ describe('Attack Removals', function () {
         });
     });
 
-    describe('During attack on Phoenixborn', function () {
+    describe('During attack on Phoenixborn 2', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -73,7 +73,7 @@ describe('Attack Removals', function () {
             expect(this.game.attackState.battles.length).toBe(2);
             expect(this.hammerKnight.isAttacker).toBe(false);
             expect(this.hammerKnight.exhausted).toBe(true);
-
+            expect(this.hammerKnight.tokens.exhaustion).toBe(1);
             this.player2.clickPrompt('Done'); // no blockers
             this.player1.clickCard(this.ironWorker);
             this.player1.clickCard(this.fluteMage);

@@ -62,8 +62,9 @@ class BattleStep extends BaseStepWithPipeline {
             return true;
         }
 
-        if (this.attack.isPBAttack || this.chosenBattle.target.exhausted) {
+        if (this.attack.isPBAttack || !this.chosenBattle.target || this.chosenBattle.target.exhausted) {
             // don't ask to counter with phoenixborn (they don't have an attack value)
+            // don't ask if the target has been removed
             // and exhausted targets cannot counter
             this.chosenBattle.counter = false;
             return true;
@@ -88,9 +89,13 @@ class BattleStep extends BaseStepWithPipeline {
     }
 
     resolveBattle() {
-        this.game.actions
-            .resolveBattle({ battle: this.chosenBattle })
-            .resolve(null, this.game.getFrameworkContext(this.game.activePlayer));
+        if (this.chosenBattle.target) {
+            this.game.actions
+                .resolveBattle({ battle: this.chosenBattle })
+                .resolve(null, this.game.getFrameworkContext(this.game.activePlayer));
+        } else {
+            this.chosenBattle.resolved = true;
+        }
     }
 
     exhaustParticipants() {
