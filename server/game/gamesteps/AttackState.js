@@ -51,12 +51,10 @@ class AttackState {
                     b.attacker.isAttacker = false;
                     // remove target
                     b.target = null;
-                    // exhaust attacker if it was source of the removal (e.g. emberoot lizard)
-                    if (damageSource && b.attacker === damageSource) {
-                        b.attacker.exhaust();
-                    }
+                    // Attackers always exhaust
+                    // b.attacker.exhaust();
                     // prune battle from attack
-                    this.battles = this.battles.filter((bf) => bf !== b);
+                    // this.battles = this.battles.filter((bf) => bf !== b);
                     return;
                 }
 
