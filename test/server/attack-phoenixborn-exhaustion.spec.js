@@ -166,6 +166,7 @@ describe('During attack on Phoenixborn', function () {
             expect(this.nightshadeSwallow.isInPlay).toBe(false); // killed by ironWorker
             expect(this.ironRhino.exhausted).toBe(true); // ability
             expect(this.ironWorker.exhausted).toBe(true); // attacked
+            expect(this.ironWorker.tokens.exhaustion).toBe(1);
             expect(this.ironRhino.exhaustion).toBe(1); // don't double exhaust
 
             expect(this.player1).toHaveDefaultPrompt();
