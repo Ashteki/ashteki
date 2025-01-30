@@ -210,6 +210,16 @@ export function loadBuildingBasicsDecks() {
     };
 }
 
+export function loadCorpseRebuildDecks() {
+    return {
+        types: ['LOAD_CORPSEREBUILD_DECKS', 'CORPSEREBUILD_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/corpserebuild-decks',
+            type: 'GET'
+        }
+    };
+}
 export function loadFirstAdventureDecks() {
     return {
         types: ['LOAD_FIRSTADVENTURE_DECKS', 'FIRSTADVENTURE_DECKS_LOADED'],

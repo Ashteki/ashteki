@@ -183,8 +183,9 @@ class PlayerStateWriter {
             this.getCardSummary(card, activePlayer, isForMe)
         );
         cardState.dieUpgrades = card.dieUpgrades.map((die) => {
-            return die.getShortSummary();
-            // might need selection data here?
+            const dieState = die.getShortSummary();
+            let selectionState = activePlayer.getDieSelectionState(die);
+            return Object.assign(dieState, selectionState);
         });
 
         let selectionState = activePlayer.getCardSelectionState(card);

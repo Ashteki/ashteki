@@ -45,7 +45,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?/,
-                exclude: /[\\/]node_modules[\\/](?!(@sendgrid\/mail|debug|engine.io-client|socket.io-client|cross-env|eslint-config-prettier|eslint-plugin-jest|eslint-plugin-prettier|lint-staged|pg|prettier|socket.io|winston)[\\/])/,
+                exclude: /[\\/]node_modules[\\/](?!(@sendgrid\/mail|debug|engine.io-client|socket.io-client|cross-env|eslint-config-prettier|eslint-plugin-jest|eslint-plugin-prettier|pg|prettier|socket.io|winston)[\\/])/,
                 loader: 'babel-loader'
             },
             {

@@ -1,0 +1,564 @@
+[
+    {
+        "precon_id": 701,
+        "name": "The Mist Guardian (Corpse Rebuild)",
+        "phoenixborn": [
+            {
+                "id": "aradel-summergaard",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "illusion",
+                "count": 5
+            },
+            {
+                "magic": "natural",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "expand-energy",
+                "count": 2
+            },
+            {
+                "id": "hidden-power",
+                "count": 1
+            },
+            {
+                "id": "iron-worker",
+                "count": 1
+            },
+            {
+                "id": "massive-growth",
+                "count": 3
+            },
+            {
+                "id": "mist-typhoon",
+                "count": 3
+            },
+            {
+                "id": "out-of-the-mist",
+                "count": 2
+            },
+            {
+                "id": "reflections-in-the-water",
+                "count": 2
+            },
+            {
+                "id": "root-armor",
+                "count": 3
+            },
+            {
+                "id": "shifting-mist",
+                "count": 1
+            },
+            {
+                "id": "steady-gaze",
+                "count": 3
+            },
+            {
+                "id": "summon-blue-jaguar",
+                "count": 3
+            },
+            {
+                "id": "summon-butterfly-monk",
+                "count": 3
+            },
+            {
+                "id": "summon-mist-spirit",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "blue-jaguar",
+                "count": 2
+            },
+            {
+                "id": "butterfly-monk",
+                "count": 2
+            },
+            {
+                "id": "mist-spirit",
+                "count": 10
+            }
+        ],
+        "notes": "Once you have Corpse of Viros, you can rebuild the precons in the core set to be a bit more robust and balanced. This is a suggested list."
+    },
+    {
+        "precon_id": 702,
+        "name": "The Men of Iron (Corpse Rebuild)",
+        "phoenixborn": [
+            {
+                "id": "coal-roarkwin",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 5
+            },
+            {
+                "magic": "natural",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "anchornaut",
+                "count": 2
+            },
+            {
+                "id": "blood-brawl",
+                "count": 2
+            },
+            {
+                "id": "bound-soul",
+                "count": 2
+            },
+            {
+                "id": "chant-of-revenge",
+                "count": 3
+            },
+            {
+                "id": "close-combat",
+                "count": 1
+            },
+            {
+                "id": "cover",
+                "count": 1
+            },
+            {
+                "id": "expand-energy",
+                "count": 1
+            },
+            {
+                "id": "final-stand",
+                "count": 1
+            },
+            {
+                "id": "hammer-knight",
+                "count": 3
+            },
+            {
+                "id": "infuriate",
+                "count": 2
+            },
+            {
+                "id": "iron-worker",
+                "count": 1
+            },
+            {
+                "id": "old-salt",
+                "count": 2
+            },
+            {
+                "id": "one-hundred-blades",
+                "count": 2
+            },
+            {
+                "id": "serve-the-city",
+                "count": 1
+            },
+            {
+                "id": "strengthen",
+                "count": 3
+            },
+            {
+                "id": "summon-iron-rhino",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "iron-rhino",
+                "count": 1
+            }
+        ],
+        "notes": "Once you have Corpse of Viros, you can rebuild the precons in the core set to be a bit more robust and balanced. This is a suggested list."
+    },
+    {
+        "precon_id": 703,
+        "name": "The Bloodwoods Queen(Corpse Rebuild)",
+        "phoenixborn": [
+            {
+                "id": "jessa-na-ni",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 5
+            },
+            {
+                "magic": "charm",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "blood-archer",
+                "count": 3
+            },
+            {
+                "id": "blood-brawl",
+                "count": 1
+            },
+            {
+                "id": "blood-puppeteer",
+                "count": 3
+            },
+            {
+                "id": "blood-shaman",
+                "count": 2
+            },
+            {
+                "id": "chant-of-transfusion",
+                "count": 3
+            },
+            {
+                "id": "cut-the-strings",
+                "count": 1
+            },
+            {
+                "id": "fear",
+                "count": 2
+            },
+            {
+                "id": "final-cry",
+                "count": 3
+            },
+            {
+                "id": "living-doll",
+                "count": 3
+            },
+            {
+                "id": "playtime",
+                "count": 1
+            },
+            {
+                "id": "redirect",
+                "count": 1
+            },
+            {
+                "id": "summon-blood-puppet",
+                "count": 3
+            },
+            {
+                "id": "summon-bone-crow",
+                "count": 1
+            },
+            {
+                "id": "undying-heart",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "blood-puppet",
+                "count": 5
+            },
+            {
+                "id": "bone-crow",
+                "count": 4
+            }
+        ],
+        "notes": "Once you have Corpse of Viros, you can rebuild the precons in the core set to be a bit more robust and balanced. This is a suggested list."
+    },
+    {
+        "precon_id": 704,
+        "name": "The Snakes in Silver (Corpse Rebuild)",
+        "phoenixborn": [
+            {
+                "id": "maeoni-viper",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "charm",
+                "count": 5
+            },
+            {
+                "magic": "natural",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "call-upon-the-realms",
+                "count": 2
+            },
+            {
+                "id": "close-combat",
+                "count": 2
+            },
+            {
+                "id": "cover",
+                "count": 1
+            },
+            {
+                "id": "empower",
+                "count": 3
+            },
+            {
+                "id": "golden-veil",
+                "count": 3
+            },
+            {
+                "id": "hypnotize",
+                "count": 1
+            },
+            {
+                "id": "iron-worker",
+                "count": 1
+            },
+            {
+                "id": "molten-gold",
+                "count": 3
+            },
+            {
+                "id": "open-memories",
+                "count": 1
+            },
+            {
+                "id": "redirect",
+                "count": 2
+            },
+            {
+                "id": "refresh",
+                "count": 3
+            },
+            {
+                "id": "summon-gilder",
+                "count": 3
+            },
+            {
+                "id": "summon-silver-snake",
+                "count": 3
+            },
+            {
+                "id": "transfer",
+                "count": 2
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "gilder",
+                "count": 2
+            },
+            {
+                "id": "silver-snake",
+                "count": 1
+            }
+        ],
+        "notes": "Once you have Corpse of Viros, you can rebuild the precons in the core set to be a bit more robust and balanced. This is a suggested list."
+    },
+    {
+        "precon_id": 705,
+        "name": "The Shadows of Viros (Corpse Rebuild)",
+        "phoenixborn": [
+            {
+                "id": "noah-redmoon",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "ceremonial",
+                "count": 5
+            },
+            {
+                "magic": "illusion",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "blood-shaman",
+                "count": 1
+            },
+            {
+                "id": "fade-away",
+                "count": 3
+            },
+            {
+                "id": "infuriate",
+                "count": 1
+            },
+            {
+                "id": "old-salt",
+                "count": 1
+            },
+            {
+                "id": "phoenix-attendant",
+                "count": 3
+            },
+            {
+                "id": "resummon",
+                "count": 1
+            },
+            {
+                "id": "shadow-strike",
+                "count": 2
+            },
+            {
+                "id": "shadowblade",
+                "count": 2
+            },
+            {
+                "id": "sleight-of-hand",
+                "count": 1
+            },
+            {
+                "id": "small-sacrifice",
+                "count": 3
+            },
+            {
+                "id": "stormwind-sniper",
+                "count": 3
+            },
+            {
+                "id": "summon-calamity-golem",
+                "count": 2
+            },
+            {
+                "id": "summon-false-demon",
+                "count": 3
+            },
+            {
+                "id": "summon-masked-wolf",
+                "count": 1
+            },
+            {
+                "id": "summon-sleeping-widows",
+                "count": 3
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "calamity-golem",
+                "count": 1
+            },
+            {
+                "id": "false-demon",
+                "count": 2
+            },
+            {
+                "id": "masked-wolf",
+                "count": 5
+            },
+            {
+                "id": "sleeping-widow",
+                "count": 6
+            }
+        ],
+        "notes": "Once you have Corpse of Viros, you can rebuild the precons in the core set to be a bit more robust and balanced. This is a suggested list."
+    },
+    {
+        "precon_id": 706,
+        "name": "The Cloudsea Siren (Corpse Rebuild)",
+        "phoenixborn": [
+            {
+                "id": "saria-guideman",
+                "count": 1
+            }
+        ],
+        "ultimate": null,
+        "behaviour": null,
+        "dicepool": [
+            {
+                "magic": "charm",
+                "count": 5
+            },
+            {
+                "magic": "illusion",
+                "count": 5
+            }
+        ],
+        "cards": [
+            {
+                "id": "abundance",
+                "count": 3
+            },
+            {
+                "id": "anchornaut",
+                "count": 1
+            },
+            {
+                "id": "call-upon-the-realms",
+                "count": 1
+            },
+            {
+                "id": "enchanted-violinist",
+                "count": 3
+            },
+            {
+                "id": "hidden-power",
+                "count": 2
+            },
+            {
+                "id": "purge",
+                "count": 3
+            },
+            {
+                "id": "rose-fire-dancer",
+                "count": 3
+            },
+            {
+                "id": "seal",
+                "count": 2
+            },
+            {
+                "id": "shadow-strike",
+                "count": 1
+            },
+            {
+                "id": "strange-copy",
+                "count": 3
+            },
+            {
+                "id": "summon-seaside-raven",
+                "count": 1
+            },
+            {
+                "id": "summon-three-eyed-owl",
+                "count": 3
+            },
+            {
+                "id": "sympathy-pain",
+                "count": 3
+            },
+            {
+                "id": "transfer",
+                "count": 1
+            }
+        ],
+        "conjurations": [
+            {
+                "id": "seaside-raven",
+                "count": 1
+            },
+            {
+                "id": "three-eyed-owl",
+                "count": 2
+            }
+        ],
+        "notes": "Once you have Corpse of Viros, you can rebuild the precons in the core set to be a bit more robust and balanced. This is a suggested list."
+    }
+]
