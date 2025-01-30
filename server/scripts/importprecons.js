@@ -119,6 +119,18 @@ class ImportPrecons {
 
             console.log('Done importing Dual Duel decks');
             console.log('----------');
+
+            for (let deck of this.loadCorpseRebuildDecks()) {
+                deck.preconGroup = 9;
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing Corpse Rebuild decks');
+            console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -150,6 +162,12 @@ class ImportPrecons {
 
     loadBBDecks() {
         let file = 'building-basics.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadCorpseRebuildDecks() {
+        let file = 'precon-corpse-rebuild.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }
