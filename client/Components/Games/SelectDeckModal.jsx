@@ -21,6 +21,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         standaloneDecks,
         adventuringPartyDecks,
         buildingBasicsDecks,
+        corpseRebuildDecks,
         firstAdventureDecks,
         chimeraDecks,
         pveDecks,
@@ -31,6 +32,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         buildingBasicsDecks: state.cards.buildingBasicsDecks,
+        corpseRebuildDecks: state.cards.corpseRebuildDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
         chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
         pveDecks: state.cards.pveDecks,
@@ -88,6 +90,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Tab>Precons</Tab>
                     <Tab>Red Rains Precons</Tab>
                     <Tab>Building Basics</Tab>
+                    <Tab>Corpse Rebuild</Tab>
                     <Tab>Adventuring Party</Tab>
                     <Tab>Master Set Upgrade</Tab>
                     <Tab>Dual Duel</Tab>
@@ -126,6 +129,10 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(3)}>Choose for me</Button>
                     <DeckList decks={buildingBasicsDecks} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    <Button onClick={() => onChooseForMe(9)}>Choose for me</Button>
+                    <DeckList decks={corpseRebuildDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(2)}>Choose for me</Button>

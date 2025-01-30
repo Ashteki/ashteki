@@ -52,6 +52,7 @@ class Application extends React.Component {
         this.props.loadStandaloneDecks();
         this.props.loadAdventuringPartyDecks();
         this.props.loadBuildingBasicsDecks();
+        this.props.loadCorpseRebuildDecks();
         this.props.loadFirstAdventureDecks();
         this.props.loadChimeraDecks();
         this.props.loadPveDecks();
@@ -188,6 +189,7 @@ Application.propTypes = {
     loadStandaloneDecks: PropTypes.func,
     loadAdventuringPartyDecks: PropTypes.func,
     loadBuildingBasicsDecks: PropTypes.func,
+    loadCorpseRebuildDecks: PropTypes.func,
     loadFirstAdventureDecks: PropTypes.func,
     navigate: PropTypes.func,
     path: PropTypes.string,

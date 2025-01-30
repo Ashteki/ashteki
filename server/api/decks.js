@@ -131,6 +131,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/corpserebuild-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(9);
+            } catch (err) {
+                logger.error('Failed to get precon 9 decks', err);
+
+                throw new Error('Failed to get precon 9 decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/firstadventure-decks',
         wrapAsync(async function (req, res) {
             let decks;

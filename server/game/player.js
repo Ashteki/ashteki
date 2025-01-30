@@ -832,8 +832,8 @@ class Player extends GameObject {
         return this.promptState.getCardSelectionState(card);
     }
 
-    getDieSelectionState(card) {
-        return this.promptState.getDieSelectionState(card);
+    getDieSelectionState(die) {
+        return this.promptState.getDieSelectionState(die);
     }
 
     currentPrompt() {

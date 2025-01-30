@@ -59,6 +59,14 @@ const DeckTypeInfo = ({ deckType }) => {
                     more fun, unique, and refined decks than just the precons.
                 </AlertPanel>
             );
+        case 'corpseRebuild':
+            return (
+                <AlertPanel type='info'>
+                    <strong>Corpse Rebuild</strong> Decks made by NoSuchMethod. Once you have Corpse
+                    of Viros, you can rebuild the precons in the core set to be a bit more robust
+                    and balanced.
+                </AlertPanel>
+            );
         case 'dualduel':
             return (
                 <AlertPanel type='info'>

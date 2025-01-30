@@ -19,7 +19,7 @@ class SwiftMessenger extends Card {
                 target: this,
                 ignoreActionCost: true,
                 isLimited: true,
-                playedAsReaction: true,
+                playedAsReaction: true
             })),
             preferActionPromptMessage: true
         });
