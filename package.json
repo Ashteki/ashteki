@@ -11,25 +11,8 @@
         "test": "cross-env JASMINE_CONFIG_PATH=./jasmine.json jasmine",
         "lint": "eslint --ext=js --ext=jsx client/ server/ test/",
         "build": "npm install && webpack --config webpack.production.js",
-        "test-client": "jest --colors client",
         "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
         "lint:js:fix": "npm run lint:js -- --fix"
-    },
-    "jest": {
-        "setupFilesAfterEnv": [
-            "./client/setup-tests.js"
-        ]
-    },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-            "prettier --write",
-            "eslint --fix"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
     },
     "repository": {
         "type": "git",
@@ -79,7 +62,6 @@
         "formik": "^2.1.1",
         "html-webpack-plugin": "^4.5.2",
         "https-browserify": "^1.0.0",
-        "husky": "^6.0.0",
         "i18next": "^20.2.1",
         "i18next-browser-languagedetector": "^6.1.0",
         "jquery": "^3.6.0",
@@ -153,8 +135,6 @@
         "body-parser": "^1.18.2",
         "bootstrap-sass": "^3.4.1",
         "command-line-args": "^5.1.1",
-        "enzyme": "^3.11.0",
-        "enzyme-adapter-react-16": "^1.15.6",
         "eslint": "^8.2.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-node": "^4.1.0",
