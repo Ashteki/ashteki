@@ -41,7 +41,6 @@ class DummyTurn extends BaseStepWithPipeline {
             new SimpleStep(this.game, () => {
                 const d12Roll = Dice.d12Roll();
                 // roll behaviour dice and determine
-                this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll);
                 this.player.behaviourRoll = d12Roll;
                 const context = this.game.getFrameworkContext(this.player);
 
@@ -52,6 +51,9 @@ class DummyTurn extends BaseStepWithPipeline {
                     d12Roll,
                     this.player.chimeraPhase
                 );
+                const chatMsg = this.getChatMessage(behaviour);
+                this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll);
+                this.game.addMessage('{0}', behaviour);
 
                 this.game.queueUserAlert(context, {
                     style: 'danger',
@@ -73,6 +75,11 @@ class DummyTurn extends BaseStepWithPipeline {
                 behaviour.execute();
             })
         );
+    }
+
+    getChatMessage(behaviour) {
+        const textArray = Object.values(behaviour.text);
+        return textArray.join('\n');
     }
 
     canAttack() {

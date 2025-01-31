@@ -3,6 +3,7 @@ const Spectator = require('./spectator.js');
 const Player = require('./player.js');
 const Die = require('./Die.js');
 const Dice = require('./dice.js');
+const Behaviour = require('./solo/Behaviour.js');
 
 class GameChat {
     constructor(game) {
@@ -144,6 +145,11 @@ class GameChat {
                             level: arg.level,
                             magic: arg.magic,
                             code: Dice.getDieCode(arg)
+                        });
+                    } else if (arg instanceof Behaviour) {
+                        returnedFraments.push({
+                            argType: 'behaviour',
+                            data: arg.getShortSummary()
                         });
                     } else if (arg.main || arg.side) {
                         returnedFraments.push({

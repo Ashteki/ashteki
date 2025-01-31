@@ -61,6 +61,22 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
         return result;
     }
 
+    const getBehaviourFragment = (fragment) => {
+        const result = [];
+        if (fragment.main) {
+            result.push(
+                <span className='phg-main-action chat-action' title='main action'></span>
+            );
+        }
+        if (fragment.side) {
+            result.push(
+                <span className='phg-side-action chat-action' title='side action'></span>
+            );
+        }
+
+        return result;
+    }
+
     const formatMessageText = (message, index) => {
         let messages = [];
 
@@ -168,6 +184,12 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                 messages.push(
                     <span key={index++} >
                         {getActionFragment(fragment)}
+                    </span>
+                );
+            } else if (fragment.argType === 'behaviour') {
+                messages.push(
+                    <span key={index++} className='behaviour'>
+                        {getBehaviourFragment(fragment)}
                     </span>
                 );
             } else {
