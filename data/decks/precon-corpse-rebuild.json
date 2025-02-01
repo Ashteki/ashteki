@@ -31,7 +31,8 @@
             },
             {
                 "id": "iron-worker",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "massive-growth",
@@ -55,7 +56,8 @@
             },
             {
                 "id": "shifting-mist",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "steady-gaze",
@@ -63,15 +65,18 @@
             },
             {
                 "id": "summon-blue-jaguar",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-butterfly-monk",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-mist-spirit",
-                "count": 3
+                "count": 3,
+                "ff": true
             }
         ],
         "conjurations": [
@@ -146,7 +151,8 @@
             },
             {
                 "id": "hammer-knight",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "infuriate",
@@ -154,11 +160,13 @@
             },
             {
                 "id": "iron-worker",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "old-salt",
-                "count": 2
+                "count": 2,
+                "ff": true
             },
             {
                 "id": "one-hundred-blades",
@@ -166,11 +174,13 @@
             },
             {
                 "id": "serve-the-city",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "strengthen",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-iron-rhino",
@@ -209,7 +219,8 @@
         "cards": [
             {
                 "id": "blood-archer",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "blood-brawl",
@@ -225,7 +236,8 @@
             },
             {
                 "id": "chant-of-transfusion",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "cut-the-strings",
@@ -241,7 +253,8 @@
             },
             {
                 "id": "living-doll",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "playtime",
@@ -253,11 +266,13 @@
             },
             {
                 "id": "summon-blood-puppet",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-bone-crow",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "undying-heart",
@@ -300,7 +315,8 @@
         "cards": [
             {
                 "id": "call-upon-the-realms",
-                "count": 2
+                "count": 2,
+                "ff": true
             },
             {
                 "id": "close-combat",
@@ -312,7 +328,8 @@
             },
             {
                 "id": "empower",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "golden-veil",
@@ -332,7 +349,8 @@
             },
             {
                 "id": "open-memories",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "redirect",
@@ -344,11 +362,13 @@
             },
             {
                 "id": "summon-gilder",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-silver-snake",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "transfer",
@@ -411,7 +431,8 @@
             },
             {
                 "id": "resummon",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "shadow-strike",
@@ -423,11 +444,13 @@
             },
             {
                 "id": "sleight-of-hand",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "small-sacrifice",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "stormwind-sniper",
@@ -439,11 +462,13 @@
             },
             {
                 "id": "summon-false-demon",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "summon-masked-wolf",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "summon-sleeping-widows",
@@ -494,7 +519,8 @@
         "cards": [
             {
                 "id": "abundance",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "anchornaut",
@@ -514,11 +540,13 @@
             },
             {
                 "id": "purge",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "rose-fire-dancer",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "seal",
@@ -534,11 +562,13 @@
             },
             {
                 "id": "summon-seaside-raven",
-                "count": 1
+                "count": 1,
+                "ff": true
             },
             {
                 "id": "summon-three-eyed-owl",
-                "count": 3
+                "count": 3,
+                "ff": true
             },
             {
                 "id": "sympathy-pain",
