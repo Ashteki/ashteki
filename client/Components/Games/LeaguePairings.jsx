@@ -40,7 +40,7 @@ const LeaguePairings = ({ onCancelClick, onPlayClick }) => {
             gameFormat: 'constructed',
             useGameTimeLimit: false,
             ranked: isRanked,
-            saveReplay: isRanked,
+            saveReplay: true,
             pairing: pairing,
             league: tag
         };
