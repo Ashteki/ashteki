@@ -357,6 +357,7 @@ module.exports.init = function (server, options) {
                     alertTimer: 5
                 }
             };
+            newUser.permissions = {};
 
             if (configService.getValueForSection('lobby', 'requireActivation')) {
                 let expiration = moment().utc().add(7, 'days');
