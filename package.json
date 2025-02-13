@@ -41,7 +41,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.4.2",
         "@fortawesome/react-fontawesome": "^0.2.2",
         "@sendgrid/mail": "^7.4.7",
-        "@sentry/browser": "^6.2.5",
+        "@sentry/browser": "^9.1.0",
         "@sentry/node": "^6.2.5",
         "@types/react": "^16.14.26",
         "@typescript-eslint/eslint-plugin": "^5.55.0",
