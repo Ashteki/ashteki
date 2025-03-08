@@ -1,0 +1,33 @@
+{
+    "results": [
+        {
+            "name": "Summon River Colossus",
+            "stub": "summon-river-colossus",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "dice": [
+                "sympathy"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "sympathy:class": 2
+            },
+            "conjurations": [
+                {
+                    "name": "River Colossus",
+                    "stub": "river-colossus"
+                }
+            ]
+        },
+        {
+            "name": "River Colossus",
+            "stub": "river-colossus",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 4,
+            "recover": 0,
+            "copies": 2
+        }
+    ]
+}
