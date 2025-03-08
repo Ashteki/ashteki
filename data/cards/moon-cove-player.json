@@ -28,6 +28,27 @@
             "life": 4,
             "recover": 0,
             "copies": 2
+        },
+        {
+            "name": "Sandstorm Sage",
+            "stub": "sandstorm-sage",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:power]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "sympathy:power": 1
+            },
+            "attack": 2,
+            "life": 3,
+            "recover": 2
         }
     ]
 }
