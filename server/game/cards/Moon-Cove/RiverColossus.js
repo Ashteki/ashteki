@@ -18,7 +18,7 @@ class RiverColossus extends Card {
             gameAction: ability.actions.cardLastingEffect((context) => ({
                 target: context.source,
                 duration: 'untilEndOfTurn',
-                effect: ability.effects.modifyAttack(2)
+                effect: ability.effects.modifyAttack(this.getAbilityNumeric(2))
             }))
         });
     }
