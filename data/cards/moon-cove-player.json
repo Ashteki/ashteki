@@ -93,6 +93,25 @@
             "life": 1,
             "recover": 0,
             "copies": 2
+        },
+        {
+            "name": "Twilight Alchemist",
+            "stub": "twilight-alchemist",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1
         }
     ]
 }
