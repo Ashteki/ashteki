@@ -112,6 +112,22 @@
             "attack": 1,
             "life": 1,
             "recover": 1
+        },
+        {
+            "name": "Moon's Blessing",
+            "stub": "moons-blessing",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            }
         }
     ]
 }
