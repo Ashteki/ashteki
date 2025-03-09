@@ -128,6 +128,24 @@
             "magicCost": {
                 "sympathy:class": 1
             }
+        },
+        {
+            "name": "Undaunted",
+            "stub": "undaunted",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "sympathy:class": 1
+            }
         }
     ]
 }
