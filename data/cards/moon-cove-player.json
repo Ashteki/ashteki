@@ -49,6 +49,22 @@
             "attack": 2,
             "life": 3,
             "recover": 2
+        },
+        {
+            "name": "Reverberate",
+            "stub": "reverberate",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            }
         }
     ]
 }
