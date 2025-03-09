@@ -65,6 +65,34 @@
             "magicCost": {
                 "sympathy:class": 1
             }
+        },
+        {
+            "name": "Summon Cerulean Diver",
+            "stub": "summon-cerulean-diver",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "dice": [
+                "sympathy"
+            ],
+            "effectMagicCost": {
+                "sympathy:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Cerulean Diver",
+                    "stub": "cerulean-diver"
+                }
+            ]
+        },
+        {
+            "name": "Cerulean Diver",
+            "stub": "cerulean-diver",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 2
         }
     ]
 }

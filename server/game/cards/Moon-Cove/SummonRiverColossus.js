@@ -19,7 +19,7 @@ class SummonRiverColossus extends Card {
                 conjuration: 'river-colossus'
             }),
             then: {
-                // focus 1 ability
+                // focus 2 ability
                 alwaysTriggers: true,
                 condition: () => this.focus >= 2,
                 gameAction: ability.actions.changeDice({
