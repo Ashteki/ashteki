@@ -162,6 +162,21 @@
             "magicCost": {
                 "sympathy:class": 1
             }
+        },
+        {
+            "name": "Absorption",
+            "stub": "absorption",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[sympathy:power]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:power": 1
+            }
         }
     ]
 }
