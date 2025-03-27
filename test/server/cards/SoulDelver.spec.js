@@ -32,6 +32,24 @@ describe('Soul Delver', function () {
         expect(this.player2).toHavePrompt('Choose a blocker');
     });
 
+    it('lower two opponent dice on attack', function () {
+        this.luluFirststone.tokens.status = 2;
+
+        expect(this.player2.dicepool[0].level).toBe('power');
+        expect(this.player2.dicepool[1].level).toBe('power');
+        this.player1.clickAttack(this.sariaGuideman);
+        this.player1.clickCard(this.soulDelver);
+        this.player1.clickDone();
+        this.player1.clickPrompt('Opponent');
+        this.player1.clickOpponentDie(0);
+        this.player1.clickOpponentDie(1);
+        this.player1.clickDone();
+
+        expect(this.player2.dicepool[0].level).toBe('class');
+        expect(this.player2.dicepool[1].level).toBe('class');
+        expect(this.player2).toHavePrompt('Choose a blocker');
+    });
+
     it('raise my single die on attack', function () {
         this.player1.dicepool[0].level = 'class';
         expect(this.player1.dicepool[0].level).toBe('class');
