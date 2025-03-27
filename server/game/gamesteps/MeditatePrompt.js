@@ -209,7 +209,7 @@ class MeditatePrompt extends UiPrompt {
                 // remove the die
                 this.removeDie(die);
             } else {
-                die.level = Dice.levelDown(die.level);
+                die.level = Dice.levelDown(die);
             }
         }
 
