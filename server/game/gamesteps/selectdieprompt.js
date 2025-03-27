@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { Level } = require('../../constants.js');
+const { Level, Magic } = require('../../constants.js');
 
 const AbilityContext = require('../AbilityContext.js');
 const Dice = require('../dice.js');
@@ -280,7 +280,9 @@ class SelectDiePrompt extends UiPrompt {
             this.levelState[die.uuid] = die.level;
             this.exhaustState[die.uuid] = die.exhausted;
             // set to power / basic on add.
-            if (this.singleLevel && this.levelState[die.uuid] !== Level.Class) {
+            if (die.magic === Magic.Rage) {
+                die.level = Dice.levelDown(die);
+            } else if (this.singleLevel && this.levelState[die.uuid] !== Level.Class) {
                 die.level = Level.Class;
             } else if (this.cycleLevels) {
                 die.level = die.owner === this.choosingPlayer ? Level.Power : Level.Basic;
@@ -312,14 +314,14 @@ class SelectDiePrompt extends UiPrompt {
         if (this.singleLevel && this.levelState[die.uuid] === Level.Class) {
             die.level =
                 die.owner === this.choosingPlayer // it's mine?
-                    ? Dice.levelUp(die.level)
-                    : Dice.levelDown(die.level);
+                    ? Dice.levelUp(die)
+                    : Dice.levelDown(die);
         } else if (this.cycleLevels) {
             // cycle the level if it's that kind of prompt
             die.level =
                 die.owner === this.choosingPlayer // it's mine?
-                    ? Dice.levelDown(die.level)
-                    : Dice.levelUp(die.level);
+                    ? Dice.levelDown(die)
+                    : Dice.levelUp(die);
         }
     }
 

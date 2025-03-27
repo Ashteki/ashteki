@@ -1,7 +1,17 @@
 const { Level, Magic } = require('../constants');
 
 class Dice {
-    static levelUp(level) {
+    static levelUp(die) {
+        const level = die.level;
+        if (die.magic === Magic.Rage) {
+            switch (level) {
+                case Level.Basic:
+                    return Level.Power;
+                case Level.Power:
+                    return Level.Basic;
+            }
+        }
+
         switch (level) {
             case Level.Basic:
                 return Level.Class;
@@ -13,7 +23,17 @@ class Dice {
         throw new Error('level not recognised');
     }
 
-    static levelDown(level) {
+    static levelDown(die) {
+        const level = die.level;
+        if (die.magic === Magic.Rage) {
+            switch (level) {
+                case Level.Basic:
+                    return Level.Power;
+                case Level.Power:
+                    return Level.Basic;
+            }
+        }
+
         switch (level) {
             case Level.Basic:
                 return Level.Power;
