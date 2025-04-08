@@ -52,8 +52,8 @@ class DummyTurn extends BaseStepWithPipeline {
                     this.player.chimeraPhase
                 );
                 const chatMsg = this.getChatMessage(behaviour);
-                this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll);
-                this.game.addMessage('{0}', behaviour);
+                this.game.addMessage('{0} rolls {1} for behaviour:\n{2}', this.player, d12Roll, behaviour);
+                // this.game.addMessage('{0}', behaviour);
 
                 this.game.queueUserAlert(context, {
                     style: 'danger',
