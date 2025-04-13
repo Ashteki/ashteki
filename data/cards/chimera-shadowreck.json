@@ -1,0 +1,95 @@
+{
+    "deckType": "chimera",
+    "results": [
+        {
+            "name": "The Spawn of Shadowreck",
+            "stub": "spawn-of-shadowreck",
+            "type": "Chimera",
+            "level": "standard",
+            "rank": 1,
+            "threat": 6,
+            "life": 30,
+            "ultimate": 3,
+            "imageStub": "spawn-of-shadowreck-1p-standard-1.jpg"
+        },
+        {
+            "name": "Shadowreck Ultimate",
+            "stub": "shadowreck-ultimate",
+            "type": "Ready Spell",
+            "imageStub": "spawn-of-shadowreck-ultimate-%s.jpg"
+        },
+        {
+            "name": "Shadowreck Behaviour",
+            "stub": "shadowreck-behaviour",
+            "type": "Behaviour",
+            "imageStub": "spawn-of-shadowreck-behavior-%s.jpg"
+        },
+        {
+            "name": "Webbed",
+            "stub": "webbed",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit",
+            "copies": 6
+        },
+        {
+            "name": "Silksteel",
+            "stub": "silksteel",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Weave",
+            "stub": "weave",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Neurotoxin",
+            "stub": "neurotoxin",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Broodmother",
+            "stub": "broodmother",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 4,
+            "blood": 2
+        },
+        {
+            "name": "Unfathomable",
+            "stub": "unfathomable",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 4,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Unbreakable",
+            "stub": "unbreakable",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        }
+    ]
+}

@@ -96,6 +96,7 @@ const Effects = {
     unpreventable: () => EffectBuilder.card.static('unpreventable'),
     unseen: () => EffectBuilder.card.static('unseen'),
     visibleIn: (location) => EffectBuilder.card.static('visibleIn', location),
+    webbed: () => EffectBuilder.card.static('webbed'),
 
     // Player effects
     lastingAbilityTrigger: (properties) =>

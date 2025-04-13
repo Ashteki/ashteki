@@ -679,6 +679,11 @@ class PlayerInteractionWrapper {
         this.clickPromptButton(0);
     }
 
+    useCardAbility(card, abilityName) {
+        this.clickCard(card);
+        this.clickPrompt(abilityName);
+    }
+
     playUpgrade(upgrade, target) {
         let card = this.clickCard(upgrade, 'hand');
         this.clickPrompt('Play this Alteration');
