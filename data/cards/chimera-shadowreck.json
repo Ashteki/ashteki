@@ -71,7 +71,8 @@
             "target": "right",
             "attack": 1,
             "life": 4,
-            "blood": 2
+            "blood": 2,
+            "statusCount": 3
         },
         {
             "name": "Unfathomable",
