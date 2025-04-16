@@ -8,9 +8,9 @@ class Weave extends AspectCard {
             target: {
                 mode: 'auto',
                 cardCondition: (card) => !card.anyEffect('webbed'),
-                gameAction: ability.actions.attachConjuredAlteration((context) => ({
+                gameAction: ability.actions.attachConjuredAlteration({
                     conjuredAlteration: 'webbed'
-                }))
+                })
             }
         });
     }

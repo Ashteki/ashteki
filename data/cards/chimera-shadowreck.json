@@ -60,7 +60,8 @@
             "target": "right",
             "attack": 1,
             "life": 2,
-            "blood": 1
+            "blood": 1,
+            "statusCount": 2
         },
         {
             "name": "Broodmother",
