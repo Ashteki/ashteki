@@ -499,5 +499,68 @@
         "count": 7
       }
     ]
+  },
+  {
+    "precon_id": 809,
+    "premium": true,
+    "restricted": true,
+    "mode": "chimera",
+    "name": "The Spawn of Shadowreck - Lair",
+    "phoenixborn": [
+      {
+        "id": "spawn-of-shadowreck",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "shadowreck-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "shadowreck-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "broodmother",
+        "count": 3
+      },
+      {
+        "id": "neurotoxin",
+        "count": 3
+      },
+      {
+        "id": "silksteel",
+        "count": 3
+      },
+      {
+        "id": "unfathomable",
+        "count": 3
+      },
+      {
+        "id": "unbreakable",
+        "count": 3
+      },
+      {
+        "id": "weave",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "webbed",
+        "count": 6
+      }
+    ]
   }
 ]

@@ -17,7 +17,8 @@ class Whisperer extends Card {
                         activePromptTitle: 'Haunt: Choose a power die to lower',
                         dieCondition: (die) => die.level === Level.Power && !die.exhausted,
                         owner: 'opponent'
-                    }
+                    },
+                    showMessage: true
                 }),
                 falseGameAction: ability.actions.dealDamage((context) => ({
                     target: context.player.opponent.phoenixborn,
