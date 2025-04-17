@@ -140,6 +140,31 @@ class BehaviourCard extends Card {
         const context = act.createContext(this.owner);
         this.game.resolveAbility(context);
     }
+
+    doLowerOpponentsDice(numDice) {
+        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
+            return;
+        }
+
+        const ability = this.behaviour({
+            title: 'Chimera Behaviour',
+            target: {
+                player: 'opponent',
+                targetsPlayer: true,
+                toSelect: 'die',
+                mode: 'exactly',
+                numDice: Math.min(numDice, this.owner.opponent.activeNonBasicDiceCount),
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+                owner: 'opponent',
+                gameAction: AbilityDsl.actions.lowerDie()
+            },
+            message: '{0} uses {1} to lower ' + numDice + ' opponent dice'
+        });
+
+        const context = ability.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
+
 }
 
 module.exports = BehaviourCard;
