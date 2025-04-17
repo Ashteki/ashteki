@@ -1,4 +1,3 @@
-const { Level } = require('../../../../constants');
 const AspectCard = require("../../../solo/AspectCard");
 
 class Neurotoxin extends AspectCard {
@@ -18,8 +17,8 @@ class Neurotoxin extends AspectCard {
                     targetsPlayer: true,
                     toSelect: 'die',
                     mode: 'exactly',
-                    numDice: (context) => Math.min(1, this.owner.opponent.activeNonBasicDiceCount),
-                    dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+                    numDice: 1,
+                    dieCondition: (die) => !die.exhausted,
                     owner: 'opponent',
                     gameAction: ability.actions.exhaustDie()
                 },

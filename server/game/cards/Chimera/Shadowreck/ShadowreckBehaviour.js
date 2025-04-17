@@ -56,10 +56,10 @@ class ShadowreckBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal',
-                                side: 'Attach a Stun conjured alteration spell to opponents rightmost unit'
+                                side: 'Attach a Webbed conjured alteration spell to opponents leftmost non-webbed unit'
                             },
                             () => {
-                                // Side: stun
+                                // Side: webbed
                                 this.doWebbed('left');
                                 // Main: Reveal
                                 this.doReveal();
@@ -128,7 +128,7 @@ class ShadowreckBehaviour extends BehaviourCard {
                         return new Behaviour(
                             behaviourRoll,
                             {
-                                side: 'Attach a Webbed conjured alteration spell to opponents rightmost non-webbed unit',
+                                side: 'Attach a Webbed conjured alteration spell to opponents leftmost non-webbed unit',
                                 main: 'Reveal'
                             },
                             () => {
@@ -298,7 +298,7 @@ class ShadowreckBehaviour extends BehaviourCard {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 player: 'opponent',
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({
+                gameAction: AbilityDsl.actions.dealDamage({
                     showMessage: true
                 })
             }
@@ -315,7 +315,7 @@ class ShadowreckBehaviour extends BehaviourCard {
                 activePromptTitle: 'Choose a card to exhaust',
                 player: 'opponent',
                 controller: 'opponent',
-                gameAction: ability.actions.exhaust()
+                gameAction: AbilityDsl.actions.exhaust()
             }
         });
 

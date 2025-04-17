@@ -4,7 +4,11 @@ const { Level } = require('../../../../constants.js');
 class Webbed extends Card {
     setupCardAbilities(ability) {
         this.whileAttached({
-            effect: [ability.effects.webbed()]
+            effect: [
+                ability.effects.webbed(),
+                ability.effects.modifyAttack(-1),
+                ability.effects.modifyRecover(-1)
+            ]
         });
 
         this.action({
