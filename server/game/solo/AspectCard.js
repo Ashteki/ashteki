@@ -45,7 +45,10 @@ class AspectCard extends Card {
                         onBeginTurn: (event, context) => event.player === context.player
                     },
                     location: 'play area',
-                    cost: [AbilityDsl.costs.loseStatus(1)]
+                    cost: [AbilityDsl.costs.loseStatus(1)],
+                    logUse: (context) =>
+                        properties.log === 'each' ||
+                        (properties.log === 'last' && context.source.status === 0)
                 },
                 properties
             )

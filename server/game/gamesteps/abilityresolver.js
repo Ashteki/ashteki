@@ -174,6 +174,15 @@ class AbilityResolver extends BaseStepWithPipeline {
         }
 
         if (
+            this.context.source.type !== 'die' &&
+            this.context.source.location === 'play area' &&
+            this.context.ability.logUse &&
+            this.context.ability.logUse(this.context)
+        ) {
+            this.game.cardUsed(this.context.source, this.context.player);
+        }
+
+        if (
             !this.game.solo &&
             this.context.source.type === CardType.ReactionSpell &&
             !this.context.preThenEvent

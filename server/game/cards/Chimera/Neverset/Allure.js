@@ -5,6 +5,7 @@ class Allure extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             gameAction: ability.actions.draw((context) => ({
                 target: context.player.opponent
             })),
