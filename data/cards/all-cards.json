@@ -2259,9 +2259,9 @@
             },
             "placement": "Battlefield",
             "text": "Decree: When this unit comes into play, search your draw pile. You may reveal a ready spell with \"Law\" in its title and place it into your hand.  You may immediately play a \"Law\" from your hand without paying any [[main]] or [[side]] costs. Shuffle your draw pile.",
-            "attack": 3,
-            "life": 3,
-            "recover": 0,
+            "attack": 2,
+            "life": 4,
+            "recover": 1,
             "copies": 1
         },
         {
