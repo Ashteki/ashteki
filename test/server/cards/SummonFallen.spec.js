@@ -1,12 +1,55 @@
 describe('Summon Fallen', function () {
-    describe('Summon 1', function () {
+    describe('When ally destroyed', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    dicepool: ['natural', 'natural'],
+                    archives: ['fallen']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'anchornaut'],
+                    spellboard: ['summon-fallen']
+                }
+            });
+        });
+
+        it('should add a status token', function () {
+            this.player1.useDie(0);
+            this.player1.clickCard(this.anchornaut);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.summonFallen.status).toBe(1);
+        });
+
+        it('with 2 status it should add a status token', function () {
+            this.summonFallen.tokens.status = 2;
+            this.player1.useDie(0);
+            this.player1.clickCard(this.anchornaut);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.summonFallen.status).toBe(3);
+        });
+
+        it('with 3 status it should NOT add a status token', function () {
+            this.summonFallen.tokens.status = 3;
+            this.player1.useDie(0);
+            this.player1.clickCard(this.anchornaut);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.summonFallen.status).toBe(3);
+        });
+    });
+
+    describe('Summon Action', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     spellboard: ['summon-fallen'],
-                    dicepool: ['charm', 'ceremonial', 'natural', 'natural'],
-                    archives: ['fallen']
+                    dicepool: ['ceremonial', 'ceremonial', 'natural', 'natural'],
+                    archives: ['fallen', 'fallen']
                 },
                 player2: {
                     phoenixborn: 'coal-roarkwin',
@@ -16,67 +59,33 @@ describe('Summon Fallen', function () {
             });
         });
 
-        it('should place a fallen into play', function () {
-            this.summonFallen.tokens.status = 1;
-            this.player1.clickCard(this.summonFallen);
-            this.player1.clickPrompt('Summon Fallen');
-            this.player1.clickCard(this.summonFallen);
-            this.player1.clickDone();
+        it('should place a chosen single fallen into play', function () {
+            this.summonFallen.tokens.status = 2;
+            this.player1.useAbility(this.summonFallen);
+            this.player1.clickPrompt('1');
+
             expect(this.fallen.location).toBe('play area');
-
-            expect(this.player1).toHaveDefaultPrompt();
-            expect(this.summonFallen.status).toBe(0);
-        });
-
-        it('no tokens uses main, but no fallen into play', function () {
-            expect(this.summonFallen.status).toBe(0);
-
-            this.player1.clickCard(this.summonFallen);
-            this.player1.clickPrompt('Summon Fallen');
-            this.player1.clickCard(this.summonFallen);
-            this.player1.clickDone();
-            expect(this.fallen.location).toBe('archives');
-            // spends dice and main action
+            expect(this.summonFallen.status).toBe(1);
+            expect(this.summonFallen.exhausted).toBe(true);
+            expect(this.player1.dicepool[0].exhausted).toBe(true);
             expect(this.player1.dicepool[1].exhausted).toBe(true);
-            expect(this.player1.actions.main).toBe(false);
+
             expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('should place chosen two fallen into play', function () {
+            this.summonFallen.tokens.status = 2;
+            this.player1.useAbility(this.summonFallen);
+            this.player1.clickPrompt('2');
+
+            expect(this.fallen.location).toBe('play area');
             expect(this.summonFallen.status).toBe(0);
-        });
-    });
-
-    describe('Summon 2', function () {
-        beforeEach(function () {
-            this.setupTest({
-                player1: {
-                    phoenixborn: 'aradel-summergaard',
-                    spellboard: ['summon-fallen', 'summon-fallen', 'summon-fallen'],
-                    dicepool: ['charm', 'ceremonial', 'natural', 'natural'],
-                    archives: ['fallen', 'fallen', 'fallen']
-                },
-                player2: {
-                    phoenixborn: 'coal-roarkwin',
-                    inPlay: ['hammer-knight'],
-                    spellboard: []
-                }
-            });
-
-            this.player1.spellboard[0].tokens.status = 1;
-            this.player1.spellboard[1].tokens.status = 1;
-            this.player1.spellboard[2].tokens.status = 1;
-        });
-
-        it('should place 2 fallen into play', function () {
-            expect(this.player1.inPlay.length).toBe(0);
-            this.player1.clickCard(this.summonFallen);
-            this.player1.clickPrompt('Summon Fallen');
-            this.player1.clickCard(this.player1.spellboard[0]);
-            this.player1.clickCard(this.player1.spellboard[1]);
-            this.player1.clickDone();
+            expect(this.summonFallen.exhausted).toBe(true);
+            expect(this.player1.dicepool[0].exhausted).toBe(true);
+            expect(this.player1.dicepool[1].exhausted).toBe(true);
             expect(this.player1.inPlay.length).toBe(2);
 
             expect(this.player1).toHaveDefaultPrompt();
-            expect(this.player1.spellboard[0].status).toBe(0);
-            expect(this.player1.spellboard[1].status).toBe(0);
         });
     });
 });
