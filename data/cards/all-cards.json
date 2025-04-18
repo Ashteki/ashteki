@@ -4926,15 +4926,15 @@
             "placement": "Discard",
             "cost": [
                 "[[main]]",
-                "2 [[natural:power]]"
+                "2 [[natural:class]]"
             ],
             "dice": [
                 "natural"
             ],
             "magicCost": {
-                "natural:power": 2
+                "natural:class": 2
             },
-            "text": "Place 3 wound tokens on a target unit or Phoenixborn."
+            "text": "Place 3 wound tokens on a target unit."
         },
         {
             "name": "Namine Hymntide",
