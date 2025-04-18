@@ -73,7 +73,10 @@ describe('Return to soil action spell', function () {
         expect(this.player1).not.toHaveDefaultPrompt();
 
         expect(this.player2.discard.length).toBe(3);
-        expect(this.player1).not.toBeAbleToSelect(this.fireArcher);
+        expect(this.player1).toBeAbleToSelect(this.fireArcher);
+        this.player1.clickCard(this.fireArcher);
+        this.player1.clickDone();
+        expect(this.fireArcher.location).toBe('purged');
     });
 
     it('deals damage, destroys, discard ToD, then purges 2 when targetting own unit', function () {
