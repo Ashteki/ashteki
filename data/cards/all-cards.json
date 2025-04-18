@@ -3812,13 +3812,13 @@
             },
             "placement": "Discard",
             "cost": [
-                "1 [[natural:class]]"
+                "1 [[natural:power]]"
             ],
             "dice": [
                 "natural"
             ],
             "magicCost": {
-                "natural:class": 1
+                "natural:power": 1
             },
             "text": "You may play this spell after a unit with a life value of 2 or less comes into play. Destroy that target unit."
         },
