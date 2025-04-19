@@ -8,6 +8,9 @@
             "dice": [
                 "sympathy"
             ],
+            "cost": [
+                "[[main]]"
+            ],
             "effectMagicCost": {
                 "basic": 1,
                 "sympathy:class": 2
@@ -77,6 +80,9 @@
             "effectMagicCost": {
                 "sympathy:class": 1
             },
+            "cost": [
+                "[[main]]"
+            ],
             "conjurations": [
                 {
                     "name": "Cerulean Diver",
@@ -224,6 +230,67 @@
             "dice": [
                 "basic"
             ]
+        },
+        {
+            "name": "Summon Metamorpher",
+            "stub": "summon-metamorpher",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "dice": [
+                "basic"
+            ],
+            "cost": [
+                "[[main]]"
+            ],
+            "effectMagicCost": {
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Metamorpher",
+                    "stub": "metamorpher"
+                }
+            ]
+        },
+        {
+            "name": "Metamorpher",
+            "stub": "metamorpher",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 0,
+            "life": 1,
+            "recover": 0,
+            "copies": 3,
+            "conjurations": [
+                {
+                    "name": "Sun Scarab",
+                    "stub": "sun-scarab"
+                },
+                {
+                    "name": "Moon Moth",
+                    "stub": "moon-moth"
+                }
+            ]
+        },
+        {
+            "name": "Sun Scarab",
+            "stub": "sun-scarab",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 1,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Moon Moth",
+            "stub": "moon-moth",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
         }
     ]
 }
