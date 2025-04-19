@@ -199,8 +199,30 @@
             "stub": "surging-tempest",
             "type": "Ready Spell",
             "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
             "dice": [
                 "sympathy"
+            ]
+        },
+        {
+            "name": "Full Moon",
+            "stub": "full-moon",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "dice": [
+                "basic"
             ]
         }
     ]

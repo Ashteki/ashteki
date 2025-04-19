@@ -6,6 +6,7 @@ class SurgingTempest extends Card {
         this.action({
             title: 'Surging Tempest',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
+            location: 'spellboard',
             gameAction: ability.actions.draw(),
             then: {
                 alwaysTriggers: true,
