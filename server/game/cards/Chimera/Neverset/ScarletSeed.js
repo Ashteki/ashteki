@@ -5,6 +5,7 @@ class ScarletSeed extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'last',
             gameAction: ability.actions.conditional({
                 condition: (context) => context.source.status === 0,
                 trueGameAction: [

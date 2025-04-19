@@ -5,6 +5,7 @@ class Weave extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             target: {
                 mode: 'auto',
                 cardCondition: (card) => !card.anyEffect('webbed'),

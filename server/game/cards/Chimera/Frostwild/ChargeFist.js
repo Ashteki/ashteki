@@ -5,6 +5,7 @@ class ChargeFist extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'last',
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,
                 gameAction: ability.actions.conditional({

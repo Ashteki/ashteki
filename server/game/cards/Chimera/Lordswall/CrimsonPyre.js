@@ -6,6 +6,7 @@ class CrimsonPyre extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             target: {
                 mode: 'auto',
                 aim: 'right',

@@ -5,6 +5,7 @@ class UnendingForces extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             gameAction: ability.actions.summon({
                 conjuration: 'rainwalker'
             })

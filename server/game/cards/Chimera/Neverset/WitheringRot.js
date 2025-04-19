@@ -5,6 +5,7 @@ class WitheringRot extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             target: {
                 toSelect: 'player',
                 ignoreTargetCheck: true,
@@ -14,17 +15,6 @@ class WitheringRot extends AspectCard {
                     player: context.target,
                     choices: {
                         Discard: ability.actions.chosenDiscard(),
-
-                        // ability.actions.conditional({
-                        //     condition: (context) => context.target.controller.getHand().length > 0,
-                        //     trueGameAction: ability.actions.discardAtRandom({
-                        //         target: context.target.controller
-                        //     }),
-                        //     falseGameAction: ability.actions.addDamageToken({
-                        //         amount: 2,
-                        //         showMessage: true
-                        //     })
-                        // }),
                         '1 Pb Damage': ability.actions.dealDamage((context) => ({
                             target: context.player.opponent.phoenixborn,
                             amount: 1,

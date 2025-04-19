@@ -100,7 +100,10 @@ class ShadowreckBehaviour extends BehaviourCard {
                         // Main: Reveal. Attack with revealed aspect
                         return new Behaviour(
                             behaviourRoll,
-                            { main: 'Reveal. Attack with revealed aspect.' },
+                            {
+                                side: 'Target opposing player must place 1 wound token on their Phoenixborn or leftmost unit',
+                                main: 'Reveal. Attack with revealed aspect.'
+                            },
                             () => {
                                 this.doPbOrLeftmostBurn();
                                 this.doAttack(this.doReveal());

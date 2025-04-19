@@ -5,6 +5,7 @@ class BonechillWind extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => this.getExhaustedTargets(context),

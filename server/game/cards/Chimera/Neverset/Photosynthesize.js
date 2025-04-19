@@ -6,6 +6,7 @@ class Photosynthesize extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             gameAction: ability.actions.raiseDie((context) => ({
                 target: context.source.owner.getBasicDie(Magic.Rage),
                 showMessage: true
