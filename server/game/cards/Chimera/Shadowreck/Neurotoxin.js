@@ -5,6 +5,7 @@ class Neurotoxin extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,
                 gameAction: ability.actions.dealDamage({ showMessage: true })

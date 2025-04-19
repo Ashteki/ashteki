@@ -5,6 +5,7 @@ class ExplosivePods extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'last',
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => context.player.opponent.unitsInPlay,

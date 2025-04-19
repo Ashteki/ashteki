@@ -10,6 +10,12 @@ class UltimateCard extends Card {
         return this.imageStub.replace('%s', this.owner.chimeraPhase);
     }
 
+    createSnapshot() {
+        const snapshot = super.createSnapshot();
+        snapshot.imageStub = this.imageStub.replace('%s', this.owner.chimeraPhase);
+        return snapshot;
+    }
+
     getUltimateAbility(phase) {
         // override this in derived classes
     }

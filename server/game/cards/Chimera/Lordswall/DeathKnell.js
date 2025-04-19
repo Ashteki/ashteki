@@ -5,6 +5,7 @@ class DeathKnell extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'last',
             target: {
                 mode: 'auto',
                 gameAction: ability.actions.conditional({

@@ -4,7 +4,6 @@ class Unfathomable extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
-
         this.persistentEffect({
             effect: ability.effects.addKeyword({ terrifying: 2 })
         });

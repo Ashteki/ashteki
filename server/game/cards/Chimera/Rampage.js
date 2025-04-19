@@ -6,6 +6,7 @@ class Rampage extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.statusAbility({
+            log: 'each',
             target: {
                 toSelect: 'die',
                 autoTarget: (context) => context.player.dice.filter((d) => d.level === Level.Basic),
