@@ -193,6 +193,15 @@
             "magicCost": {
                 "basic": 1
             }
+        },
+        {
+            "name": "Surging Tempest",
+            "stub": "surging-tempest",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "dice": [
+                "sympathy"
+            ]
         }
     ]
 }
