@@ -177,6 +177,22 @@
             "magicCost": {
                 "sympathy:power": 1
             }
+        },
+        {
+            "name": "Weight of the World",
+            "stub": "weight-of-the-world",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            }
         }
     ]
 }
