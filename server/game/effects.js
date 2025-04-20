@@ -53,6 +53,7 @@ const Effects = {
     modifyLife: (amount) => EffectBuilder.card.flexible('modifyLife', amount),
     modifyRecover: (amount) => EffectBuilder.card.flexible('modifyRecover', amount),
     modifyArmor: (amount) => EffectBuilder.card.flexible('modifyArmor', amount),
+    modifyFocus: (amount) => EffectBuilder.card.flexible('modifyFocus', amount),
     multiplyDamage: (amount) => EffectBuilder.card.flexible('multiplyDamage', amount),
     preventDamage: (amount) => EffectBuilder.card.flexible('preventDamage', amount),
     preventAllDamage: (shield, contextFunc) => EffectBuilder.card.static('preventAllDamage', shield, contextFunc),

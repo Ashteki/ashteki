@@ -1173,7 +1173,7 @@ class Card extends PlayableObject {
 
         const focusLevel =
             this.owner.spellboard.filter((spell) => spell.cardSlot === this.id).length - 1;
-        return Math.max(focusLevel, 0);
+        return Math.max(focusLevel, 0) + this.sumEffects('modifyFocus');
     }
 
     get cardSlot() {
