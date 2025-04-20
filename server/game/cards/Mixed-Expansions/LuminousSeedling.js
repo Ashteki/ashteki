@@ -9,11 +9,11 @@ class LuminousSeedling extends Card {
         this.action({
             title: 'Blossom',
             cost: [
-                ability.costs.mainAction(),
-                ability.costs.loseStatus(2)
+                ability.costs.mainAction()
             ],
             gameAction: ability.actions.destroy(),
             then: {
+                condition: (context) => context.preThenEvent.clone.status >= 2,
                 gameAction: ability.actions.summon({
                     conjuration: 'brilliant-thorn',
                     count: 2
