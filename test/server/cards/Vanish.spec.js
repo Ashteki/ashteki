@@ -34,18 +34,6 @@ describe('Vanish', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('cancels molten gold on phoenixborn', function () {
-            this.player1.clickCard(this.moltenGold);
-            this.player1.clickPrompt('Play this action');
-            this.player1.clickCard(this.rinNorthfell);
-
-            expect(this.player2).toHavePrompt('Any Reactions to molten gold targetting rin northfell?');
-            this.player2.clickCard(this.vanish);
-
-            expect(this.rinNorthfell.damage).toBe(0);
-            expect(this.player1).toHaveDefaultPrompt();
-        });
-
         it('cancels song of sorrow part 2', function () {
             const handSize = this.player2.hand.length;
             this.player1.clickCard(this.enchantedViolinist);

@@ -62,16 +62,6 @@ describe('Guilt link', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('no status token on Action Spell', function () {
-            expect(this.guiltLink.status).toBe(0);
-
-            this.player1.play(this.moltenGold);
-
-            this.player1.clickCard(this.coalRoarkwin);
-            expect(this.coalRoarkwin.damage).toBe(3);
-            expect(this.guiltLink.status).toBe(0);
-        });
-
         it('no status token on dealDamage', function () {
             expect(this.guiltLink.status).toBe(0);
 

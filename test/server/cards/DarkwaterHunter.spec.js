@@ -2,11 +2,11 @@ describe('Darkwater Hunter', function () {
     beforeEach(function () {
         this.setupTest({
             player1: {
-                phoenixborn: 'orrick-gilstream',
+                phoenixborn: 'coal-roarkwin',
                 inPlay: ['flute-mage'],
                 dicepool: ['natural', 'natural', 'time', 'time'],
                 deck: ['anchornaut'],
-                hand: ['darkwater-hunter', 'molten-gold']
+                hand: ['darkwater-hunter', 'one-hundred-blades']
             },
             player2: {
                 phoenixborn: 'aradel-summergaard',
@@ -15,8 +15,11 @@ describe('Darkwater Hunter', function () {
         });
     });
 
-    it('play when pb wounded by molten gold', function () {
-        this.player1.play(this.moltenGold);
+    it('play when pb wounded by one hundred blades', function () {
+        this.player1.play(this.oneHundredBlades);
+        this.player1.clickDie(0);
+        this.player1.clickDie(1);
+        this.player1.clickDone();
         this.player1.clickCard(this.aradelSummergaard);
         // reaction
         this.player1.clickCard(this.darkwaterHunter);
