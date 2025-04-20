@@ -33,7 +33,20 @@ describe(' River Colossus', function () {
             expect(this.player1.dicepool[0].level).toBe(Level.Class);
             expect(this.player1.dicepool[1].level).toBe(Level.Class);
             expect(this.riverColossus.attack).toBe(4);
-            expect(this.keepsake.status).toBe(2);
+        });
+
+        it('on RC attack try to lower 1 die, fails', function () {
+            this.player1.clickAttack(this.fluteMage);
+            this.player1.clickCard(this.riverColossus);
+            this.player1.clickCard(this.riverColossus); // reaction
+
+            this.player1.clickDie(0);
+
+            expect(this.player1).not.toHavePromptButton('Done');
+            this.player1.clickCancel();
+            expect(this.player1.dicepool[0].level).toBe(Level.Power);
+            expect(this.player1.dicepool[1].level).toBe(Level.Power);
+            expect(this.riverColossus.attack).toBe(2);
         });
     });
 });

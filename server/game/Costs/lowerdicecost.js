@@ -20,6 +20,7 @@ class LowerDiceCost {
             const title = this.properties.title ? this.properties.title + ': Select dice' : null;
             context.game.promptForDieSelect(context.player, {
                 activePromptTitle: title || 'Select dice',
+                mode: 'exactly',
                 numDice: this.numDice,
                 owner: 'self',
                 context: context,
