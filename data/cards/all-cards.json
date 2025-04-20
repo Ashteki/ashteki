@@ -2262,7 +2262,8 @@
             "attack": 2,
             "life": 4,
             "recover": 1,
-            "copies": 1
+            "copies": 1,
+            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/emperor_lion.jpg"
         },
         {
             "name": "Empower",
@@ -3820,7 +3821,8 @@
             "magicCost": {
                 "natural:power": 1
             },
-            "text": "You may play this spell after a unit with a life value of 2 or less comes into play. Destroy that target unit."
+            "text": "You may play this spell after a unit with a life value of 2 or less comes into play. Destroy that target unit.",
+            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/ice_trap.jpg"
         },
         {
             "name": "Immortal Commander",
@@ -4557,7 +4559,8 @@
             "attack": 0,
             "life": 2,
             "recover": 0,
-            "copies": 3
+            "copies": 3,
+            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/luminous_seedling.jpg"
         },
         {
             "name": "Maeoni Viper",
@@ -4934,7 +4937,8 @@
             "magicCost": {
                 "natural:class": 2
             },
-            "text": "Place 3 wound tokens on a target unit."
+            "text": "Place 3 wound tokens on a target unit.",
+            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/molten_gold.jpg"
         },
         {
             "name": "Namine Hymntide",
@@ -8138,7 +8142,8 @@
                     "stub": "fallen"
                 }
             ],
-            "effectRepeats": true
+            "effectRepeats": true,
+            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/summon_fallen.jpg"
         },
         {
             "name": "Summon False Demon",
