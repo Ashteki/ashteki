@@ -1555,5 +1555,297 @@
         "count": 4
       }
     ]
+  },
+  {
+    "precon_id": 421,
+    "name": "The Flood of Moon Cove: Echo",
+    "phoenixborn": [
+      {
+        "id": "echo-greystorm",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-river-colossus",
+        "count": 3
+      },
+      {
+        "id": "sandstorm-sage",
+        "count": 3
+      },
+      {
+        "id": "reverberate",
+        "count": 3
+      },
+      {
+        "id": "summon-cerulean-diver",
+        "count": 3
+      },
+      {
+        "id": "twilight-alchemist",
+        "count": 3
+      },
+      {
+        "id": "moons-blessing",
+        "count": 3
+      },
+      {
+        "id": "undaunted",
+        "count": 3
+      },
+      {
+        "id": "transmogrify",
+        "count": 3
+      },
+      {
+        "id": "absorption",
+        "count": 3
+      },
+      {
+        "id": "weight-of-the-world",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "river-colossus",
+        "count": 2
+      },
+      {
+        "id": "cerulean-diver",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 422,
+    "name": "The Flood of Moon Cove: Namine",
+    "phoenixborn": [
+      {
+        "id": "namine-hymntide",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-river-colossus",
+        "count": 3
+      },
+      {
+        "id": "sandstorm-sage",
+        "count": 3
+      },
+      {
+        "id": "reverberate",
+        "count": 3
+      },
+      {
+        "id": "summon-cerulean-diver",
+        "count": 3
+      },
+      {
+        "id": "twilight-alchemist",
+        "count": 3
+      },
+      {
+        "id": "moons-blessing",
+        "count": 3
+      },
+      {
+        "id": "undaunted",
+        "count": 3
+      },
+      {
+        "id": "transmogrify",
+        "count": 3
+      },
+      {
+        "id": "absorption",
+        "count": 3
+      },
+      {
+        "id": "surging-tempest",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "river-colossus",
+        "count": 2
+      },
+      {
+        "id": "cerulean-diver",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 423,
+    "name": "The Flood of Moon Cove: Harold",
+    "phoenixborn": [
+      {
+        "id": "harold-westraven",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-river-colossus",
+        "count": 3
+      },
+      {
+        "id": "sandstorm-sage",
+        "count": 3
+      },
+      {
+        "id": "reverberate",
+        "count": 3
+      },
+      {
+        "id": "summon-cerulean-diver",
+        "count": 3
+      },
+      {
+        "id": "twilight-alchemist",
+        "count": 3
+      },
+      {
+        "id": "moons-blessing",
+        "count": 3
+      },
+      {
+        "id": "undaunted",
+        "count": 3
+      },
+      {
+        "id": "transmogrify",
+        "count": 3
+      },
+      {
+        "id": "absorption",
+        "count": 3
+      },
+      {
+        "id": "full-moon",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "river-colossus",
+        "count": 2
+      },
+      {
+        "id": "cerulean-diver",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 424,
+    "name": "The Flood of Moon Cove: Fiona",
+    "phoenixborn": [
+      {
+        "id": "fiona-mercywind",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-river-colossus",
+        "count": 3
+      },
+      {
+        "id": "sandstorm-sage",
+        "count": 3
+      },
+      {
+        "id": "reverberate",
+        "count": 3
+      },
+      {
+        "id": "summon-cerulean-diver",
+        "count": 3
+      },
+      {
+        "id": "twilight-alchemist",
+        "count": 3
+      },
+      {
+        "id": "moons-blessing",
+        "count": 3
+      },
+      {
+        "id": "undaunted",
+        "count": 3
+      },
+      {
+        "id": "transmogrify",
+        "count": 3
+      },
+      {
+        "id": "absorption",
+        "count": 3
+      },
+      {
+        "id": "summon-metamorpher",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "river-colossus",
+        "count": 2
+      },
+      {
+        "id": "cerulean-diver",
+        "count": 2
+      },
+      {
+        "id": "metamorpher",
+        "count": 3
+      },
+      {
+        "id": "sun-scarab",
+        "count": 2
+      },
+      {
+        "id": "moon-moth",
+        "count": 2
+      }
+    ]
   }
 ]
