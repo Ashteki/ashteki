@@ -8,6 +8,7 @@ class DrawAction extends PlayerAction {
         this.damageIfEmpty = false;
         this.singleCopy = false;
         this.showMessage = false;
+        this.bottom = false;
     }
 
     setup() {
@@ -16,6 +17,9 @@ class DrawAction extends PlayerAction {
         this.effectMsg = 'draw ' + this.amount + ' card';
         if (this.amount > 1) {
             this.effectMsg += 's';
+        }
+        if (this.bottom) {
+            this.effectMsg += ' from the bottom of their deck';
         }
     }
 
@@ -60,7 +64,8 @@ class DrawAction extends PlayerAction {
                     event.context.drawResult = event.player.drawCardsToHand(
                         event.amount,
                         this.damageIfEmpty,
-                        this.singleCopy
+                        this.singleCopy,
+                        this.bottom
                     );
                 }
             }

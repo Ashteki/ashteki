@@ -1,0 +1,314 @@
+{
+    "results": [
+        {
+            "name": "Summon River Colossus",
+            "stub": "summon-river-colossus",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "dice": [
+                "sympathy"
+            ],
+            "cost": [
+                "[[main]]"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "sympathy:class": 2
+            },
+            "conjurations": [
+                {
+                    "name": "River Colossus",
+                    "stub": "river-colossus"
+                }
+            ],
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-river-colossus.png"
+        },
+        {
+            "name": "River Colossus",
+            "stub": "river-colossus",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 4,
+            "recover": 0,
+            "copies": 2,
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/river-colossus.png"
+        },
+        {
+            "name": "Sandstorm Sage",
+            "stub": "sandstorm-sage",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:power]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "sympathy:power": 1
+            },
+            "attack": 2,
+            "life": 3,
+            "recover": 2,
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/sandstorm-sage.png"
+        },
+        {
+            "name": "Reverberate",
+            "stub": "reverberate",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/reverberate.png"
+        },
+        {
+            "name": "Summon Cerulean Diver",
+            "stub": "summon-cerulean-diver",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "dice": [
+                "sympathy"
+            ],
+            "effectMagicCost": {
+                "sympathy:class": 1
+            },
+            "cost": [
+                "[[main]]"
+            ],
+            "conjurations": [
+                {
+                    "name": "Cerulean Diver",
+                    "stub": "cerulean-diver"
+                }
+            ],
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-cerulean-diver.png"
+        },
+        {
+            "name": "Cerulean Diver",
+            "stub": "cerulean-diver",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 2,
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/cerulean-diver.png"
+        },
+        {
+            "name": "Twilight Alchemist",
+            "stub": "twilight-alchemist",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1,
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/twilight-alchemist.png"
+        },
+        {
+            "name": "Moon's Blessing",
+            "stub": "moons-blessing",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/moons-blessing.png"
+        },
+        {
+            "name": "Undaunted",
+            "stub": "undaunted",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "sympathy:class": 1
+            },
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/undaunted.png"
+        },
+        {
+            "name": "Transmogrify",
+            "stub": "transmogrify",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/transmogrify.png"
+        },
+        {
+            "name": "Absorption",
+            "stub": "absorption",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[sympathy:power]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:power": 1
+            },
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/absorption.png"
+        },
+        {
+            "name": "Weight of the World",
+            "stub": "weight-of-the-world",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/weight-of-the-world.png"
+        },
+        {
+            "name": "Surging Tempest",
+            "stub": "surging-tempest",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "dice": [
+                "sympathy"
+            ],
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/surging-tempest.png"
+        },
+        {
+            "name": "Full Moon",
+            "stub": "full-moon",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "dice": [
+                "basic"
+            ],
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/full-moon.png"
+        },
+        {
+            "name": "Summon Metamorpher",
+            "stub": "summon-metamorpher",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "dice": [
+                "basic"
+            ],
+            "cost": [
+                "[[main]]"
+            ],
+            "effectMagicCost": {
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Metamorpher",
+                    "stub": "metamorpher"
+                }
+            ],
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-metamorpher.png"
+        },
+        {
+            "name": "Metamorpher",
+            "stub": "metamorpher",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 0,
+            "life": 1,
+            "recover": 0,
+            "copies": 3,
+            "conjurations": [
+                {
+                    "name": "Sun Scarab",
+                    "stub": "sun-scarab"
+                },
+                {
+                    "name": "Moon Moth",
+                    "stub": "moon-moth"
+                }
+            ],
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/metamorpher.png"
+        },
+        {
+            "name": "Sun Scarab",
+            "stub": "sun-scarab",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 1,
+            "recover": 0,
+            "copies": 2,
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/sun-scarab.png"
+        },
+        {
+            "name": "Moon Moth",
+            "stub": "moon-moth",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 2,
+            "recover": 0,
+            "copies": 2,
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/moon-moth.png"
+        }
+    ]
+}
