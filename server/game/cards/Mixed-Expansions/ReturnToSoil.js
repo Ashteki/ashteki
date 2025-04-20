@@ -24,8 +24,6 @@ class ReturnToSoil extends Card {
                     alwaysTriggers: true,
                     target: {
                         activePromptTitle: 'Choose 2 cards to remove from the game',
-                        cardCondition: (card, context) =>
-                            card !== this.firstTarget,
                         location: 'discard',
                         controller: (context) =>
                             this.firstTarget.controller === context.player.opponent

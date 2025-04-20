@@ -11,6 +11,7 @@ class SummonFallen extends Card {
                 onCardDestroyed: (event, context) =>
                     event.card.type === 'Ally' && event.card.controller == context.player
             },
+            condition: (context) => context.source.status < 3,
             gameAction: ability.actions.addStatusToken((context) => ({
                 amount: 1,
                 target: context.source
@@ -22,25 +23,38 @@ class SummonFallen extends Card {
             location: 'spellboard',
             cost: [
                 ability.costs.mainAction(),
-                ability.costs.dice([new DiceCount(1, Level.Class, Magic.Ceremonial)])
+                ability.costs.exhaust(),
+                ability.costs.dice([
+                    new DiceCount(1, Level.Class, Magic.Ceremonial),
+                    new DiceCount(1, Level.Power, Magic.Ceremonial)
+                ])
             ],
-            // condition: (context) => context.player.spellboard.some((s) => s.status > 0),
             target: {
-                activePromptTitle: 'Choose which Summon Fallen books to remove a status token from',
-                mode: 'upTo',
-                numCards: 3,
-                controller: 'self',
-                cardCondition: (card) => card.id === 'summon-fallen' && card.status > 0,
-                location: 'spellboard',
-                gameAction: ability.actions.removeStatus()
+                mode: 'select',
+                activePromptTitle: 'how many fallen to summon?',
+                choices: (context) => this.getValueOptions(context.source.status),
+                choiceHandler: (option) => (this.chosenValue = option.value),
             },
-            then: (context) => ({
-                gameAction: ability.actions.summon({
+            gameAction: [
+                ability.actions.removeStatus((context) => ({
+                    target: context.source,
+                    amount: this.chosenValue,
+                    showMessage: true
+                })),
+                ability.actions.summon((context) => ({
                     conjuration: 'fallen',
-                    count: context.target.length || 0
-                })
-            })
+                    count: this.chosenValue
+                }))
+            ]
         });
+    }
+
+    getValueOptions(maxValue) {
+        let values = [];
+        for (let i = 0; i <= maxValue; i++) {
+            values.push({ text: '' + i, value: i });
+        }
+        return values;
     }
 }
 

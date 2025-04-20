@@ -31,6 +31,19 @@ describe('Ice Trap reaction spell', function () {
         expect(this.ironWorker.location).toBe('discard');
     });
 
+    it('no trigger without power side', function () {
+        this.player2.dicepool[0].level = 'class';
+        this.player2.dicepool[1].level = 'class';
+
+        this.player1.play(this.ironWorker);
+        this.player1.clickDie(0);
+        this.player1.clickDie(1);
+        this.player1.clickDone();
+
+        expect(this.ironWorker.location).toBe('play area');
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
     it('setting to not ice trap own units OFF', function () {
         this.player1.endTurn();
         this.player2.play(this.fireArcher);

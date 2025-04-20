@@ -1,15 +1,16 @@
 const Card = require('../../Card.js');
-const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
+const { BattlefieldTypes } = require('../../../constants.js');
 
 class MoltenGold extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Molten Gold',
             target: {
-                cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
+                promptTitle: 'Choose a unit to receive 3 wounds',
+                controller: 'opponent',
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.addDamageToken({ amount: 3 })
             },
-            promptTitle: 'Choose a unit or PB to receive 3 wounds'
         });
     }
 }

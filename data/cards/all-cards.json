@@ -2259,9 +2259,9 @@
             },
             "placement": "Battlefield",
             "text": "Decree: When this unit comes into play, search your draw pile. You may reveal a ready spell with \"Law\" in its title and place it into your hand.  You may immediately play a \"Law\" from your hand without paying any [[main]] or [[side]] costs. Shuffle your draw pile.",
-            "attack": 3,
-            "life": 3,
-            "recover": 0,
+            "attack": 2,
+            "life": 4,
+            "recover": 1,
             "copies": 1
         },
         {
@@ -3812,13 +3812,13 @@
             },
             "placement": "Discard",
             "cost": [
-                "1 [[natural:class]]"
+                "1 [[natural:power]]"
             ],
             "dice": [
                 "natural"
             ],
             "magicCost": {
-                "natural:class": 1
+                "natural:power": 1
             },
             "text": "You may play this spell after a unit with a life value of 2 or less comes into play. Destroy that target unit."
         },
@@ -4926,15 +4926,15 @@
             "placement": "Discard",
             "cost": [
                 "[[main]]",
-                "2 [[natural:power]]"
+                "2 [[natural:class]]"
             ],
             "dice": [
                 "natural"
             ],
             "magicCost": {
-                "natural:power": 2
+                "natural:class": 2
             },
-            "text": "Place 3 wound tokens on a target unit or Phoenixborn."
+            "text": "Place 3 wound tokens on a target unit."
         },
         {
             "name": "Namine Hymntide",
