@@ -1559,6 +1559,7 @@
   {
     "precon_id": 421,
     "name": "The Flood of Moon Cove: Echo",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "echo-greystorm",
@@ -1629,6 +1630,7 @@
   {
     "precon_id": 422,
     "name": "The Flood of Moon Cove: Namine",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "namine-hymntide",
@@ -1699,6 +1701,7 @@
   {
     "precon_id": 423,
     "name": "The Flood of Moon Cove: Harold",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "harold-westraven",
@@ -1769,6 +1772,7 @@
   {
     "precon_id": 424,
     "name": "The Flood of Moon Cove: Fiona",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "fiona-mercywind",
