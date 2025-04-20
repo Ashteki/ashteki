@@ -27,6 +27,7 @@ describe('Absorption reaction spell', function () {
         this.player2.clickPrompt('No');
 
         this.player2.clickCard(this.absorption);
+        expect(this.player2).not.toBeAbleToSelectDie(this.player1.dicepool[0]);
         this.player2.clickDie(1);
         this.player2.clickDone();
         expect(this.absorption.location).toBe('discard');
