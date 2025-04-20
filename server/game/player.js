@@ -314,8 +314,8 @@ class Player extends GameObject {
      * Draws the passed number of cards from the top of the deck into this players hand
      * @param {number} numCards
      */
-    drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false) {
-        let remainingCards = this.doDrawCards(numCards, singleCopy);
+    drawCardsToHand(numCards, damageIfEmpty = false, singleCopy = false, fromBottom = false) {
+        let remainingCards = this.doDrawCards(numCards, singleCopy, fromBottom);
 
         const result = { cardsDrawn: numCards - remainingCards };
         if (remainingCards > 0 && damageIfEmpty) {
@@ -337,16 +337,28 @@ class Player extends GameObject {
         return !this.checkRestrictions('draw', this.game.getFrameworkContext(this));
     }
 
-    doDrawCards(numCards, singleCopy) {
+    doDrawCards(numCards, singleCopy, fromBottom) {
         let remainingCards = numCards;
-
-        for (let card of this.deck) {
-            if (remainingCards == 0) break;
-
+        const doSingleDraw = (card) => {
             // only one copy?
             if (!singleCopy || !this.hand.some((c) => c.name == card.name)) {
                 this.moveCard(card, Location.Hand);
                 remainingCards--;
+            }
+        }
+
+        if (fromBottom) {
+            for (let i = this.deck.length - 1; i > 0; i--) {
+                if (remainingCards == 0) break;
+
+                const item = this.deck[i];
+                doSingleDraw(item);
+            }
+        } else {
+            for (let card of this.deck) {
+                if (remainingCards == 0) break;
+
+                doSingleDraw(card);
             }
         }
         return remainingCards;

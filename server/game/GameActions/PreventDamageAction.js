@@ -11,10 +11,10 @@ class PreventDamageAction extends GameAction {
     }
 
     getEventArray(context) {
-        return context.event.preventable
+        let properties = this.propertyFactory(context);
+        return properties.event.preventable
             ? [
                 super.createEvent('unnamedEvent', {}, () => {
-                    let properties = this.propertyFactory(context);
                     const amt =
                         properties.amount === 'all' ? properties.event.amount : properties.amount;
                     properties.event.amount = properties.event.amount - amt;
