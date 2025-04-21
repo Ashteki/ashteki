@@ -4,6 +4,7 @@ const Card = require('../../Card.js');
 class SandstormSage extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
+            condition: () => !this.exhausted,
             match: (card) =>
                 card.type === CardType.ReadySpell && card.controller === this.controller,
             effect: ability.effects.modifyFocus(1)
