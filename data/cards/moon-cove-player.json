@@ -149,7 +149,7 @@
             "type": "Alteration Spell",
             "placement": "Unit",
             "cost": [
-                "[[side]]",
+                "[[main]]",
                 "1 [[basic]]",
                 "1 [[sympathy:class]]"
             ],
