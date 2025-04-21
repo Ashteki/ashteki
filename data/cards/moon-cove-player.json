@@ -62,7 +62,7 @@
             "type": "Action Spell",
             "placement": "Discard",
             "cost": [
-                "[[main]]",
+                "[[side]]",
                 "1 [[sympathy:class]]"
             ],
             "dice": [
