@@ -47,6 +47,34 @@ describe(' River Colossus', function () {
             expect(this.player1.dicepool[0].level).toBe(Level.Power);
             expect(this.player1.dicepool[1].level).toBe(Level.Power);
             expect(this.riverColossus.attack).toBe(2);
+            expect(this.player1).toHavePrompt('Waiting for opponent to guard');
+        });
+
+        it('on RC attack with only 2 dice to lower triggers ok', function () {
+            this.player1.dicepool[0].level = Level.Basic;
+            this.player1.dicepool[1].level = Level.Basic;
+            this.player1.dicepool[2].level = Level.Class;
+            this.player1.dicepool[3].level = Level.Class;
+            this.player1.clickAttack(this.fluteMage);
+            this.player1.clickCard(this.riverColossus);
+            this.player1.clickCard(this.riverColossus);
+
+            this.player1.clickDie(2);
+            this.player1.clickDie(3);
+
+            this.player1.clickDone();
+            expect(this.riverColossus.attack).toBe(4);
+        });
+
+        it('on RC attack with only 1 dice to lower does not trigger', function () {
+            this.player1.dicepool[0].level = Level.Basic;
+            this.player1.dicepool[1].level = Level.Basic;
+            this.player1.dicepool[2].level = Level.Basic;
+            this.player1.dicepool[3].level = Level.Class;
+            this.player1.clickAttack(this.fluteMage);
+            this.player1.clickCard(this.riverColossus);
+            expect(this.riverColossus.attack).toBe(2);
+            expect(this.player1).toHavePrompt('Waiting for opponent to guard');
         });
     });
 });
