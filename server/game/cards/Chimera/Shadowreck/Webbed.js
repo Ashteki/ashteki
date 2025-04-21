@@ -26,6 +26,10 @@ class Webbed extends Card {
             }
         });
     }
+
+    canAttach(card, context) {
+        return !card.upgrades.some((u) => u.id === 'webbed') && super.canAttach(card, context);
+    }
 }
 
 Webbed.id = 'webbed';
