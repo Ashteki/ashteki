@@ -1,5 +1,3 @@
-const { Level } = require('../../../server/constants');
-
 describe('Summon Metamorpher', function () {
     describe('Summon', function () {
         beforeEach(function () {
@@ -69,7 +67,7 @@ describe('Summon Metamorpher', function () {
             this.player1.clickDie(0);
             expect(this.metamorpher.location).toBe('play area');
             expect(this.player1.hand.length).toBe(handSize + 1);
-            expect(this.player2).toHavePrompt('Waiting for opponent');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 
@@ -116,7 +114,7 @@ describe('Summon Metamorpher', function () {
             this.player1.clickCard(this.moltenGold);
             expect(this.moltenGold.location).toBe('deck');
             expect(this.player1.deck[this.player1.deck.length - 1]).toBe(this.moltenGold);
-            expect(this.player2).toHavePrompt('Waiting for opponent');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
