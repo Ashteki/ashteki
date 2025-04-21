@@ -21,7 +21,7 @@
                     "stub": "river-colossus"
                 }
             ],
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-river-colossus.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-river-colossus.jpg"
         },
         {
             "name": "River Colossus",
@@ -32,7 +32,7 @@
             "life": 4,
             "recover": 0,
             "copies": 2,
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/river-colossus.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/river-colossus.jpg"
         },
         {
             "name": "Sandstorm Sage",
@@ -54,7 +54,7 @@
             "attack": 2,
             "life": 3,
             "recover": 2,
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/sandstorm-sage.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/sandstorm-sage.jpg"
         },
         {
             "name": "Reverberate",
@@ -71,7 +71,7 @@
             "magicCost": {
                 "sympathy:class": 1
             },
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/reverberate.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/reverberate.jpg"
         },
         {
             "name": "Summon Cerulean Diver",
@@ -93,7 +93,7 @@
                     "stub": "cerulean-diver"
                 }
             ],
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-cerulean-diver.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-cerulean-diver.jpg"
         },
         {
             "name": "Cerulean Diver",
@@ -104,7 +104,7 @@
             "life": 1,
             "recover": 0,
             "copies": 2,
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/cerulean-diver.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/cerulean-diver.jpg"
         },
         {
             "name": "Twilight Alchemist",
@@ -124,7 +124,7 @@
             "attack": 1,
             "life": 1,
             "recover": 1,
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/twilight-alchemist.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/twilight-alchemist.jpg"
         },
         {
             "name": "Moon's Blessing",
@@ -141,7 +141,7 @@
             "magicCost": {
                 "sympathy:class": 1
             },
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/moons-blessing.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/moons-blessing.jpg"
         },
         {
             "name": "Undaunted",
@@ -160,7 +160,7 @@
                 "basic": 1,
                 "sympathy:class": 1
             },
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/undaunted.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/undaunted.jpg"
         },
         {
             "name": "Transmogrify",
@@ -177,7 +177,7 @@
             "magicCost": {
                 "sympathy:class": 1
             },
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/transmogrify.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/transmogrify.jpg"
         },
         {
             "name": "Absorption",
@@ -193,7 +193,7 @@
             "magicCost": {
                 "sympathy:power": 1
             },
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/absorption.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/absorption.jpg"
         },
         {
             "name": "Weight of the World",
@@ -210,7 +210,7 @@
             "magicCost": {
                 "basic": 1
             },
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/weight-of-the-world.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/weight-of-the-world.jpg"
         },
         {
             "name": "Surging Tempest",
@@ -227,7 +227,7 @@
             "dice": [
                 "sympathy"
             ],
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/surging-tempest.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/surging-tempest.jpg"
         },
         {
             "name": "Full Moon",
@@ -243,7 +243,7 @@
             "dice": [
                 "basic"
             ],
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/full-moon.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/full-moon.jpg"
         },
         {
             "name": "Summon Metamorpher",
@@ -265,7 +265,7 @@
                     "stub": "metamorpher"
                 }
             ],
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-metamorpher.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/summon-metamorpher.jpg"
         },
         {
             "name": "Metamorpher",
@@ -286,7 +286,7 @@
                     "stub": "moon-moth"
                 }
             ],
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/metamorpher.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/metamorpher.jpg"
         },
         {
             "name": "Sun Scarab",
@@ -297,7 +297,7 @@
             "life": 1,
             "recover": 0,
             "copies": 2,
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/sun-scarab.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/sun-scarab.jpg"
         },
         {
             "name": "Moon Moth",
@@ -308,7 +308,7 @@
             "life": 2,
             "recover": 0,
             "copies": 2,
-            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/moon-moth.png"
+            "imageStub": "http://cdn.ashteki.com/proofs/mooncove/moon-moth.jpg"
         }
     ]
 }
