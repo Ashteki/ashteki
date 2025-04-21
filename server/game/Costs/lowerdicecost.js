@@ -8,7 +8,7 @@ class LowerDiceCost {
     }
 
     canPay(context) {
-        return context.player.activeDiceCount > this.numDice;
+        return context.player.activeNonBasicDiceCount >= this.numDice;
     }
 
     resolve(context, result) {
