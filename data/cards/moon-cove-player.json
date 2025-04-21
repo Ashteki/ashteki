@@ -235,7 +235,8 @@
             "type": "Ready Spell",
             "placement": "Spellboard",
             "cost": [
-                "[[main]]"
+                "[[main]]",
+                "1 [[basic]]"
             ],
             "magicCost": {
                 "basic": 1
