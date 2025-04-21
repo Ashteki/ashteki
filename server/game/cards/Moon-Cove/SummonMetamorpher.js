@@ -22,7 +22,7 @@ class SummonMetamorpher extends Card {
                 gameAction: ability.actions.draw(),
                 then: {
                     alwaysTriggers: true,
-                    condition: () => this.focus >= 1,
+                    condition: () => this.focus >= 2,
                     cost: ability.costs.chosenDiscard(1, true),
                     target: {
                         activePromptTitle: 'Choose a card to place on the bottom of your deck',
