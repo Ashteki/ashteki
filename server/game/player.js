@@ -348,7 +348,7 @@ class Player extends GameObject {
         }
 
         if (fromBottom) {
-            for (let i = this.deck.length - 1; i > 0; i--) {
+            for (let i = this.deck.length - 1; i >= 0; i--) {
                 if (remainingCards == 0) break;
 
                 const item = this.deck[i];
