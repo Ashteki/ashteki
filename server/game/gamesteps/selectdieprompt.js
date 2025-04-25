@@ -206,12 +206,17 @@ class SelectDiePrompt extends UiPrompt {
             });
         }
 
+        let activePromptTitle = '';
+        if (typeof this.properties.activePromptTitle === 'function') {
+            activePromptTitle = this.properties.activePromptTitle(this.context);
+        } else {
+            activePromptTitle = this.properties.activePromptTitle;
+        }
+
         return {
             selectDie: this.properties.selectDie,
             selectOrder: this.properties.ordered,
-            menuTitle:
-                this.properties.activePromptTitle ||
-                this.selector.defaultActivePromptTitle(this.context),
+            menuTitle: activePromptTitle || this.selector.defaultActivePromptTitle(this.context),
             buttons: buttons,
             promptTitle: this.promptTitle,
             controls: this.properties.controls,
