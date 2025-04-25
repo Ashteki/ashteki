@@ -28,5 +28,13 @@ describe(' Cerulean Diver', function () {
 
             expect(this.summonGilder.location).toBe('hand');
         });
+
+        it('bug: on attack with only 1 card in deck', function () {
+            this.player1.player.deck = [this.purge];
+            this.player1.clickAttack(this.fluteMage);
+            this.player1.clickCard(this.ceruleanDiver);
+
+            expect(this.purge.location).toBe('hand');
+        });
     });
 });
