@@ -66,7 +66,8 @@ class ChimeraDefenceStrategy {
             attack.battles.some((b) => b.attacker.anyEffect('threatening') && !b.guard)
         ) {
             const nonDefenders = this.player.unitsInPlay.filter(
-                (u) => u !== attack.target && !u.anyEffect('defender') && !u.isDefender
+                (u) =>
+                    u !== attack.target && !u.anyEffect('defender') && !u.isDefender && !u.exhausted
             );
 
             // try and assign to battles
