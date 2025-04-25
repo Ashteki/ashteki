@@ -780,8 +780,16 @@ class Player extends GameObject {
         return this.dice.filter(d => !d.exhausted && d.level !== Level.Basic);
     }
 
+    get activeNonPowerDice() {
+        return this.dice.filter(d => !d.exhausted && d.level !== Level.Power);
+    }
+
     get activeNonBasicDiceCount() {
         return this.activeNonBasicDice.length;
+    }
+
+    get activeNonPowerDiceCount() {
+        return this.activeNonPowerDice.length;
     }
 
     getBasicDie(magic) {
