@@ -275,7 +275,7 @@ describe('When Attacked', function () {
                     phoenixborn: 'corpse-of-viros',
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
-                    inPlay: ['frozen-fear', 'iron-scales', 'blood-puppet', 'rampage'],
+                    inPlay: ['frozen-fear', 'iron-scales', 'blood-puppet'],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
@@ -316,6 +316,29 @@ describe('When Attacked', function () {
             expect(this.ironScales.damage).toBe(1); // blocked vs grave knight, takes 1
             expect(this.graveKnight.location).toBe('discard'); // killed by iron scales
             expect(this.corpseOfViros.damage).toBe(1); // fluteMage 1
+        });
+
+        it('bug: chimera should not block with exhausted unit', function () {
+            this.ironScales.exhaust();
+            this.bloodPuppet.exhaust();
+            this.frozenFear.exhaust();
+
+            this.player1.clickAttack(this.corpseOfViros);
+            this.player1.clickCard(this.fluteMage);
+            this.player1.clickCard(this.graveKnight);
+            this.player1.clickDone();
+
+            expect(this.game.attackState.getBattleFor(this.graveKnight).guard).toBe(null);
+            expect(this.game.attackState.getBattleFor(this.fluteMage).guard).toBe(null);
+            // resolve battles
+            this.player1.clickCard(this.graveKnight);
+            this.player1.clickCard(this.fluteMage);
+
+            expect(this.ironScales.damage).toBe(0);
+            expect(this.graveKnight.location).toBe('play area');
+            expect(this.corpseOfViros.damage).toBe(5);
+
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
