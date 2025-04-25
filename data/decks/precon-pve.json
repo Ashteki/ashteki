@@ -348,7 +348,8 @@
       },
       {
         "id": "ember-heart",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "glaciate",
@@ -356,7 +357,8 @@
       },
       {
         "id": "jungle-forager",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "red-flower",
@@ -364,15 +366,18 @@
       },
       {
         "id": "rejuvenate",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-adaptodon",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-frost-frog",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "wallop",
@@ -428,7 +433,8 @@
       },
       {
         "id": "ember-heart",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "glaciate",
@@ -436,7 +442,8 @@
       },
       {
         "id": "jungle-forager",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "red-flower",
@@ -444,11 +451,13 @@
       },
       {
         "id": "summon-adaptodon",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-frost-frog",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "wallop",
@@ -460,7 +469,8 @@
       },
       {
         "id": "wolfpack-leader",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -512,7 +522,8 @@
       },
       {
         "id": "ember-heart",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "glaciate",
@@ -520,7 +531,8 @@
       },
       {
         "id": "jungle-forager",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "red-flower",
@@ -528,15 +540,18 @@
       },
       {
         "id": "stamina-burst",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-adaptodon",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-frost-frog",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "wallop",
@@ -596,7 +611,8 @@
       },
       {
         "id": "ember-heart",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "glaciate",
@@ -604,7 +620,8 @@
       },
       {
         "id": "jungle-forager",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "red-flower",
@@ -612,15 +629,18 @@
       },
       {
         "id": "shattering-fist",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-adaptodon",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-frost-frog",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "wallop",
@@ -676,15 +696,18 @@
     "cards": [
       {
         "id": "chimera-charmer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-bastion-badger",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "snake-bite",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "rose-gardener",
@@ -692,7 +715,8 @@
       },
       {
         "id": "summon-shimmer-wing",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "arrogance",
@@ -712,7 +736,8 @@
       },
       {
         "id": "venom-strike",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -751,15 +776,18 @@
     "cards": [
       {
         "id": "chimera-charmer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-bastion-badger",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "snake-bite",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "rose-gardener",
@@ -767,7 +795,8 @@
       },
       {
         "id": "summon-shimmer-wing",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "arrogance",
@@ -787,7 +816,8 @@
       },
       {
         "id": "willpower",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -826,15 +856,18 @@
     "cards": [
       {
         "id": "chimera-charmer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-bastion-badger",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "snake-bite",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "rose-gardener",
@@ -842,7 +875,8 @@
       },
       {
         "id": "summon-shimmer-wing",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "arrogance",
@@ -862,7 +896,8 @@
       },
       {
         "id": "gifted-rose",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -905,15 +940,18 @@
     "cards": [
       {
         "id": "chimera-charmer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-bastion-badger",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "snake-bite",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "rose-gardener",
@@ -921,7 +959,8 @@
       },
       {
         "id": "summon-shimmer-wing",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "arrogance",
@@ -941,7 +980,8 @@
       },
       {
         "id": "judgment",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -984,11 +1024,13 @@
       },
       {
         "id": "glory-aspirant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "silver-paladin",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "radiant-light",
@@ -996,15 +1038,18 @@
       },
       {
         "id": "summon-shining-stag-mount",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "ptera-herder",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "hand-of-spear",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "pride",
@@ -1059,11 +1104,13 @@
       },
       {
         "id": "glory-aspirant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "silver-paladin",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "radiant-light",
@@ -1071,15 +1118,18 @@
       },
       {
         "id": "summon-shining-stag-mount",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "ptera-herder",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "hand-of-spear",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "pride",
@@ -1134,11 +1184,13 @@
       },
       {
         "id": "glory-aspirant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "silver-paladin",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "radiant-light",
@@ -1146,15 +1198,18 @@
       },
       {
         "id": "summon-shining-stag-mount",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "ptera-herder",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "hand-of-spear",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "pride",
@@ -1209,11 +1264,13 @@
       },
       {
         "id": "glory-aspirant",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "silver-paladin",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "radiant-light",
@@ -1221,15 +1278,18 @@
       },
       {
         "id": "summon-shining-stag-mount",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "ptera-herder",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "hand-of-spear",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "pride",
@@ -1287,11 +1347,13 @@
     "cards": [
       {
         "id": "summon-shade-prowler",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "umbral-acrobat",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "backflip",
@@ -1299,7 +1361,8 @@
       },
       {
         "id": "summon-whisperer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "juggle",
@@ -1307,11 +1370,13 @@
       },
       {
         "id": "shroud",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "gates-defender",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "inkspill",
@@ -1361,11 +1426,13 @@
     "cards": [
       {
         "id": "summon-shade-prowler",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "umbral-acrobat",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "backflip",
@@ -1373,7 +1440,8 @@
       },
       {
         "id": "summon-whisperer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "juggle",
@@ -1381,11 +1449,13 @@
       },
       {
         "id": "shroud",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "gates-defender",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "inkspill",
@@ -1431,11 +1501,13 @@
     "cards": [
       {
         "id": "summon-shade-prowler",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "umbral-acrobat",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "backflip",
@@ -1443,7 +1515,8 @@
       },
       {
         "id": "summon-whisperer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "juggle",
@@ -1451,11 +1524,13 @@
       },
       {
         "id": "shroud",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "gates-defender",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "inkspill",
@@ -1501,11 +1576,13 @@
     "cards": [
       {
         "id": "summon-shade-prowler",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "umbral-acrobat",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "backflip",
@@ -1513,7 +1590,8 @@
       },
       {
         "id": "summon-whisperer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "juggle",
@@ -1521,11 +1599,13 @@
       },
       {
         "id": "shroud",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "gates-defender",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "inkspill",
@@ -1575,19 +1655,23 @@
     "cards": [
       {
         "id": "summon-river-colossus",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "sandstorm-sage",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "reverberate",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-cerulean-diver",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "twilight-alchemist",
@@ -1611,7 +1695,8 @@
       },
       {
         "id": "weight-of-the-world",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -1645,19 +1730,23 @@
     "cards": [
       {
         "id": "summon-river-colossus",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "sandstorm-sage",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "reverberate",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-cerulean-diver",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "twilight-alchemist",
@@ -1681,7 +1770,8 @@
       },
       {
         "id": "surging-tempest",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -1715,19 +1805,23 @@
     "cards": [
       {
         "id": "summon-river-colossus",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "sandstorm-sage",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "reverberate",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-cerulean-diver",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "twilight-alchemist",
@@ -1751,7 +1845,8 @@
       },
       {
         "id": "full-moon",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
@@ -1789,19 +1884,23 @@
     "cards": [
       {
         "id": "summon-river-colossus",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "sandstorm-sage",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "reverberate",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-cerulean-diver",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "twilight-alchemist",
@@ -1825,7 +1924,8 @@
       },
       {
         "id": "summon-metamorpher",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [
