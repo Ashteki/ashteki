@@ -212,6 +212,10 @@ class PlayerInteractionWrapper {
         return this.player.actions.side;
     }
 
+    get main() {
+        return this.player.actions.main;
+    }
+
     get opponent() {
         return this.player.opponent;
     }
