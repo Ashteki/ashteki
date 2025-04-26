@@ -46,7 +46,8 @@ class SummonAction extends PlayerAction {
                     showMessage: true,
                     opponentControls: context.target?.name === player.opponent.name,
                     leftmost: this.leftmost,
-                    placeUnder: this.rider
+                    placeUnder: this.rider,
+                    ifUnable: () => (context.summoned = [])
                 });
 
                 context.game.queueSimpleStep(() =>
