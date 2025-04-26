@@ -18,10 +18,7 @@ class SummonAdmonisher extends Card {
             then: {
                 alwaysTriggers: true,
                 condition: (context) =>
-                    context.source.focus > 0 &&
-                    (!context.preThenEvent?.childEvent ||
-                        (context.preThenEvent.childEvent.name === 'onCardEntersPlay' &&
-                            context.preThenEvent.childEvent.cancelled)),
+                    context.source.focus > 0 && context.priorContext.summoned.length === 0,
                 target: {
                     autoTarget: (context) => context.player.opponent.phoenixborn,
                     gameAction: ability.actions.dealDamage({
