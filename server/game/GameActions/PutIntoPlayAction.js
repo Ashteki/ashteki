@@ -9,6 +9,7 @@ class PutIntoPlayAction extends CardGameAction {
         this.leftmost = false;
         // a card to place under this one (used for mounts)
         this.placeUnder = null;
+        this.ifUnable = () => true;
     }
 
     setup() {
@@ -70,6 +71,7 @@ class PutIntoPlayAction extends CardGameAction {
                     );
                     event.cancel();
                     event.unable = true;
+                    this.ifUnable();
                     return;
                 }
 
