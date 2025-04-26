@@ -5,7 +5,8 @@ describe('Dream Fracture', function () {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['iron-worker'],
                 dicepool: ['divine', 'divine', 'charm', 'charm', 'sympathy', 'sympathy'],
-                spellboard: ['dream-fracture']
+                spellboard: ['dream-fracture'],
+                hand: ['law-of-assurance']
             },
             player2: {
                 phoenixborn: 'rin-northfell',
@@ -24,6 +25,19 @@ describe('Dream Fracture', function () {
 
         expect(this.player2.dicepool[0].level).toBe('class');
         expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('doesnt work under changeOpponentsDice restriction', function () {
+        this.player1.play(this.lawOfAssurance);
+        expect(this.player1.player.checkRestrictions('changeOpponentsDice')).toBe(false); // can't change dice
+        this.player1.clickCard(this.dreamFracture);
+        this.player1.clickPrompt('Dream Fracture');
+        this.player1.clickOpponentDie(0); // does nothing
+        expect(this.player2.dicepool[0].level).toBe('power');
+
+        expect(this.rinNorthfell.damage).toBe(0);
+        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.player1.main).toBe(false);
     });
 
     it("changes one of my opponent's dice and deals a damage if opponent has no power dice", function () {
@@ -53,12 +67,15 @@ describe('Dream Fracture', function () {
         expect(this.rinNorthfell.tokens.damage).toBe(1);
     });
 
-    it("doesn't work if all my opponent's dice are exhausted", function () {
+    it("if all my opponent's dice are exhausted", function () {
         this.player2.dicepool[0].exhaust();
         this.player2.dicepool[1].exhaust();
         expect(this.player2.dicepool[0].exhausted).toBe(true);
         expect(this.player2.dicepool[1].exhausted).toBe(true);
 
-        expect(this.player1).not.toBeAbleToSelect(this.dreamFracture);
+        this.player1.clickCard(this.dreamFracture);
+        this.player1.clickPrompt('Dream Fracture');
+        expect(this.player1).toHaveDefaultPrompt();
+
     });
 });

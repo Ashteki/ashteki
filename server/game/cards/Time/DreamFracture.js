@@ -4,9 +4,9 @@ const Card = require('../../Card.js');
 class DreamFracture extends Card {
     setupCardAbilities(ability) {
         this.action({
-            condition: (context) =>
-                context.player.checkRestrictions('changeOpponentsDice') &&
-                context.player.opponent.dice.some((d) => !d.exhausted),
+            // condition: (context) =>
+            //     context.player.checkRestrictions('changeOpponentsDice') &&
+            //     context.player.opponent.dice.some((d) => !d.exhausted),
             title: 'Dream Fracture',
             cost: [ability.costs.mainAction(), ability.costs.exhaust()],
             location: 'spellboard',
@@ -14,7 +14,7 @@ class DreamFracture extends Card {
                 targetsPlayer: true,
                 activePromptTitle: 'Choose a die to lower',
                 toSelect: 'die',
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
+                dieCondition: (die, context) => context.player.checkRestrictions('changeOpponentsDice') && !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             },
