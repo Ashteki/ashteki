@@ -1,3 +1,5 @@
+const Dice = require('../../../server/game/dice');
+
 describe('Chimera recovery phase', function () {
     describe('Player Prompts', function () {
         beforeEach(function () {
@@ -194,7 +196,7 @@ describe('Chimera recovery phase', function () {
                     behaviour: 'neverset-behaviour',
                     ultimate: 'neverset-ultimate',
                     inPlay: [],
-                    deck: ['wild-throw'],
+                    deck: ['rampage'],
                     spellboard: [],
                     threatZone: [],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
@@ -210,14 +212,16 @@ describe('Chimera recovery phase', function () {
         });
 
         it('deck should refill from discard and fill threat zone', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(1); // reveal
+
             expect(this.player2.player.chimera.threat).toBe(4);
-            this.player2.player.deck = [this.wildThrow]; // ensure only one card in deck
+            this.player2.player.deck = [this.rampage]; // ensure only one card in deck
             this.player1.endTurn();
             expect(this.game.round).toBe(1);
             // player 1 pin dice
             this.player1.clickDie(0);
             this.player1.clickDone();
-            this.player1.clickOk(); // ultimate alert
+            this.player1.clickOk(); // fatigue alert
 
             // next turn
             expect(this.game.round).toBe(2);
@@ -225,6 +229,32 @@ describe('Chimera recovery phase', function () {
             expect(this.player2.threatZone.length).toBe(4);
             expect(this.player2.deck.length).toBe(2);
             expect(this.player2.discard.length).toBe(0);
+            this.player1.clickOk(); // rage and behaviour alert
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('Fatigue should not affect reshuffle', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(1); // reveal
+
+            this.player2.player.applyFatigue();
+            expect(this.player2.player.chimera.threat).toBe(4);
+            this.player2.player.deck = [this.rampage]; // ensure only one card in deck
+            this.player1.endTurn();
+            expect(this.game.round).toBe(1);
+            // player 1 pin dice
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+            // next turn
+            expect(this.game.round).toBe(2);
+            expect(this.blightOfNeverset.exhaustion).toBe(0);
+            expect(this.player2.threatZone.length).toBe(4);
+            expect(this.player2.deck.length).toBe(2);
+            expect(this.player2.discard.length).toBe(0);
+
+            this.player1.clickOk(); // rage and behaviour alert
+
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
