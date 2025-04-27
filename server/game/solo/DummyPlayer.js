@@ -62,7 +62,7 @@ class DummyPlayer extends Player {
         if (
             // moved from my deck
             event.card.owner === this &&
-            event.originalLocation === 'deck'
+            ['deck', 'hand'].includes(event.originalLocation)
         ) {
             // if draw pile hits empty then fatigue (but not if we're moving cards to form a hand)
             if (this.deck.length === 0 && this.hand.length === 0) {

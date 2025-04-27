@@ -130,7 +130,7 @@ describe('Chimera fatigue', function () {
         });
     });
 
-    describe('empty deck at recovery phase refill', function () {
+    describe('bug test', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',

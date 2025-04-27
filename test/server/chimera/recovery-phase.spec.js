@@ -256,5 +256,28 @@ describe('Chimera recovery phase', function () {
 
             expect(this.player1).toHaveDefaultPrompt();
         });
+
+        // it('should cope with empty deck error state', function () {
+        //     spyOn(Dice, 'd12Roll').and.returnValue(1); // reveal
+
+        //     this.player2.player.applyFatigue();
+        //     expect(this.player2.player.chimera.threat).toBe(4);
+        //     this.player2.player.deck = []; // ensure no card in deck
+        //     this.player1.endTurn();
+        //     expect(this.game.round).toBe(1);
+        //     // player 1 pin dice
+        //     this.player1.clickDie(0);
+        //     this.player1.clickDone();
+        //     // next turn
+        //     expect(this.game.round).toBe(2);
+        //     expect(this.blightOfNeverset.exhaustion).toBe(0);
+        //     expect(this.player2.threatZone.length).toBe(4);
+        //     expect(this.player2.deck.length).toBe(2);
+        //     expect(this.player2.discard.length).toBe(0);
+
+        //     this.player1.clickOk(); // rage and behaviour alert
+
+        //     expect(this.player1).toHaveDefaultPrompt();
+        // });
     });
 });
