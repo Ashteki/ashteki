@@ -125,7 +125,7 @@ describe('Chimera recovery phase', function () {
         });
     });
 
-    describe('Recover Phase aspects', function () {
+    describe('Replenish aspects when battlefield full', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -175,6 +175,56 @@ describe('Chimera recovery phase', function () {
             expect(this.blightOfNeverset.exhaustion).toBe(0);
             expect(this.player2.threatZone.length).toBe(0);
             expect(this.player2.deck.length).toBe(3);
+        });
+    });
+
+    describe('Replenish Aspects when deck empty', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['blue-jaguar', 'mist-spirit'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    spellboard: ['summon-butterfly-monk']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'blight-of-neverset',
+                    behaviour: 'neverset-behaviour',
+                    ultimate: 'neverset-ultimate',
+                    inPlay: [],
+                    deck: ['wild-throw'],
+                    spellboard: [],
+                    threatZone: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
+                    discard: [
+                        'iron-scales',
+                        'sowing-strike',
+                        'proliferate',
+                        'constrict',
+                        'crushing-grip'
+                    ]
+                }
+            });
+        });
+
+        it('deck should refill from discard and fill threat zone', function () {
+            expect(this.player2.player.chimera.threat).toBe(4);
+            this.player2.player.deck = [this.wildThrow]; // ensure only one card in deck
+            this.player1.endTurn();
+            expect(this.game.round).toBe(1);
+            // player 1 pin dice
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+            this.player1.clickOk(); // ultimate alert
+
+            // next turn
+            expect(this.game.round).toBe(2);
+            expect(this.blightOfNeverset.exhaustion).toBe(0);
+            expect(this.player2.threatZone.length).toBe(4);
+            expect(this.player2.deck.length).toBe(2);
+            expect(this.player2.discard.length).toBe(0);
         });
     });
 });
