@@ -1,6 +1,26 @@
 {
     "results": [
         {
+            "name": "Absorption",
+            "stub": "absorption",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[sympathy:power]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:power": 1
+            },
+            "text": "You may play this spell after a unit or Phoenixborn you control is dealt damage. Lower up to 2 non-basic dice in your active pool one level. For each die, prevent 1 damage from being received."
+        },
+        {
             "name": "Abundance",
             "stub": "abundance",
             "type": "Ready Spell",
@@ -1081,6 +1101,21 @@
             "text": "Overkill 1: After this unit destroys a unit an opponent controls by attacking, deal 1 damage to that opponent's target Phoenixborn.\n\n* Dismount: When this unit is destroyed, place any allies you own underneath this unit into your hand.",
             "attack": 3,
             "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Cerulean Diver",
+            "stub": "cerulean-diver",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Battlefield",
+            "text": "Dive 1: When this unit is declared as an attacker, draw 1 card from the bottom of your draw pile.",
+            "attack": 1,
+            "life": 1,
             "recover": 0,
             "copies": 2
         },
@@ -3138,6 +3173,28 @@
             "attack": "+3"
         },
         {
+            "name": "Full Moon",
+            "stub": "full-moon",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "[[side]] - [[exhaust]]: Choose a unit you control. Add 1 to its attack value for the remainder of the turn.\n\nFocus 1: Choose up to two units you control instead.\n\nFocus 2: Choose up to three units you control instead.",
+            "phoenixborn": "Harold Westraven"
+        },
+        {
             "name": "Gates Defender",
             "stub": "gates-defender",
             "type": "Ally",
@@ -4783,6 +4840,32 @@
             "text": "[[main]] - [[exhaust]] - 1 [[charm:class]]: Look at a target player's hand. That player may discard 1 card of your choice from that hand. If they do not or cannot, place 1 wound token on their Phoenixborn."
         },
         {
+            "name": "Metamorpher",
+            "stub": "metamorpher",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Battlefield",
+            "text": "Morph: At the start of your turn, you may discard this unit. If you do, place a [[Sun Scarab]] or [[Moon Moth]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Sun Scarab",
+                    "stub": "sun-scarab"
+                },
+                {
+                    "name": "Moon Moth",
+                    "stub": "moon-moth"
+                }
+            ],
+            "phoenixborn": "Fiona Mercywind",
+            "attack": 0,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
+        },
+        {
             "name": "Meteor",
             "stub": "meteor",
             "type": "Action Spell",
@@ -4939,6 +5022,45 @@
             },
             "text": "Place 3 wound tokens on a target unit.",
             "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/molten_gold.jpg"
+        },
+        {
+            "name": "Moon Moth",
+            "stub": "moon-moth",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Battlefield",
+            "text": "Unit Guard: This unit may guard a unit that is being attacked.",
+            "phoenixborn": "Fiona Mercywind",
+            "attack": 1,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Moon's Blessing",
+            "stub": "moons-blessing",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "text": "When attaching this spell, search your discard pile for a ready spell and place it into your hand.",
+            "life": "+1",
+            "recover": "+1"
         },
         {
             "name": "Namine Hymntide",
@@ -6218,6 +6340,27 @@
             "text": "Deal 1 damage to a target unit. If that destroys the unit, after it is destroyed, the target player who controlled it must discard 1 card off the top of their draw pile and then you may search that target player's discard pile for 2 cards and remove them from the game."
         },
         {
+            "name": "Reverberate",
+            "stub": "reverberate",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "text": "Deal 1 damage to a target unit an opponent controls. Repeat this effect for each other copy of this spell in your discard pile. Then, draw 1 card."
+        },
+        {
             "name": "Revival Pact",
             "stub": "revival-pact",
             "type": "Action Spell",
@@ -6365,6 +6508,21 @@
             "attack": 1,
             "life": 1,
             "recover": 1
+        },
+        {
+            "name": "River Colossus",
+            "stub": "river-colossus",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Battlefield",
+            "text": "Gigantic 1: This unit cannot be blocked or guarded against by units with a life value of 1 or less.\n\nRouse 2: When this unit is declared as an attacker, you may lower 2 non-basic dice in your active pool one level. If you do, add 2 to this unit's attack value for the remainder of the turn.",
+            "attack": 2,
+            "life": 4,
+            "recover": 0,
+            "copies": 2
         },
         {
             "name": "River Skald",
@@ -6602,6 +6760,32 @@
             "life": 1,
             "recover": 0,
             "copies": 2
+        },
+        {
+            "name": "Sandstorm Sage",
+            "stub": "sandstorm-sage",
+            "type": "Ally",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:power]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "sympathy:power": 1
+            },
+            "text": "Deep Focus: Ready Spells you control are focused one additional time.",
+            "attack": 2,
+            "life": 3,
+            "recover": 2
         },
         {
             "name": "Saria Guideman",
@@ -7169,7 +7353,7 @@
                 "divine:class": 1,
                 "divine:power": 1
             },
-            "text": "Smite 1: When this unit comes into play, you may destroy a target unit an opponent controls with an attack value of 1 or less.\n\nExalt: After this unit destoys a unit an opponent controls during your turn, you may choose a divine die in your exhausted pool and resolve its dice power without paying its cost.",
+            "text": "Smite 1: When this unit comes into play, you may destroy a target unit an opponent controls with an attack value of 1 or less.\n\nExalt: After this unit destroys a unit an opponent controls during your turn, you may choose a divine die in your exhausted pool and resolve its dice power without paying its cost.",
             "attack": 3,
             "life": 5,
             "recover": 2
@@ -7330,7 +7514,7 @@
                 "stub": "the-spawn-of-shadowreck"
             },
             "placement": "Battlefield",
-            "text": "Magic Current X: When this unit is declared as an attacker, raise or lower X dice in a targert player's active pool one level.\n\n* X = the number of status tokens on your Phoenixborn.",
+            "text": "Magic Current X: When this unit is declared as an attacker, raise or lower X dice in a target player's active pool one level.\n\n* X = the number of status tokens on your Phoenixborn.",
             "phoenixborn": "Rimea Careworn",
             "attack": 2,
             "life": 3,
@@ -8007,6 +8191,32 @@
             ]
         },
         {
+            "name": "Summon Cerulean Diver",
+            "stub": "summon-cerulean-diver",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "effectMagicCost": {
+                "sympathy:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[sympathy:class]]: Place a [[Cerulean Diver]] conjuration onto your battlefield.\n\nFocus 1: If you spent any [[sympathy:power]] to activate this spell, you may deal 1 damage to a target unit an opponent controls.",
+            "conjurations": [
+                {
+                    "name": "Cerulean Diver",
+                    "stub": "cerulean-diver"
+                }
+            ]
+        },
+        {
             "name": "Summon Cloudburst Gryphon",
             "stub": "summon-cloudburst-gryphon",
             "type": "Ready Spell",
@@ -8514,6 +8724,33 @@
             "phoenixborn": "Noah Redmoon"
         },
         {
+            "name": "Summon Metamorpher",
+            "stub": "summon-metamorpher",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "effectMagicCost": {
+                "basic": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[basic]]: Place a [[Metamorpher]] conjuration onto your battlefield.\n\nFocus 1: Draw 1 card.\n\nFocus 2: Then, you may discard 1 card from your hand to search your discard pile for a spell and place it on the bottom of your draw pile.",
+            "conjurations": [
+                {
+                    "name": "Metamorpher",
+                    "stub": "metamorpher"
+                }
+            ],
+            "phoenixborn": "Fiona Mercywind"
+        },
+        {
             "name": "Summon Mind Fog Owl",
             "stub": "summon-mind-fog-owl",
             "type": "Ready Spell",
@@ -8755,6 +8992,33 @@
                 {
                     "name": "Radiant Leviathan",
                     "stub": "radiant-leviathan"
+                }
+            ]
+        },
+        {
+            "name": "Summon River Colossus",
+            "stub": "summon-river-colossus",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "sympathy:class": 2
+            },
+            "text": "[[main]] - [[exhaust]] - 2 [[sympathy:class]] - 1 [[basic]]: Place a [[River Colossus]] conjuration onto your battlefield.\n\nFocus 2: Then, you may change 4 dice in your active pool to a side of your choice.",
+            "conjurations": [
+                {
+                    "name": "River Colossus",
+                    "stub": "river-colossus"
                 }
             ]
         },
@@ -9471,6 +9735,22 @@
             ]
         },
         {
+            "name": "Sun Scarab",
+            "stub": "sun-scarab",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Battlefield",
+            "text": "Stalk: This unit cannot be guarded against",
+            "phoenixborn": "Fiona Mercywind",
+            "attack": 2,
+            "life": 1,
+            "recover": 0,
+            "copies": 2
+        },
+        {
             "name": "Sunshield Sentry",
             "stub": "sunshield-sentry",
             "type": "Ally",
@@ -9524,6 +9804,28 @@
             "attack": 2,
             "life": 2,
             "recover": 1
+        },
+        {
+            "name": "Surging Tempest",
+            "stub": "surging-tempest",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "text": "[[side]] - [[exhaust]]: Draw 1 card. Raise 2 dice in your active pool one level.\n\nFocus 1: You may discard 1 card from your hand to deal 1 damage to a target unit.\n\nFocus 2: Then, you may discard 1 card from your hand to deal 1 damage to a target Phoenixborn.",
+            "phoenixborn": "Namine Hymntide"
         },
         {
             "name": "Survival of the Fittest",
@@ -9811,6 +10113,27 @@
             "text": "Move 1 token from a target player's non-Phoenixborn card onto another non-Phoenixborn card that player controls."
         },
         {
+            "name": "Transmogrify",
+            "stub": "transmogrify",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "text": "Choose an alteration spell attached to a target unit. Attach it to another unit controlled by the same player."
+        },
+        {
             "name": "Transmute Magic",
             "stub": "transmute-magic",
             "type": "Action Spell",
@@ -9888,6 +10211,30 @@
             "copies": 2
         },
         {
+            "name": "Twilight Alchemist",
+            "stub": "twilight-alchemist",
+            "type": "Ally",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "sympathy:class": 1
+            },
+            "text": "Alchemize: When this unit comes into play, you may place 1 card from your hand on the bottom of your draw pile. If you do, draw 2 cards and raise 2 dice in your active pool one level.",
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
             "name": "Umbral Acrobat",
             "stub": "umbral-acrobat",
             "type": "Ally",
@@ -9914,6 +10261,32 @@
             "attack": 3,
             "life": 4,
             "recover": 2
+        },
+        {
+            "name": "Undaunted",
+            "stub": "undaunted",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[main]]",
+                "1 [[sympathy:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "sympathy"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "sympathy:class": 1
+            },
+            "text": "When attaching this spell, remove 1 exhaustion token from the attached unit.",
+            "attack": "+1",
+            "life": "+1",
+            "recover": "+1"
         },
         {
             "name": "Undying Heart",
@@ -10111,6 +10484,28 @@
             "life": 2,
             "recover": 0,
             "copies": 4
+        },
+        {
+            "name": "Weight of the World",
+            "stub": "weight-of-the-world",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Flood of Moon Cove",
+                "stub": "the-flood-of-moon-cove"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Move 1 exhaustion token from your Phoenixborn to a target unit an opponent controls.",
+            "phoenixborn": "Echo Greystorm"
         },
         {
             "name": "Whisperer",
