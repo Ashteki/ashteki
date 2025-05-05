@@ -30,6 +30,10 @@ const DecksComponent = ({ onDeckSelected }) => {
 
         return retState;
     });
+    const [tabIndex, setTabIndex] = useState(0);
+    const onDuplicate = () => {
+        setTabIndex(0);
+    };
 
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
@@ -103,6 +107,7 @@ const DecksComponent = ({ onDeckSelected }) => {
     }));
 
     const onTabChange = (index, lastIndex, event) => {
+        setTabIndex(index);
         let deck = null;
         switch (index) {
             case 0:
@@ -147,7 +152,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                 </Col>
 
                 {/* <div className='lobby-header'> Decks</div> */}
-                <Tabs onSelect={onTabChange} >
+                <Tabs onSelect={onTabChange} selectedIndex={tabIndex}>
                     <TabList>
                         <Tab>My Decks</Tab>
                         <Tab>Precons</Tab>
@@ -186,7 +191,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                     </div>
                                 )}
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} allowEdit={true} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} allowEdit={true} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
@@ -200,7 +205,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='precon' />
                                 <DeckList decks={standaloneDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
@@ -213,7 +218,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='pveDecks' />
                                 <DeckList decks={pveDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
@@ -227,7 +232,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='buildingBasics' />
                                 <DeckList decks={buildingBasicsDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
@@ -241,7 +246,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='corpseRebuild' />
                                 <DeckList decks={corpseRebuildDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
 
@@ -255,7 +260,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='firstadventure' />
                                 <DeckList decks={firstAdventureDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
@@ -268,7 +273,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='aparty' />
                                 <DeckList decks={adventuringPartyDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
@@ -281,7 +286,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='msu' />
                                 <DeckList decks={msuDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
@@ -294,7 +299,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckTypeInfo deckType='dualduel' />
                                 <DeckList decks={dualDuelDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} />}</Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                 </Tabs>
