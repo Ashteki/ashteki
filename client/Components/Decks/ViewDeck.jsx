@@ -21,7 +21,7 @@ import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 /**
  * @param {ViewDeckProps} props
  */
-const ViewDeck = ({ deck, editMode, allowEdit }) => {
+const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
     const dispatch = useDispatch();
 
     const handleDeleteClick = () => {
@@ -32,6 +32,7 @@ const ViewDeck = ({ deck, editMode, allowEdit }) => {
     };
     const handleDuplicateClick = () => {
         dispatch(duplicateDeck(deck));
+        onDuplicate && onDuplicate();
     };
     const handleUpdateClick = () => {
         dispatch(resyncDeck(deck));
@@ -76,7 +77,11 @@ const ViewDeck = ({ deck, editMode, allowEdit }) => {
             />
 
             <div className='lobby-card'>
-                <DeckHeader deck={deck} />
+                <DeckHeader
+                    deck={deck}
+                    showCopy={!editMode && !allowEdit}
+                    onCopy={handleDuplicateClick}
+                />
                 {!editMode && allowEdit && (
                     <div className='deck-buttons text-center'>
                         <button className='btn btn-primary def' onClick={handleEditClick}>
