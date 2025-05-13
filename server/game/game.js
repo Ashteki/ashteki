@@ -1121,7 +1121,7 @@ class Game extends EventEmitter {
 
             const firstPlayerParams = {};
             if (this.solo) {
-                this.activePlayer = this.getSoloPlayer();
+                this.setGameFirstPlayer(this.getSoloPlayer());
             } else {
                 let i = 0;
                 while (
@@ -1148,8 +1148,8 @@ class Game extends EventEmitter {
                 );
                 firstPlayerParams.activeBasics = basicCounts[activeIndex];
                 firstPlayerParams.opponentBasics = basicCounts[1 - activeIndex];
+                this.queueStep(new FirstPlayerSelection(this, firstPlayerParams));
             }
-            this.queueStep(new FirstPlayerSelection(this, firstPlayerParams));
         } else {
             const newFirstPlayer =
                 this.round === 1 ? this.gameFirstPlayer : this.roundFirstPlayer.opponent;
