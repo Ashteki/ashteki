@@ -84,6 +84,12 @@ class MenuCommands {
                     card.owner.moveCard(card, 'purged');
                 }
                 break;
+            case 'flip':
+                if (player.mayMoveCard(card, true)) {
+                    game.addAlert('danger', '{0} flips {1}', player, card);
+                    card.flip();
+                }
+                break;
             case 'control':
                 if (card.controller != player.opponent) {
                     game.takeControl(player.opponent, card);
