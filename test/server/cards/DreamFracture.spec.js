@@ -48,9 +48,8 @@ describe('Dream Fracture', function () {
 
         expect(this.player2.dicepool[1].level).toBe('class');
 
-        this.player1.clickCard(this.rinNorthfell); // deal a damage to opposing PB
         expect(this.player1).toHaveDefaultPrompt();
-        expect(this.rinNorthfell.tokens.damage).toBe(1);
+        expect(this.rinNorthfell.damage).toBe(1);
     });
 
     it('still deals a damage if my opponent only has basic dice', function () {
@@ -62,12 +61,11 @@ describe('Dream Fracture', function () {
 
         expect(this.player2.dicepool[1].level).toBe('basic');
 
-        this.player1.clickCard(this.rinNorthfell); // deal a damage to opposing PB
         expect(this.player1).toHaveDefaultPrompt();
-        expect(this.rinNorthfell.tokens.damage).toBe(1);
+        expect(this.rinNorthfell.damage).toBe(1);
     });
 
-    it("if all my opponent's dice are exhausted", function () {
+    it("fizzles if all my opponent's dice are exhausted", function () {
         this.player2.dicepool[0].exhaust();
         this.player2.dicepool[1].exhaust();
         expect(this.player2.dicepool[0].exhausted).toBe(true);
@@ -75,7 +73,8 @@ describe('Dream Fracture', function () {
 
         this.player1.clickCard(this.dreamFracture);
         this.player1.clickPrompt('Dream Fracture');
-        expect(this.player1).toHaveDefaultPrompt();
+        expect(this.rinNorthfell.damage).toBe(0);
 
+        expect(this.player1).toHaveDefaultPrompt();
     });
 });
