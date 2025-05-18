@@ -227,7 +227,7 @@ beforeEach(function () {
         cards[card.id] = card;
     }
 
-
+    this.deckBuilder = deckBuilder;
 
     /**
      * Factory method. Creates a new simulation of a game.

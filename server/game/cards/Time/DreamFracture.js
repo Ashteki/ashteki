@@ -21,6 +21,9 @@ class DreamFracture extends Card {
             then: {
                 alwaysTriggers: true,
                 condition: (context) =>
+                    // has active dice
+                    context.player.opponent.dice.some((d) => !d.exhausted) &&
+                    // none are power side
                     !context.player.opponent.dice.some(
                         (d) => d.level === Level.Power && !d.exhausted
                     ),

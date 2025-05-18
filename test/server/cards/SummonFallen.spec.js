@@ -88,4 +88,53 @@ describe('Summon Fallen', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
+
+    describe('Summon Action vs Swift Messenger', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    spellboard: ['summon-fallen'],
+                    dicepool: ['ceremonial', 'ceremonial', 'natural', 'natural'],
+                    archives: ['fallen', 'fallen']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: [],
+                    hand: ['swift-messenger'],
+                    dicepool: ['illusion', 'time']
+                }
+            });
+        });
+
+        it('Pass twice: should place chosen two fallen into play', function () {
+            this.summonFallen.tokens.status = 2;
+            this.player1.useAbility(this.summonFallen);
+            this.player1.clickPrompt('2');
+            this.player2.clickPrompt('Pass');
+            this.player2.clickPrompt('Pass');
+            expect(this.fallen.location).toBe('play area');
+            expect(this.summonFallen.status).toBe(0);
+            expect(this.summonFallen.exhausted).toBe(true);
+            expect(this.player1.dicepool[0].exhausted).toBe(true);
+            expect(this.player1.dicepool[1].exhausted).toBe(true);
+            expect(this.player1.inPlay.length).toBe(2);
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('Pass once then use swift messenger', function () {
+            this.summonFallen.tokens.status = 2;
+            this.player1.useAbility(this.summonFallen);
+            this.player1.clickPrompt('2');
+            this.player2.clickPrompt('Pass');
+            this.player2.clickCard(this.swiftMessenger);
+            expect(this.summonFallen.status).toBe(0);
+            expect(this.summonFallen.exhausted).toBe(true);
+            expect(this.player1.inPlay.length).toBe(2);
+            expect(this.swiftMessenger.location).toBe('play area');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });

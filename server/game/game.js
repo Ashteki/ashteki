@@ -39,6 +39,7 @@ const SuddenDeathDiscardPrompt = require('./gamesteps/SuddenDeathDiscardPrompt')
 const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
+const PlayableObject = require('./PlayableObject');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -964,7 +965,7 @@ class Game extends EventEmitter {
 
             if (event.context && src) {
                 let targets = map.get(event.context.source) || [];
-                if (event.context.target) {
+                if (event.context.target && event.context.target instanceof PlayableObject) {
                     targets = targets.concat(event.context.target);
                 } else if (event.card && event.card !== event.context.source) {
                     targets = targets.concat(event.card);
@@ -1121,7 +1122,7 @@ class Game extends EventEmitter {
 
             const firstPlayerParams = {};
             if (this.solo) {
-                this.activePlayer = this.getSoloPlayer();
+                this.setGameFirstPlayer(this.getSoloPlayer());
             } else {
                 let i = 0;
                 while (
@@ -1148,8 +1149,8 @@ class Game extends EventEmitter {
                 );
                 firstPlayerParams.activeBasics = basicCounts[activeIndex];
                 firstPlayerParams.opponentBasics = basicCounts[1 - activeIndex];
+                this.queueStep(new FirstPlayerSelection(this, firstPlayerParams));
             }
-            this.queueStep(new FirstPlayerSelection(this, firstPlayerParams));
         } else {
             const newFirstPlayer =
                 this.round === 1 ? this.gameFirstPlayer : this.roundFirstPlayer.opponent;
