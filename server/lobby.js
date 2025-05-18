@@ -15,7 +15,7 @@ const ConfigService = require('./services/ConfigService');
 const User = require('./models/User');
 const { sortBy } = require('./Array');
 const DummyUser = require('./models/DummyUser.js');
-const DeckValidator = require('./DeckValidator.js');
+const CampaignDeckValidator = require('./CampaignDeckValidator.js');
 
 class Lobby {
     constructor(server, options = {}) {
@@ -743,8 +743,8 @@ class Lobby {
         };
 
         if (game.gameFormat === 'hl2pvp') {
-            const validator = new DeckValidator(this.cards, this.precons);
-            const hl2pvp = validator.validateRedRainsHeroicLevel2(deck).valid;
+            const validator = new CampaignDeckValidator(this.cards, this.precons);
+            const hl2pvp = validator.validateDeck(deck, 2).valid;
             deck.status.hl2pvp = hl2pvp;
         }
 

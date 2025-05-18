@@ -5,6 +5,7 @@ const _ = require('underscore');
 const { matchCardByNameAndPack } = require('./cardutil.js');
 
 const PathToSubModulePacks = path.join(__dirname, '../../data/cards');
+const PathToPreconData = path.join(__dirname, '../../data/decks');
 
 const defaultFiller = ['open-memories'];
 const defaultDummyDeck = ['rampage', 'hunting-instincts'];
@@ -13,6 +14,7 @@ class DeckBuilder {
     constructor() {
         this.cardsByCode = this.loadCards(PathToSubModulePacks);
         this.cards = Object.values(this.cardsByCode);
+        this.precons = this.loadPrecons(PathToPreconData);
     }
 
     loadCards(directory) {
@@ -29,6 +31,24 @@ class DeckBuilder {
         }
 
         return cards;
+    }
+
+    loadPrecons(directory) {
+        let precons = [];
+
+        let jsonPrecons = fs
+            .readdirSync(directory)
+            .filter((file) => file.endsWith('-core.json') || file.endsWith('-pve.json'));
+
+        for (let file of jsonPrecons) {
+            let pack = require(path.join(directory, file));
+
+            for (let deck of pack) {
+                precons.push(deck);
+            }
+        }
+
+        return precons;
     }
 
     /*

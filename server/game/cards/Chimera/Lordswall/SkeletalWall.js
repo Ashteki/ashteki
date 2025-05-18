@@ -6,6 +6,7 @@ class SkeletalWall extends AspectCard {
         this.defender();
 
         this.destroyed({
+            inexhaustible: true,
             gameAction: ability.actions.summon({
                 conjuration: 'rainwalker',
                 count: 2

@@ -55,6 +55,7 @@ class CardStateWriter {
         };
         if (this.card.blood) {
             result.blood = this.card.blood;
+            result.menu = this.card.getMenu();
         }
         return result;
     }
