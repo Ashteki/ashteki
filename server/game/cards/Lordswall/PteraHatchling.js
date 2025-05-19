@@ -3,13 +3,13 @@ const Card = require('../../Card.js');
 
 class PteraHatchling extends Card {
     setupCardAbilities(ability) {
-        return this.forcedReaction({
+        return this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
                         context.source.attack > context.source.printedAttack &&
                         event.attackingPlayer === context.source.controller &&
-                        context.source.isAttacker
+                        event.attackers.includes(context.source)
                     );
                 }
             },
