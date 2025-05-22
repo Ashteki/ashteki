@@ -38,5 +38,14 @@ describe('Carrion Call', function () {
             expect(this.rainwalker.location).toBe('play area');
             expect(this.player2.player.unitsInPlay.length).toBe(4);
         });
+
+        it('not last status token check', function () {
+            this.carrionCall.tokens.status = 2;
+            this.player1.endTurn();
+            // this.player1.clickOk();
+            expect(this.carrionCall.location).toBe('play area');
+            expect(this.rainwalker.location).toBe('play area');
+            expect(this.player2.player.unitsInPlay.length).toBe(4);
+        });
     });
 });
