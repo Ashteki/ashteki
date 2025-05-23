@@ -80,14 +80,20 @@ class CardAbility extends ThenAbility {
         previousMessageArgs = null,
         last = false
     ) {
+        let playOrUse = [CardType.ReactionSpell].includes(context.source.type)
+            ? ' plays '
+            : ' uses ';
+
+        if (context.ability.logUse && !context.ability.logUse(context)) {
+            playOrUse = ' removes a status token from ';
+        }
+
         let messageArgs = previousMessageArgs || [
             context.costs.actions,
             context.costs.returnDice,
             context.costs.actions || context.costs.returnDice ? ' : ' : '',
             context.player,
-            [CardType.ReactionSpell].includes(context.source.type)
-                ? ' plays '
-                : ' uses ',
+            playOrUse,
             context.source
         ];
 

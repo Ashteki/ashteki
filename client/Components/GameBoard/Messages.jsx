@@ -74,6 +74,10 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
             );
         }
 
+        if (fragment.data.text.mainFirst) {
+            result.reverse();
+        }
+
         return result;
     }
 
