@@ -20,7 +20,6 @@ describe('Summon Wishing Wing', function () {
         });
 
         it('normal summon', function () {
-
             expect(this.player1.actions.main).toBe(true);
             this.player1.clickCard(this.summonWishingWing);
             this.player1.clickPrompt('Summon Wishing Wing');
@@ -69,7 +68,7 @@ describe('Summon Wishing Wing', function () {
             this.player2.clickDie(0);
             this.player2.clickPrompt('Natural Dice Power');
             this.player2.clickCard(this.wishingWing);
-            this.player1.clickYes(); // to draw
+            this.player1.clickPrompt('2'); // to draw
             //Check drew 2
             expect(this.anchornaut.location).toBe('hand');
             expect(this.remorse.location).toBe('hand');

@@ -40,7 +40,8 @@ class NeversetBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal',
-                                side: 'resolve status ability'
+                                side: 'resolve status ability',
+                                mainFirst: true
                             },
                             () => {
                                 // Main: Reveal
@@ -117,7 +118,8 @@ class NeversetBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal',
-                                side: 'resolve status ability'
+                                side: 'resolve status ability',
+                                mainFirst: true
                             },
                             () => {
                                 // Main: Reveal
@@ -186,7 +188,8 @@ class NeversetBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal',
-                                side: 'resolve status ability'
+                                side: 'resolve status ability',
+                                mainFirst: true
                             },
                             () => {
                                 // Main: Reveal

@@ -21,7 +21,7 @@ class TristanDarkwater extends Card {
                 cardCondition: (card) => true, // replace with life check
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
-                    effect: ability.effects.magnify((card) => (card.isAttacker ? 1 : 0))
+                    effect: ability.effects.magnify((card, context) => (context.game.attackState ? 1 : 0))
                 }))
             }
         });

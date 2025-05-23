@@ -26,7 +26,6 @@ describe('Stormcall Aspect', function () {
             });
 
             spyOn(Dice, 'd12Roll').and.returnValue(1);
-
         });
 
         it('puts card into play with 2 status', function () {

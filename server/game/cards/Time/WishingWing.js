@@ -18,13 +18,25 @@ class WishingWing extends Card {
             }))
         });
         this.destroyed({
-            may: 'draw cards',
             inexhaustible: true,
-            activePromptTitle: 'Bequest X',
+            target: {
+                mode: 'select',
+                activePromptTitle: 'Bequest: How many cards do you want to draw?',
+                choices: (context) => this.getValueOptions(context.source.status),
+                choiceHandler: (option) => (this.chosenValue = option.value),
+            },
             gameAction: ability.actions.draw((context) => ({
-                amount: this.getAbilityNumeric(context.source.status)
+                amount: this.chosenValue
             }))
         });
+    }
+
+    getValueOptions(maxValue) {
+        let values = [];
+        for (let i = 0; i <= maxValue; i++) {
+            values.push({ text: '' + i, value: i });
+        }
+        return values;
     }
 }
 

@@ -90,7 +90,7 @@ describe('Validator tests', function () {
             };
 
             let result = this.validator.validateDeck(deck, 1, true);
-            console.log(result);
+            // console.log(result);
             expect(result).not.toBeNull();
             expect(result.channelMagic).toBe(3);
             expect(result.precons.length).toBe(2);
@@ -186,7 +186,7 @@ describe('Validator tests', function () {
             };
 
             let result = this.validator.validateDeck(deck, 1, true);
-            console.log(result);
+            // console.log(result);
             expect(result).not.toBeNull();
             expect(result.channelMagic).toBe(3);
             expect(result.pbPrecon.name).toBe('The Iron Men');
@@ -276,7 +276,7 @@ describe('Validator tests', function () {
             };
 
             let result = this.validator.validateDeck(deck, 1, false);
-            console.log(result);
+            // console.log(result);
             expect(result).not.toBeNull();
             expect(result.channelMagic).toBe(3);
             expect(result.precons.length).toBe(1);
@@ -365,7 +365,7 @@ describe('Validator tests', function () {
             };
 
             let result = this.validator.validateDeck(deck, 1, false);
-            console.log(result);
+            // console.log(result);
             expect(result).not.toBeNull();
             expect(result.channelMagic).toBe(3);
             expect(result.precons.length).toBe(2);
@@ -463,7 +463,7 @@ describe('Validator tests', function () {
             };
 
             let result = this.validator.validateDeck(deck, 2, true);
-            console.log(result);
+            // console.log(result);
             expect(result).not.toBeNull();
             expect(result.channelMagic).toBe(3);
             expect(result.pbPrecon.name).toBe('The Iron Men');
@@ -554,7 +554,7 @@ describe('Validator tests', function () {
             };
 
             let result = this.validator.validateDeck(deck, 2, true);
-            console.log(result);
+            // console.log(result);
             expect(result).not.toBeNull();
             expect(result.pbPrecon.name).toBe('The Siege of Lordswall: Dimona');
             expect(result.valid).toBeTrue();
@@ -646,7 +646,7 @@ describe('Validator tests', function () {
             };
 
             let result = this.validator.validateDeck(deck, 2, true);
-            console.log(result);
+            // console.log(result);
             expect(result).not.toBeNull();
             expect(result.pbPrecon.name).toBe('The Siege of Lordswall: Dimona');
             expect(result.valid).toBeFalse();
