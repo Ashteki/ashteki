@@ -1,4 +1,4 @@
-const { Location, CardType } = require('../../constants.js');
+const { Location, CardType, ActionSpellTypes } = require('../../constants.js');
 const BaseStepWithPipeline = require('./basestepwithpipeline.js');
 const SimpleStep = require('./simplestep.js');
 
@@ -189,8 +189,14 @@ class AbilityResolver extends BaseStepWithPipeline {
         ) {
             this.game.queueUserAlert(this.context, {
                 timed: true,
-                promptTitle: 'Reaction Played',
-                menuTitle: this.context.player.name + ' plays a reaction'
+                promptTitle: 'Reaction Played!',
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: this.context.source.getShortSummary()
+                    }
+                ],
+                menuTitle: this.context.player.name + ' plays ' + this.context.source.name
             });
         }
 
