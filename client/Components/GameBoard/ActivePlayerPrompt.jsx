@@ -1,342 +1,211 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import _ from 'underscore';
-import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
-import classNames from 'classnames';
-
-import AbilityTargeting from './AbilityTargeting';
-import OptionsSelect from './OptionsSelect';
 import Panel from '../Site/Panel';
 
 import './ActivePlayerPrompt.scss';
-import BehaviourPromptControl from './BehaviourPromptControl';
 import ActivePromptDice from './ActivePromptDice';
+import ActivePromptButtons from './ActivePromptButtons';
+import ActivePromptControls from './ActivePromptControls';
 
-const MaxButtonTextLength = 28;
+function ActivePlayerPrompt(props) {
+    const [showTimer, setShowTimer] = useState(false);
+    const [timerClass, setTimerClass] = useState('100%');
+    const [timeLeft, setTimeLeft] = useState(undefined);
+    const [timerCancelled, setTimerCancelled] = useState(false);
+    const timerHandle = useRef(undefined);
+    const timer = useRef({});
+    const timerUuid = useRef(undefined);
 
-class ActivePlayerPrompt extends React.Component {
-    constructor(props) {
-        super(props);
+    // Option selected handler
+    const onOptionSelected = (option) => {
+        if (props.onButtonClick) {
+            let button = props.promptState.buttons.find((button) => '' + button.arg === option);
+            props.onButtonClick(button.command, button.arg, button.uuid, button.method);
+        }
+    };
 
-        this.timer = {};
-        this.state = {};
-
-        this.onOptionSelected = this.onOptionSelected.bind(this);
-    }
-
-    onButtonClick(event, command, arg, uuid, method) {
+    // Button click handler
+    const onButtonClick = (event, command, arg, uuid, method) => {
         event.preventDefault();
-
-        if (this.state.timerHandle) {
-            clearInterval(this.state.timerHandle);
+        if (timerHandle.current) {
+            clearInterval(timerHandle.current);
         }
+        setShowTimer(false);
+        timerHandle.current = undefined;
+        setTimerCancelled(true);
 
-        this.setState({ showTimer: false, timerHandle: undefined, timerCancelled: true });
-
-        if (this.props.onButtonClick) {
-            this.props.onButtonClick(command, arg, uuid, method);
+        if (props.onButtonClick) {
+            props.onButtonClick(command, arg, uuid, method);
         }
-    }
+    };
 
-    onCancelTimerClick(event, button) {
+    // Cancel timer click handler
+    const onCancelTimerClick = (event, button) => {
         event.preventDefault();
-
-        if (this.state.timerHandle) {
-            clearInterval(this.state.timerHandle);
+        if (timerHandle.current) {
+            clearInterval(timerHandle.current);
         }
-
-        this.setState({ showTimer: false, timerHandle: undefined, timerCancelled: true });
+        setShowTimer(false);
+        timerHandle.current = undefined;
+        setTimerCancelled(true);
 
         if (button.method) {
-            this.props.onButtonClick(button.command, button.arg, button.uuid, button.method);
+            props.onButtonClick(button.command, button.arg, button.uuid, button.method);
         }
-    }
+    };
 
-    onMouseOver(event, card) {
-        if (card && this.props.onMouseOver) {
-            this.props.onMouseOver(card);
+    // Mouse over/out handlers
+    const onMouseOver = (event, card) => {
+        if (card && props.onMouseOver) {
+            props.onMouseOver(card);
         }
-    }
-
-    onMouseOut(event, card) {
-        if (card && this.props.onMouseOut) {
-            this.props.onMouseOut(card);
+    };
+    const onMouseOut = (event, card) => {
+        if (card && props.onMouseOut) {
+            props.onMouseOut(card);
         }
-    }
+    };
 
-    //TODO: remove this
-    localizedText(source, text, values) {
-        let { t } = this.props;
-
-        if (!isNaN(text)) {
-            // text is just a plain number, avoid translation
-            return text;
-        }
-
-        if (!text) {
-            return '';
-        }
-
-        return t(text, values);
-    }
-
-    getButtons() {
-        let buttonIndex = 0;
-
-        let buttons = [];
-
-        if (
-            !this.props.promptState.buttons ||
-            this.props.promptState.controls.some((c) => ['options-select'].includes(c.type))
-        ) {
-            return null;
-        }
-
-        for (const button of this.props.promptState.buttons) {
-            if (button.timer) {
-                this.timerUuid = button.uuid;
-                continue;
-            }
-
-            const originalButtonText = this.localizedText(button.card, button.text, button.values);
-            let buttonText = originalButtonText;
-
-            if (buttonText.length > MaxButtonTextLength) {
-                buttonText = buttonText.slice(0, MaxButtonTextLength - 3).trim() + '...';
-            }
-
-            let clickCallback = button.timerCancel
-                ? (event) => this.onCancelTimerClick(event, button)
-                : (event) =>
-                    this.onButtonClick(
-                        event,
-                        button.command,
-                        button.arg,
-                        button.uuid,
-                        button.method
-                    );
-
-            const btnClass = classNames(
-                'btn prompt-button btn-stretch',
-                button.class ? button.class : 'btn-default'
-            );
-            let option = (
-                <button
-                    key={button.command + buttonIndex.toString()}
-                    className={btnClass}
-                    title={originalButtonText}
-                    onClick={clickCallback}
-                    onMouseOver={(event) => this.onMouseOver(event, button.card)}
-                    onMouseOut={(event) => this.onMouseOut(event, button.card)}
-                    disabled={button.disabled}
-                >
-                    {buttonText}{' '}
-                    {button.icon && <div className={`button-icon icon-${button.icon}`} />}
-                </button>
-            );
-
-            buttonIndex++;
-
-            buttons.push(option);
-        }
-
-        return buttons;
-    }
-
-    onOptionSelected(option) {
-        if (this.props.onButtonClick) {
-            let button = this.props.promptState.buttons.find((button) => '' + button.arg === option);
-            this.props.onButtonClick(button.command, button.arg, button.uuid, button.method);
-        }
-    }
-
-    getControls() {
-        if (!this.props.promptState.controls) {
-            return null;
-        }
-
-        return this.props.promptState.controls.map((control) => {
-            switch (control.type) {
-                case 'targeting':
-                    return (
-                        <AbilityTargeting
-                            onMouseOut={this.props.onMouseOut}
-                            onMouseOver={this.props.onMouseOver}
-                            source={control.source}
-                            targets={control.targets}
-                            trigger={control.trigger}
-                        />
-                    );
-                case 'options-select':
-                    return (
-                        <OptionsSelect
-                            options={this.props.promptState.buttons}
-                            onOptionSelected={this.onOptionSelected}
-                        />
-                    );
-                case 'behaviour':
-                    return <BehaviourPromptControl behaviour={control.behaviour} />
-            }
-        });
-    }
-
-    safePromptText(promptObject) {
-        if (promptObject) {
-            return typeof promptObject === 'string' ? promptObject : promptObject.text;
-        }
-
-        return null;
-    }
-
-    buttonsAreEqual(oldButtons, newButtons) {
-        if (!oldButtons || !newButtons || oldButtons.length !== newButtons.length) {
-            return false;
-        }
-
-        for (let i = 0; i < oldButtons.length; ++i) {
-            if (!_.isEqual(oldButtons[i], newButtons[i])) {
-                return false;
+    // Timer effect: runs when promptState.buttons or promptState.timerLength changes
+    useEffect(() => {
+        // Find timer button uuid
+        if (props.promptState.buttons) {
+            for (const button of props.promptState.buttons) {
+                if (button.timer) {
+                    timerUuid.current = button.uuid;
+                    break;
+                }
             }
         }
 
-        return true;
-    }
-
-    UNSAFE_componentWillUpdate(newProps, newState) {
-        if (_.difference(newProps.promptState.buttons, this.props.promptState.buttons).length === 0) {
-            return;
-        }
-
-        const timerLength = newProps.promptState.timerLength;
+        // Timer logic
+        const timerLength = props.promptState.timerLength;
         if (!timerLength || timerLength === 0) {
             return;
         }
-
-        if (_.any(newProps.promptState.buttons, (button) => button.timer)) {
-            if (newState.timerHandle) {
+        if (_.any(props.promptState.buttons, (button) => button.timer)) {
+            if (timerHandle.current) {
                 return;
             }
+            timer.current.started = new Date();
+            timer.current.timerTime = timerLength;
 
-            this.timer.started = new Date();
-            this.timer.timerTime = timerLength;
-
-            let handle = setInterval(() => {
+            const handle = setInterval(() => {
                 let now = new Date();
-                let difference = (now - this.timer.started) / 1000;
+                let difference = (now - timer.current.started) / 1000;
                 let keepGoing = true;
 
-                if (difference >= this.timer.timerTime) {
-                    clearInterval(this.state.timerHandle);
-
+                if (difference >= timer.current.timerTime) {
+                    clearInterval(handle);
                     keepGoing = false;
-
-                    this.setState({ timerHandle: undefined });
-
-                    if (newProps.onTimerExpired) {
-                        newProps.onTimerExpired(this.timerUuid);
+                    timerHandle.current = undefined;
+                    if (props.onTimerExpired) {
+                        props.onTimerExpired(timerUuid.current);
                     }
                 }
 
-                let timerClass = (((this.timer.timerTime - difference) / this.timer.timerTime) * 100).toFixed() + '%';
-                this.setState({
-                    showTimer: keepGoing,
-                    timerClass: timerClass,
-                    timeLeft: (this.timer.timerTime - difference).toFixed()
-                });
+                let percent = (((timer.current.timerTime - difference) / timer.current.timerTime) * 100);
+                percent = percent < 0 ? 0 : percent;
+                setShowTimer(keepGoing);
+                setTimerClass(percent.toFixed() + '%');
+                setTimeLeft((timer.current.timerTime - difference).toFixed());
             }, 100);
 
-            this.setState({ showTimer: true, timerClass: '100%', timerHandle: handle });
-        }
-    }
+            setShowTimer(true);
+            setTimerClass('100%');
+            timerHandle.current = handle;
 
-    render() {
-        let controlSource = null;
-        if (
-            this.props.promptState.controls &&
-            this.props.promptState.controls.length > 0 &&
-            this.props.promptState.controls[0].source
-        ) {
-            controlSource = this.props.promptState.controls[0].source;
-        }
-
-        let promptTitle;
-
-        if (this.props.promptState.promptTitle) {
-            let promptTitleText = this.safePromptText(this.props.promptState.promptTitle);
-
-            promptTitle = (
-                <div className='menu-pane-source'>
-                    {this.localizedText(
-                        controlSource,
-                        promptTitleText,
-                        this.props.promptState.promptTitle.values
-                    )}
-                </div>
-            );
-        }
-
-        let timer = null;
-        if (this.state.showTimer) {
-            timer = (
-                <div>
-                    <span>Auto passing in {this.state.timeLeft}...</span>
-                    <div className='progress'>
-                        <div
-                            className='progress-bar progress-bar-success'
-                            role='progressbar'
-                            style={{ width: this.state.timerClass }}
-                        />
-                    </div>
-                </div>);
-        }
-
-        let promptText = this.safePromptText(this.props.promptState.menuTitle);
-        let promptTexts = [];
-
-        if (promptText) {
-            if (promptText.includes('\n')) {
-                let split = promptText.split('\n');
-                for (let token of split) {
-                    promptTexts.push(
-                        this.localizedText(controlSource, token, this.props.promptState.menuTitle.values)
-                    );
-                    promptTexts.push(<br />);
+            // Cleanup on unmount or change
+            return () => {
+                if (timerHandle.current) {
+                    clearInterval(timerHandle.current);
+                    timerHandle.current = undefined;
                 }
-            } else {
-                promptTexts.push(
-                    this.localizedText(controlSource, promptText, this.props.promptState.menuTitle.values)
-                );
-            }
+            };
         }
+        // Cleanup if timer is not needed
+        return () => {
+            if (timerHandle.current) {
+                clearInterval(timerHandle.current);
+                timerHandle.current = undefined;
+            }
+        };
+        // eslint-disable-next-line
+    }, [props.promptState.buttons, props.promptState.timerLength]);
 
-        return (
-            <Panel type={this.props.promptState.style || 'primary'} title={this.props.t(this.props.phase + ' phase')} titleClass='phase-indicator'>
-                {promptTitle}
-                {timer}
-                <div className='menu-pane'>
-                    <h4>{promptTexts}</h4>
-                    {this.props.promptState.diceReq && (
-                        <ActivePromptDice dice={this.props.promptState.diceReq} />
-                    )}
-                    {this.getControls()}
-                    {this.getButtons()}
+    // Timer display
+    let timerDisplay = null;
+    if (showTimer) {
+        timerDisplay = (
+            <div>
+                <span>Auto passing in {timeLeft}...</span>
+                <div className='progress'>
+                    <div
+                        className='progress-bar progress-bar-success'
+                        role='progressbar'
+                        style={{ width: timerClass }}
+                    />
                 </div>
-            </Panel>
+            </div>
         );
     }
+
+    // Prompt text(s)
+    let promptText = props.promptState.menuTitle;
+    let promptTexts = [];
+    if (promptText) {
+        if (promptText.includes('\n')) {
+            let split = promptText.split('\n');
+            for (let token of split) {
+                promptTexts.push(token);
+                promptTexts.push(<br key={token} />);
+            }
+        } else {
+            promptTexts.push(promptText);
+        }
+    }
+
+    // Render
+    return (
+        <Panel
+            type={props.promptState.style || 'primary'}
+            title={props.phase + ' phase'}
+            titleClass='phase-indicator'
+        >
+            {props.promptState.promptTitle && (
+                <div className='menu-pane-source'>{props.promptState.promptTitle}</div>
+            )}
+            {timerDisplay}
+            <div className='menu-pane'>
+                <h4>{promptTexts}</h4>
+                {props.promptState.diceReq && <ActivePromptDice dice={props.promptState.diceReq} />}
+                {props.promptState.controls && (
+                    <ActivePromptControls
+                        controls={props.promptState.controls}
+                        onMouseOver={onMouseOver}
+                        onMouseOut={onMouseOut}
+                        onOptionSelected={onOptionSelected}
+                    />
+                )}
+                {props.promptState.buttons &&
+                    (!props.promptState.controls ||
+                        !props.promptState.controls.some((c) =>
+                            ['options-select'].includes(c.type)
+                        )) && (
+                        <ActivePromptButtons
+                            buttons={props.promptState.buttons}
+                            timerUuid={timerUuid.current}
+                            onButtonClick={onButtonClick}
+                            onCancelTimerClick={onCancelTimerClick}
+                            onMouseOver={onMouseOver}
+                            onMouseOut={onMouseOut}
+                        />
+                    )}
+            </div>
+        </Panel>
+    );
 }
 
 ActivePlayerPrompt.displayName = 'ActivePlayerPrompt';
-ActivePlayerPrompt.propTypes = {
-    i18n: PropTypes.object,
-    onButtonClick: PropTypes.func,
-    onMouseOut: PropTypes.func,
-    onMouseOver: PropTypes.func,
-    onTimerExpired: PropTypes.func,
-    onTitleClick: PropTypes.func,
-    phase: PropTypes.string,
-    socket: PropTypes.object,
-    t: PropTypes.func
-};
 
-export default withTranslation()(ActivePlayerPrompt);
+export default ActivePlayerPrompt;
