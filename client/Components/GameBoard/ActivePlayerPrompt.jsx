@@ -10,6 +10,7 @@ import Panel from '../Site/Panel';
 
 import './ActivePlayerPrompt.scss';
 import BehaviourPromptControl from './BehaviourPromptControl';
+import ActivePromptDice from './ActivePromptDice';
 
 const MaxButtonTextLength = 28;
 
@@ -179,43 +180,6 @@ class ActivePlayerPrompt extends React.Component {
         });
     }
 
-    getDice() {
-        if (!this.props.promptState.diceReq) return;
-        let dice = this.props.promptState.diceReq.map((dr, index) => this.getDie(dr, index));
-
-        return <h4>{dice}</h4>;
-    }
-
-    getDie(req, index) {
-        if (Array.isArray(req)) {
-            return (
-                <span>
-                    {this.getDie(req[0], 10 * index)}
-                    <span>=</span>
-                    {this.getDie(req[1], 10 * index + 1)}
-                </span>
-            );
-        }
-        let title = 'Any basic die';
-        let diceFont = 'phg-basic-magic';
-
-        if (req.magic && req.level && req.level !== 'basic') {
-            diceFont = `phg-${req.magic}-${req.level}`;
-            title = `${req.magic} ${req.level} die`;
-        }
-        let dieClass = classNames('prompt-die', req.magic ? req.magic : 'any');
-
-        let count = req.count > 1 ? req.count + 'x' : '';
-        return (
-            <span>
-                {count}
-                <span key={index} className={dieClass}>
-                    <span className={diceFont} title={title}></span>
-                </span>
-            </span>
-        );
-    }
-
     safePromptText(promptObject) {
         if (promptObject) {
             return typeof promptObject === 'string' ? promptObject : promptObject.text;
@@ -351,7 +315,9 @@ class ActivePlayerPrompt extends React.Component {
                 {timer}
                 <div className='menu-pane'>
                     <h4>{promptTexts}</h4>
-                    {this.getDice()}
+                    {this.props.promptState.diceReq && (
+                        <ActivePromptDice dice={this.props.promptState.diceReq} />
+                    )}
                     {this.getControls()}
                     {this.getButtons()}
                 </div>
