@@ -1,4 +1,5 @@
 const { Location, CardType, ActionSpellTypes } = require('../../constants.js');
+// const TriggeredAbility = require('../triggeredability.js');
 const BaseStepWithPipeline = require('./basestepwithpipeline.js');
 const SimpleStep = require('./simplestep.js');
 
@@ -180,6 +181,17 @@ class AbilityResolver extends BaseStepWithPipeline {
             this.context.ability.logUse(this.context)
         ) {
             this.game.cardUsed(this.context.source, this.context.player);
+            this.game.queueUserAlert(this.context, {
+                timed: true,
+                promptTitle: 'Aspect reaction',
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: this.context.source.getShortSummary()
+                    }
+                ],
+                menuTitle: this.context.player.name + ' uses ' + this.context.source.name
+            });
         }
 
         if (
@@ -199,6 +211,7 @@ class AbilityResolver extends BaseStepWithPipeline {
                 menuTitle: this.context.player.name + ' plays ' + this.context.source.name
             });
         }
+
 
         this.game.raiseEvent(
             'onAbilityInitiated',
