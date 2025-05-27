@@ -3,7 +3,6 @@ const GameActions = require('./GameActions');
 const Deck = require('./deck');
 const RematchPrompt = require('./gamesteps/RematchPrompt');
 const { CardType, UpgradeCardTypes, BattlefieldTypes } = require('../constants');
-const EndGamePrompt = require('./gamesteps/EndGamePrompt');
 const AbilityDsl = require('./abilitydsl');
 
 class ChatCommands {
@@ -512,14 +511,7 @@ class ChatCommands {
     }
 
     endgame(player) {
-        if (player.opponent.isAwol) {
-            // end without asking
-            this.game.addAlert('danger', '{0} ends the game', player);
-            this.game.endWithoutLoss();
-        } else {
-            this.game.addAlert('danger', '{0} wants to end the game without loss', player);
-            this.game.queueStep(new EndGamePrompt(this.game, player));
-        }
+        this.game.manualEndGame(player);
     }
 
     muteSpectators(player) {

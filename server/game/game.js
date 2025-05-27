@@ -40,6 +40,7 @@ const ManualModePrompt = require('./gamesteps/ManualModePrompt');
 const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
 const PlayableObject = require('./PlayableObject');
+const EndGamePrompt = require('./gamesteps/EndGamePrompt');
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -1054,6 +1055,17 @@ class Game extends EventEmitter {
                 this.requestingManualMode = true;
                 this.queueStep(new ManualModePrompt(this, player));
             }
+        }
+    }
+
+    manualEndGame(player) {
+        if (player.opponent.isAwol || this.solo) {
+            // end without asking
+            this.addAlert('danger', '{0} ends the game', player);
+            this.endWithoutLoss();
+        } else {
+            this.addAlert('danger', '{0} wants to end the game without loss', player);
+            this.queueStep(new EndGamePrompt(this.game, player));
         }
     }
 

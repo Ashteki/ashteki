@@ -45,6 +45,7 @@ class TriggeredAbility extends CardAbility {
         this.hasTriggered = false;
         this.isLastingAbilityTrigger = !!properties.player;
         this.logUse = properties.logUse;
+        this.status = properties.status;
         if (properties.location === 'any') {
             this.registerEvents();
         }
