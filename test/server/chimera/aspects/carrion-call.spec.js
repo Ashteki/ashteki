@@ -44,8 +44,8 @@ describe('Carrion Call', function () {
             this.player1.endTurn();
             // this.player1.clickOk();
             expect(this.carrionCall.location).toBe('play area');
-            expect(this.rainwalker.location).toBe('play area');
-            expect(this.player2.player.unitsInPlay.length).toBe(4);
+            expect(this.rainwalker.location).toBe('archives');
+            expect(this.player2.player.unitsInPlay.length).toBe(1);
         });
     });
 });
