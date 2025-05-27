@@ -2,10 +2,6 @@ const Card = require('../../Card.js');
 
 class CeruleanDiver extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            effect: [ability.effects.addKeyword({ gigantic: 1 })]
-        });
-
         this.forcedReaction({
             title: 'Dive 1',
             when: {
