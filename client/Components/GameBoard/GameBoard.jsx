@@ -480,6 +480,7 @@ const GameBoard = () => {
                         onManualModeClick={onManualModeClick}
                         onManualCommandsClick={onManualCommandsClick}
                         leftMode={leftMode}
+                        hideContent={showAlertSplash}
                     />
                 )}
                 {renderBoard(

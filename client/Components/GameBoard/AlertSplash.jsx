@@ -2,8 +2,8 @@ import React from 'react';
 import Panel from '../Site/Panel';
 
 import './WinLoseSplash.scss';
-import ActivePlayerPrompt from './ActivePlayerPrompt';
 import { useSelector } from 'react-redux';
+import SplashPlayerPrompt from './SplashPlayerPrompt';
 
 const AlertSplash = ({
     onCloseClick,
@@ -16,14 +16,13 @@ const AlertSplash = ({
     const currentGame = useSelector((state) => state.lobby.currentGame);
 
     return (
-        <Panel cardClass={`splash`} onCloseClick={onCloseClick}>
-            <ActivePlayerPrompt
+        <Panel cardClass={`alert-splash`} onCloseClick={onCloseClick}>
+            <SplashPlayerPrompt
                 promptState={thisPlayer.promptState}
                 onButtonClick={onCommand}
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
                 onTimerExpired={onTimerExpired}
-                phase={currentGame.currentPhase}
             />
         </Panel >
     );
