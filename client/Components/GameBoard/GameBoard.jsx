@@ -28,6 +28,7 @@ import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
 import Sidebar from './Sidebar';
+import AlertSplash from './AlertSplash';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -429,31 +430,11 @@ const GameBoard = () => {
         'select-cursor': thisPlayer && thisPlayer.selectCard
     });
 
+    const showAlertSplash = thisPlayer.promptState.showAlert;
+
     let manualMode = currentGame.manualMode;
     const compactLayout = optionSettings?.compactLayout;
     const leftMode = optionSettings?.leftMode || currentGame.solo || compactLayout;
-
-    // const getOtherPlayerPrompt = (otherPlayer) => {
-    //     let otherPlayerPrompt = null;
-    //     if (currentGame.solo) {
-    //         const otherState = otherPlayer.promptState;
-    //         otherState.style = 'warning';
-    //         otherPlayerPrompt = (
-    //             <div className='inset-pane'>
-    //                 <ActivePlayerPrompt
-    //                     cards={cards}
-    //                     promptState={otherState}
-    //                     onButtonClick={onCommand}
-    //                     onMouseOver={onMouseOver}
-    //                     onMouseOut={onMouseOut}
-    //                     onTimerExpired={onTimerExpired.bind(this)}
-    //                     phase={currentGame.currentPhase}
-    //                 />
-    //             </div>
-    //         );
-    //     }
-    //     return otherPlayerPrompt;
-    // };
 
     return (
         <div className={boardClass}>
@@ -512,6 +493,17 @@ const GameBoard = () => {
                 {showWinSplash && currentGame.winner && (
                     <WinLoseSplash game={currentGame} onCloseClick={onWinSplashCloseClick} />
                 )}
+                {showAlertSplash && (
+                    <AlertSplash
+                        thisPlayer={thisPlayer}
+                        onCommand={onCommand}
+                        onMouseOver={onMouseOver}
+                        onMouseOut={onMouseOut}
+                        onTimerExpired={onTimerExpired}
+                        onCloseClick={() => dispatch(sendGameMessage('closeAlert'))}
+                    />
+                )}
+
                 {!thisPlayer.inspectionCard && cardToZoom && (
                     <CardZoom
                         cardName={cardToZoom ? cardToZoom.name : null}
