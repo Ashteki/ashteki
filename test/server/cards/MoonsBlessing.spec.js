@@ -11,7 +11,8 @@ describe('Moons Blessing', function () {
             player2: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['hammer-knight', 'gilder'],
-                spellboard: []
+                spellboard: [],
+                discard: ['anchornaut', 'purge']
             }
         });
     });
@@ -19,6 +20,9 @@ describe('Moons Blessing', function () {
     it('return ready spell from discard on play', function () {
         this.player1.play(this.moonsBlessing);
         this.player1.clickCard(this.fluteMage);
+        // check other player's discard
+        expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+        expect(this.player1).not.toBeAbleToSelect(this.purge);
         this.player1.clickCard(this.abundance);
 
         expect(this.fluteMage.life).toBe(3);
