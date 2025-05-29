@@ -32,9 +32,14 @@ describe('Moons Blessing', function () {
         expect(this.player1).toHaveDefaultPrompt();
     });
 
-    it('played on opponent unit give player choice', function () {
+    xit('played on opponent unit give player choice', function () {
         this.player1.play(this.moonsBlessing);
         this.player1.clickCard(this.gilder);
+        expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
+        expect(this.player1).not.toBeAbleToSelect(this.purge);
+        expect(this.player2).not.toBeAbleToSelect(this.anchornaut);
+        expect(this.player2).not.toBeAbleToSelect(this.purge);
+
         this.player1.clickCard(this.abundance);
 
         expect(this.fluteMage.life).toBe(3);

@@ -14,6 +14,7 @@ class MoonsBlessing extends Card {
             },
             autoResolve: true,
             target: {
+
                 activePromptTitle: 'Choose a ready spell to place in your hand',
                 optional: true,
                 controller: 'self',
