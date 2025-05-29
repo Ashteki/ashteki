@@ -14,9 +14,10 @@ class MoonsBlessing extends Card {
             },
             autoResolve: true,
             target: {
+
                 activePromptTitle: 'Choose a ready spell to place in your hand',
                 optional: true,
-                owner: 'self',
+                controller: 'self',
                 location: 'discard',
                 cardType: CardType.ReadySpell,
                 gameAction: ability.actions.returnToHand({
