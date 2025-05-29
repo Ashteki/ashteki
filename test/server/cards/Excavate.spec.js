@@ -47,4 +47,14 @@ describe('Excavate action spell', function () {
         expect(this.silverSnake.damage).toBe(3);
         expect(this.player1).toHaveDefaultPrompt();
     });
+
+    it('cannot discard 3 cards means no effect', function () {
+        this.player1.player.deck = [this.ironWorker];
+        this.player1.play(this.excavate);
+        this.player1.clickDie(0);
+        this.player1.clickDone();
+
+        expect(this.player1.discard.length).toBe(3); // one in discard, pluse excavate plus 1 discard.
+        expect(this.player1).toHaveDefaultPrompt();
+    });
 });

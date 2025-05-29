@@ -10,6 +10,9 @@ class Excavate extends Card {
                 amount: 3
             })),
             then: {
+                condition: (context) =>
+                    context.preThenEvent.context.discardedCards &&
+                    context.preThenEvent.context.discardedCards.length === 3,
                 target: {
                     activePromptTitle: 'Choose a card to place in your hand',
                     cardCondition: (card, context) =>
