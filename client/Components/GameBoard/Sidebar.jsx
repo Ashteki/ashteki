@@ -20,7 +20,8 @@ const Sidebar = ({
     onSettingsClick,
     onManualModeClick,
     onManualCommandsClick,
-    leftMode
+    leftMode,
+    hideContent
 }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
     const isReplay = currentGame?.isReplay;
@@ -95,14 +96,14 @@ const Sidebar = ({
             <div className='inset-pane'>
                 {isReplay ?
                     <ReplayControls /> :
-                    <ActivePlayerPrompt
+                    (hideContent ? null : (<ActivePlayerPrompt
                         promptState={thisPlayer.promptState}
                         onButtonClick={onCommand}
                         onMouseOver={onMouseOver}
                         onMouseOut={onMouseOut}
                         onTimerExpired={onTimerExpired}
                         phase={currentGame.currentPhase}
-                    />}
+                    />))}
                 {getTimer(thisPlayer)}
             </div>
         </div>
