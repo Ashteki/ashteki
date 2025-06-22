@@ -159,7 +159,7 @@ function ActivePlayerPrompt(props) {
     };
 
     // Prompt text(s)
-    let promptText = safePromptText(this.props.promptState.menuTitle);
+    let promptText = safePromptText(props.promptState.menuTitle);
     let promptTexts = [];
     if (promptText) {
         if (promptText.includes('\n')) {
