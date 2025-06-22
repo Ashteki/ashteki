@@ -150,8 +150,16 @@ function ActivePlayerPrompt(props) {
         );
     }
 
+    const safePromptText = (promptObject) => {
+        if (promptObject) {
+            return typeof promptObject === 'string' ? promptObject : promptObject.text;
+        }
+
+        return null;
+    };
+
     // Prompt text(s)
-    let promptText = props.promptState.menuTitle;
+    let promptText = safePromptText(this.props.promptState.menuTitle);
     let promptTexts = [];
     if (promptText) {
         if (promptText.includes('\n')) {
