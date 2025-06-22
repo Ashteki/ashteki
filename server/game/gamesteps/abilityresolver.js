@@ -182,8 +182,9 @@ class AbilityResolver extends BaseStepWithPipeline {
         ) {
             this.game.cardUsed(this.context.source, this.context.player);
             this.game.queueUserAlert(this.context, {
+                showSplash: true,
                 timed: true,
-                promptTitle: 'Aspect reaction',
+                promptTitle: 'Aspect Status Ability',
                 controls: [
                     {
                         type: 'targeting',

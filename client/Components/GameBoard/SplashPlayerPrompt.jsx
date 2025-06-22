@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import _ from 'underscore';
-import Panel from '../Site/Panel';
 
-import './ActivePlayerPrompt.scss';
+import './SplashPlayerPrompt.scss';
 import ActivePromptDice from './ActivePromptDice';
 import ActivePromptButtons from './ActivePromptButtons';
 import ActivePromptControls from './ActivePromptControls';
+import CardImage from './CardImage';
 
-function ActivePlayerPrompt(props) {
+function SplashPlayerPrompt({ promptState, onButtonClick, onMouseOver, onMouseOut, onTimerExpired }) {
     const [showTimer, setShowTimer] = useState(false);
     const [timerClass, setTimerClass] = useState('100%');
     const [timeLeft, setTimeLeft] = useState(undefined);
@@ -18,14 +18,14 @@ function ActivePlayerPrompt(props) {
 
     // Option selected handler
     const onOptionSelected = (option) => {
-        if (props.onButtonClick) {
-            let button = props.promptState.buttons.find((button) => '' + button.arg === option);
-            props.onButtonClick(button.command, button.arg, button.uuid, button.method);
+        if (onButtonClick) {
+            let button = promptState.buttons.find((button) => '' + button.arg === option);
+            onButtonClick(button.command, button.arg, button.uuid, button.method);
         }
     };
 
     // Button click handler
-    const onButtonClick = (event, command, arg, uuid, method) => {
+    const doButtonClick = (event, command, arg, uuid, method) => {
         event.preventDefault();
         if (timerHandle.current) {
             clearInterval(timerHandle.current);
@@ -34,13 +34,13 @@ function ActivePlayerPrompt(props) {
         timerHandle.current = undefined;
         setTimerCancelled(true);
 
-        if (props.onButtonClick) {
-            props.onButtonClick(command, arg, uuid, method);
+        if (onButtonClick) {
+            onButtonClick(command, arg, uuid, method);
         }
     };
 
     // Cancel timer click handler
-    const onCancelTimerClick = (event, button) => {
+    const doCancelTimerClick = (event, button) => {
         event.preventDefault();
         if (timerHandle.current) {
             clearInterval(timerHandle.current);
@@ -50,27 +50,15 @@ function ActivePlayerPrompt(props) {
         setTimerCancelled(true);
 
         if (button.method) {
-            props.onButtonClick(button.command, button.arg, button.uuid, button.method);
-        }
-    };
-
-    // Mouse over/out handlers
-    const onMouseOver = (event, card) => {
-        if (card && props.onMouseOver) {
-            props.onMouseOver(card);
-        }
-    };
-    const onMouseOut = (event, card) => {
-        if (card && props.onMouseOut) {
-            props.onMouseOut(card);
+            onButtonClick(button.command, button.arg, button.uuid, button.method);
         }
     };
 
     // Timer effect: runs when promptState.buttons or promptState.timerLength changes
     useEffect(() => {
         // Find timer button uuid
-        if (props.promptState.buttons) {
-            for (const button of props.promptState.buttons) {
+        if (promptState.buttons) {
+            for (const button of promptState.buttons) {
                 if (button.timer) {
                     timerUuid.current = button.uuid;
                     break;
@@ -79,11 +67,11 @@ function ActivePlayerPrompt(props) {
         }
 
         // Timer logic
-        const timerLength = props.promptState.timerLength;
+        const timerLength = promptState.timerLength;
         if (!timerLength || timerLength === 0) {
             return;
         }
-        if (_.any(props.promptState.buttons, (button) => button.timer)) {
+        if (_.any(promptState.buttons, (button) => button.timer)) {
             if (timerHandle.current) {
                 return;
             }
@@ -99,8 +87,8 @@ function ActivePlayerPrompt(props) {
                     clearInterval(handle);
                     keepGoing = false;
                     timerHandle.current = undefined;
-                    if (props.onTimerExpired) {
-                        props.onTimerExpired(timerUuid.current);
+                    if (onTimerExpired) {
+                        onTimerExpired(timerUuid.current);
                     }
                 }
 
@@ -131,14 +119,13 @@ function ActivePlayerPrompt(props) {
             }
         };
         // eslint-disable-next-line
-    }, [props.promptState.buttons, props.promptState.timerLength]);
+    }, [promptState.buttons, promptState.timerLength]);
 
     // Timer display
     let timerDisplay = null;
     if (showTimer) {
         timerDisplay = (
             <div>
-                <span>Auto passing in {timeLeft}...</span>
                 <div className='progress'>
                     <div
                         className='progress-bar progress-bar-success'
@@ -151,7 +138,7 @@ function ActivePlayerPrompt(props) {
     }
 
     // Prompt text(s)
-    let promptText = props.promptState.menuTitle;
+    let promptText = promptState.menuTitle;
     let promptTexts = [];
     if (promptText) {
         if (promptText.includes('\n')) {
@@ -165,47 +152,59 @@ function ActivePlayerPrompt(props) {
         }
     }
 
+    const showBigCard =
+        promptState.controls &&
+        promptState.controls[0] &&
+        promptState.controls[0].type === 'targeting' &&
+        promptState.controls[0].source.id;
+    const bigCardSource = showBigCard ? promptState.controls[0].source : null;
     // Render
     return (
-        <Panel
-            type={props.promptState.style || 'primary'}
-            title={props.phase + ' phase'}
-            titleClass='phase-indicator'
-        >
-            {props.promptState.promptTitle && (
-                <div className='menu-pane-source'>{props.promptState.promptTitle}</div>
+        <div className='splash-player-prompt'>
+            {promptState.promptTitle && (
+                <div className='menu-pane-source'>{promptState.promptTitle}</div>
             )}
             {timerDisplay}
             <div className='menu-pane'>
-                <h4>{promptTexts}</h4>
-                {props.promptState.diceReq && <ActivePromptDice dice={props.promptState.diceReq} />}
-                {props.promptState.controls && (
-                    <ActivePromptControls
-                        controls={props.promptState.controls}
-                        onMouseOver={onMouseOver}
-                        onMouseOut={onMouseOut}
-                        onOptionSelected={onOptionSelected}
-                    />
+                {showBigCard && (
+                    <div className='big-card'
+                        onMouseOut={() => onMouseOut && onMouseOut(bigCardSource)}
+                        onMouseOver={() => onMouseOver && onMouseOver(bigCardSource)}
+                    >
+                        <CardImage card={bigCardSource} />
+                    </div>
                 )}
-                {props.promptState.buttons &&
-                    (!props.promptState.controls ||
-                        !props.promptState.controls.some((c) =>
-                            ['options-select'].includes(c.type)
-                        )) && (
-                        <ActivePromptButtons
-                            buttons={props.promptState.buttons}
-                            timerUuid={timerUuid.current}
-                            onButtonClick={onButtonClick}
-                            onCancelTimerClick={onCancelTimerClick}
+                <div className='menu-pane-content'>
+                    <p className='splash-text'>{promptTexts}</p>
+                    {promptState.diceReq && <ActivePromptDice dice={promptState.diceReq} />}
+                    {!showBigCard && promptState.controls && (
+                        <ActivePromptControls
+                            controls={promptState.controls}
                             onMouseOver={onMouseOver}
                             onMouseOut={onMouseOut}
+                            onOptionSelected={onOptionSelected}
                         />
                     )}
+                    {promptState.buttons &&
+                        (!promptState.controls ||
+                            !promptState.controls.some((c) =>
+                                ['options-select'].includes(c.type)
+                            )) && (
+                            <ActivePromptButtons
+                                buttons={promptState.buttons}
+                                timerUuid={timerUuid.current}
+                                onButtonClick={doButtonClick}
+                                onCancelTimerClick={doCancelTimerClick}
+                                onMouseOver={onMouseOver}
+                                onMouseOut={onMouseOut}
+                            />
+                        )}
+                </div>
             </div>
-        </Panel>
+        </div>
     );
 }
 
-ActivePlayerPrompt.displayName = 'ActivePlayerPrompt';
+SplashPlayerPrompt.displayName = 'ActivePlayerPrompt';
 
-export default ActivePlayerPrompt;
+export default SplashPlayerPrompt;
