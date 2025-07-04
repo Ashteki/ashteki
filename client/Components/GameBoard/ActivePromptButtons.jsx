@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 function ActivePromptButtons({
     buttons,
@@ -9,6 +10,8 @@ function ActivePromptButtons({
     onMouseOut
 }) {
     const MaxButtonTextLength = 28;
+    const { t } = useTranslation();
+
 
     const getButtons = () => {
         let buttonIndex = 0;
@@ -23,7 +26,7 @@ function ActivePromptButtons({
                 continue;
             }
 
-            const originalButtonText = button.text;
+            const originalButtonText = t(button.text, button.values);
             let buttonText = originalButtonText;
 
             if (buttonText.length > MaxButtonTextLength) {

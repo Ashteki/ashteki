@@ -6,6 +6,7 @@ import './ActivePlayerPrompt.scss';
 import ActivePromptDice from './ActivePromptDice';
 import ActivePromptButtons from './ActivePromptButtons';
 import ActivePromptControls from './ActivePromptControls';
+import { useTranslation } from 'react-i18next';
 
 function ActivePlayerPrompt(props) {
     const [showTimer, setShowTimer] = useState(false);
@@ -15,6 +16,7 @@ function ActivePlayerPrompt(props) {
     const timerHandle = useRef(undefined);
     const timer = useRef({});
     const timerUuid = useRef(undefined);
+    const { t } = useTranslation();
 
     // Option selected handler
     const onOptionSelected = (option) => {
@@ -165,11 +167,11 @@ function ActivePlayerPrompt(props) {
         if (promptText.includes('\n')) {
             let split = promptText.split('\n');
             for (let token of split) {
-                promptTexts.push(token);
+                promptTexts.push(t(token, props.promptState.menuTitle.values));
                 promptTexts.push(<br key={token} />);
             }
         } else {
-            promptTexts.push(promptText);
+            promptTexts.push(t(promptText, props.promptState.menuTitle.values));
         }
     }
 
@@ -181,7 +183,13 @@ function ActivePlayerPrompt(props) {
             titleClass='phase-indicator'
         >
             {props.promptState.promptTitle && (
-                <div className='menu-pane-source'>{props.promptState.promptTitle}</div>
+                <div className='menu-pane-source'>{
+                    t(
+                        safePromptText(
+                            props.promptState.promptTitle),
+                        props.promptState.promptTitle.values
+                    )
+                }</div>
             )}
             {timerDisplay}
             <div className='menu-pane'>
