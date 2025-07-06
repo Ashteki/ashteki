@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Launch Program",
-            "program": "${workspaceFolder}/server/scripts/user/decklist.js",
+            "program": "${workspaceFolder}/server/scripts/game/deleteOldReplays.js",
             "request": "launch",
             "skipFiles": [
                 "<node_internals>/**"
