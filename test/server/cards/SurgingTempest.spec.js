@@ -69,7 +69,8 @@ describe('SurgingTempest', function () {
             expect(this.player1.dicepool[1].level).toBe('class');
             expect(this.player1.dicepool[2].level).toBe('class');
 
-            this.player1.clickCard(this.farewell); // discard
+            this.player1.clickYes(); // discard to ping
+            this.player1.clickCard(this.farewell);
 
             expect(this.player1).toBeAbleToSelect(this.frostbackBear);
             expect(this.player1).toBeAbleToSelect(this.anchornaut);
@@ -80,7 +81,7 @@ describe('SurgingTempest', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('with active non-power dice: draw, skip two dice, damage to a unit', function () {
+        it('without active non-power dice: draw, skip two dice, damage to a unit', function () {
             this.player1.dicepool[1].exhaust();
             this.player1.dicepool[2].exhaust();
             this.player1.dicepool[3].exhaust();
@@ -89,6 +90,7 @@ describe('SurgingTempest', function () {
             this.player1.useAbility(this.surgingTempest);
             expect(this.player1.hand.length).toBe(handSize + 1);
 
+            this.player1.clickYes(); // discard to ping
             this.player1.clickCard(this.farewell); // discard
 
             expect(this.player1).toBeAbleToSelect(this.frostbackBear);
@@ -112,6 +114,7 @@ describe('SurgingTempest', function () {
 
             this.player1.clickDie(0); // raise 1 die
 
+            this.player1.clickYes(); // discard to ping
             this.player1.clickCard(this.farewell); // discard
 
             expect(this.player1).toBeAbleToSelect(this.frostbackBear);
@@ -157,6 +160,7 @@ describe('SurgingTempest', function () {
             expect(this.player1.dicepool[1].level).toBe('class');
             expect(this.player1.dicepool[2].level).toBe('class');
 
+            this.player1.clickYes(); // discard to ping
             this.player1.clickCard(this.farewell); // discard
 
             expect(this.player1).toBeAbleToSelect(this.frostbackBear);
@@ -165,6 +169,7 @@ describe('SurgingTempest', function () {
             this.player1.clickCard(this.frostbackBear);
             expect(this.frostbackBear.damage).toBe(1);
 
+            this.player1.clickYes(); // discard to burn
             this.player1.clickCard(this.regress); // discard
             this.player1.clickCard(this.aradelSummergaard);
             expect(this.aradelSummergaard.damage).toBe(1);
@@ -194,7 +199,7 @@ describe('SurgingTempest', function () {
             this.player1.dicepool[2].level = 'basic';
         });
 
-        xit('draw, raise two dice, skip damage to a unit, damage to pb', function () {
+        it('draw, raise two dice, skip damage to a unit, damage to pb', function () {
             const handSize = this.player1.hand.length;
             this.player1.useAbility(this.surgingTempest);
             expect(this.player1.hand.length).toBe(handSize + 1);
@@ -205,7 +210,13 @@ describe('SurgingTempest', function () {
             expect(this.player1.dicepool[1].level).toBe('class');
             expect(this.player1.dicepool[2].level).toBe('class');
 
-            this.player1.clickDone();
+            // prompt for focus 1 discard
+            this.player1.clickNo();
+
+            // prompt for focus 2 discard
+            this.player1.clickYes();
+
+            expect(this.player1).not.toHaveDefaultPrompt();
 
             this.player1.clickCard(this.regress); // discard
             this.player1.clickCard(this.aradelSummergaard);

@@ -20,14 +20,26 @@ class AbilityResolver extends BaseStepWithPipeline {
         this.pipeline.initialise([
             new SimpleStep(this.game, () => this.createSnapshot()),
             new SimpleStep(this.game, () => this.resolveMayClause()),
-            new SimpleStep(this.game, () => this.checkWarnings()),
-            new SimpleStep(this.game, () => this.resolveCosts()),
-            new SimpleStep(this.game, () => this.payCosts()),
-            new SimpleStep(this.game, () => this.resolveTargets()),
-            new SimpleStep(this.game, () => this.checkForCancel()),
-            new SimpleStep(this.game, () => this.initiateAbility()),
-            new SimpleStep(this.game, () => this.raiseResolvedEvent())
+            new SimpleStep(this.game, () => this.resolveAbility())
+
         ]);
+    }
+
+    resolveAbility() {
+        // skip execution per may clause
+        if (this.mayResult.cancelled) {
+            this.game.queueStep(new SimpleStep(this.game, () => {
+                this.context.ability.queueThenAbility(this.context);
+            }));
+        } else if (!this.cancelled) {
+            this.game.queueStep(new SimpleStep(this.game, () => this.checkWarnings()));
+            this.game.queueStep(new SimpleStep(this.game, () => this.resolveCosts()));
+            this.game.queueStep(new SimpleStep(this.game, () => this.payCosts()));
+            this.game.queueStep(new SimpleStep(this.game, () => this.resolveTargets()));
+            this.game.queueStep(new SimpleStep(this.game, () => this.checkForCancel()));
+            this.game.queueStep(new SimpleStep(this.game, () => this.initiateAbility()));
+            this.game.queueStep(new SimpleStep(this.game, () => this.raiseResolvedEvent()));
+        }
     }
 
     getCostResults() {
@@ -54,7 +66,7 @@ class AbilityResolver extends BaseStepWithPipeline {
         if (this.cancelled) {
             return;
         } else if (this.mayResult.cancelled) {
-            this.cancelled = true;
+            // this.cancelled = true;
             return;
         }
         this.context.ability.checkWarnings(this.context, this.warningsResult);

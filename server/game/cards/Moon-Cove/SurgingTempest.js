@@ -10,6 +10,7 @@ class SurgingTempest extends Card {
             gameAction: ability.actions.draw(),
             then: {
                 alwaysTriggers: true,
+                ignoreTargetCheck: true,
                 target: {
                     activePromptTitle: (context) =>
                         'Choose ' +
@@ -22,33 +23,31 @@ class SurgingTempest extends Card {
                     owner: 'self',
                     gameAction: ability.actions.raiseDie()
                 },
-                then: {
+                then: (thenContext) => ({
                     alwaysTriggers: true,
-                    condition: (context) => context.source.focus > 0,
+                    condition: (context) => thenContext.player && context.source.focus > 0,
+                    may: 'discard 1 card to deal 1 damage to a unit',
                     cost: ability.costs.chosenDiscard(1, true),
-                    then: (thenContext) => ({
+                    target: {
+                        optional: true,
+                        activePromptTitle: 'Choose a unit to deal 1 damage to',
+                        cardType: BattlefieldTypes,
+                        skipForCancel: true,
+                        gameAction: ability.actions.dealDamage()
+                    },
+                    then: {
                         alwaysTriggers: true,
-                        condition: (context) => thenContext.player && context.source.focus > 0,
+                        condition: (context) => context.source.focus > 1,
+                        may: 'discard 1 card to deal 1 damage to a phoenixborn',
+                        cost: ability.costs.chosenDiscard(1, true),
                         target: {
-                            optional: true,
-                            activePromptTitle: 'Choose a unit to deal 1 damage to',
-                            cardType: BattlefieldTypes,
-                            skipForCancel: true,
+                            activePromptTitle: 'Choose a phoenixborn to deal 1 damage to',
+                            cardType: PhoenixbornTypes,
                             gameAction: ability.actions.dealDamage()
-                        },
-                        allowPassThen: true,
-                        then: {
-                            alwaysTriggers: true,
-                            condition: (context) => context.source.focus > 1,
-                            cost: ability.costs.chosenDiscard(1, true),
-                            target: {
-                                activePromptTitle: 'Choose a phoenixborn to deal 1 damage to',
-                                cardType: PhoenixbornTypes,
-                                gameAction: ability.actions.dealDamage()
-                            }
                         }
-                    })
-                }
+                    }
+                })
+
             }
         });
     }
