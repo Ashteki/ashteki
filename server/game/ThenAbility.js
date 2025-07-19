@@ -96,41 +96,44 @@ class ThenAbility extends BaseAbility {
             (array, action) => array.concat(action.getEventArray(context)),
             []
         );
-        let then = this.properties.then;
-        if (then && typeof then === 'function') {
-            then = then(context);
-        }
-
         if (events.length > 0) {
             this.game.openEventWindow(events);
-            if (then) {
-                this.game.queueSimpleStep(() => {
-                    if (then.alwaysTriggers || events.every((event) => !event.cancelled)) {
-                        let thenAbility = new ThenAbility(this.game, this.card, then);
-                        let thenContext = thenAbility.createContext(context.player, context);
-                        thenContext.preThenEvents = events;
-                        thenContext.preThenEvent = events[0];
-                        if (
-                            !thenAbility.meetsRequirements(thenContext) &&
-                            thenAbility.condition(thenContext)
-                        ) {
-                            this.game.resolveAbility(thenContext);
-                        }
-                    }
-                });
-            }
-        } else if (then && then.alwaysTriggers) {
-            let thenAbility = new ThenAbility(this.game, this.card, then);
-            let thenContext = thenAbility.createContext(context.player, context);
-            if (!thenAbility.meetsRequirements(thenContext) && thenAbility.condition(thenContext)) {
-                this.game.resolveAbility(thenContext);
-            }
         }
+
+        this.queueThenAbility(context, events);
 
         for (let action of actions) {
             if (action.postHandler) {
                 action.postHandler(context, action);
             }
+        }
+    }
+
+
+    queueThenAbility(context, events = []) {
+        let then = this.properties.then;
+        if (then) {
+            if (typeof then === 'function') {
+                then = then(context);
+            }
+            // queue to happen after the event resolution - some may lead to cancellation
+            this.game.queueSimpleStep(() => {
+                if (
+                    // then function call may return undefined
+                    then &&
+                    (then.alwaysTriggers ||
+                        (events.length > 0 && events.every((event) => !event.cancelled)))) {
+                    let thenAbility = new ThenAbility(this.game, this.card, then);
+                    let thenContext = thenAbility.createContext(context.player, context);
+                    if (events && events.length > 0) {
+                        thenContext.preThenEvents = events;
+                        thenContext.preThenEvent = events[0];
+                    }
+                    if (!thenAbility.meetsRequirements(thenContext) && thenAbility.condition(thenContext)) {
+                        this.game.resolveAbility(thenContext);
+                    }
+                }
+            });
         }
     }
 
