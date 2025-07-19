@@ -10,7 +10,10 @@ class CeruleanDiver extends Card {
                     return event.attackers.includes(context.source);
                 }
             },
-            gameAction: ability.actions.draw({ bottom: true, amount: this.getAbilityNumeric(1) })
+            gameAction: ability.actions.draw(() => ({
+                bottom: true,
+                amount: this.getAbilityNumeric(1)
+            }))
         });
     }
 }
