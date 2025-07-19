@@ -13,7 +13,8 @@ describe('Tristan Darkwater, magnify', function () {
                     'psychic-vampire',
                     'beast-warrior',
                     'frost-frog',
-                    'ptera-hatchling'
+                    'ptera-hatchling',
+                    'cerulean-diver'
                 ],
                 spellboard: [],
                 dicepool: ['time', 'natural', 'charm', 'divine', 'natural'],
@@ -176,5 +177,20 @@ describe('Tristan Darkwater, magnify', function () {
 
         this.player2.clickDone();
         expect(this.hammerKnight.damage).toBe(2);
+    });
+
+    it('magnify cerulean diver', function () {
+        expect(this.player1.hand.length).toBe(2);
+
+        this.player1.clickCard(this.tristanDarkwater);
+        this.player1.clickPrompt('Magnify');
+        this.player1.clickDie(0);
+        this.player1.clickCard(this.ceruleanDiver);
+        this.player1.clickDone();
+
+        this.player1.clickAttack(this.fluteMage);
+        this.player1.clickCard(this.ceruleanDiver);
+
+        expect(this.player1.hand.length).toBe(4);
     });
 });
