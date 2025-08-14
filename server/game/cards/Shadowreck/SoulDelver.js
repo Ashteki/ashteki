@@ -12,6 +12,7 @@ class SoulDelver extends Card {
                 toSelect: 'player',
                 activePromptTitle: "Choose which player's dice pool to affect",
                 gameAction: ability.actions.changeDice((context) => ({
+                    dieCondition: (die) => !die.exhausted,
                     owner: context.target === context.player ? 'self' : 'opponent',
                     singleLevel: true,
                     numDice: context.player.phoenixborn.status
