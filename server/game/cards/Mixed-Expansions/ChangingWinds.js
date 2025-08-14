@@ -11,6 +11,7 @@ class ChangingWinds extends Card {
             then: {
                 target: {
                     location: 'hand',
+                    controller: 'self',
                     activePromptTitle: 'Choose a card to return to your deck',
                     gameAction: ability.actions.returnToDeck({
                         chooseTopBottom: true,
@@ -21,6 +22,7 @@ class ChangingWinds extends Card {
                 then: {
                     target: {
                         location: 'hand',
+                        controller: 'self',
                         activePromptTitle: 'Choose a card to return to your deck',
                         gameAction: ability.actions.returnToDeck({
                             chooseTopBottom: true,
