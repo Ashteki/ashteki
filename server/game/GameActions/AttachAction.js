@@ -47,7 +47,7 @@ class AttachAction extends CardGameAction {
     }
 
     getEvent(card, context) {
-        return super.createEvent(
+        const attachedEvent = context.game.getEvent(
             'onCardAttached',
             { card: this.upgrade, parent: card, context: context, giveControl: this.giveControl },
             (event) => {
@@ -56,18 +56,27 @@ class AttachAction extends CardGameAction {
                 } else {
                     event.card.controller.removeCardFromPile(event.card);
                     event.card.new = true;
+                    event.card.moveTo('play area');
                     // all attachments become controlled by the controller of the parent / host
                     // if (event.card.ownerControlled) {
-                    event.card.setDefaultController(event.parent.controller);
                     // }
-
-                    event.card.moveTo('play area');
                 }
 
                 event.parent.upgrades.push(event.card);
                 event.card.parent = event.parent;
             }
         );
+
+        const result = context.game.getEvent(
+            'onAttachingCard', { card: this.upgrade, parent: card }, (event) => {
+                context.game.openEventWindow(attachedEvent);
+                context.game.queueSimpleStep(() => {
+                    event.card.setDefaultController(event.parent.controller);
+                });
+            }
+        );
+
+        return result;
     }
 }
 
