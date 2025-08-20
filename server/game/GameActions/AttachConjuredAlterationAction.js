@@ -17,7 +17,10 @@ class AttachConjuredAlterationAction extends CardGameAction {
     }
 
     canAffect(card, context) {
-        if (!context.player.archives.some((c) => c.id === this.conjuredAlteration)) {
+        if (!context.player.archives.some((c) => c.id === this.conjuredAlteration) ||
+            (this.alteration && !this.alteration.canAttach(card, context)) ||
+            (card.anyEffect('cannotBeSpellTarget') && context.player !== card.controller)
+        ) {
             return false;
         }
 
