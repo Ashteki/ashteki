@@ -32,7 +32,7 @@ describe('Moons Blessing', function () {
         expect(this.player1).toHaveDefaultPrompt();
     });
 
-    xit('played on opponent unit give player choice', function () {
+    it('played on opponent unit give player choice', function () {
         this.player1.play(this.moonsBlessing);
         this.player1.clickCard(this.gilder);
         expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
@@ -42,8 +42,8 @@ describe('Moons Blessing', function () {
 
         this.player1.clickCard(this.abundance);
 
-        expect(this.fluteMage.life).toBe(3);
-        expect(this.fluteMage.recover).toBe(2);
+        expect(this.gilder.life).toBe(3);
+        expect(this.gilder.recover).toBe(1);
         expect(this.abundance.location).toBe('hand');
 
         expect(this.player1).toHaveDefaultPrompt();

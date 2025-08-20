@@ -10,11 +10,12 @@ class MoonsBlessing extends Card {
         this.forcedReaction({
             when: {
                 onCardAttached: (event, context) =>
-                    event.card === context.source && event.parent.controller === context.player
+                    event.card === context.source
+                //  &&
+                //     event.parent.controller === context.player
             },
             autoResolve: true,
             target: {
-
                 activePromptTitle: 'Choose a ready spell to place in your hand',
                 optional: true,
                 controller: 'self',
