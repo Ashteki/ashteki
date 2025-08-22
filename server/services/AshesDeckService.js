@@ -193,6 +193,7 @@ class AshesDeckService {
         let properties = {
             mode: deck.mode,
             name: deck.deckName || deck.name,
+            format: deck.format,
             phoenixborn: deck.phoenixborn,
             ultimate: deck.ultimate,
             behaviour: deck.behaviour,

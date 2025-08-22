@@ -75,6 +75,12 @@ const DeckTypeInfo = ({ deckType }) => {
                     want to move on from precons.
                 </AlertPanel>
             );
+        case 'onecollection':
+            return (
+                <AlertPanel type='info'>
+                    <strong>One Collection</strong> Decks from NoSuchMethod&apos;s format that use one collection up to the Red Rains cycle and allow both uniques for each Phoenixborn.
+                </AlertPanel>
+            );
     }
 };
 

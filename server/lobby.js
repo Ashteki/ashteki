@@ -722,8 +722,8 @@ class Lobby {
             deck.cards.filter(
                 (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
             ).length === 0 &&
-            // max 3 uniques
-            countUniques <= 3;
+            // max 3 uniques unless in onecollection format when all are allowed
+            (countUniques <= 3 || deck.format === 'onecollection');
         let uniques = !hasPhoenixborn || validUniques;
 
         const maxThree = !deck.cards.some((c) => c.count > 3);
