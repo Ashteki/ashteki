@@ -93,6 +93,16 @@
             "attack": 3,
             "life": 3,
             "blood": 2
+        },
+        {
+            "name": "Erratic Strike",
+            "stub": "erratic-strike",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
         }
     ]
 }

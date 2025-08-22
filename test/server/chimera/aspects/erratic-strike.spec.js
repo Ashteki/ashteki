@@ -1,7 +1,7 @@
 const Dice = require('../../../../server/game/dice');
 
-describe('Webbed Aspect', function () {
-    describe('On Reveal', function () {
+describe('Erratic Strike Aspect', function () {
+    describe('On Attack', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'solo',
@@ -18,28 +18,26 @@ describe('Webbed Aspect', function () {
                     phoenixborn: 'blight-of-neverset',
                     behaviour: 'neverset-behaviour',
                     ultimate: 'neverset-ultimate',
-                    inPlay: [],
+                    inPlay: ['erratic-strike', 'hunting-instincts'],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['silksteel', 'hunting-instincts'],
+                    threatZone: [],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage'],
                     archives: ['webbed']
                 }
             });
         });
 
-        it('untangle removes webbed status', function () {
-            expect(this.player2.dicepool.filter(d => d.level === 'power').length).toBe(0);
-            spyOn(Dice, 'getRandomInt').and.returnValue(1); // power dice on untangle reroll
-            this.player2.attachUpgrade(this.webbed, this.anchornaut);
-            expect(this.silksteel.facedown).toBe(true);
-            this.player1.useCardAbility(this.webbed, 'Untangle');
+        it('on attack targets phoenixborn', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(1); // set attack roll for erratic strike to odd
 
-            expect(this.webbed.location).toBe('archives');
-            expect(this.anchornaut.anyEffect('webbed')).toBe(false);
-            expect(this.anchornaut.upgrades.length).toBe(0);
-            expect(this.anchornaut.location).toBe('play area');
-            expect(this.player2.dicepool.filter(d => d.level === 'power').length).toBe(2);
+            this.player1.endTurn();
+
+            expect(this.erraticStrike.isAttacker).toBe(true);
+            expect(this.game.attackState.isPBAttack).toBe(true);
+
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+
         });
     });
 });
