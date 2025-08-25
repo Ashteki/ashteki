@@ -38,7 +38,7 @@ const ForgotPassword = () => {
 
     const schema = yup.object({
         username: yup.string().required(t('You must enter your username or email address.'))//,
-        // captchaValue: yup.string().required(t('You must complete the captcha.')).nullable()
+        captchaValue: yup.string().required(t('You must complete the captcha.')).nullable()
     });
 
     return (
@@ -95,7 +95,7 @@ const ForgotPassword = () => {
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Form.Row>
-                            {/* <Form.Row>
+                            <Form.Row>
                                 <Form.Group as={Col} sm={8}>
                                     <ReCAPTCHA
                                         className='is-invalid'
@@ -109,7 +109,7 @@ const ForgotPassword = () => {
                                         {formProps.errors.captchaValue}
                                     </Form.Control.Feedback>
                                 </Form.Group>
-                            </Form.Row> */}
+                            </Form.Row>
                             <div className='text-center'>
                                 <Button variant='primary' type='submit'>
                                     {t('Submit')}
