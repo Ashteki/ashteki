@@ -12,7 +12,7 @@ describe('Eras End', function () {
                 player2: {
                     phoenixborn: 'aradel-summergaard',
                     spellboard: ['chant-of-revenge'],
-                    inPlay: ['river-skald']
+                    inPlay: ['river-skald', 'shade-prowler']
                 }
             });
         });
@@ -20,10 +20,12 @@ describe('Eras End', function () {
         it('play triggers end round event', function () {
             this.player1.play(this.erasEnd);
 
+            this.player1.clickCard(this.cryptGuardian);
             // triggers Crypt guardian
             this.player1.clickCard(this.riverSkald);
 
             expect(this.riverSkald.exhausted).toBe(true);
+            expect(this.shadeProwler.location).toBe('archives');
         });
 
         it('play doesnt trigger exhausted ability', function () {
@@ -35,6 +37,19 @@ describe('Eras End', function () {
             this.player1.clickCard(this.riverSkald);
 
             expect(this.riverSkald.exhausted).toBe(false);
+        });
+
+        it('play doesnt trigger inexhaustible ability on exhausted card', function () {
+            this.cryptGuardian.tokens.exhaustion = 1;
+            this.shadeProwler.exhaust();
+            this.player1.play(this.erasEnd);
+
+            expect(this.player1).toHaveDefaultPrompt();
+            // triggers NOT Crypt guardian
+            this.player1.clickCard(this.riverSkald);
+
+            expect(this.riverSkald.exhausted).toBe(false);
+            expect(this.shadeProwler.location).toBe('play area');
         });
     });
 
