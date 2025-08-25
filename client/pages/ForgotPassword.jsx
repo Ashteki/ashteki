@@ -37,7 +37,7 @@ const ForgotPassword = () => {
     };
 
     const schema = yup.object({
-        username: yup.string().required(t('You must enter your username or email address.'))//,
+        username: yup.string().required(t('You must enter your username or email address.')),
         captchaValue: yup.string().required(t('You must complete the captcha.')).nullable()
     });
 
