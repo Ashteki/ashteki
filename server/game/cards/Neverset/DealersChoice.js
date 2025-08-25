@@ -21,6 +21,7 @@ class DealersChoice extends Card {
                     cardCondition: (card, context) => card !== context.targets.unit
                 },
                 exhaust: {
+                    showCardButtons: true,
                     player: 'opponent',
                     ignoreTargetCheck: true,
                     activePromptTitle: 'Choose which card to exhaust',

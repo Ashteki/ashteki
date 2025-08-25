@@ -199,6 +199,14 @@ class SelectCardPrompt extends UiPrompt {
             }
         }
 
+        if (this.properties.showCardButtons) {
+            const cards = this.choosingPlayer.getSelectableCards();
+            const cardButtons = _.map(cards, (card) => {
+                return { text: card.name, arg: card.uuid, card: card };
+            });
+            buttons = cardButtons.concat(buttons);
+        }
+
         if (
             (this.properties.showCancel || this.game.manualMode) &&
             !_.any(buttons, (button) => button.arg === 'cancel')
@@ -330,7 +338,13 @@ class SelectCardPrompt extends UiPrompt {
             return true;
         } else if (arg === 'done' && this.hasEnoughSelected()) {
             return this.fireOnSelect();
-        } else if (this.properties.onMenuCommand(player, arg)) {
+        } else if (this.properties.showCardButtons && _.isString(arg)) {
+            let card = _.find(this.choosingPlayer.getSelectableCards(), (card) => card.uuid === arg);
+            if (card) {
+                return this.onCardClicked(this.choosingPlayer, card);
+            }
+            return false;
+        } else if (this.properties.onMenuCommand && this.properties.onMenuCommand(player, arg)) {
             this.complete();
             return true;
         }
