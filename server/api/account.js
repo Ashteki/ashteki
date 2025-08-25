@@ -15,6 +15,7 @@ const ConfigService = require('../services/ConfigService');
 const BanlistService = require('../services/AshesBanlistService');
 const PatreonService = require('../services/PatreonService');
 const util = require('../util.js');
+const MailJetSender = require('./email/MailJetSender.js');
 
 let configService = new ConfigService();
 let userService;
@@ -42,6 +43,12 @@ function isValidImage(base64Image) {
 }
 
 async function sendEmail(address, subject, email) {
+    // await sendViaSendgrid(address, subject, email);
+    const mailjetSender = new MailJetSender(logger);
+    await mailjetSender.sendEmail(address, subject, email);
+}
+
+async function sendViaSendgrid(address, subject, email) {
     let emailKey =
         process.env.SENDGRID_API_KEY || configService.getValueForSection('lobby', 'emailKey');
     if (!emailKey) {
@@ -777,19 +784,21 @@ module.exports.init = function (server, options) {
         '/api/account/password-reset',
         wrapAsync(async (req, res) => {
             let resetToken;
-            let captchaSecret = process.env.CAPTCHA_SECRET || configService.getValue('captchaKey');
-            let response = await util.httpRequest(
-                `https://www.google.com/recaptcha/api/siteverify?secret=${captchaSecret}&response=${req.body.captcha}`
-            );
-            let answer = JSON.parse(response);
+            if (process.env.NODE_ENV === 'production') {
 
-            if (!answer.success) {
-                return res.send({
-                    success: false,
-                    message: 'Please complete the captcha correctly'
-                });
+                let captchaSecret = process.env.CAPTCHA_SECRET || configService.getValue('captchaKey');
+                let response = await util.httpRequest(
+                    `https://www.google.com/recaptcha/api/siteverify?secret=${captchaSecret}&response=${req.body.captcha}`
+                );
+                let answer = JSON.parse(response);
+
+                if (!answer.success) {
+                    return res.send({
+                        success: false,
+                        message: 'Please complete the captcha correctly'
+                    });
+                }
             }
-
             res.send({ success: true });
 
             let user = await userService.getUserByUsername(req.body.username);
