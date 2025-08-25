@@ -1,0 +1,23 @@
+{
+    "results": [
+        {
+            "name": "Timestopper",
+            "stub": "timestopper",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "attack": 1,
+            "life": 2,
+            "recover": 1
+        }
+    ]
+}
