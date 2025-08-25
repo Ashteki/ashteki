@@ -62,6 +62,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
     filterChoices() {
         if (this.choices.length === 0) return true;
         let myChoices = this.choices.filter((c) => this.events[0].lopsided || c.player === this.currentPlayer);
+        myChoices = myChoices.filter((c) => c.event.cardCondition ? c.event.cardCondition(c.source) : true);
 
         // No choices left, or player pressed 'done'
         if (myChoices.length === 0 || this.pressedDone) {

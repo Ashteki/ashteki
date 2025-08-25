@@ -6,7 +6,8 @@ class ErasEnd extends Card {
             title: 'Eras End',
             gameAction: ability.actions.raiseEvent({
                 eventName: 'onRoundEnded',
-                snapshot: true
+                snapshot: true,
+                cardCondition: (card) => !card.exhausted
             })
         });
     }

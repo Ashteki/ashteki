@@ -95,6 +95,7 @@ class TriggeredAbility extends CardAbility {
         if (this.card.exhausted && !this.properties.inexhaustible) {
             return false;
         }
+
         // abilities with conditions need to have those met
         if (this.properties.condition && !this.properties.condition(context)) {
             // this seems like a duplication of 'when'...?
