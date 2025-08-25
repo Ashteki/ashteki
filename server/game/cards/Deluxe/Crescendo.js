@@ -10,7 +10,6 @@ class Crescendo extends Card {
                 }
             },
             target: {
-                optional: true,
                 activePromptTitle: 'Choose a unit to receive 1 damage',
                 cardType: BattlefieldTypes,
                 controller: 'self',
