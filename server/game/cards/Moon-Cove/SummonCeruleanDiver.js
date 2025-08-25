@@ -22,6 +22,8 @@ class SummonCeruleanDiver extends Card {
                 const power = diceCost.some((d) => d.level === Level.Power);
                 if (power && context.source.focus > 0) {
                     return {
+                        alwaysTriggers: true,
+
                         target: {
                             showCancel: true,
                             controller: 'opponent',
