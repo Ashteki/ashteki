@@ -76,6 +76,7 @@
         "mini-css-extract-plugin": "^2.7.2",
         "moment": "^2.29.1",
         "monk": "^7.3.4",
+        "node-mailjet": "^6.0.9",
         "node-noop": "^1.0.0",
         "node-sass": "^8.0.0",
         "passport": "^0.6.0",
