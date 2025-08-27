@@ -47,6 +47,16 @@
             "life": 4,
             "recover": 1,
             "copies": 2
+        },
+        {
+            "name": "Rubble Spirit",
+            "stub": "rubble-spirit",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
         }
     ]
 }
