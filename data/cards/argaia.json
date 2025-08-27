@@ -101,6 +101,25 @@
             "life": 2,
             "recover": 0,
             "copies": 3
+        },
+        {
+            "name": "Vermillion Sage",
+            "stub": "vermillion-sage",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1
         }
     ]
 }

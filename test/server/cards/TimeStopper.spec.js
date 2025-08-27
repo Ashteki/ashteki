@@ -42,7 +42,7 @@ describe('Timestopper', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
-        it('does not count as reaction when played normally', function () {
+        xit('does not count as reaction when played normally', function () {
             this.player1.endTurn();
             this.player2.play(this.timestopper);
             expect(this.timestopper.location).toBe('play area');

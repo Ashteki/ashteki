@@ -3,7 +3,7 @@ describe('Seek 3 ability', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'lulu-firststone',
-                hand: ['knowledge-seeker'],
+                hand: ['vermillion-sage', 'knowledge-seeker'],
                 dicepool: ['natural', 'natural', 'time', 'charm'],
                 deck: ['anchornaut', 'iron-worker', 'blood-archer', 'purge', 'open-memories']
             },
@@ -16,7 +16,7 @@ describe('Seek 3 ability', function () {
         });
     });
 
-    it('look at top 3 cards and place bottom or top', function () {
+    it('look at top 1 cards and place bottom or top', function () {
         // fix the deck
         this.player1.player.deck = [
             this.ironWorker,
@@ -26,22 +26,16 @@ describe('Seek 3 ability', function () {
             this.openMemories
         ];
 
-        this.player1.play(this.knowledgeSeeker);
-        this.player1.clickDie(0);
-        this.player1.clickDone();
-        expect(this.knowledgeSeeker.location).toBe('play area');
+        this.player1.play(this.vermillionSage);
+        expect(this.vermillionSage.location).toBe('play area');
 
-        this.player1.clickPrompt('anchornaut');
-        this.player1.clickPrompt('bottom');
-        this.player1.clickPrompt('iron worker');
-        this.player1.clickPrompt('top');
-        this.player1.clickPrompt('blood archer');
+        this.player1.clickPrompt('Iron Worker');
         this.player1.clickPrompt('bottom');
 
-        expect(this.player1.deck.length).toBe(5);
-        expect(this.player1.deck[4].id).toBe('blood-archer'); // blood archer on bottom
-        expect(this.player1.deck[3].id).toBe('anchornaut'); // anchornaut on bottom
-        expect(this.player1.deck[0].id).toBe('iron-worker'); // index 0 is the top
+        expect(this.player1.deck.length).toBe(4);
+        expect(this.anchornaut.location).toBe('hand');
+        expect(this.player1.deck[0].id).toBe('blood-archer'); // blood archer on top
+        expect(this.player1.deck[3].id).toBe('iron-worker'); // iron worker on bottom
         expect(this.player1).toHaveDefaultPrompt();
     });
 });
