@@ -72,6 +72,35 @@
             "magicCost": {
                 "time:power": 1
             }
+        },
+        {
+            "name": "Summon Cinder Spirit",
+            "stub": "summon-cinder-spirit",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "effectMagicCost": {
+                "time:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Cinder Spirit",
+                    "stub": "cinder-spirit"
+                }
+            ]
+        },
+        {
+            "name": "Cinder Spirit",
+            "stub": "cinder-spirit",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 2,
+            "recover": 0,
+            "copies": 3
         }
     ]
 }

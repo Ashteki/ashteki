@@ -16,7 +16,7 @@ describe('Summon Orchid Dove', function () {
             });
         });
 
-        it('should place a swallow', function () {
+        it('should place a dove', function () {
             this.player1.clickCard(this.summonOrchidDove);
             this.player1.clickPrompt('Summon Orchid Dove');
             this.player1.clickDie(0);
