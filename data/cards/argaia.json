@@ -57,6 +57,21 @@
             "life": 1,
             "recover": 0,
             "copies": 4
+        },
+        {
+            "name": "Afterimage",
+            "stub": "afterimage",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            }
         }
     ]
 }
