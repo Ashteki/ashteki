@@ -18,6 +18,35 @@
             "attack": 1,
             "life": 2,
             "recover": 1
+        },
+        {
+            "name": "Summon Tusk Mount",
+            "stub": "summon-tusk-mount",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "effectMagicCost": {
+                "time:class": 2,
+                "basic": 2
+            },
+            "conjurations": [
+                {
+                    "name": "Tusk Mount",
+                    "stub": "tusk-mount"
+                }
+            ]
+        },
+        {
+            "name": "Tusk Mount",
+            "stub": "tusk-mount",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 5,
+            "life": 4,
+            "recover": 1,
+            "copies": 2
         }
     ]
 }
