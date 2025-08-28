@@ -1,5 +1,5 @@
 describe('Timestopper', function () {
-    describe('in hand', function () {
+    describe('played as reaction', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
@@ -40,14 +40,12 @@ describe('Timestopper', function () {
             expect(this.ironWorker.checkRestrictions('attack')).toBe(false);
 
             expect(this.player1).toHaveDefaultPrompt();
-        });
-
-        xit('does not count as reaction when played normally', function () {
-            this.player1.endTurn();
-            this.player2.play(this.timestopper);
-            expect(this.timestopper.location).toBe('play area');
-            expect(this.player2.player.limitedPlayed).toBe(0);
-            expect(this.player2).toHaveDefaultPrompt();
+            this.player1.endTurn(); // end player1 turn (no trigger)
+            expect(this.ironWorker.checkRestrictions('block')).toBe(false);
+            this.player2.endTurn(); // end next turn (triggers end)
+            expect(this.ironWorker.checkRestrictions('block')).toBe(true);
         });
     });
+
+
 });

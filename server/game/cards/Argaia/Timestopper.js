@@ -10,17 +10,20 @@ class Timestopper extends Card {
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
                 cardCondition: (card, context) => card !== context.source,
-                gameAction: ability.actions.cardLastingEffect((context) => ({
-                    effect: [
-                        ability.effects.cardCannot('attack'),
-                        ability.effects.cardCannot('guard'),
-                        ability.effects.cardCannot('block')
-                    ],
-                    until: {
-                        onTurnEnded: (event) => event.player === context.player.opponent,
-                        onRoundEnded: (event) => true
-                    }
-                }))
+                gameAction: ability.actions.cardLastingEffect((context) => {
+                    const activePlayer = context.game.activePlayer;
+                    return {
+                        effect: [
+                            ability.effects.cardCannot('attack'),
+                            ability.effects.cardCannot('guard'),
+                            ability.effects.cardCannot('block')
+                        ],
+                        until: {
+                            onTurnEnded: (event) => event.player !== activePlayer,
+                            onRoundEnded: (event) => true
+                        }
+                    };
+                })
             }
         });
 
