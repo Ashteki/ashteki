@@ -143,6 +143,22 @@
             "attack": 3,
             "life": 3,
             "recover": 2
+        },
+        {
+            "name": "Rising Tides",
+            "stub": "rising-tides",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            }
         }
     ]
 }
