@@ -4,6 +4,10 @@ class ActionCost {
     }
 
     canPay(context) {
+        if (this.actionType === 'side' && !context.player.checkRestrictions('spendSide')) {
+            return false;
+        }
+
         return (
             !!context.player.actions[this.actionType] &&
             (this.actionType !== 'main' ||

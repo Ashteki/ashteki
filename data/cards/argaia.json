@@ -159,6 +159,22 @@
             "magicCost": {
                 "time:class": 1
             }
+        },
+        {
+            "name": "Tranquility",
+            "stub": "tranquility",
+            "type": "Alteration Spell",
+            "placement": "Phoenixborn",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            }
         }
     ]
 }
