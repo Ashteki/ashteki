@@ -190,6 +190,16 @@
             "magicCost": {
                 "time:power": 1
             }
+        },
+        {
+            "name": "Double Edge",
+            "stub": "double-edge",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]"
+            ],
+            "phoenixborn": "Jericho, Reborn"
         }
     ]
 }
