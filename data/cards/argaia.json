@@ -175,6 +175,21 @@
             "magicCost": {
                 "time:class": 1
             }
+        },
+        {
+            "name": "Fatal Strike",
+            "stub": "fatal-strike",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            }
         }
     ]
 }
