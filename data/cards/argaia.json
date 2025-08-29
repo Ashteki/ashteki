@@ -200,6 +200,34 @@
                 "[[side]]"
             ],
             "phoenixborn": "Jericho, Reborn"
+        },
+        {
+            "name": "Summon Ocean's Eyes",
+            "stub": "summon-oceans-eyes",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "effectMagicCost": {
+                "basic": 2
+            },
+            "conjurations": [
+                {
+                    "name": "Ocean's Eyes",
+                    "stub": "oceans-eyes"
+                }
+            ]
+        },
+        {
+            "name": "Ocean's Eyes",
+            "stub": "oceans-eyes",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 6
         }
     ]
 }
