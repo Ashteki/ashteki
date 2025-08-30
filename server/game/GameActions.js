@@ -90,6 +90,7 @@ const Actions = {
     discardTopOfDeck: (propertyFactory) => new GameActions.DiscardTopOfDeckAction(propertyFactory), // amount = 1
     draw: (propertyFactory) => new GameActions.DrawAction(propertyFactory), // amount = 1
     exposeRandom: (propertyFactory) => new GameActions.RandomExposeAction(propertyFactory), // amount = 1
+    exposeRandomDiscard: (propertyFactory) => new GameActions.RandomExposeDiscardAction(propertyFactory), // amount = 1
     filterDeck: (propertyFactory) => new GameActions.FilterDeckAction(propertyFactory),
     forRemainderOfTurn: (propertyFactory) =>
         new GameActions.LastingEffectAction(propertyFactory, 1),

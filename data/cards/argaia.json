@@ -228,6 +228,15 @@
             "life": 1,
             "recover": 0,
             "copies": 6
+        },
+        {
+            "name": "Realization",
+            "stub": "realization",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]"
+            ]
         }
     ]
 }
