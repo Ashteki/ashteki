@@ -24,6 +24,9 @@ class OrderedAoEAction extends GameAction {
                 this.cards = this.target;
 
                 if (this.cards.length > 0) {
+                    if (!context.multiCounter) {
+                        context.multiCounter = 0;
+                    }
                     this.promptForRemainingCards(context);
                 }
 
@@ -37,14 +40,12 @@ class OrderedAoEAction extends GameAction {
             activePromptTitle: 'Choose order of AoE actions',
             waitingPromptTitle: 'Waiting for opponent to order AoE actions',
             promptTitle: this.propertyCache.promptTitle,
-            // eslint-disable-next-line no-undef
-            // cardType: BattlefieldTypes,
             location: ['play area'],
             cardCondition: (card) => this.cards.includes(card) && !card.removed,
             context: context,
             onSelect: (player, card) => {
                 this.propertyCache.gameAction.resolve(card, context);
-                context.game.queueSimpleStep(() => {// TODO: puppetteer remove discarded card
+                context.game.queueSimpleStep(() => {
                     this.cards = this.cards.filter((c) => c !== card && !c.removed);
                     if (this.cards.length) {
                         this.promptForRemainingCards(context);

@@ -40,7 +40,8 @@ class DealDamageAction extends CardGameAction {
             fightEvent: this.fightEvent,
             ignoreArmor: this.ignoreArmor,
             bonus: this.bonus,
-            sourceType: this.sourceType
+            sourceType: this.sourceType,
+            multiEvent: this.multiEvent
         };
         // preventable by default. check restrictions if it's a fight
         params.preventable = this.fightEvent
