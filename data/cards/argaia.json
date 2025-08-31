@@ -217,7 +217,8 @@
                     "name": "Ocean's Eyes",
                     "stub": "oceans-eyes"
                 }
-            ]
+            ],
+            "phoenixborn": "Tristan Darkwater"
         },
         {
             "name": "Ocean's Eyes",
@@ -227,7 +228,8 @@
             "attack": 1,
             "life": 1,
             "recover": 0,
-            "copies": 6
+            "copies": 6,
+            "phoenixborn": "Tristan Darkwater"
         },
         {
             "name": "Realization",
@@ -236,7 +238,8 @@
             "placement": "Spellboard",
             "cost": [
                 "[[side]]"
-            ]
+            ],
+            "phoenixborn": "Orrick Gilstream"
         },
         {
             "name": "Cataclysm",
@@ -253,7 +256,7 @@
             "magicCost": {
                 "basic": 2
             },
-            "text": "Deal 1 damage to all units."
+            "phoenixborn": "Rowan Umberend"
         }
     ]
 }
