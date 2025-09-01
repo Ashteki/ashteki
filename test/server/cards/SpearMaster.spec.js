@@ -29,6 +29,55 @@ describe('Spear Master', function () {
         });
     });
 
+    describe('On attack', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['spear-master', 'mist-spirit', 'iron-worker'],
+                    dicepool: ['divine', 'divine', 'time', 'time', 'natural', 'natural'],
+                    hand: ['freezing-blast', 'clashing-tempers'],
+                    archives: ['ice-buff', 'pack-wolf']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'holy-knight', 'anchornaut'],
+                    spellboard: [],
+                    hand: [],
+                    dicepool: ['natural', 'natural', 'charm']
+                }
+            });
+
+            this.spearMaster.tokens.status = 2;
+            this.ironWorker.tokens.status = 1;
+        });
+
+        it('spear volley triggers', function () {
+            expect(this.spearMaster.status).toBe(2);
+            expect(this.ironWorker.status).toBe(1);
+
+            this.player1.clickAttack(this.anchornaut);
+            this.player1.clickCard(this.spearMaster);
+            // should open prompt
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.status).toBe(0);
+            this.player1.clickCard(this.spearMaster);
+            expect(this.spearMaster.status).toBe(1);
+            this.player1.clickDone();
+
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickDone();
+
+            this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.anchornaut.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
     describe('end of round replenish', function () {
         beforeEach(function () {
             this.setupTest({
@@ -49,7 +98,7 @@ describe('Spear Master', function () {
             });
         });
 
-        it('offers to summon pack wolf', function () {
+        it('adds status tokens', function () {
             expect(this.spearMaster.status).toBe(0);
 
             this.player1.endTurn();

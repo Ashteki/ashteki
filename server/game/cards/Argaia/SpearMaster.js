@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class SpearMaster extends Card {
@@ -15,6 +16,34 @@ class SpearMaster extends Card {
             gameAction: ability.actions.addStatusToken({
                 amount: 2
             })
+        });
+
+        this.forcedReaction({
+            when: {
+                onAttackersDeclared: (event, context) => {
+                    return (
+                        event.attackingPlayer === context.source.controller &&
+                        event.attackers.includes(context.source)
+                    );
+                }
+            },
+            gameAction: ability.actions.collectStatusTokens({
+                cardType: BattlefieldTypes,
+                cardCondition: (card) => card.status > 0 && card.controller === this.controller
+            }),
+            then: {
+                alwaysTriggers: true,
+                target: {
+                    cardType: BattlefieldTypes,
+                    controller: 'opponent',
+                    mode: 'upTo',
+                    numCards: (context) => context.priorContext.tokenCount,
+                    gameAction: ability.actions.orderedAoE({
+                        gameAction: ability.actions.dealDamage({ showMessage: true }),
+                        promptTitle: 'Spear Volley'
+                    })
+                }
+            }
         });
     }
 }

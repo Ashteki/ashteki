@@ -18,6 +18,7 @@ module.exports = {
     ChosenDiscardAction: require('./ChosenDiscardAction'),
     ChosenExhaustAction: require('./ChosenExhaustAction'),
     ChosenUnexhaustAction: require('./ChosenUnexhaustAction'),
+    CollectStatusTokenAction: require('./CollectStatusTokenAction'),
     ConditionalAction: require('./ConditionalAction'),
     DealDamageAction: require('./DealDamageAction'),
     DelayedEffectAction: require('./DelayedEffectAction'),
