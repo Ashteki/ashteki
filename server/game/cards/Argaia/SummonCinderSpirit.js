@@ -1,4 +1,4 @@
-const { Level, Magic, CardType } = require('../../../constants.js');
+const { Level, Magic, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 const DiceCount = require('../../DiceCount.js');
 
@@ -15,16 +15,31 @@ class SummonCinderSpirit extends Card {
             title: 'Summon Cinder Spirit',
             cost: [
                 ability.costs.sideAction(),
-                ability.costs.loseStatus(),
                 ability.costs.dice([
                     new DiceCount(1, Level.Class, Magic.Time),
                     new DiceCount(1, Level.Basic)
                 ])
             ],
             location: 'spellboard',
-            gameAction: ability.actions.summon({
-                conjuration: 'cinder-spirit'
-            })
+            target: {
+                activePromptTitle: 'Choose a unit to move a status token to',
+                cardCondition: (card, context) => card !== context.source,
+                cardType: BattlefieldTypes,
+                controller: 'self',
+                gameAction: ability.actions.moveToken((context) => ({
+                    from: context.source,
+                    to: context.target,
+                    type: 'status'
+                }))
+            },
+            then: {
+                gameAction: ability.actions.conditional({
+                    condition: (context) => context.preThenEvents.every((e) => e.resolved),
+                    trueGameAction: ability.actions.summon({
+                        conjuration: 'cinder-spirit'
+                    })
+                })
+            }
         });
     }
 }
