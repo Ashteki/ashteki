@@ -16,6 +16,7 @@ class RadiantLight extends Card {
         });
 
         this.persistentEffect({
+            condition: () => !this.exhausted,
             match: (card) => card.dieUpgrades.some((die) => die.magic === Magic.Divine),
             effect: [ability.effects.modifyLife(1), ability.effects.modifyRecover(1)]
         });
