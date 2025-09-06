@@ -97,7 +97,7 @@ export const gameFormats = [
     { name: 'constructed', label: 'Constructed' },
     { name: 'coaloff', label: 'Coal Off!' },
     { name: 'solo', label: 'Solo' },
-    { name: 'onecollection', label: 'One Collection' }
+    { name: 'onecollection', label: 'One Collection Battlebox' }
 ];
 
 export const cardSizes = [
