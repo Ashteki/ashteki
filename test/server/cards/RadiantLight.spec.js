@@ -41,7 +41,7 @@ describe('Radiant Light', function () {
                     discard: ['hammer-knight']
                 },
                 player2: {
-                    phoenixborn: 'aradel-summergaard',
+                    phoenixborn: 'noah-redmoon',
                     inPlay: ['frost-fang', 'iron-worker'],
                     dicepool: ['illusion', 'natural'],
                     hand: ['safeguard']
@@ -60,6 +60,25 @@ describe('Radiant Light', function () {
             expect(this.mistSpirit.recover).toBe(1);
             expect(this.anchornaut.life).toBe(1);
             expect(this.anchornaut.recover).toBe(1);
+        });
+
+        it('no buff if exhausted', function () {
+            expect(this.mistSpirit.life).toBe(1);
+            expect(this.mistSpirit.recover).toBe(0);
+
+            this.player1.useDie(0);
+            this.player1.clickCard(this.mistSpirit);
+
+            expect(this.mistSpirit.life).toBe(2);
+            expect(this.mistSpirit.recover).toBe(1);
+            this.player1.endTurn();
+            this.player2.useAbility(this.noahRedmoon);
+            this.player2.clickDie(0);
+            this.player2.clickCard(this.radiantLight);
+
+            expect(this.radiantLight.exhausted).toBe(true);
+            expect(this.mistSpirit.life).toBe(1);
+            expect(this.mistSpirit.recover).toBe(0);
         });
 
         it('flicker returns to deck', function () {
