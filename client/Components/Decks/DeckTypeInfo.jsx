@@ -78,7 +78,7 @@ const DeckTypeInfo = ({ deckType }) => {
         case 'onecollection':
             return (
                 <AlertPanel type='info'>
-                    <strong>One Collection</strong> Decks from NoSuchMethod&apos;s format that use one collection up to the Red Rains cycle and allow both uniques for each Phoenixborn.
+                    <strong>One Collection Battlebox</strong> Decks from NoSuchMethod&apos;s format that use one collection up to the Red Rains cycle and allow both uniques for each Phoenixborn.
                 </AlertPanel>
             );
     }
