@@ -274,3 +274,14 @@ export function loadDualDuelDecks() {
         }
     };
 }
+
+export function loadOneCollectionDecks() {
+    return {
+        types: ['LOAD_ONECOLLECTION_DECKS', 'ONECOLLECTION_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/onecollection-decks',
+            type: 'GET'
+        }
+    };
+}
