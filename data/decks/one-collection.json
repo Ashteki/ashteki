@@ -607,11 +607,6 @@
     ],
     "cards": [
       {
-        "id": "copycat",
-        "count": 1,
-        "ff": false
-      },
-      {
         "id": "magnificence",
         "count": 3,
         "ff": false
@@ -1002,6 +997,10 @@
         "id": "string-mage",
         "count": 1,
         "ff": false
+      },
+      {
+        "id": "sandstorm-sage",
+        "count": 2
       },
       {
         "id": "crescendo",
