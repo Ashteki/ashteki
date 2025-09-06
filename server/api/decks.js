@@ -165,6 +165,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/onecollection-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(10);
+            } catch (err) {
+                logger.error('Failed to get precon 10 decks', err);
+
+                throw new Error('Failed to get precon 10 decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/decks/:id',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {

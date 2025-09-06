@@ -92,7 +92,8 @@ const DecksComponent = ({ onDeckSelected }) => {
         chimeraDecks,
         pveDecks,
         msuDecks,
-        dualDuelDecks
+        dualDuelDecks,
+        oneCollectionDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
@@ -103,7 +104,8 @@ const DecksComponent = ({ onDeckSelected }) => {
         chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
         pveDecks: state.cards.pveDecks,
         msuDecks: state.cards.msuDecks,
-        dualDuelDecks: state.cards.dualDuelDecks
+        dualDuelDecks: state.cards.dualDuelDecks,
+        oneCollectionDecks: state.cards.oneCollectionDecks
     }));
 
     const onTabChange = (index, lastIndex, event) => {
@@ -137,6 +139,9 @@ const DecksComponent = ({ onDeckSelected }) => {
             case 8:
                 deck = dualDuelDecks[0];
                 break;
+            case 10: // oneCollection
+                deck = oneCollectionDecks[0];
+                break;
         }
         dispatch(selectDeck(deck));
     };
@@ -163,6 +168,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                         <Tab>Adventuring Party</Tab>
                         <Tab>Master Set Upgrade</Tab>
                         <Tab>Dual Duel</Tab>
+                        <Tab>One Collection</Tab>
                     </TabList>
                     <TabPanel>
                         <Row>
@@ -298,6 +304,19 @@ const DecksComponent = ({ onDeckSelected }) => {
                             <Col lg={6}>
                                 <DeckTypeInfo deckType='dualduel' />
                                 <DeckList decks={dualDuelDecks} />
+                            </Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
+                        </Row>
+                    </TabPanel>
+                    <TabPanel>
+                        <Row>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg={6}>
+                                <DeckTypeInfo deckType='onecollection' />
+                                <DeckList decks={oneCollectionDecks} />
                             </Col>
                             <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>

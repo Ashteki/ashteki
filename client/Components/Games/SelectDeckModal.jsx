@@ -26,7 +26,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         chimeraDecks,
         pveDecks,
         msuDecks,
-        dualDuelDecks
+        dualDuelDecks,
+        oneCollectionDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
@@ -37,7 +38,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
         pveDecks: state.cards.pveDecks,
         msuDecks: state.cards.msuDecks,
-        dualDuelDecks: state.cards.dualDuelDecks
+        dualDuelDecks: state.cards.dualDuelDecks,
+        oneCollectionDecks: state.cards.oneCollectionDecks
     }));
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
@@ -181,6 +183,10 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             case 'aparty':
                 setIndex = 2;
                 decks = adventuringPartyDecks;
+                break;
+            case 'onecollection':
+                setIndex = 10;
+                decks = oneCollectionDecks;
                 break;
         }
 

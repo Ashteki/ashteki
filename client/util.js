@@ -94,11 +94,10 @@ export const getGameTypeLabel = (gameType) => {
 export const gameFormats = [
     { name: 'precon', label: 'Precon' },
     { name: 'hl2pvp', label: 'Heroic Level 2' },
-    { name: 'firstadventure', label: 'First Adventure' },
-    { name: 'aparty', label: 'Adventuring Party' },
     { name: 'constructed', label: 'Constructed' },
     { name: 'coaloff', label: 'Coal Off!' },
-    { name: 'solo', label: 'Solo' }
+    { name: 'solo', label: 'Solo' },
+    { name: 'onecollection', label: 'One Collection' }
 ];
 
 export const cardSizes = [

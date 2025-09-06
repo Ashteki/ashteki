@@ -54,8 +54,8 @@ function processDecks(decks, state) {
             deck.cards.filter(
                 (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
             ).length === 0 &&
-            // max 3 uniques
-            countUniques <= 3;
+            // max 3 uniques unless in onecollection format when all are allowed
+            (countUniques <= 3 || deck.format === 'onecollection');
         let uniques = !hasPhoenixborn || validUniques;
 
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
@@ -215,6 +215,16 @@ export default function (state = { decks: [], cards: {} }, action) {
 
             newState = Object.assign({}, state, {
                 dualDuelDecks: action.response.decks
+            });
+
+            return newState;
+        case 'ONECOLLECTION_DECKS_LOADED':
+            if (action.response.decks) {
+                processDecks(action.response.decks, state);
+            }
+
+            newState = Object.assign({}, state, {
+                oneCollectionDecks: action.response.decks
             });
 
             return newState;

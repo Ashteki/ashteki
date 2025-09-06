@@ -1,0 +1,194 @@
+[
+  {
+    "precon_id": 901,
+    "format": "onecollection",
+    "name": "Crown of Blood",
+    "phoenixborn": [
+      {
+        "id": "jessa-na-ni",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 7
+      },
+      {
+        "magic": "charm",
+        "count": 3
+      }
+    ],
+    "cards": [
+      {
+        "id": "fear",
+        "count": 3
+      },
+      {
+        "id": "playtime",
+        "count": 3
+      },
+      {
+        "id": "summon-blood-puppet",
+        "count": 1
+      },
+      {
+        "id": "chant-of-transfusion",
+        "count": 3
+      },
+      {
+        "id": "serve-the-city",
+        "count": 2
+      },
+      {
+        "id": "summon-weeping-spirit",
+        "count": 1
+      },
+      {
+        "id": "cut-the-strings",
+        "count": 1
+      },
+      {
+        "id": "blood-archer",
+        "count": 3
+      },
+      {
+        "id": "blood-shaman",
+        "count": 2
+      },
+      {
+        "id": "living-doll",
+        "count": 2
+      },
+      {
+        "id": "blood-puppeteer",
+        "count": 3
+      },
+      {
+        "id": "undying-heart",
+        "count": 2
+      },
+      {
+        "id": "final-cry",
+        "count": 3
+      },
+      {
+        "id": "redirect",
+        "count": 1
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "blood-puppet",
+        "count": 5
+      },
+      {
+        "id": "weeping-spirit",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "precon_id": 902,
+    "format": "onecollection",
+    "name": "Woofs",
+    "phoenixborn": [
+      {
+        "id": "koji-wolfcub",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 5
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "lick-wounds",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "wolfpack-leader",
+        "count": 3
+      },
+      {
+        "id": "summon-indiglow-creeper",
+        "count": 3
+      },
+      {
+        "id": "summon-squall-stallion",
+        "count": 1
+      },
+      {
+        "id": "guilt-link",
+        "count": 1
+      },
+      {
+        "id": "empower",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "hunt-master",
+        "count": 3
+      },
+      {
+        "id": "jungle-warrior",
+        "count": 2
+      },
+      {
+        "id": "sleeping-bear",
+        "count": 2
+      },
+      {
+        "id": "temple-elder",
+        "count": 3
+      },
+      {
+        "id": "explosive-growth",
+        "count": 3
+      },
+      {
+        "id": "invigorate",
+        "count": 1
+      },
+      {
+        "id": "red-flower",
+        "count": 2
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "indiglow-creeper",
+        "count": 1
+      },
+      {
+        "id": "luminous-seedling",
+        "count": 3
+      },
+      {
+        "id": "brilliant-thorn",
+        "count": 6
+      },
+      {
+        "id": "squall-stallion",
+        "count": 2
+      },
+      {
+        "id": "pack-wolf",
+        "count": 3
+      },
+      {
+        "id": "panther-spirit",
+        "count": 3
+      }
+    ]
+  }
+]
