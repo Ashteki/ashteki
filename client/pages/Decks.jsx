@@ -168,7 +168,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                         <Tab>Adventuring Party</Tab>
                         <Tab>Master Set Upgrade</Tab>
                         <Tab>Dual Duel</Tab>
-                        <Tab>One Collection</Tab>
+                        <Tab>One Collection Battlebox</Tab>
                     </TabList>
                     <TabPanel>
                         <Row>
