@@ -17,7 +17,8 @@
             },
             "attack": 1,
             "life": 2,
-            "recover": 1
+            "recover": 1,
+            "imageStub": "http://localhost:4000/img/rrt/timestopper.jpg"
         },
         {
             "name": "Summon Tusk Mount",
@@ -36,7 +37,8 @@
                     "name": "Tusk Mount",
                     "stub": "tusk-mount"
                 }
-            ]
+            ],
+            "imageStub": "http://localhost:4000/img/rrt/summon-tusk-mount.jpg"
         },
         {
             "name": "Tusk Mount",
@@ -46,7 +48,8 @@
             "attack": 5,
             "life": 4,
             "recover": 1,
-            "copies": 2
+            "copies": 2,
+            "imageStub": "http://localhost:4000/img/rrt/tusk-mount.jpg"
         },
         {
             "name": "Rubble Spirit",
@@ -56,7 +59,8 @@
             "attack": 1,
             "life": 1,
             "recover": 0,
-            "copies": 4
+            "copies": 4,
+            "imageStub": "http://localhost:4000/img/rrt/rubble-spirit.jpg"
         },
         {
             "name": "Afterimage",
@@ -71,7 +75,8 @@
             ],
             "magicCost": {
                 "time:power": 1
-            }
+            },
+            "imageStub": "http://localhost:4000/img/rrt/afterimage.jpg"
         },
         {
             "name": "Summon Cinder Spirit",
@@ -90,7 +95,8 @@
                     "name": "Cinder Spirit",
                     "stub": "cinder-spirit"
                 }
-            ]
+            ],
+            "imageStub": "http://localhost:4000/img/rrt/summon-cinder-spirit.jpg"
         },
         {
             "name": "Cinder Spirit",
@@ -100,7 +106,8 @@
             "attack": 2,
             "life": 2,
             "recover": 0,
-            "copies": 3
+            "copies": 3,
+            "imageStub": "http://localhost:4000/img/rrt/cinder-spirit.jpg"
         },
         {
             "name": "Vermillion Sage",
@@ -119,7 +126,8 @@
             },
             "attack": 1,
             "life": 1,
-            "recover": 1
+            "recover": 1,
+            "imageStub": "http://localhost:4000/img/rrt/vermillion-sage.jpg"
         },
         {
             "name": "Spear Master",
@@ -142,7 +150,8 @@
             },
             "attack": 3,
             "life": 3,
-            "recover": 2
+            "recover": 2,
+            "imageStub": "http://localhost:4000/img/rrt/spear-master.jpg"
         },
         {
             "name": "Rising Tides",
@@ -158,7 +167,8 @@
             ],
             "magicCost": {
                 "time:class": 1
-            }
+            },
+            "imageStub": "http://localhost:4000/img/rrt/rising-tides.jpg"
         },
         {
             "name": "Tranquility",
@@ -174,7 +184,8 @@
             ],
             "magicCost": {
                 "time:class": 1
-            }
+            },
+            "imageStub": "http://localhost:4000/img/rrt/tranquility.jpg"
         },
         {
             "name": "Fatal Strike",
@@ -189,7 +200,8 @@
             ],
             "magicCost": {
                 "time:power": 1
-            }
+            },
+            "imageStub": "http://localhost:4000/img/rrt/fatal-strike.jpg"
         },
         {
             "name": "Double Edge",
@@ -199,7 +211,8 @@
             "cost": [
                 "[[side]]"
             ],
-            "phoenixborn": "Jericho, Reborn"
+            "phoenixborn": "Jericho, Reborn",
+            "imageStub": "http://localhost:4000/img/rrt/double-edge.jpg"
         },
         {
             "name": "Summon Ocean's Eyes",
@@ -218,7 +231,8 @@
                     "stub": "oceans-eyes"
                 }
             ],
-            "phoenixborn": "Tristan Darkwater"
+            "phoenixborn": "Tristan Darkwater",
+            "imageStub": "http://localhost:4000/img/rrt/summon-oceans-eyes.jpg"
         },
         {
             "name": "Ocean's Eyes",
@@ -229,7 +243,8 @@
             "life": 1,
             "recover": 0,
             "copies": 6,
-            "phoenixborn": "Tristan Darkwater"
+            "phoenixborn": "Tristan Darkwater",
+            "imageStub": "http://localhost:4000/img/rrt/oceans-eyes.jpg"
         },
         {
             "name": "Realization",
@@ -239,7 +254,8 @@
             "cost": [
                 "[[side]]"
             ],
-            "phoenixborn": "Orrick Gilstream"
+            "phoenixborn": "Orrick Gilstream",
+            "imageStub": "http://localhost:4000/img/rrt/realization.jpg"
         },
         {
             "name": "Cataclysm",
@@ -256,7 +272,8 @@
             "magicCost": {
                 "basic": 2
             },
-            "phoenixborn": "Rowan Umberend"
+            "phoenixborn": "Rowan Umberend",
+            "imageStub": "http://localhost:4000/img/rrt/cataclysm.jpg"
         }
     ]
 }

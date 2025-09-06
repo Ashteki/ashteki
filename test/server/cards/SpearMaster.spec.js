@@ -76,6 +76,25 @@ describe('Spear Master', function () {
             expect(this.anchornaut.location).toBe('discard');
             expect(this.player1).toHaveDefaultPrompt();
         });
+
+        it('spear volley reset', function () {
+            expect(this.spearMaster.status).toBe(2);
+            expect(this.ironWorker.status).toBe(1);
+
+            this.player1.clickAttack(this.anchornaut);
+            this.player1.clickCard(this.spearMaster);
+            // should open prompt
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.status).toBe(0);
+            this.player1.clickCard(this.spearMaster);
+            expect(this.spearMaster.status).toBe(1);
+
+            this.player1.clickPrompt('Reset');
+            expect(this.spearMaster.status).toBe(2);
+            expect(this.ironWorker.status).toBe(1);
+            expect(this.player1).not.toHaveDefaultPrompt();
+        });
     });
 
     describe('end of round replenish', function () {

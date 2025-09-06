@@ -34,6 +34,8 @@ class SpearMaster extends Card {
             then: {
                 alwaysTriggers: true,
                 target: {
+                    activePromptTitle: (context) =>
+                        `Choose up to ${context.priorContext.tokenCount} units to deal 1 damage to`,
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
                     mode: 'upTo',

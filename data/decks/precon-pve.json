@@ -1950,5 +1950,79 @@
         "count": 2
       }
     ]
+  },
+  {
+    "precon_id": 425,
+    "name": "The End of Argaia: Jericho",
+    "phoenixborn": [
+      {
+        "id": "jericho-reborn",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "time",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "timestopper",
+        "count": 3
+      },
+      {
+        "id": "summon-tusk-mount",
+        "count": 3
+      },
+      {
+        "id": "afterimage",
+        "count": 3
+      },
+      {
+        "id": "summon-cinder-spirit",
+        "count": 3
+      },
+      {
+        "id": "vermillion-sage",
+        "count": 3
+      },
+      {
+        "id": "spear-master",
+        "count": 3
+      },
+      {
+        "id": "rising-tides",
+        "count": 3
+      },
+      {
+        "id": "tranquility",
+        "count": 3
+      },
+      {
+        "id": "fatal-strike",
+        "count": 3
+      },
+      {
+        "id": "double-edge",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "tusk-mount",
+        "count": 2
+      },
+      {
+        "id": "rubble-spirit",
+        "count": 4
+      },
+      {
+        "id": "cinder-spirit",
+        "count": 3
+      }
+    ]
   }
 ]

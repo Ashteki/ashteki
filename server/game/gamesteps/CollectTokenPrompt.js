@@ -32,7 +32,9 @@ class CollectTokenPrompt extends UiPrompt {
         if (this.game.manualMode) {
             buttons = buttons.concat({ text: 'Cancel Prompt', arg: 'cancel' });
         }
-        buttons = buttons.concat({ text: 'Done', arg: 'done' });
+        buttons = buttons.concat(
+            { text: 'Reset', arg: 'reset' },
+            { text: 'Done', arg: 'done' });
 
         return {
             selectCard: true,
@@ -80,6 +82,7 @@ class CollectTokenPrompt extends UiPrompt {
 
         if (!this.cardStatus[card.uuid]) {
             this.cardStatus[card.uuid] = {
+                card: card,
                 status: 1
             };
         } else {
@@ -94,6 +97,13 @@ class CollectTokenPrompt extends UiPrompt {
             // return tokens to source(s)
 
             this.complete();
+            return true;
+        }
+        if (arg === 'reset') {
+            Object.values(this.cardStatus).forEach(cardVal => {
+                cardVal.card.addToken('status', cardVal.status);
+            });
+            this.clearSelection();
             return true;
         }
         if (arg === 'done') {
