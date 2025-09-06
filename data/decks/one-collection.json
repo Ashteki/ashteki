@@ -2,105 +2,18 @@
   {
     "precon_id": 901,
     "format": "onecollection",
-    "name": "Crown of Blood",
+    "name": "Xander Heartsblood",
     "phoenixborn": [
       {
-        "id": "jessa-na-ni",
+        "id": "xander-heartsblood",
         "count": 1
       }
     ],
+    "ultimate": null,
+    "behaviour": null,
     "dicepool": [
       {
-        "magic": "ceremonial",
-        "count": 7
-      },
-      {
-        "magic": "charm",
-        "count": 3
-      }
-    ],
-    "cards": [
-      {
-        "id": "fear",
-        "count": 3
-      },
-      {
-        "id": "playtime",
-        "count": 3
-      },
-      {
-        "id": "summon-blood-puppet",
-        "count": 1
-      },
-      {
-        "id": "chant-of-transfusion",
-        "count": 3
-      },
-      {
-        "id": "serve-the-city",
-        "count": 2
-      },
-      {
-        "id": "summon-weeping-spirit",
-        "count": 1
-      },
-      {
-        "id": "cut-the-strings",
-        "count": 1
-      },
-      {
-        "id": "blood-archer",
-        "count": 3
-      },
-      {
-        "id": "blood-shaman",
-        "count": 2
-      },
-      {
-        "id": "living-doll",
-        "count": 2
-      },
-      {
-        "id": "blood-puppeteer",
-        "count": 3
-      },
-      {
-        "id": "undying-heart",
-        "count": 2
-      },
-      {
-        "id": "final-cry",
-        "count": 3
-      },
-      {
-        "id": "redirect",
-        "count": 1
-      }
-    ],
-    "conjurations": [
-      {
-        "id": "blood-puppet",
-        "count": 5
-      },
-      {
-        "id": "weeping-spirit",
-        "count": 4
-      }
-    ]
-  },
-  {
-    "precon_id": 902,
-    "format": "onecollection",
-    "name": "Woofs",
-    "phoenixborn": [
-      {
-        "id": "koji-wolfcub",
-        "count": 1
-      }
-    ],
-    "dicepool": [
-      {
-        "magic": "sympathy",
+        "magic": "divine",
         "count": 5
       },
       {
@@ -110,25 +23,259 @@
     ],
     "cards": [
       {
-        "id": "lick-wounds",
+        "id": "earthquake",
         "count": 3,
         "ff": true
       },
       {
-        "id": "wolfpack-leader",
+        "id": "bravery",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "summon-cerasaurus-mount",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "sacred-ground",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "royal-charm",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "pain-shaman",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "raptor-herder",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "ptera-herder",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "mass-heal",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "will-to-survive",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "natures-wrath",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "summon-archasaurus-mount",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "summon-shining-hydra",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "inflame",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "cerasaurus-mount",
+        "count": 2
+      },
+      {
+        "id": "raptor-hatchling",
         "count": 3
+      },
+      {
+        "id": "ptera-hatchling",
+        "count": 3
+      },
+      {
+        "id": "archasaurus-mount",
+        "count": 1
+      },
+      {
+        "id": "shining-hydra",
+        "count": 1
+      },
+      {
+        "id": "shining-hydra-head",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "precon_id": 902,
+    "format": "onecollection",
+    "name": "Aradel Summergaard",
+    "phoenixborn": [
+      {
+        "id": "aradel-summergaard",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 5
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "rejuvenate",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-butterfly-monk",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "summon-mist-spirit",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-shade-prowler",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "sleeping-bear",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "jungle-forager",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "hidden-power",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "mist-typhoon",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "out-of-the-mist",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "steady-gaze",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "massive-growth",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "root-armor",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "from-darkness",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "wallop",
+        "count": 2,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "butterfly-monk",
+        "count": 2
+      },
+      {
+        "id": "mist-spirit",
+        "count": 10
+      },
+      {
+        "id": "shade-prowler",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 903,
+    "format": "onecollection",
+    "name": "Koji Wolfcub",
+    "phoenixborn": [
+      {
+        "id": "koji-wolfcub",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 5
+      },
+      {
+        "magic": "sympathy",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "lick-wounds",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "wolfpack-leader",
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-indiglow-creeper",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
-        "id": "summon-squall-stallion",
-        "count": 1
+        "id": "summon-mirror-spirit",
+        "count": 3,
+        "ff": true
       },
       {
         "id": "guilt-link",
-        "count": 1
+        "count": 1,
+        "ff": false
       },
       {
         "id": "empower",
@@ -137,34 +284,50 @@
       },
       {
         "id": "hunt-master",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "jungle-warrior",
-        "count": 2
+        "count": 2,
+        "ff": false
       },
       {
         "id": "sleeping-bear",
-        "count": 2
+        "count": 1,
+        "ff": false
       },
       {
         "id": "temple-elder",
-        "count": 3
+        "count": 2,
+        "ff": false
       },
       {
         "id": "explosive-growth",
-        "count": 3
+        "count": 3,
+        "ff": false
       },
       {
         "id": "invigorate",
-        "count": 1
+        "count": 1,
+        "ff": false
       },
       {
         "id": "red-flower",
-        "count": 2
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "root-armor",
+        "count": 1,
+        "ff": false
       }
     ],
     "conjurations": [
+      {
+        "id": "pack-wolf",
+        "count": 3
+      },
       {
         "id": "indiglow-creeper",
         "count": 1
@@ -178,11 +341,7 @@
         "count": 6
       },
       {
-        "id": "squall-stallion",
-        "count": 2
-      },
-      {
-        "id": "pack-wolf",
+        "id": "mirror-spirit",
         "count": 3
       },
       {
@@ -190,5 +349,609 @@
         "count": 3
       }
     ]
+  },
+  {
+    "precon_id": 904,
+    "format": "onecollection",
+    "name": "Rin Northfell",
+    "phoenixborn": [
+      {
+        "id": "rin-northfell",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "rins-fury",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "shattering-fist",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-adaptodon",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "summon-ice-golem",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "summon-frost-frog",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "frost-bite",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "frost-fang",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "ember-heart",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "jungle-forager",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "clashing-tempers",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "glaciate",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "crystal-shield",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "freezing-blast",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "ice-trap",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "wallop",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "adaptodon",
+        "count": 2
+      },
+      {
+        "id": "ice-adaptation",
+        "count": 2
+      },
+      {
+        "id": "fire-adaptation",
+        "count": 2
+      },
+      {
+        "id": "ice-golem",
+        "count": 3
+      },
+      {
+        "id": "frost-frog",
+        "count": 3
+      },
+      {
+        "id": "ice-buff",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "precon_id": 905,
+    "format": "onecollection",
+    "name": "Noah Redmoon",
+    "phoenixborn": [
+      {
+        "id": "noah-redmoon",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-masked-wolf",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "shadowblade",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-shadow-hound",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "shifting-mist",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "reimagine",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "shadow-guard",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "dreamlock-mage",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "gates-defender",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "rose-fire-dancer",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "fate-reflection",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "figures-in-the-fog",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "shadow-strike",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "ensnare",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "particle-shield",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "strange-copy",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "from-darkness",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "masked-wolf",
+        "count": 5
+      },
+      {
+        "id": "shadow-hound",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 906,
+    "format": "onecollection",
+    "name": "Victoria Glassfire",
+    "phoenixborn": [
+      {
+        "id": "victoria-glassfire",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 5
+      },
+      {
+        "magic": "illusion",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "copycat",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "magnificence",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "summon-shadow-spirit",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "summon-dread-wraith",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "body-inversion",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "keepsake",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "stormwind-sniper",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "umbral-acrobat",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "psychic-vampire",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "phoenix-attendant",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "juggle",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "particle-shield",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "backflip",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "fate-reflection",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "blood-brawl",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "infuriate",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "vanish",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shadow-spirit",
+        "count": 3
+      },
+      {
+        "id": "dread-wraith",
+        "count": 2
+      },
+      {
+        "id": "false-demon",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 907,
+    "format": "onecollection",
+    "name": "Sembali Grimtongue",
+    "phoenixborn": [
+      {
+        "id": "sembali-grimtongue",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "divine",
+        "count": 5
+      },
+      {
+        "magic": "illusion",
+        "count": 4
+      },
+      {
+        "magic": "time",
+        "count": 1
+      }
+    ],
+    "cards": [
+      {
+        "id": "purify",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "dark-reflection",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "dark-presence",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "reinforce",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "summon-fox-spirit",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "celestial-knight",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "gates-defender",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "silver-paladin",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "sun-sister",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "shepherd-of-lost-souls",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "realm-walker",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "angelic-rescue",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "summon-spectral-assassin",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "intercession",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "revival-pact",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "light-bringer",
+        "count": 2
+      },
+      {
+        "id": "fox-spirit",
+        "count": 3
+      },
+      {
+        "id": "spectral-assassin",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "precon_id": 908,
+    "format": "onecollection",
+    "name": "Hope Everthorn",
+    "phoenixborn": [
+      {
+        "id": "hope-everthorn",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "illusion",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-scrawler",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "void-pulse",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "summon-seafoam-snapper",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-whisperer",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "dream-fracture",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "shifting-mist",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "realm-walker",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "dreamlock-mage",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "knowledge-seeker",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "gates-thrown-open",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "double-down",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "fate-reflection",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "to-shadows",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "inkspill",
+        "count": 2,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "scrawler",
+        "count": 4
+      },
+      {
+        "id": "seafoam-snapper",
+        "count": 2
+      },
+      {
+        "id": "whisperer",
+        "count": 3
+      }
+    ],
+    "notes": null,
+    "lastUpdated": {
+      "$date": "2025-09-06T15:01:04.976Z"
+    },
+    "created": {
+      "$date": "2025-09-06T15:01:04.976Z"
+    },
+    "ashesLiveUuid": null,
+    "ashesLiveModified": null,
+    "username": "dijon"
   }
 ]
