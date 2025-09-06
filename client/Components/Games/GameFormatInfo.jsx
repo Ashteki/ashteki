@@ -67,6 +67,14 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
                     <strong>Heroic Level 2</strong> Construct a deck using the PvE campaign rules for Heroic Level 2!
                 </AlertPanel>
             );
+        case 'onecollection':
+            return (
+                <AlertPanel type='info'>
+                    <strong>One Collection</strong> NoSuchMethod&apos;s One Collection format. Pre-built
+                    decks where each pb has access to both uniques. Using all cards released at the
+                    end of the Red Rains cycle.
+                </AlertPanel>
+            );
     }
 };
 

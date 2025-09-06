@@ -131,6 +131,18 @@ class ImportPrecons {
 
             console.log('Done importing Corpse Rebuild decks');
             console.log('----------');
+
+            for (let deck of this.loadOneCollectionDecks()) {
+                deck.preconGroup = 10;
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing OneCollection decks');
+            console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
@@ -189,6 +201,13 @@ class ImportPrecons {
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }
+
+    loadOneCollectionDecks() {
+        let file = 'one-collection.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
 
     clearPrecons() {
         this.deckService.clearPrecons();
