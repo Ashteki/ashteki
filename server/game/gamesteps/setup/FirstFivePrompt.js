@@ -4,6 +4,8 @@ const AllPlayerPrompt = require('../allplayerprompt');
 class FirstFivePrompt extends AllPlayerPrompt {
     constructor(game) {
         super(game);
+        this.enforceUniques = !['onecollection', 'solo'].includes(game.gameFormat);
+
         this.selectedCards = {};
         this.selectableCards = {};
 
@@ -73,7 +75,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
             !this.selectedCards[player.name].includes(card) && // only add if it's not already there
             this.selectedCards[player.name].length < 5 && // only choose 5
             !this.selectedCards[player.name].some(
-                (c) => c.name == card.name || (card.phoenixborn && c.phoenixborn && this.game.gameFormat !== 'onecollection')
+                (c) => c.name == card.name || (card.phoenixborn && c.phoenixborn && this.enforceUniques)
             ) // only one copy
         ) {
             // add
@@ -87,7 +89,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
                 player.moveCard(card, 'deck');
 
                 for (const c of player.deck.filter(
-                    (c) => c.name == card.name || (card.phoenixborn && c.phoenixborn && this.game.gameFormat !== 'onecollection')
+                    (c) => c.name == card.name || (card.phoenixborn && c.phoenixborn && this.enforceUniques)
                 )) {
                     this.selectableCards[player.name].push(c);
                 }
@@ -103,7 +105,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
             player.moveCard(card, 'hand');
         }
         this.selectableCards[player.name] = this.selectableCards[player.name].filter(
-            (c) => c.name !== card.name && !(card.phoenixborn && c.phoenixborn && this.game.gameFormat !== 'onecollection')
+            (c) => c.name !== card.name && !(card.phoenixborn && c.phoenixborn && this.enforceUniques)
         );
         this.selectableCards[player.name].push(card);
     }

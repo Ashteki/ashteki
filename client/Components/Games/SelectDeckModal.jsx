@@ -96,6 +96,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Tab>Adventuring Party</Tab>
                     <Tab>Master Set Upgrade</Tab>
                     <Tab>Dual Duel</Tab>
+                    {gameFormat === 'solo' && playerIsMe && <Tab>One Collection Battlebox</Tab>}
                 </TabList>
 
                 <TabPanel>
@@ -148,6 +149,13 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Button onClick={() => onChooseForMe(8)}>Choose for me</Button>
                     <DeckList decks={dualDuelDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
+
+                {gameFormat === 'solo' && playerIsMe && (
+                    <TabPanel>
+                        <Button onClick={() => onChooseForMe(10)}>Choose for me</Button>
+                        <DeckList decks={oneCollectionDecks} onDeckSelected={onDeckSelected} />
+                    </TabPanel>
+                )}
             </Tabs>
         );
     } else if (gameFormat === 'precon') {
