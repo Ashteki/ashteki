@@ -2096,7 +2096,7 @@
       },
       {
         "id": "armor-of-valor",
-        "count": 2,
+        "count": 3,
         "ff": true
       },
       {
@@ -2136,11 +2136,6 @@
       },
       {
         "id": "darkwater-hunter",
-        "count": 1,
-        "ff": false
-      },
-      {
-        "id": "spear-master",
         "count": 1,
         "ff": false
       },
