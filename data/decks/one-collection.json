@@ -2,7 +2,7 @@
   {
     "precon_id": 901,
     "format": "onecollection",
-    "name": "Aradel Summergaard",
+    "name": "Aradel OCB: Deadly Mists",
     "phoenixborn": [
       {
         "id": "aradel-summergaard",
@@ -111,7 +111,7 @@
   {
     "precon_id": 902,
     "format": "onecollection",
-    "name": "Astrea",
+    "name": "Astrea OCB: Divine Mandate",
     "phoenixborn": [
       {
         "id": "astrea",
@@ -244,7 +244,7 @@
   {
     "precon_id": 903,
     "format": "onecollection",
-    "name": "Brennen Blackcloud",
+    "name": "Brennen OCB: Small Sacrifices",
     "phoenixborn": [
       {
         "id": "brennen-blackcloud",
@@ -363,7 +363,7 @@
   {
     "precon_id": 904,
     "format": "onecollection",
-    "name": "Coal Roarkwin",
+    "name": "Coal OCB: None Shall Pass",
     "phoenixborn": [
       {
         "id": "coal-roarkwin",
@@ -487,7 +487,7 @@
   {
     "precon_id": 905,
     "format": "onecollection",
-    "name": "Dimona Odinstar",
+    "name": "Dimona OCB: Radiant Host",
     "phoenixborn": [
       {
         "id": "dimona-odinstar",
@@ -602,7 +602,7 @@
   {
     "precon_id": 906,
     "format": "onecollection",
-    "name": "Echo Greystorm",
+    "name": "Echo OCB: Rhythmic Assault",
     "phoenixborn": [
       {
         "id": "echo-greystorm",
@@ -727,7 +727,7 @@
   {
     "precon_id": 907,
     "format": "onecollection",
-    "name": "Fiona Mercywind",
+    "name": "Fiona OCB: Mystic Menagerie",
     "phoenixborn": [
       {
         "id": "fiona-mercywind",
@@ -867,7 +867,7 @@
   {
     "precon_id": 908,
     "format": "onecollection",
-    "name": "Harold Westraven",
+    "name": "Harold OCB: Harvest Moon",
     "phoenixborn": [
       {
         "id": "harold-westraven",
@@ -995,7 +995,7 @@
   {
     "precon_id": 909,
     "format": "onecollection",
-    "name": "Hope Everthorn",
+    "name": "Hope OCB: Ephemeral Swarm",
     "phoenixborn": [
       {
         "id": "hope-everthorn",
@@ -1104,7 +1104,7 @@
   {
     "precon_id": 910,
     "format": "onecollection",
-    "name": "James Endersight",
+    "name": "James OCB: Death's Dominion",
     "phoenixborn": [
       {
         "id": "james-endersight",
@@ -1219,7 +1219,7 @@
   {
     "precon_id": 911,
     "format": "onecollection",
-    "name": "Jess Na Ni",
+    "name": "Jessa OCB: Crown of Blood",
     "phoenixborn": [
       {
         "id": "jessa-na-ni",
@@ -1338,7 +1338,7 @@
   {
     "precon_id": 912,
     "format": "onecollection",
-    "name": "Koji Wolfcub",
+    "name": "Koji OCB: Capricious Growth",
     "phoenixborn": [
       {
         "id": "koji-wolfcub",
@@ -1459,7 +1459,7 @@
   {
     "precon_id": 913,
     "format": "onecollection",
-    "name": "Leo Sunshadow",
+    "name": "Leo OCB: Sharp Fangs",
     "phoenixborn": [
       {
         "id": "leo-sunshadow",
@@ -1587,7 +1587,7 @@
   {
     "precon_id": 914,
     "format": "onecollection",
-    "name": "Lulu Firststone",
+    "name": "Lulu OCB: Hunting Pack",
     "phoenixborn": [
       {
         "id": "lulu-firststone",
@@ -1734,7 +1734,7 @@
   {
     "precon_id": 915,
     "format": "onecollection",
-    "name": "Maeoni Viper",
+    "name": "Maeoni OCB: Slow Poison",
     "phoenixborn": [
       {
         "id": "maeoni-viper",
@@ -1853,7 +1853,7 @@
   {
     "precon_id": 916,
     "format": "onecollection",
-    "name": "Namine Hymntide",
+    "name": "Namine OCB: Cyclone Cantata",
     "phoenixborn": [
       {
         "id": "namine-hymntide",
@@ -1958,7 +1958,7 @@
   {
     "precon_id": 917,
     "format": "onecollection",
-    "name": "Noah Redmoon",
+    "name": "Noah OCB: Scars and Reflections",
     "phoenixborn": [
       {
         "id": "noah-redmoon",
@@ -2069,7 +2069,7 @@
   {
     "precon_id": 918,
     "format": "onecollection",
-    "name": "Odette Diamondcrest",
+    "name": "Odette OCB: Sacred Blades",
     "phoenixborn": [
       {
         "id": "odette-diamondcrest",
@@ -2189,7 +2189,7 @@
   {
     "precon_id": 919,
     "format": "onecollection",
-    "name": "Rimea Careworn",
+    "name": "Rimea OCB: Ancestral Bond",
     "phoenixborn": [
       {
         "id": "rimea-careworn",
@@ -2320,7 +2320,7 @@
   {
     "precon_id": 920,
     "format": "onecollection",
-    "name": "Rin Northfell",
+    "name": "Rin OCB: Adaptability",
     "phoenixborn": [
       {
         "id": "rin-northfell",
@@ -2442,7 +2442,7 @@
   {
     "precon_id": 921,
     "format": "onecollection",
-    "name": "Saria Guideman",
+    "name": "Saria OCB: Enthralling Aura",
     "phoenixborn": [
       {
         "id": "saria-guideman",
@@ -2579,7 +2579,7 @@
   {
     "precon_id": 922,
     "format": "onecollection",
-    "name": "Sembali Grimtongue",
+    "name": "Sembali OCB: Consecrated Ground",
     "phoenixborn": [
       {
         "id": "sembali-grimtongue",
@@ -2702,7 +2702,7 @@
   {
     "precon_id": 923,
     "format": "onecollection",
-    "name": "Victoria Glassfire",
+    "name": "Victoria OCB: Knives In The Dark",
     "phoenixborn": [
       {
         "id": "victoria-glassfire",
@@ -2826,7 +2826,7 @@
   {
     "precon_id": 924,
     "format": "onecollection",
-    "name": "Xander Heartsblood",
+    "name": "Xander OCB: Monster Ranchers",
     "phoenixborn": [
       {
         "id": "xander-heartsblood",
