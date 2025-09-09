@@ -2611,7 +2611,7 @@
       {
         "id": "dark-reflection",
         "count": 3,
-        "ff": false
+        "ff": true
       },
       {
         "id": "summon-light-bringer",
@@ -2621,7 +2621,7 @@
       {
         "id": "dark-presence",
         "count": 3,
-        "ff": true
+        "ff": false
       },
       {
         "id": "reinforce",
