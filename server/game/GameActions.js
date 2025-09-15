@@ -56,6 +56,7 @@ const Actions = {
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
     revealAspect: (propertyFactory) => new GameActions.PutIntoPlayAction(propertyFactory),
+    retreatAspect: (propertyFactory) => new GameActions.RetreatAspectAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     setBlocker: (propertyFactory) => new GameActions.SetBlockerAction(propertyFactory),

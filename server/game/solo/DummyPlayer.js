@@ -164,11 +164,11 @@ class DummyPlayer extends Player {
         const amount = this.chimera.threat - this.aspectsInPlay.length;
 
         if (amount > 0) {
-            this.moveCardsToThreatZone(amount);
+            this.addCardsToThreatZone(amount);
         }
     }
 
-    moveCardsToThreatZone(numCards) {
+    addCardsToThreatZone(numCards) {
         let remainingCards = 0;
 
         if (numCards > this.deck.length) {
@@ -182,8 +182,13 @@ class DummyPlayer extends Player {
 
         // if re-draw occurred
         if (remainingCards > 0 && this.deck.length > 0) {
-            this.game.queueSimpleStep(() => this.moveCardsToThreatZone(remainingCards));
+            this.game.queueSimpleStep(() => this.addCardsToThreatZone(remainingCards));
         }
+    }
+
+    returnCardToThreatZone(card) {
+        card.onLeavesPlay();
+        card.flip();
     }
 
     getAttacker(from = 'left') {

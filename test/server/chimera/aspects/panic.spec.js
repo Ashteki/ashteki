@@ -7,7 +7,7 @@ describe('Panic Aspect', function () {
                 mode: 'solo',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],
+                    inPlay: ['false-demon', 'anchornaut', 'flute-mage'],
                     spellboard: [],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
                     hand: ['summon-iron-rhino']
@@ -20,7 +20,7 @@ describe('Panic Aspect', function () {
                     inPlay: [],
                     deck: [],
                     spellboard: [],
-                    threatZone: ['panic', 'hunting-instincts'],
+                    threatZone: ['panic'],
                     dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
                 }
             });
@@ -49,6 +49,14 @@ describe('Panic Aspect', function () {
             expect(this.player1.dicepool[0].level).toBe('class');
             expect(this.player1.dicepool[1].level).toBe('class');
             expect(this.player1).toHaveDefaultPrompt();
+
+            // end the round
+            this.panic.exhaust();
+
+            this.player1.endTurn();
+            this.player1.clickDone(); // keep dice end of round
+            this.player1.clickNo(); // card discard
+            expect(this.panic.facedown).toBe(true);
         });
     });
 });
