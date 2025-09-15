@@ -103,6 +103,16 @@
             "attack": 3,
             "life": 3,
             "blood": 2
+        },
+        {
+            "name": "Panic",
+            "stub": "panic",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 3,
+            "blood": 1
         }
     ]
 }
