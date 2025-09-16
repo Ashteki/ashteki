@@ -24,7 +24,7 @@ class DiceCost {
             (r) => Array.isArray(r) || r.level !== 'basic'
         );
 
-        let chosenDice = Dice.matchDice(context.player.dice, nonBasics);
+        let chosenDice = Dice.matchDice(context.player.getSpendableDice(context), nonBasics);
         if (
             !context.source.preventAutoDice &&
             !context.player.anyEffect('preventAutoDice') &&

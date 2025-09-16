@@ -303,11 +303,15 @@ class Player extends GameObject {
     }
 
     getSpendableDice(context) {
-        // this assumes all spendable dice are on ready spells
+        // this assumes all spendable hosted dice are on ready spells
         const spendableUpgrades = this.spellboard
             .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades(context))
             .reduce((agg, card) => agg.concat(card.dieUpgrades), []);
-        return this.dice.concat(spendableUpgrades);
+        let usableDice = this.dice;
+        if (!this.checkRestrictions('useBasicDice', context)) {
+            usableDice = usableDice.filter(d => d.level !== Level.Basic);
+        }
+        return usableDice.concat(spendableUpgrades);
     }
 
     /**

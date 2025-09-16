@@ -1,3 +1,5 @@
+const { Level } = require('../../constants');
+
 class BaseDieSelector {
     constructor(properties) {
         this.dieCondition = properties.dieCondition;
@@ -41,6 +43,10 @@ class BaseDieSelector {
         }
 
         if (this.checkTarget && !die.checkRestrictions('target', context)) {
+            return false;
+        }
+
+        if (die.level === Level.Basic && !context.player.checkRestrictions('useBasicDice')) {
             return false;
         }
 
