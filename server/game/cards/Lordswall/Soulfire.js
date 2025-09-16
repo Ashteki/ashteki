@@ -28,7 +28,7 @@ class Soulfire extends Card {
             title: 'Soulfire',
             target: {
                 activePromptTitle: 'Choose up to 3 cards to remove from the game',
-                cardCondition: (card, context) => true,
+                cardType: CardType.Ally,
                 location: 'discard',
                 controller: 'self',
                 mode: 'upTo',
