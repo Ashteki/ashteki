@@ -26,7 +26,6 @@ gameService
         console.info('' + _.size(games), 'total games');
 
         const players = {};
-        const decks = {};
         const playersByMonth = {};
         const weekCount = [];
         const monthCount = [];
@@ -63,28 +62,28 @@ gameService
 
             _.each(game.players, (player) => {
                 if (!players[player.name]) {
-                    players[player.name] = { name: player.name, wins: 0, losses: 0 };
+                    players[player.name] = { name: player.name, wins: 0, losses: 0, games: 0, solo: 0 };
                 }
                 if (!playersByMonth[month][player.name]) {
-                    playersByMonth[month][player.name] = { name: player.name, wins: 0, losses: 0 };
-                }
-
-                if (!decks[player.deck]) {
-                    decks[player.deck] = { name: player.deck, wins: 0, losses: 0 };
+                    playersByMonth[month][player.name] = { name: player.name, wins: 0, losses: 0, games: 0, solo: 0 };
                 }
 
                 var playerStat = players[player.name];
                 var playerMonthStat = playersByMonth[month][player.name];
-                var deckStat = decks[player.deck];
+
+                playerStat.games += 1;
+                playerMonthStat.games += 1;
+                if (game.solo) {
+                    playerStat.solo += 1;
+                    playerMonthStat.solo += 1;
+                }
 
                 if (player.name === game.winner) {
                     playerStat.wins++;
                     playerMonthStat.wins++;
-                    deckStat.wins++;
                 } else {
                     playerStat.losses++;
                     playerMonthStat.losses++;
-                    deckStat.losses++;
                 }
             });
         });
@@ -119,6 +118,16 @@ gameService
 
         _.each(Object.keys(playersByMonth), (month) => {
             console.info(monthNames[month] + ' | ' + Object.keys(playersByMonth[month]).length);
+        });
+
+        console.info('\n### Solo only players by Month\n\nMonth | players');
+
+        _.each(Object.keys(playersByMonth), (month) => {
+            console.info(
+                monthNames[month] +
+                ' | ' +
+                Object.values(playersByMonth[month]).filter((p) => p.games === p.solo).length
+            );
         });
     })
     .catch((error) => {
