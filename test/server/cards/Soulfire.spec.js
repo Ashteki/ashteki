@@ -7,7 +7,7 @@ describe('Soulfire Action Spell', function () {
                 dicepool: ['divine', 'charm', 'natural'],
                 hand: ['soulfire'],
                 deck: ['summon-butterfly-monk', 'kneel', 'summon-steadfast-guardian'],
-                discard: ['raptor-herder', 'flute-mage', 'sun-sister']
+                discard: ['raptor-herder', 'flute-mage', 'sun-sister', 'abundance']
             },
             player2: {
                 phoenixborn: 'aradel-summergaard',
@@ -24,6 +24,7 @@ describe('Soulfire Action Spell', function () {
         this.player1.play(this.soulfire);
         this.player1.clickDie(0);
 
+        expect(this.player1).not.toBeAbleToSelect(this.abundance);
         this.player1.clickCard(this.raptorHerder);
         this.player1.clickCard(this.fluteMage);
         this.player1.clickCard(this.sunSister);
