@@ -143,7 +143,7 @@
       {
         "id": "judgment",
         "count": 3,
-        "ff": true
+        "ff": false
       },
       {
         "id": "summon-orchid-dove",
@@ -173,7 +173,7 @@
       {
         "id": "holy-knight",
         "count": 1,
-        "ff": false
+        "ff": true
       },
       {
         "id": "enchanted-violinist",
