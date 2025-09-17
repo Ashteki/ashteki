@@ -123,6 +123,16 @@
             "attack": 2,
             "life": 2,
             "blood": 1
+        },
+        {
+            "name": "Torment",
+            "stub": "torment",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
         }
     ]
 }
