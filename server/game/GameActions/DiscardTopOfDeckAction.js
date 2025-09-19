@@ -4,6 +4,7 @@ class DiscardTopOfDeckAction extends PlayerAction {
     setDefaultProperties() {
         this.amount = 1;
         this.location = 'deck';
+        this.damageIfEmpty = false;
     }
 
     setup() {
@@ -24,14 +25,30 @@ class DiscardTopOfDeckAction extends PlayerAction {
 
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player, context }, () => {
-            let amount = Math.min(this.amount, player.deck.length);
-            context.discardedCards = player.deck.slice(0, amount);
+            let discardAmount = Math.min(this.amount, player.deck.length);
+            let damageAmount = 0;
+            if (discardAmount < this.amount && this.damageIfEmpty) {
+                damageAmount = this.amount - discardAmount;
+            }
+            context.discardedCards = player.deck.slice(0, discardAmount);
             context.game.addMessage(
                 '{0} discards {1} from the top of their deck',
                 player,
                 context.discardedCards
             );
+
             context.game.actions.discard().resolve(context.discardedCards, context);
+
+            if (damageAmount > 0) {
+                context.game.addMessage(
+                    '{0} takes {1} damage due to an empty deck',
+                    player,
+                    damageAmount
+                );
+                context.game.actions
+                    .addDamageToken({ amount: damageAmount })
+                    .resolve(player.opponent.phoenixborn, context);
+            }
         });
     }
 }

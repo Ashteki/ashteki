@@ -133,6 +133,16 @@
             "attack": 2,
             "life": 2,
             "blood": 1
+        },
+        {
+            "name": "Devour",
+            "stub": "devour",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "righleftt",
+            "attack": 4,
+            "life": 3,
+            "blood": 2
         }
     ]
 }
