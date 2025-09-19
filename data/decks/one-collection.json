@@ -1762,7 +1762,7 @@
       {
         "id": "venom-strike",
         "count": 3,
-        "ff": true
+        "ff": false
       },
       {
         "id": "summon-gilder",
@@ -1782,7 +1782,7 @@
       {
         "id": "summon-biter",
         "count": 1,
-        "ff": false
+        "ff": true
       },
       {
         "id": "hypnotize",
@@ -2359,7 +2359,7 @@
       {
         "id": "summon-frost-frog",
         "count": 3,
-        "ff": false
+        "ff": true
       },
       {
         "id": "frost-bite",
@@ -2369,7 +2369,7 @@
       {
         "id": "frost-fang",
         "count": 2,
-        "ff": true
+        "ff": false
       },
       {
         "id": "ember-heart",
