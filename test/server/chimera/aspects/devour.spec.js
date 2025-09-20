@@ -45,7 +45,7 @@ describe('Devour', function () {
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
 
-            expect(this.player1.discard.length).toBe(2); // anchornaut + 1 from ToD discard
+            expect(this.player1.discard.length).toBe(1); // anchornaut only. damage not discard
             expect(this.anchornaut.location).toBe('discard');
             expect(this.coalRoarkwin.damage).toBe(1);
             expect(this.player1).toHaveDefaultPrompt();
@@ -59,9 +59,9 @@ describe('Devour', function () {
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
 
-            expect(this.player1.discard.length).toBe(2); // anchornaut + 1 from ToD discard
+            expect(this.player1.discard.length).toBe(1); // anchornaut only. damage not discard
             expect(this.anchornaut.location).toBe('discard');
-            expect(this.coalRoarkwin.damage).toBe(1);
+            expect(this.coalRoarkwin.damage).toBe(2);
             expect(this.player1).toHaveDefaultPrompt();
         });
 

@@ -7,7 +7,9 @@ class Devour extends AspectCard {
         this.afterDestroysFighting({
             autoResolve: true,
             gameAction: ability.actions.discardTopOfDeck((context) => ({
-                amount: context.player.phoenixborn.phase
+                // target: context.player.opponent,
+                damageIfEmpty: true,
+                amount: context.player.chimeraPhase
             }))
         });
     }

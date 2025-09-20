@@ -18,7 +18,7 @@ class DiscardTopOfDeckAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        if (this.amount === 0 || player.deck.length === 0) {
+        if (this.amount === 0 || (player.deck.length === 0 && !this.damageIfEmpty)) {
             return false;
         } else return super.canAffect(player, context);
     }
@@ -47,7 +47,7 @@ class DiscardTopOfDeckAction extends PlayerAction {
                 );
                 context.game.actions
                     .addDamageToken({ amount: damageAmount })
-                    .resolve(player.opponent.phoenixborn, context);
+                    .resolve(player.phoenixborn, context);
             }
         });
     }
