@@ -24,7 +24,8 @@ class DiceCost {
             (r) => Array.isArray(r) || r.level !== 'basic'
         );
 
-        let chosenDice = Dice.matchDice(context.player.getSpendableDice(context), nonBasics);
+        const dice = context.player.dice; // only match / auto select from dice in active dice pool (not on cards)
+        let chosenDice = Dice.matchDice(dice, nonBasics);
         if (
             !context.source.preventAutoDice &&
             !context.player.anyEffect('preventAutoDice') &&

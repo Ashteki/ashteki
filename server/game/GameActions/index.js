@@ -57,6 +57,7 @@ module.exports = {
     ReadyAction: require('./ReadyAction'),
     ReadyDieAction: require('./ReadyDieAction'),
     RearrangeCardsAction: require('./RearrangeCardsAction'),
+    RollBehaviourDieAction: require('./RollBehaviourDieAction'),
     RecoverAction: require('./RecoverAction'),
     MakeChimeraHandAction: require('./MakeChimeraHandAction'),
     ReleaseChimeraHandAction: require('./ReleaseChimeraHandAction'),

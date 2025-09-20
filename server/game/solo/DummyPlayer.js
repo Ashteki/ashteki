@@ -1,6 +1,7 @@
 const { CardType, Level, AspectTypes } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
+const Dice = require('../dice');
 const Player = require('../player');
 const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
 const ChimeraFFStrategy = require('./ChimeraFFStrategy');
@@ -14,7 +15,6 @@ class DummyPlayer extends Player {
         this.dicePinStrategy = new ChimeraPinStrategy(this);
         this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
         this.disStrategy = new NullPromptStrategy(this, 'no');
-        this.behaviourRoll = 0;
         this.fatigued = false;
         this.chimeraPhase = 1; // values 1-3
         this.level = game.soloLevel || 'S';
@@ -131,6 +131,11 @@ class DummyPlayer extends Player {
                 .addRedRainsToken({ showMessage: true, shortMessage: true, warnMessage: true })
                 .resolve(this.phoenixborn, context);
         }
+    }
+
+    getBehaviourRoll() {
+        const d12Roll = Dice.d12Roll();
+        return d12Roll;
     }
 
     get isDummy() {

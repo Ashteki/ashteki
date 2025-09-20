@@ -1,6 +1,6 @@
 const AspectCard = require("../../../solo/AspectCard");
 
-class Firebelly extends AspectCard {
+class ErraticStrike extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
@@ -13,19 +13,22 @@ class Firebelly extends AspectCard {
                     );
                 }
             },
-            target: {
-                ignoreTargetCheck: true,
-                autoTarget: (context) => [
-                    ...context.player.opponent.unitsInPlay,
-                    context.player.opponent.phoenixborn
-                ],
-                gameAction: ability.actions.dealDamage({ showMessage: true })
-            }
+            gameAction: ability.actions.rollBehaviourDie(),
+            then: (thenContext) => ({
+                target: {
+
+                    mode: 'auto',
+                    cardCondition: (card) => thenContext.dieResult % 2 == 0 ? card.exhausted : card.damage > 0,
+                    aim: 'left',
+
+                    gameAction: ability.actions.destroy({ showMessage: true })
+                }
+            })
         });
     }
 
 }
 
-Firebelly.id = 'firebelly';
+ErraticStrike.id = 'erratic-strike';
 
-module.exports = Firebelly;
+module.exports = ErraticStrike;
