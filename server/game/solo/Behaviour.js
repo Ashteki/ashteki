@@ -9,6 +9,10 @@ class Behaviour {
         this.handler();
     }
 
+    executeSide() {
+        return;
+    }
+
     getShortSummary() {
         return { value: this.value, text: this.text };
     }

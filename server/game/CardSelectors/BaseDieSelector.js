@@ -46,10 +46,6 @@ class BaseDieSelector {
             return false;
         }
 
-        if (die.level === Level.Basic && !context.player.checkRestrictions('useBasicDice')) {
-            return false;
-        }
-
         if (this.owner === 'self' && die.owner !== context.player) {
             return false;
         }

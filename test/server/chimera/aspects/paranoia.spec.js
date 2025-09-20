@@ -45,6 +45,18 @@ describe('Paranoia Aspect', function () {
             this.player1.clickCard(this.ironWorker);
             expect(this.player1).toHaveDefaultPrompt();
         });
+
+        it('does not prevent meditation', function () {
+            this.player1.dicepool[1].level = 'basic';
+
+            this.player1.clickPrompt('Meditate');
+            this.player1.clickPrompt('Choose Top of Deck');
+            this.player1.clickDie(1);
+            this.player1.clickPrompt('Confirm');
+            this.player1.clickPrompt('Stop Meditating');
+            expect(this.player1.dicepool[1].level).toBe('power');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 
     describe('In Threat Zone', function () {

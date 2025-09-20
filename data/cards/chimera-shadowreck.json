@@ -132,7 +132,8 @@
             "target": "right",
             "attack": 2,
             "life": 2,
-            "blood": 1
+            "blood": 1,
+            "statusCount": 2
         },
         {
             "name": "Devour",

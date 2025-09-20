@@ -1,3 +1,4 @@
+const { Level } = require('../../constants');
 const Dice = require('../dice');
 
 class DiceCost {
@@ -14,6 +15,13 @@ class DiceCost {
     // eslint-disable-next-line no-unused-vars
     getDiceReq(context) {
         return this.diceReq;
+    }
+
+    costDieCondition(die, context) {
+        return (
+            !die.exhausted &&
+            (die.level !== Level.Basic || context.player.checkRestrictions('useBasicDice'))
+        );
     }
 
     resolve(context, result) {
@@ -52,7 +60,7 @@ class DiceCost {
                 context: context,
                 buttons: buttons,
                 format: this.getDiceReq(context),
-                dieCondition: (d) => !d.exhausted,
+                dieCondition: this.costDieCondition,
                 onSelect: (player, dice) => {
                     chosenDice = dice;
                     // match returns an array SINGLE does not
