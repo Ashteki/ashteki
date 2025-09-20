@@ -102,6 +102,7 @@ const Actions = {
         new GameActions.PlayerChosenAmountDrawAction(propertyFactory),
     makeChimeraHand: (propertyFactory) => new GameActions.MakeChimeraHandAction(propertyFactory),
     releaseChimeraHand: (propertyFactory) => new GameActions.ReleaseChimeraHandAction(propertyFactory),
+    resolveBehaviourSide: (propertyFactory) => new GameActions.ResolveBehaviourSideAction(propertyFactory),
     rearrangeCards: (propertyFactory) => new GameActions.RearrangeCardsAction(propertyFactory),
     rollBehaviourDie: (propertyFactory) => new GameActions.RollBehaviourDieAction(propertyFactory),
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name

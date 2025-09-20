@@ -2,6 +2,7 @@ const { Level, BattlefieldTypes, CardType, PhoenixbornTypes } = require('../../.
 const AbilityDsl = require('../../../abilitydsl');
 const Behaviour = require('../../../solo/Behaviour');
 const BehaviourCard = require('../../../solo/BehaviourCard');
+const SplitBehaviour = require('../../../solo/SplitBehaviour');
 
 class ShadowreckBehaviour extends BehaviourCard {
     getBehaviour(behaviourRoll, phase) {
@@ -21,62 +22,59 @@ class ShadowreckBehaviour extends BehaviourCard {
                     case 5:
                     case 6:
                         // Main: Reveal. Attack with revealed aspect
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal. Attack with revealed aspect.',
                                 side: 'Raise 1 basic rage die one level'
                             },
+                            () => this.doAttack(this.doReveal()),
                             () => {
                                 // Side: Raise 1 basic rage die one level
                                 this.doRageRaise();
-                                this.doAttack(this.doReveal());
                             }
                         );
                     case 7:
                     case 8:
                     case 9:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal',
                                 side: 'Target opposing player must lower 1 non-basic dice in their active pool one level'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: Target opposing player must lower 1 non-basic dice in their active pool one level.
                                 this.doLowerOpponentsDice(1);
-
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
                     case 10:
                     case 11:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal',
                                 side: 'Attach a Webbed conjured alteration spell to opponents leftmost non-webbed unit'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: webbed
                                 this.doWebbed('left');
-                                // Main: Reveal
-                                this.doReveal();
+
                             }
                         );
                     case 12:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
                                 side: 'Place 1 Red Rains token on the Chimera'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: Place 1 Red Rains token on the Chimera.
                                 this.doAddRedRains();
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
                     default:
@@ -98,61 +96,57 @@ class ShadowreckBehaviour extends BehaviourCard {
                     case 6:
                         // Side: Target opposing player must place 1 wound token on their Phoenixborn or leftmost unit
                         // Main: Reveal. Attack with revealed aspect
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 side: 'Target opposing player must place 1 wound token on their Phoenixborn or leftmost unit',
                                 main: 'Reveal. Attack with revealed aspect.'
                             },
+                            () => this.doAttack(this.doReveal()),
                             () => {
                                 this.doPbOrLeftmostBurn();
-                                this.doAttack(this.doReveal());
                             }
                         );
                     case 7:
                     case 8:
                     case 9:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal',
                                 side: 'Target opposing player must lower 2 non-basic dice in their active pool one level'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
                                 this.doLowerOpponentsDice(2);
-
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
                     case 10:
                     case 11:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 side: 'Attach a Webbed conjured alteration spell to opponents leftmost non-webbed unit',
                                 main: 'Reveal'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: web
                                 this.doWebbed('left');
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
                     case 12:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
                                 side: 'Place 1 Red Rains token on the Chimera'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: Place 1 Red Rains token on the Chimera.
                                 this.doAddRedRains();
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
                     default:
@@ -173,61 +167,61 @@ class ShadowreckBehaviour extends BehaviourCard {
                     case 6:
                         // Side: Target opposing player must place 1 exhaustion token on a Phoenixborn or ready spell they control
                         // Main: Reveal. Attack with revealed aspect
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 side: 'Target opposing player must place 1 exhaustion token on a Phoenixborn or ready spell they control',
                                 main: 'Reveal. Attack with revealed aspect.'
                             },
                             () => {
-                                this.doPbOrReadySpellExhaustion();
                                 this.doAttack(this.doReveal());
+                            },
+                            () => {
+                                this.doPbOrReadySpellExhaustion();
                             }
                         );
                     case 7:
                     case 8:
                     case 9:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 side: 'Target opposing player must lower 3 non-basic dice in their active pool one level.',
                                 main: 'Reveal'
                             },
+                            () => this.doReveal(),
+
                             () => {
                                 // Side: Target opposing player must lower 3 non-basic dice in their active pool one level.
                                 this.doLowerOpponentsDice(3);
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
                     case 10:
                     case 11:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal',
                                 side: 'Attach a Webbed conjured alteration spell to opponents leftmost unit'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: web
                                 this.doWebbed('left');
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
 
                     case 12:
-                        return new Behaviour(
+                        return new SplitBehaviour(
                             behaviourRoll,
                             {
                                 main: 'Reveal.',
                                 side: 'Place 1 Red Rains token on the Chimera'
                             },
+                            () => this.doReveal(),
                             () => {
                                 // Side: Place 1 Red Rains token on the Chimera.
                                 this.doAddRedRains();
-                                // Main: Reveal
-                                this.doReveal();
                             }
                         );
 

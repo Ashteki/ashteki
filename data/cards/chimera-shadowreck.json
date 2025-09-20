@@ -139,9 +139,19 @@
             "stub": "devour",
             "type": "Aspect",
             "placement": "battlefield",
-            "target": "righleftt",
+            "target": "left",
             "attack": 4,
             "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Lunge",
+            "stub": "lunge",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 4,
             "blood": 2
         }
     ]

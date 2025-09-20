@@ -61,6 +61,7 @@ module.exports = {
     RecoverAction: require('./RecoverAction'),
     MakeChimeraHandAction: require('./MakeChimeraHandAction'),
     ReleaseChimeraHandAction: require('./ReleaseChimeraHandAction'),
+    ResolveBehaviourSideAction: require('./ResolveBehaviourSideAction'),
     RemoveAllTokensAction: require('./RemoveAllTokensAction'),
     RemoveFromBattleAction: require('./RemoveFromBattleAction'),
     RemoveAttackerAction: require('./RemoveAttackerAction'),

@@ -27,14 +27,7 @@ class Panic extends AspectCard {
             }
         });
 
-        this.forcedInterrupt({
-            autoResolve: true,
-            title: 'Retreat',
-            when: {
-                onRoundEnded: () => true
-            },
-            gameAction: ability.actions.retreatAspect()
-        });
+        this.retreat();
     }
 
     getRerollCount(context) {

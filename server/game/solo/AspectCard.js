@@ -65,6 +65,16 @@ class AspectCard extends Card {
             effect: AbilityDsl.effects.feeble()
         });
     }
+    retreat() {
+        this.forcedInterrupt({
+            autoResolve: true,
+            title: 'Retreat',
+            when: {
+                onRoundEnded: () => true
+            },
+            gameAction: AbilityDsl.actions.retreatAspect()
+        });
+    }
 }
 
 module.exports = AspectCard;
