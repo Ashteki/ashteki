@@ -110,6 +110,7 @@ describe('Blight ultimate', function () {
 
         it('phase 3 forces discard - top of deck', function () {
             const topCard = this.player1.deck[0];
+            const drawCount = this.player1.deck.length;
             this.player2.player.chimeraPhase = 3;
             spyOn(Dice, 'd12Roll').and.returnValue(12); // set behaviour roll
             this.player2.phoenixborn.tokens.redRains = 2;
@@ -120,8 +121,9 @@ describe('Blight ultimate', function () {
             this.player1.clickPrompt('Ok');
             this.player1.clickPrompt('Ok'); // ultimate
 
-            this.player1.clickPrompt('Top of deck');
+            this.player1.clickPrompt('Top of Deck');
             expect(topCard.location).toBe('discard');
+            expect(this.player1.deck.length).toBe(drawCount - 1);
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
