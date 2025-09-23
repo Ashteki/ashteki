@@ -13,7 +13,7 @@ class SummonOceansEyes extends Card {
             ],
             location: 'spellboard',
             gameAction: ability.actions.summon({
-                conjuration: 'oceans-eyes',
+                conjuration: 'oceans-eye',
                 count: 2
             })
         });

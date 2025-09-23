@@ -227,16 +227,16 @@
             },
             "conjurations": [
                 {
-                    "name": "Ocean's Eyes",
-                    "stub": "oceans-eyes"
+                    "name": "Ocean's Eye",
+                    "stub": "oceans-eye"
                 }
             ],
             "phoenixborn": "Tristan Darkwater",
             "imageStub": "http://localhost:4000/img/rrt/summon-oceans-eyes.jpg"
         },
         {
-            "name": "Ocean's Eyes",
-            "stub": "oceans-eyes",
+            "name": "Ocean's Eye",
+            "stub": "oceans-eye",
             "type": "Conjuration",
             "placement": "Battlefield",
             "attack": 1,
@@ -244,7 +244,7 @@
             "recover": 0,
             "copies": 6,
             "phoenixborn": "Tristan Darkwater",
-            "imageStub": "http://localhost:4000/img/rrt/oceans-eyes.jpg"
+            "imageStub": "http://localhost:4000/img/rrt/oceans-eye.jpg"
         },
         {
             "name": "Realization",

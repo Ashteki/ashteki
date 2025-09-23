@@ -25,6 +25,6 @@ class OceansEyes extends Card {
     }
 }
 
-OceansEyes.id = 'oceans-eyes';
+OceansEyes.id = 'oceans-eye';
 
 module.exports = OceansEyes;
