@@ -21,6 +21,7 @@ class Afterimage extends Card {
             then: {
                 alwaysTriggers: true,
                 target: {
+                    activePromptTitle: "Select a unit to deal 2 damage to",
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage({ amount: 2 })

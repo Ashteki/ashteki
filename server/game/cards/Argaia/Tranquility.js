@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class Tranquility extends Card {
     setupCardAbilities(ability) {
         this.persistentEffect({
-            targetController: 'self',
+            targetController: 'opponent',
             effect: ability.effects.playerCannot('spendSide')
         });
 

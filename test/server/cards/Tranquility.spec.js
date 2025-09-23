@@ -17,7 +17,7 @@ describe('Tranquility', function () {
         });
     });
 
-    it('attaches to target card, grants attack and life', function () {
+    it('attaches to target pb, prevents side actions', function () {
         this.player1.clickCard(this.tranquility);
         this.player1.clickPrompt('Play this Alteration');
         this.player1.clickCard(this.coalRoarkwin);
@@ -59,4 +59,18 @@ describe('Tranquility', function () {
         expect(this.coalRoarkwin.upgrades.length).toBe(0);
     });
 
+    it('does not prevent both player sides', function () {
+        this.player1.clickCard(this.tranquility);
+        this.player1.clickPrompt('Play this Alteration');
+        this.player1.clickCard(this.coalRoarkwin);
+        expect(this.coalRoarkwin.upgrades.length).toBe(1);
+        expect(this.tranquility.parent).toBe(this.coalRoarkwin);
+        this.player1.endTurn();
+
+        this.player2.player.actions.main = false;
+        this.player2.endTurn();
+
+        this.player1.clickDie(1);
+        expect(this.player1).not.toHaveDefaultPrompt();
+    });
 });

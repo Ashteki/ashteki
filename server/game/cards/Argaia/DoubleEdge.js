@@ -8,16 +8,19 @@ class DoubleEdge extends Card {
             gameAction: ability.actions.draw({ amount: 2 }),
             then: {
                 target: {
+                    activePromptTitle: 'Choose a card to discard',
                     location: 'hand',
                     controller: 'self',
                     gameAction: ability.actions.discard()
                 },
                 then: {
                     target: {
+                        activePromptTitle: 'Choose a unit to deal 1 damage to',
                         controller: 'opponent',
                         cardType: BattlefieldTypes,
                         gameAction: ability.actions.dealDamage({
-                            amount: 1
+                            amount: 1,
+                            showMessage: true
                         })
                     },
                     then: {
@@ -25,7 +28,8 @@ class DoubleEdge extends Card {
                         target: {
                             autoTarget: (context) => context.player.opponent.phoenixborn,
                             gameAction: ability.actions.dealDamage({
-                                amount: 1
+                                amount: 1,
+                                showMessage: true
                             })
                         }
                     }
