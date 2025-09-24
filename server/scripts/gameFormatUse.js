@@ -43,7 +43,7 @@ gameService
             const startDateTime = moment(game.startedAt);
             const month = startDateTime.month();
             if (!monthCount[month]) {
-                monthCount[month] = { month: month, count: 0, solo: 0, precon: 0, firstadventure: 0, aparty: 0, constructed: 0, coaloff: 0, hl2pvp: 0, oneCollection: 0 };
+                monthCount[month] = { month: month, count: 0, solo: 0, precon: 0, firstadventure: 0, aparty: 0, constructed: 0, coaloff: 0, hl2pvp: 0, onecollection: 0 };
             }
 
             if (game.solo) {
@@ -68,11 +68,11 @@ gameService
             'November',
             'December'
         ];
-        console.info('\n### Game count by month \n\nMonth | constructed | Solo | precon | firstadventure | aparty | coaloff | hl2pvp | oneCollection');
+        console.info('\n### Game count by month \n\nMonth | constructed | Solo | precon | firstadventure | aparty | coaloff | hl2pvp | onecollection');
         for (const m in monthCount) {
             // console.info(monthNames[m], ' | ', monthCount[m].count, ' | ', monthCount[m].solo);
             console.info(
-                `${monthNames[m]} | ${monthCount[m].constructed} | ${monthCount[m].solo} | ${monthCount[m].precon} | ${monthCount[m].firstadventure} | ${monthCount[m].aparty} | ${monthCount[m].coaloff} | ${monthCount[m].hl2pvp} | ${monthCount[m].oneCollection}`
+                `${monthNames[m]} | ${monthCount[m].constructed} | ${monthCount[m].solo} | ${monthCount[m].precon} | ${monthCount[m].firstadventure} | ${monthCount[m].aparty} | ${monthCount[m].coaloff} | ${monthCount[m].hl2pvp} | ${monthCount[m].onecollection}`
             );
         }
 
