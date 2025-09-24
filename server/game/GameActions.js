@@ -86,10 +86,12 @@ const Actions = {
     chosenDiscard: (propertyFactory) => new GameActions.ChosenDiscardAction(propertyFactory), // amount = 1
     chosenExhaust: (propertyFactory) => new GameActions.ChosenExhaustAction(propertyFactory), // amount = 1
     chosenUnexhaust: (propertyFactory) => new GameActions.ChosenUnexhaustAction(propertyFactory),
+    collectStatusTokens: (propertyFactory) => new GameActions.CollectStatusTokenAction(propertyFactory),
     discardAtRandom: (propertyFactory) => new GameActions.RandomDiscardAction(propertyFactory), // amount = 1
     discardTopOfDeck: (propertyFactory) => new GameActions.DiscardTopOfDeckAction(propertyFactory), // amount = 1
     draw: (propertyFactory) => new GameActions.DrawAction(propertyFactory), // amount = 1
     exposeRandom: (propertyFactory) => new GameActions.RandomExposeAction(propertyFactory), // amount = 1
+    exposeRandomDiscard: (propertyFactory) => new GameActions.RandomExposeDiscardAction(propertyFactory), // amount = 1
     filterDeck: (propertyFactory) => new GameActions.FilterDeckAction(propertyFactory),
     forRemainderOfTurn: (propertyFactory) =>
         new GameActions.LastingEffectAction(propertyFactory, 1),

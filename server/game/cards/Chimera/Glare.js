@@ -1,5 +1,5 @@
-const { Level, CardType } = require("../../../constants");
-const AspectCard = require("../../solo/AspectCard");
+const { CardType } = require('../../../constants');
+const AspectCard = require('../../solo/AspectCard');
 
 class Glare extends AspectCard {
     setupCardAbilities(ability) {

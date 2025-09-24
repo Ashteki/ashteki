@@ -1593,14 +1593,18 @@ class Game extends EventEmitter {
     }
 
     raiseEndTurnEvent() {
-        this.raiseEvent('onTurnEnded', { player: this.activePlayer }, (event) => {
-            // game loss for player out of time
-            if (event.player.loseOnTurnEnd) {
-                this.recordWinner(event.player.opponent, 'clock');
-            } else {
-                this.endTurn();
+        this.raiseEvent(
+            'onTurnEnded',
+            { player: this.activePlayer, round: this.round },
+            (event) => {
+                // game loss for player out of time
+                if (event.player.loseOnTurnEnd) {
+                    this.recordWinner(event.player.opponent, 'clock');
+                } else {
+                    this.endTurn();
+                }
             }
-        });
+        );
     }
 
     endTurn() {
