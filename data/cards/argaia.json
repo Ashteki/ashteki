@@ -49,6 +49,12 @@
             "life": 4,
             "recover": 1,
             "copies": 2,
+            "conjurations": [
+                {
+                    "name": "Rubble Spirit",
+                    "stub": "rubble-spirit"
+                }
+            ],
             "imageStub": "https://cdn.ashteki.com/ashes/argaia/tusk-mount.jpg"
         },
         {
@@ -272,6 +278,12 @@
             "magicCost": {
                 "basic": 2
             },
+            "conjurations": [
+                {
+                    "name": "Rubble Spirit",
+                    "stub": "rubble-spirit"
+                }
+            ],
             "phoenixborn": "Rowan Umberend",
             "imageStub": "https://cdn.ashteki.com/ashes/argaia/cataclysm.jpg"
         }
