@@ -1,6 +1,6 @@
 const Dice = require('../../../../server/game/dice');
 
-describe('Silksteel Aspect', function () {
+describe('Webbed Aspect', function () {
     describe('On Reveal', function () {
         beforeEach(function () {
             this.setupTest({

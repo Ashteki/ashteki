@@ -10,7 +10,8 @@ class Glare extends AspectCard {
             targetController: 'Any',
             effect: ability.effects.playerCannot(
                 'play',
-                (context) => context.source.type === CardType.ReactionSpell ||
+                (context) =>
+                    context.source.type === CardType.ReactionSpell ||
                     context.source.reactionSpellInHand ||
                     context.source.type === CardType.ActionSpell
             )
@@ -20,4 +21,4 @@ class Glare extends AspectCard {
 
 Glare.id = 'glare';
 
-module.exports = Glare
+module.exports = Glare;

@@ -183,10 +183,6 @@ class PlayerInteractionWrapper {
         return this.player.phoenixborn;
     }
 
-    get behaviour() {
-        return this.player.behaviour;
-    }
-
     get ultimate() {
         return this.player.ultimate;
     }

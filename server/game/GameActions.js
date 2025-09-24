@@ -56,6 +56,7 @@ const Actions = {
     returnToHand: (propertyFactory) => new GameActions.ReturnToHandAction(propertyFactory),
     reveal: (propertyFactory) => new GameActions.RevealAction(propertyFactory),
     revealAspect: (propertyFactory) => new GameActions.PutIntoPlayAction(propertyFactory),
+    retreatAspect: (propertyFactory) => new GameActions.RetreatAspectAction(propertyFactory),
     sacrifice: (propertyFactory) => new GameActions.DestroyAction(propertyFactory, true),
     setGuarded: (propertyFactory) => new GameActions.SetGuardedAction(propertyFactory),
     setBlocker: (propertyFactory) => new GameActions.SetBlockerAction(propertyFactory),
@@ -101,7 +102,9 @@ const Actions = {
         new GameActions.PlayerChosenAmountDrawAction(propertyFactory),
     makeChimeraHand: (propertyFactory) => new GameActions.MakeChimeraHandAction(propertyFactory),
     releaseChimeraHand: (propertyFactory) => new GameActions.ReleaseChimeraHandAction(propertyFactory),
+    resolveBehaviourSide: (propertyFactory) => new GameActions.ResolveBehaviourSideAction(propertyFactory),
     rearrangeCards: (propertyFactory) => new GameActions.RearrangeCardsAction(propertyFactory),
+    rollBehaviourDie: (propertyFactory) => new GameActions.RollBehaviourDieAction(propertyFactory),
     search: (propertyFactory) => new GameActions.SearchAction(propertyFactory), // name
     shuffleDeck: (propertyFactory) => new GameActions.ShuffleDeckAction(propertyFactory), // name
     spendMainAction: (propertyFactory) => new GameActions.SpendMainAction(propertyFactory),

@@ -146,9 +146,12 @@ class BehaviourCard extends Card {
             return;
         }
 
+        let titleText =
+            numDice === 1 ? 'Choose a die to lower' : 'Choose ' + numDice + ' dice to lower';
         const ability = this.behaviour({
             title: 'Chimera Behaviour',
             target: {
+                activePromptTitle: titleText,
                 player: 'opponent',
                 targetsPlayer: true,
                 toSelect: 'die',

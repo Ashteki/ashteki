@@ -565,7 +565,7 @@ class ChatCommands {
 
     addThreat(player, args) {
         if (this.game.solo) {
-            player.opponent.moveCardsToThreatZone(1);
+            player.opponent.addCardsToThreatZone(1);
         }
     }
 }
