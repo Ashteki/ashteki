@@ -3,7 +3,7 @@ describe("Summon Ocean's Eyes", function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'brennen-blackcloud',
-                archives: ['oceans-eyes', 'oceans-eyes', 'oceans-eyes'],
+                archives: ['oceans-eye', 'oceans-eye', 'oceans-eye'],
                 spellboard: ['summon-oceans-eyes'],
                 hand: ['power-through'],
                 dicepool: ['time', 'natural', 'natural', 'time'],

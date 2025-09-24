@@ -86,7 +86,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
     getPromptForSelectProperties(player) {
         return _.extend(super.getPromptForSelectProperties(player), {
             selectCard: true,
-            buttons: [{ text: 'Pass', arg: 'pass' }],
+            buttons: [{ text: 'None', arg: 'pass' }],
             onMenuCommand: (player, arg) => {
                 this.pass(player, arg);
                 return true;
@@ -172,7 +172,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                     //     method: 'pass',
                     //     arg: 'pauseRound'
                     // },
-                    { text: 'Pass', method: 'pass' }
+                    { text: 'None', method: 'pass' }
                 ],
                 timerLength: player.optionSettings.bluffTimer
             }
