@@ -12,6 +12,7 @@ class TristanDarkwater extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Basic)])
             ],
             target: {
+                activePromptTitle: 'Choose units to magnify',
                 mode: 'maxStat',
                 cardStat: (card) => card.life,
                 maxStat: () => 3,
