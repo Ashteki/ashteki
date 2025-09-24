@@ -409,6 +409,14 @@ class PlayerInteractionWrapper {
         return this.hasPrompt('Choose a card to play or use');
     }
 
+    hasWaitingPrompt() {
+        return this.hasPrompt('Waiting for opponent');
+    }
+
+    hasWaitingGuardPrompt() {
+        return this.hasPrompt('Waiting for opponent to guard');
+    }
+
     selectDeck(deck) {
         this.game.selectDeck(this.player.name, deck);
     }

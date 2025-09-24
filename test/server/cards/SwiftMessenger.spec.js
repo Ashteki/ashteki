@@ -1,5 +1,3 @@
-const { TypeaheadInputSingle } = require("react-bootstrap-typeahead");
-
 describe('Swift Messenger', function () {
     describe('Swift Messenger in hand', function () {
         beforeEach(function () {

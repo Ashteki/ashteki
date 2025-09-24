@@ -114,6 +114,8 @@ class AddTokenAction extends CardGameAction {
 
                                 event.addSubEvent(destroyEvent);
                                 if (this.damageDealtEvent) {
+                                    this.damageDealtEvent.destroyed = true;
+                                    this.damageDealtEvent.context.multiCounter += 1;
                                     this.damageDealtEvent.destroyEvent = destroyEvent;
                                     if (this.damageDealtEvent.fightEvent) {
                                         this.damageDealtEvent.fightEvent.destroyed.push(event.card);
