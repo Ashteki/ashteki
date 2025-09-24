@@ -18,7 +18,7 @@
             "attack": 1,
             "life": 2,
             "recover": 1,
-            "imageStub": "http://localhost:4000/img/rrt/timestopper.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/timestopper.jpg"
         },
         {
             "name": "Summon Tusk Mount",
@@ -38,7 +38,7 @@
                     "stub": "tusk-mount"
                 }
             ],
-            "imageStub": "http://localhost:4000/img/rrt/summon-tusk-mount.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/summon-tusk-mount.jpg"
         },
         {
             "name": "Tusk Mount",
@@ -49,7 +49,7 @@
             "life": 4,
             "recover": 1,
             "copies": 2,
-            "imageStub": "http://localhost:4000/img/rrt/tusk-mount.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/tusk-mount.jpg"
         },
         {
             "name": "Rubble Spirit",
@@ -60,7 +60,7 @@
             "life": 1,
             "recover": 0,
             "copies": 4,
-            "imageStub": "http://localhost:4000/img/rrt/rubble-spirit.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/rubble-spirit.jpg"
         },
         {
             "name": "Afterimage",
@@ -76,7 +76,7 @@
             "magicCost": {
                 "time:power": 1
             },
-            "imageStub": "http://localhost:4000/img/rrt/afterimage.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/afterimage.jpg"
         },
         {
             "name": "Summon Cinder Spirit",
@@ -96,7 +96,7 @@
                     "stub": "cinder-spirit"
                 }
             ],
-            "imageStub": "http://localhost:4000/img/rrt/summon-cinder-spirit.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/summon-cinder-spirit.jpg"
         },
         {
             "name": "Cinder Spirit",
@@ -107,7 +107,7 @@
             "life": 2,
             "recover": 0,
             "copies": 3,
-            "imageStub": "http://localhost:4000/img/rrt/cinder-spirit.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/cinder-spirit.jpg"
         },
         {
             "name": "Vermillion Sage",
@@ -127,7 +127,7 @@
             "attack": 1,
             "life": 1,
             "recover": 1,
-            "imageStub": "http://localhost:4000/img/rrt/vermillion-sage.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/vermillion-sage.jpg"
         },
         {
             "name": "Spear Master",
@@ -151,7 +151,7 @@
             "attack": 3,
             "life": 3,
             "recover": 2,
-            "imageStub": "http://localhost:4000/img/rrt/spear-master.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/spear-master.jpg"
         },
         {
             "name": "Rising Tides",
@@ -168,7 +168,7 @@
             "magicCost": {
                 "time:class": 1
             },
-            "imageStub": "http://localhost:4000/img/rrt/rising-tides.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/rising-tides.jpg"
         },
         {
             "name": "Tranquility",
@@ -185,7 +185,7 @@
             "magicCost": {
                 "time:class": 1
             },
-            "imageStub": "http://localhost:4000/img/rrt/tranquility.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/tranquility.jpg"
         },
         {
             "name": "Fatal Strike",
@@ -201,7 +201,7 @@
             "magicCost": {
                 "time:power": 1
             },
-            "imageStub": "http://localhost:4000/img/rrt/fatal-strike.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/fatal-strike.jpg"
         },
         {
             "name": "Double Edge",
@@ -212,7 +212,7 @@
                 "[[side]]"
             ],
             "phoenixborn": "Jericho, Reborn",
-            "imageStub": "http://localhost:4000/img/rrt/double-edge.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/double-edge.jpg"
         },
         {
             "name": "Summon Ocean's Eyes",
@@ -232,7 +232,7 @@
                 }
             ],
             "phoenixborn": "Tristan Darkwater",
-            "imageStub": "http://localhost:4000/img/rrt/summon-oceans-eyes.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/summon-oceans-eyes.jpg"
         },
         {
             "name": "Ocean's Eye",
@@ -244,7 +244,7 @@
             "recover": 0,
             "copies": 6,
             "phoenixborn": "Tristan Darkwater",
-            "imageStub": "http://localhost:4000/img/rrt/oceans-eye.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/oceans-eye.jpg"
         },
         {
             "name": "Realization",
@@ -255,7 +255,7 @@
                 "[[side]]"
             ],
             "phoenixborn": "Orrick Gilstream",
-            "imageStub": "http://localhost:4000/img/rrt/realization.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/realization.jpg"
         },
         {
             "name": "Cataclysm",
@@ -273,7 +273,7 @@
                 "basic": 2
             },
             "phoenixborn": "Rowan Umberend",
-            "imageStub": "http://localhost:4000/img/rrt/cataclysm.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/argaia/cataclysm.jpg"
         }
     ]
 }

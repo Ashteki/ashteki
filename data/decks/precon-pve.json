@@ -1954,6 +1954,7 @@
   {
     "precon_id": 425,
     "name": "The End of Argaia: Jericho",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "jericho-reborn",
@@ -2028,6 +2029,7 @@
   {
     "precon_id": 426,
     "name": "The End of Argaia: Tristan",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "tristan-darkwater",
@@ -2106,6 +2108,7 @@
   {
     "precon_id": 427,
     "name": "The End of Argaia: Orrick",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "orrick-gilstream",
@@ -2180,6 +2183,7 @@
   {
     "precon_id": 428,
     "name": "The End of Argaia: Rowan",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "rowan-umberend",

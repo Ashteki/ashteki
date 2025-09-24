@@ -35,7 +35,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         corpseRebuildDecks: state.cards.corpseRebuildDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
         chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
-        pveDecks: state.cards.pveDecks,
+        pveDecks: state.cards.pveDecks?.filter((d) => showRestricted || !d.restricted),
         msuDecks: state.cards.msuDecks,
         dualDuelDecks: state.cards.dualDuelDecks
     }));
