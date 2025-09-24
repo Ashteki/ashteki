@@ -23,7 +23,7 @@ describe('Fallen ', function () {
             this.player1.clickCard(this.fallen);
             this.player2.clickPrompt('Done');
             this.player2.clickPrompt('No');
-            this.player2.clickPrompt('Pass'); // particle shield
+            this.player2.clickNone(); // particle shield
 
             expect(this.frostFang.location).toBe('discard');
         });
@@ -53,7 +53,7 @@ describe('Fallen ', function () {
             this.player2.clickCard(this.frostFang);
             this.player1.clickPrompt('Done'); // no guard
             this.player1.clickPrompt('Yes'); // counter
-            this.player2.clickPrompt('Pass'); // particle shield
+            this.player2.clickNone(); // particle shield
 
             expect(this.fallen.location).toBe('archives');
             expect(this.frostFang.location).toBe('discard'); // dead after one damage through armour

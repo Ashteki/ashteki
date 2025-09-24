@@ -63,7 +63,7 @@ describe('Transfer actions spell', function () {
 
             this.player1.clickCard(this.stormwindSniper);
 
-            this.player2.clickPass();
+            this.player2.clickNone();
 
             expect(this.blueJaguar.exhausted).toBe(false);
             expect(this.stormwindSniper.exhausted).toBe(true);
@@ -83,7 +83,7 @@ describe('Transfer actions spell', function () {
 
             this.player1.clickCard(this.holyKnight);
 
-            this.player2.clickPass();
+            this.player2.clickNone();
 
             expect(this.blueJaguar.exhausted).toBe(false);
             expect(this.holyKnight.exhausted).toBe(true);

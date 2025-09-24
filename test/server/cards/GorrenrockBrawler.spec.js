@@ -59,7 +59,7 @@ describe('Gorrenrock Brawler', function () {
             expect(this.gorrenrockBrawler.status).toBe(0);
             this.player1.clickAttack(this.fluteMage);
             this.player1.clickCard(this.gorrenrockBrawler);
-            this.player2.clickPrompt('Pass'); // no strange copy
+            this.player2.clickNone(); // no strange copy
             this.player2.clickDone(); // no guard
             this.player2.clickYes();
 
@@ -73,7 +73,7 @@ describe('Gorrenrock Brawler', function () {
             expect(this.gorrenrockBrawler.status).toBe(0);
             this.player1.clickAttack(this.dreadWraith);
             this.player1.clickCard(this.gorrenrockBrawler);
-            this.player2.clickPrompt('Pass'); // no strange copy
+            this.player2.clickNone(); // no strange copy
             this.player2.clickDone(); // no guard
             this.player2.clickYes();
             expect(this.gorrenrockBrawler.damage).toBe(1);
@@ -106,7 +106,7 @@ describe('Gorrenrock Brawler', function () {
             expect(this.gorrenrockBrawler.status).toBe(0);
             this.player1.clickAttack(this.sunshieldSentry);
             this.player1.clickCard(this.gorrenrockBrawler);
-            this.player2.clickPrompt('Pass'); // no strange copy
+            this.player2.clickNone(); // no strange copy
             this.player2.clickDone(); // no guard
             this.player2.clickYes();
             expect(this.gorrenrockBrawler.damage).toBe(2);

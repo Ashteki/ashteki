@@ -442,6 +442,10 @@ class PlayerInteractionWrapper {
         this.clickPrompt('Pass');
     }
 
+    clickNone() {
+        this.clickPrompt('None');
+    }
+
     clickYes() {
         this.clickPrompt('Yes');
     }

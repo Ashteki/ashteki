@@ -92,7 +92,7 @@ describe('Attack Removals', function () {
             this.player1.clickCard(this.fluteMage);
             this.player1.clickCard(this.ironWorker); // 3 attackers
             this.player1.clickPrompt('Done'); // end attacker choice
-            this.player2.clickPass(); // FITF reaction
+            this.player2.clickNone(); // FITF reaction
 
             this.player2.clickCard(this.anchornaut);
             this.player2.clickCard(this.fluteMage);

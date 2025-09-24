@@ -112,8 +112,8 @@ describe('Summon Fallen', function () {
             this.summonFallen.tokens.status = 2;
             this.player1.useAbility(this.summonFallen);
             this.player1.clickPrompt('2');
-            this.player2.clickPrompt('Pass');
-            this.player2.clickPrompt('Pass');
+            this.player2.clickNone();
+            this.player2.clickNone();
             expect(this.fallen.location).toBe('play area');
             expect(this.summonFallen.status).toBe(0);
             expect(this.summonFallen.exhausted).toBe(true);
@@ -128,7 +128,7 @@ describe('Summon Fallen', function () {
             this.summonFallen.tokens.status = 2;
             this.player1.useAbility(this.summonFallen);
             this.player1.clickPrompt('2');
-            this.player2.clickPrompt('Pass');
+            this.player2.clickNone();
             this.player2.clickCard(this.swiftMessenger);
             expect(this.summonFallen.status).toBe(0);
             expect(this.summonFallen.exhausted).toBe(true);

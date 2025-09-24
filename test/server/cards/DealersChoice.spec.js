@@ -74,7 +74,7 @@ describe('Dealers Choice', function () {
 
             this.player2.clickCard(this.summonGilder);
             expect(this.player2).toBeAbleToSelect(this.vanish);
-            this.player2.clickPass();
+            this.player2.clickNone();
             expect(this.summonGilder.exhausted).toBe(true);
         });
     });

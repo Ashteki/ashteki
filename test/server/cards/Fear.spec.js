@@ -24,7 +24,7 @@ describe('Fear', function () {
             this.player1.clickDie(0);
             expect(this.player1).toHavePrompt('Choose a unit to destroy');
             this.player1.clickCard(this.enchantedViolinist); // destroy
-            this.player1.clickPrompt('Pass'); // jessa ability pass
+            this.player1.clickNone(); // jessa ability pass
 
             expect(this.jessaNaNi.damage).toBe(2);
             expect(this.enchantedViolinist.location).toBe('discard');
@@ -44,7 +44,7 @@ describe('Fear', function () {
             expect(this.player1).toHavePrompt('Choose a unit to destroy');
             this.player1.clickCard(this.enchantedViolinist); // destroy
             this.player1.clickYes(); // return ally to hand
-            this.player1.clickPrompt('Pass'); // jessa ability pass
+            this.player1.clickNone(); // jessa ability pass
 
             expect(this.jessaNaNi.damage).toBe(1);
             expect(this.enchantedViolinist.location).toBe('hand');
@@ -79,7 +79,7 @@ describe('Fear', function () {
             expect(this.player1).toHavePrompt('Choose a unit to destroy');
             expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
             this.player1.clickCard(this.enchantedViolinist); // destroy
-            this.player1.clickPrompt('Pass'); // jessa ability pass
+            this.player1.clickNone(); // jessa ability pass
 
             expect(this.jessaNaNi.damage).toBe(0);
             expect(this.enchantedViolinist.location).toBe('discard');
