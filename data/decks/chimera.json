@@ -561,5 +561,68 @@
         "count": 6
       }
     ]
+  },
+  {
+    "precon_id": 810,
+    "premium": true,
+    "restricted": true,
+    "mode": "chimera",
+    "name": "The Spawn of Shadowreck - Horror",
+    "phoenixborn": [
+      {
+        "id": "spawn-of-shadowreck",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "shadowreck-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "shadowreck-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "erratic-strike",
+        "count": 3
+      },
+      {
+        "id": "lunge",
+        "count": 3
+      },
+      {
+        "id": "panic",
+        "count": 3
+      },
+      {
+        "id": "paranoia",
+        "count": 3
+      },
+      {
+        "id": "torment",
+        "count": 3
+      },
+      {
+        "id": "devour",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "webbed",
+        "count": 6
+      }
+    ]
   }
 ]

@@ -103,7 +103,6 @@ class PlayerStateWriter {
         }
 
         if (this.player.isDummy) {
-            playerState.behaviour = this.player.behaviourRoll;
             playerState.fatigued = this.player.fatigued;
             playerState.chimeraPhase = this.player.chimeraPhase;
         }

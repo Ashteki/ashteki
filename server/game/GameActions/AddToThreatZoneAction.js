@@ -29,7 +29,7 @@ class AddToThreatZoneAction extends PlayerAction {
             },
             (event) => {
                 if (event.amount > 0) {
-                    event.player.moveCardsToThreatZone(event.amount);
+                    event.player.addCardsToThreatZone(event.amount);
                     context.game.addMessage(
                         '{0} adds {1} card(s) to its threat zone',
                         event.player,

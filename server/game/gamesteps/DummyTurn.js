@@ -39,21 +39,26 @@ class DummyTurn extends BaseStepWithPipeline {
         // Roll for behaviour
         this.queueStep(
             new SimpleStep(this.game, () => {
-                const d12Roll = Dice.d12Roll();
+                const d12Roll = this.player.getBehaviourRoll();
                 // roll behaviour dice and determine
-                this.player.behaviourRoll = d12Roll;
+
                 const context = this.game.getFrameworkContext(this.player);
 
                 const rolledRageDie = result.event.childEvent.dice[0];
                 const clonedRageDie = result.event.childEvent.diceCopy[0];
+
                 // get actions from behaviour card and queue
                 const behaviour = this.player.behaviour.getBehaviour(
                     d12Roll,
                     this.player.chimeraPhase
                 );
-                const chatMsg = this.getChatMessage(behaviour);
-                this.game.addMessage('{0} rolls {1} for behaviour:\n{2}', this.player, d12Roll, behaviour);
-                // this.game.addMessage('{0}', behaviour);
+                this.game.addAlert(
+                    'info',
+                    '{0} rolls {1} for behaviour:\n{2}',
+                    this.player,
+                    d12Roll,
+                    behaviour
+                );
 
                 this.game.queueUserAlert(context, {
                     style: 'danger',
@@ -71,7 +76,7 @@ class DummyTurn extends BaseStepWithPipeline {
                         }
                     ]
                 });
-                // behaviourCard.handleBehaviourRoll(d12Roll);
+
                 behaviour.execute();
             })
         );

@@ -1,6 +1,7 @@
 const { CardType, Level, AspectTypes } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
+const Dice = require('../dice');
 const Player = require('../player');
 const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
 const ChimeraFFStrategy = require('./ChimeraFFStrategy');
@@ -14,7 +15,6 @@ class DummyPlayer extends Player {
         this.dicePinStrategy = new ChimeraPinStrategy(this);
         this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
         this.disStrategy = new NullPromptStrategy(this, 'no');
-        this.behaviourRoll = 0;
         this.fatigued = false;
         this.chimeraPhase = 1; // values 1-3
         this.level = game.soloLevel || 'S';
@@ -133,6 +133,11 @@ class DummyPlayer extends Player {
         }
     }
 
+    getBehaviourRoll() {
+        const d12Roll = Dice.d12Roll();
+        return d12Roll;
+    }
+
     get isDummy() {
         return true;
     }
@@ -164,11 +169,11 @@ class DummyPlayer extends Player {
         const amount = this.chimera.threat - this.aspectsInPlay.length;
 
         if (amount > 0) {
-            this.moveCardsToThreatZone(amount);
+            this.addCardsToThreatZone(amount);
         }
     }
 
-    moveCardsToThreatZone(numCards) {
+    addCardsToThreatZone(numCards) {
         let remainingCards = 0;
 
         if (numCards > this.deck.length) {
@@ -182,8 +187,13 @@ class DummyPlayer extends Player {
 
         // if re-draw occurred
         if (remainingCards > 0 && this.deck.length > 0) {
-            this.game.queueSimpleStep(() => this.moveCardsToThreatZone(remainingCards));
+            this.game.queueSimpleStep(() => this.addCardsToThreatZone(remainingCards));
         }
+    }
+
+    returnCardToThreatZone(card) {
+        card.onLeavesPlay();
+        card.flip();
     }
 
     getAttacker(from = 'left') {

@@ -1,3 +1,5 @@
+const { Level } = require('../../constants');
+
 class BaseDieSelector {
     constructor(properties) {
         this.dieCondition = properties.dieCondition;

@@ -93,6 +93,67 @@
             "attack": 3,
             "life": 3,
             "blood": 2
+        },
+        {
+            "name": "Erratic Strike",
+            "stub": "erratic-strike",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Panic",
+            "stub": "panic",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 1,
+            "life": 3,
+            "blood": 1
+        },
+        {
+            "name": "Paranoia",
+            "stub": "paranoia",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Torment",
+            "stub": "torment",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 2,
+            "blood": 1,
+            "statusCount": 2
+        },
+        {
+            "name": "Devour",
+            "stub": "devour",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 4,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Lunge",
+            "stub": "lunge",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 4,
+            "blood": 2
         }
     ]
 }

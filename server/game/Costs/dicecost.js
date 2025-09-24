@@ -1,3 +1,4 @@
+const { Level } = require('../../constants');
 const Dice = require('../dice');
 
 class DiceCost {
@@ -16,6 +17,13 @@ class DiceCost {
         return this.diceReq;
     }
 
+    costDieCondition(die, context) {
+        return (
+            !die.exhausted &&
+            (die.level !== Level.Basic || context.player.checkRestrictions('useBasicDice'))
+        );
+    }
+
     resolve(context, result) {
         //TODO: change here to match parallels and non-basics
         // const nonParallels = this.getDiceReq(context).filter((r) => !Array.isArray(r));
@@ -24,7 +32,8 @@ class DiceCost {
             (r) => Array.isArray(r) || r.level !== 'basic'
         );
 
-        let chosenDice = Dice.matchDice(context.player.dice, nonBasics);
+        const dice = context.player.dice; // only match / auto select from dice in active dice pool (not on cards)
+        let chosenDice = Dice.matchDice(dice, nonBasics);
         if (
             !context.source.preventAutoDice &&
             !context.player.anyEffect('preventAutoDice') &&
@@ -51,7 +60,7 @@ class DiceCost {
                 context: context,
                 buttons: buttons,
                 format: this.getDiceReq(context),
-                dieCondition: (d) => !d.exhausted,
+                dieCondition: this.costDieCondition,
                 onSelect: (player, dice) => {
                     chosenDice = dice;
                     // match returns an array SINGLE does not

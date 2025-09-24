@@ -203,7 +203,6 @@ const GameBoard = () => {
                             side='top'
                             dice={otherPlayer.dice}
                             purgedPile={otherPlayer.cardPiles.purged}
-                            behaviour={otherPlayer.behaviour}
                         />
                     </div>
                 )}

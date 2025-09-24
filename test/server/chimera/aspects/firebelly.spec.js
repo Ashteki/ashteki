@@ -40,7 +40,7 @@ describe('Firebelly', function () {
     });
 
     it('on attack deals 1 damage to all units and opposing pb', function () {
-        spyOn(Dice, 'd12Roll').and.returnValue(3);  // attack
+        spyOn(Dice, 'd12Roll').and.returnValue(3); // attack
         this.player1.endTurn();
         // informs real player of behaviour roll
         expect(this.player2).toHavePrompt('Alerting opponent');
