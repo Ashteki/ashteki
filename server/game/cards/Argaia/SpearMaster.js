@@ -23,7 +23,8 @@ class SpearMaster extends Card {
                 onAttackersDeclared: (event, context) => {
                     return (
                         event.attackingPlayer === context.source.controller &&
-                        event.attackers.includes(context.source)
+                        event.attackers.includes(context.source) &&
+                        context.source.controller.unitsInPlay.some(u => u.status > 0)
                     );
                 }
             },
@@ -33,6 +34,7 @@ class SpearMaster extends Card {
             }),
             then: {
                 alwaysTriggers: true,
+                condition: (context) => context.priorContext.tokenCount > 0,
                 target: {
                     activePromptTitle: (context) =>
                         `Choose up to ${context.priorContext.tokenCount} units to deal 1 damage to`,

@@ -3,6 +3,7 @@ declare module jasmine {
         toHavePrompt(expected: string): boolean;
         toHavePromptTitle(expected: string): boolean;
         toHaveDefaultPrompt(): boolean;
+        toHaveWaitingPrompt(): boolean;
         toBeAbleToSelect(expected: object): boolean;
         toBeAbleToSelectDie(expected: object): boolean;
         toHaveRecentChatMessage(expected: string): boolean;

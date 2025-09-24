@@ -48,11 +48,11 @@ describe('Spear Master', function () {
                 }
             });
 
-            this.spearMaster.tokens.status = 2;
-            this.ironWorker.tokens.status = 1;
         });
 
         it('spear volley triggers', function () {
+            this.spearMaster.tokens.status = 2;
+            this.ironWorker.tokens.status = 1;
             expect(this.spearMaster.status).toBe(2);
             expect(this.ironWorker.status).toBe(1);
 
@@ -78,6 +78,9 @@ describe('Spear Master', function () {
         });
 
         it('spear volley reset', function () {
+            this.spearMaster.tokens.status = 2;
+            this.ironWorker.tokens.status = 1;
+
             expect(this.spearMaster.status).toBe(2);
             expect(this.ironWorker.status).toBe(1);
 
@@ -94,6 +97,25 @@ describe('Spear Master', function () {
             expect(this.spearMaster.status).toBe(2);
             expect(this.ironWorker.status).toBe(1);
             expect(this.player1).not.toHaveDefaultPrompt();
+        });
+
+        it('no tokens means no prompt', function () {
+            this.player1.clickAttack(this.anchornaut);
+            this.player1.clickCard(this.spearMaster);
+            // should not open prompt
+            expect(this.player1).toHaveWaitingPrompt();
+        });
+
+        it('no token chosen means no prompt', function () {
+            this.spearMaster.tokens.status = 2;
+            this.ironWorker.tokens.status = 1;
+
+            this.player1.clickAttack(this.anchornaut);
+            this.player1.clickCard(this.spearMaster);
+            // should open prompt
+            this.player1.clickDone();
+
+            expect(this.player1).toHaveWaitingPrompt();
         });
     });
 
