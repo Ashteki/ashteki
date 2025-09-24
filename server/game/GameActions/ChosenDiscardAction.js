@@ -61,7 +61,7 @@ class ChosenDiscardAction extends PlayerAction {
                         showCancel: this.allowCancel
                     };
                     if (this.allowTopOfDeck && player.deck.length > 0) {
-                        promptProps.buttons = [{ text: 'Top of deck', command: 'topdeck' }];
+                        promptProps.buttons = [{ text: 'Top of deck', arg: 'topdeck' }];
                         promptProps.onMenuCommand = () => {
                             context.game.actions.discardTopOfDeck().resolve(player, context);
                             return true;

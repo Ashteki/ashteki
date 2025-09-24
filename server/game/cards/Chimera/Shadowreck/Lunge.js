@@ -5,7 +5,7 @@ class Lunge extends AspectCard {
         super.setupCardAbilities(ability);
 
         this.entersPlay({
-            title: 'Panic',
+            title: 'Lunge',
             gameAction: ability.actions.rollBehaviourDie(),
             then: {
                 gameAction: ability.actions.resolveBehaviourSide((context) => ({

@@ -52,7 +52,13 @@ class DummyTurn extends BaseStepWithPipeline {
                     d12Roll,
                     this.player.chimeraPhase
                 );
-                this.game.addMessage('{0} rolls {1} for behaviour:\n{2}', this.player, d12Roll, behaviour);
+                this.game.addAlert(
+                    'info',
+                    '{0} rolls {1} for behaviour:\n{2}',
+                    this.player,
+                    d12Roll,
+                    behaviour
+                );
 
                 this.game.queueUserAlert(context, {
                     style: 'danger',
