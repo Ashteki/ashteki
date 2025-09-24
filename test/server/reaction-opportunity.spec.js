@@ -42,7 +42,7 @@ describe('Reaction opportunities', function () {
             this.player1.clickDone();
 
             expect(this.player1).toHavePrompt('Any reactions to attackers being declared?');
-            this.player1.clickPass(); // first opportunity
+            this.player1.clickNone(); // first opportunity
             expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
             this.player2.clickCard(this.outmatch);
             this.player2.clickCard(this.anchornaut);

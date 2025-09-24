@@ -29,7 +29,7 @@ describe('Summon Sleeping Widows', function () {
             expect(this.anchornaut.location).toBe('discard');
             // prompt for jessa - Active player
             expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
-            this.player1.clickPrompt('Pass');
+            this.player1.clickNone();
             expect(this.player2).toHavePrompt('Any reactions to Anchornaut being destroyed?');
             this.player2.clickCard(this.summonSleepingWidows);
             expect(this.player2.inPlay.length).toBe(2);

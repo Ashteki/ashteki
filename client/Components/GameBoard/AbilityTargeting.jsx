@@ -10,13 +10,13 @@ import DieIcon from './DieIcon';
 class AbilityTargeting extends React.Component {
     onMouseOver(event, card) {
         if (card && this.props.onMouseOver) {
-            this.props.onMouseOver(card);
+            this.props.onMouseOver(event, card);
         }
     }
 
     onMouseOut(event, card) {
         if (card && this.props.onMouseOut) {
-            this.props.onMouseOut(card);
+            this.props.onMouseOut(event, card);
         }
     }
 
@@ -33,7 +33,7 @@ class AbilityTargeting extends React.Component {
         }
         if (!card.id) return '';
 
-        let checkCard = card.location === 'deck' ? { facedown: true } : card;
+        let checkCard = !this.props.forceReveal && card.location === 'deck' ? { facedown: true } : card;
         return (
             <div
                 className='target-card vertical mb-2'

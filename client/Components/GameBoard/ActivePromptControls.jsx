@@ -13,6 +13,7 @@ function ActivePromptControls({ controls, buttons, onMouseOver, onMouseOut, onOp
                         onMouseOut={onMouseOut}
                         onMouseOver={onMouseOver}
                         source={control.source}
+                        forceReveal={control.forceReveal}
                         targets={control.targets}
                         trigger={control.trigger}
                     />

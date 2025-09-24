@@ -27,9 +27,18 @@ class FilterDeckAction extends PlayerAction {
     }
 
     promptForTopOrBottom(card, context) {
+        // fudge a copy of the card to display despite location being 
         context.game.promptWithHandlerMenu(context.player, {
-            activePromptTitle: 'Return to top or bottom?',
+            activePromptTitle: 'Return ' + card.name + ' to the top or bottom of your deck?',
             source: 'Return a card',
+            controls: [
+                {
+                    type: 'targeting',
+                    source: card.getShortSummary(),
+                    forceReveal: true,
+                    targets: []
+                }
+            ],
             choices: ['Top', 'Bottom'],
             choiceHandler: (key) => {
                 if (key.toLowerCase() === 'bottom') {
@@ -47,6 +56,11 @@ class FilterDeckAction extends PlayerAction {
     }
 
     promptForRemainingCards(context) {
+        if (this.remainingCards.length === 1) {
+            this.promptForTopOrBottom(this.remainingCards[0], context);
+            return;
+        }
+
         context.game.promptWithHandlerMenu(context.player, {
             activePromptTitle: 'Choose a card return to the deck',
             context: context,

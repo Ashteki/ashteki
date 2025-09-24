@@ -1,4 +1,4 @@
-const { CardType, BattlefieldTypes } = require('../../../constants.js');
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class OceansEyes extends Card {
@@ -17,9 +17,9 @@ class OceansEyes extends Card {
                 activePromptTitle: 'Choose a wounded unit to deal 1 damage to',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.damage > 0,
-                gameAction: ability.actions.dealDamage({
-                    amount: 1
-                })
+                gameAction: ability.actions.dealDamage((context) => ({
+                    amount: this.getAbilityNumeric(1)
+                }))
             }
         });
     }

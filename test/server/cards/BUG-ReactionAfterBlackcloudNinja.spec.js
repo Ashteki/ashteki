@@ -44,7 +44,7 @@ describe('standard trigger', function () {
         expect(this.player1.player.limitedPlayed).toBe(0);
         expect(this.player1).toHavePrompt('Any reactions to blackcloud ninja being destroyed?');
 
-        this.player1.clickPass();
+        this.player1.clickNone();
         this.player1.clickCard(this.leoSunshadow);
         expect(this.leoSunshadow.damage).toBe(1);
     });

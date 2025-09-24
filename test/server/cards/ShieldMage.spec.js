@@ -97,7 +97,7 @@ describe('Shield Mage', function () {
 
             this.player1.endTurn();
             // attackers declared
-            this.player1.clickPass(); // shepherd buff reaction
+            this.player1.clickNone(); // shepherd buff reaction
             expect(this.ironWorker.exhausted).toBe(false);
             expect(this.shieldMage.exhausted).toBe(true);
 

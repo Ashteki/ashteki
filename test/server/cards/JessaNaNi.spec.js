@@ -42,7 +42,7 @@ describe('Jessa Na Ni', function () {
             expect(this.anchornaut.location).toBe('discard');
             // prompt for jessa
             expect(this.player1).toHavePrompt('Any reactions to Anchornaut being destroyed?');
-            this.player1.pass();
+            this.player1.clickNone();
             expect(this.coalRoarkwin.damage).toBe(0);
             expect(this.player1).not.toHavePrompt('Any reactions to Anchornaut being destroyed?');
         });

@@ -9,6 +9,9 @@ class OrderedAoEAction extends GameAction {
         this.name = 'OrderedAoE';
         this.cards = {};
         this.promptTitle = '';
+    }
+
+    setDefaultProperties() {
         this.activePromptTitle = 'Choose order of AoE actions';
     }
 
@@ -40,7 +43,7 @@ class OrderedAoEAction extends GameAction {
         context.game.promptForSelect(context.player, {
             waitingPromptTitle: 'Waiting for opponent to order AoE actions',
             promptTitle: this.propertyCache.promptTitle,
-            activePromptTitle: this.propertyCache.activePromptTitle,
+            activePromptTitle: this.activePromptTitle,
             location: ['play area'],
             cardCondition: (card) => this.cards.includes(card) && !card.removed,
             context: context,

@@ -36,7 +36,7 @@ describe('Copycat', function () {
             this.player1.clickPrompt('Play this action');
             this.player1.clickCard(this.ironWorker);
 
-            this.player2.clickPass();
+            this.player2.clickNone();
             expect(this.player1).toHaveDefaultPrompt();
         });
 
@@ -92,7 +92,7 @@ describe('Copycat', function () {
             this.player1.clickPrompt('Water Blast');
             this.player1.clickCard(this.ironWorker);
 
-            this.player2.clickPass();
+            this.player2.clickNone();
             expect(this.player1).toHaveDefaultPrompt();
         });
 
@@ -145,7 +145,7 @@ describe('Copycat', function () {
             this.player1.clickCard(this.redirect); // discard
             this.player1.clickCard(this.ironWorker);
 
-            this.player2.clickPass();
+            this.player2.clickNone();
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
@@ -258,7 +258,7 @@ describe('Copycat', function () {
             this.player1.clickCard(this.maeoniViper);
             expect(this.player2).toHavePrompt('Any Reactions?');
 
-            this.player2.clickPrompt('Pass');
+            this.player2.clickNone();
             expect(this.player2).not.toHavePrompt('Any Reactions?');
             expect(this.player2).not.toBeAbleToSelect(this.copycat);
         });
