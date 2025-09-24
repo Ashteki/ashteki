@@ -89,7 +89,7 @@ describe('Undying heart BUG', function () {
             this.player1.clickDie(0);
             this.player1.clickCard(this.bloodArcher);
             this.player1.clickYes();
-            this.player1.clickPrompt('Pass'); // jessa ability pass
+            this.player1.clickNone(); // jessa ability pass
 
             expect(this.undyingHeart.location).toBe('discard');
             expect(this.bloodArcher.location).toBe('hand');

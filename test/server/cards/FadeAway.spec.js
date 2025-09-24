@@ -34,7 +34,7 @@ describe('Fade away', function () {
             this.player2.clickPrompt('Done');
 
             expect(this.player2).not.toHavePrompt('Any reactions to iron rhino being destroyed?');
-            // this.player2.clickPass();
+            // this.player2.clickNone();
             expect(this.game.round).toBe(2);
             expect(this.ironRhino.location).toBe('archives');
             expect(this.fadeAway.location).toBe('discard');
@@ -55,7 +55,7 @@ describe('Fade away', function () {
             this.player2.clickPrompt('Done');
 
             expect(this.player2).not.toHavePrompt('Any reactions to iron worker being destroyed?');
-            // this.player2.clickPass();
+            // this.player2.clickNone();
 
             expect(this.game.round).toBe(2);
             expect(this.ironWorker.location).toBe('purged');
@@ -78,7 +78,7 @@ describe('Fade away', function () {
             this.player2.clickPrompt('Done');
 
             expect(this.player2).not.toHavePrompt('Any reactions to frostback bear being destroyed?');
-            // this.player2.clickPass();
+            // this.player2.clickNone();
             expect(this.game.round).toBe(2);
             expect(this.frostbackBear.location).toBe('archives');
             expect(this.fadeAway.location).toBe('discard');
@@ -120,7 +120,7 @@ describe('Fade away', function () {
             this.player2.clickPrompt('Done');
 
             expect(this.player2).toHavePrompt('Do you wish to conscript the destroyed Iron Worker?');
-            // this.player2.clickPass();
+            // this.player2.clickNone();
             this.player2.clickYes();
             // this.player2.clickCard(this.rowanUmberend);
             expect(this.ironWorker.location).toBe('purged'); // underneath cards are considered purged

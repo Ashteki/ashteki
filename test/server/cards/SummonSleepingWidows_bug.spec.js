@@ -43,7 +43,7 @@ describe('Summon Sleeping Widows bugreport', function () {
         expect(this.player1.inPlay.length).toBe(2);
         // prompt for jessa screams
         expect(this.player2).toHavePrompt('Any reactions to Masked Wolf being destroyed?');
-        this.player2.clickPrompt('Pass');
+        this.player2.clickNone();
     });
 
     it('their unit destruction during small sacrifice with jessa scream', function () {

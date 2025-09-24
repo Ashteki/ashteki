@@ -66,7 +66,7 @@ describe('AshSpirit', function () {
             this.player2.clickPrompt('Done'); // no blocker
             this.player2.clickPrompt('No'); // no counter
 
-            this.player2.clickPrompt('Pass'); // no redirect from overkill damage
+            this.player2.clickNone(); // no redirect from overkill damage
 
             expect(this.ironRhino.location).toBe('archives');
             expect(this.ashSpirit.location).toBe('archives');

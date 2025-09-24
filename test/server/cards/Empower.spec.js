@@ -62,7 +62,7 @@ describe('Empower', function () {
             this.player1.clickCard(this.ironWorker);
             this.player1.clickPrompt(2);
             this.player1.clickCard(this.hammerKnight);
-            this.player2.clickPass(); // GV
+            this.player2.clickNone(); // GV
             expect(this.ironWorker.status).toBe(1);
             expect(this.hammerKnight.damage).toBe(2);
 

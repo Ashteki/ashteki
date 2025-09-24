@@ -123,7 +123,7 @@ describe('Flock Shepherd', function () {
             expect(this.player2).toBeAbleToSelect(this.flockShepherd);
             expect(this.player2).toHavePrompt('Any reactions to attackers being declared?');
 
-            this.player2.clickPrompt('Pass');
+            this.player2.clickNone();
 
             expect(this.ashSpirit.attack).toBe(0);
             expect(this.gilder.attack).toBe(0);
@@ -156,7 +156,7 @@ describe('Flock Shepherd vs hammer knight', function () {
     it('does not protect vs aftershock if shepherd is destroyed', function () {
         this.player1.clickAttack(this.flockShepherd);
         this.player1.clickCard(this.hammerKnight);
-        this.player2.clickPass(); // FS reaction
+        this.player2.clickNone(); // FS reaction
         this.player2.clickDone(); // guard
         this.player2.clickYes(); // counter
         this.player1.clickCard(this.gilder);
