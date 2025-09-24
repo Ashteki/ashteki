@@ -2843,7 +2843,8 @@
         "id": "false-demon",
         "count": 2
       }
-    ]
+    ],
+    "notes": "The tempo-oriented hybrid deck exploits the stat-flipping mechanic to eliminate opposing units, make your own units perform far beyond their usual limits, and enable highly unpredictable play lines.\n\nMagnificence, Umbral Acrobat and Body Inversion all offer options to temporarily reverse units'  Attack and Life stats. This versatile effect can be used to remove 0-Attack units directly, to shift combats in your favor, make damage effects more dangerous, and to turn units like Dread Wraith or Phoenix Attendant in to monstrous threats. Supporting this is a range of spells that can remove or negate blockers, often in unconventional ways, and the pressure Victoria puts on the opponents' dice pools makes it tough for them to respond with their own reactions in kind.\n\nAmong the units, Dread Wraith deserves special mention due to the stratospheric damage numbers it can reach, especially with Infuriate. Shadow Spirit and False Demon round out the spellboard with more humble units that nonetheless can often get value out of proportion to their cost. The allies are more focused tools, but each contributes both on the battlefield and to the deck's internal synergies. Psychic Vampire and Stormwind Sniper pressure the deck and phoenixborn's life. Acrobat and Phoenix Attendant are both outsize threats with stat flipping, with the Attendant also giving massive value via its heal.\n\nThe recommended first five sets Victoria up with four units that can be used to deal with opponent's threats or put pressure on the opponent early depending on what you're facing. The starting Keepsake can reliably be charged early in the round with Surprise. Note that all five illusion dice are needed in Round 1, so spend a ceremonial die for the demon's basic.\nKeepsake can be flexed for body inversion in some matchups, and the sniper can be exchanged for another ally if needed."
   },
   {
     "precon_id": 924,
@@ -2964,6 +2965,7 @@
         "id": "shining-hydra-head",
         "count": 3
       }
-    ]
+    ],
+    "notes": "This ally-heavy midrange deck sports some of the game's most efficient units, bringing swarms of herders and their charges paired with larger mounts and monsters.\n\nThe heart of the deck are the herders, 1-cost allies that bring a pet conjuration in to play with them when they're played. These cheap-and-cheerful units are prime targets for the deck's two Mount spells, as they'll return to hand when the mount is destroyed. And if lost, they can be recurred via Xander's Reincarnate ability, ensuring you'll get to play them again and again. The dinosaur mounts themselves, along with the deadly Shining Hydra, give the deck some more durable and much harder-hitting options. This is a deck that wins by making a lot of units, and it does it better than most.\n\nOn occasions you do face wider swarms and big units though, Xander has powerful AOE spells in the form of Nature's Wrath and his own Earthquake. Those spells can even be rendered one-sided by using Sacred Ground on the same turn. You won't always want to though: that AOE damage can also clear exhausted units from your battlefield, and Shining Hydra can turn the wounds in to more heads.\n\nThis first five gets Xander's basic setup online. It only creates 2 units, but note that it also only spends 7 dice at most, freeing Xander to replay herder after it's returned by Dismount or Reincarnate. In a pinch, you can simply meditate to find another ally to Reincarnate.\nA common flex is to swap Earthquake for Ptera Herder or Pain Shaman, ensuring you have more allies to choose from in the early game."
   }
 ]
