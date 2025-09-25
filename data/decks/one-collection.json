@@ -1229,6 +1229,126 @@
   {
     "precon_id": 911,
     "format": "onecollection",
+    "name": "Jericho OCB: Temporal Paradox",
+    "phoenixborn": [
+      {
+        "id": "jericho-reborn",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "time",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "blink",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "double-edge",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-tusk-mount",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "summon-cinder-spirit",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "summon-time-hopper",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "spear-master",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "darkwater-hunter",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "vermillion-sage",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "timestopper",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "swift-messenger",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "standard-bearer",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "afterimage",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "flash-strike",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "accelerate",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "rising-tides",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "stand-still",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "tusk-mount",
+        "count": 2
+      },
+      {
+        "id": "rubble-spirit",
+        "count": 4
+      },
+      {
+        "id": "cinder-spirit",
+        "count": 3
+      },
+      {
+        "id": "time-hopper",
+        "count": 4
+      }
+    ],
+    "notes": "This aggressive tempo deck aims to put the opponent on the defensive immediately, and a high density of side action and reaction effects make its plays wildly difficult to predict.\n\nFront and center are its 3 conjurations. Tusk Mount threatens to turn any ally in to a monstrous threat, and if you have an unexhausted ally on the table at the beginning of the turn, it can be summoned on a side action and swing immediately. It's also a prime target to refresh with Blink, and its attack presents the opponent with a choice of two bad options: take a whopping 5 damage, or throw something in front of it and give you two extra units. Meanwhile the combination of Cinder Spirit and Time Hopper, both of which can also attack the turn they're summoned, widen the battlefield and give you ways to handle smaller units.\n\nThe allies provide many choices for Tusk Mount riders, and with Swift Messenger and Timestopper coming out at reaction speed you can get an ally when you need it. Spear Master and Standard Bearer are both effective users of any extra status tokens produced by the Time Hoppers, and the many tokens also make Flash Strike a lively threat. And with so many allies, Afterimage is a potent deterrent, providing not only removal but the chance to use those allies again and again.\nAccelerate is an all-star in this deck, as it dramatically opens up the options for what you can accomplish in a single turn with the deck's many side actions. Finally, Jericho's two uniques offer the potential for incredible efficiency and, with Stand Still, further ways to bypass blockers.\n\nThis versatile First Five sets up the spellboard and brings Swift Messenger as both a mount ally and an easy way to draw a card set up with Prepare. What to Prepare varies by matchup, but common choices include a second Double Edge or Blink, a second Time Hopper book, or another ally."
+  },
+  {
+    "precon_id": 912,
+    "format": "onecollection",
     "name": "Jessa OCB: Crown of Blood",
     "phoenixborn": [
       {
@@ -1347,7 +1467,7 @@
     "notes": "This deck offers the most focused burn plan of any deck in the battlebox, rooted in Jessa's powerful Screams ability. That makes it very dangerous in PVP, although it also means the deck can be tricky to pilot against the chimera.\n\nJessa's gameplan generally relies on using the various tools in her deck to control the flow of the game and deal incremental damage to the opposing PB until they are in range to be finished off with Screams. Blood Puppets and Playtime offer the potential of burdening the opponent with ongoing damage, while Living Dolls combined with Serve The City and Chant of Transfusion can send wounds from the battlefield directly to the phoenixborn. Screams and Final Cry further punish the opponent as units are killed, making death slow but inevitable.\n\nWhen dealing with aggressive opponents - especially the chimera - you'll need to do more than just burn. Chief among your control options is Blood Archer which can hand out a ton of damage, especially when combined with Chant of Transfusion. Given enough time, the archers can clear an entire opposing battlefield, and it's well worth using the ceremonial dice power or Undying Heart to get them back if they're killed. Nightshade Swallow is a solid defensive unit, and in a pinch Blood Puppets can be played on your side and used as blockers too. Your ace is the Fear spell, which can be held back to deal with larger units that your allies can't effectively handle.\n\nThis is one of several possible FFs this deck can run, and Jessa needs to be a bit more flexible than most, especially when shifting to PVE (where the burn plan takes longer to deliver results). Chant of Transfusion and Blood Archer are likely to find their way in to most Fives, but any of the other 3 cards can be considered for flexing out for cards like Blood Puppeteer or Fear."
   },
   {
-    "precon_id": 912,
+    "precon_id": 913,
     "format": "onecollection",
     "name": "Koji OCB: Capricious Growth",
     "phoenixborn": [
@@ -1469,7 +1589,7 @@
     "notes": "The first of the status token engines in the battlebox is Koji's army of medium-sized conjurations and allies, which starts slow but can quickly grow in to an avalanche once the engine gets turning.\n\nCentral to the deck is Indiglow Creeper, which like a pokemon evolves from a modest beginning in to an unstoppable monster. The opponent has some limited opportunities to suppress the build up of creeper while it's in its creeper or seedling form, but once things get rolling and you have multiple seedlings on the table, it becomes almost impossible to stop. Backing that up are the Mirror Spirits, a low-cost high-threat X/2 that serve as a useful outlet for any excess status tokens produced by the engine. Empower is included as an extra status token producer when you're in a pinch, and if it gets Focus online can double as a powerful source of direct removal.\n\nYour allies and spells are there to keep pressure on, especially in early rounds, and to support the main plan. Hunt Master and Wolfpack Leader both bring additional conjurations with them, capitalizing on Koji's wide battlefield. Lick Wounds keeps Koji alive but it can also get an extra turn out of your units, and Explosive Growth threatens to turn any token-holding unit in to a one hit kill.\n\nThis straightforward FF sets up your key engine pieces, and then gives you a couple allies to help protect them. You will generally open the round with either Indiglow Creeper or Hunt Master, and Mirror Spirit will usually be held until late when there are a lot of exhaustion tokens on the table to fuel it.\nIf you can, try to get Empower down before the creeper dies, as it will allow you to fuel up the seedling in a single turn with Koji. The opponent is likely to focus on the more immediately threatening Wolfpack Leader and Hunt Master, which can provide an opening to Blossom in Round 1."
   },
   {
-    "precon_id": 913,
+    "precon_id": 914,
     "format": "onecollection",
     "name": "Leo OCB: Sharp Fangs",
     "phoenixborn": [
@@ -1598,7 +1718,7 @@
     "notes": "Leo's brings a hybrid burn/mill deck to the battlebox, using a range of humble units to grind down the opponent and controlling the battlefield with the dreaded 0-Attack Swarm.\n\nAdmonisher, Ruby Cobra and Glow Finch each keep pressure on in their own way. Admonishers will punish the opponent continuously for failing to remove them, while Ruby Cobras and Finch guarantee an empty deck if they're not countered. Both can be given an attack buff from Serve The City as needed, and with Amplify + Serve a Ruby Cobra can threaten Attack 5: a very dangerous threat, especially if a Gifted Rose is left sitting on the phoenixborn. Serve The City can also be used to kill your own glow finch, providing some extra fatigue pressure in games where your opponent isn't polite enough to kill it for you.\n\nThe spell that casts the biggest shadow is undoubtedly Rile The Meek. Rile offers incredibly efficient direct removal, provided your 0-attack swarm is permitted to flourish, and it's a spell the opponent needs to fear in every round of the game. Anguish is a spell that requires careful timing, but when played at the right moment it reliably lives up to the name, giving the opponent agonizing decisions where both choices lead to a game loss.\nMore than most, this deck also uses a lot of meditation and dice powers. Don't be afraid to burn through your deck - as long as you burn through the opponent's life total too!\n\nThe standard start sets up your spellboard and gives you a Beast Tamer to help stabilize in Round 1. Generosity is used to refill the hand as the FF only spends 7 dice otherwise.\nSome options for flexing the FF include Anguish (which opponents will usually just take as 4 damage in R1), Flock Shepherd and/or Shield Mage to get the wall going early, or Rile The Meek for removing an early threat."
   },
   {
-    "precon_id": 914,
+    "precon_id": 915,
     "format": "onecollection",
     "name": "Lulu OCB: Hunting Pack",
     "phoenixborn": [
@@ -1746,7 +1866,7 @@
     "notes": "This midrange battlefield deck sports another variation of the status token synergy package, this time built around Fighting Spirit.\n\nThe spellboard is fairly slow to set up, with 3 dice sunk in to playing ready spells in Round 1. but with deck is stacked with durable units and punchy removal spells, and can build momentum quickly. Emberoot Lizard and Omen Bringer both want the status tokens provided by Tidal Crab and Lulu's ability, and all your units with tokens will feed the growing threat of Fighting Spirit when they die. Backing up the conjurations are the Gorrenrock Brawlers (which are a great place to dump extra status tokens, fueling their refresh). And the beast allies, normally only at full performance every other round, get to be \"on\" much more often thanks to Stamina Burst.\n\nUltimately the deck's goal is to dominate the battlefield, clear away any opposing blockers, and kill the enemy phoenixborn with big swings. The decks many large units are good at making positive trades, and get even better when Fighting Spirit lets them trade up in to something more expensive. Omen Bringer is especially good at this, as its ability allows it to unexhaust the Fighting Spirit powering it, feeding its token right back in to engine when it dies. The battlefield-centric plan is backed up by a small suite of removal and buffing, including Lulu's own Spark and the expensive but deadly Phoenix Barrage.\n\nThis FF is all about getting the spellboard set up and holding the line during R1. Jungle Forager can fetch whichever alteration is likely to be most helpful, often Root Armor. An optional forgo summoning one of the units to open with Phoenix Barrage or Survival of the Fittest, a good counter to the opponent starting a big unit."
   },
   {
-    "precon_id": 915,
+    "precon_id": 916,
     "format": "onecollection",
     "name": "Maeoni OCB: Slow Poison",
     "phoenixborn": [
@@ -1866,7 +1986,7 @@
     "notes": "The battlebox's version of the infamous Silver Snake deck backs the deadly serpent up with Charm dice synergies and a secondary win via fatigue.\n\nSilver Snake is one of the scariest units in the game, capable of growing over multiple rounds the point where it can swallow a phoenixborn whole. And if you can keep it alive long enough, Hypnotize will all but guarantee it reaches its target. The snake is also incredibly resilient, capable of tanking multiple hits and then healing back up with Recover 3. Its most important support piece is the Gilder, who both feeds and protects the snake. In combination they're a threat that opponents need to play very carefully to avoid. While lacking the gilders' synergies, Biter supplements the plan by providing a reliable unit you can use for Command Strike from the beginning of the game.\n\nWhile Snake is growing, your other units and spells control the game and grind down the opponent's resources. Charm dice power debuffs are cheaply available with Royal Charm and Snakebite, and Chimera Charmer, with the later two getting extra benefit from using them. Once Charm power dice are used, Venom Strike layers on the pain; It's a reasonably good return even with only a couple charm dice out, but scales quickly to very dangerous levels. The rest of the spells support the snake in various ways, providing removal, refresh and protection as needed.\n\nWhile Maeoni has some flexibility with her First Five, virtually any FF will start with Silver Snake and Gilder, one of the game's classic power combos. This variation focuses on building up the rest of the spellboard first. Open Memories can be used to grab whatever seems most needed, but if in doubt go for a second copy of Summon Gilder. That will ensure you have a plentiful supply of unit guards to handle whatever your opponent throws at you."
   },
   {
-    "precon_id": 916,
+    "precon_id": 917,
     "format": "onecollection",
     "name": "Namine OCB: Cyclone Cantata",
     "phoenixborn": [
@@ -1972,7 +2092,7 @@
     "notes": "Namine's card-fueled spellboard engine is built around her unique Surging Tempest, supported by spindown, recursion, and a toolbox of useful spells.\n\nSurging Tempest starts the game as a simple draw and dice fixing tool, but once focused it gains the ability to convert discarded cards to damage. On its own it's an ability you'd use sparingly, but Nightsong Cricket's recursion effect will see you get those cards back and keep the Tempest spinning all game. River Colossus provides a meatier conjuration that can block for multiple rounds and threaten big attacks, with Magic Syphon guaranteeing you have plenty of dice fixing to buff hippo. Syphon also provides a source of spindown pressure combined with Crickets, which balances out that you're recurring cards for them too.\n\nThe remainder of the deck is filled out by a mix of allies and spells that allow Namine to deal with any situation that crops up. They include plenty of card draw effects to quickly get the big spellboard online, and a number of secondary effects that discard cards for benefit. In PVP, it's important to carefully curate your discard pile as you play so that when Crickets die, your opponent is forced to give you back cards you can use. Encore assists with this, letting you use the same single card multiple times and being something in your discard your opponent never wants to let you recur, since it can then become whatever card you need.\n\nThis FF gets your spellboard set up with some flexibility. You'll draw a card off Surging Tempest (and optionally the sympathy dice power and Namine's ability), and if you meditate Encore can give you a choice of cards from the discard. If you need a more aggressive start, you can also meditate off the Colossus book after you've summoned it, return it to hand, and play it again, allowing for 2 of the hippos in Round 1."
   },
   {
-    "precon_id": 917,
+    "precon_id": 918,
     "format": "onecollection",
     "name": "Noah OCB: Scars and Reflections",
     "phoenixborn": [
@@ -2084,7 +2204,7 @@
     "notes": "Featuring a whopping 14 reactions spells - plus 4 allies that can be played at reaction speed - Noah's deck leverages Reimagine's synergies with illusion dice to win the battlefield and pressure fatigue via spindown.\n\nThe deck is relatively unit light, but the units it brings pack a punch. Masked Wolf is one of the rare side-action summons, able to attack the same turn it comes in to play. They won't stick around long, but they're guaranteed to do some damage while they last. Shadow Hound, by contrast, is one of the hardest conjurations for opponents to deal with since it can't be targeted while unexhausted; but watch out for AOE effects that don't target! These two are backed up by a small selection of allies.\n\nUsing Reimagine to best effect is what sets the deck apart. The illusion dice power should be used aggressively, provided you have reactions in hand to spend the stored dice on. And with a total of 18 cards that can be paid for with Reimagine, you usually will. Chief among these is Noah's lethal Shadowblade, but all the spells have useful applications. Don't forget that Shadow Guard and Gates Defender can also be paid for with Reimagine dice if they are played using their blue box ability! This combination is one the rare examples in Ashes where it's possible to get a unit on the table for less than its full dice cost, and can quickly turn the tide in your favor.\n\nThe recommended First Five for this deck only gives you a couple units to start, relying on Shadowblade to help check early aggression and draw in to more threats. Particle Shield, fueled by Reimagine, will also draw a card and help ensure both your wolf and shadow hound have a chance to do some damage.\nWhile most Fives will start the books, any of the other cards can be flexed out to add an ally or two for matchups where you expect to need more blockers in R1."
   },
   {
-    "precon_id": 918,
+    "precon_id": 919,
     "format": "onecollection",
     "name": "Odette OCB: Sacred Blades",
     "phoenixborn": [
@@ -2205,7 +2325,155 @@
     "notes": "This punchy midrange deck relies on a mix of hard-hitting conjurations and allies, in combination with Odette's own martial prowess, to take the battlefield by storm. Once the advantages start snowballing, the deck quickly becomes unstoppable.\n\nEmperor Lion and Cloudburst Gryphon each offer excellent value for dice, favoring defense and offense respectively. The Lion is an alert blocker with a sturdy 2/4/1 stat line, while the Gryphon's attack allows it to threaten positive trades and pressure guard like few units can. These are supported by a solid cadre of allies, including the swarm-slaying Crystal Archers, Adept Duelists and a mighty Silver Paladin, all of whom can be searched for with Reinforce. The deck also includes 10 alteration spells - also searchable with Reinforce - to increase the survivability and hitting power of Odette and her forces.\n\nIf that wasn't enough, Odette brings some of the most powerful battlefield abilities and spells of any phoenixborn. Enter The Fray allows her to get in the thick of things and kill units herself, and with Armor of Valor up she'll take less damage for using both ETF and her Guard. The two-sided Sword of Virtue lets her destroy nearly any unit, or refresh and heal one of her own heavy hitters. and with a few Meteors and Fork Lightning, she has little to fear from wider battlefields either.\n\nThis FF gets Odette set up hits the table running with 3 units in R1 (and a possible 4th from Reinforce). and Odette's ability to take down a unit herself with Enter The Fray makes it feel like more.\nThe goal in Round 1 should be to make good trades with your opponent's units, remove threats as they appear, and hopefully have a unit or two survive to the second round. If you can get that momentum going, it will be hard for the opponent to stop."
   },
   {
-    "precon_id": 919,
+    "precon_id": 920,
+    "format": "onecollection",
+    "name": "Orrick OCB: Tranquil Mind",
+    "phoenixborn": [
+      {
+        "id": "orrick-gilstream",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "charm",
+        "count": 4
+      },
+      {
+        "magic": "sympathy",
+        "count": 1
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "concentration",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "realization",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "summon-ash-spirit",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-three-eyed-owl",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "summon-turtle-guard",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "purge",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "sunshield-sentry",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "timestopper",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "flock-shepherd",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "imperial-ninja",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "spear-master",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "outmatch",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "tidal-shift",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "to-shadows",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "stasis",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "generosity",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "redirect",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "moons-blessing",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "channel-magic",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "tranquility",
+        "count": 2,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "the-awakened-state",
+        "count": 1
+      },
+      {
+        "id": "ash-spirit",
+        "count": 3
+      },
+      {
+        "id": "three-eyed-owl",
+        "count": 2
+      },
+      {
+        "id": "turtle-guard",
+        "count": 2
+      }
+    ],
+    "notes": "This control deck excels at locking down the battlefield and then grinding the opponent down. Its primary wincon is fatigue, one it can bring to bear surprisingly quickly. But if that doesn't work, Orrick's Awakened State will bring things to a quick conclusion once it comes online.\n\nThe combination of Ash Spirit and Three-Eyed Owl is key, both to chewing through your opponent's deck and getting your own engine assembled. Generally you will play Ash Spirits earlier in a round to discourage aggression, with Owls coming out later in the hopes of benefitting from their top of round Drain. Turtle Guard anchors the line with a hardy unit guard. When needed, Purge brings additional mill pressure, converting an extra die or two to more discards. Concentration forms its own distinct minigame, initially just a source of draw and dice fixing, but always be aware of how soon you can feasibly get Awakened State online.\n\nThe allies and spell suite are focused around dealing with threats the conjurations cannot. Sunshield Sentry and Spear Master are there to give you options against wider battlefields. Flock Shepherd and Timestopper can make it a bit tougher for opponents to get around (or over) your blockers. To Shadows and Redirect provide some options for dealing with bigger units you can't easily block, while the combination of Stasis and Tranquility can disable units for multiple turns.\n\nGetting the spellboard set up early is a priority for every First Five in this deck, but it has to be balanced with the ability to stabilize against aggression from the other side of the table. Getting your three books and going alongside Sunshield Sentry gives you a sturdy 4 blockers in Round 1. Depending on the opponent, you can consider flexing Owl for another ally, or getting in to your deck even faster by starting Generosity."
+  },
+  {
+    "precon_id": 921,
     "format": "onecollection",
     "name": "Rimea OCB: Ancestral Bond",
     "phoenixborn": [
@@ -2337,7 +2605,7 @@
     "notes": "This unusual engine deck takes control of the game early and applies ever-increasing pressure on the opponent from multiple angles. Its battlefield is surprisingly robust, anchored by Rimea's unique units, Ghostly Mounts and a mix of allies. But even if the opponent can hold the line, they'll soon find themselves on the clock from spindown and Abundance.\n\nThe deck's heart is its versatile spellboard. With 6 ready spells not counting Resonance, it is that the player use the spells best-suited to the matchup. Abundance and Ghostly Mount are slow to set up but bring a ton of power to bear in the mid-to-late game, and offer multiple vectors to a win. Shifting Mist is best for a longer game, saving valuable meditations for the deck's many power costs. Resummon offers the tantalizing possibility of getting repeated use out of the powerful mounts and delvers, while Shroud ensures they get a chance to attack whenever summoned.\n\nRimea's Armies and Delvers are you most reliable units, offering quantity or quality as needed, and the Army will often also be your first choice to mount. But don't count the other allies out. Battle Seer is a monstrously efficient unit on both defense and offense. Hollows give weight to the spindown plan, and are a good choice to mount up when that is looking like your best way to win. the Alchemist provides a little extra smoothing, while Dancers and Acrobat each bring tools well suited to dealing with other problem units.\n\nThe recommended First Five is a slower build intended to set Rimea up for the long game, but don't be afraid to flex cards as there are many ways to play her Round 1. Battle Seer and an Ancestral Army (usually mounted on Pale Steed) will give you some much needed staying power in the opening of the game and give Rimea a chance to get her engine built.\nCommon flex cards for the Five include Shroud and Alchemist."
   },
   {
-    "precon_id": 920,
+    "precon_id": 922,
     "format": "onecollection",
     "name": "Rin OCB: Adaptability",
     "phoenixborn": [
@@ -2460,7 +2728,135 @@
     "notes": "Rin comes to the battlebox with a conjuration-heavy midrange battlefield deck, backed by a range of alterations that can be moved from unit to unit as needed.\n\nFirst among the three conjurations is Adaptodon, whose Adaptations both give it versatility and serve as fuel for Shattering Fist and Emberheart. The adaptations can also be placed with Clashing Tempers, but keep an eye on the conjuration limits - there's only 2 of each! Frost Frog gives you a smaller unit, but one with an attack the opponent can't ignore. Ice Golem (provided you can buff it) is a super tough anchor for the line, sporting a whopping 5 Life with Ice Buff. Ember Hearts and Frost Fangs make up the second line, and can be incredibly difficult for the opponent to deal with, with the Ember Heart letting you get extra use out of alterations on your exhausted units.\n\nThe remainder of the deck is a mix of additional alteration spells and direct removal. Shattering Fist, Freezing Mist and Ice Trap give Rin options for dealing with small to medium units, freeing your heavy hitters to focus on the tearing apart whatever's left of the opponent's battlefield. Rin's Fury punishes attempts to trade up in to your units. Crystal Shield and Wallop can make your big beaters even scarier. and Glaciate can be used to both take an enemy unit offline for a round or to protect one of your own from being removed by the opponent's attacks or damaging spells. \n\nThis First Five gets your spellboard set up, starts you off with a solid battlefield and backs it with a little removal in Shattering Fist. You generally want to lead with the books, ideally use Shattering Fist to remove an Adaptation, Adapt again, and pick up the second Adaptation with Ember Heart. Rin's Ice Buff will generally go on golem unless you plan to trade it.\nFor a less sequencing-dependent FF, try flexing out Shattering Fist for Jungle Forager."
   },
   {
-    "precon_id": 921,
+    "precon_id": 923,
+    "format": "onecollection",
+    "name": "Rowan OCB: Day of Reckoning",
+    "phoenixborn": [
+      {
+        "id": "rowan-umberend",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "ceremonial",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "discovery",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "cataclysm",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "chant-of-revenge",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "chant-of-hostility",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "summon-ruin-dweller",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "foresight",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "summon-bone-crow",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "crypt-guardian",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "knowledge-seeker",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "ritualist",
+        "count": 1,
+        "ff": true
+      },
+      {
+        "id": "swift-messenger",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "blood-shaman",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "eras-end",
+        "count": 3,
+        "ff": false
+      },
+      {
+        "id": "fatal-strike",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "excavate",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "rapture",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "red-raindrop",
+        "count": 3
+      },
+      {
+        "id": "reborn-chimera",
+        "count": 1
+      },
+      {
+        "id": "rubble-spirit",
+        "count": 4
+      },
+      {
+        "id": "ruin-dweller",
+        "count": 2
+      },
+      {
+        "id": "bone-crow",
+        "count": 4
+      }
+    ],
+    "notes": "This control deck is built on a slow but inexorable burn engine, backed by Rowan's lethal end-of-round synergy effects.\n\nThe deck's plan revolves around stalling with units and removal, slowly burning the opposing Phoenixborn by means of Chant of Revenge and Ruin Dweller, and eventualyl getting Reborn Chimera online to end to game. A cornerstone is the powerful Era's End spell, which will trigger a range of \"end of round\" effects, including those on Red Raindrops, Ruin Dweller, and Crypt Guardian, and potentially spawning the Reborn Chimera.\n\nThe rest of the deck works in service of that goal. The many card draw and filtering effects help you search for Discoveries, while the remaining allies and spells give you tools to deal with opposing units and slow down the opponent's deck. Rowan's unique Cataclysm spell is especially effective in this regard, both clearing units and providing you additional blockers. Fatal Strike is helpful both as burn or for removing enemy units, and Rowan's exhume ability ensures you can always summon bone crow and charge your chants, in addition to getting second use of your allies' abilities.\n\nFirst Fives for this deck are fairly flexible, with the recommended one focusing on setting up a stable base rather than rushing for early Discoveries. Knowledge Seeker and Foresight can be used to sort draws going in to the second round, which will normally see the 3 raindrops come online in Round 3."
+  },
+  {
+    "precon_id": 924,
     "format": "onecollection",
     "name": "Saria OCB: Enthralling Aura",
     "phoenixborn": [
@@ -2598,7 +2994,7 @@
     "notes": "This versatile control deck brings a mix of units and tools that can win the game on the battlefield, via burn or fatigue, and do it in any combination.\n\nShimmer Wing, in combination with Saria's Heart's Pull ability, gives the deck a good amount of draw power and threatens the opponent on all three vectors. Saria likes having a big hand to keep Willpower live, and draw ensures you can find tools when you need them. Raven and Badger round out the spellboard, giving options to control the game and remove threats as needed. The final spellboard slot can be flexed between Shroud or Body Inversion depending on the matchup. The deck's allies fill gaps and help deal with opposing units to which the conjurations aren't especially well suited.\n\nThe deck is spell heavy, and uses them to both keep the opponent locked down and to advance Saria's win conditions. Farewell and Return to Soil deserve special mention for their ability to rapidly reduce the opponent's draw pile, in concert with the slow inevitability provided by Heart's Pull. Sympathy Pain can be used to burn away an opposing phoenixborn's life total, but it's equally useful when dealing with units, and its trigger window means it can sometimes kill attacking units before they have a chance to resolve their damage. Lastly, Willpower offers an answer for anything too big to fight; its damage is capped only by your handsize. \n\nThis First Five starts off by getting your spellboard set up, and has some flexibility in how it spends its dice. The choice between Body Inversion or Shroud is matchup dependent. Shroud will protect Raven until it can attack, while Body Inversion gives you extra removal against 0-attack units and threatens big hits from Badger or Druid.\nDruid can be used to get a second Shimmer Wing in R1 if you meditate the book after summoning and then pull it back to hand."
   },
   {
-    "precon_id": 922,
+    "precon_id": 925,
     "format": "onecollection",
     "name": "Sembali OCB: Consecrated Ground",
     "phoenixborn": [
@@ -2722,7 +3118,146 @@
     "notes": "Sembali brings another of the deck's fighty midrange decks, this time built around the efficiency of the large, expensive \"knight\" allies, supported by tempo and bypass tricks.\n\nThe deck aims to win by bringing a density of large, powerful allies that opponents will struggle to remove and then stretching their value as far as possible. Celestial Knights and Silver Paladin are among the game's toughest, and her unique Dark Reflection is (situationally) one of the game's most cost-efficient killers. The key to using them is making every effort to keep them on the table, getting round over round value, while keeping pressure on the opponent. Gift of Wings, though expensive, is useful for all of them to get a refresh and guarantee an extra good trade each round.\n\nThe deck's conjurations are used to support the core of allies, pulling opponent's units out of position, trading for other chaff, and occasionally threatening a big counterpunch. Reinforce smooths out draws, while Dark Presence provides an avenue to get to the opposing PB against a swarm. Focused Presence can also occasionally lower units' attack in to range for Paladin's Smite ability. The deck also includes Purify and Spectral Assassin, which can return an ally to hand for benefit and help free up the limited battlefield slots, giving you a chance to replay exhausted allies later in the round.\n\nThis first five sets Sembali up with a solid foundation, bringing 4 units to the table and the possibility of a pivot depending on what Reinforce finds. Sembali can hold off summoning one of the conjurations in Round 1 to use Gift of Wings.\nAgainst opponents who can't respond well to a more aggressive opening, it's possible to flex the first five to play 3 (or even 4) of the larger allies in Round 1. This can quickly snowball into an insurmountable advantage if sequenced correctly."
   },
   {
-    "precon_id": 923,
+    "precon_id": 926,
+    "format": "onecollection",
+    "name": "Tristan OCB: Storm Surge",
+    "phoenixborn": [
+      {
+        "id": "tristan-darkwater",
+        "count": 1
+      }
+    ],
+    "ultimate": null,
+    "behaviour": null,
+    "dicepool": [
+      {
+        "magic": "sympathy",
+        "count": 5
+      },
+      {
+        "magic": "time",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "tsunami-shot",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-oceans-eyes",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-prism-tetra",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "summon-wishing-wing",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-radiant-leviathan",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "temple-elder",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "darkwater-hunter",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "standard-bearer",
+        "count": 2,
+        "ff": true
+      },
+      {
+        "id": "jungle-warrior",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "vermillion-sage",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "tidal-shift",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "transmute-magic",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "crescendo",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "shatter-pulse",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "rising-tides",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "stand-still",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "wave-crash",
+        "count": 2,
+        "ff": false
+      },
+      {
+        "id": "recollect",
+        "count": 1,
+        "ff": false
+      },
+      {
+        "id": "oceans-gift",
+        "count": 1,
+        "ff": false
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "oceans-eye",
+        "count": 6
+      },
+      {
+        "id": "prism-tetra",
+        "count": 9
+      },
+      {
+        "id": "wishing-wing",
+        "count": 3
+      },
+      {
+        "id": "radiant-leviathan",
+        "count": 1
+      }
+    ],
+    "notes": "Bringing a swarm that is rivaled in size only by Koji (and in speed by nobody), Tristan's deck epitomizes the rush strategy: get units out fast, get lots of them, and never let up the attack.\n\nHis multi-summons, Ocean's Eyes and Prism Tetras, allow him to set up a battlefield extraordinarily quickly. Wishing Wing plays a supporting role here, often hanging back as a blocker until needed. All can benefit from the Magnify ability, but in most rounds it's most threatening on Tetras. The allies support the strategy, with Standard Bearer being especially important as it can allow your battlefield to put up staggering damage numbers in later rounds. Radiant Leviathan brings a heavy hitter, but also serves as an insurance package, both protecting your units from easy removal and threatening a massive Tetra counterswing if it's removed.\n\nThe spells are selected to smooth draws and rolls, and to provide a range of tempo/bypass oriented tools to help more of your big swings connect with the opposing phoenixborn. Crescendo, Shatter Pulse and Wave Crash can all remove blockers in the same turn as a swing, and Wave Crash can also let you drop Darkwater Hunter at reaction speed. Against another swarm, Stand Still will make it easier to get through. The new Rising Tides is also useful here, both for killing opposing units and for clearing your own exhausted ones.\n\nThe First Five comes out of the gate swinging with 7 units in Round 1, and it's possible to go wider still by flexing out Tsunami Shot or Standard Bearer for Tidal Shift. By threatening so much damage early, the opponent is on the back foot immediately, and Tristan can win games just by keeping the pressure up from that early start.\nCare needs to be taken when sequencing the FF however, especially when facing decks that have a lot of AOE or ping since most of your units can be taken out fairly easily."
+  },
+  {
+    "precon_id": 927,
     "format": "onecollection",
     "name": "Victoria OCB: Knives In The Dark",
     "phoenixborn": [
@@ -2847,7 +3382,7 @@
     "notes": "The tempo-oriented hybrid deck exploits the stat-flipping mechanic to eliminate opposing units, make your own units perform far beyond their usual limits, and enable highly unpredictable play lines.\n\nMagnificence, Umbral Acrobat and Body Inversion all offer options to temporarily reverse units'  Attack and Life stats. This versatile effect can be used to remove 0-Attack units directly, to shift combats in your favor, make damage effects more dangerous, and to turn units like Dread Wraith or Phoenix Attendant in to monstrous threats. Supporting this is a range of spells that can remove or negate blockers, often in unconventional ways, and the pressure Victoria puts on the opponents' dice pools makes it tough for them to respond with their own reactions in kind.\n\nAmong the units, Dread Wraith deserves special mention due to the stratospheric damage numbers it can reach, especially with Infuriate. Shadow Spirit and False Demon round out the spellboard with more humble units that nonetheless can often get value out of proportion to their cost. The allies are more focused tools, but each contributes both on the battlefield and to the deck's internal synergies. Psychic Vampire and Stormwind Sniper pressure the deck and phoenixborn's life. Acrobat and Phoenix Attendant are both outsize threats with stat flipping, with the Attendant also giving massive value via its heal.\n\nThe recommended first five sets Victoria up with four units that can be used to deal with opponent's threats or put pressure on the opponent early depending on what you're facing. The starting Keepsake can reliably be charged early in the round with Surprise. Note that all five illusion dice are needed in Round 1, so spend a ceremonial die for the demon's basic.\nKeepsake can be flexed for body inversion in some matchups, and the sniper can be exchanged for another ally if needed."
   },
   {
-    "precon_id": 924,
+    "precon_id": 928,
     "format": "onecollection",
     "name": "Xander OCB: Monster Ranchers",
     "phoenixborn": [
