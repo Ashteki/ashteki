@@ -29,7 +29,6 @@ describe('Seek 3 ability', function () {
         this.player1.play(this.vermillionSage);
         expect(this.vermillionSage.location).toBe('play area');
 
-        this.player1.clickPrompt('Iron Worker');
         this.player1.clickPrompt('bottom');
 
         expect(this.player1.deck.length).toBe(4);

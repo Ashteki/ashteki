@@ -31,7 +31,6 @@ describe('Forwarn ability', function () {
 
         this.player1.clickPrompt('anchornaut');
         this.player1.clickPrompt('bottom');
-        this.player1.clickPrompt('iron worker');
         this.player1.clickPrompt('top');
 
         expect(this.player2.deck.length).toBe(3);
