@@ -10,6 +10,7 @@ class Realization extends Card {
             title: 'Use Ability',
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
+            condition: (context) => context.player.deckIsEmpty,
             target: {
                 toSelect: 'player',
                 autoTarget: (context) => context.player.opponent,
