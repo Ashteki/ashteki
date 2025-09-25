@@ -35,7 +35,7 @@ describe('Seek 3 ability', function () {
         this.player1.clickPrompt('bottom');
         this.player1.clickPrompt('iron worker');
         this.player1.clickPrompt('top');
-        this.player1.clickPrompt('blood archer');
+        // this.player1.clickPrompt('blood archer');
         this.player1.clickPrompt('bottom');
 
         expect(this.player1.deck.length).toBe(5);

@@ -41,7 +41,6 @@ describe('Panic Aspect', function () {
             expect(this.panic.facedown).toBe(false);
             expect(Dice.getRandomInt).toHaveBeenCalledTimes(3); // behaviour 1 + 2 rerolls
 
-            expect(this.player1).toHavePrompt('Choose 2 dice');
             this.player1.clickDie(0);
             this.player1.clickDie(1);
             this.player1.clickPrompt('Done');

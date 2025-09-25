@@ -15,7 +15,7 @@ class Panic extends AspectCard {
             },
             then: {
                 target: {
-                    activePromptTitle: 'Choose a die to lower',
+                    activePromptTitle: 'Choose dice to lower',
                     player: 'opponent',
                     targetsPlayer: true,
                     toSelect: 'die',
