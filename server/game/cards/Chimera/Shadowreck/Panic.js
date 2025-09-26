@@ -14,6 +14,7 @@ class Panic extends AspectCard {
                 gameAction: ability.actions.rerollDice()
             },
             then: {
+                condition: (context) => this.getRerollCount(context) > 0,
                 target: {
                     activePromptTitle: 'Choose dice to lower',
                     player: 'opponent',
