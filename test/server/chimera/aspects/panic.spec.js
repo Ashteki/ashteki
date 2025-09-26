@@ -28,10 +28,10 @@ describe('Panic Aspect', function () {
             this.player2.dicepool[0].level = 'basic';
             this.player2.dicepool[1].level = 'basic';
             spyOn(Dice, 'd12Roll').and.returnValue(1);
-            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
         });
 
-        it('reroll 2 basic dice on', function () {
+        it('reroll 2 basic dice prompts to lower 2', function () {
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
             expect(this.panic.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll
@@ -56,6 +56,19 @@ describe('Panic Aspect', function () {
             this.player1.clickDone(); // keep dice end of round
             this.player1.clickNo(); // card discard
             expect(this.panic.facedown).toBe(true);
+        });
+
+        it('reroll no basic dice should not prompt to lower dice', function () {
+            spyOn(Dice, 'getRandomInt').and.returnValue(1); // power
+            expect(this.panic.facedown).toBe(true);
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            expect(this.panic.facedown).toBe(false);
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(3); // behaviour 1 + 2 rerolls
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
