@@ -47,34 +47,36 @@ describe('Spear Master', function () {
                     dicepool: ['natural', 'natural', 'charm']
                 }
             });
-
         });
 
         it('spear volley triggers', function () {
             this.spearMaster.tokens.status = 2;
             this.ironWorker.tokens.status = 1;
+            this.hammerKnight.tokens.status = 1;
             expect(this.spearMaster.status).toBe(2);
             expect(this.ironWorker.status).toBe(1);
 
-            this.player1.clickAttack(this.anchornaut);
+            this.player1.clickAttack(this.hammerKnight);
             this.player1.clickCard(this.spearMaster);
             // should open prompt
             expect(this.player1).not.toHaveDefaultPrompt();
             this.player1.clickCard(this.ironWorker);
             expect(this.ironWorker.status).toBe(0);
+            expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
             this.player1.clickCard(this.spearMaster);
             expect(this.spearMaster.status).toBe(1);
             this.player1.clickDone();
 
             this.player1.clickCard(this.hammerKnight);
-            this.player1.clickCard(this.anchornaut);
-            this.player1.clickDone();
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
+            expect(this.player1).not.toBeAbleToSelect(this.spearMaster); // own unit
 
             this.player1.clickCard(this.anchornaut);
-            this.player1.clickCard(this.hammerKnight);
-            expect(this.hammerKnight.damage).toBe(1);
             expect(this.anchornaut.location).toBe('discard');
-            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.hammerKnight.damage).toBe(1);
+
+            expect(this.player1).toHaveWaitingPrompt(); // resolving attack action
         });
 
         it('spear volley reset', function () {
@@ -116,6 +118,52 @@ describe('Spear Master', function () {
             this.player1.clickDone();
 
             expect(this.player1).toHaveWaitingPrompt();
+        });
+    });
+
+    describe('On attack fewer targets than tokens', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['spear-master', 'mist-spirit', 'iron-worker'],
+                    dicepool: ['divine', 'divine', 'time', 'time', 'natural', 'natural'],
+                    hand: ['freezing-blast', 'clashing-tempers'],
+                    archives: ['ice-buff', 'pack-wolf']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: [],
+                    hand: [],
+                    dicepool: ['natural', 'natural', 'charm']
+                }
+            });
+        });
+
+        it('spear volley triggers', function () {
+            this.spearMaster.tokens.status = 2;
+            this.ironWorker.tokens.status = 1;
+            expect(this.spearMaster.status).toBe(2);
+            expect(this.ironWorker.status).toBe(1);
+
+            this.player1.clickAttack(this.hammerKnight);
+            this.player1.clickCard(this.spearMaster);
+            // should open prompt
+            expect(this.player1).not.toHaveDefaultPrompt();
+            this.player1.clickCard(this.ironWorker);
+            expect(this.ironWorker.status).toBe(0);
+            this.player1.clickCard(this.spearMaster);
+            expect(this.spearMaster.status).toBe(1);
+            this.player1.clickDone();
+
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
+
+            // no other targets, so should complete
+
+            expect(this.player1).toHaveWaitingPrompt(); // resolving attack action
         });
     });
 

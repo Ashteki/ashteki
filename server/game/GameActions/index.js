@@ -79,6 +79,7 @@ module.exports = {
     RevealAction: require('./RevealAction'),
     SearchAction: require('./SearchAction'),
     SequentialAction: require('./SequentialAction'),
+    SequentialDamageAction: require('./SequentialDamageAction'),
     SequentialForEachAction: require('./SequentialForEachAction'),
     SetDieLevelAction: require('./SetDieLevelAction'),
     SetGuardedAction: require('./SetGuardedAction'),
