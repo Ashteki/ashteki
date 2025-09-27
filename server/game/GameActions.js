@@ -115,6 +115,7 @@ const Actions = {
     // meta actions
     addEventToWindow: (propertyFactory) => new GameActions.AddEventToWindowAction(propertyFactory),
     allocateDamage: (propertyFactory) => new GameActions.AllocateDamageAction(propertyFactory),
+    sequentialDamage: (propertyFactory) => new GameActions.SequentialDamageAction(propertyFactory),
     changeEvent: (propertyFactory) => new GameActions.ChangeEventAction(propertyFactory),
     chooseAction: (propertyFactory) => new GameActions.ChooseGameAction(propertyFactory), // choices, activePromptTitle = 'Select one'
     conditional: (propertyFactory) => new GameActions.ConditionalAction(propertyFactory),

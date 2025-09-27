@@ -1,17 +1,32 @@
+const { BattlefieldTypes } = require('../../constants.js');
+const CardSelector = require('../CardSelector.js');
 const UiPrompt = require('./uiprompt.js');
 
-class CollectTokenPrompt extends UiPrompt {
+class SequentialDamagePrompt extends UiPrompt {
     constructor(game, properties) {
         super(game);
 
         this.choosingPlayer = properties.choosingPlayer || game.activePlayer;
         this.properties = properties;
         this.context = properties.context;
-        this.selector = properties.selector;
-        this.cardStatus = {};
+        this.selector = CardSelector.for({
+            cardType: BattlefieldTypes,
+            controller: 'opponent',
+            cardCondition: (card) => !this.chosenTargets.includes(card)
+        });
+        this.damageStep = properties.damageStep;
+        this.numSteps = properties.numSteps;
+
+        this.chosenTargets = [];
     }
 
     continue() {
+        const legalTargets = this.selector.getAllLegalTargets(this.context);
+
+        if (legalTargets.length === 0) {
+            this.complete();
+        }
+
         if (!this.isComplete()) {
             this.highlightSelectableCards();
         }
@@ -32,20 +47,19 @@ class CollectTokenPrompt extends UiPrompt {
         if (this.game.manualMode) {
             buttons = buttons.concat({ text: 'Cancel Prompt', arg: 'cancel' });
         }
-        buttons = buttons.concat(
-            { text: 'Reset', arg: 'reset' },
-            { text: 'Done', arg: 'done' });
 
-        let countText = '';
-        if (this.totalStatus > 0) {
-            countText = ': ' + this.totalStatus;
-        }
         return {
             selectCard: true,
-            menuTitle: 'Choose status tokens on units to use' + countText,
+            menuTitle: {
+                text: 'Choose a unit to deal {{damageStep}} damage to ({{thisStep}}/{{numSteps}})',
+                values: {
+                    damageStep: this.properties.damageStep.toString(),
+                    thisStep: this.chosenTargets.length + 1,
+                    numSteps: this.numSteps
+                }
+            },
             buttons: buttons,
             promptTitle: { text: '{{card}}', values: { card: this.context.source.name } },
-
             controls: [
                 {
                     type: 'targeting',
@@ -73,45 +87,27 @@ class CollectTokenPrompt extends UiPrompt {
             return false;
         }
 
-        this.totalStatus = Object.values(this.cardStatus).reduce(
-            (total, cardVal) => total + cardVal.status,
-            0
-        );
+        // resolve damage / action
+        this.game.actions
+            .dealDamage({ showMessage: true })
+            .resolve(card, this.game.getFrameworkContext(player));
+
+        if (this.chosenTargets.length >= this.properties.numSteps) {
+            this.complete();
+        }
     }
 
     selectCard(card) {
-        if (card.status <= 0) {
+        if (!this.chosenTargets.includes[card]) {
+            this.chosenTargets.push(card);
+            return true;
+        } else {
             return false;
         }
-
-        if (!this.cardStatus[card.uuid]) {
-            this.cardStatus[card.uuid] = {
-                card: card,
-                status: 1
-            };
-        } else {
-            this.cardStatus[card.uuid].status += 1;
-        }
-        card.removeToken('status', 1);
-        return true;
     }
 
     menuCommand(player, arg) {
         if (arg === 'cancel') {
-            // return tokens to source(s)
-
-            this.complete();
-            return true;
-        }
-        if (arg === 'reset') {
-            Object.values(this.cardStatus).forEach(cardVal => {
-                cardVal.card.addToken('status', cardVal.status);
-            });
-            this.clearSelection();
-            return true;
-        }
-        if (arg === 'done') {
-            this.context.tokenCount = this.totalStatus;
             this.complete();
             return true;
         }
@@ -125,9 +121,9 @@ class CollectTokenPrompt extends UiPrompt {
     }
 
     clearSelection() {
-        this.cardStatus = {};
+        this.chosenTargets = [];
         this.choosingPlayer.clearSelectableCards();
     }
 }
 
-module.exports = CollectTokenPrompt;
+module.exports = SequentialDamagePrompt;
