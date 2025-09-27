@@ -19,6 +19,7 @@ class SpearMaster extends Card {
         });
 
         this.forcedReaction({
+            title: 'Spear Volley',
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
@@ -35,18 +36,16 @@ class SpearMaster extends Card {
             then: {
                 alwaysTriggers: true,
                 condition: (context) => context.priorContext.tokenCount > 0,
-                target: {
-                    activePromptTitle: (context) =>
-                        `Choose up to ${context.priorContext.tokenCount} units to deal 1 damage to`,
-                    cardType: BattlefieldTypes,
-                    controller: 'opponent',
-                    mode: 'upTo',
-                    numCards: (context) => context.priorContext.tokenCount,
-                    gameAction: ability.actions.orderedAoE({
-                        gameAction: ability.actions.dealDamage({ showMessage: true }),
-                        promptTitle: 'Spear Volley'
-                    })
-                }
+                gameAction: ability.actions.sequentialDamage((context) => ({
+                    numSteps: context.priorContext.tokenCount
+                    // action: ability.actions.dealDamage((context) => ({
+                    //     promptForSelect: {
+                    //         activePromptTitle: 'Choose a unit to deal 1 damage to',
+                    //         cardType: BattlefieldTypes,
+                    //         controller: 'opponent'
+                    //     }
+                    // }))
+                }))
             }
         });
     }

@@ -16,20 +16,7 @@ class CollectStatusTokenAction extends GameAction {
             new CollectTokenPrompt(context.game, {
                 choosingPlayer: this.choosingPlayer,
                 selector: this.getSelector(),
-                context: context,
-                // onSelect: (cardDamage) => {
-                //     for (const uuid of Object.keys(cardDamage)) {
-                //         const card = context.game.findAnyCardInPlayByUuid(uuid);
-                //         const amount = cardDamage[uuid].damage || 0;
-                //         if (card) {
-                //             // this.events.push(
-                //             //     context.game.actions
-                //             //         .dealDamage({ amount: amount })
-                //             //         .getEvent(card, context)
-                //             // );
-                //         }
-                //     }
-                // }
+                context: context
             })
         );
 
