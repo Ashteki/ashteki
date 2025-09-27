@@ -1,0 +1,158 @@
+{
+    "deckType": "chimera",
+    "results": [
+        {
+            "name": "The Flood of Moon Cove",
+            "stub": "flood-of-moon-cove",
+            "type": "Chimera",
+            "level": "standard",
+            "rank": 1,
+            "threat": 6,
+            "life": 30,
+            "ultimate": 3,
+            "imageStub": "flood-of-moon-cove-1p-standard-1.jpg"
+        },
+        {
+            "name": "Flood Ultimate",
+            "stub": "flood-ultimate",
+            "type": "Ready Spell",
+            "imageStub": "flood-of-moon-cove-ultimate-%s.jpg"
+        },
+        {
+            "name": "Flood Behaviour",
+            "stub": "flood-behaviour",
+            "type": "Behaviour",
+            "imageStub": "flood-of-moon-cove-behavior-%s.jpg"
+        },
+        {
+            "name": "Drowning",
+            "stub": "drowning",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit",
+            "copies": 7
+        },
+        {
+            "name": "Capsize",
+            "stub": "capsize",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Whirlpool",
+            "stub": "whirlpool",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 2,
+            "blood": 1,
+            "statusCount": 3
+        },
+        {
+            "name": "Undertow",
+            "stub": "undertow",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 2,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Drag Below",
+            "stub": "drag-below",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 2,
+            "blood": 1,
+            "statusCount": 2
+        },
+        {
+            "name": "Deep End",
+            "stub": "deep-end",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 5,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "From the Depths",
+            "stub": "from-the-depths",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Insatiable",
+            "stub": "insatiable",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 2,
+            "blood": 1,
+            "statusCount": 2
+        },
+        {
+            "name": "Tyranny",
+            "stub": "tyranny",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": "X",
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Stunning Impact",
+            "stub": "stunning-impact",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 2,
+            "blood": 1
+        },
+        {
+            "name": "Shore Breaker",
+            "stub": "shore-breaker",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 4,
+            "life": 3,
+            "blood": 2
+        },
+        {
+            "name": "Deluge",
+            "stub": "deluge",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "jaw",
+            "attack": 2,
+            "life": 1,
+            "blood": 1
+        },
+        {
+            "name": "Riptide",
+            "stub": "riptide",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 3,
+            "life": 3,
+            "blood": 2
+        }
+    ]
+}
