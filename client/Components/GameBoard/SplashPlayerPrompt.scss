@@ -115,9 +115,14 @@
 
     .prompt-control-behaviour {
         margin-bottom: 4px;
+        padding: 4px 8px;
         background-color: #f1daa6;
         border-radius: 4px;
         color: black;
+
+        div {
+            text-align: left;
+        }
     }
 
 }

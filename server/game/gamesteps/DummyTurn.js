@@ -19,7 +19,7 @@ class DummyTurn extends BaseStepWithPipeline {
         }
 
         if (this.player.threatCards.length) {
-            this.rollDice();
+            this.rollForBehaviour();
         } else if (this.canAttack()) {
             // attack
             this.player.doAttack();
@@ -28,7 +28,7 @@ class DummyTurn extends BaseStepWithPipeline {
         }
     }
 
-    rollDice() {
+    rollForBehaviour() {
         // Reroll a basic die
         // queue an action because of redrains trigger
         const basicDie = this.player.dice.find((die) => die.level === Level.Basic);
