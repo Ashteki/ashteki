@@ -240,6 +240,7 @@ class NeversetBehaviour extends BehaviourCard {
 
     doBleed(aim) {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 mode: 'auto',
                 aim: aim,
@@ -255,6 +256,7 @@ class NeversetBehaviour extends BehaviourCard {
 
     useStatusAbility(aim) {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 mode: 'auto',
                 aim: aim,

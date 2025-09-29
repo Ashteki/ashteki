@@ -28,6 +28,7 @@ class BehaviourCard extends Card {
 
     doAddRedRains() {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             preferActionPromptMessage: true,
             gameAction: AbilityDsl.actions.addRedRainsToken({
                 showMessage: true,
@@ -40,6 +41,7 @@ class BehaviourCard extends Card {
     }
 
     doReveal() {
+        // main
         const target = this.owner.threatCards[0];
         const act = new RevealBehaviour(target);
         const context = act.createContext(this.owner);
@@ -52,6 +54,7 @@ class BehaviourCard extends Card {
     }
 
     doAttack(attackWith, from) {
+        // main
         if (attackWith && !attackWith.canAttack()) {
             return;
         }
@@ -74,6 +77,7 @@ class BehaviourCard extends Card {
     doPbBurnDamage(amount) {
         // must TARGET
         const act = this.action({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => context.player.opponent.phoenixborn,
@@ -88,6 +92,7 @@ class BehaviourCard extends Card {
     doUnitBurnDamage(amount, aim) {
         // must TARGET
         const act = this.action({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 autoTarget: (context) =>
                     context.player.getTargetUnit(
@@ -103,6 +108,13 @@ class BehaviourCard extends Card {
     }
 
     doRageRaise(numDice = 1) {
+        // side action check 
+        const player = this.owner;
+        if (!player.checkRestrictions('spendSide')) {
+            this.game.addMessage('{0} cannot take a side action', player);
+            return;
+        }
+
         for (let i = 0; i < numDice; i++) {
             this.game.queueSimpleStep(() => {
                 const basicDie = this.owner.getBasicDie(Magic.Rage);
@@ -117,6 +129,7 @@ class BehaviourCard extends Card {
 
     doBasicRageReroll(numDice = 1) {
         const act = this.action({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 toSelect: 'die',
                 autoTarget: (context) =>
@@ -131,6 +144,7 @@ class BehaviourCard extends Card {
 
     doSummon(cardId, count = 1) {
         const act = this.action({
+            cost: AbilityDsl.costs.sideAction(),
             gameAction: AbilityDsl.actions.summon({
                 conjuration: cardId,
                 count: count

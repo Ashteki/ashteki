@@ -217,6 +217,7 @@ class LordswallBehaviour extends BehaviourCard {
 
     doChosenWoundPlacement() {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             title: 'Chimera Behaviour',
             target: {
                 cardCondition: (card) =>
