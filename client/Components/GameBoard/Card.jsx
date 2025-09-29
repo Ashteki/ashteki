@@ -149,7 +149,7 @@ const Card = ({
         if ('spellboard' === source && !card.childCards) {
             return null;
         }
-        if (card.type === 'Phoenixborn') {
+        if (['Phoenixborn', 'Chimera'].includes(card.type)) {
             return null;
         }
 
@@ -191,7 +191,7 @@ const Card = ({
         // are being placed underneath the current card. In the future there may
         // be other types of cards in this array and it should be filtered.
         let underneathCards = card.childCards;
-        if (card.type === 'Phoenixborn') {
+        if (['Phoenixborn', 'Chimera'].includes(card.type)) {
             underneathCards = underneathCards.concat(card.upgrades);
         }
         if (!underneathCards || underneathCards.length === 0 || card.location === 'spellboard') {
