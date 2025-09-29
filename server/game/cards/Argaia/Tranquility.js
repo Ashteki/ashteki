@@ -18,7 +18,7 @@ class Tranquility extends Card {
             then: {
                 gameAction: ability.actions.conditional({
                     condition: (context) => context.source.status > 2,
-                    trueGameAction: ability.actions.purge()
+                    trueGameAction: ability.actions.purge({ showMessage: true })
                 })
             }
         });

@@ -1,5 +1,5 @@
 const Card = require('../../Card.js');
-const { BattlefieldTypes, CardType, Magic } = require('../../../constants.js');
+const { BattlefieldTypes, CardType, Magic, UpgradeCardTypes } = require('../../../constants.js');
 
 class RoseGardener extends Card {
     setupCardAbilities(ability) {
@@ -8,8 +8,8 @@ class RoseGardener extends Card {
             effectArgs: (context) => context.target,
             target: {
                 optional: true,
-                activePromptTitle: 'Choose a unit to remove 1 status from',
-                cardType: [...BattlefieldTypes, CardType.ReadySpell],
+                activePromptTitle: 'Choose a unit or spell to remove 1 status from',
+                cardType: [...BattlefieldTypes, CardType.ReadySpell, ...UpgradeCardTypes],
                 gameAction: ability.actions.removeStatus()
             }
         });
