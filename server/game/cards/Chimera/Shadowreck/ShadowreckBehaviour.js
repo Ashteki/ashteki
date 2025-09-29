@@ -104,6 +104,7 @@ class ShadowreckBehaviour extends BehaviourCard {
                             },
                             () => this.doAttack(this.doReveal()),
                             () => {
+                                // side:
                                 this.doPbOrLeftmostBurn();
                             }
                         );
@@ -249,45 +250,9 @@ class ShadowreckBehaviour extends BehaviourCard {
         this.game.resolveAbility(context);
     }
 
-    doEnforcedLowerOpponentsDice() {
-        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
-            return;
-        }
-
-        const ability = this.behaviour({
-            title: 'Chimera Behaviour',
-            target: {
-                activePromptTitle: 'Choose 2 dice to lower, or take 1 pb damage',
-                optional: true,
-                player: 'opponent',
-                targetsPlayer: true,
-                toSelect: 'die',
-                mode: 'exactly',
-                numDice: 2,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
-                owner: 'opponent',
-                gameAction: AbilityDsl.actions.lowerDie()
-            },
-            then: {
-                alwaysTriggers: true,
-                condition: (context) => context.preThenEvent.context.diceChangeCount !== 2,
-                target: {
-                    autoTarget: (context) => context.player.opponent.phoenixborn,
-                    gameAction: AbilityDsl.actions.dealDamage({
-                        amount: 1,
-                        showMessage: true
-                    })
-                }
-            },
-            message: '{0} uses {1} to lower 2 opponent dice'
-        });
-
-        const context = ability.createContext(this.owner);
-        this.game.resolveAbility(context);
-    }
-
     doPbOrLeftmostBurn() {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 cardCondition: (card) =>
                     card.type === CardType.Phoenixborn || card.controller.isLeftmostUnit(card),
@@ -307,6 +272,7 @@ class ShadowreckBehaviour extends BehaviourCard {
 
     doPbOrReadySpellExhaustion() {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 cardType: [CardType.ReadySpell, ...PhoenixbornTypes],
                 activePromptTitle: 'Choose a card to exhaust',
