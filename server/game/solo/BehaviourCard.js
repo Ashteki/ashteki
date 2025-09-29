@@ -149,6 +149,7 @@ class BehaviourCard extends Card {
         let titleText =
             numDice === 1 ? 'Choose a die to lower' : 'Choose ' + numDice + ' dice to lower';
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             title: 'Chimera Behaviour',
             target: {
                 activePromptTitle: titleText,

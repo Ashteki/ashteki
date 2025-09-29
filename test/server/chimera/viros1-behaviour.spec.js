@@ -9,8 +9,8 @@ describe('Corpse of Viros Behaviour Rolls', function () {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
                     spellboard: ['summon-light-bringer'],
-                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'sympathy'],
-                    hand: ['summon-iron-rhino'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'time'],
+                    hand: ['summon-iron-rhino', 'tranquility'],
                     archives: ['light-bringer']
                 },
                 player2: {
@@ -119,6 +119,24 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             this.player1.clickDone();
 
             expect(this.player1.dicepool.filter((d) => d.level === 'power').length).toBe(4);
+            expect(this.regenerate.facedown).toBe(false);
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+        });
+
+        it('8 vs tranquility no side action then reveal', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(8); // set behaviour roll
+
+            expect(this.regenerate.facedown).toBe(true);
+            expect(this.player1.dicepool.filter((d) => d.level === 'power').length).toBe(6);
+            this.player1.play(this.tranquility);
+            expect(this.tranquility.parent).toBe(this.corpseOfViros);
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            expect(this.player1.dicepool.filter((d) => d.level === 'power').length).toBe(6);
             expect(this.regenerate.facedown).toBe(false);
             expect(this.player1).toHaveDefaultPrompt();
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);

@@ -15,6 +15,14 @@ class ActionCost {
         );
     }
 
+    resolve(context, result) {
+        if (this.actionType === 'side' && !context.player.checkRestrictions('spendSide')) {
+            context.game.addMessage('{0} cannot take a side action', context.player);
+            result.cancelled = true;
+            return false;
+        }
+    }
+
     payEvent(context) {
         const action =
             this.actionType === 'main'
