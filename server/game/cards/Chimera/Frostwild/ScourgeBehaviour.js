@@ -237,6 +237,7 @@ class ScourgeBehaviour extends BehaviourCard {
 
     doVigor(aspect) {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 autoTarget: () => aspect,
                 gameAction: AbilityDsl.actions.attachConjuredAlteration({
@@ -251,6 +252,7 @@ class ScourgeBehaviour extends BehaviourCard {
 
     doStun(aim) {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 mode: 'auto',
                 cardCondition: (card) => !card.exhausted,
@@ -267,6 +269,7 @@ class ScourgeBehaviour extends BehaviourCard {
 
     doAoEDamage(amount, includePb) {
         const ability = this.behaviour({
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => {
@@ -293,6 +296,7 @@ class ScourgeBehaviour extends BehaviourCard {
 
         const ability = this.behaviour({
             title: 'Chimera Behaviour',
+            cost: AbilityDsl.costs.sideAction(),
             target: {
                 activePromptTitle: 'Choose 2 dice to lower, or take 1 pb damage',
                 optional: true,
