@@ -462,4 +462,51 @@ describe('Corpse of Viros Behaviour Rolls', function () {
             expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
         });
     });
+
+    describe('BUG: vs Timestopper', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut'],
+                    spellboard: ['summon-light-bringer'],
+                    dicepool: ['natural', 'natural', 'charm', 'divine', 'divine', 'time'],
+                    hand: ['summon-iron-rhino', 'tranquility', 'timestopper'],
+                    archives: ['light-bringer']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['rampage'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['regenerate'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+        });
+
+        it('5 Reveal then Attack vs Timestopper prevents attack', function () {
+            spyOn(Dice, 'd12Roll').and.returnValue(5); // set behaviour roll
+            expect(this.regenerate.facedown).toBe(true);
+
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+
+            this.player1.clickCard(this.timestopper); // reaction to reveal
+            this.player1.clickCard(this.regenerate);
+            expect(this.timestopper.location).toBe('play area');
+            expect(this.regenerate.facedown).toBe(false);
+            expect(this.regenerate.isAttacker).toBe(false);
+            expect(this.regenerate.canAttack()).toBe(false);
+            // no attack happens
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(Dice.d12Roll).toHaveBeenCalledTimes(1);
+        });
+    });
 });

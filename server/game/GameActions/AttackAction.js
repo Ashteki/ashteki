@@ -21,6 +21,10 @@ class AttackAction extends CardGameAction {
             attacker: this.attacker
         };
         return super.createEvent('unnamedevent', params, (event) => {
+            if (params.attacker && !params.attacker.canAttack()) {
+                return;
+            }
+
             if (PhoenixbornTypes.includes(event.card.getType())) {
                 event.context.game.initiatePBAttack(event.card, event.attacker);
             } else {
