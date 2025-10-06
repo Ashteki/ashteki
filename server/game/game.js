@@ -1779,6 +1779,10 @@ class Game extends EventEmitter {
                 medCount: player.medCount,
                 totalDiceSpend: player.totalDiceSpend
             };
+            if (player.isDummy) {
+                p.level = this.soloLevel;
+                p.stage = this.soloStage;
+            }
             if (player.disconnectedAt) {
                 p.disconnectedAt = player.disconnectedAt;
             }
