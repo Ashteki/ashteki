@@ -101,7 +101,7 @@ const PlayerRow = ({
     let purged = (
         <CardPile
             className='purged'
-            title='Purged'
+            title='RFG'
             source='purged'
             cards={purgedPile}
             {...cardPileProps}

@@ -157,6 +157,10 @@
             height: calc(100% - 50px);
         }
     }
+
+    &.purged {
+        margin-left: 20px;
+    }
 }
 
 .draw {
