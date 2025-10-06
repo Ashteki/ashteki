@@ -23,6 +23,13 @@ class SetupPhase extends Phase {
 
         for (const player of this.game.getPlayers()) {
             this.game.addMessage('{0} brings {1} to battle', player, player.phoenixborn);
+            if (player.isDummy) {
+                this.game.addMessage(
+                    'Chimera is at {0} level {1}',
+                    this.game.soloLevel === 'H' ? 'Heroic' : 'Standard',
+                    this.game.soloStage
+                );
+            }
         }
     }
 

@@ -133,6 +133,10 @@ const Matches = () => {
                                 const finishedAt = moment(game.finishedAt);
                                 const duration = moment.duration(finishedAt.diff(startedAt));
                                 const winnerIndex = game.winner ? computeWinnerIndex(game) : -1;
+                                let soloLevel = '';
+                                if (game.solo && game.players[1]?.level) {
+                                    soloLevel = ' (' + game.players[1]?.level + game.players[1]?.stage + ')';
+                                }
 
                                 return (
                                     <tr key={game.gameId}>
@@ -140,7 +144,7 @@ const Matches = () => {
                                             <b>{game.label}</b></td>
                                         <td>{game.players[0].deck}</td>
                                         <td style={{ whiteSpace: 'nowrap' }}>
-                                            {game.players[1]?.name}
+                                            {game.players[1]?.name} {soloLevel}
                                             <br />
                                             {game.players[1]?.deck}
                                         </td>
