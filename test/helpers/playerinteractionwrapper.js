@@ -623,6 +623,15 @@ class PlayerInteractionWrapper {
             .resolve(card, this.game.getFrameworkContext(this.player));
         this.game.continue();
     }
+    attachPbUpgrade(card, target) {
+        this.game.actions
+            .attachToPb({
+                target: target,
+                upgrade: card
+            })
+            .resolve(card, this.game.getFrameworkContext(this.player));
+        this.game.continue();
+    }
 
     attachDie(index, target) {
         let die = this.player.dice[index];
