@@ -4,7 +4,7 @@ describe('Tranquility', function () {
             player1: {
                 phoenixborn: 'rin-northfell',
                 inPlay: ['mist-spirit'],
-                dicepool: ['time', 'natural', 'natural', 'natural', 'charm'],
+                dicepool: ['time', 'natural', 'natural', 'natural', 'charm', 'time'],
                 spellboard: [],
                 hand: ['tranquility', 'molten-gold']
             },
@@ -72,5 +72,24 @@ describe('Tranquility', function () {
 
         this.player1.clickDie(1);
         expect(this.player1).not.toHaveDefaultPrompt();
+    });
+
+    it('vs time power ability', function () {
+        this.player1.clickCard(this.tranquility);
+        this.player1.clickPrompt('Play this Alteration');
+        this.player1.clickCard(this.coalRoarkwin);
+        expect(this.coalRoarkwin.upgrades.length).toBe(1);
+        expect(this.tranquility.parent).toBe(this.coalRoarkwin);
+        this.player1.endTurn();
+
+        this.player2.player.actions.main = false;
+        this.player2.endTurn();
+        expect(this.tranquility.status).toBe(1);
+
+        this.player1.useDie(5);
+        this.player1.clickCard(this.mistSpirit);
+        expect(this.mistSpirit.status).toBe(1);
+        this.player1.clickCard(this.tranquility);
+        expect(this.tranquility.status).toBe(0);
     });
 });

@@ -1,4 +1,4 @@
-const { Magic, BattlefieldTypes, CardType } = require('../constants');
+const { Magic, BattlefieldTypes, CardType, UpgradeCardTypes } = require('../constants');
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const { Costs } = require('./costs');
@@ -269,7 +269,11 @@ class Die extends PlayableObject {
                         target: {
                             activePromptTitle: 'Choose a card to remove a status token from',
                             optional: true,
-                            cardType: [...BattlefieldTypes, CardType.ReadySpell],
+                            cardType: [
+                                ...BattlefieldTypes,
+                                CardType.ReadySpell,
+                                ...UpgradeCardTypes
+                            ],
                             cardCondition: (card) => card.status > 0,
                             gameAction: this.game.actions.removeStatus({ showMessage: true })
                         }
