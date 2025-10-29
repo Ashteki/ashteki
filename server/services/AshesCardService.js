@@ -86,7 +86,9 @@ class AshesCardService {
             'meteor',
             'psychic-vampire',
             'river-skald',
-            'summon-shining-hydra'
+            'silver-paladin',
+            'summon-shining-hydra',
+            'take-to-the-skies'
         ];
     }
 }
