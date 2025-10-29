@@ -56,7 +56,9 @@ const FAQ = () => {
                             <li>Meteor</li>
                             <li>Psychic Vampire</li>
                             <li>River Skald</li>
+                            <li>Silver Paladin</li>
                             <li>Summon Shining Hydra</li>
+                            <li>Take to the Skies</li>
                         </ul>
                         <p>
                             In Ashteki, decks that include chained cards will display a chain link icon in the decklist and the card list
