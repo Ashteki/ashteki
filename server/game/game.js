@@ -1679,20 +1679,25 @@ class Game extends EventEmitter {
             );
 
             let key = 1;
-            attackers.forEach((c) => {
-                this.attackState.battles.push({
-                    key: key,
-                    attacker: c,
-                    attackerClone: c.createSnapshot(),
-                    target: this.attackState.target,
-                    guard: null,
-                    counter: false,
-                    resolved: false
-                });
-                c.isAttacker = true;
-                c.wasAttacker = true;
-                key++;
-            });
+            for (let c of event.attackingPlayer.battlefield) {
+                if (attackers.includes(c)) {
+
+
+                    // attackers.forEach((c) => {
+                    this.attackState.battles.push({
+                        key: key,
+                        attacker: c,
+                        attackerClone: c.createSnapshot(),
+                        target: this.attackState.target,
+                        guard: null,
+                        counter: false,
+                        resolved: false
+                    });
+                    c.isAttacker = true;
+                    c.wasAttacker = true;
+                    key++;
+                }
+            }
 
             if (!event.attackingPlayer.opponent.optionSettings.noAttackAlerts) {
                 this.queueUserAlert(this.getFrameworkContext(event.attackingPlayer), {
