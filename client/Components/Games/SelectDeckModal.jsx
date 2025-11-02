@@ -10,6 +10,7 @@ import DeckFilter from '../Decks/DeckFilter.jsx';
 import Pagination from 'react-bootstrap-4-pagination';
 import debounce from 'lodash.debounce';
 import { PatreonStatus } from '../../types/patreon.js';
+import DeckGrid from '../Decks/DeckGrid.jsx';
 
 const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
     const user = useSelector((state) => state.account.user);
@@ -203,7 +204,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                 {showChooseForMe && (
                     <Button onClick={() => onChooseForMe(setIndex)}>Choose for me</Button>
                 )}
-                <DeckList decks={decks} onDeckSelected={onDeckSelected} />
+                <DeckGrid decks={decks} onDeckSelected={onDeckSelected} />
             </div>
         );
     }
