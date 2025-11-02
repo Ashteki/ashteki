@@ -32,7 +32,6 @@ class SurgingTempest extends Card {
                         optional: true,
                         activePromptTitle: 'Choose a unit to deal 1 damage to',
                         cardType: BattlefieldTypes,
-                        skipForCancel: true,
                         gameAction: ability.actions.dealDamage()
                     },
                     then: {
