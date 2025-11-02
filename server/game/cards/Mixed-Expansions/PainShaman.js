@@ -4,7 +4,6 @@ const { BattlefieldTypes, PhoenixbornTypes } = require('../../../constants.js');
 class PainShaman extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
-            effect: 'deal 1 damage to {0}',
             target: {
                 optional: true,
                 activePromptTitle: 'Choose a unit to damage',
