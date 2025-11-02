@@ -165,17 +165,17 @@ class Application extends React.Component {
         return (
             <div className='bg' ref={this.bgRef}>
                 {!gameBoardVisible && <Navigation appName='Ashes Online' user={this.props.user} />}
-                <div className='wrapper'>
-                    <Container className='content'>
-                        <ErrorBoundary
-                            navigate={this.props.navigate}
-                            errorPath={this.props.path}
-                            message={"We're sorry - something's gone wrong."}
-                        >
-                            {component}
-                        </ErrorBoundary>
-                    </Container>
-                </div>
+                {/* <div className='wrapper'> */}
+                <Container className='content'>
+                    <ErrorBoundary
+                        navigate={this.props.navigate}
+                        errorPath={this.props.path}
+                        message={"We're sorry - something's gone wrong."}
+                    >
+                        {component}
+                    </ErrorBoundary>
+                </Container>
+                {/* </div> */}
             </div>
         );
     }
