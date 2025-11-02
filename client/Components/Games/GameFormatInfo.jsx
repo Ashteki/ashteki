@@ -58,7 +58,7 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
         case 'solo':
             return (
                 <AlertPanel type='info'>
-                    <strong>Solo</strong> Play single player against a chimera. (Beta / WIP)
+                    <strong>Solo</strong> Play single player against a chimera.
                 </AlertPanel>
             );
         case 'hl2pvp':
