@@ -639,8 +639,9 @@ class Lobby {
 
     // called when the lobby server receives a 'selectdeck' message
     async onSelectDeck(socket, gameId, isForMe, deckId, isStandalone, chooseForMeType) {
+        const username = socket.user.username;
         let game = this.games[gameId];
-        if (!game) {
+        if (!game || game.isSpectator(username)) {
             return;
         }
 
