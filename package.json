@@ -78,7 +78,6 @@
         "monk": "^7.3.4",
         "node-mailjet": "^6.0.9",
         "node-noop": "^1.0.0",
-        "node-sass": "^8.0.0",
         "passport": "^0.6.0",
         "passport-jwt": "^4.0.0",
         "passport-local": "^1.0.0",
