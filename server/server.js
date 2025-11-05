@@ -88,8 +88,8 @@ class Server {
                 historyApiFallback: true
             });
 
-            app.set('view engine', 'pug');
-            app.set('views', path.join(__dirname, '..', 'views'));
+            // No server-side view engine: SPA is served by webpack dev middleware (dev)
+            // and by dist/index.html in production. Removed Pug usage.
 
             app.use(middleware);
             app.use(
