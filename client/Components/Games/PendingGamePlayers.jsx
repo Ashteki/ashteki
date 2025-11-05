@@ -31,10 +31,14 @@ const PendingGamePlayers = ({ currentGame, user }) => {
     const unlinked = !user?.patreon || user?.patreon === PatreonStatus.Unlinked;
     const showPatreonAdvice = !allowPremium;
     const isSolo = currentGame.solo;
+    const userIsSpectator = !!currentGame.spectators.find((s) => s.name === user?.username);
 
     let firstPlayer = true;
     // need to account for coaloff, and player index
     let clickHandler = (playerIsMe) => {
+        if (userIsSpectator) {
+            return;
+        }
         if (currentGame.gameFormat === 'coaloff') {
             return true;
         }
@@ -93,7 +97,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                 });
 
                 if (player && player.deck && player.deck.selected) {
-                    if (isMe || currentGame.solo) {
+                    if (!userIsSpectator && (isMe || currentGame.solo)) {
                         const deckName = player.deck.name;
                         deck = (
                             <button className={clickClasses} title='Select Deck' onClick={() => clickHandler(isMe)}>
@@ -102,7 +106,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         );
                     } else {
                         const deckName =
-                            currentGame.gameFormat === 'firstadventure'
+                            player.name === 'Chimera'
                                 ? player.deck.name
                                 : 'Deck Selected';
                         deck = <span className='deck-selection'>{deckName}</span>;
@@ -116,7 +120,9 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     );
 
                     if (player.deck.isChimera) {
-                        if (allowPremium) {
+                        if (userIsSpectator) {
+                            soloControls = <span></span>;
+                        } else if (allowPremium) {
                             soloControls = (
                                 <>
                                     <Col xs='auto'>
