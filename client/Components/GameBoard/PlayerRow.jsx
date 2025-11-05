@@ -76,6 +76,7 @@ const PlayerRow = ({
             manualMode={manualMode}
             maxCards={5}
             onCardClick={onCardClick}
+            onCardAltClick={onCardAltClick}
             onMenuItemClick={onMenuItemClick}
             onMouseOut={onMouseOut}
             onMouseOver={onMouseOver}
