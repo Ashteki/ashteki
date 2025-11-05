@@ -1065,7 +1065,7 @@ class Game extends EventEmitter {
             this.endWithoutLoss();
         } else {
             this.addAlert('danger', '{0} wants to end the game without loss', player);
-            this.queueStep(new EndGamePrompt(this.game, player));
+            this.queueStep(new EndGamePrompt(this, player));
         }
     }
 
