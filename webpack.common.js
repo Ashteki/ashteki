@@ -18,7 +18,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './views/index.pug',
+            template: './client/index.html',
             inject: true
         }),
         new webpack.ProvidePlugin({
@@ -60,7 +60,7 @@ module.exports = {
                 type: 'javascript/auto',
                 use: [require.resolve('json-loader')]
             },
-            { test: /\.pug$/, include: path.join(__dirname, 'views'), use: ['pug-loader'] }
+            // pug templates removed; use static HTML template at client/index.html
         ]
     }
 };
