@@ -31,6 +31,7 @@
     },
     "homepage": "https://github.com/danj3000/ashteki#readme",
     "dependencies": {
+        "@azure/storage-blob": "^12.29.1",
         "@babel/core": "^7.15.8",
         "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
         "@babel/plugin-transform-object-assign": "^7.12.13",

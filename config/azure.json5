@@ -1,0 +1,6 @@
+{
+    storage: {
+        connectionString: 'BlobEndpoint=https://ashtekistorage.blob.core.windows.net/;QueueEndpoint=https://ashtekistorage.queue.core.windows.net/;FileEndpoint=https://ashtekistorage.file.core.windows.net/;TableEndpoint=https://ashtekistorage.table.core.windows.net/;SharedAccessSignature=sv=2024-11-04&ss=bfqt&srt=o&sp=rwdlacupiytfx&se=2025-11-06T23:36:49Z&st=2025-11-06T15:21:49Z&spr=https&sig=Drir0ucgzPAV8%2BJAQbPlES%2B1JDjKiZiJLnxMxGu9xKA%3D',  // Set via environment variable AZURE_STORAGE_CONNECTION_STRING
+        container: 'userimages'  // Set via environment variable AZURE_STORAGE_CONTAINER
+    }
+}

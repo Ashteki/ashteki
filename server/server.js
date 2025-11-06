@@ -68,30 +68,38 @@ class Server {
 
         api.init(app, options);
 
+        // Always serve static files from `public`
         app.use(express.static(__dirname + '/../public'));
-        app.use(express.static(__dirname + '/../dist'));
 
         if (this.isDeveloping) {
             const compiler = webpack(webpackConfig);
-            const middleware = webpackDevMiddleware(compiler, {
-                hot: true,
-                contentBase: 'client',
-                publicPath: '/',
-                stats: {
-                    colors: true,
-                    hash: false,
-                    timings: true,
-                    chunks: false,
-                    chunkModules: false,
-                    modules: false
-                },
-                historyApiFallback: true
-            });
 
-            // No server-side view engine: SPA is served by webpack dev middleware (dev)
-            // and by dist/index.html in production. Removed Pug usage.
+            // Ensure history API fallback is applied so SPA routes work, then mount
+            // the dev middleware which serves bundles from memory. webpackHotMiddleware
+            // should be mounted after the dev middleware.
+            app.use(historyApiFallback());
 
-            app.use(middleware);
+            app.use(
+                webpackDevMiddleware(compiler, {
+                    hot: true,
+                    contentBase: 'client',
+                    publicPath: '/',
+                    // Ensure dev server does not cache index.html or any assets so changes
+                    // are immediately visible during development.
+                    headers: {
+                        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+                    },
+                    stats: {
+                        colors: true,
+                        hash: false,
+                        timings: true,
+                        chunks: false,
+                        chunkModules: false,
+                        modules: false
+                    }
+                })
+            );
+
             app.use(
                 webpackHotMiddleware(compiler, {
                     log: false,
@@ -99,12 +107,23 @@ class Server {
                     heartbeat: 2000
                 })
             );
-            app.use(historyApiFallback());
-
-            app.use(middleware);
-
         } else {
+            // In production serve the built `dist` folder. During development we rely on
+            // webpackDevMiddleware which serves bundles from memory so we must NOT
+            // register the `dist` static middleware while developing — otherwise
+            // stale files on disk (old JSX builds) can be returned before the dev
+            // middleware has a chance to intercept requests.
+            app.use(express.static(__dirname + '/../dist'));
+
+            // Serve index.html in production with no-cache headers so browsers and proxies
+            // always fetch the latest application shell after deploys.
             app.get('*', (req, res) => {
+                // Prevent caching of index.html
+                res.setHeader('Cache-Control',
+                    'no-store, no-cache, must-revalidate, proxy-revalidate');
+                res.setHeader('Pragma', 'no-cache');
+                res.setHeader('Expires', '0');
+
                 res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
             });
         }
