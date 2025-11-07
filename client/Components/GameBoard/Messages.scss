@@ -6,7 +6,7 @@
 
 .separator {
     hr {
-        border-color: theme-color(primary);
+        border-color: $primary;
     }
 }
 
@@ -139,7 +139,7 @@
 .startofround {
     font-size: 1.05rem;
     background-image: url('~assets/img/panel-primary.png');
-    border-top: 1px solid theme-color('primary');
+    border-top: 1px solid $primary;
     text-transform: uppercase;
     // font-family: Keyforge, Helvetica, sans-serif;
     font-weight: 300 !important;
@@ -171,7 +171,7 @@
 .card-link {
     cursor: pointer;
     cursor: hand;
-    color: theme-color(secondary);
+    color: $secondary;
 
     &.unique {
         color: goldenrod;
@@ -183,7 +183,7 @@
 }
 
 .card-link:hover {
-    color: theme-color(info);
+    color: $info;
 }
 
 .card-ff {
@@ -195,7 +195,7 @@
 
 .alert {
     .user-role {
-        color: theme-color(info);
+        color: $info;
     }
 
     .username {

@@ -24,11 +24,11 @@
 }
 
 .panel-primary {
-    border-color: theme-color(primary);
+    border-color: $primary;
 
     .panel-heading {
         background-image: url('~assets/img/panel-primary.png');
-        border-color: theme-color(primary);
+        border-color: $primary;
     }
 }
 

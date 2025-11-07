@@ -6,11 +6,11 @@
 .deck-card-link {
     cursor: pointer;
     cursor: hand;
-    color: theme-color('secondary');
+    color: $secondary;
 }
 
 .deck-card-link:hover {
-    color: theme-color('info');
+    color: $info;
 }
 
 .small-card-icon {
@@ -78,11 +78,11 @@
 }
 
 .card-group-title {
-    background-color: theme-color('primary');
+    background-color: $primary;
     color: white;
     margin: 5px 5px 0 0;
     padding: 5px 1px;
-    border: 1px solid theme-color('primary');
+    border: 1px solid $primary;
     border-radius: 4px 4px 0 0;
     border-bottom: none;
     text-align: center;
@@ -92,11 +92,11 @@
 
 .basic-title {
     width: 100%;
-    background-color: theme-color('primary');
+    background-color: $primary;
     color: white;
     margin: 5px 5px 0 0;
     padding: 5px 1px;
-    border: 1px solid theme-color('primary');
+    border: 1px solid $primary;
     border-radius: 4px 4px 0 0;
     text-align: center;
 }

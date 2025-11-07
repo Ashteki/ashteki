@@ -107,17 +107,17 @@
 
 // @keyframes new-card {
 //     0% {
-//         box-shadow: 0 0 1px 2px  rgba(theme-color('info'), 0.7),
-//         10px 10px 10px 5px   rgba(theme-color('info'), 0.7),
-//         -10px -10px 10px 5px   rgba(theme-color('info'), 0.7),
-//         0 0 15px 10px   rgba(theme-color('info'), 0.7)
+//         box-shadow: 0 0 1px 2px  rgba($info, 0.7),
+//         10px 10px 10px 5px   rgba($info, 0.7),
+//         -10px -10px 10px 5px   rgba($info, 0.7),
+//         0 0 15px 10px   rgba($info, 0.7)
 //     }
 //     100% {
 //         box-shadow: 
-//         0 0 0px 2px  rgba(theme-color('info'), 1),
-//         0px 0px 0px 0px rgba(theme-color('info'), 1),
-//         0px 0px 0px 0px   rgba(theme-color('info'), 1),
-//         0 0 0px 0px   rgba(theme-color('info'), 1)
+//         0 0 0px 2px  rgba($info, 1),
+//         0px 0px 0px 0px rgba($info, 1),
+//         0px 0px 0px 0px   rgba($info, 1),
+//         0 0 0px 0px   rgba($info, 1)
 //     }
 // }
 
@@ -183,11 +183,11 @@
     }
 
     &.selectable {
-        box-shadow: 0 0 10px 1px fade-out(lighten(theme-color('primary'), 60%), 0.1);
+        box-shadow: 0 0 10px 1px fade-out(lighten($primary, 60%), 0.1);
 
         &.controlled {
             box-shadow: $controlledBox,
-                0 0 10px 1px fade-out(lighten(theme-color('primary'), 60%), 0.1);
+                0 0 10px 1px fade-out(lighten($primary, 60%), 0.1);
         }
     }
 
@@ -200,7 +200,7 @@
 
         &.controlled {
             box-shadow: $controlledBox,
-                0 0 10px 1px fadeout(lighten(theme-color('primary'), 60%), 10%);
+                0 0 10px 1px fadeout(lighten($primary, 60%), 10%);
         }
     }
 
@@ -213,10 +213,10 @@
     // }
 
     &.selected {
-        box-shadow: 0 0 1px 4px theme-color('secondary');
+        box-shadow: 0 0 1px 4px $secondary;
 
         &.controlled {
-            box-shadow: $controlledBox, 0 0 1px 4px theme-color('secondary');
+            box-shadow: $controlledBox, 0 0 1px 4px $secondary;
         }
     }
 

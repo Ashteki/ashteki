@@ -110,27 +110,27 @@
 
 .game-list {
     hr {
-        border-top-color: theme-color(primary);
+        border-top-color: $primary;
         margin: 0;
     }
 }
 
 .game-row:hover {
-    border-color: theme-color(info);
-    background-color: rgba(theme-color(info), 0.2);
+    border-color: $info;
+    background-color: rgba($info, 0.2);
 }
 
 .game-row.active {
-    border-color: theme-color(info);
-    color: theme-color(danger);
+    border-color: $info;
+    color: $danger;
 }
 
 .node1 {
-    background-color: rgba(theme-color(warning), 0.2);
+    background-color: rgba($warning, 0.2);
 }
 
 .node2 {
-    background-color: rgba(theme-color(danger), 0.2);
+    background-color: rgba($danger, 0.2);
 }
 
 .game-list-icon {

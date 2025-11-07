@@ -43,7 +43,7 @@ a {
     color: skyblue;
 
     &:hover {
-        color: theme-color('info');
+        color: $info;
         text-decoration: none;
     }
 
@@ -92,7 +92,7 @@ a {
         // font-family: Keyforge, Helvetica, sans-serif;
 
         &:hover {
-            text-shadow: 0px 0px 6px theme-color('white');
+            text-shadow: 0px 0px 6px $white;
             transition: all 0.4s ease 0s;
 
             background-color: transparent;
@@ -211,7 +211,7 @@ a {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: theme-color('primary');
+    background-color: $primary;
 }
 
 .table-totals tbody tr:last-child {
@@ -259,11 +259,11 @@ h3 {
 }
 
 .rrt-message {
-    background: theme-color(dark) !important;
+    background: $dark !important;
 }
 
 .rrt-confirm {
-    background: theme-color(primary) !important;
+    background: $primary !important;
 }
 
 .rrt-button {
@@ -271,7 +271,7 @@ h3 {
 }
 
 .rrt-button:hover {
-    color: theme-color(dark) !important;
+    color: $dark !important;
 }
 
 .clickable {
@@ -281,7 +281,7 @@ h3 {
 
 pre {
     background-color: rgba(0, 0, 0, 0.65);
-    color: theme-color(primary);
+    color: $primary;
     border: none;
 }
 

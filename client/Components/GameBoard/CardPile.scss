@@ -139,7 +139,7 @@
             text-decoration: none;
 
             &:hover {
-                color: theme-color(info);
+                color: $info;
                 cursor: pointer;
             }
         }

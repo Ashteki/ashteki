@@ -6,7 +6,7 @@
 .message-list {
     height: 200px;
     width: 100%;
-    border: 1px solid theme-color('primary');
+    border: 1px solid $primary;
     border-radius: 4px;
     margin-bottom: 5px;
     overflow: auto;

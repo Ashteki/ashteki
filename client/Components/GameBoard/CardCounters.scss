@@ -71,7 +71,7 @@
         position: relative;
 
         &:after {
-            border-bottom: 0.17em solid theme-color(danger);
+            border-bottom: 0.17em solid $danger;
             content: '';
             left: 0;
             margin-top: calc(0.17em / 2 * -1);

@@ -27,14 +27,14 @@
 }
 
 .menu-item {
-    border: 1px solid theme-color(primary);
+    border: 1px solid $primary;
     padding: 3px 6px;
     border-radius: 4px;
     margin-top: 4px;
     cursor: pointer;
 
     &:hover {
-        border-color: theme-color(info);
+        border-color: $info;
     }
 
     &.disabled {
@@ -43,14 +43,14 @@
         cursor: not-allowed;
 
         &:hover {
-            border-color: theme-color(primary);
+            border-color: $primary;
         }
     }
 }
 
 .menu-title {
-    // border: 1px solid theme-color(primary);
-    background-color: theme-color(primary);
+    // border: 1px solid $primary;
+    background-color: $primary;
     padding: 3px 6px;
     // border-radius: 4px;
     padding-top: 4px;
