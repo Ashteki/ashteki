@@ -67,7 +67,9 @@ module.exports = {
                                 includePaths: [
                                     path.resolve(__dirname, './'),
                                     path.resolve(__dirname, 'node_modules')
-                                ]
+                                ],
+                                // Quiet dependency warnings (e.g. deprecated division in bootstrap)
+                                quietDeps: true
                             }
                         }
                     }
