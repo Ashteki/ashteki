@@ -7,7 +7,7 @@ import './SelectDeckModal.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadDecks } from '../../redux/actions/deck.js';
 import DeckFilter from '../Decks/DeckFilter.jsx';
-import Pagination from 'react-bootstrap-4-pagination';
+// import Pagination from 'react-bootstrap-4-pagination';
 import debounce from 'lodash.debounce';
 import { PatreonStatus } from '../../types/patreon.js';
 import DeckGrid from '../Decks/DeckGrid.jsx';
@@ -111,14 +111,14 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
                     <DeckList onDeckSelected={onDeckSelected} decks={myDecks} showWinRate={true} />
                     <div className='pagination-wrapper'>
-                        <Pagination
+                        {/* <Pagination
                             className='pager'
                             totalPages={myDecks.length / 8}
                             currentPage={pageNumber}
                             showMax={7}
                             onClick={onPageClick}
                             prevNext={false}
-                        />
+                        /> */}
                     </div>
 
                 </TabPanel>

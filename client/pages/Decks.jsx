@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Col, Row } from 'react-bootstrap';
-import Pagination from 'react-bootstrap-4-pagination';
+// import Pagination from 'react-bootstrap-4-pagination';
 import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
 import ApiStatus from '../Components/Site/ApiStatus';
@@ -186,14 +186,14 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckList decks={myDecks} showWinRate={true} />
                                 {(myDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
-                                        <Pagination
+                                        {/* <Pagination
                                             className='pager'
                                             totalPages={numDecks / 8}
                                             currentPage={pageNumber}
                                             showMax={7}
                                             onClick={onPageClick}
                                             prevNext={false}
-                                        />
+                                        /> */}
                                     </div>
                                 )}
                             </Col>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Panel from '../Site/Panel';
 import { Col, Form, Row } from 'react-bootstrap';
-import RangeSlider from 'react-bootstrap-range-slider';
+// import RangeSlider from 'react-bootstrap-range-slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeViewSetting } from '../../redux/actions';
 import CardSizeSelector from '../Profile/CardSizeSelector';
@@ -95,7 +95,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     />
                     <div className='bluffTimer'>
                         Bluff Timer (seconds):
-                        <RangeSlider
+                        {/* <RangeSlider
                             name='gameOptions.bluffTimer'
                             label='Bluff Timer'
                             min='0'
@@ -105,12 +105,12 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             onChange={(event) =>
                                 onOptionSettingToggle('bluffTimer', event.target.value)
                             }
-                        />
+                        /> */}
                     </div>
                     <br />
                     <div className='alertTimer'>
                         Alert Timer (seconds):
-                        <RangeSlider
+                        {/* <RangeSlider
                             name='gameOptions.alertTimer'
                             label='Alert Timer'
                             min='0'
@@ -120,7 +120,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             onChange={(event) =>
                                 onOptionSettingToggle('alertTimer', event.target.value)
                             }
-                        />
+                        /> */}
                     </div>
                     <br />
                     <Row>
