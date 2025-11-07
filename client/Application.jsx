@@ -12,6 +12,7 @@ import * as actions from './redux/actions';
 
 import Background from './assets/img/bgs/ashesreborn.png';
 import BlankBg from './assets/img/bgs/blank.png';
+import { storageBaseUrl } from './constants';
 
 class Application extends React.Component {
     constructor(props) {
@@ -154,7 +155,10 @@ class Application extends React.Component {
                 background === 'custom' &&
                 this.props.user.settings.customBackground
             ) {
-                this.bgRef.current.style.backgroundImage = `url('/img/bgs/${this.props.user.settings.customBackground}.png')`;
+                const bgUrl = storageBaseUrl
+                    ? `${storageBaseUrl}/bgs/${this.props.user.settings.customBackground}.png`
+                    : `/img/bgs/${this.props.user.settings.customBackground}.png`;
+                this.bgRef.current.style.backgroundImage = `url('${bgUrl}')`;
             } else if (this.bgRef.current) {
                 this.bgRef.current.style.backgroundImage = `url('${this.backgrounds[background]}')`;
             }

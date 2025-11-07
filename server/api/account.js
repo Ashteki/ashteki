@@ -127,6 +127,9 @@ function writeFile(path, data, opts = 'utf8') {
 }
 
 async function getRandomAvatar(user) {
+    const AzureStorageService = require('../services/AzureStorageService');
+    const storageService = new AzureStorageService();
+
     let stringToHash = crypto.randomBytes(32).toString('hex');
     let md5Hash = crypto.createHash('md5').update(stringToHash).digest('hex');
     let avatar = await util.httpRequest(
@@ -134,11 +137,13 @@ async function getRandomAvatar(user) {
         { encoding: null }
     );
 
-    if (!fs.existsSync('public/img/avatar')) {
-        fs.mkdirSync('public/img/avatar/');
-    }
+    const base64Data = Buffer.from(avatar).toString('base64');
+    const uploadResult = await storageService.uploadImage(`avatars/${user.username}.png`, base64Data);
 
-    await writeFile(`public/img/avatar/${user.username}.png`, avatar, 'binary');
+    if (!uploadResult.success) {
+        logger.error('Failed to upload random avatar:', uploadResult.error);
+        throw new Error('Failed to upload random avatar');
+    }
 }
 
 function processImage(image, width, height) {
@@ -174,9 +179,11 @@ function processImage(image, width, height) {
 
 async function processAvatar(newUser, user) {
     let hash = crypto.randomBytes(16).toString('hex');
+    const AzureStorageService = require('../services/AzureStorageService');
+    const storageService = new AzureStorageService();
 
-    if (fs.existsSync(`public/img/avatar/${user.settings.avatar}.png`)) {
-        fs.unlinkSync(`public/img/avatar/${user.settings.avatar}.png`);
+    if (user.settings.avatar) {
+        await storageService.deleteImage(`avatars/${user.settings.avatar}.png`);
     }
 
     let fileData;
@@ -188,20 +195,23 @@ async function processAvatar(newUser, user) {
     }
 
     let fileName = `${user.username}-${hash}`;
-    fs.writeFileSync(`public/img/avatar/${fileName}.png`, fileData, 'base64');
+    const uploadResult = await storageService.uploadImage(`avatars/${fileName}.png`, fileData);
+
+    if (!uploadResult.success) {
+        logger.error('Failed to upload avatar image:', uploadResult.error);
+        return null;
+    }
 
     return fileName;
 }
 
 async function processCustomBackground(newUser, user) {
     let hash = crypto.randomBytes(16).toString('hex');
+    const AzureStorageService = require('../services/AzureStorageService');
+    const storageService = new AzureStorageService();
 
-    if (fs.existsSync(`public/img/bgs/${user.settings.customBackground}.png`)) {
-        fs.unlinkSync(`public/img/bgs/${user.settings.customBackground}.png`);
-    }
-
-    if (!fs.existsSync('public/img/bgs')) {
-        fs.mkdirSync('public/img/bgs/');
+    if (user.settings.customBackground) {
+        await storageService.deleteImage(`bgs/${user.settings.customBackground}.png`);
     }
 
     let fileData;
@@ -213,7 +223,12 @@ async function processCustomBackground(newUser, user) {
     }
 
     let fileName = `${user.username}-${hash}`;
-    fs.writeFileSync(`public/img/bgs/${fileName}.png`, fileData, 'base64');
+    const uploadResult = await storageService.uploadImage(`bgs/${fileName}.png`, fileData);
+
+    if (!uploadResult.success) {
+        logger.error('Failed to upload background image:', uploadResult.error);
+        return null;
+    }
 
     return fileName;
 }

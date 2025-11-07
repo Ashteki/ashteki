@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-
 import './Avatar.scss';
+import { storageBaseUrl } from '../../constants';
 
 /**
  * @typedef AvatarProps
@@ -22,7 +22,11 @@ const Avatar = ({ float, imgPath }) => {
         return null;
     }
 
-    return <img className={className} src={`/img/avatar/${imgPath}.png`} alt='' />;
+    const imgUrl = storageBaseUrl
+        ? `${storageBaseUrl}/avatars/${imgPath}.png`
+        : `/img/avatar/${imgPath}.png`;
+
+    return <img className={className} src={imgUrl} alt='' />;
 };
 
 export default Avatar;
