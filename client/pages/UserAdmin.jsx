@@ -359,7 +359,7 @@ const UserAdmin = () => {
                                             {user?.permissions.canManagePermissions ? (
                                                 <Panel title='Permissions'>
                                                     <Form.Group>
-                                                        <Form.Row>{permissionsCheckBoxes}</Form.Row>
+                                                        <Row>{permissionsCheckBoxes}</Row>
                                                     </Form.Group>
                                                 </Panel>
                                             ) : null}

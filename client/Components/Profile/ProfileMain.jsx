@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useRef, useState } from 'react';
-import { Col, Form, Button } from 'react-bootstrap';
+import { Col, Form, Button, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
@@ -51,7 +51,7 @@ const ProfileMain = ({ user, formProps, handleEloChange }) => {
     }
     return (
         <Panel title={t('Profile')}>
-            <Form.Row>
+            <Row>
                 <Form.Group as={Col} md='6' controlId='formGridUsername'>
                     <Form.Label>{t('Username')}</Form.Label>
                     <Form.Control
@@ -159,8 +159,8 @@ const ProfileMain = ({ user, formProps, handleEloChange }) => {
                         />
                     </div>
                 </Form.Group>
-            </Form.Row>
-            <Form.Row>
+            </Row>
+            <Row>
                 <Form.Group as={Col} md='6' controlId='formGridPassword'>
                     <Form.Label>{t('Password')}</Form.Label>
                     <Form.Control
@@ -193,7 +193,7 @@ const ProfileMain = ({ user, formProps, handleEloChange }) => {
                         {formProps.errors.passwordAgain}
                     </Form.Control.Feedback>
                 </Form.Group>
-            </Form.Row>
+            </Row>
         </Panel >
     );
 };

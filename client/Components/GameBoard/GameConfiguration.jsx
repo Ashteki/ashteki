@@ -123,7 +123,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         />
                     </div>
                     <br />
-                    <Form.Row>
+                    <Row>
                         Card Size:
                         <Row>
                             <Col xs='12'>
@@ -135,7 +135,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                                 />
                             </Col>
                         </Row>
-                    </Form.Row>
+                    </Row>
                 </Panel>
             </Form>
         </div>

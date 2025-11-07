@@ -230,7 +230,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                     <>
                                         <GameFormats formProps={formProps} />
                                         <Form.Group>
-                                            <Form.Row>
+                                            <Row>
                                                 <Col xs={12} className='font-weight-bold'>
                                                     <Trans>Options</Trans>
                                                 </Col>
@@ -245,12 +245,12 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                         )}
                                                     </Col>
                                                 ))}
-                                            </Form.Row>
+                                            </Row>
                                         </Form.Group>
                                     </>
                                 )}
                                 {formProps.values.useGameTimeLimit && (
-                                    <Form.Row>
+                                    <Row>
                                         <Form.Group>
                                             <Form.Label>
                                                 <span>
@@ -297,7 +297,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                 ></Form.Check>
                                             ))}
                                         </Form.Group>
-                                    </Form.Row>
+                                    </Row>
                                 )}
                             </>
                         }

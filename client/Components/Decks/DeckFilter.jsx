@@ -2,7 +2,7 @@ import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import Link from '../Navigation/Link';
-import { Col, Form } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons }) => {
@@ -18,7 +18,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons })
     return (
         <div>
             <Form onSubmit={(event) => event.preventDefault()}>
-                <Form.Row>
+                <Row className='form-row'>
                     <Form.Group as={Col} controlId='formGridName'>
                         <Form.Control
                             name='name'
@@ -70,7 +70,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons })
                             </Link>
                         </Form.Group>
                     )}
-                </Form.Row>
+                </Row>
             </Form>
         </div>
     );

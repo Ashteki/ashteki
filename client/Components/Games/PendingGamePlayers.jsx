@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendSocketMessage } from '../../redux/actions';
-import { Button, Col, Form } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import './PendingGamePlayer.scss';
@@ -179,15 +179,15 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                 }
                 return (
                     <div className={rowClass} key={player.name}>
-                        <Form.Row>
+                        <Row className='form-row'>
                             <PlayerName player={player} />
                             {deck}
                             {status}
                             {selectLink}
                             {soloControls}
-                        </Form.Row>
+                        </Row>
                         {player.deck.isChimera && showPatreonAdvice && (
-                            <Form.Row className='patreon-row'>
+                            <Row className='form-row patreon-row'>
                                 <div className='pending-player-name'></div>
                                 <div>
                                     <span className='unlock-advice'>
@@ -197,7 +197,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                         to unlock all content <FontAwesomeIcon icon={faCircleInfo} title='You may need to reload this page after' />
                                     </span>
                                 </div>
-                            </Form.Row>
+                            </Row>
                         )}
                     </div>
                 );
