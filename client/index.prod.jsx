@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Application from './Application';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore';
@@ -16,8 +16,7 @@ import ErrorBoundary from './Components/Site/ErrorBoundary';
 import './i18n';
 
 const sentryOptions = {
-    dsn:
-        'https://759229506f9f4a90927e07cd903866e0@o496056.ingest.sentry.io/5569773',
+    dsn: 'https://759229506f9f4a90927e07cd903866e0@o496056.ingest.sentry.io/5569773',
     denyUrls: [
         // Facebook flakiness
         /graph\.facebook\.com/i,
@@ -64,7 +63,8 @@ window.onpopstate = function (e) {
     store.dispatch(navigate(e.target.location.pathname, null, true));
 };
 
-render(
+const root = createRoot(document.getElementById('component'));
+root.render(
     <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
         <Provider store={store}>
             <div className='body'>
@@ -85,6 +85,5 @@ render(
                 </ErrorBoundary>
             </div>
         </Provider>
-    </DndProvider>,
-    document.getElementById('component')
+    </DndProvider>
 );
