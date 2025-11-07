@@ -13,7 +13,8 @@ module.exports = {
             http: require.resolve('stream-http'),
             https: require.resolve('https-browserify'),
             util: require.resolve('util')
-        }
+        },
+        modules: ['node_modules']
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -53,7 +54,25 @@ module.exports = {
                 use: 'url-loader?limit=16384'
             },
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-            { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            implementation: require('sass'),
+                            sassOptions: {
+                                includePaths: [
+                                    path.resolve(__dirname, './'),
+                                    path.resolve(__dirname, 'node_modules')
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.json/,
                 exclude: /node_modules/,

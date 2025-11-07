@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { storageBaseUrl } from '../../constants';
 import classNames from 'classnames';
 
 import Panel from '../Site/Panel';
@@ -33,7 +34,11 @@ const ProfileBackground = ({
     const { t } = useTranslation();
     const uploadRef = useRef();
     const [localCustomBg, setCustomBg] = useState(
-        customBackground ? `/img/bgs/${customBackground}.png` : null
+        customBackground
+            ? storageBaseUrl
+                ? `${storageBaseUrl}/bgs/${customBackground}.png`
+                : `/img/bgs/${customBackground}.png`
+            : null
     );
     const [fileError, setFileError] = useState(null);
 

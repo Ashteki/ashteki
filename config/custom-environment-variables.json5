@@ -5,6 +5,11 @@
     domain: 'thecrucible.online',
     https: 'false',
 
+    storage: {
+        connectionString: 'AZURE_STORAGE_CONNECTION_STRING',
+        container: 'AZURE_STORAGE_CONTAINER'
+    },
+
     lobby: {
         port: 'PORT'
     },
