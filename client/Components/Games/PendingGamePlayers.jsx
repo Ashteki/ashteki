@@ -125,27 +125,20 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         } else if (allowPremium) {
                             soloControls = (
                                 <>
-                                    <Col>
-                                        <Form.Select
-                                            sm='3'
-                                            size='sm'
-                                            onChange={(e) => onSoloLevelChange(e.target.value)}
-                                        >
-                                            <option value='S'>Standard</option>
-                                            <option value='H'>Heroic</option>
-                                        </Form.Select>
-                                    </Col>
-                                    <Col xs='auto'>
-                                        <Form.Control
-                                            as='select'
-                                            size='sm'
-                                            onChange={(e) => onSoloStageChange(e.target.value)}
-                                        >
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                        </Form.Control>
-                                    </Col>
+                                    <Form.Select className='inline'
+
+                                        onChange={(e) => onSoloLevelChange(e.target.value)}
+                                    >
+                                        <option value='S'>Standard</option>
+                                        <option value='H'>Heroic</option>
+                                    </Form.Select>
+                                    <Form.Select className='inline'
+                                        onChange={(e) => onSoloStageChange(e.target.value)}
+                                    >
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </Form.Select>
                                 </>
                             );
                         } else {
@@ -178,16 +171,16 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                 }
                 return (
                     <div className={rowClass} key={player.name}>
-                        <Row className='form-row'>
+                        <div className='form-row'>
                             <PlayerName player={player} />
                             {deck}
                             {status}
                             {selectLink}
                             {soloControls}
-                        </Row>
+                        </div>
                         {player.deck.isChimera && showPatreonAdvice && (
                             <Row className='form-row patreon-row'>
-                                <div className='pending-player-name'></div>
+                                <span className='pending-player-name'></span>
                                 <div>
                                     <span className='unlock-advice'>
                                         <a href='#' onClick={patreonLoginClick}>

@@ -120,7 +120,7 @@ class BanlistAdmin extends React.Component {
             <Col>
                 {statusBar}
                 <Panel title='Banlist administration'>
-                    <table className='table table-striped'>
+                    <table className='table table-striped table-dark'>
                         <thead>
                             <tr>
                                 <th className='col-sm-2'>Ip</th>

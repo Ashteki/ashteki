@@ -111,7 +111,7 @@ class Stats extends React.Component {
                 statisticRows.length === 0 ? (
                     <div>You have no recorded games.</div>
                 ) : (
-                    <table className='table table-striped table-totals'>
+                    <table className='table table-striped table-totals table-dark'>
                         <thead>
                             <tr>
                                 <th>

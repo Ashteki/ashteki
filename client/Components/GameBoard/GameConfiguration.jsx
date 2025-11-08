@@ -13,6 +13,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
         (state) => state.account.user.settings.optionSettings?.compactLayout
     );
     const leftMode = useSelector((state) => state.account.user.settings.optionSettings?.leftMode);
+    const selectedCardSize = useSelector((state) => state.account.user.settings.cardSize);
 
 
     return (
@@ -143,7 +144,12 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <Row className='mb-3'>
                         <Col>
                             <Form.Label>Card Size:</Form.Label>
-                            <CardSizeSelector />
+                            <CardSizeSelector
+                                onCardSizeSelected={(name) => {
+                                    dispatch(changeViewSetting('cardSize', name));
+                                }}
+                                selectedCardSize={selectedCardSize}
+                            />
                         </Col>
                     </Row>
                 </Panel>

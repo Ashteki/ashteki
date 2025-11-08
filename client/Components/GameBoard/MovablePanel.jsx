@@ -106,7 +106,7 @@ const MovablePanel = ({ children, name, onCloseClick, onPlusClick, onMinusClick,
                         </span>
                     }
                     <span className='text-center'>{title}</span>
-                    <span className='float-right'>
+                    <span className='float-end'>
                         <a className='close-button' onClick={onCloseClick}>
                             <FontAwesomeIcon icon={faTimes} />
                         </a>

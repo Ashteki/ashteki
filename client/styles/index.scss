@@ -205,10 +205,6 @@ a {
     }
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: $primary;
-}
-
 .table-totals tbody tr:last-child {
     font-weight: bold;
 }
