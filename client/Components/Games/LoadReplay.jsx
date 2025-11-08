@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PictureButton from '../Lobby/PictureButton';
-import { Button, Col, FormFile } from 'react-bootstrap';
+import { Button, Col, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { startGameReplay } from '../../redux/actions';
 import * as JSZip from 'jszip';
@@ -49,7 +49,7 @@ const LoadReplay = ({ onCancel }) => {
             />
 
             <Col>
-                <FormFile label="Upload a replay file" size="lg"
+                <Form.Control type="file" label="Upload a replay file" size="lg"
                     className=''
                     onChange={onFileChange}
                 />

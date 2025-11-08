@@ -7,7 +7,6 @@ import './SelectDeckModal.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadDecks } from '../../redux/actions/deck.js';
 import DeckFilter from '../Decks/DeckFilter.jsx';
-// import Pagination from 'react-bootstrap-4-pagination';
 import debounce from 'lodash.debounce';
 import { PatreonStatus } from '../../types/patreon.js';
 import DeckGrid from '../Decks/DeckGrid.jsx';
@@ -45,7 +44,6 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
     const [showFaves, setShowFaves] = useState(false);
-    const [pageNumber, setPageNumber] = useState(1);
     const dispatch = useDispatch();
     let showChooseForMe = true;
 
@@ -56,15 +54,15 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             { name: 'favourite', value: showFaves }
         ];
         const pagingDetails = {
-            pageSize: 80,
-            page: pageNumber,
+            pageSize: 50,
+            page: 1,
             sort: 'lastUpdated',
             sortDir: 'desc',
             filter: filter
         };
 
         dispatch(loadDecks(pagingDetails));
-    }, [nameFilter, pbFilter, showFaves, dispatch, pageNumber]);
+    }, [nameFilter, pbFilter, showFaves, dispatch]);
 
     let onNameChange = debounce((event) => {
         event.preventDefault();
@@ -78,9 +76,6 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
     const handleFaveChange = () => {
         setShowFaves(!showFaves);
-    };
-    const onPageClick = (page) => {
-        setPageNumber(page);
     };
 
     let deckList = null;
@@ -110,17 +105,6 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     />
 
                     <DeckList onDeckSelected={onDeckSelected} decks={myDecks} showWinRate={true} />
-                    <div className='pagination-wrapper'>
-                        {/* <Pagination
-                            className='pager'
-                            totalPages={myDecks.length / 8}
-                            currentPage={pageNumber}
-                            showMax={7}
-                            onClick={onPageClick}
-                            prevNext={false}
-                        /> */}
-                    </div>
-
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
