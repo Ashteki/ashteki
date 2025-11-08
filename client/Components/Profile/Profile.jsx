@@ -4,7 +4,6 @@ import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import * as yup from 'yup';
-// import RangeSlider from 'react-bootstrap-range-slider';
 import Panel from '../Site/Panel';
 
 import ProfileMain, { EloContext } from './ProfileMain';
@@ -14,7 +13,6 @@ import ProfileCardSize from './ProfileCardSize';
 import BlankBg from '../../assets/img/bgs/blank.png';
 import AshesRebornBg from '../../assets/img/bgs/ashesreborn.png';
 const { toBase64 } = require('../../util.js');
-// import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 
 
 import './Profile.scss';
@@ -244,28 +242,30 @@ const Profile = ({ onSubmit, isLoading }) => {
                                 onCardSizeSelected={(name) => setCardSize(name)}
                             />
                             <Panel title='Bluff timer'>
-                                {/* <RangeSlider
+                                <Form.Range
                                     min='0'
                                     max='10'
                                     tooltip='on'
                                     value={bluffTimer}
                                     onChange={(event) => setBluffTimer(event.target.value)}
-                                /> */}
+                                />
                                 <br />
+                                {bluffTimer} seconds
                             </Panel>
                         </Col>
                         <Col sm='6'>
                             <InGameSettings formProps={formProps} user={user} />
 
                             <Panel title='Alert timer'>
-                                {/* <RangeSlider
+                                <Form.Range
                                     min='0'
                                     max='10'
                                     tooltip='on'
                                     value={alertTimer}
                                     onChange={(event) => setAlertTimer(event.target.value)}
-                                /> */}
+                                />
                                 <br />
+                                {alertTimer} seconds
                             </Panel>                        </Col>
                     </Row>
                     <div className='text-center profile-submit'>
