@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Trans, useTranslation } from 'react-i18next';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -37,23 +36,22 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     const user = useSelector((state) => state.account.user);
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
 
-    const { t } = useTranslation();
     const dispatch = useDispatch();
 
     const schema = yup.object({
         name: yup
             .string()
-            .required(t('You must specify a name for the game'))
+            .required('You must specify a name for the game')
             .max(
                 GameNameMaxLength,
-                t(`Game name must be less than ${GameNameMaxLength} characters`)
+                `Game name must be less than ${GameNameMaxLength} characters`
             ),
         password: yup.string().optional(),
         label: yup.string().optional(),
         gameTimeLimit: yup
             .number()
-            .min(1, t('Games must be at least 10 minutes long'))
-            .max(120, t('Games must be less than 2 hours')),
+            .min(1, 'Games must be at least 10 minutes long')
+            .max(120, 'Games must be less than 2 hours'),
         gameType: yup.string().required()
     });
 
@@ -76,20 +74,20 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
 
     const options = [
         { name: 'ranked', label: 'Ranked (affects Elo rating)' },
-        { name: 'allowSpectators', label: t('Allow spectators') },
+        { name: 'allowSpectators', label: 'Allow spectators' },
         { name: 'useGameTimeLimit', label: 'Use a time limit (mins) with sudden death rules' },
-        { name: 'showHand', label: t('Show hands to spectators') },
+        { name: 'showHand', label: 'Show hands to spectators' },
         { name: 'openHands', label: 'Play with open hands' }
     ];
 
     if (allowPremium) {
         options.push({ name: 'saveReplay', label: 'Save a replay' });
     }
-    const soloOptions = [{ name: 'allowSpectators', label: t('Allow spectators') }];
+    const soloOptions = [{ name: 'allowSpectators', label: 'Allow spectators' }];
 
     let clockType = [
-        { name: 'chess', label: t('Chess Clock (each)') },
-        { name: 'timer', label: t('Shared') }
+        { name: 'chess', label: 'Chess Clock (each)' },
+        { name: 'timer', label: 'Shared' }
     ];
 
     const defaultTime = {
@@ -153,10 +151,8 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     if (!lobbySocket) {
         return (
             <div>
-                <Trans>
-                    The connection to the lobby has been lost, waiting for it to be restored. If
-                    this message persists, please refresh the page.
-                </Trans>
+                The connection to the lobby has been lost, waiting for it to be restored. If
+                this message persists, please refresh the page.
             </div>
         );
     }
@@ -188,52 +184,50 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                         imageClass={newGameType}
                                     />
 
-                                    <Form.Group as={Col} controlId='formGridGameName'>
-                                        <Form.Label>{t('Name')}</Form.Label>
-                                        <Form.Control
-                                            type='text'
-                                            placeholder={t('Game Name')}
-                                            maxLength={GameNameMaxLength}
-                                            {...getStandardControlProps(formProps, 'name')}
-                                        />
-                                        <Form.Control.Feedback type='invalid'>
-                                            {formProps.errors.name}
-                                        </Form.Control.Feedback>
+                                    <Col>
+                                        <Form.Group controlId='formGridGameName' className='mb-3'>
+                                            <Form.Label>{'Name'}</Form.Label>
+                                            <Form.Control
+                                                type='text'
+                                                placeholder={'Game Name'}
+                                                maxLength={GameNameMaxLength}
+                                                {...getStandardControlProps(formProps, 'name')}
+                                            />
+                                            <Form.Control.Feedback type='invalid'>
+                                                {formProps.errors.name}
+                                            </Form.Control.Feedback>
 
-                                        {newGameType === 'chimera' &&
-                                            soloOptions.map((option) =>
-                                                getOptionToggle(option, formProps)
+                                            {newGameType === 'chimera' &&
+                                                soloOptions.map((option) =>
+                                                    getOptionToggle(option, formProps)
+                                                )}
+                                            {newGameType === 'pvp' && (
+                                                <div className='mt-3'>
+                                                    <Form.Label>League Presets</Form.Label>
+                                                    <Form.Select
+                                                        onChange={(e) => {
+                                                            handlePresetChange(
+                                                                e.target.value,
+                                                                formProps.setFieldValue
+                                                            );
+                                                            e.stopPropagation();
+                                                        }}
+                                                    >
+                                                        <option value=''></option>
+                                                        <option value='FFL'>First Five League</option>
+                                                        <option value='PHX'>Phoenix League</option>
+                                                    </Form.Select>
+                                                </div>
                                             )}
-                                        {newGameType === 'pvp' && (
-                                            <div >
-                                                <Form.Label>League Presets</Form.Label>
-                                                <select
-                                                    className='form-control'
-                                                    // value={this.state.selectedTerm}
-                                                    onChange={(e) => {
-                                                        handlePresetChange(
-                                                            e.target.value,
-                                                            formProps.setFieldValue
-                                                        );
-                                                        e.stopPropagation();
-                                                    }}
-                                                >
-                                                    <option value=''></option>
-                                                    <option value='FFL'>First Five League</option>
-                                                    <option value='PHX'>Phoenix League</option>
-                                                </select>
-                                            </div>
-                                        )}
-                                    </Form.Group>
+                                        </Form.Group>
+                                    </Col>
                                 </div>
                                 {newGameType === 'pvp' && (
                                     <>
                                         <GameFormats formProps={formProps} />
-                                        <Form.Group>
+                                        <Form.Group className='mb-3'>
                                             <Row>
-                                                <Col xs={12} className='font-weight-bold'>
-                                                    <Trans>Options</Trans>
-                                                </Col>
+                                                <h3 >Options</h3>
                                                 {options.map((option) => (
                                                     <Col key={option.name} lg='6'>
                                                         {getOptionToggle(option, formProps)}
@@ -251,7 +245,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                 )}
                                 {formProps.values.useGameTimeLimit && (
                                     <Row>
-                                        <Form.Group>
+                                        <Form.Group className='mb-3'>
                                             <Form.Label>
                                                 <span>
                                                     <img
@@ -261,11 +255,11 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                     />
                                                 </span>
                                                 &nbsp;
-                                                {t('Time Limit')}
+                                                {'Time Limit'}
                                             </Form.Label>
                                             <Form.Control
                                                 type='text'
-                                                placeholder={t('Enter time limit')}
+                                                placeholder={'Enter time limit'}
                                                 {...getStandardControlProps(
                                                     formProps,
                                                     'gameTimeLimit'
@@ -275,27 +269,29 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                 {formProps.errors.gameTimeLimit}
                                             </Form.Control.Feedback>
 
-                                            {clockType.map((type) => (
-                                                <Form.Check
-                                                    name='clockType'
-                                                    key={type.name}
-                                                    type='radio'
-                                                    id={type.name}
-                                                    label={type.label}
-                                                    inline
-                                                    onChange={(e) => {
-                                                        formProps.handleChange(e);
-                                                        onClockChange(
-                                                            type.name,
-                                                            formProps.setFieldValue
-                                                        );
-                                                    }}
-                                                    value={type.name}
-                                                    checked={
-                                                        formProps.values.clockType === type.name
-                                                    }
-                                                ></Form.Check>
-                                            ))}
+                                            <div className='mt-3'>
+                                                {clockType.map((type) => (
+                                                    <Form.Check
+                                                        name='clockType'
+                                                        key={type.name}
+                                                        type='radio'
+                                                        id={type.name}
+                                                        label={type.label}
+                                                        inline
+                                                        onChange={(e) => {
+                                                            formProps.handleChange(e);
+                                                            onClockChange(
+                                                                type.name,
+                                                                formProps.setFieldValue
+                                                            );
+                                                        }}
+                                                        value={type.name}
+                                                        checked={
+                                                            formProps.values.clockType === type.name
+                                                        }
+                                                    />
+                                                ))}
+                                            </div>
                                         </Form.Group>
                                     </Row>
                                 )}
@@ -303,23 +299,27 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                         }
                         {newGameType === 'pvp' && (
                             <Row>
-                                <Form.Group as={Col} sm={6}>
-                                    <Form.Label>{t('Password')}</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder={t('Enter a password')}
-                                        autoComplete='off'
-                                        {...getStandardControlProps(formProps, 'password')}
-                                    />
-                                </Form.Group>
-                                <Form.Group as={Col} sm={6}>
-                                    <Form.Label>{t('Label (for tournaments)')}</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder={t('Enter a label')}
-                                        {...getStandardControlProps(formProps, 'label')}
-                                    />
-                                </Form.Group>
+                                <Col sm={6}>
+                                    <Form.Group className='mb-3'>
+                                        <Form.Label>{'Password'}</Form.Label>
+                                        <Form.Control
+                                            type='text'
+                                            placeholder={'Enter a password'}
+                                            autoComplete='off'
+                                            {...getStandardControlProps(formProps, 'password')}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col sm={6}>
+                                    <Form.Group className='mb-3'>
+                                        <Form.Label>{'Label (for tournaments)'}</Form.Label>
+                                        <Form.Control
+                                            type='text'
+                                            placeholder={'Enter a label'}
+                                            {...getStandardControlProps(formProps, 'label')}
+                                        />
+                                    </Form.Group>
+                                </Col>
                             </Row>
                         )}
                         <div className='text-center newgame-buttons'>

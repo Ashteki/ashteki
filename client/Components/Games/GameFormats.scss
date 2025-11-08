@@ -4,11 +4,16 @@
 }
 
 .game-format {
-    // font-size: 1.1em;
-    padding: 4px 6px;
     border-radius: 8px;
     color: white;
     margin-right: 8px;
+
+    &.form-check {
+        padding-left: 1.8rem;
+        padding-top: 4px;
+        padding-right: 8px;
+        padding-bottom: 4px;
+    }
 
     &.firstadventure {
         background-color: rgb(72, 162, 89);

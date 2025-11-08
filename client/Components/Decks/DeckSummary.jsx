@@ -95,7 +95,7 @@ const DeckSummary = ({ deck, editMode }) => {
             </Row>
             {deck.played && (
                 <Row>
-                    <Col xs='10' sm='9'>
+                    <Col sm='9'>
                         <table style={{ width: '100%' }}>
                             <tbody>
                                 <tr>

@@ -125,16 +125,15 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         } else if (allowPremium) {
                             soloControls = (
                                 <>
-                                    <Col xs='auto'>
-                                        <Form.Control
-                                            as='select'
+                                    <Col>
+                                        <Form.Select
                                             sm='3'
                                             size='sm'
                                             onChange={(e) => onSoloLevelChange(e.target.value)}
                                         >
                                             <option value='S'>Standard</option>
                                             <option value='H'>Heroic</option>
-                                        </Form.Control>
+                                        </Form.Select>
                                     </Col>
                                     <Col xs='auto'>
                                         <Form.Control

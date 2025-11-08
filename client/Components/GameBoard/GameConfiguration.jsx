@@ -14,7 +14,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
         (state) => state.account.user.settings.optionSettings?.compactLayout
     );
     const leftMode = useSelector((state) => state.account.user.settings.optionSettings?.leftMode);
-    const selectedCardSize = useSelector((state) => state.account.user.settings.cardSize);
+
 
     return (
         <div>
@@ -23,76 +23,90 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <div className='advice'>
                         Note: Changes made here will only affect the current game.
                     </div>
-                    <Form.Check
-                        id='orderForcedAbilities'
-                        name='optionSettings.orderForcedAbilities'
-                        label='Prompt to order simultaneous abilities'
-                        type='switch'
-                        checked={optionSettings.orderForcedAbilities}
-                        onChange={(event) =>
-                            onOptionSettingToggle('orderForcedAbilities', event.target.checked)
-                        }
-                    />
-                    <Form.Check
-                        id='alwaysGroupTactics'
-                        name='gameOptions.alwaysGroupTactics'
-                        label='Always trigger Group Tactics without asking'
-                        type='switch'
-                        checked={optionSettings.alwaysGroupTactics}
-                        onChange={(event) =>
-                            onOptionSettingToggle('alwaysGroupTactics', event.target.checked)
-                        }
-                    />
-                    <Form.Check
-                        id='dontIceTrapOwnUnits'
-                        name='gameOptions.dontIceTrapOwnUnits'
-                        label="Don't prompt to ice trap my own units"
-                        type='switch'
-                        checked={optionSettings.dontIceTrapOwnUnits}
-                        onChange={(event) =>
-                            onOptionSettingToggle('dontIceTrapOwnUnits', event.target.checked)
-                        }
-                    />
-                    <Form.Check
-                        id='noAttackAlerts'
-                        name='gameOptions.noAttackAlerts'
-                        label="Don't alert on attacks (useful for blitz games)"
-                        type='switch'
-                        checked={optionSettings.noAttackAlerts}
-                        onChange={(event) =>
-                            onOptionSettingToggle('noAttackAlerts', event.target.checked)
-                        }
-                    />
-                    <Form.Check
-                        id='manualAlts'
-                        name='gameOptions.manualAlts'
-                        label="Don't use alt arts by default"
-                        type='switch'
-                        checked={optionSettings.manualAlts}
-                        onChange={(event) =>
-                            onOptionSettingToggle('manualAlts', event.target.checked)
-                        }
-                    />
-                    <Form.Check
-                        id='leftMode'
-                        name='gameOptions.leftMode'
-                        label='Show the prompt area on left'
-                        type='switch'
-                        checked={leftMode}
-                        onChange={(event) => {
-                            dispatch(changeViewSetting('leftMode', event.target.checked));
-                        }}
-                    />
-                    <Form.Check
-                        id='compactLayout'
-                        name='gameOptions.compactLayout'
-                        label='Use compact layout'
-                        type='switch'
-                        checked={compactLayout}
-                        onChange={(event) => {
-                            dispatch(changeViewSetting('compactLayout', event.target.checked));
-                        }}
-                    />
+                    <Form.Group className='mb-3'>
+                        <Form.Check
+                            id='orderForcedAbilities'
+                            name='optionSettings.orderForcedAbilities'
+                            label='Prompt to order simultaneous abilities'
+                            type='switch'
+                            checked={optionSettings.orderForcedAbilities}
+                            onChange={(event) =>
+                                onOptionSettingToggle('orderForcedAbilities', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group className='mb-3'>
+                        <Form.Check
+                            id='alwaysGroupTactics'
+                            name='gameOptions.alwaysGroupTactics'
+                            label='Always trigger Group Tactics without asking'
+                            type='switch'
+                            checked={optionSettings.alwaysGroupTactics}
+                            onChange={(event) =>
+                                onOptionSettingToggle('alwaysGroupTactics', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group className='mb-3'>
+                        <Form.Check
+                            id='dontIceTrapOwnUnits'
+                            name='gameOptions.dontIceTrapOwnUnits'
+                            label="Don't prompt to ice trap my own units"
+                            type='switch'
+                            checked={optionSettings.dontIceTrapOwnUnits}
+                            onChange={(event) =>
+                                onOptionSettingToggle('dontIceTrapOwnUnits', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group className='mb-3'>
+                        <Form.Check
+                            id='noAttackAlerts'
+                            name='gameOptions.noAttackAlerts'
+                            label="Don't alert on attacks (useful for blitz games)"
+                            type='switch'
+                            checked={optionSettings.noAttackAlerts}
+                            onChange={(event) =>
+                                onOptionSettingToggle('noAttackAlerts', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group className='mb-3'>
+                        <Form.Check
+                            id='manualAlts'
+                            name='gameOptions.manualAlts'
+                            label="Don't use alt arts by default"
+                            type='switch'
+                            checked={optionSettings.manualAlts}
+                            onChange={(event) =>
+                                onOptionSettingToggle('manualAlts', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group className='mb-3'>
+                        <Form.Check
+                            id='leftMode'
+                            name='gameOptions.leftMode'
+                            label='Show the prompt area on left'
+                            type='switch'
+                            checked={leftMode}
+                            onChange={(event) => {
+                                dispatch(changeViewSetting('leftMode', event.target.checked));
+                            }}
+                        />
+                    </Form.Group>
+                    <Form.Group className='mb-3'>
+                        <Form.Check
+                            id='compactLayout'
+                            name='gameOptions.compactLayout'
+                            label='Use compact layout'
+                            type='switch'
+                            checked={compactLayout}
+                            onChange={(event) => {
+                                dispatch(changeViewSetting('compactLayout', event.target.checked));
+                            }}
+                        />
+                    </Form.Group>
                     <div className='bluffTimer'>
                         Bluff Timer (seconds):
                         {/* <RangeSlider
@@ -123,18 +137,11 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         /> */}
                     </div>
                     <br />
-                    <Row>
-                        Card Size:
-                        <Row>
-                            <Col xs='12'>
-                                <CardSizeSelector
-                                    onCardSizeSelected={(name) => {
-                                        dispatch(changeViewSetting('cardSize', name));
-                                    }}
-                                    selectedCardSize={selectedCardSize}
-                                />
-                            </Col>
-                        </Row>
+                    <Row className='mb-3'>
+                        <Col>
+                            <Form.Label>Card Size:</Form.Label>
+                            <CardSizeSelector />
+                        </Col>
                     </Row>
                 </Panel>
             </Form>

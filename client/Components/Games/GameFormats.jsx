@@ -1,5 +1,4 @@
 import React from 'react';
-import { Trans } from 'react-i18next';
 import { Form, Col, Row } from 'react-bootstrap';
 import { gameFormats } from '../../util';
 import './GameFormats.scss';
@@ -17,10 +16,8 @@ const GameFormats = ({ formProps }) => {
     return (
         <>
             <Row>
-                <Col xs={12} className='font-weight-bold'>
-                    <Trans>Format</Trans>
-                </Col>
-                <Form.Group as={Col}>
+                <h3> Format</h3>
+                <Form.Group >
                     {formats.map((format) => {
                         const checkClasses = classNames('game-format', format.name);
 
@@ -45,7 +42,7 @@ const GameFormats = ({ formProps }) => {
                 </Form.Group>
             </Row>
             <Row>
-                <Col xs={12}>
+                <Col>
                     <GameFormatInfo gameType={formProps.values.gameFormat} />
                 </Col>
             </Row>

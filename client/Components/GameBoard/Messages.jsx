@@ -99,8 +99,8 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                     case 'phasestart':
                         messages.push(
                             <div
-                                className={'font-weight-bold text-white separator ' + fragment.type}
-                                key={'m-' + index}
+                                className={'fw-bold text-white separator ' + fragment.type}
+                                key={'m-' + index}>
                             >
                                 <hr className={'mt-2 mb-2' + fragment.type} />
                                 {message}

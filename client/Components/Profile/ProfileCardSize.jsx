@@ -11,7 +11,7 @@ const ProfileCardSize = ({ selectedCardSize, onCardSizeSelected }) => {
     return (
         <Panel title={t('Card Image Size')}>
             <Row>
-                <Col xs='12'>
+                <Col>
                     <CardSizeSelector
                         selectedCardSize={selectedCardSize}
                         onCardSizeSelected={onCardSizeSelected}
