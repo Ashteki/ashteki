@@ -160,7 +160,7 @@
 
         &.controlled {
             box-shadow: $controlledBox,
-                0 0 10px 1px fadeout(lighten(theme-color('primary'), 60%), 10%);
+                0 0 10px 1px fadeout(lighten($primary, 60%), 10%);
         }
     }
 
@@ -169,16 +169,16 @@
     }
 
     &.selected {
-        box-shadow: 0 0 1px 4px theme-color('selected');
+        box-shadow: 0 0 1px 4px $selected;
 
         &.controlled {
-            box-shadow: $controlledBox, 0 0 1px 4px theme-color('selected');
+            box-shadow: $controlledBox, 0 0 1px 4px $selected;
         }
     }
 
 
     &.selectable {
-        box-shadow: 0 0 8px 3px theme-color('secondary');
+        box-shadow: 0 0 8px 3px $secondary;
 
     }
 

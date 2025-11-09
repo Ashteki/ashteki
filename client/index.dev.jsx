@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore';
 import { navigate } from './redux/actions';
@@ -20,7 +20,8 @@ window.onpopstate = function (e) {
 
 const render = () => {
     const Application = require('./Application').default;
-    ReactDOM.render(
+    const root = ReactDOM.createRoot(document.getElementById('component'));
+    root.render(
         <Provider store={store}>
             <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
                 <div className='body'>
@@ -35,8 +36,7 @@ const render = () => {
                     <Application />
                 </div>
             </DndProvider>
-        </Provider>,
-        document.getElementById('component')
+        </Provider>
     );
 };
 

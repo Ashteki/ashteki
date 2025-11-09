@@ -114,7 +114,7 @@ const Matches = () => {
             {games && games.length === 0 ? (
                 <div>You have no recorded games.</div>
             ) : (
-                <table className='table table-striped'>
+                <table className='table table-striped table-dark'>
                     <thead>
                         <tr>
                             <th>Date</th>

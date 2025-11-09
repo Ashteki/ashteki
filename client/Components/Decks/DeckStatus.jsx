@@ -43,11 +43,11 @@ const DeckStatus = ({ status, gameFormat }) => {
 
     const popover = (
         <Popover id='deck-status-popover'>
-            <Popover.Content>
+            <Popover.Body>
                 <div>
                     <DeckStatusSummary status={status} showFormat={showFormat} />
                 </div>
-            </Popover.Content>
+            </Popover.Body>
         </Popover>
     );
 

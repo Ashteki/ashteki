@@ -42,7 +42,7 @@
     }
 
     .invalid {
-        background-color: rgba(theme-color(danger), 0.6);
+        background-color: rgba($danger, 0.6);
     }
 
     .deckgrid-card {
@@ -55,7 +55,7 @@
         border-radius: 4px;
 
         &:hover {
-            background-color: rgba(theme-color(primary), 0.6);
+            background-color: rgba($primary, 0.6);
             border: 2px solid rgba(yellow, 0.6);
 
         }
@@ -292,7 +292,7 @@
 
         &.selected-deck {
             .card-header {
-                background-color: rgba(theme-color('primary'), 0.7);
+                background-color: rgba($primary, 0.7);
             }
         }
 
@@ -371,7 +371,7 @@
 }
 
 .selected-deck {
-    background-color: rgba(theme-color('primary'), 0.7);
+    background-color: rgba($primary, 0.7);
 }
 
 .fave-hdr {

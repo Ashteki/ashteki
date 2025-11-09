@@ -12,7 +12,7 @@
 .profile-submit {
     position: sticky;
     bottom: 10px;
-    background-color: theme-color('primary');
+    background-color: $primary;
     z-index: $layer-top;
 }
 

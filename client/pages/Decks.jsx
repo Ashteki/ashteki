@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Col, Row } from 'react-bootstrap';
-import Pagination from 'react-bootstrap-4-pagination';
+import { Col, Pagination, Row } from 'react-bootstrap';
+// import Pagination from 'react-bootstrap-4-pagination';
 import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
 import ApiStatus from '../Components/Site/ApiStatus';
@@ -191,9 +191,17 @@ const DecksComponent = ({ onDeckSelected }) => {
                                             totalPages={numDecks / 8}
                                             currentPage={pageNumber}
                                             showMax={7}
-                                            onClick={onPageClick}
                                             prevNext={false}
-                                        />
+                                        >
+                                            {Array.from({ length: Math.ceil(numDecks / 8) }, (_, i) => (
+                                                <Pagination.Item
+                                                    key={i + 1}
+                                                    active={i + 1 === pageNumber}
+                                                    onClick={() => onPageClick(i + 1)}>
+                                                    {i + 1}
+                                                </Pagination.Item>
+                                            ))}
+                                        </Pagination>
                                     </div>
                                 )}
                             </Col>

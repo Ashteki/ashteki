@@ -9,7 +9,7 @@ const League = ({ tag }) => {
             {tagReport && tagReport.length === 0 ? (
                 <div>No recorded games.</div>
             ) : (
-                <table className='table table-striped'>
+                <table className='table table-striped table-dark'>
                     <thead>
                         <tr>
                             <th>Player</th>

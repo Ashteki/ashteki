@@ -13,31 +13,31 @@
     margin-left: 5px;
 
     &.valid {
-        background: theme-color('success');
+        background: $success;
     }
 
     &.casual-play {
-        background: theme-color('warning');
+        background: $warning;
     }
 
     &.used {
-        background: theme-color('warning');
+        background: $warning;
     }
 
     &.popular {
-        background: theme-color('warning');
+        background: $warning;
     }
 
     &.notorious {
-        background: theme-color('danger');
+        background: $danger;
     }
 
     &.conjurations {
-        background: theme-color('info');
+        background: $info;
     }
 
     &.invalid {
-        background: theme-color('danger');
+        background: $danger;
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendSocketMessage } from '../../redux/actions';
-import { Button, Col, Form } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import './PendingGamePlayer.scss';
@@ -125,28 +125,20 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         } else if (allowPremium) {
                             soloControls = (
                                 <>
-                                    <Col xs='auto'>
-                                        <Form.Control
-                                            as='select'
-                                            sm='3'
-                                            size='sm'
-                                            onChange={(e) => onSoloLevelChange(e.target.value)}
-                                        >
-                                            <option value='S'>Standard</option>
-                                            <option value='H'>Heroic</option>
-                                        </Form.Control>
-                                    </Col>
-                                    <Col xs='auto'>
-                                        <Form.Control
-                                            as='select'
-                                            size='sm'
-                                            onChange={(e) => onSoloStageChange(e.target.value)}
-                                        >
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                        </Form.Control>
-                                    </Col>
+                                    <Form.Select className='inline'
+
+                                        onChange={(e) => onSoloLevelChange(e.target.value)}
+                                    >
+                                        <option value='S'>Standard</option>
+                                        <option value='H'>Heroic</option>
+                                    </Form.Select>
+                                    <Form.Select className='inline'
+                                        onChange={(e) => onSoloStageChange(e.target.value)}
+                                    >
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </Form.Select>
                                 </>
                             );
                         } else {
@@ -179,16 +171,16 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                 }
                 return (
                     <div className={rowClass} key={player.name}>
-                        <Form.Row>
+                        <div className='form-row'>
                             <PlayerName player={player} />
                             {deck}
                             {status}
                             {selectLink}
                             {soloControls}
-                        </Form.Row>
+                        </div>
                         {player.deck.isChimera && showPatreonAdvice && (
-                            <Form.Row className='patreon-row'>
-                                <div className='pending-player-name'></div>
+                            <Row className='form-row patreon-row'>
+                                <span className='pending-player-name'></span>
                                 <div>
                                     <span className='unlock-advice'>
                                         <a href='#' onClick={patreonLoginClick}>
@@ -197,7 +189,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                         to unlock all content <FontAwesomeIcon icon={faCircleInfo} title='You may need to reload this page after' />
                                     </span>
                                 </div>
-                            </Form.Row>
+                            </Row>
                         )}
                     </div>
                 );

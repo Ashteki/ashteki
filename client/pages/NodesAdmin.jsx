@@ -65,7 +65,7 @@ class NodeAdmin extends React.Component {
         });
 
         return (
-            <table className='table table-striped'>
+            <table className='table table-striped table-dark'>
                 <thead>
                     <tr>
                         <th>Node Name</th>

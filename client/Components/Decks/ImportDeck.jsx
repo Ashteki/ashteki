@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Col, Form, Button } from 'react-bootstrap';
+import { Col, Form, Button, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -92,36 +92,40 @@ const ImportDeck = () => {
                                     formProps.handleSubmit(event);
                                 }}
                             >
-                                <Form.Row>
-                                    <Form.Group as={Col} xs='9' controlId='formGridDeckLink'>
-                                        <Form.Label>{t('Deck Link')}</Form.Label>
-                                        <Form.Control
-                                            name='deckLink'
-                                            type='text'
-                                            placeholder={t('Enter the deck link')}
-                                            value={formProps.values.deckLink}
-                                            onChange={formProps.handleChange}
-                                            onBlur={formProps.handleBlur}
-                                            isInvalid={
-                                                formProps.touched.deckLink &&
-                                                !!formProps.errors.deckLink
-                                            }
-                                        />
-                                        <Form.Control.Feedback type='invalid'>
-                                            {formProps.errors.deckLink}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                </Form.Row>
+                                <Row>
+                                    <Col sm={9}>
+                                        <Form.Group className='mb-3' controlId='formGridDeckLink'>
+                                            <Form.Label>{t('Deck Link')}</Form.Label>
+                                            <Form.Control
+                                                name='deckLink'
+                                                type='text'
+                                                placeholder={t('Enter the deck link')}
+                                                value={formProps.values.deckLink}
+                                                onChange={formProps.handleChange}
+                                                onBlur={formProps.handleBlur}
+                                                isInvalid={
+                                                    formProps.touched.deckLink &&
+                                                    !!formProps.errors.deckLink
+                                                }
+                                            />
+                                            <Form.Control.Feedback type='invalid'>
+                                                {formProps.errors.deckLink}
+                                            </Form.Control.Feedback>
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
 
-                                <Col className='text-center'>
-                                    <Button variant='secondary' type='submit'>
-                                        {t('Import')}
-                                        &nbsp;
-                                        {apiState && apiState.loading && (
-                                            <FontAwesomeIcon icon={faCircleNotch} spin />
-                                        )}
-                                    </Button>
-                                </Col>
+                                <Row>
+                                    <Col className='text-center'>
+                                        <Button variant='secondary' type='submit'>
+                                            {t('Import')}
+                                            &nbsp;
+                                            {apiState && apiState.loading && (
+                                                <FontAwesomeIcon icon={faCircleNotch} spin />
+                                            )}
+                                        </Button>
+                                    </Col>
+                                </Row>
                             </Form>
                         )}
                     </Formik>
