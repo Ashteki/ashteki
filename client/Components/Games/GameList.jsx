@@ -67,7 +67,7 @@ class GameList extends React.Component {
         }
 
         return (
-            <Col className='game-list' xs='12'>
+            <Col className='game-list'>
                 {gameList}
             </Col>
         );

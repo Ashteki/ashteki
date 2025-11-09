@@ -76,12 +76,11 @@ const Panel = ({
 
     return (
         <Card border={retType} bg='dark' className={cardClass}>
-            {title && <Card.Header className={`${titleClass} text-center`}>{title}
-
-                <span className='float-right'>
-                    {closeButton}
-                </span>
-            </Card.Header>}
+            {title && (
+                <Card.Header className={`${titleClass} text-center`}>{title}
+                    <span className='float-end'>{closeButton}</span>
+                </Card.Header>
+            )}
             <Card.Body>{children}</Card.Body>
         </Card>
     );

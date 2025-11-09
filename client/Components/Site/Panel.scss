@@ -3,29 +3,29 @@
 @import '~bootstrap/scss/variables';
 
 .card {
-    box-shadow: 1px 1px 1px theme-color('primary') !important;
+    box-shadow: 1px 1px 1px $primary !important;
 
     .card-header {
         font-weight: normal;
         background-size: cover;
-        color: theme-color('light');
+        color: $light;
     }
 
     &.border-primary {
         .card-header {
             background-image: url('~assets/img/panel-primary.png');
-            border-color: theme-color('primary');
+            border-color: $primary;
         }
     }
 
     &.border-danger {
         .card-header {
             background-image: url('~assets/img/panel-danger.png');
-            border-color: theme-color('danger');
+            border-color: $danger;
         }
 
         .menu-pane-source {
-            background-color: theme-color('danger');
+            background-color: $danger;
         }
     }
 
@@ -41,7 +41,7 @@
     }
 
     &.border-border {
-        box-shadow: 1px 1px 1px theme-color('border') !important;
+        box-shadow: 1px 1px 1px $border !important;
 
     }
 }

@@ -207,7 +207,7 @@
         margin-top: 15px;
     }
 
-    border-bottom: 2px dashed theme-color(primary);
+    border-bottom: 2px dashed $primary;
 
     &.our-side {
         margin: 0;
@@ -262,7 +262,7 @@
 
 .card-log-arrow {
     text-align: center;
-    background-color: rgba(theme-color('secondary'), 0.4);
+    background-color: rgba($secondary, 0.4);
     cursor: pointer;
 }
 

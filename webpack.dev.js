@@ -4,11 +4,7 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
     entry: {
-        bundle: [
-            'react-hot-loader/babel',
-            './client/index.jsx',
-            'webpack-hot-middleware/client'
-        ]
+        bundle: ['./client/index.jsx', 'webpack-hot-middleware/client']
     },
     output: {
         filename: '[name].[contenthash].js'

@@ -32,7 +32,7 @@ const TaggedGameList = () => {
     return taggedGames && taggedGames.length === 0 ? (
         <div>No matching games.</div>
     ) : (
-        <table className='table table-striped'>
+        <table className='table table-striped table-dark'>
             <thead>
                 <tr>
                     <th>Date</th>

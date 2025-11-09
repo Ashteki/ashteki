@@ -5,3 +5,27 @@
         margin: 0 10px;
     }
 }
+
+
+select {
+    width: unset !important;
+}
+
+.form-control,
+.form-select,
+.form-check-input {
+    background-color: #fff;
+    color: #000;
+}
+
+.form-control:focus,
+.form-control:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+
+.form-control::placeholder,
+.form-select::placeholder {
+    color: #aaa !important;
+}

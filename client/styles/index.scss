@@ -43,7 +43,7 @@ a {
     color: skyblue;
 
     &:hover {
-        color: theme-color('info');
+        color: $info;
         text-decoration: none;
     }
 
@@ -66,11 +66,6 @@ a {
             // background-color: rgb(0, 162, 255) !important;
         }
     }
-
-}
-
-.btn-extra {
-    color: white;
 }
 
 .btn:not(.def) {
@@ -92,7 +87,7 @@ a {
         // font-family: Keyforge, Helvetica, sans-serif;
 
         &:hover {
-            text-shadow: 0px 0px 6px theme-color('white');
+            text-shadow: 0px 0px 6px $white;
             transition: all 0.4s ease 0s;
 
             background-color: transparent;
@@ -210,10 +205,6 @@ a {
     }
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: theme-color('primary');
-}
-
 .table-totals tbody tr:last-child {
     font-weight: bold;
 }
@@ -259,11 +250,11 @@ h3 {
 }
 
 .rrt-message {
-    background: theme-color(dark) !important;
+    background: $dark !important;
 }
 
 .rrt-confirm {
-    background: theme-color(primary) !important;
+    background: $primary !important;
 }
 
 .rrt-button {
@@ -271,7 +262,7 @@ h3 {
 }
 
 .rrt-button:hover {
-    color: theme-color(dark) !important;
+    color: $dark !important;
 }
 
 .clickable {
@@ -281,31 +272,12 @@ h3 {
 
 pre {
     background-color: rgba(0, 0, 0, 0.65);
-    color: theme-color(primary);
+    color: $primary;
     border: none;
 }
 
 
-/* Fix input boxes */
-
-.form-control {
-    width: 100%;
-    min-height: 34px;
-    padding: 6px 12px;
-    margin: 5px 0;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-
-
-}
-
+/* custom form bits */
 .form-horizontal {
     .form-group {
         margin-left: 0;

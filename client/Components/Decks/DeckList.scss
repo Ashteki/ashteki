@@ -11,7 +11,7 @@
     .table-hover {
         tbody {
             tr:hover {
-                background-color: rgba(theme-color('info'), 0.3);
+                background-color: rgba($info, 0.3);
             }
         }
     }
@@ -45,7 +45,7 @@
     }
 
     .invalid {
-        background-color: rgba(theme-color(danger), 0.6);
+        background-color: rgba($danger, 0.6);
     }
 
     .decklist-card {
@@ -55,7 +55,7 @@
 
         &.selected-deck {
             .card-header {
-                background-color: rgba(theme-color('primary'), 0.7);
+                background-color: rgba($primary, 0.7);
             }
         }
 
@@ -134,7 +134,7 @@
 }
 
 .selected-deck {
-    background-color: rgba(theme-color('primary'), 0.7);
+    background-color: rgba($primary, 0.7);
 }
 
 .fave-hdr {

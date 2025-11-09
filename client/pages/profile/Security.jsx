@@ -99,7 +99,7 @@ class Security extends React.Component {
             this.props.sessions && this.props.sessions.length === 0 ? (
                 <div>You have no active sessions. This shouldn&quot;t really happen.</div>
             ) : (
-                <table className='table table-striped'>
+                <table className='table table-striped table-dark'>
                     <thead>
                         <tr>
                             <th>

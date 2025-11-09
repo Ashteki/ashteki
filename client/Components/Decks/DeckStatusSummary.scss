@@ -7,26 +7,26 @@
     // font-size: 12px;
 
     .valid {
-        color: theme-color('success');
+        color: $success;
     }
 
     .popular {
-        color: theme-color('warning');
+        color: $warning;
     }
 
     .used {
-        color: theme-color('warning');
+        color: $warning;
     }
 
     .notorious {
-        color: theme-color('danger');
+        color: $danger;
     }
 
     .conjurations {
-        color: theme-color('info');
+        color: $info;
     }
 
     .invalid {
-        color: theme-color('danger');
+        color: $danger;
     }
 }
