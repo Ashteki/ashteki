@@ -13,7 +13,8 @@ class Safeguard extends Card {
                         (context, effectContext) => context.player === effectContext.player.opponent
                     ),
                     until: {
-                        onBeginTurn: (event) => event.player === context.player
+                        onBeginTurn: (event) => event.player === context.player,
+                        onRoundEnded: (_) => true
                     }
                 }))
             }
