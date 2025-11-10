@@ -38,6 +38,31 @@ describe('Royal Charm', function () {
             expect(this.hammerKnight.attack).toBe(2);
         });
 
+        it('dice returns to pool on round end', function () {
+            this.player1.play(this.enchantedViolinist);
+            // unselect class die
+            this.player1.clickDie(3);
+            // select power die
+            this.player1.clickDie(2);
+            // choose die for royal charm
+            this.player1.clickDie(2);
+
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.royalCharm.hasModifiedAttack()).toBe(false);
+
+            this.player1.player.actions.main = true;
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            this.player1.clickDone();
+            this.player1.clickNo();
+
+            // dice returns to pool
+            expect(this.player1.dicepool.length).toBe(5);
+            expect(this.royalCharm.dieUpgrades.length).toBe(0);
+            expect(this.player2).toHaveDefaultPrompt();
+        });
+
         it('use dice on card targetting holy knight', function () {
             this.player1.play(this.enchantedViolinist);
             // unselect class die
