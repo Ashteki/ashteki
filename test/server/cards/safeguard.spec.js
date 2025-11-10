@@ -88,7 +88,7 @@ describe('Safeguard', function () {
         expect(this.mistSpirit.location).toBe('archives');
     });
 
-    it('lasts across round boundaries', function () {
+    it('does not last across round boundaries', function () {
         expect(this.mistSpirit.damage).toBe(0);
 
         this.player1.clickCard(this.safeguard);
@@ -106,8 +106,10 @@ describe('Safeguard', function () {
 
         this.player2.clickCard(this.mistTyphoon);
         this.player2.clickPrompt('Play this action');
+        this.player2.clickCard(this.mistSpirit);
+        this.player2.clickNo();
 
-        expect(this.mistSpirit.damage).toBe(0);
-        expect(this.mistSpirit.location).toBe('play area');
+        expect(this.mistSpirit.location).toBe('archives');
+        expect(this.player2).toHaveDefaultPrompt();
     });
 });
