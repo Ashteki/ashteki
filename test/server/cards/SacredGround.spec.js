@@ -37,7 +37,7 @@ describe('Sacred Ground', function () {
             expect(this.hammerKnight.armor).toBe(0);
         });
 
-        it('should work across round boundaries', function () {
+        it('should not work across round boundaries', function () {
             this.player1.clickCard(this.sacredGround);
             this.player1.clickPrompt('Sacred Ground');
 
@@ -46,8 +46,8 @@ describe('Sacred Ground', function () {
 
             this.player1.clickDone(); //pin dice
 
-            expect(this.mistSpirit.armor).toBe(1);
-            expect(this.blueJaguar.armor).toBe(1);
+            expect(this.mistSpirit.armor).toBe(0);
+            expect(this.blueJaguar.armor).toBe(0);
             expect(this.hammerKnight.armor).toBe(0);
         });
     });
