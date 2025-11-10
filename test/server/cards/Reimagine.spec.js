@@ -55,8 +55,7 @@ describe('Reimagine', function () {
 
             this.player1.clickDone();
             this.player2.clickDone();
-            // return dice prompt
-            this.player1.clickYes();
+
             expect(targetDie.location).toBe('dicepool');
             // at this point it is next round, so all dice are active and cannot test for move to exhausted pool
         });
