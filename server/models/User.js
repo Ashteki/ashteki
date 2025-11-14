@@ -102,6 +102,10 @@ class User {
     }
 
     get role() {
+        if (!this.userData) {
+            return 'user';
+        }
+
         if (this.isAdmin) {
             return 'admin';
         }

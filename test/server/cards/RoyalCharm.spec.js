@@ -238,5 +238,4 @@ describe('Royal Charm', function () {
             expect(this.player1).toHavePromptTitle('Meteor'); // choose AoE order
         });
     });
-
 });

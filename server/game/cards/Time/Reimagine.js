@@ -29,7 +29,7 @@ class Reimagine extends Card {
             when: {
                 onRoundEnded: () => this.dieUpgrades
             },
-            may: 'return dice to your exhausted pool',
+            // may: 'return dice to your exhausted pool',
             gameAction: ability.actions.detachDie((context) => ({
                 die: context.source.dieUpgrades
             }))
