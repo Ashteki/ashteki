@@ -98,6 +98,26 @@
     }
 }
 
+@media only screen and (max-width: 992px) {
+
+    /* For phone layouts */
+    .image-button {
+        width: 100px;
+        min-width: 100px; // don't resize smaller
+        height: 120px;
+    }
+
+    // .img-button-label,
+    .nav-buttons {
+        display: none;
+    }
+
+    .lobby-card {
+        padding: 5px !important;
+    }
+
+}
+
 .decks-link {
     // width: 300px;
     // min-width: 250px;

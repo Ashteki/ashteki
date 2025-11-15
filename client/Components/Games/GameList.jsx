@@ -1,30 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
 import { Col } from 'react-bootstrap';
 
 import { getRankedLabel } from '../../util';
 
-import * as actions from '../../redux/actions';
-// ref error comment
-
 import './GameList.scss';
 import GameListItem from './GameListItem';
 
-class GameList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    getGamesForType(gameType, games) {
-        let gamesToReturn = [];
-
-        for (const game of games) {
-            gamesToReturn.push(
-                <GameListItem game={game} onJoinOrWatchClick={this.props.onJoinOrWatchClick} />
-            );
-        }
+const GameList = ({ games, onJoinOrWatchClick }) => {
+    const getGamesForType = (gameType, gamesForType) => {
+        const gamesToReturn = gamesForType.map((game) => (
+            <GameListItem key={game.id} game={game} onJoinOrWatchClick={onJoinOrWatchClick} />
+        ));
 
         let gameHeaderClass = 'game-header';
         switch (gameType) {
@@ -34,66 +20,39 @@ class GameList extends React.Component {
             case 'competitive':
                 gameHeaderClass += ' game-comp';
                 break;
+            default:
+                break;
         }
 
         return (
             <div key={gameType}>
-                <div className={gameHeaderClass} key={gameType + 'header'}>
+                <div className={gameHeaderClass}>
                     {getRankedLabel(gameType)} ({gamesToReturn.length})
                 </div>
                 {gamesToReturn}
             </div>
         );
+    };
+
+    const groupedGames = {};
+    for (const game of games) {
+        if (!groupedGames[game.gameType]) {
+            groupedGames[game.gameType] = [game];
+        } else {
+            groupedGames[game.gameType].push(game);
+        }
     }
 
-    render() {
-        let groupedGames = {};
-
-        for (const game of this.props.games) {
-            if (!groupedGames[game.gameType]) {
-                groupedGames[game.gameType] = [game];
-            } else {
-                groupedGames[game.gameType].push(game);
-            }
+    const gameList = [];
+    for (const gameType of ['casual', 'competitive']) {
+        if (groupedGames[gameType]) {
+            gameList.push(getGamesForType(gameType, groupedGames[gameType]));
         }
-
-        let gameList = [];
-
-        for (const gameType of ['casual', 'competitive']) {
-            // if (this.props.gameFilter[gameType] && groupedGames[gameType]) {
-            if (groupedGames[gameType]) {
-                gameList.push(this.getGamesForType(gameType, groupedGames[gameType]));
-            }
-        }
-
-        return (
-            <Col className='game-list'>
-                {gameList}
-            </Col>
-        );
     }
-}
 
-GameList.displayName = 'GameList';
-GameList.propTypes = {
-    currentGame: PropTypes.object,
-    gameFilter: PropTypes.object,
-    games: PropTypes.array,
-    i18n: PropTypes.object,
-    joinPasswordGame: PropTypes.func,
-    onJoinOrWatchClick: PropTypes.func,
-    showNodes: PropTypes.bool,
-    socket: PropTypes.object,
-    t: PropTypes.func,
-    user: PropTypes.object
+    return <Col className='game-list'>{gameList}</Col>;
 };
 
-function mapStateToProps(state) {
-    return {
-        currentGame: state.lobby.currentGame,
-        socket: state.lobby.socket,
-        user: state.account.user
-    };
-}
+GameList.displayName = 'GameList';
 
-export default withTranslation()(connect(mapStateToProps, actions)(GameList));
+export default GameList;
