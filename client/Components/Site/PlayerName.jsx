@@ -26,7 +26,7 @@ const PlayerName = ({ player }) => {
     });
 
     return (
-        <span className='pending-player-name'>
+        <span className='player-name'>
             <Avatar imgPath={player.avatar} />
             <span className={className} style={userStyle}>
                 {player.name || player.username}
