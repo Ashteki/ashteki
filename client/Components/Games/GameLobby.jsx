@@ -147,8 +147,7 @@ const GameLobby = ({ gameId }) => {
                                     onClick={() => handleNewGameClick('league')}
                                 />
                             </div>
-                            <div className='lobby-header'><hr /></div>
-                            <div className='game-buttons'>
+                            <div className='game-buttons nav-buttons'>
                                 <PictureButton
                                     text='Decks'
                                     imageClass='decks-link'
