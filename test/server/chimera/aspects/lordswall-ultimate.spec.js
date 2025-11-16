@@ -39,7 +39,6 @@ describe('Lordswall ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             this.player1.clickCard(this.blueJaguar);
             this.player1.clickCard(this.mistSpirit);
@@ -67,7 +66,6 @@ describe('Lordswall ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             this.player1.clickCard(this.blueJaguar);
             this.player1.clickCard(this.mistSpirit);
@@ -93,7 +91,6 @@ describe('Lordswall ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             expect(this.player2.player.aspectsInPlay.length).toBe(aspectCount + 3);
 

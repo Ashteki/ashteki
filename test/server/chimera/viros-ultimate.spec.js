@@ -48,7 +48,6 @@ describe('Viros ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // removes RR tokens
             expect(this.player2.phoenixborn.redRains).toBe(0);
@@ -78,7 +77,6 @@ describe('Viros ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             expect(this.ironScales.upgrades.length).toBe(0);
 
@@ -108,7 +106,6 @@ describe('Viros ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for VIROS ULTIMATE 3
             expect(this.player2.player.aspectsInPlay.length).toBe(aspectCount + 1);
