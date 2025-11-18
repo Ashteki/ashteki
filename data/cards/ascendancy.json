@@ -1,0 +1,15 @@
+{
+    "results": [
+        {
+            "name": "Issa Brightmore",
+            "stub": "issa-brightmore",
+            "type": "Phoenixborn",
+            "dice": [
+                "artifice"
+            ],
+            "battlefield": 6,
+            "life": 17,
+            "spellboard": 4
+        }
+    ]
+}
