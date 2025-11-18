@@ -78,15 +78,17 @@ class FilterDeckAction extends PlayerAction {
         this.amount = Math.min(this.amount, player.deck.length);
 
         this.remainingCards = player.deck.slice(0, this.amount);
-        context.game.addMessage(
-            "{0} uses {1} to look at the top {2} cards of {3}'s deck",
-            context.player,
-            context.source,
-            this.amount,
-            player
-        );
+        if (this.remainingCards.length > 0) {
+            context.game.addMessage(
+                "{0} uses {1} to look at the top {2} cards of {3}'s deck",
+                context.player,
+                context.source,
+                this.amount,
+                player
+            );
 
-        this.promptForRemainingCards(context);
+            this.promptForRemainingCards(context);
+        }
     }
 
     getEvent(player, context) {
