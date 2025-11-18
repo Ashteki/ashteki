@@ -12,7 +12,7 @@ class AttachDieAction extends DiceGameAction {
         this.name = 'attach';
 
         // can only affect units
-        this.targetType = [...BattlefieldTypes, CardType.ReadySpell];
+        this.targetType = [...BattlefieldTypes, CardType.ReadySpell, CardType.Phoenixborn];
         this.effectMsg = 'attach {1} to {0}';
         this.effectArgs = () => {
             return this.upgradeDie;

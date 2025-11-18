@@ -10,6 +10,17 @@
             "battlefield": 6,
             "life": 17,
             "spellboard": 4
+        },
+        {
+            "name": "Arren Frostpeak",
+            "stub": "arren-frostpeak",
+            "type": "Phoenixborn",
+            "dice": [
+                "astral"
+            ],
+            "battlefield": 7,
+            "life": 15,
+            "spellboard": 3
         }
     ]
 }

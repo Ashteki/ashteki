@@ -284,8 +284,21 @@ class Die extends PlayableObject {
                     title: 'Artifice Dice Power',
                     cost: [Costs.sideAction(), Costs.exhaustDie()],
                     target: {
-                        activePromptTitle: 'Choose a unit to place this die on',
-                        // cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
+                        activePromptTitle: 'Choose a card to place this die on',
+                        controller: 'self',
+                        showCancel: true,
+                        gameAction: this.game.actions.attachDie({ upgradeDie: this })
+                    },
+                    message: '{0} attaches {1} to {2}',
+                    messageArgs: (context) => context.target
+                });
+            case 'astral':
+                return this.action({
+                    title: 'Astral Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        activePromptTitle: 'Choose a unit or phoenixborn to place this die on',
+                        cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                         controller: 'self',
                         showCancel: true,
                         gameAction: this.game.actions.attachDie({ upgradeDie: this })
@@ -339,6 +352,7 @@ class Die extends PlayableObject {
     setupAbilities() {
         switch (this.magic) {
             case 'artifice':
+            case 'astral':
             case 'illusion':
             case 'time':
                 this.attachable = true;
