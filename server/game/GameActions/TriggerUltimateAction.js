@@ -21,6 +21,7 @@ class TriggerUltimateAction extends CardGameAction {
         return super.createEvent('onUltimate', params, (event) => {
             context.game.queueUserAlert(context, {
                 style: 'danger',
+                timed: true,
                 promptTitle: 'Chimera Ultimate',
                 menuTitle: 'Chimera uses its Ultimate ability!'
             });

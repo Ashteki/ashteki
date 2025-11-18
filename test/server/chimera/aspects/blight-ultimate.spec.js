@@ -39,7 +39,6 @@ describe('Blight ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 1
             expect(this.blueJaguar.upgrades.length).toBe(1);
@@ -61,7 +60,6 @@ describe('Blight ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 1
             expect(this.fluteMage.upgrades.length).toBe(1);
@@ -84,7 +82,6 @@ describe('Blight ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             this.player1.clickCard(this.summonGilder);
             expect(this.player2.player.aspectsInPlay.length).toBe(aspectCount + 1);
@@ -101,7 +98,6 @@ describe('Blight ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             this.player1.clickCard(this.summonAdmonisher);
 
@@ -119,7 +115,6 @@ describe('Blight ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             this.player1.clickPrompt('Top of Deck');
             expect(topCard.location).toBe('discard');

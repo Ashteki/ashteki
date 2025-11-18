@@ -1,4 +1,4 @@
-describe('Seek 3 ability', function () {
+describe('Study 1 ability', function () {
     beforeEach(function () {
         this.setupTest({
             player1: {
@@ -35,6 +35,18 @@ describe('Seek 3 ability', function () {
         expect(this.anchornaut.location).toBe('hand');
         expect(this.player1.deck[0].id).toBe('blood-archer'); // blood archer on top
         expect(this.player1.deck[3].id).toBe('iron-worker'); // iron worker on bottom
+        expect(this.player1).toHaveDefaultPrompt();
+    });
+
+    it('with empty deck', function () {
+        // fix the deck
+        this.player1.player.deck = [];
+
+        expect(this.player1.deck.length).toBe(0);
+        this.player1.play(this.vermillionSage);
+
+        expect(this.vermillionSage.location).toBe('play area');
+        expect(this.player1.deck.length).toBe(0);
         expect(this.player1).toHaveDefaultPrompt();
     });
 });

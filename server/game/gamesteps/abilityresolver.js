@@ -35,6 +35,7 @@ class AbilityResolver extends BaseStepWithPipeline {
             this.game.queueStep(new SimpleStep(this.game, () => this.checkWarnings()));
             this.game.queueStep(new SimpleStep(this.game, () => this.resolveCosts()));
             this.game.queueStep(new SimpleStep(this.game, () => this.payCosts()));
+            this.game.queueStep(new SimpleStep(this.game, () => this.statusAbilityAlert()));
             this.game.queueStep(new SimpleStep(this.game, () => this.resolveTargets()));
             this.game.queueStep(new SimpleStep(this.game, () => this.checkForCancel()));
             this.game.queueStep(new SimpleStep(this.game, () => this.initiateAbility()));
@@ -102,6 +103,30 @@ class AbilityResolver extends BaseStepWithPipeline {
         }
     }
 
+    statusAbilityAlert() {
+        if (
+            !this.cancelled &&
+            this.context.source.type !== 'die' &&
+            this.context.source.location === 'play area' &&
+            this.context.ability.logUse &&
+            this.context.ability.logUse(this.context)
+        ) {
+            this.game.cardUsed(this.context.source, this.context.player);
+            this.game.queueUserAlert(this.context, {
+                showSplash: true,
+                timed: true,
+                promptTitle: 'Aspect Status Ability',
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: this.context.source.getShortSummary()
+                    }
+                ],
+                menuTitle: this.context.player.name + ' uses ' + this.context.source.name
+            });
+        }
+    }
+
     resolveTargets() {
         if (this.cancelled) {
             return;
@@ -155,6 +180,8 @@ class AbilityResolver extends BaseStepWithPipeline {
         } else if (this.targetResults.cancelled) {
             this.cancelled = true;
             return;
+        } else if (this.targetResults.skipped) {
+            return;
         }
 
         if (
@@ -184,27 +211,6 @@ class AbilityResolver extends BaseStepWithPipeline {
 
         if (this.context.source.type === 'die' && !this.context.preThenEvent) {
             this.game.diePowerUsed(this.context.source, this.context.player);
-        }
-
-        if (
-            this.context.source.type !== 'die' &&
-            this.context.source.location === 'play area' &&
-            this.context.ability.logUse &&
-            this.context.ability.logUse(this.context)
-        ) {
-            this.game.cardUsed(this.context.source, this.context.player);
-            this.game.queueUserAlert(this.context, {
-                showSplash: true,
-                timed: true,
-                promptTitle: 'Aspect Status Ability',
-                controls: [
-                    {
-                        type: 'targeting',
-                        source: this.context.source.getShortSummary()
-                    }
-                ],
-                menuTitle: this.context.player.name + ' uses ' + this.context.source.name
-            });
         }
 
         if (

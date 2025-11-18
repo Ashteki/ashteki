@@ -170,7 +170,6 @@ describe('Chimera recovery phase', function () {
             // player 1 pin dice
             this.player1.clickDie(0);
             this.player1.clickDone();
-            this.player1.clickOk(); // ultimate alert
 
             // next turn
             expect(this.game.round).toBe(2);

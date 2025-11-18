@@ -53,7 +53,7 @@ const GameLobby = ({ gameId }) => {
 
     useEffect(() => {
         if ('Notification' in window) {
-            if (Notification.permission !== 'granted') {
+            if (Notification.permission !== 'granted' && Notification.requestPermission) {
                 Notification.requestPermission(() => { });
             }
         }
