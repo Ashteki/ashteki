@@ -1,4 +1,4 @@
-const { Magic, BattlefieldTypes, CardType, UpgradeCardTypes } = require('../constants');
+const { Magic, BattlefieldTypes, CardType, UpgradeCardTypes, PhoenixbornTypes } = require('../constants');
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const { Costs } = require('./costs');
@@ -279,6 +279,20 @@ class Die extends PlayableObject {
                         }
                     }
                 });
+            case 'artifice':
+                return this.action({
+                    title: 'Artifice Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        activePromptTitle: 'Choose a unit to place this die on',
+                        // cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
+                        controller: 'self',
+                        showCancel: true,
+                        gameAction: this.game.actions.attachDie({ upgradeDie: this })
+                    },
+                    message: '{0} attaches {1} to {2}',
+                    messageArgs: (context) => context.target
+                });
         }
     }
 
@@ -324,9 +338,8 @@ class Die extends PlayableObject {
 
     setupAbilities() {
         switch (this.magic) {
+            case 'artifice':
             case 'illusion':
-                this.attachable = true;
-                break;
             case 'time':
                 this.attachable = true;
                 break;

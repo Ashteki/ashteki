@@ -1115,6 +1115,10 @@ class Card extends PlayableObject {
         return this.dieUpgrades.some((c) => c.magic === Magic.Charm);
     }
 
+    get isCharged() {
+        return this.dieUpgrades.some((c) => c.magic === Magic.Artifice);
+    }
+
     canPlayAsUpgrade() {
         return this.anyEffect('canPlayAsUpgrade') || UpgradeCardTypes.includes(this.type);
     }
