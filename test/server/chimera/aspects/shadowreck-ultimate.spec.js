@@ -36,7 +36,6 @@ describe('Shadowreck ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 1
             expect(this.blueJaguar.location).toBe('archives');
@@ -57,7 +56,6 @@ describe('Shadowreck ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 2
             expect(this.blueJaguar.location).toBe('play area');
@@ -79,7 +77,6 @@ describe('Shadowreck ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             this.player1.clickCard(this.summonGilder);
             this.player1.clickCard(this.purge);

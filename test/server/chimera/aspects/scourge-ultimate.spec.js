@@ -35,7 +35,6 @@ describe('Scourge ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 1
             expect(this.blueJaguar.location).toBe('archives');
@@ -67,7 +66,6 @@ describe('Scourge ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 1
             expect(this.blueJaguar.location).toBe('archives');
@@ -95,7 +93,6 @@ describe('Scourge ultimate', function () {
             this.stormcall.tokens.status = 1;
             this.player1.endTurn();
             this.player1.clickPrompt('Ok');
-            this.player1.clickPrompt('Ok'); // ultimate
 
             // triggers effect for ult 2
             expect(this.blueJaguar.location).toBe('play area');
@@ -125,7 +122,6 @@ describe('Scourge ultimate', function () {
 
             this.player1.endTurn();
             // informs real player of behaviour roll
-            this.player1.clickPrompt('Ok'); // ultimate
             // click die to remove - forces active if available
             this.player1.clickDie(0); // ignored
             expect(this.player1.dicepool.length).toBe(diceCount);

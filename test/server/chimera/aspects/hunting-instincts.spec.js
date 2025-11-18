@@ -88,8 +88,6 @@ describe('Hunting Instincts', function () {
             this.player1.endTurn();
             this.player1.clickDone(); // guard
             this.player1.clickYes(); // counter
-            // H-I triggers ultimate
-            this.player1.clickPrompt('Ok');
             // order AoE
             this.player1.clickCard(this.fluteMage);
             this.player1.clickCard(this.ironWorker);
