@@ -520,6 +520,8 @@ class Player extends GameObject {
             // remove die attachments
             this.removeDieAttachments(card);
         }
+
+        this.removeDieAttachments(this.phoenixborn);
     }
 
     removeDieAttachments(card) {

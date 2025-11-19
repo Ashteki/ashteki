@@ -352,7 +352,6 @@ class Die extends PlayableObject {
     setupAbilities() {
         switch (this.magic) {
             case 'artifice':
-            case 'astral':
             case 'illusion':
             case 'time':
                 this.attachable = true;
@@ -367,6 +366,23 @@ class Die extends PlayableObject {
                 this.attachable = true;
                 this.whileAttached({
                     effect: AbilityDsl.effects.modifyAttack(1)
+                });
+                break;
+            case 'astral':
+                this.attachable = true;
+                this.forcedInterrupt({
+                    condition: (context) => context.source.parent,
+                    when: {
+                        onDamageApplied: (event, context) =>
+                            event.card === context.source.parent && event.amount > 0
+                    },
+                    effect: 'prevent 1 damage and draw a card',
+                    gameAction: [AbilityDsl.actions.detachDie((context) => ({ die: context.source })),
+                    AbilityDsl.actions.preventDamage((context) => ({
+                        event: context.event,
+                        amount: 1
+                    }))]
+
                 });
                 break;
         }

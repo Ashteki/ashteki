@@ -31,7 +31,7 @@ class Reimagine extends Card {
             },
             // may: 'return dice to your exhausted pool',
             gameAction: ability.actions.detachDie((context) => ({
-                die: context.source.dieUpgrades
+                target: context.source.dieUpgrades
             }))
         });
 
