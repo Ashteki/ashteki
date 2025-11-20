@@ -12,6 +12,182 @@
             "spellboard": 4
         },
         {
+            "name": "Summon Thunder Hulk",
+            "stub": "summon-thunder-hulk",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "artifice",
+                "basic"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Thunder Hulk",
+                    "stub": "thunder-hulk"
+                }
+            ]
+        },
+        {
+            "name": "Summon Skitterling",
+            "stub": "summon-skitterling",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "artifice",
+                "basic"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Skitterling",
+                    "stub": "skitterling"
+                }
+            ]
+        },
+        {
+            "name": "Thunder Hulk",
+            "stub": "thunder-hulk",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Skitterling",
+            "stub": "skitterling",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 0,
+            "life": 2,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Systems Drafter",
+            "stub": "systems-drafter",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "artifice:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
+            "name": "Recharge",
+            "stub": "recharge",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:power]]",
+                "[[discard]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:power": 1
+            }
+        },
+        {
+            "name": "Brilliant Display",
+            "stub": "brilliant-display",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "phoenixborn": "Issa Brightmore"
+        },
+        {
+            "name": "Supercharge",
+            "stub": "supercharge",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ]
+        },
+        {
+            "name": "Reconfigure",
+            "stub": "reconfigure",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ]
+        },
+        {
+            "name": "Thunder Suit",
+            "stub": "thunder-suit",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "artifice",
+                "basic"
+            ],
+            "magicCost": {
+                "artifice:class": 1,
+                "basic": 1
+            }
+        },
+        {
+            "name": "Barrier",
+            "stub": "barrier",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[artifice:power]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:power": 1
+            }
+        },
+        {
             "name": "Arren Frostpeak",
             "stub": "arren-frostpeak",
             "type": "Phoenixborn",
@@ -67,52 +243,6 @@
             ]
         },
         {
-            "name": "Summon Thunder Hulk",
-            "stub": "summon-thunder-hulk",
-            "type": "Ready Spell",
-            "placement": "Spellboard",
-            "cost": [
-                "[[main]]"
-            ],
-            "dice": [
-                "artifice",
-                "basic"
-            ],
-            "effectMagicCost": {
-                "artifice:class": 1,
-                "basic": 1
-            },
-            "conjurations": [
-                {
-                    "name": "Thunder Hulk",
-                    "stub": "thunder-hulk"
-                }
-            ]
-        },
-        {
-            "name": "Summon Skitterling",
-            "stub": "summon-skitterling",
-            "type": "Ready Spell",
-            "placement": "Spellboard",
-            "cost": [
-                "[[main]]"
-            ],
-            "dice": [
-                "artifice",
-                "basic"
-            ],
-            "effectMagicCost": {
-                "artifice:class": 1,
-                "basic": 1
-            },
-            "conjurations": [
-                {
-                    "name": "Skitterling",
-                    "stub": "skitterling"
-                }
-            ]
-        },
-        {
             "name": "Stellar Oracle",
             "stub": "stellar-oracle",
             "type": "Conjuration",
@@ -123,32 +253,12 @@
             "copies": 2
         },
         {
-            "name": "Thunder Hulk",
-            "stub": "thunder-hulk",
-            "type": "Conjuration",
-            "placement": "Battlefield",
-            "attack": 3,
-            "life": 3,
-            "recover": 0,
-            "copies": 2
-        },
-        {
             "name": "Frost Talon",
             "stub": "frost-talon",
             "type": "Conjuration",
             "placement": "Battlefield",
             "attack": 1,
-            "life": 2,
-            "recover": 0,
-            "copies": 3
-        },
-        {
-            "name": "Skitterling",
-            "stub": "skitterling",
-            "type": "Conjuration",
-            "placement": "Battlefield",
-            "attack": 0,
-            "life": 2,
+            "life": 1,
             "recover": 0,
             "copies": 3
         },
@@ -175,26 +285,6 @@
             "attack": 3,
             "life": 3,
             "recover": 2
-        },
-        {
-            "name": "Systems Drafter",
-            "stub": "systems-drafter",
-            "type": "Ally",
-            "placement": "Battlefield",
-            "cost": [
-                "[[main]]",
-                "1 [[artifice:class]]"
-            ],
-            "dice": [
-                "artifice"
-            ],
-            "magicCost": {
-                "basic": 1,
-                "artifice:class": 1
-            },
-            "attack": 1,
-            "life": 1,
-            "recover": 1
         },
         {
             "name": "Aerial Strike",
@@ -227,19 +317,6 @@
             "effectMagicCost": {
                 "astral:class": 1
             }
-        },
-        {
-            "name": "Supercharge",
-            "stub": "supercharge",
-            "type": "Ready Spell",
-            "placement": "Spellboard",
-            "cost": [
-                "[[side]]",
-                "1 [[artifice:class]]"
-            ],
-            "dice": [
-                "artifice"
-            ]
         },
         {
             "name": "Cirrus Ranger",
@@ -279,6 +356,22 @@
             "attack": 1,
             "life": 1,
             "recover": 1
+        },
+        {
+            "name": "Gust Spear",
+            "stub": "gust-spear",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1
+            }
         }
     ]
 }
