@@ -21,6 +21,264 @@
             "battlefield": 7,
             "life": 15,
             "spellboard": 3
+        },
+        {
+            "name": "Summon Stellar Oracle",
+            "stub": "summon-stellar-oracle",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "astral",
+                "basic"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Stellar Oracle",
+                    "stub": "stellar-oracle"
+                }
+            ]
+        },
+        {
+            "name": "Summon Frost Talon",
+            "stub": "summon-frost-talon",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Frost Talon",
+                    "stub": "frost-talon"
+                }
+            ]
+        },
+        {
+            "name": "Summon Thunder Hulk",
+            "stub": "summon-thunder-hulk",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "artifice",
+                "basic"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Thunder Hulk",
+                    "stub": "thunder-hulk"
+                }
+            ]
+        },
+        {
+            "name": "Summon Skitterling",
+            "stub": "summon-skitterling",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "artifice",
+                "basic"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Skitterling",
+                    "stub": "skitterling"
+                }
+            ]
+        },
+        {
+            "name": "Stellar Oracle",
+            "stub": "stellar-oracle",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Thunder Hulk",
+            "stub": "thunder-hulk",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Frost Talon",
+            "stub": "frost-talon",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 2,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Skitterling",
+            "stub": "skitterling",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 0,
+            "life": 2,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Skybreak Captain",
+            "stub": "skybreak-captain",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:power]]",
+                "1 [[astral:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "astral",
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "astral:power": 1,
+                "astral:class": 1
+            },
+            "attack": 3,
+            "life": 3,
+            "recover": 2
+        },
+        {
+            "name": "Systems Drafter",
+            "stub": "systems-drafter",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "artifice:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
+            "name": "Aerial Strike",
+            "stub": "aerial-strike",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            }
+        },
+        {
+            "name": "Whirlwind",
+            "stub": "whirlwind",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1
+            }
+        },
+        {
+            "name": "Supercharge",
+            "stub": "supercharge",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ]
+        },
+        {
+            "name": "Cirrus Ranger",
+            "stub": "cirrus-ranger",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:power]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "astral:power": 1
+            },
+            "attack": 2,
+            "life": 1,
+            "recover": 1
+        },
+        {
+            "name": "Javalinier",
+            "stub": "javalinier",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1
         }
     ]
 }
