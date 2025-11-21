@@ -175,7 +175,6 @@ describe('Royal Charm', function () {
                     ],
                     deck: ['rampage'],
                     threatZone: ['ballistic-seeds', 'regenerate'],
-                    dicepool: ['basic', 'basic', 'basic', 'basic', 'basic'],
                     archives: ['scarlet-seed']
                 }
             });

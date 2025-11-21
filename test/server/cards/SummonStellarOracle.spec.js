@@ -5,7 +5,7 @@ describe('Summon Stellar Oracle', function () {
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     spellboard: ['summon-stellar-oracle'],
-                    dicepool: ['astral', 'astral', 'basic', 'basic'],
+                    dicepool: ['astral', 'astral', 'natural', 'natural'],
                     archives: ['stellar-oracle'],
                     deck: ['purge', 'anchornaut', 'iron-worker', 'generosity'],
                     hand: ['abundance']

@@ -5,7 +5,7 @@ describe('Skybreak Captain', function () {
                 player1: {
                     phoenixborn: 'issa-brightmore',
                     spellboard: ['summon-thunder-hulk'],
-                    dicepool: ['artifice', 'artifice', 'basic', 'basic'],
+                    dicepool: ['artifice', 'artifice', 'natural', 'natural'],
                     archives: ['thunder-hulk'],
                     inPlay: ['anchornaut', 'skybreak-captain']
                 },

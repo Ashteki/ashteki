@@ -35,8 +35,18 @@
             ]
         },
         {
-            "name": "Summon Skitterling",
-            "stub": "summon-skitterling",
+            "name": "Thunder Hulk",
+            "stub": "thunder-hulk",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Summon Spark Drone",
+            "stub": "summon-spark-drone",
             "type": "Ready Spell",
             "placement": "Spellboard",
             "cost": [
@@ -52,30 +62,41 @@
             },
             "conjurations": [
                 {
-                    "name": "Skitterling",
-                    "stub": "skitterling"
+                    "name": "Spark Drone",
+                    "stub": "spark-drone"
                 }
             ]
         },
         {
-            "name": "Thunder Hulk",
-            "stub": "thunder-hulk",
-            "type": "Conjuration",
-            "placement": "Battlefield",
-            "attack": 3,
-            "life": 3,
-            "recover": 0,
-            "copies": 2
-        },
-        {
-            "name": "Skitterling",
-            "stub": "skitterling",
+            "name": "Spark Drone",
+            "stub": "spark-drone",
             "type": "Conjuration",
             "placement": "Battlefield",
             "attack": 0,
             "life": 2,
             "recover": 0,
             "copies": 3
+        },
+        {
+            "name": "Core Supplier",
+            "stub": "core-supplier",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "artifice:class": 1
+            },
+            "attack": 2,
+            "life": 2,
+            "recover": 1
         },
         {
             "name": "Systems Drafter",
@@ -243,6 +264,21 @@
             ]
         },
         {
+            "name": "Dodge",
+            "stub": "dodge",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[astral:power]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:power": 1
+            }
+        },
+        {
             "name": "Stellar Oracle",
             "stub": "stellar-oracle",
             "type": "Conjuration",
@@ -339,8 +375,8 @@
             "recover": 1
         },
         {
-            "name": "Javalinier",
-            "stub": "javalinier",
+            "name": "Javalineer",
+            "stub": "javalineer",
             "type": "Ally",
             "placement": "Battlefield",
             "cost": [
