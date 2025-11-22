@@ -276,7 +276,8 @@
             ],
             "magicCost": {
                 "astral:power": 1
-            }
+            },
+            "text": "You may play this spell after an opponent declares attackers. Place an astral die from your exhausted pool onto a unit you control. For the remainder of the turn, astral dice you control do not exhaust when preventing damage from being received."
         },
         {
             "name": "Stellar Oracle",
