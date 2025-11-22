@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 class CirrusRanger extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
-            condition: (context) => context.player.phoenixborn.isCharged(),
+            condition: (context) => context.player.phoenixborn.isAirborne(),
             title: 'Aerial Ambush 1',
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,

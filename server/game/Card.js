@@ -1119,6 +1119,10 @@ class Card extends PlayableObject {
         return this.dieUpgrades.some((c) => c.magic === Magic.Artifice);
     }
 
+    get isAirborne() {
+        return this.dieUpgrades.some((c) => c.magic === Magic.Astral);
+    }
+
     get hasAstralDie() {
         return this.dieUpgrades.some((c) => c.magic === Magic.Astral);
     }
