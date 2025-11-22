@@ -362,14 +362,16 @@
             "placement": "Battlefield",
             "cost": [
                 "[[main]]",
-                "1 [[astral:power]]"
+                "1 [[astral:class]]",
+                "1 [[basic]]"
             ],
             "dice": [
-                "astral"
+                "astral",
+                "basic"
             ],
             "magicCost": {
                 "basic": 1,
-                "astral:power": 1
+                "astral:class": 1
             },
             "attack": 2,
             "life": 1,
