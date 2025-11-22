@@ -1,3 +1,4 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class CirrusRanger extends Card {
@@ -15,7 +16,7 @@ class CirrusRanger extends Card {
                     optional: true,
                     toSelect: 'die',
                     controller: 'opponent',
-                    dieCondition: (die) => !die.exhausted,
+                    dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                     gameAction: ability.actions.lowerDie()
                 }
             }

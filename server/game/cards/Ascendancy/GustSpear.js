@@ -1,3 +1,4 @@
+const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class GustSpear extends Card {
@@ -16,7 +17,7 @@ class GustSpear extends Card {
                 toSelect: 'die',
                 numDice: 2,
                 owner: 'opponent',
-                dieCondition: (die) => !die.exhausted,
+                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 gameAction: ability.actions.lowerDie()
             }
         });
