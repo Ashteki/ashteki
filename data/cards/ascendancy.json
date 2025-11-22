@@ -375,8 +375,8 @@
             "recover": 1
         },
         {
-            "name": "Javalineer",
-            "stub": "javalineer",
+            "name": "Javelineer",
+            "stub": "javelineer",
             "type": "Ally",
             "placement": "Battlefield",
             "cost": [
