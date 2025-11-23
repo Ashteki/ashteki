@@ -3,9 +3,9 @@ describe('Skybreak Captain', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
-                    phoenixborn: 'issa-brightmore',
+                    phoenixborn: 'arren-frostpeak',
                     spellboard: ['summon-thunder-hulk'],
-                    dicepool: ['artifice', 'artifice', 'natural', 'natural'],
+                    dicepool: ['astral', 'astral', 'natural', 'natural'],
                     archives: ['thunder-hulk'],
                     inPlay: ['anchornaut', 'skybreak-captain']
                 },
@@ -18,8 +18,9 @@ describe('Skybreak Captain', function () {
         });
 
         it('add 1 to another units attack', function () {
+            this.player1.attachDie(0, this.skybreakCaptain);
             this.player1.clickCard(this.skybreakCaptain);
-            this.player1.clickPrompt('Commander 1');
+            this.player1.clickPrompt('Aerial Command 1');
             this.player1.clickCard(this.anchornaut);
             expect(this.anchornaut.attack).toBe(1);
         });

@@ -17,6 +17,9 @@ class ResolveDieAbilityAction extends DiceGameAction {
                     if (this.targetCard) {
                         ability.properties.target.autoTarget = (context) => this.targetCard;
                     }
+                    if (this.targetCardType) {
+                        ability.properties.target.cardType = this.targetCardType;
+                    }
 
                     let newContext = Object.assign(ability.createContext(context.player), {
                         isResolveAbility: true,

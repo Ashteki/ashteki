@@ -4,7 +4,7 @@ describe('Cirrus Ranger', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'arren-frostpeak',
-                    dicepool: ['astral', 'astral', 'natural', 'natural'],
+                    dicepool: ['astral', 'astral', 'astral', 'natural', 'natural'],
                     archives: ['thunder-hulk'],
                     inPlay: ['javelineer'],
                     hand: ['systems-drafter', 'cirrus-ranger']
@@ -19,8 +19,9 @@ describe('Cirrus Ranger', function () {
         });
 
         it('deal 1 damage to opponent pb and lower one active dice by one level', function () {
+            this.player1.attachDie(0, this.arrenFrostpeak);
             this.player1.play(this.cirrusRanger);
-            this.player1.clickDie(1);
+            this.player1.clickDie(2);
             this.player1.clickDone();
 
             this.player1.clickOpponentDie(0);

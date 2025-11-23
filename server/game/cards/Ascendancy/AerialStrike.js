@@ -9,7 +9,7 @@ class AerialStrike extends Card {
                 showCancel: true,
                 CardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({ amount: 3 })
+                gameAction: ability.actions.dealDamage({ amount: 4 })
             }
         });
     }

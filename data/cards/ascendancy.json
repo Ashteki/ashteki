@@ -7,9 +7,9 @@
             "dice": [
                 "artifice"
             ],
-            "battlefield": 6,
-            "life": 17,
-            "spellboard": 4
+            "battlefield": 5,
+            "life": 18,
+            "spellboard": 5
         },
         {
             "name": "Summon Thunder Hulk",
@@ -171,7 +171,7 @@
             "type": "Ready Spell",
             "placement": "Spellboard",
             "cost": [
-                "[[main]]"
+                "[[side]]"
             ]
         },
         {
@@ -374,7 +374,7 @@
                 "astral:class": 1
             },
             "attack": 2,
-            "life": 1,
+            "life": 2,
             "recover": 1
         },
         {
@@ -384,13 +384,13 @@
             "placement": "Battlefield",
             "cost": [
                 "[[main]]",
-                "1 [[astral:class]]"
+                "1 [[astral:power]]"
             ],
             "dice": [
                 "astral"
             ],
             "magicCost": {
-                "astral:class": 1
+                "astral:power": 1
             },
             "attack": 1,
             "life": 1,

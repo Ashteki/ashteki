@@ -301,6 +301,8 @@ class Die extends PlayableObject {
                         cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                         controller: 'self',
                         showCancel: true,
+                        cardCondition: (card) =>
+                            !card.dieUpgrades.some((d) => d.magic === Magic.Astral),
                         gameAction: this.game.actions.attachDie({ upgradeDie: this })
                     },
                     message: '{0} attaches {1} to {2}',

@@ -1,4 +1,4 @@
-const { Magic } = require('../../../constants.js');
+const { Magic, BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Dodge extends Card {
@@ -20,7 +20,9 @@ class Dodge extends Card {
                     toSelect: 'die',
                     owner: 'self',
                     dieCondition: (die) => die.magic === Magic.Astral, // && die.exhausted,
-                    gameAction: ability.actions.resolveDieAbility()
+                    gameAction: ability.actions.resolveDieAbility({
+                        targetCardType: BattlefieldTypes
+                    })
                 }
             }
         });

@@ -24,7 +24,7 @@ describe('Aerial Strike', function () {
             this.player1.play(this.aerialStrike);
             this.player1.clickDie(2);
             this.player1.clickCard(this.ironRhino);
-            expect(this.ironRhino.damage).toBe(3);
+            expect(this.ironRhino.location).toBe('archives');
         });
 
         it('no effect if not pb airborne', function () {
