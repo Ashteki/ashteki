@@ -12,7 +12,8 @@ const {
     Level,
     PhoenixbornTypes,
     Magic,
-    LegalLocations
+    LegalLocations,
+    DamageDealingLocations
 } = require('../constants');
 const moment = require('moment');
 
@@ -232,6 +233,16 @@ class Player extends GameObject {
     get charmedUnits() {
         return this.unitsInPlay.filter((card) =>
             card.dieUpgrades.some((d) => d.magic === Magic.Charm)
+        );
+    }
+
+    get chargedCards() {
+        return this.game.allCards.filter(
+            (c) =>
+                c.controller === this &&
+                DamageDealingLocations.includes(c.location) &&
+                c.dieUpgrades.length > 0 &&
+                c.dieUpgrades.some((d) => d.magic === Magic.Artifice)
         );
     }
 
