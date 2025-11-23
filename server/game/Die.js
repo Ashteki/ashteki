@@ -377,12 +377,16 @@ class Die extends PlayableObject {
                             event.card === context.source.parent && event.amount > 0
                     },
                     effect: 'prevent 1 damage and draw a card',
-                    gameAction: [AbilityDsl.actions.detachDie((context) => ({ die: context.source })),
-                    AbilityDsl.actions.preventDamage((context) => ({
-                        event: context.event,
-                        amount: 1
-                    }))]
-
+                    gameAction: [
+                        AbilityDsl.actions.conditional({
+                            condition: (context) => context.player.anyEffect('preventAstralReturn'),
+                            falseGameAction: AbilityDsl.actions.detachDie((context) => ({ die: context.source }))
+                        }),
+                        AbilityDsl.actions.preventDamage((context) => ({
+                            event: context.event,
+                            amount: 1
+                        }))
+                    ]
                 });
                 break;
         }

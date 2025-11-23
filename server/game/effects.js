@@ -128,7 +128,8 @@ const Effects = {
     playerCannot: (type, condition) =>
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
     skipStep: (step) => EffectBuilder.player.static('skipStep', step),
-    preventAutoDice: () => EffectBuilder.player.static('preventAutoDice')
+    preventAutoDice: () => EffectBuilder.player.static('preventAutoDice'),
+    preventAstralReturn: () => EffectBuilder.player.static('preventAstralReturn')
 };
 
 module.exports = Effects;
