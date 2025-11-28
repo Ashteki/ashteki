@@ -315,6 +315,9 @@ beforeEach(function () {
         this.player1.dicepool = options.player1.dicepool;
         this.player2.dicepool = options.player2.dicepool;
         if (this.player2.isDummy) {
+            if (this.player2.dicepool.length === 0) {
+                this.player2.dicepool = ['rage', 'rage', 'rage', 'rage', 'rage'];
+            }
             this.player2.dicepool.forEach(d => d.level = 'basic');
         }
         this.player1.hand = options.player1.hand;

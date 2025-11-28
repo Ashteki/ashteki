@@ -209,9 +209,10 @@ describe('Royal Charm', function () {
             expect(this.ballisticSeeds.facedown).toBe(false);
             expect(this.scarletSeed.location).toBe('play area');
             this.player1.play(this.meteor);
-            // choose die for royal charm
             this.player1.clickDone();
-            this.player1.clickDie(4);
+            // choose die for royal charm
+            const die = this.player1.dicepool.findIndex(d => d.exhausted && d.level === 'power');
+            this.player1.clickDie(die);
             // this.player1.clickDone();
             // check spellboard is still just 1
             expect(this.royalCharm.dieUpgrades.length).toBe(1);

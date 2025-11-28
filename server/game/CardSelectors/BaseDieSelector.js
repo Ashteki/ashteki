@@ -17,24 +17,27 @@ class BaseDieSelector {
     }
 
     findPossibleDice(context) {
+        // bypass criteria here e.g. Royal Charm
         if (typeof this.from === 'function') {
             return this.from(context);
         }
 
+        // limit dice selection by owner property
         if (this.owner === 'self') {
-            return context.player.getSpendableDice(context);
+            return context.player.getUsableDice(context);
         } else if (this.owner === 'opponent') {
-            return context.player.opponent.getSpendableDice(context);
+            return context.player.opponent.getUsableDice(context);
         }
 
-        // only allow dice to be selected from one player
+        // only allow dice to be selected from one player at a time
         if (context.player.selectedDice.length > 0) {
-            return context.player.selectedDice[0].owner.getSpendableDice(context);
+            return context.player.selectedDice[0].owner.getUsableDice(context);
         }
 
+        // return dice across both players
         return context.player
-            .getSpendableDice(context)
-            .concat(context.player.opponent.getSpendableDice(context));
+            .getUsableDice(context)
+            .concat(context.player.opponent.getUsableDice(context));
     }
 
     canTarget(die, context) {

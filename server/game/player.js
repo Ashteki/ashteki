@@ -313,16 +313,13 @@ class Player extends GameObject {
         return this.battlefield.some((c) => c.exhausted);
     }
 
-    getSpendableDice(context) {
-        // this assumes all spendable hosted dice are on ready spells
-        const spendableUpgrades = this.spellboard
-            .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades(context))
+    getUsableDice(context) {
+        // this assumes all usable hosted dice are on ready spells
+        const usableUpgrades = [...this.spellboard, ...this.unitsInPlay, this.phoenixborn]
+            .filter((card) => card.dieUpgrades.length)
             .reduce((agg, card) => agg.concat(card.dieUpgrades), []);
         let usableDice = this.dice;
-        if (!this.checkRestrictions('useBasicDice', context)) {
-            usableDice = usableDice.filter(d => d.level !== Level.Basic);
-        }
-        return usableDice.concat(spendableUpgrades);
+        return usableDice.concat(usableUpgrades);
     }
 
     /**

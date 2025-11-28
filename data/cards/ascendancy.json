@@ -168,8 +168,8 @@
         {
             "name": "Reconfigure",
             "stub": "reconfigure",
-            "type": "Ready Spell",
-            "placement": "Spellboard",
+            "type": "Action Spell",
+            "placement": "Discard",
             "cost": [
                 "[[side]]"
             ]
@@ -411,6 +411,15 @@
             "magicCost": {
                 "astral:class": 1
             }
+        },
+        {
+            "name": "Retreat",
+            "stub": "retreat",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]"
+            ]
         }
     ]
 }
