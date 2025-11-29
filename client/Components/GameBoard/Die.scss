@@ -39,6 +39,14 @@
         background-image: url('~assets/img/tag-time.png');
     }
 
+    &.artifice {
+        background-image: url('~assets/img/tag-sympathy.png');
+    }
+
+    &.astral {
+        background-image: url('~assets/img/tag-time.png');
+    }
+
 }
 
 :not(.exhausted) {
@@ -68,6 +76,15 @@
 
     &.time {
         @include dice-colors(#dfdfdf, #9a2e36);
+    }
+
+
+    &.artifice {
+        @include dice-colors(#77d0e5, #4c5257);
+    }
+
+    &.astral {
+        @include dice-colors(#fcf7cb, #685ea9);
     }
 
     &.rage {
