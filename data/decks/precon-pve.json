@@ -1638,6 +1638,7 @@
   {
     "precon_id": 421,
     "name": "The Flood of Moon Cove: Echo",
+    "precon_set": "flood",
     "phoenixborn": [
       {
         "id": "echo-greystorm",
@@ -1713,6 +1714,7 @@
   {
     "precon_id": 422,
     "name": "The Flood of Moon Cove: Namine",
+    "precon_set": "flood",
     "phoenixborn": [
       {
         "id": "namine-hymntide",
@@ -1788,6 +1790,7 @@
   {
     "precon_id": 423,
     "name": "The Flood of Moon Cove: Harold",
+    "precon_set": "flood",
     "phoenixborn": [
       {
         "id": "harold-westraven",
@@ -1867,6 +1870,7 @@
   {
     "precon_id": 424,
     "name": "The Flood of Moon Cove: Fiona",
+    "precon_set": "flood",
     "phoenixborn": [
       {
         "id": "fiona-mercywind",
@@ -1954,6 +1958,7 @@
   {
     "precon_id": 425,
     "name": "The End of Argaia: Jericho",
+    "precon_set": "argaia",
     "restricted": true,
     "phoenixborn": [
       {
@@ -2029,6 +2034,7 @@
   {
     "precon_id": 426,
     "name": "The End of Argaia: Tristan",
+    "precon_set": "argaia",
     "restricted": true,
     "phoenixborn": [
       {
@@ -2108,6 +2114,7 @@
   {
     "precon_id": 427,
     "name": "The End of Argaia: Orrick",
+    "precon_set": "argaia",
     "restricted": true,
     "phoenixborn": [
       {
@@ -2183,6 +2190,7 @@
   {
     "precon_id": 428,
     "name": "The End of Argaia: Rowan",
+    "precon_set": "argaia",
     "restricted": true,
     "phoenixborn": [
       {
