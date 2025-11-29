@@ -1,8 +1,7 @@
 @font-face {
   font-family: 'phg-ashes';
-  // src: url('~assets/fonts/phg-ashes.woff2?2676953') format('woff2'),
-  //   url('~assets/fonts/phg-ashes.woff?2676953') format('woff');
-  src: url("~assets/fonts/phg-ashes.ttf") format("truetype");
+  src: url('~assets/fonts/phg-ashes.woff2?51220583') format('woff2'),
+    url('~assets/fonts/phg-ashes.woff?51220583') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -10,20 +9,20 @@
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
-  @media screen and (-webkit-min-device-pixel-ratio:0) {
-	@font-face {
-	  font-family: 'phg-ashes';
-	  src: url('./assets/fonts/phg-ashes.svg?19544638#phg-ashes') format('svg');
-	}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+	font-family: 'phg-ashes';
+	src: url('./phg-ashes.svg?62521253#phg-ashes') format('svg');
   }
-  */
+}
+*/
 
-[class^="phg-"]::before,
-[class*=" phg-"]::before {
+[class^="phg-"]:before,
+[class*=" phg-"]:before {
   font-family: "phg-ashes";
   font-style: normal;
   font-weight: normal;
-  speak: none;
+  speak: never;
 
   display: inline-block;
   text-decoration: inherit;
@@ -137,7 +136,7 @@ button[class*=" phg-"]::before {
 }
 
 /* '' */
-.phg-time-class:before {
+.phg-time-class-alt:before {
   content: '\e812';
 }
 
@@ -152,6 +151,16 @@ button[class*=" phg-"]::before {
 }
 
 /* '' */
+.phg-time-class:before {
+  content: '\e815';
+}
+
+/* '' */
+.phg-red-rain:before {
+  content: '\e816';
+}
+
+/* '' */
 .phg-sympathy-class:before {
   content: '\e81e';
 }
@@ -162,10 +171,6 @@ button[class*=" phg-"]::before {
 }
 
 /* '' */
-.phg-rage-power:before {
-  content: '\e816';
-}
-
 .phg-astral-power:before {
   content: '\e817';
 }
