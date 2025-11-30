@@ -1,7 +1,7 @@
 {
     "name": "ashteki",
     "version": "2.0.0",
-    "description": "An Ashes Reborn Card Game Server",
+    "description": "An Ashes Ascendancy Card Game Server",
     "main": "index.js",
     "scripts": {
         "mongod": "mongod --dbpath=/data --port 27017\n",
@@ -20,6 +20,7 @@
     },
     "keywords": [
         "ashes",
+        "ascendancy",
         "reborn",
         "phoenixborn",
         "cardgame"

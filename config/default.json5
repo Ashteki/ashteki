@@ -12,7 +12,7 @@
 
     lobby: {
         port: 4000,
-        appName: 'Ashes Reborn Online',
+        appName: 'Ashes Ascendancy Online',
         emailFromAddress: 'noreply@ashteki.online',
         blockDisposableEmail: false,
         requireActivation: false,
