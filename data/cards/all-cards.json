@@ -159,6 +159,48 @@
             "text": "Deal 1 damage to a target unit you control. Remove 1 exhaustion token from that unit."
         },
         {
+            "name": "Aerial Strike",
+            "stub": "aerial-strike",
+            "type": "Action Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "If your Phoenixborn has an astral die on it, deal 4 damage to a target unit an opponent controls.",
+            "phoenixborn": "Arren Frostpeak"
+        },
+        {
+            "name": "Afterimage",
+            "stub": "afterimage",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "You may play this spell after an ally you control is destroyed as a result of an attack, spell, ability, or dice power an opponent controls. Place that ally into your hand. Deal 2 damage to a target unit that opponent controls."
+        },
+        {
             "name": "Amplify",
             "stub": "amplify",
             "type": "Action Spell",
@@ -345,6 +387,25 @@
             "phoenixborn": "Odette Diamondcrest"
         },
         {
+            "name": "Arren Frostpeak",
+            "stub": "arren-frostpeak",
+            "type": "Phoenixborn",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "dice": [
+                "astral"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1
+            },
+            "text": "Ascend: [[side]] - [[exhaust]] - 1 [[astral:class]]: Deal 1 damage to a target unit an opponent controls. Place an astral die from your exhausted pool onto this Phoenixborn.",
+            "battlefield": 7,
+            "life": 15,
+            "spellboard": 3
+        },
+        {
             "name": "Arrogance",
             "stub": "arrogance",
             "type": "Reaction Spell",
@@ -456,6 +517,26 @@
                 "time:power": 1
             },
             "text": "You may play this spell after an opponent declares attackers. Choose a target attacking ally and place it into its owner's hand."
+        },
+        {
+            "name": "Barrier",
+            "stub": "barrier",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[artifice:power]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:power": 1
+            },
+            "text": "You may play this spell after a charged card you control is dealt damage. Prevent 3 damage from being received."
         },
         {
             "name": "Bastion Badger",
@@ -768,7 +849,7 @@
             "magicCost": {
                 "ceremonial:power": 1
             },
-            "text": "Stitch: When this unit comes into play, place a [[Blood Puppet]] conjuration onto your battlefield.\n\n* Restitch: When this unit is destoyed, you may discard a [[Blood Puppet]] you control to place a [[Blood Puppet]] conjuration onto a target opponent's battlefield.",
+            "text": "Stitch: When this unit comes into play, place a [[Blood Puppet]] conjuration onto your battlefield.\n\n* Restitch: When this unit is destroyed, you may discard a [[Blood Puppet]] you control to place a [[Blood Puppet]] conjuration onto a target opponent's battlefield.",
             "conjurations": [
                 {
                     "name": "Blood Puppet",
@@ -935,6 +1016,28 @@
             "spellboard": 3
         },
         {
+            "name": "Brilliant Display",
+            "stub": "brilliant-display",
+            "type": "Action Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Resolve the following effect once for each artifice die on cards you control:\n\nDeal 1 damage to a target unit an opponent controls.",
+            "phoenixborn": "Issa Brightmore"
+        },
+        {
             "name": "Brilliant Thorn",
             "stub": "brilliant-thorn",
             "type": "Conjuration",
@@ -1061,6 +1164,34 @@
             "text": "When this spell comes into play, you may destroy a target exhausted unit with a charm die on it.\n\n[[side]] - [[exhaust]]: Choose a target unit. That unit cannot be declared as an attacker until the start of your next turn or the next round."
         },
         {
+            "name": "Cataclysm",
+            "stub": "cataclysm",
+            "type": "Action Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "text": "Deal 1 damage to all units and Phoenixborn. If this destroys at least 2 units, place 2 [[Rubble Spirit]] conjurations onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Rubble Spirit",
+                    "stub": "rubble-spirit"
+                }
+            ],
+            "phoenixborn": "Rowan Umberend"
+        },
+        {
             "name": "Celestial Knight",
             "stub": "celestial-knight",
             "type": "Ally",
@@ -1140,7 +1271,7 @@
                 "basic": 1,
                 "divine:class": 1
             },
-            "text": "Deal 2 damage to a target conjuration an opponent controls. If that destroys the conjuration, after it is destroyed, place 1 exhaustion token on a ready spell that target opponent controls that has a printed effect that can place that conjuration onto the battlefield."
+            "text": "Deal 2 damage to a target conjuration an opponent controls. If that destroyed the conjuration, place 1 exhaustion token on a ready spell that target opponent controls that has a printed effect that can place that conjuration onto the battlefield."
         },
         {
             "name": "Change of Heart",
@@ -1444,6 +1575,47 @@
             "text": "Place 1 exhaustion token on a target unexhausted Phoenixborn an opponent controls. Deal 1 damage to that target Phoenixborn."
         },
         {
+            "name": "Cinder Spirit",
+            "stub": "cinder-spirit",
+            "type": "Conjuration",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Battlefield",
+            "text": "Ignite: When this unit is declared as an attacker, if it has 1 or more status tokens on it, add 1 to its attack value for the remainder of the turn. If you do, you may deal 1 damage to another target unit.",
+            "attack": 2,
+            "life": 2,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Cirrus Ranger",
+            "stub": "cirrus-ranger",
+            "type": "Ally",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "astral:class": 1
+            },
+            "text": "Aerial Ambush 1: When this unit comes into play, if your Phoenixborn has an astral die on it, deal 1 damage to a target Phoenixborn an opponent controls and lower 1 die in that target opponent's active pool one level.",
+            "attack": 2,
+            "life": 2,
+            "recover": 1
+        },
+        {
             "name": "Clashing Tempers",
             "stub": "clashing-tempers",
             "type": "Action Spell",
@@ -1617,6 +1789,32 @@
             "phoenixborn": "Victoria Glassfire"
         },
         {
+            "name": "Core Supplier",
+            "stub": "core-supplier",
+            "type": "Ally",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "artifice:class": 1
+            },
+            "text": "Supply 2: When this unit comes into play, place up to 2 artifice dice from your exhausted pool onto cards you control.",
+            "attack": 2,
+            "life": 2,
+            "recover": 1
+        },
+        {
             "name": "Cover",
             "stub": "cover",
             "type": "Reaction Spell",
@@ -1705,7 +1903,7 @@
                 "time:class": 1,
                 "ceremonial:power": 1
             },
-            "text": "**Unit Guard:** This unit may guard a unit that is being attacked.\n\n**Shackle 1:** At the end of the round or when this unit is destroyed as a result of a spell, ability, or dice power, you may place 1 exhaustion token on a target unexhausted unit.",
+            "text": "Unit Guard: This unit may guard a unit that is being attacked.\n\nShackle 1: At the end of the round or when this unit is destroyed as a result of a spell, ability, or dice power, you may place 1 exhaustion token on a target unexhausted unit.",
             "attack": 2,
             "life": 4,
             "recover": 1
@@ -2075,6 +2273,26 @@
             "copies": 1
         },
         {
+            "name": "Dodge",
+            "stub": "dodge",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[astral:power]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:power": 1
+            },
+            "text": "You may play this spell after an opponent declares attackers. Place an astral die from your exhausted pool onto a unit you control. For the remainder of the turn, astral dice you control do not exhauste when preventing damage from being received."
+        },
+        {
             "name": "Double Down",
             "stub": "double-down",
             "type": "Reaction Spell",
@@ -2096,6 +2314,21 @@
                 "illusion:class": 1
             },
             "text": "You may play this spell after a conjuration you control with a life value of 1 is destroyed as a result of an attack, spell, ability, or dice power an opponent controls. Place 2 copies of that conjuration onto your battlefield."
+        },
+        {
+            "name": "Double Edge",
+            "stub": "double-edge",
+            "type": "Action Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]"
+            ],
+            "text": "Draw 2 cards. Discard 1 card from your hand. If you discarded, deal 1 damage to a target unit an opponent controls and deal 1 damage to that opponent's target Phoenixborn.",
+            "phoenixborn": "Jericho, Reborn"
         },
         {
             "name": "Drain Vitality",
@@ -2293,12 +2526,11 @@
                 "stub": "the-law-of-lions"
             },
             "placement": "Battlefield",
-            "text": "Decree: When this unit comes into play, search your draw pile. You may reveal a ready spell with \"Law\" in its title and place it into your hand.  You may immediately play a \"Law\" from your hand without paying any [[main]] or [[side]] costs. Shuffle your draw pile.",
+            "text": "Overkill 1: After this unit destroys a unit an opponent controls by attacking, deal 1 damage to that opponent's target Phoenixborn.\n\nAlert: Do not place exhaustion tokens on this unit as a result of its countering.",
             "attack": 2,
             "life": 4,
             "recover": 1,
-            "copies": 1,
-            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/emperor_lion.jpg"
+            "copies": 1
         },
         {
             "name": "Empower",
@@ -2359,7 +2591,7 @@
             "magicCost": {
                 "charm:class": 1
             },
-            "text": "Song of Sorrow: [[side]] - [[exhaust]]: Deal 1 damage to a target unit an opponent controls. If that destroys the unit, after it is destroyed, that target opponent must discard 1 card off the top of their draw pile.",
+            "text": "Song of Sorrow: [[side]] - [[exhaust]]: Deal 1 damage to a target unit an opponent controls. If that destroyed the unit, that target opponent must discard 1 card off the top of their draw pile.",
             "attack": 1,
             "life": 1,
             "recover": 1
@@ -2607,7 +2839,8 @@
                 "sympathy:class": 1
             },
             "text": "When attaching this spell, place 2 status tokens on this unit. Discard all other copies of Explosive Growth attached to this unit.\n\nX = the number of status tokens on this unit.",
-            "attack": "+X"
+            "attack": "+X",
+            "chained": true
         },
         {
             "name": "Fade Away",
@@ -2678,6 +2911,26 @@
                 "charm"
             ],
             "text": "Discard a target unit an opponent controls with a life value of X. If you do, discard X cards off the top of that target opponent's draw pile."
+        },
+        {
+            "name": "Fatal Strike",
+            "stub": "fatal-strike",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "You may play this spell after an opponent takes a Pass main action. Deal 2 damage to a target unit or Phoenixborn that opponent controls."
         },
         {
             "name": "Fate Reflection",
@@ -3076,21 +3329,6 @@
             "text": "You may play this spell after an opponent declares attackers. Deal damage to a target attacking unit equal to the attack value of an exhausted unit you control."
         },
         {
-            "name": "Frostback Bear",
-            "stub": "frostback-bear",
-            "type": "Conjuration",
-            "release": {
-                "name": "The Frostdale Giants",
-                "stub": "the-frostdale-giants"
-            },
-            "placement": "Battlefield",
-            "text": "Terrifying 1: This unit cannot be blocked or guarded against by units with an attack value of 1 or less.",
-            "attack": 2,
-            "life": 3,
-            "recover": 0,
-            "copies": 2
-        },
-        {
             "name": "Frost Bite",
             "stub": "frost-bite",
             "type": "Ready Spell",
@@ -3148,6 +3386,36 @@
             "life": 1,
             "recover": 0,
             "copies": 3
+        },
+        {
+            "name": "Frost Talon",
+            "stub": "frost-talon",
+            "type": "Conjuration",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "text": "Stalk: This unit cannot be guarded against.",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Frostback Bear",
+            "stub": "frostback-bear",
+            "type": "Conjuration",
+            "release": {
+                "name": "The Frostdale Giants",
+                "stub": "the-frostdale-giants"
+            },
+            "placement": "Battlefield",
+            "text": "Terrifying 1: This unit cannot be blocked or guarded against by units with an attack value of 1 or less.",
+            "attack": 2,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
         },
         {
             "name": "Frozen Crown",
@@ -3386,7 +3654,8 @@
             "magicCost": {
                 "charm:power": 1
             },
-            "text": "You may play this spell after an opponent targets a unit you control with a spell, ability, or dice power. Cancel that effect and the remaining effects of that spell, ability or dice power."
+            "text": "You may play this spell after an opponent targets a unit you control with a spell, ability, or dice power. Cancel that effect and the remaining effects of that spell, ability or dice power.",
+            "chained": true
         },
         {
             "name": "Gorrenrock Brawler",
@@ -3497,6 +3766,28 @@
                 "sympathy:class": 1
             },
             "text": "After 1 or more wound tokens are placed on your Phoenixborn as a result of a unit's attack, place 1 status token on this spell if it has no status tokens on it.\n\n[[side]] - [[exhaust]]: Remove 1 status token from this spell to destroy a unit you control. If you do, choose a target player to destroy a unit they control."
+        },
+        {
+            "name": "Gust Spear",
+            "stub": "gust-spear",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1
+            },
+            "text": "When attaching this spell, lower 2 dice in a target opponent's active pool one level.",
+            "attack": "+1"
         },
         {
             "name": "Hammer Knight",
@@ -3730,41 +4021,6 @@
             "spellboard": 5
         },
         {
-            "name": "Hunter's Mark",
-            "stub": "hunters-mark",
-            "type": "Conjured Alteration Spell",
-            "release": {
-                "name": "The Demons of Darmas",
-                "stub": "the-demons-of-darmas"
-            },
-            "placement": "Unit",
-            "text": "When this unit receives damage, place twice the normal number of wound tokens on it.\n\nWhile this unit is the target of an attack, no guard may be declared.",
-            "phoenixborn": "Harold Westraven",
-            "copies": 1
-        },
-        {
-            "name": "Hunting Weapons",
-            "stub": "hunting-weapons",
-            "type": "Alteration Spell",
-            "release": {
-                "name": "The Gorrenrock Survivors",
-                "stub": "the-gorrenrock-survivors"
-            },
-            "placement": "Unit",
-            "cost": [
-                "[[side]]",
-                "1 [[natural:power]]"
-            ],
-            "dice": [
-                "natural"
-            ],
-            "magicCost": {
-                "natural:power": 1
-            },
-            "text": "This spell can only be attached to an ally.\n\nThis unit now has the following ability:\n\nHunt 1: When this unit is declared as an attacker, you may deal 1 damage to a target unit an opponent controls.",
-            "attack": "+1"
-        },
-        {
             "name": "Hunt Master",
             "stub": "hunt-master",
             "type": "Ally",
@@ -3800,6 +4056,41 @@
             "recover": 2
         },
         {
+            "name": "Hunter's Mark",
+            "stub": "hunters-mark",
+            "type": "Conjured Alteration Spell",
+            "release": {
+                "name": "The Demons of Darmas",
+                "stub": "the-demons-of-darmas"
+            },
+            "placement": "Unit",
+            "text": "When this unit receives damage, place twice the normal number of wound tokens on it.\n\nWhile this unit is the target of an attack, no guard may be declared.",
+            "phoenixborn": "Harold Westraven",
+            "copies": 1
+        },
+        {
+            "name": "Hunting Weapons",
+            "stub": "hunting-weapons",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The Gorrenrock Survivors",
+                "stub": "the-gorrenrock-survivors"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[natural:power]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:power": 1
+            },
+            "text": "This spell can only be attached to an ally.\n\nThis unit now has the following ability:\n\nHunt 1: When this unit is declared as an attacker, you may deal 1 damage to a target unit an opponent controls.",
+            "attack": "+1"
+        },
+        {
             "name": "Hypnotize",
             "stub": "hypnotize",
             "type": "Ready Spell",
@@ -3817,7 +4108,8 @@
             "effectMagicCost": {
                 "charm:class": 2
             },
-            "text": "[[side]] - [[exhaust]] - 2 [[charm:class]]: Choose a target unit you control to gain the following ability for the remainder of the turn.\n\nBypass: This unit cannot be blocked or guarded."
+            "text": "[[side]] - [[exhaust]] - 2 [[charm:class]]: Choose a target unit you control to gain the following ability for the remainder of the turn.\n\nBypass: This unit cannot be blocked or guarded.",
+            "chained": true
         },
         {
             "name": "Ice Adaptation",
@@ -3878,8 +4170,7 @@
             "magicCost": {
                 "natural:power": 1
             },
-            "text": "You may play this spell after a unit with a life value of 2 or less comes into play. Destroy that target unit.",
-            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/ice_trap.jpg"
+            "text": "You may play this spell after a unit with a life value of 2 or less comes into play. Destroy that target unit."
         },
         {
             "name": "Immortal Commander",
@@ -3943,10 +4234,6 @@
                 {
                     "name": "Luminous Seedling",
                     "stub": "luminous-seedling"
-                },
-                {
-                    "name": "Brilliant Thorn",
-                    "stub": "brilliant-thorn"
                 }
             ],
             "attack": 2,
@@ -4106,6 +4393,25 @@
             "recover": 1
         },
         {
+            "name": "Issa Brightmore",
+            "stub": "issa-brightmore",
+            "type": "Phoenixborn",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "dice": [
+                "artifice"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1
+            },
+            "text": "Inspiration: [[side]] - [[exhaust]] - 1 [[artifice:class]]: Draw 2 cards. Place an artifice die from your exhausted pool onto a card you control.",
+            "battlefield": 5,
+            "life": 18,
+            "spellboard": 5
+        },
+        {
             "name": "James Endersight",
             "stub": "james-endersight",
             "type": "Phoenixborn",
@@ -4117,6 +4423,30 @@
             "battlefield": 7,
             "life": 19,
             "spellboard": 3
+        },
+        {
+            "name": "Javelineer",
+            "stub": "javelineer",
+            "type": "Ally",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:power]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:power": 1
+            },
+            "text": "Frost Throw: [[main]] - [[exhaust]]: Deal damage to a target unit an opponent controls equal to this unit's attack value.",
+            "attack": 1,
+            "life": 1,
+            "recover": 1
         },
         {
             "name": "Jericho, Reborn",
@@ -4337,7 +4667,7 @@
                 "basic": 1,
                 "time:class": 1
             },
-            "text": "**Seek 3:** When this unit comes into play, look at the top 3 cards of your draw pile. Place each card on the top or bottom of your draw pile.\n\n* **Bequest 1:** When this unit is destroyed, you may draw up to 1 card.",
+            "text": "Seek 3: When this unit comes into play, look at the top 3 cards of your draw pile. Place each card on the top or bottom of your draw pile.\n\n* Bequest 1: When this unit is destroyed, you may draw up to 1 card.",
             "attack": 2,
             "life": 2,
             "recover": 1
@@ -4606,7 +4936,7 @@
                 "stub": "the-boy-among-wolves"
             },
             "placement": "Battlefield",
-            "text": "Blossom: [[main]]: Remove 2 status tokens from this unit and destroy this unit. If you do, place up to 2 [[Brilliant Thorn]] conjurations onto your battlefield.\n\n* Growth: Add 1 to this unit's life value for each status token on this unit.",
+            "text": "Blossom: [[main]]: Destroy this unit. If it had 2 or more status tokens on it, place up to 2 [[Brilliant Thorn]] conjurations onto your battlefield.\n\n* Growth: Add 1 to this unit's life value for each status token on this unit.",
             "conjurations": [
                 {
                     "name": "Brilliant Thorn",
@@ -4616,8 +4946,7 @@
             "attack": 0,
             "life": 2,
             "recover": 0,
-            "copies": 3,
-            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/luminous_seedling.jpg"
+            "copies": 3
         },
         {
             "name": "Maeoni Viper",
@@ -4885,7 +5214,8 @@
             "magicCost": {
                 "divine:class": 2
             },
-            "text": "Deal 1 damage to all units. Then, deal damage to all units equal to the number of [[divine:power]] spent to play this spell."
+            "text": "Deal 1 damage to all units. Then, deal damage to all units equal to the number of [[divine:power]] spent to play this spell.",
+            "chained": true
         },
         {
             "name": "Mind Fog Owl",
@@ -5020,8 +5350,7 @@
             "magicCost": {
                 "natural:class": 2
             },
-            "text": "Place 3 wound tokens on a target unit.",
-            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/molten_gold.jpg"
+            "text": "Place 3 wound tokens on a target unit an opponent controls."
         },
         {
             "name": "Moon Moth",
@@ -5182,6 +5511,22 @@
             "spellboard": 4
         },
         {
+            "name": "Ocean's Eye",
+            "stub": "oceans-eye",
+            "type": "Conjuration",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Battlefield",
+            "text": "Sting 1: When this unit is declared as an attacker, you may deal 1 damage to target wounded unit.",
+            "phoenixborn": "Tristan Darkwater",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 6
+        },
+        {
             "name": "Ocean's Gift",
             "stub": "oceans-gift",
             "type": "Alteration Spell",
@@ -5331,26 +5676,6 @@
             "spellboard": 5
         },
         {
-            "name": "Outmatch",
-            "stub": "outmatch",
-            "type": "Reaction Spell",
-            "release": {
-                "name": "The Breaker of Fate",
-                "stub": "the-breaker-of-fate"
-            },
-            "placement": "Discard",
-            "cost": [
-                "1 [[time:power]]"
-            ],
-            "dice": [
-                "time"
-            ],
-            "magicCost": {
-                "time:power": 1
-            },
-            "text": "You may play this spell after an opponent declares attackers. Add 4 to the attack value of a target unit you control for the remainder of the turn."
-        },
-        {
             "name": "Out of the Mist",
             "stub": "out-of-the-mist",
             "type": "Action Spell",
@@ -5373,6 +5698,26 @@
                 "illusion:power": 1
             },
             "text": "Deal X amount of damage to a target unit. You may draw 1 card.\n\nX = the number of units you have in play."
+        },
+        {
+            "name": "Outmatch",
+            "stub": "outmatch",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Breaker of Fate",
+                "stub": "the-breaker-of-fate"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "You may play this spell after an opponent declares attackers. Add 4 to the attack value of a target unit you control for the remainder of the turn."
         },
         {
             "name": "Pack Wolf",
@@ -5645,7 +5990,7 @@
                 "stub": "the-oceans-guard"
             },
             "placement": "Battlefield",
-            "text": "**Fearful:** This unit cannot block.\n\n**Group Tactics 1:** After you declare three or more attackers, you may add 1 to this unit's attack value for the remainder of the turn.\n\n* **Scatter:** Discard this unit at the end of the round unless it has 1 or more status tokens on it.",
+            "text": "Fearful: This unit cannot block.\n\nGroup Tactics 1: After you declare three or more attackers, you may add 1 to this unit's attack value for the remainder of the turn.\n\n* Scatter: Discard this unit at the end of the round unless it has 1 or more status tokens on it.",
             "attack": 0,
             "life": 1,
             "recover": 0,
@@ -5673,7 +6018,8 @@
             "text": "Lobotomize 1: When this unit is destroyed as a result of a spell, attack, counter, ability, or dice power an opponent controls, that opponent must discard 1 card of their choice from their hand.",
             "attack": 2,
             "life": 1,
-            "recover": 0
+            "recover": 0,
+            "chained": true
         },
         {
             "name": "Ptera Hatchling",
@@ -5771,7 +6117,7 @@
                 "stub": "the-oceans-guard"
             },
             "placement": "Battlefield",
-            "text": "**Coalesced:** Other units you control cannot be targeted by attacks an opponent controls.\n\n* **Refract:** When this unit is destroyed, place 1 [[Prism Tetra]] conjuration onto your battlefield for each status token on this unit.",
+            "text": "Coalesced: Other units you control cannot be targeted by attacks an opponent controls.\n\n* Refract: When this unit is destroyed, place 1 [[Prism Tetra]] conjuration onto your battlefield for each status token on this unit.",
             "conjurations": [
                 {
                     "name": "Prism Tetra",
@@ -5948,6 +6294,21 @@
             "recover": 1
         },
         {
+            "name": "Realization",
+            "stub": "realization",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]"
+            ],
+            "text": "During the draw cards step, you may draw 1 additional card.\n\n[[side]] - [[exhaust]]: If your draw pile is empty, shuffle your discard pile, reveal 1 random card from it, and remove it from the game. Then, reveal another random card from it and add it to your hand.",
+            "phoenixborn": "Orrick Gilstream"
+        },
+        {
             "name": "Realm Walker",
             "stub": "realm-walker",
             "type": "Ally",
@@ -6012,12 +6373,34 @@
                 "stub": "the-scholar-of-ruin"
             },
             "placement": "Battlefield",
-            "text": "**Overkill 3:** After this unit destroys a unit an opponent controls by attacking, deal 3 damage to that opponent's target Phoenixborn.",
+            "text": "Overkill 3: After this unit destroys a unit an opponent controls by attacking, deal 3 damage to that opponent's target Phoenixborn.",
             "phoenixborn": "Rowan Umberend",
             "attack": 4,
             "life": 4,
             "recover": 0,
             "copies": 1
+        },
+        {
+            "name": "Recharge",
+            "stub": "recharge",
+            "type": "Action Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:power]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:power": 1
+            },
+            "text": "Remove 1 exhaustion token and 2 wound tokens from a charged card you control."
         },
         {
             "name": "Reclaim Soul",
@@ -6062,6 +6445,23 @@
             "text": "Choose a ready spell you control. Search your discard pile for all cards with the same title and place them into your hand."
         },
         {
+            "name": "Reconfigure",
+            "stub": "reconfigure",
+            "type": "Ready Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "text": "[[side]] - [[exhaust]]: Move an artifice die from a card you control onto another card you control."
+        },
+        {
             "name": "Red Flower",
             "stub": "red-flower",
             "type": "Action Spell",
@@ -6085,6 +6485,25 @@
             "text": "Remove all tokens from a target unit you control with 1 or more status tokens on it or alteration spells attached to it. If 3 or more tokens were removed, deal 1 damage to a target unit an opponent controls."
         },
         {
+            "name": "Red Raindrop",
+            "stub": "red-raindrop",
+            "type": "Conjured Alteration Spell",
+            "release": {
+                "name": "The Scholar of Ruin",
+                "stub": "the-scholar-of-ruin"
+            },
+            "placement": "Phoenixborn",
+            "text": "At the end of the round, you may deal 1 damage to a target unit. Then, if there are 3 Red Raindrops attached to your Phoenixborn, place a [[Reborn Chimera]] conjuration onto your battlefield.\n\n* **Spell Guard:** This spell cannot be affected by an opponent's spell.",
+            "conjurations": [
+                {
+                    "name": "Reborn Chimera",
+                    "stub": "reborn-chimera"
+                }
+            ],
+            "phoenixborn": "Rowan Umberend",
+            "copies": 3
+        },
+        {
             "name": "Redirect",
             "stub": "redirect",
             "type": "Reaction Spell",
@@ -6103,25 +6522,6 @@
                 "charm:power": 1
             },
             "text": "You may play this spell after your Phoenixborn is dealt damage if you control at least 1 unit. Choose a unit you control to receive that damage instead."
-        },
-        {
-            "name": "Red Raindrop",
-            "stub": "red-raindrop",
-            "type": "Conjured Alteration Spell",
-            "release": {
-                "name": "The Scholar of Ruin",
-                "stub": "the-scholar-of-ruin"
-            },
-            "placement": "Phoenixborn",
-            "text": "At the end of the round, you may deal 1 damage to a target unit. Then, if there are 3 Red Raindrops attached to your Phoenixborn, place a [[Reborn Chimera]] conjuration onto your battlefield.\n\n* **Spell Guard:** This spell cannot be affected by an opponent's spell.",
-            "conjurations": [
-                {
-                    "name": "Reborn Chimera",
-                    "stub": "reborn-chimera"
-                }
-            ],
-            "phoenixborn": "Rowan Umberend",
-            "copies": 3
         },
         {
             "name": "Reflections in the Water",
@@ -6212,7 +6612,7 @@
                 "illusion",
                 "time"
             ],
-            "text": "After you pay for a dice power using a [[time:power]] or [[illusion:power]], you may place that die and 1 exhaustion token on this spell if it has no dice on it.\n\n* You may use dice on this spell to pay the cost of reactions.\n\n* You may place any dice on this spell in your exhausted pool at the end of the round."
+            "text": "After you pay for a dice power using a [[time:power]] or [[illusion:power]], you may place that die and 1 exhaustion token on this spell if it has no dice on it.\n\n* You may use [[time:power]] or [[illusion:power]] on this spell to pay the cost of reactions.\n\n* Exhaust any dice on this spell during the exhaust dice step of the recovery phase."
         },
         {
             "name": "Reinforce",
@@ -6319,6 +6719,20 @@
             "text": "[[main]] - [[exhaust]] - 1 [[ceremonial:class]] - 1 [[illusion:class]]: Destroy a conjuration you control. Then, place that conjuration onto your battlefield."
         },
         {
+            "name": "Retreat",
+            "stub": "retreat",
+            "type": "Action Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]"
+            ],
+            "text": "Return an exhausted ally you control and any cards attached to it to each card's owner's hand."
+        },
+        {
             "name": "Return to Soil",
             "stub": "return-to-soil",
             "type": "Action Spell",
@@ -6337,7 +6751,7 @@
             "magicCost": {
                 "charm:class": 1
             },
-            "text": "Deal 1 damage to a target unit. If that destroys the unit, after it is destroyed, the target player who controlled it must discard 1 card off the top of their draw pile and then you may search that target player's discard pile for 2 cards and remove them from the game."
+            "text": "Deal 1 damage to a target unit an opponent controls. If that destroyed the unit, that target opponent must discard 1 card off the top of their draw pile and then you may search their discard pile for 2 cards and remove them from the game."
         },
         {
             "name": "Reverberate",
@@ -6486,6 +6900,27 @@
             "recover": 1
         },
         {
+            "name": "Rising Tides",
+            "stub": "rising-tides",
+            "type": "Action Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "At the end of the next turn this round, deal 1 damage to all units."
+        },
+        {
             "name": "Ritualist",
             "stub": "ritualist",
             "type": "Ally",
@@ -6504,7 +6939,7 @@
             "magicCost": {
                 "ceremonial:class": 1
             },
-            "text": "**Incant:** When this unit comes into play, you may search your draw pile or discard pile for a ready spell with \"Chant\" in its title, reveal it, and place it into your hand. If you searched your draw pile, shuffle it.",
+            "text": "Incant: When this unit comes into play, you may search your draw pile or discard pile for a ready spell with \"Chant\" in its title, reveal it, and place it into your hand. If you searched your draw pile, shuffle it.",
             "attack": 1,
             "life": 1,
             "recover": 1
@@ -6546,7 +6981,8 @@
             "text": "Harsh Melody: When this unit comes into play, draw 1 card. You may discard 1 card from your hand to deal X damage to a target unit.\n\nX = the magic play cost of the discarded card.",
             "attack": 2,
             "life": 2,
-            "recover": 1
+            "recover": 1,
+            "chained": true
         },
         {
             "name": "Root Armor",
@@ -6634,7 +7070,7 @@
             "effectMagicCost": {
                 "basic": 1
             },
-            "text": "**Conscript:** After an ally you control is destroyed, you may place it face down under this card, discarding any other allies underneath this card.\n\n**Exhume:** [[main]] - [[exhaust]] - 1 [[basic]]: Place an ally that is underneath this card onto your battlefield, and then destroy it.",
+            "text": "Conscript: After an ally you control is destroyed, you may place it face down under this card, discarding any other allies underneath this card.\n\nExhume: [[main]] - [[exhaust]] - 1 [[basic]]: Place an ally that is underneath this card onto your battlefield, and then destroy it.",
             "battlefield": 5,
             "life": 18,
             "spellboard": 5
@@ -6652,6 +7088,21 @@
                 "[[main]]"
             ],
             "text": "After you pay a cost using a charm or divine die on its power side, you may place that die on this spell if it has no dice on it.\n\n[[side]] - [[exhaust]]: Choose a die on this spell and resolve its dice power without paying its cost."
+        },
+        {
+            "name": "Rubble Spirit",
+            "stub": "rubble-spirit",
+            "type": "Conjuration",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Battlefield",
+            "text": "Crumble 1: When this unit comes into play, discard 1 card off the top of a target opponent's draw pile.",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
         },
         {
             "name": "Ruby Cobra",
@@ -6828,7 +7279,7 @@
                 "stub": "the-oceans-guard"
             },
             "placement": "Battlefield",
-            "text": "**Hungry 1:** When this unit comes into play, destroy an exhausted conjuration you control. If you do, place 1 status token on this unit.\n\n**Tough 1:** After this unit is dealt damage, if there are any status tokens on it, remove them all to prevent 1 damage from being received.",
+            "text": "Hungry 1: When this unit comes into play, destroy an exhausted conjuration you control. If you do, place 1 status token on this unit.\n\nTough 1: After this unit is dealt damage, if there are any status tokens on it, remove them all to prevent 1 damage from being received.",
             "attack": 2,
             "life": 1,
             "recover": 0,
@@ -7002,27 +7453,6 @@
             "copies": 2
         },
         {
-            "name": "Shadowblade",
-            "stub": "shadowblade",
-            "type": "Reaction Spell",
-            "release": {
-                "name": "The Corpse of Viros",
-                "stub": "the-corpse-of-viros"
-            },
-            "placement": "Discard",
-            "cost": [
-                "1 [[basic]]"
-            ],
-            "dice": [
-                "basic"
-            ],
-            "magicCost": {
-                "basic": 1
-            },
-            "text": "You may play this spell after a player declares attackers. Draw 2 cards. Deal 1 damage to a target unit an opponent controls. Deal 1 damage to another target unit an opponent controls.",
-            "phoenixborn": "Noah Redmoon"
-        },
-        {
             "name": "Shadow Guard",
             "stub": "shadow-guard",
             "type": "Ally",
@@ -7097,6 +7527,27 @@
             "text": "You may play this spell after an opponent declares attackers. Deal 3 damage to a target unit that opponent controls that is not attacking."
         },
         {
+            "name": "Shadowblade",
+            "stub": "shadowblade",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Corpse of Viros",
+                "stub": "the-corpse-of-viros"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "You may play this spell after a player declares attackers. Draw 2 cards. Deal 1 damage to a target unit an opponent controls. Deal 1 damage to another target unit an opponent controls.",
+            "phoenixborn": "Noah Redmoon"
+        },
+        {
             "name": "Shared Sorrow",
             "stub": "shared-sorrow",
             "type": "Action Spell",
@@ -7120,28 +7571,6 @@
             "text": "Discard 1 card from your hand with a magic play cost of 1 or more. Search your discard pile for another card with a magic play cost of X and place it into your hand. Deal X damage to a target unit.\n\nX = the magic play cost of the discarded card."
         },
         {
-            "name": "Shattering Fist",
-            "stub": "shattering-fist",
-            "type": "Action Spell",
-            "release": {
-                "name": "The Frostwild Scourge",
-                "stub": "the-frostwild-scourge"
-            },
-            "placement": "Discard",
-            "cost": [
-                "[[side]]",
-                "1 [[basic]]"
-            ],
-            "dice": [
-                "basic"
-            ],
-            "magicCost": {
-                "basic": 1
-            },
-            "text": "Discard an alteration spell attached to a unit you control to place 3 wound tokens on a target unit an opponent controls.",
-            "phoenixborn": "Rin Northfell"
-        },
-        {
             "name": "Shatter Pulse",
             "stub": "shatter-pulse",
             "type": "Reaction Spell",
@@ -7162,6 +7591,28 @@
                 "sympathy:class": 2
             },
             "text": "You may play this spell after a unit you control is destroyed. Destroy a target unit. You may change 2 dice in a target player's active pool to a side of your choice."
+        },
+        {
+            "name": "Shattering Fist",
+            "stub": "shattering-fist",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Frostwild Scourge",
+                "stub": "the-frostwild-scourge"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Discard an alteration spell attached to a unit you control to place 3 wound tokens on a target unit an opponent controls.",
+            "phoenixborn": "Rin Northfell"
         },
         {
             "name": "Shepherd of Lost Souls",
@@ -7356,7 +7807,8 @@
             "text": "Smite 1: When this unit comes into play, you may destroy a target unit an opponent controls with an attack value of 1 or less.\n\nExalt: After this unit destroys a unit an opponent controls during your turn, you may choose a divine die in your exhausted pool and resolve its dice power without paying its cost.",
             "attack": 3,
             "life": 5,
-            "recover": 2
+            "recover": 2,
+            "chained": true
         },
         {
             "name": "Silver Snake",
@@ -7373,6 +7825,34 @@
             "life": 4,
             "recover": 3,
             "copies": 1
+        },
+        {
+            "name": "Skybreak Captain",
+            "stub": "skybreak-captain",
+            "type": "Ally",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:power]]",
+                "1 [[astral:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "astral:class": 1,
+                "astral:power": 1
+            },
+            "text": "Uplift: When this unit comes into play, place an astral die from your exhausted pool onto it.\n\nAerial Command 1: [[side]]: If this unit has an astral die on it, increase the attack value of another unit you control by 1 for the remainder of the turn.",
+            "attack": 3,
+            "life": 3,
+            "recover": 2
         },
         {
             "name": "Sleeping Bear",
@@ -7558,6 +8038,49 @@
             "copies": 3
         },
         {
+            "name": "Spark Drone",
+            "stub": "spark-drone",
+            "type": "Conjuration",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "text": "Unit Guard: This unit may guard a unit that is being attacked.",
+            "attack": 0,
+            "life": 2,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Spear Master",
+            "stub": "spear-master",
+            "type": "Ally",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:power]]",
+                "1 [[time:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "time:class": 1,
+                "time:power": 1
+            },
+            "text": "Replenish 2: When this unit comes into play, and at the end of the round, place 2 status tokens on it.\n\nSpear Volley: When this unit is declared as an attacker, you may remove any number of status tokens from units you control. Deal 1 damage to an equal number of target units that opponents control.",
+            "attack": 3,
+            "life": 3,
+            "recover": 2
+        },
+        {
             "name": "Spectral Assassin",
             "stub": "spectral-assassin",
             "type": "Conjuration",
@@ -7631,6 +8154,27 @@
             "phoenixborn": "Lulu Firststone"
         },
         {
+            "name": "Stand Still",
+            "stub": "stand-still",
+            "type": "Reaction Spell",
+            "release": {
+                "name": "The Ocean's Guard",
+                "stub": "the-oceans-guard"
+            },
+            "placement": "Discard",
+            "cost": [
+                "1 [[time:class]]",
+                "1 [[discard]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "You may play this spell after you declare attackers. Choose a target unit an opponent controls. Units with that unit's current title cannot be declared as blockers for the remainder of the turn."
+        },
+        {
             "name": "Standard Bearer",
             "stub": "standard-bearer",
             "type": "Ally",
@@ -7655,27 +8199,6 @@
             "attack": 1,
             "life": 3,
             "recover": 1
-        },
-        {
-            "name": "Stand Still",
-            "stub": "stand-still",
-            "type": "Reaction Spell",
-            "release": {
-                "name": "The Ocean's Guard",
-                "stub": "the-oceans-guard"
-            },
-            "placement": "Discard",
-            "cost": [
-                "1 [[time:class]]",
-                "1 [[discard]]"
-            ],
-            "dice": [
-                "time"
-            ],
-            "magicCost": {
-                "time:class": 1
-            },
-            "text": "You may play this spell after you declare attackers. Choose a target unit an opponent controls. Units with that unit's current title cannot be declared as blockers for the remainder of the turn."
         },
         {
             "name": "Stasis",
@@ -7733,6 +8256,21 @@
                 "illusion:class": 2
             },
             "text": "Place 2 exhaustion tokens on a target unit."
+        },
+        {
+            "name": "Stellar Oracle",
+            "stub": "stellar-oracle",
+            "type": "Conjuration",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "text": "Divination 2: When this unit comes into play, draw 2 cards. If you do, place a card from your hand on top of your draw pile.",
+            "attack": 2,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
         },
         {
             "name": "Stormwind Sniper",
@@ -8217,6 +8755,33 @@
             ]
         },
         {
+            "name": "Summon Cinder Spirit",
+            "stub": "summon-cinder-spirit",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "time:class": 1
+            },
+            "text": "[[main]] - [[exhaust]]: Place 1 status token on this spell.\n\n* [[side]] - 1 [[time:class]] - 1 [[basic]]: Move 1 status token from this spell onto a unit you control. If you do, place a [[Cinder Spirit]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Cinder Spirit",
+                    "stub": "cinder-spirit"
+                }
+            ]
+        },
+        {
             "name": "Summon Cloudburst Gryphon",
             "stub": "summon-cloudburst-gryphon",
             "type": "Ready Spell",
@@ -8343,17 +8908,16 @@
                 "ceremonial"
             ],
             "effectMagicCost": {
-                "ceremonial:class": 1
+                "ceremonial:class": 1,
+                "ceremonial:power": 1
             },
-            "text": "After an ally you control is destroyed, place 1 status token on this spell.\n\n[[main]] - 1 [[ceremonial:class]]: Remove up to 1 status token from each copy of Summon Fallen you control. Place 1 [[Fallen]] conjuration onto your battlefield for each status token removed.",
+            "text": "After an ally you control is destroyed, place 1 status token on this spell if it has fewer than 3 status tokens on it.\n\n[[main]] - [[exhaust]] - 1 [[ceremonial:power]] - 1 [[ceremonial:class]]: Remove up to 3 status tokens this spell to place an equal number of [[Fallen]] conjurations onto your battlefield.",
             "conjurations": [
                 {
                     "name": "Fallen",
                     "stub": "fallen"
                 }
-            ],
-            "effectRepeats": true,
-            "imageStub": "https://ashesdb-media.plaidhatgames.com/images/new-cards/summon_fallen.jpg"
+            ]
         },
         {
             "name": "Summon False Demon",
@@ -8413,6 +8977,58 @@
             ]
         },
         {
+            "name": "Summon Frost Frog",
+            "stub": "summon-frost-frog",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The Frostwild Scourge",
+                "stub": "the-frostwild-scourge"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "effectMagicCost": {
+                "natural:power": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[natural:power]]: Place a [[Frost Frog]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Frost Frog",
+                    "stub": "frost-frog"
+                }
+            ]
+        },
+        {
+            "name": "Summon Frost Talon",
+            "stub": "summon-frost-talon",
+            "type": "Ready Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[astral:class]]: Place a [[Frost Talon]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Frost Talon",
+                    "stub": "frost-talon"
+                }
+            ]
+        },
+        {
             "name": "Summon Frostback Bear",
             "stub": "summon-frostback-bear",
             "type": "Ready Spell",
@@ -8440,32 +9056,6 @@
                 {
                     "name": "Frostback Bear",
                     "stub": "frostback-bear"
-                }
-            ]
-        },
-        {
-            "name": "Summon Frost Frog",
-            "stub": "summon-frost-frog",
-            "type": "Ready Spell",
-            "release": {
-                "name": "The Frostwild Scourge",
-                "stub": "the-frostwild-scourge"
-            },
-            "placement": "Spellboard",
-            "cost": [
-                "[[main]]"
-            ],
-            "dice": [
-                "natural"
-            ],
-            "effectMagicCost": {
-                "natural:power": 1
-            },
-            "text": "[[main]] - [[exhaust]] - 1 [[natural:power]]: Place a [[Frost Frog]] conjuration onto your battlefield.",
-            "conjurations": [
-                {
-                    "name": "Frost Frog",
-                    "stub": "frost-frog"
                 }
             ]
         },
@@ -8592,14 +9182,6 @@
                 {
                     "name": "Indiglow Creeper",
                     "stub": "indiglow-creeper"
-                },
-                {
-                    "name": "Luminous Seedling",
-                    "stub": "luminous-seedling"
-                },
-                {
-                    "name": "Brilliant Thorn",
-                    "stub": "brilliant-thorn"
                 }
             ]
         },
@@ -8883,6 +9465,33 @@
                     "stub": "nightsong-cricket"
                 }
             ]
+        },
+        {
+            "name": "Summon Ocean's Eyes",
+            "stub": "summon-oceans-eyes",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "effectMagicCost": {
+                "basic": 2
+            },
+            "text": "[[main]] - [[exhaust]] - 2 [[basic]]: Place two [[Ocean's Eye]] conjurations onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Ocean's Eye",
+                    "stub": "oceans-eye"
+                }
+            ],
+            "phoenixborn": "Tristan Darkwater"
         },
         {
             "name": "Summon Omen Bringer",
@@ -9314,7 +9923,8 @@
                     "name": "Shining Hydra",
                     "stub": "shining-hydra"
                 }
-            ]
+            ],
+            "chained": true
         },
         {
             "name": "Summon Shining Stag Mount",
@@ -9395,6 +10005,32 @@
                 {
                     "name": "Sleeping Widow",
                     "stub": "sleeping-widow"
+                }
+            ]
+        },
+        {
+            "name": "Summon Spark Drone",
+            "stub": "summon-spark-drone",
+            "type": "Ready Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[artifice:class]]: Place a [[Spark Drone]] conjuration onto your battlefield. If this spell is charged, change 2 dice in your active pool to a side of your choice.",
+            "conjurations": [
+                {
+                    "name": "Spark Drone",
+                    "stub": "spark-drone"
                 }
             ]
         },
@@ -9487,6 +10123,34 @@
             ]
         },
         {
+            "name": "Summon Stellar Oracle",
+            "stub": "summon-stellar-oracle",
+            "type": "Ready Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "basic",
+                "astral"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "astral:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[astral:class]] - 1 [[basic]]: Place a [[Stellar Oracle]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Stellar Oracle",
+                    "stub": "stellar-oracle"
+                }
+            ]
+        },
+        {
             "name": "Summon Three-Eyed Owl",
             "stub": "summon-three-eyed-owl",
             "type": "Ready Spell",
@@ -9509,6 +10173,33 @@
                 {
                     "name": "Three-Eyed Owl",
                     "stub": "three-eyed-owl"
+                }
+            ]
+        },
+        {
+            "name": "Summon Thunder Hulk",
+            "stub": "summon-thunder-hulk",
+            "type": "Ready Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "effectMagicCost": {
+                "basic": 1,
+                "artifice:class": 1
+            },
+            "text": "[[main]] - [[exhaust]] - 1 [[artifice:class]] - 1 [[basic]]: Place a [[Thunder Hulk]] conjuration onto your battlefield.",
+            "conjurations": [
+                {
+                    "name": "Thunder Hulk",
+                    "stub": "thunder-hulk"
                 }
             ]
         },
@@ -9598,6 +10289,33 @@
                 {
                     "name": "Turtle Guard",
                     "stub": "turtle-guard"
+                }
+            ]
+        },
+        {
+            "name": "Summon Tusk Mount",
+            "stub": "summon-tusk-mount",
+            "type": "Ready Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "effectMagicCost": {
+                "basic": 2,
+                "time:class": 2
+            },
+            "text": "[[side]] - [[exhaust]] - 2 [[time:class]] - 2 [[basic]]: Remove an unexhausted ally you control from play. If you do, place a [[Tusk Mount]] conjuration onto your battlefield, placing that ally face down under it.",
+            "conjurations": [
+                {
+                    "name": "Tusk Mount",
+                    "stub": "tusk-mount"
                 }
             ]
         },
@@ -9751,6 +10469,32 @@
             "copies": 2
         },
         {
+            "name": "Sun Sister",
+            "stub": "sun-sister",
+            "type": "Ally",
+            "release": {
+                "name": "The Goddess of Ishra",
+                "stub": "the-goddess-of-ishra"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[divine:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "divine"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "divine:class": 1
+            },
+            "text": "Care 1: [[side]]: Remove 1 wound token from another target unit you control.",
+            "attack": 2,
+            "life": 2,
+            "recover": 1
+        },
+        {
             "name": "Sunshield Sentry",
             "stub": "sunshield-sentry",
             "type": "Ally",
@@ -9780,30 +10524,25 @@
             "recover": 1
         },
         {
-            "name": "Sun Sister",
-            "stub": "sun-sister",
-            "type": "Ally",
+            "name": "Supercharge",
+            "stub": "supercharge",
+            "type": "Ready Spell",
             "release": {
-                "name": "The Goddess of Ishra",
-                "stub": "the-goddess-of-ishra"
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
             },
-            "placement": "Battlefield",
+            "placement": "Spellboard",
             "cost": [
-                "[[main]]",
-                "1 [[divine:class]]",
-                "1 [[basic]]"
+                "[[side]]",
+                "1 [[artifice:class]]"
             ],
             "dice": [
-                "divine"
+                "artifice"
             ],
             "magicCost": {
-                "basic": 1,
-                "divine:class": 1
+                "artifice:class": 1
             },
-            "text": "Care 1: [[side]]: Remove 1 wound token from another target unit you control.",
-            "attack": 2,
-            "life": 2,
-            "recover": 1
+            "text": "[[side]] - [[exhaust]]: If this spell is charged, add 2 to the attack value of a target unit for the remainder of the turn."
         },
         {
             "name": "Surging Tempest",
@@ -9925,6 +10664,30 @@
             "text": "You may play this spell after 1 or more wound tokens are placed on your Phoenixborn as a result of an attack, spell, ability, or dice power an opponent controls. Deal 2 damage to a target unit or Phoenixborn that opponent controls."
         },
         {
+            "name": "Systems Drafter",
+            "stub": "systems-drafter",
+            "type": "Ally",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:class": 1
+            },
+            "text": "Rethink 1: When this unit comes into play, remove 1 exhaustion token from a ready spell you control.",
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
             "name": "Take to the Skies",
             "stub": "take-to-the-skies",
             "type": "Action Spell",
@@ -9950,7 +10713,8 @@
                     "stub": "divinity-mount"
                 }
             ],
-            "phoenixborn": "Dimona Odinstar"
+            "phoenixborn": "Dimona Odinstar",
+            "chained": true
         },
         {
             "name": "Temple Elder",
@@ -10008,6 +10772,47 @@
             "copies": 2
         },
         {
+            "name": "Thunder Hulk",
+            "stub": "thunder-hulk",
+            "type": "Conjuration",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Battlefield",
+            "text": "Dormant: This unit cannot attack unless it is charged.\n\nOverkill 1: After this unit destroys a unit an opponent controls by attacking, deal 1 damage to that opponent's target Phoenixborn.",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Thunder Suit",
+            "stub": "thunder-suit",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Unit",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "artifice:class": 1
+            },
+            "text": "When attaching this spell, place an artifice die from your exhausted pool onto the attached unit.",
+            "attack": "+2",
+            "life": "+2",
+            "recover": "+1"
+        },
+        {
             "name": "Tidal Crab",
             "stub": "tidal-crab",
             "type": "Conjuration",
@@ -10016,7 +10821,7 @@
                 "stub": "the-oceans-guard"
             },
             "placement": "Battlefield",
-            "text": "**Unburden:** [[side]]: Move 1 status token from this unit onto another unit you control.\n\n* **Slow:** Reduce this unit's attack value by 1 for each status token on it.",
+            "text": "Unburden: [[side]]: Move 1 status token from this unit onto another unit you control.\n\n* Slow: Reduce this unit's attack value by 1 for each status token on it.",
             "attack": 2,
             "life": 3,
             "recover": 0,
@@ -10062,6 +10867,30 @@
             "copies": 4
         },
         {
+            "name": "Timestopper",
+            "stub": "timestopper",
+            "type": "Ally",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:power]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:power": 1
+            },
+            "text": "~ Swift: After a unit comes into play onto an opponent's battlefield, you may play this unit from your hand without paying its main action cost.\n\nHalt: When this unit comes into play, choose a target unit an opponent controls. That unit cannot attack, block, or guard until the end of the next turn or the round.",
+            "attack": 1,
+            "life": 2,
+            "recover": 1
+        },
+        {
             "name": "To Shadows",
             "stub": "to-shadows",
             "type": "Action Spell",
@@ -10088,6 +10917,27 @@
                 "illusion:power / time:power": 1
             },
             "text": "Discard a target exhausted unit."
+        },
+        {
+            "name": "Tranquility",
+            "stub": "tranquility",
+            "type": "Alteration Spell",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Phoenixborn",
+            "cost": [
+                "[[side]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "At the end of your turn, place 1 status token on this spell. Then, if there are 3 or more status tokens on this spell, remove it from the game.\n\nThe only side action you may take is Meditate."
         },
         {
             "name": "Transfer",
@@ -10168,7 +11018,7 @@
             "effectMagicCost": {
                 "basic": 1
             },
-            "text": "**Magnify:** [[side]] - [[exhaust]] - 1 [[basic]]: Choose any number of units you control with a combined life value of up to 3. During Attack actions this turn, the numeral values of their abilities are increased by 1.",
+            "text": "Magnify: [[side]] - [[exhaust]] - 1 [[basic]]: Choose any number of units you control with a combined life value of up to 3. During Attack actions this turn, the numeral values of their abilities are increased by 1.",
             "battlefield": 9,
             "life": 17,
             "spellboard": 3
@@ -10207,6 +11057,27 @@
             "text": "Rooted: This unit cannot attack.\n\nUnit Guard: This unit may guard a unit that is being attacked.\n\n* Withdraw: While this unit is exhausted, prevent all damage dealt to this unit from being received.",
             "attack": 2,
             "life": 3,
+            "recover": 1,
+            "copies": 2
+        },
+        {
+            "name": "Tusk Mount",
+            "stub": "tusk-mount",
+            "type": "Conjuration",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Battlefield",
+            "text": "Wreckage 2: After this unit destroys a unit an opponent controls by attacking, place 2 [[Rubble Spirit]] conjurations onto your battlefield.\n\n* Dismount: When this unit is destroyed, place any allies you own underneath this unit into your hand.",
+            "conjurations": [
+                {
+                    "name": "Rubble Spirit",
+                    "stub": "rubble-spirit"
+                }
+            ],
+            "attack": 5,
+            "life": 4,
             "recover": 1,
             "copies": 2
         },
@@ -10392,6 +11263,30 @@
             "phoenixborn": "Maeoni Viper"
         },
         {
+            "name": "Vermillion Sage",
+            "stub": "vermillion-sage",
+            "type": "Ally",
+            "release": {
+                "name": "The End of Argaia",
+                "stub": "the-end-of-argaia"
+            },
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[time:class]]"
+            ],
+            "dice": [
+                "time"
+            ],
+            "magicCost": {
+                "time:class": 1
+            },
+            "text": "Study 1: When this unit comes into play, look at the top card of your draw pile and place it on the top or bottom of your draw pile. Then, draw 1 card.\n\n* Inheritance 1: When this unit is destroyed, you may place 1 status token on a target unit.",
+            "attack": 1,
+            "life": 1,
+            "recover": 1
+        },
+        {
             "name": "Victoria Glassfire",
             "stub": "victoria-glassfire",
             "type": "Phoenixborn",
@@ -10425,7 +11320,7 @@
             "magicCost": {
                 "basic": 1
             },
-            "text": "You may play this spell after you declare attackers. Deal damage to a target unit an opponent controls equal to the number of attacking units. If that destroys the unit, after it is destroyed, draw 2 cards, and then change 2 dice in a target player's active pool to a side of your choice.",
+            "text": "You may play this spell after you declare attackers. Deal damage to a target unit an opponent controls equal to the number of attacking units. If that destroyed the unit, draw 2 cards, and then change 2 dice in a target player's active pool to a side of your choice.",
             "phoenixborn": "Hope Everthorn"
         },
         {
@@ -10508,6 +11403,27 @@
             "phoenixborn": "Echo Greystorm"
         },
         {
+            "name": "Whirlwind",
+            "stub": "whirlwind",
+            "type": "Ready Spell",
+            "release": {
+                "name": "Ascendancy Starter Kit",
+                "stub": "ascendancy-starter-kit"
+            },
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1
+            },
+            "text": "[[main]] - [[exhaust]]: Lower 2 dice in a target opponent's active pool one level. If your Phoenixborn has an astral die on it, draw 1 card."
+        },
+        {
             "name": "Whisperer",
             "stub": "whisperer",
             "type": "Conjuration",
@@ -10521,28 +11437,6 @@
             "life": 1,
             "recover": 0,
             "copies": 3
-        },
-        {
-            "name": "Willpower",
-            "stub": "willpower",
-            "type": "Action Spell",
-            "release": {
-                "name": "The Blight of Neverset",
-                "stub": "the-blight-of-neverset"
-            },
-            "placement": "Discard",
-            "cost": [
-                "[[main]]",
-                "1 [[basic]]"
-            ],
-            "dice": [
-                "basic"
-            ],
-            "magicCost": {
-                "basic": 1
-            },
-            "text": "Deal damage to a target unit an opponent controls equal to the number of cards in your hand.",
-            "phoenixborn": "Saria Guideman"
         },
         {
             "name": "Will to Survive",
@@ -10566,6 +11460,28 @@
             "text": "This unit now has the following ability:\n\nLife Drain 1: After this unit destroys a unit an opponent controls by attacking, you may remove 1 wound token from your Phoenixborn.",
             "attack": "+1",
             "life": "+1"
+        },
+        {
+            "name": "Willpower",
+            "stub": "willpower",
+            "type": "Action Spell",
+            "release": {
+                "name": "The Blight of Neverset",
+                "stub": "the-blight-of-neverset"
+            },
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 1
+            },
+            "text": "Deal damage to a target unit an opponent controls equal to the number of cards in your hand.",
+            "phoenixborn": "Saria Guideman"
         },
         {
             "name": "Winged Lioness",
