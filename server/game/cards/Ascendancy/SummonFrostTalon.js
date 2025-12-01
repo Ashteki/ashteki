@@ -8,6 +8,7 @@ class SummonFrostTalon extends Card {
             title: 'Summon Frost Talon',
             cost: [
                 ability.costs.mainAction(),
+                ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Astral)])
             ],
             location: 'spellboard'

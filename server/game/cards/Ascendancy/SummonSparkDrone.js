@@ -8,6 +8,7 @@ class SummonSparkDrone extends Card {
             title: 'Summon Spark Drone',
             cost: [
                 ability.costs.mainAction(),
+                ability.costs.exhaust(),
                 ability.costs.dice([new DiceCount(1, Level.Class, Magic.Artifice)])
             ],
             location: 'spellboard',

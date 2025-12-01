@@ -8,6 +8,7 @@ class SummonThunderHulk extends Card {
             title: 'Summon Thunder Hulk',
             cost: [
                 ability.costs.mainAction(),
+                ability.costs.exhaust(),
                 ability.costs.dice([
                     new DiceCount(1, Level.Class, Magic.Artifice),
                     new DiceCount(1, Level.Basic)
