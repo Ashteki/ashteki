@@ -15,7 +15,8 @@ class SummonSparkDrone extends Card {
             then: {
                 gameAction: ability.actions.changeDice((context) => ({
                     numDice: 2,
-                    owner: 'self'
+                    owner: 'self',
+                    dieCondition: (die) => !die.exhausted
                 }))
             }
         });

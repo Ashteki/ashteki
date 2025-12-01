@@ -49,6 +49,7 @@ describe('Summon Spark Drone', function () {
             this.player1.clickPrompt('Summon Spark Drone');
             expect(this.sparkDrone.location).toBe('play area');
 
+            expect(this.player1).not.toBeAbleToSelectDie(this.player1.dicepool[0]);
             this.player1.clickDie(1);
             this.player1.clickDie(2);
             this.player1.clickDone();
