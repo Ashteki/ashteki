@@ -13,6 +13,7 @@ class SummonSparkDrone extends Card {
             ],
             location: 'spellboard',
             then: {
+                condition: (context) => context.source.isCharged,
                 gameAction: ability.actions.changeDice((context) => ({
                     numDice: 2,
                     owner: 'self',

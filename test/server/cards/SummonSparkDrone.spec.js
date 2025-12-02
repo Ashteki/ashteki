@@ -21,6 +21,7 @@ describe('Summon Spark Drone', function () {
             this.player1.clickPrompt('Summon Spark Drone');
             expect(this.sparkDrone.location).toBe('play area');
             expect(this.sparkDrone.isCharged).toBe(false);
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 
