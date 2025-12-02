@@ -30,7 +30,7 @@ describe('Whirlwind', function () {
 
             expect(this.player2.dicepool[0].level).toBe('class');
             expect(this.player2.dicepool[1].level).toBe('class');
-            expect(this.player1.hand.length).toBe(1);
+            expect(this.player1.hand.length).toBe(2);
         });
 
         it('lower 2 opponents dice and no draw if pb not airborne', function () {

@@ -6,7 +6,7 @@ class StellarOracle extends Card {
             gameAction: ability.actions.draw({ amount: 2 }),
             then: {
                 target: {
-                    activePromptTitle: 'Guidance',
+                    activePromptTitle: 'Choose a card to return to the top of your deck',
                     location: 'hand',
                     controller: 'self',
                     gameAction: ability.actions.returnToDeck({

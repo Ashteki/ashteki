@@ -17,7 +17,7 @@ class Whirlwind extends Card {
             },
             then: {
                 condition: (context) => context.player.phoenixborn.isAirborne,
-                gameaction: ability.actions.draw()
+                gameAction: ability.actions.draw()
             }
         });
     }
