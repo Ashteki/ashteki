@@ -21,10 +21,8 @@ class AttachDieAction extends DiceGameAction {
 
     // attaching to a card, can this card have a dice attached.
     canAffect(card, context) {
-        // only valid in the play area
         if (
             !context ||
-            !context.player ||
             !card ||
             !['play area', 'spellboard'].includes(card.location)
         ) {

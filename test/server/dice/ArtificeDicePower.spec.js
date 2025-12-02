@@ -27,9 +27,8 @@ describe('Artifice Dice Power', function () {
         this.player1.endTurn();
         expect(this.anchornaut.dieUpgrades.length).toBe(1);
         this.player2.endTurn();
-        expect(this.anchornaut.dieUpgrades.length).toBe(1);
-        this.player1.clickPrompt('Done'); // no pins
         expect(this.anchornaut.dieUpgrades.length).toBe(0);
+        this.player1.clickPrompt('Done'); // no pins
         expect(this.anchornaut.isCharged).toBe(false);
         expect(this.anchornaut.location).toBe('play area');
     });

@@ -18,7 +18,7 @@ class DetachDieAction extends DiceGameAction {
 
     canAffect(die, context) {
         // only valid in the play area
-        if (!context || !context.player || !die || die.location !== 'play area' || !die.parent) {
+        if (!context || !die || die.location !== 'play area' || !die.parent) {
             return false;
         }
 

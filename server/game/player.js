@@ -525,11 +525,7 @@ class Player extends GameObject {
     endRound() {
         for (let card of this.cardsInPlay) {
             card.new = false;
-            // remove die attachments
-            this.removeDieAttachments(card);
         }
-
-        this.removeDieAttachments(this.phoenixborn);
     }
 
     removeDieAttachments(card) {

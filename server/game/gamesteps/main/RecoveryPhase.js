@@ -10,6 +10,7 @@ class RecoveryPhase extends Phase {
             new SimpleStep(game, () => this.recoverWounds()),
             new SimpleStep(game, () => this.removeRedRains()),
             new SimpleStep(game, () => this.removeExhaustion()),
+            new SimpleStep(game, () => this.removeHostedDice()),
             new PinDicePrompt(game),
             new SimpleStep(game, () => this.replenishAspects()),
             new SimpleStep(game, () => this.placeRedRains()),
@@ -54,6 +55,23 @@ class RecoveryPhase extends Phase {
         this.game.actions
             .ready()
             .resolve(this.game.cardsInPlay.concat(upgrades), this.game.getFrameworkContext());
+        return;
+    }
+
+    removeHostedDice() {
+        this.game.addMessage('All hosted dice are exhausted.');
+        const upgrades = this.game.cardsInPlay.reduce(
+            (acc, c) => (c.upgrades ? acc.concat(c.upgrades) : acc),
+            []
+        );
+        const allCardsInPlay = this.game.cardsInPlay.concat(upgrades);
+        const hostedDice = allCardsInPlay.reduce(
+            (acc, c) => (c.dieUpgrades ? acc.concat(c.dieUpgrades) : acc),
+            []
+        )
+        this.game.actions
+            .detachDie()
+            .resolve(hostedDice, this.game.getFrameworkContext());
         return;
     }
 

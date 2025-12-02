@@ -31,6 +31,13 @@ describe('Issa Brightmore', function () {
             expect(this.hammerKnight.isCharged).toBe(true);
             expect(this.hammerKnight.dieUpgrades.length).toBe(1);
             expect(this.player1.hand.length).toBe(3); // drew 2 cards
+
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.clickDone(); // pin dice
+
+            // dice return to pool during recovery
+            expect(this.hammerKnight.isCharged).toBe(false);
         });
     });
 });

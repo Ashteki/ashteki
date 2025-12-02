@@ -27,9 +27,8 @@ describe('Supercharge', function () {
 
         it('when not charged does nothing', function () {
             this.player1.clickCard(this.supercharge);
-            this.player1.clickPrompt('Supercharge');
-            this.player1.clickCard(this.anchornaut);
-            expect(this.anchornaut.attack).toBe(0);
+            expect(this.player1).not.toHavePrompt('Supercharge');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
