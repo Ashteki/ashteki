@@ -8,6 +8,7 @@ class BrilliantDisplay extends Card {
                 forEach: this.getChargingDice(context),
                 action: ability.actions.dealDamage({
                     promptForSelect: {
+                        activePromptTitle: 'Choose a unit to deal 1 damage to',
                         optional: true,
                         cardType: BattlefieldTypes,
                         controller: 'opponent'

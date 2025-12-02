@@ -3,8 +3,10 @@ const Card = require('../../Card.js');
 
 class Reconfigure extends Card {
     setupCardAbilities(ability) {
-        this.play({
+        this.action({
             title: 'Reconfigure',
+            cost: [ability.costs.sideAction(), ability.costs.exhaust()],
+            location: 'spellboard',
             targets: {
                 chosenDie: {
                     activePromptTitle: 'Choose an Artifice die to move',
