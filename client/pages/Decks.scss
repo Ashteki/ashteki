@@ -2,3 +2,16 @@
     font-variant: small-caps;
 
 }
+
+.page-item:not(.active, .disabled) .page-link {
+    color: #fff !important;
+    background: #333 !important;
+}
+
+.page-item.disabled .page-link {
+    background-color: #999;
+}
+
+.pagination-wrapper {
+    margin-top: 6px;
+}

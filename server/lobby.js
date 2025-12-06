@@ -280,6 +280,9 @@ class Lobby {
         }
 
         for (let player of Object.values(game.getPlayersAndSpectators())) {
+            if (player.id === 0) { // dummy user
+                continue;
+            }
             if (!this.sockets[player.id]) {
                 logger.info(`Wanted to send to ${player.id} but have no socket`);
                 continue;
@@ -550,6 +553,10 @@ class Lobby {
         this.broadcastGameMessage('updategame', game);
 
         for (let player of Object.values(game.getPlayersAndSpectators())) {
+            if (player.id === 0) { // dummy user
+                continue;
+            }
+
             let socket = this.sockets[player.id];
 
             if (!socket || !socket.user) {
