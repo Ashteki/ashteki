@@ -191,7 +191,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                                             page={pageNumber}
                                             between={4}
                                             total={numDecks}
-                                            limit={7}
+                                            limit={10}
                                             changePage={(page) => {
                                                 onPageClick(page);
                                             }}
