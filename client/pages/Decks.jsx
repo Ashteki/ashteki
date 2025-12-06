@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Col, Pagination, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 // import Pagination from 'react-bootstrap-4-pagination';
 import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
@@ -13,6 +13,7 @@ import DeckTypeInfo from '../Components/Decks/DeckTypeInfo';
 import DeckFilter from '../Components/Decks/DeckFilter';
 import debounce from 'lodash.debounce';
 import './Decks.scss';
+import { PaginationControl } from 'react-bootstrap-pagination-control';
 
 const DecksComponent = ({ onDeckSelected }) => {
     const { t } = useTranslation();
@@ -186,22 +187,16 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 <DeckList decks={myDecks} showWinRate={true} />
                                 {(myDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
-                                        <Pagination
-                                            className='pager'
-                                            totalPages={numDecks / 8}
-                                            currentPage={pageNumber}
-                                            showMax={7}
-                                            prevNext={false}
-                                        >
-                                            {Array.from({ length: Math.ceil(numDecks / 8) }, (_, i) => (
-                                                <Pagination.Item
-                                                    key={i + 1}
-                                                    active={i + 1 === pageNumber}
-                                                    onClick={() => onPageClick(i + 1)}>
-                                                    {i + 1}
-                                                </Pagination.Item>
-                                            ))}
-                                        </Pagination>
+                                        <PaginationControl
+                                            page={pageNumber}
+                                            between={4}
+                                            total={numDecks}
+                                            limit={7}
+                                            changePage={(page) => {
+                                                onPageClick(page);
+                                            }}
+                                            ellipsis={1}
+                                        />
                                     </div>
                                 )}
                             </Col>
