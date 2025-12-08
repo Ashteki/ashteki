@@ -13,6 +13,10 @@ class CampaignDeckValidator {
         };
     }
 
+    validateHL2PvP(deck) {
+        return this.validateDeck(deck, 2, true);
+    }
+
     validateDeck(deck, level, heroic) {
         /*
         precon = 9 cards, 1/2 unique, 1 pb
