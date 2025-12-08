@@ -29,7 +29,7 @@ class SummonCeruleanDiver extends Card {
                             controller: 'opponent',
                             activePromptTitle: 'Choose a unit to deal 1 damage to',
                             cardType: BattlefieldTypes,
-                            gameAction: ability.actions.dealDamage()
+                            gameAction: ability.actions.dealDamage({ showMessage: true })
                         }
                     }
                 } else {
