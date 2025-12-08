@@ -752,7 +752,7 @@ class Lobby {
 
         if (game.gameFormat === 'hl2pvp') {
             const validator = new CampaignDeckValidator(this.cards, this.precons);
-            const hl2pvp = validator.validateDeck(deck, 2).valid;
+            const hl2pvp = validator.validateHL2PvP(deck).valid;
             deck.status.hl2pvp = hl2pvp;
         }
 
