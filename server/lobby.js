@@ -1066,7 +1066,7 @@ class Lobby {
         });
     }
 
-    onNodeReconnected(nodeName, games) {
+    async onNodeReconnected(nodeName, games) {
         for (let game of Object.values(games)) {
             let owner = game.players[game.owner];
 
@@ -1075,7 +1075,8 @@ class Lobby {
                 continue;
             }
 
-            let syncGame = new PendingGame(new User(owner.user), {
+            const ownerUser = await this.userService.getUserByUsername(game.owner);
+            let syncGame = new PendingGame(new User(ownerUser), {
                 allowSpectators: game.allowSpectators,
                 name: game.name
             });
@@ -1093,19 +1094,24 @@ class Lobby {
             syncGame.solo = game.solo;
 
             for (let player of Object.values(game.players)) {
+                const playerUser = await this.userService.getUserByUsername(player.name);
+
                 syncGame.players[player.name] = {
                     id: player.id,
                     name: player.name,
                     owner: game.owner === player.name,
-                    user: new User(player.user)
+                    deck: player.deck,
+                    user: player.name === 'Chimera' ? new DummyUser() : new User(playerUser)
                 };
             }
 
             for (let player of Object.values(game.spectators)) {
+                const spectatorUser = await this.userService.getUserByUsername(player.name);
+
                 syncGame.spectators[player.name] = {
                     id: player.id,
                     name: player.name,
-                    user: new User(player.user)
+                    user: new User(spectatorUser)
                 };
             }
 
