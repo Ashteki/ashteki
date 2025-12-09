@@ -17,7 +17,7 @@ const InGameSettings = ({ formProps }) => {
             <Form.Check
                 id='confirmOneClick'
                 name='gameOptions.confirmOneClick'
-                label='Show a prompt when initating 1-click abilities'
+                label='Show a prompt when initiating 1-click abilities'
                 type='switch'
                 checked={formProps.values.gameOptions.confirmOneClick}
                 onChange={formProps.handleChange}

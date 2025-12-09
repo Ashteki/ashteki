@@ -1839,7 +1839,11 @@ class Game extends EventEmitter {
                 name: player.name,
                 owner: player.owner,
                 user: options.fullData && player.user,
-                wins: player.wins
+                wins: player.wins,
+                deck: {
+                    name: player.deckData.name,
+                    phoenixborn: player.deckData.phoenixborn
+                }
             };
         }
 
