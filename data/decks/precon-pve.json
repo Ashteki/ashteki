@@ -1330,6 +1330,7 @@
   {
     "precon_id": 417,
     "name": "The Spawn of Shadowreck: Rimea",
+    "precon_set": "spawn",
     "phoenixborn": [
       {
         "id": "rimea-careworn",
@@ -1409,6 +1410,7 @@
   {
     "precon_id": 418,
     "name": "The Spawn of Shadowreck: Sembali",
+    "precon_set": "spawn",
     "phoenixborn": [
       {
         "id": "sembali-grimtongue",
@@ -1484,6 +1486,7 @@
   {
     "precon_id": 419,
     "name": "The Spawn of Shadowreck: Victoria",
+    "precon_set": "spawn",
     "phoenixborn": [
       {
         "id": "victoria-glassfire",
@@ -1559,6 +1562,7 @@
   {
     "precon_id": 420,
     "name": "The Spawn of Shadowreck: Hope",
+    "precon_set": "spawn",
     "phoenixborn": [
       {
         "id": "hope-everthorn",
