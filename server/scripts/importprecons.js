@@ -144,17 +144,17 @@ class ImportPrecons {
             console.log('Done importing OneCollection decks');
             console.log('----------');
 
-            for (let deck of this.loadAscendancyDecks()) {
-                deck.preconGroup = 11;
-                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
-                if (!existingDeck) {
-                    console.log('Importing', deck.name);
-                    await this.deckService.createPrecon(deck);
-                }
-            }
+            // for (let deck of this.loadAscendancyDecks()) {
+            //     deck.preconGroup = 11;
+            //     let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+            //     if (!existingDeck) {
+            //         console.log('Importing', deck.name);
+            //         await this.deckService.createPrecon(deck);
+            //     }
+            // }
 
-            console.log('Done importing OneCollection decks');
-            console.log('----------');
+            // console.log('Done importing Ascendancy decks');
+            // console.log('----------');
         } catch (err) {
             console.error('Could not finish import', err);
         }
