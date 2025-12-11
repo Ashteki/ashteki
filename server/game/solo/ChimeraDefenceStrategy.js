@@ -14,9 +14,14 @@ class ChimeraDefenceStrategy {
         let remainingDefenders = this.getAvailableDefenders(attack);
         // defenders guard for aspects or the chimera
         const battlesToGuard = attack.battles.filter(
-            (b) => !b.target.anyEffect('defender') &&
+            (b) => b.target && !b.target.anyEffect('defender') &&
                 [CardType.Chimera, ...AspectTypes].includes(b.target.type)
         );
+
+        if (battlesToGuard.length === 0) {
+            return;
+        }
+
         // get threatening battles to block first
         const threateningBattles = battlesToGuard.filter((b) =>
             b.attacker.anyEffect('threatening')
