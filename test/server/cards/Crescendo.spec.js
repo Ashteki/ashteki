@@ -1,3 +1,5 @@
+const Dice = require('../../../server/game/dice');
+
 describe('Crescendo', function () {
     describe('standard test', function () {
         beforeEach(function () {
@@ -103,4 +105,53 @@ describe('Crescendo', function () {
             expect(this.player1.discard.length).toBe(2);
         });
     });
+
+    describe('BUG vs Chimera: when unit attack target is destroyed', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut', 'hammer-knight'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['ice-trap', 'crescendo', 'molten-gold']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['rampage'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: ['glare', 'hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+        });
+
+        it('destroy target of unit attack and clear attack status', function () {
+            this.player1.clickAttack(this.rampage);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.crescendo); // play
+            this.player1.clickCard(this.moltenGold); // discard
+
+            this.player1.clickCard(this.hammerKnight); // 1 damage
+            this.player1.clickCard(this.rampage); // 3 damage
+
+            expect(this.hammerKnight.damage).toBe(1);
+            expect(this.rampage.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.hammerKnight.isAttacker).toBe(false);
+            // attackers ALWAYS exhaust
+            expect(this.hammerKnight.exhausted).toBe(true);
+
+            expect(this.crescendo.location).toBe('discard');
+            expect(this.moltenGold.location).toBe('discard');
+        });
+    });
+
 });
