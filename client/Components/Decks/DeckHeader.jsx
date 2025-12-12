@@ -21,7 +21,7 @@ const DeckHeader = ({ deck, showCopy, onCopy }) => {
 
     return (
         <div className='deck-header'>
-            <div className={`decklist-entry-image ${deck?.phoenixborn[0]?.id}`}></div>
+            <div className={`decklist-entry-image ${deck.listClass || deck?.phoenixborn[0]?.id}`}></div>
             <div>
                 <div className='deck-title'>{deck?.name}</div>
                 <div>
