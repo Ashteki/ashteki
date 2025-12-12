@@ -154,6 +154,16 @@
     font-size: 15px;
 }
 
+.deck-header {
+    .decklist-entry-image {
+        &.kevin {
+            background-position: 65% 26%;
+            background-size: 225%;
+
+        }
+    }
+}
+
 .decklist-entry-image {
     width: 70px;
     min-width: 70px;

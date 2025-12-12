@@ -4,7 +4,6 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import ZoomableCard from './ZoomableCard';
 
 const CardListImg = ({ deckCards, noIndex }) => {
-
     let cardsToRender = [];
     let groupedCards = {};
 
@@ -25,7 +24,12 @@ const CardListImg = ({ deckCards, noIndex }) => {
         let cardList = groupedCards[key];
 
         cardList.forEach((card) => {
-            const cardProps = Object.assign({ index: card.count }, card, card.card, card.cardData);
+            const cardProps = Object.assign(
+                card,
+                card.card,
+                card.cardData,
+                { index: card.count, imageStub: card.imageStub },
+            );
             cardsToRender.push(cardProps);
         });
     }
