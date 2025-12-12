@@ -2194,5 +2194,129 @@
         "count": 1
       }
     ]
+  },
+  {
+    "precon_id": 99,
+    "restricted": false,
+    "name": "KEVIN! Home Alone! (xmas limited edition)",
+    "listClass": "kevin",
+    "phoenixborn": [
+      {
+        "id": "coal-roarkwin",
+        "count": 1,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/kevin.jpg"
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "natural",
+        "count": 3
+      },
+      {
+        "magic": "ceremonial",
+        "count": 3
+      },
+      {
+        "magic": "illusion",
+        "count": 2
+      },
+      {
+        "magic": "charm",
+        "count": 1
+      },
+      {
+        "magic": "divine",
+        "count": 1
+      }
+    ],
+    "cards": [
+      {
+        "id": "abundance",
+        "count": 1,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/abundance.jpg"
+      },
+      {
+        "id": "body-inversion",
+        "count": 1,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/body-inversion.jpg"
+      },
+      {
+        "id": "summon-false-demon",
+        "count": 1,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/summon-false-demon.jpg"
+      },
+      {
+        "id": "summon-light-bringer",
+        "count": 1,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/summon-light-bringer.jpg"
+      },
+      {
+        "id": "old-salt",
+        "count": 3,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/old-salt.jpg"
+      },
+      {
+        "id": "anchornaut",
+        "count": 3,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/anchornaut.jpg"
+      },
+      {
+        "id": "generosity",
+        "count": 2,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/generosity.jpg"
+      },
+      {
+        "id": "molten-gold",
+        "count": 2,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/molten-gold.jpg"
+      },
+      {
+        "id": "one-hundred-blades",
+        "count": 3,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/one-hundred-toy-cars.jpg"
+      },
+      {
+        "id": "natures-wrath",
+        "count": 3,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/natures-wrath.jpg"
+      },
+      {
+        "id": "final-cry",
+        "count": 3,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/final-cry.jpg"
+      },
+      {
+        "id": "ice-trap",
+        "count": 3,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/ice-trap.jpg"
+      },
+      {
+        "id": "summon-sleeping-widows",
+        "count": 2,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/summon-sleeping-widows.jpg"
+      },
+      {
+        "id": "vanish",
+        "count": 2,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/vanish.jpg"
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "false-demon",
+        "count": 2,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/false-demon.jpg"
+      },
+      {
+        "id": "light-bringer",
+        "count": 2,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/light-bringer.jpg"
+      },
+      {
+        "id": "sleeping-widow",
+        "count": 6,
+        "imageStub": "https://cdn.ashteki.com/KEVIN/sleeping-widow.jpg"
+      }
+    ]
   }
 ]
