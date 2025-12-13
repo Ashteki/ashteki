@@ -13,8 +13,8 @@ import SquishableCardPanel from './SquishableCardPanel';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faLink } from '@fortawesome/free-solid-svg-icons';
-import Die from './Die';
 import './Card.scss';
+import DieUpgrades from './DieUpgrades';
 
 const Card = ({
     canDrag,
@@ -370,12 +370,6 @@ const Card = ({
                 {getBoostedFlags(card)}
             </div>
         ) : null;
-        let dice =
-            card.dieUpgrades && card.dieUpgrades.length > 0
-                ? card.dieUpgrades.map((d) => (
-                    <Die key={'dup-' + d.uuid} die={d} onClick={onDieClick} />
-                ))
-                : null;
 
         const mouseOverAllowed = !disableMouseOver
             && (!isFacedown() || !card.parent) && onMouseOver;
@@ -400,7 +394,7 @@ const Card = ({
                         {image}
                     </div>
                     {showCounters() && <CardCounters counters={getCountersForCard(card)} />}
-                    <div className='die-upgrades'>{dice}</div>
+                    <DieUpgrades card={card} onDieClick={onDieClick} />
                 </div>
                 {shouldShowMenu() && (
                     <CardMenu

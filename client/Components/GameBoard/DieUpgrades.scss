@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+
+
+.die-upgrades {
+    color: white;
+    position: absolute;
+    bottom: 20px;
+
+    // justify-content: center;
+    display: flex;
+    // align-content: center;
+    // align-items: center;
+    // flex-wrap: wrap;
+    z-index: $layer-cards + 1;
+
+    &.squish {
+        .die-frame:not(:first-child) {
+            margin-left: -15%;
+
+
+        }
+
+        .die {
+            border: 1pt solid #bbb;
+        }
+    }
+}
