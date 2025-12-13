@@ -21,6 +21,8 @@ class SkybreakCaptain extends Card {
             title: 'Aerial Command 1',
             cost: [ability.costs.sideAction()],
             target: {
+                showCancel: true,
+                activePromptTitle: 'Choose a unit to give +1 Attack to',
                 cardType: BattlefieldTypes,
                 controller: 'self',
                 gameAction: ability.actions.cardLastingEffect((context) => ({

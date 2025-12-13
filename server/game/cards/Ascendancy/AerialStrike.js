@@ -6,6 +6,7 @@ class AerialStrike extends Card {
         this.play({
             condition: (context) => context.player.phoenixborn.isAirborne,
             target: {
+                activePromptTitle: 'Choose a unit to deal 4 damage to',
                 showCancel: true,
                 CardType: BattlefieldTypes,
                 controller: 'opponent',

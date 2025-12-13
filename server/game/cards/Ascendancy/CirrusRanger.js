@@ -8,7 +8,7 @@ class CirrusRanger extends Card {
             title: 'Aerial Ambush 1',
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,
-                gameAction: ability.actions.dealDamage({ amount: 1 })
+                gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
             },
             then: {
                 target: {
