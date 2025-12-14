@@ -93,21 +93,6 @@ class ResolveBattleAction extends GameAction {
         return counterDamageEvent;
     }
 
-    damageWillDestroyTarget(attacker, attackAmount, target) {
-        let amountReceived = attackAmount;
-        if (target.anyEffect('multiplyDamage')) {
-            amountReceived = amountReceived * target.sumEffects('multiplyDamage');
-        }
-        if (!attacker.anyEffect())
-            if (target.anyEffect('limitDamageReceived')) {
-                amountReceived = Math.min(
-                    amountReceived,
-                    ...target.getEffects('limitDamageReceived')
-                );
-            }
-        return amountReceived + target.damage - target.armor >= target.life;
-    }
-
     getEventArray() {
         return this.events;
     }
