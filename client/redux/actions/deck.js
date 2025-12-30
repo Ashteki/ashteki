@@ -285,3 +285,14 @@ export function loadOneCollectionDecks() {
         }
     };
 }
+
+export function loadAscendancyDecks() {
+    return {
+        types: ['LOAD_ASCENDANCY_DECKS', 'ASCENDANCY_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/ascendancy-decks',
+            type: 'GET'
+        }
+    };
+}
