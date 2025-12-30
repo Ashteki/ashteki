@@ -25,10 +25,10 @@ const CardListImg = ({ deckCards, noIndex }) => {
 
         cardList.forEach((card) => {
             const cardProps = Object.assign(
+                { index: card.count },
                 card,
                 card.card,
                 card.cardData,
-                { index: card.count, imageStub: card.imageStub },
             );
             cardsToRender.push(cardProps);
         });
