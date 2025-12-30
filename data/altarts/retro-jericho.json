@@ -1,0 +1,75 @@
+{
+    "category": "fan-made",
+    "results": [
+        {
+            "name": "Retro Jericho",
+            "stub": "jericho-reborn",
+            "alt": "https://cdn.ashteki.com/ashes/alts/jericho-retro.jpg"
+        },
+        {
+            "name": "Retro Accelerate",
+            "stub": "accelerate",
+            "alt": "https://cdn.ashteki.com/ashes/alts/accelerate-retro.jpg"
+        },
+        {
+            "name": "Retro Double Edge",
+            "stub": "double-edge",
+            "alt": "https://cdn.ashteki.com/ashes/alts/double-edge-retro.jpg"
+        },
+        {
+            "name": "Retro Flash Strike",
+            "stub": "flash-strike",
+            "alt": "https://cdn.ashteki.com/ashes/alts/flash-strike-retro.jpg"
+        },
+        {
+            "name": "Retro Outmatch",
+            "stub": "outmatch",
+            "alt": "https://cdn.ashteki.com/ashes/alts/outmatch-retro.jpg"
+        },
+        {
+            "name": "Retro Rubble Spirit",
+            "stub": "rubble-spirit",
+            "alt": "https://cdn.ashteki.com/ashes/alts/rubble-spirit-red.jpg"
+        },
+        {
+            "name": "Retro Summon Time Hopper",
+            "stub": "summon-time-hopper",
+            "alt": "https://cdn.ashteki.com/ashes/alts/summon-time-hopper-retro.jpg"
+        },
+        {
+            "name": "Retro Time Hopper",
+            "stub": "time-hopper",
+            "alt": "https://cdn.ashteki.com/ashes/alts/time-hopper-retro.jpg"
+        },
+        {
+            "name": "Retro Summon Turtle Guard",
+            "stub": "summon-turtle-guard",
+            "alt": "https://cdn.ashteki.com/ashes/alts/summon-turtle-guard-retro.jpg"
+        },
+        {
+            "name": "Retro Turtle Guard",
+            "stub": "turtle-guard",
+            "alt": "https://cdn.ashteki.com/ashes/alts/turtle-guard-retro.jpg"
+        },
+        {
+            "name": "Retro Summon Tusk Mount",
+            "stub": "summon-tusk-mount",
+            "alt": "https://cdn.ashteki.com/ashes/alts/summon-tusk-mount-retro.jpg"
+        },
+        {
+            "name": "Retro Tusk Mount",
+            "stub": "tusk-mount",
+            "alt": "https://cdn.ashteki.com/ashes/alts/tusk-mount-retro.jpg"
+        },
+        {
+            "name": "Retro Swift Messenger",
+            "stub": "swift-messenger",
+            "alt": "https://cdn.ashteki.com/ashes/alts/swift-messenger-retro.jpg"
+        },
+        {
+            "name": "Retro Timestopper",
+            "stub": "timestopper",
+            "alt": "https://cdn.ashteki.com/ashes/alts/timestopper-retro.jpg"
+        }
+    ]
+}
