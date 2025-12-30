@@ -101,7 +101,7 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
         <>
             {zoomCard && (
                 <div
-                    className='decklist-card-zoom'
+                    className='archon-zoom'
                     style={{ left: mousePos.x + 5 + 'px', top: mousePos.y + 'px' }}
                 >
                     <CardImage
