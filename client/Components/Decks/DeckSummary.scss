@@ -39,18 +39,6 @@
     }
 }
 
-.decklist-card-zoom {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: $keyteki-card-width * 4;
-    z-index: 999;
-
-    img {
-        border-radius: 6px;
-    }
-}
-
 .enhanced-card {
     color: #4f779b;
 }
