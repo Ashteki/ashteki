@@ -5,9 +5,9 @@ describe('Reconfigure', function () {
                 phoenixborn: 'issa-brightmore',
                 inPlay: ['flute-mage', 'thunder-hulk'],
                 dicepool: ['artifice', 'artifice', 'artifice', 'natural'],
-                hand: ['barrier', 'reconfigure'],
+                hand: ['barrier'],
                 deck: ['molten-gold'],
-                spellboard: ['summon-thunder-hulk', 'summon-spark-drone']
+                spellboard: ['summon-thunder-hulk', 'summon-spark-drone', 'reconfigure']
             },
             player2: {
                 phoenixborn: 'aradel-summergaard',
@@ -23,7 +23,7 @@ describe('Reconfigure', function () {
         this.player1.attachDie(0, this.summonThunderHulk);
         expect(this.summonThunderHulk.isCharged).toBe(true);
 
-        this.player1.play(this.reconfigure);
+        this.player1.useCardAbility(this.reconfigure, 'Reconfigure');
         this.player1.clickDieUpgrade(this.summonThunderHulk, 0);
         this.player1.clickCard(this.issaBrightmore);
 
@@ -38,7 +38,7 @@ describe('Reconfigure', function () {
         this.player1.attachDie(0, this.summonThunderHulk);
         expect(this.summonThunderHulk.isCharged).toBe(true);
 
-        this.player1.play(this.reconfigure);
+        this.player1.useCardAbility(this.reconfigure, 'Reconfigure');
         expect(this.player1).toBeAbleToSelectDie(this.issaBrightmore.dieUpgrades[0]);
         this.player1.clickDieUpgrade(this.issaBrightmore, 0);
         this.player1.clickCard(this.thunderHulk);
@@ -54,7 +54,7 @@ describe('Reconfigure', function () {
         this.player1.attachDie(0, this.thunderHulk);
         expect(this.thunderHulk.isCharged).toBe(true);
 
-        this.player1.play(this.reconfigure);
+        this.player1.useCardAbility(this.reconfigure, 'Reconfigure');
         this.player1.clickDieUpgrade(this.thunderHulk, 0);
         this.player1.clickCard(this.summonThunderHulk);
 
