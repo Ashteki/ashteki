@@ -211,6 +211,25 @@ class Card extends PlayableObject {
             );
         }
 
+        // Armor & Damage prevention
+        if ([...BattlefieldTypes, ...PhoenixbornTypes].includes(this.type)) {
+            this.abilities.keywordReactions.push(
+                this.forcedInterrupt({
+                    autoResolve: true,
+                    inexhaustible: true,
+                    condition: (context) => context.source.anyEffect('preventAllDamage', context),
+                    when: {
+                        onDamageApplied: (event, context) => event.card === context.source
+                    },
+                    effect: 'prevent all damage',
+                    gameAction: AbilityDsl.actions.preventDamage((context) => ({
+                        event: context.event,
+                        amount: 'all'
+                    }))
+                })
+            );
+        }
+
         if (BattlefieldTypes.includes(this.type)) {
             this.abilities.keywordReactions.push(
                 this.forcedReaction({
@@ -347,6 +366,22 @@ class Card extends PlayableObject {
                 properties
             )
         );
+    }
+
+    withdraw() {
+        return this.forcedInterrupt({
+            title: 'Withdraw',
+            inexhaustible: true,
+            condition: () => this.exhausted,
+            when: {
+                onDamageApplied: (event, context) => event.card === context.source
+            },
+            effect: 'prevent all damage',
+            gameAction: AbilityDsl.actions.preventDamage((context) => ({
+                event: context.event,
+                amount: 'all'
+            }))
+        });
     }
 
     inheritance() {
