@@ -59,11 +59,6 @@ class DealDamageAction extends CardGameAction {
                 let preventAmount = card.sumEffects('preventNonAttackDamage');
                 params.amount = params.amount - preventAmount;
             }
-
-            if (card.anyEffect('limitDamageReceived')) {
-                const effects = card.getEffects('limitDamageReceived');
-                params.amount = Math.min(params.amount, ...effects);
-            }
         }
 
         let armorPrevented = 0
