@@ -73,7 +73,6 @@ const Effects = {
             0,
             (eventContext) => eventContext.card.hasCharmDie
         ),
-    preventNonAttackDamage: (amount) => EffectBuilder.card.static('preventNonAttackDamage', amount),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setAttack: (amount) => EffectBuilder.card.flexible('setAttack', amount),

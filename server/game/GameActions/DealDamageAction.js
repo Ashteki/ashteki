@@ -54,13 +54,6 @@ class DealDamageAction extends CardGameAction {
             params.preventable &&
             !(this.unpreventable || params.damageSource.anyEffect('unpreventable'));
 
-        if (params.preventable) {
-            if (card.anyEffect('preventNonAttackDamage') && !this.fightEvent) {
-                let preventAmount = card.sumEffects('preventNonAttackDamage');
-                params.amount = params.amount - preventAmount;
-            }
-        }
-
         let armorPrevented = 0
         // Armour and Unpreventable damage (e.g. fallen)
         if (params.preventable && !params.ignoreArmor) {
