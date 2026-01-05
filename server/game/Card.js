@@ -232,6 +232,28 @@ class Card extends PlayableObject {
 
         if (BattlefieldTypes.includes(this.type)) {
             this.abilities.keywordReactions.push(
+                this.forcedInterrupt({
+                    autoResolve: true,
+                    inexhaustible: true,
+                    condition: (context) => context.source.armor > 0,
+                    when: {
+                        onDamageApplied: (event, context) => event.card === context.source
+                    },
+                    effect: 'prevent {0} damage',
+                    effectArgs: (context) => context.source.armor,
+                    gameAction: AbilityDsl.actions.preventDamage((context) => ({
+                        event: context.event,
+                        amount:
+                            context.event.amountDealt <= context.source.armor
+                                ? context.event.amountDealt
+                                : context.source.armor
+                    }))
+                })
+            );
+        }
+
+        if (BattlefieldTypes.includes(this.type)) {
+            this.abilities.keywordReactions.push(
                 this.forcedReaction({
                     title: 'Group Tactics',
                     condition: (context) => context.source.getKeywordValue('grouptactics'),

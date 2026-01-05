@@ -9,7 +9,6 @@ class DealDamageAction extends CardGameAction {
         this.sourceType = '';
         this.damageType = 'card effect';
         this.purge = false;
-        this.ignoreArmor = false;
         this.bonus = false;
         this.showMessage = false;
         this.unpreventable = false;
@@ -39,7 +38,6 @@ class DealDamageAction extends CardGameAction {
             damageType: this.damageType,
             destroyEvent: null,
             fightEvent: this.fightEvent,
-            ignoreArmor: this.ignoreArmor,
             bonus: this.bonus,
             sourceType: this.sourceType,
             multiEvent: this.multiEvent
@@ -53,13 +51,6 @@ class DealDamageAction extends CardGameAction {
         params.preventable =
             params.preventable &&
             !(this.unpreventable || params.damageSource.anyEffect('unpreventable'));
-
-        let armorPrevented = 0
-        // Armour and Unpreventable damage (e.g. fallen)
-        if (params.preventable && !params.ignoreArmor) {
-            armorPrevented = amount <= card.armor ? amount : card.armor;
-            params.amount -= armorPrevented;
-        }
 
         params.condition = (event) => this.canDealDamage(event.damageSource, event);
 
@@ -96,25 +87,7 @@ class DealDamageAction extends CardGameAction {
                 }
             );
 
-            let armorEvent;
-            let armorParams = {
-                card: damageDealtEvent.card,
-                context: damageDealtEvent.context,
-                armorPrevented: armorPrevented,
-                noGameStateCheck: true
-            };
-
-            if (!armorPrevented) {
-                armorEvent = super.createEvent('unnamedEvent', armorParams, (event) => {
-                    event.addSubEvent(damageAppliedEvent);
-                });
-            } else {
-                armorEvent = super.createEvent('onDamagePreventedByArmor', armorParams, (event) => {
-                    event.addSubEvent(damageAppliedEvent);
-                });
-            }
-
-            damageDealtEvent.addSubEvent(armorEvent);
+            damageDealtEvent.addSubEvent(damageAppliedEvent);
         });
     }
 
