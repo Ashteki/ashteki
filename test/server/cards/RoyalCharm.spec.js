@@ -38,6 +38,31 @@ describe('Royal Charm', function () {
             expect(this.hammerKnight.attack).toBe(2);
         });
 
+        it('dice returns to pool on round end', function () {
+            this.player1.play(this.enchantedViolinist);
+            // unselect class die
+            this.player1.clickDie(3);
+            // select power die
+            this.player1.clickDie(2);
+            // choose die for royal charm
+            this.player1.clickDie(2);
+
+            expect(this.royalCharm.dieUpgrades.length).toBe(1);
+            expect(this.royalCharm.hasModifiedAttack()).toBe(false);
+
+            this.player1.player.actions.main = true;
+            this.player1.endTurn();
+            this.player2.endTurn();
+
+            this.player1.clickDone();
+            this.player1.clickNo();
+
+            // dice returns to pool
+            expect(this.player1.dicepool.length).toBe(5);
+            expect(this.royalCharm.dieUpgrades.length).toBe(0);
+            expect(this.player2).toHaveDefaultPrompt();
+        });
+
         it('use dice on card targetting holy knight', function () {
             this.player1.play(this.enchantedViolinist);
             // unselect class die
@@ -175,7 +200,6 @@ describe('Royal Charm', function () {
                     ],
                     deck: ['rampage'],
                     threatZone: ['ballistic-seeds', 'regenerate'],
-                    dicepool: ['basic', 'basic', 'basic', 'basic', 'basic'],
                     archives: ['scarlet-seed']
                 }
             });
@@ -210,9 +234,10 @@ describe('Royal Charm', function () {
             expect(this.ballisticSeeds.facedown).toBe(false);
             expect(this.scarletSeed.location).toBe('play area');
             this.player1.play(this.meteor);
-            // choose die for royal charm
             this.player1.clickDone();
-            this.player1.clickDie(4);
+            // choose die for royal charm
+            const die = this.player1.dicepool.findIndex(d => d.exhausted && d.level === 'power');
+            this.player1.clickDie(die);
             // this.player1.clickDone();
             // check spellboard is still just 1
             expect(this.royalCharm.dieUpgrades.length).toBe(1);

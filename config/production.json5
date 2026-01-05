@@ -3,7 +3,7 @@
     minLobbyChatTime: 0, // The time (in seconds) an account has to be registered before it can chat in the lobby
 
     lobby: {
-        appName: 'Ashes Reborn Online',
+        appName: 'Ashes Ascendancy Online',
         emailFromAddress: 'mailer@ashteki.com',
         blockDisposableEmail: false,
         requireActivation: false,

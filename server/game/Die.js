@@ -1,4 +1,4 @@
-const { Magic, BattlefieldTypes, CardType, UpgradeCardTypes } = require('../constants');
+const { Magic, BattlefieldTypes, CardType, UpgradeCardTypes, PhoenixbornTypes } = require('../constants');
 const AbilityDsl = require('./abilitydsl');
 const DieAbility = require('./BaseActions/DieAbility');
 const { Costs } = require('./costs');
@@ -279,6 +279,35 @@ class Die extends PlayableObject {
                         }
                     }
                 });
+            case 'artifice':
+                return this.action({
+                    title: 'Artifice Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        activePromptTitle: 'Choose a card to place this die on',
+                        controller: 'self',
+                        showCancel: true,
+                        gameAction: this.game.actions.attachDie({ upgradeDie: this })
+                    },
+                    message: '{0} attaches {1} to {2}',
+                    messageArgs: (context) => context.target
+                });
+            case 'astral':
+                return this.action({
+                    title: 'Astral Dice Power',
+                    cost: [Costs.sideAction(), Costs.exhaustDie()],
+                    target: {
+                        activePromptTitle: 'Choose a unit or phoenixborn to place this die on',
+                        cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
+                        controller: 'self',
+                        showCancel: true,
+                        cardCondition: (card) =>
+                            !card.dieUpgrades.some((d) => d.magic === Magic.Astral),
+                        gameAction: this.game.actions.attachDie({ upgradeDie: this })
+                    },
+                    message: '{0} attaches {1} to {2}',
+                    messageArgs: (context) => context.target
+                });
         }
     }
 
@@ -324,9 +353,8 @@ class Die extends PlayableObject {
 
     setupAbilities() {
         switch (this.magic) {
+            case 'artifice':
             case 'illusion':
-                this.attachable = true;
-                break;
             case 'time':
                 this.attachable = true;
                 break;
@@ -340,6 +368,27 @@ class Die extends PlayableObject {
                 this.attachable = true;
                 this.whileAttached({
                     effect: AbilityDsl.effects.modifyAttack(1)
+                });
+                break;
+            case 'astral':
+                this.attachable = true;
+                this.forcedInterrupt({
+                    condition: (context) => context.source.parent,
+                    when: {
+                        onDamageApplied: (event, context) =>
+                            event.card === context.source.parent && event.amount > 0
+                    },
+                    effect: 'prevent 1 damage and draw a card',
+                    gameAction: [
+                        AbilityDsl.actions.conditional({
+                            condition: (context) => context.player.anyEffect('preventAstralReturn'),
+                            falseGameAction: AbilityDsl.actions.detachDie((context) => ({ die: context.source }))
+                        }),
+                        AbilityDsl.actions.preventDamage((context) => ({
+                            event: context.event,
+                            amount: 1
+                        }))
+                    ]
                 });
                 break;
         }

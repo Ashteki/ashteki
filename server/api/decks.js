@@ -182,6 +182,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/ascendancy-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getPreconDecks(11);
+            } catch (err) {
+                logger.error('Failed to get precon 11 decks', err);
+
+                throw new Error('Failed to get precon 11 decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/decks/:id',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {

@@ -4,8 +4,8 @@ const DiceCost = require('./dicecost');
 class XDiceCost extends DiceCost {
     canPay(context) {
         // assumption that xdice is only one req, of one type
-        return Dice.findADie(context.player.getSpendableDice(context), this.getDiceReq(context)[0]);
-        // return Dice.canMatch(context.player.getSpendableDice(context), this.getDiceReq(context));
+        return Dice.findADie(context.player.getUsableDice(context), this.getDiceReq(context)[0]);
+        // return Dice.canMatch(context.player.getUsableDice(context), this.getDiceReq(context));
     }
 
     resolve(context, result) {

@@ -298,6 +298,7 @@ const GameBoard = () => {
                             cardsInPlay={otherPlayer.cardPiles.cardsInPlay}
                             phoenixborn={otherPlayer.phoenixborn}
                             onCardClick={onCardClick}
+                            onDieClick={onDieClick}
                             onMenuItemClick={onMenuItemClick}
                             onMouseOut={onMouseOut}
                             onMouseOver={onMouseOver}
@@ -319,6 +320,7 @@ const GameBoard = () => {
                                 phoenixborn={thisPlayer.phoenixborn}
                                 manualMode={currentGame.manualMode}
                                 onCardClick={onCardClick}
+                                onDieClick={onDieClick}
                                 onMenuItemClick={onMenuItemClick}
                                 onMouseOut={onMouseOut}
                                 onMouseOver={onMouseOver}

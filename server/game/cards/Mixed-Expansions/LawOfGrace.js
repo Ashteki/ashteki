@@ -14,7 +14,18 @@ class LawOfGrace extends Card {
             condition: () => !this.exhausted,
             targetController: 'Any',
             match: (card) => PhoenixbornTypes.includes(card.type),
-            effect: ability.effects.preventNonAttackDamage(1)
+            effect: ability.effects.gainAbility('forcedInterrupt', {
+                autoResolve: true,
+                when: {
+                    onDamageApplied: (event, context) =>
+                        !event.damageEvent.fightEvent // not a fight
+                },
+                effect: 'prevent 1 damage',
+                gameAction: ability.actions.preventDamage((context) => ({
+                    event: context.event,
+                    amount: 1
+                }))
+            })
         });
 
         this.bound();

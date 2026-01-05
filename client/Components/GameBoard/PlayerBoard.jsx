@@ -12,6 +12,7 @@ const PlayerBoard = ({
     cardSize,
     manualMode,
     onCardClick,
+    onDieClick,
     onMenuItemClick,
     onMouseOut,
     onMouseOver,
@@ -49,6 +50,7 @@ const PlayerBoard = ({
                                     canDrag={manualMode}
                                     card={card}
                                     disableMouseOver={card.facedown && !card.code}
+                                    onDieClick={onDieClick}
                                     onClick={onCardClick}
                                     onMenuItemClick={onMenuItemClick}
                                     onMouseOut={onMouseOut}

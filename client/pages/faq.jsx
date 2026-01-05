@@ -36,7 +36,7 @@ const FAQ = () => {
                             rel='noopener noreferrer'
                             href='https://wiki.ashes.live'
                         >
-                            Ashes: Reborn Wiki
+                            Ashes Wiki
                         </a> for rules, articles, and lore
                         !
                     </p>
@@ -45,7 +45,7 @@ const FAQ = () => {
                 <h3>The Chained List</h3>
                 <div className='faq-entry'>
                     <p>
-                        PHG&apos;s Organized Play rules for Ashes Reborn include a list of cards that
+                        PHG&apos;s Organized Play rules for Ashes include a list of cards that
                         are said to be &apos;chained&apos;. These cards may not be included in your
                         first five, or played in the first round of the game. The current chained list
                         is:

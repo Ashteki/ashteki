@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -17,7 +16,6 @@ module.exports = {
         modules: ['node_modules']
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './client/index.html',
             inject: true
@@ -28,7 +26,8 @@ module.exports = {
         })
     ],
     output: {
-        publicPath: '/'
+        publicPath: '/',
+        clean: true
     },
     optimization: {
         runtimeChunk: 'single',

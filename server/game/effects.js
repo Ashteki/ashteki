@@ -55,9 +55,7 @@ const Effects = {
     modifyArmor: (amount) => EffectBuilder.card.flexible('modifyArmor', amount),
     modifyFocus: (amount) => EffectBuilder.card.flexible('modifyFocus', amount),
     multiplyDamage: (amount) => EffectBuilder.card.flexible('multiplyDamage', amount),
-    preventDamage: (amount) => EffectBuilder.card.flexible('preventDamage', amount),
     preventAllDamage: (shield, contextFunc) => EffectBuilder.card.static('preventAllDamage', shield, contextFunc),
-    limitDamageReceived: (amount) => EffectBuilder.card.static('limitDamageReceived', amount),
 
     // attacks from this unit may not be blocked
     preventBlock: (contextFunc) => EffectBuilder.card.static('preventBlock', 0, contextFunc),
@@ -75,7 +73,6 @@ const Effects = {
             0,
             (eventContext) => eventContext.card.hasCharmDie
         ),
-    preventNonAttackDamage: (amount) => EffectBuilder.card.static('preventNonAttackDamage', amount),
     quickStrike: () => EffectBuilder.card.static('quickStrike'),
     removeKeyword: (keyword) => EffectBuilder.card.static('removeKeyword', keyword),
     setAttack: (amount) => EffectBuilder.card.flexible('setAttack', amount),
@@ -128,7 +125,8 @@ const Effects = {
     playerCannot: (type, condition) =>
         EffectBuilder.player.static('abilityRestrictions', new CannotRestriction(type, condition)),
     skipStep: (step) => EffectBuilder.player.static('skipStep', step),
-    preventAutoDice: () => EffectBuilder.player.static('preventAutoDice')
+    preventAutoDice: () => EffectBuilder.player.static('preventAutoDice'),
+    preventAstralReturn: () => EffectBuilder.player.static('preventAstralReturn')
 };
 
 module.exports = Effects;

@@ -8,7 +8,7 @@ const LearnToPlay = () => {
     return (
         <Col className='full-height lobby-content' xs='12'>
             <Panel type='lobby' cardClass='learn'>
-                <h2>Learn to play Ashes Reborn</h2>
+                <h2>Learn to play Ashes</h2>
                 <Row className='lobby-row'>
                     <Col md='4'>
                         <h3>Plaid Hat Games</h3>
