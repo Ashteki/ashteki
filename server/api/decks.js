@@ -305,7 +305,12 @@ module.exports.init = function (server) {
                 // this is an import/update request
                 let deck = Object.assign(
                     {},
-                    { id: req.body.deckId, uuid: req.body.uuid, username: req.user.username }
+                    {
+                        id: req.body.deckId,
+                        uuid: req.body.uuid,
+                        username: req.user.username,
+                        ashesDb: req.body.ashesDb
+                    }
                 );
                 let savedDeck;
 

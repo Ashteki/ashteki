@@ -133,7 +133,8 @@ export function saveDeck(deck) {
 
 export function importDeck(deck) {
     let str = JSON.stringify({
-        uuid: deck.uuid
+        uuid: deck.uuid,
+        ashesDb: deck.ashesDb
     });
 
     return {
@@ -151,6 +152,7 @@ export function resyncDeck(deck) {
     let str = JSON.stringify({
         deckId: deck._id,
         uuid: deck.ashesLiveUuid,
+        ashesDb: deck.ashesDb,
         resync: true
     });
 
