@@ -10,19 +10,19 @@
             "threat": 6,
             "life": 30,
             "ultimate": 3,
-            "imageStub": "flood-of-moon-cove-1p-standard-1.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/mooncove/flood-of-moon-cove-1p-standard-1.jpg"
         },
         {
-            "name": "Flood Ultimate",
-            "stub": "flood-ultimate",
+            "name": "Moon Cove Ultimate",
+            "stub": "moon-cove-ultimate",
             "type": "Ready Spell",
-            "imageStub": "flood-of-moon-cove-ultimate-%s.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/mooncove/flood-of-moon-cove-ultimate-%s.jpg"
         },
         {
-            "name": "Flood Behaviour",
-            "stub": "flood-behaviour",
+            "name": "Moon Cove Behaviour",
+            "stub": "moon-cove-behaviour",
             "type": "Behaviour",
-            "imageStub": "flood-of-moon-cove-behavior-%s.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/mooncove/flood-of-moon-cove-behavior-%s.jpg"
         },
         {
             "name": "Drowning",
