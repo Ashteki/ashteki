@@ -1,3 +1,4 @@
+const { PhoenixbornTypes, BattlefieldTypes, Level } = require('../../../../constants');
 const AbilityDsl = require('../../../abilitydsl');
 const UltimateCard = require('../../../solo/UltimateCard');
 
@@ -6,41 +7,65 @@ class MoonCoveUltimate extends UltimateCard {
         switch (phase) {
             case 1:
                 return this.ultimate({
+                    title: 'Ultimate',
                     target: {
                         mode: 'auto',
-                        aim: 'left',
-                        gameAction: AbilityDsl.actions.attachConjuredAlteration({
-                            conjuredAlteration: 'bleed'
-                        })
+                        // aim: 'left',
+                        ignoreTargetCheck: true,
+                        gameAction: AbilityDsl.actions.destroy()
                     },
                     then: {
-                        gameAction: AbilityDsl.actions.addToThreatZone({ amount: 1 })
+                        alwaysTriggers: true,
+                        target: {
+                            autoTarget: (context) => context.player.opponent.phoenixborn,
+
+                            gameAction: AbilityDsl.actions.sequentialForEach((context) => ({
+                                num: 2,
+                                action: AbilityDsl.actions.attachConjuredAlteration({
+                                    target: context.target,
+                                    targetType: PhoenixbornTypes,
+                                    conjuredAlteration: 'drowning'
+                                })
+                            }))
+                        }
                     }
                 });
             case 2:
                 return this.ultimate({
+                    title: 'Ultimate',
                     target: {
-                        mode: 'auto',
-                        aim: 'right',
-                        numCards: 2,
-                        gameAction: AbilityDsl.actions.sequentialForEach({
-                            forEach: (context) => context.target,
-                            action: AbilityDsl.actions.attachConjuredAlteration({
-                                conjuredAlteration: 'bleed'
-                            })
+                        ignoreTargetCheck: true,
+                        autoTarget: (context) => context.player.opponent.unitsInPlay,
+                        gameAction: AbilityDsl.actions.orderedAoE({
+                            gameAction: AbilityDsl.actions.dealDamage({ amount: phase, showMessage: true }),
+                            promptTitle: 'Chimera Ultimate'
                         })
                     },
                     then: {
-                        gameAction: AbilityDsl.actions.addToThreatZone({ amount: 1 })
+                        alwaysTriggers: true,
+                        target: {
+                            autoTarget: (context) => context.player.opponent.phoenixborn,
+
+                            gameAction: AbilityDsl.actions.sequentialForEach((context) => ({
+                                num: 2,
+                                action: AbilityDsl.actions.attachConjuredAlteration({
+                                    target: context.target,
+                                    targetType: PhoenixbornTypes,
+                                    conjuredAlteration: 'drowning'
+                                })
+                            }))
+                        }
                     }
                 });
             case 3:
                 return this.ultimate({
-                    gameAction: AbilityDsl.actions.chosenDiscard({
-                        location: ['hand', 'spellboard'],
-                        allowTopOfDeck: true
-                    }),
+                    title: 'Ultimate',
+                    target: {
+                        autoTarget: (context) => context.player.opponent.phoenixborn,
+                        gameAction: AbilityDsl.actions.dealDamage({ amount: 1, showMessage: true })
+                    },
                     then: {
+                        alwaysTriggers: true,
                         gameAction: AbilityDsl.actions.addToThreatZone({ amount: 1 })
                     }
                 });
