@@ -691,6 +691,7 @@
     "premium": true,
     "mode": "chimera",
     "name": "The Flood of Moon Cove - Wave",
+    "restricted": true,
     "phoenixborn": [
       {
         "id": "flood-of-moon-cove",
