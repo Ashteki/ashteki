@@ -1,12 +1,12 @@
 # Ashteki
 
-Web based implementation of the Ashes Reborn card game
+A web based implementation of the Ashes Ascendancy card game
 
 ## FAQ
 
 ### What is it?
 
-This is the respository for the code that runs ashteki.com, which allows people to play Ashes Reborn in their browser
+This is the respository for the code that runs ashteki.com, which allows people to play Ashes Ascendancy in their browser
 
 ### Doesn't this look a lot like The Crucible Online and other sites like it?
 

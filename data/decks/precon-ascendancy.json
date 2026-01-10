@@ -1,0 +1,139 @@
+[
+  {
+    "precon_id": 1101,
+    "name": "The Spark of Invention",
+    "format": null,
+    "phoenixborn": [
+      {
+        "id": "issa-brightmore",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "artifice",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "barrier",
+        "count": 3
+      },
+      {
+        "id": "brilliant-display",
+        "count": 3
+      },
+      {
+        "id": "core-supplier",
+        "count": 3
+      },
+      {
+        "id": "recharge",
+        "count": 3
+      },
+      {
+        "id": "reconfigure",
+        "count": 3
+      },
+      {
+        "id": "summon-spark-drone",
+        "count": 3
+      },
+      {
+        "id": "summon-thunder-hulk",
+        "count": 3
+      },
+      {
+        "id": "supercharge",
+        "count": 3
+      },
+      {
+        "id": "systems-drafter",
+        "count": 3
+      },
+      {
+        "id": "thunder-suit",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "spark-drone",
+        "count": 3
+      },
+      {
+        "id": "thunder-hulk",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 1102,
+    "name": "The Sentinels of Skies",
+    "phoenixborn": [
+      {
+        "id": "arren-frostpeak",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "astral",
+        "count": 10
+      }
+    ],
+    "cards": [
+      {
+        "id": "aerial-strike",
+        "count": 3
+      },
+      {
+        "id": "cirrus-ranger",
+        "count": 3
+      },
+      {
+        "id": "dodge",
+        "count": 3
+      },
+      {
+        "id": "gust-spear",
+        "count": 3
+      },
+      {
+        "id": "javelineer",
+        "count": 3
+      },
+      {
+        "id": "retreat",
+        "count": 3
+      },
+      {
+        "id": "skybreak-captain",
+        "count": 3
+      },
+      {
+        "id": "summon-frost-talon",
+        "count": 3
+      },
+      {
+        "id": "summon-stellar-oracle",
+        "count": 3
+      },
+      {
+        "id": "whirlwind",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "frost-talon",
+        "count": 3
+      },
+      {
+        "id": "stellar-oracle",
+        "count": 2
+      }
+    ]
+  }
+]

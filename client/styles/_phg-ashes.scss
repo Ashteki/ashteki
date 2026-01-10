@@ -176,6 +176,10 @@ button[class*=" phg-"]::before {
   content: '\e81f';
 }
 
+.phg-rage-power:before {
+  content: '\e816';
+}
+
 /* '' */
 .phg-astral-power:before {
   content: '\e817';

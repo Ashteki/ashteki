@@ -9,6 +9,7 @@ class PlayUpgradeAction extends BasePlayAction {
         super(card, {
             activePromptTitle: 'Choose a unit to attach to',
             cardType: BattlefieldTypes,
+            optional: true,
             gameAction: new AttachAction((context) => ({ upgrade: context.source }))
         });
         this.title = 'Play this alteration';

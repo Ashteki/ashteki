@@ -9,7 +9,10 @@ class DiceCost {
     }
 
     canPay(context) {
-        return Dice.canMatch(context.player.getSpendableDice(context), this.getDiceReq(context));
+        const usableDice = context.player
+            .getUsableDice(context)
+            .filter((d) => this.costDieCondition(d, context));
+        return Dice.canMatch(usableDice, this.getDiceReq(context));
     }
 
     // eslint-disable-next-line no-unused-vars
@@ -20,7 +23,8 @@ class DiceCost {
     costDieCondition(die, context) {
         return (
             !die.exhausted &&
-            (die.level !== Level.Basic || context.player.checkRestrictions('useBasicDice'))
+            (die.level !== Level.Basic || context.player.checkRestrictions('useBasicDice')) &&
+            (!die.parent || die.parent.canSpendDieUpgrades(context))
         );
     }
 

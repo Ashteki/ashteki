@@ -60,6 +60,7 @@ class Application extends React.Component {
         this.props.loadMSUDecks();
         this.props.loadDualDuelDecks();
         this.props.loadOneCollectionDecks();
+        this.props.loadAscendancyDecks();
         this.props.getAllPairings();
 
         $(document).ajaxError((event, xhr) => {
@@ -197,6 +198,7 @@ Application.propTypes = {
     loadCorpseRebuildDecks: PropTypes.func,
     loadFirstAdventureDecks: PropTypes.func,
     loadOneCollectionDecks: PropTypes.func,
+    loadAscendancyDecks: PropTypes.func,
     navigate: PropTypes.func,
     path: PropTypes.string,
     setAuthTokens: PropTypes.func,

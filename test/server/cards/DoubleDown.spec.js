@@ -358,7 +358,6 @@ describe('Double Down', function () {
                     deck: [],
                     spellboard: [],
                     threatZone: [],
-                    dicepool: ['basic', 'basic', 'basic', 'basic', 'basic']
                 }
             });
         });

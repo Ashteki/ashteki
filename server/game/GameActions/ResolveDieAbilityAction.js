@@ -14,8 +14,16 @@ class ResolveDieAbilityAction extends DiceGameAction {
             const ability = event.die.getPowerDieAction();
             context.game.queueSimpleStep(() => {
                 if (ability) {
+                    if (this.targetCard) {
+                        ability.properties.target.autoTarget = (context) => this.targetCard;
+                    }
+                    if (this.targetCardType) {
+                        ability.properties.target.cardType = this.targetCardType;
+                    }
+
                     let newContext = Object.assign(ability.createContext(context.player), {
-                        isResolveAbility: true
+                        isResolveAbility: true,
+
                     });
                     context.game.queueStep(new NoCostsAbilityResolver(context.game, newContext));
                 }

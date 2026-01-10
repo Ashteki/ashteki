@@ -7,7 +7,8 @@ module.exports = merge(common, {
         bundle: ['./client/index.jsx', 'webpack-hot-middleware/client']
     },
     output: {
-        filename: '[name].[contenthash].js'
+        filename: '[name].[contenthash].js',
+        clean: true
     },
     mode: 'development',
     devtool: 'inline-source-map',

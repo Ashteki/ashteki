@@ -7,36 +7,29 @@
 .counters {
     color: white;
     position: absolute;
-    top: 0;
+    top: 30px;
     bottom: 0;
     left: 0;
     right: 0;
     justify-content: center;
     display: flex;
-    align-content: center;
-    align-items: center;
+    // align-content: center;
+    // align-items: center;
     flex-wrap: wrap;
     z-index: $layer-cards + 1;
 }
 
-.die-upgrades {
-    color: white;
-    position: absolute;
-    bottom: 20px;
 
-    // justify-content: center;
-    display: flex;
-    // align-content: center;
-    // align-items: center;
-    // flex-wrap: wrap;
-    z-index: $layer-cards + 1;
-}
-
-.game-card.vertical .counters {
-    flex-direction: column;
+.game-card:not(.large, .x-large).vertical .counters {
+    // flex-direction: column;
 
     &.many-counters {
         flex-direction: row;
+        justify-content: left;
+
+        .counter:not(:first-child) {
+            margin-left: -15%;
+        }
     }
 }
 

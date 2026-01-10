@@ -61,7 +61,6 @@ describe('Iron Scales', function () {
             this.player1.clickDone();
             this.player1.clickYes(); // counter
 
-
             expect(this.ironScales.damage).toBe(0);
             expect(this.bloodPuppet.location).toBe('archives');
             expect(this.player1).toHaveDefaultPrompt();

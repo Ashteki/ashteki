@@ -18,7 +18,7 @@ class GameAction {
         this.noGameStateCheck = false;
     }
 
-    setDefaultProperties() {}
+    setDefaultProperties() { }
 
     reset() {
         this.target = [];

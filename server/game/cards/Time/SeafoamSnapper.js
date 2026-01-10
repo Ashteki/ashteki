@@ -9,7 +9,7 @@ class SeafoamSnapper extends Card {
         });
         this.forcedInterrupt({
             when: {
-                onDamagePreventedByArmor: (event, context) => event.card === context.source
+                onDamagePrevented: (event, context) => event.card === context.source
             },
             gameAction: ability.actions.removeStatus({ all: true })
         });
