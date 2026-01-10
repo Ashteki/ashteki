@@ -199,7 +199,7 @@ class PlayableObject extends EffectSource {
     canAttach(card, context) {
         return (
             card &&
-            [...BattlefieldTypes, CardType.ReadySpell].includes(card.getType()) &&
+            [...BattlefieldTypes, CardType.ReadySpell, CardType.Phoenixborn].includes(card.getType()) &&
             this.canPlayAsUpgrade()
         );
     }

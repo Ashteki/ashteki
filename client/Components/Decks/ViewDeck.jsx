@@ -8,7 +8,7 @@ import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
 import './ViewDeck.scss';
 import DeckHeader from './DeckHeader';
-import { ashesLiveShareUrl } from '../../util';
+import { ashesDbShareUrl, ashesLiveShareUrl } from '../../util';
 import { toastr } from 'react-redux-toastr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -60,7 +60,8 @@ const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
         );
     }
 
-    const ashesLiveLink = ashesLiveShareUrl + deck.ashesLiveUuid;
+    const ashesLiveLink = (deck.ashesDb ? ashesDbShareUrl : ashesLiveShareUrl) + deck.ashesLiveUuid;
+    const siteName = deck.ashesDb ? 'ashesdb' : 'ashes.live';
 
     const writeLinkToClipboard = (event) => {
         event.preventDefault();
@@ -94,14 +95,14 @@ const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
                         {deleteButton}
                         {deck.ashesLiveUuid && (
                             <Dropdown
-                                variant='extra'
+                                variant='warning'
                                 className='ashes-live def'
-                                title='ashes.live'
+                                title={siteName}
                                 as={ButtonGroup}
                             >
                                 <Dropdown.Toggle
                                     split
-                                    variant='extra'
+                                    variant='warning'
                                     className='def'
                                     id='dropdown-basic'
                                 >
@@ -112,9 +113,9 @@ const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
                                     <Dropdown.Item href='#' onClick={handleUpdateClick}>
                                         Update
                                     </Dropdown.Item>
-                                    <Dropdown.Item href={ashesLiveLink}>Go to ashes.live</Dropdown.Item>
+                                    <Dropdown.Item href={ashesLiveLink}>Go to {siteName}</Dropdown.Item>
                                     <Dropdown.Item href='#' onClick={writeLinkToClipboard}>
-                                        Copy ashes.live url
+                                        Copy {siteName} url
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

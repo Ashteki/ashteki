@@ -4,7 +4,7 @@ describe('Fate Reflection', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: ['flute-mage', 'hammer-knight', 'squall-stallion'],
+                    inPlay: ['flute-mage', 'hammer-knight', 'squall-stallion', 'fallen'],
                     spellboard: [],
                     hand: ['anchornaut', 'seeds-of-aggression'],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy']
@@ -135,6 +135,83 @@ describe('Fate Reflection', function () {
             expect(this.player2.hand.length).toBe(0);
             // does not get stuck on first resolution targets
             expect(this.player1).toHavePrompt('Meteor II');
+        });
+    });
+
+    describe('BUG: Fate Reflection vs Armor', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['hammer-knight'],
+                    spellboard: [],
+                    hand: ['anchornaut', 'meteor'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'divine', 'divine']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['frost-fang'],
+                    spellboard: ['summon-butterfly-monk'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'time'],
+                    archives: ['butterfly-monk'],
+                    hand: ['fate-reflection']
+                }
+            });
+        });
+
+        it('Aradel water blast, armored unit reflects 2 damage', function () {
+            this.player1.dicepool[5].level = 'class';
+
+            this.player1.useCardAbility(this.aradelSummergaard, 'Water Blast');
+            this.player1.clickCard(this.frostFang);
+            // any interrupts?
+            this.player2.clickCard(this.fateReflection); // click fate reflection to play as reaction
+            this.player2.clickDie(4);
+            this.player2.clickCard(this.hammerKnight);
+
+            expect(this.hammerKnight.damage).toBe(2);
+            expect(this.fateReflection.location).toBe('discard');
+            expect(this.player2.hand.length).toBe(0);
+        });
+    });
+
+    describe('BUG: exhausted Turtle Guard plus Fate Reflection vs Natures Wrath', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['hammer-knight'],
+                    spellboard: [],
+                    hand: ['anchornaut', 'meteor', 'natures-wrath'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'divine', 'divine']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['turtle-guard'],
+                    spellboard: ['summon-butterfly-monk'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'time'],
+                    archives: ['butterfly-monk'],
+                    hand: ['fate-reflection']
+                }
+            });
+            this.turtleGuard.exhaust();
+        });
+
+        it('no damage received, but fate reflection triggers', function () {
+            this.player1.dicepool[5].level = 'class';
+
+            this.player1.play(this.naturesWrath);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickCard(this.turtleGuard);
+            // any interrupts?
+            this.player2.clickCard(this.fateReflection); // click fate reflection to play as reaction
+            this.player2.clickDie(4);
+            this.player2.clickCard(this.hammerKnight);
+
+            expect(this.turtleGuard.damage).toBe(0); // turtle guard prevented all damage
+            expect(this.hammerKnight.damage).toBe(2); // NW plus 1 reflected
+            expect(this.fateReflection.location).toBe('discard');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });

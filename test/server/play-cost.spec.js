@@ -121,7 +121,8 @@ describe('playcost parsing', function () {
         ];
         const p = {
             dice: playerDice,
-            getSpendableDice: () => playerDice
+            getUsableDice: () => playerDice,
+            checkRestrictions: () => true
         };
         const canpay = diceCosts[0].canPay({ player: p });
         expect(canpay).toBe(true);
@@ -141,7 +142,7 @@ describe('playcost parsing', function () {
         ];
         const p = {
             dice: playerDice,
-            getSpendableDice: () => playerDice
+            getUsableDice: () => playerDice
         };
         const canpay = diceCosts[0].canPay({ player: p });
         expect(canpay).toBe(true);
@@ -161,7 +162,7 @@ describe('playcost parsing', function () {
         ];
         const p = {
             dice: playerDice,
-            getSpendableDice: () => playerDice
+            getUsableDice: () => playerDice
         };
         const canpay = diceCosts[0].canPay({ player: p });
         expect(canpay).toBe(false);

@@ -94,7 +94,8 @@ const DecksComponent = ({ onDeckSelected }) => {
         pveDecks,
         msuDecks,
         dualDuelDecks,
-        oneCollectionDecks
+        oneCollectionDecks,
+        ascendancyDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
@@ -106,7 +107,8 @@ const DecksComponent = ({ onDeckSelected }) => {
         pveDecks: state.cards.pveDecks,
         msuDecks: state.cards.msuDecks,
         dualDuelDecks: state.cards.dualDuelDecks,
-        oneCollectionDecks: state.cards.oneCollectionDecks
+        oneCollectionDecks: state.cards.oneCollectionDecks,
+        ascendancyDecks: state.cards.ascendancyDecks
     }));
 
     const onTabChange = (index, lastIndex, event) => {
@@ -116,28 +118,31 @@ const DecksComponent = ({ onDeckSelected }) => {
             case 0:
                 deck = myDecks[0];
                 break;
-            case 1:
-                deck = standaloneDecks[0];
+            case 1: // ascendancy
+                deck = ascendancyDecks[0];
                 break;
             case 2:
-                deck = pveDecks[0];
+                deck = standaloneDecks[0];
                 break;
             case 3:
-                deck = buildingBasicsDecks[0];
+                deck = pveDecks[0];
                 break;
             case 4:
-                deck = corpseRebuildDecks[0];
+                deck = buildingBasicsDecks[0];
                 break;
             case 5:
-                deck = firstAdventureDecks[0];
+                deck = corpseRebuildDecks[0];
                 break;
             case 6:
-                deck = adventuringPartyDecks[0];
+                deck = firstAdventureDecks[0];
                 break;
             case 7:
-                deck = msuDecks[0];
+                deck = adventuringPartyDecks[0];
                 break;
             case 8:
+                deck = msuDecks[0];
+                break;
+            case 9:
                 deck = dualDuelDecks[0];
                 break;
             case 10: // oneCollection
@@ -161,6 +166,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                 <Tabs onSelect={onTabChange} selectedIndex={tabIndex}>
                     <TabList>
                         <Tab>My Decks</Tab>
+                        <Tab>Ascendancy</Tab>
                         <Tab>Precons</Tab>
                         <Tab>Red Rains Precons</Tab>
                         <Tab>Building Basics</Tab>
@@ -201,6 +207,20 @@ const DecksComponent = ({ onDeckSelected }) => {
                                 )}
                             </Col>
                             <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} allowEdit={true} />}</Col>
+                        </Row>
+                    </TabPanel>
+                    <TabPanel>
+                        <Row>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+
+                            <Col lg={6}>
+                                <DeckTypeInfo deckType='ascendancy' />
+                                <DeckList decks={ascendancyDecks} />
+                            </Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>

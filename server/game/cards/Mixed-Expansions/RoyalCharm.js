@@ -23,6 +23,7 @@ class RoyalCharm extends Card {
                 toSelect: 'die',
                 dieCondition: (die, context) =>
                     context.event.dice.includes(die) &&
+                    !die.parent &&
                     die.level === Level.Power &&
                     [Magic.Charm, Magic.Divine].includes(die.magic),
                 gameAction: this.game.actions.attachDie((context) => ({
@@ -40,13 +41,23 @@ class RoyalCharm extends Card {
                 toSelect: 'die',
                 autoTarget: (context) => context.source.dieUpgrades[0],
                 activePromptTitle: 'Choose which die on Royal Charm to resolve',
-                from: (context) => context.source.dieUpgrades,
+                // from: (context) => context.source.dieUpgrades,
                 gameAction: this.game.actions.resolveDieAbility()
             }
         });
 
         this.persistentEffect({
             effect: ability.effects.preventAutoDice()
+        });
+
+        this.forcedInterrupt({
+            title: 'Royal Charm',
+            when: {
+                onRoundEnded: () => this.dieUpgrades
+            },
+            gameAction: ability.actions.detachDie((context) => ({
+                die: context.source.dieUpgrades
+            }))
         });
     }
 }

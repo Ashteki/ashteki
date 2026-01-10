@@ -1,3 +1,4 @@
+const { on } = require('events');
 const Card = require('../../Card.js');
 
 class SacredGround extends Card {
@@ -10,7 +11,8 @@ class SacredGround extends Card {
                 target: context.player.unitsInPlay,
                 effect: ability.effects.modifyArmor(1),
                 until: {
-                    onBeginTurn: (event) => event.player === context.player
+                    onBeginTurn: (event) => event.player === context.player,
+                    onRoundEnded: (_) => true
                 }
             }))
         });

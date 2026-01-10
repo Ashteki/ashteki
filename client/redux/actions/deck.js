@@ -133,7 +133,8 @@ export function saveDeck(deck) {
 
 export function importDeck(deck) {
     let str = JSON.stringify({
-        uuid: deck.uuid
+        uuid: deck.uuid,
+        ashesDb: deck.ashesDb
     });
 
     return {
@@ -151,6 +152,7 @@ export function resyncDeck(deck) {
     let str = JSON.stringify({
         deckId: deck._id,
         uuid: deck.ashesLiveUuid,
+        ashesDb: deck.ashesDb,
         resync: true
     });
 
@@ -281,6 +283,17 @@ export function loadOneCollectionDecks() {
         shouldCallAPI: () => true,
         APIParams: {
             url: '/api/onecollection-decks',
+            type: 'GET'
+        }
+    };
+}
+
+export function loadAscendancyDecks() {
+    return {
+        types: ['LOAD_ASCENDANCY_DECKS', 'ASCENDANCY_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/ascendancy-decks',
             type: 'GET'
         }
     };

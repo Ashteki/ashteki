@@ -125,6 +125,7 @@ export const toBase64 = (file) =>
     });
 
 export const ashesLiveShareUrl = 'https://ashes.live/decks/share/';
+export const ashesDbShareUrl = 'https://ashesdb.plaidhatgames.com/decks/share/';
 
 const sizes = ['small', 'normal', 'large', 'x-large']
 export function sizeUp(size) {

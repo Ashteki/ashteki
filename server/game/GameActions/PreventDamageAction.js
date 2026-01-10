@@ -12,15 +12,26 @@ class PreventDamageAction extends GameAction {
 
     getEventArray(context) {
         let properties = this.propertyFactory(context);
-        return properties.event.preventable
-            ? [
-                super.createEvent('unnamedEvent', {}, () => {
+        if (!properties.event.preventable) {
+            return [];
+        }
+        return [
+            super.createEvent(
+                'onDamagePrevented',
+                { context: context, card: this.event.card },
+                (event) => {
                     const amt =
                         properties.amount === 'all' ? properties.event.amount : properties.amount;
                     properties.event.amount = properties.event.amount - amt;
+                    event.amountPrevented = amt;
+
+                    context.game.addMessage(
+                        '{0} prevents damage to {1}',
+                        'preventer',
+                        context.source
+                    );
                 })
-            ]
-            : [];
+        ];
     }
 }
 

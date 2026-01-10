@@ -112,6 +112,7 @@ class AshesDeckService {
 
         let newDeck = this.parseAshesLiveDeckResponse(user, deckResponse);
         newDeck.ashesLiveUuid = deck.uuid;
+        newDeck.ashesDb = deck.ashesDb;
 
         // is this an update
         let response;
@@ -131,9 +132,8 @@ class AshesDeckService {
     async getAshesLiveDeck(deck, resync) {
         try {
             // get by uuid (private share, or snapshot)
-            let response = await util.httpRequest(
-                `https://api.ashes.live/v2/decks/shared/${deck.uuid}`
-            );
+            let domain = deck.ashesDb ? 'apiasheslive.plaidhatgames.com' : 'api.ashes.live';
+            let response = await util.httpRequest(`https://${domain}/v2/decks/shared/${deck.uuid}`);
 
             if (response[0] === '<') {
                 logger.error('Deck failed to import: %s %s', deck.uuid, response);
@@ -146,9 +146,7 @@ class AshesDeckService {
             if (resync && deckResponse.is_snapshot && deckResponse.source_id) {
                 const sourceDeckId = deckResponse.source_id;
                 // get latest published deck by deck id
-                response = await util.httpRequest(
-                    `https://api.ashes.live/v2/decks/${sourceDeckId}`
-                );
+                response = await util.httpRequest(`https://${domain}/v2/decks/${sourceDeckId}`);
 
                 if (response[0] === '<') {
                     logger.error('Deck failed to import by id: %s %s', sourceDeckId, response);
@@ -204,7 +202,8 @@ class AshesDeckService {
             lastUpdated: new Date(),
             created: new Date(),
             ashesLiveUuid: deck.ashesLiveUuid,
-            ashesLiveModified: deck.ashesLiveModified
+            ashesLiveModified: deck.ashesLiveModified,
+            ashesDb: deck.ashesDb
         };
         if (isPrecon) {
             properties = Object.assign(properties, {

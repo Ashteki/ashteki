@@ -37,7 +37,8 @@ class ReturnToHandAction extends CardGameAction {
             (event) => {
                 const hand = event.player.getHand();
 
-                event.player.moveCard(event.card, 'hand');
+                const options = { upgradeDestination: this.upgradeDestination };
+                event.player.moveCard(event.card, 'hand', options);
                 if (this.showMessage) {
                     context.game.addMessage(
                         "{0} is returned to {1}'s hand",

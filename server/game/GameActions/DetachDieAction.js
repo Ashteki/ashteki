@@ -12,13 +12,13 @@ class DetachDieAction extends DiceGameAction {
 
     // this is a bit awkward - detachDieAction is used as a card interrupt in reimagine end/round
     // it is overridden by direct set targets when used in dicecost
-    defaultTargets(context) {
-        return context.source.dieUpgrades;
-    }
+    // defaultTargets(context) {
+    //     return context.source.dieUpgrades;
+    // }
 
     canAffect(die, context) {
         // only valid in the play area
-        if (!context || !context.player || !die || die.location !== 'play area' || !die.parent) {
+        if (!context || !die || die.location !== 'play area' || !die.parent) {
             return false;
         }
 

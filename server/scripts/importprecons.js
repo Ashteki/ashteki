@@ -221,10 +221,11 @@ class ImportPrecons {
     }
 
     loadAscendancyDecks() {
-        let file = 'ascendancy.json';
+        let file = 'precon-ascendancy.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }
+
     clearPrecons() {
         this.deckService.clearPrecons();
     }

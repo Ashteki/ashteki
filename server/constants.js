@@ -57,6 +57,8 @@ const AbilityType = {
 const BluffAbilityTypes = [AbilityType.Interrupt, AbilityType.Reaction];
 
 const Magic = {
+    Artifice: 'artifice',
+    Astral: 'astral',
     Ceremonial: 'ceremonial',
     Charm: 'charm',
     Divine: 'divine',

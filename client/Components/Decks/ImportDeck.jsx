@@ -51,8 +51,8 @@ const ImportDeck = () => {
     const onSubmit = (values) => {
         const regex = /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
         let uuid = values.deckLink.match(regex);
-
-        dispatch(importDeck({ uuid: uuid[0] }));
+        const isAshesDb = values.deckLink.includes('ashesdb.plaidhatgames.com');
+        dispatch(importDeck({ uuid: uuid[0], ashesDb: isAshesDb }));
     };
 
     return (
@@ -64,13 +64,20 @@ const ImportDeck = () => {
                 />
                 <Panel title={t('Import Deck')}>
                     <p>
-                        Enter the deck share link from the&nbsp;
+                        You can import decks from{' '}
                         <a href='https://ashes.live' target='_blank' rel='noopener noreferrer'>
-                            ashes.live website.
-                        </a>
-                    </p>
+                            ashes.live
+                        </a>{' '}
+                        or the{' '}
+                        <a
+                            href='https://ashesdb.plaidhatgames.com/'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            PHG Ashes Deckbuilder site.
+                        </a></p>
                     <p>
-                        Locate and view a deck on ashes.live, then click the &apos;Share...&apos;
+                        On either site, view the deck page, then click the &apos;Share...&apos;
                         button. You can copy the url displayed in the &apos;Share and export&apos;
                         overlay.
                     </p>

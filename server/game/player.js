@@ -12,7 +12,8 @@ const {
     Level,
     PhoenixbornTypes,
     Magic,
-    LegalLocations
+    LegalLocations,
+    DamageDealingLocations
 } = require('../constants');
 const moment = require('moment');
 
@@ -235,6 +236,16 @@ class Player extends GameObject {
         );
     }
 
+    get chargedCards() {
+        return this.game.allCards.filter(
+            (c) =>
+                c.controller === this &&
+                DamageDealingLocations.includes(c.location) &&
+                c.dieUpgrades.length > 0 &&
+                c.dieUpgrades.some((d) => d.magic === Magic.Artifice)
+        );
+    }
+
     // this gets sent to the client ONLY
     // CAUTION: it includes facedown cards vs chimera
     get battlefield() {
@@ -302,16 +313,13 @@ class Player extends GameObject {
         return this.battlefield.some((c) => c.exhausted);
     }
 
-    getSpendableDice(context) {
-        // this assumes all spendable hosted dice are on ready spells
-        const spendableUpgrades = this.spellboard
-            .filter((card) => card.dieUpgrades.length && card.canSpendDieUpgrades(context))
+    getUsableDice(context) {
+        // this assumes all usable hosted dice are on ready spells
+        const usableUpgrades = [...this.spellboard, ...this.unitsInPlay, this.phoenixborn]
+            .filter((card) => card.dieUpgrades.length)
             .reduce((agg, card) => agg.concat(card.dieUpgrades), []);
         let usableDice = this.dice;
-        if (!this.checkRestrictions('useBasicDice', context)) {
-            usableDice = usableDice.filter(d => d.level !== Level.Basic);
-        }
-        return usableDice.concat(spendableUpgrades);
+        return usableDice.concat(usableUpgrades);
     }
 
     /**
@@ -517,8 +525,6 @@ class Player extends GameObject {
     endRound() {
         for (let card of this.cardsInPlay) {
             card.new = false;
-            // remove die attachments
-            this.removeDieAttachments(card);
         }
     }
 
@@ -654,8 +660,12 @@ class Player extends GameObject {
             }
 
             for (let upgrade of card.upgrades) {
+                let upgradeDestination = upgrade.discardLocation;
+                if (options?.upgradeDestination) {
+                    upgradeDestination = options.upgradeDestination;
+                }
                 upgrade.onLeavesPlay();
-                upgrade.owner.moveCard(upgrade, upgrade.discardLocation);
+                upgrade.owner.moveCard(upgrade, upgradeDestination);
             }
 
             // discard all cards under this one

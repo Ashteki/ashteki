@@ -27,7 +27,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         pveDecks,
         msuDecks,
         dualDuelDecks,
-        oneCollectionDecks
+        oneCollectionDecks,
+        ascendancyDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
@@ -39,7 +40,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         pveDecks: state.cards.pveDecks?.filter((d) => showRestricted || !d.restricted),
         msuDecks: state.cards.msuDecks,
         dualDuelDecks: state.cards.dualDuelDecks,
-        oneCollectionDecks: state.cards.oneCollectionDecks
+        oneCollectionDecks: state.cards.oneCollectionDecks,
+        ascendancyDecks: state.cards.ascendancyDecks
     }));
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
@@ -85,6 +87,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             <Tabs>
                 <TabList>
                     <Tab>My Decks</Tab>
+                    <Tab>Ascendancy</Tab>
                     <Tab>Precons</Tab>
                     <Tab>Red Rains Precons</Tab>
                     <Tab>Building Basics</Tab>
@@ -107,10 +110,13 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <DeckList onDeckSelected={onDeckSelected} decks={myDecks} showWinRate={true} />
                 </TabPanel>
                 <TabPanel>
-                    <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
-                    <DeckList decks={standaloneDecks} onDeckSelected={onDeckSelected} />
+                    <Button onClick={() => onChooseForMe(11)}>Choose for me</Button>
+                    <DeckList decks={ascendancyDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
+                    <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
+                    <DeckList decks={standaloneDecks} onDeckSelected={onDeckSelected} />
+                </TabPanel>                <TabPanel>
                     <Button onClick={() => onChooseForMe(6)}>Choose for me</Button>
                     <DeckList decks={pveDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
@@ -147,15 +153,19 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         deckList = (
             <Tabs>
                 <TabList>
+                    <Tab>Ascendancy</Tab>
                     <Tab>Precons</Tab>
                     <Tab>Red Rains Precons</Tab>
                 </TabList>
 
                 <TabPanel>
-                    <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
-                    <DeckList decks={standaloneDecks} onDeckSelected={onDeckSelected} />
+                    <Button onClick={() => onChooseForMe(11)}>Choose for me</Button>
+                    <DeckList decks={ascendancyDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
+                    <Button onClick={() => onChooseForMe(1)}>Choose for me</Button>
+                    <DeckList decks={standaloneDecks} onDeckSelected={onDeckSelected} />
+                </TabPanel>                <TabPanel>
                     <Button onClick={() => onChooseForMe(6)}>Choose for me</Button>
                     <DeckList decks={pveDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>

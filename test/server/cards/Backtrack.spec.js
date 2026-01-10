@@ -74,8 +74,7 @@ describe('Backtrack', function () {
                     behaviour: 'viros-behaviour',
                     ultimate: 'viros-ultimate',
                     inPlay: ['hunting-instincts', 'rampage'],
-                    deck: [],
-                    dicepool: ['basic', 'basic', 'basic', 'basic', 'basic']
+                    deck: []
                 }
             });
         });

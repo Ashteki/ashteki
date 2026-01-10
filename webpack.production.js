@@ -7,7 +7,8 @@ module.exports = merge(common, {
         bundle: ['./client/index.jsx']
     },
     output: {
-        filename: '[name].[contenthash].js'
+        filename: '[name].[contenthash].js',
+        clean: true
     },
     mode: 'production',
     devtool: 'source-map',

@@ -213,6 +213,47 @@ class Card extends PlayableObject {
             );
         }
 
+        // Armor & Damage prevention
+        if ([...BattlefieldTypes, ...PhoenixbornTypes].includes(this.type)) {
+            this.abilities.keywordReactions.push(
+                this.forcedInterrupt({
+                    autoResolve: true,
+                    inexhaustible: true,
+                    condition: (context) => context.source.anyEffect('preventAllDamage', context),
+                    when: {
+                        onDamageApplied: (event, context) => event.card === context.source
+                    },
+                    effect: 'prevent all damage',
+                    gameAction: AbilityDsl.actions.preventDamage((context) => ({
+                        event: context.event,
+                        amount: 'all'
+                    }))
+                })
+            );
+        }
+
+        if (BattlefieldTypes.includes(this.type)) {
+            this.abilities.keywordReactions.push(
+                this.forcedInterrupt({
+                    autoResolve: true,
+                    inexhaustible: true,
+                    condition: (context) => context.source.armor > 0,
+                    when: {
+                        onDamageApplied: (event, context) => event.card === context.source
+                    },
+                    effect: 'prevent {0} damage',
+                    effectArgs: (context) => context.source.armor,
+                    gameAction: AbilityDsl.actions.preventDamage((context) => ({
+                        event: context.event,
+                        amount:
+                            context.event.amountDealt <= context.source.armor
+                                ? context.event.amountDealt
+                                : context.source.armor
+                    }))
+                })
+            );
+        }
+
         if (BattlefieldTypes.includes(this.type)) {
             this.abilities.keywordReactions.push(
                 this.forcedReaction({
@@ -349,6 +390,22 @@ class Card extends PlayableObject {
                 properties
             )
         );
+    }
+
+    withdraw() {
+        return this.forcedInterrupt({
+            title: 'Withdraw',
+            inexhaustible: true,
+            condition: () => this.exhausted,
+            when: {
+                onDamageApplied: (event, context) => event.card === context.source
+            },
+            effect: 'prevent all damage',
+            gameAction: AbilityDsl.actions.preventDamage((context) => ({
+                event: context.event,
+                amount: 'all'
+            }))
+        });
     }
 
     inheritance() {
@@ -1115,6 +1172,18 @@ class Card extends PlayableObject {
 
     get hasCharmDie() {
         return this.dieUpgrades.some((c) => c.magic === Magic.Charm);
+    }
+
+    get isCharged() {
+        return this.dieUpgrades.some((c) => c.magic === Magic.Artifice);
+    }
+
+    get isAirborne() {
+        return this.dieUpgrades.some((c) => c.magic === Magic.Astral);
+    }
+
+    get hasAstralDie() {
+        return this.dieUpgrades.some((c) => c.magic === Magic.Astral);
     }
 
     canPlayAsUpgrade() {

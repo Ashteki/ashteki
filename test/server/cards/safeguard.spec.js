@@ -9,7 +9,7 @@ describe('Safeguard', function () {
             },
             player2: {
                 phoenixborn: 'rin-northfell',
-                inPlay: ['hammer-knight'],
+                inPlay: ['hammer-knight', 'iron-worker'],
                 spellboard: ['summon-butterfly-monk'],
                 dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
                 hand: ['mist-typhoon'],
@@ -42,9 +42,9 @@ describe('Safeguard', function () {
         this.player1.clickCard(this.mistSpirit);
         this.player1.endTurn();
         this.player2.clickAttack(this.mistSpirit);
-        this.player2.clickCard(this.hammerKnight);
+        this.player2.clickCard(this.ironWorker);
         this.player1.clickDone();
-        this.player1.clickYes();
+        this.player1.clickNo();
         expect(this.mistSpirit.damage).toBe(0);
         expect(this.mistSpirit.location).toBe('play area');
     });
@@ -88,7 +88,7 @@ describe('Safeguard', function () {
         expect(this.mistSpirit.location).toBe('archives');
     });
 
-    it('lasts across round boundaries', function () {
+    it('does not last across round boundaries', function () {
         expect(this.mistSpirit.damage).toBe(0);
 
         this.player1.clickCard(this.safeguard);
@@ -103,11 +103,13 @@ describe('Safeguard', function () {
 
         this.player1.clickPrompt('No');
         this.player2.clickPrompt('No');
-
+        this.player2.clickPrompt('0');
         this.player2.clickCard(this.mistTyphoon);
         this.player2.clickPrompt('Play this action');
+        this.player2.clickCard(this.mistSpirit);
+        this.player2.clickNo();
 
-        expect(this.mistSpirit.damage).toBe(0);
-        expect(this.mistSpirit.location).toBe('play area');
+        expect(this.mistSpirit.location).toBe('archives');
+        expect(this.player2).toHaveDefaultPrompt();
     });
 });
