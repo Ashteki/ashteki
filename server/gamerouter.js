@@ -278,6 +278,7 @@ class GameRouter extends EventEmitter {
 
                 break;
             case 'PLAYERLEFT':
+                logger.info(`Player left game: ${message.arg.gameId} , ${message.arg.player}`);
                 if (!message.arg.spectator) {
                     this.gameService.update(message.arg.game);
                 }

@@ -809,6 +809,7 @@ class Game extends EventEmitter {
      * @param {String} playerName
      */
     concede(playerName) {
+        logger.info(`Player concede: ${playerName} in game ${this.id}`);
         let player = this.getPlayerByName(playerName);
 
         if (!player) {
@@ -1447,6 +1448,7 @@ class Game extends EventEmitter {
     }
 
     leave(playerName) {
+        logger.info(`Player leave: ${playerName} in game ${this.id}`);
         let player = this.playersAndSpectators[playerName];
 
         if (!player) {
