@@ -101,7 +101,7 @@ const PlayerStats = ({
             pbDamage = phoenixborn.tokens.damage
                 ? phoenixborn.tokens.damage
                 : 0;
-            lifeValue = Math.max(0, pbLife - pbDamage);
+            lifeValue = Math.max(0, pbLife - pbDamage - pb.drowningLevel);
             if (lifeValue <= 10) {
                 lifeClass = 'life-orange';
             }
@@ -114,9 +114,13 @@ const PlayerStats = ({
         return (
             <div className='state'>
                 <span key={`life-rem`} className={classes}>
-                    {lifeValue}
+                    <span title='Life remaining'>{lifeValue}</span>
+                    {pb.drowningLevel > 0 &&
+                        < span className='drowning-indicator' title='Drowning Level'>({pb.drowningLevel})</span>
+                    }
                 </span>
-            </div>
+
+            </div >
         );
     }
 

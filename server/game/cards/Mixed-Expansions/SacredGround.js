@@ -1,4 +1,3 @@
-const { on } = require('events');
 const Card = require('../../Card.js');
 
 class SacredGround extends Card {
