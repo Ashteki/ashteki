@@ -799,7 +799,9 @@ class Card extends PlayableObject {
 
         // const gainedAbilities = acquiredEffects
         //     .filter((e) => e.type === 'gainAbility');
-        return simpleNames.concat(keywords).concat(restrictions);
+        return simpleNames
+            .concat(keywords.filter((k) => k.name !== 'drowning'))
+            .concat(restrictions);
     }
 
     checkRestrictions(actionType, context = null) {
@@ -1184,6 +1186,10 @@ class Card extends PlayableObject {
 
     get hasAstralDie() {
         return this.dieUpgrades.some((c) => c.magic === Magic.Astral);
+    }
+
+    get drowningLevel() {
+        return this.getKeywordValue('drowning');
     }
 
     canPlayAsUpgrade() {

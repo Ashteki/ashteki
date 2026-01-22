@@ -49,16 +49,6 @@ class RoyalCharm extends Card {
         this.persistentEffect({
             effect: ability.effects.preventAutoDice()
         });
-
-        this.forcedInterrupt({
-            title: 'Royal Charm',
-            when: {
-                onRoundEnded: () => this.dieUpgrades
-            },
-            gameAction: ability.actions.detachDie((context) => ({
-                die: context.source.dieUpgrades
-            }))
-        });
     }
 }
 

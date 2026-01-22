@@ -1,4 +1,4 @@
-const AspectCard = require("../../../solo/AspectCard");
+const AspectCard = require('../../../solo/AspectCard');
 
 class ErraticStrike extends AspectCard {
     setupCardAbilities(ability) {
@@ -16,11 +16,10 @@ class ErraticStrike extends AspectCard {
             gameAction: ability.actions.rollBehaviourDie(),
             then: (thenContext) => ({
                 target: {
-
                     mode: 'auto',
-                    cardCondition: (card) => thenContext.dieResult % 2 == 0 ? card.exhausted : card.damage > 0,
+                    cardCondition: (card) =>
+                        thenContext.dieResult % 2 == 0 ? card.exhausted : card.damage > 0,
                     aim: 'left',
-
                     gameAction: ability.actions.destroy({ showMessage: true })
                 }
             })

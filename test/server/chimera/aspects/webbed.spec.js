@@ -32,6 +32,7 @@ describe('Webbed Aspect', function () {
             expect(this.player2.dicepool.filter(d => d.level === 'power').length).toBe(0);
             spyOn(Dice, 'getRandomInt').and.returnValue(1); // power dice on untangle reroll
             this.player2.attachUpgrade(this.webbed, this.anchornaut);
+            expect(this.webbed.parent).toBe(this.anchornaut);
             expect(this.silksteel.facedown).toBe(true);
             this.player1.useCardAbility(this.webbed, 'Untangle');
 
