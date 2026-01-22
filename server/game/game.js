@@ -622,7 +622,10 @@ class Game extends EventEmitter {
      */
     checkWinCondition() {
         for (const player of this.getPlayers()) {
-            if (player.phoenixborn.damage >= player.phoenixborn.life) {
+            if (
+                player.phoenixborn.damage + player.phoenixborn.drowningLevel >=
+                player.phoenixborn.life
+            ) {
                 this.recordWinner(player.opponent, 'damage');
             }
         }
