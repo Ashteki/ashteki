@@ -16,6 +16,7 @@ class Whirlwind extends Card {
                 gameAction: ability.actions.lowerDie()
             },
             then: {
+                alwaysTriggers: true,
                 condition: (context) => context.player.phoenixborn.isAirborne,
                 gameAction: ability.actions.draw()
             }
