@@ -142,6 +142,9 @@ class Dice {
         if (die.magic === Magic.Charm) {
             magic = 'h';
         }
+        if (die.magic === Magic.Artifice) {
+            magic = 'r';
+        }
 
         return magic + die.level[0];
     }

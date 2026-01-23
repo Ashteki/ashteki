@@ -18,6 +18,7 @@ describe('Dodge reaction spell', function () {
     });
 
     it('on Attack smuggle one die and then prevent astral exhaustion on damage prevention', function () {
+        expect(this.player1.player.effects.length).toBe(0);
         this.player1.clickPrompt('Attack');
         this.player1.clickCard(this.blueJaguar);
         this.player1.clickCard(this.fluteMage);
@@ -34,5 +35,7 @@ describe('Dodge reaction spell', function () {
         expect(this.fluteMage.damage).toBe(1);
         expect(this.blueJaguar.isAirborne).toBe(true);
         expect(this.player1).toHaveDefaultPrompt();
+        this.player1.endTurn();
+        expect(this.player1.player.effects.length).toBe(0);
     });
 });
