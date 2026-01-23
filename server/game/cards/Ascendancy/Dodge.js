@@ -21,6 +21,7 @@ class Dodge extends Card {
                     optional: true,
                     toSelect: 'die',
                     owner: 'self',
+                    CardType: BattlefieldTypes,
                     dieCondition: (die) => die.exhausted && die.magic === Magic.Astral, // && die.exhausted,
                     gameAction: ability.actions.resolveDieAbility({
                         targetCardType: BattlefieldTypes
