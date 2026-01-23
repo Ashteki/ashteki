@@ -25,6 +25,7 @@ class SkybreakCaptain extends Card {
                 activePromptTitle: 'Choose a unit to give +1 Attack to',
                 cardType: BattlefieldTypes,
                 controller: 'self',
+                cardCondition: (card, context) => card !== context.source,
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
                     effect: ability.effects.modifyAttack(this.getAbilityNumeric(1))
