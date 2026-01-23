@@ -387,10 +387,14 @@ const Card = ({
                     {getMenuBox(card)}
 
                     <div>
-                        {card.name ?
-                            <span className='card-name'>{card.name}</span> :
+                        {card.name ? (
+                            <>
+                                <span className='card-name'>{card.name}</span>
+                                {card.target && <span className='sr-only'>{card.target} attack</span>}
+                            </>
+                        ) : (
                             <span className='sr-only'>{card.blood} blood</span>
-                        }
+                        )}
                         {image}
                     </div>
                     {showCounters() && <CardCounters counters={getCountersForCard(card)} />}

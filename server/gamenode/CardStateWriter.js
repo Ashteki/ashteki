@@ -42,6 +42,9 @@ class CardStateWriter {
         if (this.card.type === CardType.ReadySpell) {
             state.cardSlot = this.card.cardSlot;
         }
+        if (this.card.type === CardType.Aspect) {
+            state.target = this.card.target;
+        }
 
         return state;
     }
