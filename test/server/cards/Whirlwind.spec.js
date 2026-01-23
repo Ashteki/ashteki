@@ -33,6 +33,21 @@ describe('Whirlwind', function () {
             expect(this.player1.hand.length).toBe(2);
         });
 
+        it('no dice mod if all basic but draw 1 card if pb airborne', function () {
+            this.player2.dicepool.forEach((d) => (d.level = 'basic'));
+
+            this.player1.attachDie(0, this.arrenFrostpeak);
+            expect(this.arrenFrostpeak.isAirborne).toBe(true);
+            this.player1.useCardAbility(this.whirlwind, 'Whirlwind');
+            // this.player1.clickOpponentDie(0);
+            // this.player1.clickOpponentDie(1);
+            // this.player1.clickDone();
+
+            // expect(this.player2.dicepool[0].level).toBe('class');
+            // expect(this.player2.dicepool[1].level).toBe('class');
+            expect(this.player1.hand.length).toBe(2);
+        });
+
         it('lower 2 opponents dice and no draw if pb not airborne', function () {
             expect(this.arrenFrostpeak.isAirborne).toBe(false);
             this.player1.useCardAbility(this.whirlwind, 'Whirlwind');
