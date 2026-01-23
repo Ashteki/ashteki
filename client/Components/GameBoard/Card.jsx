@@ -389,7 +389,7 @@ const Card = ({
                     <div>
                         {card.name ? (
                             <>
-                                <span className='card-name'>{card.name}</span>
+                                <span className='card-name'>{card.name}&nbsp;</span>
                                 {card.target && <span className='sr-only'>{card.target} attack</span>}
                             </>
                         ) : (
