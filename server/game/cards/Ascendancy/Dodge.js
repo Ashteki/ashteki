@@ -10,8 +10,10 @@ class Dodge extends Card {
             },
             gameAction: ability.actions.lastingEffect((context) => ({
                 targetController: 'self',
-                effect: ability.effects.preventAstralReturn(),
-                duration: 'untilEndOfTurn'
+                until: {
+                    onTurnEnded: () => true
+                },
+                effect: ability.effects.preventAstralReturn()
             })),
             then: {
                 target: {
