@@ -10,7 +10,7 @@ import { tryParseJSON } from './util';
 import AlertPanel from './Components/Site/AlertPanel';
 import * as actions from './redux/actions';
 
-import Background from './assets/img/bgs/ashesreborn.png';
+import Background from './assets/img/bgs/lobby_screen_ascendancy.jpg';
 import BlankBg from './assets/img/bgs/blank.png';
 import { storageBaseUrl } from './constants';
 

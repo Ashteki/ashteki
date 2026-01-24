@@ -8,23 +8,6 @@
 
 @import './fixmeunassigned.scss';
 
-
-html,
-body {
-    height: 100%;
-}
-
-.body,
-.container,
-#component {
-    height: 100%;
-}
-
-.container {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
 body {
     font-size: 0.9rem;
 }
@@ -210,13 +193,11 @@ a {
 }
 
 .bg {
-    background-image: url('~assets/img/bgs/ashesreborn.png');
-
-    height: 100%;
-
+    background-image: url('~assets/img/bgs/lobby_screen_ascendancy.jpg');
+    height: 100vh;
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .keyforge-font {
@@ -225,6 +206,10 @@ a {
 
 .content {
     padding-top: $navbar-height + 5px;
+    height: 100vh;
+    overflow-y: scroll;
+    width: 100vw;
+    max-width: unset;
 }
 
 .card {

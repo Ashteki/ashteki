@@ -75,7 +75,7 @@ const Panel = ({
     ) : null;
 
     return (
-        <Card border={retType} bg='dark' className={cardClass}>
+        <Card border={retType} className={cardClass}>
             {title && (
                 <Card.Header className={`${titleClass} text-center`}>{title}
                     <span className='float-end'>{closeButton}</span>
