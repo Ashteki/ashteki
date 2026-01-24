@@ -27,36 +27,6 @@ const Sidebar = ({
     const isReplay = currentGame?.isReplay;
     const manualMode = useSelector((state) => state.lobby.currentGame.manualMode);
 
-    const getTimer = (player) => {
-        let clocks = [];
-        if (currentGame.useGameTimeLimit) {
-            if (currentGame.gameTimeLimit && currentGame.gameTimeLimitStarted) {
-                clocks.push(
-                    <TimeLimitClock
-                        timeLimitStarted={currentGame.gameTimeLimitStarted}
-                        timeLimitStartedAt={currentGame.gameTimeLimitStartedAt}
-                        timeLimit={currentGame.gameTimeLimit}
-                    />
-                );
-            }
-            if (player.clock) {
-                clocks.push(
-                    <Clock
-                        secondsLeft={player.clock.timeLeft}
-                        mode={player.clock.mode}
-                        stateId={player.clock.stateId}
-                        periods={player.clock.periods}
-                        mainTime={player.clock.mainTime}
-                        timePeriod={player.clock.timePeriod}
-                        winner={currentGame.winner}
-                        onClockZero={onClockZero}
-                    />
-                );
-            }
-        }
-        return <div className='time-limit-clock card bg-dark border-primary'>{clocks}</div>;
-    };
-
     const logArea = thisPlayer.inspectionCard ? (
         <CardInspector card={thisPlayer.inspectionCard} />
     ) : (
@@ -79,6 +49,36 @@ const Sidebar = ({
             )}
         </>
     );
+
+    function getClocks(currentGame, player, onClockZero) {
+        const clocks = [];
+        if (currentGame.useGameTimeLimit) {
+            if (currentGame.gameTimeLimit && currentGame.gameTimeLimitStarted) {
+                clocks.push(
+                    <TimeLimitClock
+                        timeLimitStarted={currentGame.gameTimeLimitStarted}
+                        timeLimitStartedAt={currentGame.gameTimeLimitStartedAt}
+                        timeLimit={currentGame.gameTimeLimit} />
+                );
+            }
+            if (player.clock) {
+                clocks.push(
+                    <Clock
+                        secondsLeft={player.clock.timeLeft}
+                        mode={player.clock.mode}
+                        stateId={player.clock.stateId}
+                        periods={player.clock.periods}
+                        mainTime={player.clock.mainTime}
+                        timePeriod={player.clock.timePeriod}
+                        winner={currentGame.winner}
+                        onClockZero={onClockZero} />
+                );
+            }
+        }
+        return clocks;
+    }
+
+    let clocks = getClocks(currentGame, thisPlayer, onClockZero);
 
     const panelClass = classNames('prompt-area', 'panel', {
         manual: manualMode
@@ -104,7 +104,8 @@ const Sidebar = ({
                         onTimerExpired={onTimerExpired}
                         phase={currentGame.currentPhase}
                     />))}
-                {getTimer(thisPlayer)}
+                {clocks.length > 0 && <div className='time-limit-clock card bg-dark border-primary'>{clocks}</div>
+                }
             </div>
         </div>
     );

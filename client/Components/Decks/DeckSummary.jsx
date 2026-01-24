@@ -75,7 +75,7 @@ const DeckSummary = ({ deck, editMode }) => {
                 </ToggleButtonGroup>
                 <div className='total-box'>Total: {cardCount}</div>
             </div>
-            <Row className='deck-cards'>
+            <div className='deck-cards'>
                 {radioValue ? (
                     <>
                         <div className='basic-title'>First Five</div>
@@ -89,11 +89,9 @@ const DeckSummary = ({ deck, editMode }) => {
                 ) : (
                     <CardListText deckCards={combinedCards} highlight={magicHover} onFFClick={onFFClick} />
                 )}
-            </Row>
-            <Row>
-                <div className='deck-card-group deck-notes'>{deck.notes}</div>
-            </Row>
-            {deck.played && (
+            </div>
+            <div className='deck-card-group deck-notes'>{deck.notes}</div>
+            {deck.played > 0 && (
                 <Row>
                     <Col sm='9'>
                         <table style={{ width: '100%' }}>

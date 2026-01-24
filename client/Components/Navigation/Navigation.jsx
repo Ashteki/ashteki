@@ -137,7 +137,7 @@ const Navigation = (props) => {
     };
 
     return (
-        <Navbar bg='dark' variant='dark' className='navbar-sm' fixed='top'>
+        <Navbar variant='dark' className='navbar-sm' fixed='top'>
             <Nav>
                 <NavbarBrand href='/'>Ashteki</NavbarBrand>
                 {renderMenuItems(LeftMenu)}
