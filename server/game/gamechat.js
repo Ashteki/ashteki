@@ -59,7 +59,7 @@ class GameChat {
 
     pushMessage(message, activePlayer) {
         this.msgSeq++;
-        const msg = { mid: this.msgSeq, date: new Date(), message: message };
+        const msg = { mid: this.msgSeq, date: new Date(), message: message, type: message.type };
         if (activePlayer) {
             msg.activePlayer = activePlayer;
         }

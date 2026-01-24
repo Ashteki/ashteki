@@ -33,7 +33,7 @@ class BattleStep extends BaseStepWithPipeline {
                 cardCondition: (card) => unresolvedBattles.map((b) => b.attacker).includes(card),
                 onSelect: (player, card) => {
                     this.setChosenBattle(unresolvedBattles.find((b) => b.attacker === card));
-                    this.game.addMessage('Resolving attack from {0}', this.chosenBattle.attacker);
+                    this.game.addMessage('> Resolving attack from {0}', this.chosenBattle.attacker);
                     return true;
                 }
             });
