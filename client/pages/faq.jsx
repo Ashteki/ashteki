@@ -11,7 +11,7 @@ import ManualCommands from './ManualCommands';
 const FAQ = () => {
     return (
         <Col className='full-height lobby-content' xs='12'>
-            <Panel type='lobby' cardClass='learn'>
+            <Panel type='lobby' cardClass='lobby-card'>
                 <h2>Frequently Asked Questions</h2>
                 <h3>Where can I find an opponent?</h3>
                 <div className='faq-entry'>
