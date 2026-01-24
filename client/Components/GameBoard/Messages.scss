@@ -25,20 +25,20 @@
 
 
 .message.this-player {
-    background: #0035734d;
+    background: rgba(0, 55, 117, 0.5);
 
     &:hover {
-        background: #0d3c7180;
+        background: rgba(0, 55, 117, 1);
 
     }
 }
 
 .message.other-player {
-    background: #791e1e4d;
+    background: rgba(121, 30, 30, 0.4);
 }
 
 .message.other-player:hover {
-    background: #791e1e85;
+    background: rgba(121, 30, 30, 0.85);
 }
 
 .message-chat {
@@ -136,6 +136,10 @@
     font-size: 1rem;
 }
 
+.separator {
+    margin-top: 2px;
+}
+
 .startofround {
     font-size: 1.05rem;
     background-image: url('~assets/img/panel-primary.png');
@@ -145,6 +149,11 @@
     font-weight: 300 !important;
     padding: 7px 10px 10px 6px;
     margin: 0px -6px -7px -6px;
+}
+
+.startofturn {
+    padding-top: 2px;
+    border-top: 1px solid #666;
 }
 
 .startofround .username {

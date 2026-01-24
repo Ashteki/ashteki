@@ -107,9 +107,10 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
                         );
                         break;
                     case 'startofround':
+                    case 'startofturn':
                         messages.push(
                             <div
-                                className={'font-weight-bold text-white separator ' + fragment.type}
+                                className={'fw-bold text-white separator ' + fragment.type}
                                 key={'m-' + index}
                             >
                                 {message}
