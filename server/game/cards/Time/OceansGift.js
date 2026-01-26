@@ -38,7 +38,9 @@ class OceansGift extends Card {
                         activePromptTitle: 'Choose a unit to add 1 status token to',
                         effect: 'add 1 status token',
                         cardType: BattlefieldTypes,
-                        gameAction: ability.actions.addStatusToken()
+                        gameAction: ability.actions.addStatusToken(() => ({
+                            amount: this.getAbilityNumeric(1)
+                        }))
                     }
                 })
             ]
