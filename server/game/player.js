@@ -13,7 +13,8 @@ const {
     PhoenixbornTypes,
     Magic,
     LegalLocations,
-    DamageDealingLocations
+    DamageDealingLocations,
+    ConjuredCardTypes
 } = require('../constants');
 const moment = require('moment');
 
@@ -660,8 +661,9 @@ class Player extends GameObject {
             }
 
             for (let upgrade of card.upgrades) {
+                // discard all upgrades
                 let upgradeDestination = upgrade.discardLocation;
-                if (options?.upgradeDestination) {
+                if (!ConjuredCardTypes.includes(upgrade.type) && options?.upgradeDestination) {
                     upgradeDestination = options.upgradeDestination;
                 }
                 upgrade.onLeavesPlay();
