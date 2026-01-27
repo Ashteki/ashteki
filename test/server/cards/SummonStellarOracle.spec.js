@@ -34,5 +34,18 @@ describe('Summon Stellar Oracle', function () {
             expect(this.purge.location).toBe('deck');
             expect(this.anchornaut.location).toBe('hand');
         });
+
+        it('empty deck means no prompt to return', function () {
+            this.player1.player.deck = [];
+            this.player1.clickCard(this.summonStellarOracle);
+            this.player1.clickPrompt('Summon Stellar Oracle');
+            this.player1.clickDie(1);
+            this.player1.clickDone();
+            expect(this.stellarOracle.location).toBe('play area');
+
+            // SO enters play
+            expect(this.player1.hand.length).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 });

@@ -378,7 +378,7 @@ class Die extends PlayableObject {
                         onDamageApplied: (event, context) =>
                             event.card === context.source.parent && event.amount > 0
                     },
-                    effect: 'prevent 1 damage and draw a card',
+                    effect: 'prevent 1 damage',
                     gameAction: [
                         AbilityDsl.actions.conditional({
                             condition: (context) => context.player.anyEffect('preventAstralReturn'),

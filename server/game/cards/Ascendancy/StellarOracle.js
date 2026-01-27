@@ -5,6 +5,7 @@ class StellarOracle extends Card {
         this.entersPlay({
             gameAction: ability.actions.draw({ amount: 2 }),
             then: {
+                condition: (context) => context.preThenEvent.context.drawResult.cardsDrawn == 2,
                 target: {
                     activePromptTitle: 'Choose a card to return to the top of your deck',
                     location: 'hand',
