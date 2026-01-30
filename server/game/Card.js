@@ -217,13 +217,13 @@ class Card extends PlayableObject {
         if ([...BattlefieldTypes, ...PhoenixbornTypes].includes(this.type)) {
             this.abilities.keywordReactions.push(
                 this.forcedInterrupt({
+                    preferActionPromptMessage: true,
                     autoResolve: true,
                     inexhaustible: true,
-                    condition: (context) => context.source.anyEffect('preventAllDamage', context),
+                    condition: (context) => context.event.preventable && context.source.anyEffect('preventAllDamage', context),
                     when: {
                         onDamageApplied: (event, context) => event.card === context.source
                     },
-                    effect: 'prevent all damage',
                     gameAction: AbilityDsl.actions.preventDamage((context) => ({
                         event: context.event,
                         amount: 'all'
