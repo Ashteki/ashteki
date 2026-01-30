@@ -101,7 +101,7 @@ const PlayerStats = ({
             pbDamage = phoenixborn.tokens.damage
                 ? phoenixborn.tokens.damage
                 : 0;
-            lifeValue = Math.max(0, pbLife - pbDamage - pb.drowningLevel);
+            lifeValue = Math.max(0, pbLife - pbDamage - (pb.drowningLevel || 0));
             if (lifeValue <= 10) {
                 lifeClass = 'life-orange';
             }
