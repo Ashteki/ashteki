@@ -73,6 +73,17 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Check
+                            id='noCardZoom'
+                            name='gameOptions.noCardZoom'
+                            label="Don't zoom cards on hover"
+                            type='switch'
+                            checked={optionSettings.noCardZoom}
+                            onChange={(event) =>
+                                onOptionSettingToggle('noCardZoom', event.target.checked)
+                            }
+                        />
+                    </Form.Group>                    <Form.Group>
+                        <Form.Check
                             id='manualAlts'
                             name='gameOptions.manualAlts'
                             label="Don't use alt arts by default"
