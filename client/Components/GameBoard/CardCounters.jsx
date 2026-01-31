@@ -6,37 +6,39 @@ import Counter from './Counter';
 
 import './CardCounters.scss';
 
-class CardCounters extends React.Component {
-    render() {
-        if (this.props.counters.length === 0) {
-            return null;
-        }
-
-        let countersClass = classNames('counters', 'ignore-mouse-events', {
-            'many-counters': this.props.counters.length > 2
-        });
-
-        let counterDivs = [];
-
-        for (const [key, counter] of Object.entries(this.props.counters)) {
-            counterDivs.push(
-                <Counter
-                    key={key}
-                    broken={counter.broken}
-                    name={counter.name}
-                    icon={counter.icon}
-                    value={counter.count}
-                    fade={counter.fade}
-                    cancel={counter.cancel}
-                    showValue={counter.showValue}
-                    shortName={counter.shortName}
-                />
-            );
-        }
-
-        return <div className={countersClass}>{counterDivs}</div>;
+const CardCounters = ({ counters, size }) => {
+    if (counters.length === 0) {
+        return null;
     }
-}
+
+    let manyLimit = 3;
+    if (size === 'large') {
+        manyLimit = 3;
+    }
+    let countersClass = classNames('counters', 'ignore-mouse-events', {
+        'many-counters': counters.length > manyLimit
+    });
+
+    let counterDivs = [];
+
+    for (const [key, counter] of Object.entries(counters)) {
+        counterDivs.push(
+            <Counter
+                key={key}
+                broken={counter.broken}
+                name={counter.name}
+                icon={counter.icon}
+                value={counter.count}
+                fade={counter.fade}
+                cancel={counter.cancel}
+                showValue={counter.showValue}
+                shortName={counter.shortName}
+            />
+        );
+    }
+
+    return <div className={countersClass}>{counterDivs}</div>;
+};
 
 CardCounters.displayName = 'CardCounters';
 CardCounters.propTypes = {
