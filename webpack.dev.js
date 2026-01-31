@@ -19,5 +19,11 @@ module.exports = merge(common, {
         historyApiFallback: true,
         publicPath: '/'
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [new webpack.HotModuleReplacementPlugin()],
+    module: {
+        rules: [
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+        ]
+    }
 });
