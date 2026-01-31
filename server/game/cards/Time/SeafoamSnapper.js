@@ -3,15 +3,19 @@ const Card = require('../../Card.js');
 
 class SeafoamSnapper extends Card {
     setupCardAbilities(ability) {
-        this.persistentEffect({
-            condition: () => !this.exhausted && this.status > 0,
-            effect: ability.effects.modifyArmor(() => this.getAbilityNumeric(1))
-        });
         this.forcedInterrupt({
+            title: 'Tough 1',
             when: {
-                onDamagePrevented: (event, context) => event.card === context.source
+                onDamageApplied: (event, context) =>
+                    event.card === context.source && context.source.status > 0
             },
-            gameAction: ability.actions.removeStatus({ all: true })
+            gameAction: [
+                ability.actions.removeStatus({ all: true }),
+                ability.actions.preventDamage((context) => ({
+                    event: context.event,
+                    amount: this.getAbilityNumeric(1)
+                }))
+            ]
         });
 
         this.entersPlay({
