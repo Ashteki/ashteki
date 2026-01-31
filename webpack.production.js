@@ -7,8 +7,7 @@ module.exports = merge(common, {
         bundle: ['./client/index.jsx']
     },
     output: {
-        filename: '[name].[contenthash].js',
-        clean: true
+        filename: '[name].[contenthash].js'
     },
     mode: 'production',
     devtool: 'source-map',
@@ -19,6 +18,10 @@ module.exports = merge(common, {
     ],
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: [{ loader: MiniCssExtractPlugin.loader }, 'css-loader']
+            },
             {
                 test: /\.scss$/,
                 use: [{ loader: MiniCssExtractPlugin.loader }, 'css-loader', 'sass-loader']
