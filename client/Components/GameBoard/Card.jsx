@@ -35,7 +35,7 @@ const Card = ({
     wrapped = true
 }) => {
     const sizeClass = {
-        [size]: size !== 'normal'
+        [size]: size
     };
     const [showMenu, setShowMenu] = useState(false);
     const gameRound = useSelector((state) => state.lobby.currentGame?.round);
@@ -363,13 +363,12 @@ const Card = ({
         let imageClass = classNames('card-image vertical', sizeClass, {
             exhausted: orientation === 'exhausted' || orientation === 'horizontal'
         });
-        const image = card ? (
-            <div className={imageClass}>
-                <CardImage card={card} />
-                {getChainIcon(card)}
-                {getBoostedFlags(card)}
-            </div>
-        ) : null;
+        const image = <div className={imageClass}>
+            <CardImage card={card} />
+            {getChainIcon(card)}
+            {getBoostedFlags(card)}
+        </div>
+            ;
 
         const mouseOverAllowed = !disableMouseOver
             && (!isFacedown() || !card.parent) && onMouseOver;
@@ -397,7 +396,7 @@ const Card = ({
                         )}
                         {image}
                     </div>
-                    {showCounters() && <CardCounters counters={getCountersForCard(card)} />}
+                    {showCounters() && <CardCounters counters={getCountersForCard(card)} size={size} />}
                     <DieUpgrades card={card} onDieClick={onDieClick} />
                 </div>
                 {shouldShowMenu() && (

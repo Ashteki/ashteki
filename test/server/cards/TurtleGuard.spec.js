@@ -3,7 +3,7 @@ describe('Turtle Guard', function () {
         this.setupTest({
             player1: {
                 phoenixborn: 'aradel-summergaard',
-                inPlay: ['crimson-bomber'],
+                inPlay: ['crimson-bomber', 'fallen'],
                 dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm'],
                 hand: ['molten-gold']
             },
@@ -37,5 +37,15 @@ describe('Turtle Guard', function () {
         this.player2.clickYes();
 
         expect(this.turtleGuard.location).toBe('archives'); // dead
+    });
+
+    it('damage received when attacked by unpreventable', function () {
+        this.turtleGuard.tokens.exhaustion = 1;
+        this.player1.clickAttack(this.turtleGuard);
+        this.player1.clickCard(this.fallen);
+        this.player2.clickPrompt('Done');
+
+        expect(this.turtleGuard.damage).toBe(1);
+        expect(this.turtleGuard.location).toBe('play area');
     });
 });

@@ -26,9 +26,10 @@ class PreventDamageAction extends GameAction {
                     event.amountPrevented = amt;
 
                     context.game.addMessage(
-                        '{0} prevents damage to {1}',
-                        'preventer',
-                        context.source
+                        '{0} prevents {1} damage to {2}',
+                        context.ability.title || context.source,
+                        amt,
+                        event.card
                     );
                 })
         ];

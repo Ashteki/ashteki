@@ -163,34 +163,8 @@ class CardAbility extends ThenAbility {
                     [gameActions[0].target],
                     gameActions[0].effectArgs
                 );
-                if (this.properties.effectStyle === 'append') {
-                    for (let i = 1; i < gameActions.length; ++i) {
-                        let gameAction = gameActions[i];
-                        messageArgs = this.getMessageArgs(
-                            context,
-                            gameAction.effectMsg,
-                            [gameAction.target],
-                            gameAction.effectArgs,
-                            messageArgs,
-                            i === gameActions.length - 1
-                        );
-                    }
 
-                    this.addMessage(messageArgs);
-                } else if (this.properties.effectStyle === 'all') {
-                    gameActions.forEach((gameAction) => {
-                        this.addMessage(
-                            this.getMessageArgs(
-                                context,
-                                gameAction.effectMsg,
-                                [gameAction.target],
-                                gameAction.effectArgs
-                            )
-                        );
-                    });
-                } else {
-                    this.addMessage(messageArgs);
-                }
+                this.addMessage(messageArgs);
             }
         } else {
             this.addMessage(

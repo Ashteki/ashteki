@@ -23,7 +23,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <div className='advice'>
                         Note: Changes made here will only affect the current game.
                     </div>
-                    <Form.Group className='mb-3'>
+                    <Form.Group>
                         <Form.Check
                             id='orderForcedAbilities'
                             name='optionSettings.orderForcedAbilities'
@@ -35,7 +35,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             }
                         />
                     </Form.Group>
-                    <Form.Group className='mb-3'>
+                    <Form.Group>
                         <Form.Check
                             id='alwaysGroupTactics'
                             name='gameOptions.alwaysGroupTactics'
@@ -47,7 +47,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             }
                         />
                     </Form.Group>
-                    <Form.Group className='mb-3'>
+                    <Form.Group>
                         <Form.Check
                             id='dontIceTrapOwnUnits'
                             name='gameOptions.dontIceTrapOwnUnits'
@@ -59,7 +59,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             }
                         />
                     </Form.Group>
-                    <Form.Group className='mb-3'>
+                    <Form.Group>
                         <Form.Check
                             id='noAttackAlerts'
                             name='gameOptions.noAttackAlerts'
@@ -71,7 +71,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             }
                         />
                     </Form.Group>
-                    <Form.Group className='mb-3'>
+                    <Form.Group>
                         <Form.Check
                             id='manualAlts'
                             name='gameOptions.manualAlts'
@@ -83,7 +83,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             }
                         />
                     </Form.Group>
-                    <Form.Group className='mb-3'>
+                    <Form.Group>
                         <Form.Check
                             id='leftMode'
                             name='gameOptions.leftMode'
@@ -95,7 +95,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             }}
                         />
                     </Form.Group>
-                    <Form.Group className='mb-3'>
+                    <Form.Group>
                         <Form.Check
                             id='compactLayout'
                             name='gameOptions.compactLayout'
@@ -141,7 +141,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         {optionSettings.alertTimer} seconds
                     </div>
                     <br />
-                    <Row className='mb-3'>
+                    <Row>
                         <Col>
                             <Form.Label>Card Size:</Form.Label>
                             <CardSizeSelector
