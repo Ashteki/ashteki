@@ -7,6 +7,7 @@ const defaultOptionSettings = {
     bluffTimer: 0,
     alertTimer: 5,
     alwaysGroupTactics: true,
+    noCardZoom: false,
     manualAlts: false
 };
 

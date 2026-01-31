@@ -77,6 +77,7 @@ const initialValues = {
         alwaysGroupTactics: false,
         dontIceTrapOwnUnits: true,
         noAttackAlerts: false,
+        noCardZoom: false,
         leftMode: true,
         compactLayout: true,
         manualAlts: false

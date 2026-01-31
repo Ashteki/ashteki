@@ -70,7 +70,9 @@ const GameBoard = () => {
     const user = useSelector((state) => state.account.user);
 
     const onMouseOver = (card) => {
-        dispatch(zoomCard(card));
+        if (!(currentGame.players[user.username]?.optionSettings?.noCardZoom)) {
+            dispatch(zoomCard(card));
+        }
     };
 
     const onMouseOut = () => {
