@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     resolve: {
@@ -16,6 +17,7 @@ module.exports = {
         modules: ['node_modules']
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './client/index.html',
             inject: true
@@ -45,42 +47,19 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?/,
-                exclude: /[\\/]node_modules[\\/](?!(@sendgrid\/mail|debug|engine.io-client|socket.io-client|cross-env|eslint-config-prettier|eslint-plugin-jest|eslint-plugin-prettier|pg|prettier|socket.io|winston)[\\/])/,
+                exclude: /[\\/]node_modules[\\/](?!(@sendgrid\/mail|debug|engine.io-client|socket.io-client|cross-env|eslint-config-prettier|eslint-plugin-prettier|lint-staged|pg|prettier|socket.io|winston)[\\/])/,
                 loader: 'babel-loader'
             },
             {
-                test: /.(jpe?g|png|gif|woff(2)?|eot|ttf|cur|svg|mp3|ogg)(\?[a-z0-9=.]+)?$/,
-                use: 'url-loader?limit=16384'
-            },
-            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-            {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            implementation: require('sass'),
-                            sassOptions: {
-                                includePaths: [
-                                    path.resolve(__dirname, './'),
-                                    path.resolve(__dirname, 'node_modules')
-                                ],
-                                // Quiet dependency warnings (e.g. deprecated division in bootstrap)
-                                quietDeps: true
-                            }
-                        }
-                    }
-                ]
+                test: /\.(jpe?g|svg|png|gif|ico|mp3|ogg|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
+                type: 'asset/resource'
             },
             {
                 test: /\.json/,
                 exclude: /node_modules/,
                 type: 'javascript/auto',
                 use: [require.resolve('json-loader')]
-            },
-            // pug templates removed; use static HTML template at client/index.html
+            }
         ]
     }
 };
