@@ -60,6 +60,15 @@ const InGameSettings = ({ formProps }) => {
                 onBlur={formProps.handleBlur}
             />
             <Form.Check
+                id='noCardZoom'
+                name='gameOptions.noCardZoom'
+                label="Don't zoom cards on hover"
+                type='switch'
+                checked={formProps.values.gameOptions.noCardZoom}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <Form.Check
                 id='manualAlts'
                 name='gameOptions.manualAlts'
                 label="Don't use alt arts by default"
