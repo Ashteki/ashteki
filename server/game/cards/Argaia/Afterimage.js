@@ -12,7 +12,8 @@ class Afterimage extends Card {
                     CardType.Ally === event.triggeringEvent.card.type &&  // it's an ally
                     event.triggeringEvent.context.player === context.player.opponent
             },
-            effect: "deal 2 damage to an opponent's unit",
+            effect: "return {1} to hand, and deal 2 damage to an opponent's unit",
+            effectArgs: (context) => [context.event.card],
             gameAction: ability.actions.changeEvent((context) => ({
                 event: context.event,
                 destination: 'hand',
@@ -24,7 +25,7 @@ class Afterimage extends Card {
                     activePromptTitle: "Select a unit to deal 2 damage to",
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
-                    gameAction: ability.actions.dealDamage({ amount: 2 })
+                    gameAction: ability.actions.dealDamage({ amount: 2, showMessage: true })
                 }
             }
         });

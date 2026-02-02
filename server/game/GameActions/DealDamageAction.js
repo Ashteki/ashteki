@@ -82,7 +82,7 @@ class DealDamageAction extends CardGameAction {
                     event.addSubEvent(tokenEvent);
 
                     if (this.showMessage) {
-                        context.game.addMessage('{0} takes {1} damage', event.card, event.amount);
+                        context.game.addMessage('{0} receives {1} damage', event.card, event.amount);
                     }
                 }
             );
