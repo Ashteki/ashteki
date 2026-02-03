@@ -66,7 +66,7 @@
         "https-browserify": "^1.0.0",
         "i18next": "^20.2.1",
         "i18next-browser-languagedetector": "^6.1.0",
-        "jquery": "^3.6.0",
+        "jquery": "^4.0.0",
         "jquery-migrate": "3.3.2",
         "jquery-validation": "^1.19.3",
         "jquery-validation-unobtrusive": "^3.2.12",
