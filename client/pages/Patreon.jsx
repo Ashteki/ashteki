@@ -1,87 +1,69 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import * as actions from '../redux/actions';
 import AlertPanel from '../Components/Site/AlertPanel';
 import ApiStatus from '../Components/Site/ApiStatus';
 
-class Patreon extends React.Component {
-    constructor(props) {
-        super(props);
+function Patreon({ code }) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-        this.state = {};
-    }
+    const accountLinked = useSelector((s) => s.account.accountLinked);
+    const apiState = useSelector((s) => s.api.ACCOUNT_LINK_REQUEST || {});
+    const [successMessage, setSuccessMessage] = useState('');
 
-    componentDidMount() {
-        if (!this.props.code) {
-            return;
-        }
+    useEffect(() => {
+        if (!code) return;
+        dispatch(actions.linkPatreon(code));
+    }, [code, dispatch]);
 
-        this.props.linkPatreon(this.props.code);
-    }
+    useEffect(() => {
+        let t;
+        if (accountLinked) {
+            setSuccessMessage('Your account was linked successfully. Please wait while you are redirected.');
 
-    // eslint-disable-next-line camelcase
-    UNSAFE_componentWillReceiveProps(props) {
-        if (props.accountLinked) {
-            this.setState({
-                successMessage:
-                    'Your account was linked successfully. Please wait while you are redirected.'
-            });
-
-            setTimeout(() => {
-                this.props.clearLinkStatus();
-                this.props.navigate('/');
+            t = setTimeout(() => {
+                dispatch(actions.clearLinkStatus());
+                navigate('/');
             }, 2000);
         }
-    }
 
-    render() {
-        if (!this.props.code) {
-            setTimeout(() => {
-                this.props.clearLinkStatus();
-                this.props.navigate('/');
+        return () => clearTimeout(t);
+    }, [accountLinked, dispatch, navigate]);
+
+    useEffect(() => {
+        let t;
+        if (!code) {
+            t = setTimeout(() => {
+                dispatch(actions.clearLinkStatus());
+                navigate('/');
             }, 2000);
-
-            return (
-                <>
-                    <AlertPanel
-                        type='error'
-                        message='Your account was not successfully linked.  Please wait while we redirect you.'
-                    />
-                </>
-            );
         }
 
+        return () => clearTimeout(t);
+    }, [code, dispatch, navigate]);
+
+    if (!code) {
         return (
-            <div>
-                <ApiStatus
-                    apiState={this.props.apiState}
-                    successMessage={this.state.successMessage}
+            <>
+                <AlertPanel
+                    type='error'
+                    message='Your account was not successfully linked.  Please wait while we redirect you.'
                 />
-                {this.props.apiState.loading && (
-                    <div>Please wait while we verify your details..</div>
-                )}
-            </div>
+            </>
         );
     }
+
+    return (
+        <div>
+            <ApiStatus apiState={apiState} successMessage={successMessage} />
+            {apiState.loading && <div>Please wait while we verify your details..</div>}
+        </div>
+    );
 }
 
-Patreon.propTypes = {
-    accountLinked: PropTypes.bool,
-    apiState: PropTypes.object,
-    clearLinkStatus: PropTypes.func,
-    code: PropTypes.string.isRequired,
-    linkPatreon: PropTypes.func,
-    navigate: PropTypes.func
-};
 Patreon.displayName = 'Patreon';
 
-function mapStateToProps(state) {
-    return {
-        accountLinked: state.account.accountLinked,
-        apiState: state.api.ACCOUNT_LINK_REQUEST || {}
-    };
-}
-
-export default connect(mapStateToProps, actions)(Patreon);
+export default Patreon;

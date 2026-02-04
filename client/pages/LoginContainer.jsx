@@ -7,10 +7,13 @@ import Login from '../Components/Login';
 import Panel from '../Components/Site/Panel';
 import ApiStatus from '../Components/Site/ApiStatus';
 import { Auth } from '../redux/types';
-import { loginAccount, clearApiStatus, authenticateSocket, navigate } from '../redux/actions';
+import { loginAccount, clearApiStatus, authenticateSocket } from '../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 const LoginContainer = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const { t } = useTranslation();
     const apiState = useSelector((state) => {
         const retState = state.api[Auth.LoginAccount];
@@ -23,7 +26,7 @@ const LoginContainer = () => {
             setTimeout(() => {
                 dispatch(clearApiStatus(Auth.LoginAccount));
                 dispatch(authenticateSocket());
-                dispatch(navigate('/'));
+                navigate('/');
             }, 500);
         }
 

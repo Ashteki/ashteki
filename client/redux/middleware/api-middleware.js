@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { navigate, setAuthTokens, authenticateSocket } from '../actions';
+import { setAuthTokens, authenticateSocket } from '../actions';
 import { Api } from '../types';
 
 export default function callAPIMiddleware({ dispatch, getState }) {
@@ -66,8 +66,8 @@ export default function callAPIMiddleware({ dispatch, getState }) {
                 });
 
                 if (!authResponse.success) {
-                    dispatch(navigate('/login'));
-
+                    window.location.assign('/login');
+                    //TODO: clear refresh token from state?
                     return;
                 }
 

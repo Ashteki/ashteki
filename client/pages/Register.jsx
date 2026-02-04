@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import AlertPanel from '../Components/Site/AlertPanel.jsx';
 import Panel from '../Components/Site/Panel.jsx';
@@ -9,106 +9,66 @@ import Link from '../Components/Navigation/Link.jsx';
 
 import * as actions from '../redux/actions';
 
-import { withTranslation, Trans } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
-export class Register extends React.Component {
-    constructor() {
-        super();
+function Register() {
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-        this.onRegister = this.onRegister.bind(this);
+    const accountRegistered = useSelector((s) => s.account.registered);
+    const apiLoading = useSelector((s) =>
+        s.api.REGISTER_ACCOUNT ? s.api.REGISTER_ACCOUNT.loading : undefined
+    );
+    const apiMessage = useSelector((s) =>
+        s.api.REGISTER_ACCOUNT ? s.api.REGISTER_ACCOUNT.message : undefined
+    );
+    const apiSuccess = useSelector((s) =>
+        s.api.REGISTER_ACCOUNT ? s.api.REGISTER_ACCOUNT.success : undefined
+    );
 
-        this.state = {
-            successMessage: ''
-        };
-    }
+    const [successMessage, setSuccessMessage] = useState('');
 
-    // eslint-disable-next-line camelcase
-    UNSAFE_componentWillReceiveProps(props) {
-        let t = this.props.t;
-
-        if (props.accountRegistered) {
-            // this.setState({ successMessage: 'Your account was successfully registered.  Please verify your account using the link in the email sent to the address you have provided.' });
-            this.setState({
-                successMessage: t(
-                    'Your account was successfully registered.  You can now proceed to login.'
-                )
-            });
-            setTimeout(() => {
-                //    this.props.navigate('/');
-                this.props.navigate('/login');
-            }, 2000);
+    useEffect(() => {
+        let tId;
+        if (accountRegistered) {
+            setSuccessMessage(t('Your account was successfully registered.  You can now proceed to login.'));
+            tId = setTimeout(() => navigate('/login'), 2000);
         }
-    }
 
-    onRegister(state) {
-        this.props.registerAccount({
-            username: state.username,
-            password: state.password,
-            email: state.email
-        });
-    }
+        return () => clearTimeout(tId);
+    }, [accountRegistered, navigate, t]);
 
-    render() {
-        let t = this.props.t;
+    const onRegister = useCallback(
+        (state) => {
+            dispatch(actions.registerAccount({ username: state.username, password: state.password, email: state.email }));
+        },
+        [dispatch]
+    );
 
-        let errorBar =
-            this.props.apiSuccess === false ? (
-                <AlertPanel type='error' message={t(this.props.apiMessage)} />
-            ) : null;
-        let successBar = this.state.successMessage ? (
-            <AlertPanel type='success' message={t(this.state.successMessage)} />
-        ) : null;
+    const errorBar = apiSuccess === false ? <AlertPanel type='error' message={t(apiMessage)} /> : null;
+    const successBar = successMessage ? <AlertPanel type='success' message={t(successMessage)} /> : null;
 
-        return (
-            <div className='col-md-8 col-md-offset-2'>
-                {errorBar}
-                {successBar}
-                <Panel title={t('Register an account')}>
-                    <Trans i18nKey='register.disclosure'>
-                        <p>
-                            We require information from you in order to service your access to the
-                            site. Please see the <Link href='/privacy'>privacy policy</Link> for
-                            details on why we need this information and what we do with it. Please
-                            pay particular attention to the section on avatars.
-                        </p>
-                    </Trans>
+    return (
+        <div className='col-md-8 col-md-offset-2'>
+            {errorBar}
+            {successBar}
+            <Panel title={t('Register an account')}>
+                <Trans i18nKey='register.disclosure'>
+                    <p>
+                        We require information from you in order to service your access to the
+                        site. Please see the <Link href='/privacy'>privacy policy</Link> for
+                        details on why we need this information and what we do with it. Please
+                        pay particular attention to the section on avatars.
+                    </p>
+                </Trans>
 
-                    <Form
-                        name='register'
-                        apiLoading={this.props.apiLoading}
-                        buttonText='Register'
-                        onSubmit={this.onRegister}
-                    />
-                </Panel>
-            </div>
-        );
-    }
+                <Form name='register' apiLoading={apiLoading} buttonText='Register' onSubmit={onRegister} />
+            </Panel>
+        </div>
+    );
 }
 
 Register.displayName = 'Register';
-Register.propTypes = {
-    accountRegistered: PropTypes.bool,
-    apiLoading: PropTypes.bool,
-    apiMessage: PropTypes.string,
-    apiSuccess: PropTypes.bool,
-    i18n: PropTypes.object,
-    navigate: PropTypes.func,
-    register: PropTypes.func,
-    registerAccount: PropTypes.func,
-    registeredToken: PropTypes.string,
-    registeredUser: PropTypes.object,
-    socket: PropTypes.object,
-    t: PropTypes.func
-};
 
-function mapStateToProps(state) {
-    return {
-        accountRegistered: state.account.registered,
-        apiLoading: state.api.REGISTER_ACCOUNT ? state.api.REGISTER_ACCOUNT.loading : undefined,
-        apiMessage: state.api.REGISTER_ACCOUNT ? state.api.REGISTER_ACCOUNT.message : undefined,
-        apiSuccess: state.api.REGISTER_ACCOUNT ? state.api.REGISTER_ACCOUNT.success : undefined,
-        socket: state.lobby.socket
-    };
-}
-
-export default withTranslation()(connect(mapStateToProps, actions)(Register));
+export default Register;

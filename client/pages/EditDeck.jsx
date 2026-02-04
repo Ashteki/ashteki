@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
 import ViewDeck from '../Components/Decks/ViewDeck.jsx';
@@ -9,92 +9,64 @@ import AlertPanel from '../Components/Site/AlertPanel.jsx';
 
 import * as actions from '../redux/actions';
 
-class InnerEditDeck extends React.Component {
-    constructor() {
-        super();
+function InnerEditDeck({ deckId }) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-        this.onSaveDeck = this.onSaveDeck.bind(this);
-    }
+    const apiError = useSelector((s) => s.api.message);
+    const deck = useSelector((s) => s.cards.selectedDeck);
+    const deckSaved = useSelector((s) => s.cards.deckSaved);
+    const loading = useSelector((s) => s.api.loading);
 
-    componentDidMount() {
-        if (this.props.deckId) {
-            return this.props.loadDeck(this.props.deckId);
-        } else if (this.props.deck) {
-            this.props.setUrl('/decks/edit/' + this.props.deck._id);
-
-            return this.props.loadDeck(this.props.deck._id);
+    useEffect(() => {
+        if (deckId) {
+            dispatch(actions.loadDeck(deckId));
+        } else if (deck) {
+            dispatch(actions.setUrl('/decks/edit/' + deck._id));
+            dispatch(actions.loadDeck(deck._id));
         }
-    }
+    }, [deckId, deck, dispatch]);
 
-    componentDidUpdate() {
-        if (this.props.deckSaved) {
-            this.props.navigate('/decks');
-
-            return;
+    useEffect(() => {
+        if (deckSaved) {
+            navigate('/decks');
         }
+    }, [deckSaved, navigate]);
+
+    const onSaveDeck = useCallback(
+        (d) => {
+            dispatch(actions.saveDeck(d));
+        },
+        [dispatch]
+    );
+
+    let content;
+
+    if (loading) {
+        content = <div>Loading decks from the server...</div>;
+    } else if (apiError) {
+        content = <AlertPanel type='error' message={apiError} />;
+    } else if (!deck) {
+        content = <AlertPanel message='The specified deck was not found' type='error' />;
+    } else {
+        content = (
+            <div className='full-height'>
+                <Row>
+                    <Col lg={6} className='full-height'>
+                        <div className='lobby-card'>
+                            <div className='lobby-header'>Deck Editor</div>
+                            <DeckEditor mode='Save' onDeckSave={onSaveDeck} />
+                        </div>
+                    </Col>
+                    <Col lg={6}>{<ViewDeck deck={deck} editMode={true} />}</Col>
+                </Row>
+            </div>
+        );
     }
 
-    onSaveDeck(deck) {
-        this.props.saveDeck(deck);
-    }
-
-    render() {
-        let content;
-
-        if (this.props.loading) {
-            content = <div>Loading decks from the server...</div>;
-        } else if (this.props.apiError) {
-            content = <AlertPanel type='error' message={this.props.apiError} />;
-        } else if (!this.props.deck) {
-            content = <AlertPanel message='The specified deck was not found' type='error' />;
-        } else {
-            content = (
-                <div className='full-height'>
-                    <Row>
-                        <Col lg={6} className='full-height'>
-                            <div className='lobby-card'>
-                                <div className='lobby-header'>Deck Editor</div>
-                                <DeckEditor mode='Save' onDeckSave={this.onSaveDeck} />
-                            </div>
-                        </Col>
-                        <Col lg={6}>{<ViewDeck deck={this.props.deck} editMode={true} />}</Col>
-                    </Row>
-                </div>
-            );
-        }
-
-        return content;
-    }
+    return content;
 }
 
 InnerEditDeck.displayName = 'InnerEditDeck';
-InnerEditDeck.propTypes = {
-    agendas: PropTypes.object,
-    apiError: PropTypes.string,
-    banners: PropTypes.array,
-    cards: PropTypes.object,
-    deck: PropTypes.object,
-    deckId: PropTypes.string,
-    deckSaved: PropTypes.bool,
-    loadDeck: PropTypes.func,
-    loading: PropTypes.bool,
-    navigate: PropTypes.func,
-    saveDeck: PropTypes.func,
-    setUrl: PropTypes.func
-};
 
-function mapStateToProps(state) {
-    return {
-        agendas: state.cards.agendas,
-        apiError: state.api.message,
-        banners: state.cards.banners,
-        cards: state.cards.cards,
-        deck: state.cards.selectedDeck,
-        deckSaved: state.cards.deckSaved,
-        loading: state.api.loading
-    };
-}
-
-const EditDeck = connect(mapStateToProps, actions)(InnerEditDeck);
-
-export default EditDeck;
+export default InnerEditDeck;

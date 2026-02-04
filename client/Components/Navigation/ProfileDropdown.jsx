@@ -36,9 +36,14 @@ const ProfileMenu = (props) => {
                 }
 
                 return (
-                    <Link key={menuItem.path} href={menuItem.path}>
-                        <NavDropdown.Item>{t(menuItem.title)}</NavDropdown.Item>
-                    </Link>
+                    <NavDropdown.Item
+                        key={menuItem.title || menuItem.path}
+                        as={Link}
+                        href={menuItem.path}
+                        className='navbar-item interactable dropdown-child'
+                    >
+                        {t(menuItem.title)}
+                    </NavDropdown.Item>
                 );
             })}
         </NavDropdown>

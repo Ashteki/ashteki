@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonGroup, Dropdown } from 'react-bootstrap';
 import ConfirmButton from '../Form/ConfirmButton';
 import DeckSummary from './DeckSummary';
-import { deleteDeck, navigate, clearApiStatus, resyncDeck, duplicateDeck } from '../../redux/actions';
+import { deleteDeck, clearApiStatus, resyncDeck, duplicateDeck } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
@@ -12,6 +12,7 @@ import { ashesDbShareUrl, ashesLiveShareUrl } from '../../util';
 import { toastr } from 'react-redux-toastr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * @typedef ViewDeckProps
@@ -23,12 +24,13 @@ import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
  */
 const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleDeleteClick = () => {
         dispatch(deleteDeck(deck));
     };
     const handleEditClick = () => {
-        dispatch(navigate('/decks/edit'));
+        navigate('/decks/edit');
     };
     const handleDuplicateClick = () => {
         dispatch(duplicateDeck(deck));
