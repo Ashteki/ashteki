@@ -47,7 +47,11 @@ const AppRoutes = ({ currentGame, user }) => {
 
     return (
         <Routes>
-            <Route path='/' element={<GameLobby />} />
+            <Route path='/'
+                element={
+                    currentGame?.started ? <GameBoard /> : <GameLobby gameId={getParam('gameId')} />
+                }
+            />
             <Route
                 path='/play'
                 element={

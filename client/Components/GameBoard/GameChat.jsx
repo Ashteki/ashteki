@@ -145,7 +145,7 @@ GameChat.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        oppTyping: state.lobby.currentGame.opponentTyping
+        oppTyping: state.lobby.currentGame?.opponentTyping
     };
 }
 
