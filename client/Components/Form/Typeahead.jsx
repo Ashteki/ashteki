@@ -1,75 +1,56 @@
 import { Typeahead } from 'react-bootstrap-typeahead';
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef } from 'react';
 
-class InternalTypeahead extends React.Component {
-    clear() {
-        this.typeahead.getInstance().clear();
-    }
+function InternalTypeahead({ label, name, labelClass, fieldClass, options, labelKey, emptyLabel, onChange, placeholder, autoFocus, dropup, minLength, onInputChange, submitFormOnEnter, onKeyDown, disabled, validationMessage, children, noGroup }) {
+    const typeaheadRef = useRef(null);
 
-    render() {
-        const label = this.props.label ? (
-            <label htmlFor={this.props.name} className={this.props.labelClass + ' control-label'}>
-                {this.props.label}
-            </label>
-        ) : null;
-        const control = (
-            <div>
-                {label}
-                <div className={this.props.fieldClass}>
-                    <Typeahead
-                        ref={(t) => (this.typeahead = t)}
-                        options={this.props.options}
-                        labelKey={this.props.labelKey}
-                        emptyLabel={this.props.emptyLabel}
-                        onChange={this.props.onChange}
-                        placeholder={this.props.placeholder}
-                        autoFocus={this.props.autoFocus}
-                        dropup={this.props.dropup}
-                        minLength={this.props.minLength}
-                        onInputChange={this.props.onInputChange}
-                        submitFormOnEnter={this.props.submitFormOnEnter}
-                        onKeyDown={this.props.onKeyDown}
-                        disabled={this.props.disabled}
-                    />
-                    {this.props.validationMessage ? (
-                        <span className='help-block'>{this.props.validationMessage} </span>
-                    ) : null}
-                </div>
-                {this.props.children}
+    const clear = () => {
+        typeaheadRef.current?.getInstance().clear();
+    };
+
+    // Expose clear method on ref if needed
+    typeaheadRef.current = { clear };
+
+    const labelElement = label ? (
+        <label htmlFor={name} className={labelClass + ' control-label'}>
+            {label}
+        </label>
+    ) : null;
+
+    const control = (
+        <div>
+            {labelElement}
+            <div className={fieldClass}>
+                <Typeahead
+                    ref={typeaheadRef}
+                    options={options}
+                    labelKey={labelKey}
+                    emptyLabel={emptyLabel}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    autoFocus={autoFocus}
+                    dropup={dropup}
+                    minLength={minLength}
+                    onInputChange={onInputChange}
+                    submitFormOnEnter={submitFormOnEnter}
+                    onKeyDown={onKeyDown}
+                    disabled={disabled}
+                />
+                {validationMessage ? (
+                    <span className='help-block'>{validationMessage} </span>
+                ) : null}
             </div>
-        );
+            {children}
+        </div>
+    );
 
-        if (this.props.noGroup) {
-            return control;
-        }
-
-        return <div className='form-group'>{control}</div>;
+    if (noGroup) {
+        return control;
     }
+
+    return <div className='form-group'>{control}</div>;
 }
 
 InternalTypeahead.displayName = 'Typeahead';
-InternalTypeahead.propTypes = {
-    autoFocus: PropTypes.bool,
-    children: PropTypes.object,
-    disabled: PropTypes.bool,
-    dropup: PropTypes.bool,
-    emptyLabel: PropTypes.string,
-    fieldClass: PropTypes.string,
-    label: PropTypes.string,
-    labelClass: PropTypes.string,
-    labelKey: PropTypes.string,
-    minLength: PropTypes.number,
-    name: PropTypes.string,
-    noGroup: PropTypes.bool,
-    onChange: PropTypes.func,
-    onInputChange: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    options: PropTypes.array,
-    placeholder: PropTypes.string,
-    submitFormOnEnter: PropTypes.bool,
-    validationMessage: PropTypes.string,
-    value: PropTypes.string
-};
 
 export default InternalTypeahead;
