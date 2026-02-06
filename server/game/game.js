@@ -217,8 +217,9 @@ class Game extends EventEmitter {
     /**
      * Record that a unit has been destroyed this turn (e.g. for summon bone crow)
      */
-    onUnitDestroyed() {
+    onUnitDestroyed(card) {
         this.turnEvents.unitDestroyed = true;
+        this.logDestruction(card);
     }
 
     /*
@@ -1747,6 +1748,14 @@ class Game extends EventEmitter {
         });
         // do chat log too
         this.addAlert('info', '{0} PASSES their main action', player);
+    }
+
+    logDestruction(card) {
+        this.gameLog.push({
+            id: 'cl' + this.getCardLogIndex(),
+            act: 'des',
+            obj: card
+        });
     }
 
     initiateAttack(target, attacker) {

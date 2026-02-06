@@ -71,7 +71,7 @@
         background-color: #333;
     }
 
-    >.img-card {
+    .img-card {
         width: 45px;
         border-radius: 4px;
         // margin-left: 4px;
@@ -87,5 +87,13 @@
         width: 45px;
         margin: 0px;
         line-height: unset;
+    }
+
+    &.dx {
+        filter: grayscale(100%);
+
+        .img-card {
+            width: 30px;
+        }
     }
 }

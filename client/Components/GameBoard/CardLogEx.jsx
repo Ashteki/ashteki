@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { isSafari } from 'react-device-detect';
+import React from 'react';
 import CardImage from './CardImage';
-import classNames from 'classnames';
 import attackIcon from '../../assets/img/attack-icon.png';
 import medIcon from '../../assets/img/meditate-icon.png';
 import passIcon from '../../assets/img/pass-icon.png';
@@ -11,8 +9,6 @@ import './Cardlog.scss';
 import DieIcon from './DieIcon';
 
 const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
-    const [show, setShow] = useState(true);
-
     if (!items) {
         return null;
     }
@@ -71,6 +67,21 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
                 </div>
 
             )
+        }
+
+        if (item.type === 'des') {
+            const card = item.obj;
+            return (
+                <>
+                    <div key={item.id} className='log-card dx'
+                        onMouseOut={() => onMouseOut && onMouseOut(item.obj)}
+                        onMouseOver={() => onMouseOver && onMouseOver(item.obj)}
+                    >
+                        <CardImage card={item.obj} noIndex={true} />
+                        <div className='log-info'>{card.name} is destroyed</div>
+                    </div>
+                </>
+            );
         }
 
         // now it's a card

@@ -10,11 +10,14 @@ import * as yup from 'yup';
 import Panel from '../Site/Panel';
 import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
-import { clearApiStatus, navigate, importDeck } from '../../redux/actions';
+import { clearApiStatus, importDeck } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 const ImportDeck = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const apiState = useSelector((state) => {
         const retState = state.api[Decks.ImportDeck];
 
@@ -23,7 +26,7 @@ const ImportDeck = () => {
 
             setTimeout(() => {
                 dispatch(clearApiStatus(Decks.ImportDeck));
-                dispatch(navigate('/decks'));
+                navigate('/decks');
             }, 1000);
         }
 
