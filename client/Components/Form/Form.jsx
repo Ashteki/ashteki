@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import $ from 'jquery';
-import PropTypes from 'prop-types';
 
 import Input from './Input.jsx';
 
@@ -8,46 +7,41 @@ import formFields from './formFields.json';
 
 import { withTranslation } from 'react-i18next';
 
-class Form extends React.Component {
-    constructor(props) {
-        super(props);
+function Form({ name, onSubmit, apiLoading, buttonClass, buttonText, t, children }) {
+    const [formState, setFormState] = useState({});
+    const validatorRef = useRef(null);
 
-        this.state = {};
-
-        this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    componentDidMount() {
+    useEffect(() => {
         $.validator.unobtrusive.parse('form');
+        validatorRef.current = $('form').validate();
 
-        this.validator = $('form').validate();
-    }
+        return () => {
+            if (validatorRef.current) {
+                validatorRef.current.destroy();
+            }
+        };
+    }, []);
 
-    componentWillUnmount() {
-        this.validator.destroy();
-    }
+    const handleChange = useCallback((field, event) => {
+        setFormState((prevState) => ({
+            ...prevState,
+            [field]: event.target.value
+        }));
+    }, []);
 
-    onChange(field, event) {
-        var newState = {};
-
-        newState[field] = event.target.value;
-        this.setState(newState);
-    }
-
-    onSubmit(event) {
+    const handleSubmit = useCallback((event) => {
         event.preventDefault();
 
         if (!$('form').valid()) {
             return;
         }
 
-        if (this.props.onSubmit) {
-            this.props.onSubmit(this.state);
+        if (onSubmit) {
+            onSubmit(formState);
         }
-    }
+    }, [formState, onSubmit]);
 
-    translateValidationProps(field) {
-        let t = this.props.t;
+    const translateValidationProps = useCallback((field) => {
         let validationAttributes = {};
 
         if (field.validationProperties) {
@@ -66,61 +60,47 @@ class Form extends React.Component {
         }
 
         return validationAttributes;
-    }
+    }, [t]);
 
-    render() {
-        let t = this.props.t;
-
-        const fieldsToRender = formFields[this.props.name].map((field) => {
-            return (
-                <Input
-                    key={field.name}
-                    name={field.name}
-                    label={t(field.label)}
-                    placeholder={t(field.placeholder)}
-                    validationAttributes={this.translateValidationProps(field)}
-                    fieldClass={field.fieldClass}
-                    labelClass={field.labelClass}
-                    type={field.inputType}
-                    onChange={this.onChange.bind(this, field.name)}
-                    value={this.state[field.name]}
-                />
-            );
-        });
-
+    const fieldsToRender = formFields[name].map((field) => {
         return (
-            <form className='form form-horizontal' onSubmit={this.onSubmit}>
-                {fieldsToRender}
-                {this.props.children}
-                <div className='form-group'>
-                    <div className={this.props.buttonClass || 'col-sm-offset-4 col-sm-3'}>
-                        <button
-                            type='submit'
-                            className='btn btn-primary'
-                            disabled={this.props.apiLoading}
-                        >
-                            {t(this.props.buttonText) || t('Submit')}{' '}
-                            {this.props.apiLoading ? (
-                                <span className='spinner button-spinner' />
-                            ) : null}
-                        </button>
-                    </div>
-                </div>
-            </form>
+            <Input
+                key={field.name}
+                name={field.name}
+                label={t(field.label)}
+                placeholder={t(field.placeholder)}
+                validationAttributes={translateValidationProps(field)}
+                fieldClass={field.fieldClass}
+                labelClass={field.labelClass}
+                type={field.inputType}
+                onChange={(event) => handleChange(field.name, event)}
+                value={formState[field.name] || ''}
+            />
         );
-    }
+    });
+
+    return (
+        <form className='form form-horizontal' onSubmit={handleSubmit}>
+            {fieldsToRender}
+            {children}
+            <div className='form-group'>
+                <div className={buttonClass || 'col-sm-offset-4 col-sm-3'}>
+                    <button
+                        type='submit'
+                        className='btn btn-primary'
+                        disabled={apiLoading}
+                    >
+                        {t(buttonText) || t('Submit')}{' '}
+                        {apiLoading ? (
+                            <span className='spinner button-spinner' />
+                        ) : null}
+                    </button>
+                </div>
+            </div>
+        </form>
+    );
 }
 
 Form.displayName = 'Form';
-Form.propTypes = {
-    apiLoading: PropTypes.bool,
-    buttonClass: PropTypes.string,
-    buttonText: PropTypes.string,
-    children: PropTypes.node,
-    i18n: PropTypes.object,
-    name: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func,
-    t: PropTypes.func
-};
 
 export default withTranslation()(Form);

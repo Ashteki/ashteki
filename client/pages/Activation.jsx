@@ -2,14 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import AlertPanel from '../Components/Site/AlertPanel';
-import { activateAccount, clearApiStatus, navigate } from '../redux/actions';
+import { activateAccount, clearApiStatus } from '../redux/actions';
 import { Account } from '../redux/types';
 import { useTranslation } from 'react-i18next';
 import { Col } from 'react-bootstrap';
 import ApiStatus from '../Components/Site/ApiStatus';
+import { useNavigate } from 'react-router-dom';
 
 const Activation = ({ id, token }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const { t } = useTranslation();
     const apiState = useSelector((state) => {
         const retState = state.api[Account.ActivateAccount];
@@ -21,7 +24,7 @@ const Activation = ({ id, token }) => {
 
             setTimeout(() => {
                 dispatch(clearApiStatus(Account.ActivateAccount));
-                dispatch(navigate('/login'));
+                navigate('/login');
             }, 3000);
         }
 

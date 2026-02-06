@@ -49,6 +49,9 @@ const CardLog = ({ items, onMouseOut, onMouseOver }) => {
     };
 
     const renderItem = (item, last = false) => {
+        if (item.type === 'des') {
+            return null;
+        }
         if (item.type === 'attack') {
             return renderAttack(item.obj);
         }

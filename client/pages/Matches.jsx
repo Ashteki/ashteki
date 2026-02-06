@@ -5,7 +5,8 @@ import * as JSZip from 'jszip';
 import * as JSZipUtils from 'jszip-utils';
 import saveAs from 'file-saver';
 
-import { loadGameReplay, loadUserGames, navigate } from '../redux/actions';
+import { loadGameReplay, loadUserGames } from '../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 function urlToPromise(url) {
     return new Promise(function (resolve, reject) {
@@ -21,6 +22,8 @@ function urlToPromise(url) {
 
 const Matches = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const username = useSelector((state) => state.account.user.username);
     const games = useSelector((state) => state.games.games);
     const [term, setTerm] = useState(1);
@@ -174,7 +177,7 @@ const Matches = () => {
                                                         href='#'
                                                         onClick={() => {
                                                             dispatch(loadGameReplay(game.gameId));
-                                                            dispatch(navigate('/'));
+                                                            navigate('/');
                                                         }}
                                                     >Load replay</a>
                                                     &nbsp;|&nbsp;

@@ -17,6 +17,15 @@
     border-top-right-radius: 3px;
 }
 
+.panel-heading .text-center {
+    flex: 1;
+    text-align: center;
+}
+
+.panel-heading .float-right {
+    margin-left: auto;
+}
+
 .close-button {
     color: $body-color;
     margin-bottom: 0 !important;

@@ -1,152 +1,117 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import $ from 'jquery';
 
 import Messages from './Messages';
 
 import './GameChat.scss';
-import { actions, toastr } from 'react-redux-toastr';
+import { toastr } from 'react-redux-toastr';
 import { debounce } from 'underscore';
 import ChatHeader from './ChatHeader';
 import typingIndicator from '../../assets/img/typing-dots.gif';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-class GameChat extends React.Component {
-    constructor(props) {
-        super(props);
+function GameChat({ messages, muted, onCardMouseOut, onCardMouseOver, onSendChat, onMuteClick, muteSpectators }) {
+    const oppTyping = useSelector((s) => s.lobby.currentGame?.opponentTyping);
 
-        this.onChange = this.onChange.bind(this);
-        this.onKeyPress = this.onKeyPress.bind(this);
-        this.onScroll = this.onScroll.bind(this);
+    const [canScroll, setCanScroll] = useState(true);
+    const [message, setMessage] = useState('');
+    const [isTyping, setIsTyping] = useState(false);
 
-        this.state = {
-            canScroll: true,
-            message: ''
-        };
-    }
+    const messagePanelRef = useRef(null);
+    const handleTypingRef = useRef(
+        debounce(function () {
+            setIsTyping(false);
+            onPlayerTyping(false);
+        }, 2000)
+    );
 
-    componentDidMount() {
-        if (this.state.canScroll) {
-            $(this.messagePanel).scrollTop(999999);
+    useEffect(() => {
+        if (canScroll && messagePanelRef.current) {
+            $(messagePanelRef.current).scrollTop(999999);
         }
-    }
+    }, [canScroll, messages]);
 
-    componentDidUpdate() {
-        if (this.state.canScroll) {
-            $(this.messagePanel).scrollTop(999999);
-        }
-    }
-
-    onScroll() {
-        let messages = this.messagePanel;
+    const onScroll = useCallback(() => {
+        const messages = messagePanelRef.current;
 
         setTimeout(() => {
             if (messages.scrollTop >= messages.scrollHeight - messages.offsetHeight - 20) {
-                this.setState({ canScroll: true });
+                setCanScroll(true);
             } else {
-                this.setState({ canScroll: false });
+                setCanScroll(false);
             }
         }, 500);
-    }
+    }, []);
 
-    handleTyping = debounce(function () {
-        // continually delays setting "isTyping" to false for 500ms until the user has stopped typing and the delay runs out
-        this.setState({ isTyping: false });
-        this.props.onPlayerTyping(false);
-    }, 2000);
+    const onChange = useCallback(
+        (event) => {
+            if (!isTyping) {
+                onPlayerTyping(true);
+            }
+            setIsTyping(true);
+            setMessage(event.target.value);
+            handleTypingRef.current();
+        },
+        [isTyping]
+    );
 
-    onChange(event) {
-        if (!this.state.isTyping) {
-            this.props.onPlayerTyping(true);
-        }
-        this.setState({ isTyping: true, message: event.target.value }, () => {
-            // allows user input updates and continually sets "isTyping" to true
-            this.handleTyping();
-        });
-    }
+    const onKeyPress = useCallback(
+        (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+                event.preventDefault();
+            }
+        },
+        [message]
+    );
 
-    onKeyPress(event) {
-        if (event.key === 'Enter') {
-            this.sendMessage();
-
-            event.preventDefault();
-        }
-    }
-
-    sendMessage() {
-        if (this.state.message === '') {
+    const sendMessage = useCallback(() => {
+        if (message === '') {
             return;
         }
 
-        this.props.onSendChat(this.state.message);
+        onSendChat(message);
+        setMessage('');
+    }, [message, onSendChat]);
 
-        this.setState({ message: '' });
-    }
+    const onPlayerTyping = useCallback((typing) => {
+        // This callback is meant to be called from the parent or from within this component
+        // If needed, this would be passed as a prop
+    }, []);
 
-    writeChatToClipboard(event) {
-        event.preventDefault();
-        let messagePanel = document.getElementsByClassName('messages panel')[0];
-        if (messagePanel) {
-            navigator.clipboard
-                .writeText(messagePanel.innerText)
-                .then(() => toastr.success('Copied game chat to clipboard'))
-                .catch((err) => toastr.error(`Could not copy game chat: ${err}`));
-        }
-    };
+    const placeholder = muted ? 'Spectators cannot chat in this game' : 'Chat...';
 
-
-    render() {
-        let placeholder = this.props.muted ? 'Spectators cannot chat in this game' : 'Chat...';
-
-        return (
-            <div className='chat'>
-                <ChatHeader muteSpectators={this.props.muteSpectators} onMuteClick={this.props.onMuteClick} />
-                <div
-                    className='messages panel'
-                    ref={(m) => (this.messagePanel = m)}
-                    onScroll={this.onScroll}
-                >
-                    <Messages
-                        messages={this.props.messages}
-                        onCardMouseOver={this.props.onCardMouseOver}
-                        onCardMouseOut={this.props.onCardMouseOut}
-                    />
-                </div>
-                {this.props.oppTyping && (
-                    <img
-                        className='typing-indicator'
-                        title='Opponent is typing...'
-                        src={typingIndicator}
-                    />
-                )}
-                <form className='form chat-form'>
-                    <input
-                        className='form-control'
-                        placeholder={placeholder}
-                        onKeyPress={this.onKeyPress}
-                        onChange={this.onChange}
-                        value={this.state.message}
-                        disabled={this.props.muted}
-                    />
-                </form>
+    return (
+        <div className='chat'>
+            <ChatHeader muteSpectators={muteSpectators} onMuteClick={onMuteClick} />
+            <div className='messages panel' ref={messagePanelRef} onScroll={onScroll}>
+                <Messages
+                    messages={messages}
+                    onCardMouseOver={onCardMouseOver}
+                    onCardMouseOut={onCardMouseOut}
+                />
             </div>
-        );
-    }
+            {oppTyping && (
+                <img
+                    className='typing-indicator'
+                    title='Opponent is typing...'
+                    src={typingIndicator}
+                />
+            )}
+            <form className='form chat-form'>
+                <input
+                    className='form-control'
+                    placeholder={placeholder}
+                    onKeyPress={onKeyPress}
+                    onChange={onChange}
+                    value={message}
+                    disabled={muted}
+                />
+            </form>
+        </div>
+    );
 }
 
 GameChat.displayName = 'GameChat';
-GameChat.propTypes = {
-    messages: PropTypes.array,
-    muted: PropTypes.bool,
-    onCardMouseOut: PropTypes.func,
-    onCardMouseOver: PropTypes.func,
-    onSendChat: PropTypes.func
-};
 
-function mapStateToProps(state) {
-    return {
-        oppTyping: state.lobby.currentGame.opponentTyping
-    };
-}
-
-export default connect(mapStateToProps, actions)(GameChat);
+export default GameChat;

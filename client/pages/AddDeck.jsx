@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import * as actions from '../redux/actions';
 import DeckEditor from '../Components/Decks/DeckEditor';
@@ -9,88 +9,64 @@ import { Col, Row } from 'react-bootstrap';
 // import ViewDeck from '../Components/Decks/ViewDeck.jsx';
 import DeckSummary from '../Components/Decks/DeckSummary';
 import DeckHeader from '../Components/Decks/DeckHeader';
+import { useNavigate } from 'react-router-dom';
 
-export class InnerAddDeck extends React.Component {
-    constructor(props) {
-        super();
+export function InnerAddDeck() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-        this.state = {
-            error: ''
-        };
+    const apiError = useSelector((state) => state.api.message);
+    const deck = useSelector((state) => state.cards.selectedDeck);
+    const deckSaved = useSelector((state) => state.cards.deckSaved);
+    const loading = useSelector((state) => state.api.loading);
 
-        this.onAddDeck = this.onAddDeck.bind(this);
-        props.addDeck();
-    }
+    useEffect(() => {
+        dispatch(actions.addDeck());
+    }, [dispatch]);
 
-    componentDidUpdate() {
-        if (this.props.deckSaved) {
-            this.props.navigate('/decks');
-
-            return;
+    useEffect(() => {
+        if (deckSaved) {
+            navigate('/decks');
         }
+    }, [deckSaved, navigate]);
+
+    const onAddDeck = useCallback(
+        (d) => {
+            dispatch(actions.saveDeck(d));
+        },
+        [dispatch]
+    );
+
+    if (loading) {
+        return <div>Loading decks from the server...</div>;
+    } else if (apiError) {
+        return <AlertPanel type='error' message={apiError} />;
     }
 
-    onAddDeck(deck) {
-        this.props.saveDeck(deck);
-    }
+    return (
+        <div className='full-height'>
+            <Row>
+                <Col lg={6} className='full-height'>
+                    <div className='lobby-card'>
+                        <div className='lobby-header'>Deck Editor</div>
 
-    render() {
-        if (this.props.loading) {
-            return <div>Loading decks from the server...</div>;
-        } else if (this.props.apiError) {
-            return <AlertPanel type='error' message={this.props.apiError} />;
-        } else {
-            return (
-                <div className='full-height'>
-                    <Row>
-                        <Col lg={6} className='full-height'>
-                            <div className='lobby-card'>
-                                <div className='lobby-header'>Deck Editor</div>
-
-                                <DeckEditor mode='Add' onDeckSave={this.onAddDeck} />
-                            </div>
-                        </Col>
-                        <Col lg={6}>
-                            <div className='lobby-card'>
-                                <DeckHeader deck={this.props.deck} />
-                                <DeckSummary deck={this.props.deck} />
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            );
-        }
-    }
+                        <DeckEditor mode='Add' onDeckSave={onAddDeck} />
+                    </div>
+                </Col>
+                <Col lg={6}>
+                    <div className='lobby-card'>
+                        <DeckHeader deck={deck} />
+                        <DeckSummary deck={deck} />
+                    </div>
+                </Col>
+            </Row>
+        </div>
+    );
 }
 
 InnerAddDeck.displayName = 'InnerAddDeck';
 InnerAddDeck.propTypes = {
-    addDeck: PropTypes.func,
-    agendas: PropTypes.object,
-    apiError: PropTypes.string,
-    cards: PropTypes.object,
-    deck: PropTypes.object,
-    deckSaved: PropTypes.bool,
-    factions: PropTypes.object,
-    formats: PropTypes.object,
-    loading: PropTypes.bool,
-    navigate: PropTypes.func,
-    saveDeck: PropTypes.func
+    navigate: PropTypes.func
 };
 
-function mapStateToProps(state) {
-    return {
-        agendas: state.cards.factions,
-        apiError: state.api.message,
-        cards: state.cards.cards,
-        deck: state.cards.selectedDeck,
-        deckSaved: state.cards.deckSaved,
-        factions: state.cards.factions,
-        formats: state.cards.formats,
-        loading: state.api.loading
-    };
-}
-
-const AddDeck = connect(mapStateToProps, actions)(InnerAddDeck);
-
-export default AddDeck;
+export default InnerAddDeck;

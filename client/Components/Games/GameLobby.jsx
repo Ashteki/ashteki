@@ -13,21 +13,17 @@ import discordTextLogo from '../../assets/img/discord-logo-white.svg';
 
 import './GameLobby.scss';
 import { useEffect } from 'react';
-import {
-    startNewGame,
-    joinPasswordGame,
-    sendSocketMessage,
-    setUrl,
-    navigate
-} from '../../redux/actions';
+import { startNewGame, joinPasswordGame, sendSocketMessage } from '../../redux/actions';
 import { useRef } from 'react';
 import PictureButton from '../Lobby/PictureButton';
 import LeaguePairings from './LeaguePairings';
 import LoadReplay from './LoadReplay';
+import { useNavigate } from 'react-router-dom';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const filters = [
         { name: 'casual', label: t('Casual') },
         { name: 'competitive', label: t('Ranked') }
@@ -85,7 +81,7 @@ const GameLobby = ({ gameId }) => {
                     }
                 }
             }
-            dispatch(setUrl('/'));
+            navigate('/', { replace: true });
         }
     }, [currentGame, dispatch, gameId, games]);
 
@@ -153,12 +149,12 @@ const GameLobby = ({ gameId }) => {
                                     <PictureButton
                                         text='Decks'
                                         imageClass='decks-link'
-                                        onClick={() => dispatch(navigate('/decks'))}
+                                        onClick={() => navigate('/decks')}
                                     />
                                     <PictureButton
                                         text='Results'
                                         imageClass='records-link'
-                                        onClick={() => dispatch(navigate('/results'))}
+                                        onClick={() => navigate('/results')}
                                     />
                                     <PictureButton
                                         text='Replay'

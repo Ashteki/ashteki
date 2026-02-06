@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
 import CardImage from './CardImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -7,20 +6,20 @@ import { faArrowRight, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import './AbilityTargetting.scss';
 import DieIcon from './DieIcon';
 
-class AbilityTargeting extends React.Component {
-    onMouseOver(event, card) {
-        if (card && this.props.onMouseOver) {
-            this.props.onMouseOver(event, card);
+function AbilityTargeting({ trigger, source, targets, onMouseOver, onMouseOut, forceReveal }) {
+    const handleMouseOver = useCallback((event, card) => {
+        if (card && onMouseOver) {
+            onMouseOver(event, card);
         }
-    }
+    }, [onMouseOver]);
 
-    onMouseOut(event, card) {
-        if (card && this.props.onMouseOut) {
-            this.props.onMouseOut(event, card);
+    const handleMouseOut = useCallback((event, card) => {
+        if (card && onMouseOut) {
+            onMouseOut(event, card);
         }
-    }
+    }, [onMouseOut]);
 
-    renderSimpleCard(card) {
+    const renderSimpleCard = useCallback((card) => {
         if (!card) {
             return;
         }
@@ -33,41 +32,34 @@ class AbilityTargeting extends React.Component {
         }
         if (!card.id) return '';
 
-        let checkCard = !this.props.forceReveal && card.location === 'deck' ? { facedown: true } : card;
+        let checkCard = !forceReveal && card.location === 'deck' ? { facedown: true } : card;
         return (
             <div
                 className='target-card vertical mb-2'
-                onMouseOut={(event) => this.onMouseOut(event, checkCard)}
-                onMouseOver={(event) => this.onMouseOver(event, checkCard)}
+                onMouseOut={(event) => handleMouseOut(event, checkCard)}
+                onMouseOver={(event) => handleMouseOver(event, checkCard)}
             >
                 <CardImage card={checkCard} />
             </div>
         );
+    }, [forceReveal, handleMouseOut, handleMouseOver]);
+
+    let targetCards = [];
+    if (targets) {
+        targetCards = targets.map((target) => renderSimpleCard(target));
     }
 
-    render() {
-        let targetCards = [];
-        if (this.props.targets) {
-            targetCards = this.props.targets.map((target) => this.renderSimpleCard(target));
-        }
-        return (
-            <div className='prompt-control-targeting'>
-                {this.renderSimpleCard(this.props.trigger)}
-                {this.props.trigger && <FontAwesomeIcon icon={faChevronRight} />}
-                {this.renderSimpleCard(this.props.source)}
-                {targetCards.length > 0 && <FontAwesomeIcon icon={faArrowRight} />}
-                {targetCards}
-            </div>
-        );
-    }
+    return (
+        <div className='prompt-control-targeting'>
+            {renderSimpleCard(trigger)}
+            {trigger && <FontAwesomeIcon icon={faChevronRight} />}
+            {renderSimpleCard(source)}
+            {targetCards.length > 0 && <FontAwesomeIcon icon={faArrowRight} />}
+            {targetCards}
+        </div>
+    );
 }
 
 AbilityTargeting.displayName = 'AbilityTargeting';
-AbilityTargeting.propTypes = {
-    onMouseOut: PropTypes.func,
-    onMouseOver: PropTypes.func,
-    source: PropTypes.object,
-    targets: PropTypes.array
-};
 
 export default AbilityTargeting;

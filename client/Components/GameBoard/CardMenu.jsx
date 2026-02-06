@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
 import { withTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
@@ -7,70 +6,57 @@ import './CardMenu.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-class CardMenu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            submenu: 'main'
-        };
-    }
+function CardMenu({ cardName, menu, onMenuItemClick, onCloseClick, side, t }) {
+    const [submenu, setSubmenu] = useState('main');
 
-    onMenuItemClick(menuItem) {
+    const handleMenuItemClick = useCallback((menuItem) => {
         if (['main', 'tokens', 'moves'].includes(menuItem.command)) {
-            this.setState({ submenu: menuItem.command });
+            setSubmenu(menuItem.command);
         } else {
-            if (this.props.onMenuItemClick) {
-                this.props.onMenuItemClick(menuItem);
+            if (onMenuItemClick) {
+                onMenuItemClick(menuItem);
             }
         }
-    }
+    }, [onMenuItemClick]);
 
-    onCloseClick() {
-        if (this.props.onCloseClick) {
-            this.props.onCloseClick();
+    const handleCloseClick = useCallback(() => {
+        if (onCloseClick) {
+            onCloseClick();
         }
-    }
+    }, [onCloseClick]);
 
-    render() {
-        let menuIndex = 0;
-        let menuItems = this.props.menu.map((menuItem) => {
-            let className = classNames('menu-item', {
-                disabled: !!menuItem.disabled
-            });
-            if (menuItem.menu === this.state.submenu) {
-                return (
-                    <div
-                        key={menuIndex++}
-                        className={className}
-                        onClick={(event) => {
-                            this.onMenuItemClick(menuItem);
-                            event.stopPropagation();
-                        }}
-                    >
-                        {menuItem.text}
-                    </div>
-                );
-            }
+    let menuIndex = 0;
+    let menuItems = menu.map((menuItem) => {
+        let className = classNames('menu-item', {
+            disabled: !!menuItem.disabled
         });
-
-        let menuClass = this.props.side == 'bottom' ? 'bottom-menu' : 'menu';
-        return (
-            <div className={`panel ${menuClass}`} onClick={this.onCloseClick.bind(this)}>
-                <div className='menu-title'>{this.props.cardName}
-                    <span className='close-menu-button'><FontAwesomeIcon icon={faTimes} /></span>
+        if (menuItem.menu === submenu) {
+            return (
+                <div
+                    key={menuIndex++}
+                    className={className}
+                    onClick={(event) => {
+                        handleMenuItemClick(menuItem);
+                        event.stopPropagation();
+                    }}
+                >
+                    {menuItem.text}
                 </div>
-                {menuItems}
+            );
+        }
+    });
+
+    let menuClass = side == 'bottom' ? 'bottom-menu' : 'menu';
+    return (
+        <div className={`panel ${menuClass}`} onClick={handleCloseClick}>
+            <div className='menu-title'>{cardName}
+                <span className='close-menu-button'><FontAwesomeIcon icon={faTimes} /></span>
             </div>
-        );
-    }
+            {menuItems}
+        </div>
+    );
 }
 
 CardMenu.displayName = 'CardMenu';
-CardMenu.propTypes = {
-    i18n: PropTypes.object,
-    menu: PropTypes.array.isRequired,
-    onMenuItemClick: PropTypes.func,
-    t: PropTypes.func
-};
 
 export default withTranslation()(CardMenu);

@@ -399,7 +399,7 @@ const GameBoard = () => {
     }
 
     if (!authUser) {
-        dispatch(navigate('/'));
+        navigate('/');
         return (
             <div>
                 <Trans>You are not logged in, redirecting...</Trans>
