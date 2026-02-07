@@ -50,7 +50,7 @@ class PlainTextGameChatFormatter {
             } else if (fragment.message) {
                 result += this.formatMessageFragment(fragment.message);
             } else if (fragment.argType === 'card') {
-                result += fragment.label;
+                result += fragment.name;
             } else if (fragment.name && fragment.argType === 'player') {
                 result += `${fragment.name}:`;
             } else if (fragment.argType === 'nonAvatarPlayer') {

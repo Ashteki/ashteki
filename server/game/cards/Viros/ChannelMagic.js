@@ -8,6 +8,7 @@ class ChannelMagic extends Card {
             then: {
                 alwaysTriggers: true,
                 target: {
+                    activePromptTitle: 'Choose a phoenixborn to remove 1 damage from',
                     cardType: PhoenixbornTypes,
                     gameAction: ability.actions.removeDamage({ amount: 1, showMessage: true })
                 },
