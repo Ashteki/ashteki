@@ -3,10 +3,7 @@ import React from 'react';
 function Input({ name, label, labelClass, fieldClass, type, placeholder, value, onChange, onBlur, autoFocus, validationAttributes, noGroup, children }) {
     const inputControl = (
         <div>
-            <label
-                htmlFor={name}
-                className={labelClass + ' control-label'}
-            >
+            <label htmlFor={name} className={labelClass + ' control-label'}>
                 {label}
             </label>
             <div className={fieldClass}>
@@ -22,11 +19,7 @@ function Input({ name, label, labelClass, fieldClass, type, placeholder, value, 
                     autoFocus={autoFocus}
                     {...validationAttributes}
                 />
-                <span
-                    className='text-danger'
-                    data-valmsg-replace='true'
-                    data-valmsg-for={name}
-                />
+                <span className='text-danger' data-valmsg-replace='true' data-valmsg-for={name} />
             </div>
             {children}
         </div>
