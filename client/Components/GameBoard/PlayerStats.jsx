@@ -16,6 +16,7 @@ import Minus from '../../assets/img/Minus.png';
 import Plus from '../../assets/img/Plus.png';
 import FirstPlayerImage from '../../assets/img/firstplayer.png';
 import Clock from './Clock';
+import LifeRemaining from './LifeRemaining';
 import './PlayerStats.scss';
 import CardPileLink from './CardPileLink';
 import { useDispatch, useSelector } from 'react-redux';
@@ -89,40 +90,6 @@ const PlayerStats = ({
             </div>
         );
     };
-
-    const renderLifeRemaining = () => {
-        const pb = phoenixborn;
-        let pbDamage = 0;
-        let lifeClass = 'life-green';
-        let lifeValue = 0;
-
-        if (pb) {
-            const pbLife = pb.life;
-            pbDamage = phoenixborn.tokens.damage
-                ? phoenixborn.tokens.damage
-                : 0;
-            lifeValue = Math.max(0, pbLife - pbDamage - (pb.drowningLevel || 0));
-            if (lifeValue <= 10) {
-                lifeClass = 'life-orange';
-            }
-            if (lifeValue <= 5) {
-                lifeClass = 'life-red';
-            }
-        }
-
-        let classes = classNames('action', 'life-remaining', lifeClass);
-        return (
-            <div className='state'>
-                <span key={`life-rem`} className={classes}>
-                    <span title='Life remaining'>{lifeValue}</span>
-                    {pb.drowningLevel > 0 &&
-                        < span className='drowning-indicator' title='Drowning Level'>({pb.drowningLevel})</span>
-                    }
-                </span>
-
-            </div >
-        );
-    }
 
     const renderChimeraPhase = () => {
         return (
@@ -312,7 +279,7 @@ const PlayerStats = ({
         <div className={statsClass}>
             {playerAvatar}
             {solo && !isMe && renderChimeraPhase()}
-            {renderLifeRemaining()}
+            <LifeRemaining phoenixborn={phoenixborn} />
             {renderActions()}
             {firstPlayerToken}
             {clock}
