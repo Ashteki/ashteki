@@ -58,7 +58,7 @@ class Die extends PlayableObject {
             { command: 'lower', text: 'Lower', menu: 'main' }
         );
 
-        if ([Magic.Divine, Magic.Charm].includes(this.magic)) {
+        if ([Magic.Divine, Magic.Charm, Magic.Artifice, Magic.Astral].includes(this.magic)) {
             if (this.parent) {
                 menu.push({ command: 'detach', text: 'Detach', menu: 'main' });
             } else {
