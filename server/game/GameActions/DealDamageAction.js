@@ -50,7 +50,7 @@ class DealDamageAction extends CardGameAction {
         // add unpreventable flags and restrictions
         params.preventable =
             params.preventable &&
-            !(this.unpreventable || params.damageSource.anyEffect('unpreventable'));
+            !(this.unpreventable || params.damageSource.anyEffect('unpreventable', context));
 
         params.condition = (event) => this.canDealDamage(event.damageSource, event);
 
