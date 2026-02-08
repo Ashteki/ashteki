@@ -109,4 +109,31 @@ describe('Summon Steadfast Guardian', function () {
             expect(this.player1.inPlay.every((c) => !c.exhausted)).toBe(true);
         });
     });
+
+    describe('Focus 1 Summon when no tokens target', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['steadfast-guardian'],
+                    spellboard: ['summon-steadfast-guardian', 'summon-steadfast-guardian'],
+                    dicepool: ['divine', 'charm', 'ceremonial', 'natural'],
+                    archives: ['steadfast-guardian']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight'],
+                    spellboard: []
+                }
+            });
+        });
+
+        it('no prompt', function () {
+            this.player1.clickCard(this.summonSteadfastGuardian);
+            this.player1.clickPrompt('Summon Steadfast Guardian');
+
+            expect(this.player1.inPlay.length).toBe(2);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
 });
