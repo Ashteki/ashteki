@@ -223,6 +223,10 @@ class Player extends GameObject {
         );
     }
 
+    hasCardInArchives(stub) {
+        return this.archives.some((c) => c.id === stub);
+    }
+
     // CAUTION! sort of overridden in DummyPlayer
     get unitsInPlay() {
         return this.cardsInPlay.filter(
