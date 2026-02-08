@@ -5,8 +5,8 @@ import moment from 'moment';
 import Form from '../Components/Form/Form';
 import Panel from '../Components/Site/Panel';
 import ApiStatus from '../Components/Site/ApiStatus';
-import * as actions from '../redux/actions';
 import { Col } from 'react-bootstrap';
+import { addBanlist, clearbanlistStatus, deleteBanlist, loadBanlist } from '../redux/actions';
 
 function BanlistAdmin() {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function BanlistAdmin() {
     const [currentRequest, setCurrentRequest] = useState('REQUEST_BANLIST');
 
     useEffect(() => {
-        dispatch(actions.loadBanlist());
+        dispatch(loadBanlist());
     }, [dispatch]);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ function BanlistAdmin() {
         if (banlistAdded) {
             setSuccessMessage('Banlist item added successfully.');
             t = setTimeout(() => {
-                dispatch(actions.clearBanlistStatus());
+                dispatch(clearbanlistStatus());
                 setSuccessMessage(undefined);
             }, 5000);
         }
@@ -38,7 +38,7 @@ function BanlistAdmin() {
         if (banlistDeleted) {
             setSuccessMessage('Banlist item deleted successfully.');
             t = setTimeout(() => {
-                dispatch(actions.clearBanlistStatus());
+                dispatch(clearbanlistStatus());
                 setSuccessMessage(undefined);
             }, 5000);
         }
@@ -49,7 +49,7 @@ function BanlistAdmin() {
     const onAddBanlistClick = useCallback(
         (state) => {
             setCurrentRequest('ADD_BANLIST');
-            dispatch(actions.addBanlist(state.ip));
+            dispatch(addBanlist(state.ip));
         },
         [dispatch]
     );
@@ -57,7 +57,7 @@ function BanlistAdmin() {
     const onDeleteClick = useCallback(
         (id) => {
             setCurrentRequest('DELETE_BANLIST');
-            dispatch(actions.deleteBanlist(id));
+            dispatch(deleteBanlist(id));
         },
         [dispatch]
     );
