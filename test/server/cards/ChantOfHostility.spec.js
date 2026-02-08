@@ -32,6 +32,7 @@ describe('Chant of Hostility', function () {
         this.chantOfHostility.tokens.status = 1;
         this.player2.clickCard(this.chantOfHostility);
         this.player2.clickPrompt('Hostility');
+        expect(this.player2).not.toBeAbleToSelect(this.ironWorker);
         this.player2.clickCard(this.anchornaut);
         expect(this.anchornaut.attack).toBe(1);
     });

@@ -24,6 +24,7 @@ class ChantOfHostility extends Card {
             target: {
                 activePromptTitle: 'Choose a unit to add 1 attack to',
                 cardType: BattlefieldTypes,
+                controller: 'self',
                 gameAction: ability.actions.cardLastingEffect(() => ({
                     duration: 'untilEndOfTurn',
                     effect: ability.effects.modifyAttack(1)
