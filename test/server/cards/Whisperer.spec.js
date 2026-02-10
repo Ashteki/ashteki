@@ -36,7 +36,8 @@ describe('Whisperer', function () {
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['crimson-bomber'],
-                    hand: ['molten-gold']
+                    hand: ['molten-gold'],
+                    dicepool: ['charm', 'charm']
                 },
                 player2: {
                     phoenixborn: 'maeoni-viper',
@@ -45,9 +46,11 @@ describe('Whisperer', function () {
                     dicepool: ['charm', 'natural', 'natural', 'illusion', 'charm', 'charm']
                 }
             });
+            this.player1.dicepool[0].level = 'class';
+            this.player1.dicepool[1].level = 'class';
         });
 
-        it('spin down ability triggers when exhausted', function () {
+        it('should only damage pb', function () {
             expect(this.aradelSummergaard.damage).toBe(0);
             this.whisperer.tokens.exhaustion = 1;
             this.player1.clickAttack(this.whisperer);
@@ -56,6 +59,7 @@ describe('Whisperer', function () {
             // no counter prompt because of exhaustion
             expect(this.aradelSummergaard.damage).toBe(1);
             expect(this.whisperer.location).toBe('archives');
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
