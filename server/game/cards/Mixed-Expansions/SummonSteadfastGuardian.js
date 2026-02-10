@@ -20,7 +20,11 @@ class SummonSteadfastGuardian extends Card {
             }),
             then: {
                 alwaysTriggers: true,
-                condition: () => this.focus > 0,
+                condition: (context) => context.source.focus > 0 &&
+                    context.player.unitsInPlay.some(
+                        (card) =>
+                            card.id === 'steadfast-guardian' && (card.exhausted || card.damage > 0)
+                    ),
                 target: {
                     activePromptTitle:
                         'Focus 1: Choose your Steadfast Guardian to remove all damage and exhaustion',

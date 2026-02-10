@@ -18,10 +18,11 @@ if (args.length === 2) {
 //console.info('Running stats between', args[0], 'and', args[1]);
 console.info('Running stats between', start, 'and', end);
 
+const league = args[2] ? args[2] : '';
 gameService
     .getAllGames(start, end)
     .then((games) => {
-        let rejected = { singlePlayer: 0, noWinner: 0 };
+        let rejected = { league: 0, singlePlayer: 0, noWinner: 0 };
 
         console.info('' + _.size(games), 'total games');
 
@@ -41,6 +42,12 @@ gameService
 
             if (!game.winner) {
                 rejected.noWinner++;
+
+                return;
+            }
+
+            if (league && game.tag !== league) {
+                rejected.league++;
 
                 return;
             }
@@ -137,11 +144,6 @@ gameService
         let deckWinRateStats = _.sortBy(deckWinRates, (deck) => {
             return -deck.winRate;
         });
-
-        console.info('\n### Game count by week \n\nWeek | Count');
-        for (var key in weekCount) {
-            console.info(key, ' | ', weekCount[key]);
-        }
 
         const monthNames = [
             'January',

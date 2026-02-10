@@ -52,18 +52,6 @@ class ErrorBoundary extends React.Component {
                     <p>
                         The error has been logged. Please report persistent bugs in the discord #software-dev channel.
                     </p>
-
-                    {this.props.navigate && (
-                        <p>
-                            <Trans i18nKey='errorboundary.clearerror'>
-                                Click{' '}
-                                <a href='#' onClick={this.onReturnClick}>
-                                    here
-                                </a>{' '}
-                                to clear the error and return to the home page
-                            </Trans>
-                        </p>
-                    )}
                 </div>
             );
         }
