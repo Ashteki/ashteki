@@ -128,6 +128,19 @@ export function setAuthTokens(token, refreshToken, user) {
     };
 }
 
+export function clearAuthTokens() {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        state.token = undefined;
+        state.refreshToken = undefined;
+        state.user = undefined;
+        state.username = undefined;
+    };
+}
+
 export function verifyAuthentication() {
     return {
         types: ['ACCOUNT_VERIFY_AUTH', 'ACCOUNT_AUTH_VERIFIED'],
