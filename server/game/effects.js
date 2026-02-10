@@ -91,7 +91,7 @@ const Effects = {
                 context.game.effectEngine.removeTerminalCondition(effect)
         }),
     threatening: () => EffectBuilder.card.static('threatening'),
-    unpreventable: () => EffectBuilder.card.static('unpreventable'),
+    unpreventable: (contextFunc) => EffectBuilder.card.static('unpreventable', 0, contextFunc),
     unseen: () => EffectBuilder.card.static('unseen'),
     visibleIn: (location) => EffectBuilder.card.static('visibleIn', location),
     webbed: () => EffectBuilder.card.static('webbed'),
