@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { setAuthTokens, authenticateSocket } from '../actions';
+import { setAuthTokens, authenticateSocket, clearAuthTokens } from '../actions';
 import { Api } from '../types';
 
 export default function callAPIMiddleware({ dispatch, getState }) {
@@ -66,8 +66,18 @@ export default function callAPIMiddleware({ dispatch, getState }) {
                 });
 
                 if (!authResponse.success) {
-                    window.location.assign('/login');
-                    //TODO: clear refresh token from state?
+                    dispatch(clearAuthTokens());
+                    const currentPath = window.location?.pathname || '';
+                    if (
+                        currentPath !== '/login' &&
+                        currentPath !== '/register' &&
+                        currentPath !== '/forgot' &&
+                        currentPath !== '/reset-password' &&
+                        currentPath !== '/activate'
+                    ) {
+                        window.location.assign('/login');
+                    }
+
                     return;
                 }
 
