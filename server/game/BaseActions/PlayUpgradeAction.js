@@ -18,14 +18,18 @@ class PlayUpgradeAction extends BasePlayAction {
     displayMessage(context) {
         if (context.target) {
             context.game.addMessage(
-                '{0} plays {1} attaching it to {2}',
+                '{0}{1}: {2} plays {3} attaching it to {4}',
+                context.costs.actions,
+                context.costs.returnDice,
                 context.player,
                 context.source,
                 context.target
             );
         } else {
             context.game.addMessage(
-                '{0} plays {1} and it is discarded',
+                '{0}{1}: {2} plays {3} and it is discarded',
+                context.costs.actions,
+                context.costs.returnDice,
                 context.player,
                 context.source
             );
