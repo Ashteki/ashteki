@@ -52,7 +52,7 @@ const DeckStatus = ({ status, gameFormat }) => {
     );
 
     return (
-        <OverlayTrigger placement='right' overlay={popover}>
+        <OverlayTrigger placement='auto' overlay={popover}>
             <span className={className}>{statusName}</span>
         </OverlayTrigger>
     );
