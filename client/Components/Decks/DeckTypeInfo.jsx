@@ -44,29 +44,6 @@ const DeckTypeInfo = ({ deckType }) => {
                     <strong>Red Rains Precons</strong> These are preconstructed decks as released in each Red Rains product by PHG.
                 </AlertPanel>
             );
-        case 'msu':
-            return (
-                <AlertPanel type='info'>
-                    <strong>Master Set Upgrade</strong> Six decks made by KillerCactus from the master set to try and balance out the starter precons.
-                </AlertPanel>
-            );
-        case 'buildingBasics':
-            return (
-                <AlertPanel type='info'>
-                    <strong>Building Basics</strong> Designed by PHG playtesters and Discord
-                    community members Lizzie Hart (littlelizard), and Brian Broughman (Brian B).
-                    They use just the cards from the Master Set and aim to give inspiration to make
-                    more fun, unique, and refined decks than just the precons.
-                </AlertPanel>
-            );
-        case 'corpseRebuild':
-            return (
-                <AlertPanel type='info'>
-                    <strong>Corpse Rebuild</strong> Decks made by NoSuchMethod. Once you have Corpse
-                    of Viros, you can rebuild the precons in the core set to be a bit more robust
-                    and balanced.
-                </AlertPanel>
-            );
         case 'dualduel':
             return (
                 <AlertPanel type='info'>

@@ -53,35 +53,6 @@ const LearnToPlay = () => {
                                 <p>Perfectly crafted from the core set, these dualling decks use Aradel and Saria and are a great introduction to the game.</p>
                             </li>
                             <li>
-                                Try out the <b>Building Basics</b> decks - These great starter decks use
-                                just the core set, and are built into ashteki. There are 3 pairs:
-                                <ul>
-                                    <li>
-                                        <a href='https://www.plaidhatgames.com/news/2020/11/04/building-basics-rise-phoenixborn/'>
-                                            Jessa vs Coal
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='https://www.plaidhatgames.com/news/2020/12/02/building-basics-master-set-noah/'>
-                                            Noah
-                                        </a>{' '}
-                                        vs{' '}
-                                        <a href='https://www.plaidhatgames.com/news/2020/12/09/building-basics-master-set-maeoni/'>
-                                            Maeoni
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='https://www.plaidhatgames.com/news/2020/11/18/building-basics-master-set-saria/'>
-                                            Saria
-                                        </a>{' '}
-                                        vs{' '}
-                                        <a href='https://www.plaidhatgames.com/news/2020/11/11/building-basics-master-set-aradel/'>
-                                            Aradel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
                                 You can practise against an AI opponent on{' '}
                                 <a href='http://felttable.com/ashes'>Felt Table</a>
                             </li>

@@ -20,12 +20,9 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         myDecks,
         standaloneDecks,
         adventuringPartyDecks,
-        buildingBasicsDecks,
-        corpseRebuildDecks,
         firstAdventureDecks,
         chimeraDecks,
         pveDecks,
-        msuDecks,
         dualDuelDecks,
         oneCollectionDecks,
         ascendancyDecks
@@ -33,12 +30,9 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
-        buildingBasicsDecks: state.cards.buildingBasicsDecks,
-        corpseRebuildDecks: state.cards.corpseRebuildDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
         chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
         pveDecks: state.cards.pveDecks?.filter((d) => showRestricted || !d.restricted),
-        msuDecks: state.cards.msuDecks,
         dualDuelDecks: state.cards.dualDuelDecks,
         oneCollectionDecks: state.cards.oneCollectionDecks,
         ascendancyDecks: state.cards.ascendancyDecks
@@ -90,10 +84,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Tab>Ascendancy Precons</Tab>
                     <Tab>Reborn Precons</Tab>
                     <Tab>Red Rains Precons</Tab>
-                    <Tab>Building Basics</Tab>
-                    <Tab>Corpse Rebuild</Tab>
                     <Tab>Adventuring Party</Tab>
-                    <Tab>Master Set Upgrade</Tab>
                     <Tab>Dual Duel</Tab>
                     {gameFormat === 'solo' && playerIsMe && <Tab>One Collection Battlebox</Tab>}
                 </TabList>
@@ -121,20 +112,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <DeckList decks={pveDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
-                    <Button onClick={() => onChooseForMe(3)}>Choose for me</Button>
-                    <DeckList decks={buildingBasicsDecks} onDeckSelected={onDeckSelected} />
-                </TabPanel>
-                <TabPanel>
-                    <Button onClick={() => onChooseForMe(9)}>Choose for me</Button>
-                    <DeckList decks={corpseRebuildDecks} onDeckSelected={onDeckSelected} />
-                </TabPanel>
-                <TabPanel>
                     <Button onClick={() => onChooseForMe(2)}>Choose for me</Button>
                     <DeckList decks={adventuringPartyDecks} onDeckSelected={onDeckSelected} />
-                </TabPanel>
-                <TabPanel>
-                    <Button onClick={() => onChooseForMe(7)}>Choose for me</Button>
-                    <DeckList decks={msuDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
                 <TabPanel>
                     <Button onClick={() => onChooseForMe(8)}>Choose for me</Button>
