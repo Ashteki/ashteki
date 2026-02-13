@@ -166,8 +166,8 @@ const DecksComponent = ({ onDeckSelected }) => {
                 <Tabs onSelect={onTabChange} selectedIndex={tabIndex}>
                     <TabList>
                         <Tab>My Decks</Tab>
-                        <Tab>Ascendancy</Tab>
-                        <Tab>Precons</Tab>
+                        <Tab>Ascendancy Precons</Tab>
+                        <Tab>Reborn Precons</Tab>
                         <Tab>Red Rains Precons</Tab>
                         <Tab>Building Basics</Tab>
                         <Tab>Corpse Rebuild</Tab>

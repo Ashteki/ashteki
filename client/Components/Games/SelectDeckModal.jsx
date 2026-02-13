@@ -87,8 +87,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             <Tabs>
                 <TabList>
                     <Tab>My Decks</Tab>
-                    <Tab>Ascendancy</Tab>
-                    <Tab>Precons</Tab>
+                    <Tab>Ascendancy Precons</Tab>
+                    <Tab>Reborn Precons</Tab>
                     <Tab>Red Rains Precons</Tab>
                     <Tab>Building Basics</Tab>
                     <Tab>Corpse Rebuild</Tab>
@@ -153,8 +153,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         deckList = (
             <Tabs>
                 <TabList>
-                    <Tab>Ascendancy</Tab>
-                    <Tab>Precons</Tab>
+                    <Tab>Ascendancy Precons</Tab>
+                    <Tab>Reborn Precons</Tab>
                     <Tab>Red Rains Precons</Tab>
                 </TabList>
 
