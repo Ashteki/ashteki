@@ -30,7 +30,8 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
         });
 
         for (let key in groupedCards) {
-            let cardList = groupedCards[key];
+            let cardList = groupedCards[key].sort((a, b) => a.id > b.id ? 1 : -1);
+
             let cards = [];
             let count = 0;
 
