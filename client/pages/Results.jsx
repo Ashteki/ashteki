@@ -18,7 +18,7 @@ const Results = () => {
                         <PictureButton text='Alt Arts' imageClass='alts-link' />
                     </Tab>
                     <Tab>
-                        <PictureButton text='Elo Standings' imageClass='elo-link' />
+                        <PictureButton text='Elo' imageClass='elo-link' />
                     </Tab>
                 </TabList>
                 <TabPanel>
