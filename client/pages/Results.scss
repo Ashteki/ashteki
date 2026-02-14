@@ -41,6 +41,35 @@
         height: 130px;
     }
 
+    @media screen and (max-width: 576px) {
+
+        /* For general iPad layouts */
+        .image-button {
+            width: 100px;
+            min-width: 100px;
+            height: 120px;
+
+            &.stats-link {
+                background-position: 50% 45%;
+                background-size: cover;
+            }
+
+            &.alts-link {
+                background-position: 50% 130%;
+                background-size: cover;
+
+            }
+
+            &.elo-link {
+                background-size: cover;
+            }
+
+            // width: 130px;
+            // min-width: 130px; // don't resize smaller
+            // height: 150px;
+        }
+    }
+
     .results-link {
         background-image: url('https://cdn.ashteki.com/300/survival-of-the-fittest.jpg');
         background-position: 28% 30%;
