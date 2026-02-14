@@ -183,16 +183,14 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
     }
 
     return (
-        <>
-            <Modal show={true} onHide={onClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Select Deck</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div>{deckList}</div>
-                </Modal.Body>
-            </Modal>
-        </>
+        <Modal show={true} onHide={onClose} className='select-deck-modal'>
+            <Modal.Header closeButton>
+                <Modal.Title>Select Deck</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div>{deckList}</div>
+            </Modal.Body>
+        </Modal>
     );
 };
 

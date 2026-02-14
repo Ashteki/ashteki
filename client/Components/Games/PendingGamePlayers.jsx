@@ -82,7 +82,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
     };
 
     return (
-        <div>
+        <div className='pending-game-players'>
             <h3>Players:</h3>
             {Object.values(currentGame.players).map((player) => {
                 const isMe = player && player.name === user?.username;
