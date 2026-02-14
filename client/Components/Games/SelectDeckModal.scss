@@ -17,9 +17,10 @@
     background-color: rgba($dark, 0.9);
 }
 
-.modal-dialog {
-    max-width: 780px;
-
+.select-deck-modal {
+    .modal-dialog {
+        max-width: 780px;
+    }
 }
 
 .deck-list-header {
