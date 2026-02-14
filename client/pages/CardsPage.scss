@@ -12,6 +12,14 @@
 }
 
 .cards-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    input {
+        width: unset;
+    }
+
     .mini {
         &.active {
             background-color: #2a55b7 !important;
