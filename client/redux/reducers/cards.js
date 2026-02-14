@@ -149,26 +149,6 @@ export default function (state = { decks: [], cards: {} }, action) {
             });
 
             return newState;
-        case 'BUILDINGBASICS_DECKS_LOADED':
-            if (action.response.decks) {
-                processDecks(action.response.decks, state);
-            }
-
-            newState = Object.assign({}, state, {
-                buildingBasicsDecks: action.response.decks
-            });
-
-            return newState;
-        case 'CORPSEREBUILD_DECKS_LOADED':
-            if (action.response.decks) {
-                processDecks(action.response.decks, state);
-            }
-
-            newState = Object.assign({}, state, {
-                corpseRebuildDecks: action.response.decks
-            });
-
-            return newState;
         case 'FIRSTADVENTURE_DECKS_LOADED':
             if (action.response.decks) {
                 processDecks(action.response.decks, state);
@@ -196,16 +176,6 @@ export default function (state = { decks: [], cards: {} }, action) {
 
             newState = Object.assign({}, state, {
                 chimeraDecks: action.response.decks
-            });
-
-            return newState;
-        case 'MSU_DECKS_LOADED':
-            if (action.response.decks) {
-                processDecks(action.response.decks, state);
-            }
-
-            newState = Object.assign({}, state, {
-                msuDecks: action.response.decks
             });
 
             return newState;

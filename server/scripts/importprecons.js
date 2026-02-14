@@ -45,19 +45,6 @@ class ImportPrecons {
             console.log('Done importing AP decks');
             console.log('----------');
 
-            for (let deck of this.loadBBDecks()) {
-                deck.preconGroup = 3;
-
-                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
-                if (!existingDeck) {
-                    console.log('Importing', deck.name);
-                    await this.deckService.createPrecon(deck);
-                }
-            }
-
-            console.log('Done importing BB decks');
-            console.log('----------');
-
             for (let deck of this.loadFADecks()) {
                 deck.preconGroup = 4;
 
@@ -96,18 +83,6 @@ class ImportPrecons {
             console.log('Done importing pvE precon decks');
             console.log('----------');
 
-            for (let deck of this.loadMSUDecks()) {
-                deck.preconGroup = 7;
-                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
-                if (!existingDeck) {
-                    console.log('Importing', deck.name);
-                    await this.deckService.createPrecon(deck);
-                }
-            }
-
-            console.log('Done importing MSU precon decks');
-            console.log('----------');
-
             for (let deck of this.loadDualDuelDecks()) {
                 deck.preconGroup = 8;
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
@@ -118,18 +93,6 @@ class ImportPrecons {
             }
 
             console.log('Done importing Dual Duel decks');
-            console.log('----------');
-
-            for (let deck of this.loadCorpseRebuildDecks()) {
-                deck.preconGroup = 9;
-                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
-                if (!existingDeck) {
-                    console.log('Importing', deck.name);
-                    await this.deckService.createPrecon(deck);
-                }
-            }
-
-            console.log('Done importing Corpse Rebuild decks');
             console.log('----------');
 
             for (let deck of this.loadOneCollectionDecks()) {
@@ -184,26 +147,8 @@ class ImportPrecons {
         return JSON.parse(data);
     }
 
-    loadBBDecks() {
-        let file = 'building-basics.json';
-        let data = fs.readFileSync(dataDirectory + file);
-        return JSON.parse(data);
-    }
-
-    loadCorpseRebuildDecks() {
-        let file = 'precon-corpse-rebuild.json';
-        let data = fs.readFileSync(dataDirectory + file);
-        return JSON.parse(data);
-    }
-
     loadChimeraDecks() {
         let file = 'chimera.json';
-        let data = fs.readFileSync(dataDirectory + file);
-        return JSON.parse(data);
-    }
-
-    loadMSUDecks() {
-        let file = 'master-set-upgrade.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }

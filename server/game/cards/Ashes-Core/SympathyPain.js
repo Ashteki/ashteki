@@ -13,7 +13,6 @@ class SympathyPain extends Card {
                     event.context.player === context.player.opponent &&
                     event.card.damage < event.card.life
             },
-            effect: "deal 2 damage to oppponent's unit or phoenixborn",
             target: {
                 activePromptTitle: 'Choose a card to deal 2 damage to',
                 cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
