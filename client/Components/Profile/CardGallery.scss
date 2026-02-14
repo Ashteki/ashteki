@@ -3,3 +3,14 @@
     flex-wrap: wrap;
     gap: 10px;
 }
+
+.modal-dialog {
+    // width: 100%;
+    // width: fit-content;
+}
+
+.card-zoom-modal {
+    .img-fluid {
+        width: 100%;
+    }
+}
