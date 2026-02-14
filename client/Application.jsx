@@ -87,12 +87,9 @@ function Application() {
         dispatch(actions.loadCards());
         dispatch(actions.loadStandaloneDecks());
         dispatch(actions.loadAdventuringPartyDecks());
-        dispatch(actions.loadBuildingBasicsDecks());
-        dispatch(actions.loadCorpseRebuildDecks());
         dispatch(actions.loadFirstAdventureDecks());
         dispatch(actions.loadChimeraDecks());
         dispatch(actions.loadPveDecks());
-        dispatch(actions.loadMSUDecks());
         dispatch(actions.loadDualDuelDecks());
         dispatch(actions.loadOneCollectionDecks());
         dispatch(actions.loadAscendancyDecks());

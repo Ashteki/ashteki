@@ -55,7 +55,8 @@ describe('Sympathy pain reaction spell', function () {
             this.player2.clickCard(this.sympathyPain); // click sym pain to play as reaction
             this.player2.clickDie(3);
 
-            expect(this.coalRoarkwin.damage).toBe(2);
+            this.player2.clickCard(this.coalRoarkwin);
+            expect(this.coalRoarkwin.damage).toBe(4); // 2 Abundance and 2 Sympathy Pain
         });
     });
 

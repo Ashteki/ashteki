@@ -63,23 +63,6 @@ module.exports.init = function (server) {
     );
 
     server.get(
-        '/api/msu-decks',
-        wrapAsync(async function (req, res) {
-            let decks;
-
-            try {
-                decks = await deckService.getPreconDecks(7);
-            } catch (err) {
-                logger.error('Failed to get msu precon decks', err);
-
-                throw new Error('Failed to get msu precon decks');
-            }
-
-            res.send({ success: true, decks: decks });
-        })
-    );
-
-    server.get(
         '/api/dualduel-decks',
         wrapAsync(async function (req, res) {
             let decks;
@@ -107,40 +90,6 @@ module.exports.init = function (server) {
                 logger.error('Failed to get precon 2 decks', err);
 
                 throw new Error('Failed to get precon 2 decks');
-            }
-
-            res.send({ success: true, decks: decks });
-        })
-    );
-
-    server.get(
-        '/api/buildingbasics-decks',
-        wrapAsync(async function (req, res) {
-            let decks;
-
-            try {
-                decks = await deckService.getPreconDecks(3);
-            } catch (err) {
-                logger.error('Failed to get precon 3 decks', err);
-
-                throw new Error('Failed to get precon 3 decks');
-            }
-
-            res.send({ success: true, decks: decks });
-        })
-    );
-
-    server.get(
-        '/api/corpserebuild-decks',
-        wrapAsync(async function (req, res) {
-            let decks;
-
-            try {
-                decks = await deckService.getPreconDecks(9);
-            } catch (err) {
-                logger.error('Failed to get precon 9 decks', err);
-
-                throw new Error('Failed to get precon 9 decks');
             }
 
             res.send({ success: true, decks: decks });

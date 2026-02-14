@@ -201,27 +201,6 @@ export function loadAdventuringPartyDecks() {
     };
 }
 
-export function loadBuildingBasicsDecks() {
-    return {
-        types: ['LOAD_BUILDINGBASICS_DECKS', 'BUILDINGBASICS_DECKS_LOADED'],
-        shouldCallAPI: () => true,
-        APIParams: {
-            url: '/api/buildingbasics-decks',
-            type: 'GET'
-        }
-    };
-}
-
-export function loadCorpseRebuildDecks() {
-    return {
-        types: ['LOAD_CORPSEREBUILD_DECKS', 'CORPSEREBUILD_DECKS_LOADED'],
-        shouldCallAPI: () => true,
-        APIParams: {
-            url: '/api/corpserebuild-decks',
-            type: 'GET'
-        }
-    };
-}
 export function loadFirstAdventureDecks() {
     return {
         types: ['LOAD_FIRSTADVENTURE_DECKS', 'FIRSTADVENTURE_DECKS_LOADED'],
@@ -250,17 +229,6 @@ export function loadChimeraDecks() {
         shouldCallAPI: () => true,
         APIParams: {
             url: '/api/chimera-decks',
-            type: 'GET'
-        }
-    };
-}
-
-export function loadMSUDecks() {
-    return {
-        types: ['LOAD_MSU_DECKS', 'MSU_DECKS_LOADED'],
-        shouldCallAPI: () => true,
-        APIParams: {
-            url: '/api/msu-decks',
             type: 'GET'
         }
     };
