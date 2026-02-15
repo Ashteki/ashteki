@@ -143,7 +143,11 @@ const LoadReplay = ({ onCancel }) => {
                                         <td>
                                             <button
                                                 className='btn btn-sm btn-success def'
-                                                onClick={() => onReplayClick(game.gameId)}
+                                                onClick={(e) => {
+                                                    e.target.disabled = true;
+                                                    e.target.innerText = 'Loading...';
+                                                    onReplayClick(game.gameId);
+                                                }}
                                             >
                                                 Load
                                             </button>
