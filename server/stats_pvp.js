@@ -19,6 +19,7 @@ if (args.length > 1) {
 console.info('Running stats between', start, 'and', end);
 
 const league = args[2] ? args[2] : '';
+console.info('league:', league);
 gameService
     .getAllGames(start, end)
     .then((games) => {
@@ -46,7 +47,8 @@ gameService
                 return;
             }
 
-            if (league && game.tag !== league) {
+            if (league && game.label !== league) {
+                console.info('Rejecting game with league label', game.label);
                 rejected.league++;
 
                 return;
