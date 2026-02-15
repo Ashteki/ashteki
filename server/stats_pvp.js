@@ -6,12 +6,12 @@ const ConfigService = require('./services/ConfigService.js');
 
 let gameService = new GameService(new ConfigService());
 
-
 let start = new Date('2022-01-01T00:00:01');
 let end = new Date();
 
-let args = process.argv.slice(3);
+let args = process.argv.slice(2);
 if (args.length > 1) {
+    console.info('Using custom dates');
     start = new Date(args[0]);
     end = new Date(args[1]);
 }
