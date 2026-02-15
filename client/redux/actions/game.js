@@ -7,7 +7,7 @@ export function receiveGames(games) {
     };
 }
 
-export function loadUserGames(months, gameType) {
+export function loadUserGames(months, gameType, hasReplay) {
     return {
         types: ['REQUEST_USERGAMES', 'RECEIVE_USERGAMES'],
         shouldCallAPI: () => true,
@@ -16,11 +16,27 @@ export function loadUserGames(months, gameType) {
             cache: false,
             data: {
                 months: months,
-                gameType: gameType
+                gameType: gameType,
+                hasReplay: hasReplay
             }
         }
     };
 }
+
+export function loadReplays() {
+    return {
+        types: ['REQUEST_REPLAYS', 'RECEIVE_REPLAYS'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/games',
+            cache: false,
+            data: {
+                hasReplay: true
+            }
+        }
+    };
+}
+
 export function loadLeague(tag, months, pairings) {
     return {
         types: ['REQUEST_TAGREPORT', 'RECEIVE_TAGREPORT'],

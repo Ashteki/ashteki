@@ -16,7 +16,8 @@ module.exports.init = function (server) {
         wrapAsync(async function (req, res) {
             let games = await gameService.findByUserName(req.user.username, {
                 months: req.query.months,
-                gameType: req.query.gameType
+                gameType: req.query.gameType,
+                hasReplay: req.query.hasReplay
             });
             res.send({ success: true, games: games });
         })
