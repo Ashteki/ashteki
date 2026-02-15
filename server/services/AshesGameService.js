@@ -188,6 +188,9 @@ class GameService {
                 findSpec.gameType = options.gameType;
             }
         }
+        if (options.hasReplay) {
+            findSpec.saveReplay = true;
+        }
 
         return this.games
             .find(findSpec, {

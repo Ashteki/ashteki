@@ -29,3 +29,8 @@ select {
 .form-select::placeholder {
     color: #aaa !important;
 }
+
+.replays {
+    display: flex;
+    flex-direction: column;
+}
