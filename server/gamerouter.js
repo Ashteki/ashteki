@@ -305,10 +305,12 @@ class GameRouter extends EventEmitter {
         }
 
         const ranked = game.gameType === GameType.Competitive;
-        // increment player game counts
-        game.players.forEach((player) => {
-            Promise.resolve(this.userService.incrementGameCount(player.name, ranked));
-        });
+        // increment player game counts if pvp
+        if (!game.solo) {
+            game.players.forEach((player) => {
+                Promise.resolve(this.userService.incrementGameCount(player.name, ranked));
+            });
+        }
 
         this.emit('onGameFinished', game.gameId);
     }
