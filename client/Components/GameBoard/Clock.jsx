@@ -4,8 +4,8 @@ import './Clock.scss';
 
 const formattedSeconds = (sec) => (sec < 0 ? '-' : '') + Math.floor(Math.abs(sec) / 60) + ':' + ('0' + Math.abs(sec) % 60).slice(-2);
 
-function Clock({ stateId, secondsLeft, periods, mainTime, timePeriod, mode, finishedAt, winner, onClockZero }) {
-    const [clockState, setClockState] = useState({ timeLeft: 0, periods: 0, mainTime: 0, timePeriod: 0 });
+function Clock({ stateId, secondsLeft, mode, finishedAt, onClockZero }) {
+    const [clockState, setClockState] = useState({ timeLeft: 0 });
     const timerHandleRef = useRef(null);
     const stateIdRef = useRef(stateId);
 
@@ -23,10 +23,7 @@ function Clock({ stateId, secondsLeft, periods, mainTime, timePeriod, mode, fini
 
         stateIdRef.current = stateId;
         setClockState({
-            timeLeft: secondsLeft,
-            periods: periods,
-            mainTime: mainTime,
-            timePeriod: timePeriod
+            timeLeft: secondsLeft
         });
 
         if (timerHandleRef.current) {
@@ -55,7 +52,7 @@ function Clock({ stateId, secondsLeft, periods, mainTime, timePeriod, mode, fini
                 clearInterval(timerHandleRef.current);
             }
         };
-    }, [stateId, secondsLeft, periods, mainTime, timePeriod, mode, finishedAt, winner, onClockZero]);
+    }, [stateId, secondsLeft, mode, finishedAt, onClockZero]);
 
     let className = classNames('clock', {
         'expired-timer': clockState.timeLeft <= 0

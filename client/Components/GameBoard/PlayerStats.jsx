@@ -219,10 +219,6 @@ const PlayerStats = ({
                             secondsLeft={clockState.timeLeft}
                             mode={clockState.mode}
                             stateId={clockState.stateId}
-                            periods={clockState.periods}
-                            mainTime={clockState.mainTime}
-                            timePeriod={clockState.timePeriod}
-                            winner={winner}
                             onClockZero={onClockZero}
                         />
                     </div>
