@@ -55,12 +55,10 @@ const PlayerStats = ({
     player,
     round,
     showManualMode,
-    showMessages,
     showContextItem,
     side,
     size,
-    solo,
-    winner
+    solo
 }) => {
     const dispatch = useDispatch();
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -72,6 +70,8 @@ const PlayerStats = ({
         gameConnecting: state.games.connecting,
         gameResponse: state.games.responseTime
     }));
+
+    const showServerStatus = leftMode && side === 'top' && !isReplay;
 
     const cardPiles = player.cardPiles;
 
@@ -288,7 +288,7 @@ const PlayerStats = ({
                 </>
             )}
             {playerDisconnect}
-            {showMessages && (
+            {side === 'bottom' && (
                 <div className='state chat-status'>
                     {player.deckNotes && (
                         <div className='state'>
@@ -307,7 +307,7 @@ const PlayerStats = ({
                             </a>
                         </div>
                     )}
-                    {showContextItem && showManualMode && (
+                    {showManualMode && (
                         <div className='state'>
                             <a
                                 href='#'
@@ -315,7 +315,7 @@ const PlayerStats = ({
                                 onClick={onManualModeClick}
                             >
                                 <FontAwesomeIcon icon={faWrench}></FontAwesomeIcon>
-                                <span className='ml-1'>Manual Mode</span>
+                                {!leftMode && <span className='ml-1'> Manual Mode</span>}
                             </a>
                             &nbsp;
                             <a href='#' className='pr-1 pl-1' title='Show manual command list'>
@@ -323,14 +323,13 @@ const PlayerStats = ({
                             </a>
                         </div>
                     )}
-                    {showContextItem && (
-                        <div className='state'>
-                            <a href='#' onClick={onSettingsClick} className='pr-1 pl-1'>
-                                <FontAwesomeIcon icon={faCogs}></FontAwesomeIcon>
-                                <span className='ml-1'>Settings</span>
-                            </a>
-                        </div>
-                    )}
+
+                    <div className='state'>
+                        <a href='#' onClick={onSettingsClick} className='pr-1 pl-1'>
+                            {!leftMode && <span className='ml-1'>Settings </span>}
+                            <FontAwesomeIcon icon={faCogs}></FontAwesomeIcon>
+                        </a>
+                    </div>
                     <div className='state'>
                         <a href='#' onClick={onMessagesClick} className='pl-1' title='Toggle chat'>
                             <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
@@ -338,7 +337,7 @@ const PlayerStats = ({
                     </div>
                 </div>
             )}
-            {!showMessages && !leftMode && (
+            {!leftMode && side === 'top' && (
                 <>
                     <div className='state chat-status'>
                         <GameCountMenu />
@@ -350,12 +349,10 @@ const PlayerStats = ({
                             serverType='Game server'
                             responseTime={gameResponse}
                         />
-                        &nbsp;|&nbsp;Round&nbsp;{round}&nbsp;|&nbsp;
-                        <SpectatorIcon />
                     </div>
                 </>
             )}
-            {!showMessages && leftMode && !isReplay && (
+            {showServerStatus && (
                 <div className='state chat-status'>
                     <ServerStatus
                         connected={gameConnected}
@@ -363,10 +360,9 @@ const PlayerStats = ({
                         serverType='Game server'
                         responseTime={gameResponse}
                     />
-
                 </div>
             )}
-            {!showMessages && leftMode && isReplay && <div className='state chat-status'>REPLAY</div>}
+            {leftMode && isReplay && <div className='state chat-status'>REPLAY</div>}
         </div>
     );
 };

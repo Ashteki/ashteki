@@ -7,8 +7,9 @@ import ActivePromptDice from './ActivePromptDice';
 import ActivePromptButtons from './ActivePromptButtons';
 import ActivePromptControls from './ActivePromptControls';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
-function ActivePlayerPrompt(props) {
+function ActivePlayerPrompt({ promptState, phase, onButtonClick, onMouseOver, onMouseOut, onTimerExpired }) {
     const [showTimer, setShowTimer] = useState(false);
     const [timerClass, setTimerClass] = useState('100%');
     const [timeLeft, setTimeLeft] = useState(undefined);
@@ -17,17 +18,19 @@ function ActivePlayerPrompt(props) {
     const timer = useRef({});
     const timerUuid = useRef(undefined);
     const { t } = useTranslation();
+    const currentGame = useSelector((state) => state.lobby.currentGame);
+
 
     // Option selected handler
     const onOptionSelected = (option) => {
-        if (props.onButtonClick) {
-            let button = props.promptState.buttons.find((button) => '' + button.arg === option);
-            props.onButtonClick(button.command, button.arg, button.uuid, button.method);
+        if (onButtonClick) {
+            let button = promptState.buttons.find((button) => '' + button.arg === option);
+            onButtonClick(button.command, button.arg, button.uuid, button.method);
         }
     };
 
     // Button click handler
-    const onButtonClick = (event, command, arg, uuid, method) => {
+    const btnHandler = (event, command, arg, uuid, method) => {
         event.preventDefault();
         if (timerHandle.current) {
             clearInterval(timerHandle.current);
@@ -36,8 +39,8 @@ function ActivePlayerPrompt(props) {
         timerHandle.current = undefined;
         setTimerCancelled(true);
 
-        if (props.onButtonClick) {
-            props.onButtonClick(command, arg, uuid, method);
+        if (onButtonClick) {
+            onButtonClick(command, arg, uuid, method);
         }
     };
 
@@ -52,27 +55,27 @@ function ActivePlayerPrompt(props) {
         setTimerCancelled(true);
 
         if (button.method) {
-            props.onButtonClick(button.command, button.arg, button.uuid, button.method);
+            onButtonClick(button.command, button.arg, button.uuid, button.method);
         }
     };
 
     // Mouse over/out handlers
-    const onMouseOver = (event, card) => {
-        if (card && props.onMouseOver) {
-            props.onMouseOver(card);
+    const mouseOverHandler = (event, card) => {
+        if (card && onMouseOver) {
+            onMouseOver(card);
         }
     };
-    const onMouseOut = (event, card) => {
-        if (card && props.onMouseOut) {
-            props.onMouseOut(card);
+    const mouseOutHandler = (event, card) => {
+        if (card && onMouseOut) {
+            onMouseOut(card);
         }
     };
 
     // Timer effect: runs when promptState.buttons or promptState.timerLength changes
     useEffect(() => {
         // Find timer button uuid
-        if (props.promptState.buttons) {
-            for (const button of props.promptState.buttons) {
+        if (promptState.buttons) {
+            for (const button of promptState.buttons) {
                 if (button.timer) {
                     timerUuid.current = button.uuid;
                     break;
@@ -81,11 +84,11 @@ function ActivePlayerPrompt(props) {
         }
 
         // Timer logic
-        const timerLength = props.promptState.timerLength;
+        const timerLength = promptState.timerLength;
         if (!timerLength || timerLength === 0) {
             return;
         }
-        if (_.any(props.promptState.buttons, (button) => button.timer)) {
+        if (_.any(promptState.buttons, (button) => button.timer)) {
             if (timerHandle.current) {
                 return;
             }
@@ -101,8 +104,8 @@ function ActivePlayerPrompt(props) {
                     clearInterval(handle);
                     keepGoing = false;
                     timerHandle.current = undefined;
-                    if (props.onTimerExpired) {
-                        props.onTimerExpired(timerUuid.current);
+                    if (onTimerExpired) {
+                        onTimerExpired(timerUuid.current);
                     }
                 }
 
@@ -133,7 +136,7 @@ function ActivePlayerPrompt(props) {
             }
         };
         // eslint-disable-next-line
-    }, [props.promptState.buttons, props.promptState.timerLength]);
+    }, [promptState.buttons, promptState.timerLength]);
 
     // Timer display
     let timerDisplay = null;
@@ -161,60 +164,60 @@ function ActivePlayerPrompt(props) {
     };
 
     // Prompt text(s)
-    let promptText = safePromptText(props.promptState.menuTitle);
+    let promptText = safePromptText(promptState.menuTitle);
     let promptTexts = [];
     if (promptText) {
         if (promptText.includes('\n')) {
             let split = promptText.split('\n');
             for (let token of split) {
-                promptTexts.push(t(token, props.promptState.menuTitle.values));
+                promptTexts.push(t(token, promptState.menuTitle.values));
                 promptTexts.push(<br key={token} />);
             }
         } else {
-            promptTexts.push(t(promptText, props.promptState.menuTitle.values));
+            promptTexts.push(t(promptText, promptState.menuTitle.values));
         }
     }
 
     // Render
     return (
         <Panel
-            type={props.promptState.style || 'primary'}
-            title={props.phase + ' phase'}
+            type={promptState.style || 'primary'}
+            title={'R' + currentGame.round + ': ' + phase + ' phase'}
             titleClass='phase-indicator'
         >
-            {props.promptState.promptTitle && (
+            {promptState.promptTitle && (
                 <div className='menu-pane-source'>{
                     t(
                         safePromptText(
-                            props.promptState.promptTitle),
-                        props.promptState.promptTitle.values
+                            promptState.promptTitle),
+                        promptState.promptTitle.values
                     )
                 }</div>
             )}
             {timerDisplay}
             <div className='menu-pane'>
                 <h4>{promptTexts}</h4>
-                {props.promptState.diceReq && <ActivePromptDice dice={props.promptState.diceReq} />}
-                {props.promptState.controls && (
+                {promptState.diceReq && <ActivePromptDice dice={promptState.diceReq} />}
+                {promptState.controls && (
                     <ActivePromptControls
-                        controls={props.promptState.controls}
-                        onMouseOver={onMouseOver}
-                        onMouseOut={onMouseOut}
+                        controls={promptState.controls}
+                        onMouseOver={mouseOverHandler}
+                        onMouseOut={mouseOutHandler}
                         onOptionSelected={onOptionSelected}
                     />
                 )}
-                {props.promptState.buttons &&
-                    (!props.promptState.controls ||
-                        !props.promptState.controls.some((c) =>
+                {promptState.buttons &&
+                    (!promptState.controls ||
+                        !promptState.controls.some((c) =>
                             ['options-select'].includes(c.type)
                         )) && (
                         <ActivePromptButtons
-                            buttons={props.promptState.buttons}
+                            buttons={promptState.buttons}
                             timerUuid={timerUuid.current}
-                            onButtonClick={onButtonClick}
+                            onButtonClick={btnHandler}
                             onCancelTimerClick={onCancelTimerClick}
-                            onMouseOver={onMouseOver}
-                            onMouseOut={onMouseOut}
+                            onMouseOver={mouseOverHandler}
+                            onMouseOut={mouseOutHandler}
                         />
                     )}
             </div>

@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faCogs, faList, faWrench } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import SpectatorIcon from './SpectatorIcon';
 
 const GameMenu = ({ onSettingsClick, onManualModeClick, onManualCommandsClick }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -20,8 +19,7 @@ const GameMenu = ({ onSettingsClick, onManualModeClick, onManualCommandsClick })
         <>
             <div className='game-menu-header'>
                 <ConcedeLeave />
-                {`| Round ${currentGame.round} | `} <SpectatorIcon />
-                {' | '}
+                <span>|&nbsp;Round {currentGame.round} | </span>
                 <FontAwesomeIcon
                     className=''
                     icon={faCog}
