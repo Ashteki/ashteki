@@ -1,5 +1,3 @@
-// const Clock = require('./Clock');
-// const Timer = require('./Timer');
 const ChessClock = require('./ChessClock');
 
 const typeToClock = {
@@ -9,14 +7,14 @@ const typeToClock = {
 };
 
 class ClockSelector {
-    static for(player, details = { type: 'none', time: 0, periods: 0, timePeriod: 0 }) {
+    static for(player, details = { type: 'none', time: 0 }) {
         let factory = typeToClock[details.type];
 
         if (!factory) {
             throw new Error(`Unknown clock selector type of ${details.type}`);
         }
 
-        return factory(player, details.time * 60, details.periods, details.timePeriod);
+        return factory(player, details.time * 60);
     }
 }
 

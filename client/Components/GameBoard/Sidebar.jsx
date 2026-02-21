@@ -67,10 +67,6 @@ const Sidebar = ({
                         secondsLeft={player.clock.timeLeft}
                         mode={player.clock.mode}
                         stateId={player.clock.stateId}
-                        periods={player.clock.periods}
-                        mainTime={player.clock.mainTime}
-                        timePeriod={player.clock.timePeriod}
-                        winner={currentGame.winner}
                         onClockZero={onClockZero} />
                 );
             }

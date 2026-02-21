@@ -36,7 +36,6 @@ describe('Phoenix Attendant', function () {
 
             this.player1.clickCard(this.phoenixAttendant);
             expect(this.player1).not.toHavePrompt('Alleviate 1');
-            this.player1.clickPrompt('Alleviate 1');
             expect(this.brennenBlackcloud.damage).toBe(2);
             expect(this.phoenixAttendant.damage).toBe(1);
         });

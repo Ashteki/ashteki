@@ -54,7 +54,7 @@ const placeholderPlayer = {
 
 const GameBoard = () => {
     const dispatch = useDispatch();
-    const [showMessages, setShowMessages] = useState(true);
+    const [showChatLog, setShowChatLog] = useState(true);
     const [showDiceHistory, setShowDiceHistory] = useState(false);
     const [showManualCommands, setShowManualCommands] = useState(false);
     const [showDeckNotes, setShowDeckNotes] = useState(false);
@@ -154,7 +154,7 @@ const GameBoard = () => {
     };
 
     const onMessagesClick = () => {
-        setShowMessages(!showMessages);
+        setShowChatLog(!showChatLog);
     };
 
     const onDiceHistoryClick = () => {
@@ -568,7 +568,7 @@ const GameBoard = () => {
                         />
                     )}
 
-                    {showMessages && (
+                    {showChatLog && (
                         <div className='gamechat'>
                             {/* {getOtherPlayerPrompt(otherPlayer)} */}
                             <GameChat
@@ -594,6 +594,7 @@ const GameBoard = () => {
                     compactLayout={spectating && compactLayout}
                     firstPlayer={thisPlayer.firstPlayer}
                     isMe={!spectating}
+                    leftMode={leftMode}
                     manualModeEnabled={manualMode}
                     muteSpectators={currentGame.muteSpectators}
                     onDeckNotesClick={onDeckNotesClick}
@@ -614,7 +615,6 @@ const GameBoard = () => {
                     player={thisPlayer}
                     showControls={!spectating && manualMode}
                     showManualMode={!spectating}
-                    showMessages
                     showContextItem={!leftMode}
                     size={cardSize}
                     stats={thisPlayer.stats}
@@ -626,6 +626,6 @@ const GameBoard = () => {
     );
 };
 
-PlayerStats.displayName = 'GameBoard';
+GameBoard.displayName = 'GameBoard';
 
 export default GameBoard;
