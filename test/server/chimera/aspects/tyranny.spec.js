@@ -1,4 +1,4 @@
-describe('Sowing Strike', function () {
+describe('Tyranny Aspect', function () {
     beforeEach(function () {
         this.setupTest({
             mode: 'solo',
@@ -14,7 +14,7 @@ describe('Sowing Strike', function () {
                 phoenixborn: 'blight-of-neverset',
                 behaviour: 'neverset-behaviour',
                 ultimate: 'neverset-ultimate',
-                inPlay: ['sowing-strike'],
+                inPlay: ['tyranny'],
                 deck: [],
                 spellboard: [],
                 threatZone: [],
@@ -22,14 +22,23 @@ describe('Sowing Strike', function () {
                 archives: ['scarlet-seed']
             }
         });
-
     });
 
-    it('on attack places scarlet seed into play', function () {
-        expect(this.scarletSeed.location).toBe('archives');
+    it('on attack adds 1 red rains token', function () {
+        expect(this.blightOfNeverset.redRains).toBe(0);
         this.player1.endTurn();
         // chimera attacks
         expect(this.game.attackState.isPBAttack).toBe(true);
-        expect(this.scarletSeed.location).toBe('play area');
+
+        expect(this.blightOfNeverset.redRains).toBe(1);
+    });
+
+    it('has attack equal to chimera phase', function () {
+        expect(this.tyranny.attack).toBe(1);
+
+        this.player2.player.chimeraPhase = 2;
+
+        this.player1.endTurn();
+        expect(this.tyranny.attack).toBe(2);
     });
 });
