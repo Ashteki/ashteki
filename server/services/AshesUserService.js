@@ -385,13 +385,15 @@ class UserService extends EventEmitter {
     async incrementGameCount(username, ranked) {
         const rankInc = ranked ? 1 : 0;
         return this.users
-            .update({ username: username }, { $inc: { gamesPlayed: 1, rankedGamesPlayed: rankInc } })
+            .update(
+                { username: username },
+                { $inc: { gamesPlayed: 1, rankedGamesPlayed: rankInc } }
+            )
             .catch((err) => {
                 logger.error('Error incrementing game count: ', err);
 
                 throw new Error('Error incrementing game count');
             });
-
     }
 }
 

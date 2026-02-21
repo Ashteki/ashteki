@@ -108,22 +108,7 @@ const PlayerPBRow = ({
         />
     );
 
-    let identityCard = <div className='card-placeholder' />;
-    if (phoenixborn) {
-        identityCard = (
-            <Card
-                card={phoenixborn}
-                onAltClick={onCardAltClick}
-                onMouseOver={onMouseOver}
-                onMouseOut={onMouseOut}
-                onMenuItemClick={onMenuItemClick}
-                onClick={onCardClick}
-                size={cardSize}
-                side={side}
-                source='play area'
-            />
-        );
-    }
+
     let opponentSrText = side === 'top' ? <span className='sr-only'>Opponent&apos;s</span> : null;
 
     const renderResources = (dice) => {
@@ -153,7 +138,18 @@ const PlayerPBRow = ({
             {showDice && renderResources(player.dice)}
             {renderDroppablePile('discard', discardToRender)}
             {showDeckPile && renderDroppablePile('deck', drawDeckToRender)}
-            {identityCard}
+            <Card
+                card={phoenixborn}
+                onAltClick={onCardAltClick}
+                onMouseOver={onMouseOver}
+                onMouseOut={onMouseOut}
+                onMenuItemClick={onMenuItemClick}
+                onClick={onCardClick}
+                onDieClick={onDieClick}
+                size={cardSize}
+                side={side}
+                source='play area'
+            />
             {renderDroppablePile('spellboard', spellboard)}
         </div>
     );

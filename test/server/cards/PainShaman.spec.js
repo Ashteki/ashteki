@@ -24,6 +24,7 @@ describe('Pain Shaman', function () {
 
             this.player1.clickCard(this.painShaman);
             this.player1.clickPrompt('Play this Ally');
+            this.player1.clickYes();
             this.player1.clickCard(this.blueJaguar);
             this.player1.clickCard(this.coalRoarkwin);
 
@@ -38,7 +39,23 @@ describe('Pain Shaman', function () {
 
             this.player1.clickCard(this.painShaman);
             this.player1.clickPrompt('Play this Ally');
+            this.player1.clickYes();
+
             this.player1.clickDone();
+            this.player1.clickCard(this.coalRoarkwin);
+
+            expect(this.blueJaguar.damage).toBe(0);
+            expect(this.coalRoarkwin.damage).toBe(0);
+        });
+
+        it('skip unit damage heal one pb', function () {
+            this.coalRoarkwin.tokens.damage = 1;
+            expect(this.blueJaguar.tokens.damage).toBeUndefined();
+            expect(this.coalRoarkwin.damage).toBe(1);
+
+            this.player1.clickCard(this.painShaman);
+            this.player1.clickPrompt('Play this Ally');
+            this.player1.clickNo();
             this.player1.clickCard(this.coalRoarkwin);
 
             expect(this.blueJaguar.damage).toBe(0);

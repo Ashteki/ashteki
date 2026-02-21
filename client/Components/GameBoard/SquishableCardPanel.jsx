@@ -139,7 +139,7 @@ function SquishableCardPanel({
     });
 
     let style = {
-        'min-width': dimensions.width + 'px',
+        minWidth: dimensions.width + 'px',
         height: dimensions.height + 'px'
     };
 
