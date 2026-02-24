@@ -37,7 +37,7 @@ class AllocateDamagePrompt extends UiPrompt {
             selectCard: true,
             selectOrder: false,
             menuTitle: {
-                text: 'Choose a unit to deal {{damageStep}} damage to',
+                text: 'Choose a unit to add {{damageStep}} wound to',
                 values: { damageStep: this.properties.damageStep.toString() }
             },
             buttons: buttons,

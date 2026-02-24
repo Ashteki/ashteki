@@ -29,7 +29,7 @@ class AllocateDamageAction extends GameAction {
                             if (card) {
                                 this.events.push(
                                     context.game.actions
-                                        .dealDamage({ amount: amount })
+                                        .addDamageToken({ amount: amount })
                                         .getEvent(card, context)
                                 );
                             }

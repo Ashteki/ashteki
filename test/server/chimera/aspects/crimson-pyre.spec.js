@@ -44,6 +44,47 @@ describe('Crimson Pyre Aspect', function () {
         });
     });
 
+    describe('Crimson Pyre In Play vs Vanish', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'solo',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut', 'iron-worker'],
+                    spellboard: [],
+                    dicepool: ['natural', 'natural', 'illusion', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['summon-iron-rhino', 'vanish']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'frostwild-scourge',
+                    behaviour: 'scourge-behaviour',
+                    ultimate: 'scourge-ultimate',
+                    inPlay: ['crimson-pyre', 'rainwalker'],
+                    spellboard: [],
+                    threatZone: ['hunting-instincts'],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            spyOn(Dice, 'd12Roll').and.returnValue(1);
+            this.crimsonPyre.tokens.status = 3;
+        });
+
+        it('triggers vanish when allocating damage', function () {
+            this.player1.endTurn();
+            expect(this.crimsonPyre.status).toBe(2);
+            this.player1.clickCard(this.vanish); // cancelled
+
+            expect(this.rainwalker.location).toBe('archives');
+            expect(this.vanish.location).toBe('discard');
+            // informs real player of behaviour roll
+            expect(this.player2).toHavePrompt('Alerting opponent');
+            this.player1.clickPrompt('Ok');
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+    });
+
     describe('In Play but no conjured aspect', function () {
         beforeEach(function () {
             this.setupTest({
