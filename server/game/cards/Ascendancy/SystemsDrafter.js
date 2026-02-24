@@ -8,7 +8,7 @@ class SystemsDrafter extends Card {
             target: {
                 cardType: CardType.ReadySpell,
                 controller: 'self',
-                activePromptTitle: 'Choose a unit to remove exhaustion from',
+                activePromptTitle: 'Choose a ready spell to remove 1 exhaustion token from',
                 cardCondition: (card) => card.exhausted,
                 gameAction: ability.actions.removeExhaustion()
             }
