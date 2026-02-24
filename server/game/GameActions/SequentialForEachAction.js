@@ -25,7 +25,7 @@ class SequentialForEachAction extends GameAction {
 
     getEventArray(context) {
         return [
-            super.createEvent('unnamedEvent', {}, () => {
+            super.createEvent('unnamedEvent', { context: context }, () => {
                 if (typeof this.forEach === 'function') {
                     this.forEach = this.forEach(context);
                 }
