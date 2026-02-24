@@ -49,5 +49,19 @@ describe('Riptide Aspect', function () {
 
             expect(this.player1).toHaveDefaultPrompt();
         });
+
+        it('allocate 2 damage to a single units', function () {
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic
+            expect(this.riptide.facedown).toBe(true);
+            this.player1.endTurn();
+            this.player1.clickPrompt('Ok');
+
+            this.player1.clickCard(this.falseDemon);
+            this.player1.clickCard(this.falseDemon);
+
+            expect(this.falseDemon.location).toBe('archives');
+
+            expect(this.player1).toHaveDefaultPrompt();
+        });
     });
 });

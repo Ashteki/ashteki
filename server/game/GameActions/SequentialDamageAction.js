@@ -15,7 +15,9 @@ class SequentialDamageAction extends PlayerAction {
                     choosingPlayer: this.choosingPlayer,
                     damageStep: this.damageStep,
                     numSteps: this.numSteps,
-                    context: context
+                    context: context,
+                    cardType: this.cardType,
+                    allowRepeats: this.allowRepeats
                 })
             );
         });

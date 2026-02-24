@@ -38,13 +38,6 @@ class SpearMaster extends Card {
                 condition: (context) => context.priorContext.tokenCount > 0,
                 gameAction: ability.actions.sequentialDamage((context) => ({
                     numSteps: context.priorContext.tokenCount
-                    // action: ability.actions.dealDamage((context) => ({
-                    //     promptForSelect: {
-                    //         activePromptTitle: 'Choose a unit to deal 1 damage to',
-                    //         cardType: BattlefieldTypes,
-                    //         controller: 'opponent'
-                    //     }
-                    // }))
                 }))
             }
         });

@@ -10,11 +10,11 @@ class Riptide extends AspectCard {
             target: {
                 toSelect: 'player',
                 autoTarget: (context) => context.player.opponent,
-                gameAction: ability.actions.allocateDamage((context) => ({
-                    numSteps: 2,
+                gameAction: ability.actions.sequentialDamage((context) => ({
                     cardType: [...BattlefieldTypes, CardType.Phoenixborn],
-                    choosingPlayer: context.player.opponent,
-                    controller: 'opponent'
+                    numSteps: 2,
+                    choosingPlayer: context.target,
+                    allowRepeats: true
                 }))
             }
         });
