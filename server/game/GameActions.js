@@ -84,6 +84,7 @@ const Actions = {
     addToThreatZone: (propertyFactory) => new GameActions.AddToThreatZoneAction(propertyFactory),
     chosenAmountDraw: (propertyFactory) => new GameActions.ChosenAmountDrawAction(propertyFactory),
     chosenDestroy: (propertyFactory) => new GameActions.ChosenDestroyAction(propertyFactory),
+    chosenReturn: (propertyFactory) => new GameActions.ChosenReturnAction(propertyFactory),
     chosenDiscard: (propertyFactory) => new GameActions.ChosenDiscardAction(propertyFactory), // amount = 1
     chosenExhaust: (propertyFactory) => new GameActions.ChosenExhaustAction(propertyFactory), // amount = 1
     chosenUnexhaust: (propertyFactory) => new GameActions.ChosenUnexhaustAction(propertyFactory),

@@ -11,7 +11,7 @@ class SequentialForEachAction extends GameAction {
             this.forEach = [this.forEach];
         }
 
-        this.effectMsg = 'do several things';
+        // this.effectMsg = 'do several things';
     }
 
     hasLegalTarget(context) {
@@ -25,7 +25,7 @@ class SequentialForEachAction extends GameAction {
 
     getEventArray(context) {
         return [
-            super.createEvent('unnamedEvent', {}, () => {
+            super.createEvent('unnamedEvent', { context: context }, () => {
                 if (typeof this.forEach === 'function') {
                     this.forEach = this.forEach(context);
                 }

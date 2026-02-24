@@ -56,6 +56,7 @@ class AttachConjuredAlterationAction extends CardGameAction {
                         : context.game.actions.attach({
                             upgrade: alt
                         });
+                context.cardsAttached = context.cardsAttached ? context.cardsAttached + 1 : 1;
                 context.game.addMessage('{0} attaches {1} to {2}', context.player, alt, card);
                 event.addSubEvent(gameAction.getEvent(card, context));
             }

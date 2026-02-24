@@ -685,5 +685,68 @@
         "count": 7
       }
     ]
+  },
+  {
+    "precon_id": 812,
+    "premium": true,
+    "mode": "chimera",
+    "name": "The Flood of Moon Cove - Wave",
+    "restricted": true,
+    "phoenixborn": [
+      {
+        "id": "flood-of-moon-cove",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "moon-cove-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "moon-cove-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "rage",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "insatiable",
+        "count": 3
+      },
+      {
+        "id": "tyranny",
+        "count": 3
+      },
+      {
+        "id": "stunning-impact",
+        "count": 3
+      },
+      {
+        "id": "shore-breaker",
+        "count": 3
+      },
+      {
+        "id": "deluge",
+        "count": 3
+      },
+      {
+        "id": "riptide",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "drowning",
+        "count": 7
+      }
+    ]
   }
 ]

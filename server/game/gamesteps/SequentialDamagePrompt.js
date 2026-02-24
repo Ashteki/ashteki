@@ -10,12 +10,13 @@ class SequentialDamagePrompt extends UiPrompt {
         this.properties = properties;
         this.context = properties.context;
         this.selector = CardSelector.for({
-            cardType: BattlefieldTypes,
+            cardType: properties.cardType || BattlefieldTypes,
             controller: 'opponent',
-            cardCondition: (card) => !this.chosenTargets.includes(card)
+            cardCondition: (card) => this.allowRepeats || !this.chosenTargets.includes(card)
         });
         this.damageStep = properties.damageStep;
         this.numSteps = properties.numSteps;
+        this.allowRepeats = properties.allowRepeats;
 
         this.chosenTargets = [];
     }
@@ -51,7 +52,7 @@ class SequentialDamagePrompt extends UiPrompt {
         return {
             selectCard: true,
             menuTitle: {
-                text: 'Choose a unit to deal {{damageStep}} damage to ({{thisStep}}/{{numSteps}})',
+                text: 'Choose a card to deal {{damageStep}} damage to ({{thisStep}}/{{numSteps}})',
                 values: {
                     damageStep: this.properties.damageStep.toString(),
                     thisStep: this.chosenTargets.length + 1,
@@ -98,7 +99,7 @@ class SequentialDamagePrompt extends UiPrompt {
     }
 
     selectCard(card) {
-        if (!this.chosenTargets.includes[card]) {
+        if (this.allowRepeats || !this.chosenTargets.includes[card]) {
             this.chosenTargets.push(card);
             return true;
         } else {
