@@ -24,7 +24,6 @@ describe('Dodge reaction spell', function () {
         this.player1.clickCard(this.fluteMage);
         // on attackers declared
         this.player2.clickCard(this.dodge);
-        this.player2.clickDie(1);
         this.player2.clickCard(this.blueJaguar);
         expect(this.blueJaguar.isAirborne).toBe(true);
         this.player2.clickDone();

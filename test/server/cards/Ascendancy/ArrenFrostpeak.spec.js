@@ -26,7 +26,6 @@ describe('Arren Frostpeak', function () {
             expect(this.player1.dicepool[0].exhausted).toBe(true);
 
             this.player1.clickCard(this.gilder);
-            this.player1.clickDie(0);
 
             expect(this.player1).toHaveDefaultPrompt();
             expect(this.arrenFrostpeak.dieUpgrades.length).toBe(1);

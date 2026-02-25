@@ -24,7 +24,6 @@ describe('Issa Brightmore', function () {
             this.player1.clickPrompt('Inspiration');
             this.player1.clickDie(0);
 
-            this.player1.clickDie(0);
             this.player1.clickCard(this.hammerKnight);
 
             expect(this.player1).toHaveDefaultPrompt();
