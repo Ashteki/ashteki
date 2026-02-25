@@ -5,11 +5,9 @@ class SkybreakCaptain extends Card {
     setupCardAbilities(ability) {
         this.entersPlay({
             target: {
-                activePromptTitle: 'Choose an exhausted Astral die to place on Skybreak Captain',
-                optional: true,
                 toSelect: 'die',
-                owner: 'self',
-                dieCondition: (die) => die.magic === Magic.Astral && die.exhausted,
+                autoTarget: (context) =>
+                    context.player.findDie((die) => die.magic === Magic.Astral && die.exhausted),
                 gameAction: ability.actions.resolveDieAbility((context) => ({
                     targetCard: context.source
                 }))

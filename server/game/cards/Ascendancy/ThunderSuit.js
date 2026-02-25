@@ -16,11 +16,9 @@ class ThunderSuit extends Card {
                 onCardAttached: (event, context) => event.card === context.source
             },
             target: {
-                activePromptTitle: 'Choose an exhausted Artifice die',
-                optional: true,
                 toSelect: 'die',
-                owner: 'self',
-                dieCondition: (die) => die.magic === Magic.Artifice && die.exhausted,
+                autoTarget: (context) =>
+                    context.player.findDie((die) => die.magic === Magic.Artifice && die.exhausted),
                 gameAction: ability.actions.resolveDieAbility((context) => ({
                     targetCard: context.source.parent
                 }))

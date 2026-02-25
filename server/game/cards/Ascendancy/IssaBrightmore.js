@@ -14,11 +14,11 @@ class IssaBrightmore extends Card {
             gameAction: ability.actions.draw({ amount: 2 }),
             then: {
                 target: {
-                    activePromptTitle: 'Choose an exhausted Artifice die to resolve its die power',
-                    optional: true,
                     toSelect: 'die',
-                    owner: 'self',
-                    dieCondition: (die) => die.magic === Magic.Artifice && die.exhausted,
+                    autoTarget: (context) =>
+                        context.player.findDie(
+                            (die) => die.magic === Magic.Artifice && die.exhausted
+                        ),
                     gameAction: ability.actions.resolveDieAbility()
                 }
             }

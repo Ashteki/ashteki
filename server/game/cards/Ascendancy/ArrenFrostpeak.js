@@ -21,11 +21,11 @@ class ArrenFrostpeak extends Card {
             then: {
                 alwaysTriggers: true,
                 target: {
-                    activePromptTitle: 'Choose an exhausted Astral die to place on Arren',
-                    optional: true,
                     toSelect: 'die',
-                    owner: 'self',
-                    dieCondition: (die) => die.magic === Magic.Astral && die.exhausted,
+                    autoTarget: (context) =>
+                        context.player.findDie(
+                            (die) => die.magic === Magic.Astral && die.exhausted
+                        ),
                     gameAction: ability.actions.resolveDieAbility((context) => ({
                         targetCard: context.source
                     }))

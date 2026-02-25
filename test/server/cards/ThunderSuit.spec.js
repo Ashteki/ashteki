@@ -24,7 +24,6 @@ describe('Thunder Suit', function () {
             this.player1.clickDie(2);
             this.player1.clickPrompt('Done');
             this.player1.clickCard(this.anchornaut);
-            this.player1.clickDie(0); // smuggle
             expect(this.anchornaut.attack).toBe(2);
             expect(this.anchornaut.life).toBe(3);
             expect(this.anchornaut.recover).toBe(2);
