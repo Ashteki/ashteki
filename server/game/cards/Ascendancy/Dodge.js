@@ -17,15 +17,10 @@ class Dodge extends Card {
             })),
             then: {
                 target: {
-                    activePromptTitle: 'Choose an exhausted Astral die to resolve',
-                    optional: true,
                     toSelect: 'die',
-                    owner: 'self',
-                    CardType: BattlefieldTypes,
-                    dieCondition: (die) => die.exhausted && die.magic === Magic.Astral, // && die.exhausted,
-                    gameAction: ability.actions.resolveDieAbility({
-                        targetCardType: BattlefieldTypes
-                    })
+                    autoTarget: (context) =>
+                        context.player.findDie((die) => die.magic === Magic.Astral && die.exhausted),
+                    gameAction: ability.actions.resolveDieAbility()
                 }
             }
         });

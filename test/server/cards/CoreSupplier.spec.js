@@ -22,9 +22,7 @@ describe('Core Supplier', function () {
             this.player1.play(this.coreSupplier);
             this.player1.clickDie(1);
             this.player1.clickDone();
-            this.player1.clickDie(0);
             this.player1.clickCard(this.javelineer);
-            this.player1.clickDie(0); // index shifts after first die placed
             this.player1.clickCard(this.summonThunderHulk);
 
             expect(this.javelineer.isCharged).toBe(true);
