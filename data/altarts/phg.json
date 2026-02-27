@@ -37,14 +37,29 @@
             "alt": "alt/gilder"
         },
         {
+            "name": "Hope - Martin Abel",
+            "stub": "hope-everthorn",
+            "alt": "https://cdn.ashteki.com/ashes/alts/hope-martin-abel.jpg"
+        },
+        {
             "name": "Mist Spirit Dark Forest",
             "stub": "mist-spirit",
             "alt": "alt/mist-spirit"
         },
         {
+            "name": "Odette - Martin Abel",
+            "stub": "odette-diamondcrest",
+            "alt": "https://cdn.ashteki.com/ashes/alts/odette-martin-abel.jpg"
+        },
+        {
             "name": "Rose Fire Dancer Ring",
             "stub": "rose-fire-dancer",
             "alt": "alt/rose-fire-dancer"
+        },
+        {
+            "name": "Rowan - kinopticon",
+            "stub": "rowan-umberend",
+            "alt": "https://cdn.ashteki.com/ashes/alts/rowan-kinopticon.jpg"
         },
         {
             "name": "Molten Gold Foil",

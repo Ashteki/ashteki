@@ -35,7 +35,13 @@ const DeckTypeInfo = ({ deckType }) => {
         case 'precon':
             return (
                 <AlertPanel type='info'>
-                    <strong>Precons</strong> These are the preconstructed decks as released in each product by PHG.
+                    <strong>Reborn Precons</strong> These are the preconstructed decks as released in each Ashes Reborn product by PHG.
+                </AlertPanel>
+            );
+        case 'ascendancy':
+            return (
+                <AlertPanel type='info'>
+                    <strong>Ascendancy Precons</strong> These are the preconstructed decks as released in each Ashes Ascendancy product by PHG.
                 </AlertPanel>
             );
         case 'pveDecks':
