@@ -8,7 +8,7 @@ class SequentialAction extends GameAction {
 
     setup() {
         super.setup();
-        this.effectMsg = 'do several things';
+        // this.effectMsg = 'do several things';
     }
 
     update(context) {
