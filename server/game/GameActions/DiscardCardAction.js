@@ -31,6 +31,10 @@ class DiscardCardAction extends CardGameAction {
             if (card.location === 'hand') {
                 context.game.cardsDiscarded.push(card);
             }
+            if (card.location === 'play area' || card.location === 'spellboard') {
+                event.context.game.onCardDiscarded(card);
+            }
+
             card.removed = true;
             context.cardsDiscarded = (context.cardsDiscarded || []).concat(card);
 
