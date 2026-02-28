@@ -7,7 +7,7 @@ class PlayAllyAction extends BasePlayAction {
     }
 
     addSubEvent(event, context) {
-        let action = context.game.actions.putIntoPlay({ myControl: true, showMessage: false });
+        let action = context.game.actions.putIntoPlay({ myControl: true, showMessage: true });
         if (context.player.isBattlefieldFull()) {
             context.game.addMessage(
                 "{0}'s battlefield is full. {1} is discarded.",
