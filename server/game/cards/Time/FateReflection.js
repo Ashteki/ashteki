@@ -27,10 +27,7 @@ class FateReflection extends Card {
                         showMessage: true
                     }))
                 }
-            },
-            message:
-                '{0} plays {1} to prevent all damage to {2} then deals that damage to an opposing unit',
-            messageArgs: (context) => [context.player, context.source, context.event.card]
+            }
         });
     }
 }
