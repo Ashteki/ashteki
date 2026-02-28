@@ -222,6 +222,10 @@ class Game extends EventEmitter {
         this.logDestruction(card);
     }
 
+    onCardDiscarded(card) {
+        this.logDiscard(card);
+    }
+
     /*
      * Reports errors from the game engine back to the router
      * @param {type} e
@@ -1754,6 +1758,14 @@ class Game extends EventEmitter {
         this.gameLog.push({
             id: 'cl' + this.getCardLogIndex(),
             act: 'des',
+            obj: card
+        });
+    }
+
+    logDiscard(card) {
+        this.gameLog.push({
+            id: 'cl' + this.getCardLogIndex(),
+            act: 'dis',
             obj: card
         });
     }

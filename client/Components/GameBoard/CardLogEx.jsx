@@ -65,11 +65,10 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
                         {item.p} <span className={actionClass}>uses</span> dice power
                     </div>
                 </div>
-
             )
         }
 
-        if (item.type === 'des') {
+        if (['des', 'dis'].includes(item.type)) {
             const card = item.obj;
             return (
                 <>
@@ -78,7 +77,7 @@ const CardLogEx = ({ items, onMouseOut, onMouseOver }) => {
                         onMouseOver={() => onMouseOver && onMouseOver(item.obj)}
                     >
                         <CardImage card={item.obj} noIndex={true} />
-                        <div className='log-info'>{card.name} is destroyed</div>
+                        <div className='log-info'>{card.name} is {item.type === 'des' ? 'destroyed' : 'discarded'}</div>
                     </div>
                 </>
             );
