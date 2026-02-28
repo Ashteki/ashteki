@@ -7,9 +7,24 @@
             "alt": "alt/aradel-summergaard"
         },
         {
+            "name": "Aradel 1.0 Dark",
+            "stub": "aradel-summergaard",
+            "alt": "https://cdn.ashteki.com/ashes/alts/aradel-summergaard-dark.jpg"
+        },
+        {
             "name": "Coal Angry",
             "stub": "coal-roarkwin",
             "alt": "alt/coal-roarkwin"
+        },
+        {
+            "name": "Coal 1.0 Dark",
+            "stub": "coal-roarkwin",
+            "alt": "https://cdn.ashteki.com/ashes/alts/coal-roarkwin-dark.jpg"
+        },
+        {
+            "name": "Dimona 1.0 Dark",
+            "stub": "dimona-odinstar",
+            "alt": "https://cdn.ashteki.com/ashes/alts/dimona-odinstar-dark.jpg"
         },
         {
             "name": "Jessa Needles",
@@ -17,9 +32,19 @@
             "alt": "alt/jessa-na-ni"
         },
         {
+            "name": "Jessa 1.0 Dark",
+            "stub": "jessa-na-ni",
+            "alt": "https://cdn.ashteki.com/ashes/alts/jessa-na-ni-dark.jpg"
+        },
+        {
             "name": "Maeoni Big Snake",
             "stub": "maeoni-viper",
             "alt": "alt/maeoni-viper"
+        },
+        {
+            "name": "Maeoni 1.0 Dark",
+            "stub": "maeoni-viper",
+            "alt": "https://cdn.ashteki.com/ashes/alts/maeoni-viper-dark.jpg"
         },
         {
             "name": "Noah Masked",
@@ -27,9 +52,19 @@
             "alt": "alt/noah-redmoon"
         },
         {
+            "name": "Noah 1.0 Dark",
+            "stub": "noah-redmoon",
+            "alt": "https://cdn.ashteki.com/ashes/alts/noah-redmoon-dark.jpg"
+        },
+        {
             "name": "Saria Makeup",
             "stub": "saria-guideman",
             "alt": "alt/saria-guideman"
+        },
+        {
+            "name": "Saria 1.0 Dark",
+            "stub": "saria-guideman",
+            "alt": "https://cdn.ashteki.com/ashes/alts/saria-guideman-dark.jpg"
         },
         {
             "name": "Gilder Fighting",
