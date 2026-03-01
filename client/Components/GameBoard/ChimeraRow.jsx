@@ -124,6 +124,7 @@ const ChimeraRow = ({
             title={t('Discard')}
             source='discard'
             cards={discard}
+            showAlphaSort={true}
             {...cardPileProps}
         />
     );

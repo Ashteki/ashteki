@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import CardTiledList from './CardTiledList';
@@ -9,6 +9,7 @@ const CardPilePopup = ({
     cards,
     disableMouseOver,
     manualMode,
+    showAlphaSort,
     onCardClick,
     onCardAltClick,
     onCloseClick,
@@ -26,6 +27,12 @@ const CardPilePopup = ({
     source,
     title
 }) => {
+    const [alphaSort, setAlphaSort] = useState(false);
+    const onAlphaClick = () => {
+        setAlphaSort(!alphaSort);
+    };
+    const cardsSorted = alphaSort ? [...cards].sort((a, b) => a.name.localeCompare(b.name)) : cards;
+
     let popup = null;
     let cardList = [];
 
@@ -43,8 +50,8 @@ const CardPilePopup = ({
         source: source
     };
 
-    if (cards && cards.some((card) => card.group)) {
-        const cardGroup = cards.reduce((grouping, card) => {
+    if (cardsSorted && cardsSorted.some((card) => card.group)) {
+        const cardGroup = cardsSorted.reduce((grouping, card) => {
             (grouping[card.group] = grouping[card.group] || []).push(card);
 
             return grouping;
@@ -56,7 +63,7 @@ const CardPilePopup = ({
             );
         }
     } else {
-        cardList = <CardTiledList cards={cards} {...listProps} />;
+        cardList = <CardTiledList cards={cardsSorted} {...listProps} />;
     }
 
     let popupClass = classNames('panel-body', {
@@ -90,6 +97,9 @@ const CardPilePopup = ({
         <MovablePanel
             title={title}
             name={source}
+            onAlphaClick={onAlphaClick}
+            showAlphaSort={showAlphaSort}
+            alphaSort={alphaSort}
             onCloseClick={onCloseClick}
             onPlusClick={onPlusClick}
             onMinusClick={onMinusClick}

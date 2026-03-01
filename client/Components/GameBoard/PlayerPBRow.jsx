@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardPile from './CardPile';
 import SquishableCardPanel from './SquishableCardPanel';
 import Droppable from './Droppable';
@@ -47,6 +47,7 @@ const PlayerPBRow = ({
             return child;
         }
     };
+
 
     let cardPileProps = {
         manualMode: manualMode,
@@ -104,6 +105,7 @@ const PlayerPBRow = ({
             title='Discard'
             source='discard'
             cards={discard}
+            showAlphaSort={true}
             {...cardPileProps}
         />
     );
