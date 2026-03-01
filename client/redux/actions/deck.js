@@ -27,10 +27,11 @@ export function loadDecks(options = {}) {
 }
 
 export function loadMyChimeraDecks(options = {}) {
+    options.chimera = true;
     return {
         types: ['REQUEST_CHIMERA_DECKS', 'CHIMERA_DECKS_RECEIVED'],
         shouldCallAPI: () => true,
-        APIParams: { url: '/api/decks/chimera', cache: false, data: options }
+        APIParams: { url: '/api/decks', cache: false, data: options }
     };
 }
 

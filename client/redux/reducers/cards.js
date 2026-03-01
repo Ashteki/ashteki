@@ -1,11 +1,11 @@
 import { Decks } from '../types';
 
 function selectDeck(state, deck) {
-    if (state.decks && state.decks.length !== 0) {
-        state.selectedDeck = deck;
-    } else {
-        delete state.selectedDeck;
-    }
+    // if (state.decks && state.decks.length !== 0) {
+    state.selectedDeck = deck;
+    // } else {
+    //     delete state.selectedDeck;
+    // }
 
     return state;
 }

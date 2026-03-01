@@ -110,28 +110,25 @@ const DecksComponent = ({ onDeckSelected }) => {
             case 0:
                 deck = myDecks[0];
                 break;
-            case 1:
-                deck = myChimeraDecks[0];
-                break;
-            case 2: // ascendancy
+            case 1: // ascendancy
                 deck = ascendancyDecks[0];
                 break;
-            case 3:
+            case 2:
                 deck = standaloneDecks[0];
                 break;
-            case 4:
+            case 3:
                 deck = pveDecks[0];
                 break;
-            case 5:
+            case 4:
                 deck = firstAdventureDecks[0];
                 break;
-            case 6:
+            case 5:
                 deck = adventuringPartyDecks[0];
                 break;
-            case 7:
+            case 6:
                 deck = dualDuelDecks[0];
                 break;
-            case 8: // oneCollection
+            case 7: // oneCollection
                 deck = oneCollectionDecks[0];
                 break;
         }

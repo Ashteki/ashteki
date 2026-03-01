@@ -52,7 +52,7 @@ class AshesDeckService {
         return this.preconDecks.find({ precon_group: { $in: [1, 6] } }, { sort: { precon_id: 1 } });
     }
 
-    async findByUserName(userName, options, applyLimit = true, isChimera = false) {
+    async findByUserName(userName, options, applyLimit = true) {
         let nameSearch = '';
         let pbSearch = '';
         let faveSearch = false;
@@ -75,6 +75,7 @@ class AshesDeckService {
                 }
             }
         }
+        const isChimera = options && options.chimera;
         const searchFields = { username: userName };
         if (nameSearch !== '') {
             searchFields.name = { $regex: nameSearch, $options: 'i' };
@@ -249,8 +250,8 @@ class AshesDeckService {
         return this.decks.remove({ _id: id });
     }
 
-    async getNumDecksForUser(username, options, isChimera = false) {
-        const userDecks = await this.findByUserName(username, options, false, isChimera);
+    async getNumDecksForUser(username, options) {
+        const userDecks = await this.findByUserName(username, options, false);
         //todo: handle options
         return userDecks ? userDecks.length : 0;
     }
