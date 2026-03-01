@@ -9,6 +9,7 @@ class Rainwalker extends AspectCard {
 
         // Ephemeral
         this.forcedReaction({
+            title: 'Ephemeral',
             inexhaustible: true,
             when: {
                 onCardExhausted: (event, context) => event.card === context.source
