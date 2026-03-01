@@ -19,6 +19,7 @@ const CardPile = ({
     disablePopup,
     hiddenTopCard,
     manualMode,
+    showAlphaSort,
     onCardClick,
     onCardAltClick,
     onDragDrop,
@@ -40,6 +41,7 @@ const CardPile = ({
     const [showPopup, setShowPopup] = useState(false);
     const [manualPopup, setManualPopup] = useState(false);
     const [popupSize, setPopupSize] = useState(size);
+
     const onPlusClick = () => {
         setPopupSize(sizeUp(popupSize));
     };
@@ -121,6 +123,7 @@ const CardPile = ({
                     cards={cards}
                     disableMouseOver={disableMouseOver}
                     manualMode={manualMode}
+                    showAlphaSort={showAlphaSort}
                     onCardClick={(card) => {
                         // auto close
                         if (closeOnClick) {

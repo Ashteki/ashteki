@@ -18,9 +18,7 @@ class OceansGift extends Card {
                 dieCondition: (die) => !die.exhausted && die.level !== Level.Power,
                 owner: 'self',
                 gameAction: ability.actions.raiseDie()
-            },
-            message: '{0} uses {1} to raise up to 3 dice',
-            messageArgs: (context) => [context.player, context.source]
+            }
         });
 
         this.whileAttached({

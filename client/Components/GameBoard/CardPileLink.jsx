@@ -14,6 +14,7 @@ const CardPileLink = ({
     disablePopup,
     manualMode,
     numDeckCards,
+    showAlphaSort,
     onCardClick,
     onDragDrop,
     onMouseOut,
@@ -85,6 +86,8 @@ const CardPileLink = ({
                     cards={cards}
                     disableMouseOver={disableMouseOver}
                     manualMode={manualMode}
+                    showAlphaSort={showAlphaSort}
+
                     onCardClick={(card) => {
                         if (closeOnClick) {
                             updatePopupVisibility(false);

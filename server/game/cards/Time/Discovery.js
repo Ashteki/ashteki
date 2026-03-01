@@ -11,11 +11,6 @@ class Discovery extends Card {
                 alwaysTriggers: true,
                 gameAction: ability.actions.returnToDeck()
             }
-            // message: '{0} attaches {3} to {4}',
-            // messageArgs: (context) => [
-            //     context.player.archives.find((c) => c.id === 'red-raindrop'),
-            //     context.player.phoenixborn
-            // ]
         });
     }
 }
