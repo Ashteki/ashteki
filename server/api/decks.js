@@ -237,6 +237,74 @@ module.exports.init = function (server) {
         })
     );
 
+    server.get(
+        '/api/chimera-decks',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            let numDecks = await deckService.getNumChimeraDecksForUser(req.user.username, req.query);
+            let decks = [];
+
+            if (numDecks > 0) {
+                const rawDecks = await deckService.findChimeraDecksByUserName(req.user.username, req.query);
+                decks = rawDecks.map((deck) => {
+                    deck.played = 0;
+                    deck.wins = 0;
+                    deck.winRate = 0;
+                    deck.pb = deck.phoenixborn[0].id;
+                    return deck;
+                });
+
+                // await gameService
+                //     .findByUserName(req.user.username, {})
+                //     .then((games) => {
+                //         games.forEach((game) => {
+                //             const player = game.players.find(p => p.name === req.user.username);
+                //             if (player && player.deckid) {
+                //                 const deck = decks.find((d) => d._id.toString() === player.deckid);
+                //                 if (deck) {
+                //                     deck.played++;
+                //                     if (game.winner === req.user.username) {
+                //                         deck.wins++;
+                //                     }
+                //                     deck.winRate = Math.round(deck.wins / deck.played * 100);
+                //                 }
+                //             }
+                //         });
+                //     })
+                //     .catch((error) => {
+                //         console.log(error);
+                //     });
+
+                const limit = req.query.pageSize * 1 || 100;
+                let skip = limit * (req.query.page - 1) || 0;
+                if (skip > numDecks) {
+                    skip = 0;
+                }
+
+                decks = decks
+                    .sort((a, b) => {
+                        const sort = req.query.sort;
+                        const dirMultiplier = req.query.sortDir === 'desc' ? -1 : 1;
+
+                        switch (sort) {
+                            case 'name':
+                                return (
+                                    dirMultiplier *
+                                    (a[sort].toLowerCase() < b[sort].toLowerCase() ? -1 : 1)
+                                );
+                            case 'winRate':
+                                return dirMultiplier * getWinrateOrder(a, b);
+                            default:
+                                return dirMultiplier * (a[sort] < b[sort] ? -1 : 1);
+                        }
+                    })
+                    .slice(skip, skip + limit);
+            }
+
+            res.send({ success: true, numDecks: numDecks, decks: decks });
+        })
+    );
+
 
     server.post(
         '/api/decks',

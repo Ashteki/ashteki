@@ -91,6 +91,46 @@ class AshesDeckService {
         });
     }
 
+    async findChimeraByUserName(userName, options, applyLimit = true) {
+        let nameSearch = '';
+        let pbSearch = '';
+        let faveSearch = false;
+        let limit = 0;
+        let skip = 0;
+        if (options && applyLimit) {
+            limit = options.pageSize * 1;
+            skip = limit * (options.page - 1);
+        }
+        if (options && options.filter) {
+            for (let filterObject of options.filter || []) {
+                if (filterObject.name === 'name') {
+                    nameSearch = filterObject.value;
+                }
+                if (filterObject.name === 'pb') {
+                    pbSearch = filterObject.value;
+                }
+                if (filterObject.name === 'favourite') {
+                    faveSearch = filterObject.value === 'true';
+                }
+            }
+        }
+        const searchFields = { username: userName };
+        if (nameSearch !== '') {
+            searchFields.name = { $regex: nameSearch, $options: 'i' };
+        }
+        if (pbSearch !== '') {
+            searchFields['phoenixborn.id'] = { $regex: pbSearch, $options: 'i' };
+        }
+        if (faveSearch) {
+            searchFields['favourite'] = true;
+        }
+        return await this.decks.find(searchFields, {
+            // sort: { [options.sort]: options.sortDir == 'desc' ? -1 : 1 },
+            // skip: skip,
+            // limit: limit
+        });
+    }
+
     clearPrecons() {
         return this.preconDecks.remove({});
     }
@@ -244,6 +284,12 @@ class AshesDeckService {
 
     async getNumDecksForUser(username, options) {
         const userDecks = await this.findByUserName(username, options, false);
+        //todo: handle options
+        return userDecks ? userDecks.length : 0;
+    }
+
+    async getNumChimeraDecksForUser(username, options) {
+        const userDecks = await this.findChimeraByUserName(username, options, false);
         //todo: handle options
         return userDecks ? userDecks.length : 0;
     }

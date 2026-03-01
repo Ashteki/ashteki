@@ -26,6 +26,14 @@ export function loadDecks(options = {}) {
     };
 }
 
+export function loadMyChimeraDecks(options = {}) {
+    return {
+        types: [Decks.RequestDecks, Decks.DecksReceived],
+        shouldCallAPI: () => true,
+        APIParams: { url: '/api/chimera-decks', cache: false, data: options }
+    };
+}
+
 export function loadDeck(deckId) {
     return {
         types: ['REQUEST_DECK', 'RECEIVE_DECK'],
@@ -45,6 +53,12 @@ export function loadDeck(deckId) {
 export function selectDeck(deck) {
     return {
         type: 'SELECT_DECK',
+        deck: deck
+    };
+}
+export function selectChimeraDeck(deck) {
+    return {
+        type: 'SELECT_CHIMERA_DECK',
         deck: deck
     };
 }

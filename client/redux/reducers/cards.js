@@ -77,6 +77,73 @@ function processDecks(decks, state) {
     }
 }
 
+function processChimeraDecks(decks, state) {
+    for (let deck of decks) {
+        if (!state.cards) {
+            deck.status = {};
+
+            continue;
+        }
+
+        deck.phoenixborn = deck.phoenixborn.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id,
+            conjurations: card.conjurations
+        }));
+        let hasPhoenixborn = deck.phoenixborn.length === 1;
+
+        deck.cards = deck.cards.map((card) => {
+            const c = Object.assign({}, state.cards[card.id]);
+            return {
+                count: card.count,
+                card: c,
+                id: card.id,
+                conjurations: c.conjurations,
+                phoenixborn: c.phoenixborn,
+                ff: card.ff,
+                imageStub: card.imageStub
+            };
+        });
+
+        deck.conjurations = deck.conjurations.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id
+        }));
+        let hasConjurations = checkConjurations(deck);
+        let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
+
+        const countUniques = deck.cards
+            .filter((c) => c.card.phoenixborn)
+            .reduce((agg, b) => agg + b.count, 0);
+        const validUniques =
+            // none for other pbs
+            deck.cards.filter(
+                (c) => c.card.phoenixborn && c.card.phoenixborn !== deck.phoenixborn[0].card.name
+            ).length === 0 &&
+            // max 3 uniques unless in onecollection format when all are allowed
+            (countUniques <= 3 || deck.format === 'onecollection');
+        let uniques = !hasPhoenixborn || validUniques;
+
+        let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
+        const legalToPlay =
+            hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
+        const maxThree = !deck.cards.some((c) => c.count > 3);
+
+        deck.status = {
+            basicRules: hasPhoenixborn && cardCount === 30,
+            maxThree: maxThree,
+            legalToPlay: legalToPlay,
+            hasConjurations: hasConjurations,
+            uniques: uniques,
+            tenDice: tenDice,
+            noUnreleasedCards: true,
+            officialRole: true
+        };
+    }
+}
+
 function checkConjurations(deck) {
     let cons = deck.cards
         .concat(deck.phoenixborn)
@@ -249,6 +316,17 @@ export default function (state = { decks: [], cards: {} }, action) {
             }
 
             return newState;
+        case 'SELECT_CHIMERA_DECK':
+            newState = Object.assign({}, state, {
+                selectedChimeraDeck: action.deck,
+                deckSaved: false
+            });
+
+            if (newState.selectedChimeraDeck) {
+                processChimeraDecks([newState.selectedChimeraDeck], state);
+            }
+
+            return newState;
         case 'ADD_DECK':
             var aradel = state.cards['aradel-summergaard'];
             var newDeck = {
@@ -266,6 +344,23 @@ export default function (state = { decks: [], cards: {} }, action) {
 
             processDecks([newState.selectedDeck], state);
 
+            return newState;
+        case 'ADD_CHIMERA_DECK':
+            var corpse = state.cards['corpse-of-viros'];
+            var newChimeraDeck = {
+                name: 'New Deck',
+                cards: [],
+                conjurations: [],
+                phoenixborn: [corpse],
+                dicepool: []
+            };
+
+            newState = Object.assign({}, state, {
+                selectedChimeraDeck: newChimeraDeck,
+                deckSaved: false
+            });
+
+            processChimeraDecks([newState.selectedChimeraDeck], state);
             return newState;
         case 'UPDATE_DECK':
             newState = Object.assign({}, state, {
