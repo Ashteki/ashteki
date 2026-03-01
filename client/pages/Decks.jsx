@@ -15,7 +15,7 @@ import debounce from 'lodash.debounce';
 import './Decks.scss';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 
-const DecksComponent = ({ onDeckSelected, tab = 0 }) => {
+const DecksComponent = ({ onDeckSelected }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const apiState = useSelector((state) => {
@@ -33,7 +33,7 @@ const DecksComponent = ({ onDeckSelected, tab = 0 }) => {
     });
     const [tabIndex, setTabIndex] = useState(0);
     const onDuplicate = () => {
-        setTabIndex(tab);
+        setTabIndex(0);
     };
 
     const [pbFilter, setPbFilter] = useState('');
@@ -64,8 +64,6 @@ const DecksComponent = ({ onDeckSelected, tab = 0 }) => {
         };
 
         dispatch(loadDecks(pagingDetails));
-        setTabIndex(tab);
-
     }, [nameFilter, pbFilter, showFaves, dispatch, deckReload, standaloneDecks, pageNumber]);
 
     let onNameChange = debounce((event) => {
@@ -87,22 +85,18 @@ const DecksComponent = ({ onDeckSelected, tab = 0 }) => {
 
     const {
         myDecks,
-        myChimeraDecks,
         standaloneDecks,
         adventuringPartyDecks,
         firstAdventureDecks,
-        chimeraDecks,
         pveDecks,
         dualDuelDecks,
         oneCollectionDecks,
         ascendancyDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks.filter((d) => d.mode !== 'chimera'),
-        myChimeraDecks: state.cards.decks.filter((d) => d.mode === 'chimera'),
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
-        chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
         pveDecks: state.cards.pveDecks,
         dualDuelDecks: state.cards.dualDuelDecks,
         oneCollectionDecks: state.cards.oneCollectionDecks,
@@ -158,8 +152,6 @@ const DecksComponent = ({ onDeckSelected, tab = 0 }) => {
                 <Tabs onSelect={onTabChange} selectedIndex={tabIndex}>
                     <TabList>
                         <Tab>My Decks</Tab>
-                        <Tab>My Chimera Decks</Tab>
-
                         <Tab>Ascendancy Precons</Tab>
                         <Tab>Reborn Precons</Tab>
                         <Tab>Red Rains Precons</Tab>
@@ -183,37 +175,6 @@ const DecksComponent = ({ onDeckSelected, tab = 0 }) => {
                             <Col lg={6}>
                                 <DeckList decks={myDecks} showWinRate={true} />
                                 {(myDecks?.length > 0) && (
-                                    <div className='pagination-wrapper'>
-                                        <PaginationControl
-                                            page={pageNumber}
-                                            between={4}
-                                            total={numDecks}
-                                            limit={10}
-                                            changePage={(page) => {
-                                                onPageClick(page);
-                                            }}
-                                            ellipsis={1}
-                                        />
-                                    </div>
-                                )}
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} allowEdit={true} />}</Col>
-                        </Row>
-                    </TabPanel>                    <TabPanel>
-                        <Row>
-                            <Col>
-                                <DeckFilter
-                                    onNameChange={onNameChange}
-                                    onPbChange={onPbChange}
-                                    handleFaveChange={handleFaveChange}
-                                    showButtons={true}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg={6}>
-                                <DeckList decks={myChimeraDecks} showWinRate={true} />
-                                {(myChimeraDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
                                         <PaginationControl
                                             page={pageNumber}

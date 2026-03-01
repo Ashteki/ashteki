@@ -6,9 +6,9 @@ import { Col, Row } from 'react-bootstrap';
 import ViewDeck from '../Components/Decks/ViewDeck.jsx';
 import DeckEditor from '../Components/Decks/DeckEditor.jsx';
 import AlertPanel from '../Components/Site/AlertPanel.jsx';
-import { loadDeck, saveDeck, setUrl } from '../redux/actions';
+import { loadDeck, navigate, saveDeck, setUrl } from '../redux/actions';
 
-function EditDeck({ deckId, navigate }) {
+function EditDeck({ deckId }) {
     const dispatch = useDispatch();
     const apiError = useSelector(state => state.api.message);
     const deck = useSelector(state => state.cards.selectedDeck);

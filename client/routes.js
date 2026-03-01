@@ -26,6 +26,7 @@ import FAQ from './pages/faq';
 import TaggedGames from './pages/admin/TaggedGames.jsx';
 import CardsPage from './pages/CardsPage.jsx';
 import UserAltAdmin from './pages/UserAltAdmin.jsx';
+import ChimeraPage from './pages/Chimera';
 
 const routes = [
     {
@@ -45,7 +46,7 @@ const routes = [
     },
     { path: '/cards', action: () => <CardsPage key='cards' /> },
     { path: '/decks', action: () => <Decks key='decks' /> },
-    { path: '/decks/chimera', action: () => <Decks key='chimDecks' tab={1} /> },
+    { path: '/decks/chimera', action: () => <ChimeraPage key='chimDecks' /> },
     { path: '/decks/add', action: () => <AddDeckPage /> },
     { path: '/decks/edit', action: (params) => <EditDeck deckId={params.deckId} /> },
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },

@@ -85,11 +85,11 @@ class AshesDeckService {
         if (faveSearch) {
             searchFields['favourite'] = true;
         }
-        // if (isChimera) {
-        //     searchFields.mode = 'chimera';
-        // } else {
-        //     searchFields.mode = { $ne: 'chimera' };
-        // }
+        if (isChimera) {
+            searchFields.mode = 'chimera';
+        } else {
+            searchFields.mode = { $ne: 'chimera' };
+        }
 
         return await this.decks.find(searchFields, {
             // sort: { [options.sort]: options.sortDir == 'desc' ? -1 : 1 },

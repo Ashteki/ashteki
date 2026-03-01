@@ -127,7 +127,9 @@ function getDeckJson(deck) {
         cards: formatCards(deck.cards),
         conjurations: formatCards(deck.conjurations),
         dicepool: deck.dicepool,
-        notes: deck.notes
+        notes: deck.notes,
+        mode: deck.mode,
+        listClass: deck.listClass
     });
 }
 
