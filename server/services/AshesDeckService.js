@@ -3,6 +3,7 @@ const monk = require('monk');
 const util = require('../util.js');
 const DeckForge = require('./generator/deckForge.js');
 const Carousel = require('./generator/carousel.js');
+const { search } = require('../game/GameActions.js');
 
 class AshesDeckService {
     constructor(configService, db) {
@@ -51,7 +52,7 @@ class AshesDeckService {
         return this.preconDecks.find({ precon_group: { $in: [1, 6] } }, { sort: { precon_id: 1 } });
     }
 
-    async findByUserName(userName, options, applyLimit = true) {
+    async findByUserName(userName, options, applyLimit = true, isChimera = false) {
         let nameSearch = '';
         let pbSearch = '';
         let faveSearch = false;
@@ -84,46 +85,12 @@ class AshesDeckService {
         if (faveSearch) {
             searchFields['favourite'] = true;
         }
-        return await this.decks.find(searchFields, {
-            // sort: { [options.sort]: options.sortDir == 'desc' ? -1 : 1 },
-            // skip: skip,
-            // limit: limit
-        });
-    }
+        // if (isChimera) {
+        //     searchFields.mode = 'chimera';
+        // } else {
+        //     searchFields.mode = { $ne: 'chimera' };
+        // }
 
-    async findChimeraByUserName(userName, options, applyLimit = true) {
-        let nameSearch = '';
-        let pbSearch = '';
-        let faveSearch = false;
-        let limit = 0;
-        let skip = 0;
-        if (options && applyLimit) {
-            limit = options.pageSize * 1;
-            skip = limit * (options.page - 1);
-        }
-        if (options && options.filter) {
-            for (let filterObject of options.filter || []) {
-                if (filterObject.name === 'name') {
-                    nameSearch = filterObject.value;
-                }
-                if (filterObject.name === 'pb') {
-                    pbSearch = filterObject.value;
-                }
-                if (filterObject.name === 'favourite') {
-                    faveSearch = filterObject.value === 'true';
-                }
-            }
-        }
-        const searchFields = { username: userName };
-        if (nameSearch !== '') {
-            searchFields.name = { $regex: nameSearch, $options: 'i' };
-        }
-        if (pbSearch !== '') {
-            searchFields['phoenixborn.id'] = { $regex: pbSearch, $options: 'i' };
-        }
-        if (faveSearch) {
-            searchFields['favourite'] = true;
-        }
         return await this.decks.find(searchFields, {
             // sort: { [options.sort]: options.sortDir == 'desc' ? -1 : 1 },
             // skip: skip,
@@ -282,14 +249,8 @@ class AshesDeckService {
         return this.decks.remove({ _id: id });
     }
 
-    async getNumDecksForUser(username, options) {
-        const userDecks = await this.findByUserName(username, options, false);
-        //todo: handle options
-        return userDecks ? userDecks.length : 0;
-    }
-
-    async getNumChimeraDecksForUser(username, options) {
-        const userDecks = await this.findChimeraByUserName(username, options, false);
+    async getNumDecksForUser(username, options, isChimera = false) {
+        const userDecks = await this.findByUserName(username, options, false, isChimera);
         //todo: handle options
         return userDecks ? userDecks.length : 0;
     }

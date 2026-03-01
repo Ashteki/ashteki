@@ -15,7 +15,7 @@ import debounce from 'lodash.debounce';
 import './Decks.scss';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 
-const DecksComponent = ({ onDeckSelected }) => {
+const DecksComponent = ({ onDeckSelected, tab = 0 }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const apiState = useSelector((state) => {
@@ -33,7 +33,7 @@ const DecksComponent = ({ onDeckSelected }) => {
     });
     const [tabIndex, setTabIndex] = useState(0);
     const onDuplicate = () => {
-        setTabIndex(0);
+        setTabIndex(tab);
     };
 
     const [pbFilter, setPbFilter] = useState('');
@@ -64,6 +64,8 @@ const DecksComponent = ({ onDeckSelected }) => {
         };
 
         dispatch(loadDecks(pagingDetails));
+        setTabIndex(tab);
+
     }, [nameFilter, pbFilter, showFaves, dispatch, deckReload, standaloneDecks, pageNumber]);
 
     let onNameChange = debounce((event) => {
@@ -85,6 +87,7 @@ const DecksComponent = ({ onDeckSelected }) => {
 
     const {
         myDecks,
+        myChimeraDecks,
         standaloneDecks,
         adventuringPartyDecks,
         firstAdventureDecks,
@@ -94,7 +97,8 @@ const DecksComponent = ({ onDeckSelected }) => {
         oneCollectionDecks,
         ascendancyDecks
     } = useSelector((state) => ({
-        myDecks: state.cards.decks,
+        myDecks: state.cards.decks.filter((d) => d.mode !== 'chimera'),
+        myChimeraDecks: state.cards.decks.filter((d) => d.mode === 'chimera'),
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
@@ -112,25 +116,28 @@ const DecksComponent = ({ onDeckSelected }) => {
             case 0:
                 deck = myDecks[0];
                 break;
-            case 1: // ascendancy
+            case 1:
+                deck = myChimeraDecks[0];
+                break;
+            case 2: // ascendancy
                 deck = ascendancyDecks[0];
                 break;
-            case 2:
+            case 3:
                 deck = standaloneDecks[0];
                 break;
-            case 3:
+            case 4:
                 deck = pveDecks[0];
                 break;
-            case 4:
+            case 5:
                 deck = firstAdventureDecks[0];
                 break;
-            case 5:
+            case 6:
                 deck = adventuringPartyDecks[0];
                 break;
-            case 6:
+            case 7:
                 deck = dualDuelDecks[0];
                 break;
-            case 7: // oneCollection
+            case 8: // oneCollection
                 deck = oneCollectionDecks[0];
                 break;
         }
@@ -151,6 +158,8 @@ const DecksComponent = ({ onDeckSelected }) => {
                 <Tabs onSelect={onTabChange} selectedIndex={tabIndex}>
                     <TabList>
                         <Tab>My Decks</Tab>
+                        <Tab>My Chimera Decks</Tab>
+
                         <Tab>Ascendancy Precons</Tab>
                         <Tab>Reborn Precons</Tab>
                         <Tab>Red Rains Precons</Tab>
@@ -174,6 +183,37 @@ const DecksComponent = ({ onDeckSelected }) => {
                             <Col lg={6}>
                                 <DeckList decks={myDecks} showWinRate={true} />
                                 {(myDecks?.length > 0) && (
+                                    <div className='pagination-wrapper'>
+                                        <PaginationControl
+                                            page={pageNumber}
+                                            between={4}
+                                            total={numDecks}
+                                            limit={10}
+                                            changePage={(page) => {
+                                                onPageClick(page);
+                                            }}
+                                            ellipsis={1}
+                                        />
+                                    </div>
+                                )}
+                            </Col>
+                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} allowEdit={true} />}</Col>
+                        </Row>
+                    </TabPanel>                    <TabPanel>
+                        <Row>
+                            <Col>
+                                <DeckFilter
+                                    onNameChange={onNameChange}
+                                    onPbChange={onPbChange}
+                                    handleFaveChange={handleFaveChange}
+                                    showButtons={true}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg={6}>
+                                <DeckList decks={myChimeraDecks} showWinRate={true} />
+                                {(myChimeraDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
                                         <PaginationControl
                                             page={pageNumber}

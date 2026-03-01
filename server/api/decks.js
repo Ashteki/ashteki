@@ -238,14 +238,14 @@ module.exports.init = function (server) {
     );
 
     server.get(
-        '/api/chimera-decks',
+        '/api/decks/chimera',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
-            let numDecks = await deckService.getNumChimeraDecksForUser(req.user.username, req.query);
+            let numDecks = await deckService.getNumDecksForUser(req.user.username, req.query, true);
             let decks = [];
 
             if (numDecks > 0) {
-                const rawDecks = await deckService.findChimeraDecksByUserName(req.user.username, req.query);
+                const rawDecks = await deckService.findByUserName(req.user.username, req.query, true, true);
                 decks = rawDecks.map((deck) => {
                     deck.played = 0;
                     deck.wins = 0;
@@ -305,6 +305,32 @@ module.exports.init = function (server) {
         })
     );
 
+    server.put(
+        '/api/decks/chimera/:id',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            if (!req.user) {
+                return res.status(401).send({ message: 'Unauthorized' });
+            }
+
+            let deck = await deckService.getChimeraDeckById(req.params.id);
+
+            if (!deck) {
+                return res.status(404).send({ message: 'No such chimeradeck' });
+            }
+
+            if (deck.username !== req.user.username) {
+                return res.status(401).send({ message: 'Unauthorized' });
+            }
+
+            let data = Object.assign({ id: req.params.id }, req.body);
+
+            deckService.update(data);
+
+            res.send({ success: true, message: 'Saved' });
+        })
+    );
+
 
     server.post(
         '/api/decks',
@@ -352,6 +378,54 @@ module.exports.init = function (server) {
             }
         })
     );
+
+    server.post(
+        '/api/decks/chimera',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            if (!req.user) {
+                return res.status(401).send({ message: 'Unauthorized' });
+            }
+
+            if (!req.body.uuid) {
+                let deck = Object.assign(req.body, { username: req.user.username });
+                const result = await deckService.createChimera(deck);
+                res.send({ success: true, deck: result });
+            } else {
+                // this is an import/update request
+                let deck = Object.assign(
+                    {},
+                    {
+                        id: req.body.deckId,
+                        uuid: req.body.uuid,
+                        username: req.user.username,
+                        ashesDb: req.body.ashesDb
+                    }
+                );
+                let savedDeck;
+
+                try {
+                    savedDeck = await deckService.import(req.user, deck, req.body.resync);
+                } catch (error) {
+                    return res.send({
+                        success: false,
+                        message: error.message
+                    });
+                }
+
+                if (!savedDeck) {
+                    return res.send({
+                        success: false,
+                        message:
+                            'An error occurred importing your deck.  Please check the Url or try again later.'
+                    });
+                }
+
+                res.send({ success: true, deck: savedDeck });
+            }
+        })
+    );
+
 
     server.put(
         '/api/decks/:id',

@@ -5,8 +5,7 @@ import Login from './pages/LoginContainer';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Decks from './pages/Decks';
-import ChimeraDecks from './pages/ChimeraDecks';
-import AddDeck from './pages/AddDeck';
+import AddDeckPage from './pages/AddDeck';
 import EditDeck from './pages/EditDeck';
 import Results from './pages/Results';
 
@@ -46,11 +45,11 @@ const routes = [
     },
     { path: '/cards', action: () => <CardsPage key='cards' /> },
     { path: '/decks', action: () => <Decks key='decks' /> },
-    { path: '/chimeradecks', action: () => <ChimeraDecks key='decks' /> },
-
-    { path: '/decks/add', action: () => <AddDeck /> },
+    { path: '/decks/chimera', action: () => <Decks key='chimDecks' tab={1} /> },
+    { path: '/decks/add', action: () => <AddDeckPage /> },
     { path: '/decks/edit', action: (params) => <EditDeck deckId={params.deckId} /> },
     { path: '/decks/import', action: () => <ImportDeck key='importDecks' /> },
+    { path: '/decks/chimera/add', action: () => <AddDeckPage isChimera={true} /> },
     { path: '/forgot', action: () => <ForgotPassword key='forgotpassword' /> },
     { path: '/login', action: () => <Login key='login' /> },
     { path: '/logout', action: () => <Logout key='logout' /> },

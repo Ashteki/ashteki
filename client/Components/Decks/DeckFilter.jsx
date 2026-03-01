@@ -5,7 +5,7 @@ import Link from '../Navigation/Link';
 import { Col, Form, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
-const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons }) => {
+const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, addUrl = '/decks/add' }) => {
     const allCards = useSelector((state) => state.cards.cards);
     let phoenixbornCards = [];
     for (let c in allCards) {
@@ -65,7 +65,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons })
                             <Link className='btn btn-primary def' href='/decks/import'>
                                 <span className='phg-basic-magic'></span> Import
                             </Link>
-                            <Link className='btn btn-secondary def' href='/decks/add'>
+                            <Link className='btn btn-secondary def' href={addUrl}>
                                 <FontAwesomeIcon icon={faPlus} /> New
                             </Link>
                         </Form.Group>

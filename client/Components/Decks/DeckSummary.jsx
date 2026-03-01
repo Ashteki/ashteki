@@ -42,7 +42,7 @@ const DeckSummary = ({ deck, editMode }) => {
             <DeckDice
                 size='large'
                 deck={deck}
-                slotCount={10}
+                slotCount={deck.mode === 'chimera' ? 5 : 10}
                 onDieClick={onDieClick}
                 onDieHover={onDieHover}
             />
@@ -78,8 +78,15 @@ const DeckSummary = ({ deck, editMode }) => {
             <div className='deck-cards'>
                 {radioValue ? (
                     <>
-                        <div className='basic-title'>First Five</div>
-                        <CardListImg deckCards={deck.cards.filter((c) => c.ff)} noIndex={true} />
+                        {deck.mode !== 'chimera' && (
+                            <>
+                                <div className='basic-title'>First Five</div>{' '}
+                                <CardListImg
+                                    deckCards={deck.cards.filter((c) => c.ff)}
+                                    noIndex={true}
+                                />
+                            </>
+                        )}
                         <div className='basic-title'>All Cards</div>
 
                         <CardListImg deckCards={deck.cards} />
