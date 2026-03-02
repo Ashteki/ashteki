@@ -67,12 +67,18 @@ describe('law of Grace', function () {
             expect(this.rinNorthfell.damage).toBe(2);
         });
 
-        it('does not reduce unit damage', function () {
+        it('does not reduce unit fight damage', function () {
             this.player1.clickAttack(this.hammerKnight);
             this.player1.clickCard(this.ironWorker);
             this.player2.clickPrompt('Done');
             this.player2.clickPrompt('No');
             expect(this.hammerKnight.damage).toBe(2);
+        });
+
+        it('does not reduce unit damage', function () {
+            this.player1.useDie(4);
+            this.player1.clickCard(this.hammerKnight);
+            expect(this.hammerKnight.damage).toBe(1);
         });
     });
 });
