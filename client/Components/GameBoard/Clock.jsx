@@ -1,58 +1,84 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Clock.scss';
 
 const formattedSeconds = (sec) => (sec < 0 ? '-' : '') + Math.floor(Math.abs(sec) / 60) + ':' + ('0' + Math.abs(sec) % 60).slice(-2);
 
-function Clock({ stateId, secondsLeft, mode, finishedAt, onClockZero }) {
-    const [timeLeft, setTimeLeft] = useState(secondsLeft);
-    const timerHandleRef = useRef(null);
-    const stateIdRef = useRef(stateId);
+class Clock extends React.Component {
+    constructor() {
+        super();
 
-    useEffect(() => {
-        // if (stateIdRef.current === stateId || secondsLeft === 0) {
-        //     return;
-        // }
+        this.state = { timeLeft: 0, periods: 0, mainTime: 0, timePeriod: 0 };
+    }
 
-        if (finishedAt) {
-            if (timerHandleRef.current) {
-                clearInterval(timerHandleRef.current);
-            }
+    UNSAFE_componentWillReceiveProps(newProps) {
+        if (this.stateId === newProps.stateId || newProps.secondsLeft === 0) {
             return;
         }
 
-        stateIdRef.current = stateId;
-        // setTimeLeft(secondsLeft);
+        if (newProps.finishedAt) {
+            if (this.timerHandle) {
+                clearInterval(this.timerHandle);
+            }
+            return;
+        }
+        this.stateId = newProps.stateId;
+        this.setState({
+            timeLeft: newProps.secondsLeft,
+            periods: newProps.periods,
+            mainTime: newProps.mainTime,
+            timePeriod: newProps.timePeriod
+        });
 
-        // if (timerHandleRef.current) {
-        //     clearInterval(timerHandleRef.current);
-        // }
-
-        if (mode !== 'stop') {
-            timerHandleRef.current = setInterval(() => {
-                const newTimeLeft = timeLeft + (mode === 'up' ? 1 : -1);
-                if (newTimeLeft <= 0 && onClockZero) {
-                    onClockZero();
-                }
-
-                setTimeLeft(newTimeLeft <= 0 ? 0 : newTimeLeft);
-            }, 1000);
+        if (this.timerHandle) {
+            clearInterval(this.timerHandle);
         }
 
-        return () => {
-            if (timerHandleRef.current) {
-                clearInterval(timerHandleRef.current);
-            }
-        };
-    }, [stateId, timeLeft, mode, finishedAt, onClockZero]);
+        if (newProps.mode !== 'stop') {
+            this.timerHandle = setInterval(() => {
+                this.setState({
+                    timeLeft: this.state.timeLeft + (newProps.mode === 'up' ? 1 : -1)
+                });
+                if (this.state.timeLeft <= 0) {
+                    this.setState({
+                        timeLeft: 0
+                    });
+                    clearInterval(this.timerHandle);
+                    // notify the server (check game state)
+                    if (this.props.onClockZero) {
+                        this.props.onClockZero();
+                    }
+                }
+                if (newProps.winner) {
+                    clearInterval(this.timerHandle);
+                }
+            }, 1000);
+        }
+    }
 
-    let className = classNames('clock', {
-        'expired-timer': timeLeft <= 0
-    });
+    getFormattedClock() {
+        return formattedSeconds(this.state.timeLeft);
+    }
 
-    return <span className={className}>{formattedSeconds(timeLeft)}</span>;
+    render() {
+        let className = classNames('clock', {
+            'expired-timer': this.state.timeLeft <= 0
+        });
+        return <span className={className}>{this.getFormattedClock()}</span>;
+    }
 }
 
 Clock.displayName = 'Clock';
+Clock.propTypes = {
+    mainTime: PropTypes.number,
+    mode: PropTypes.string,
+    periods: PropTypes.number,
+    secondsLeft: PropTypes.number,
+    stateId: PropTypes.number,
+    timePeriod: PropTypes.number,
+    gameFinished: PropTypes.number,
+    onClockZero: PropTypes.func
+};
 
 export default Clock;
