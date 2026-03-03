@@ -20,7 +20,6 @@ class StunningImpact extends AspectCard {
                 autoTarget: (context) => context.player.opponent,
                 gameAction: ability.actions.chosenReturn((context) => ({
                     destination: 'hand',
-                    target: context.player,
                     cardType: CardType.ReadySpell,
                     cardCondition: (card) => !card.exhausted
                 }))
