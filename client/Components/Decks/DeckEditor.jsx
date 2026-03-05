@@ -64,7 +64,7 @@ function InnerDeckEditor({ onDeckSave }) {
         }
 
         setDeck(copyDeck(selectedDeck));
-    }, [selectedDeck]);
+    }, []);
 
     function handleCancelClick() {
         navigate('/decks');
