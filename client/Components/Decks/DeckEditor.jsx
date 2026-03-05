@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form, Col, Row } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import TextArea from '../Form/TextArea.jsx';
-import { navigate, updateDeck } from '../../redux/actions';
+import { updateDeck } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 function DeckEditor({ onDeckSave, isChimera }) {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const typeaheadRef = useRef(null);
 
@@ -195,9 +197,9 @@ function DeckEditor({ onDeckSave, isChimera }) {
 
     function handleCancelClick() {
         if (isChimera) {
-            dispatch(navigate('/decks/chimera'));
+            navigate('/decks/chimera');
         } else {
-            dispatch(navigate('/decks'));
+            navigate('/decks');
         }
     }
 

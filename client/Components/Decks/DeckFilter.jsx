@@ -1,9 +1,9 @@
 import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import Link from '../Navigation/Link';
 import { Col, Form, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, addUrl = '/decks/add' }) => {
     const allCards = useSelector((state) => state.cards.cards);
@@ -62,10 +62,10 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, a
                     </Form.Group>
                     {showButtons && (
                         <Form.Group as={Col} xs='3'>
-                            <Link className='btn btn-primary def' href='/decks/import'>
+                            <Link className='btn btn-primary def' to='/decks/import'>
                                 <span className='phg-basic-magic'></span> Import
                             </Link>
-                            <Link className='btn btn-secondary def' href={addUrl}>
+                            <Link className='btn btn-secondary def' to={addUrl}>
                                 <FontAwesomeIcon icon={faPlus} /> New
                             </Link>
                         </Form.Group>

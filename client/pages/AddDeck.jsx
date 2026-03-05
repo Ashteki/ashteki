@@ -6,10 +6,12 @@ import AlertPanel from '../Components/Site/AlertPanel';
 import { Col, Row } from 'react-bootstrap';
 import DeckSummary from '../Components/Decks/DeckSummary';
 import DeckHeader from '../Components/Decks/DeckHeader';
-import { addChimeraDeck, addDeck, navigate, saveChimeraDeck, saveDeck } from '../redux/actions';
+import { addChimeraDeck, addDeck, saveChimeraDeck, saveDeck } from '../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 export function AddDeckPage({ isChimera }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const apiError = useSelector(state => state.api.message);
     const cards = useSelector(state => state.cards.cards);
@@ -26,7 +28,6 @@ export function AddDeckPage({ isChimera }) {
 
     useEffect(() => {
         if (deckSaved) {
-            dispatch(navigate('/decks'));
             navigate('/decks');
         }
     }, [deckSaved, dispatch]);

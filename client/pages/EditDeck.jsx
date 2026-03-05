@@ -6,10 +6,11 @@ import { Col, Row } from 'react-bootstrap';
 import ViewDeck from '../Components/Decks/ViewDeck.jsx';
 import DeckEditor from '../Components/Decks/DeckEditor.jsx';
 import AlertPanel from '../Components/Site/AlertPanel.jsx';
-import { loadDeck, navigate, saveDeck, setUrl } from '../redux/actions';
+import { loadDeck, saveDeck, } from '../redux/actions';
 
 function EditDeck({ deckId }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const apiError = useSelector(state => state.api.message);
     const deck = useSelector(state => state.cards.selectedDeck);
     const isChimera = deck.mode === 'chimera';
@@ -20,14 +21,14 @@ function EditDeck({ deckId }) {
         if (deckId) {
             dispatch(loadDeck(deckId));
         } else if (deck) {
-            dispatch(setUrl('/decks/edit/' + deck._id));
+            navigate('/decks/edit/' + deck._id);
             dispatch(loadDeck(deck._id));
         }
-    }, [deckId, deck, dispatch, setUrl]);
+    }, [deckId, deck, dispatch]);
 
     useEffect(() => {
         if (deckSaved) {
-            dispatch(navigate('/decks'));
+            navigate('/decks');
         }
     }, [deckSaved, navigate]);
 

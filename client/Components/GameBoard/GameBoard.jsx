@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Trans } from 'react-i18next';
 import {
     clearZoom,
-    navigate,
+
     sendGameMessage,
     sendTypingMessage,
     zoomCard
@@ -29,6 +29,7 @@ import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
 import Sidebar from './Sidebar';
 import AlertSplash from './AlertSplash';
+import { useNavigate } from 'react-router-dom';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -54,6 +55,8 @@ const placeholderPlayer = {
 
 const GameBoard = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [showChatLog, setShowChatLog] = useState(true);
     const [showDiceHistory, setShowDiceHistory] = useState(false);
     const [showManualCommands, setShowManualCommands] = useState(false);

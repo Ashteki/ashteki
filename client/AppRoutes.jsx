@@ -28,7 +28,7 @@ import CardsPage from './pages/CardsPage';
 import Results from './pages/Results';
 import TaggedGames from './pages/admin/TaggedGames';
 import UserAltAdmin from './pages/UserAltAdmin';
-import ChimeraPage from './pages/Chimera';
+import ChimeraPage from './pages/ChimeraPage';
 
 const AppRoutes = ({ currentGame, user }) => {
     const [searchParams] = useSearchParams();
