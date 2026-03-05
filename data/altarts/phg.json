@@ -17,6 +17,31 @@
             "alt": "alt/coal-roarkwin"
         },
         {
+            "name": "Blood Puppets by NSM - Aradel",
+            "stub": "blood-puppet",
+            "alt": "https://cdn.ashteki.com/ashes/alts/blood-puppet-aradel.jpg"
+        },
+        {
+            "name": "Blood Puppets by NSM - Coal",
+            "stub": "blood-puppet",
+            "alt": "https://cdn.ashteki.com/ashes/alts/blood-puppet-coal.jpg"
+        },
+        {
+            "name": "Blood Puppets by NSM - Maeoni",
+            "stub": "blood-puppet",
+            "alt": "https://cdn.ashteki.com/ashes/alts/blood-puppet-maeoni.jpg"
+        },
+        {
+            "name": "Blood Puppets by NSM - Noah",
+            "stub": "blood-puppet",
+            "alt": "https://cdn.ashteki.com/ashes/alts/blood-puppet-noah.jpg"
+        },
+        {
+            "name": "Blood Puppets by NSM - Saria",
+            "stub": "blood-puppet",
+            "alt": "https://cdn.ashteki.com/ashes/alts/blood-puppet-saria.jpg"
+        },
+        {
             "name": "Coal 1.0 Dark",
             "stub": "coal-roarkwin",
             "alt": "https://cdn.ashteki.com/ashes/alts/coal-roarkwin-dark.jpg"
@@ -87,9 +112,14 @@
             "alt": "https://cdn.ashteki.com/ashes/alts/odette-martin-abel.jpg"
         },
         {
-            "name": "Rose Fire Dancer Ring",
+            "name": "Rose Fire Dancer - Ring",
             "stub": "rose-fire-dancer",
             "alt": "alt/rose-fire-dancer"
+        },
+        {
+            "name": "Rose Fire Dancer - Firesticks",
+            "stub": "rose-fire-dancer",
+            "alt": "https://cdn.ashteki.com/ashes/alts/rose-fire-dancer-firesticks.jpg"
         },
         {
             "name": "Rowan - kinopticon",
