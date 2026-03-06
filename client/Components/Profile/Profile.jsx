@@ -108,7 +108,7 @@ const Profile = ({ onSubmit, isLoading }) => {
 
     backgrounds.push({
         name: 'ashesreborn',
-        label: 'Ashes Reborn',
+        label: 'Ashes Ascendancy',
         imageUrl: AshesRebornBg
     });
 
