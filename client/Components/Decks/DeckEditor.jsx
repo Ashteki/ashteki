@@ -7,6 +7,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import TextArea from '../Form/TextArea.jsx';
 import * as actions from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
+import './DeckEditor.scss';
 
 function copyDeck(deck) {
     if (!deck) {
@@ -354,7 +355,7 @@ function InnerDeckEditor({ onDeckSave }) {
     const lookupCards = getAllCards().filter((c) => c.deckType !== 'chimera');
 
     return (
-        <div>
+        <div className='deck-editor'>
             <Form>
                 <Form.Group as={Row} controlId='deckName'>
                     <Form.Label column sm='3'>
@@ -392,21 +393,18 @@ function InnerDeckEditor({ onDeckSave }) {
                     <Col sm='4'>
                         <Typeahead options={lookupCards} onChange={addCardChange} labelKey={'name'} />
                     </Col>
-                    <Form.Label column sm='2'>
+                    <Form.Label column sm='1'>
                         Count
                     </Form.Label>
                     <Col sm='2'>
                         <Form.Control as='input' onChange={onNumberToAddChange} value={numberToAdd.toString()} />
                     </Col>
-                </Form.Group>
-                <Row>
-                    <Col sm='3'></Col>
-                    <Col>
+                    <Col sm='2'>
                         <button className='btn btn-primary def' onClick={onAddCard}>
                             Add
                         </button>
                     </Col>
-                </Row>
+                </Form.Group>
                 <TextArea label='Cards' rows='10' value={cardList} onChange={onCardListChange} />
                 <h4>Enter dice quantities into the box below, one per line e.g. 3 Charm</h4>
                 <TextArea label='Dice' rows='4' value={diceList} onChange={onDiceListChange} />
