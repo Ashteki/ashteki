@@ -170,12 +170,22 @@ function InnerDeckEditor({ onDeckSave }) {
         dispatch(actions.updateDeck(newDeck));
     }
 
-    function getCard(cardName) {
-        return getAllCards().find((card) => card.name.toLowerCase() === cardName.toLowerCase());
+    function getCard(searchText) {
+        const matches = getAllCards().filter((card) =>
+            card.name.toLowerCase().includes(searchText.toLowerCase())
+        );
+
+        if (matches.length === 1) {
+            return matches[0];
+        }
+        return null;
     }
 
-    function getAllCards() {
-        return _.toArray(cards).filter((card) => card.deckType !== 'chimera');
+    function getAllCards(includeConjurations = false) {
+        return _.toArray(cards).filter(
+            (card) =>
+                card.deckType !== 'chimera' && (includeConjurations || card.type !== 'conjuration')
+        );
     }
 
     function onDiceListChange(event) {
@@ -397,7 +407,7 @@ function InnerDeckEditor({ onDeckSave }) {
                         </button>
                     </Col>
                 </Row>
-                <TextArea label='Cards' rows='4' value={cardList} onChange={onCardListChange} />
+                <TextArea label='Cards' rows='10' value={cardList} onChange={onCardListChange} />
                 <h4>Enter dice quantities into the box below, one per line e.g. 3 Charm</h4>
                 <TextArea label='Dice' rows='4' value={diceList} onChange={onDiceListChange} />
                 <TextArea label='Notes' rows='4' value={deck.notes} onChange={(e) => onChange('notes', e)} />
