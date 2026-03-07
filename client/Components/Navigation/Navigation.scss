@@ -23,3 +23,9 @@
 .patreon-link {
     color: #CCC;
 }
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+
+    background-color: $primary;
+}
