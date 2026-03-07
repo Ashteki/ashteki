@@ -87,7 +87,11 @@ const DeckSummary = ({ deck, editMode }) => {
                         <CardListImg deckCards={deck.conjurations} />
                     </>
                 ) : (
-                    <CardListText deckCards={combinedCards} highlight={magicHover} onFFClick={onFFClick} />
+                    <CardListText
+                        deckCards={combinedCards}
+                        highlight={magicHover}
+                        onFFClick={onFFClick}
+                    />
                 )}
             </div>
             <div className='deck-card-group deck-notes'>{deck.notes}</div>
