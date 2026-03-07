@@ -6,7 +6,7 @@ import { faHeart as faRegHeart } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
 import { resyncDeck, setFavourite } from '../../redux/actions';
 import Zoomable from './Zoomable';
-import { ButtonGroup, Dropdown } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { ashesDbShareUrl, ashesLiveShareUrl } from '../../util';
 import { toastr } from 'react-redux-toastr';
 
