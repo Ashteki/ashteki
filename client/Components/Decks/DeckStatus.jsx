@@ -53,7 +53,7 @@ const DeckStatus = ({ status, gameFormat }) => {
 
     return (
         <OverlayTrigger trigger='click' placement='auto' overlay={popover}>
-            <button className={className}>{statusName}</button>
+            <div className={className}>{statusName}</div>
         </OverlayTrigger>
     );
 };
