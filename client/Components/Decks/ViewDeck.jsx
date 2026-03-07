@@ -83,6 +83,7 @@ const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
                 <DeckHeader
                     deck={deck}
                     showCopy={!editMode && !allowEdit}
+                    onEdit={handleEditClick}
                     onCopy={handleDuplicateClick}
                 />
                 {!editMode && allowEdit && (
