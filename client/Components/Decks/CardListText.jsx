@@ -29,7 +29,11 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
             }
         });
 
-        for (let key in groupedCards) {
+        const keys = ['Ready Spell', 'Ally', 'Alteration Spell', 'Action Spell', 'Reaction Spell', 'Conjuration']
+        for (let key of keys) {
+            if (!groupedCards[key] || groupedCards[key].length < 1) {
+                continue;
+            }
             let cardList = groupedCards[key].sort((a, b) => a.id > b.id ? 1 : -1);
 
             let cards = [];

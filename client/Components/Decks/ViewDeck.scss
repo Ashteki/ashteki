@@ -1,5 +1,5 @@
 .fave-icon {
-    margin-right: 8px;
+    margin-right: 4px;
     color: white;
 }
 
@@ -28,6 +28,17 @@
         position: absolute;
         right: 10px;
         bottom: 5px;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+    }
+
+    .deck-edit-dd {
+        display: inline-block;
+    }
+
+    .deck-status {
+        height: 35px;
     }
 }
 
