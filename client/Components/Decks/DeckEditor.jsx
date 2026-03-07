@@ -172,6 +172,14 @@ function InnerDeckEditor({ onDeckSave }) {
     }
 
     function getCard(searchText) {
+        const exactMatch = getAllCards().find((card) =>
+            card.name.toLowerCase() === searchText.toLowerCase()
+        );
+
+        if (exactMatch) {
+            return exactMatch;
+        }
+
         const matches = getAllCards().filter((card) =>
             card.name.toLowerCase().includes(searchText.toLowerCase())
         );

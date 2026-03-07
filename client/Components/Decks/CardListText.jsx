@@ -50,15 +50,19 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                         title='This card is in your first five'
                         onClick={() => onFFClick(card.id)}
                     />
+                } else {
+                    ffIcon = <span className='card-ff'></span>
                 }
                 const linkClasses = classNames('card-link', {
                     unique: card.phoenixborn,
-                    highlight: usesHighlightMagic(card)
+                    highlight: usesHighlightMagic(card),
+                    ff: card.ff
                 });
                 const countClass = card.count > 3 && !card.card?.type.includes('Conjur') ? 'invalidCount' : '';
 
                 cards.push(
-                    <div key={'text-' + card.card.id}>
+                    <div className='card-list-text' key={'text-' + card.card.id}>
+                        {ffIcon}
                         <span className={countClass}>{card.count + 'x '}</span>
                         <span
                             className={linkClasses}
@@ -79,7 +83,6 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                         </span>
                         &nbsp;
                         {chainedIcon}
-                        {ffIcon}
                     </div>
                 );
                 count += parseInt(card.count);
