@@ -37,7 +37,7 @@ const DeckList = ({ decks, onDeckSelected, showWinRate }) => {
                     'selected-deck': isSelected
                 });
                 return (
-                    <div key={d} className={cardClasses}>
+                    <div key={d.id} className={cardClasses}>
                         <div
                             className='decklist-accordion-header card-header'
                             onClick={(event) => doClick(event, d)}

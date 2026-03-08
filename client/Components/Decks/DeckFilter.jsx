@@ -65,9 +65,9 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons })
                             <Link className='btn btn-primary def' href='/decks/import'>
                                 <span className='phg-basic-magic'></span> Import
                             </Link>
-                            <Link className='btn btn-secondary def' href='/decks/add'>
+                            <a className='btn btn-secondary def' href='/decks/add'>
                                 <FontAwesomeIcon icon={faPlus} /> New
-                            </Link>
+                            </a>
                         </Form.Group>
                     )}
                 </Row>
