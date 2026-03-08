@@ -15,7 +15,7 @@ import debounce from 'lodash.debounce';
 import './Decks.scss';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 
-const DecksComponent = ({ onDeckSelected }) => {
+const DecksComponent = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const apiState = useSelector((state) => {
@@ -88,7 +88,6 @@ const DecksComponent = ({ onDeckSelected }) => {
         standaloneDecks,
         adventuringPartyDecks,
         firstAdventureDecks,
-        chimeraDecks,
         pveDecks,
         dualDuelDecks,
         oneCollectionDecks,
@@ -98,7 +97,6 @@ const DecksComponent = ({ onDeckSelected }) => {
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
-        chimeraDecks: state.cards.chimeraDecks?.filter((d) => showRestricted || !d.restricted),
         pveDecks: state.cards.pveDecks,
         dualDuelDecks: state.cards.dualDuelDecks,
         oneCollectionDecks: state.cards.oneCollectionDecks,
@@ -193,8 +191,7 @@ const DecksComponent = ({ onDeckSelected }) => {
                     </TabPanel>
                     <TabPanel>
                         <Row>
-                            <Col>
-                            </Col>
+                            <Col></Col>
                         </Row>
                         <Row>
 
