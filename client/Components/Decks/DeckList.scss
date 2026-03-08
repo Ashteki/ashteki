@@ -81,7 +81,7 @@
         }
 
         .decklist-title {
-            font-size: 15px;
+            font-size: 16px;
             border: none;
             background-color: unset;
             color: white;
@@ -92,11 +92,11 @@
     .card {
         box-shadow: unset !important;
 
-        .win-rate {
-            width: 50px;
-            margin-left: auto;
-            text-align: center;
-        }
+        // .win-rate {
+        //     width: 50px;
+        //     margin-left: auto;
+        //     text-align: center;
+        // }
     }
 
 }
@@ -147,12 +147,9 @@
     min-width: 260px;
 }
 
-.decklist-title {
-    font-size: 15px;
-}
-
 .win-rate {
     font-size: 15px;
+    color: #aaa;
 }
 
 .deck-header {

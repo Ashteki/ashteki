@@ -90,8 +90,8 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
                         <FontAwesomeIcon icon={faImage} title='Show menu' />
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div className='total-box'>Total: {cardCount}</div>
                 <div className='deck-header-buttons'>
+                    <div className='total-box'>{cardCount}</div>
                     {deck && <DeckStatus status={deck.status} />}
                     {deck && (
                         <Dropdown title='edit' className='deck-edit-dd'>
