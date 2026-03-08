@@ -61,15 +61,13 @@ const DeckList = ({ decks, onDeckSelected, showWinRate }) => {
                                             &nbsp;Premium
                                         </div>
                                     )}
+                                    {showWinRate && (
+                                        <div className='win-rate'>
+                                            Win rate: {d.winRate}%&nbsp;(of {d.played})
+                                        </div>
+                                    )}
                                 </div>
                             </div>
-                            {showWinRate && (
-                                <div className='win-rate'>
-                                    <span>{d.winRate}%</span>
-                                    <br />
-                                    (of {d.played})
-                                </div>
-                            )}
                         </div>
                     </div>
                 );

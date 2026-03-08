@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink, faStarOfLife } from '@fortawesome/free-solid-svg-icons';
+import { faHand, faLink, faStarOfLife } from '@fortawesome/free-solid-svg-icons';
 import CardImage from '../GameBoard/CardImage';
 import classNames from 'classnames';
 
@@ -50,7 +50,7 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                 if (card.ff) {
                     ffIcon = <FontAwesomeIcon
                         className='card-ff'
-                        icon={faStarOfLife}
+                        icon={faHand}
                         title='This card is in your first five'
                         onClick={() => onFFClick(card.id)}
                     />
