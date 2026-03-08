@@ -1,28 +1,56 @@
 import React, { useState } from 'react';
-import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import { Col, Dropdown, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import './DeckSummary.scss';
 import CardListText from './CardListText';
 import CardListImg from './CardListImg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faList } from '@fortawesome/free-solid-svg-icons';
-import DeckDice from './DeckDice';
+import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
-const DeckSummary = ({ deck, editMode }) => {
+// import DeckDice from './DeckDice';
+
+import DeckStatus from './DeckStatus';
+import { ashesDbShareUrl, ashesLiveShareUrl } from '../../util';
+import { useDispatch } from 'react-redux';
+import { resyncDeck } from '../../redux/actions';
+import { toastr } from 'react-redux-toastr';
+
+const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magicHover }) => {
+    const dispatch = useDispatch();
 
     const [radioValue, setRadioValue] = useState(false);
-    const [magicHover, setMagicHover] = useState('');
 
     if (!deck) return null;
 
-    const onDieClick = (die) => {
-        if (editMode) {
-            alert(die.magic);
+    const handleEditClick = () => {
+        if (onEdit) {
+            onEdit();
         }
     };
+    const handleCopyClick = () => {
+        if (onCopy) {
+            onCopy();
+        }
+    };
+    const handleDeleteClick = () => {
+        if (onDelete) {
+            onDelete();
+        }
+    };
+    const handleUpdateClick = () => {
+        dispatch(resyncDeck(deck));
+    };
 
-    const onDieHover = (die) => {
-        // highlight cards with dice type
-        setMagicHover(die.magic);
+    const ashesLiveLink =
+        (deck?.ashesDb ? ashesDbShareUrl : ashesLiveShareUrl) + deck?.ashesLiveUuid;
+    const siteName = deck?.ashesDb ? 'ashesdb' : 'ashes.live';
+
+    const writeLinkToClipboard = (event) => {
+        event.preventDefault();
+        navigator.clipboard
+            .writeText(ashesLiveLink)
+            .then(() => toastr.success('Copied url to clipboard'))
+            .catch((err) => toastr.error(`Could not copy deck url: ${err}`));
     };
 
     const onFFClick = (cardId) => {
@@ -39,22 +67,13 @@ const DeckSummary = ({ deck, editMode }) => {
     const cardCount = deck.cards.reduce((agg, val) => agg += val.count, 0);
     return (
         <Col className='deck-summary'>
-            <DeckDice
-                size='large'
-                deck={deck}
-                slotCount={10}
-                onDieClick={onDieClick}
-                onDieHover={onDieHover}
-            />
             <div className='deck-cards-header'>
                 <ToggleButtonGroup name="radio" value={radioValue}>
                     <ToggleButton
                         key={'rad-0'}
                         id={`radio-0`}
                         type="radio"
-                        // variant={idx % 2 ? 'outline-success' : 'outline-danger'}
                         value={false}
-                        // checked={radioValue === false}
                         onChange={(e) => setRadioValue(false)}
                         className='mini'
                     >
@@ -64,9 +83,7 @@ const DeckSummary = ({ deck, editMode }) => {
                         key={'rad-1'}
                         id={`radio-1`}
                         type="radio"
-                        // variant={'outline'}
                         value={true}
-                        // checked={radioValue}
                         onChange={(e) => setRadioValue(true)}
                         className='mini'
                     >
@@ -74,6 +91,64 @@ const DeckSummary = ({ deck, editMode }) => {
                     </ToggleButton>
                 </ToggleButtonGroup>
                 <div className='total-box'>Total: {cardCount}</div>
+                <div className='deck-header-buttons'>
+                    {deck && <DeckStatus status={deck.status} />}
+                    {deck && (
+                        <Dropdown title='edit' className='deck-edit-dd'>
+                            <Dropdown.Toggle
+                                variant='primary'
+                                className='def deck-edit-btn'
+                                id='dropdown-basic'
+                            >
+                                <FontAwesomeIcon icon={faPen} />&nbsp;
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href='#' onClick={handleEditClick}>
+                                    <FontAwesomeIcon icon={faPen} /> Edit
+                                </Dropdown.Item>
+                                <Dropdown.Item href='#' onClick={handleCopyClick}>
+                                    <FontAwesomeIcon icon={faCopy} /> Copy
+                                </Dropdown.Item>
+                                <Dropdown.Item href='#' onClick={handleDeleteClick}>
+                                    <FontAwesomeIcon icon={faTrashCan} /> Delete
+                                </Dropdown.Item>
+
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    )}
+                    {!editMode && allowEdit && (
+                        <div className='deck-buttons text-center'>
+                            {deck.ashesLiveUuid && (
+                                <Dropdown
+                                    variant='warning'
+                                    className='ashes-live def'
+                                    title={siteName}
+                                >
+                                    <Dropdown.Toggle
+                                        split
+                                        variant='warning'
+                                        className='def'
+                                        id='dropdown-basic'
+                                    >
+                                        <span className='phg-basic-magic'></span>&nbsp;
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href='#' onClick={handleUpdateClick}>
+                                            Update
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href={ashesLiveLink}>Go to {siteName}</Dropdown.Item>
+                                        <Dropdown.Item href='#' onClick={writeLinkToClipboard}>
+                                            Copy {siteName} url
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            )}
+                        </div>
+                    )}
+                </div>
+
             </div>
             <div className='deck-cards'>
                 {radioValue ? (

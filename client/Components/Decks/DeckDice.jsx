@@ -5,6 +5,7 @@ import './DeckDice.scss';
 import classNames from 'classnames';
 
 const DeckDice = ({ deck, onDieClick, onDieHover, size }) => {
+
     const getDiceToRender = () => {
         const diceToRender = [];
         if (deck.dicepool) {
@@ -14,7 +15,6 @@ const DeckDice = ({ deck, onDieClick, onDieHover, size }) => {
                     for (let i = 0; i < diceCount.count; i++) {
                         diceToRender.push(
                             <DieIcon
-                                // key={deck._id + 'die' + i}
                                 die={{ magic: diceCount.magic, level: 'power' }}
                                 onClick={() => onDieClick && onDieClick({ magic: diceCount.magic })}
                                 onMouseOver={() => onDieHover && onDieHover({ magic: diceCount.magic })}

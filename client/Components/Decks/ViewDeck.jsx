@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DeckSummary from './DeckSummary';
-import { deleteDeck, clearApiStatus, resyncDeck, duplicateDeck } from '../../redux/actions';
+import { deleteDeck, clearApiStatus, duplicateDeck } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import ApiStatus from '../Site/ApiStatus';
 import { Decks } from '../../redux/types';
@@ -19,7 +19,11 @@ import { useNavigate } from 'react-router-dom';
 const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const [magicHover, setMagicHover] = useState('');
+    const onDieHover = (die) => {
+        // highlight cards with dice type
+        setMagicHover(die.magic);
+    };
     const handleDeleteClick = () => {
         if (confirm('Are you sure you want to delete this deck?')) {
             dispatch(deleteDeck(deck));
@@ -62,10 +66,18 @@ const ViewDeck = ({ deck, editMode, allowEdit, onDuplicate }) => {
                     onEdit={handleEditClick}
                     onCopy={handleDuplicateClick}
                     onDelete={handleDeleteClick}
+                    onDieHover={onDieHover}
                 />
 
-
-                <DeckSummary deck={deck} editMode={editMode} />
+                <DeckSummary
+                    deck={deck}
+                    magicHover={magicHover}
+                    allowEdit={allowEdit}
+                    editMode={editMode}
+                    onEdit={handleEditClick}
+                    onCopy={handleDuplicateClick}
+                    onDelete={handleDeleteClick}
+                />
             </div>
         </>
     );

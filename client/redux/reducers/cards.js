@@ -12,7 +12,7 @@ function selectDeck(state, deck) {
 
 function processDecks(decks, state) {
     for (let deck of decks) {
-        if (!state.cards) {
+        if (!state.cards || Object.values(state.cards).length === 0) {
             deck.status = {};
 
             continue;
