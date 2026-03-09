@@ -27,7 +27,7 @@ const DeckGrid = ({ decks, onDeckSelected, showWinRate }) => {
         <div className='deck-grid'>
             {decks.map((d, index) => {
                 const idClass = d.listClass || d.phoenixborn[0].id;
-                const hasChained = d.cards.some((c) => c.card.isChained);
+                // const hasChained = d.cards.some((c) => c.card.isChained);
                 const icon = null;
                 // hasChained ? (
                 //     <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
