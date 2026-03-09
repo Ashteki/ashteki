@@ -62,6 +62,11 @@
             "alt": "https://cdn.ashteki.com/ashes/alts/jessa-na-ni-dark.jpg"
         },
         {
+            "name": "Leo Promo",
+            "stub": "leo-sunshadow",
+            "alt": "https://cdn.ashteki.com/ashes/alts/leo-promo.jpg"
+        },
+        {
             "name": "Maeoni Big Snake",
             "stub": "maeoni-viper",
             "alt": "alt/maeoni-viper"
@@ -163,6 +168,11 @@
             "name": "Fire Archer - Odette style",
             "stub": "fire-archer",
             "alt": "alt/fire-archer"
+        },
+        {
+            "name": "Fire Archer - Pink arrow",
+            "stub": "fire-archer",
+            "alt": "https://cdn.ashteki.com/ashes/alts/fire-archer-alt-2.jpg"
         },
         {
             "name": "Frost Fang - Skull hat",
