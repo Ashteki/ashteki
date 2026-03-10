@@ -119,7 +119,10 @@ export default function (state = { decks: [], cards: {} }, action) {
                 zoomCard: undefined
             });
         case Decks.DecksReceived:
+            console.log('decks received');
             processDecks(action.response.decks, state);
+            console.log('decks processed');
+
             newState = Object.assign({}, state, {
                 singleDeck: false,
                 numDecks: action.response.numDecks,
@@ -131,7 +134,11 @@ export default function (state = { decks: [], cards: {} }, action) {
             return newState;
         case 'STANDALONE_DECKS_LOADED':
             if (action.response.decks) {
+                console.log('standalone decks received');
+
                 processDecks(action.response.decks, state);
+                console.log('standalone decks processed');
+
             }
 
             newState = Object.assign({}, state, {
@@ -141,7 +148,10 @@ export default function (state = { decks: [], cards: {} }, action) {
             return newState;
         case 'ADVENTURINGPARTY_DECKS_LOADED':
             if (action.response.decks) {
+                console.log('aparty decks received');
+
                 processDecks(action.response.decks, state);
+                console.log('aparty decks processed');
             }
 
             newState = Object.assign({}, state, {
@@ -151,7 +161,11 @@ export default function (state = { decks: [], cards: {} }, action) {
             return newState;
         case 'FIRSTADVENTURE_DECKS_LOADED':
             if (action.response.decks) {
+                console.log('firstadventure decks received');
+
                 processDecks(action.response.decks, state);
+                console.log('firstadventure decks processed');
+
             }
 
             newState = Object.assign({}, state, {
@@ -161,7 +175,11 @@ export default function (state = { decks: [], cards: {} }, action) {
             return newState;
         case 'PVE_DECKS_LOADED':
             if (action.response.decks) {
+                console.log('pve decks received');
+
                 processDecks(action.response.decks, state);
+                console.log('pve decks processed');
+
             }
 
             newState = Object.assign({}, state, {
@@ -171,7 +189,11 @@ export default function (state = { decks: [], cards: {} }, action) {
             return newState;
         case 'CHIMERA_DECKS_LOADED':
             if (action.response.decks) {
+                console.log('chimera decks received');
+
                 processDecks(action.response.decks, state);
+                console.log('chimera decks processed');
+
             }
 
             newState = Object.assign({}, state, {
@@ -181,7 +203,11 @@ export default function (state = { decks: [], cards: {} }, action) {
             return newState;
         case 'DUALDUEL_DECKS_LOADED':
             if (action.response.decks) {
+                console.log('dualduel decks received');
+
                 processDecks(action.response.decks, state);
+                console.log('dualduel decks processed');
+
             }
 
             newState = Object.assign({}, state, {
@@ -191,7 +217,11 @@ export default function (state = { decks: [], cards: {} }, action) {
             return newState;
         case 'ONECOLLECTION_DECKS_LOADED':
             if (action.response.decks) {
+                console.log('OCB decks received');
+
                 processDecks(action.response.decks, state);
+                console.log('OCB decks processed');
+
             }
 
             newState = Object.assign({}, state, {
@@ -272,6 +302,20 @@ export default function (state = { decks: [], cards: {} }, action) {
                 selectedDeck: action.deck,
                 deckSaved: false
             });
+
+            if (newState.selectedDeck) {
+                processDecks([newState.selectedDeck], state);
+            }
+
+            return newState;
+        case 'SET_CARD_FIRST_FIVE':
+            newState = Object.assign({}, state, {
+                selectedDeck: action.deck,
+                deckSaved: false
+            });
+
+            var card = newState.selectedDeck.cards.find(c => c.id === action.card.id);
+            card.ff = !card.ff;
 
             if (newState.selectedDeck) {
                 processDecks([newState.selectedDeck], state);
