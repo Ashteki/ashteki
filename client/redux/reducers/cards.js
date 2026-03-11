@@ -91,16 +91,57 @@ export default function (state = { decks: [], cards: {} }, action) {
     let newState;
     switch (action.type) {
         case 'RECEIVE_CARDS':
-            var decks = state.decks;
-
             newState = Object.assign({}, state, {
                 cards: action.response.cards
             });
 
+            var decks = state.decks;
             if (decks.length > 0) {
                 processDecks(decks, newState);
-
                 newState.decks = decks;
+            }
+
+            var precons = state.standaloneDecks;
+            if (precons?.length > 0) {
+                processDecks(precons, newState);
+                newState.standaloneDecks = precons;
+            }
+
+            var adventuringPartyDecks = state.adventuringPartyDecks;
+            if (adventuringPartyDecks?.length > 0) {
+                processDecks(adventuringPartyDecks, newState);
+                newState.adventuringPartyDecks = adventuringPartyDecks;
+            }
+
+            var firstAdventureDecks = state.firstAdventureDecks;
+            if (firstAdventureDecks?.length > 0) {
+                processDecks(firstAdventureDecks, newState);
+                newState.firstAdventureDecks = firstAdventureDecks;
+            }
+            var pveDecks = state.pveDecks;
+            if (pveDecks?.length > 0) {
+                processDecks(pveDecks, newState);
+                newState.pveDecks = pveDecks;
+            }
+            var chimeraDecks = state.chimeraDecks;
+            if (chimeraDecks?.length > 0) {
+                processDecks(chimeraDecks, newState);
+                newState.chimeraDecks = chimeraDecks;
+            }
+            var dualDuelDecks = state.dualDuelDecks;
+            if (dualDuelDecks?.length > 0) {
+                processDecks(dualDuelDecks, newState);
+                newState.dualDuelDecks = dualDuelDecks;
+            }
+            var oneCollectionDecks = state.oneCollectionDecks;
+            if (oneCollectionDecks?.length > 0) {
+                processDecks(oneCollectionDecks, newState);
+                newState.oneCollectionDecks = oneCollectionDecks;
+            }
+            var ascendancyDecks = state.ascendancyDecks;
+            if (ascendancyDecks?.length > 0) {
+                processDecks(ascendancyDecks, newState);
+                newState.ascendancyDecks = ascendancyDecks;
             }
 
             return newState;
@@ -143,6 +184,27 @@ export default function (state = { decks: [], cards: {} }, action) {
 
             newState = Object.assign({}, state, {
                 standaloneDecks: action.response.decks
+            });
+
+            return newState;
+        case 'PRECON_DECKS_LOADED':
+            if (action.response.decks) {
+                console.log('precon decks received');
+
+                processDecks(action.response.decks, state);
+                console.log('precon decks processed');
+            }
+            var groupedDecks = action.response.decks.groupBy(d => d.groupName);
+
+            newState = Object.assign({}, state, {
+                standaloneDecks: groupedDecks.reborn || [],
+                adventuringPartyDecks: groupedDecks.aparty || [],
+                firstAdventureDecks: groupedDecks.firstadventure || [],
+                pveDecks: groupedDecks.pve || [],
+                chimeraDecks: groupedDecks.chimera || [],
+                dualDuelDecks: groupedDecks.dualduel || [],
+                oneCollectionDecks: groupedDecks.onecollection || [],
+                ascendancyDecks: groupedDecks.ascendancy || []
             });
 
             return newState;

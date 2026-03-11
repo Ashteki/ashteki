@@ -190,6 +190,18 @@ export function loadStandaloneDecks() {
     };
 }
 
+export function loadAllPreconsDecks() {
+    return {
+        types: ['LOAD_PRECON_DECKS', 'PRECON_DECKS_LOADED'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/precon-decks',
+            type: 'GET'
+        }
+    };
+}
+
+
 export function loadAdventuringPartyDecks() {
     return {
         types: ['LOAD_ADVENTURINGPARTY_DECKS', 'ADVENTURINGPARTY_DECKS_LOADED'],

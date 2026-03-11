@@ -22,6 +22,7 @@ class ImportPrecons {
 
             for (let deck of this.loadDecks()) {
                 deck.preconGroup = 1;
+                deck.groupName = 'reborn';
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
                     console.log('Importing', deck.name);
@@ -34,6 +35,7 @@ class ImportPrecons {
 
             for (let deck of this.loadAPDecks()) {
                 deck.preconGroup = 2;
+                deck.groupName = 'aparty';
 
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
@@ -47,6 +49,7 @@ class ImportPrecons {
 
             for (let deck of this.loadFADecks()) {
                 deck.preconGroup = 4;
+                deck.groupName = 'firstadventure';
 
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
@@ -60,6 +63,7 @@ class ImportPrecons {
 
             for (let deck of this.loadChimeraDecks()) {
                 deck.preconGroup = 5;
+                deck.groupName = 'chimera';
 
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
@@ -73,6 +77,8 @@ class ImportPrecons {
 
             for (let deck of this.loadPvEDecks()) {
                 deck.preconGroup = 6;
+                deck.groupName = 'pve';
+
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
                     console.log('Importing', deck.name);
@@ -85,6 +91,8 @@ class ImportPrecons {
 
             for (let deck of this.loadDualDuelDecks()) {
                 deck.preconGroup = 8;
+                deck.groupName = 'dualduel';
+
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
                     console.log('Importing', deck.name);
@@ -97,6 +105,8 @@ class ImportPrecons {
 
             for (let deck of this.loadOneCollectionDecks()) {
                 deck.preconGroup = 10;
+                deck.groupName = 'onecollection';
+
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
                     console.log('Importing', deck.name);
@@ -109,6 +119,8 @@ class ImportPrecons {
 
             for (let deck of this.loadAscendancyDecks()) {
                 deck.preconGroup = 11;
+                deck.groupName = 'ascendancy';
+
                 let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
                 if (!existingDeck) {
                     console.log('Importing', deck.name);

@@ -47,6 +47,9 @@ class AshesDeckService {
         return this.preconDecks.find({ 'precon_group': preconGroup }, { sort: { precon_id: 1 } });
     }
 
+    getAllPreconDecks() {
+        return this.preconDecks.find({}, { sort: { precon_id: 1 } });
+    }
     getPrecons() {
         return this.preconDecks.find({ precon_group: { $in: [1, 6] } }, { sort: { precon_id: 1 } });
     }
@@ -210,6 +213,7 @@ class AshesDeckService {
                 precon_id: deck.precon_id,
                 precon_group: deck.preconGroup,
                 precon_set: deck.precon_set,
+                groupName: deck.groupName,
                 premium: deck.premium,
                 listClass: deck.listClass,
                 restricted: deck.restricted
