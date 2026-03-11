@@ -170,6 +170,23 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/precon-decks',
+        wrapAsync(async function (req, res) {
+            let decks;
+
+            try {
+                decks = await deckService.getAllPreconDecks();
+            } catch (err) {
+                logger.error('Failed to get all precon decks', err);
+
+                throw new Error('Failed to get all precon decks');
+            }
+
+            res.send({ success: true, decks: decks });
+        })
+    );
+
+    server.get(
         '/api/decks',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {
