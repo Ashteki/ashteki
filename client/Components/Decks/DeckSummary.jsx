@@ -153,8 +153,15 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
             <div className='deck-cards'>
                 {radioValue ? (
                     <>
-                        <div className='basic-title'>First Five</div>
-                        <CardListImg deckCards={deck.cards.filter((c) => c.ff)} noIndex={true} />
+                        {deck.mode !== 'chimera' && (
+                            <>
+                                <div className='basic-title'>First Five</div>{' '}
+                                <CardListImg
+                                    deckCards={deck.cards.filter((c) => c.ff)}
+                                    noIndex={true}
+                                />
+                            </>
+                        )}
                         <div className='basic-title'>All Cards</div>
 
                         <CardListImg deckCards={deck.cards} />

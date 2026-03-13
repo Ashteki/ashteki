@@ -93,7 +93,7 @@ const DecksComponent = () => {
         oneCollectionDecks,
         ascendancyDecks
     } = useSelector((state) => ({
-        myDecks: state.cards.decks,
+        myDecks: state.cards.decks.filter((d) => d.mode !== 'chimera'),
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,

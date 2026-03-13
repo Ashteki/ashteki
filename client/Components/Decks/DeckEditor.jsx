@@ -1,232 +1,112 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import _ from 'underscore';
 import $ from 'jquery';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Col, Row } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import TextArea from '../Form/TextArea.jsx';
-import * as actions from '../../redux/actions';
+import { updateDeck } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import './DeckEditor.scss';
 
-function copyDeck(deck) {
-    if (!deck) {
+function DeckEditor({ onDeckSave, isChimera }) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const typeaheadRef = useRef(null);
+
+    const cards = useSelector((state) => state.cards.cards);
+    const deck = useSelector((state) => state.cards.selectedDeck);
+    const loading = useSelector((state) => state.api.loading);
+
+    const [cardList, setCardList] = useState('');
+    const [diceList, setDiceList] = useState('');
+    const [deckState, setDeckState] = useState(copyDeck(deck));
+    const [numberToAdd, setNumberToAdd] = useState(1);
+    const [cardToAdd, setCardToAdd] = useState(null);
+    const [pbid, setPbid] = useState('');
+
+    function copyDeck(deckToCopy) {
+        if (!deckToCopy) {
+            return {
+                name: 'New Deck',
+                phoenixborn: [],
+                cards: [],
+                conjurations: [],
+                notes: '',
+                dicepool: []
+            };
+        }
+
         return {
-            name: 'New Deck',
-            phoenixborn: []
+            _id: deckToCopy._id,
+            name: deckToCopy.name,
+            phoenixborn: deckToCopy.phoenixborn,
+            cards: deckToCopy.cards,
+            conjurations: deckToCopy.conjurations,
+            status: deckToCopy.status,
+            notes: deckToCopy.notes,
+            dicepool: deckToCopy.dicepool,
+            mode: deckToCopy.mode
         };
     }
 
-    return {
-        _id: deck._id,
-        name: deck.name,
-        phoenixborn: deck.phoenixborn || [],
-        cards: deck.cards || [],
-        conjurations: deck.conjurations || [],
-        status: deck.status,
-        notes: deck.notes,
-        dicepool: deck.dicepool || []
-    };
-}
-
-function InnerDeckEditor({ onDeckSave }) {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const cards = useSelector((state) => state.cards.cards);
-    const selectedDeck = useSelector((state) => state.cards.selectedDeck);
-    const loading = useSelector((state) => state.api.loading);
-    const [cardList, setCardList] = useState('');
-    const [diceList, setDiceList] = useState('');
-    const [deck, setDeck] = useState(copyDeck(selectedDeck));
-    const [numberToAdd, setNumberToAdd] = useState(1);
-    const [cardToAdd, setCardToAdd] = useState(null);
-    const [validation] = useState({ deckname: '', cardToAdd: '' });
-    const [pbid, setPbid] = useState('');
-
-    useEffect(() => {
-        let cardListLocal = '';
-        if (selectedDeck && (selectedDeck.cards || selectedDeck.conjurations)) {
-            setPbid(selectedDeck.phoenixborn && selectedDeck.phoenixborn.length > 0 ? selectedDeck.phoenixborn[0].id : '');
-
-            _.each(selectedDeck.cards || [], (card) => {
-                cardListLocal += getCardListEntry(card.count, card.card, card.ff);
-            });
-
-            setCardList(cardListLocal);
-        }
-
-        let diceListLocal = '';
-        if (selectedDeck && selectedDeck.dicepool) {
-            _.each(selectedDeck.dicepool, (diceCount) => {
-                diceListLocal += getDiceListEntry(diceCount);
-            });
-
-            setDiceList(diceListLocal);
-        }
-
-        setDeck(copyDeck(selectedDeck));
-    }, []);
-
-    function handleCancelClick() {
-        navigate('/decks');
-        return;
+    function getCardListEntry(count, card, ff) {
+        const fFive = ff ? ' ff' : '';
+        return count + ' ' + card.name + fFive + '\n';
     }
 
-    // copyDeck moved out as a helper below
-    function onChange(field, event) {
-        let newDeck = copyDeck(deck);
-
-        newDeck[field] = event.target.value;
-
-        setDeck(newDeck);
-        dispatch(actions.updateDeck(newDeck));
+    function getDiceListEntry(diceCount) {
+        return diceCount.count + ' ' + diceCount.magic + '\n';
     }
 
-    function onPbChange(event) {
-        let newDeck = copyDeck(deck);
-        let pb = cards[event.target.value];
-
-        if (!newDeck.phoenixborn || newDeck.phoenixborn.length === 0) {
-            newDeck.phoenixborn = [pb];
-        } else newDeck.phoenixborn[0] = pb;
-        setPbid(pb.id);
-
-        rebuildConjurations(newDeck);
-        setDeck(newDeck);
-        dispatch(actions.updateDeck(newDeck));
-    }
-
-    function onNumberToAddChange(event) {
-        setNumberToAdd(event.target.value);
-    }
-
-    function addCardChange(selectedCards) {
-        setCardToAdd(selectedCards[0]);
-    }
-
-    function onAddCard(event) {
-        event.preventDefault();
-
-        if (!cardToAdd || !cardToAdd.name || cardToAdd.type == 'Phoenixborn') {
-            return;
-        }
-
-        let newDeck = deck;
-        addCard(cardToAdd, parseInt(numberToAdd), newDeck);
-
-        let cardListLocal = cardList;
-        cardListLocal += getCardListEntry(numberToAdd, cardToAdd);
-        setCardList(cardListLocal);
-
-        newDeck = copyDeck(newDeck);
-
-        dispatch(actions.updateDeck(newDeck));
-    }
-
-    function onCardListChange(event) {
-        event.preventDefault();
-
-        let newDeck = deck;
-        let split = event.target.value.split('\n');
-
-        newDeck.cards = [];
-        newDeck.conjurations = [];
-
-        _.each(split, (line) => {
-            line = line.trim();
-
-            if (!$.isNumeric(line[0])) {
-                return;
-            }
-
-            let index = 0;
-            while (!isNaN(line[index]) || line[index] === 'x') {
-                index++;
-            }
-            let num = parseInt(line.substr(0, index));
-            let cardName = line.substr(index, line.length).trim();
-            let isFirstFive = false;
-            if (cardName.endsWith(' ff')) {
-                isFirstFive = true;
-                cardName = cardName.substr(0, cardName.length - 3);
-            }
-
-            let card = getCard(cardName);
-
-            if (card) {
-                const isConjuration = card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell';
-                if (!isConjuration) {
-                    addCard(card, num, newDeck, isFirstFive);
+    function addConjurations(card, deckToUpdate) {
+        if (card.conjurations) {
+            card.conjurations.forEach((conj) => {
+                if (!deckToUpdate.conjurations.some((c) => c.id === conj.stub)) {
+                    var c = getCard(conj.name);
+                    if (c) {
+                        addCard(c, c.copies, deckToUpdate);
+                    }
                 }
-            }
-        });
-
-        if (newDeck.phoenixborn && newDeck.phoenixborn[0]) {
-            addConjurations(newDeck.phoenixborn[0].card, newDeck);
+            });
         }
-        newDeck = copyDeck(newDeck);
-
-        setCardList(event.target.value);
-        setDeck(newDeck);
-        dispatch(actions.updateDeck(newDeck));
     }
 
-    function getCard(searchText) {
-        const exactMatch = getAllCards().find((card) =>
-            card.name.toLowerCase() === searchText.toLowerCase()
-        );
+    function rebuildConjurations(deckToUpdate) {
+        deckToUpdate.conjurations = [];
 
-        if (exactMatch) {
-            return exactMatch;
-        }
-
-        const matches = getAllCards().filter((card) =>
-            card.name.toLowerCase().includes(searchText.toLowerCase())
-        );
-
-        if (matches.length === 1) {
-            return matches[0];
-        }
-        return null;
+        addConjurations(deckToUpdate.phoenixborn[0], deckToUpdate);
+        deckToUpdate.cards.forEach((c) => addConjurations(c, deckToUpdate));
     }
 
-    function getAllCards(includeConjurations = false) {
-        return _.toArray(cards).filter(
-            (card) =>
-                card.deckType !== 'chimera' && (includeConjurations || card.type !== 'conjuration')
-        );
-    }
+    function addCard(card, number, deckToUpdate, isFirstFive) {
+        let phoenixborn = deckToUpdate.phoenixborn;
+        let conjurations = deckToUpdate.conjurations;
+        let cardsList = deckToUpdate.cards;
 
-    function onDiceListChange(event) {
-        event.preventDefault();
+        let list;
 
-        let newDeck = deck;
-        let split = event.target.value.split('\n');
+        if (card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell') {
+            list = conjurations;
+        } else if (card.type === 'Phoenixborn') {
+            list = phoenixborn;
+        } else {
+            list = cardsList;
+        }
 
-        newDeck.dicepool = [];
-
-        _.each(split, (line) => {
-            line = line.trim();
-
-            if (!$.isNumeric(line[0])) {
-                return;
-            }
-
-            let index = 0;
-            while (!isNaN(line[index]) || line[index] === 'x') {
-                index++;
-            }
-            let num = parseInt(line.substr(0, index));
-            let magic = parseMagic(line.substr(index, line.length).toLowerCase());
-            if (magic == '') return;
-            newDeck.dicepool.push({ magic: magic.toLowerCase(), count: num });
-        });
-
-        newDeck = copyDeck(newDeck);
-
-        setDiceList(event.target.value);
-        setDeck(newDeck);
-        dispatch(actions.updateDeck(newDeck));
+        const entry = list.find((c) => c.id === card.stub);
+        if (entry) {
+            entry.count += number;
+        } else {
+            list.push({
+                count: number,
+                card: card,
+                id: card.stub,
+                conjurations: card.conjurations,
+                ff: isFirstFive
+            });
+        }
+        addConjurations(card, deckToUpdate);
     }
 
     function parseMagic(input) {
@@ -261,13 +141,9 @@ function InnerDeckEditor({ onDeckSave }) {
             case 'time':
                 mgc = 'time';
                 break;
-            case 'art':
-            case 'artifice':
-                mgc = 'artifice';
+            case 'rage':
+                mgc = 'rage';
                 break;
-            case 'ast':
-            case 'astral':
-                mgc = 'astral';
         }
         let validMagics = [
             'charm',
@@ -276,91 +152,231 @@ function InnerDeckEditor({ onDeckSave }) {
             'natural',
             'divine',
             'sympathy',
-            'time',
-            'artifice',
-            'astral'
+            'time'
         ];
+        if (isChimera) {
+            validMagics.push('rage');
+        }
         let isValid = validMagics.includes(mgc);
         return isValid ? mgc : '';
     }
 
-    function addCard(card, number, newDeck, isFirstFive) {
-        let phoenixborn = newDeck.phoenixborn || [];
-        let conjurations = newDeck.conjurations || [];
-        let cards = newDeck.cards || [];
+    useEffect(() => {
+        let newCardList = '';
+        if (deck && (deck.cards || deck.conjurations)) {
+            const newPbid = deck.phoenixborn.length > 0 ? deck.phoenixborn[0].id : '';
+            setPbid(newPbid);
 
-        let list;
+            _.each(deck.cards, (card) => {
+                newCardList += getCardListEntry(card.count, card.card, card.ff);
+            });
 
-        if (card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell') {
-            list = conjurations;
-        } else if (card.type === 'Phoenixborn') {
-            list = phoenixborn;
-        } else {
-            list = cards;
+            setCardList(newCardList);
         }
 
-        const entry = list.find((c) => c.id === card.stub);
-        if (entry) {
-            entry.count += number;
-        } else {
-            list.push({
-                count: number,
-                card: card,
-                id: card.stub,
-                conjurations: card.conjurations,
-                ff: isFirstFive
+        let newDiceList = '';
+        if (deck && deck.dicepool) {
+            _.each(deck.dicepool, (diceCount) => {
+                newDiceList += getDiceListEntry(diceCount);
             });
-        }
-        addConjurations(card, newDeck);
-    }
 
-    function addConjurations(card, newDeck) {
-        if (card && card.conjurations) {
-            card.conjurations.forEach((conj) => {
-                if (!newDeck.conjurations.some((c) => c.id === conj.stub)) {
-                    var c = getCard(conj.name);
-                    if (c) {
-                        addCard(c, c.copies, newDeck);
-                    }
-                }
-            });
+            setDiceList(newDiceList);
+        }
+
+        setDeckState(copyDeck(deck));
+    }, [deck]);
+
+    function handleCancelClick() {
+        if (isChimera) {
+            navigate('/decks/chimera');
+        } else {
+            navigate('/decks');
         }
     }
 
-    function rebuildConjurations(newDeck) {
+    function onChange(field, event) {
+        let newDeck = copyDeck(deckState);
+        newDeck[field] = event.target.value;
+        setDeckState(newDeck);
+        dispatch(updateDeck(newDeck));
+    }
+
+    function onPbChange(event) {
+        let newDeck = copyDeck(deckState);
+        let pb = cards[event.target.value];
+
+        if (newDeck.phoenixborn.length == 0) {
+            newDeck.phoenixborn.push(pb);
+        } else newDeck.phoenixborn[0] = pb;
+        setPbid(pb.id);
+
+        rebuildConjurations(newDeck);
+        setDeckState(newDeck);
+        dispatch(updateDeck(newDeck));
+    }
+
+    function onNumberToAddChange(event) {
+        setNumberToAdd(event.target.value);
+    }
+
+    function addCardChange(selectedCards) {
+        setCardToAdd(selectedCards[0]);
+    }
+
+    function onAddCard(event) {
+        event.preventDefault();
+
+        if (!cardToAdd || !cardToAdd.name || cardToAdd.type == 'Phoenixborn') {
+            return;
+        }
+
+        let newDeck = deckState;
+        addCard(cardToAdd, parseInt(numberToAdd), newDeck);
+
+        let newCardList = cardList;
+        newCardList += getCardListEntry(numberToAdd, cardToAdd);
+        setCardList(newCardList);
+
+        typeaheadRef.current.clear();
+
+        newDeck = copyDeck(newDeck);
+        setDeckState(newDeck);
+        dispatch(updateDeck(newDeck));
+    }
+
+    function onCardListChange(event) {
+        event.preventDefault();
+
+        let newDeck = deckState;
+        let split = event.target.value.split('\n');
+
+        newDeck.cards = [];
         newDeck.conjurations = [];
 
-        if (newDeck.phoenixborn && newDeck.phoenixborn[0]) {
-            addConjurations(newDeck.phoenixborn[0], newDeck);
+        _.each(split, (line) => {
+            line = line.trim();
+
+            if (!$.isNumeric(line[0])) {
+                return;
+            }
+
+            let index = 0;
+            while (!isNaN(line[index]) || line[index] === 'x') {
+                index++;
+            }
+            let num = parseInt(line.substr(0, index));
+            let cardName = line.substr(index, line.length).trim();
+            let isFirstFive = false;
+            if (cardName.endsWith(' ff')) {
+                isFirstFive = true;
+                cardName = cardName.substr(0, cardName.length - 3);
+            }
+
+            let cardToAddFromList = getCard(cardName);
+
+            if (cardToAddFromList) {
+                const isConjuration =
+                    cardToAddFromList.type === 'Conjuration' ||
+                    cardToAddFromList.type === 'Conjured Alteration Spell';
+                if (!isConjuration) {
+                    addCard(cardToAddFromList, num, newDeck, isFirstFive);
+                }
+            }
+        });
+
+        addConjurations(newDeck.phoenixborn[0].card, newDeck);
+        newDeck = copyDeck(newDeck);
+
+        setCardList(event.target.value);
+        setDeckState(newDeck);
+        dispatch(updateDeck(newDeck));
+    }
+
+    function getCard(searchText) {
+        const exactMatch = getAllCards().find((card) =>
+            card.name.toLowerCase() === searchText.toLowerCase()
+        );
+
+        if (exactMatch) {
+            return exactMatch;
         }
-        (newDeck.cards || []).forEach((c) => addConjurations(c, newDeck));
+        const matches = getAllCards().filter((card) =>
+            card.name.toLowerCase().includes(searchText.toLowerCase())
+        );
+
+        if (matches.length === 1) {
+            return matches[0];
+        }
+        return null;
+    }
+
+    function getAllCards(includeConjurations = false) {
+        return _.toArray(cards).filter(
+            (card) =>
+                card.deckType !== 'chimera' && (includeConjurations || card.type !== 'conjuration')
+        );
+    }
+
+    function onDiceListChange(event) {
+        event.preventDefault();
+        if (isChimera) {
+            return;
+        }
+        let newDeck = deckState;
+        let split = event.target.value.split('\n');
+
+        newDeck.dicepool = [];
+
+        _.each(split, (line) => {
+            line = line.trim();
+
+            if (!$.isNumeric(line[0])) {
+                return;
+            }
+
+            let index = 0;
+            while (!isNaN(line[index]) || line[index] === 'x') {
+                index++;
+            }
+            let num = parseInt(line.substr(0, index));
+            let magic = parseMagic(line.substr(index, line.length).toLowerCase());
+            if (magic == '') return;
+            newDeck.dicepool.push({ magic: magic.toLowerCase(), count: num });
+        });
+
+        newDeck = copyDeck(newDeck);
+
+        setDiceList(event.target.value);
+        setDeckState(newDeck);
+        dispatch(updateDeck(newDeck));
     }
 
     function onSaveClick(event) {
         event.preventDefault();
 
         if (onDeckSave) {
-            onDeckSave(selectedDeck);
+            onDeckSave(deck);
         }
     }
 
-    function getCardListEntry(count, card, ff) {
-        const fFive = ff ? ' ff' : '';
-        return count + ' ' + card.name + fFive + '\n';
-    }
-
-    function getDiceListEntry(diceCount) {
-        return diceCount.count + ' ' + diceCount.magic + '\n';
-    }
-
-    if (!selectedDeck || loading) {
+    if (!deck || loading) {
         return <div>Waiting for deck...</div>;
     }
 
-    let phoenixbornCards = getAllCards().filter((c) => c.type == 'Phoenixborn');
+    let phoenixbornCards = getAllCards().filter(
+        (c) => (isChimera && c.type === 'Chimera') || (!isChimera && c.type == 'Phoenixborn')
+    );
     phoenixbornCards.sort((a, b) => (a.name < b.name ? -1 : 1));
 
-    const lookupCards = getAllCards().filter((c) => c.deckType !== 'chimera');
+    const lookupCards = getAllCards().filter(
+        (c) =>
+            (isChimera &&
+                c.deckType === 'chimera' &&
+                !c.name.includes('Ultimate') &&
+                !c.name.includes('Behaviour') &&
+                c.type !== 'Chimera') ||
+            (!isChimera && c.deckType !== 'chimera')
+    );
 
     return (
         <div className='deck-editor'>
@@ -370,7 +386,11 @@ function InnerDeckEditor({ onDeckSave }) {
                         Deck Name
                     </Form.Label>
                     <Col>
-                        <Form.Control as='input' value={deck.name} onChange={(e) => onChange('name', e)} />
+                        <Form.Control
+                            as='input'
+                            defaultValue={deckState.name}
+                            onChange={(e) => onChange('name', e)}
+                        />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId='phoenixborn'>
@@ -399,13 +419,23 @@ function InnerDeckEditor({ onDeckSave }) {
                         Card
                     </Form.Label>
                     <Col sm='4'>
-                        <Typeahead options={lookupCards} onChange={addCardChange} labelKey={'name'} />
+                        <Typeahead
+                            options={lookupCards}
+                            onChange={addCardChange}
+                            labelKey={'name'}
+                            ref={typeaheadRef}
+                            id='cardtypeahead'
+                        />
                     </Col>
                     <Form.Label column sm='1'>
                         Count
                     </Form.Label>
                     <Col sm='2'>
-                        <Form.Control as='input' onChange={onNumberToAddChange} value={numberToAdd.toString()} />
+                        <Form.Control
+                            as='input'
+                            onChange={onNumberToAddChange}
+                            defaultValue={numberToAdd.toString()}
+                        />
                     </Col>
                     <Col sm='2'>
                         <button className='btn btn-primary def' onClick={onAddCard}>
@@ -415,8 +445,19 @@ function InnerDeckEditor({ onDeckSave }) {
                 </Form.Group>
                 <TextArea label='Cards' rows='10' value={cardList} onChange={onCardListChange} />
                 <h4>Enter dice quantities into the box below, one per line e.g. 3 Charm</h4>
-                <TextArea label='Dice' rows='4' value={diceList} onChange={onDiceListChange} />
-                <TextArea label='Notes' rows='4' value={deck.notes} onChange={(e) => onChange('notes', e)} />
+                <TextArea
+                    label='Dice'
+                    rows={isChimera ? 2 : 4}
+                    value={diceList}
+                    onChange={onDiceListChange}
+                    disabled={isChimera}
+                />
+                <TextArea
+                    label='Notes'
+                    rows='4'
+                    value={deckState.notes}
+                    onChange={(e) => onChange('notes', e)}
+                />
 
                 <div className='form-group'>
                     <div className='col-sm-offset-3 col-sm-8'>
@@ -433,6 +474,6 @@ function InnerDeckEditor({ onDeckSave }) {
     );
 }
 
-InnerDeckEditor.displayName = 'DeckEditor';
+DeckEditor.displayName = 'DeckEditor';
 
-export default InnerDeckEditor;
+export default DeckEditor;

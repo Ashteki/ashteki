@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import AlertPanel from '../Components/Site/AlertPanel.jsx';
 import Panel from '../Components/Site/Panel.jsx';
 import Form from '../Components/Form/Form.jsx';
-import Link from '../Components/Navigation/Link.jsx';
 
 import * as actions from '../redux/actions';
 
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 function Register() {
     const { t } = useTranslation();
@@ -54,15 +53,6 @@ function Register() {
             {errorBar}
             {successBar}
             <Panel title={t('Register an account')}>
-                <Trans i18nKey='register.disclosure'>
-                    <p>
-                        We require information from you in order to service your access to the
-                        site. Please see the <Link href='/privacy'>privacy policy</Link> for
-                        details on why we need this information and what we do with it. Please
-                        pay particular attention to the section on avatars.
-                    </p>
-                </Trans>
-
                 <Form name='register' apiLoading={apiLoading} buttonText='Register' onSubmit={onRegister} />
             </Panel>
         </div>

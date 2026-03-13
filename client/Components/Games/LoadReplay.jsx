@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import PictureButton from '../Lobby/PictureButton';
 import { Button, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadGameReplay, loadReplays, navigate, startGameReplay } from '../../redux/actions';
+import { loadGameReplay, loadReplays, startGameReplay } from '../../redux/actions';
 import * as JSZip from 'jszip';
 import { _ } from 'core-js';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
 const LoadReplay = ({ onCancel }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const recentGames = useSelector((state) => state.games.replays);
     const [replayData, setReplayData] = useState();
 

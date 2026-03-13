@@ -26,6 +26,15 @@ export function loadDecks(options = {}) {
     };
 }
 
+export function loadMyChimeraDecks(options = {}) {
+    options.chimera = true;
+    return {
+        types: ['REQUEST_CHIMERA_DECKS', 'CHIMERA_DECKS_RECEIVED'],
+        shouldCallAPI: () => true,
+        APIParams: { url: '/api/decks', cache: false, data: options }
+    };
+}
+
 export function loadDeck(deckId) {
     return {
         types: ['REQUEST_DECK', 'RECEIVE_DECK'],
@@ -52,6 +61,12 @@ export function selectDeck(deck) {
 export function addDeck() {
     return {
         type: 'ADD_DECK'
+    };
+}
+
+export function addChimeraDeck() {
+    return {
+        type: 'ADD_CHIMERA_DECK'
     };
 }
 
@@ -113,7 +128,9 @@ function getDeckJson(deck) {
         cards: formatCards(deck.cards),
         conjurations: formatCards(deck.conjurations),
         dicepool: deck.dicepool,
-        notes: deck.notes
+        notes: deck.notes,
+        mode: deck.mode,
+        listClass: deck.listClass
     });
 }
 
