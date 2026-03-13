@@ -138,7 +138,7 @@ const PlayerPBRow = ({
 
     return (
         <div className={cn}>
-            {showDice && leftMode && renderResources(player.dice)}
+            {showDice && renderResources(player.dice)}
             {renderDroppablePile('discard', discardToRender)}
             {showDeckPile && renderDroppablePile('deck', drawDeckToRender)}
             <Card
@@ -154,8 +154,6 @@ const PlayerPBRow = ({
                 source='play area'
             />
             {renderDroppablePile('spellboard', spellboard)}
-            {showDice && !leftMode && renderResources(player.dice)}
-
         </div>
     );
 };
