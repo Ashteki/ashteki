@@ -81,9 +81,9 @@ const Login = (props) => {
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Row>
-                    <Link href='/forgot'>
+                    <a href='/forgot'>
                         <Trans>Forgotten your password?</Trans>
-                    </Link>
+                    </a>
 
                     <div className='text-center'>
                         <Button variant='primary' type='submit'>

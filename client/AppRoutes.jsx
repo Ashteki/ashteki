@@ -28,6 +28,7 @@ import CardsPage from './pages/CardsPage';
 import Results from './pages/Results';
 import TaggedGames from './pages/admin/TaggedGames';
 import UserAltAdmin from './pages/UserAltAdmin';
+import ChimeraPage from './pages/ChimeraPage';
 
 const AppRoutes = ({ currentGame, user }) => {
     const [searchParams] = useSearchParams();
@@ -76,6 +77,8 @@ const AppRoutes = ({ currentGame, user }) => {
             <Route path='/decks/add' element={<AddDeck />} />
             <Route path='/decks/edit' element={<EditDeck deckId={getParam('deckId')} />} />
             <Route path='/decks/import' element={<ImportDeck />} />
+            <Route path='/decks/chimera' element={<ChimeraPage />} />
+
             <Route path='/faq' element={<FAQ />} />
             <Route path='/forgot' element={<ForgotPassword />} />
             <Route path='/login' element={<Login />} />

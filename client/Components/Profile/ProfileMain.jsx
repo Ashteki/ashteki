@@ -8,9 +8,9 @@ import Panel from '../Site/Panel';
 import Avatar from '../Site/Avatar';
 import { unlinkPatreon } from '../../redux/actions';
 import PatreonImage from '../../assets/img/Patreon_Mark_Coral.jpg';
-
+import { Link } from 'react-router-dom';
 import './ProfileMain.scss';
-import Link from '../Navigation/Link';
+
 import { patreonUrl } from '../../constants';
 export const EloContext = createContext(false);
 
@@ -152,7 +152,8 @@ const ProfileMain = ({ user, formProps, handleEloChange }) => {
                 </Form.Group>
                 <Form.Group as={Col} md='4'>
                     <Form.Label>{t('Elo Rating')}</Form.Label>
-                    <div>{eloRating}&nbsp; {!optOut && <Link href='/results'>View Elo Leaderboard</Link>}                    </div>
+                    <div>{eloRating}&nbsp; {!optOut && <Link to='/results'>View Elo Leaderboard</Link>}
+                    </div>
                 </Form.Group>
                 <Form.Group as={Col} md='2'>
                     <div>

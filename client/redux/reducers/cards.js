@@ -1,11 +1,11 @@
 import { Decks } from '../types';
 
 function selectDeck(state, deck) {
-    if (state.decks && state.decks.length !== 0) {
-        state.selectedDeck = deck;
-    } else {
-        delete state.selectedDeck;
-    }
+    // if (state.decks && state.decks.length !== 0) {
+    state.selectedDeck = deck;
+    // } else {
+    //     delete state.selectedDeck;
+    // }
 
     return state;
 }
@@ -87,7 +87,7 @@ function checkConjurations(deck) {
     return result;
 }
 
-export default function (state = { decks: [], cards: {} }, action) {
+export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, action) {
     let newState;
     switch (action.type) {
         case 'RECEIVE_CARDS':
@@ -171,6 +171,18 @@ export default function (state = { decks: [], cards: {} }, action) {
             });
 
             newState = selectDeck(newState, newState.decks[0]);
+
+            return newState;
+
+        case 'CHIMERA_DECKS_RECEIVED':
+            processDecks(action.response.decks, state);
+            newState = Object.assign({}, state, {
+                singleDeck: false,
+                numDecks: action.response.numDecks,
+                myChimeraDecks: action.response.decks
+            });
+
+            newState = selectDeck(newState, newState.myChimeraDecks[0]);
 
             return newState;
         case 'STANDALONE_DECKS_LOADED':
@@ -313,6 +325,13 @@ export default function (state = { decks: [], cards: {} }, action) {
             });
 
             return newState;
+        case 'REQUEST_CHIMERA_DECKS':
+            newState = Object.assign({}, state, {
+                deckSaved: false,
+                deckDeleted: false
+            });
+
+            return newState;
         case 'RECEIVE_DECK':
             newState = Object.assign({}, state, {
                 singleDeck: true,
@@ -358,6 +377,24 @@ export default function (state = { decks: [], cards: {} }, action) {
 
             processDecks([newState.selectedDeck], state);
 
+            return newState;
+        case 'ADD_CHIMERA_DECK':
+            var corpse = state.cards['corpse-of-viros'];
+            var newChimeraDeck = {
+                name: 'New Deck',
+                cards: [],
+                conjurations: [],
+                phoenixborn: [corpse],
+                dicepool: [{ magic: 'rage', count: 5 }],
+                mode: 'chimera'
+            };
+
+            newState = Object.assign({}, state, {
+                selectedDeck: newChimeraDeck,
+                deckSaved: false
+            });
+
+            processDecks([newState.selectedDeck], state);
             return newState;
         case 'UPDATE_DECK':
             newState = Object.assign({}, state, {

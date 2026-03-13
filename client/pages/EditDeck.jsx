@@ -6,24 +6,23 @@ import { Col, Row } from 'react-bootstrap';
 import ViewDeck from '../Components/Decks/ViewDeck.jsx';
 import DeckEditor from '../Components/Decks/DeckEditor.jsx';
 import AlertPanel from '../Components/Site/AlertPanel.jsx';
+import { loadDeck, saveDeck, } from '../redux/actions';
 
-import * as actions from '../redux/actions';
-
-function InnerEditDeck({ deckId }) {
+function EditDeck({ deckId }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const apiError = useSelector((s) => s.api.message);
-    const deck = useSelector((s) => s.cards.selectedDeck);
-    const deckSaved = useSelector((s) => s.cards.deckSaved);
-    const loading = useSelector((s) => s.api.loading);
+    const apiError = useSelector(state => state.api.message);
+    const deck = useSelector(state => state.cards.selectedDeck);
+    const isChimera = deck.mode === 'chimera';
+    const deckSaved = useSelector(state => state.cards.deckSaved);
+    const loading = useSelector(state => state.api.loading);
 
     useEffect(() => {
         if (deckId) {
-            dispatch(actions.loadDeck(deckId));
+            dispatch(loadDeck(deckId));
         } else if (deck) {
-            dispatch(actions.setUrl('/decks/edit/' + deck._id));
-            dispatch(actions.loadDeck(deck._id));
+            navigate('/decks/edit/' + deck._id);
+            dispatch(loadDeck(deck._id));
         }
     }, [deckId, deck, dispatch]);
 
@@ -33,12 +32,9 @@ function InnerEditDeck({ deckId }) {
         }
     }, [deckSaved, navigate]);
 
-    const onSaveDeck = useCallback(
-        (d) => {
-            dispatch(actions.saveDeck(d));
-        },
-        [dispatch]
-    );
+    const onSaveDeck = (deckToSave) => {
+        dispatch(saveDeck(deckToSave));
+    };
 
     let content;
 
@@ -55,7 +51,7 @@ function InnerEditDeck({ deckId }) {
                     <Col lg={6} className='full-height'>
                         <div className='lobby-card'>
                             <div className='lobby-header'>Deck Editor</div>
-                            <DeckEditor mode='Save' onDeckSave={onSaveDeck} />
+                            <DeckEditor mode='Save' onDeckSave={onSaveDeck} isChimera={isChimera} />
                         </div>
                     </Col>
                     <Col lg={6}>{<ViewDeck deck={deck} editMode={true} />}</Col>
@@ -66,7 +62,6 @@ function InnerEditDeck({ deckId }) {
 
     return content;
 }
+EditDeck.displayName = 'EditDeck';
 
-InnerEditDeck.displayName = 'InnerEditDeck';
-
-export default InnerEditDeck;
+export default EditDeck;
