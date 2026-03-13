@@ -15,6 +15,7 @@ const PlayerPBRow = ({
     discard,
     drawDeck,
     isMe,
+    leftMode,
     manualMode,
     numDeckCards,
     onCardClick,
@@ -137,7 +138,7 @@ const PlayerPBRow = ({
 
     return (
         <div className={cn}>
-            {showDice && renderResources(player.dice)}
+            {showDice && leftMode && renderResources(player.dice)}
             {renderDroppablePile('discard', discardToRender)}
             {showDeckPile && renderDroppablePile('deck', drawDeckToRender)}
             <Card
@@ -153,6 +154,8 @@ const PlayerPBRow = ({
                 source='play area'
             />
             {renderDroppablePile('spellboard', spellboard)}
+            {showDice && !leftMode && renderResources(player.dice)}
+
         </div>
     );
 };

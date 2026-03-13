@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Trans } from 'react-i18next';
 import {
     clearZoom,
-    navigate,
+
     sendGameMessage,
     sendTypingMessage,
     zoomCard
@@ -29,6 +29,7 @@ import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
 import Sidebar from './Sidebar';
 import AlertSplash from './AlertSplash';
+import { useNavigate } from 'react-router-dom';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -54,6 +55,8 @@ const placeholderPlayer = {
 
 const GameBoard = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [showChatLog, setShowChatLog] = useState(true);
     const [showDiceHistory, setShowDiceHistory] = useState(false);
     const [showManualCommands, setShowManualCommands] = useState(false);
@@ -215,6 +218,7 @@ const GameBoard = () => {
                         discard={otherPlayer.cardPiles.discard}
                         drawDeck={otherPlayer.cardPiles.deck}
                         isMe={false}
+                        leftMode={leftMode}
                         manualMode={currentGame.manualMode}
                         numDeckCards={otherPlayer.numDeckCards}
                         onCardClick={onCardClick}
@@ -437,7 +441,7 @@ const GameBoard = () => {
 
     let manualMode = currentGame.manualMode;
     const compactLayout = optionSettings?.compactLayout;
-    const leftMode = optionSettings?.leftMode || currentGame.solo || compactLayout;
+    const leftMode = optionSettings?.leftMode || currentGame.solo;
 
     return (
         <div className={boardClass}>
