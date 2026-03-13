@@ -218,6 +218,7 @@ const GameBoard = () => {
                         discard={otherPlayer.cardPiles.discard}
                         drawDeck={otherPlayer.cardPiles.deck}
                         isMe={false}
+                        leftMode={leftMode}
                         manualMode={currentGame.manualMode}
                         numDeckCards={otherPlayer.numDeckCards}
                         onCardClick={onCardClick}
@@ -440,7 +441,7 @@ const GameBoard = () => {
 
     let manualMode = currentGame.manualMode;
     const compactLayout = optionSettings?.compactLayout;
-    const leftMode = optionSettings?.leftMode || currentGame.solo || compactLayout;
+    const leftMode = optionSettings?.leftMode || currentGame.solo;
 
     return (
         <div className={boardClass}>
