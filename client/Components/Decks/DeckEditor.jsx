@@ -184,7 +184,7 @@ function DeckEditor({ onDeckSave, isChimera }) {
         }
 
         setDeckState(copyDeck(deck));
-    }, [deck]);
+    }, []);
 
     function handleCancelClick() {
         if (isChimera) {
