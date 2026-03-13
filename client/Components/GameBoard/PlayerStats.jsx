@@ -362,7 +362,6 @@ const PlayerStats = ({
                     />
                 </div>
             )}
-            {leftMode && isReplay && <div className='state chat-status'>REPLAY</div>}
         </div>
     );
 };
