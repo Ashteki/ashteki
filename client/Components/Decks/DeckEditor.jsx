@@ -50,16 +50,6 @@ function DeckEditor({ onDeckSave, isChimera }) {
         };
     }
 
-    function getCard(cardName) {
-        return getAllCards().find((card) => card.name.toLowerCase() === cardName.toLowerCase());
-    }
-
-    function getAllCards() {
-        return _.toArray(cards).filter((card) =>
-            isChimera ? card.deckType === 'chimera' : card.deckType !== 'chimera'
-        );
-    }
-
     function getCardListEntry(count, card, ff) {
         const fFive = ff ? ' ff' : '';
         return count + ' ' + card.name + fFive + '\n';
@@ -325,6 +315,8 @@ function DeckEditor({ onDeckSave, isChimera }) {
             (card) =>
                 card.deckType !== 'chimera' && (includeConjurations || card.type !== 'conjuration')
         );
+    }
+
     function onDiceListChange(event) {
         event.preventDefault();
         if (isChimera) {

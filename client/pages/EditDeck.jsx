@@ -20,11 +20,8 @@ function EditDeck({ deckId }) {
     useEffect(() => {
         if (deckId) {
             dispatch(loadDeck(deckId));
-        } else if (deck) {
-            navigate('/decks/edit/' + deck._id);
-            dispatch(loadDeck(deck._id));
         }
-    }, [deckId, deck, dispatch]);
+    }, [deckId, dispatch]);
 
     useEffect(() => {
         if (deckSaved) {
