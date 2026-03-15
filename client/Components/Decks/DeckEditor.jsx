@@ -323,7 +323,9 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
     function getAllCards(includeConjurations = false) {
         return _.toArray(cards).filter(
             (card) =>
-                card.deckType !== 'chimera' && (includeConjurations || card.type !== 'conjuration')
+                ((isChimera && card.deckType === 'chimera') ||
+                    (!isChimera && card.deckType !== 'chimera')) &&
+                (includeConjurations || card.type !== 'conjuration')
         );
     }
 

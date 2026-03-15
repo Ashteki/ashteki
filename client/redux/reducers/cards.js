@@ -422,15 +422,25 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
 
             return newState;
         case 'DECK_DUPLICATED':
-            decks = state.decks;
-            decks.unshift(action.response.deck);
-            newState = Object.assign({}, state, {
-                selectedDeck: action.response.deck,
-                deckSaved: true,
-                decks: decks
-            });
-
-            processDecks(newState.decks, state);
+            var isChimera = action.response.deck.mode === 'chimera';
+            if (isChimera) {
+                var myChimeraDecks = state.myChimeraDecks;
+                myChimeraDecks.unshift(action.response.deck);
+                newState = Object.assign({}, state, {
+                    selectedDeck: action.response.deck,
+                    deckSaved: true,
+                    myChimeraDecks: myChimeraDecks
+                });
+                processDecks(newState.myChimeraDecks, state);
+            } else {
+                var myDecks = [action.response.deck, ...state.decks];
+                newState = Object.assign({}, state, {
+                    selectedDeck: action.response.deck,
+                    deckSaved: true,
+                    decks: myDecks
+                });
+                processDecks(newState.decks, state);
+            }
 
             return newState;
         case 'SAVE_DECK':
@@ -478,11 +488,19 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
                 deckDeleted: true
             });
 
+            var chimeraDeleted = !!state.myChimeraDecks.find(d => d._id === action.response.deckId);
             newState.decks = newState.decks.filter((deck) => {
                 return deck._id !== action.response.deckId;
             });
+            newState.myChimeraDecks = newState.myChimeraDecks.filter((deck) => {
+                return deck._id !== action.response.deckId;
+            });
 
-            newState.selectedDeck = newState.decks[0];
+            if (chimeraDeleted) {
+                newState.selectedDeck = newState.myChimeraDecks[0];
+            } else {
+                newState.selectedDeck = newState.decks[0];
+            }
 
             return newState;
         case 'CLEAR_DECK_STATUS':
