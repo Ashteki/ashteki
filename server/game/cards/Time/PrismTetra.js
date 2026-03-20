@@ -23,6 +23,7 @@ class PrismTetra extends Card {
         this.fearful();
 
         this.forcedInterrupt({
+            inexhaustible: true,
             autoResolve: true,
             when: {
                 onRoundEnded: () => !this.status
