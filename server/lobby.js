@@ -1,9 +1,8 @@
 const socketio = require('socket.io');
 const Socket = require('./socket.js');
 const jwt = require('jsonwebtoken');
-const _ = require('underscore');
 const moment = require('moment');
-
+import _ from 'underscore';
 const logger = require('./log');
 const version = moment(require('../version').releaseDate);
 const PendingGame = require('./pendinggame');

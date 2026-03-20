@@ -1,7 +1,7 @@
 @import './_colours';
 @import './_variables';
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
 
 @import './bootstrap';
 @import './_phg-ashes';
@@ -93,14 +93,14 @@ a {
 
 
     &.btn-primary:not(label) {
-        background-image: url('~assets/img/button-primary.png');
+        background-image: url('assets/img/button-primary.png');
 
         &:hover {
-            background-image: url('~assets/img/button-primary-hover.png');
+            background-image: url('assets/img/button-primary-hover.png');
         }
 
         &:focus {
-            background-image: url('~assets/img/button-primary-hover.png');
+            background-image: url('assets/img/button-primary-hover.png');
         }
 
         &.active {
@@ -111,67 +111,67 @@ a {
     &.btn-default {
         &:not(.dropdown-toggle) {
 
-            background-image: url('~assets/img/button-orange.png');
+            background-image: url('assets/img/button-orange.png');
 
             &:hover {
-                background-image: url('~assets/img/button-orange-hover.png');
+                background-image: url('assets/img/button-orange-hover.png');
             }
 
             &:focus {
-                background-image: url('~assets/img/button-orange-hover.png');
+                background-image: url('assets/img/button-orange-hover.png');
             }
         }
     }
 
     &.btn-secondary {
         &:not(.dropdown-toggle) {
-            background-image: url('~assets/img/button-orange.png');
+            background-image: url('assets/img/button-orange.png');
 
             &:hover {
-                background-image: url('~assets/img/button-orange-hover.png');
+                background-image: url('assets/img/button-orange-hover.png');
             }
 
             &:focus {
-                background-image: url('~assets/img/button-orange-hover.png');
+                background-image: url('assets/img/button-orange-hover.png');
             }
         }
     }
 
     &.btn-danger {
         &:not(.dropdown-toggle) {
-            background-image: url('~assets/img/button-red.png');
+            background-image: url('assets/img/button-red.png');
 
             &:hover {
-                background-image: url('~assets/img/button-red-hover.png');
+                background-image: url('assets/img/button-red-hover.png');
             }
 
             &:focus {
-                background-image: url('~assets/img/button-red-hover.png');
+                background-image: url('assets/img/button-red-hover.png');
             }
         }
     }
 
     &.btn-success {
-        background-image: url('~assets/img/button-green.png');
+        background-image: url('assets/img/button-green.png');
 
         &:hover {
-            background-image: url('~assets/img/button-green-hover.png');
+            background-image: url('assets/img/button-green-hover.png');
         }
 
         &:focus:active {
-            background-image: url('~assets/img/button-green-hover.png');
+            background-image: url('assets/img/button-green-hover.png');
         }
     }
 
     &.btn-grey {
-        background-image: url('~assets/img/button-grey.png');
+        background-image: url('assets/img/button-grey.png');
 
         &:hover {
-            background-image: url('~assets/img/button-grey-hover.png');
+            background-image: url('assets/img/button-grey-hover.png');
         }
 
         &:focus:active {
-            background-image: url('~assets/img/button-grey-hover.png');
+            background-image: url('assets/img/button-grey-hover.png');
         }
     }
 
@@ -193,7 +193,7 @@ a {
 }
 
 .bg {
-    background-image: url('~assets/img/bgs/lobby_screen_ascendancy.jpg');
+    background-image: url('assets/img/bgs/lobby_screen_ascendancy.jpg');
     height: 100vh;
     background-position: center;
     background-size: cover;

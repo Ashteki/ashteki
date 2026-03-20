@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
 const ConfigService = require('./services/ConfigService');
 const passport = require('passport');
@@ -7,11 +6,7 @@ const logger = require('./log.js');
 const api = require('./api');
 const path = require('path');
 const http = require('http');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const historyApiFallback = require('connect-history-api-fallback');
-const webpack = require('webpack');
-const webpackConfig = require('../webpack.dev.js');
+const fs = require('fs');
 
 const passportJwt = require('passport-jwt');
 const Sentry = require('@sentry/node');
@@ -20,8 +15,8 @@ const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
 
 const UserService = require('./services/AshesUserService.js');
-const version = require('../version.js');
 
+const app = express();
 class Server {
     constructor(isDeveloping) {
         this.configService = new ConfigService();
@@ -31,11 +26,11 @@ class Server {
         this.server = http.createServer(app);
     }
 
-    init(options) {
+    async init(options) {
         if (!this.isDeveloping) {
             Sentry.init({
                 dsn: process.env.SENTRY_DSN || this.configService.getValue('sentryDsn'),
-                release: version.build
+                release: process.env.VERSION || 'Local build'
             });
             app.use(Sentry.Handlers.requestHandler());
             app.use(Sentry.Handlers.errorHandler());
@@ -70,60 +65,31 @@ class Server {
 
         // Always serve static files from `public`
         app.use(express.static(__dirname + '/../public'));
+        if (!this.isDeveloping) {
+            app.use(express.static(__dirname + '/../dist'));
+        }
 
         if (this.isDeveloping) {
-            const compiler = webpack(webpackConfig);
+            const { createViteMiddleware } = await import('./vite-dev.mjs');
+            const { vite, templatePath } = await createViteMiddleware({
+                root: path.join(__dirname, '..')
+            });
 
-            // Ensure history API fallback is applied so SPA routes work, then mount
-            // the dev middleware which serves bundles from memory. webpackHotMiddleware
-            // should be mounted after the dev middleware.
-            app.use(historyApiFallback());
+            app.use(vite.middlewares);
 
-            app.use(
-                webpackDevMiddleware(compiler, {
-                    hot: true,
-                    contentBase: 'client',
-                    publicPath: '/',
-                    // Ensure dev server does not cache index.html or any assets so changes
-                    // are immediately visible during development.
-                    headers: {
-                        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
-                    },
-                    stats: {
-                        colors: true,
-                        hash: false,
-                        timings: true,
-                        chunks: false,
-                        chunkModules: false,
-                        modules: false
-                    }
-                })
-            );
-
-            app.use(
-                webpackHotMiddleware(compiler, {
-                    log: false,
-                    path: '/__webpack_hmr',
-                    heartbeat: 2000
-                })
-            );
+            app.get('*', async (req, res, next) => {
+                try {
+                    const url = req.originalUrl;
+                    const template = fs.readFileSync(templatePath, 'utf-8');
+                    const html = await vite.transformIndexHtml(url, template);
+                    res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+                } catch (err) {
+                    vite.ssrFixStacktrace(err);
+                    next(err);
+                }
+            });
         } else {
-            // In production serve the built `dist` folder. During development we rely on
-            // webpackDevMiddleware which serves bundles from memory so we must NOT
-            // register the `dist` static middleware while developing — otherwise
-            // stale files on disk (old JSX builds) can be returned before the dev
-            // middleware has a chance to intercept requests.
-            app.use(express.static(__dirname + '/../dist'));
-
-            // Serve index.html in production with no-cache headers so browsers and proxies
-            // always fetch the latest application shell after deploys.
             app.get('*', (req, res) => {
-                // Prevent caching of index.html
-                res.setHeader('Cache-Control',
-                    'no-store, no-cache, must-revalidate, proxy-revalidate');
-                res.setHeader('Pragma', 'no-cache');
-                res.setHeader('Expires', '0');
-
                 res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
             });
         }

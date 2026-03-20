@@ -1,6 +1,6 @@
 @import '../../styles/colours';
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
 
 .card {
     box-shadow: 1px 1px 1px $primary !important;
@@ -13,14 +13,14 @@
 
     &.border-primary {
         .card-header {
-            background-image: url('~assets/img/panel-primary.png');
+            background-image: url('assets/img/panel-primary.png');
             border-color: $primary;
         }
     }
 
     &.border-danger {
         .card-header {
-            background-image: url('~assets/img/panel-danger.png');
+            background-image: url('assets/img/panel-danger.png');
             border-color: $danger;
         }
 
@@ -31,7 +31,7 @@
 
     &.border-purple {
         .card-header {
-            background-image: url('~assets/img/panel-purple.png');
+            background-image: url('assets/img/panel-purple.png');
             border-color: purple !important;
         }
 

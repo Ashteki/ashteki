@@ -9,7 +9,6 @@ import * as Sentry from '@sentry/browser';
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
 
-import version from '../version';
 import ErrorBoundary from './Components/Site/ErrorBoundary';
 
 import './i18n';
@@ -50,7 +49,7 @@ const sentryOptions = {
 
         return event;
     },
-    release: version.build
+    release: import.meta.env.VERSION || 'Local build'
 };
 
 Sentry.init(sentryOptions);
