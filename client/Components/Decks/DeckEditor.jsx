@@ -112,6 +112,14 @@ function DeckEditor({ onDeckSave, isChimera }) {
     function parseMagic(input) {
         let mgc = '';
         switch (input) {
+            case 'artifice':
+            case 'art':
+                mgc = 'artifice';
+                break;
+            case 'astral':
+            case 'ast':
+                mgc = 'astral';
+                break;
             case 'nature':
             case 'nat':
             case 'natural':
@@ -146,6 +154,8 @@ function DeckEditor({ onDeckSave, isChimera }) {
                 break;
         }
         let validMagics = [
+            'artifice',
+            'astral',
             'charm',
             'ceremonial',
             'illusion',
