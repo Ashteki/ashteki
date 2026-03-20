@@ -24,5 +24,18 @@ describe('Prism Tetra', function () {
 
             expect(this.prismTetra.location).toBe('archives');
         });
+
+        it('Bug: Scatter - end of round discard when double exhausted', function () {
+            this.prismTetra.exhaust();
+            this.prismTetra.exhaust();
+
+            expect(this.prismTetra.tokens.exhaustion).toBe(2);
+            expect(this.prismTetra.location).toBe('play area');
+            this.player1.endTurn();
+            this.player2.endTurn();
+            this.player1.clickDone();
+
+            expect(this.prismTetra.location).toBe('archives');
+        });
     });
 });
