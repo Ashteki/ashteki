@@ -211,6 +211,7 @@ const GameBoard = () => {
                         />
                     </div>
                 )}
+
                 <div className='player-home-row'>
                     <PlayerPBRow
                         active={otherPlayer.activePlayer}

@@ -1,8 +1,8 @@
 @import '../../styles/variables';
 @import '../../styles/colours';
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
 .counters {
     color: white;
@@ -110,106 +110,106 @@
 
 
     &.damage {
-        background-image: url('~assets/img/damage.png');
+        background-image: url('assets/img/damage.png');
     }
 
     &.armor {
-        background-image: url('~assets/img/armor.png');
+        background-image: url('assets/img/armor.png');
     }
 
     &.guarded {
-        background-image: url('~assets/img/guarded.png');
+        background-image: url('assets/img/guarded.png');
     }
 
     &.exhaustion {
-        background-image: url('~assets/img/exhaustion.png');
+        background-image: url('assets/img/exhaustion.png');
     }
 
     &.gravityFlux {
-        background-image: url('~assets/img/gravity-flux.png');
+        background-image: url('assets/img/gravity-flux.png');
     }
 
     &.duplicate {
-        background-image: url('~assets/img/duplicate.png');
+        background-image: url('assets/img/duplicate.png');
     }
 
     &.status {
-        background-image: url('~assets/img/status.png');
+        background-image: url('assets/img/status.png');
     }
 
     &.redRains {
-        background-image: url('~assets/img/redrains.png');
+        background-image: url('assets/img/redrains.png');
     }
 
     &.preventAllDamage {
-        background-image: url('~assets/img/armor-plus.png');
+        background-image: url('assets/img/armor-plus.png');
     }
 
     &.terrifying {
-        background-image: url('~assets/img/terrifying.png');
+        background-image: url('assets/img/terrifying.png');
     }
 
     &.overkill {
-        background-image: url('~assets/img/overkill.png');
+        background-image: url('assets/img/overkill.png');
     }
 
     // &.bypass {
-    //     background-image: url('~assets/img/hypnotize.png');
+    //     background-image: url('assets/img/hypnotize.png');
     // }
 
     &.quickStrike {
-        background-image: url('~assets/img/lightning.png');
+        background-image: url('assets/img/lightning.png');
     }
 
     &.grouptactics {
-        background-image: url('~assets/img/grouptactics.png');
+        background-image: url('assets/img/grouptactics.png');
     }
 
     &.cannotBeAttackTarget {
-        background-image: url('~assets/img/cannotBeAttackTarget.png');
+        background-image: url('assets/img/cannotBeAttackTarget.png');
     }
 
     &.cannotBeSpellTarget {
-        background-image: url('~assets/img/cannotBeSpellTarget.png');
+        background-image: url('assets/img/cannotBeSpellTarget.png');
     }
 
     &.cannotattack {
-        background-image: url('~assets/img/cannotAttack.png');
+        background-image: url('assets/img/cannotAttack.png');
     }
 
     &.cannotblock {
-        background-image: url('~assets/img/cannotBlock.png');
+        background-image: url('assets/img/cannotBlock.png');
 
     }
 
     &.cannotguard {
-        background-image: url('~assets/img/guarded.png');
+        background-image: url('assets/img/guarded.png');
 
     }
 
     &.preventBlock {
-        background-image: url('~assets/img/cannotBeBlocked.png');
+        background-image: url('assets/img/cannotBeBlocked.png');
 
     }
 
     &.preventGuard {
-        background-image: url('~assets/img/cannotBeGuarded4.png');
+        background-image: url('assets/img/cannotBeGuarded4.png');
 
     }
 
     &.exhausted {
-        background-image: url('~assets/img/exhausted.png');
+        background-image: url('assets/img/exhausted.png');
         background-color: unset;
     }
 
     &.magnify {
-        background-image: url('~assets/img/tristan.png');
+        background-image: url('assets/img/tristan.png');
 
     }
 }
 
 .behaviour {
-    background-image: url('~assets/img/behaviour.png');
+    background-image: url('assets/img/behaviour.png');
     width: 50px;
     height: 50px;
     color: black;

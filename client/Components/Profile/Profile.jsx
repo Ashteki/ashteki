@@ -11,8 +11,8 @@ import ProfileBackground from './ProfileBackground';
 import InGameSettings from './InGameSettings';
 import ProfileCardSize from './ProfileCardSize';
 import BlankBg from '../../assets/img/bgs/blank.png';
-import AshesRebornBg from '../../assets/img/bgs/lobby_screen_ascendancy.jpg';
-const { toBase64 } = require('../../util.js');
+const AshesRebornBg = new URL('../../assets/img/bgs/lobby_screen_ascendancy.jpg', import.meta.url).href;
+import { toBase64 } from '../../util.js';
 
 
 import './Profile.scss';

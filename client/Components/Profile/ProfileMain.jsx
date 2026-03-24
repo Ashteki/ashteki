@@ -7,7 +7,7 @@ import { PatreonStatus } from '../../types';
 import Panel from '../Site/Panel';
 import Avatar from '../Site/Avatar';
 import { unlinkPatreon } from '../../redux/actions';
-import PatreonImage from '../../assets/img/Patreon_Mark_Coral.jpg';
+const PatreonImage = new URL('../../assets/img/Patreon_Mark_Coral.jpg', import.meta.url).href;
 import { Link } from 'react-router-dom';
 import './ProfileMain.scss';
 

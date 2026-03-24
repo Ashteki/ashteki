@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 @import '../../styles/colours';
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
 
 @mixin dice-colors($text, $background) {
     color: $text;
@@ -16,35 +16,35 @@
     background-size: cover;
 
     &.charm {
-        background-image: url('~assets/img/tag-charm.png');
+        background-image: url('assets/img/tag-charm.png');
     }
 
     &.illusion {
-        background-image: url('~assets/img/tag-illusion.png');
+        background-image: url('assets/img/tag-illusion.png');
     }
 
     &.natural {
-        background-image: url('~assets/img/tag-natural.png');
+        background-image: url('assets/img/tag-natural.png');
     }
 
     &.divine {
-        background-image: url('~assets/img/tag-divine.png');
+        background-image: url('assets/img/tag-divine.png');
     }
 
     &.sympathy {
-        background-image: url('~assets/img/tag-sympathy.png');
+        background-image: url('assets/img/tag-sympathy.png');
     }
 
     &.time {
-        background-image: url('~assets/img/tag-time.png');
+        background-image: url('assets/img/tag-time.png');
     }
 
     &.artifice {
-        background-image: url('~assets/img/tag-sympathy.png');
+        background-image: url('assets/img/tag-sympathy.png');
     }
 
     &.astral {
-        background-image: url('~assets/img/tag-time.png');
+        background-image: url('assets/img/tag-time.png');
     }
 
 }

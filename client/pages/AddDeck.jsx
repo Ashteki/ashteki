@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import DeckEditor from '../Components/Decks/DeckEditor';
@@ -6,7 +6,7 @@ import AlertPanel from '../Components/Site/AlertPanel';
 import { Col, Row } from 'react-bootstrap';
 import DeckSummary from '../Components/Decks/DeckSummary';
 import DeckHeader from '../Components/Decks/DeckHeader';
-import { addChimeraDeck, addDeck, saveChimeraDeck, saveDeck } from '../redux/actions';
+import { addChimeraDeck, addDeck, saveDeck } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 
 export function AddDeckPage({ isChimera }) {
