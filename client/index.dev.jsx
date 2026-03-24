@@ -6,13 +6,16 @@ import 'bootstrap/dist/js/bootstrap';
 import ReduxToastr from 'react-redux-toastr';
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
-import { BrowserRouter } from 'react-router-dom';
 import './i18n';
+import Application from './Application';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();
 
+let ApplicationComponent = Application;
+
 const render = () => {
-    const Application = require('./Application').default;
+    const App = ApplicationComponent;
     const root = ReactDOM.createRoot(document.getElementById('component'));
     root.render(
         <Provider store={store}>
@@ -27,7 +30,7 @@ const render = () => {
                             transitionIn='fadeIn'
                             transitionOut='fadeOut'
                         />
-                        <Application />
+                        <App />
                     </div>
                 </DndProvider>
             </BrowserRouter>
@@ -35,10 +38,12 @@ const render = () => {
     );
 };
 
-if (module.hot) {
-    module.hot.accept('./Application', () => {
+if (import.meta.hot) {
+    import.meta.hot.accept('./Application', (mod) => {
+        ApplicationComponent = mod.default;
         setTimeout(render);
     });
 }
 
 render();
+

@@ -10,7 +10,7 @@ import * as actions from './redux/actions';
 import AppRoutes from './AppRoutes';
 import { useNavigate } from 'react-router-dom';
 
-import Background from './assets/img/bgs/lobby_screen_ascendancy.jpg';
+const Background = new URL('./assets/img/bgs/lobby_screen_ascendancy.jpg', import.meta.url).href;
 import BlankBg from './assets/img/bgs/blank.png';
 import { storageBaseUrl } from './constants';
 

@@ -44,24 +44,24 @@ export function tryParseJSON(jsonString) {
     return false;
 }
 
-export function getMessageWithLinks(message) {
-    let tokens = message.split(/\s/);
+// export function getMessageWithLinks(message) {
+//     let tokens = message.split(/\s/);
 
-    let i = 0;
-    let parts = tokens.map((token) => {
-        if (token.match(urlMatchingRegex)) {
-            return (
-                <a key={`link-${i++}`} href={token} target='_blank' rel='noopener noreferrer'>
-                    {token}&nbsp;
-                </a>
-            );
-        }
+//     let i = 0;
+//     let parts = tokens.map((token) => {
+//         if (token.match(urlMatchingRegex)) {
+//             return (
+//                 <a key={`link-${i++}`} href={token} target='_blank' rel='noopener noreferrer'>
+//                     {token}&nbsp;
+//                 </a>
+//             );
+//         }
 
-        return token + ' ';
-    });
+//         return token + ' ';
+//     });
 
-    return parts;
-}
+//     return parts;
+// }
 
 export const getStandardControlProps = (formProps, controlName) => ({
     name: controlName,

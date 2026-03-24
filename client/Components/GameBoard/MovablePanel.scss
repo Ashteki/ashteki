@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 @import '../../styles/colours';
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
 
 .movable-panel {
     z-index: $layer-card-menu;
@@ -36,7 +36,7 @@
     border-color: $primary;
 
     .panel-heading {
-        background-image: url('~assets/img/panel-primary.png');
+        background-image: url('assets/img/panel-primary.png');
         border-color: $primary;
     }
 }
