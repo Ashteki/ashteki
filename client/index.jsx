@@ -17,12 +17,9 @@ $.validator.setDefaults({
     }
 });
 
-let index;
-
-if (process.env.NODE_ENV === 'production') {
-    index = require('./index.prod');
+if (import.meta.env.PROD) {
+    import('./index.prod.jsx');
 } else {
-    index = require('./index.dev');
+    import('./index.dev.jsx');
 }
 
-export default index;
