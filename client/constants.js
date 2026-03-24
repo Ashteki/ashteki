@@ -4,6 +4,8 @@ export const ItemTypes = {
 };
 
 export const MagicTypes = [
+    'artifice',
+    'astral',
     'ceremonial',
     'charm',
     'divine',
