@@ -63,7 +63,7 @@ const DecksComponent = () => {
     const showRestricted = user?.permissions.canVerifyDecks;
     const { numDecks, selectedDeck, deckReload } = useSelector((state) => ({
         numDecks: state.cards.numDecks,
-        selectedDeck: standaloneDecks ? null : state.cards.selectedDeck,
+        selectedDeck: state.cards.selectedDeck,
         deckReload: state.cards.deckReload
     }));
 
