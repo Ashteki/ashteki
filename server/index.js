@@ -24,6 +24,7 @@ async function runServer() {
     let port = process.env.PORT || configService.getValueForSection('lobby', 'port') || 4000;
 
     httpServer.listen(port, () => {
+        logger.info(`NODE_ENV=${process.env.NODE_ENV}`);
         logger.info(
             `==> ?? Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`
         );
