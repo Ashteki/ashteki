@@ -1,12 +1,11 @@
-const express = require('express');
 const bodyParser = require('body-parser');
 const ConfigService = require('./services/ConfigService');
 const passport = require('passport');
 const logger = require('./log.js');
 const api = require('./api');
 const path = require('path');
-const http = require('http');
 const fs = require('fs');
+const express = require('express');
 
 const passportJwt = require('passport-jwt');
 const Sentry = require('@sentry/node');
@@ -16,17 +15,19 @@ const ExtractJwt = passportJwt.ExtractJwt;
 
 const UserService = require('./services/AshesUserService.js');
 
-const app = express();
-class Server {
-    constructor(isDeveloping) {
+class LobbyServer {
+    constructor(isDeveloping, expressApp) {
         this.configService = new ConfigService();
 
         this.userService = new UserService(this.configService);
         this.isDeveloping = isDeveloping;
-        this.server = http.createServer(app);
+
+        this.app = expressApp;
     }
 
     async init(options) {
+        const app = this.app;
+
         if (!this.isDeveloping) {
             Sentry.init({
                 dsn: process.env.SENTRY_DSN || this.configService.getValue('sentryDsn'),
@@ -104,23 +105,23 @@ class Server {
 
             next(err);
         });
-
-        return this.server;
     }
 
     run() {
-        let port =
-            process.env.PORT || this.configService.getValueForSection('lobby', 'port') || 4000;
+        // let port =
+        //     process.env.PORT || this.configService.getValueForSection('lobby', 'port') || 4000;
 
-        this.server.listen(port, function onStart(err) {
-            if (err) {
-                logger.error(err);
-            }
+        // this.server.listen(port, function onStart(err) {
+        //     if (err) {
+        //         logger.error(err);
+        //     }
 
-            logger.info(
-                `==> ?? Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`
-            );
-        });
+        //     logger.info(
+        //         `==> ?? Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`
+        //     );
+        // });
+
+        // ViteExpress.bind(this.app, this.server);
     }
 
     serializeUser(user, done) {
@@ -130,4 +131,4 @@ class Server {
     }
 }
 
-module.exports = Server;
+module.exports = LobbyServer;

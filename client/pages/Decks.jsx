@@ -35,7 +35,25 @@ const DecksComponent = () => {
     const onDuplicate = () => {
         setTabIndex(0);
     };
-
+    const {
+        myDecks,
+        standaloneDecks,
+        adventuringPartyDecks,
+        firstAdventureDecks,
+        pveDecks,
+        dualDuelDecks,
+        oneCollectionDecks,
+        ascendancyDecks
+    } = useSelector((state) => ({
+        myDecks: state.cards.decks.filter((d) => d.mode !== 'chimera'),
+        standaloneDecks: state.cards.standaloneDecks,
+        adventuringPartyDecks: state.cards.adventuringPartyDecks,
+        firstAdventureDecks: state.cards.firstAdventureDecks,
+        pveDecks: state.cards.pveDecks,
+        dualDuelDecks: state.cards.dualDuelDecks,
+        oneCollectionDecks: state.cards.oneCollectionDecks,
+        ascendancyDecks: state.cards.ascendancyDecks
+    }));
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
     const [showFaves, setShowFaves] = useState(false);
@@ -82,26 +100,6 @@ const DecksComponent = () => {
     const onPageClick = (page) => {
         setPageNumber(page);
     };
-
-    const {
-        myDecks,
-        standaloneDecks,
-        adventuringPartyDecks,
-        firstAdventureDecks,
-        pveDecks,
-        dualDuelDecks,
-        oneCollectionDecks,
-        ascendancyDecks
-    } = useSelector((state) => ({
-        myDecks: state.cards.decks.filter((d) => d.mode !== 'chimera'),
-        standaloneDecks: state.cards.standaloneDecks,
-        adventuringPartyDecks: state.cards.adventuringPartyDecks,
-        firstAdventureDecks: state.cards.firstAdventureDecks,
-        pveDecks: state.cards.pveDecks,
-        dualDuelDecks: state.cards.dualDuelDecks,
-        oneCollectionDecks: state.cards.oneCollectionDecks,
-        ascendancyDecks: state.cards.ascendancyDecks
-    }));
 
     const onTabChange = (index, lastIndex, event) => {
         setTabIndex(index);

@@ -2,7 +2,7 @@ const socketio = require('socket.io');
 const Socket = require('./socket.js');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
-import _ from 'underscore';
+const _ = require('underscore');
 const logger = require('./log');
 const version = moment(require('../version').releaseDate);
 const PendingGame = require('./pendinggame');
@@ -17,7 +17,7 @@ const DummyUser = require('./models/DummyUser.js');
 const CampaignDeckValidator = require('./CampaignDeckValidator.js');
 
 class Lobby {
-    constructor(server, options = {}) {
+    constructor(httpServer, options = {}) {
         this.sockets = {};
         this.socketsByName = {};
         this.users = {};
@@ -38,7 +38,7 @@ class Lobby {
 
         this.userService.on('onBlocklistChanged', this.onBlocklistChanged.bind(this));
 
-        this.io = options.io || new socketio.Server(server, {});
+        this.io = options.io || new socketio.Server(httpServer, {});
 
         // this.io.set('heartbeat timeout', 30000);
         this.io.use(this.handshake.bind(this));
