@@ -520,11 +520,11 @@ class GameServer {
     }
 
     onLeaveGame(socket) {
-        logger.info(`user leave game request: ${socket.user.username}`);
+        logger.log(`leave game request: ${socket.user.username}`);
 
         let game = this.findGameForUser(socket.user.username);
         if (!game) {
-            logger.info(`leave game - not found!: ${socket.user.username}`);
+            logger.error(`leave game - not found!: ${socket.user.username}`);
             return;
         }
 
@@ -551,7 +551,7 @@ class GameServer {
 
         if (game.isEmpty()) {
             delete this.games[game.id];
-            logger.info(`user leave game empty game closure: ${game.id}`);
+            logger.log(`user left game. isEmpty game closure: ${game.id}`);
 
             this.gameSocket.send('GAMECLOSED', { game: game.id });
         }
