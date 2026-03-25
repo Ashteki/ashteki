@@ -116,7 +116,6 @@
         "underscore": "^1.13.0",
         "uuid": "^9.0.0",
         "vite": "^8.0.0",
-        "vite-express": "^0.22.1",
         "winston": "^3.3.3",
         "winston-daily-rotate-file": "^4.5.2",
         "yup": "^1.6.1"
