@@ -64,7 +64,7 @@ const ConcedeLeave = ({ showText }) => {
                     okText: t('Ok'),
                     cancelText: t('Cancel'),
                     onOk: () => {
-                        dispatch(sendGameMessage('concede'));
+                        // dispatch(sendGameMessage('concede'));
                         dispatch(sendGameMessage('leavegame'));
                         dispatch(closeGameSocket());
                     }

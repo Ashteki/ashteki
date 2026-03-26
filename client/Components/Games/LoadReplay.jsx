@@ -3,8 +3,7 @@ import PictureButton from '../Lobby/PictureButton';
 import { Button, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadGameReplay, loadReplays, startGameReplay } from '../../redux/actions';
-import * as JSZip from 'jszip';
-import { _ } from 'core-js';
+import JSZip from 'jszip';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 
