@@ -3,12 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => ({
-    plugins: [
-        react({
-            jsxRuntime: 'classic'
-        }
-        )
-    ],
+    plugins: [react()],
     resolve: {
         mainFields: ['browser', 'module', 'main'],
         alias: [
