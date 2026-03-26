@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
-import * as JSZip from 'jszip';
-import * as JSZipUtils from 'jszip-utils';
+import JSZip from 'jszip';
+import JSZipUtils from 'jszip-utils';
 import saveAs from 'file-saver';
 
 import { loadGameReplay, loadUserGames } from '../redux/actions';
