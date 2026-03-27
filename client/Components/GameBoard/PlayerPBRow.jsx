@@ -29,7 +29,6 @@ const PlayerPBRow = ({
     side,
     spells,
     spectating,
-    onDrawPopupChange,
     onShuffleClick,
     onPileClick,
     showDeck,
@@ -91,7 +90,6 @@ const PlayerPBRow = ({
             manualMode={manualMode}
             onCardAltClick={onCardAltClick}
             onPileClick={onPileClick}
-            onPopupChange={onDrawPopupChange}
             onShuffleClick={onShuffleClick}
             player={player}
             showDeck={showDeck}

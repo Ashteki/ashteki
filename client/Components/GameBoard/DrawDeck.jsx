@@ -3,7 +3,6 @@ import React from 'react';
 import CardPile from './CardPile';
 import Droppable from './Droppable';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 const DrawDeck = (props) => {
     const { t } = useTranslation();
@@ -15,7 +14,6 @@ const DrawDeck = (props) => {
         manualMode,
         onDragDrop,
         onPileClick,
-        onPopupChange,
         onShuffleClick,
         player,
         showDeck,
@@ -37,9 +35,6 @@ const DrawDeck = (props) => {
             disablePopup={!hasCards && (spectating || !isMe)}
             hiddenTopCard={true}
             onPileClick={onPileClick}
-            onPopupChange={(event) =>
-                onPopupChange && !event.visible && onPopupChange({ visible: false })
-            }
             player={player}
             popupMenu={drawDeckPopupMenu}
             source='deck'

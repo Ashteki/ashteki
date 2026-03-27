@@ -19,7 +19,6 @@ const CardPileLink = ({
     onDragDrop,
     onMouseOut,
     onMouseOver,
-    onPopupChange,
     onTouchMove,
     orientation,
     popupLocation,
@@ -33,10 +32,8 @@ const CardPileLink = ({
     const updatePopupVisibility = useCallback(
         (value) => {
             setShowPopup(value);
-
-            onPopupChange && onPopupChange({ source: source, visible: value });
         },
-        [source, onPopupChange]
+        [source]
     );
 
     useEffect(() => {

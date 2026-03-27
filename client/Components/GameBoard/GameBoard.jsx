@@ -103,10 +103,6 @@ const GameBoard = () => {
         dispatch(sendGameMessage('dieClicked', die.uuid));
     };
 
-    const handleDrawPopupChange = (event) => {
-        dispatch(sendGameMessage('showDrawDeck', event.visible));
-    };
-
     const sendChatMessage = (message) => {
         dispatch(sendGameMessage('chat', message));
     };
@@ -361,7 +357,6 @@ const GameBoard = () => {
                         side='bottom'
                         spells={thisPlayer.cardPiles.spells}
                         spectating={spectating}
-                        onDrawPopupChange={handleDrawPopupChange}
                         onPileClick={onPileClick}
                         onShuffleClick={onShuffleClick}
                         onDragDrop={onDragDrop}
