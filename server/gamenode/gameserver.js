@@ -563,7 +563,7 @@ class GameServer {
         let game = this.findGameForUser(socket.user.username);
 
         if (!game) {
-            logger.error(`game not found for user ${socket.user.username}`);
+            logger.error(`${command}: game not found for user ${socket.user.username}`);
             return;
         }
 
