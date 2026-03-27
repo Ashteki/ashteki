@@ -27,7 +27,6 @@ const CardPile = ({
     onMouseOut,
     onMouseOver,
     onPileClick,
-    onPopupChange,
     onTouchMove,
     orientation = 'vertical',
     player,
@@ -54,9 +53,8 @@ const CardPile = ({
         (value) => {
             setShowPopup(value);
 
-            onPopupChange && onPopupChange({ source: source, visible: value });
         },
-        [source, onPopupChange]
+        [source]
     );
 
     useEffect(() => {

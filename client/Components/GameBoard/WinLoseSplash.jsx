@@ -14,7 +14,7 @@ const WinLoseSplash = ({ game, onCloseClick }) => {
 
     const onLeaveClick = () => {
         dispatch(sendGameMessage('leavegame'));
-        dispatch(closeGameSocket());
+        // dispatch(closeGameSocket());
     };
 
     let loser = null;
