@@ -68,7 +68,7 @@ const GameContextMenu = () => {
                     onOk: () => {
                         // dispatch(sendGameMessage('concede'));
                         dispatch(sendGameMessage('leavegame'));
-                        dispatch(closeGameSocket());
+                        // dispatch(closeGameSocket());
                     }
                 }
             );
@@ -77,7 +77,7 @@ const GameContextMenu = () => {
         }
 
         dispatch(sendGameMessage('leavegame'));
-        dispatch(closeGameSocket());
+        // dispatch(closeGameSocket());
     };
 
     if (!currentGame || !currentGame.started) {
