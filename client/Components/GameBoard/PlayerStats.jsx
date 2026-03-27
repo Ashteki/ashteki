@@ -24,7 +24,6 @@ import { sendGameMessage } from '../../redux/actions';
 import Droppable from './Droppable';
 import ConcedeLeave from './ConcedeLeave';
 import GameCountMenu from '../Navigation/GameCountMenu';
-import SpectatorIcon from './SpectatorIcon';
 import ServerStatus from '../Navigation/ServerStatus';
 
 const PlayerStats = ({
@@ -43,7 +42,6 @@ const PlayerStats = ({
     onManualModeClick,
     onManualCommandsClick,
     onMenuItemClick,
-    onPopupChange,
     onTouchMove,
     onClockZero,
     onMessagesClick,
@@ -229,7 +227,6 @@ const PlayerStats = ({
     const pileProps = {
         isMe,
         onMenuItemClick,
-        onPopupChange,
         onTouchMove,
         manualMode: manualModeEnabled,
         onCardClick,

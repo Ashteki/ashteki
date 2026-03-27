@@ -66,7 +66,7 @@ const ConcedeLeave = ({ showText }) => {
                     onOk: () => {
                         // dispatch(sendGameMessage('concede'));
                         dispatch(sendGameMessage('leavegame'));
-                        dispatch(closeGameSocket());
+                        // dispatch(closeGameSocket());
                     }
                 }
             );
@@ -75,7 +75,7 @@ const ConcedeLeave = ({ showText }) => {
         }
 
         dispatch(sendGameMessage('leavegame'));
-        dispatch(closeGameSocket());
+        // dispatch(closeGameSocket());
     };
 
     if (!currentGame || !currentGame.started) {
