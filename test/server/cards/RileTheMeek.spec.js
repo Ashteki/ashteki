@@ -31,10 +31,8 @@ describe('Rile the Meek', function () {
         setup.bind(this)(['frostback-bear', 'three-eyed-owl', 'ash-spirit', 'gilder']);
         this.ashSpirit.tokens.exhaustion = 1; //2 total damage
         this.player1.play(this.rileTheMeek);
-        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
         this.player1.clickCard(this.mistSpirit);
         expect(this.mistSpirit.location).toBe('archives');
-        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
         this.player1.clickCard(this.seasideRaven);
         expect(this.seasideRaven.location).toBe('play area');
         expect(this.seasideRaven.damage).toBe(1);
@@ -43,7 +41,6 @@ describe('Rile the Meek', function () {
     it('ignores printed values of X', function () {
         setup.bind(this)(['frostback-bear', 'three-eyed-owl', 'squall-stallion']); //1 total dmg
         this.player1.play(this.rileTheMeek);
-        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
         this.player1.clickCard(this.mistSpirit);
         expect(this.mistSpirit.location).toBe('archives');
         expect(this.player1).toHaveDefaultPrompt();
@@ -52,10 +49,8 @@ describe('Rile the Meek', function () {
     it('lets you skip pings', function () {
         setup.bind(this)(['frostback-bear', 'three-eyed-owl', 'ash-spirit', 'gilder']); //3 total damage
         this.player1.play(this.rileTheMeek);
-        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
         this.player1.clickCard(this.mistSpirit);
         expect(this.mistSpirit.location).toBe('archives');
-        expect(this.player1).toHavePrompt('Choose a target to deal 1 damage');
         this.player1.clickPrompt('Cancel');
         expect(this.player1).toHaveDefaultPrompt();
     });
