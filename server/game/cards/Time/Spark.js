@@ -17,7 +17,7 @@ class Spark extends Card {
                     activePromptTitle: 'Choose a card to deal 1 damage to',
                     cardType: BattlefieldTypes,
                     controller: 'any',
-                    gameAction: ability.actions.dealDamage({ showMessage: true }),
+                    gameAction: ability.actions.dealDamage()
                 }
             }
         });

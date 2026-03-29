@@ -8,7 +8,7 @@ class Overgrowth extends AspectCard {
             autoResolve: true,
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,
-                gameAction: ability.actions.dealDamage({ amount: 1, showMessage: true })
+                gameAction: ability.actions.dealDamage({ amount: 1 })
             }
         });
     }

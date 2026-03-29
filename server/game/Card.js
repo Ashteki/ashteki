@@ -303,7 +303,7 @@ class Card extends PlayableObject {
             effect: 'deal ' + amount + ' damage to a phoenixborn',
             target: {
                 activePromptTitle: 'Ambush ' + amount + ': Choose a Phoenixborn',
-                gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true }),
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount }),
                 cardType: PhoenixbornTypes,
                 optional: true
             }

@@ -14,7 +14,7 @@ class VirosUltimate extends UltimateCard {
                         context.player.opponent.phoenixborn
                     ],
                     gameAction: AbilityDsl.actions.orderedAoE({
-                        gameAction: AbilityDsl.actions.dealDamage({ amount: phase, showMessage: true }),
+                        gameAction: AbilityDsl.actions.dealDamage({ amount: phase }),
                         promptTitle: 'Chimera Ultimate'
                     })
                 }

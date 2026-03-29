@@ -13,7 +13,7 @@ class Cataclysm extends Card {
                     context.player.opponent.phoenixborn
                 ],
                 gameAction: ability.actions.orderedAoE({
-                    gameAction: ability.actions.dealDamage({ showMessage: true }),
+                    gameAction: ability.actions.dealDamage(),
                     promptTitle: 'Cataclysm'
                 })
             },

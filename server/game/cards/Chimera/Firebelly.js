@@ -19,7 +19,7 @@ class Firebelly extends AspectCard {
                     ...context.player.opponent.unitsInPlay,
                     context.player.opponent.phoenixborn
                 ],
-                gameAction: ability.actions.dealDamage({ showMessage: true })
+                gameAction: ability.actions.dealDamage()
             }
         });
     }

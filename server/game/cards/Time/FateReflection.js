@@ -23,8 +23,7 @@ class FateReflection extends Card {
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
-                        amount: context.preThenEvent.context.event.amountDealt,
-                        showMessage: true
+                        amount: context.preThenEvent.context.event.amountDealt
                     }))
                 }
             }

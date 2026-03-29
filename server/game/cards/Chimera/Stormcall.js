@@ -8,7 +8,7 @@ class Stormcall extends AspectCard {
             log: 'each',
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,
-                gameAction: ability.actions.dealDamage({ showMessage: true })
+                gameAction: ability.actions.dealDamage()
             },
             then: {
                 condition: (context) => context.source.status === 0,

@@ -10,8 +10,7 @@ class DarkReflection extends Card {
                 promptTitle: 'Choose a target unit to deal damage to',
                 cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage(() => ({
-                    amount: this.getAbilityNumeric(2),
-                    showMessage: true
+                    amount: this.getAbilityNumeric(2)
                 }))
             }
         });

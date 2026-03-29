@@ -32,8 +32,7 @@ class ShadowreckUltimate extends UltimateCard {
                     title: 'Ultimate',
                     gameAction: AbilityDsl.actions.dealDamage((context) => ({
                         target: context.player.opponent.phoenixborn,
-                        amount: 3,
-                        showMessage: true
+                        amount: 3
                     })),
                     then: {
                         alwaysTriggers: true,

@@ -16,7 +16,7 @@ class RisingTides extends Card {
                         promptTitle: 'Rising Tides',
                         activePromptTitle: 'Choose the order of damage',
                         target: context.game.unitsInPlay,
-                        gameAction: ability.actions.dealDamage({ showMessage: true }),
+                        gameAction: ability.actions.dealDamage()
                     }))
                 };
             })

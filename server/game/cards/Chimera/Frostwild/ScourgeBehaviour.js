@@ -280,7 +280,7 @@ class ScourgeBehaviour extends BehaviourCard {
                     return targets.filter((t) => t.exhausted);
                 },
                 gameAction: AbilityDsl.actions.orderedAoE({
-                    gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true })
+                    gameAction: AbilityDsl.actions.dealDamage({ amount: amount })
                 })
             }
         });
@@ -315,8 +315,7 @@ class ScourgeBehaviour extends BehaviourCard {
                 target: {
                     autoTarget: (context) => context.player.opponent.phoenixborn,
                     gameAction: AbilityDsl.actions.dealDamage({
-                        amount: 1,
-                        showMessage: true
+                        amount: 1
                     })
                 }
             },

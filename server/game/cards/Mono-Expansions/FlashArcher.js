@@ -13,7 +13,7 @@ class FlashArcher extends Card {
             then: {
                 target: {
                     cardType: BattlefieldTypes,
-                    gameAction: ability.actions.dealDamage({ showMessage: true }),
+                    gameAction: ability.actions.dealDamage(),
                     optional: true
                 }
             }
