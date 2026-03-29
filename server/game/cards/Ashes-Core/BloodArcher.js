@@ -16,8 +16,7 @@ class BloodArcher extends Card {
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage((context) => ({
                         // set damageSource so that the damage triggers even if archer is in discard
-                        damageSource: context.preThenEvent.clone,
-                        showMessage: true
+                        damageSource: context.preThenEvent.clone
                     }))
                 }
             }

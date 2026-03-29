@@ -51,12 +51,10 @@ class SmallSacrifice extends Card {
                     ]),
                     falseGameAction: ability.actions.sequential([
                         ability.actions.dealDamage({
-                            target: context.targets.first,
-                            showMessage: true
+                            target: context.targets.first
                         }),
                         ability.actions.dealDamage({
-                            target: context.targets.second,
-                            showMessage: true
+                            target: context.targets.second
                         })
                     ])
                 })

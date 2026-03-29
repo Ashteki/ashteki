@@ -15,9 +15,7 @@ class Reverberate extends Card {
                 activePromptTitle: 'Choose a target to deal 1 damage to',
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({
-                    showMessage: true
-                })
+                gameAction: ability.actions.dealDamage()
             }
         };
         if (remainingPings === undefined) {

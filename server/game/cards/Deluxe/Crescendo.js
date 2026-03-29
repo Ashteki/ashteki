@@ -19,7 +19,7 @@ class Crescendo extends Card {
                 target: {
                     cardType: BattlefieldTypes,
                     activePromptTitle: 'Choose a unit to receive 3 damage',
-                    gameAction: ability.actions.dealDamage({ amount: 3, showMessage: true })
+                    gameAction: ability.actions.dealDamage({ amount: 3 })
                 }
             }
         });

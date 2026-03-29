@@ -48,8 +48,7 @@ class Keepsake extends Card {
                     cardType: BattlefieldTypes,
                     controller: 'any',
                     gameAction: ability.actions.dealDamage(() => ({
-                        amount: this.amount,
-                        showMessage: true
+                        amount: this.amount
                     }))
                 }
             }

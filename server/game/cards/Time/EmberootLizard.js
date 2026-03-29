@@ -26,8 +26,7 @@ class EmberootLizard extends Card {
                     waitingPromptTitle: 'Ignite: waiting for opponent',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({
-                        amount: 1,
-                        showMessage: true
+                        amount: 1
                     })
                 }
             },

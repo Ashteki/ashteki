@@ -27,8 +27,7 @@ class Whiplash extends AspectCard {
                 })),
                 falseGameAction: ability.actions.dealDamage((context) => ({
                     amount: 1,
-                    target: context.targets.undamaged,
-                    showMessage: true
+                    target: context.targets.undamaged
                 }))
             })
         });

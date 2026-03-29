@@ -30,8 +30,7 @@ class SharedSorrow extends Card {
                     gameAction: ability.actions.dealDamage((context) => ({
                         amount:
                             context.preThenEvent.context.targets.discard &&
-                            context.preThenEvent.context.targets.discard.magicCost,
-                        showMessage: true
+                            context.preThenEvent.context.targets.discard.magicCost
                     }))
                 }
             }

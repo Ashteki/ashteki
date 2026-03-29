@@ -89,9 +89,7 @@ class SequentialDamagePrompt extends UiPrompt {
         }
 
         // resolve damage / action
-        this.game.actions
-            .dealDamage({ showMessage: true })
-            .resolve(card, this.game.getFrameworkContext(player));
+        this.game.actions.dealDamage().resolve(card, this.game.getFrameworkContext(player));
 
         if (this.chosenTargets.length >= this.properties.numSteps) {
             this.complete();

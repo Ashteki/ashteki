@@ -21,8 +21,7 @@ class PteraHatchling extends Card {
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
                 gameAction: ability.actions.dealDamage(() => ({
-                    amount: this.getAbilityNumeric(1),
-                    showMessage: true
+                    amount: this.getAbilityNumeric(1)
                 }))
             }
         });

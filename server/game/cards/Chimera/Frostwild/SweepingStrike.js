@@ -17,9 +17,7 @@ class SweepingStrike extends AspectCard {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 player: 'opponent',
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({
-                    showMessage: true
-                })
+                gameAction: ability.actions.dealDamage()
             }
         };
         if (remainingPings === undefined) {

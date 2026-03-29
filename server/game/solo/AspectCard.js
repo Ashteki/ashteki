@@ -10,8 +10,7 @@ class AspectCard extends Card {
             target: {
                 autoTarget: () => this.owner.phoenixborn,
                 gameAction: ability.actions.dealDamage((context) => ({
-                    amount: context.source.blood,
-                    showMessage: true
+                    amount: context.source.blood
                 }))
             },
             preferActionPromptMessage: true

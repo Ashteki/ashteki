@@ -21,8 +21,7 @@ class Whisperer extends Card {
                     showMessage: true
                 }),
                 falseGameAction: ability.actions.dealDamage((context) => ({
-                    target: context.player.opponent.phoenixborn,
-                    showMessage: true
+                    target: context.player.opponent.phoenixborn
                 }))
             })
         });

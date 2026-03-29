@@ -27,8 +27,7 @@ class FromTheDepths extends AspectCard {
                     mode: 'auto',
                     aim: 'left',
                     gameAction: ability.actions.dealDamage((context) => ({
-                        amount: context.player.opponent.phoenixborn.getKeywordValue('drowning'),
-                        showMessage: true
+                        amount: context.player.opponent.phoenixborn.getKeywordValue('drowning')
                     }))
                 }
             }

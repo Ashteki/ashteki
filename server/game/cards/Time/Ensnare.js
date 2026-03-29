@@ -12,7 +12,6 @@ class Ensnare extends Card {
             gameAction: ability.actions.dealDamage((context) => ({
                 amount: 2,
                 target: context.event.attack.battles[0].guard // assumes a guard will only occur in one battle
-                //showMessage: true
             }))
         });
     }
