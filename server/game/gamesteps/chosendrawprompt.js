@@ -84,7 +84,7 @@ class ChosenDrawPrompt extends AllPlayerPrompt {
                                 })
                                 .resolve(player, this.game.getFrameworkContext(sourceController));
 
-                            this.game.addMessage('{0} receives 1 damage', player.phoenixborn);
+                            // this.game.addMessage('{0} receives 1 damage', player.phoenixborn);
                         }
                     }
                 }
