@@ -260,9 +260,7 @@ class ShadowreckBehaviour extends BehaviourCard {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 player: 'opponent',
                 controller: 'opponent',
-                gameAction: AbilityDsl.actions.dealDamage({
-                    showMessage: true
-                })
+                gameAction: AbilityDsl.actions.dealDamage()
             }
         });
 

@@ -11,8 +11,7 @@ class AdrenalineRush extends Card {
                 gameAction: [
                     ability.actions.dealDamage(),
                     ability.actions.removeExhaustion({
-                        amount: 1,
-                        showMessage: true
+                        amount: 1
                     })
                 ]
             }

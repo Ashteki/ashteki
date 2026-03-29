@@ -19,8 +19,7 @@ class RedFlower extends Card {
                     controller: 'opponent',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({
-                        amount: 1,
-                        showMessage: true
+                        amount: 1
                     })
                 }
             })

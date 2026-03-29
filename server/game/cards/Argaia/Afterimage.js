@@ -25,7 +25,7 @@ class Afterimage extends Card {
                     activePromptTitle: "Select a unit to deal 2 damage to",
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
-                    gameAction: ability.actions.dealDamage({ amount: 2, showMessage: true })
+                    gameAction: ability.actions.dealDamage({ amount: 2 })
                 }
             }
         });

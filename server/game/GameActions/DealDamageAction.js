@@ -10,7 +10,6 @@ class DealDamageAction extends CardGameAction {
         this.damageType = 'card effect';
         this.purge = false;
         this.bonus = false;
-        this.showMessage = false;
         this.unpreventable = false;
     }
 
@@ -81,9 +80,7 @@ class DealDamageAction extends CardGameAction {
                     tokenEvent.openReactionWindow = true;
                     event.addSubEvent(tokenEvent);
 
-                    if (this.showMessage) {
-                        context.game.addMessage('{0} receives {1} damage', event.card, event.amount);
-                    }
+                    context.game.addMessage('{0} receives {1} damage', event.card, event.amount);
                 }
             );
 

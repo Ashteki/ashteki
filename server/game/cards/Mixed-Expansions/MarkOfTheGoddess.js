@@ -28,8 +28,7 @@ class MarkOfTheGoddess extends Card {
                     },
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({
-                        amount: context.targets.source.attack,
-                        showMessage: true
+                        amount: context.targets.source.attack
                     }))
                 }
             }

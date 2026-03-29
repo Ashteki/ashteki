@@ -14,8 +14,7 @@ class LordswallUltimate extends UltimateCard {
                         autoTarget: (context) => context.player.opponent.unitsInPlay,
                         gameAction: AbilityDsl.actions.orderedAoE({
                             gameAction: AbilityDsl.actions.dealDamage({
-                                amount: phase,
-                                showMessage: true
+                                amount: phase
                             }),
                             promptTitle: 'Chimera Ultimate'
                         })

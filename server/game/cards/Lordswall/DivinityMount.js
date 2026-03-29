@@ -26,7 +26,6 @@ class DivinityMount extends Card {
                 gameAction: ability.actions.orderedAoE((context) => ({
                     target: context.player.opponent.unitsInPlay,
                     gameAction: ability.actions.dealDamage({
-                        showMessage: true,
                         promptTitle: 'Lightning Breath 1'
                     })
                 }))

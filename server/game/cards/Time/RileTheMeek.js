@@ -13,12 +13,10 @@ class RileTheMeek extends Card {
             alwaysTriggers: true,
             target: {
                 showCancel: true,
-                activePromptTitle: 'Choose a target to deal 1 damage',
+                activePromptTitle: 'Choose a target to deal 1 damage to',
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.dealDamage({
-                    showMessage: true
-                })
+                gameAction: ability.actions.dealDamage()
             }
         };
         if (remainingPings === undefined) {

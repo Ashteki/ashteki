@@ -44,8 +44,7 @@ class ResolveBattleAction extends GameAction {
                     let attackerParams = {
                         amount: attackerAmountDealt,
                         fightEvent: event,
-                        damageSource: event.attacker,
-                        showMessage: true
+                        damageSource: event.attacker
                     };
 
                     let attackerDamageEvent = context.game.actions
@@ -83,8 +82,7 @@ class ResolveBattleAction extends GameAction {
         let defenderParams = {
             amount: event.attackerTarget.attack,
             fightEvent: event,
-            damageSource: event.attackerTarget,
-            showMessage: true
+            damageSource: event.attackerTarget
         };
 
         const counterDamageEvent = context.game.actions

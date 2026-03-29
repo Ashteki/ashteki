@@ -81,7 +81,7 @@ class BehaviourCard extends Card {
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => context.player.opponent.phoenixborn,
-                gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true })
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount })
             }
         });
 
@@ -99,7 +99,7 @@ class BehaviourCard extends Card {
                         aim,
                         (u) => !u.anyEffect('cannotBeDicePowerTarget')
                     ),
-                gameAction: AbilityDsl.actions.dealDamage({ amount: amount, showMessage: true })
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount })
             }
         });
 

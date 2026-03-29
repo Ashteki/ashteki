@@ -37,7 +37,7 @@ class MoonCoveUltimate extends UltimateCard {
                         ignoreTargetCheck: true,
                         autoTarget: (context) => context.player.opponent.unitsInPlay,
                         gameAction: AbilityDsl.actions.orderedAoE({
-                            gameAction: AbilityDsl.actions.dealDamage({ amount: phase, showMessage: true }),
+                            gameAction: AbilityDsl.actions.dealDamage({ amount: phase }),
                             promptTitle: 'Chimera Ultimate'
                         })
                     },
@@ -62,7 +62,7 @@ class MoonCoveUltimate extends UltimateCard {
                     title: 'Ultimate',
                     target: {
                         autoTarget: (context) => context.player.opponent.phoenixborn,
-                        gameAction: AbilityDsl.actions.dealDamage({ amount: 1, showMessage: true })
+                        gameAction: AbilityDsl.actions.dealDamage({ amount: 1 })
                     },
                     then: {
                         alwaysTriggers: true,

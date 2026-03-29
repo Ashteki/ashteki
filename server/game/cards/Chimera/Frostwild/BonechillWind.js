@@ -9,7 +9,7 @@ class BonechillWind extends AspectCard {
             target: {
                 ignoreTargetCheck: true,
                 autoTarget: (context) => this.getExhaustedTargets(context),
-                gameAction: ability.actions.dealDamage({ showMessage: true })
+                gameAction: ability.actions.dealDamage()
             }
         });
     }

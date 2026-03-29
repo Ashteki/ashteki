@@ -25,10 +25,7 @@ class CinderSpirit extends Card {
                     activePromptTitle: 'Ignite: choose a unit to deal 1 damage to',
                     waitingPromptTitle: 'Ignite: waiting for opponent',
                     cardType: BattlefieldTypes,
-                    gameAction: ability.actions.dealDamage({
-                        amount: 1,
-                        showMessage: true
-                    })
+                    gameAction: ability.actions.dealDamage({ amount: 1 })
                 }
             },
             effect: 'increase its attack value by 1 and may deal damage'

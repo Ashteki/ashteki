@@ -152,7 +152,7 @@ class Die extends PlayableObject {
                         })
                     },
                     message:
-                        '{0} uses {1} to move {2} from discard to hand, and receives 1 PB damage'
+                        '{0} uses {1} to move {2} from discard to hand'
                 });
             case 'illusion':
                 return this.action({

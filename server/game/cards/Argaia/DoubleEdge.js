@@ -19,8 +19,7 @@ class DoubleEdge extends Card {
                         controller: 'opponent',
                         cardType: BattlefieldTypes,
                         gameAction: ability.actions.dealDamage({
-                            amount: 1,
-                            showMessage: true
+                            amount: 1
                         })
                     },
                     then: {
@@ -28,8 +27,7 @@ class DoubleEdge extends Card {
                         target: {
                             autoTarget: (context) => context.player.opponent.phoenixborn,
                             gameAction: ability.actions.dealDamage({
-                                amount: 1,
-                                showMessage: true
+                                amount: 1
                             })
                         }
                     }

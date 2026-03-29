@@ -16,8 +16,7 @@ class EternityFlame extends Card {
                 target: {
                     autoTarget: (context) => context.player.opponent.phoenixborn,
                     gameAction: ability.actions.dealDamage({
-                        amount: 2,
-                        showMessage: true
+                        amount: 2
                     })
                 }
             }

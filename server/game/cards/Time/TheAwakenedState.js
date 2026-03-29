@@ -20,8 +20,7 @@ class TheAwakenedState extends Card {
                     activePromptTitle: 'Deal 1 damage',
                     cardType: BattlefieldTypes,
                     gameAction: ability.actions.dealDamage({
-                        amount: 1,
-                        showMessage: true
+                        amount: 1
                     })
                 },
                 then: {
@@ -29,8 +28,7 @@ class TheAwakenedState extends Card {
                     target: {
                         autoTarget: (context) => context.player.opponent.phoenixborn,
                         gameAction: ability.actions.dealDamage({
-                            amount: 1,
-                            showMessage: true
+                            amount: 1
                         })
                     }
                 }

@@ -17,8 +17,7 @@ class WitheringRot extends AspectCard {
                         Discard: ability.actions.chosenDiscard(),
                         '1 Pb Damage': ability.actions.dealDamage((context) => ({
                             target: context.player.opponent.phoenixborn,
-                            amount: 1,
-                            showMessage: true
+                            amount: 1
                         }))
                     }
                 }))

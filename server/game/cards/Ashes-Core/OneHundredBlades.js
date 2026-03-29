@@ -17,7 +17,7 @@ class OneHundredBlades extends Card {
                     ignoreTargetCheck: true,
                     autoTarget: (context) => context.player.opponent.unitsInPlay,
                     gameAction: ability.actions.orderedAoE({
-                        gameAction: ability.actions.dealDamage({ showMessage: true }),
+                        gameAction: ability.actions.dealDamage(),
                         promptTitle: 'One Hundred Blades'
                     })
                 },

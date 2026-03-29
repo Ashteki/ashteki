@@ -13,9 +13,7 @@ class Soulfire extends Card {
                 cardCondition: (card, context) => card.type !== CardType.Phoenixborn || card.controller.unitsInPlay.length === 0,
                 activePromptTitle: 'Choose a target to deal 1 damage',
                 cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
-                gameAction: ability.actions.dealDamage({
-                    showMessage: true
-                })
+                gameAction: ability.actions.dealDamage()
             }
         };
         returnValue.then = this.getTargetData(ability, remainingPings - 1);
