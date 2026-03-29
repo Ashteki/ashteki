@@ -24,9 +24,8 @@ class MassHeal extends Card {
                 return {
                     choices: choices,
                     messages: {
-                        'Remove a wound from your units and PB':
-                            '{0} removes 1 wound from their units and PB',
-                        'Remove a wound from all units': '{0} removes 1 wound from all units'
+                        'Heal PB + Units': '{0} removes 1 wound from their units and PB',
+                        'Heal all units': '{0} removes 1 wound from all units'
                     }
                 };
             })
