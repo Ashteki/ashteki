@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toastr } from 'react-redux-toastr';
-import { sendGameMessage, closeGameSocket } from '../../redux/actions';
+import { sendGameMessage, closeGameSocket, clearGameReplay } from '../../redux/actions';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket, faSkull } from '@fortawesome/free-solid-svg-icons';
@@ -55,6 +55,11 @@ const ConcedeLeave = ({ showText }) => {
     };
 
     const onLeaveClick = () => {
+        if (currentGame.isReplay) {
+            dispatch(clearGameReplay());
+            return;
+        }
+
         if (!isSpectating && !currentGame.isReplay && isGameActive()) {
             toastr.confirm(
                 t(
