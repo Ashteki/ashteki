@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Panel from '../Site/Panel';
 import './ReplayControls.scss';
+import { Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward, faBackwardFast, faBackwardStep, faForward, faForwardFast, faForwardStep, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +16,8 @@ import {
 
 const ReplayControls = () => {
     const dispatch = useDispatch();
-    const [isPlaying, setIsPlaying] = React.useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [stepTime, setStepTime] = useState(1500);
 
     const togglePlay = () => {
         setIsPlaying(!isPlaying);
@@ -47,11 +49,11 @@ const ReplayControls = () => {
         //Implementing the setInterval method
         const interval = setInterval(() => {
             doForwardStep();
-        }, 1500);
+        }, stepTime);
 
         //Clearing the interval
         return () => clearInterval(interval);
-    }, [isPlaying, doForwardStep]);
+    }, [isPlaying, doForwardStep, stepTime]);
 
     const tagToTitle = {
         prepare: 'Start of Round',
@@ -67,7 +69,6 @@ const ReplayControls = () => {
         stepTag: state.lobby.stepTag,
         round: state.lobby.currentGame.round,
         turn: state.lobby.currentGame.activePlayerTurn
-
     }));
 
     const title = tagToTitle[stepTag] || stepTag;
@@ -123,6 +124,21 @@ const ReplayControls = () => {
                 >
                     <FontAwesomeIcon icon={faForwardFast} />
                 </button>
+            </div>
+            <div className='replay-controls'>
+                Speed:
+                <Form.Range
+                    name='gameOptions.bluffTimer'
+                    label='Bluff Timer'
+                    min='1'
+                    max='3'
+                    step='0.5'
+                    tooltip='on'
+                    value={stepTime / 1000}
+                    onChange={(event) =>
+                        setStepTime(event.target.value * 1000)
+                    }
+                />
             </div>
         </Panel >
     );
