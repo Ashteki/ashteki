@@ -20,6 +20,7 @@ class AbilityTargetCard extends AbilityTarget {
             );
             this.dependsOnTarget.dependentTarget = this;
         }
+        this.onSelectCallback = properties.onSelectCallback;
     }
 
     getSelector(properties) {
@@ -152,6 +153,7 @@ class AbilityTargetCard extends AbilityTarget {
             selector: this.selector,
             buttons: buttons,
             onSelect: (player, card) => {
+                this.onSelectCallback && this.onSelectCallback(player, card);
                 this.setSelectedCard(context, card);
                 targetResults.firstTarget = false;
                 return true;
