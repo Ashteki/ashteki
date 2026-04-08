@@ -198,4 +198,46 @@ describe('Spear Master', function () {
             expect(this.spearMaster.status).toBe(2);
         });
     });
+
+    describe('On attack vs Golden Veil', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'rin-northfell',
+                    inPlay: ['spear-master', 'mist-spirit', 'iron-worker'],
+                    dicepool: ['divine', 'divine', 'time', 'time', 'natural', 'natural'],
+                    hand: ['freezing-blast', 'clashing-tempers'],
+                    archives: ['ice-buff', 'pack-wolf']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'holy-knight', 'anchornaut'],
+                    spellboard: [],
+                    hand: ['golden-veil'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm']
+                }
+            });
+        });
+
+        it('spear volley triggers, golden veil allows cancel', function () {
+            this.spearMaster.tokens.status = 2;
+            this.ironWorker.tokens.status = 1;
+            this.hammerKnight.tokens.status = 1;
+
+            this.player1.clickAttack(this.hammerKnight);
+            this.player1.clickCard(this.spearMaster);
+            // collect status tokens            
+            this.player1.clickCard(this.ironWorker);
+            this.player1.clickCard(this.spearMaster);
+            this.player1.clickDone();
+
+            this.player1.clickCard(this.hammerKnight);
+            // golden veil reaction window
+            this.player2.clickCard(this.goldenVeil);
+
+            expect(this.hammerKnight.damage).toBe(0);
+
+            expect(this.player1).toHaveWaitingPrompt(); // resolving attack action
+        });
+    });
 });
