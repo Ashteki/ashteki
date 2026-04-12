@@ -18,12 +18,6 @@ function EditDeck({ deckId }) {
     const loading = useSelector(state => state.api.loading);
 
     useEffect(() => {
-        if (deckId) {
-            dispatch(loadDeck(deckId));
-        }
-    }, [deckId, dispatch]);
-
-    useEffect(() => {
         if (deckSaved) {
             navigate('/decks');
         }
@@ -48,7 +42,7 @@ function EditDeck({ deckId }) {
                     <Col lg={6} className='full-height'>
                         <div className='lobby-card'>
                             <div className='lobby-header'>Deck Editor</div>
-                            <DeckEditor mode='Save' onDeckSave={onSaveDeck} isChimera={isChimera} />
+                            <DeckEditor deck={deck} onDeckSave={onSaveDeck} isChimera={isChimera} />
                         </div>
                     </Col>
                     <Col lg={6}>{<ViewDeck deck={deck} editMode={true} />}</Col>

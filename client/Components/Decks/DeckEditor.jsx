@@ -9,13 +9,13 @@ import { updateDeck } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import './DeckEditor.scss';
 
-function DeckEditor({ onDeckSave, isChimera }) {
+function DeckEditor({ deck, onDeckSave, isChimera }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const typeaheadRef = useRef(null);
 
     const cards = useSelector((state) => state.cards.cards);
-    const deck = useSelector((state) => state.cards.selectedDeck);
+    // const deck = useSelector((state) => state.cards.selectedDeck);
     const loading = useSelector((state) => state.api.loading);
 
     const [cardList, setCardList] = useState('');
@@ -465,7 +465,7 @@ function DeckEditor({ onDeckSave, isChimera }) {
                 <TextArea
                     label='Notes'
                     rows='4'
-                    value={deckState.notes}
+                    value={deckState.notes || ''}
                     onChange={(e) => onChange('notes', e)}
                 />
 

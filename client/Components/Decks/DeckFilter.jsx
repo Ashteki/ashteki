@@ -1,12 +1,15 @@
 import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Col, Form, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { addDeck } from '../../redux/actions';
 
-const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, addUrl = '/decks/add' }) => {
+const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons }) => {
     const allCards = useSelector((state) => state.cards.cards);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     let phoenixbornCards = [];
     for (let c in allCards) {
         if (allCards[c].type == 'Phoenixborn') {
@@ -65,9 +68,16 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, a
                             <Link className='btn btn-primary def' to='/decks/import'>
                                 <span className='phg-basic-magic'></span> Import
                             </Link>
-                            <Link className='btn btn-secondary def' to={addUrl}>
+                            <Button
+                                className='btn btn-secondary def'
+                                onClick={() => {
+                                    dispatch(addDeck());
+                                    navigate('/decks/add');
+                                }}
+                            >
+
                                 <FontAwesomeIcon icon={faPlus} /> New
-                            </Link>
+                            </Button>
                         </Form.Group>
                     )}
                 </Row>
