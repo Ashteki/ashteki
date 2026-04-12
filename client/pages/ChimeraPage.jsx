@@ -130,6 +130,7 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
                                     onPbChange={onPbChange}
                                     handleFaveChange={handleFaveChange}
                                     showButtons={true}
+                                    mode='chimera'
                                 />
                             </Col>
                         </Row>

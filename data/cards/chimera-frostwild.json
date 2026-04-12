@@ -32,7 +32,13 @@
             "target": "right",
             "attack": 2,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                }
+            ]
         },
         {
             "name": "Shockwave",
@@ -93,13 +99,15 @@
             "placement": [
                 "Unit",
                 "Phoenixborn"
-            ]
+            ],
+            "copies": 6
         },
         {
             "name": "Vigor",
             "stub": "vigor",
             "type": "Conjured Alteration Spell",
-            "placement": "Unit"
+            "placement": "Unit",
+            "copies": 6
         },
         {
             "name": "Giant's Might",
@@ -109,7 +117,13 @@
             "target": "jaw",
             "attack": 1,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Vigor",
+                    "stub": "vigor"
+                }
+            ]
         },
         {
             "name": "Warcry",

@@ -4,9 +4,9 @@ import React from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { addDeck } from '../../redux/actions';
+import { addChimeraDeck, addDeck } from '../../redux/actions';
 
-const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons }) => {
+const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, mode }) => {
     const allCards = useSelector((state) => state.cards.cards);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -17,6 +17,16 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons })
         }
     }
     phoenixbornCards.sort((a, b) => (a.name < b.name ? -1 : 1));
+
+    const handleAddClick = () => {
+        if (mode === 'chimera') {
+            dispatch(addChimeraDeck());
+            navigate('/decks/add?chimera=true');
+        } else {
+            dispatch(addDeck());
+            navigate('/decks/add');
+        }
+    };
 
     return (
         <div>
@@ -65,17 +75,12 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons })
                     </Form.Group>
                     {showButtons && (
                         <Form.Group as={Col} xs='3'>
-                            <Link className='btn btn-primary def' to='/decks/import'>
-                                <span className='phg-basic-magic'></span> Import
-                            </Link>
-                            <Button
-                                className='btn btn-secondary def'
-                                onClick={() => {
-                                    dispatch(addDeck());
-                                    navigate('/decks/add');
-                                }}
-                            >
-
+                            {mode !== 'chimera' && (
+                                <Link className='btn btn-primary def' to='/decks/import'>
+                                    <span className='phg-basic-magic'></span> Import
+                                </Link>
+                            )}
+                            <Button className='btn btn-secondary def' onClick={handleAddClick}>
                                 <FontAwesomeIcon icon={faPlus} /> New
                             </Button>
                         </Form.Group>
