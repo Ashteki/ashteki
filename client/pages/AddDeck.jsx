@@ -14,17 +14,9 @@ export function AddDeckPage({ isChimera }) {
     const navigate = useNavigate()
 
     const apiError = useSelector(state => state.api.message);
-    const cards = useSelector(state => state.cards.cards);
     const deck = useSelector(state => state.cards.selectedDeck);
     const deckSaved = useSelector(state => state.cards.deckSaved);
     const loading = useSelector(state => state.api.loading);
-    useEffect(() => {
-        if (isChimera) {
-            dispatch(addChimeraDeck());
-        } else {
-            dispatch(addDeck());
-        }
-    }, [dispatch]);
 
     useEffect(() => {
         if (deckSaved) {
@@ -49,7 +41,7 @@ export function AddDeckPage({ isChimera }) {
                         <div className='lobby-card'>
                             <div className='lobby-header'>Deck Editor</div>
 
-                            <DeckEditor mode='Add' isChimera={isChimera} onDeckSave={onAddDeck} />
+                            <DeckEditor deck={deck} isChimera={isChimera} onDeckSave={onAddDeck} />
                         </div>
                     </Col>
                     <Col lg={6}>
