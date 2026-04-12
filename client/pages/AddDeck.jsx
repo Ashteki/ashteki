@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function AddDeckPage({ isChimera }) {
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const apiError = useSelector(state => state.api.message);
     const deck = useSelector(state => state.cards.selectedDeck);
@@ -22,7 +22,7 @@ export function AddDeckPage({ isChimera }) {
         if (deckSaved) {
             navigate('/decks');
         }
-    }, [deckSaved, dispatch]);
+    }, [deckSaved, navigate]);
 
     const onAddDeck = (deck) => {
         dispatch(saveDeck(deck));
