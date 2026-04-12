@@ -10,7 +10,13 @@
             "threat": 6,
             "life": 30,
             "ultimate": 3,
-            "imageStub": "spawn-of-shadowreck-1p-standard-1.jpg"
+            "imageStub": "spawn-of-shadowreck-1p-standard-1.jpg",
+            "conjurations": [
+                {
+                    "name": "Webbed",
+                    "stub": "webbed"
+                }
+            ]
         },
         {
             "name": "Shadowreck Ultimate",
