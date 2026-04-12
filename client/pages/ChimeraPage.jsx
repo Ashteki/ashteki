@@ -18,6 +18,11 @@ import { PaginationControl } from 'react-bootstrap-pagination-control';
 const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const { myChimeraDecks, chimeraDecks, standaloneDecks } = useSelector((state) => ({
+        myChimeraDecks: state.cards.myChimeraDecks,
+        chimeraDecks: state.cards.chimeraDecks
+    }));
+
     const apiState = useSelector((state) => {
         const retState = state.api[Decks.DeleteDeck];
 
@@ -86,11 +91,6 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
     const onPageClick = (page) => {
         setPageNumber(page);
     };
-
-    const { myChimeraDecks, chimeraDecks, standaloneDecks } = useSelector((state) => ({
-        myChimeraDecks: state.cards.myChimeraDecks,
-        chimeraDecks: state.cards.chimeraDecks
-    }));
 
     const onTabChange = (index, lastIndex, event) => {
         setTabIndex(index);
