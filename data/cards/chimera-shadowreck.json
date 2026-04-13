@@ -11,6 +11,8 @@
             "life": 30,
             "ultimate": 3,
             "imageStub": "spawn-of-shadowreck-1p-standard-1.jpg",
+            "ultimate-card": "shadowreck-ultimate",
+            "behaviour-card": "shadowreck-behaviour",
             "conjurations": [
                 {
                     "name": "Webbed",
@@ -45,7 +47,13 @@
             "target": "jaw",
             "attack": 2,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Webbed",
+                    "stub": "webbed"
+                }
+            ]
         },
         {
             "name": "Weave",
@@ -56,7 +64,13 @@
             "attack": 2,
             "life": 2,
             "blood": 1,
-            "statusCount": 2
+            "statusCount": 2,
+            "conjurations": [
+                {
+                    "name": "Webbed",
+                    "stub": "webbed"
+                }
+            ]
         },
         {
             "name": "Neurotoxin",

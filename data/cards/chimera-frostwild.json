@@ -10,7 +10,19 @@
             "threat": 4,
             "life": 35,
             "ultimate": 3,
-            "imageStub": "frostwild-scourge-1p-standard-1.jpg"
+            "imageStub": "frostwild-scourge-1p-standard-1.jpg",
+            "ultimate-card": "scourge-ultimate",
+            "behaviour-card": "scourge-behaviour",
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                },
+                {
+                    "name": "Vigor",
+                    "stub": "vigor"
+                }
+            ]
         },
         {
             "name": "Frostwild Scourge Ultimate",
@@ -48,7 +60,13 @@
             "target": "jaw",
             "attack": 3,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                }
+            ]
         },
         {
             "name": "Bonechill Wind",
@@ -133,7 +151,13 @@
             "target": "jaw",
             "attack": 1,
             "life": 4,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Vigor",
+                    "stub": "vigor"
+                }
+            ]
         },
         {
             "name": "Sweeping Strike",
@@ -153,7 +177,13 @@
             "target": "left",
             "attack": 3,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                }
+            ]
         },
         {
             "name": "Charge Fist",

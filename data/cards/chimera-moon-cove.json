@@ -10,7 +10,15 @@
             "threat": 6,
             "life": 30,
             "ultimate": 3,
-            "imageStub": "https://cdn.ashteki.com/ashes/mooncove/flood-of-moon-cove-1p-standard-1.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/mooncove/flood-of-moon-cove-1p-standard-1.jpg",
+            "ultimate-card": "moon-cove-ultimate",
+            "behaviour-card": "moon-cove-behaviour",
+            "conjurations": [
+                {
+                    "name": "Drowning",
+                    "stub": "drowning"
+                }
+            ]
         },
         {
             "name": "Moon Cove Ultimate",
@@ -60,7 +68,13 @@
             "target": "left",
             "attack": 2,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Drowning",
+                    "stub": "drowning"
+                }
+            ]
         },
         {
             "name": "Drag Below",
@@ -71,7 +85,13 @@
             "attack": 2,
             "life": 2,
             "blood": 1,
-            "statusCount": 2
+            "statusCount": 2,
+            "conjurations": [
+                {
+                    "name": "Drowning",
+                    "stub": "drowning"
+                }
+            ]
         },
         {
             "name": "Deep End",
@@ -91,7 +111,13 @@
             "target": "jaw",
             "attack": 3,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Drowning",
+                    "stub": "drowning"
+                }
+            ]
         },
         {
             "name": "Insatiable",
@@ -132,7 +158,13 @@
             "target": "left",
             "attack": 4,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Drowning",
+                    "stub": "drowning"
+                }
+            ]
         },
         {
             "name": "Deluge",
@@ -142,7 +174,13 @@
             "target": "jaw",
             "attack": 2,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Drowning",
+                    "stub": "drowning"
+                }
+            ]
         },
         {
             "name": "Riptide",

@@ -18,7 +18,7 @@ import { PaginationControl } from 'react-bootstrap-pagination-control';
 const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const { myChimeraDecks, chimeraDecks, standaloneDecks } = useSelector((state) => ({
+    const { myChimeraDecks, chimeraDecks } = useSelector((state) => ({
         myChimeraDecks: state.cards.myChimeraDecks,
         chimeraDecks: state.cards.chimeraDecks
     }));
@@ -52,7 +52,7 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
 
     const { numDecks, selectedDeck, deckReload } = useSelector((state) => ({
         numDecks: state.cards.numDecks,
-        selectedDeck: standaloneDecks ? null : state.cards.selectedDeck,
+        selectedDeck: state.cards.selectedDeck,
         deckReload: state.cards.deckReload
     }));
 
@@ -73,7 +73,7 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
         dispatch(loadMyChimeraDecks(pagingDetails));
         setTabIndex(tab);
 
-    }, [nameFilter, pbFilter, showFaves, dispatch, deckReload, standaloneDecks, pageNumber]);
+    }, [nameFilter, pbFilter, showFaves, dispatch, deckReload, pageNumber]);
 
     let onNameChange = debounce((event) => {
         event.preventDefault();
@@ -161,10 +161,9 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
                             </Col>
                         </Row>
                         <Row>
-
                             <Col lg={6}>
                                 <DeckTypeInfo deckType='precon' />
-                                <DeckList decks={standaloneDecks} />
+                                <DeckList decks={chimeraDecks} />
                             </Col>
                             <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>

@@ -10,7 +10,9 @@
             "threat": 4,
             "life": 30,
             "ultimate": 3,
-            "imageStub": "corpse-of-viros-1p-standard-1.jpg"
+            "imageStub": "corpse-of-viros-1p-standard-1.jpg",
+            "ultimate-card": "viros-ultimate",
+            "behaviour-card": "viros-behaviour"
         },
         {
             "name": "Viros Ultimate",

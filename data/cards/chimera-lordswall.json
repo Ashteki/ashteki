@@ -10,7 +10,15 @@
             "threat": 6,
             "life": 30,
             "ultimate": 3,
-            "imageStub": "siege-of-lordswall-1p-standard-1.jpg"
+            "imageStub": "siege-of-lordswall-1p-standard-1.jpg",
+            "ultimate-card": "lordswall-ultimate",
+            "behaviour-card": "lordswall-behaviour",
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Lordswall Ultimate",
@@ -32,7 +40,8 @@
             "target": "jaw",
             "attack": 1,
             "life": 1,
-            "blood": 0
+            "blood": 0,
+            "copies": 7
         },
         {
             "name": "At the Gates",
@@ -42,7 +51,13 @@
             "target": "left",
             "attack": 2,
             "life": 2,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Carrion Call",
@@ -53,7 +68,13 @@
             "attack": 1,
             "life": 2,
             "blood": 1,
-            "statusCount": 2
+            "statusCount": 2,
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Charging Horde",
@@ -63,7 +84,13 @@
             "target": "jaw",
             "attack": 3,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Thunderclap",
@@ -103,7 +130,13 @@
             "target": "jaw",
             "attack": 1,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Unending Forces",
@@ -114,7 +147,13 @@
             "attack": 2,
             "life": 3,
             "blood": 2,
-            "statusCount": 3
+            "statusCount": 3,
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Convert",
@@ -124,7 +163,13 @@
             "target": "left",
             "attack": 3,
             "life": 4,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Torrential Sacrifice",
@@ -134,7 +179,13 @@
             "target": "jaw",
             "attack": 2,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Rainwalker",
+                    "stub": "rainwalker"
+                }
+            ]
         },
         {
             "name": "Crimson Pyre",
