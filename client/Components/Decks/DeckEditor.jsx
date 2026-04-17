@@ -86,7 +86,7 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
 
         let list;
 
-        if (card.type === 'Conjuration' || card.type === 'Conjured Alteration Spell') {
+        if (['Conjuration', 'Conjured Alteration Spell', 'Conjured Aspect'].includes(card.type)) {
             list = conjurations;
         } else if (card.type === 'Phoenixborn') {
             list = phoenixborn;
@@ -107,6 +107,10 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
             });
         }
         addConjurations(card, deckToUpdate);
+
+        if (list === phoenixborn) {
+            // addChimera
+        }
     }
 
     function parseMagic(input) {
@@ -220,6 +224,9 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
         } else newDeck.phoenixborn[0] = pb;
         setPbid(pb.id);
 
+        if (pb.type === 'Chimera') {
+
+        }
         rebuildConjurations(newDeck);
         setDeckState(newDeck);
         dispatch(updateDeck(newDeck));

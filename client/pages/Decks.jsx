@@ -7,7 +7,7 @@ import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
 import ApiStatus from '../Components/Site/ApiStatus';
 import { Decks } from '../redux/types';
-import { clearApiStatus, loadDecks, selectDeck } from '../redux/actions';
+import { clearApiStatus, loadDecks, loadMyChimeraDecks, selectDeck } from '../redux/actions';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import DeckTypeInfo from '../Components/Decks/DeckTypeInfo';
 import DeckFilter from '../Components/Decks/DeckFilter';
