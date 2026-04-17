@@ -26,7 +26,8 @@ export const LeftMenu = [
             { path: '/useralts', title: 'User Alts', permission: 'canManageTournaments' },
             { path: '/nodes', title: 'Nodes', permission: 'canManageNodes' },
             { path: '/banlist', title: 'Ban List', permission: 'canManageBanlist' },
-            { path: '/taggedgames', title: 'Tagged Games', permission: 'canManageTournaments' }
+            { path: '/taggedgames', title: 'Tagged Games', permission: 'canManageTournaments' },
+            { path: '/cardstats', title: 'Card Stats', permission: 'isAdmin' }
         ]
     }
 ];
