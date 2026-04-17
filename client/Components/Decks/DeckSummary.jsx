@@ -104,16 +104,19 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href='#' onClick={handleEditClick}>
-                                    <FontAwesomeIcon icon={faPen} /> Edit
-                                </Dropdown.Item>
+                                {!deck.precon_id && (
+                                    <Dropdown.Item href='#' onClick={handleEditClick}>
+                                        <FontAwesomeIcon icon={faPen} /> Edit
+                                    </Dropdown.Item>
+                                )}
                                 <Dropdown.Item href='#' onClick={handleCopyClick}>
                                     <FontAwesomeIcon icon={faCopy} /> Copy
                                 </Dropdown.Item>
-                                <Dropdown.Item href='#' onClick={handleDeleteClick}>
-                                    <FontAwesomeIcon icon={faTrashCan} /> Delete
-                                </Dropdown.Item>
-
+                                {!deck.precon_id && (
+                                    <Dropdown.Item href='#' onClick={handleDeleteClick}>
+                                        <FontAwesomeIcon icon={faTrashCan} /> Delete
+                                    </Dropdown.Item>
+                                )}
                             </Dropdown.Menu>
                         </Dropdown>
                     )}

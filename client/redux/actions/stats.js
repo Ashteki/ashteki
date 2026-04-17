@@ -24,3 +24,15 @@ export function loadEloLadder() {
         }
     };
 }
+
+export function loadCardStats(cardName, includeSolo) {
+    return {
+        types: ['REQUEST_CARDSTATS', 'RECEIVE_CARDSTATS'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/cardstats',
+            data: { card: cardName, includeSolo: includeSolo },
+            cache: false
+        }
+    };
+}
