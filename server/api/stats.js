@@ -94,4 +94,84 @@ module.exports.init = function (server) {
             res.send({ success: true, card: cardName, totalGames, winnerPlays, loserPlays });
         })
     );
+
+    server.get(
+        '/api/cardstats/csv',
+        wrapAsync(async function (req, res) {
+
+            let start = req.query.start ? new Date(req.query.start) : null;
+            let end = req.query.end ? new Date(req.query.end) : null;
+            let includeSolo = req.query.includeSolo === 'true';
+            let ranked = req.query.ranked === 'true';
+
+            if ((start && isNaN(start.getTime())) || (end && isNaN(end.getTime()))) {
+                return res.status(400).send({ message: 'Invalid date format' });
+            }
+
+            let findSpec = {
+                winner: { $exists: true },
+                winReason: { $ne: 'Agreement' },
+                chat: { $exists: true, $ne: '' }
+            };
+            if (!includeSolo) {
+                findSpec.solo = { $ne: true };
+            }
+            if (ranked) {
+                findSpec.gameType = 'competitive';
+            }
+            if (start && end) {
+                findSpec.finishedAt = { $gte: start, $lt: end };
+            }
+
+            let games = await gameService.games.find(findSpec);
+
+            let cardStats = {};
+
+            games.forEach((game) => {
+                if (!game.winner || game.winReason === 'Agreement' || !game.chat || game.chat === '') {
+                    return;
+                }
+
+                let players = game.players.map(p => p.name);
+                let isSolo = game.solo || players.length !== 2;
+                if (!includeSolo && isSolo) {
+                    return;
+                }
+
+                let winner = game.winner;
+                let loser = isSolo ? null : players.find(p => p !== winner);
+
+                let chat = game.chat;
+                let playRegex = /([^\s]+) plays ([^\n\r]+)/g;
+                let match;
+                while ((match = playRegex.exec(chat)) !== null) {
+                    let playerName = match[1];
+                    let cardName = match[2].trim();
+                    cardName = cardName.replace(/\s+(?:attaching it to|to)[\s\S]*$/i, '').trim();
+
+                    if (!cardStats[cardName]) {
+                        cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0 };
+                    }
+
+                    cardStats[cardName].totalGames++;
+                    if (playerName === winner) {
+                        cardStats[cardName].winnerPlays++;
+                    } else if (loser && playerName === loser) {
+                        cardStats[cardName].loserPlays++;
+                    }
+                }
+            });
+
+            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Win %\n';
+            Object.keys(cardStats).forEach((cardName) => {
+                const stats = cardStats[cardName];
+                const winPercent = stats.totalGames > 0 ? Math.round((stats.winnerPlays / stats.totalGames) * 100) : 0;
+                csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${winPercent}\n`;
+            });
+
+            res.setHeader('Content-Type', 'text/csv');
+            res.setHeader('Content-Disposition', 'attachment; filename="card_play_stats.csv"');
+            res.send(csv);
+        })
+    );
 };
