@@ -119,8 +119,13 @@ module.exports.init = function (server) {
             if (ranked) {
                 findSpec.gameType = 'competitive';
             }
-            if (start && end) {
-                findSpec.finishedAt = { $gte: start, $lt: end };
+            if (start) {
+                findSpec.finishedAt = findSpec.finishedAt || {};
+                findSpec.finishedAt.$gte = start;
+            }
+            if (end) {
+                findSpec.finishedAt = findSpec.finishedAt || {};
+                findSpec.finishedAt.$lt = end;
             }
 
             let games = await gameService.games.find(findSpec);

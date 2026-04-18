@@ -45,11 +45,26 @@ if (!includeSolo) {
 if (ranked) {
     findSpec.gameType = 'competitive';
 }
-if (start && end) {
-    findSpec.finishedAt = { $gte: start, $lt: end };
+if (start) {
+    findSpec.finishedAt = findSpec.finishedAt || {};
+    findSpec.finishedAt.$gte = start;
+}
+if (end) {
+    findSpec.finishedAt = findSpec.finishedAt || {};
+    findSpec.finishedAt.$lt = end;
 }
 
-console.info('Generating card play statistics...', start && end ? `from ${start.toISOString()} to ${end.toISOString()}` : 'for all dates', includeSolo ? '(including solo games)' : '(excluding solo games)', ranked ? '(ranked games only)' : '(all game types)');
+let dateMsg = '';
+if (start && end) {
+    dateMsg = `from ${start.toISOString()} to ${end.toISOString()}`;
+} else if (start) {
+    dateMsg = `from ${start.toISOString()} onwards`;
+} else if (end) {
+    dateMsg = `up to ${end.toISOString()}`;
+} else {
+    dateMsg = 'for all dates';
+}
+console.info('Generating card play statistics...', dateMsg, includeSolo ? '(including solo games)' : '(excluding solo games)', ranked ? '(ranked games only)' : '(all game types)');
 
 gameService.games
     .find(findSpec)
