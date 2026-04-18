@@ -45,11 +45,26 @@ if (!includeSolo) {
 if (ranked) {
     findSpec.gameType = 'competitive';
 }
-if (start && end) {
-    findSpec.finishedAt = { $gte: start, $lt: end };
+if (start) {
+    findSpec.finishedAt = findSpec.finishedAt || {};
+    findSpec.finishedAt.$gte = start;
+}
+if (end) {
+    findSpec.finishedAt = findSpec.finishedAt || {};
+    findSpec.finishedAt.$lt = end;
 }
 
-console.info('Generating card play statistics...', start && end ? `from ${start.toISOString()} to ${end.toISOString()}` : 'for all dates', includeSolo ? '(including solo games)' : '(excluding solo games)', ranked ? '(ranked games only)' : '(all game types)');
+let dateMsg = '';
+if (start && end) {
+    dateMsg = `from ${start.toISOString()} to ${end.toISOString()}`;
+} else if (start) {
+    dateMsg = `from ${start.toISOString()} onwards`;
+} else if (end) {
+    dateMsg = `up to ${end.toISOString()}`;
+} else {
+    dateMsg = 'for all dates';
+}
+console.info('Generating card play statistics...', dateMsg, includeSolo ? '(including solo games)' : '(excluding solo games)', ranked ? '(ranked games only)' : '(all game types)');
 
 gameService.games
     .find(findSpec)
@@ -83,10 +98,11 @@ gameService.games
                 cardName = cardName.replace(/\s+(?:attaching it to|to|and)[\s\S]*$/i, '').trim();
 
                 if (!cardStats[cardName]) {
-                    cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0 };
+                    cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0, players: new Set() };
                 }
 
                 cardStats[cardName].totalGames++;
+                cardStats[cardName].players.add(playerName);
                 if (playerName === winner) {
                     cardStats[cardName].winnerPlays++;
                 } else if (loser && playerName === loser) {
@@ -96,10 +112,11 @@ gameService.games
         });
 
         // Generate CSV
-        let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Win %\n';
+        let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Win %,Unique Players\n';
         _.each(cardStats, (stats, cardName) => {
             const winPercent = stats.totalGames > 0 ? Math.round((stats.winnerPlays / stats.totalGames) * 100) : 0;
-            csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${winPercent}\n`;
+            const uniquePlayerCount = stats.players.size;
+            csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${winPercent},${uniquePlayerCount}\n`;
         });
 
         fs.writeFileSync('card_play_stats.csv', csv);
