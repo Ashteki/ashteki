@@ -142,7 +142,7 @@ module.exports.init = function (server) {
                 let loser = isSolo ? null : players.find(p => p !== winner);
 
                 let chat = game.chat;
-                let playRegex = /^([^\s]+) plays ([^\n\r]+)/gm;
+                let playRegex = /(?:^|: )([^\s]+) plays ([^\n\r]+)/gm;
                 let match;
                 while ((match = playRegex.exec(chat)) !== null) {
                     let playerName = match[1];

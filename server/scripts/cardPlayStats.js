@@ -75,7 +75,7 @@ gameService.games
 
             let chat = game.chat;
             // Regex to find all "player plays card" patterns
-            let playRegex = /^([^\s]+) plays ([^\n\r]+)/gm;
+            let playRegex = /(?:^|: )([^\s]+) plays ([^\n\r]+)/gm;
             let match;
             while ((match = playRegex.exec(chat)) !== null) {
                 let playerName = match[1];
