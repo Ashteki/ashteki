@@ -155,10 +155,11 @@ module.exports.init = function (server) {
                     cardName = cardName.replace(/\s+(?:attaching it to|to|and)[\s\S]*$/i, '').trim();
 
                     if (!cardStats[cardName]) {
-                        cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0 };
+                        cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0, players: new Set() };
                     }
 
                     cardStats[cardName].totalGames++;
+                    cardStats[cardName].players.add(playerName);
                     if (playerName === winner) {
                         cardStats[cardName].winnerPlays++;
                     } else if (loser && playerName === loser) {
@@ -167,11 +168,12 @@ module.exports.init = function (server) {
                 }
             });
 
-            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Win %\n';
+            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Win %,Unique Players\n';
             Object.keys(cardStats).forEach((cardName) => {
                 const stats = cardStats[cardName];
                 const winPercent = stats.totalGames > 0 ? Math.round((stats.winnerPlays / stats.totalGames) * 100) : 0;
-                csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${winPercent}\n`;
+                const uniquePlayerCount = stats.players.size;
+                csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${winPercent},${uniquePlayerCount}\n`;
             });
 
             res.setHeader('Content-Type', 'text/csv');
