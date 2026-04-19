@@ -719,7 +719,10 @@ class Lobby {
         }
 
         let hasConjurations = this.checkConjurations(deck);
-        let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
+        const numDice = deck.mode === 'chimera' ? 5 : 10;
+        const legalCardCount = deck.mode === 'chimera' ? 18 : 30;
+
+        let expectedDice = numDice === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
         const countUniques = deck.cards
             .filter((c) => c.card.phoenixborn)
@@ -736,14 +739,14 @@ class Lobby {
         const maxThree = !deck.cards.some((c) => c.count > 3);
 
         const legalToPlay =
-            hasPhoenixborn && maxThree && cardCount === 30 && hasConjurations && tenDice && uniques;
+            hasPhoenixborn && maxThree && cardCount === legalCardCount && hasConjurations && expectedDice && uniques;
 
         deck.status = {
-            basicRules: hasPhoenixborn && cardCount === 30,
+            basicRules: hasPhoenixborn && cardCount === legalCardCount,
             maxThree: maxThree,
             legalToPlay: legalToPlay,
             hasConjurations: hasConjurations,
-            tenDice: tenDice,
+            tenDice: expectedDice,
             uniques: uniques,
             noUnreleasedCards: true,
             officialRole: true

@@ -59,7 +59,9 @@ function processDecks(decks, state) {
             id: card.id
         }));
         let hasConjurations = checkConjurations(deck);
-        let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
+        const legalCardCount = deck.mode === 'chimera' ? 18 : 30;
+        const numDice = deck.mode === 'chimera' ? 5 : 10;
+        let expectedDice = numDice === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
         const countUniques = deck.cards
             .filter((c) => c.card.phoenixborn)
@@ -75,16 +77,16 @@ function processDecks(decks, state) {
 
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
         const legalToPlay =
-            hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
+            hasPhoenixborn && cardCount === legalCardCount && hasConjurations && expectedDice && uniques;
         const maxThree = !deck.cards.some((c) => c.count > 3);
 
         deck.status = {
-            basicRules: hasPhoenixborn && cardCount === 30,
+            basicRules: hasPhoenixborn && cardCount === legalCardCount,
             maxThree: maxThree,
             legalToPlay: legalToPlay,
             hasConjurations: hasConjurations,
             uniques: uniques,
-            tenDice: tenDice,
+            tenDice: expectedDice,
             noUnreleasedCards: true,
             officialRole: true
         };
@@ -444,12 +446,12 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
         case 'DECK_DUPLICATED':
             var isChimera = action.response.deck.mode === 'chimera';
             if (isChimera) {
-                var myChimeraDecks = state.myChimeraDecks;
-                myChimeraDecks.unshift(action.response.deck);
+                var myChimDecks = state.myChimeraDecks;
+                myChimDecks.unshift(action.response.deck);
                 newState = Object.assign({}, state, {
                     selectedDeck: action.response.deck,
                     deckSaved: true,
-                    myChimeraDecks: myChimeraDecks
+                    myChimeraDecks: myChimDecks
                 });
                 processDecks(newState.myChimeraDecks, state);
             } else {
