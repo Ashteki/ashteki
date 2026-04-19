@@ -11,8 +11,8 @@
             "life": 30,
             "ultimate": 3,
             "imageStub": "siege-of-lordswall-1p-standard-1.jpg",
-            "ultimate-card": "lordswall-ultimate",
-            "behaviour-card": "lordswall-behaviour",
+            "ultimateCard": "lordswall-ultimate",
+            "behaviorCard": "lordswall-behaviour",
             "conjurations": [
                 {
                     "name": "Rainwalker",

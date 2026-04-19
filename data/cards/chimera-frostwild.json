@@ -11,8 +11,8 @@
             "life": 35,
             "ultimate": 3,
             "imageStub": "frostwild-scourge-1p-standard-1.jpg",
-            "ultimate-card": "scourge-ultimate",
-            "behaviour-card": "scourge-behaviour",
+            "ultimateCard": "scourge-ultimate",
+            "behaviorCard": "scourge-behaviour",
             "conjurations": [
                 {
                     "name": "Stun",

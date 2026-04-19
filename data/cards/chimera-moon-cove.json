@@ -11,8 +11,8 @@
             "life": 30,
             "ultimate": 3,
             "imageStub": "https://cdn.ashteki.com/ashes/mooncove/flood-of-moon-cove-1p-standard-1.jpg",
-            "ultimate-card": "moon-cove-ultimate",
-            "behaviour-card": "moon-cove-behaviour",
+            "ultimateCard": "moon-cove-ultimate",
+            "behaviorCard": "moon-cove-behaviour",
             "conjurations": [
                 {
                     "name": "Drowning",

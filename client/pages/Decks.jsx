@@ -7,7 +7,7 @@ import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
 import ApiStatus from '../Components/Site/ApiStatus';
 import { Decks } from '../redux/types';
-import { clearApiStatus, loadDecks, loadMyChimeraDecks, selectDeck } from '../redux/actions';
+import { clearApiStatus, loadDecks, selectDeck } from '../redux/actions';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import DeckTypeInfo from '../Components/Decks/DeckTypeInfo';
 import DeckFilter from '../Components/Decks/DeckFilter';
@@ -45,7 +45,7 @@ const DecksComponent = () => {
         oneCollectionDecks,
         ascendancyDecks
     } = useSelector((state) => ({
-        myDecks: state.cards.decks.filter((d) => d.mode !== 'chimera'),
+        myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
@@ -59,8 +59,6 @@ const DecksComponent = () => {
     const [showFaves, setShowFaves] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
 
-    const user = useSelector((state) => state.account.user);
-    const showRestricted = user?.permissions.canVerifyDecks;
     const { numDecks, selectedDeck, deckReload } = useSelector((state) => ({
         numDecks: state.cards.numDecks,
         selectedDeck: state.cards.selectedDeck,

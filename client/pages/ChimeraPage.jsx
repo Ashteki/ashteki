@@ -73,7 +73,7 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
         dispatch(loadMyChimeraDecks(pagingDetails));
         setTabIndex(tab);
 
-    }, [nameFilter, pbFilter, showFaves, dispatch, deckReload, pageNumber]);
+    }, [nameFilter, pbFilter, showFaves, dispatch, deckReload, chimeraDecks, pageNumber]);
 
     let onNameChange = debounce((event) => {
         event.preventDefault();

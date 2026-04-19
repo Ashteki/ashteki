@@ -41,6 +41,8 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
             _id: deckToCopy._id,
             name: deckToCopy.name,
             phoenixborn: deckToCopy.phoenixborn,
+            ultimate: deckToCopy.ultimate,
+            behaviour: deckToCopy.behaviour,
             cards: deckToCopy.cards,
             conjurations: deckToCopy.conjurations,
             status: deckToCopy.status,
@@ -79,17 +81,49 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
         deckToUpdate.cards.forEach((c) => addConjurations(c, deckToUpdate));
     }
 
+    function rebuildBehaviourAndUltimate(deckToUpdate) {
+        deckToUpdate.behaviour = [];
+        deckToUpdate.ultimate = [];
+
+        addBehaviour(deckToUpdate.phoenixborn[0], deckToUpdate);
+        addUltimate(deckToUpdate.phoenixborn[0], deckToUpdate);
+    }
+
+    function addBehaviour(card, deckToUpdate) {
+        if (card.behaviourCard) {
+            var c = getCard(card.behaviourCard);
+            if (c) {
+                addCard(c, c.copies, deckToUpdate);
+            }
+        }
+    }
+
+    function addUltimate(card, deckToUpdate) {
+        if (card.ultimateCard) {
+            var c = getCard(card.ultimateCard);
+            if (c) {
+                addCard(c, c.copies, deckToUpdate);
+            }
+        }
+    }
+
     function addCard(card, number, deckToUpdate, isFirstFive) {
         let phoenixborn = deckToUpdate.phoenixborn;
         let conjurations = deckToUpdate.conjurations;
         let cardsList = deckToUpdate.cards;
+        let behaviours = deckToUpdate.behaviour;
+        let ultimates = deckToUpdate.ultimate;
 
         let list;
 
         if (['Conjuration', 'Conjured Alteration Spell', 'Conjured Aspect'].includes(card.type)) {
             list = conjurations;
-        } else if (card.type === 'Phoenixborn') {
+        } else if (['Phoenixborn', 'Chimera'].includes(card.type)) {
             list = phoenixborn;
+        } else if (card.type === 'Behaviour') {
+            list = behaviours;
+        } else if (card.stub.includes('ultimate')) {
+            list = ultimates;
         } else {
             list = cardsList;
         }
@@ -107,10 +141,6 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
             });
         }
         addConjurations(card, deckToUpdate);
-
-        if (list === phoenixborn) {
-            // addChimera
-        }
     }
 
     function parseMagic(input) {
@@ -225,7 +255,7 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
         setPbid(pb.id);
 
         if (pb.type === 'Chimera') {
-
+            rebuildBehaviourAndUltimate(newDeck);
         }
         rebuildConjurations(newDeck);
         setDeckState(newDeck);
@@ -311,6 +341,7 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
 
     function getCard(searchText) {
         const exactMatch = getAllCards().find((card) =>
+            card.stub === searchText ||
             card.name.toLowerCase() === searchText.toLowerCase()
         );
 

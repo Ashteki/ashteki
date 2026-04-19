@@ -11,8 +11,8 @@
             "life": 30,
             "ultimate": 3,
             "imageStub": "spawn-of-shadowreck-1p-standard-1.jpg",
-            "ultimate-card": "shadowreck-ultimate",
-            "behaviour-card": "shadowreck-behaviour",
+            "ultimateCard": "shadowreck-ultimate",
+            "behaviorCard": "shadowreck-behaviour",
             "conjurations": [
                 {
                     "name": "Webbed",

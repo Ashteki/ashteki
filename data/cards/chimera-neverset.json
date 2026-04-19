@@ -11,8 +11,8 @@
             "life": 30,
             "ultimate": 3,
             "imageStub": "blight-of-neverset-1p-standard-1.jpg",
-            "ultimate-card": "neverset-ultimate",
-            "behaviour-card": "neverset-behaviour",
+            "ultimateCard": "neverset-ultimate",
+            "behaviorCard": "neverset-behaviour",
             "conjurations": [
                 {
                     "name": "Scarlet Seed",

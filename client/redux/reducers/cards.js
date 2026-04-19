@@ -26,6 +26,20 @@ function processDecks(decks, state) {
         }));
         let hasPhoenixborn = deck.phoenixborn.length === 1;
 
+        deck.behaviour = deck.behaviour?.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id,
+            conjurations: card.conjurations
+        }));
+
+        deck.ultimate = deck.ultimate?.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id,
+            conjurations: card.conjurations
+        }));
+
         deck.cards = deck.cards.map((card) => {
             const c = Object.assign({}, state.cards[card.id]);
             return {
@@ -99,6 +113,12 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
             if (decks.length > 0) {
                 processDecks(decks, newState);
                 newState.decks = decks;
+            }
+
+            var myChimeraDecks = state.myChimeraDecks;
+            if (myChimeraDecks.length > 0) {
+                processDecks(myChimeraDecks, newState);
+                newState.myChimeraDecks = myChimeraDecks;
             }
 
             var precons = state.standaloneDecks;
@@ -452,11 +472,11 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
         case 'DECK_SAVED':
             newState = Object.assign({}, state, {
                 deckSaved: true,
-                decks: []
+                decks: [],
+                myChimeraDecks: []
             });
 
             return newState;
-
         case Decks.ImportDeck:
             newState = Object.assign({}, state, {
                 deckSaved: false

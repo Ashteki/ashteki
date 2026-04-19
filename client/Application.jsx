@@ -86,15 +86,6 @@ function Application() {
 
         dispatch(actions.loadCards());
         dispatch(actions.loadAllPreconsDecks());
-        // dispatch(actions.loadStandaloneDecks());
-        // dispatch(actions.loadAdventuringPartyDecks());
-        // dispatch(actions.loadFirstAdventureDecks());
-        // dispatch(actions.loadChimeraDecks());
-        // dispatch(actions.loadPveDecks());
-        // dispatch(actions.loadDualDuelDecks());
-        // dispatch(actions.loadOneCollectionDecks());
-        // dispatch(actions.loadAscendancyDecks());
-        // dispatch(actions.getAllPairings());
 
         $(document).ajaxError((event, xhr) => {
             if (xhr.status === 403) {

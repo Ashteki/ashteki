@@ -31,6 +31,20 @@ const DeckHeader = ({ deck, onDieHover, allowFave }) => {
                     // onDieClick={onDieClick}
                     onDieHover={onDieHover}
                 />
+                {deck?.behaviour && (
+                    <div className='deck-pb-name'>
+                        <Zoomable card={deck?.behaviour[0]?.card}>
+                            {deck?.behaviour[0]?.card?.name}
+                        </Zoomable>
+                    </div>
+                )}
+                {deck?.ultimate && (
+                    <div className='deck-pb-name'>
+                        <Zoomable card={deck?.ultimate[0]?.card}>
+                            {deck?.ultimate[0]?.card?.name}
+                        </Zoomable>
+                    </div>
+                )}
                 {allowFave && (
                     <a href='#' className='fave-icon'>
                         {deck?.favourite ? (
