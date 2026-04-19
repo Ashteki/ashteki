@@ -89,6 +89,7 @@ gameService.games
             let loser = isSolo ? null : players.find(p => p !== winner);
 
             let chat = game.chat;
+            let cardsSeen = {};
             // Regex to find all "player plays card" patterns
             let playRegex = /(?:^|: )([^\s]+) plays ([^\n\r]+)/gm;
             let match;
@@ -97,18 +98,36 @@ gameService.games
                 let cardName = match[2].trim();
                 cardName = cardName.replace(/\s+(?:attaching it to|to|and)[\s\S]*$/i, '').trim();
 
+                if (!cardsSeen[cardName]) {
+                    cardsSeen[cardName] = {
+                        winnerPlayed: false,
+                        loserPlayed: false,
+                        players: new Set()
+                    };
+                }
+
+                cardsSeen[cardName].players.add(playerName);
+                if (playerName === winner) {
+                    cardsSeen[cardName].winnerPlayed = true;
+                } else if (loser && playerName === loser) {
+                    cardsSeen[cardName].loserPlayed = true;
+                }
+            }
+
+            Object.keys(cardsSeen).forEach((cardName) => {
                 if (!cardStats[cardName]) {
                     cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0, players: new Set() };
                 }
 
                 cardStats[cardName].totalGames++;
-                cardStats[cardName].players.add(playerName);
-                if (playerName === winner) {
+                if (cardsSeen[cardName].winnerPlayed) {
                     cardStats[cardName].winnerPlays++;
-                } else if (loser && playerName === loser) {
+                }
+                if (cardsSeen[cardName].loserPlayed) {
                     cardStats[cardName].loserPlays++;
                 }
-            }
+                cardsSeen[cardName].players.forEach((playerName) => cardStats[cardName].players.add(playerName));
+            });
         });
 
         // Generate CSV
