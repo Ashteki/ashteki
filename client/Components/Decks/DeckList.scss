@@ -50,7 +50,7 @@
     }
 
     .decklist-card {
-        background-color: unset;
+        // background-color: unset;
         margin: unset;
         border-bottom: 1px solid grey !important;
 
@@ -58,6 +58,10 @@
             .card-header {
                 background-color: rgba($primary, 0.7);
             }
+        }
+
+        &.invalid {
+            background-color: rgba($danger, 0.6);
         }
 
         .die {
@@ -99,6 +103,15 @@
         // }
     }
 
+}
+
+.modal-body .decklist-card {
+    &.invalid {
+        background-color: rgba($danger, 0.8);
+        cursor: not-allowed;
+    }
+
+    cursor:pointer;
 }
 
 .pager {

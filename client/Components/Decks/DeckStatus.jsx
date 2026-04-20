@@ -17,25 +17,12 @@ const DeckStatus = ({ status, gameFormat }) => {
     const validFormat = formatCheck();
     let statusName;
     let className = classNames('deck-status', {
-        invalid:
-            !status.basicRules ||
-            !status.maxThree ||
-            !status.hasConjurations ||
-            !status.tenDice ||
-            !status.uniques ||
-            !validFormat,
+        invalid: !status.legalToPlay || !validFormat,
         conjurations: !status.hasConjurations,
         valid: status.basicRules && status.hasConjurations && status.tenDice && status.uniques
     });
 
-    if (
-        !status.basicRules ||
-        !status.maxThree ||
-        !status.hasConjurations ||
-        !status.tenDice ||
-        !status.uniques ||
-        !validFormat
-    ) {
+    if (!status.legalToPlay || !validFormat) {
         statusName = t('Invalid');
     } else {
         statusName = t('Valid');

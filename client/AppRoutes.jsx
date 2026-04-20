@@ -78,7 +78,10 @@ const AppRoutes = ({ currentGame, user }) => {
             <Route path='/decks/add' element={<AddDeck isChimera={getParam('chimera')} />} />
             <Route path='/decks/edit' element={<EditDeck deckId={getParam('deckId')} />} />
             <Route path='/decks/import' element={<ImportDeck />} />
-            <Route path='/decks/chimera' element={<ChimeraPage />} />
+            <Route
+                path='/decks/chimera'
+                element={requirePermission('isSupporter', <ChimeraPage />)}
+            />
 
             <Route path='/faq' element={<FAQ />} />
             <Route path='/forgot' element={<ForgotPassword />} />

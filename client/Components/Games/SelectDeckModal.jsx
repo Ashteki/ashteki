@@ -157,9 +157,13 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         deckList = (
             <Tabs>
                 <TabList>
-                    <Tab>My Decks</Tab>
                     <Tab>Chimera Precons</Tab>
+                    <Tab>My Decks</Tab>
                 </TabList>
+                <TabPanel>
+                    {/* <Button onClick={() => onChooseForMe(11)}>Choose for me</Button> */}
+                    <DeckGrid decks={chimeraDecks} onDeckSelected={onDeckSelected} />
+                </TabPanel>
                 <TabPanel>
                     {/* <Button onClick={() => onChooseForMe(0)}>Choose for me</Button> */}
                     <DeckFilter
@@ -170,10 +174,6 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     />
 
                     <DeckList onDeckSelected={onDeckSelected} decks={myChimeraDecks} showWinRate={true} />
-                </TabPanel>
-                <TabPanel>
-                    {/* <Button onClick={() => onChooseForMe(11)}>Choose for me</Button> */}
-                    <DeckList decks={chimeraDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
 
             </Tabs>

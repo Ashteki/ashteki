@@ -14,6 +14,7 @@ import DeckFilter from '../Components/Decks/DeckFilter';
 import debounce from 'lodash.debounce';
 import './Decks.scss';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
+import DeckGrid from '../Components/Decks/DeckGrid';
 
 const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
     const { t } = useTranslation();
@@ -136,7 +137,7 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
                         </Row>
                         <Row>
                             <Col lg={6}>
-                                <DeckList decks={myChimeraDecks} showWinRate={true} />
+                                <DeckList decks={myChimeraDecks} showWinRate={true} allowInvalidSelection={true} />
                                 {(myChimeraDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
                                         <PaginationControl
@@ -163,7 +164,8 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
                         <Row>
                             <Col lg={6}>
                                 <DeckTypeInfo deckType='precon' />
-                                <DeckList decks={chimeraDecks} />
+                                <div className='lobby-card'>
+                                    <DeckGrid decks={chimeraDecks} /></div>
                             </Col>
                             <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>

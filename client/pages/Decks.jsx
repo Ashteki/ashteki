@@ -166,7 +166,7 @@ const DecksComponent = () => {
                         </Row>
                         <Row>
                             <Col lg={6}>
-                                <DeckList decks={myDecks} showWinRate={true} />
+                                <DeckList decks={myDecks} showWinRate={true} allowInvalidSelection={true} />
                                 {(myDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
                                         <PaginationControl
