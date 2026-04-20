@@ -10,7 +10,19 @@
             "threat": 4,
             "life": 30,
             "ultimate": 3,
-            "imageStub": "blight-of-neverset-1p-standard-1.jpg"
+            "imageStub": "blight-of-neverset-1p-standard-1.jpg",
+            "ultimateCard": "neverset-ultimate",
+            "behaviorCard": "neverset-behaviour",
+            "conjurations": [
+                {
+                    "name": "Scarlet Seed",
+                    "stub": "scarlet-seed"
+                },
+                {
+                    "name": "Bleed",
+                    "stub": "bleed"
+                }
+            ]
         },
         {
             "name": "Blight of Neverset Ultimate",
@@ -32,7 +44,13 @@
             "target": "right",
             "attack": 1,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Scarlet Seed",
+                    "stub": "scarlet-seed"
+                }
+            ]
         },
         {
             "name": "Sowing Strike",
@@ -42,7 +60,13 @@
             "target": "jaw",
             "attack": 3,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Scarlet Seed",
+                    "stub": "scarlet-seed"
+                }
+            ]
         },
         {
             "name": "Scarlet Seed",
@@ -104,7 +128,13 @@
             "target": "right",
             "attack": 2,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Bleed",
+                    "stub": "bleed"
+                }
+            ]
         },
         {
             "name": "Bleed",

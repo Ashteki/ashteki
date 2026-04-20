@@ -60,7 +60,9 @@ class AshesCardService {
                             copies: card.copies,
                             deckType: card.deckType,
                             dice: card.dice,
-                            altDice: card.altDice
+                            altDice: card.altDice,
+                            behaviourCard: card.behaviorCard,
+                            ultimateCard: card.ultimateCard
                         };
                     } else {
                         cards[card.stub] = card;

@@ -122,7 +122,7 @@ export function setFavourite(deck, value) {
 }
 
 function getDeckJson(deck) {
-    return JSON.stringify({
+    const saveDeck = {
         deckName: deck.name,
         phoenixborn: formatCards(deck.phoenixborn),
         cards: formatCards(deck.cards),
@@ -131,7 +131,12 @@ function getDeckJson(deck) {
         notes: deck.notes,
         mode: deck.mode,
         listClass: deck.listClass
-    });
+    };
+    if (deck.ultimate) {
+        saveDeck.ultimate = formatCards(deck.ultimate);
+        saveDeck.behaviour = formatCards(deck.behaviour);
+    }
+    return JSON.stringify(saveDeck);
 }
 
 export function saveDeck(deck) {

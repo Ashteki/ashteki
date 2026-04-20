@@ -33,6 +33,36 @@
         width: 80px;
         min-width: 80px;
         background-position-y: 25% !important;
+
+        &.siege-of-lordswall {
+            background-position-y: 36% !important;
+            background-size: 170%;
+        }
+
+        &.frostwild-scourge {
+            background-position-y: 35% !important;
+            background-size: 180%;
+        }
+
+        &.blight-of-neverset {
+            background-position: 50% 35% !important;
+            background-size: 180%;
+        }
+
+        &.spawn-of-shadowreck {
+            background-position-y: 42% !important;
+            background-size: 180%;
+        }
+
+        &.flood-of-moon-cove {
+            background-position: 60% 35% !important;
+            background-size: 180%;
+        }
+
+        &.corpse-of-viros {
+            background-position: 60% 35% !important;
+            background-size: 180%;
+        }
     }
 
     .deck-pb-name {
