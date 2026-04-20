@@ -137,7 +137,7 @@ const ChimeraPage = ({ onDeckSelected, tab = 0 }) => {
                         </Row>
                         <Row>
                             <Col lg={6}>
-                                <DeckList decks={myChimeraDecks} showWinRate={true} allowInvalidSelection={true} />
+                                <DeckList decks={myChimeraDecks} allowInvalidSelection={true} />
                                 {(myChimeraDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
                                         <PaginationControl
