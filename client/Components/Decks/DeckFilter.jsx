@@ -29,6 +29,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, m
         }
     };
 
+    const allText = mode === 'chimera' ? 'All Chimera' : 'All Phoenixborn';
     return (
         <div>
             <Form onSubmit={(event) => event.preventDefault()}>
@@ -55,7 +56,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, m
                             placeholder={'Filter by PB'}
                         >
                             <option key='-1' value=''>
-                                All Phoenixborn
+                                {allText}
                             </option>
                             {phoenixbornCards.map((c, index) => {
                                 return (
