@@ -10,7 +10,19 @@
             "threat": 4,
             "life": 35,
             "ultimate": 3,
-            "imageStub": "frostwild-scourge-1p-standard-1.jpg"
+            "imageStub": "frostwild-scourge-1p-standard-1.jpg",
+            "ultimateCard": "scourge-ultimate",
+            "behaviorCard": "scourge-behaviour",
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                },
+                {
+                    "name": "Vigor",
+                    "stub": "vigor"
+                }
+            ]
         },
         {
             "name": "Frostwild Scourge Ultimate",
@@ -32,7 +44,13 @@
             "target": "right",
             "attack": 2,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                }
+            ]
         },
         {
             "name": "Shockwave",
@@ -42,7 +60,13 @@
             "target": "jaw",
             "attack": 3,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                }
+            ]
         },
         {
             "name": "Bonechill Wind",
@@ -93,13 +117,15 @@
             "placement": [
                 "Unit",
                 "Phoenixborn"
-            ]
+            ],
+            "copies": 6
         },
         {
             "name": "Vigor",
             "stub": "vigor",
             "type": "Conjured Alteration Spell",
-            "placement": "Unit"
+            "placement": "Unit",
+            "copies": 6
         },
         {
             "name": "Giant's Might",
@@ -109,7 +135,13 @@
             "target": "jaw",
             "attack": 1,
             "life": 3,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Vigor",
+                    "stub": "vigor"
+                }
+            ]
         },
         {
             "name": "Warcry",
@@ -119,7 +151,13 @@
             "target": "jaw",
             "attack": 1,
             "life": 4,
-            "blood": 2
+            "blood": 2,
+            "conjurations": [
+                {
+                    "name": "Vigor",
+                    "stub": "vigor"
+                }
+            ]
         },
         {
             "name": "Sweeping Strike",
@@ -139,7 +177,13 @@
             "target": "left",
             "attack": 3,
             "life": 1,
-            "blood": 1
+            "blood": 1,
+            "conjurations": [
+                {
+                    "name": "Stun",
+                    "stub": "stun"
+                }
+            ]
         },
         {
             "name": "Charge Fist",

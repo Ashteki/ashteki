@@ -45,7 +45,7 @@ const DecksComponent = () => {
         oneCollectionDecks,
         ascendancyDecks
     } = useSelector((state) => ({
-        myDecks: state.cards.decks.filter((d) => d.mode !== 'chimera'),
+        myDecks: state.cards.decks,
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
@@ -59,8 +59,6 @@ const DecksComponent = () => {
     const [showFaves, setShowFaves] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
 
-    const user = useSelector((state) => state.account.user);
-    const showRestricted = user?.permissions.canVerifyDecks;
     const { numDecks, selectedDeck, deckReload } = useSelector((state) => ({
         numDecks: state.cards.numDecks,
         selectedDeck: state.cards.selectedDeck,
@@ -168,7 +166,7 @@ const DecksComponent = () => {
                         </Row>
                         <Row>
                             <Col lg={6}>
-                                <DeckList decks={myDecks} showWinRate={true} />
+                                <DeckList decks={myDecks} showWinRate={true} allowInvalidSelection={true} />
                                 {(myDecks?.length > 0) && (
                                     <div className='pagination-wrapper'>
                                         <PaginationControl

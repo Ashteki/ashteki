@@ -7,7 +7,7 @@ import { setFavourite } from '../../redux/actions';
 import Zoomable from './Zoomable';
 import DeckDice from './DeckDice';
 
-const DeckHeader = ({ deck, onDieHover }) => {
+const DeckHeader = ({ deck, onDieHover, allowFave }) => {
     const dispatch = useDispatch();
 
     const handleFavouriteClick = () => {
@@ -27,25 +27,27 @@ const DeckHeader = ({ deck, onDieHover }) => {
                 <DeckDice
                     size='large'
                     deck={deck}
-                    slotCount={10}
+                    slotCount={deck.mode === 'chimera' ? 5 : 10}
                     // onDieClick={onDieClick}
                     onDieHover={onDieHover}
                 />
-                <a href='#' className='fave-icon'>
-                    {deck?.favourite ? (
-                        <FontAwesomeIcon
-                            icon={faHeart}
-                            title='Remove from favourites'
-                            onClick={handleFavouriteClick}
-                        />
-                    ) : (
-                        <FontAwesomeIcon
-                            icon={faRegHeart}
-                            title='Add to favourites'
-                            onClick={handleFavouriteClick}
-                        />
-                    )}
-                </a>
+                {allowFave && (
+                    <a href='#' className='fave-icon'>
+                        {deck?.favourite ? (
+                            <FontAwesomeIcon
+                                icon={faHeart}
+                                title='Remove from favourites'
+                                onClick={handleFavouriteClick}
+                            />
+                        ) : (
+                            <FontAwesomeIcon
+                                icon={faRegHeart}
+                                title='Add to favourites'
+                                onClick={handleFavouriteClick}
+                            />
+                        )}
+                    </a>
+                )}
             </div>
         </div>
     );

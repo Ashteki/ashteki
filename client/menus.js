@@ -15,7 +15,12 @@ export const LeftMenu = [
     { path: '/', title: 'Play' },
     { path: '/cards', title: 'Cards', showOnlyWhenLoggedIn: false },
     { path: '/decks', title: 'Decks', showOnlyWhenLoggedIn: true },
-    // { path: '/decks/chimera', title: 'Chimera', showOnlyWhenLoggedIn: true },
+    {
+        path: '/decks/chimera',
+        title: 'Chimera',
+        showOnlyWhenLoggedIn: true,
+        permission: 'isSupporter'
+    },
     { path: '/results', title: 'Results', showOnlyWhenLoggedIn: true },
     { path: '/faq', title: 'Help' },
     {

@@ -11,7 +11,7 @@ const DeckStatusSummary = ({ status, showFormat }) => {
         { title: 'Basic rules (deck size)', value: basicRules },
         { title: 'Max 3x each card', value: maxThree },
         { title: 'Conjurations included', value: hasConjurations },
-        { title: 'Ten dice', value: tenDice },
+        { title: 'Dice count', value: tenDice },
         { title: 'Phoenixborn unique cards', value: uniques }
     ];
     if (showFormat) {

@@ -19,9 +19,13 @@ function EditDeck({ deckId }) {
 
     useEffect(() => {
         if (deckSaved) {
-            navigate('/decks');
+            if (isChimera) {
+                navigate('/decks/chimera');
+            } else {
+                navigate('/decks');
+            }
         }
-    }, [deckSaved, navigate]);
+    }, [deckSaved, navigate, isChimera]);
 
     const onSaveDeck = (deckToSave) => {
         dispatch(saveDeck(deckToSave));

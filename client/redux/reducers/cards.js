@@ -26,6 +26,20 @@ function processDecks(decks, state) {
         }));
         let hasPhoenixborn = deck.phoenixborn.length === 1;
 
+        deck.behaviour = deck.behaviour?.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id,
+            conjurations: card.conjurations
+        }));
+
+        deck.ultimate = deck.ultimate?.map((card) => ({
+            count: card.count,
+            card: Object.assign({}, state.cards[card.id]),
+            id: card.id,
+            conjurations: card.conjurations
+        }));
+
         deck.cards = deck.cards.map((card) => {
             const c = Object.assign({}, state.cards[card.id]);
             return {
@@ -45,7 +59,9 @@ function processDecks(decks, state) {
             id: card.id
         }));
         let hasConjurations = checkConjurations(deck);
-        let tenDice = 10 === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
+        const legalCardCount = deck.mode === 'chimera' ? 18 : 30;
+        const numDice = deck.mode === 'chimera' ? 5 : 10;
+        let expectedDice = numDice === deck.dicepool.reduce((acc, d) => acc + d.count, 0);
 
         const countUniques = deck.cards
             .filter((c) => c.card.phoenixborn)
@@ -61,16 +77,16 @@ function processDecks(decks, state) {
 
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
         const legalToPlay =
-            hasPhoenixborn && cardCount === 30 && hasConjurations && tenDice && uniques;
+            hasPhoenixborn && cardCount === legalCardCount && hasConjurations && expectedDice && uniques;
         const maxThree = !deck.cards.some((c) => c.count > 3);
 
         deck.status = {
-            basicRules: hasPhoenixborn && cardCount === 30,
+            basicRules: hasPhoenixborn && cardCount === legalCardCount,
             maxThree: maxThree,
             legalToPlay: legalToPlay,
             hasConjurations: hasConjurations,
             uniques: uniques,
-            tenDice: tenDice,
+            tenDice: expectedDice,
             noUnreleasedCards: true,
             officialRole: true
         };
@@ -99,6 +115,12 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
             if (decks.length > 0) {
                 processDecks(decks, newState);
                 newState.decks = decks;
+            }
+
+            var myChimeraDecks = state.myChimeraDecks;
+            if (myChimeraDecks.length > 0) {
+                processDecks(myChimeraDecks, newState);
+                newState.myChimeraDecks = myChimeraDecks;
             }
 
             var precons = state.standaloneDecks;
@@ -422,15 +444,25 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
 
             return newState;
         case 'DECK_DUPLICATED':
-            decks = state.decks;
-            decks.unshift(action.response.deck);
-            newState = Object.assign({}, state, {
-                selectedDeck: action.response.deck,
-                deckSaved: true,
-                decks: decks
-            });
-
-            processDecks(newState.decks, state);
+            var isChimera = action.response.deck.mode === 'chimera';
+            if (isChimera) {
+                var myChimDecks = state.myChimeraDecks;
+                myChimDecks.unshift(action.response.deck);
+                newState = Object.assign({}, state, {
+                    selectedDeck: action.response.deck,
+                    deckSaved: true,
+                    myChimeraDecks: myChimDecks
+                });
+                processDecks(newState.myChimeraDecks, state);
+            } else {
+                var myDecks = [action.response.deck, ...state.decks];
+                newState = Object.assign({}, state, {
+                    selectedDeck: action.response.deck,
+                    deckSaved: true,
+                    decks: myDecks
+                });
+                processDecks(newState.decks, state);
+            }
 
             return newState;
         case 'SAVE_DECK':
@@ -442,11 +474,11 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
         case 'DECK_SAVED':
             newState = Object.assign({}, state, {
                 deckSaved: true,
-                decks: []
+                decks: [],
+                myChimeraDecks: []
             });
 
             return newState;
-
         case Decks.ImportDeck:
             newState = Object.assign({}, state, {
                 deckSaved: false
@@ -478,11 +510,19 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
                 deckDeleted: true
             });
 
+            var chimeraDeleted = !!state.myChimeraDecks.find(d => d._id === action.response.deckId);
             newState.decks = newState.decks.filter((deck) => {
                 return deck._id !== action.response.deckId;
             });
+            newState.myChimeraDecks = newState.myChimeraDecks.filter((deck) => {
+                return deck._id !== action.response.deckId;
+            });
 
-            newState.selectedDeck = newState.decks[0];
+            if (chimeraDeleted) {
+                newState.selectedDeck = newState.myChimeraDecks[0];
+            } else {
+                newState.selectedDeck = newState.decks[0];
+            }
 
             return newState;
         case 'CLEAR_DECK_STATUS':

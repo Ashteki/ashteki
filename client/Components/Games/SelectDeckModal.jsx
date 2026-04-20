@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './SelectDeckModal.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadDecks } from '../../redux/actions/deck.js';
+import { loadDecks, loadMyChimeraDecks } from '../../redux/actions/deck.js';
 import DeckFilter from '../Decks/DeckFilter.jsx';
 import debounce from 'lodash.debounce';
 import { PatreonStatus } from '../../types/patreon.js';
@@ -18,6 +18,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
     const {
         myDecks,
+        myChimeraDecks,
         standaloneDecks,
         adventuringPartyDecks,
         firstAdventureDecks,
@@ -28,6 +29,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         ascendancyDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks,
+        myChimeraDecks: state.cards.myChimeraDecks,
         standaloneDecks: state.cards.standaloneDecks,
         adventuringPartyDecks: state.cards.adventuringPartyDecks,
         firstAdventureDecks: state.cards.firstAdventureDecks,
@@ -58,6 +60,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         };
 
         dispatch(loadDecks(pagingDetails));
+        dispatch(loadMyChimeraDecks(pagingDetails));
     }, [nameFilter, pbFilter, showFaves, dispatch]);
 
     let onNameChange = debounce((event) => {
@@ -148,6 +151,31 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Button onClick={() => onChooseForMe(6)}>Choose for me</Button>
                     <DeckList decks={pveDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
+            </Tabs>
+        );
+    } else if (gameFormat === 'solo') {
+        deckList = (
+            <Tabs>
+                <TabList>
+                    <Tab>Chimera Precons</Tab>
+                    <Tab>My Decks</Tab>
+                </TabList>
+                <TabPanel>
+                    {/* <Button onClick={() => onChooseForMe(11)}>Choose for me</Button> */}
+                    <DeckGrid decks={chimeraDecks} onDeckSelected={onDeckSelected} />
+                </TabPanel>
+                <TabPanel>
+                    {/* <Button onClick={() => onChooseForMe(0)}>Choose for me</Button> */}
+                    <DeckFilter
+                        onNameChange={onNameChange}
+                        onPbChange={onPbChange}
+                        handleFaveChange={handleFaveChange}
+                        showButtons={false}
+                    />
+
+                    <DeckList onDeckSelected={onDeckSelected} decks={myChimeraDecks} showWinRate={true} />
+                </TabPanel>
+
             </Tabs>
         );
     } else {
