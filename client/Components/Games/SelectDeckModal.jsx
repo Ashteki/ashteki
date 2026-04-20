@@ -173,7 +173,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                         showButtons={false}
                     />
 
-                    <DeckList onDeckSelected={onDeckSelected} decks={myChimeraDecks} showWinRate={true} />
+                    <DeckList onDeckSelected={onDeckSelected} decks={myChimeraDecks} />
                 </TabPanel>
 
             </Tabs>
