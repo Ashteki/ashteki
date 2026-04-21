@@ -417,15 +417,16 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
         (c) => (isChimera && c.type === 'Chimera') || (!isChimera && c.type == 'Phoenixborn')
     );
     phoenixbornCards.sort((a, b) => (a.name < b.name ? -1 : 1));
-
+    const conjurationTypes = ['Conjuration', 'Conjured Alteration Spell', 'Conjured Aspect'];
     const lookupCards = getAllCards().filter(
         (c) =>
-            (isChimera &&
+            !conjurationTypes.includes(c.type) &&
+            ((isChimera &&
                 c.deckType === 'chimera' &&
                 !c.name.includes('Ultimate') &&
                 !c.name.includes('Behaviour') &&
                 c.type !== 'Chimera') ||
-            (!isChimera && c.deckType !== 'chimera')
+                (!isChimera && c.deckType !== 'chimera'))
     );
 
     return (
