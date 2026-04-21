@@ -13,7 +13,7 @@ function EditDeck({ deckId }) {
     const navigate = useNavigate();
     const apiError = useSelector(state => state.api.message);
     const deck = useSelector(state => state.cards.selectedDeck);
-    const isChimera = deck.mode === 'chimera';
+    const isChimera = deck?.mode === 'chimera';
     const deckSaved = useSelector(state => state.cards.deckSaved);
     const loading = useSelector(state => state.api.loading);
 

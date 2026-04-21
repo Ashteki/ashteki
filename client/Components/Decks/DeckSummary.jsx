@@ -18,9 +18,10 @@ import { toastr } from 'react-redux-toastr';
 const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magicHover }) => {
     const dispatch = useDispatch();
 
-    const [radioValue, setRadioValue] = useState(false);
+    const [showCardPictures, setShowCardPictures] = useState(false);
 
     if (!deck) return null;
+    const isChimera = deck.mode === 'chimera';
 
     const handleEditClick = () => {
         if (onEdit) {
@@ -68,13 +69,13 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
     return (
         <Col className='deck-summary'>
             <div className='deck-cards-header'>
-                <ToggleButtonGroup name="radio" value={radioValue}>
+                <ToggleButtonGroup name="radio" value={showCardPictures}>
                     <ToggleButton
                         key={'rad-0'}
                         id={`radio-0`}
                         type="radio"
                         value={false}
-                        onChange={(e) => setRadioValue(false)}
+                        onChange={(e) => setShowCardPictures(false)}
                         className='mini'
                     >
                         <FontAwesomeIcon icon={faList} title='Show menu' />
@@ -84,7 +85,7 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
                         id={`radio-1`}
                         type="radio"
                         value={true}
-                        onChange={(e) => setRadioValue(true)}
+                        onChange={(e) => setShowCardPictures(true)}
                         className='mini'
                     >
                         <FontAwesomeIcon icon={faImage} title='Show menu' />
@@ -92,7 +93,7 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
                 </ToggleButtonGroup>
                 <div className='deck-header-buttons'>
                     <div className='total-box'>{cardCount}</div>
-                    {deck && <DeckStatus status={deck.status} />}
+                    {deck && <DeckStatus deck={deck} status={deck.status} />}
                     {deck && (
                         <Dropdown title='edit' className='deck-edit-dd'>
                             <Dropdown.Toggle
@@ -151,10 +152,9 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
                         </div>
                     )}
                 </div>
-
             </div>
             <div className='deck-cards'>
-                {radioValue ? (
+                {showCardPictures ? (
                     <>
                         {deck.mode !== 'chimera' && (
                             <>
