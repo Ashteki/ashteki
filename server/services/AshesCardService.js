@@ -62,7 +62,8 @@ class AshesCardService {
                             dice: card.dice,
                             altDice: card.altDice,
                             behaviourCard: card.behaviorCard,
-                            ultimateCard: card.ultimateCard
+                            ultimateCard: card.ultimateCard,
+                            blood: card.blood
                         };
                     } else {
                         cards[card.stub] = card;

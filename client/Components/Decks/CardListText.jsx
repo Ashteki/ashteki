@@ -19,8 +19,8 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
         deckCards.forEach((card) => {
             let type = card.card.type;
 
-            if (type === 'character' || type === 'event') {
-                type = card.card.side + ` ${type}`;
+            if (card.card.blood) {
+                type = `${card.card.blood} Blood ${type}`;
             }
             if (!groupedCards[type]) {
                 groupedCards[type] = [card];
@@ -29,7 +29,18 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
             }
         });
 
-        const keys = ['Ready Spell', 'Ally', 'Alteration Spell', 'Action Spell', 'Reaction Spell', 'Conjuration', 'Aspect', 'Conjured Alteration Spell', 'Conjured Aspect']
+        const keys = [
+            'Ready Spell',
+            'Ally',
+            'Alteration Spell',
+            'Action Spell',
+            'Reaction Spell',
+            'Conjuration',
+            '1 Blood Aspect',
+            '2 Blood Aspect',
+            'Conjured Alteration Spell',
+            'Conjured Aspect'
+        ];
         for (let key of keys) {
             if (!groupedCards[key] || groupedCards[key].length < 1) {
                 continue;

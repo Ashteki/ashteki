@@ -49,7 +49,8 @@ function processDecks(decks, state) {
                 conjurations: c.conjurations,
                 phoenixborn: c.phoenixborn,
                 ff: card.ff,
-                imageStub: card.imageStub
+                imageStub: card.imageStub,
+                blood: card.blood
             };
         });
 
@@ -76,9 +77,21 @@ function processDecks(decks, state) {
         let uniques = !hasPhoenixborn || validUniques;
 
         let cardCount = deck.cards.reduce((acc, card) => acc + card.count, 0);
-        const legalToPlay =
-            hasPhoenixborn && cardCount === legalCardCount && hasConjurations && expectedDice && uniques;
         const maxThree = !deck.cards.some((c) => c.count > 3);
+        let aspectCheck = true;
+        if (deck.mode === 'chimera') {
+            const oneCount = deck.cards.filter(c => c.card.blood === 1).reduce((acc, c) => acc + c.count, 0);
+            const twoCount = deck.cards.filter(c => c.card.blood === 2).reduce((acc, c) => acc + c.count, 0);
+            aspectCheck = oneCount === 9 && twoCount === 9;
+        }
+        const legalToPlay =
+            hasPhoenixborn &&
+            cardCount === legalCardCount &&
+            hasConjurations &&
+            maxThree &&
+            aspectCheck &&
+            expectedDice &&
+            uniques;
 
         deck.status = {
             basicRules: hasPhoenixborn && cardCount === legalCardCount,
@@ -87,8 +100,7 @@ function processDecks(decks, state) {
             hasConjurations: hasConjurations,
             uniques: uniques,
             tenDice: expectedDice,
-            noUnreleasedCards: true,
-            officialRole: true
+            aspectCheck: aspectCheck
         };
     }
 }

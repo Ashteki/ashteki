@@ -10,16 +10,8 @@
         color: $success;
     }
 
-    .popular {
-        color: $warning;
-    }
-
     .used {
         color: $warning;
-    }
-
-    .notorious {
-        color: $danger;
     }
 
     .conjurations {
@@ -27,6 +19,6 @@
     }
 
     .invalid {
-        color: $danger;
+        color: rgb(228, 28, 28);
     }
 }

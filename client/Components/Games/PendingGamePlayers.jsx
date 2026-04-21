@@ -114,6 +114,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
 
                     status = !(currentGame.solo && !isMe) && (
                         <DeckStatus
+                            deck={player.deck}
                             status={player.deck.status}
                             gameFormat={currentGame.gameFormat}
                         />

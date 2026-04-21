@@ -737,9 +737,21 @@ class Lobby {
         let uniques = !hasPhoenixborn || validUniques;
 
         const maxThree = !deck.cards.some((c) => c.count > 3);
+        let aspectCheck = true;
+        if (deck.mode === 'chimera') {
+            const oneCount = deck.cards.filter(c => c.card.blood === 1).reduce((acc, c) => acc + c.count, 0);
+            const twoCount = deck.cards.filter(c => c.card.blood === 2).reduce((acc, c) => acc + c.count, 0);
+            aspectCheck = oneCount === 9 && twoCount === 9;
+        }
 
         const legalToPlay =
-            hasPhoenixborn && maxThree && cardCount === legalCardCount && hasConjurations && expectedDice && uniques;
+            hasPhoenixborn &&
+            maxThree &&
+            cardCount === legalCardCount &&
+            hasConjurations &&
+            expectedDice &&
+            uniques &&
+            aspectCheck;
 
         deck.status = {
             basicRules: hasPhoenixborn && cardCount === legalCardCount,
@@ -748,8 +760,7 @@ class Lobby {
             hasConjurations: hasConjurations,
             tenDice: expectedDice,
             uniques: uniques,
-            noUnreleasedCards: true,
-            officialRole: true
+            aspectCheck: aspectCheck
         };
 
         if (game.gameFormat === 'hl2pvp') {
