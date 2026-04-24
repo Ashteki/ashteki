@@ -93,6 +93,13 @@ const LegalLocations = {
     'Conjured Aspect': ['play area', 'archives', 'purged']
 };
 
+// this is mirrored in client codebase
+const GameTypes = Object.freeze({
+    pvp: 'pvp',
+    chimera: 'chimera',
+    league: 'league'
+});
+
 module.exports = {
     Constants,
     CardType,
@@ -111,5 +118,6 @@ module.exports = {
     DamageDealingLocations,
     FaceUpLocations,
     LegalLocations,
+    GameTypes,
     GameType
 };

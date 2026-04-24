@@ -56,7 +56,8 @@ const PlayerStats = ({
     showContextItem,
     side,
     size,
-    solo
+    solo,
+    survival
 }) => {
     const dispatch = useDispatch();
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -90,12 +91,18 @@ const PlayerStats = ({
     };
 
     const renderChimeraPhase = () => {
-        return (
+        return (<>
+            {survival && <div className='state'>
+                <span key={`survival`} className='action survival'>
+                    SURVIVAL!
+                </span>
+            </div>}
             <div className='state'>
                 <span key={`chimera-phase`} className='action chimera-phase'>
                     Phase {player.chimeraPhase}
                 </span>
             </div>
+        </>
         );
     };
 

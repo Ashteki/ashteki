@@ -48,7 +48,7 @@ class Regenerate extends AspectCard {
 
     getPlayEvent(ability, context) {
         const event = ability.actions
-            .putIntoPlay()
+            .putIntoPlay({ showMessgae: true })
             .getEvent(context.source, context);
         event.addSubEvent(ability.actions.exhaust().getEvent(context.source, context));
         return event;
