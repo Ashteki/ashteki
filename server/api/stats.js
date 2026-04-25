@@ -70,6 +70,8 @@ module.exports.init = function (server) {
             let winnerPlays = 0;
             let loserPlays = 0;
             let totalPlays = 0;
+            let otherPlays = 0;
+            let otherChatMessages = [];
 
             for (let game of games) {
                 let players = game.players.map(p => p.name);
@@ -78,23 +80,29 @@ module.exports.init = function (server) {
 
                 let chat = game.chat || '';
                 let escapedCard = cardName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                let regex = new RegExp(`(${players[0]}|${players[1]}) plays ${escapedCard}`, 'gi');
+                let regex = new RegExp(`(${players.join('|')}) plays ${escapedCard}`, 'gi');
                 let matches = chat.match(regex);
 
                 if (matches && matches.length > 0) {
                     totalGames++;
-                    let playedBy = matches[0].match(/^([^ ]+) plays/)[1];
-                    if (playedBy === winner) {
-                        winnerPlays++;
-                        totalPlays++;
-                    } else if (playedBy === loser) {
-                        loserPlays++;
-                        totalPlays++;
+                    for (let match of matches) {
+                        let playedBy = match.match(/^([^ ]+) plays/)[1];
+                        if (playedBy === winner) {
+                            winnerPlays++;
+                            totalPlays++;
+                        } else if (playedBy === loser) {
+                            loserPlays++;
+                            totalPlays++;
+                        } else {
+                            otherPlays++;
+                            totalPlays++;
+                            otherChatMessages.push(match);
+                        }
                     }
                 }
             }
 
-            res.send({ success: true, card: cardName, totalGames, winnerPlays, loserPlays, totalPlays });
+            res.send({ success: true, card: cardName, totalGames, winnerPlays, loserPlays, totalPlays, otherPlays, otherChatMessages });
         })
     );
 
@@ -162,6 +170,8 @@ module.exports.init = function (server) {
                         cardsSeen[cardName] = {
                             winnerPlayed: false,
                             loserPlayed: false,
+                            otherPlays: 0,
+                            otherMessages: [],
                             players: new Set()
                         };
                     }
@@ -171,12 +181,15 @@ module.exports.init = function (server) {
                         cardsSeen[cardName].winnerPlayed = true;
                     } else if (loser && playerName === loser) {
                         cardsSeen[cardName].loserPlayed = true;
+                    } else {
+                        cardsSeen[cardName].otherPlays++;
+                        cardsSeen[cardName].otherMessages.push(match[0]);
                     }
                 }
 
                 Object.keys(cardsSeen).forEach((cardName) => {
                     if (!cardStats[cardName]) {
-                        cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0, totalPlays: 0, players: new Set() };
+                        cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0, totalPlays: 0, otherPlays: 0, otherMessages: [], players: new Set() };
                     }
 
                     cardStats[cardName].totalGames++;
@@ -188,16 +201,19 @@ module.exports.init = function (server) {
                         cardStats[cardName].loserPlays++;
                         cardStats[cardName].totalPlays++;
                     }
+                    cardStats[cardName].otherPlays += cardsSeen[cardName].otherPlays;
+                    cardStats[cardName].totalPlays += cardsSeen[cardName].otherPlays;
+                    cardStats[cardName].otherMessages.push(...cardsSeen[cardName].otherMessages);
                     cardsSeen[cardName].players.forEach((playerName) => cardStats[cardName].players.add(playerName));
                 });
             });
 
-            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Total Plays,Win %,Unique Players\n';
+            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Total Plays,Other Plays,Win %,Unique Players\n';
             Object.keys(cardStats).forEach((cardName) => {
                 const stats = cardStats[cardName];
                 const winPercent = stats.totalGames > 0 ? Math.round((stats.winnerPlays / stats.totalGames) * 100) : 0;
                 const uniquePlayerCount = stats.players.size;
-                csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${stats.totalPlays},${winPercent},${uniquePlayerCount}\n`;
+                csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${stats.totalPlays},${stats.otherPlays},${winPercent},${uniquePlayerCount}\n`;
             });
 
             res.setHeader('Content-Type', 'text/csv');
