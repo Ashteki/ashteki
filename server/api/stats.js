@@ -87,10 +87,10 @@ module.exports.init = function (server) {
                     totalGames++;
                     for (let match of matches) {
                         let playedBy = match.match(/^([^ ]+) plays/)[1];
-                        if (playedBy === winner) {
+                        if (playedBy.toLowerCase() === winner.toLowerCase()) {
                             winnerPlays++;
                             totalPlays++;
-                        } else if (playedBy === loser) {
+                        } else if (playedBy.toLowerCase() === loser.toLowerCase()) {
                             loserPlays++;
                             totalPlays++;
                         } else {
@@ -177,9 +177,9 @@ module.exports.init = function (server) {
                     }
 
                     cardsSeen[cardName].players.add(playerName);
-                    if (playerName === winner) {
+                    if (playerName.toLowerCase() === winner.toLowerCase()) {
                         cardsSeen[cardName].winnerPlayed = true;
-                    } else if (loser && playerName === loser) {
+                    } else if (loser && playerName.toLowerCase() === loser.toLowerCase()) {
                         cardsSeen[cardName].loserPlayed = true;
                     } else {
                         cardsSeen[cardName].otherPlays++;
