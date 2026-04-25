@@ -116,26 +116,28 @@ gameService.games
 
             Object.keys(cardsSeen).forEach((cardName) => {
                 if (!cardStats[cardName]) {
-                    cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0, players: new Set() };
+                    cardStats[cardName] = { totalGames: 0, winnerPlays: 0, loserPlays: 0, totalPlays: 0, players: new Set() };
                 }
 
                 cardStats[cardName].totalGames++;
                 if (cardsSeen[cardName].winnerPlayed) {
                     cardStats[cardName].winnerPlays++;
+                    cardStats[cardName].totalPlays++;
                 }
                 if (cardsSeen[cardName].loserPlayed) {
                     cardStats[cardName].loserPlays++;
+                    cardStats[cardName].totalPlays++;
                 }
                 cardsSeen[cardName].players.forEach((playerName) => cardStats[cardName].players.add(playerName));
             });
         });
 
         // Generate CSV
-        let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Win %,Unique Players\n';
+        let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Total Plays,Win %,Unique Players\n';
         _.each(cardStats, (stats, cardName) => {
             const winPercent = stats.totalGames > 0 ? Math.round((stats.winnerPlays / stats.totalGames) * 100) : 0;
             const uniquePlayerCount = stats.players.size;
-            csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${winPercent},${uniquePlayerCount}\n`;
+            csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${stats.totalPlays},${winPercent},${uniquePlayerCount}\n`;
         });
 
         fs.writeFileSync('card_play_stats.csv', csv);
