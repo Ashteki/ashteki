@@ -109,9 +109,9 @@ gameService.games
                 }
 
                 cardsSeen[cardName].players.add(playerName);
-                if (playerName === winner) {
+                if (playerName.toLowerCase() === winner.toLowerCase()) {
                     cardsSeen[cardName].winnerPlayed = true;
-                } else if (loser && playerName === loser) {
+                } else if (loser && playerName.toLowerCase() === loser.toLowerCase()) {
                     cardsSeen[cardName].loserPlayed = true;
                 } else {
                     cardsSeen[cardName].otherPlays++;
