@@ -97,6 +97,17 @@ const CardStatsAdmin = () => {
                                         <p>Games played by winner: {cardStats.winnerPlays}</p>
                                         <p>Games played by loser: {cardStats.loserPlays}</p>
                                         <p>Total plays: {cardStats.totalPlays}</p>
+                                        <p>Other plays: {cardStats.otherPlays}</p>
+                                        {cardStats.otherChatMessages && cardStats.otherChatMessages.length > 0 && (
+                                            <div>
+                                                <p>Other chat messages:</p>
+                                                <ul>
+                                                    {cardStats.otherChatMessages.map((msg, index) => (
+                                                        <li key={index}>{msg}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
                                         <p>Win percentage: {cardStats.totalGames > 0 ? Math.round((cardStats.winnerPlays / cardStats.totalGames) * 100) : 0}%</p>
                                     </Col>
                                 </Row>
