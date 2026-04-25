@@ -96,6 +96,7 @@ const CardStatsAdmin = () => {
                                         <p>Total games played: {cardStats.totalGames}</p>
                                         <p>Games played by winner: {cardStats.winnerPlays}</p>
                                         <p>Games played by loser: {cardStats.loserPlays}</p>
+                                        <p>Total plays: {cardStats.totalPlays}</p>
                                         <p>Win percentage: {cardStats.totalGames > 0 ? Math.round((cardStats.winnerPlays / cardStats.totalGames) * 100) : 0}%</p>
                                     </Col>
                                 </Row>
