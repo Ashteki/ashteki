@@ -45,7 +45,7 @@
         "@fortawesome/react-fontawesome": "^0.2.2",
         "@sendgrid/mail": "^7.4.7",
         "@sentry/browser": "^8.38.0",
-        "@sentry/node": "^6.2.5",
+        "@sentry/node": "^10.47.0",
         "@types/react": "^18.2.0",
         "@typescript-eslint/eslint-plugin": "^5.55.0",
         "@vitejs/plugin-react": "^6.0.1",
