@@ -208,12 +208,12 @@ module.exports.init = function (server) {
                 });
             });
 
-            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Total Plays,Other Plays,Win %,Unique Players\n';
+            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Total Plays,Other Plays,Other Chat Messages,Win %,Unique Players\n';
             Object.keys(cardStats).forEach((cardName) => {
                 const stats = cardStats[cardName];
                 const winPercent = stats.totalGames > 0 ? Math.round((stats.winnerPlays / stats.totalGames) * 100) : 0;
                 const uniquePlayerCount = stats.players.size;
-                csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${stats.totalPlays},${stats.otherPlays},${winPercent},${uniquePlayerCount}\n`;
+                csv += `"${cardName.replace(/"/g, '""')}",${stats.totalGames},${stats.winnerPlays},${stats.loserPlays},${stats.totalPlays},${stats.otherPlays},"${JSON.stringify(stats.otherMessages).replace(/"/g, '""')}",${winPercent},${uniquePlayerCount}\n`;
             });
 
             res.setHeader('Content-Type', 'text/csv');
