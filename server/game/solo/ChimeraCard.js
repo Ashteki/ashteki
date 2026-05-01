@@ -17,7 +17,19 @@ class ChimeraCard extends Card {
     }
 
     get threat() {
-        return this.setup.length;
+        return this.setup.length + (this.tokens.threat || 0);
+    }
+
+    hasModifiedThreat() {
+        return this.tokens.threat > 0;
+    }
+
+    getFlags() {
+        const flags = super.getFlags();
+        if (this.game.isSurvival && this.hasModifiedThreat()) {
+            flags.threat = this.threat;
+        }
+        return flags;
     }
 
     setupCardAbilities(ability) {
@@ -41,6 +53,19 @@ class ChimeraCard extends Card {
                 target: this.owner.getBasicDie(Magic.Rage),
                 showMessage: true
             }))
+        });
+
+        this.forcedInterrupt({
+            autoResolve: true,
+            title: 'Escalate',
+            when: {
+                onRoundEnded: (event, context) => context.game.isSurvival
+            },
+            gameAction: ability.actions.addToken({
+                type: 'threat',
+                amount: 1,
+                target: this
+            })
         });
     }
 }

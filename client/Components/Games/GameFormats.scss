@@ -36,7 +36,11 @@
         background-color: #333;
     }
 
-    &.solo {
+    &.standard {
+        background-color: rgb(169, 45, 45);
+    }
+
+    &.survival {
         background-color: #6a07a7;
     }
 

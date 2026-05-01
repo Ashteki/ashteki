@@ -79,7 +79,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
     let deckList = null;
     let setIndex = 0;
-    if (['constructed', 'hl2pvp'].includes(gameFormat) || (gameFormat === 'solo' && playerIsMe)) {
+    const isSolo = ['standard', 'survival'].includes(gameFormat);
+    if (['constructed', 'hl2pvp'].includes(gameFormat) || (isSolo && playerIsMe)) {
         deckList = (
             <Tabs>
                 <TabList>
@@ -89,7 +90,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <Tab>Red Rains Precons</Tab>
                     <Tab>Adventuring Party</Tab>
                     <Tab>Dual Duel</Tab>
-                    {gameFormat === 'solo' && playerIsMe && <Tab>One Collection Battlebox</Tab>}
+                    {isSolo && playerIsMe && <Tab>One Collection Battlebox</Tab>}
                 </TabList>
 
                 <TabPanel>
@@ -123,7 +124,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                     <DeckList decks={dualDuelDecks} onDeckSelected={onDeckSelected} />
                 </TabPanel>
 
-                {gameFormat === 'solo' && playerIsMe && (
+                {isSolo && playerIsMe && (
                     <TabPanel>
                         <Button onClick={() => onChooseForMe(10)}>Choose for me</Button>
                         <DeckList decks={oneCollectionDecks} onDeckSelected={onDeckSelected} />
@@ -153,7 +154,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                 </TabPanel>
             </Tabs>
         );
-    } else if (gameFormat === 'solo') {
+    } else if (isSolo) {
         deckList = (
             <Tabs>
                 <TabList>
@@ -181,7 +182,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
     } else {
         let decks = null;
         switch (gameFormat) {
-            case 'solo':
+            case 'standard':
+            case 'survival':
                 setIndex = 5;
                 decks = chimeraDecks;
                 showChooseForMe = allowPremium;

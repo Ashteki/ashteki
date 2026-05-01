@@ -54,6 +54,7 @@ class Game extends EventEmitter {
         this.saveReplay = details.saveReplay;
         this.solo = details.solo;
         if (this.solo) {
+            this.isSurvival = details.gameFormat === 'survival';
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
         }
@@ -627,6 +628,10 @@ class Game extends EventEmitter {
      */
     checkWinCondition() {
         for (const player of this.getPlayers()) {
+            if (player.isDummy && this.isSurvival) {
+                return;
+            }
+
             if (
                 player.phoenixborn.damage + player.phoenixborn.drowningLevel >=
                 player.phoenixborn.life

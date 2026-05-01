@@ -18,6 +18,7 @@ class GameFlowWrapper {
             id: 12345,
             owner: 'player1',
             solo: options.mode === 'solo',
+            gameFormat: options.gameFormat,
             saveGameId: 12345,
             players: [
                 {

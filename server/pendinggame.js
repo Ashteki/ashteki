@@ -6,24 +6,23 @@ const GameChat = require('./game/gamechat.js');
 const logger = require('./log');
 const PendingPlayer = require('./models/PendingPlayer.js');
 const DummyUser = require('./models/DummyUser.js');
+const { GameTypes } = require('./constants.js');
 
 class PendingGame {
     constructor(owner, details) {
-        this.newGameType = details.newGameType;
-        this.solo = details.gameFormat === 'solo';
+        this.newGameType = details.newGameType; // pvp, chimera, league
+        this.solo = details.newGameType === GameTypes.chimera;
         if (this.solo) {
             this.soloLevel = 'S';
             this.soloStage = '1';
         }
+        this.gameFormat = details.gameFormat;
         this.allowSpectators = details.allowSpectators;
         this.saveReplay = details.saveReplay;
         this.createdAt = new Date();
         this.startedAt = null;
         this.finishedAt = null;
-        this.gameChat = new GameChat(this);
-        this.gameFormat = details.gameFormat;
         this.gamePrivate = !!details.gamePrivate; // hides from game list
-        // this.gameType = details.gameType;
         this.gameType = details.ranked ? 'competitive' : 'casual';
         this.id = uuid.v1();
         this.label = details.label;
@@ -44,6 +43,8 @@ class PendingGame {
         this.useGameTimeLimit = details.useGameTimeLimit;
         this.gameTimeLimit = details.gameTimeLimit;
         this.clockType = details.clockType;
+
+        this.gameChat = new GameChat(this);
     }
 
     // Getters
@@ -355,7 +356,7 @@ class PendingGame {
                 };
                 if (
                     activePlayer === player.name ||
-                    ['firstadventure', 'solo'].includes(this.gameFormat)
+                    ['firstadventure', 'standard', 'survival'].includes(this.gameFormat)
                 ) {
                     deck.name = player.deck.name;
                 }

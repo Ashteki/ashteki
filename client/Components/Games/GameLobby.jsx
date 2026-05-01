@@ -19,6 +19,7 @@ import PictureButton from '../Lobby/PictureButton';
 import LeaguePairings from './LeaguePairings';
 import LoadReplay from './LoadReplay';
 import { useNavigate } from 'react-router-dom';
+import { gameTypes } from '../../util';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
@@ -130,19 +131,19 @@ const GameLobby = ({ gameId }) => {
                                     <PictureButton
                                         text='2 Player'
                                         imageClass='pvp'
-                                        onClick={() => handleNewGameClick('pvp')}
+                                        onClick={() => handleNewGameClick(gameTypes.pvp)}
                                     />
                                     <PictureButton
                                         text='Chimera'
                                         imageClass='chimera'
-                                        onClick={() => handleNewGameClick('chimera')}
+                                        onClick={() => handleNewGameClick(gameTypes.chimera)}
                                     />
                                     <PictureButton
                                         text='League'
                                         header='Discord'
                                         headerClass='discord'
                                         imageClass='league'
-                                        onClick={() => handleNewGameClick('league')}
+                                        onClick={() => handleNewGameClick(gameTypes.league)}
                                     />
                                 </div>
                                 <div className='game-buttons nav-buttons'>
