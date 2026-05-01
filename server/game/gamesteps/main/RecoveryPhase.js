@@ -12,6 +12,7 @@ class RecoveryPhase extends Phase {
             new SimpleStep(game, () => this.removeExhaustion()),
             new SimpleStep(game, () => this.removeHostedDice()),
             new PinDicePrompt(game),
+            new SimpleStep(game, () => this.advanceSurvivalThreat()),
             new SimpleStep(game, () => this.replenishAspects()),
             new SimpleStep(game, () => this.placeRedRains()),
             new SimpleStep(game, () => this.replenishAspectStatusTokens())
@@ -87,6 +88,21 @@ class RecoveryPhase extends Phase {
         this.game.actions
             .addRedRainsToken({ amount: aspectCount, showMessage: true, shortMessage: true })
             .resolve(dummyPlayer.phoenixborn, this.game.getFrameworkContext(dummyPlayer));
+    }
+
+    advanceSurvivalThreat() {
+        if (!this.game.isSurvival) {
+            return;
+        }
+
+        this.game.addMessage('The Chimera threat level increases by 1.');
+        const dummyPlayer = this.game.getDummyPlayer();
+        this.game.actions
+            .addToken({
+                type: 'threat',
+                amount: 1
+            })
+            .resolve(dummyPlayer.chimera, this.game.getFrameworkContext(dummyPlayer));
     }
 
     replenishAspects() {

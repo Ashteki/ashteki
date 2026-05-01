@@ -54,19 +54,6 @@ class ChimeraCard extends Card {
                 showMessage: true
             }))
         });
-
-        this.forcedInterrupt({
-            autoResolve: true,
-            title: 'Escalate',
-            when: {
-                onRoundEnded: (event, context) => context.game.isSurvival
-            },
-            gameAction: ability.actions.addToken({
-                type: 'threat',
-                amount: 1,
-                target: this
-            })
-        });
     }
 }
 
