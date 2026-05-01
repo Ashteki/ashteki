@@ -123,6 +123,12 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     if (player.deck.isChimera) {
                         if (userIsSpectator) {
                             soloControls = <span></span>;
+                        } else if (currentGame.gameFormat === 'survival') {
+                            soloControls = (
+                                <span className='premium btn btn-primary def disabled'>
+                                    Survival: Heroic L1
+                                </span>
+                            );
                         } else if (allowPremium) {
                             soloControls = (
                                 <>
@@ -143,14 +149,13 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                 </>
                             );
                         } else {
-                            soloControls = (<>
+                            soloControls = (
                                 <span
                                     className='premium btn btn-primary def disabled'
                                     title='Patreon only'
                                 >
                                     Standard L1
                                 </span>
-                            </>
                             );
                         }
                     }

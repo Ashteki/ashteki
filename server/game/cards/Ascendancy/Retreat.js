@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../../constants.js');
+const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Retreat extends Card {
@@ -9,7 +9,7 @@ class Retreat extends Card {
                 activePromptTitle: 'Choose an exhausted ally to return to hand',
                 controller: 'self',
                 optional: true,
-                cardType: BattlefieldTypes,
+                cardType: CardType.Ally,
                 cardCondition: (card) => card.exhausted,
                 gameAction: ability.actions.returnToHand({
                     upgradeDestination: 'hand'

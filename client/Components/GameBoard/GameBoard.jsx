@@ -464,6 +464,7 @@ const GameBoard = () => {
                     onMouseOut={onMouseOut}
                     round={currentGame.round}
                     solo={currentGame.solo}
+                    survival={currentGame.isSurvival}
                     leftMode={leftMode}
                     showContextItem={!leftMode}
                     side='top'

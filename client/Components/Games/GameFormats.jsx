@@ -1,18 +1,13 @@
 import React from 'react';
 import { Form, Col, Row } from 'react-bootstrap';
-import { gameFormats } from '../../util';
+import { gameFormats, soloGameFormats } from '../../util';
 import './GameFormats.scss';
 import GameFormatInfo from './GameFormatInfo';
 import classNames from 'classnames';
-import { useSelector } from 'react-redux';
 
-const GameFormats = ({ formProps }) => {
-    const showSolo = useSelector((state) => state.lobby.newGameType === 'chimera');
+const GameFormats = ({ formProps, solo }) => {
+    let formats = getFormats(solo);
 
-    let formats = [...gameFormats];
-    if (!showSolo) {
-        formats = formats.filter((f) => f.name !== 'solo');
-    }
     return (
         <>
             <Row>
@@ -52,3 +47,11 @@ const GameFormats = ({ formProps }) => {
 };
 
 export default GameFormats;
+function getFormats(solo) {
+    if (solo) {
+        return soloGameFormats;
+    }
+
+    return [...gameFormats];
+}
+

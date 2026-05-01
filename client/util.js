@@ -82,22 +82,32 @@ export const getRankedLabel = (name) => {
 
 export const getGameTypeLabel = (gameType) => {
     switch (gameType) {
-        case 'chimera':
+        case gameTypes.chimera:
             return 'Chimera';
-        case 'league':
+        case gameTypes.league:
             return 'League';
         default:
             return 'Player';
     }
 };
 
+export const gameTypes = Object.freeze({
+    pvp: 'pvp',
+    chimera: 'chimera',
+    league: 'league'
+});
+
 export const gameFormats = [
     { name: 'precon', label: 'Precon' },
     { name: 'hl2pvp', label: 'Heroic Level 2' },
     { name: 'constructed', label: 'Constructed' },
     { name: 'coaloff', label: 'Coal Off!' },
-    { name: 'solo', label: 'Solo' },
     { name: 'onecollection', label: 'One Collection Battlebox' }
+];
+
+export const soloGameFormats = [
+    { name: 'standard', label: 'Standard' },
+    { name: 'survival', label: 'Survival' }
 ];
 
 export const cardSizes = [
@@ -108,7 +118,7 @@ export const cardSizes = [
 ];
 
 export const getFormatLabel = (name) => {
-    const format = gameFormats.find((f) => f.name === name);
+    const format = gameFormats.find((f) => f.name === name) || soloGameFormats.find((f) => f.name === name);
     return format?.label;
 };
 
