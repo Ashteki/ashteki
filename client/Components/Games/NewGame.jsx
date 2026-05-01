@@ -33,6 +33,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     const lobbySocket = useSelector((state) => state.lobby.socket);
     const username = useSelector((state) => state.account.user?.username);
     const newGameType = useSelector((state) => state.lobby.newGameType);
+    const isSolo = newGameType === 'chimera';
     const user = useSelector((state) => state.account.user);
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
 
@@ -62,13 +63,13 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         allowSpectators: true,
         gameType: defaultGameType || 'casual',
         newGameType: newGameType,
-        gameFormat: newGameType === 'chimera' ? 'solo' : 'constructed',
+        gameFormat: isSolo ? 'standard' : 'constructed',
         useGameTimeLimit: !!defaultTimeLimit,
         gameTimeLimit: defaultTimeLimit || 30,
         clockType: 'chess',
         gamePrivate: defaultPrivate,
         ranked: false,
-        solo: newGameType === 'chimera',
+        solo: isSolo,
         saveReplay: false
     };
 
@@ -222,9 +223,9 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                         </Form.Group>
                                     </Col>
                                 </div>
+                                <GameFormats formProps={formProps} solo={isSolo} />
                                 {newGameType === 'pvp' && (
                                     <>
-                                        <GameFormats formProps={formProps} />
                                         <Form.Group className='mb-3'>
                                             <Row>
                                                 <h3 >Options</h3>

@@ -4,7 +4,7 @@ const AllPlayerPrompt = require('../allplayerprompt');
 class FirstFivePrompt extends AllPlayerPrompt {
     constructor(game) {
         super(game);
-        this.enforceUniques = !['onecollection', 'solo'].includes(game.gameFormat);
+        this.enforceUniques = !['onecollection', 'standard', 'survival'].includes(game.gameFormat);
 
         this.selectedCards = {};
         this.selectableCards = {};
