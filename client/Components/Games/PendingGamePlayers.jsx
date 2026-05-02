@@ -126,7 +126,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         } else if (currentGame.gameFormat === 'survival') {
                             soloControls = (
                                 <span className='premium btn btn-primary def disabled'>
-                                    Survival: Heroic L1
+                                    Survival Mode
                                 </span>
                             );
                         } else if (allowPremium) {
