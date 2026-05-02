@@ -4,7 +4,6 @@ const Card = require('../../Card.js');
 class AerialStrike extends Card {
     setupCardAbilities(ability) {
         this.play({
-            condition: (context) => context.player.phoenixborn.isAirborne,
             target: {
                 activePromptTitle: 'Choose a unit to deal 4 damage to',
                 showCancel: true,
@@ -13,6 +12,12 @@ class AerialStrike extends Card {
                 gameAction: ability.actions.dealDamage({ amount: 4 })
             }
         });
+    }
+
+    playWarning(context) {
+        if (!context.player.phoenixborn.isAirborne) {
+            return 'Your phoenixborn does not have an astral die on it.';
+        }
     }
 }
 
