@@ -54,9 +54,13 @@ class Game extends EventEmitter {
         this.saveReplay = details.saveReplay;
         this.solo = details.solo;
         if (this.solo) {
-            this.isSurvival = details.gameFormat === 'survival';
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
+            this.isSurvival = details.gameFormat === 'survival';
+            if (this.isSurvival) {
+                this.soloLevel = 'S';
+                this.soloStage = 1;
+            }
         }
         // disable fatigue for tests
         this.disableFatigue = options.disableFatigue;

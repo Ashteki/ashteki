@@ -223,7 +223,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                         </Form.Group>
                                     </Col>
                                 </div>
-                                <GameFormats formProps={formProps} solo={isSolo} />
+                                {!isSolo && <GameFormats formProps={formProps} />}
                                 {newGameType === 'pvp' && (
                                     <>
                                         <Form.Group className='mb-3'>
