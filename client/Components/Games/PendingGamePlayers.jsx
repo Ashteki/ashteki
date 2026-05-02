@@ -123,12 +123,6 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     if (player.deck.isChimera) {
                         if (userIsSpectator) {
                             soloControls = <span></span>;
-                        } else if (currentGame.gameFormat === 'survival') {
-                            soloControls = (
-                                <span className='premium btn btn-primary def disabled'>
-                                    Survival Mode
-                                </span>
-                            );
                         } else if (allowPremium) {
                             soloControls = (
                                 <>
@@ -138,14 +132,19 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                     >
                                         <option value='S'>Standard</option>
                                         <option value='H'>Heroic</option>
+                                        <option value='V'>Survival</option>
                                     </Form.Select>
-                                    <Form.Select className='inline'
-                                        onChange={(e) => onSoloStageChange(e.target.value)}
-                                    >
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </Form.Select>
+
+                                    {currentGame.gameFormat === 'standard' && (
+                                        <Form.Select
+                                            className='inline'
+                                            onChange={(e) => onSoloStageChange(e.target.value)}
+                                        >
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </Form.Select>
+                                    )}
                                 </>
                             );
                         } else {
