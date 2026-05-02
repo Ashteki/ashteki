@@ -4,9 +4,6 @@ class Choke extends Card {
     setupCardAbilities(ability) {
         this.play({
             title: 'Choke',
-            getWarnings: (context) =>
-                context.player.opponent.phoenixborn.exhausted &&
-                "Your opponent's phoenixborn is exhausted.",
             target: {
                 autoTarget: (context) => context.player.opponent.phoenixborn,
                 cardCondition: (card) => !card.exhausted,
@@ -16,6 +13,12 @@ class Choke extends Card {
                 ]
             }
         });
+    }
+
+    playWarning(context) {
+        if (context.player.opponent.phoenixborn.exhausted) {
+            return "Your opponent's phoenixborn is exhausted.";
+        }
     }
 }
 
