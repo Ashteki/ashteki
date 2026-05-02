@@ -779,6 +779,13 @@ class Lobby {
         }
 
         game.soloLevel = level;
+        if (level === 'V') {
+            game.soloStage = 1;
+            game.gameFormat = 'survival';
+        }
+        else {
+            game.gameFormat = 'standard';
+        }
         this.sendGameState(game);
     }
 
