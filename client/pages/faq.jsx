@@ -87,7 +87,7 @@ const FAQ = () => {
                         </p>
                         <ul>
                             <li>Choose your favorite Chimera aspect</li>
-                            <li>Difficulty will start at Heroic 1 level (Threat 5)</li>
+                            <li>Difficulty will start at Standard Level 1 (Threat 4)</li>
                             <li>
                                 The Chimera has <b>infinite life</b> and cannot be destroyed.
                             </li>
