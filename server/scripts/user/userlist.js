@@ -20,7 +20,7 @@ userService
         console.info('' + _.size(users), 'total users');
         console.log('username | email | registered year | registered month | supporter | keepFlag');
         _.each(users, (user) => {
-            if (supporters && !user.permissions.isSupporter) {
+            if (supporters && !user.permissions?.isSupporter) {
                 return;
             }
             if (brief) {
