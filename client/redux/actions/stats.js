@@ -13,6 +13,16 @@ export function loadUserStats(months, gameType) {
         }
     };
 }
+export function loadSurvivalStats() {
+    return {
+        types: ['REQUEST_SURVIVALSTATS', 'RECEIVE_SURVIVALSTATS'],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: '/api/stats/survival',
+            cache: false
+        }
+    };
+}
 
 export function loadEloLadder() {
     return {

@@ -272,6 +272,55 @@ class GameService {
                 return pbs;
             });
     }
+
+    async getSurvivalStatsByUserName(username) {
+        const findSpec = {
+            'players.name': username,
+            solo: true,
+            gameFormat: 'survival',
+            winReason: { $ne: 'Concede' }
+        };
+
+        return this.games
+            .find(findSpec, {
+                sort: {
+                    finishedAt: -1
+                }
+            })
+            .then((games) => {
+                let aspectRecords = {};
+                games.forEach((game) => {
+                    if (game.players && game.players[0] && game.players[1]) {
+                        // which precon?
+                        if (game.players[1].preconId) {
+                            let preconId = game.players[1].preconId;
+                            if (!aspectRecords[preconId]) {
+                                aspectRecords[preconId] = {
+                                    deckName: game.players[1].deckName,
+                                    scores: [
+                                        {
+                                            phoenixborn: game.players[0].deck,
+                                            deckName: game.players[0].deckName,
+                                            date: game.finishedAt,
+                                            score: game.players[1].wounds
+                                        }
+                                    ]
+                                };
+                            } else {
+                                aspectRecords[preconId].scores.push({
+                                    phoenixborn: game.players[0].deck,
+                                    deckName: game.players[0].deckName,
+                                    date: game.finishedAt,
+                                    score: game.players[1].wounds
+                                });
+                            }
+                        }
+                    }
+
+                });
+                return aspectRecords;
+            });
+    }
 }
 
 module.exports = GameService;

@@ -123,7 +123,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                     if (player.deck.isChimera) {
                         if (userIsSpectator) {
                             soloControls = <span></span>;
-                        } else if (allowPremium) {
+                        } else {
                             soloControls = (
                                 <>
                                     <Form.Select className='inline'
@@ -146,15 +146,6 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                         </Form.Select>
                                     )}
                                 </>
-                            );
-                        } else {
-                            soloControls = (
-                                <span
-                                    className='premium btn btn-primary def disabled'
-                                    title='Patreon only'
-                                >
-                                    Standard L1
-                                </span>
                             );
                         }
                     }
