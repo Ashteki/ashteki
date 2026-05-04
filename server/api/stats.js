@@ -24,6 +24,15 @@ module.exports.init = function (server) {
     );
 
     server.get(
+        '/api/stats/survival',
+        passport.authenticate('jwt', { session: false }),
+        wrapAsync(async function (req, res) {
+            let stats = await gameService.getSurvivalStatsByUserName(req.user.username);
+            res.send({ success: true, stats: stats });
+        })
+    );
+
+    server.get(
         '/api/stats/elo',
         passport.authenticate('jwt', { session: false }),
         wrapAsync(async function (req, res) {

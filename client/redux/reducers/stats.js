@@ -12,6 +12,9 @@ function stats(state = {}, action) {
         case 'RECEIVE_CARDSTATS':
             newState.cardStats = action.response;
             break;
+        case 'RECEIVE_SURVIVALSTATS':
+            newState.survivalStats = action.response.stats;
+            break;
         default:
             return state;
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import Stats from './profile/Stats';
 import Matches from './Matches';
+import SurvivalReport from './profile/SurvivalReport';
 
 const MyResults = () => {
     return (
@@ -12,12 +13,16 @@ const MyResults = () => {
                     <TabList>
                         <Tab><span className='lobby-header'>Phoenixborn Stats</span></Tab>
                         <Tab><span className='lobby-header'>Game List</span></Tab>
+                        <Tab><span className='lobby-header'>Survival</span></Tab>
                     </TabList>
                     <TabPanel>
                         <Stats />
                     </TabPanel>
                     <TabPanel>
                         <Matches />
+                    </TabPanel>
+                    <TabPanel>
+                        <SurvivalReport />
                     </TabPanel>
                 </Tabs>
             </div >

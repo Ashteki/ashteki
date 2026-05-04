@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AlertPanel from '../../Components/Site/AlertPanel';
 import * as actions from '../../redux/actions';
 
-import { withTranslation, Trans } from 'react-i18next';
-
-function Stats({ t }) {
+function Stats() {
     const [selectedTerm, setSelectedTerm] = useState(0);
     const [gameType, setGameType] = useState(null);
     const stats = useSelector((state) => state.stats && state.stats.stats);
@@ -30,24 +28,6 @@ function Stats({ t }) {
     const handleTypeChange = useCallback((event) => {
         setGameType(event.target.value);
     }, []);
-
-    const computeWinner = (game) => {
-        if (
-            !game.winner ||
-            game.winner === game.players[0].name ||
-            game.winner === game.players[1].name
-        ) {
-            return game.winner;
-        }
-
-        if (game.winner === game.players[0].deck) {
-            return game.players[0].name;
-        }
-
-        if (game.winner === game.players[1].deck) {
-            return game.players[1].name;
-        }
-    };
 
     const statRow = (pbid, stat) => {
         return (
@@ -109,19 +89,19 @@ function Stats({ t }) {
                     <thead>
                         <tr>
                             <th>
-                                <Trans>Phoenixborn</Trans>
+                                Phoenixborn
                             </th>
                             <th>
-                                <Trans>Wins</Trans>
+                                Wins
                             </th>
                             <th>
-                                <Trans>Losses</Trans>
+                                Losses
                             </th>
                             <th>
-                                <Trans>Total</Trans>
+                                Total
                             </th>
                             <th>
-                                <Trans>Win Rate</Trans>
+                                Win Rate
                             </th>
                         </tr>
                     </thead>
@@ -168,4 +148,4 @@ function Stats({ t }) {
 
 Stats.displayName = 'Stats';
 
-export default withTranslation()(Stats);
+export default Stats;
