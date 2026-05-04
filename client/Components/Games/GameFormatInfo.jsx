@@ -58,7 +58,7 @@ const GameFormatInfo = ({ gameType: gameFormat }) => {
         case 'standard':
             return (
                 <AlertPanel type='info'>
-                    <strong>Standard</strong> Play against a chimera following normal rules
+                    <strong>Solo</strong> Play against a chimera following normal rules
                 </AlertPanel>
             );
         case 'survival':

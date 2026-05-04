@@ -106,7 +106,7 @@ export const gameFormats = [
 ];
 
 export const soloGameFormats = [
-    { name: 'standard', label: 'Standard' },
+    { name: 'standard', label: 'Solo' },
     { name: 'survival', label: 'Survival' }
 ];
 

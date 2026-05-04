@@ -1812,6 +1812,7 @@ class Game extends EventEmitter {
             const p = {
                 deck: player.phoenixborn.name,
                 deckid: player.deckData._id,
+                deckName: player.deckData.name,
                 name: player.name,
                 turn: player.turn,
                 wins: player.wins,
@@ -1822,6 +1823,7 @@ class Game extends EventEmitter {
             if (player.isDummy) {
                 p.level = this.soloLevel;
                 p.stage = this.soloStage;
+                p.preconId = player.deckData.precon_id;
             }
             if (player.disconnectedAt) {
                 p.disconnectedAt = player.disconnectedAt;
