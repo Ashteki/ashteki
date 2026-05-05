@@ -248,7 +248,7 @@ module.exports.init = function (server) {
             }
 
             let findSpec = {
-                winner: { $exists: true },
+                winner: { $ne: null },
                 winReason: { $ne: 'Agreement' }
             };
             if (!includeSolo) {
@@ -275,21 +275,17 @@ module.exports.init = function (server) {
                     const pbUseStats = {};
 
                     games.forEach((game) => {
-                        if (!game.winner || game.winReason === 'Agreement' || !game.chat || game.chat === '') {
+                        let players = game.players.map(p => p.name);
+                        if (![players[0], players[1]].includes(game.winner)) {
+                            console.log('Error record - no winner match:', game.winner, 'Players:', players, game.winReason);
                             return;
                         }
-
-                        let players = game.players.map(p => p.name);
                         let isSolo = game.solo || players.length !== 2;
                         if (!includeSolo && isSolo) {
                             return; // Skip solo games if not including
                         }
 
                         game.players.forEach((player) => {
-                            if (!players[player.name]) {
-                                players[player.name] = { name: player.name, wins: 0, losses: 0 };
-                            }
-
                             if (!pbUseStats[player.deck]) {
                                 pbUseStats[player.deck] = { name: player.deck, wins: 0, losses: 0 };
                             }
@@ -307,7 +303,7 @@ module.exports.init = function (server) {
                     // Generate CSV
                     let csv = 'Phoenixborn,Total Games,Wins,Losses\n';
                     Object.entries(pbUseStats).forEach(([deckName, stats]) => {
-                        csv += `"${deckName}",${stats.wins + stats.losses},${stats.wins},${stats.losses}\n`;
+                        csv += `"${deckName.replace(',', '')}",${stats.wins + stats.losses},${stats.wins},${stats.losses}\n`;
                     });
 
                     res.setHeader('Content-Type', 'text/csv');
