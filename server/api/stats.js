@@ -63,6 +63,7 @@ module.exports.init = function (server) {
             }
 
             let includeSolo = req.query.includeSolo === 'true';
+            let ranked = req.query.ranked === 'true';
 
             let findSpec = {
                 winner: { $exists: true },
@@ -71,6 +72,9 @@ module.exports.init = function (server) {
             };
             if (!includeSolo) {
                 findSpec.solo = { $ne: true };
+            }
+            if (ranked) {
+                findSpec.gameType = 'competitive';
             }
 
             let games = await gameService.games.find(findSpec);
@@ -228,6 +232,92 @@ module.exports.init = function (server) {
             res.setHeader('Content-Type', 'text/csv');
             res.setHeader('Content-Disposition', 'attachment; filename="card_play_stats.csv"');
             res.send(csv);
+        })
+    );
+
+    server.get(
+        '/api/pbstats/csv',
+        wrapAsync(async function (req, res) {
+            let start = req.query.start ? new Date(req.query.start) : null;
+            let end = req.query.end ? new Date(req.query.end) : null;
+            let includeSolo = req.query.includeSolo === 'true';
+            let ranked = req.query.ranked === 'true';
+
+            if ((start && isNaN(start.getTime())) || (end && isNaN(end.getTime()))) {
+                return res.status(400).send({ message: 'Invalid date format' });
+            }
+
+            let findSpec = {
+                winner: { $exists: true },
+                winReason: { $ne: 'Agreement' }
+            };
+            if (!includeSolo) {
+                findSpec.solo = { $ne: true };
+            }
+            if (ranked) {
+                findSpec.gameType = 'competitive';
+            }
+            if (start) {
+                findSpec.finishedAt = findSpec.finishedAt || {};
+                findSpec.finishedAt.$gte = start;
+            }
+            if (end) {
+                findSpec.finishedAt = findSpec.finishedAt || {};
+                findSpec.finishedAt.$lt = end;
+            }
+
+            gameService.games
+                .find(findSpec)
+                .then((games) => {
+                    const totalGameCount = games.length;
+                    console.info('Total games returned from query:', totalGameCount);
+
+                    const pbUseStats = {};
+
+                    games.forEach((game) => {
+                        if (!game.winner || game.winReason === 'Agreement' || !game.chat || game.chat === '') {
+                            return;
+                        }
+
+                        let players = game.players.map(p => p.name);
+                        let isSolo = game.solo || players.length !== 2;
+                        if (!includeSolo && isSolo) {
+                            return; // Skip solo games if not including
+                        }
+
+                        game.players.forEach((player) => {
+                            if (!players[player.name]) {
+                                players[player.name] = { name: player.name, wins: 0, losses: 0 };
+                            }
+
+                            if (!pbUseStats[player.deck]) {
+                                pbUseStats[player.deck] = { name: player.deck, wins: 0, losses: 0 };
+                            }
+
+                            var stat = pbUseStats[player.deck];
+
+                            if (player.name === game.winner) {
+                                stat.wins++;
+                            } else {
+                                stat.losses++;
+                            }
+                        });
+                    });
+
+                    // Generate CSV
+                    let csv = 'Phoenixborn,Total Games,Wins,Losses\n';
+                    Object.entries(pbUseStats).forEach(([deckName, stats]) => {
+                        csv += `"${deckName}",${stats.wins + stats.losses},${stats.wins},${stats.losses}\n`;
+                    });
+
+                    res.setHeader('Content-Type', 'text/csv');
+                    res.setHeader('Content-Disposition', 'attachment; filename="pbUseStats.csv"');
+                    res.send(csv);
+
+                })
+                .catch((error) => {
+                    console.error('Error generating stats:', error);
+                });
         })
     );
 };
