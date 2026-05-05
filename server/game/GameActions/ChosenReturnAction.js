@@ -17,16 +17,18 @@ class ChosenReturnAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        if (player.unitsInPlay.length === 0) {
-            return false;
-        }
+        // maybe check for valid cards to return. Needs to accommodate spellboard and units if used for that
+        // if (player.unitsInPlay.length === 0 || ) {
+        //     return false;
+        // }
 
         return super.canAffect(player, context);
     }
 
     getEvent(player, context) {
         return super.createEvent('unnamedEvent', { player: context.target }, (event) => {
-            if (event.player.unitsInPlay.length > 0) {
+            // change spellboard here to use 'fromLocation' parameter
+            if (event.player.spellboard.length > 0) {
                 context.game.promptForSelect(event.player, {
                     activePromptTitle: 'Choose a ready spell to return to your hand',
                     cardType: this.cardType,
