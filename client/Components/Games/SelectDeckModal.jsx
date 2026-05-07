@@ -15,6 +15,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
     const user = useSelector((state) => state.account.user);
     const showRestricted = user?.permissions.canVerifyDecks;
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
+    const isSolo = ['standard', 'survival'].includes(gameFormat);
 
     const {
         myDecks,
@@ -59,9 +60,12 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             filter: filter
         };
 
-        dispatch(loadDecks(pagingDetails));
-        dispatch(loadMyChimeraDecks(pagingDetails));
-    }, [nameFilter, pbFilter, showFaves, dispatch]);
+        if (isSolo && !playerIsMe) {
+            dispatch(loadMyChimeraDecks(pagingDetails));
+        } else {
+            dispatch(loadDecks(pagingDetails));
+        }
+    }, [nameFilter, pbFilter, showFaves, dispatch, isSolo, playerIsMe]);
 
     let onNameChange = debounce((event) => {
         event.preventDefault();
@@ -79,7 +83,6 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
     let deckList = null;
     let setIndex = 0;
-    const isSolo = ['standard', 'survival'].includes(gameFormat);
     if (['constructed', 'hl2pvp'].includes(gameFormat) || (isSolo && playerIsMe)) {
         deckList = (
             <Tabs>
