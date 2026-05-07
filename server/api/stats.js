@@ -68,6 +68,7 @@ module.exports.init = function (server) {
             let findSpec = {
                 winner: { $exists: true },
                 winReason: { $ne: 'Agreement' },
+                'players.name': { $exists: true },
                 chat: { $exists: true, $ne: '' }
             };
             if (!includeSolo) {
@@ -135,6 +136,7 @@ module.exports.init = function (server) {
             let findSpec = {
                 winner: { $exists: true },
                 winReason: { $ne: 'Agreement' },
+                'players.name': { $exists: true },
                 chat: { $exists: true, $ne: '' }
             };
             if (!includeSolo) {
@@ -153,7 +155,7 @@ module.exports.init = function (server) {
             }
 
             let games = await gameService.games.find(findSpec);
-
+            const totalGameCount = games.length;
             let cardStats = {};
 
             games.forEach((game) => {
@@ -221,7 +223,7 @@ module.exports.init = function (server) {
                 });
             });
 
-            let csv = 'Card Name,Total Games,Winner Plays,Loser Plays,Total Plays,Other Plays,Other Chat Messages,Win %,Unique Players\n';
+            let csv = `Game Count: ${totalGameCount}\nCard Name,Total Games,Winner Plays,Loser Plays,Total Plays,Other Plays,Other Chat Messages,Win %,Unique Players\n`;
             Object.keys(cardStats).forEach((cardName) => {
                 const stats = cardStats[cardName];
                 const winPercent = stats.totalGames > 0 ? Math.round((stats.winnerPlays / stats.totalGames) * 100) : 0;
@@ -249,7 +251,8 @@ module.exports.init = function (server) {
 
             let findSpec = {
                 winner: { $ne: null },
-                winReason: { $ne: 'Agreement' }
+                winReason: { $ne: 'Agreement' },
+                'players.name': { $exists: true }
             };
             if (!includeSolo) {
                 findSpec.solo = { $ne: true };
@@ -301,7 +304,7 @@ module.exports.init = function (server) {
                     });
 
                     // Generate CSV
-                    let csv = 'Phoenixborn,Total Games,Wins,Losses\n';
+                    let csv = `Game Count: ${totalGameCount}\nPhoenixborn,Total Games,Wins,Losses\n`;
                     Object.entries(pbUseStats).forEach(([deckName, stats]) => {
                         csv += `"${deckName.replace(',', '')}",${stats.wins + stats.losses},${stats.wins},${stats.losses}\n`;
                     });
