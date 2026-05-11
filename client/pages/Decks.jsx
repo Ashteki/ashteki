@@ -14,6 +14,7 @@ import DeckFilter from '../Components/Decks/DeckFilter';
 import debounce from 'lodash.debounce';
 import './Decks.scss';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
+import DeckListEx from '../Components/Decks/DeckListEx';
 
 const DecksComponent = () => {
     const { t } = useTranslation();
@@ -187,15 +188,10 @@ const DecksComponent = () => {
                     </TabPanel>
                     <TabPanel>
                         <Row>
-                            <Col></Col>
-                        </Row>
-                        <Row>
-
-                            <Col lg={6}>
+                            <Col>
                                 <DeckTypeInfo deckType='ascendancy' />
-                                <DeckList decks={ascendancyDecks} />
+                                <DeckListEx decks={ascendancyDecks} />
                             </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
                         </Row>
                     </TabPanel>
                     <TabPanel>
