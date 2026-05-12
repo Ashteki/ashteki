@@ -1,4 +1,5 @@
 import { faLink, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faFileLines } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { useState } from 'react';
@@ -8,16 +9,26 @@ import { PatreonStatus } from '../../types';
 import DeckDice from './DeckDice';
 import './DeckListEx.scss';
 import CardListText from './CardListText';
+import { Button } from 'react-bootstrap';
 
 const DeckListEx = ({ decks, onDeckSelected, showWinRate, allowInvalidSelection }) => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.account.user);
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
     const [magicHover, setMagicHover] = useState('');
+    const [showNotes, setShowNotes] = useState(false);
+    const [notesState, setNotesState] = useState(new Set());
     const { selectedDeck } = useSelector((state) => ({
         selectedDeck: state.cards.selectedDeck
     }));
 
+    const toggleNotes = (deckId) => {
+        if (notesState.has(deckId)) {
+            notesState.delete(deckId);
+        } else {
+            notesState.add(deckId);
+        }
+    }
     const onDieHover = (die) => {
         // highlight cards with dice type
         setMagicHover(die.magic);
@@ -80,14 +91,19 @@ const DeckListEx = ({ decks, onDeckSelected, showWinRate, allowInvalidSelection 
                                         </div>
                                     )}
                                 </div>
+                                <div className='decklistex-body'>
+                                    <CardListText
+                                        deckCards={combinedCards}
+                                        highlight={magicHover}
+                                    />
+                                </div>
+                                {d.notes && (
+                                    <Button onClick={() => toggleNotes(d._id)} className='def'><FontAwesomeIcon icon={faFileLines} /> Notes...</Button>
+                                )}
+                                {notesState.has(d._id) && (
+                                    <div className='deck-card-group deck-notes'>{d.notes}</div>
+                                )}
                             </div>
-                        </div>
-                        <div className='decklistex-body'>
-                            <CardListText
-                                deckCards={combinedCards}
-                                highlight={magicHover}
-                            />
-
                         </div>
                     </div>
                 );

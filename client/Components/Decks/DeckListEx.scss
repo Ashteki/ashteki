@@ -1,6 +1,10 @@
 @import '../../styles/colours';
 
 .deck-list-ex {
+    .decklistex-entry {
+        background-color: rgb(0, 0, 0, 0.7);
+    }
+
     .decklist-title {
         font-size: 16px;
         border: none;
@@ -47,7 +51,7 @@
 
                 .card-list-text:hover {
                     .card-link {
-                        color: $info;
+                        color: $info !important;
                     }
                 }
             }

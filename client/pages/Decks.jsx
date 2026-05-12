@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Col, Row } from 'react-bootstrap';
-// import Pagination from 'react-bootstrap-4-pagination';
 import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
 import ApiStatus from '../Components/Site/ApiStatus';
@@ -133,147 +132,118 @@ const DecksComponent = () => {
     };
 
     return (
-        <div className='full-height'>
-            <div className='lobby-card'>
-                <Col sm={12}>
-                    <ApiStatus
-                        state={apiState}
-                        onClose={() => dispatch(clearApiStatus(Decks.DeleteDeck))}
-                    />
-                </Col>
+        <div className='decks-container'>
+            <div className='full-height'>
+                <div className='lobby-card'>
+                    <Col sm={12}>
+                        <ApiStatus
+                            state={apiState}
+                            onClose={() => dispatch(clearApiStatus(Decks.DeleteDeck))}
+                        />
+                    </Col>
 
-                {/* <div className='lobby-header'> Decks</div> */}
-                <Tabs onSelect={onTabChange} selectedIndex={tabIndex}>
-                    <TabList>
-                        <Tab>My Decks</Tab>
-                        <Tab>Ascendancy Precons</Tab>
-                        <Tab>Reborn Precons</Tab>
-                        <Tab>Red Rains Precons</Tab>
-                        <Tab>First Adventure</Tab>
-                        <Tab>Adventuring Party</Tab>
-                        <Tab>Dual Duel</Tab>
-                        <Tab>One Collection Battlebox</Tab>
-                    </TabList>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                                <DeckFilter
-                                    onNameChange={onNameChange}
-                                    onPbChange={onPbChange}
-                                    handleFaveChange={handleFaveChange}
-                                    showButtons={true}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg={6}>
-                                <DeckList decks={myDecks} showWinRate={true} allowInvalidSelection={true} />
-                                {(myDecks?.length > 0) && (
-                                    <div className='pagination-wrapper'>
-                                        <PaginationControl
-                                            page={pageNumber}
-                                            between={4}
-                                            total={numDecks}
-                                            limit={10}
-                                            changePage={(page) => {
-                                                onPageClick(page);
-                                            }}
-                                            ellipsis={1}
-                                        />
-                                    </div>
-                                )}
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} allowEdit={true} />}</Col>
-                        </Row>
-                    </TabPanel>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                                <DeckTypeInfo deckType='ascendancy' />
-                                <DeckListEx decks={ascendancyDecks} />
-                            </Col>
-                        </Row>
-                    </TabPanel>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                            </Col>
-                        </Row>
-                        <Row>
-
-                            <Col lg={6}>
-                                <DeckTypeInfo deckType='precon' />
-                                <DeckList decks={standaloneDecks} />
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
-                        </Row>
-                    </TabPanel>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg={6}>
-                                <DeckTypeInfo deckType='pveDecks' />
-                                <DeckList decks={pveDecks} />
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
-                        </Row>
-                    </TabPanel>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg={6}>
-                                <DeckTypeInfo deckType='firstadventure' />
-                                <DeckList decks={firstAdventureDecks} />
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
-                        </Row>
-                    </TabPanel>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg={6}>
-                                <DeckTypeInfo deckType='aparty' />
-                                <DeckList decks={adventuringPartyDecks} />
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
-                        </Row>
-                    </TabPanel>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg={6}>
-                                <DeckTypeInfo deckType='dualduel' />
-                                <DeckList decks={dualDuelDecks} />
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
-                        </Row>
-                    </TabPanel>
-                    <TabPanel>
-                        <Row>
-                            <Col>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg={6}>
-                                <DeckTypeInfo deckType='onecollection' />
-                                <DeckList decks={oneCollectionDecks} />
-                            </Col>
-                            <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
-                        </Row>
-                    </TabPanel>
-                </Tabs>
+                    {/* <div className='lobby-header'> Decks</div> */}
+                    <Tabs onSelect={onTabChange} selectedIndex={tabIndex}>
+                        <TabList>
+                            <Tab>My Decks</Tab>
+                            <Tab>Ascendancy Precons</Tab>
+                            <Tab>Reborn Precons</Tab>
+                            <Tab>Red Rains Precons</Tab>
+                            <Tab>First Adventure</Tab>
+                            <Tab>Adventuring Party</Tab>
+                            <Tab>Dual Duel</Tab>
+                            <Tab>One Collection Battlebox</Tab>
+                        </TabList>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckFilter
+                                        onNameChange={onNameChange}
+                                        onPbChange={onPbChange}
+                                        handleFaveChange={handleFaveChange}
+                                        showButtons={true}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col lg={6}>
+                                    <DeckList decks={myDecks} showWinRate={true} allowInvalidSelection={true} />
+                                    {(myDecks?.length > 0) && (
+                                        <div className='pagination-wrapper'>
+                                            <PaginationControl
+                                                page={pageNumber}
+                                                between={4}
+                                                total={numDecks}
+                                                limit={10}
+                                                changePage={(page) => {
+                                                    onPageClick(page);
+                                                }}
+                                                ellipsis={1}
+                                            />
+                                        </div>
+                                    )}
+                                </Col>
+                                <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
+                            </Row>
+                        </TabPanel>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckTypeInfo deckType='ascendancy' />
+                                    <DeckListEx decks={ascendancyDecks} />
+                                </Col>
+                            </Row>
+                        </TabPanel>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckTypeInfo deckType='precon' />
+                                    <DeckListEx decks={standaloneDecks} />
+                                </Col>
+                            </Row>
+                        </TabPanel>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckTypeInfo deckType='pveDecks' />
+                                    <DeckListEx decks={pveDecks} />
+                                </Col>
+                            </Row>
+                        </TabPanel>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckTypeInfo deckType='firstadventure' />
+                                    <DeckListEx decks={firstAdventureDecks} />
+                                </Col>
+                            </Row>
+                        </TabPanel>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckTypeInfo deckType='aparty' />
+                                    <DeckListEx decks={adventuringPartyDecks} />
+                                </Col>
+                            </Row>
+                        </TabPanel>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckTypeInfo deckType='dualduel' />
+                                    <DeckListEx decks={dualDuelDecks} />
+                                </Col>
+                            </Row>
+                        </TabPanel>
+                        <TabPanel>
+                            <Row>
+                                <Col>
+                                    <DeckTypeInfo deckType='onecollection' />
+                                    <DeckListEx decks={oneCollectionDecks} />
+                                </Col>
+                            </Row>
+                        </TabPanel>
+                    </Tabs>
+                </div>
             </div>
         </div>
     );

@@ -45,10 +45,7 @@
 }
 
 .deck-card-group {
-    position: relative;
-    margin: 5px 5px 5px 0;
     padding: 4px;
-    background-color: rgb(0, 0, 0, 0.5);
 
     >.game-card {
         margin: 5px;
@@ -73,14 +70,11 @@
 .card-group-title {
     background-color: $primary;
     color: white;
-    margin: 5px 5px 0 0;
     padding: 5px 1px;
     border: 1px solid $primary;
     border-radius: 4px 4px 0 0;
     border-bottom: none;
     text-align: center;
-    position: relative;
-    top: 5px;
 }
 
 .basic-title {
@@ -95,7 +89,7 @@
 }
 
 .cards-no-break {
-    width: 50%
+    min-width: 250px;
 }
 
 .cards-no-break-100 {
@@ -103,9 +97,10 @@
 }
 
 .cards {
-    flex-flow: row wrap;
+    flex-flow: wrap;
     display: flex;
     width: 100%;
+    gap: 4px;
 
     .game-card {
         margin: 4px;

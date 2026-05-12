@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHand, faLink, faStarOfLife } from '@fortawesome/free-solid-svg-icons';
+import { faHand, faLink } from '@fortawesome/free-solid-svg-icons';
 import CardImage from '../GameBoard/CardImage';
 import classNames from 'classnames';
 
@@ -57,17 +57,6 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                         <FontAwesomeIcon icon={faLink} title='This card is on the chained list' />
                     );
                 }
-                let ffIcon = null;
-                if (card.ff) {
-                    ffIcon = <FontAwesomeIcon
-                        className='card-ff'
-                        icon={faHand}
-                        title='This card is in your first five'
-                        onClick={() => onFFClick(card.id)}
-                    />
-                } else {
-                    ffIcon = <span className='card-ff'></span>
-                }
                 const linkClasses = classNames('card-link', {
                     unique: card.phoenixborn,
                     highlight: usesHighlightMagic(card),
@@ -77,7 +66,6 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
 
                 cards.push(
                     <div className='card-list-text' key={'text-' + card.card.id}>
-                        {ffIcon}
                         <span className={countClass}>{card.count + 'x '}</span>
                         <span
                             className={linkClasses}
