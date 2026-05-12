@@ -30,6 +30,15 @@
 
     .deck-cards {
         margin-top: 4px;
+
+        .cards {
+
+
+            .cards-no-break {
+                width: 49%;
+                background-color: rgb(0, 0, 0, 0.4);
+            }
+        }
     }
 
     .deck-dice {
