@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { addChimeraDeck, addDeck } from '../../redux/actions';
 
-const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, mode }) => {
+const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, mode, onPageSizeChange }) => {
     const allCards = useSelector((state) => state.cards.cards);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -67,6 +67,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, m
                             })}
                         </Form.Control>
                     </Form.Group>
+
                     <Form.Group as={Col} controlId='favourite' xs='1' className='fave-hdr'>
                         <FontAwesomeIcon icon={faHeart} title='Favourites' />
                         <Form.Check // prettier-ignore
@@ -76,16 +77,25 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, m
                         />
                     </Form.Group>
                     {showButtons && (
-                        <Form.Group as={Col} xs='3'>
-                            {mode !== 'chimera' && (
-                                <Link className='btn btn-primary def' to='/decks/import'>
-                                    <span className='phg-basic-magic'></span> Import
-                                </Link>
-                            )}
-                            <Button className='btn btn-secondary def' onClick={handleAddClick}>
-                                <FontAwesomeIcon icon={faPlus} /> New
-                            </Button>
-                        </Form.Group>
+                        <>
+                            <Form.Group as={Col} controlId='pageSize' xs='1' >
+                                <Form.Select onChange={(e) => onPageSizeChange && onPageSizeChange(e)}>
+                                    <option value='10'>10</option>
+                                    <option value='20'>20</option>
+                                    <option value='30'>30</option>
+                                </Form.Select>
+                            </Form.Group>
+                            <Form.Group as={Col} xs='3'>
+                                {mode !== 'chimera' && (
+                                    <Link className='btn btn-primary def' to='/decks/import'>
+                                        <span className='phg-basic-magic'></span> Import
+                                    </Link>
+                                )}
+                                <Button className='btn btn-secondary def' onClick={handleAddClick}>
+                                    <FontAwesomeIcon icon={faPlus} /> New
+                                </Button>
+                            </Form.Group>
+                        </>
                     )}
                 </Row>
             </Form>
