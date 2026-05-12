@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 // import Pagination from 'react-bootstrap-4-pagination';
 import DeckList from '../Components/Decks/DeckList';
 import ViewDeck from '../Components/Decks/ViewDeck';
@@ -58,6 +58,7 @@ const DecksComponent = () => {
     const [nameFilter, setNameFilter] = useState('');
     const [showFaves, setShowFaves] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
 
     const { numDecks, selectedDeck, deckReload } = useSelector((state) => ({
         numDecks: state.cards.numDecks,
@@ -72,7 +73,7 @@ const DecksComponent = () => {
             { name: 'favourite', value: showFaves }
         ];
         const pagingDetails = {
-            pageSize: 8,
+            pageSize: pageSize,
             page: pageNumber,
             sort: 'lastUpdated',
             sortDir: 'desc',
@@ -80,7 +81,16 @@ const DecksComponent = () => {
         };
 
         dispatch(loadDecks(pagingDetails));
-    }, [nameFilter, pbFilter, showFaves, dispatch, deckReload, standaloneDecks, pageNumber]);
+    }, [
+        nameFilter,
+        pbFilter,
+        showFaves,
+        dispatch,
+        deckReload,
+        standaloneDecks,
+        pageNumber,
+        pageSize
+    ]);
 
     let onNameChange = debounce((event) => {
         event.preventDefault();
@@ -161,6 +171,7 @@ const DecksComponent = () => {
                                     onPbChange={onPbChange}
                                     handleFaveChange={handleFaveChange}
                                     showButtons={true}
+                                    onPageSizeChange={(e) => setPageSize(e.target.value)}
                                 />
                             </Col>
                         </Row>
@@ -173,7 +184,7 @@ const DecksComponent = () => {
                                             page={pageNumber}
                                             between={4}
                                             total={numDecks}
-                                            limit={10}
+                                            limit={pageSize}
                                             changePage={(page) => {
                                                 onPageClick(page);
                                             }}
