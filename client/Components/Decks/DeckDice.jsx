@@ -32,7 +32,8 @@ const DeckDice = ({ deck, onDieClick, onDieHover, size, slotCount = 10 }) => {
 
     var diceToRender = getDiceToRender();
     const ddClasses = classNames('deck-dice', {
-        large: size === 'large'
+        large: size === 'large',
+        med: size === 'med'
     });
     return <div className={ddClasses}>{diceToRender}</div>;
 };

@@ -21,14 +21,16 @@
 
 }
 
-
 .deck-header {
     position: relative;
     display: flex;
     margin-bottom: 5px;
+    gap: 8px;
+}
 
+.deck-header,
+.deck-list-ex {
     .decklist-entry-image {
-        margin-right: 8px;
         height: 120px;
         width: 80px;
         min-width: 80px;

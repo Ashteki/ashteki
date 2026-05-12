@@ -183,7 +183,7 @@
     color: $secondary;
 
     &.unique {
-        color: goldenrod;
+        color: goldenrod !important;
     }
 
     &.highlight {

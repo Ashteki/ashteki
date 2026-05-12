@@ -1,0 +1,60 @@
+@import '../../styles/colours';
+
+.deck-list-ex {
+    .decklistex-entry {
+        background-color: rgb(0, 0, 0, 0.7);
+    }
+
+    .decklist-title {
+        font-size: 16px;
+        border: none;
+        background-color: unset;
+        color: white;
+    }
+
+    .decklistex-header {
+        display: flex;
+        gap: 10px;
+    }
+
+    .decklistex-body {
+        .cards {
+            flex: row wrap;
+
+            .cards-no-break {
+                // flex-grow: 1;
+                min-width: 200px;
+                width: unset;
+
+                .card-group-title {
+                    text-align: left;
+                    padding: 4px;
+                }
+
+                .card-list-text {
+                    white-space: nowrap;
+
+                    .card-link {
+                        &.highlight {
+                            color: $info !important;
+                        }
+                    }
+
+
+                }
+
+                .card-list-text:not(:hover) {
+                    .card-link {
+                        color: #ccc;
+                    }
+                }
+
+                .card-list-text:hover {
+                    .card-link {
+                        color: $info !important;
+                    }
+                }
+            }
+        }
+    }
+}
