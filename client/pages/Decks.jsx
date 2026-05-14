@@ -172,7 +172,7 @@ const DecksComponent = () => {
                                         onPbChange={onPbChange}
                                         handleFaveChange={handleFaveChange}
                                         showButtons={true}
-                                    onPageSizeChange={(e) => setPageSize(e.target.value)}
+                                        onPageSizeChange={(e) => setPageSize(e.target.value)}
                                     />
                                 </Col>
                             </Row>
@@ -185,7 +185,7 @@ const DecksComponent = () => {
                                                 page={pageNumber}
                                                 between={4}
                                                 total={numDecks}
-                                            limit={pageSize}
+                                                limit={pageSize}
                                                 changePage={(page) => {
                                                     onPageClick(page);
                                                 }}
@@ -194,7 +194,7 @@ const DecksComponent = () => {
                                         </div>
                                     )}
                                 </Col>
-                                <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} />}</Col>
+                                <Col lg={6}>{selectedDeck && <ViewDeck deck={selectedDeck} onDuplicate={onDuplicate} allowEdit={true} />}</Col>
                             </Row>
                         </TabPanel>
                         <TabPanel>
