@@ -110,7 +110,7 @@ describe('Reimagine', function () {
             this.setupTest({
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    hand: ['rose-fire-dancer', 'shadow-guard', 'hidden-power', 'gates-defender', 'crystal-armor'],
+                    hand: ['rose-fire-dancer', 'shadow-guard', 'hidden-power', 'gates-defender'],
                     spellboard: ['reimagine'],
                     dicepool: ['illusion', 'illusion', 'time'],
                     archives: ['butterfly-monk'],
@@ -176,6 +176,27 @@ describe('Reimagine', function () {
             expect(targetDie.exhausted).toBe(true); // hosted die is spent
             expect(targetDie.location).toBe('dicepool');
         });
+    });
+
+    describe('spending on crystal armor reaction from hand', function () {
+        beforeEach(function () {
+            this.setupTest({
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    hand: ['rose-fire-dancer', 'hidden-power', 'crystal-armor'],
+                    spellboard: ['reimagine'],
+                    dicepool: ['illusion', 'illusion', 'time'],
+                    archives: ['butterfly-monk'],
+                    inPlay: ['mist-spirit', 'iron-worker']
+                },
+                player2: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['hammer-knight', 'holy-knight'],
+                    dicepool: ['illusion', 'illusion', 'time', 'time'],
+                    spellboard: []
+                }
+            });
+        });
 
         it('spend hosted dice on a crystal armor', function () {
             // set up
@@ -197,7 +218,6 @@ describe('Reimagine', function () {
             expect(this.player1).not.toHaveDefaultPrompt();
             this.player1.clickCard(this.crystalArmor);
             this.player1.clickDieUpgrade(this.reimagine, 0);
-            this.player1.clickDone();
             this.player1.clickCard(this.mistSpirit);
 
             expect(this.crystalArmor.location).toBe('play area');
@@ -207,7 +227,6 @@ describe('Reimagine', function () {
             expect(targetDie.location).toBe('dicepool');
         });
     });
-
     describe('multiple copies on dice power used', function () {
         beforeEach(function () {
             this.setupTest({

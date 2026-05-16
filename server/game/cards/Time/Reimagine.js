@@ -30,7 +30,7 @@ class Reimagine extends Card {
     }
 
     canSpendDieUpgrades(context) {
-        return context.source?.type === CardType.ReactionSpell || context.playedAsReaction;
+        return context.source?.type === CardType.ReactionSpell || context.event || context.playedAsReaction;
     }
 }
 
