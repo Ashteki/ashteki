@@ -73,11 +73,11 @@ class ChimeraPlayer extends DummyPlayer {
         const amount = this.chimera.threat - this.aspectsInPlay.length;
 
         if (amount > 0) {
-            this.moveCardsToThreatZone(amount);
+            this.addCardsToThreatZone(amount);
         }
     }
 
-    moveCardsToThreatZone(numCards) {
+    addCardsToThreatZone(numCards) {
         let remainingCards = 0;
 
         if (numCards > this.deck.length) {
@@ -91,7 +91,7 @@ class ChimeraPlayer extends DummyPlayer {
 
         // if re-draw occurred
         if (remainingCards > 0 && this.deck.length > 0) {
-            this.game.queueSimpleStep(() => this.moveCardsToThreatZone(remainingCards));
+            this.game.queueSimpleStep(() => this.addCardsToThreatZone(remainingCards));
         }
     }
 
@@ -100,7 +100,7 @@ class ChimeraPlayer extends DummyPlayer {
         if (
             // moved from my deck
             event.card.owner === this &&
-            event.originalLocation === 'deck'
+            ['deck', 'hand'].includes(event.originalLocation)
         ) {
             // if draw pile hits empty then fatigue (but not if we're moving cards to form a hand)
             if (this.deck.length === 0 && this.hand.length === 0) {
@@ -198,7 +198,7 @@ class ChimeraPlayer extends DummyPlayer {
 
     triggerUltimateAbility() {
         const ultAbility = this.ultimate.getUltimateAbility(this.chimeraPhase);
-        this.game.cardUsed(this.ultimate, this);
+        this.game.cardUsed(this.ultimate.createSnapshot(), this);
         const context = ultAbility.createContext(this);
         this.game.resolveAbility(context);
     }
