@@ -10,11 +10,11 @@ class BotBrain {
     }
 
     evaluateAction(action, params) {
-        if (
-            action.card.type === CardType.ActionSpell &&
-            !action.canResolveTargets(params.context)
-        ) {
-            return 0.5;
+        if (action.card.type === CardType.ActionSpell) {
+            const playAction = action.card.abilities.reactions.find(a => a.properties.play === true);
+            if (!playAction.canResolveTargets(params.context)) {
+                return 0.5;
+            }
         }
 
         if (

@@ -12,6 +12,10 @@ class SteadyGaze extends Card {
             }
         });
     }
+
+    get targetPriority() {
+        return 'value';
+    }
 }
 
 SteadyGaze.id = 'steady-gaze';
