@@ -24,6 +24,14 @@ class DummyPlayer extends Player {
         return true;
     }
 
+    get isBot() {
+        return false;
+    }
+
+    get isChimera() {
+        return false;
+    }
+
     get ffStrategy() {
         return this.firstFiveStrategy;
     }

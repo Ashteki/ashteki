@@ -149,7 +149,7 @@ const GameLobby = ({ gameId }) => {
                                         text='Bound Soul'
                                         // header='Premium'
                                         imageClass='bot'
-                                        onClick={() => handleNewGameClick('bot')}
+                                        onClick={() => handleNewGameClick(gameTypes.bot)}
                                     />
                                 </div>
                                 <div className='game-buttons nav-buttons'>

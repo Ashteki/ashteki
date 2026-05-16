@@ -18,6 +18,10 @@ class ChimeraPlayer extends DummyPlayer {
         game.on('onCardDiscarded', (event) => this.cardDiscardedListener(event));
     }
 
+    get isChimera() {
+        return true;
+    }
+
     get chimera() {
         return this.phoenixborn;
     }

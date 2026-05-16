@@ -97,7 +97,8 @@ const LegalLocations = {
 const GameTypes = Object.freeze({
     pvp: 'pvp',
     chimera: 'chimera',
-    league: 'league'
+    league: 'league',
+    bot: 'bot'
 });
 
 module.exports = {

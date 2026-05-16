@@ -92,7 +92,8 @@ export const getGameTypeLabel = (gameType) => {
 export const gameTypes = Object.freeze({
     pvp: 'pvp',
     chimera: 'chimera',
-    league: 'league'
+    league: 'league',
+    bot: 'bot'
 });
 
 export const gameFormats = [

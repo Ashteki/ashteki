@@ -1214,13 +1214,13 @@ class Game extends EventEmitter {
     }
 
     reRollPlayerDice() {
-        for (let player of this.getPlayers().filter((p) => !p.isDummy)) {
+        for (let player of this.getPlayers().filter((p) => !p.isChimera)) {
             player.rerollAllDice(this.round);
         }
     }
 
     unpinPlayerDice() {
-        for (let player of this.getPlayers().filter((p) => !p.isDummy)) {
+        for (let player of this.getPlayers().filter((p) => !p.isChimera)) {
             player.unpinAllDice();
         }
     }
@@ -1828,7 +1828,7 @@ class Game extends EventEmitter {
                 medCount: player.medCount,
                 totalDiceSpend: player.totalDiceSpend
             };
-            if (player.isDummy) {
+            if (player.isChimera) {
                 p.level = this.soloLevel;
                 p.stage = this.soloStage;
                 p.preconId = player.deckData.precon_id;

@@ -11,7 +11,7 @@ const { GameTypes } = require('./constants.js');
 class PendingGame {
     constructor(owner, details) {
         this.newGameType = details.newGameType; // pvp, chimera, league
-        this.solo = details.newGameType === GameTypes.chimera;
+        this.solo = [GameTypes.chimera, GameTypes.bot].includes(details.newGameType);
         if (this.newGameType === 'chimera') {
             this.soloLevel = 'S';
             this.soloStage = '1';
@@ -354,6 +354,7 @@ class PendingGame {
                     status: player.deck.status,
                     name: null,
                     isChimera: player.isChimera,
+                    isBot: player.isBot,
                     stub: player.deck.listClass || player.deck.phoenixborn[0]?.card.stub || player.deck.phoenixborn[0]?.card.id,
                     pbStub:
                         player.deck.phoenixborn[0]?.card.imageStub ||
@@ -361,7 +362,8 @@ class PendingGame {
                 };
                 if (
                     activePlayer === player.name ||
-                    ['firstadventure', 'standard', 'survival'].includes(this.gameFormat)
+                    [GameTypes.chimera, GameTypes.bot].includes(this.newGameType) ||
+                    ['firstadventure'].includes(this.gameFormat)
                 ) {
                     deck.name = player.deck.name;
                 }
