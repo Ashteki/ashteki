@@ -58,6 +58,7 @@ describe('Bot Action Spells', function () {
             expect(this.hammerKnight.exhausted).toBe(true);
             expect(this.anchornaut.exhausted).toBe(false);
             expect(this.fluteMage.exhausted).toBe(false);
+            expect(this.ironWorker.exhausted).toBe(false);
             expect(this.steadyGaze.location).toBe('discard');
             expect(this.summonFalseDemon.location).toBe('hand'); // not played
         });

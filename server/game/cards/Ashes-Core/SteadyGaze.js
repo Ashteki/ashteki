@@ -8,6 +8,9 @@ class SteadyGaze extends Card {
             effectArgs: (context) => context.target,
             target: {
                 cardType: BattlefieldTypes,
+                cardCondition: (card, context) =>
+                    // bot rules for play - don't exhaust own units
+                    !context.player.isBot || card.controller === context.player.opponent,
                 gameAction: ability.actions.addExhaustionToken({ amount: 2 })
             }
         });

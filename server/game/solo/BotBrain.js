@@ -19,7 +19,7 @@ class BotBrain {
 
         if (
             action.getGameActions &&
-            action.getGameActions().some((ga) => ga.name === 'changeDice') &&
+            action.getGameActions(params.context).some((ga) => ga.name === 'changeDice') &&
             params.allActions.length > 1
         ) {
             return 0;
