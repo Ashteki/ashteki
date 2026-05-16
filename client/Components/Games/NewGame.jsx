@@ -70,9 +70,9 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         gamePrivate: defaultPrivate,
         ranked: false,
         solo: isSolo,
-        solo: ['chimera', 'bot'].includes(newGameType)
         saveReplay: false
     };
+    // solo: ['chimera', 'bot'].includes(newGameType),
 
     const options = [
         { name: 'ranked', label: 'Ranked (affects Elo rating)' },
@@ -199,11 +199,11 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                 {formProps.errors.name}
                                             </Form.Control.Feedback>
 
-                                            {newGameType === 'chimera' &&
-                                        {['chimera', 'bot'].includes(newGameType) &&
+                                            {['chimera', 'bot'].includes(newGameType) &&
                                                 soloOptions.map((option) =>
                                                     getOptionToggle(option, formProps)
-                                                )}
+                                                )
+                                            }
                                             {newGameType === 'pvp' && (
                                                 <div className='mt-3'>
                                                     <Form.Label>League Presets</Form.Label>
