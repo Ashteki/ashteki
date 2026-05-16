@@ -1,15 +1,15 @@
 const CardGameAction = require('./CardGameAction');
 
 class PlayCardAction extends CardGameAction {
-    constructor(propertyFactory) {
-        super(propertyFactory);
-        this.ignoreActionCost = false;
-        this.playedAsReaction = undefined;
-        this.ignoreDiceCost = false;
-    }
+    // constructor(propertyFactory) {
+    //     super(propertyFactory);
+    // }
 
     setDefaultProperties() {
         this.location = 'hand';
+        this.ignoreActionCost = false;
+        this.playedAsReaction = undefined;
+        this.ignoreDiceCost = false;
     }
 
     setup() {
