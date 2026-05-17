@@ -27,7 +27,7 @@ class BotTurn extends DummyTurn {
             legalActions: this.player.getAllActions(),
             allActions: this.player.getAllActions({ ignoreDiceCost: true, ignoreActionCost: true }),
             context: this.game.getFrameworkContext(this.player)
-        }
+        };
 
         this.botBrain.weightActions(botParams);
 
@@ -44,7 +44,6 @@ class BotTurn extends DummyTurn {
         if (this.player.canAttack()) {
             this.game.initiateAttack(this.player.opponent.phoenixborn, this.player.getAttacker());
         }
-
     }
 
     doAction(fave) {
