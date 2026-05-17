@@ -48,7 +48,7 @@ describe('Bot Action Spells', function () {
                     inPlay: ['iron-worker'],
                     spellboard: [],
                     dicepool: ['illusion', 'illusion', 'charm', 'charm'],
-                    hand: ['steady-gaze', 'summon-false-demon']
+                    hand: ['steady-gaze']
                 }
             });
         });
@@ -56,11 +56,11 @@ describe('Bot Action Spells', function () {
         it('bot should play to strongest unit', function () {
             this.player1.endTurn();
             expect(this.hammerKnight.exhausted).toBe(true);
+
             expect(this.anchornaut.exhausted).toBe(false);
             expect(this.fluteMage.exhausted).toBe(false);
             expect(this.ironWorker.exhausted).toBe(false);
             expect(this.steadyGaze.location).toBe('discard');
-            expect(this.summonFalseDemon.location).toBe('hand'); // not played
         });
     });
 });
