@@ -43,6 +43,7 @@ const GameLobby = ({ gameId }) => {
         passwordGame: state.lobby.passwordGame
     }));
     const user = useSelector((state) => state.account.user);
+    const showBot = user?.permissions?.canVerifyDecks;
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
     const [showPairings, setShowPairings] = useState(false);
     const [replayLoad, setReplayLoad] = useState(false);
@@ -138,18 +139,20 @@ const GameLobby = ({ gameId }) => {
                                         imageClass='chimera'
                                         onClick={() => handleNewGameClick(gameTypes.chimera)}
                                     />
+                                    {showBot && (
+                                        <PictureButton
+                                            text='Bound Soul'
+                                            // header='Premium'
+                                            imageClass='bot'
+                                            onClick={() => handleNewGameClick(gameTypes.bot)}
+                                        />)
+                                    }
                                     <PictureButton
                                         text='League'
                                         header='Discord'
                                         headerClass='discord'
                                         imageClass='league'
                                         onClick={() => handleNewGameClick(gameTypes.league)}
-                                    />
-                                    <PictureButton
-                                        text='Bound Soul'
-                                        // header='Premium'
-                                        imageClass='bot'
-                                        onClick={() => handleNewGameClick(gameTypes.bot)}
                                     />
                                 </div>
                                 <div className='game-buttons nav-buttons'>
