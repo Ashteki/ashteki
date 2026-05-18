@@ -4,7 +4,7 @@ describe('Frost Bulwark Aspect', function () {
     describe('Frost Bulwark in play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['anchornaut'],

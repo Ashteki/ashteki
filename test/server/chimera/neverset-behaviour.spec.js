@@ -4,7 +4,7 @@ describe('Blight of Neverset Behaviour Rolls', function () {
     describe('Phase 1', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['hammer-knight', 'flute-mage'],
@@ -93,7 +93,7 @@ describe('Blight of Neverset Behaviour Rolls', function () {
     describe('Phase 1, no seed', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage'],
@@ -136,7 +136,7 @@ describe('Blight of Neverset Behaviour Rolls', function () {
     describe('Phase 1, status abilities', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['hammer-knight', 'flute-mage'],
@@ -187,7 +187,7 @@ describe('Blight of Neverset Behaviour Rolls', function () {
     describe('Phase 1, status abilities - existing', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['hammer-knight', 'flute-mage'],
@@ -241,7 +241,7 @@ describe('Blight of Neverset Behaviour Rolls', function () {
     describe('Phase 1, status abilities - none', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['hammer-knight', 'flute-mage'],

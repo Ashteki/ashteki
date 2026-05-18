@@ -4,7 +4,7 @@ describe('Devour', function () {
     describe('on Attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker', 'flute-mage'],

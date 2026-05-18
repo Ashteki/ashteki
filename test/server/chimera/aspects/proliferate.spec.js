@@ -4,7 +4,7 @@ describe('Proliferate Aspect', function () {
     describe('On Reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],
@@ -61,7 +61,7 @@ describe('Proliferate Aspect', function () {
     describe('On Reveal but no seed in archives', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: [],

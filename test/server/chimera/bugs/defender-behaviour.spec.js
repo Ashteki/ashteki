@@ -2,7 +2,7 @@ describe('Defender behaviour', function () {
     describe('on attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['essence-druid', 'iron-worker', 'flute-mage'],

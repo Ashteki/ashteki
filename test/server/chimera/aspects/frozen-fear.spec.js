@@ -3,7 +3,7 @@ const Dice = require('../../../../server/game/dice');
 describe('Frozen Feer In Play', function () {
     beforeEach(function () {
         this.setupTest({
-            mode: 'solo',
+            mode: 'chimera',
             player1: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['iron-worker'],

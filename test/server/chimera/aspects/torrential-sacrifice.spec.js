@@ -4,7 +4,7 @@ describe('Torrential Sacrifice Aspect', function () {
     describe('Reveal with no destroy target', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -45,7 +45,7 @@ describe('Torrential Sacrifice Aspect', function () {
     describe('Reveal with target to destroy', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],

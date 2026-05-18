@@ -3,7 +3,7 @@ const Dice = require('../../../../server/game/dice');
 describe('Avalanche Aspect', function () {
     beforeEach(function () {
         this.setupTest({
-            mode: 'solo',
+            mode: 'chimera',
             player1: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['anchornaut'],

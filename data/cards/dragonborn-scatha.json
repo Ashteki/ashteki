@@ -1,0 +1,26 @@
+{
+    "deckType": "dragonborn",
+    "results": [
+        {
+            "name": "Scatha Kalani",
+            "stub": "scatha-kalani",
+            "type": "Dragonborn",
+            "threat": 4,
+            "life": 30,
+            "ultimateCard": "scatha-ultimate",
+            "behaviorCard": "scatha-behaviour"
+        },
+        {
+            "name": "Scatha Ultimate",
+            "stub": "scatha-ultimate",
+            "type": "Ready Spell",
+            "imageStub": "scatha-ultimate-%s.jpg"
+        },
+        {
+            "name": "Scatha Behaviour",
+            "stub": "scatha-behaviour",
+            "type": "Behaviour",
+            "imageStub": "scatha-behavior-%s.jpg"
+        }
+    ]
+}

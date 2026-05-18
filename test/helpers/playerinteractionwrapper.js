@@ -22,6 +22,10 @@ class PlayerInteractionWrapper {
         return this.player.isChimera;
     }
 
+    get isDragonborn() {
+        return this.player.isDragonborn;
+    }
+
     get isBot() {
         return this.player.isBot;
     }

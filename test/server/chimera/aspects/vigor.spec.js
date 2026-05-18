@@ -4,7 +4,7 @@ describe('Vigor Alteration', function () {
     describe('Enrage on destroy', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['anchornaut', 'iron-worker'],

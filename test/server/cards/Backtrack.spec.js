@@ -61,7 +61,7 @@ describe('Backtrack', function () {
     describe('vs chimera aspects', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'lulu-firststone',
                     inPlay: ['hammer-knight', 'anchornaut', 'mist-spirit', 'string-mage'],

@@ -4,7 +4,7 @@ describe('Shore Breaker Aspect', function () {
     describe('In Play - on attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker'],
@@ -47,7 +47,7 @@ describe('Shore Breaker Aspect', function () {
     describe(' on attack, cannot attach 2 drowning', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker'],

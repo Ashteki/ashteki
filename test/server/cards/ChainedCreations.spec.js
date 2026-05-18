@@ -135,7 +135,7 @@ describe('Chained Creations', function () {
     describe('vs Chimera', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['mist-spirit', 'blue-jaguar'],

@@ -77,7 +77,7 @@ describe('Hunters Mark', function () {
     describe('guard restriction vs chimera', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'harold-westraven',
                     inPlay: ['ice-golem', 'three-eyed-owl', 'mist-spirit'],

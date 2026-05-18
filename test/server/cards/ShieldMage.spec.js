@@ -40,7 +40,7 @@ describe('Shield Mage', function () {
     describe('with flock shepherd vs crushing grip with buffer unit', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['iron-worker', 'shield-mage', 'flock-shepherd', 'anchornaut'],
@@ -72,7 +72,7 @@ describe('Shield Mage', function () {
     describe('with flock shepherd vs crushing grip without buffer unit', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['shield-mage', 'iron-worker', 'flock-shepherd', 'anchornaut'],
@@ -108,7 +108,7 @@ describe('Shield Mage', function () {
     describe('BUG REPORT (redking): pb targetted when shield mage should be target.', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['shield-mage', 'iron-worker', 'anchornaut'],

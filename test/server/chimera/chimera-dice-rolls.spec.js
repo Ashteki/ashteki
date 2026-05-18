@@ -4,7 +4,7 @@ describe('Chimera dice interations', function () {
     describe('Chimera rolls fifth rage dice power side', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -52,7 +52,7 @@ describe('Chimera dice interations', function () {
     describe('Illusion dice power vs rage dice', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],

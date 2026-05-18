@@ -109,7 +109,7 @@ describe('Crescendo', function () {
     describe('BUG vs Chimera: when unit attack target is destroyed', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],

@@ -3,7 +3,7 @@ const Dice = require('../../../../server/game/dice');
 describe('Shockwave', function () {
     beforeEach(function () {
         this.setupTest({
-            mode: 'solo',
+            mode: 'chimera',
             player1: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['anchornaut', 'iron-worker', 'flute-mage'], // 2 defenders to prevent ping removal - breaks for expect below.

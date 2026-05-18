@@ -17,7 +17,7 @@ class GameFlowWrapper {
             name: "player1's game",
             id: 12345,
             owner: 'player1',
-            solo: options.mode === 'solo',
+            solo: ['chimera', 'dragonborn'].includes(options.mode),
             gameFormat: options.gameFormat,
             newGameType: 'pvp',
             saveGameId: 12345,
@@ -45,9 +45,11 @@ class GameFlowWrapper {
         if (options.mode === 'bot') {
             details.newGameType = 'bot';
         }
-        if (options.mode === 'solo') {
+        if (options.mode === 'chimera') {
             details.newGameType = 'chimera';
-
+        }
+        if (options.mode === 'dragonborn') {
+            details.newGameType = 'dragonborn';
         }
 
         if (options.player1.dummy) {

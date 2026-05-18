@@ -43,6 +43,7 @@ const PlayableObject = require('./PlayableObject');
 const EndGamePrompt = require('./gamesteps/EndGamePrompt');
 const BotPlayer = require('./solo/BotPlayer');
 const ChimeraPlayer = require('./solo/ChimeraPlayer');
+const DragonbornPlayer = require('./solo/DragonbornPlayer');
 
 
 class Game extends EventEmitter {
@@ -56,6 +57,7 @@ class Game extends EventEmitter {
         this.saveReplay = details.saveReplay;
         this.solo = details.solo;
         this.isChimera = details.newGameType === 'chimera';
+        this.isDragonborn = details.newGameType === 'dragonborn';
         this.isBot = details.newGameType === 'bot';
         if (this.solo && this.isChimera) {
             this.soloLevel = details.soloLevel;
@@ -150,6 +152,9 @@ class Game extends EventEmitter {
         const isOwner = this.owner === player.user.username;
         if (player.isChimera) {
             return new ChimeraPlayer(player.id, player.user, isOwner, this, clockDetails);
+        }
+        if (player.isDragonborn) {
+            return new DragonbornPlayer(player.id, player.user, isOwner, this, clockDetails);
         }
         if (player.isBot) {
             return new BotPlayer(player.id, player.user, isOwner, this, clockDetails);

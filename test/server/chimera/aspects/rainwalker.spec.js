@@ -4,7 +4,7 @@ describe('Rainwalker', function () {
     describe('horde attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker'],
@@ -50,7 +50,7 @@ describe('Rainwalker', function () {
     describe('Ephemeral', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: [],

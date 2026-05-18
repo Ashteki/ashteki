@@ -28,10 +28,6 @@ class ChimeraPlayer extends DummyPlayer {
         return this.phoenixborn;
     }
 
-    get isChimera() {
-        return true;
-    }
-
     initialise() {
         super.initialise();
         // chimera card should be set up after super init / prepare decks
@@ -100,7 +96,6 @@ class ChimeraPlayer extends DummyPlayer {
             this.game.queueSimpleStep(() => this.addCardsToThreatZone(remainingCards));
         }
     }
-
 
     cardMovedListener(event) {
         if (

@@ -3,7 +3,7 @@ const Dice = require('../../../../server/game/dice');
 describe('Sweeping Strike Aspect', function () {
     beforeEach(function () {
         this.setupTest({
-            mode: 'solo',
+            mode: 'chimera',
             player1: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['hammer-knight', 'iron-rhino', 'anchornaut'],

@@ -40,7 +40,7 @@ class SetupPhase extends Phase {
     }
 
     setupDummyPlayer() {
-        if (this.game.isChimera) {
+        if (this.game.isChimera || this.game.isDragonborn) {
             const dummy = this.game.getDummyPlayer();
             dummy.setupAspects();
         }

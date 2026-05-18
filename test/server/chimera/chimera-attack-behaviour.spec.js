@@ -4,7 +4,7 @@ describe('When Attacked', function () {
     describe('an aspect will counter', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
@@ -54,7 +54,7 @@ describe('When Attacked', function () {
     describe('chimera guard', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight', 'winged-lioness'],
@@ -101,7 +101,7 @@ describe('When Attacked', function () {
     describe('chimera guard and defenders', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
@@ -152,7 +152,7 @@ describe('When Attacked', function () {
     describe('defender guard', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight', 'archasaurus-mount'],
@@ -262,7 +262,7 @@ describe('When Attacked', function () {
     describe('foreced block of threatening', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['grave-knight', 'flute-mage'],

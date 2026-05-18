@@ -2,7 +2,7 @@ describe('Insatiable Aspect', function () {
     describe('Insatiable In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
