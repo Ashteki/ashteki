@@ -21,6 +21,7 @@ class DragonbornPlayer extends ChimeraPlayer {
         this.game.resolveAbility(context);
     }
 
+
 }
 
 module.exports = DragonbornPlayer;

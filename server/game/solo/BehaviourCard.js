@@ -17,11 +17,6 @@ class BehaviourCard extends PvEReadySpell {
         // override this in derived classes
     }
 
-    // internal utility method for building a behaviour ability
-    behaviour(properties) {
-        return new ThenAbility(this.game, this.owner.phoenixborn, properties);
-    }
-
     doAddRedRains() {
         const ability = this.behaviour({
             cost: AbilityDsl.costs.sideAction(),
@@ -36,6 +31,11 @@ class BehaviourCard extends PvEReadySpell {
         this.game.resolveAbility(context);
     }
 
+    doLowerOpponentsDice(numDice) {
+        const ability = this.lowerOpponentsDice(numDice);
+        const context = ability.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
     doReveal() {
         // main
         const target = this.owner.threatCards[0];

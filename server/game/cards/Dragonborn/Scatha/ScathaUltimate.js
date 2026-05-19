@@ -5,7 +5,13 @@ class ScathaUltimate extends UltimateCard {
         switch (phase) {
             case 1:
                 // lower 1 die
-                return this.doLowerOpponentsDice(1);
+                return this.lowerOpponentsDice(1);
+            case 2:
+                // deal 1 damage to rightmost unit or pb
+                return this.pbOrRightmostDamage();
+            case 3:
+                // mill or damage
+                return this.millOrDamage();
         }
     }
 

@@ -22,7 +22,7 @@ class ScathaBehaviour extends BehaviourCard {
                     },
                     () => {
                         // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                        this.activateReadySpell();
+                        this.owner.triggerUltimateAbility();
                     }
                 );
             case 'power':
@@ -36,10 +36,6 @@ class ScathaBehaviour extends BehaviourCard {
             default:
                 throw new Error('Unexpected behaviour roll');
         }
-    }
-
-    activateReadySpell() {
-        this.owner.activateReadySpell();
     }
 }
 
