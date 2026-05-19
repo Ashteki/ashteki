@@ -41,6 +41,10 @@ class DragonPhase extends Phase {
     progress() {
         const dummyPlayer = this.game.getDummyPlayer();
         dummyPlayer.triggerProgressAbility();
+        this.game.queueSimpleStep(() => {
+            const dummy = this.game.getDummyPlayer();
+            dummy.advanceChimeraPhase();
+        });
     }
 }
 

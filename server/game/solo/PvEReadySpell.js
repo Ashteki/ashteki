@@ -80,7 +80,7 @@ class PvEReadySpell extends Card {
         return ability;
     }
 
-    doAoEDamage(amount, title) {
+    aoEDamage(amount, title) {
         const ability = this.ultimate({
             effect: 'deal {0} damage to all opponent units and phoenixborn',
             effectArgs: () => amount,
@@ -93,6 +93,25 @@ class PvEReadySpell extends Card {
                 })
             }
         });
+
+        return ability;
+    }
+
+    damageLeftmost(amount, addAspect) {
+        const spec = {
+            target: {
+                mode: 'auto',
+                aim: 'left',
+                gameAction: AbilityDsl.actions.dealDamage({ amount: amount })
+            }
+        };
+        if (addAspect) {
+            spec.then = ({
+                alwaysTriggers: true,
+                gameAction: AbilityDsl.actions.addToThreatZone()
+            })
+        }
+        const ability = this.ultimate(spec);
 
         return ability;
     }

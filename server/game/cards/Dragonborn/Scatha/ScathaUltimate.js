@@ -18,7 +18,11 @@ class ScathaUltimate extends UltimateCard {
     getProgressAbility(phase) {
         switch (phase) {
             case 1:
-                return this.doAoEDamage(1, 'Dragonborn Ready Spell');
+                return this.aoEDamage(1, 'Dragonborn Ready Spell');
+            case 2:
+                return this.damageLeftmost(3);
+            case 3:
+                return this.damageLeftmost(3, true);
         }
     }
 }

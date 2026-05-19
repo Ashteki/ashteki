@@ -20,8 +20,6 @@ class DragonbornPlayer extends ChimeraPlayer {
         const context = ultAbility.createContext(this);
         this.game.resolveAbility(context);
     }
-
-
 }
 
 module.exports = DragonbornPlayer;

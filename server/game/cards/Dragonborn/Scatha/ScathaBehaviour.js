@@ -27,10 +27,8 @@ class ScathaBehaviour extends BehaviourCard {
                 );
             case 'power':
                 // Main: Reveal. Attack with revealed aspect
-                return new Behaviour(
-                    level,
-                    { main: 'Reveal. Attack with revealed aspect.' },
-                    () => this.doAttack(this.doReveal())
+                return new Behaviour(level, { main: 'Reveal. Attack with revealed aspect.' }, () =>
+                    this.doAttack(this.doReveal())
                 );
 
             default:

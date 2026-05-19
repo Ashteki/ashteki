@@ -48,7 +48,7 @@ describe('Dragonborn dragon phase', function () {
                 mode: 'dragonborn',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
-                    inPlay: ['anchornaut'],
+                    inPlay: ['hammer-knight', 'anchornaut'],
                     spellboard: ['summon-blood-puppet'],
                     dicepool: ['natural', 'natural', 'charm', 'charm', 'ceremonial', 'sympathy'],
                     hand: ['summon-iron-rhino'],
@@ -63,13 +63,14 @@ describe('Dragonborn dragon phase', function () {
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
                     dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon'],
-                    deck: ['rampage', 'whiplash', 'shockwave', 'storm-bolt', 'avalanche']
+                    deck: ['rampage', 'whiplash', 'shockwave', 'storm-bolt', 'avalanche', 'storm-bolt', 'avalanche']
                 }
             });
         });
 
         it('dragonborn cleans bf, gains status, replenish aspects, trigger progress spell', function () {
-            // reveal
+            expect(this.player2.player.chimeraPhase).toBe(1);
+
             spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic - Attack, if able. If not, Reveal 
             this.player1.endTurn();
             expect(this.scathaKalani.status).toBe(0); // no dragon phase addition
@@ -88,7 +89,9 @@ describe('Dragonborn dragon phase', function () {
             this.player1.endTurn();
             this.player1.clickDone();
             this.player1.clickCard(this.anchornaut);
+            this.player1.clickCard(this.hammerKnight);
             expect(this.anchornaut.location).toBe('discard');
+            expect(this.hammerKnight.damage).toBe(1);
             this.player1.clickNo();
             expect(this.game.round).toBe(2);
             expect(this.bloodPuppet.location).toBe('archives');
@@ -97,6 +100,58 @@ describe('Dragonborn dragon phase', function () {
 
             this.player1.clickOk();
             expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player2.player.chimeraPhase).toBe(2);
+        });
+
+        it('phase 2', function () {
+            this.player2.player.chimeraPhase = 2;
+            // reveal
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic - Attack, if able. If not, Reveal 
+            this.player1.endTurn();
+            this.player1.clickPrompt('Ok');
+            expect(this.player1).toHaveDefaultPrompt();
+            // fudge end of round
+            this.huntingInstincts.tokens.exhaustion = 2; // prevent attack on Db turn
+            // fudge for end of round
+            this.player1.player.actions.main = true;
+            this.player1.endTurn();
+            this.player1.clickDone();
+
+            // progress spell ability
+            expect(this.hammerKnight.damage).toBe(3);
+            expect(this.player2.threatZone.length).toBe(3);
+
+            this.player1.clickNo();
+
+            this.player1.clickOk();
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player2.player.chimeraPhase).toBe(3);
+        });
+
+        it('phase 3', function () {
+            this.player2.player.chimeraPhase = 3;
+            // reveal
+            spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic - Attack, if able. If not, Reveal 
+            this.player1.endTurn();
+            this.player1.clickPrompt('Ok');
+            expect(this.player1).toHaveDefaultPrompt();
+            // fudge end of round
+            this.huntingInstincts.tokens.exhaustion = 2; // prevent attack on Db turn
+            // fudge for end of round
+            this.player1.player.actions.main = true;
+            this.player1.endTurn();
+            this.player1.clickDone();
+
+            // progress spell ability
+            expect(this.hammerKnight.damage).toBe(3);
+            expect(this.player2.inPlay.length).toBe(1);
+            expect(this.player2.threatZone.length).toBe(4);
+
+            this.player1.clickNo();
+
+            this.player1.clickOk();
+            expect(this.player1).toHaveDefaultPrompt();
+            expect(this.player2.player.chimeraPhase).toBe(3);
         });
     });
 });
