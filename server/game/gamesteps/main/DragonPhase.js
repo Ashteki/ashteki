@@ -24,7 +24,10 @@ class DragonPhase extends Phase {
     gainStatus() {
         const dummyPlayer = this.game.getDummyPlayer();
         const aspectCount = dummyPlayer.getAspectsInPlay().length;
-        this.game.addMessage('Dragonborn receives 1 status token for each face up aspect', aspectCount)
+        this.game.addMessage(
+            'Dragonborn receives 1 status token for each face up aspect',
+            aspectCount
+        );
         this.game.actions
             .addStatusToken({ amount: aspectCount, showMessage: true, shortMessage: true })
             .resolve(dummyPlayer.phoenixborn, this.game.getFrameworkContext(dummyPlayer));
@@ -36,7 +39,8 @@ class DragonPhase extends Phase {
     }
 
     progress() {
-        return;
+        const dummyPlayer = this.game.getDummyPlayer();
+        dummyPlayer.triggerProgressAbility();
     }
 }
 

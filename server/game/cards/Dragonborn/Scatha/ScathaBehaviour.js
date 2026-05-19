@@ -1,27 +1,28 @@
 const Behaviour = require('../../../solo/Behaviour');
 const BehaviourCard = require('../../../solo/BehaviourCard');
+const SplitBehaviour = require('../../../solo/SplitBehaviour');
 
 class ScathaBehaviour extends BehaviourCard {
     getBehaviour(level) {
         switch (level) {
             case 'basic':
-                return new Behaviour(
-                    level,
-                    { main: 'Attack, if able. If not, Reveal.' },
-                    () => (this.canAttack() ? this.doAttack() : this.doReveal())
+                return new Behaviour(level, { main: 'Attack, if able. If not, Reveal.' }, () =>
+                    this.canAttack() ? this.doAttack() : this.doReveal()
                 );
             case 'class':
-                return new Behaviour(
+                return new SplitBehaviour(
                     level,
                     {
-                        main: 'Reveal',
-                        side: 'Target opposing player must lower 2 non-basic dice in their active pool one level'
+                        side: "Activate the Dragonborn's ready spell.",
+                        main: 'Reveal'
+                    },
+                    () => {
+                        // Main: Reveal
+                        this.doReveal();
                     },
                     () => {
                         // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
                         this.activateReadySpell();
-                        // Main: Reveal
-                        this.doReveal();
                     }
                 );
             case 'power':
@@ -38,7 +39,7 @@ class ScathaBehaviour extends BehaviourCard {
     }
 
     activateReadySpell() {
-        return;
+        this.owner.activateReadySpell();
     }
 }
 

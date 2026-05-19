@@ -9,6 +9,10 @@ class DragonbornCard extends PvEOpponentCard {
         return output;
     }
 
+    activateReadySpell() {
+        this.triggerUltimateAbility();
+    }
+
     setupCardAbilities(ability) {
         // this.forcedReaction({
         //     when: {

@@ -68,7 +68,7 @@ describe('Dragonborn dragon phase', function () {
             });
         });
 
-        it('dragonborn cleans bf, gains status, replenish aspects', function () {
+        it('dragonborn cleans bf, gains status, replenish aspects, trigger progress spell', function () {
             // reveal
             spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic - Attack, if able. If not, Reveal 
             this.player1.endTurn();
@@ -87,12 +87,14 @@ describe('Dragonborn dragon phase', function () {
             this.player1.player.actions.main = true;
             this.player1.endTurn();
             this.player1.clickDone();
-
+            this.player1.clickCard(this.anchornaut);
+            expect(this.anchornaut.location).toBe('discard');
             this.player1.clickNo();
             expect(this.game.round).toBe(2);
             expect(this.bloodPuppet.location).toBe('archives');
             expect(this.scathaKalani.status).toBe(1); // dragon phase addition for aspects
             expect(this.player2.totalAspects).toBe(4);
+
             this.player1.clickOk();
             expect(this.player1).toHaveDefaultPrompt();
         });

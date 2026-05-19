@@ -1,7 +1,7 @@
-const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
+const PvEReadySpell = require('./PvEReadySpell');
 
-class UltimateCard extends Card {
+class UltimateCard extends PvEReadySpell {
     get isMovable() {
         return false;
     }

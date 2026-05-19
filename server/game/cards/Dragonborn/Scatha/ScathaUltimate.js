@@ -1,28 +1,18 @@
-const AbilityDsl = require('../../../abilitydsl');
 const UltimateCard = require('../../../solo/UltimateCard');
 
 class ScathaUltimate extends UltimateCard {
     getUltimateAbility(phase) {
-        if (phase < 3) {
-            return this.ultimate({
-                effect: 'deal {0} damage to all opponent units and phoenixborn',
-                effectArgs: () => phase,
-                target: {
-                    ignoreTargetCheck: true,
-                    autoTarget: (context) => [
-                        ...context.player.opponent.unitsInPlay,
-                        context.player.opponent.phoenixborn
-                    ],
-                    gameAction: AbilityDsl.actions.orderedAoE({
-                        gameAction: AbilityDsl.actions.dealDamage({ amount: phase }),
-                        promptTitle: 'Chimera Ultimate'
-                    })
-                }
-            });
-        } else {
-            return this.ultimate({
-                gameAction: AbilityDsl.actions.addToThreatZone({ amount: 1 })
-            });
+        switch (phase) {
+            case 1:
+                // lower 1 die
+                return this.doLowerOpponentsDice(1);
+        }
+    }
+
+    getProgressAbility(phase) {
+        switch (phase) {
+            case 1:
+                return this.doAoEDamage(1, 'Dragonborn Ready Spell');
         }
     }
 }
