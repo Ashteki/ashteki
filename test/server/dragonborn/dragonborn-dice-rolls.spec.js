@@ -1,6 +1,6 @@
 const Dice = require('../../../server/game/dice');
 
-describe('Dragonborn interations', function () {
+describe('Dragonborn Dice rolls', function () {
     describe('Dragonborn rolls fifth dragon dice power side', function () {
         beforeEach(function () {
             this.setupTest({
@@ -21,7 +21,7 @@ describe('Dragonborn interations', function () {
                     deck: [],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
-                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                    dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon']
                 }
             });
             spyOn(Dice, 'd12Roll').and.returnValue(1);

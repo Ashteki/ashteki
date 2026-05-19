@@ -44,6 +44,7 @@ const EndGamePrompt = require('./gamesteps/EndGamePrompt');
 const BotPlayer = require('./solo/BotPlayer');
 const ChimeraPlayer = require('./solo/ChimeraPlayer');
 const DragonbornPlayer = require('./solo/DragonbornPlayer');
+const DragonPhase = require('./gamesteps/main/DragonPhase');
 
 
 class Game extends EventEmitter {
@@ -1270,6 +1271,9 @@ class Game extends EventEmitter {
 
         this.raiseEvent('onBeginRound');
         this.getPlayers().forEach((player) => player.beginRound());
+        if (this.isDragonborn && this.round > 1) {
+            this.queueStep(new DragonPhase(this));
+        }
         this.queueStep(new PreparePhase(this));
 
         this.queueStep(new PlayerTurnsPhase(this));

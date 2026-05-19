@@ -20,12 +20,10 @@ class PlayerTurnsPhase extends Phase {
                 this.queueStep(new ChimeraTurn(this.game));
             } else if (this.game.isDragonborn) {
                 this.queueStep(new DragonbornTurn(this.game));
-
             } else if (this.game.isBot) {
                 this.queueStep(new BotTurn(this.game));
             }
-        }
-        else {
+        } else {
             this.queueStep(new ActionWindow(this.game));
         }
 

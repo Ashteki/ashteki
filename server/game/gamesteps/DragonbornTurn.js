@@ -19,39 +19,34 @@ class DragonbornTurn extends DummyTurn {
 
     rollDice() {
         // Reroll a basic die
-        // queue an action because of redrains trigger
         const basicDie = this.player.dice.find((die) => die.level === Level.Basic);
         const result = AbilityDsl.actions
             .rerollDice({ target: basicDie })
             .resolve(basicDie, this.game.getFrameworkContext(this.player));
 
-        // Roll for behaviour
         this.queueStep(
             new SimpleStep(this.game, () => {
-                const d12Roll = Dice.d12Roll();
-                // roll behaviour dice and determine
-                this.game.addMessage('{0} rolls {1} for behaviour', this.player, d12Roll);
-                this.player.behaviourRoll = d12Roll;
-                const context = this.game.getFrameworkContext(this.player);
-
+                // Interpret behaviour
                 const rolledRageDie = result.event.childEvent.dice[0];
                 const clonedRageDie = result.event.childEvent.diceCopy[0];
+
+                this.game.addMessage('{0} rolls {1} for behaviour', this.player, clonedRageDie);
+                // this.player.behaviourRoll = d12Roll;
+                const context = this.game.getFrameworkContext(this.player);
+
                 // get actions from behaviour card and queue
-                const behaviour = this.player.behaviour.getBehaviour(
-                    d12Roll,
-                    this.player.chimeraPhase
-                );
-                this.game.addAlert(
-                    'info',
-                    '{0} rolls {1} for behaviour:\n{2}',
-                    this.player,
-                    d12Roll,
-                    behaviour
-                );
+                const behaviour = this.player.behaviour.getBehaviour(clonedRageDie.level);
+                // this.game.addAlert(
+                //     'info',
+                //     '{0} rolls {1} for behaviour:\n{2}',
+                //     this.player,
+                //     d12Roll,
+                //     behaviour
+                // );
                 this.game.queueUserAlert(context, {
                     style: 'danger',
-                    promptTitle: 'Chimera Turn',
-                    menuTitle: 'Chimera rolls rage and behavior dice',
+                    promptTitle: 'Dragonborn Turn',
+                    menuTitle: 'Dragonborn rolls for behaviour',
                     controls: [
                         {
                             type: 'targeting',

@@ -44,6 +44,14 @@ class ChimeraPlayer extends DummyPlayer {
         return this.unitsInPlay.filter((u) => u.type === CardType.Aspect);
     }
 
+    getTrasspassingCards() {
+        const alienUnits = this.unitsInPlay.filter((c) => c.owner !== c.controller);
+        const alienUpgrades = this.unitsInPlay.reduce((accumulator, curValue) => {
+            return accumulator.concat(curValue.upgrades.filter((u) => u.owner !== u.controller));
+        }, []);
+        return alienUnits.concat(alienUpgrades);
+    }
+
     getHand() {
         if (this.hand.length === 0) {
             this.doDrawCards(5);
