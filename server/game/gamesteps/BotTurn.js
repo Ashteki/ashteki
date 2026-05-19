@@ -7,13 +7,7 @@ class BotTurn extends DummyTurn {
         this.botBrain = new BotBrain();
     }
 
-    beginTurn() {
-        if (this.player.anyEffect('mustAttack') && this.canAttack()) {
-            this.player.doAttack();
-            return;
-        }
-
-        // side and main should be considered
+    queueActions() {
         this.game.queueSimpleStep(() => {
             this.considerAction();
         });

@@ -4,7 +4,7 @@ const Dice = require('../dice');
 const DummyTurn = require('./DummyTurn');
 const SimpleStep = require('./simplestep');
 
-class ChimeraTurn extends DummyTurn {
+class DragonbornTurn extends DummyTurn {
     queueActions() {
         if (this.player.threatCards.length) {
             // if aspects are not revealed then roll for behaviour etc
@@ -71,4 +71,4 @@ class ChimeraTurn extends DummyTurn {
     }
 }
 
-module.exports = ChimeraTurn;
+module.exports = DragonbornTurn;

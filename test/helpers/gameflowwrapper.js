@@ -58,8 +58,9 @@ class GameFlowWrapper {
 
         if (options.player2.dummy) {
             details.players[1].isDummy = true;
-            details.players[1].isChimera = !options.player2.bot;
-            details.players[1].isBot = options.player2.bot;
+            details.players[1].isChimera = options.mode === 'chimera';
+            details.players[1].isDragonborn = options.mode === 'dragonborn';
+            details.players[1].isBot = options.mode === 'bot';
         }
 
         this.game = new Game(details, {

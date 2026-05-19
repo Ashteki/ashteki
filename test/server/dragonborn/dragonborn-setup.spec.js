@@ -13,8 +13,8 @@ describe('Dragonborn setup', function () {
                 player2: {
                     dummy: true,
                     phoenixborn: 'scatha-kalani',
-                    behaviour: 'viros-behaviour',
-                    ultimate: 'viros-ultimate',
+                    behaviour: 'scatha-behaviour',
+                    ultimate: 'scatha-ultimate',
 
                     spellboard: [],
                     dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon']
