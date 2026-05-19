@@ -212,6 +212,10 @@ class PlayerInteractionWrapper {
         _.each(cards, (card) => this.moveCard(card, 'play area', { facedown: true }));
     }
 
+    get totalAspects() {
+        return this.player.aspectsInPlay.length;
+    }
+
     get promptState() {
         return this.player.promptState;
     }

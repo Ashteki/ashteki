@@ -15,7 +15,7 @@ class DragonPhase extends Phase {
     cleanse() {
         const dummyPlayer = this.game.getDummyPlayer();
         const context = this.game.getFrameworkContext(dummyPlayer);
-        const aliens = dummyPlayer.getTrasspassingCards();
+        const aliens = dummyPlayer.getTresspassingCards();
         if (aliens.length) {
             this.game.actions.discard().resolve(aliens, context);
         }
@@ -31,7 +31,8 @@ class DragonPhase extends Phase {
     }
 
     replenishAspects() {
-        return;
+        const dummy = this.game.getDummyPlayer();
+        dummy.replenishAspects();
     }
 
     progress() {

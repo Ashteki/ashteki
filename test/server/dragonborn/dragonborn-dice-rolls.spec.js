@@ -35,7 +35,7 @@ describe('Dragonborn Dice rolls', function () {
 
         it('5 powers adds status token to dragonborn', function () {
             // reveal
-            spyOn(Dice, 'getRandomInt').and.returnValue(1);
+            spyOn(Dice, 'getRandomInt').and.returnValue(0);
             expect(this.huntingInstincts.facedown).toBe(true);
             this.player1.endTurn();
             // informs real player of behaviour roll

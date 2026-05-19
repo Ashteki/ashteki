@@ -1,6 +1,5 @@
 const { Level } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
-const Dice = require('../dice');
 const DummyTurn = require('./DummyTurn');
 const SimpleStep = require('./simplestep');
 
@@ -27,15 +26,15 @@ class DragonbornTurn extends DummyTurn {
         this.queueStep(
             new SimpleStep(this.game, () => {
                 // Interpret behaviour
-                const rolledRageDie = result.event.childEvent.dice[0];
+                const rolledRageDie = result.event.childEvent.diceCopyAfterRoll[0];
                 const clonedRageDie = result.event.childEvent.diceCopy[0];
 
-                this.game.addMessage('{0} rolls {1} for behaviour', this.player, clonedRageDie);
+                this.game.addMessage('{0} rolls {1} for behaviour', this.player, rolledRageDie);
                 // this.player.behaviourRoll = d12Roll;
                 const context = this.game.getFrameworkContext(this.player);
 
                 // get actions from behaviour card and queue
-                const behaviour = this.player.behaviour.getBehaviour(clonedRageDie.level);
+                const behaviour = this.player.behaviour.getBehaviour(rolledRageDie.level);
                 // this.game.addAlert(
                 //     'info',
                 //     '{0} rolls {1} for behaviour:\n{2}',

@@ -60,15 +60,15 @@ describe('Dragonborn dragon phase', function () {
                     behaviour: 'scatha-behaviour',
                     ultimate: 'scatha-ultimate',
                     inPlay: [],
-                    deck: [],
                     spellboard: [],
                     threatZone: ['hunting-instincts'],
-                    dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon']
+                    dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon'],
+                    deck: ['rampage', 'whiplash', 'shockwave', 'storm-bolt', 'avalanche']
                 }
             });
         });
 
-        it('dragonborn gains status for each aspect in play', function () {
+        it('dragonborn cleans bf, gains status, replenish aspects', function () {
             // reveal
             spyOn(Dice, 'getRandomInt').and.returnValue(4); // basic - Attack, if able. If not, Reveal 
             this.player1.endTurn();
@@ -82,6 +82,7 @@ describe('Dragonborn dragon phase', function () {
             this.player1.clickPrompt("Opponent's");
             // fudge for end of round
             expect(this.bloodPuppet.location).toBe('play area');
+            expect(this.player2.threatZone.length).toBe(0);
             this.bloodPuppet.exhaust();
             this.player1.player.actions.main = true;
             this.player1.endTurn();
@@ -91,6 +92,8 @@ describe('Dragonborn dragon phase', function () {
             expect(this.game.round).toBe(2);
             expect(this.bloodPuppet.location).toBe('archives');
             expect(this.scathaKalani.status).toBe(1); // dragon phase addition for aspects
+            expect(this.player2.totalAspects).toBe(4);
+            this.player1.clickOk();
             expect(this.player1).toHaveDefaultPrompt();
         });
     });
