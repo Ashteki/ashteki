@@ -60,7 +60,7 @@ class Game extends EventEmitter {
         this.isChimera = details.newGameType === 'chimera';
         this.isDragonborn = details.newGameType === 'dragonborn';
         this.isBot = details.newGameType === 'bot';
-        if (this.solo && this.isChimera) {
+        if (this.solo && this.isChimera || this.isDragonborn) {
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
             this.isSurvival = details.gameFormat === 'survival';
@@ -77,7 +77,7 @@ class Game extends EventEmitter {
         this.cardVisibility = new CardVisibility(
             details.showHand,
             details.openHands,
-            this.isChimera
+            this.isChimera || this.isDragonborn
         );
 
         this.allowSpectators = details.allowSpectators;
@@ -1225,13 +1225,13 @@ class Game extends EventEmitter {
     }
 
     reRollPlayerDice() {
-        for (let player of this.getPlayers().filter((p) => !p.isChimera)) {
+        for (let player of this.getPlayers().filter((p) => !p.isChimera && !p.isDragonborn)) {
             player.rerollAllDice(this.round);
         }
     }
 
     unpinPlayerDice() {
-        for (let player of this.getPlayers().filter((p) => !p.isChimera)) {
+        for (let player of this.getPlayers().filter((p) => !p.isChimera && !p.isDragonborn)) {
             player.unpinAllDice();
         }
     }
@@ -1842,7 +1842,7 @@ class Game extends EventEmitter {
                 medCount: player.medCount,
                 totalDiceSpend: player.totalDiceSpend
             };
-            if (player.isChimera) {
+            if (player.isChimera || player.isDragonborn) {
                 p.level = this.soloLevel;
                 p.stage = this.soloStage;
                 p.preconId = player.deckData.precon_id;
@@ -1914,6 +1914,7 @@ class Game extends EventEmitter {
             gameType: this.gameType,
             id: this.id,
             isChimera: this.isChimera,
+            isDragonborn: this.isDragonborn,
             isBot: this.isBot,
             label: this.label,
             manualMode: this.manualMode,

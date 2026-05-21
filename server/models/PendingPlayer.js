@@ -5,6 +5,7 @@ class PendingPlayer {
         this.owner = isOwner;
         this.user = user;
         this.isChimera = user.isChimera;
+        this.isDragonborn = user.isDragonborn;
         this.isBot = user.isBot;
         this.isDummy = user.isDummy;
     }

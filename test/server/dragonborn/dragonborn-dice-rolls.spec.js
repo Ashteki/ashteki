@@ -48,5 +48,20 @@ describe('Dragonborn Dice rolls', function () {
             expect(this.huntingInstincts.facedown).toBe(false);
             expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
         });
+
+        it('5 non-basic adds status token to dragonborn', function () {
+            // reveal
+            spyOn(Dice, 'getRandomInt').and.returnValue(2); // class
+            expect(this.huntingInstincts.facedown).toBe(true);
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+
+            expect(this.player2.dicepool.every((d) => d.level === 'basic'));
+            expect(this.player2.phoenixborn.status).toBe(1);
+            expect(this.player2.phoenixborn.redRains).toBe(0);
+            this.player1.clickPrompt('Ok');
+
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
+        });
     });
 });

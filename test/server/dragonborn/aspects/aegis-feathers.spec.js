@@ -1,5 +1,5 @@
-describe('Scatha Kalani status Ability', function () {
-    describe('With units', function () {
+describe('Aegis Feathers', function () {
+    describe('When Destroyed', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'dragonborn',
@@ -15,26 +15,30 @@ describe('Scatha Kalani status Ability', function () {
                     behaviour: 'scatha-behaviour',
                     ultimate: 'scatha-ultimate',
                     spellboard: [],
+                    inPlay: ['sear', 'aegis-feathers'],
                     dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon']
                 }
             });
-            this.scathaKalani.tokens.status = 1;
+
+            this.sear.exhaust();
         });
 
-        it('deals 1 damage to the leftmost unit', function () {
-            this.player1.endTurn();
-            // start of turn ability trigger
-            expect(this.blueJaguar.damage).toBe(1);
+        it('remove 1 exhaustion from leftmost aspect', function () {
+            expect(this.sear.exhausted).toBe(true);
+            this.player1.useDie(0);
+            this.player1.clickCard(this.aegisFeathers);
+            expect(this.aegisFeathers.location).toBe('discard');
+            expect(this.sear.exhausted).toBe(false);
         });
     });
-    describe('No units', function () {
+
+    describe('When Destroyed but leftmost is not exhausted', function () {
         beforeEach(function () {
             this.setupTest({
                 mode: 'dragonborn',
-                allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',
-                    inPlay: [],
+                    inPlay: ['blue-jaguar', 'mist-spirit'],
                     dicepool: ['natural', 'natural', 'charm', 'charm'],
                     spellboard: ['summon-butterfly-monk']
                 },
@@ -44,16 +48,21 @@ describe('Scatha Kalani status Ability', function () {
                     behaviour: 'scatha-behaviour',
                     ultimate: 'scatha-ultimate',
                     spellboard: [],
+                    inPlay: ['sear', 'rapid-flight', 'aegis-feathers'],
                     dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon']
                 }
             });
-            this.scathaKalani.tokens.status = 1;
+
+            this.rapidFlight.exhaust();
         });
 
-        it('deals 1 damage to opponent pb', function () {
-            this.player1.endTurn();
-            // start of turn ability trigger
-            expect(this.aradelSummergaard.damage).toBe(1);
+        it('no impact to other exhausted units', function () {
+            expect(this.sear.exhausted).toBe(false);
+            expect(this.rapidFlight.exhausted).toBe(true);
+            this.player1.useDie(0);
+            this.player1.clickCard(this.aegisFeathers);
+            expect(this.aegisFeathers.location).toBe('discard');
+            expect(this.rapidFlight.exhausted).toBe(true);
         });
     });
 });

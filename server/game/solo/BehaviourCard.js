@@ -32,10 +32,15 @@ class BehaviourCard extends PvEReadySpell {
     }
 
     doLowerOpponentsDice(numDice) {
+        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
+            return;
+        }
+
         const ability = this.lowerOpponentsDice(numDice);
         const context = ability.createContext(this.owner);
         this.game.resolveAbility(context);
     }
+
     doReveal() {
         // main
         const target = this.owner.threatCards[0];

@@ -135,6 +135,10 @@ const GameLobby = ({ gameId }) => {
                                         onClick={() => handleNewGameClick(gameTypes.pvp)}
                                     />
                                     <PictureButton
+                                        text='Dragonborn'
+                                        imageClass='dragonborn'
+                                        onClick={() => handleNewGameClick(gameTypes.dragonborn)}
+                                    />                                    <PictureButton
                                         text='Chimera'
                                         imageClass='chimera'
                                         onClick={() => handleNewGameClick(gameTypes.chimera)}
@@ -147,13 +151,6 @@ const GameLobby = ({ gameId }) => {
                                             onClick={() => handleNewGameClick(gameTypes.bot)}
                                         />)
                                     }
-                                    <PictureButton
-                                        text='League'
-                                        header='Discord'
-                                        headerClass='discord'
-                                        imageClass='league'
-                                        onClick={() => handleNewGameClick(gameTypes.league)}
-                                    />
                                 </div>
                                 <div className='game-buttons nav-buttons'>
                                     <PictureButton
@@ -171,6 +168,14 @@ const GameLobby = ({ gameId }) => {
                                         imageClass='replay'
                                         onClick={() => handleReplayClick('replay')}
                                     />
+                                    <PictureButton
+                                        text='League'
+                                        header='Discord'
+                                        headerClass='discord'
+                                        imageClass='league'
+                                        onClick={() => handleNewGameClick(gameTypes.league)}
+                                    />
+
                                 </div>
                             </>
 

@@ -8,19 +8,86 @@
             "threat": 4,
             "life": 30,
             "ultimateCard": "scatha-ultimate",
-            "behaviorCard": "scatha-behaviour"
+            "behaviorCard": "scatha-behaviour",
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/scatha-kalani.jpg"
         },
         {
-            "name": "Scatha Ultimate",
+            "name": "Scatha Ready Spell",
             "stub": "scatha-ultimate",
             "type": "Ready Spell",
-            "imageStub": "scatha-ultimate-%s.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/scatha-ultimate-%s.jpg"
         },
         {
             "name": "Scatha Behaviour",
             "stub": "scatha-behaviour",
             "type": "Behaviour",
-            "imageStub": "scatha-behavior-%s.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/dragonborn-behavior.jpg"
+        },
+        {
+            "name": "Sear",
+            "stub": "sear",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 3,
+            "life": 2,
+            "blood": 2,
+            "statusCount": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/sear.jpg"
+        },
+        {
+            "name": "Radiant Flash",
+            "stub": "radiant-flash",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 2,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/radiant-flash.jpg"
+        },
+        {
+            "name": "Aegis Feathers",
+            "stub": "aegis-feathers",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "attack": 1,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/aegis-feathers.jpg"
+        },
+        {
+            "name": "Birdhunter",
+            "stub": "birdhunter",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 3,
+            "life": 3,
+            "blood": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/birdhunter.jpg"
+        },
+        {
+            "name": "Dragon Rage",
+            "stub": "dragon-rage",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 4,
+            "life": 3,
+            "blood": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/dragon-rage.jpg"
+        },
+        {
+            "name": "Rapid Flight",
+            "stub": "rapid-flight",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/scatha/rapid-flight.jpg"
         }
     ]
 }

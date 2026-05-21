@@ -1,6 +1,11 @@
+const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
 const ChimeraPlayer = require('./ChimeraPlayer');
 
 class DragonbornPlayer extends ChimeraPlayer {
+    constructor(id, user, owner, game, clockdetails) {
+        super(id, user, owner, game, clockdetails);
+        this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
+    }
     get isDragonborn() {
         return true;
     }

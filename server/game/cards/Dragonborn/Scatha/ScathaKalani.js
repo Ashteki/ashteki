@@ -16,7 +16,6 @@ class ScathaKalani extends DragonbornCard {
             gameAction: ability.actions.dealDamage((context) => ({
                 target: context.targets.unit || context.targets.pb
             }))
-
         })
     }
 }

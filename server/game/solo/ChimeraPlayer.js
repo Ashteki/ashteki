@@ -1,5 +1,6 @@
 const { Level, CardType, AspectTypes } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
+const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
 const ChimeraFFStrategy = require('./ChimeraFFStrategy');
 const DummyPlayer = require('./DummyPlayer');
 
@@ -7,6 +8,7 @@ class ChimeraPlayer extends DummyPlayer {
     constructor(id, user, owner, game, clockdetails) {
         super(id, user, owner, game, clockdetails);
         this.firstFiveStrategy = new ChimeraFFStrategy(this);
+        this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
 
         this.behaviourRoll = 0;
         this.fatigued = false;
@@ -169,7 +171,7 @@ class ChimeraPlayer extends DummyPlayer {
     }
 
     dieChangeListener(event) {
-        if (event.diceOwner === this && this.dice.every((d) => d.level === Level.Power)) {
+        if (event.diceOwner === this && this.dice.every((d) => d.level !== Level.Basic)) {
             // reset all dice
             this.dice.forEach((d) => (d.level = Level.Basic));
             // add a RR token to the Chimera

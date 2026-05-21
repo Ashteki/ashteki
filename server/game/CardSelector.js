@@ -21,7 +21,8 @@ const defaultProperties = {
         'Reaction Spell',
         'Aspect',
         'Chimera',
-        'Conjured Aspect'
+        'Conjured Aspect',
+        'Dragonborn'
     ],
     multiSelect: false
 };

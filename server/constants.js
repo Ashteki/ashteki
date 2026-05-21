@@ -99,6 +99,7 @@ const LegalLocations = {
 const GameTypes = Object.freeze({
     pvp: 'pvp',
     chimera: 'chimera',
+    dragonborn: 'dragonborn',
     league: 'league',
     bot: 'bot'
 });

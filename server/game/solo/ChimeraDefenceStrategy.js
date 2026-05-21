@@ -1,4 +1,5 @@
-const { CardType, AspectTypes } = require("../../constants");
+const { CardType, AspectTypes, Level } = require("../../constants");
+const AbilityDsl = require('../abilitydsl');
 const DefenceRules = require("../DefenceRules");
 const Dice = require("../dice");
 
@@ -51,17 +52,8 @@ class ChimeraDefenceStrategy {
             // and the target is an aspect (chimera won't guard tourists like blood puppet)
             AspectTypes.includes(attack.target.type)
         ) {
-            const d12Roll = Dice.d12Roll();
-            let guardText = '\nNo guard';
-            if (d12Roll >= 9) {
-                attack.battles[0].guard = this.player.phoenixborn;
-                guardText = ' and WILL guard!';
-            }
-            const context = this.game.getFrameworkContext(this.player);
-            this.game.queueUserAlert(context, {
-                style: 'danger',
-                promptTitle: 'Chimera guard roll',
-                menuTitle: 'Chimera rolled ' + d12Roll + guardText
+            this.game.queueSimpleStep(() => {
+                this.doPvEGuardRoll(attack);
             });
         }
 
@@ -70,24 +62,68 @@ class ChimeraDefenceStrategy {
             attack.isPBAttack &&
             attack.battles.some((b) => b.attacker.anyEffect('threatening') && !b.guard)
         ) {
-            const nonDefenders = this.player.unitsInPlay.filter(
-                (u) =>
-                    u !== attack.target && !u.anyEffect('defender') && !u.isDefender && !u.exhausted
-            );
-
-            // try and assign to battles
-            nonDefenders.forEach(d => {
-                const bat = battlesToGuard.find(
-                    (b) => !b.guard && b.attacker.anyEffect('threatening')
-                );
-                if (!bat) {
-                    return;
-                }
-                attack.setGuard(d, bat);
+            this.game.queueSimpleStep(() => {
+                this.handleThreateningAttackers(attack, battlesToGuard);
             });
-
         }
-        this.game.writeDefenceMessages(this.player);
+
+        this.game.queueSimpleStep(() => {
+            this.game.writeDefenceMessages(this.player);
+        });
+    }
+
+    doPvEGuardRoll(attack) {
+        const decision = {
+            willGuard: false,
+            textResult: ''
+        };
+
+        if (this.player.isDragonborn) {
+            const basicDie = this.player.dice.find((die) => die.level === Level.Basic);
+            const rollResult = AbilityDsl.actions
+                .rerollDice({ target: basicDie })
+                .resolve(basicDie, this.game.getFrameworkContext(this.player));
+
+            this.game.queueSimpleStep(() => {
+                const rolledRageDie = rollResult.event.childEvent.diceCopyAfterRoll[0];
+                decision.willGuard = rolledRageDie.level === Level.Basic;
+                decision.textResult = rolledRageDie;
+            });
+        } else {
+            const d12Roll = Dice.d12Roll();
+
+            decision.willGuard = d12Roll >= 9;
+            decision.textResult = d12Roll;
+        }
+
+        this.game.queueSimpleStep(() => {
+            let guardText = '\nNo guard';
+            if (decision.willGuard) {
+                attack.battles[0].guard = this.player.phoenixborn;
+                guardText = ' and WILL guard!';
+            }
+            const context = this.game.getFrameworkContext(this.player);
+            this.game.queueUserAlert(context, {
+                style: 'danger',
+                promptTitle: 'Chimera guard roll',
+                menuTitle: 'Chimera rolled ' + decision.textResult + guardText
+            });
+        });
+    }
+
+    handleThreateningAttackers(attack, battlesToGuard) {
+        const nonDefenders = this.player.unitsInPlay.filter(
+            (u) => u !== attack.target && !u.anyEffect('defender') && !u.isDefender && !u.exhausted
+        );
+
+        // try and assign to battles
+        nonDefenders.forEach(d => {
+            const bat = battlesToGuard.find((b) => !b.guard && b.attacker.anyEffect('threatening'));
+            if (!bat) {
+                return;
+            }
+            attack.setGuard(d, bat);
+        });
     }
 
     getAvailableDefenders(attack) {

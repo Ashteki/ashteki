@@ -35,13 +35,13 @@ class DragonbornTurn extends DummyTurn {
 
                 // get actions from behaviour card and queue
                 const behaviour = this.player.behaviour.getBehaviour(rolledRageDie.level);
-                // this.game.addAlert(
-                //     'info',
-                //     '{0} rolls {1} for behaviour:\n{2}',
-                //     this.player,
-                //     d12Roll,
-                //     behaviour
-                // );
+                this.game.addAlert(
+                    'info',
+                    '{0} rolls {1} for behaviour:\n{2}',
+                    this.player,
+                    rolledRageDie,
+                    behaviour
+                );
                 this.game.queueUserAlert(context, {
                     style: 'danger',
                     promptTitle: 'Dragonborn Turn',

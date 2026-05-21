@@ -14,10 +14,6 @@ class PvEReadySpell extends Card {
     }
 
     lowerOpponentsDice(numDice) {
-        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
-            return;
-        }
-
         let titleText =
             numDice === 1 ? 'Choose a die to lower' : 'Choose ' + numDice + ' dice to lower';
         const ability = this.behaviour({
