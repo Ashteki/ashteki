@@ -14,7 +14,6 @@ const BehaviourPromptControl = ({ behaviour, showTitle = true }) => {
         </div>
     );
 
-
     return (
         <div className='prompt-control-behaviour'>
             {showTitle && <h3>Behaviour: {behaviour.value}</h3>}

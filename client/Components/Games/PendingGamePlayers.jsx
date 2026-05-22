@@ -191,6 +191,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
             })}
             {showModal && (
                 <SelectDeckModal
+                    newGameType={currentGame.newGameType}
                     gameFormat={currentGame.gameFormat}
                     onClose={() => setShowModal(false)}
                     onDeckSelected={deckSelectedHandler}

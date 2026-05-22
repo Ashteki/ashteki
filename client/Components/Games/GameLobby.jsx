@@ -44,6 +44,7 @@ const GameLobby = ({ gameId }) => {
     }));
     const user = useSelector((state) => state.account.user);
     const showBot = user?.permissions?.canVerifyDecks;
+    const showDragonborn = user?.permissions?.canVerifyDecks;
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
     const [showPairings, setShowPairings] = useState(false);
     const [replayLoad, setReplayLoad] = useState(false);
@@ -135,14 +136,26 @@ const GameLobby = ({ gameId }) => {
                                         onClick={() => handleNewGameClick(gameTypes.pvp)}
                                     />
                                     <PictureButton
-                                        text='Dragonborn'
-                                        imageClass='dragonborn'
-                                        onClick={() => handleNewGameClick(gameTypes.dragonborn)}
-                                    />                                    <PictureButton
                                         text='Chimera'
                                         imageClass='chimera'
                                         onClick={() => handleNewGameClick(gameTypes.chimera)}
                                     />
+                                    < PictureButton
+                                        text='League'
+                                        header='Discord'
+                                        headerClass='discord'
+                                        imageClass='league'
+                                        onClick={() => handleNewGameClick(gameTypes.league)}
+                                    />
+
+                                    {showBot && (<br />)}
+                                    {showDragonborn && (
+                                        <PictureButton
+                                            text='Dragonborn'
+                                            imageClass='dragonborn'
+                                            onClick={() => handleNewGameClick(gameTypes.dragonborn)}
+                                        />
+                                    )}
                                     {showBot && (
                                         <PictureButton
                                             text='Bound Soul'
@@ -168,14 +181,6 @@ const GameLobby = ({ gameId }) => {
                                         imageClass='replay'
                                         onClick={() => handleReplayClick('replay')}
                                     />
-                                    <PictureButton
-                                        text='League'
-                                        header='Discord'
-                                        headerClass='discord'
-                                        imageClass='league'
-                                        onClick={() => handleNewGameClick(gameTypes.league)}
-                                    />
-
                                 </div>
                             </>
 

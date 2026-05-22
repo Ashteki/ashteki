@@ -11,7 +11,7 @@ import debounce from 'lodash.debounce';
 import { PatreonStatus } from '../../types/patreon.js';
 import DeckGrid from '../Decks/DeckGrid.jsx';
 
-const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
+const SelectDeckModal = ({ gameFormat, newGameType, onClose, onDeckSelected, onChooseForMe, playerIsMe }) => {
     const user = useSelector((state) => state.account.user);
     const showRestricted = user?.permissions.canVerifyDecks;
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
@@ -27,7 +27,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         pveDecks,
         dualDuelDecks,
         oneCollectionDecks,
-        ascendancyDecks
+        ascendancyDecks,
+        dragonbornDecks
     } = useSelector((state) => ({
         myDecks: state.cards.decks,
         myChimeraDecks: state.cards.myChimeraDecks,
@@ -38,7 +39,8 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
         pveDecks: state.cards.pveDecks?.filter((d) => showRestricted || !d.restricted),
         dualDuelDecks: state.cards.dualDuelDecks,
         oneCollectionDecks: state.cards.oneCollectionDecks,
-        ascendancyDecks: state.cards.ascendancyDecks
+        ascendancyDecks: state.cards.ascendancyDecks,
+        dragonbornDecks: state.cards.dragonbornDecks
     }));
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
@@ -60,12 +62,12 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
             filter: filter
         };
 
-        if (isSolo && !playerIsMe) {
+        if (newGameType === 'chimera' && !playerIsMe) {
             dispatch(loadMyChimeraDecks(pagingDetails));
         } else {
             dispatch(loadDecks(pagingDetails));
         }
-    }, [nameFilter, pbFilter, showFaves, dispatch, isSolo, playerIsMe]);
+    }, [nameFilter, pbFilter, showFaves, dispatch, newGameType, playerIsMe]);
 
     let onNameChange = debounce((event) => {
         event.preventDefault();
@@ -157,7 +159,7 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
                 </TabPanel>
             </Tabs>
         );
-    } else if (isSolo) {
+    } else if (isSolo && newGameType === 'chimera') {
         deckList = (
             <Tabs>
                 <TabList>
@@ -182,15 +184,26 @@ const SelectDeckModal = ({ gameFormat, onClose, onDeckSelected, onChooseForMe, p
 
             </Tabs>
         );
+    } else if (isSolo && newGameType === 'dragonborn') {
+        deckList = (
+            <div>
+                {showChooseForMe && (
+                    <Button onClick={() => onChooseForMe(7)}>Choose for me</Button>
+                )}
+                <DeckGrid decks={dragonbornDecks} onDeckSelected={onDeckSelected} />
+            </div>
+        );
+
+
     } else {
         let decks = null;
         switch (gameFormat) {
-            case 'standard':
-            case 'survival':
-                setIndex = 5;
-                decks = chimeraDecks;
-                showChooseForMe = allowPremium;
-                break;
+            // case 'standard':
+            // case 'survival':
+            //     setIndex = 5;
+            //     decks = chimeraDecks;
+            //     showChooseForMe = allowPremium;
+            //     break;
             case 'firstadventure':
                 setIndex = 4;
                 decks = firstAdventureDecks;
