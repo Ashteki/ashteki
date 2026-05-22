@@ -28,9 +28,9 @@ import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
 import Sidebar from './Sidebar';
-import AlertSplash from './AlertSplash';
 import ActivePlayerPrompt from './ActivePlayerPrompt';
 import { useNavigate } from 'react-router-dom';
+import SplashPlayerPrompt from './SplashPlayerPrompt';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -521,13 +521,13 @@ const GameBoard = () => {
                     <WinLoseSplash game={currentGame} onCloseClick={onWinSplashCloseClick} />
                 )}
                 {showAlertSplash && (
-                    <AlertSplash
-                        thisPlayer={thisPlayer}
-                        onCommand={onCommand}
+                    <SplashPlayerPrompt
+                        promptState={thisPlayer.promptState}
+                        onButtonClick={onCommand}
                         onMouseOver={onMouseOver}
                         onMouseOut={onMouseOut}
                         onTimerExpired={onTimerExpired}
-                        onCloseClick={() => dispatch(sendGameMessage('closeAlert'))}
+                    // onCloseClick={() => dispatch(sendGameMessage('closeAlert'))}
                     />
                 )}
 

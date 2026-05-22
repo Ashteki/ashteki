@@ -54,7 +54,8 @@ class DragonbornTurn extends DummyTurn {
                         },
                         {
                             type: 'behaviour',
-                            behaviour: behaviour.getShortSummary()
+                            behaviour: behaviour.getShortSummary(),
+                            showTitle: false
                         }
                     ]
                 });

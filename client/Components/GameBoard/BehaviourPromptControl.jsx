@@ -1,7 +1,7 @@
 import React from 'react';
 import './AbilityTargetting.scss';
 
-const BehaviourPromptControl = ({ behaviour }) => {
+const BehaviourPromptControl = ({ behaviour, showTitle = true }) => {
     const sideDetails = behaviour.text.side ? (
         <div>
             <b className='phg-side-action'> :</b> {behaviour.text.side}
@@ -17,7 +17,7 @@ const BehaviourPromptControl = ({ behaviour }) => {
 
     return (
         <div className='prompt-control-behaviour'>
-            <h3>Behaviour: {behaviour.value}</h3>
+            {showTitle && <h3>Behaviour: {behaviour.value}</h3>}
             {behaviour.text.mainFirst && mainDetails}
             {sideDetails}
             {!behaviour.text.mainFirst && mainDetails}

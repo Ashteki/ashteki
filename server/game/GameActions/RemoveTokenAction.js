@@ -1,3 +1,4 @@
+const { BattlefieldTypes, PhoenixbornTypes, UpgradeCardTypes, CardType } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class RemoveTokenAction extends CardGameAction {
@@ -15,14 +16,10 @@ class RemoveTokenAction extends CardGameAction {
     setup() {
         this.name = 'removeToken';
         this.targetType = [
-            'Conjuration',
-            'Ally',
-            'Ready Spell',
-            'Phoenixborn',
-            'Alteration Spell',
-            'Aspect',
-            'Chimera',
-            'Conjured Aspect'
+            ...BattlefieldTypes,
+            ...PhoenixbornTypes,
+            ...UpgradeCardTypes,
+            CardType.ReadySpell
         ];
 
         let type = this.type;

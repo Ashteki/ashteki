@@ -3,6 +3,8 @@ const DragonbornCard = require('../../../solo/DragonbornCard');
 class ScathaKalani extends DragonbornCard {
     setupCardAbilities(ability) {
         this.statusAbility({
+            title: 'Poach',
+            log: 'each',
             targets: {
                 unit: {
                     mode: 'auto',

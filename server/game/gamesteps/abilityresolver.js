@@ -115,7 +115,7 @@ class AbilityResolver extends BaseStepWithPipeline {
             this.game.queueUserAlert(this.context, {
                 showSplash: true,
                 timed: true,
-                promptTitle: 'Aspect Status Ability',
+                promptTitle: 'Status Ability',
                 controls: [
                     {
                         type: 'targeting',

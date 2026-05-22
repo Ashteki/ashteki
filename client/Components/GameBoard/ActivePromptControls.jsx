@@ -27,7 +27,13 @@ function ActivePromptControls({ controls, buttons, onMouseOver, onMouseOut, onOp
                     />
                 );
             case 'behaviour':
-                return <BehaviourPromptControl key="behaviour" behaviour={control.behaviour} />;
+                return (
+                    <BehaviourPromptControl
+                        key='behaviour'
+                        behaviour={control.behaviour}
+                        showTitle={control.showTitle}
+                    />
+                );
             default:
                 return null;
         }

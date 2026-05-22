@@ -85,29 +85,37 @@ class ChimeraDefenceStrategy {
                 .resolve(basicDie, this.game.getFrameworkContext(this.player));
 
             this.game.queueSimpleStep(() => {
-                const rolledRageDie = rollResult.event.childEvent.diceCopyAfterRoll[0];
-                decision.willGuard = rolledRageDie.level === Level.Basic;
-                decision.textResult = rolledRageDie;
+                const rolledDie = rollResult.event.childEvent.diceCopyAfterRoll[0];
+                decision.willGuard = rolledDie.level === Level.Basic;
+                decision.die = rolledDie;
             });
         } else {
             const d12Roll = Dice.d12Roll();
 
             decision.willGuard = d12Roll >= 9;
-            decision.textResult = d12Roll;
+            decision.textResult = ` (${d12Roll})`;
         }
 
         this.game.queueSimpleStep(() => {
-            let guardText = '\nNo guard';
+            let guardText = 'No guard';
             if (decision.willGuard) {
                 attack.battles[0].guard = this.player.phoenixborn;
-                guardText = ' and WILL guard!';
+                guardText = 'Opponent WILL guard!' + decision.textResult;
             }
             const context = this.game.getFrameworkContext(this.player);
-            this.game.queueUserAlert(context, {
+            const alertProperties = {
                 style: 'danger',
-                promptTitle: 'Chimera guard roll',
-                menuTitle: 'Chimera rolled ' + decision.textResult + guardText
-            });
+                promptTitle: 'Opponent guard roll',
+                menuTitle: guardText
+            };
+            if (decision.die) {
+                alertProperties.controls = [{
+                    type: 'targeting',
+                    source: decision.die.getShortSummary(),
+                    // targets: [decision.die.getShortSummary()] // [this.attack.target.getShortSummary()]
+                }]
+            }
+            this.game.queueUserAlert(context, alertProperties);
         });
     }
 
