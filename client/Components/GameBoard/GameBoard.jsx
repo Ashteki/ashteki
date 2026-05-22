@@ -442,7 +442,7 @@ const GameBoard = () => {
 
     const getOtherPlayerPrompt = (otherPlayer) => {
         let otherPlayerPrompt = null;
-        if (currentGame.solo) {
+        if (currentGame.isBot) {
             const otherState = otherPlayer.promptState;
             otherState.style = 'warning';
             otherPlayerPrompt = (
