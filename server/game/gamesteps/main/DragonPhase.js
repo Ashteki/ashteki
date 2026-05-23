@@ -8,6 +8,7 @@ class DragonPhase extends Phase {
             new SimpleStep(game, () => this.cleanse()),
             new SimpleStep(game, () => this.gainStatus()),
             new SimpleStep(game, () => this.replenishAspects()),
+            new SimpleStep(game, () => this.replenishAspectStatusTokens()),
             new SimpleStep(game, () => this.progress())
         ]);
     }
@@ -36,6 +37,19 @@ class DragonPhase extends Phase {
     replenishAspects() {
         const dummy = this.game.getDummyPlayer();
         dummy.replenishAspects();
+    }
+
+    replenishAspectStatusTokens() {
+        // For any aspects with status abilities, if they have
+        // fewer status tokens on them than there are pips on their status ability, refill
+        // their status tokens until they are equal to the number of pips
+        const dummy = this.game.getDummyPlayer();
+        for (const aspect of dummy.getAspectsInPlay()) {
+            if (aspect.status < aspect.statusCount) {
+                aspect.tokens.status = aspect.statusCount;
+            }
+        }
+        this.game.addMessage('All aspects replenish status tokens.');
     }
 
     progress() {

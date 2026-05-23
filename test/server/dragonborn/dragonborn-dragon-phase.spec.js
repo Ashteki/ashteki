@@ -61,7 +61,7 @@ describe('Dragonborn dragon phase', function () {
                     ultimate: 'scatha-ultimate',
                     inPlay: [],
                     spellboard: [],
-                    threatZone: ['hunting-instincts'],
+                    threatZone: ['rampage'],
                     dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon'],
                     deck: ['rampage', 'whiplash', 'shockwave', 'storm-bolt', 'avalanche', 'storm-bolt', 'avalanche']
                 }
@@ -77,7 +77,8 @@ describe('Dragonborn dragon phase', function () {
             this.player1.clickPrompt('Ok');
             expect(this.player1).toHaveDefaultPrompt();
             // fudge end of round
-            this.huntingInstincts.tokens.exhaustion = 2; // prevent attack on Db turn
+            this.rampage.tokens.exhaustion = 2; // prevent attack on Db turn
+            this.rampage.tokens.status = 0; // prevent status activity on Db turn
             this.player1.clickCard(this.summonBloodPuppet);
             this.player1.clickPrompt('Summon Blood Puppet');
             this.player1.clickPrompt("Opponent's");
@@ -89,6 +90,7 @@ describe('Dragonborn dragon phase', function () {
             this.player1.endTurn();
             this.player1.clickDone();
             expect(this.scathaKalani.status).toBe(1); // dragon phase addition for aspects
+            expect(this.rampage.status).toBe(2);
             // trigger progress ready spell
             this.player1.clickCard(this.anchornaut);
             this.player1.clickCard(this.hammerKnight);
@@ -112,7 +114,8 @@ describe('Dragonborn dragon phase', function () {
             this.player1.clickPrompt('Ok');
             expect(this.player1).toHaveDefaultPrompt();
             // fudge end of round
-            this.huntingInstincts.tokens.exhaustion = 2; // prevent attack on Db turn
+            this.rampage.tokens.exhaustion = 2; // prevent attack on Db turn
+            this.rampage.tokens.status = 0; // prevent status activity on Db turn
             // fudge for end of round
             this.player1.player.actions.main = true;
             this.player1.endTurn();
@@ -137,7 +140,8 @@ describe('Dragonborn dragon phase', function () {
             this.player1.clickPrompt('Ok');
             expect(this.player1).toHaveDefaultPrompt();
             // fudge end of round
-            this.huntingInstincts.tokens.exhaustion = 2; // prevent attack on Db turn
+            this.rampage.tokens.exhaustion = 2; // prevent attack on Db turn
+            this.rampage.tokens.status = 0; // prevent status activity on Db turn
             // fudge for end of round
             this.player1.player.actions.main = true;
             this.player1.endTurn();
