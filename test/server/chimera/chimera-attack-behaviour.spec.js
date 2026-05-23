@@ -207,7 +207,7 @@ describe('When Attacked', function () {
 
             this.player1.clickAttack(this.rampage);
             this.player1.clickCard(this.archasaurusMount);
-            expect(this.player1).toHavePrompt('Chimera guard roll');
+            expect(this.player1).toHavePrompt('Opponent guard roll');
             this.player1.clickPrompt('Ok');
             expect(this.rampage.location).toBe('discard');
             expect(this.constrict.damage).toBe(0);

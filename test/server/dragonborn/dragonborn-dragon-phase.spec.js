@@ -88,6 +88,8 @@ describe('Dragonborn dragon phase', function () {
             this.player1.player.actions.main = true;
             this.player1.endTurn();
             this.player1.clickDone();
+            expect(this.scathaKalani.status).toBe(1); // dragon phase addition for aspects
+            // trigger progress ready spell
             this.player1.clickCard(this.anchornaut);
             this.player1.clickCard(this.hammerKnight);
             expect(this.anchornaut.location).toBe('discard');
@@ -95,7 +97,6 @@ describe('Dragonborn dragon phase', function () {
             this.player1.clickNo();
             expect(this.game.round).toBe(2);
             expect(this.bloodPuppet.location).toBe('archives');
-            expect(this.scathaKalani.status).toBe(1); // dragon phase addition for aspects
             expect(this.player2.totalAspects).toBe(4);
 
             this.player1.clickOk();
