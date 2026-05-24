@@ -6,6 +6,8 @@ import ActivePromptDice from './ActivePromptDice';
 import ActivePromptButtons from './ActivePromptButtons';
 import ActivePromptControls from './ActivePromptControls';
 import CardImage from './CardImage';
+import classNames from 'classnames';
+import Panel from '../Site/Panel';
 
 function SplashPlayerPrompt({ promptState, onButtonClick, onMouseOver, onMouseOut, onTimerExpired }) {
     const [showTimer, setShowTimer] = useState(false);
@@ -160,48 +162,52 @@ function SplashPlayerPrompt({ promptState, onButtonClick, onMouseOver, onMouseOu
     const bigCardSource = showBigCard ? promptState.controls[0].source : null;
     // Render
     return (
-        <div className='splash-player-prompt'>
-            {promptState.promptTitle && (
-                <div className='menu-pane-source'>{promptState.promptTitle}</div>
-            )}
-            {timerDisplay}
-            <div className='menu-pane'>
-                {showBigCard && (
-                    <div className='big-card'
-                        onMouseOut={() => onMouseOut && onMouseOut(bigCardSource)}
-                        onMouseOver={() => onMouseOver && onMouseOver(bigCardSource)}
-                    >
-                        <CardImage card={bigCardSource} />
-                    </div>
-                )}
-                <div className='menu-pane-content'>
-                    <p className='splash-text'>{promptTexts}</p>
-                    {promptState.diceReq && <ActivePromptDice dice={promptState.diceReq} />}
-                    {!showBigCard && promptState.controls && (
-                        <ActivePromptControls
-                            controls={promptState.controls}
-                            onMouseOver={onMouseOver}
-                            onMouseOut={onMouseOut}
-                            onOptionSelected={onOptionSelected}
-                        />
+        <Panel cardClass={`alert-splash`} title={promptState.promptTitle}>
+
+            <div className='splash-player-prompt'>
+                {/* {promptState.promptTitle && (
+                    <div className='menu-pane-source'>{promptState.promptTitle}</div>
+                )} */}
+                {timerDisplay}
+                <div className='menu-pane'>
+                    {showBigCard && (
+                        <div className='big-card'
+                            onMouseOut={() => onMouseOut && onMouseOut(bigCardSource)}
+                            onMouseOver={() => onMouseOver && onMouseOver(bigCardSource)}
+                        >
+                            <CardImage card={bigCardSource} />
+                        </div>
                     )}
-                    {promptState.buttons &&
-                        (!promptState.controls ||
-                            !promptState.controls.some((c) =>
-                                ['options-select'].includes(c.type)
-                            )) && (
-                            <ActivePromptButtons
-                                buttons={promptState.buttons}
-                                timerUuid={timerUuid.current}
-                                onButtonClick={doButtonClick}
-                                onCancelTimerClick={doCancelTimerClick}
+                    <div className='menu-pane-content'>
+                        <p className='splash-text'>{promptTexts}</p>
+                        {promptState.diceReq && <ActivePromptDice dice={promptState.diceReq} />}
+                        {!showBigCard && promptState.controls && (
+                            <ActivePromptControls
+                                controls={promptState.controls}
                                 onMouseOver={onMouseOver}
                                 onMouseOut={onMouseOut}
+                                onOptionSelected={onOptionSelected}
                             />
                         )}
+                        {promptState.buttons &&
+                            (!promptState.controls ||
+                                !promptState.controls.some((c) =>
+                                    ['options-select'].includes(c.type)
+                                )) && (
+                                <ActivePromptButtons
+                                    buttons={promptState.buttons}
+                                    timerUuid={timerUuid.current}
+                                    onButtonClick={doButtonClick}
+                                    onCancelTimerClick={doCancelTimerClick}
+                                    onMouseOver={onMouseOver}
+                                    onMouseOut={onMouseOut}
+                                />
+                            )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </Panel >
+
     );
 }
 

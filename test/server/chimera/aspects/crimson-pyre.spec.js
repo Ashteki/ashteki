@@ -4,7 +4,7 @@ describe('Crimson Pyre Aspect', function () {
     describe('Crimson Pyre In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker'],
@@ -47,7 +47,7 @@ describe('Crimson Pyre Aspect', function () {
     describe('Crimson Pyre In Play vs Vanish', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker'],
@@ -88,7 +88,7 @@ describe('Crimson Pyre Aspect', function () {
     describe('In Play but no conjured aspect', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker'],

@@ -129,6 +129,7 @@ describe('Summon Ash Spirit', function () {
         beforeEach(function () {
             this.setupTest({
                 solo: true,
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     spellboard: ['summon-ash-spirit', 'summon-ash-spirit'],

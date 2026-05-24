@@ -1,4 +1,4 @@
-class ChimeraPinStrategy {
+class DefaultPinStrategy {
     constructor(player) {
         this.player = player;
     }
@@ -9,4 +9,4 @@ class ChimeraPinStrategy {
     }
 }
 
-module.exports = ChimeraPinStrategy;
+module.exports = DefaultPinStrategy;

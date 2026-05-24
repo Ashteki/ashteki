@@ -28,7 +28,7 @@ describe('Memory Theft', function () {
     describe('vs chimera discarding last card in hand and deck', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'leo-sunshadow',
                     inPlay: ['blue-jaguar', 'mist-spirit'],

@@ -12,6 +12,7 @@ class BasePlayAction extends BaseAbility {
         super(properties);
         this.card = card;
         this.abilityType = 'action';
+        this.isPlayAction = true;
     }
 
     displayMessage(context) {

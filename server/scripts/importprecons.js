@@ -75,6 +75,20 @@ class ImportPrecons {
             console.log('Done importing Chimera decks');
             console.log('----------');
 
+            for (let deck of this.loadDragonbornDecks()) {
+                deck.preconGroup = 7;
+                deck.groupName = 'dragonborn';
+
+                let existingDeck = await this.deckService.getPreconDeckById(deck.precon_id);
+                if (!existingDeck) {
+                    console.log('Importing', deck.name);
+                    await this.deckService.createPrecon(deck);
+                }
+            }
+
+            console.log('Done importing Dragonborn decks');
+            console.log('----------');
+
             for (let deck of this.loadPvEDecks()) {
                 deck.preconGroup = 6;
                 deck.groupName = 'pve';
@@ -161,6 +175,12 @@ class ImportPrecons {
 
     loadChimeraDecks() {
         let file = 'chimera.json';
+        let data = fs.readFileSync(dataDirectory + file);
+        return JSON.parse(data);
+    }
+
+    loadDragonbornDecks() {
+        let file = 'dragonborn.json';
         let data = fs.readFileSync(dataDirectory + file);
         return JSON.parse(data);
     }

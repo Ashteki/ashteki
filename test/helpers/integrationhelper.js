@@ -93,9 +93,7 @@ var customMatchers = {
                 var buttons = actual.currentPrompt().buttons;
                 var result = {};
 
-                result.pass = _.any(buttons, (button) =>
-                    util.equals(button.text, expected)
-                );
+                result.pass = _.any(buttons, (button) => util.equals(button.text, expected));
 
                 if (result.pass) {
                     result.message = `Expected ${actual.name} not to have prompt button "${expected}" but it did.`;
@@ -183,7 +181,7 @@ var customMatchers = {
 
                 let result = {};
 
-                result.pass = card.getLegalActions(player.player, false).length > 0;
+                result.pass = card.getLegalActions(player.player).length > 0;
 
                 if (result.pass) {
                     result.message = `Expected ${card.name} not to be playable by ${player.name} but it was.`;
@@ -204,7 +202,7 @@ var customMatchers = {
 
                 let result = {};
 
-                result.pass = card.getLegalActions(player.player, false).length > 0;
+                result.pass = card.getLegalActions(player.player).length > 0;
 
                 if (result.pass) {
                     result.message = `Expected ${card.name} not to be playable by ${player.name} but it was.`;
@@ -288,7 +286,7 @@ beforeEach(function () {
         this.player2.player.optionSettings.alertTimer = 0;
         this.player2.player.optionSettings.alwaysGroupTactics = false;
         this.player2.player.optionSettings.dontIceTrapOwnUnits = false;
-        if (this.player2.isDummy && !options.allowSetup) {
+        if ((this.player2.isChimera || this.player2.isDragonborn) && !options.allowSetup) {
             spyOn(this.player2.player, 'setupAspects');
         }
         this.startGame();
@@ -309,14 +307,20 @@ beforeEach(function () {
         if (!this.player1.isDummy) {
             this.player1.spellboard = options.player1.spellboard;
         }
-        if (!this.player2.isDummy) {
+        if (!(this.player2.isChimera || this.player2.isDragonborn)) {
             this.player2.spellboard = options.player2.spellboard;
         }
         this.player1.dicepool = options.player1.dicepool;
         this.player2.dicepool = options.player2.dicepool;
-        if (this.player2.isDummy) {
+        if (this.player2.isChimera) {
             if (this.player2.dicepool.length === 0) {
                 this.player2.dicepool = ['rage', 'rage', 'rage', 'rage', 'rage'];
+            }
+            this.player2.dicepool.forEach(d => d.level = 'basic');
+        }
+        if (this.player2.isDragonborn) {
+            if (this.player2.dicepool.length === 0) {
+                this.player2.dicepool = ['dragon', 'dragon', 'dragon', 'dragon', 'dragon'];
             }
             this.player2.dicepool.forEach(d => d.level = 'basic');
         }
@@ -326,7 +330,7 @@ beforeEach(function () {
         this.player2.discard = options.player2.discard;
         this.player1.archives = options.player1.archives;
         this.player2.archives = options.player2.archives;
-        if (this.player2.isDummy && options.player2.threatZone) {
+        if ((this.player2.isChimera || this.player2.isDragonborn) && options.player2.threatZone) {
             this.player2.threatZone = options.player2.threatZone;
         }
 

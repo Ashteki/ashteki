@@ -49,6 +49,7 @@ class GameStateWriter {
                 name: this.game.name,
                 label: this.game.label,
                 solo: this.game.solo,
+                isBot: this.game.isBot,
                 isSurvival: this.game.isSurvival,
                 owner: this.game.owner,
                 players: playerState,

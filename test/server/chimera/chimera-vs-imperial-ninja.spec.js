@@ -4,7 +4,7 @@ describe('Chimera vs Imperial Ninja', function () {
     describe('discard 2 or discard the shown', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['imperial-ninja', 'blue-jaguar', 'mist-spirit'],

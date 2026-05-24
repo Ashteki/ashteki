@@ -1,35 +1,9 @@
 const { Magic } = require('../../constants');
-const Card = require('../Card');
+const PvEOpponentCard = require('./PvEOpponentCard');
 
-class ChimeraCard extends Card {
-    constructor(owner, cardData) {
-        super(owner, cardData);
-        this.level = 'S';
-        this.stage = 1;
-    }
-
-    get heroic() {
-        return this.level === 'H';
-    }
-
-    get setup() {
-        return [];
-    }
-
-    get threat() {
-        return this.setup.length + (this.tokens.threat || 0);
-    }
-
-    hasModifiedThreat() {
-        return this.tokens.threat > 0;
-    }
-
-    getFlags() {
-        const flags = super.getFlags();
-        if (this.game.isSurvival && this.hasModifiedThreat()) {
-            flags.threat = this.threat;
-        }
-        return flags;
+class ChimeraCard extends PvEOpponentCard {
+    getThreat() {
+        return this.setup.length;
     }
 
     setupCardAbilities(ability) {

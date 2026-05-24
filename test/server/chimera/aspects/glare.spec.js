@@ -4,7 +4,7 @@ describe('Glare Aspect', function () {
     describe('On reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -46,7 +46,7 @@ describe('Glare Aspect', function () {
     describe('In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],

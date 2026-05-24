@@ -4,7 +4,7 @@ describe('Iron Scales', function () {
     describe('When dealt damage', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['blood-puppet', 'anchornaut', 'hammer-knight', 'light-swordsman'],

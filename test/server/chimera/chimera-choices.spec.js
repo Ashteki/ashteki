@@ -2,7 +2,7 @@ describe('Chimera Choice', function () {
     describe('Generosity', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',

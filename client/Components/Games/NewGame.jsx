@@ -33,7 +33,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     const lobbySocket = useSelector((state) => state.lobby.socket);
     const username = useSelector((state) => state.account.user?.username);
     const newGameType = useSelector((state) => state.lobby.newGameType);
-    const isSolo = newGameType === 'chimera';
+    const isSolo = ['chimera', 'dragonborn'].includes(newGameType);
     const user = useSelector((state) => state.account.user);
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
 
@@ -72,6 +72,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         solo: isSolo,
         saveReplay: false
     };
+    // solo: ['chimera', 'bot'].includes(newGameType),
 
     const options = [
         { name: 'ranked', label: 'Ranked (affects Elo rating)' },
@@ -198,10 +199,11 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                 {formProps.errors.name}
                                             </Form.Control.Feedback>
 
-                                            {newGameType === 'chimera' &&
+                                            {['chimera', 'bot'].includes(newGameType) &&
                                                 soloOptions.map((option) =>
                                                     getOptionToggle(option, formProps)
-                                                )}
+                                                )
+                                            }
                                             {newGameType === 'pvp' && (
                                                 <div className='mt-3'>
                                                     <Form.Label>League Presets</Form.Label>

@@ -57,6 +57,9 @@ class ThenAbility extends BaseAbility {
                     return;
                 }
             }
+            if (context.player.isBot) {
+                return true;
+            }
             let may = this.properties.may;
             if (typeof may === 'function') {
                 may = may(context);

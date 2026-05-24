@@ -29,15 +29,17 @@ class DiceCost {
     }
 
     resolve(context, result) {
-        //TODO: change here to match parallels and non-basics
-        // const nonParallels = this.getDiceReq(context).filter((r) => !Array.isArray(r));
-        // const nonBasics = nonParallels.filter((r) => r.level !== 'basic');
         const nonBasics = this.getDiceReq(context).filter(
             (r) => Array.isArray(r) || r.level !== 'basic'
         );
 
-        const dice = context.player.dice; // only match / auto select from dice in active dice pool (not on cards)
-        let chosenDice = Dice.matchDice(dice, nonBasics);
+        let chosenDice = [];
+        if (context.player.isBot) {
+            chosenDice = Dice.matchDice(context.player.dice, this.getDiceReq(context));
+        } else {
+            chosenDice = Dice.matchDice(context.player.dice, nonBasics);
+        }
+
         if (
             !context.source.preventAutoDice &&
             !context.player.anyEffect('preventAutoDice') &&

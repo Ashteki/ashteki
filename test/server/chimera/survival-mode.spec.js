@@ -2,7 +2,7 @@ describe('Chimera Survival Mode', function () {
     describe('When the chimera has wounds above life total', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 gameFormat: 'survival',
                 allowSetup: true,
                 player1: {
@@ -37,7 +37,7 @@ describe('Chimera Survival Mode', function () {
     describe('When the round ends', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 gameFormat: 'survival',
                 allowSetup: true,
                 player1: {

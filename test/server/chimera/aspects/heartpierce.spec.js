@@ -3,7 +3,7 @@ const Dice = require('../../../../server/game/dice');
 describe('Heartpierce', function () {
     beforeEach(function () {
         this.setupTest({
-            mode: 'solo',
+            mode: 'chimera',
             player1: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'], // 2 defenders to prevent ping removal - breaks for expect below.

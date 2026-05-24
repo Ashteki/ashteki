@@ -26,6 +26,7 @@ class RerollDiceAction extends DiceGameAction {
                     event.dice.forEach((d) => {
                         d.roll();
                     });
+                    event.diceCopyAfterRoll = event.dice.map(d => d.clone());
                     context.game.addMessage('{0} rolls {1}', event.diceOwner, event.dice);
                 }
             )

@@ -28,7 +28,7 @@ class RecoveryPhase extends Phase {
     }
 
     removeRedRains() {
-        if (!this.game.solo) {
+        if (!this.game.isChimera) {
             return;
         }
 
@@ -77,7 +77,7 @@ class RecoveryPhase extends Phase {
     }
 
     placeRedRains() {
-        if (!this.game.solo) {
+        if (!this.game.isChimera) {
             return;
         }
 
@@ -106,7 +106,7 @@ class RecoveryPhase extends Phase {
     }
 
     replenishAspects() {
-        if (!this.game.solo) {
+        if (!this.game.isChimera) {
             return;
         }
 
@@ -118,7 +118,7 @@ class RecoveryPhase extends Phase {
     }
 
     replenishAspectStatusTokens() {
-        if (!this.game.solo) {
+        if (!this.game.isChimera) {
             return;
         }
 

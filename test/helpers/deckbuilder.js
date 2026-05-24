@@ -56,7 +56,8 @@ class DeckBuilder {
     */
     customDeck(player = {}) {
         let deck = [];
-        const minDeck = player.dummy ? 8 : 6;
+        const isChimera = player.dummy && !player.bot;
+        const minDeck = isChimera ? 8 : 6;
 
         for (let zone of [
             'deck',
@@ -72,7 +73,7 @@ class DeckBuilder {
             }
         }
 
-        const filler = player.dummy ? defaultDummyDeck : defaultFiller[0];
+        const filler = isChimera ? defaultDummyDeck : defaultFiller[0];
         while (deck.length < minDeck) {
             deck = deck.concat(filler);
         }
@@ -96,10 +97,10 @@ class DeckBuilder {
             }
         ];
 
-        return this.buildDeck(deck, player, dice);
+        return this.buildDeck(deck, player, dice, isChimera);
     }
 
-    buildDeck(cardLabels, player, dice) {
+    buildDeck(cardLabels, player, dice, isChimera) {
         var cardCounts = {};
         _.each(cardLabels, (label) => {
             var cardData = this.getCard(label);
@@ -128,7 +129,7 @@ class DeckBuilder {
             dicepool: dice
         };
 
-        if (player.dummy) {
+        if (isChimera) {
             var bData = this.getCard(player.behaviour);
             result.behaviour = [
                 {

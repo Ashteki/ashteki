@@ -168,6 +168,11 @@ class SelectDiePrompt extends UiPrompt {
 
     continue() {
         if (!this.isComplete()) {
+            if (this.choosingPlayer.dicePromptStrategy) {
+                // check for bot player and trigger strategy
+                this.choosingPlayer.dicePromptStrategy.execute(this);
+            }
+
             this.highlightSelectableDice();
         }
 

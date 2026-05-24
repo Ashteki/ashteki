@@ -1,14 +1,10 @@
-const { Magic, Level } = require('../../constants');
+const { Magic, Level, ActionType } = require('../../constants');
 const RevealBehaviour = require('../BaseActions/RevealBehaviour');
-const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
 const AbilityDsl = require('../abilitydsl');
+const PvEReadySpell = require('./PvEReadySpell');
 
-class BehaviourCard extends Card {
-    get isMovable() {
-        return false;
-    }
-
+class BehaviourCard extends PvEReadySpell {
     getMenu() {
         return undefined;
     }
@@ -21,11 +17,6 @@ class BehaviourCard extends Card {
         // override this in derived classes
     }
 
-    // internal utility method for building a behaviour ability
-    behaviour(properties) {
-        return new ThenAbility(this.game, this.owner.phoenixborn, properties);
-    }
-
     doAddRedRains() {
         const ability = this.behaviour({
             cost: AbilityDsl.costs.sideAction(),
@@ -36,6 +27,16 @@ class BehaviourCard extends Card {
                 warnMessage: true
             })
         });
+        const context = ability.createContext(this.owner);
+        this.game.resolveAbility(context);
+    }
+
+    doLowerOpponentsDice(numDice) {
+        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
+            return;
+        }
+
+        const ability = this.lowerOpponentsDice(numDice);
         const context = ability.createContext(this.owner);
         this.game.resolveAbility(context);
     }
@@ -94,11 +95,7 @@ class BehaviourCard extends Card {
         const act = this.action({
             cost: AbilityDsl.costs.sideAction(),
             target: {
-                autoTarget: (context) =>
-                    context.player.getTargetUnit(
-                        aim,
-                        (u) => !u.anyEffect('cannotBeDicePowerTarget')
-                    ),
+                autoTarget: (context) => context.player.getTargetUnit(aim, ActionType.DicePower),
                 gameAction: AbilityDsl.actions.dealDamage({ amount: amount })
             }
         });
@@ -154,35 +151,6 @@ class BehaviourCard extends Card {
         const context = act.createContext(this.owner);
         this.game.resolveAbility(context);
     }
-
-    doLowerOpponentsDice(numDice) {
-        if (this.owner.opponent.activeNonBasicDiceCount === 0) {
-            return;
-        }
-
-        let titleText =
-            numDice === 1 ? 'Choose a die to lower' : 'Choose ' + numDice + ' dice to lower';
-        const ability = this.behaviour({
-            cost: AbilityDsl.costs.sideAction(),
-            title: 'Chimera Behaviour',
-            target: {
-                activePromptTitle: titleText,
-                player: 'opponent',
-                targetsPlayer: true,
-                toSelect: 'die',
-                mode: 'exactly',
-                numDice: Math.min(numDice, this.owner.opponent.activeNonBasicDiceCount),
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
-                owner: 'opponent',
-                gameAction: AbilityDsl.actions.lowerDie()
-            },
-            message: '{0} uses {1} to lower ' + numDice + ' opponent dice'
-        });
-
-        const context = ability.createContext(this.owner);
-        this.game.resolveAbility(context);
-    }
-
 }
 
 module.exports = BehaviourCard;

@@ -32,7 +32,8 @@ const DeckGrid = ({ decks, onDeckSelected, showWinRate }) => {
                 // hasChained ? (
                 //     <FontAwesomeIcon icon={faLink} title='This deck contains chained cards' />
                 // ) : null;
-                const dice = d.mode !== 'chimera' && <DeckDice deck={d} />;
+                const dice = d.mode !== 'chimera' && <DeckDice deck={d} slotCount={['chimera', 'dragonborn'].includes(d.mode) ? 5 : 10}
+                />;
                 const isSelected = selectedDeck === d;
                 const cardClasses = classNames('deckgrid-card', {
                     'selected-deck': isSelected

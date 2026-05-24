@@ -4,7 +4,7 @@ describe('Ballistic Seeds Aspect', function () {
     describe('In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],
@@ -63,7 +63,7 @@ describe('Ballistic Seeds Aspect', function () {
     describe('In Play with no units', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: [],
@@ -108,7 +108,7 @@ describe('Ballistic Seeds Aspect', function () {
     describe('on reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],
@@ -149,7 +149,7 @@ describe('Ballistic Seeds Aspect', function () {
     describe('In threatzone', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],
@@ -194,7 +194,7 @@ describe('Ballistic Seeds Aspect', function () {
     describe('Cannot attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],

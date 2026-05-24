@@ -4,7 +4,7 @@ describe('Whiplash Aspect', function () {
     describe('On Reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],
@@ -61,7 +61,7 @@ describe('Whiplash Aspect', function () {
     describe('Vs Snapper', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['seafoam-snapper', 'anchornaut', 'iron-worker', 'flute-mage'],
@@ -103,7 +103,7 @@ describe('Whiplash Aspect', function () {
     describe('Vs Sacred Ground', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],

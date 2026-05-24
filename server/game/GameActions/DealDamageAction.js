@@ -1,4 +1,4 @@
-const { CardType, DamageDealingLocations, BattlefieldTypes } = require('../../constants');
+const { CardType, DamageDealingLocations, BattlefieldTypes, PhoenixbornTypes } = require('../../constants');
 const CardGameAction = require('./CardGameAction');
 
 class DealDamageAction extends CardGameAction {
@@ -14,7 +14,7 @@ class DealDamageAction extends CardGameAction {
     }
 
     setup() {
-        this.targetType = [...BattlefieldTypes, 'Phoenixborn', 'Chimera'];
+        this.targetType = [...BattlefieldTypes, ...PhoenixbornTypes];
         this.name = 'damage';
         this.effectMsg = 'deal ' + (this.amount ? this.amount + ' ' : '') + 'damage to {0}';
     }

@@ -111,7 +111,7 @@ describe('Gifted Rose', function () {
     describe('attached to chimera', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'maeoni-viper',
                     inPlay: ['mist-spirit', 'raptor-herder', 'time-hopper', 'iron-rhino'],

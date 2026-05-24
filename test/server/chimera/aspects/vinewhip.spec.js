@@ -4,7 +4,7 @@ describe('Vine Whip Aspect', function () {
     describe('On Reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],
@@ -44,7 +44,7 @@ describe('Vine Whip Aspect', function () {
     describe('Bleed vs nightshade swallow', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['nightshade-swallow', 'false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],

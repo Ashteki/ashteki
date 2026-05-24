@@ -2,7 +2,7 @@ describe('Chimera fatigue', function () {
     describe('empty deck at recovery phase refill', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
@@ -133,7 +133,7 @@ describe('Chimera fatigue', function () {
     describe('bug test', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['orchid-dove', 'mist-spirit'],

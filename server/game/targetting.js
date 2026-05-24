@@ -8,6 +8,7 @@ function checkTarget(card, context) {
     if (!card.checkRestrictions('target', context)) {
         return false;
     }
+
     if (context.player === card.controller.opponent) {
         if (context.source.isSpell && card.anyEffect('cannotBeSpellTarget')) {
             return false;

@@ -1,10 +1,10 @@
 const OpenInformationLocations = ['play area', 'spellboard', 'purged', 'discard'];
 
 class CardVisibility {
-    constructor(showHands, openHands, solo) {
+    constructor(showHands, openHands, chimera) {
         this.showHands = showHands;
         this.openHands = openHands;
-        this.solo = solo;
+        this.chimera = chimera;
         this.rules = [
             (card) => this.isSpellRevealed(card),
             (card) => this.isPublicRule(card),
@@ -12,7 +12,7 @@ class CardVisibility {
             (card, player) => this.isControllerRule(card, player),
             (card, player) => this.isSpectatorRule(card, player),
             (card, player) => this.isOpenHandsRule(card, player),
-            (card, player) => this.isSoloRule(card, player)
+            (card, player) => this.isChimeraGameRule(card, player)
         ];
     }
 
@@ -59,9 +59,9 @@ class CardVisibility {
         );
     }
 
-    isSoloRule(card, player) {
+    isChimeraGameRule(card, player) {
         return (
-            this.solo && ['hand', 'archives'].includes(card.location)
+            this.chimera && ['hand', 'archives'].includes(card.location)
         );
     }
 

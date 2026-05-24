@@ -340,7 +340,7 @@ describe('Double Down', function () {
         // https://github.com/Ashteki/ashteki/issues/1471
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['frost-frog'],

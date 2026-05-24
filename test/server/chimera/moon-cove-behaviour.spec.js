@@ -4,7 +4,7 @@ describe('Flood of Moon Cove Behaviour Rolls', function () {
     describe('Phase 1', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -143,7 +143,7 @@ describe('Flood of Moon Cove Behaviour Rolls', function () {
     describe('phase 2', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['flute-mage', 'anchornaut', 'frostback-bear'],
@@ -267,7 +267,7 @@ describe('Flood of Moon Cove Behaviour Rolls', function () {
     describe('phase 3', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker', 'anchornaut'],
@@ -361,7 +361,7 @@ describe('Flood of Moon Cove Behaviour Rolls', function () {
     describe('burn damage triggers GV', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker', 'anchornaut'],
@@ -409,7 +409,7 @@ describe('Flood of Moon Cove Behaviour Rolls', function () {
     describe('BUG: vs Timestopper', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],

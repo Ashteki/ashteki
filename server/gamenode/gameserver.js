@@ -546,7 +546,11 @@ class GameServer {
         // Auto-leave dummy opponent
         if (game.solo && !isSpectator) {
             logger.info(`leave game - DummyUser Leave: ${game.id}`);
-            game.leave(DummyUser.DUMMY_USERNAME);
+            if (game.newGameType === 'bot') {
+                game.leave(DummyUser.BOT_USERNAME);
+            } else {
+                game.leave(DummyUser.CHIMERA_USERNAME);
+            }
         }
 
         if (game.isEmpty()) {

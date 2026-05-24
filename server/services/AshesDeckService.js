@@ -44,6 +44,13 @@ class AshesDeckService {
         });
     }
 
+    getDragonbornDeck() {
+        return this.preconDecks.findOne({ mode: 'dragonborn' }).catch((err) => {
+            logger.error('Unable to fetch a dragonborn deck', err);
+            throw new Error('Unable to fetch a dragonborn deck ');
+        });
+    }
+
     getPreconDecks(preconGroup = 1) {
         return this.preconDecks.find({ 'precon_group': preconGroup }, { sort: { precon_id: 1 } });
     }

@@ -1,5 +1,3 @@
-const { Level } = require('../../../constants');
-const AbilityDsl = require('../../abilitydsl');
 const Behaviour = require('../../solo/Behaviour');
 const BehaviourCard = require('../../solo/BehaviourCard');
 
@@ -7,7 +5,6 @@ class VirosBehaviour extends BehaviourCard {
     getBehaviour(behaviourRoll, phase) {
         switch (phase) {
             case 1:
-
                 switch (behaviourRoll) {
                     case 1:
                     case 2:

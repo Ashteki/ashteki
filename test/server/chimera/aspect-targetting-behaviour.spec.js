@@ -2,7 +2,7 @@ describe('When Attacking', function () {
     describe('with multiple units available', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],

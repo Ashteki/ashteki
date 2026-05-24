@@ -2,7 +2,7 @@ describe('Chimera as Pb', function () {
     describe('Namine Calming Melody', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'namine-hymntide',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
