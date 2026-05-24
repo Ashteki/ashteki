@@ -4,7 +4,7 @@ describe('Stormcall Aspect', function () {
     describe('stormcall Reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -43,7 +43,7 @@ describe('Stormcall Aspect', function () {
     describe('stormcall In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],

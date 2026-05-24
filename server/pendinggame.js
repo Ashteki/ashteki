@@ -11,8 +11,8 @@ const { GameTypes } = require('./constants.js');
 class PendingGame {
     constructor(owner, details) {
         this.newGameType = details.newGameType; // pvp, chimera, league
-        this.solo = details.newGameType === GameTypes.chimera;
-        if (this.solo) {
+        this.solo = [GameTypes.chimera, GameTypes.dragonborn, GameTypes.bot].includes(details.newGameType);
+        if (this.newGameType === 'chimera') {
             this.soloLevel = 'S';
             this.soloStage = '1';
         }
@@ -251,7 +251,12 @@ class PendingGame {
     }
 
     removeDummy() {
-        delete this.players[DummyUser.DUMMY_USERNAME];
+        // do both in case...
+        if (this.newGameType === 'bot') {
+            delete this.players[DummyUser.BOT_USERNAME];
+        } else {
+            delete this.players[DummyUser.CHIMERA_USERNAME];
+        }
     }
 
     chat(playerName, message) {
@@ -348,7 +353,9 @@ class PendingGame {
                     selected: player.deck.selected,
                     status: player.deck.status,
                     name: null,
-                    isChimera: player.playerType === 'dummy',
+                    isChimera: player.isChimera,
+                    isDragonborn: player.isDragonborn,
+                    isBot: player.isBot,
                     stub: player.deck.listClass || player.deck.phoenixborn[0]?.card.stub || player.deck.phoenixborn[0]?.card.id,
                     pbStub:
                         player.deck.phoenixborn[0]?.card.imageStub ||
@@ -356,7 +363,8 @@ class PendingGame {
                 };
                 if (
                     activePlayer === player.name ||
-                    ['firstadventure', 'standard', 'survival'].includes(this.gameFormat)
+                    this.solo ||
+                    ['firstadventure'].includes(this.gameFormat)
                 ) {
                     deck.name = player.deck.name;
                 }
@@ -444,6 +452,7 @@ class PendingGame {
             gamePrivate: this.gamePrivate,
             gameTimeLimit: this.gameTimeLimit,
             gameType: this.gameType,
+            newGameType: this.newGameType,
             id: this.id,
             label: this.label,
             muteSpectators: this.muteSpectators,

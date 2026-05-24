@@ -2,7 +2,7 @@ describe('Chimera Discard', function () {
     describe('Saria hearts pull', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'saria-guideman',

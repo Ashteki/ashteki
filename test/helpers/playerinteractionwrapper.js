@@ -18,6 +18,18 @@ class PlayerInteractionWrapper {
         return this.player.isDummy;
     }
 
+    get isChimera() {
+        return this.player.isChimera;
+    }
+
+    get isDragonborn() {
+        return this.player.isDragonborn;
+    }
+
+    get isBot() {
+        return this.player.isBot;
+    }
+
     get name() {
         return this.player.name;
     }
@@ -198,6 +210,10 @@ class PlayerInteractionWrapper {
         _.each(tzCards, (card) => this.moveCard(card, 'deck'));
         cards = this.mixedListToCardList(cards, 'deck');
         _.each(cards, (card) => this.moveCard(card, 'play area', { facedown: true }));
+    }
+
+    get totalAspects() {
+        return this.player.aspectsInPlay.length;
     }
 
     get promptState() {

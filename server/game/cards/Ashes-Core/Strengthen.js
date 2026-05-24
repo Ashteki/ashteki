@@ -10,6 +10,9 @@ class Strengthen extends Card {
             target: {
                 showCancel: true,
                 cardType: BattlefieldTypes,
+                cardCondition: (card, context) =>
+                    // bot rules for play - don't exhaust own units
+                    !context.player.isBot || card.controller === context.player.opponent,
                 gameAction: ability.actions.cardLastingEffect((context) => ({
                     duration: 'untilEndOfTurn',
                     effect: ability.effects.modifyAttack(context.source.focus >= 2 ? 3 : 2)

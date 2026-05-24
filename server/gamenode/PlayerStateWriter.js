@@ -72,7 +72,7 @@ class PlayerStateWriter {
             firstPlayer: this.player.firstPlayer
         };
 
-        if (this.player.isDummy) {
+        if (this.player.isChimera || this.player.isDragonborn) {
             playerState.ultimate = this.getCardSummary(this.player.ultimate, forPlayer);
             playerState.behaviour = this.getCardSummary(this.player.behaviour, forPlayer);
         }

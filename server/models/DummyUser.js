@@ -4,20 +4,31 @@ const User = require("./User");
  * Dummy user acts as a proxy for LOBBY
  */
 class DummyUser extends User {
-    constructor() {
+    constructor(username) {
         super({
             _id: 0,
-            username: DummyUser.DUMMY_USERNAME
+            username: username
         })
     }
 
-    static DUMMY_USERNAME = 'Chimera';
-    get username() {
-        return DummyUser.DUMMY_USERNAME;
-    }
+    static CHIMERA_USERNAME = 'Chimera';
+    static DRAGONBORN_USERNAME = 'Dragonborn';
+    static BOT_USERNAME = 'Bound Soul';
 
     get isDummy() {
         return true;
+    }
+
+    get isChimera() {
+        return this.username === DummyUser.CHIMERA_USERNAME;
+    }
+
+    get isDragonborn() {
+        return this.username === DummyUser.DRAGONBORN_USERNAME;
+    }
+
+    get isBot() {
+        return this.username === DummyUser.BOT_USERNAME;
     }
 
     get gamesPlayed() {

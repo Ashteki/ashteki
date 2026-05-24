@@ -3,7 +3,7 @@ const Dice = require('../../../../server/game/dice');
 describe('From the Depths Aspect', function () {
     beforeEach(function () {
         this.setupTest({
-            mode: 'solo',
+            mode: 'chimera',
             player1: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['hammer-knight', 'anchornaut', 'flute-mage'], // 2 defenders to prevent ping removal - breaks for expect below.

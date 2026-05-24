@@ -90,7 +90,7 @@ describe('Dice cycle', function () {
     describe('Rage Dice cycle', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['shadow-hound', 'mist-spirit'],

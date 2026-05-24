@@ -4,7 +4,7 @@ describe('Allure Aspect', function () {
     describe('In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],

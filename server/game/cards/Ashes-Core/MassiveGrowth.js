@@ -13,6 +13,10 @@ class MassiveGrowth extends Card {
         this.fleeting();
     }
 
+    get botTarget() {
+        return 'mine';
+    }
+
     canAttach(card, context) {
         const myCondition = card.attack <= 2;
         return super.canAttach(card, context) && myCondition;

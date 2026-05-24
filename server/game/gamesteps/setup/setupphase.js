@@ -9,7 +9,7 @@ class SetupPhase extends Phase {
         super(game, 'setup');
         this.initialise([
             new SimpleStep(game, () => this.setupBegin()),
-            new SimpleStep(game, () => this.setupChimera()),
+            new SimpleStep(game, () => this.setupDummyPlayer()),
             new FirstFivePrompt(game),
             new SimpleStep(game, () => this.startGame())
         ]);
@@ -39,8 +39,8 @@ class SetupPhase extends Phase {
         }
     }
 
-    setupChimera() {
-        if (this.game.solo) {
+    setupDummyPlayer() {
+        if (this.game.isChimera || this.game.isDragonborn) {
             const dummy = this.game.getDummyPlayer();
             dummy.setupAspects();
         }

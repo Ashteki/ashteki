@@ -35,7 +35,7 @@ describe('Glow Finch', function () {
     describe('Vs Chimera (fatigued)', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',

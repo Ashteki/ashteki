@@ -17,8 +17,9 @@ class GameFlowWrapper {
             name: "player1's game",
             id: 12345,
             owner: 'player1',
-            solo: options.mode === 'solo',
+            solo: ['chimera', 'dragonborn'].includes(options.mode),
             gameFormat: options.gameFormat,
+            newGameType: 'pvp',
             saveGameId: 12345,
             players: [
                 {
@@ -41,13 +42,25 @@ class GameFlowWrapper {
                 }
             ]
         };
+        if (options.mode === 'bot') {
+            details.newGameType = 'bot';
+        }
+        if (options.mode === 'chimera') {
+            details.newGameType = 'chimera';
+        }
+        if (options.mode === 'dragonborn') {
+            details.newGameType = 'dragonborn';
+        }
 
         if (options.player1.dummy) {
-            details.players[0].playerType = 'dummy';
+            details.players[1].isDummy = true;
         }
 
         if (options.player2.dummy) {
-            details.players[1].playerType = 'dummy';
+            details.players[1].isDummy = true;
+            details.players[1].isChimera = options.mode === 'chimera';
+            details.players[1].isDragonborn = options.mode === 'dragonborn';
+            details.players[1].isBot = options.mode === 'bot';
         }
 
         this.game = new Game(details, {

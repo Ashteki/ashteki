@@ -341,6 +341,27 @@ class Card extends PlayableObject {
         });
     }
 
+    statusAbility(properties) {
+        return this.forcedReaction(
+            Object.assign(
+                {
+                    status: true,
+                    inexhaustible: true,
+                    when: {
+                        // it's my turn
+                        onBeginTurn: (event, context) => event.player === context.player
+                    },
+                    location: 'play area',
+                    cost: [AbilityDsl.costs.loseStatus(1)],
+                    logUse: (context) =>
+                        properties.log === 'each' ||
+                        (properties.log === 'last' && context.source.status === 0)
+                },
+                properties
+            )
+        );
+    }
+
     fade() {
         return this.forcedInterrupt({
             inexhaustible: true,
@@ -1207,7 +1228,7 @@ class Card extends PlayableObject {
             return false;
         } else if (legalActions.length === 1) {
             let action = legalActions[0];
-            if (!this.game.activePlayer.optionSettings.confirmOneClick) {
+            if (!this.game.activePlayer.confirmOneClick) {
                 let context = action.createContext(player);
                 this.game.resolveAbility(context);
                 return true;
@@ -1413,11 +1434,11 @@ class Card extends PlayableObject {
         );
     }
 
-    getLegalActions(player) {
+    getLegalActions(player, ignoredRequirements = []) {
         let actions = this.getActions();
         actions = actions.filter((action) => {
             let context = action.createContext(player);
-            return !action.meetsRequirements(context);
+            return !action.meetsRequirements(context, ignoredRequirements);
         });
 
         return actions;

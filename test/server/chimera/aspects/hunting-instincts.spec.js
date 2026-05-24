@@ -4,7 +4,7 @@ describe('Hunting Instincts', function () {
     describe('Reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -60,7 +60,7 @@ describe('Hunting Instincts', function () {
     describe('Attack vs Ultimate AoE', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker', 'flute-mage'],

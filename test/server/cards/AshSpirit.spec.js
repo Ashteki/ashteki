@@ -370,6 +370,7 @@ describe('AshSpirit', function () {
     describe('smolder vs Chimera (fatigued)', function () {
         beforeEach(function () {
             this.setupTest({
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     deck: ['kneel', 'anchornaut'],
@@ -391,7 +392,6 @@ describe('AshSpirit', function () {
 
         it('works', function () {
             this.player1.endTurn();
-            this.player2.endTurn();
 
             this.player1.clickCard(this.corpseOfViros);
             this.player1.clickNo();

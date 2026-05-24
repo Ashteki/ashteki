@@ -4,7 +4,7 @@ describe('Chimera recovery phase', function () {
     describe('Player Prompts', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
@@ -42,7 +42,7 @@ describe('Chimera recovery phase', function () {
     describe('Red Rains - status tokens', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
@@ -85,7 +85,7 @@ describe('Chimera recovery phase', function () {
     describe('Red Rains tokens', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
@@ -130,7 +130,7 @@ describe('Chimera recovery phase', function () {
     describe('Replenish aspects when battlefield full', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],
@@ -182,7 +182,7 @@ describe('Chimera recovery phase', function () {
     describe('Replenish Aspects when deck empty', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],

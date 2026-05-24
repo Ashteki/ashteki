@@ -144,13 +144,18 @@ class BaseAbility {
     checkWarnings(context, results) {
         const warning = this.getWarnings(context);
         if (warning) {
-            context.game.promptWithHandlerMenu(context.player, {
-                promptTitle: 'Warning',
-                activePromptTitle: warning + '\nDo you want to continue?',
-                context: context,
-                choices: ['Yes', 'No'],
-                handlers: [() => true, () => (results.cancelled = true)]
-            });
+            if (context.player.isBot) {
+                // don't proceed if bot
+                results.cancelled = true;
+            } else {
+                context.game.promptWithHandlerMenu(context.player, {
+                    promptTitle: 'Warning',
+                    activePromptTitle: warning + '\nDo you want to continue?',
+                    context: context,
+                    choices: ['Yes', 'No'],
+                    handlers: [() => true, () => (results.cancelled = true)]
+                });
+            }
         }
     }
 

@@ -41,6 +41,11 @@ const logger = require('../log');
 const DummyPlayer = require('./solo/DummyPlayer');
 const PlayableObject = require('./PlayableObject');
 const EndGamePrompt = require('./gamesteps/EndGamePrompt');
+const BotPlayer = require('./solo/BotPlayer');
+const ChimeraPlayer = require('./solo/ChimeraPlayer');
+const DragonbornPlayer = require('./solo/DragonbornPlayer');
+const DragonPhase = require('./gamesteps/main/DragonPhase');
+
 
 class Game extends EventEmitter {
     constructor(details, options = {}) {
@@ -49,11 +54,13 @@ class Game extends EventEmitter {
         this.effectEngine = new EffectEngine(this);
         this.gameChat = new GameChat(this);
         this.pipeline = new GamePipeline();
-        this.cardVisibility = new CardVisibility(details.showHand, details.openHands, details.solo);
         this.router = options.router;
         this.saveReplay = details.saveReplay;
         this.solo = details.solo;
-        if (this.solo) {
+        this.isChimera = details.newGameType === 'chimera';
+        this.isDragonborn = details.newGameType === 'dragonborn';
+        this.isBot = details.newGameType === 'bot';
+        if (this.solo && this.isChimera || this.isDragonborn) {
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
             this.isSurvival = details.gameFormat === 'survival';
@@ -67,6 +74,12 @@ class Game extends EventEmitter {
 
         this.showHand = details.showHand;
         this.openHands = details.openHands;
+        this.cardVisibility = new CardVisibility(
+            details.showHand,
+            details.openHands,
+            this.isChimera || this.isDragonborn
+        );
+
         this.allowSpectators = details.allowSpectators;
 
         this.currentAbilityWindow = null;
@@ -138,8 +151,14 @@ class Game extends EventEmitter {
 
     createPlayer(player, clockDetails) {
         const isOwner = this.owner === player.user.username;
-        if (player.playerType === 'dummy') {
-            return new DummyPlayer(player.id, player.user, isOwner, this, clockDetails);
+        if (player.isChimera) {
+            return new ChimeraPlayer(player.id, player.user, isOwner, this, clockDetails);
+        }
+        if (player.isDragonborn) {
+            return new DragonbornPlayer(player.id, player.user, isOwner, this, clockDetails);
+        }
+        if (player.isBot) {
+            return new BotPlayer(player.id, player.user, isOwner, this, clockDetails);
         }
 
         return new Player(player.id, player.user, isOwner, this, clockDetails);
@@ -1126,7 +1145,7 @@ class Game extends EventEmitter {
             this.getPlayers(),
             (cards, player) => {
                 let result = cards.concat(player.deck, player.archives, player.phoenixborn);
-                if (this.solo && player instanceof DummyPlayer) {
+                if (this.solo && player instanceof ChimeraPlayer) {
                     result = result.concat(player.ultimate);
                 }
                 return result;
@@ -1206,13 +1225,13 @@ class Game extends EventEmitter {
     }
 
     reRollPlayerDice() {
-        for (let player of this.getPlayers().filter((p) => !p.isDummy)) {
+        for (let player of this.getPlayers().filter((p) => !p.isChimera && !p.isDragonborn)) {
             player.rerollAllDice(this.round);
         }
     }
 
     unpinPlayerDice() {
-        for (let player of this.getPlayers().filter((p) => !p.isDummy)) {
+        for (let player of this.getPlayers().filter((p) => !p.isChimera && !p.isDragonborn)) {
             player.unpinAllDice();
         }
     }
@@ -1252,6 +1271,9 @@ class Game extends EventEmitter {
 
         this.raiseEvent('onBeginRound');
         this.getPlayers().forEach((player) => player.beginRound());
+        if (this.isDragonborn && this.round > 1) {
+            this.queueStep(new DragonPhase(this));
+        }
         this.queueStep(new PreparePhase(this));
 
         this.queueStep(new PlayerTurnsPhase(this));
@@ -1820,7 +1842,7 @@ class Game extends EventEmitter {
                 medCount: player.medCount,
                 totalDiceSpend: player.totalDiceSpend
             };
-            if (player.isDummy) {
+            if (player.isChimera || player.isDragonborn) {
                 p.level = this.soloLevel;
                 p.stage = this.soloStage;
                 p.preconId = player.deckData.precon_id;
@@ -1891,6 +1913,9 @@ class Game extends EventEmitter {
             gamePrivate: this.gamePrivate,
             gameType: this.gameType,
             id: this.id,
+            isChimera: this.isChimera,
+            isDragonborn: this.isDragonborn,
+            isBot: this.isBot,
             label: this.label,
             manualMode: this.manualMode,
             messages: this.gameChat.messages,

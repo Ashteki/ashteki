@@ -1,4 +1,6 @@
-const DummyTurn = require('../DummyTurn');
+const BotTurn = require('../BotTurn');
+const ChimeraTurn = require('../ChimeraTurn');
+const DragonbornTurn = require('../DragonbornTurn');
 const Phase = require('../phase');
 const SimpleStep = require('../simplestep');
 const ActionWindow = require('./actionwindow');
@@ -13,8 +15,14 @@ class PlayerTurnsPhase extends Phase {
         this.game.beginTurn();
         this.game.activePlayer.beginTurn();
 
-        if (this.game.solo && this.game.activePlayer.isDummy) {
-            this.queueStep(new DummyTurn(this.game))
+        if (this.game.activePlayer.isDummy) {
+            if (this.game.isChimera) {
+                this.queueStep(new ChimeraTurn(this.game));
+            } else if (this.game.isDragonborn) {
+                this.queueStep(new DragonbornTurn(this.game));
+            } else if (this.game.isBot) {
+                this.queueStep(new BotTurn(this.game));
+            }
         } else {
             this.queueStep(new ActionWindow(this.game));
         }

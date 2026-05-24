@@ -129,6 +129,13 @@ class User {
         return 'user';
     }
 
+    get isChimera() {
+        return false;
+    }
+    get isBot() {
+        return false;
+    }
+
     get avatar() {
         return this.userData && this.userData.settings && this.userData.settings.avatar;
     }

@@ -34,23 +34,28 @@
       },
       {
         "id": "reconfigure",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-spark-drone",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-thunder-hulk",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "supercharge",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "systems-drafter",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "thunder-suit",
@@ -102,7 +107,8 @@
       },
       {
         "id": "javelineer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "retreat",
@@ -110,19 +116,23 @@
       },
       {
         "id": "skybreak-captain",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-frost-talon",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-stellar-oracle",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "whirlwind",
-        "count": 3
+        "count": 3,
+        "ff": true
       }
     ],
     "conjurations": [

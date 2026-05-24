@@ -25,11 +25,10 @@ class SetDieLevelAction extends DiceGameAction {
     }
 
     getEvent(die, context) {
-        return super.createEvent(
-            'onDieLevelSet',
-            { die: die, context: context },
-            () => (die.level = this.level)
-        );
+        return super.createEvent('onDieChange', { die: die, context: context }, (event) => {
+            die.level = this.level;
+            event.context.diceChangeCount = 1 + (event.context.diceChangeCount || 0);
+        });
     }
 }
 

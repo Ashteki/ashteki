@@ -2,7 +2,7 @@ describe('Chimera Draw', function () {
     describe('Abundance', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',
@@ -41,7 +41,7 @@ describe('Chimera Draw', function () {
     describe('Abundance When Fatigued', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',

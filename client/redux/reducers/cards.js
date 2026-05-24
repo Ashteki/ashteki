@@ -177,6 +177,11 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
                 processDecks(ascendancyDecks, newState);
                 newState.ascendancyDecks = ascendancyDecks;
             }
+            var dragonbornDecks = state.dragonbornDecks;
+            if (dragonbornDecks?.length > 0) {
+                processDecks(dragonbornDecks, newState);
+                newState.dragonbornDecks = dragonbornDecks;
+            }
 
             return newState;
         case 'RECEIVE_ALTS':
@@ -250,7 +255,8 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
                 chimeraDecks: groupedDecks.chimera || [],
                 dualDuelDecks: groupedDecks.dualduel || [],
                 oneCollectionDecks: groupedDecks.onecollection || [],
-                ascendancyDecks: groupedDecks.ascendancy || []
+                ascendancyDecks: groupedDecks.ascendancy || [],
+                dragonbornDecks: groupedDecks.dragonborn || []
             });
 
             return newState;

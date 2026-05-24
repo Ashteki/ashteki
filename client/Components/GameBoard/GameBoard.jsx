@@ -28,8 +28,9 @@ import ChimeraRow from './ChimeraRow';
 import DeckNotes from '../../pages/DeckNotes';
 import BattleZone from './BattleZone';
 import Sidebar from './Sidebar';
-import AlertSplash from './AlertSplash';
+import ActivePlayerPrompt from './ActivePlayerPrompt';
 import { useNavigate } from 'react-router-dom';
+import SplashPlayerPrompt from './SplashPlayerPrompt';
 
 const placeholderPlayer = {
     cardPiles: {
@@ -280,7 +281,7 @@ const GameBoard = () => {
     ) => {
         return [
             <div key='board-middle' className='board-middle'>
-                {currentGame.solo
+                {currentGame.isChimera
                     ? getChimeraRow(otherPlayer, compactLayout, leftMode, cardSize, spectating)
                     : getPlayerRows(otherPlayer, compactLayout, leftMode, cardSize, spectating)}
 
@@ -439,6 +440,27 @@ const GameBoard = () => {
     const compactLayout = optionSettings?.compactLayout;
     const leftMode = optionSettings?.leftMode || currentGame.solo;
 
+    const getOtherPlayerPrompt = (otherPlayer) => {
+        let otherPlayerPrompt = null;
+        if (currentGame.isBot) {
+            const otherState = otherPlayer.promptState;
+            otherState.style = 'warning';
+            otherPlayerPrompt = (
+                <div className='inset-pane'>
+                    <ActivePlayerPrompt
+                        cards={cards}
+                        promptState={otherState}
+                        onButtonClick={onCommand}
+                        onMouseOver={onMouseOver}
+                        onMouseOut={onMouseOut}
+                        onTimerExpired={onTimerExpired.bind(this)}
+                        phase={currentGame.currentPhase}
+                    />
+                </div>
+            );
+        }
+        return otherPlayerPrompt;
+    };
     return (
         <div className={boardClass}>
             {showModal && (
@@ -499,13 +521,13 @@ const GameBoard = () => {
                     <WinLoseSplash game={currentGame} onCloseClick={onWinSplashCloseClick} />
                 )}
                 {showAlertSplash && (
-                    <AlertSplash
-                        thisPlayer={thisPlayer}
-                        onCommand={onCommand}
+                    <SplashPlayerPrompt
+                        promptState={thisPlayer.promptState}
+                        onButtonClick={onCommand}
                         onMouseOver={onMouseOver}
                         onMouseOut={onMouseOut}
                         onTimerExpired={onTimerExpired}
-                        onCloseClick={() => dispatch(sendGameMessage('closeAlert'))}
+                    // onCloseClick={() => dispatch(sendGameMessage('closeAlert'))}
                     />
                 )}
 
@@ -571,7 +593,7 @@ const GameBoard = () => {
 
                     {showChatLog && (
                         <div className='gamechat'>
-                            {/* {getOtherPlayerPrompt(otherPlayer)} */}
+                            {getOtherPlayerPrompt(otherPlayer)}
                             <GameChat
                                 key='gamechat'
                                 messages={currentGame.messages}

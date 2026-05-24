@@ -4,7 +4,7 @@ describe('Overgrowth Aspect', function () {
     describe('On unit destruction by attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker', 'hammer-knight'],
@@ -41,7 +41,7 @@ describe('Overgrowth Aspect', function () {
     describe('On unit destruction by neighbour attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker', 'hammer-knight', 'anchornaut'],
@@ -79,7 +79,7 @@ describe('Overgrowth Aspect', function () {
     describe('On unit destruction by non-neighbour attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker', 'hammer-knight', 'anchornaut'],
@@ -117,7 +117,7 @@ describe('Overgrowth Aspect', function () {
     describe('On aspect destruction', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker', 'hammer-knight'],

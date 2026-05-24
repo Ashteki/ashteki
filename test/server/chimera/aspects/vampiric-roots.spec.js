@@ -2,7 +2,7 @@ describe('Vampiric Roots Aspect', function () {
     describe('On unit destruction by attack', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker', 'hammer-knight'],

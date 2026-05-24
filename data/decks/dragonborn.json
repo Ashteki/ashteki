@@ -1,0 +1,58 @@
+[
+  {
+    "precon_id": 501,
+    "mode": "dragonborn",
+    "name": "Scatha Kalani",
+    "phoenixborn": [
+      {
+        "id": "scatha-kalani",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "scatha-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "scatha-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "dragon",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "sear",
+        "count": 3
+      },
+      {
+        "id": "birdhunter",
+        "count": 3
+      },
+      {
+        "id": "rapid-flight",
+        "count": 3
+      },
+      {
+        "id": "radiant-flash",
+        "count": 3
+      },
+      {
+        "id": "aegis-feathers",
+        "count": 3
+      },
+      {
+        "id": "dragon-rage",
+        "count": 3
+      }
+    ],
+    "conjurations": []
+  }
+]

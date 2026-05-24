@@ -4,7 +4,7 @@ describe('Silksteel Aspect', function () {
     describe('On Reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],
@@ -46,7 +46,7 @@ describe('Silksteel Aspect', function () {
     describe('On Reveal vs webbed unit', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['false-demon', 'anchornaut', 'iron-worker', 'flute-mage'],

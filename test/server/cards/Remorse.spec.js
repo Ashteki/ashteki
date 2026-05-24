@@ -61,7 +61,7 @@ describe('Remorse', function () {
         describe('As reaction spell to attackers declared', function () {
             beforeEach(function () {
                 this.setupTest({
-                    mode: 'solo',
+                    mode: 'chimera',
                     player1: {
                         phoenixborn: 'coal-roarkwin',
                         inPlay: ['anchornaut', 'hammer-knight'],

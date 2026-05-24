@@ -91,6 +91,10 @@ class Player extends GameObject {
         return difference > 3;
     }
 
+    get confirmOneClick() {
+        return this.optionSettings.confirmOneClick;
+    }
+
     isSpectator() {
         return false;
     }
@@ -893,7 +897,7 @@ class Player extends GameObject {
     }
 
     canAttack() {
-        return this.unitsInPlay.some((c) => c.canAttack());
+        return this.actions.main && this.unitsInPlay.some((c) => c.canAttack());
     }
 
     canSummon(stub) {

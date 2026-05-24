@@ -7,7 +7,7 @@ class ReleaseChimeraHandAction extends PlayerAction {
     }
 
     canAffect(player, context) {
-        return player.isDummy && super.canAffect(player, context);
+        return player.isChimera && super.canAffect(player, context);
     }
 
     defaultTargets(context) {

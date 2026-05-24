@@ -79,6 +79,10 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
                 context.player === this.currentPlayer &&
                 context.ability.isInValidLocation(context)
         );
+        if (this.currentPlayer.isBot) {
+            this.resolveAbility(this.choices[0]);
+            return false;
+        }
         this.promptBetweenSources(this.choices);
         return false;
     }

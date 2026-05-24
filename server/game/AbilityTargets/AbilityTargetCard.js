@@ -122,16 +122,19 @@ class AbilityTargetCard extends AbilityTarget {
             return true;
         }
 
-        if (this.random) {
-            const cardList = this.selector.findPossibleCards(context);
-            let amount = Math.min(this.selector.numCards, cardList.length);
-            let cards = _.shuffle(cardList).slice(0, amount);
+        let player = context.player;
+        if (this.properties.player && this.properties.player === 'opponent') {
+            player = player.opponent;
+        }
 
-            context.targets[this.name] = cards;
-            if (this.name === 'target') {
-                context.target = cards;
-            }
-            return;
+        if (this.random) {
+            this.doRandomSelection(context);
+
+            return true;
+        }
+
+        if (player.isBot) {
+            return player.targetCardStrategy.execute(this, context);
         }
 
         let otherProperties = _.omit(this.properties, 'cardCondition', 'player');
@@ -163,13 +166,37 @@ class AbilityTargetCard extends AbilityTarget {
                 return true;
             }
         };
-        let player = context.player;
-        if (this.properties.player && this.properties.player === 'opponent') {
-            player = player.opponent;
-        }
 
         context.game.promptForSelect(player, Object.assign(promptProperties, otherProperties));
     }
+
+    doRandomSelection(context) {
+        const cardList = this.selector.getAllLegalTargets(context);
+        let amount = Math.min(this.selector.numCards, cardList.length);
+        let cards = _.shuffle(cardList).slice(0, amount);
+
+        if (Array.isArray(cards) && amount === 1) {
+            cards = cards[0];
+        }
+        this.setSelected(context, cards);
+    }
+
+    doOrderedSelection(context, orderFunc) {
+        const cardList = this.selector.getAllLegalTargets(context);
+        let cards = _.shuffle(cardList);
+        // order
+        if (orderFunc) {
+            cards.sort(orderFunc);
+        }
+        let amount = Math.min(this.selector.numCards, cardList.length);
+        cards = cards.slice(0, amount);
+
+        if (Array.isArray(cards) && amount === 1) {
+            cards = cards[0];
+        }
+        this.setSelected(context, cards);
+    }
+
 
     setSelectedCard(context, card) {
         this.setSelected(context, card);
