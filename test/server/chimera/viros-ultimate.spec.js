@@ -4,7 +4,7 @@ describe('Viros ultimate', function () {
     describe('value and exhaustion', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit'],

@@ -4,7 +4,7 @@ describe('Behaviour Bugs', function () {
     describe('Phase 1', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -50,7 +50,7 @@ describe('Behaviour Bugs', function () {
     describe('Phase 3', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],

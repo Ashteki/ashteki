@@ -4,7 +4,7 @@ describe('Withering Rot', function () {
     describe('Ability In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],
@@ -56,7 +56,7 @@ describe('Withering Rot', function () {
     describe('Ability In Play - no hand', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'hammer-knight'],

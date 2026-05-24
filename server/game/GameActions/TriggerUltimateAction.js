@@ -32,19 +32,11 @@ class TriggerUltimateAction extends CardGameAction {
                 context.player.ultimateThreshold
             );
 
-            const alienUnits = context.player.unitsInPlay.filter(c => c.owner !== c.controller);
-            if (alienUnits.length) {
-                context.game.actions.discard().resolve(alienUnits, context);
+            const aliens = context.player.getTresspassingCards();
+            if (aliens.length) {
+                context.game.actions.discard().resolve(aliens, context);
             }
-            const alienUpgrades = context.player.unitsInPlay.reduce((accumulator, curValue) => {
-                return accumulator.concat(
-                    curValue.upgrades.filter((u) => u.owner !== u.controller)
-                );
-            }, []);
 
-            if (alienUpgrades.length) {
-                context.game.actions.discard().resolve(alienUpgrades, context);
-            }
             // do ability
             context.player.triggerUltimateAbility();
 

@@ -4,7 +4,7 @@ describe('Moon Cove ultimate', function () {
     describe('Effects', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['blue-jaguar', 'mist-spirit', 'hammer-knight'],

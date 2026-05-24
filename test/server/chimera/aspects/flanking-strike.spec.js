@@ -3,7 +3,7 @@ const Dice = require('../../../../server/game/dice');
 describe('Flanking Strike In Play', function () {
     beforeEach(function () {
         this.setupTest({
-            mode: 'solo',
+            mode: 'chimera',
             player1: {
                 phoenixborn: 'coal-roarkwin',
                 inPlay: ['iron-worker', 'hammer-knight', 'anchornaut'],

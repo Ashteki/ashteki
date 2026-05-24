@@ -476,11 +476,18 @@ class Lobby {
         }
 
         if (game.solo) {
-            const dummyUsername = game.newGameType === 'bot' ? DummyUser.BOT_USERNAME : DummyUser.CHIMERA_USERNAME;
+            let dummyUsername = DummyUser.DRAGONBORN_USERNAME;
+            if (game.newGameType === 'bot') {
+                dummyUsername = DummyUser.BOT_USERNAME;
+            }
+            if (game.newGameType === 'chimera') {
+                dummyUsername = DummyUser.CHIMERA_USERNAME;
+            }
+
             const dummy = new DummyUser(dummyUsername);
             game.addPlayer(0, dummy);
-            if (game.newGameType === 'chimera') {
-                // load chimera deck
+            if (['chimera', 'dragonborn'].includes(game.newGameType)) {
+                // pre-load deck
                 await this.selectDeck(game, dummy, true, -1, 0, game.gameFormat);
             }
         }
@@ -685,7 +692,11 @@ class Lobby {
         } else if (game.gameFormat === 'coaloff') {
             deck = this.deckService.getCoalOffDeck(cards);
         } else if (game.solo && user.isDummy) {
-            deck = await this.deckService.getChimeraDeck();
+            if (game.newGameType === 'chimera') {
+                deck = await this.deckService.getChimeraDeck();
+            } else if (game.newGameType === 'dragonborn') {
+                deck = await this.deckService.getDragonbornDeck();
+            }
         } else {
             switch (deckId) {
                 case -1: // random choice 

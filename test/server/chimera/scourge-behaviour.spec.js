@@ -4,7 +4,7 @@ describe('Frostwild Scourge Behaviour Rolls', function () {
     describe('Phase 1', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage'],
@@ -140,7 +140,7 @@ describe('Frostwild Scourge Behaviour Rolls', function () {
     describe('phase 2', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage'],
@@ -306,7 +306,7 @@ describe('Frostwild Scourge Behaviour Rolls', function () {
     describe('phase 3', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage'],

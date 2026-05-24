@@ -111,18 +111,23 @@ class AbilityResolver extends BaseStepWithPipeline {
             this.context.ability.logUse &&
             this.context.ability.logUse(this.context)
         ) {
+            const abilityTitle = this.context.ability.title;
+            let menuTitle = this.context.player.name + ' uses ' + this.context.source.name;
+            if (abilityTitle) {
+                menuTitle += ': ' + abilityTitle;
+            }
             this.game.cardUsed(this.context.source, this.context.player);
             this.game.queueUserAlert(this.context, {
                 showSplash: true,
                 timed: true,
-                promptTitle: 'Aspect Status Ability',
+                promptTitle: 'Status Ability',
                 controls: [
                     {
                         type: 'targeting',
                         source: this.context.source.getShortSummary()
                     }
                 ],
-                menuTitle: this.context.player.name + ' uses ' + this.context.source.name
+                menuTitle: menuTitle
             });
         }
     }

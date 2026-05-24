@@ -131,7 +131,7 @@ describe('Ruby Cobra', function () {
     describe('Charming ability vs Chimera', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'lulu-firststone',
                     inPlay: ['anchornaut', 'ruby-cobra'],

@@ -4,7 +4,7 @@ describe('Undertow Aspect', function () {
     describe('On reveal first time', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['false-demon', 'anchornaut', 'flute-mage'],

@@ -12,6 +12,7 @@ class DummyUser extends User {
     }
 
     static CHIMERA_USERNAME = 'Chimera';
+    static DRAGONBORN_USERNAME = 'Dragonborn';
     static BOT_USERNAME = 'Bound Soul';
 
     get isDummy() {
@@ -20,6 +21,10 @@ class DummyUser extends User {
 
     get isChimera() {
         return this.username === DummyUser.CHIMERA_USERNAME;
+    }
+
+    get isDragonborn() {
+        return this.username === DummyUser.DRAGONBORN_USERNAME;
     }
 
     get isBot() {

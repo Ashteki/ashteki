@@ -4,7 +4,7 @@ describe('Regenerate Aspect', function () {
     describe('in play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'aradel-summergaard',
                     inPlay: ['anchornaut'],

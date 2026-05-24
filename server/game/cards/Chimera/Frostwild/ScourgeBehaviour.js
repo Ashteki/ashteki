@@ -112,7 +112,7 @@ class ScourgeBehaviour extends BehaviourCard {
                             },
                             () => {
                                 // Side: Aoe damage to all exhausted units and pb.
-                                this.doAoEDamage(1, true);
+                                this.aoEDamage(1, true);
                                 // Main: Reveal
                                 this.doReveal();
                             }
@@ -267,7 +267,7 @@ class ScourgeBehaviour extends BehaviourCard {
         this.game.resolveAbility(context);
     }
 
-    doAoEDamage(amount, includePb) {
+    aoEDamage(amount, includePb) {
         const ability = this.behaviour({
             cost: AbilityDsl.costs.sideAction(),
             target: {

@@ -4,7 +4,7 @@ describe('Kneel vs Chimera', function () {
     describe('Threat Zone', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'iron-worker'],

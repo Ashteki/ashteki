@@ -95,6 +95,10 @@
 
         }
     }
+
+    &.dragon {
+        @include dice-colors(#A8D0E2, #C28E29);
+    }
 }
 
 .any {

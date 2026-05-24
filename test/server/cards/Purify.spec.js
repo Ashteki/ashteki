@@ -59,7 +59,7 @@ describe('Purify Action Spell', function () {
     describe('vs Chimera', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker', 'anchornaut'],

@@ -4,7 +4,7 @@ describe('Bonechill wind Aspect', function () {
     describe('Bonechill wind Reveal', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut'],
@@ -45,7 +45,7 @@ describe('Bonechill wind Aspect', function () {
     describe('Bonechill Wind In Play', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['iron-worker', 'anchornaut'],

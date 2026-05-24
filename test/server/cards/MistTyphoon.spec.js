@@ -41,7 +41,7 @@ describe('Mist Typhoon', function () {
     describe('vs Chimera deals damage', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['hammer-knight', 'iron-worker'],

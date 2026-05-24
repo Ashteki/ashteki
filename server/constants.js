@@ -14,6 +14,7 @@ const CardType = {
     Aspect: 'Aspect',
     ConjuredAspect: 'Conjured Aspect',
     Chimera: 'Chimera',
+    Dragonborn: 'Dragonborn',
     Behaviour: 'Behaviour'
 };
 
@@ -33,7 +34,7 @@ const BattlefieldTypes = [
     CardType.ConjuredAspect
 ];
 const AspectTypes = [CardType.Aspect, CardType.ConjuredAspect];
-const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera];
+const PhoenixbornTypes = [CardType.Phoenixborn, CardType.Chimera, CardType.Dragonborn];
 const UpgradeCardTypes = [CardType.Upgrade, CardType.ConjuredAlteration];
 const ConjuredCardTypes = [
     CardType.Conjuration,
@@ -66,7 +67,8 @@ const Magic = {
     Natural: 'natural',
     Sympathy: 'sympathy',
     Time: 'time',
-    Rage: 'rage'
+    Rage: 'rage',
+    Dragon: 'dragon'
 };
 
 const Level = {
@@ -97,6 +99,7 @@ const LegalLocations = {
 const GameTypes = Object.freeze({
     pvp: 'pvp',
     chimera: 'chimera',
+    dragonborn: 'dragonborn',
     league: 'league',
     bot: 'bot'
 });

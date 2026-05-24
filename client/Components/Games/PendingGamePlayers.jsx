@@ -107,13 +107,13 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                         );
                     } else {
                         const deckName =
-                            player.name === 'Chimera'
+                            (player.deck.isChimera || player.deck.isDragonborn)
                                 ? player.deck.name
                                 : 'Deck Selected';
                         deck = <span className='deck-selection'>{deckName}</span>;
                     }
 
-                    status = !player.deck.isChimera && (
+                    status = !(player.deck.isChimera || player.deck.isDragonborn) && (
                         <DeckStatus
                             deck={player.deck}
                             status={player.deck.status}
@@ -191,6 +191,7 @@ const PendingGamePlayers = ({ currentGame, user }) => {
             })}
             {showModal && (
                 <SelectDeckModal
+                    newGameType={currentGame.newGameType}
                     gameFormat={currentGame.gameFormat}
                     onClose={() => setShowModal(false)}
                     onDeckSelected={deckSelectedHandler}

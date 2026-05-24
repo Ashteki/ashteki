@@ -35,7 +35,7 @@
         gap: 10px;
         text-align: center;
         z-index: $layer-prompt;
-        margin-top: 1.25rem;
+        margin-top: unset;
 
         .big-card {
             position: relative;
@@ -114,8 +114,8 @@
     }
 
     .prompt-control-behaviour {
-        margin-bottom: 4px;
-        padding: 4px 8px;
+        margin-bottom: 8px;
+        padding: 8px 8px;
         background-color: #f1daa6;
         border-radius: 4px;
         color: black;

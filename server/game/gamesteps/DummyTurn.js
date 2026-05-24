@@ -13,17 +13,16 @@ class DummyTurn extends BaseStepWithPipeline {
     }
 
     beginTurn() {
-        // do something here...
+        if (this.player.anyEffect('mustAttack') && this.canAttack()) {
+            this.player.doAttack();
+            return;
+        }
 
-                this.game.addAlert(
-                    'info',
-                    '{0} rolls {1} for behaviour:\n{2}',
-                    this.player,
-                    d12Roll,
-                    behaviour
-                );
+        this.queueActions();
+    }
 
-        // default to pass (log is handled in player.endTurn)
+    queueActions() {
+        return;
     }
 
     getChatMessage(behaviour) {

@@ -2,7 +2,7 @@ describe('Chimera Hand', function () {
     describe('TEO discard', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',
@@ -40,7 +40,7 @@ describe('Chimera Hand', function () {
     describe('Imperial Ninja attack, discard choice', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',
@@ -81,7 +81,7 @@ describe('Chimera Hand', function () {
     describe('Anguish discard', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',
@@ -150,7 +150,7 @@ describe('Chimera Hand', function () {
     describe('nightsong cricket return from discard', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 allowSetup: true,
                 player1: {
                     phoenixborn: 'aradel-summergaard',

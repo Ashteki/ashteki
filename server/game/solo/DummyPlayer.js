@@ -1,7 +1,6 @@
 const { CardType, ActionType } = require('../../constants');
 const Dice = require('../dice');
 const Player = require('../player');
-const ChimeraDefenceStrategy = require('./ChimeraDefenceStrategy');
 const DefaultPinStrategy = require('./DefaultPinStrategy');
 const NullPromptStrategy = require('./NullPromptStrategy');
 
@@ -11,7 +10,6 @@ class DummyPlayer extends Player {
         // set this in descendent class constructor
         this.firstFiveStrategy = null;
         this.dicePinStrategy = new DefaultPinStrategy(this);
-        this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
         this.disStrategy = new NullPromptStrategy(this, 'no');
     }
 
@@ -63,15 +61,27 @@ class DummyPlayer extends Player {
 
     doAttack() {
         const attacker = this.getAttacker();
+        const attackers = [attacker];
         const target = this.getAttackTarget(attacker);
-        this.game.initiateAttack(target, attacker);
+        if (attacker.target === 'center') {
+            // add all other center attackers
+            const attackBuddies = this.getCenterAttackAspects([attacker]);
+            attackBuddies.forEach(b => attackers.push(b));
+        }
+        this.game.initiateAttack(target, attackers);
+    }
+
+    getCenterAttackAspects(excludeList) {
+        return this.unitsInPlay.filter(
+            (u) => u.target === 'center' && !excludeList.includes(u) && u.canAttack()
+        );
     }
 
     getAttackTarget(attacker) {
         if (
             this.opponent.unitsInPlay.length === 0 ||
             attacker.type !== CardType.Aspect ||
-            attacker.target === 'jaw'
+            ['jaw', 'center'].includes(attacker.target)
         ) {
             return this.opponent.phoenixborn;
         }

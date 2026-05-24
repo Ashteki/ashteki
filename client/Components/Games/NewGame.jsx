@@ -33,7 +33,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
     const lobbySocket = useSelector((state) => state.lobby.socket);
     const username = useSelector((state) => state.account.user?.username);
     const newGameType = useSelector((state) => state.lobby.newGameType);
-    const isSolo = newGameType === 'chimera';
+    const isSolo = ['chimera', 'dragonborn'].includes(newGameType);
     const user = useSelector((state) => state.account.user);
     const allowPremium = user?.patreon === PatreonStatus.Pledged || user?.permissions?.isSupporter;
 

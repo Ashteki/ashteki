@@ -4,7 +4,7 @@ describe('chimera reactions', function () {
     describe('discard causes damage', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
@@ -39,7 +39,7 @@ describe('chimera reactions', function () {
     describe('premature pass with threat', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
@@ -76,7 +76,7 @@ describe('chimera reactions', function () {
     describe('premature pass without threat', function () {
         beforeEach(function () {
             this.setupTest({
-                mode: 'solo',
+                mode: 'chimera',
                 player1: {
                     phoenixborn: 'coal-roarkwin',
                     inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],

@@ -5,12 +5,7 @@ const DummyTurn = require('./DummyTurn');
 const SimpleStep = require('./simplestep');
 
 class ChimeraTurn extends DummyTurn {
-    beginTurn() {
-        if (this.player.anyEffect('mustAttack') && this.canAttack()) {
-            this.player.doAttack();
-            return;
-        }
-
+    queueActions() {
         if (this.player.threatCards.length) {
             // if aspects are not revealed then roll for behaviour etc
             this.rollDice();
