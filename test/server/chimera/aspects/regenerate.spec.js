@@ -40,6 +40,7 @@ describe('Regenerate Aspect', function () {
             expect(this.regenerate.location).toBe('discard');
             expect(this.regenerate.exhausted).toBe(false);
             expect(this.regenerate.moribund).toBe(false);
+            expect(this.corpseOfViros.damage).toBe(1);
         });
 
         it('when destroyed roll a basic side and place rightmost on b/f', function () {
@@ -54,6 +55,7 @@ describe('Regenerate Aspect', function () {
             expect(this.player2.dicepool.some((d) => d.level === 'power')).toBe(false);
             expect(this.regenerate.location).toBe('play area');
             expect(this.regenerate.exhausted).toBe(true);
+            expect(this.corpseOfViros.damage).toBe(1);
         });
     });
 });
