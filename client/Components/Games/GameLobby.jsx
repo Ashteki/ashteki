@@ -152,6 +152,7 @@ const GameLobby = ({ gameId }) => {
                                     {showDragonborn && (
                                         <PictureButton
                                             text='Dragonborn'
+                                            header='Alpha Test'
                                             imageClass='dragonborn'
                                             onClick={() => handleNewGameClick(gameTypes.dragonborn)}
                                         />
@@ -159,6 +160,7 @@ const GameLobby = ({ gameId }) => {
                                     {showBot && (
                                         <PictureButton
                                             text='Bound Soul'
+                                            header='Alpha Test'
                                             // header='Premium'
                                             imageClass='bot'
                                             onClick={() => handleNewGameClick(gameTypes.bot)}
