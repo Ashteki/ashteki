@@ -1,0 +1,241 @@
+{
+    "results": [
+        {
+            "name": "Kanna Galeheart",
+            "stub": "kanna-galeheart",
+            "type": "Phoenixborn",
+            "battlefield": 7,
+            "life": 17,
+            "spellboard": 3
+        },
+        {
+            "name": "Hurricane",
+            "stub": "hurricane",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "3 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 3
+            }
+        },
+        {
+            "name": "Tailwind",
+            "stub": "tailwind",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]"
+            ]
+        },
+        {
+            "name": "Eagle Trainer",
+            "stub": "eagle-trainer",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Eagle Fledgling",
+                    "stub": "eagle-fledgling"
+                }
+            ],
+            "attack": 1,
+            "life": 2,
+            "recover": 1
+        },
+        {
+            "name": "Eagle Fledgling",
+            "stub": "eagle-fledgling",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Summon Galewind Hawk",
+            "stub": "summon-galewind-hawk",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "astral",
+                "natural"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1,
+                "natural:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Galewind Hawk",
+                    "stub": "galewind-hawk"
+                }
+            ]
+        },
+        {
+            "name": "Galewind Hawk",
+            "stub": "galewind-hawk",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 2,
+            "recover": 0,
+            "copies": 2
+        },
+        {
+            "name": "Summon Storm Spirit",
+            "stub": "summon-storm-spirit",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Storm Spirit",
+                    "stub": "storm-spirit"
+                }
+            ]
+        },
+        {
+            "name": "Storm Spirit",
+            "stub": "storm-spirit",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3
+        },
+        {
+            "name": "Stormchaser",
+            "stub": "stormchaser",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1,
+                "basic": 1
+            },
+            "attack": 1,
+            "life": 3,
+            "recover": 1
+        },
+        {
+            "name": "Puncturing Wind",
+            "stub": "puncturing-wind",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1
+            }
+        },
+        {
+            "name": "Freezing Rain",
+            "stub": "freezing-rain",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[natural:class]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            }
+        },
+        {
+            "name": "Searing Bolt",
+            "stub": "searing-bolt",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[natural:class]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            }
+        },
+        {
+            "name": "Gathering Clouds",
+            "stub": "gathering-clouds",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "[[side]]",
+                "1 [[astral:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Cloud Spirit",
+                    "stub": "cloud-spirit"
+                }
+            ]
+        },
+        {
+            "name": "Cloud Spirit",
+            "stub": "cloud-spirit",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 4
+        }
+    ]
+}
