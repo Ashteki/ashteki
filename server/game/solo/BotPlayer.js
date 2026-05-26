@@ -1,3 +1,4 @@
+const BotDefenceStrategy = require('./BotDefenceStrategy');
 const BotDicePromptStrategy = require('./BotDicePromptStrategy');
 const BotFFStrategy = require('./BotFFStrategy');
 const BotTargetCardStrategy = require('./BotTargetCardStrategy');
@@ -9,6 +10,8 @@ class BotPlayer extends DummyPlayer {
         this.firstFiveStrategy = new BotFFStrategy(this);
         this.dicePromptStrategy = new BotDicePromptStrategy(this);
         this.targetCardStrategy = new BotTargetCardStrategy(this);
+        this.defenderStrategy = new BotDefenceStrategy(this, game);
+
     }
 
     get confirmOneClick() {
