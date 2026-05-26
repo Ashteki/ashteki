@@ -60,7 +60,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         name: `${username}'s game`,
         password: '',
         label: '',
-        allowSpectators: true,
+        allowSpectators: newGameType !== 'dragonborn',
         gameType: defaultGameType || 'casual',
         newGameType: newGameType,
         gameFormat: isSolo ? 'standard' : 'constructed',
@@ -199,7 +199,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
                                                 {formProps.errors.name}
                                             </Form.Control.Feedback>
 
-                                            {['chimera', 'bot'].includes(newGameType) &&
+                                            {['chimera', 'bot', 'dragonborn'].includes(newGameType) &&
                                                 soloOptions.map((option) =>
                                                     getOptionToggle(option, formProps)
                                                 )
