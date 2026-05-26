@@ -79,21 +79,12 @@ class ChooseDefendersPrompt extends UiPrompt {
     // selector methods
     availableToBlockOrGuard(defender) {
         if (this.attack.isPBAttack)
-            return this.attack.battles.some((b) => this.blockTest(defender, b.attacker));
+            return this.attack.battles.some((b) => this.defenceRules.blockTest(defender, b.attacker));
         else {
             return this.attack.battles.some((b) =>
                 this.defenceRules.guardTest(defender, b.target, b.attacker)
             );
         }
-    }
-
-    blockTest(card, attacker) {
-        // guard is used for blockers too
-        return (
-            !attacker.anyEffect('preventBlock', { card: card }) &&
-            card.canBlock(attacker) &&
-            !card.anyEffect('forceBlock') // try to not reassign forced blockers
-        );
     }
 
     // who's choosing / active?
