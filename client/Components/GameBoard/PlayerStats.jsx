@@ -102,6 +102,12 @@ const PlayerStats = ({
                     Phase {player.chimeraPhase}
                 </span>
             </div>
+            <div className='state'>
+                <span key={`stamina`} className='action stamina'>
+                    Stamina {player.stamina}
+                </span>
+            </div>
+
         </>
         );
     };
