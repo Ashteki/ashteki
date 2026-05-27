@@ -30,6 +30,7 @@ describe('Chimera fatigue', function () {
             expect(this.player2.deck.length).toBe(1);
             expect(this.player2.discard.length).toBe(4);
             expect(this.player2.fatigued).toBe(false);
+            expect(this.player2.stamina).toBe(1);
 
             this.player1.endTurn();
             this.player1.clickDie(0);
@@ -42,6 +43,7 @@ describe('Chimera fatigue', function () {
             expect(this.player2.deck.length).toBe(1); // reshuffled from discard, but then played to threatzone
             expect(this.player2.threatZone.length).toBe(4); // refilled from reshuffled deck
             expect(this.player2.fatigued).toBe(true);
+            expect(this.player2.stamina).toBe(0);
         });
 
         it('BUG: should trigger when emptied by draw card', function () {

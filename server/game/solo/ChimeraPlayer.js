@@ -12,6 +12,7 @@ class ChimeraPlayer extends DummyPlayer {
 
         this.behaviourRoll = 0;
         this.fatigued = false;
+        this.stamina = 1;
         this.chimeraPhase = 1; // values 1-3
         this.level = game.soloLevel || 'S';
         this.stage = game.soloStage || 1;
@@ -115,7 +116,11 @@ class ChimeraPlayer extends DummyPlayer {
         ) {
             // if draw pile hits empty then fatigue (but not if we're moving cards to form a hand)
             if (this.deck.length === 0 && this.hand.length === 0) {
-                if (!this.fatigued) {
+                if (this.stamina > 0) {
+                    this.stamina--;
+                }
+
+                if (!this.fatigued && this.stamina === 0) {
                     this.applyFatigue();
                     const context = this.game.getFrameworkContext(this);
                     this.game.queueUserAlert(context, {
