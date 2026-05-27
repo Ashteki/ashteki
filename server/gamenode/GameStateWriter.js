@@ -50,6 +50,8 @@ class GameStateWriter {
                 label: this.game.label,
                 solo: this.game.solo,
                 isBot: this.game.isBot,
+                isChimera: this.game.isChimera,
+                isDragonborn: this.game.isDragonborn,
                 isSurvival: this.game.isSurvival,
                 owner: this.game.owner,
                 players: playerState,

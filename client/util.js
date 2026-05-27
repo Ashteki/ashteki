@@ -15,6 +15,11 @@ export function imageUrl(cardStub) {
 
 export const getCardBack = (card) => {
     if (card.blood) {
+        if (card.controller === 'Dragonborn') {
+            return card.blood === 2
+                ? 'https://cdn.ashteki.com/ashes/db-back-2.jpg'
+                : 'https://cdn.ashteki.com/ashes/db-back-1.jpg';
+        }
         return card.blood === 2 ? 'back-blood-2' : 'back-blood-1';
     }
     return card.isConjuration ? 'back-conjuration' : 'back';
