@@ -105,6 +105,7 @@ class PlayerStateWriter {
         if (this.player.isDummy) {
             playerState.fatigued = this.player.fatigued;
             playerState.chimeraPhase = this.player.chimeraPhase;
+            playerState.stamina = this.player.stamina;
         }
 
         if (this.player.clock) {

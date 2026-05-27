@@ -5,6 +5,7 @@ class DragonbornPlayer extends ChimeraPlayer {
     constructor(id, user, owner, game, clockdetails) {
         super(id, user, owner, game, clockdetails);
         this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
+        this.stamina = 3;
     }
     get isDragonborn() {
         return true;
@@ -24,6 +25,11 @@ class DragonbornPlayer extends ChimeraPlayer {
         this.game.cardUsed(this.ultimate.createSnapshot(), this);
         const context = ultAbility.createContext(this);
         this.game.resolveAbility(context);
+    }
+
+    applyFatigue() {
+        super.applyFatigue();
+        this.phoenixborn.exhaust();
     }
 }
 

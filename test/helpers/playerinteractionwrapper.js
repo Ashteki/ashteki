@@ -46,6 +46,10 @@ class PlayerInteractionWrapper {
         return this.player.fatigued;
     }
 
+    get stamina() {
+        return this.player.stamina;
+    }
+
     get activeNonBasicDiceCount() {
         return this.player.activeNonBasicDiceCount;
     }
