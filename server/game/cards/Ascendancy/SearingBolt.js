@@ -1,4 +1,4 @@
-const { CardType, Level, BattlefieldTypes } = require('../../../constants.js');
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class SearingBolt extends Card {
