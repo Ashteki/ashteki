@@ -292,6 +292,11 @@ class Player extends GameObject {
         return BattlefieldTypes.includes(card.type) && this.indexOf(card) === 0;
     }
 
+    getHighestUnitLife() {
+        const maxLife = Math.max(...this.battlefield.map((u) => u.life));
+        return maxLife || 0;
+    }
+
     areCardsAdjacent(card, anotherCard) {
         if (anotherCard.facedown) {
             // threatzone isn't actually in the battlefield
