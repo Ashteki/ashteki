@@ -15,6 +15,7 @@ class PlayAction extends BasePlayAction {
                     context.source.mostRecentEffect('actionCardLocationAfterPlay') || 'discard';
                 context.source.owner.moveCard(context.source, location);
             }
+            context.player.actionSpellPlayed = true;
         });
     }
 
