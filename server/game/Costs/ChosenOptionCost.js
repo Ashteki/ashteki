@@ -14,7 +14,7 @@ class ChosenOptionCost {
         // if there's no choice
         if (this.options.filter((o) => o.costs.every((c) => c.canPay(context))).length === 1) {
             context.chosenCost = this.options.find((o) => o.costs.every((c) => c.canPay(context, result))).costs;
-            context.chosenCost.forEach((c) => c.resolve && c.resolve(context));
+            context.chosenCost.forEach((c) => c.resolve && c.resolve(context, result));
             return true;
         }
 
@@ -24,12 +24,8 @@ class ChosenOptionCost {
                 choices: this.options.map((o) => o.text),
                 handlers: this.options.map((o) => () => {
                     context.chosenCost = o.costs;
-                    context.chosenCost.forEach((c) => c.resolve && c.resolve(context, result))
+                    context.chosenCost.forEach((c) => c.resolve && c.resolve(context, result));
                 })
-                // choiceHandler: (choice) => {
-                //     context.chosenCost = this.choice.costs;
-                //     context.chosenCost.forEach((c) => c.resolve(context));
-                // }
             });
         };
 
