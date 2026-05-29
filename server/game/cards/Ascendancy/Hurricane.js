@@ -5,7 +5,7 @@ class Hurricane extends Card {
     setupCardAbilities(ability) {
         this.play({
             target: {
-                activePromptTitle: 'Choose a charged card to remove exhaustion and 2 damage from',
+                activePromptTitle: 'Choose a card to remove 1 exhaustion from',
                 showCancel: true,
                 cardType: [CardType.Phoenixborn, CardType.ReadySpell],
                 gameAction: ability.actions.removeExhaustion()

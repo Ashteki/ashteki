@@ -18,9 +18,8 @@ class Tailwind extends Card {
             }),
             then: {
                 may: 'spend one basic die to take an additional side action',
-                cost: ability.costs.dice([new DiceCount(1, Level.Basic)]),
+                cost: [ability.costs.focus(1), ability.costs.dice([new DiceCount(1, Level.Basic)])],
                 gameAction: ability.actions.addSideAction({ amount: 1 })
-
             }
         });
     }
