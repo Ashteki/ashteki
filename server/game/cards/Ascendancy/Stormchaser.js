@@ -1,4 +1,3 @@
-const { Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Stormchaser extends Card {

@@ -3,16 +3,7 @@ const Card = require('../../Card.js');
 
 class SkybreakCaptain extends Card {
     setupCardAbilities(ability) {
-        this.entersPlay({
-            target: {
-                toSelect: 'die',
-                autoTarget: (context) =>
-                    context.player.findDie((die) => die.magic === Magic.Astral && die.exhausted),
-                gameAction: ability.actions.resolveDieAbility((context) => ({
-                    targetCard: context.source
-                }))
-            }
-        });
+        this.uplift();
 
         this.action({
             condition: (context) => context.source.isAirborne,
