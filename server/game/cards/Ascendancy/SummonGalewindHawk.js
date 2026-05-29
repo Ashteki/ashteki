@@ -11,7 +11,7 @@ class SummonGalewindHawk extends Card {
                 ability.costs.exhaust(),
                 ability.costs.dice([
                     new DiceCount(1, Level.Class, Magic.Astral),
-                    new DiceCount(1, Level.Class, Magic.Nature)
+                    new DiceCount(1, Level.Class, Magic.Natural)
                 ])
             ],
             location: 'spellboard'

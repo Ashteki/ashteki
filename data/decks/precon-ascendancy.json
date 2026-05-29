@@ -168,19 +168,23 @@
     "cards": [
       {
         "id": "hurricane",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "tailwind",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "eagle-trainer",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-galewind-hawk",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "summon-storm-spirit",
@@ -193,23 +197,19 @@
       },
       {
         "id": "puncturing-wind",
-        "count": 3,
-        "ff": true
+        "count": 3
       },
       {
         "id": "freezing-rain",
-        "count": 3,
-        "ff": true
+        "count": 3
       },
       {
         "id": "searing-bolt",
-        "count": 3,
-        "ff": true
+        "count": 3
       },
       {
-        "id": "gethering-clouds",
-        "count": 3,
-        "ff": true
+        "id": "gathering-clouds",
+        "count": 3
       }
     ],
     "conjurations": [
