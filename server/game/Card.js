@@ -950,6 +950,7 @@ class Card extends PlayableObject {
         clone.modifiedBattlefield = this.getBattlefield();
         clone.modifiedSpellboard = this.getSpellboard();
         clone.modifiedRecover = this.getRecover();
+        clone.wasCharged = this.isCharged;
         return clone;
     }
 

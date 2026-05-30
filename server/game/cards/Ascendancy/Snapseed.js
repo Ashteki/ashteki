@@ -17,6 +17,18 @@ class Snapseed extends Card {
                 showMessage: false
             }))
         });
+
+        this.action({
+            title: 'Solar Sprout',
+            cost: ability.costs.mainAction(),
+            gameAction: ability.actions.discard(),
+            then: {
+                condition: (context) => context.preThenEvent.clone.wasCharged,
+                gameAction: ability.actions.summon({
+                    conjuration: 'snaptrap'
+                })
+            }
+        });
     }
 }
 
