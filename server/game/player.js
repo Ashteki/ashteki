@@ -340,6 +340,10 @@ class Player extends GameObject {
         return this.dice.find(predicate);
     }
 
+    hasDie(predicate) {
+        return !!this.findDie(predicate);
+    }
+
     /**
      * Draws the passed number of cards from the top of the deck into this players hand
      * @param {number} numCards

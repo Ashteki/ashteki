@@ -34,7 +34,7 @@ class CardAction extends CardAbility {
         this.abilityType = 'action';
         this.title =
             properties.title ||
-            "Use this card's ability";
+            "Use ability";
         this.condition = properties.condition;
         if (!this.properties.inexhaustible) {
             this.cost = this.cost.concat(Costs.use());
