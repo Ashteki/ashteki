@@ -85,7 +85,7 @@
                 "[[side]]",
                 "1 [[artifice:class]]"
             ],
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/photovoltaics.jpg"
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/photovoltaics.jpg"
         },
         {
             "name": "Botanist",
@@ -136,7 +136,8 @@
             ],
             "magicCost": {
                 "basic": 2
-            }
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/overcharged-growth.jpg"
         },
         {
             "name": "Summon Capacitor Beetle",
@@ -147,7 +148,7 @@
                 "[[main]]"
             ],
             "dice": [
-                "artefice"
+                "artifice"
             ],
             "effectMagicCost": {
                 "artifice:class": 1
@@ -241,7 +242,8 @@
             ],
             "magicCost": {
                 "natural:class": 1
-            }
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/aspiring-growth.jpg"
         },
         {
             "name": "Shock Gauntlet",
@@ -257,7 +259,8 @@
             ],
             "magicCost": {
                 "artifice:class": 1
-            }
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/shock-gauntlet.jpg"
         }
     ]
 }

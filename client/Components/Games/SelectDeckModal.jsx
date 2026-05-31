@@ -39,7 +39,7 @@ const SelectDeckModal = ({ gameFormat, newGameType, onClose, onDeckSelected, onC
         pveDecks: state.cards.pveDecks?.filter((d) => showRestricted || !d.restricted),
         dualDuelDecks: state.cards.dualDuelDecks,
         oneCollectionDecks: state.cards.oneCollectionDecks,
-        ascendancyDecks: state.cards.ascendancyDecks,
+        ascendancyDecks: state.cards.ascendancyDecks?.filter((d) => showRestricted || !d.restricted),
         dragonbornDecks: state.cards.dragonbornDecks
     }));
     const [pbFilter, setPbFilter] = useState('');
