@@ -24,8 +24,6 @@ describe('Dragonborn Dice rolls', function () {
                     dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon']
                 }
             });
-            spyOn(Dice, 'd12Roll').and.returnValue(1);
-
             this.player2.dicepool[0].level = 'power';
             this.player2.dicepool[1].level = 'power';
             this.player2.dicepool[2].level = 'power';
@@ -38,11 +36,12 @@ describe('Dragonborn Dice rolls', function () {
             spyOn(Dice, 'getRandomInt').and.returnValue(0);
             expect(this.huntingInstincts.facedown).toBe(true);
             this.player1.endTurn();
-            // informs real player of behaviour roll
 
             expect(this.player2.dicepool.every((d) => d.level === 'basic'));
-            expect(this.player2.phoenixborn.status).toBe(1);
+            expect(this.player2.phoenixborn.status).toBe(0);
+            expect(this.anchornaut.location).toBe('discard'); // status token added, but then used
             expect(this.player2.phoenixborn.redRains).toBe(0);
+            // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
 
             expect(this.huntingInstincts.facedown).toBe(false);
@@ -54,11 +53,11 @@ describe('Dragonborn Dice rolls', function () {
             spyOn(Dice, 'getRandomInt').and.returnValue(2); // class
             expect(this.huntingInstincts.facedown).toBe(true);
             this.player1.endTurn();
-            // informs real player of behaviour roll
 
             expect(this.player2.dicepool.every((d) => d.level === 'basic'));
-            expect(this.player2.phoenixborn.status).toBe(1);
-            expect(this.player2.phoenixborn.redRains).toBe(0);
+            expect(this.player2.phoenixborn.status).toBe(0);
+            expect(this.anchornaut.location).toBe('discard'); // status token added, but then used
+            // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
 
             expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);

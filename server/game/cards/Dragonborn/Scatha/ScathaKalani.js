@@ -2,13 +2,15 @@ const DragonbornCard = require('../../../solo/DragonbornCard');
 
 class ScathaKalani extends DragonbornCard {
     setupCardAbilities(ability) {
+        super.setupCardAbilities(ability);
+
         this.statusAbility({
             title: 'Poach',
             log: 'each',
+            condition: (context) => !context.source.exhausted,
             targets: {
                 unit: {
                     mode: 'auto',
-                    promptTitle: 'Poach',
                     aim: 'left'
                 },
                 pb: {
@@ -18,7 +20,7 @@ class ScathaKalani extends DragonbornCard {
             gameAction: ability.actions.dealDamage((context) => ({
                 target: context.targets.unit || context.targets.pb
             }))
-        })
+        });
     }
 }
 
