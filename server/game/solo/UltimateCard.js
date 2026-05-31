@@ -1,3 +1,4 @@
+const AbilityDsl = require('../abilitydsl');
 const ThenAbility = require('../ThenAbility');
 const PvEReadySpell = require('./PvEReadySpell');
 
@@ -18,6 +19,15 @@ class UltimateCard extends PvEReadySpell {
 
     getUltimateAbility(phase) {
         // override this in derived classes
+    }
+
+    getUnexhaustAbility() {
+        return this.ultimate({
+            target: {
+                autoTarget: (context) => context.player.ultimate,
+                gameAction: AbilityDsl.actions.removeExhaustion({ showMessage: true })
+            }
+        });
     }
 
     // internal utility method for building a behaviour ability

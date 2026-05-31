@@ -31,6 +31,12 @@ class DragonbornPlayer extends ChimeraPlayer {
         super.applyFatigue();
         this.phoenixborn.exhaust();
     }
+
+    unExhaustReadySpell() {
+        const unexhaustAbility = this.ultimate.getUnexhaustAbility();
+        const context = unexhaustAbility.createContext(this);
+        this.game.resolveAbility(context);
+    }
 }
 
 module.exports = DragonbornPlayer;
