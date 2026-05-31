@@ -147,8 +147,99 @@
     ]
   },
   {
+    "precon_id": 1103,
+    "restricted": true,
+    "name": "The Gardner of Emerald City",
+    "phoenixborn": [
+      {
+        "id": "maeve-luminvale",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "artifice",
+        "count": 5
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-snapseed",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "photovoltaics",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "botanist",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "overcharged-growth",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-capacitor-beetle",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "catalyst",
+        "count": 3
+      },
+      {
+        "id": "propagate",
+        "count": 3
+      },
+      {
+        "id": "encircle",
+        "count": 3
+      },
+      {
+        "id": "aspiring-growth",
+        "count": 3
+      },
+      {
+        "id": "shock-gauntlet",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "snapseed",
+        "count": 4
+      },
+      {
+        "id": "snaptrap",
+        "count": 3
+      },
+      {
+        "id": "floral-tyrant",
+        "count": 2
+      },
+      {
+        "id": "nurtured",
+        "count": 2
+      },
+      {
+        "id": "capacitor-beetle",
+        "count": 2
+      }
+    ]
+  },
+  {
     "precon_id": 1104,
-    "name": "The Lululemon Star Customer",
+    "restricted": true,
+    "name": "The Windy Workout Queen",
     "phoenixborn": [
       {
         "id": "kanna-galeheart",
