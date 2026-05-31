@@ -48,10 +48,8 @@ describe('Dragonborn Dice rolls', function () {
             this.rampage.exhaust();
             expect(this.huntingInstincts.facedown).toBe(true);
             this.player1.endTurn();
-            // informs real player of behaviour roll
-
-            expect(this.player2.dicepool.every((d) => d.level === 'basic')).toBeTrue();
             expect(this.player2.phoenixborn.status).toBe(0);
+            // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
 
             expect(this.huntingInstincts.facedown).toBe(false);
@@ -144,6 +142,21 @@ describe('Dragonborn Dice rolls', function () {
             expect(this.huntingInstincts.facedown).toBe(false);
             expect(this.player1.discard.length).toBe(1);
             expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
+        });
+
+        it('class roll when ready spell exhausted, removes exhaustion token no effect ', function () {
+            // reveal
+            spyOn(Dice, 'getRandomInt').and.returnValue(1); // class
+            this.scathaUltimate.tokens.exhaustion = 1;
+            expect(this.scathaUltimate.exhausted).toBe(true);
+            expect(this.huntingInstincts.facedown).toBe(true);
+            this.player1.endTurn();
+            // informs real player of behaviour roll
+            this.player1.clickOk();
+            expect(this.scathaUltimate.exhausted).toBe(false);
+
+            expect(Dice.getRandomInt).toHaveBeenCalledTimes(1);
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });

@@ -21,8 +21,12 @@ class ScathaBehaviour extends BehaviourCard {
                         this.doReveal();
                     },
                     () => {
-                        // Side: Target opposing player must lower 2 non-basic dice in their active pool one level.
-                        this.owner.triggerUltimateAbility();
+                        // activate ready spell - refactor this into a parent class when doing 2nd Db
+                        if (this.owner.ultimate.exhausted) {
+                            this.owner.unExhaustReadySpell();
+                        } else {
+                            this.owner.triggerUltimateAbility();
+                        }
                     }
                 );
             case 'power':
