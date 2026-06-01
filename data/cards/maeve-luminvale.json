@@ -1,0 +1,266 @@
+{
+    "results": [
+        {
+            "name": "Maeve Luminvale",
+            "stub": "maeve-luminvale",
+            "type": "Phoenixborn",
+            "battlefield": 6,
+            "life": 17,
+            "spellboard": 4,
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/maeve-luminvale.jpg"
+        },
+        {
+            "name": "Summon Snapseed",
+            "stub": "summon-snapseed",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "effectMagicCost": {
+                "natural:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Snapseed",
+                    "stub": "snapseed"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/summon-snapseed.jpg"
+        },
+        {
+            "name": "Snapseed",
+            "stub": "snapseed",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 0,
+            "life": 1,
+            "recover": 0,
+            "copies": 4,
+            "conjurations": [
+                {
+                    "name": "Snaptrap",
+                    "stub": "snaptrap"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/snapseed.jpg"
+        },
+        {
+            "name": "Snaptrap",
+            "stub": "snaptrap",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 2,
+            "recover": 0,
+            "copies": 3,
+            "conjurations": [
+                {
+                    "name": "Floral Tyrant",
+                    "stub": "floral-tyrant"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/snaptrap.jpg"
+        },
+        {
+            "name": "Floral Tyrant",
+            "stub": "floral-tyrant",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 3,
+            "recover": 0,
+            "copies": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/floral-tyrant.jpg"
+        },
+        {
+            "name": "Photovoltaics",
+            "stub": "photovoltaics",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[artifice:class]]"
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/photovoltaics.jpg"
+        },
+        {
+            "name": "Botanist",
+            "stub": "botanist",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Nurtured",
+                    "stub": "nurtured"
+                }
+            ],
+            "attack": 1,
+            "life": 3,
+            "recover": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/botanist.jpg"
+        },
+        {
+            "name": "Nurtured",
+            "stub": "nurtured",
+            "type": "Conjured Alteration Spell",
+            "placement": "Unit",
+            "copies": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/nurtured.jpg"
+        },
+        {
+            "name": "Overcharged Growth",
+            "stub": "overcharged-growth",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/overcharged-growth.jpg"
+        },
+        {
+            "name": "Summon Capacitor Beetle",
+            "stub": "summon-capacitor-beetle",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Capacitor Beetle",
+                    "stub": "capacitor-beetle"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/summon-capacitor-beetle.jpg"
+        },
+        {
+            "name": "Capacitor Beetle",
+            "stub": "capacitor-beetle",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 2,
+            "recover": 0,
+            "copies": 3,
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/capacitor-beetle.jpg"
+        },
+        {
+            "name": "Catalyst",
+            "stub": "catalyst",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[side]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:class": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/catalyst.jpg"
+        },
+        {
+            "name": "Propagate",
+            "stub": "propagate",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[natural:power]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:power": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Snapseed",
+                    "stub": "snapseed"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/propagate.jpg"
+        },
+        {
+            "name": "Encircle",
+            "stub": "encircle",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:class]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/encircle.jpg"
+        },
+        {
+            "name": "Aspiring Growth",
+            "stub": "aspiring-growth",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[main]]",
+                "1 [[natural:class]]"
+            ],
+            "dice": [
+                "natural"
+            ],
+            "magicCost": {
+                "natural:class": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/aspiring-growth.jpg"
+        },
+        {
+            "name": "Shock Gauntlet",
+            "stub": "shock-gauntlet",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:class": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/maeve/shock-gauntlet.jpg"
+        }
+    ]
+}
