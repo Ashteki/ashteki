@@ -145,5 +145,181 @@
         "count": 2
       }
     ]
+  },
+  {
+    "precon_id": 1103,
+    "restricted": true,
+    "name": "The Gardner of Emerald City",
+    "phoenixborn": [
+      {
+        "id": "maeve-luminvale",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "artifice",
+        "count": 5
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "summon-snapseed",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "photovoltaics",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "botanist",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "overcharged-growth",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-capacitor-beetle",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "catalyst",
+        "count": 3
+      },
+      {
+        "id": "propagate",
+        "count": 3
+      },
+      {
+        "id": "encircle",
+        "count": 3
+      },
+      {
+        "id": "aspiring-growth",
+        "count": 3
+      },
+      {
+        "id": "shock-gauntlet",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "snapseed",
+        "count": 4
+      },
+      {
+        "id": "snaptrap",
+        "count": 3
+      },
+      {
+        "id": "floral-tyrant",
+        "count": 2
+      },
+      {
+        "id": "nurtured",
+        "count": 2
+      },
+      {
+        "id": "capacitor-beetle",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "precon_id": 1104,
+    "restricted": true,
+    "name": "The Windy Workout Queen",
+    "phoenixborn": [
+      {
+        "id": "kanna-galeheart",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "astral",
+        "count": 5
+      },
+      {
+        "magic": "natural",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "hurricane",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "tailwind",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "eagle-trainer",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-galewind-hawk",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-storm-spirit",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "stormchaser",
+        "count": 3
+      },
+      {
+        "id": "puncturing-wind",
+        "count": 3
+      },
+      {
+        "id": "freezing-rain",
+        "count": 3
+      },
+      {
+        "id": "searing-bolt",
+        "count": 3
+      },
+      {
+        "id": "gathering-clouds",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "galewind-hawk",
+        "count": 2
+      },
+      {
+        "id": "storm-spirit",
+        "count": 3
+      },
+      {
+        "id": "cloud-spirit",
+        "count": 4
+      },
+      {
+        "id": "eagle-fledgling",
+        "count": 3
+      }
+    ]
   }
 ]

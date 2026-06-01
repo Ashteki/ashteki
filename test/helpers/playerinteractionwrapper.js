@@ -712,7 +712,7 @@ class PlayerInteractionWrapper {
 
     useAction(card) {
         this.clickCard(card);
-        this.clickPrompt("Use this card's ability");
+        this.clickPrompt("Use ability");
     }
 
     useAbility(card) {
