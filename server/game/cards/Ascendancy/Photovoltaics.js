@@ -28,6 +28,7 @@ class Photovoltaics extends Card {
                     context.source.status === 3 &&
                     context.player.hasDie((d) => d.magic === Magic.Artifice && d.exhausted),
                 may: 'resolve an exhausted artifice die',
+                cost: [ability.costs.exhaust(), ability.costs.loseStatus(3)],
                 target: {
                     toSelect: 'die',
                     autoTarget: (context) =>

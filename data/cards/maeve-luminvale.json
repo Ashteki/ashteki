@@ -217,7 +217,7 @@
             "type": "Action Spell",
             "placement": "Discard",
             "cost": [
-                "[[side]]",
+                "[[main]]",
                 "1 [[natural:class]]"
             ],
             "dice": [
@@ -251,7 +251,7 @@
             "type": "Alteration Spell",
             "placement": "Unit",
             "cost": [
-                "[[main]]",
+                "[[side]]",
                 "1 [[artifice:class]]"
             ],
             "dice": [
