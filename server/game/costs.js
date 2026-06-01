@@ -1,7 +1,8 @@
 const ActionCost = require('./Costs/actioncost');
-const ChosenActionCost = require('./Costs/chosenactionscost');
+const ChosenActionCost = require('./Costs/chosenactioncost');
 const ChosenDieOrDiscardCost = require('./Costs/chosendieordiscardcost');
 const ChosenDiscardCost = require('./Costs/chosendiscardcost');
+const ChosenOptionCost = require('./Costs/ChosenOptionCost');
 const DiceCost = require('./Costs/dicecost');
 const DynamicDiceCost = require('./Costs/dynamicdicecost');
 const LowerDiceCost = require('./Costs/lowerdicecost');
@@ -31,6 +32,10 @@ const Costs = {
             event.addSubEvent(context.game.actions.exhaustDie().getEvent(context.source, context));
             return event;
         }
+    }),
+    focus: (level) => ({
+        canPay: (context) => context.source.focus >= level,
+        pay: () => true
     }),
     use: () => ({
         // exhausted game objects can't be used
@@ -66,12 +71,14 @@ const Costs = {
         }
     }),
     // player chooses their own card to discard from hand
-    chosenDiscard: (amount = 1, allowCancel = false) => new ChosenDiscardCost({ amount, allowCancel }),
+    chosenDiscard: (amount = 1, allowCancel = false) =>
+        new ChosenDiscardCost({ amount, allowCancel }),
     dice: (cost, title) => new DiceCost({ diceReq: cost, title: title }),
     xDice: (cost, title) => new XDiceCost({ diceReq: cost, title: title }),
     dynamicDice: (costFunc) => new DynamicDiceCost(costFunc),
     chosenDieOrDiscard: () => new ChosenDieOrDiscardCost(),
-    lowerDice: (numDice) => new LowerDiceCost({ numDice })
+    lowerDice: (numDice) => new LowerDiceCost({ numDice }),
+    chosenOptionCost: (options) => new ChosenOptionCost(options)
 };
 
 function parseCosts(costData) {

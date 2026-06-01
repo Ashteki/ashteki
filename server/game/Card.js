@@ -341,6 +341,19 @@ class Card extends PlayableObject {
         });
     }
 
+    uplift() {
+        this.entersPlay({
+            target: {
+                toSelect: 'die',
+                autoTarget: (context) =>
+                    context.player.findDie((die) => die.magic === Magic.Astral && die.exhausted),
+                gameAction: AbilityDsl.actions.resolveDieAbility((context) => ({
+                    targetCard: context.source
+                }))
+            }
+        });
+    }
+
     statusAbility(properties) {
         return this.forcedReaction(
             Object.assign(
@@ -937,6 +950,7 @@ class Card extends PlayableObject {
         clone.modifiedBattlefield = this.getBattlefield();
         clone.modifiedSpellboard = this.getSpellboard();
         clone.modifiedRecover = this.getRecover();
+        clone.wasCharged = this.isCharged;
         return clone;
     }
 

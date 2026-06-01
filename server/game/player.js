@@ -72,6 +72,7 @@ class Player extends GameObject {
         this.suddenDeath = false;
         this.loseOnTurnEnd = false;
         this.behaviourRoll = undefined;
+        this.actionSpellPlayed = false;
     }
 
     get name() {
@@ -293,6 +294,11 @@ class Player extends GameObject {
         return BattlefieldTypes.includes(card.type) && this.indexOf(card) === 0;
     }
 
+    getHighestUnitLife() {
+        const maxLife = Math.max(...this.battlefield.map((u) => u.life));
+        return maxLife || 0;
+    }
+
     areCardsAdjacent(card, anotherCard) {
         if (anotherCard.facedown) {
             // threatzone isn't actually in the battlefield
@@ -333,6 +339,10 @@ class Player extends GameObject {
 
     findDie(predicate) {
         return this.dice.find(predicate);
+    }
+
+    hasDie(predicate) {
+        return !!this.findDie(predicate);
     }
 
     /**
@@ -515,6 +525,7 @@ class Player extends GameObject {
         this.passedMain = false;
         this.turn += 1;
         this.actions = { main: true, side: 1 };
+        this.actionSpellPlayed = false;
         //this.limitedPlayed = 0; // reset for my turn - moved to game.js
         this.game.addAlert('startofturn', `Turn ${this.turn} - {0}`, this);
         if (this.suddenDeath) {
