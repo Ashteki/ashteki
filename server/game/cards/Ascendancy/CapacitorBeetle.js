@@ -5,6 +5,7 @@ class CapacitorBeetle extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Volt Shift',
+            inexhaustible: true,
             cost: ability.costs.sideAction(),
             gameAction: ability.actions.discard(),
             then: {
