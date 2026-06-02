@@ -77,7 +77,8 @@ class AddTokenAction extends CardGameAction {
 
                 card.addToken(this.type, this.amount);
 
-                if (this.type === 'damage') {
+                // destroy non-phoenixborn cards if damage tokens equal or exceed life
+                if (this.type === 'damage' && !PhoenixbornTypes.includes(card.type)) {
                     tokenEvent.noGameStateCheck = true;
                     // tokenEvent.parentEvent.noGameStateCheck = true;
                     // tokenEvent.openReactionWindow = true;

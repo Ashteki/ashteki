@@ -30,6 +30,7 @@ describe('Chimera Survival Mode', function () {
             this.player1.play(this.fireArcher);
             this.player1.clickCard(this.corpseOfViros);
             expect(this.corpseOfViros.damage).toBe(30);
+            expect(this.corpseOfViros.moribund).toBe(false);
             expect(this.game.winner).toBeUndefined();
         });
     });
