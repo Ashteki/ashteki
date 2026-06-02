@@ -5,6 +5,7 @@ class Botanist extends Card {
     setupCardAbilities(ability) {
         this.action({
             title: 'Nurture',
+            cost: [ability.costs.sideAction()],
             target: {
                 cardType: BattlefieldTypes,
                 controller: 'self',
@@ -12,7 +13,6 @@ class Botanist extends Card {
                     conjuredAlteration: 'nurtured'
                 })
             }
-
         });
     }
 }
