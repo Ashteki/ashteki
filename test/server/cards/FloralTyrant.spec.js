@@ -27,6 +27,7 @@ describe('Floral Tyrant', function () {
             this.player1.clickAttack(this.blueJaguar);
             this.player1.clickCard(this.floralTyrant);
             // ravaging vines target
+            expect(this.player1).not.toBeAbleToSelect(this.aradelSummergaard);
             this.player1.clickCard(this.hammerKnight);
             expect(this.hammerKnight.damage).toBe(3);
 

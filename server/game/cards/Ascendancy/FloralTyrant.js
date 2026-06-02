@@ -1,3 +1,4 @@
+const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class FloralTyrant extends Card {
@@ -12,6 +13,7 @@ class FloralTyrant extends Card {
             target: {
                 activePromptTitle: 'Choose an card to deal damage to',
                 controller: 'opponent',
+                cardType: BattlefieldTypes,
                 gameAction: ability.actions.dealDamage((context) => ({
                     amount: context.source.attack
                 }))
