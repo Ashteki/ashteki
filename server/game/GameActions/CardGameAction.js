@@ -1,5 +1,6 @@
 const GameAction = require('./GameAction');
 const CardSelector = require('../CardSelector');
+const { PhoenixbornTypes, BattlefieldTypes } = require('../../constants');
 
 class CardGameAction extends GameAction {
     constructor(propertyFactory) {
@@ -12,15 +13,12 @@ class CardGameAction extends GameAction {
     setup() {
         this.targetType = [
             'Action Spell',
-            'Conjuration',
-            'Ally',
             'Ready Spell',
             'Alteration Spell',
             'Conjured Alteration Spell',
-            'Phoenixborn',
             'Reaction Spell',
-            'Aspect',
-            'Conjured Aspect'
+            ...BattlefieldTypes,
+            ...PhoenixbornTypes
         ];
     }
 
