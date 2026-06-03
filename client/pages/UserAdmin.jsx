@@ -32,7 +32,8 @@ const defaultPermissions = {
     isContributor: false,
     isSupporter: false,
     isWinner: false,
-    isPreviousWinner: false
+    isPreviousWinner: false,
+    playtester: false
 };
 
 const permissions = [
@@ -52,7 +53,8 @@ const permissions = [
     {
         name: 'keepsSupporterWithNoPatreon',
         label: "Don't remove supporter when patreon expires/unlinks"
-    }
+    },
+    { name: 'playtester', label: 'Playtester' }
 ];
 
 const UserAdmin = () => {

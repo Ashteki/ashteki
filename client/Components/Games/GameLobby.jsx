@@ -43,7 +43,7 @@ const GameLobby = ({ gameId }) => {
         passwordGame: state.lobby.passwordGame
     }));
     const user = useSelector((state) => state.account.user);
-    const showBot = user?.permissions?.canVerifyDecks;
+    const showBot = user?.permissions?.playtester;
     const showDragonborn = user?.permissions?.canVerifyDecks;
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
     const [showPairings, setShowPairings] = useState(false);
