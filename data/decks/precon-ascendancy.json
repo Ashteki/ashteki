@@ -149,7 +149,7 @@
   {
     "precon_id": 1103,
     "restricted": true,
-    "name": "The Gardner of Emerald City",
+    "name": "The Garden of Brilliance",
     "phoenixborn": [
       {
         "id": "maeve-luminvale",
@@ -184,8 +184,7 @@
       },
       {
         "id": "overcharged-growth",
-        "count": 3,
-        "ff": true
+        "count": 3
       },
       {
         "id": "summon-capacitor-beetle",
@@ -206,7 +205,8 @@
       },
       {
         "id": "aspiring-growth",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "shock-gauntlet",
@@ -239,7 +239,7 @@
   {
     "precon_id": 1104,
     "restricted": true,
-    "name": "The Windy Workout Queen",
+    "name": "The Shaper of Storms",
     "phoenixborn": [
       {
         "id": "kanna-galeheart",
