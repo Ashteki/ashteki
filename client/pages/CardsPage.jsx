@@ -10,6 +10,7 @@ const CardsPage = () => {
     const [searchText, setSearchText] = useState('');
     const cardList = Object.values(allCards).filter(
         (c) =>
+            !c.restricted &&
             (c.deckType || 'player') === deckType &&
             !c.stub.includes('ultimate') &&
             !c.stub.includes('behaviour') &&

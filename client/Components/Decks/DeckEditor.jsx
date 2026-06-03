@@ -17,6 +17,10 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
     const cards = useSelector((state) => state.cards.cards);
     // const deck = useSelector((state) => state.cards.selectedDeck);
     const loading = useSelector((state) => state.api.loading);
+    const user = useSelector((state) => state.account.user);
+    const checkRestriction = (card) => {
+        return !card.restricted || user.permissions?.playtester;
+    };
 
     const [cardList, setCardList] = useState('');
     const [diceList, setDiceList] = useState('');
@@ -24,6 +28,7 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
     const [numberToAdd, setNumberToAdd] = useState(1);
     const [cardToAdd, setCardToAdd] = useState(null);
     const [pbid, setPbid] = useState('');
+
 
     function copyDeck(deckToCopy) {
         if (!deckToCopy) {
@@ -361,6 +366,7 @@ function DeckEditor({ deck, onDeckSave, isChimera }) {
     function getAllCards(includeConjurations = false) {
         return _.toArray(cards).filter(
             (card) =>
+                (checkRestriction(card)) &&
                 ((isChimera && card.deckType === 'chimera') ||
                     (!isChimera && card.deckType !== 'chimera')) &&
                 (includeConjurations || card.type !== 'conjuration')

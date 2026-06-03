@@ -1,0 +1,14 @@
+{
+    "results": [
+        {
+            "restricted": true,
+            "name": "Tash Cantasita",
+            "stub": "tash-cantasita",
+            "type": "Phoenixborn",
+            "battlefield": 5,
+            "life": 18,
+            "spellboard": 4,
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/tash-cantasita.jpg"
+        }
+    ]
+}
