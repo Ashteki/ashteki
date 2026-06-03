@@ -112,7 +112,7 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                     style={{ left: mousePos.x + 5 + 'px', top: mousePos.y + 'px' }}
                 >
                     <CardImage
-                        card={Object.assign({}, zoomCard.card, zoomCard.cardData, zoomCard)}
+                        card={Object.assign({}, zoomCard, zoomCard.card)}
                     />
                 </div>
             )}
