@@ -13,7 +13,7 @@ const DeckFilter = ({ onNameChange, onPbChange, handleFaveChange, showButtons, m
     let phoenixbornCards = [];
     const pbType = mode === 'chimera' ? 'Chimera' : 'Phoenixborn';
     for (let c in allCards) {
-        if (allCards[c].type == pbType) {
+        if (allCards[c].type == pbType && !allCards[c].restricted) {
             phoenixbornCards.push(allCards[c]);
         }
     }
