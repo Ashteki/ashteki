@@ -135,20 +135,6 @@ const GameLobby = ({ gameId }) => {
                                         imageClass='pvp'
                                         onClick={() => handleNewGameClick(gameTypes.pvp)}
                                     />
-                                    <PictureButton
-                                        text='Chimera'
-                                        imageClass='chimera'
-                                        onClick={() => handleNewGameClick(gameTypes.chimera)}
-                                    />
-                                    < PictureButton
-                                        text='League'
-                                        header='Discord'
-                                        headerClass='discord'
-                                        imageClass='league'
-                                        onClick={() => handleNewGameClick(gameTypes.league)}
-                                    />
-
-                                    {showBot && (<br />)}
                                     {showDragonborn && (
                                         <PictureButton
                                             text='Dragonborn'
@@ -157,6 +143,18 @@ const GameLobby = ({ gameId }) => {
                                             onClick={() => handleNewGameClick(gameTypes.dragonborn)}
                                         />
                                     )}
+                                    <PictureButton
+                                        text='Chimera'
+                                        imageClass='chimera'
+                                        onClick={() => handleNewGameClick(gameTypes.chimera)}
+                                    />
+                                    <PictureButton
+                                        text='League'
+                                        header='Discord'
+                                        headerClass='discord'
+                                        imageClass='league'
+                                        onClick={() => handleNewGameClick(gameTypes.league)}
+                                    />
                                     {showBot && (
                                         <PictureButton
                                             text='Bound Soul'
@@ -164,10 +162,8 @@ const GameLobby = ({ gameId }) => {
                                             // header='Premium'
                                             imageClass='bot'
                                             onClick={() => handleNewGameClick(gameTypes.bot)}
-                                        />)
-                                    }
-                                </div>
-                                <div className='game-buttons nav-buttons'>
+                                        />
+                                    )}
                                     <PictureButton
                                         text='Decks'
                                         imageClass='decks-link'
@@ -185,7 +181,6 @@ const GameLobby = ({ gameId }) => {
                                     />
                                 </div>
                             </>
-
                         )}
 
                         {replayLoad && <LoadReplay onCancel={() => setReplayLoad(false)} />}
