@@ -148,7 +148,6 @@
   },
   {
     "precon_id": 1103,
-    "restricted": true,
     "name": "The Garden of Brilliance",
     "phoenixborn": [
       {
@@ -238,7 +237,6 @@
   },
   {
     "precon_id": 1104,
-    "restricted": true,
     "name": "The Shaper of Storms",
     "phoenixborn": [
       {
