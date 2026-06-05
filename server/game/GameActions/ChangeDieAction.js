@@ -1,3 +1,4 @@
+const { Level } = require('../../constants');
 const DiceGameAction = require('./DiceGameAction');
 
 class ChangeDieAction extends DiceGameAction {
@@ -15,6 +16,17 @@ class ChangeDieAction extends DiceGameAction {
         // this.name = this.change + 'Die';
         this.name = 'changeDie';
         this.effectMsg = this.change + ' die {0}';
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    canAffect(target, context) {
+        return (
+            super.canAffect(target, context) &&
+            !target.exhausted &&
+            !target.parent &&
+            ((this.change == 'lower' && target.level !== Level.Basic) ||
+                (this.change == 'raise' && target.level !== Level.Power))
+        );
     }
 
     getEvent(die, context) {

@@ -26,7 +26,6 @@ class PvEReadySpell extends Card {
                 toSelect: 'die',
                 mode: 'exactly',
                 numDice: Math.min(numDice, this.owner.opponent.activeNonBasicDiceCount),
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: AbilityDsl.actions.lowerDie()
             },

@@ -17,9 +17,8 @@ class Hurricane extends Card {
                     toSelect: 'die',
                     mode: 'upTo',
                     numDice: 3,
-                    dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                     owner: 'opponent',
-                    gameAction: ability.actions.lowerDie(),
+                    gameAction: ability.actions.lowerDie()
                 },
                 then: {
                     alwaysTriggers: true,
