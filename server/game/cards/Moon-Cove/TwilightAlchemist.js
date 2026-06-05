@@ -24,7 +24,6 @@ class TwilightAlchemist extends Card {
                         toSelect: 'die',
                         mode: 'upTo',
                         numDice: 2,
-                        dieCondition: (die) => !die.exhausted && die.level !== Level.Power,
                         owner: 'self',
                         activePromptTitle: 'Choose up to 2 dice to raise one level',
                         gameAction: ability.actions.raiseDie({ showMessage: true })

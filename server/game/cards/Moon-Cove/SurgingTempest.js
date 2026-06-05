@@ -19,7 +19,6 @@ class SurgingTempest extends Card {
                     toSelect: 'die',
                     mode: 'exactly',
                     numDice: (context) => Math.min(2, context.player.activeNonPowerDiceCount),
-                    dieCondition: (die) => die.level !== Level.Power && !die.exhausted,
                     owner: 'self',
                     gameAction: ability.actions.raiseDie()
                 },

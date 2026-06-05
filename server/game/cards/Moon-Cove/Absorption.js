@@ -14,7 +14,6 @@ class Absorption extends Card {
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 2,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'self',
                 gameAction: ability.actions.lowerDie()
             },

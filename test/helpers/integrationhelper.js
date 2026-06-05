@@ -160,6 +160,10 @@ var customMatchers = {
             compare: function (player, die) {
                 let result = {};
 
+                if (typeof die === 'number') {
+                    die = player.dicepool[die];
+                }
+
                 result.pass = player.currentActionDiceTargets.includes(die);
 
                 if (result.pass) {

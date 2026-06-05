@@ -164,7 +164,6 @@ class Die extends PlayableObject {
                         mode: 'upTo',
                         numDice: 2,
                         showCancel: true,
-                        dieCondition: (die) => !die.exhausted,
                         owner: 'opponent',
                         gameAction: this.game.actions.lowerDie()
                     },

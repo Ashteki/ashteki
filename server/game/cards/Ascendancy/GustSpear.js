@@ -17,7 +17,6 @@ class GustSpear extends Card {
                 toSelect: 'die',
                 numDice: 2,
                 owner: 'opponent',
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 gameAction: ability.actions.lowerDie()
             }
         });

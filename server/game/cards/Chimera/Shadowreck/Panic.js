@@ -22,7 +22,6 @@ class Panic extends AspectCard {
                     toSelect: 'die',
                     mode: 'exactly',
                     numDice: (context) => this.getRerollCount(context),
-                    dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                     owner: 'opponent',
                     gameAction: ability.actions.lowerDie()
                 }

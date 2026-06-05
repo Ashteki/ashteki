@@ -15,7 +15,7 @@ class Photovoltaics extends Card {
                             mode: 'exactly',
                             numDice: 1,
                             activePromptTitle: 'Choose a die to raise 1 level',
-                            dieCondition: (die) => die.level !== Level.Power && !die.exhausted,
+                            dieCondition: (die) => die.level !== Level.Power,
                             owner: 'self'
                         },
                         showMessage: true

@@ -17,7 +17,6 @@ class Stun extends Card {
                 toSelect: 'die',
                 mode: 'exactly',
                 numDice: 1,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 gameAction: AbilityDsl.actions.lowerDie()
             },
             then: {

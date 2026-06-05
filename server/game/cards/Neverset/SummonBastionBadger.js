@@ -25,7 +25,7 @@ class SummonBastionBadger extends Card {
                     optional: true,
                     toSelect: 'die',
                     dieCondition: (die) =>
-                        !die.exhausted && die.level === Level.Class && die.magic === Magic.Charm,
+                        die.level === Level.Class && die.magic === Magic.Charm,
                     owner: 'self',
                     gameAction: ability.actions.raiseDie()
                 }
