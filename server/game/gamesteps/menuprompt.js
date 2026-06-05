@@ -33,7 +33,7 @@ class MenuPrompt extends UiPrompt {
         let promptTitle =
             this.properties.promptTitle ||
             (this.properties.source ? this.properties.source.name : undefined);
-        return _.extend({ promptTitle: promptTitle }, this.properties.activePrompt);
+        return Object.assign({ promptTitle: promptTitle }, this.properties.activePrompt);
     }
 
     waitingPrompt() {

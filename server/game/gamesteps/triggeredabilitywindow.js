@@ -88,7 +88,7 @@ class TriggeredAbilityWindow extends ForcedTriggeredAbilityWindow {
     }
 
     getPromptForSelectProperties(player) {
-        return _.extend(super.getPromptForSelectProperties(player), {
+        return Object.assign(super.getPromptForSelectProperties(player), {
             selectCard: true,
             buttons: [{ text: 'None', arg: 'pass' }],
             onMenuCommand: (player, arg) => {

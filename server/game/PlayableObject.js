@@ -116,7 +116,7 @@ class PlayableObject extends EffectSource {
             throw new Error(`'${location}' is not a supported effect location.`);
         }
 
-        let ability = _.extend(
+        let ability = Object.assign(
             {
                 abilityType: 'persistentEffect',
                 duration: 'persistentEffect',

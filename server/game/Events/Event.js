@@ -1,5 +1,3 @@
-const _ = require('underscore');
-
 class Event {
     constructor(name, params = {}, handler, gameAction) {
         this.name = name;
@@ -16,7 +14,7 @@ class Event {
         this.subEvent = null;
         this.openReactionWindow = true;
 
-        _.extend(this, params);
+        Object.assign(this, params);
 
         if (this.card) {
             this.clone = this.card.createSnapshot();
