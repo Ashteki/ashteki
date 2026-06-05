@@ -305,7 +305,6 @@ class ScourgeBehaviour extends BehaviourCard {
                 toSelect: 'die',
                 mode: 'exactly',
                 numDice: 2,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: AbilityDsl.actions.lowerDie()
             },

@@ -15,7 +15,6 @@ class OceansGift extends Card {
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 3,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Power,
                 owner: 'self',
                 gameAction: ability.actions.raiseDie()
             }

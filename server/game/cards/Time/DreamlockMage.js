@@ -9,7 +9,7 @@ class DreamlockMage extends Card {
             target: {
                 targetsPlayer: true,
                 toSelect: 'die',
-                dieCondition: (die) => die.level === Level.Power && !die.exhausted,
+                dieCondition: (die) => die.level === Level.Power,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             }

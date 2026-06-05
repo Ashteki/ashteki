@@ -16,7 +16,6 @@ class Galeforce extends AspectCard {
                 toSelect: 'die',
                 mode: 'exactly',
                 numDice: 1,
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: AbilityDsl.actions.lowerDie()
             }

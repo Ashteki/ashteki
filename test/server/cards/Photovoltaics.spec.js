@@ -35,6 +35,36 @@ describe('Photovoltaics', function () {
             expect(this.player1).toHaveDefaultPrompt();
         });
 
+        it('with 0 status all exhausted', function () {
+            this.player1.dicepool[0].exhaust();
+            this.player1.dicepool[1].exhaust();
+            this.player1.dicepool[2].exhaust();
+            this.player1.dicepool[3].exhaust();
+
+            expect(this.photovoltaics.status).toBe(0);
+            this.player1.useAbility(this.photovoltaics);
+
+            expect(this.photovoltaics.status).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('with 0 status one hosted others exhausted', function () {
+            this.player1.dicepool[2].level = 'class';
+
+            this.player1.attachDie(2, this.thunderHulk);
+            this.player1.dicepool[0].exhaust();
+            this.player1.dicepool[1].exhaust();
+            this.player1.dicepool[2].exhaust();
+
+            expect(this.photovoltaics.status).toBe(0);
+            this.player1.useAbility(this.photovoltaics);
+
+            expect(this.player1).not.toBeAbleToSelectDie(this.thunderHulk.dieUpgrades[0]);
+
+            expect(this.photovoltaics.status).toBe(1);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
         it('with 3 status no build up but triggers dice ability', function () {
             this.photovoltaics.tokens.status = 3;
             expect(this.player1.dicepool[0].level).toBe('basic');
@@ -62,6 +92,26 @@ describe('Photovoltaics', function () {
 
             this.player1.clickDie(0);
             expect(this.player1.dicepool[0].level).toBe('class');
+
+            this.player1.clickNo(); // no dice smuggle
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('with 2 status all exhausted adds status no die raise, resolve die', function () {
+            this.player1.dicepool[0].exhaust();
+            this.player1.dicepool[1].exhaust();
+            this.player1.dicepool[2].exhaust();
+            this.player1.dicepool[3].exhaust();
+
+            this.photovoltaics.tokens.status = 2;
+            expect(this.player1.dicepool[0].level).toBe('basic');
+            expect(this.photovoltaics.status).toBe(2);
+            this.player1.useAbility(this.photovoltaics);
+
+            expect(this.photovoltaics.status).toBe(3);
+
+            this.player1.clickDie(0);
+            expect(this.player1.dicepool[0].level).toBe('basic');
 
             this.player1.clickNo(); // no dice smuggle
             expect(this.player1).toHaveDefaultPrompt();

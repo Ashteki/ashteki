@@ -16,7 +16,6 @@ class CirrusRanger extends Card {
                     optional: true,
                     toSelect: 'die',
                     controller: 'opponent',
-                    dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                     gameAction: ability.actions.lowerDie()
                 }
             }

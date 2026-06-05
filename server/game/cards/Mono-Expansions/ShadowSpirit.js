@@ -17,7 +17,6 @@ class ShadowSpirit extends Card {
                 optional: true,
                 toSelect: 'die',
                 numDice: () => this.getAbilityNumeric(1),
-                dieCondition: (die) => !die.exhausted && die.level !== Level.Basic,
                 owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             }

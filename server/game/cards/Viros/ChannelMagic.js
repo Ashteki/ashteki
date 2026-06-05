@@ -18,7 +18,6 @@ class ChannelMagic extends Card {
                         toSelect: 'die',
                         mode: 'upTo',
                         numDice: 3,
-                        dieCondition: (die) => !die.exhausted && die.level !== Level.Power,
                         owner: 'self',
                         activePromptTitle: 'Choose up to 3 dice to raise one level',
                         gameAction: ability.actions.raiseDie({ showMessage: true })
