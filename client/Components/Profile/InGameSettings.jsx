@@ -62,7 +62,7 @@ const InGameSettings = ({ formProps }) => {
             <Form.Check
                 id='noCardZoom'
                 name='gameOptions.noCardZoom'
-                label="Don't zoom cards on hover"
+                label="Don't zoom cards on hover (long press to zoom)"
                 type='switch'
                 checked={formProps.values.gameOptions.noCardZoom}
                 onChange={formProps.handleChange}
