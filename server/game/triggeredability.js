@@ -130,7 +130,7 @@ class TriggeredAbility extends CardAbility {
 
         var eventNames = _.keys(this.when);
         this.events = [];
-        _.each(eventNames, (eventName) => {
+        eventNames.forEach((eventName) => {
             var event = {
                 name: eventName + ':' + this.abilityType,
                 handler: (event, window) => this.eventHandler(event, window)
@@ -142,7 +142,7 @@ class TriggeredAbility extends CardAbility {
 
     unregisterEvents() {
         if (this.events) {
-            _.each(this.events, (event) => {
+            this.events.forEach((event) => {
                 this.game.removeListener(event.name, event.handler);
             });
             this.events = null;

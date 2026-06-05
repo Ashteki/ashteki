@@ -19,7 +19,7 @@ class UiPrompt extends BaseStep {
     }
 
     setPrompt() {
-        _.each(this.game.getPlayers(), (player) => {
+        this.game.getPlayers().forEach((player) => {
             if (this.activeCondition(player)) {
                 player.setPrompt(this.addDefaultCommandToButtons(this.activePrompt(player)));
                 if (!this.game.finishedAt) {
@@ -43,7 +43,7 @@ class UiPrompt extends BaseStep {
     addDefaultCommandToButtons(original) {
         var prompt = _.clone(original);
         if (prompt.buttons) {
-            _.each(prompt.buttons, (button) => {
+            prompt.buttons.forEach((button) => {
                 button.command = button.command || 'menuButton';
                 button.uuid = this.uuid;
             });
@@ -76,7 +76,7 @@ class UiPrompt extends BaseStep {
     }
 
     clearPrompts() {
-        _.each(this.game.getPlayers(), (player) => {
+        this.game.getPlayers().forEach((player) => {
             player.cancelPrompt();
         });
     }

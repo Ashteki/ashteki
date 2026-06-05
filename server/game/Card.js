@@ -653,7 +653,7 @@ class Card extends PlayableObject {
     }
 
     applyAnyLocationPersistentEffects() {
-        _.each(this.persistentEffects, (effect) => {
+        this.persistentEffects.forEach((effect) => {
             if (effect.location === 'any') {
                 effect.ref = this.addEffectToEngine(effect);
             }
