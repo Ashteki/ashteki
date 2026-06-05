@@ -1,7 +1,8 @@
-export function zoomCard(card) {
+export function zoomCard(card, options = {}) {
     return {
         type: 'ZOOM_CARD',
-        card: card
+        card: card,
+        options: options
     };
 }
 

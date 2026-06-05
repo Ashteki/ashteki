@@ -192,11 +192,13 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
             return newState;
         case 'ZOOM_CARD':
             return Object.assign({}, state, {
-                zoomCard: action.card
+                zoomCard: action.card,
+                zoomSticky: !!action.options?.sticky
             });
         case 'CLEAR_ZOOM':
             return Object.assign({}, state, {
-                zoomCard: undefined
+                zoomCard: undefined,
+                zoomSticky: false
             });
         case Decks.DecksReceived:
             console.log('decks received');

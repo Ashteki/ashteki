@@ -68,19 +68,26 @@ const GameBoard = () => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
     const cardSize = useSelector((state) => state.account.user.settings.cardSize);
     const cardToZoom = useSelector((state) => state.cards.zoomCard);
+    const zoomSticky = useSelector((state) => state.cards.zoomSticky);
+
     const cards = useSelector((state) => state.cards.cards);
     const optionSettings = useSelector((state) => state.account.user.settings.optionSettings || {});
+    const noCardZoom = optionSettings.noCardZoom;
     const authUser = useSelector((state) => state.auth.user);
     const user = useSelector((state) => state.account.user);
 
     const onMouseOver = (card) => {
-        if (!(currentGame.players[user.username]?.optionSettings?.noCardZoom)) {
-            dispatch(zoomCard(card));
+        if (!noCardZoom) {
+            if (!(cardToZoom && zoomSticky)) {
+                dispatch(zoomCard(card));
+            }
         }
     };
 
     const onMouseOut = () => {
-        dispatch(clearZoom());
+        if (!noCardZoom && !zoomSticky) {
+            dispatch(clearZoom());
+        }
     };
 
     const onCardClick = (card, source) => {

@@ -14,6 +14,7 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
     );
     const leftMode = useSelector((state) => state.account.user.settings.optionSettings?.leftMode);
     const selectedCardSize = useSelector((state) => state.account.user.settings.cardSize);
+    const noCardZoom = useSelector((state) => state.account.user.settings.optionSettings?.noCardZoom);
 
 
     return (
@@ -75,11 +76,11 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                         <Form.Check
                             id='noCardZoom'
                             name='gameOptions.noCardZoom'
-                            label="Don't zoom cards on hover"
+                            label="Don't zoom cards on hover (long press to zoom)"
                             type='switch'
-                            checked={optionSettings.noCardZoom}
+                            checked={noCardZoom}
                             onChange={(event) =>
-                                onOptionSettingToggle('noCardZoom', event.target.checked)
+                                dispatch(changeViewSetting('noCardZoom', event.target.checked))
                             }
                         />
                     </Form.Group>                    <Form.Group>

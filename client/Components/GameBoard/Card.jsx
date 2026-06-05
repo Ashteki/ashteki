@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import 'jquery-migrate';
@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faLink } from '@fortawesome/free-solid-svg-icons';
 import './Card.scss';
 import DieUpgrades from './DieUpgrades';
+import { useLongPress } from 'ahooks';
+import { zoomCard } from '../../redux/actions';
 
 const Card = ({
     canDrag,
@@ -37,6 +39,22 @@ const Card = ({
     const sizeClass = {
         [size]: size
     };
+    const dispatch = useDispatch();
+
+    const pressRef = useRef(null);
+
+    useLongPress(() => {
+        dispatch(zoomCard(card, { sticky: true }));
+        pressRef.current.classList.add('long-press');
+        setTimeout(() => {
+            pressRef.current.classList.remove('long-press');
+        }, 150);
+    },
+        pressRef, {
+        delay: 200,
+        onClick: (event) => onCardClicked(event, card)
+    });
+
     const [showMenu, setShowMenu] = useState(false);
     const gameRound = useSelector((state) => state.lobby.currentGame?.round);
     const showAltIcon =
@@ -373,16 +391,19 @@ const Card = ({
 
         const mouseOverAllowed = !disableMouseOver
             && (!isFacedown() || !card.parent) && onMouseOver;
+
         return (
             <div className='card-frame' ref={drag}>
                 {getDragFrame(image)}
                 {getCardOrdering()}
                 <div
+                    ref={pressRef}
                     tabIndex={0}
                     className={cardClass}
                     onMouseOver={mouseOverAllowed ? () => onMouseOver(card) : undefined}
                     onMouseOut={!disableMouseOver && !isFacedown() ? onMouseOut : undefined}
-                    onClick={(event) => onCardClicked(event, card)}
+                // onClick={(event) => onCardClicked(event, card)}
+
                 >
                     {getMenuBox(card)}
 
