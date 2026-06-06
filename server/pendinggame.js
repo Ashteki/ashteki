@@ -1,5 +1,4 @@
 const uuid = require('uuid');
-const _ = require('underscore');
 const crypto = require('crypto');
 
 const GameChat = require('./game/gamechat.js');
@@ -78,7 +77,7 @@ class PendingGame {
     }
 
     getSaveState() {
-        let players = _.map(this.getPlayers(), (player) => {
+        let players = Object.values(this.getPlayers()).map((player) => {
             return {
                 deck: player.deck.phoenixborn[0].card.name,
                 name: player.name,
@@ -140,11 +139,11 @@ class PendingGame {
     }
 
     isUserBlocked(user) {
-        return _.contains(this.owner.blockList, user.username.toLowerCase());
+        return Object.values(this.owner.blockList).includes(user.username.toLowerCase());
     }
 
     join(id, user, password) {
-        if (_.size(this.players) === 2 || this.started) {
+        if (Object.keys(this.players).length === 2 || this.started) {
             return 'Game full';
         }
 
@@ -288,7 +287,7 @@ class PendingGame {
 
     // interrogators
     isEmpty() {
-        return !_.any(this.getPlayersAndSpectators(), (player) =>
+        return !Object.values(this.getPlayersAndSpectators()).some((player) =>
             this.hasActivePlayer(player.name)
         );
     }
@@ -305,7 +304,9 @@ class PendingGame {
 
     removeAndResetOwner(playerName) {
         if (this.isOwner(playerName)) {
-            let otherPlayer = _.find(this.players, (player) => player.name !== playerName);
+            let otherPlayer = Object.values(this.players).find(
+                (player) => player.name !== playerName
+            );
 
             if (otherPlayer) {
                 this.owner = otherPlayer.user;
@@ -344,9 +345,9 @@ class PendingGame {
     // Summary
     getSummary(activePlayer) {
         let playerSummaries = {};
-        let playersInGame = _.filter(this.players, (player) => !player.left);
+        let playersInGame = Object.values(this.players).filter((player) => !player.left);
 
-        _.each(playersInGame, (player) => {
+        Object.values(playersInGame).forEach((player) => {
             let deck = {};
             if (player.deck) {
                 deck = {

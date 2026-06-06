@@ -66,7 +66,7 @@ class PlayerPromptState {
             if (button.card) {
                 let card = button.card;
                 let properties = _.omit(button, 'card');
-                return _.extend(
+                return Object.assign(
                     { text: card.name, arg: card.uuid, card: card.getShortSummary() },
                     properties
                 );

@@ -1,4 +1,3 @@
-const _ = require('underscore');
 const monk = require('monk');
 
 const logger = require('../log.js');
@@ -46,7 +45,7 @@ class AshesCardService {
             .then((result) => {
                 let cards = {};
 
-                _.each(result, (card) => {
+                result.forEach((card) => {
                     if (options && options.shortForm) {
                         cards[card.stub] = {
                             _id: card._id,

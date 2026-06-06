@@ -219,7 +219,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
 
         this.game.promptWithHandlerMenu(
             player,
-            _.extend(this.getPromptProperties(player), {
+            Object.assign(this.getPromptProperties(player), {
                 activePromptTitle: 'Choose an ability to use',
                 choices: menuChoices,
                 handlers: handlers
@@ -244,7 +244,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         // e.g. particle shield can protect
         this.game.promptForSelect(
             this.currentPlayer,
-            _.extend(this.getPromptForSelectProperties(this.currentPlayer), {
+            Object.assign(this.getPromptForSelectProperties(this.currentPlayer), {
                 activePromptTitle: 'Select a card to affect',
                 cardCondition: (card) => _.any(choices, (context) => context.event.card === card),
                 buttons: addBackButton ? [{ text: 'Back', arg: 'back' }] : [],
@@ -287,7 +287,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
 
         // this.game.promptWithHandlerMenu(
         //     this.currentPlayer,
-        //     _.extend(this.getPromptProperties(), {
+        //     Object.assign(this.getPromptProperties(), {
         //         activePromptTitle: 'Choose an event to respond to',
         //         choices: menuChoices,
         //         handlers: handlers
@@ -308,7 +308,7 @@ class ForcedTriggeredAbilityWindow extends BaseStep {
         this.events = this.eventWindow.event.getSimultaneousEvents();
 
         // this.events = _.difference(events, this.eventsToExclude);
-        _.each(this.events, (event) => {
+        this.events.forEach((event) => {
             this.game.emit(event.name + ':' + this.abilityType, event, this);
         });
     }

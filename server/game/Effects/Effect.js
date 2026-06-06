@@ -90,7 +90,7 @@ class Effect {
     }
 
     cancel() {
-        _.each(this.targets, (target) => this.effect.unapply(target));
+        this.targets.forEach((target) => this.effect.unapply(target));
         this.targets = [];
     }
 

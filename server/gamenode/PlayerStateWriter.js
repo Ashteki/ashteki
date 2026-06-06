@@ -1,4 +1,3 @@
-const _ = require('underscore');
 const { CardType } = require('../constants');
 const CardStateWriter = require('./CardStateWriter');
 const DieStateWriter = require('./DieStateWriter');
@@ -114,7 +113,7 @@ class PlayerStateWriter {
 
         playerState.promptState = promptState;
 
-        return _.extend(playerState, promptState);
+        return Object.assign(playerState, promptState);
     }
 
     getTypeValue(cardType) {

@@ -10,7 +10,7 @@ class FirstFivePrompt extends AllPlayerPrompt {
         this.selectableCards = {};
 
         this.highlightSelectableCards();
-        _.each(game.getPlayers(), (player) => {
+        game.getPlayers().forEach((player) => {
             this.selectedCards[player.name] = [];
             player.deckData.cards.forEach((c) => {
                 if (c.ff && this.selectedCards[player.name].length < 5) {

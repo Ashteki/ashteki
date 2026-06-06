@@ -1,6 +1,4 @@
-const _ = require('underscore');
 const monk = require('monk');
-
 const logger = require('../log.js');
 const moment = require('moment');
 
@@ -40,7 +38,7 @@ class GameService {
         return this.games
             .find()
             .then((games) => {
-                return _.filter(games, (game) => {
+                return games.filter((game) => {
                     const start = new Date(game.startedAt);
                     return start >= from && start < to;
                 });
