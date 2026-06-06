@@ -8,13 +8,11 @@ import user from './user';
 import stats from './stats';
 import account from './account';
 import lobby from './lobby';
-import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
     auth,
     cards,
     games,
-    toastr: toastrReducer,
     api,
     admin,
     user,

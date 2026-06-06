@@ -4,7 +4,6 @@ import $ from 'jquery';
 import Messages from './Messages';
 
 import './GameChat.scss';
-import { toastr } from 'react-redux-toastr';
 import { debounce } from 'underscore';
 import ChatHeader from './ChatHeader';
 import typingIndicator from '../../assets/img/typing-dots.gif';

@@ -15,7 +15,7 @@ import './PendingGame.scss';
 import { useEffect } from 'react';
 import GameFormatInfo from './GameFormatInfo';
 import PictureButton from '../Lobby/PictureButton';
-import { toastr } from 'react-redux-toastr';
+import { toast } from 'react-toastify';
 
 function showNotification(notification) {
     if (window.Notification && Notification.permission === 'granted') {
@@ -195,8 +195,8 @@ const PendingGame = () => {
 
         navigator.clipboard
             .writeText(gameLink)
-            .then(() => toastr.success('Copied game link to clipboard'))
-            .catch(() => toastr.error('Could not copy game link to clipboard'))
+            .then(() => toast.success('Copied game link to clipboard'))
+            .catch(() => toast.error('Could not copy game link to clipboard'))
 
     };
 
