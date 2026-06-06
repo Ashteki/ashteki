@@ -54,13 +54,13 @@ describe('Searing Bolt', function () {
                     phoenixborn: 'scatha-kalani',
                     behaviour: 'scatha-behaviour',
                     ultimate: 'scatha-ultimate',
-                    threatZone: ['sear', 'aegis-feathers'],
+                    threatZone: ['sear', 'hunting-instincts'],
                     dicepool: ['dragon', 'dragon', 'dragon', 'dragon', 'dragon']
                 }
             });
         });
 
-        it('deal 2 damage to highest life unit', function () {
+        it('deal 2 damage to highest life unit - ensure it is face up', function () {
             spyOn(Dice, 'getRandomInt').and.returnValue(4);
             this.player1.endTurn();
             this.player1.clickOk();
