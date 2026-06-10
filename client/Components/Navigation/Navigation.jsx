@@ -149,7 +149,6 @@ const Navigation = (props) => {
             </Nav>
             <Navbar.Collapse id='navbar' className='justify-content-end'>
                 <Nav className='ml-auto pr-md-6'>
-                    <GameContextMenu />
                     <GameCountMenu />
                     <LobbyUserCount />
                     {!currentGame && (

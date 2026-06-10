@@ -11,7 +11,7 @@ class AspiringGrowth extends Card {
     }
 
     canAttach(card, context) {
-        const myCondition = card.attack <= 2;
+        const myCondition = card.attack < 2;
         return super.canAttach(card, context) && myCondition;
     }
 }

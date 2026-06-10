@@ -294,7 +294,7 @@ class Player extends GameObject {
     }
 
     getHighestUnitLife() {
-        const maxLife = Math.max(...this.battlefield.map((u) => u.life));
+        const maxLife = Math.max(...this.unitsInPlay.map((u) => u.life));
         return maxLife || 0;
     }
 

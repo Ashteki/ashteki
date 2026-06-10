@@ -3,8 +3,7 @@ import classNames from 'classnames';
 
 import Card from './Card';
 import './PlayerBoard.scss';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-
+import { AnimatePresence, motion } from "motion/react"
 const PlayerBoard = ({
     active,
     attack,
@@ -38,30 +37,39 @@ const PlayerBoard = ({
     let maxUpgrades = Math.max(...cardsInPlay.map((c) => (c.upgrades ? c.upgrades.length : 0)));
     let topMargin = maxUpgrades * 15;
     let style = { marginTop: topMargin + 'px' };
+
     return (
-        <div className={className}>
-            <TransitionGroup component='div' className='card-row' style={style}>
-                {cardsInPlay &&
-                    cardsInPlay
-                        .filter((c) => !attackInvolvesCard(c))
-                        .map((card) => (
-                            <CSSTransition key={card.uuid} timeout={300} classNames='cardTran'>
-                                <Card
-                                    canDrag={manualMode}
-                                    card={card}
-                                    disableMouseOver={card.facedown && !card.code}
-                                    onDieClick={onDieClick}
-                                    onClick={onCardClick}
-                                    onMenuItemClick={onMenuItemClick}
-                                    onMouseOut={onMouseOut}
-                                    onMouseOver={onMouseOver}
-                                    size={cardSize}
-                                    source='play area'
-                                    side={side}
-                                />
-                            </CSSTransition>
-                        ))}
-            </TransitionGroup>
+        <div className={className} style={style} >
+            <div className='card-row'>
+                <AnimatePresence>
+                    {cardsInPlay &&
+                        cardsInPlay
+                            .filter((c) => !attackInvolvesCard(c))
+                            .map((card) => (
+                                <motion.div
+                                    key={card.uuid}
+                                    initial={{ opacity: 0.6, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0.6, scale: 0.9 }}
+                                >
+                                    <Card
+                                        key={card.uuid}
+                                        canDrag={manualMode}
+                                        card={card}
+                                        disableMouseOver={card.facedown && !card.code}
+                                        onDieClick={onDieClick}
+                                        onClick={onCardClick}
+                                        onMenuItemClick={onMenuItemClick}
+                                        onMouseOut={onMouseOut}
+                                        onMouseOver={onMouseOver}
+                                        size={cardSize}
+                                        source='play area'
+                                        side={side}
+                                    />
+                                </motion.div>
+                            ))}
+                </AnimatePresence>
+            </div>
         </div>
     );
 };

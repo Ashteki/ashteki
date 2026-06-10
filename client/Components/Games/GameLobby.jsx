@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toastr } from 'react-redux-toastr';
 import { useTranslation } from 'react-i18next';
 import { Col, Row } from 'react-bootstrap';
 
@@ -20,6 +19,7 @@ import LeaguePairings from './LeaguePairings';
 import LoadReplay from './LoadReplay';
 import { useNavigate } from 'react-router-dom';
 import { gameTypes } from '../../util';
+import { toast } from 'react-toastify';
 
 const GameLobby = ({ gameId }) => {
     const { t } = useTranslation();
@@ -68,7 +68,7 @@ const GameLobby = ({ gameId }) => {
             const game = games.find((x) => x.id === gameId);
 
             if (!game) {
-                toastr.error('Error', 'The game you tried to join was not found.');
+                toast.error('The game you tried to join was not found.');
             } else {
                 if (!game.started && Object.keys(game.players).length < 2) {
                     if (game.needsPassword) {

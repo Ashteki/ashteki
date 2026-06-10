@@ -350,8 +350,9 @@ const PlayerStats = ({
             {!leftMode && side === 'top' && (
                 <>
                     <div className='state chat-status'>
+                        {showContextItem && <ConcedeLeave showText={true} />}
+                        &nbsp;|&nbsp;
                         <GameCountMenu />
-                        {showContextItem && <ConcedeLeave showText={!isSpectating} />}
                         &nbsp;|&nbsp;
                         <ServerStatus
                             connected={gameConnected}
