@@ -31,7 +31,7 @@ const GameCountMenu = () => {
     const linkClass = classNames({ 'empty-game': emptyGame });
     let gamesPopup = <ul className='games-popup absolute-panel'>{gameList}</ul>;
     return (
-        <div className='game-count-menu'>
+        <div className='game-count-menu '>
             <Nav.Link onMouseOver={() => setShowPopup(true)} onMouseOut={() => setShowPopup(false)}>
                 <span className={linkClass}>{games?.length} Games</span>
             </Nav.Link>

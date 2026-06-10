@@ -13,7 +13,7 @@ import DeckStatus from './DeckStatus';
 import { ashesDbShareUrl, ashesLiveShareUrl } from '../../util';
 import { useDispatch } from 'react-redux';
 import { resyncDeck } from '../../redux/actions';
-import { toastr } from 'react-redux-toastr';
+import { toast } from 'react-toastify';
 
 const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magicHover }) => {
     const dispatch = useDispatch();
@@ -50,8 +50,8 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
         event.preventDefault();
         navigator.clipboard
             .writeText(ashesLiveLink)
-            .then(() => toastr.success('Copied url to clipboard'))
-            .catch((err) => toastr.error(`Could not copy deck url: ${err}`));
+            .then(() => toast.success('Copied url to clipboard'))
+            .catch((err) => toast.error(`Could not copy deck url: ${err}`));
     };
 
     const onFFClick = (cardId) => {

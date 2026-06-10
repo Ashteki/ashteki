@@ -1,9 +1,9 @@
 import React from 'react';
 import { faComment, faCommentSlash, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { toastr } from 'react-redux-toastr';
 import SpectatorIcon from './SpectatorIcon';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const ChatHeader = ({ muteSpectators, onMuteClick }) => {
     const currentGame = useSelector((state) => state.lobby.currentGame);
@@ -13,8 +13,8 @@ const ChatHeader = ({ muteSpectators, onMuteClick }) => {
         if (messagePanel) {
             navigator.clipboard
                 .writeText(messagePanel.innerText)
-                .then(() => toastr.success('Copied game chat to clipboard'))
-                .catch((err) => toastr.error(`Could not copy game chat: ${err}`));
+                .then(() => toast.success('Copied game chat to clipboard'))
+                .catch((err) => toast.error(`Could not copy game chat: ${err}`));
         }
     };
 

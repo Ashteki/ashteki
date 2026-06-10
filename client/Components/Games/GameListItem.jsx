@@ -7,10 +7,10 @@ import ShowHandIcon from '../../assets/img/ShowHandIcon.png';
 import OpenHandsIcon from '../../assets/img/OpenHandsIcon.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faLock, faChessKnight } from '@fortawesome/free-solid-svg-icons';
-import { toastr } from 'react-redux-toastr';
 import PlayerName from '../Site/PlayerName';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinPasswordGame } from '../../redux/actions';
+import { toast } from 'react-toastify';
 
 const GameListItem = ({ game, onJoinOrWatchClick }) => {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
         event.preventDefault();
 
         if (!user) {
-            toastr.error('Error', 'Please login before trying to join a game');
+            toast.error('Please login before trying to join a game');
             return;
         }
 
@@ -59,13 +59,9 @@ const GameListItem = ({ game, onJoinOrWatchClick }) => {
     const removeGame = (event, game) => {
         event.preventDefault();
 
-        toastr.confirm('Are you sure you want to kill this game?', {
-            okText: 'Ok',
-            cancelText: 'Cancel',
-            onOk: () => {
-                lobbySocket.emit('removegame', game.id);
-            }
-        });
+        if (confirm('Are you sure you want to kill this game?')) {
+            lobbySocket.emit('removegame', game.id);
+        }
     }
 
     const canJoin = (game) => {

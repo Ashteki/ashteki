@@ -445,7 +445,7 @@ const GameBoard = () => {
 
     let manualMode = currentGame.manualMode;
     const compactLayout = currentGame.isChimera || currentGame.isDragonborn || optionSettings?.compactLayout;
-    const leftMode = optionSettings?.leftMode || currentGame.solo;
+    const leftMode = optionSettings?.leftMode;
 
     const getOtherPlayerPrompt = (otherPlayer) => {
         let otherPlayerPrompt = null;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { toastr } from 'react-redux-toastr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,26 +26,22 @@ function Security({ t }) {
         }
     }, [user, detailsLoaded, dispatch]);
 
-    const handleRemoveClick = useCallback((session, event) => {
-        event.preventDefault();
+    const handleRemoveClick = useCallback(
+        (session, event) => {
+            event.preventDefault();
 
-        if (!user) {
-            return;
-        }
-
-        toastr.confirm(
-            t(
-                'Are you sure you want to remove this session?  It will be logged out and any games in progress may be abandonded.'
-            ),
-            {
-                okText: t('Ok'),
-                cancelText: t('Cancel'),
-                onOk: () => {
-                    dispatch(actions.removeSession(user.username, session.id));
-                }
+            if (!user) {
+                return;
             }
-        );
-    }, [user, t, dispatch]);
+
+            if (
+                confirm(
+                    'Are you sure you want to remove this session?  It will be logged out and any games in progress may be abandonded.'
+                )
+            ) {
+                dispatch(actions.removeSession(user.username, session.id));
+            }
+        }, [user, t, dispatch]);
 
     useEffect(() => {
         if (sessionRemoved) {
