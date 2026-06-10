@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import Card from './Card';
 import './PlayerBoard.scss';
-
+import { AnimatePresence, motion } from "motion/react"
 const PlayerBoard = ({
     active,
     attack,
@@ -41,25 +41,34 @@ const PlayerBoard = ({
     return (
         <div className={className} style={style} >
             <div className='card-row'>
-                {cardsInPlay &&
-                    cardsInPlay
-                        .filter((c) => !attackInvolvesCard(c))
-                        .map((card) => (
-                            <Card
-                                key={card.uuid}
-                                canDrag={manualMode}
-                                card={card}
-                                disableMouseOver={card.facedown && !card.code}
-                                onDieClick={onDieClick}
-                                onClick={onCardClick}
-                                onMenuItemClick={onMenuItemClick}
-                                onMouseOut={onMouseOut}
-                                onMouseOver={onMouseOver}
-                                size={cardSize}
-                                source='play area'
-                                side={side}
-                            />
-                        ))}
+                <AnimatePresence>
+                    {cardsInPlay &&
+                        cardsInPlay
+                            .filter((c) => !attackInvolvesCard(c))
+                            .map((card) => (
+                                <motion.div
+                                    key={card.uuid}
+                                    initial={{ opacity: 0.6, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0.6, scale: 0.9 }}
+                                >
+                                    <Card
+                                        key={card.uuid}
+                                        canDrag={manualMode}
+                                        card={card}
+                                        disableMouseOver={card.facedown && !card.code}
+                                        onDieClick={onDieClick}
+                                        onClick={onCardClick}
+                                        onMenuItemClick={onMenuItemClick}
+                                        onMouseOut={onMouseOut}
+                                        onMouseOver={onMouseOver}
+                                        size={cardSize}
+                                        source='play area'
+                                        side={side}
+                                    />
+                                </motion.div>
+                            ))}
+                </AnimatePresence>
             </div>
         </div>
     );
