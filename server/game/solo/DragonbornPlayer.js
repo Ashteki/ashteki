@@ -14,6 +14,7 @@ class DragonbornPlayer extends ChimeraPlayer {
     get isChimera() {
         return false;
     }
+
     onFullDice(context) {
         this.game.actions
             .addStatusToken({ showMessage: true, shortMessage: true, warnMessage: true })

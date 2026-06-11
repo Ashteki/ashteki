@@ -30,7 +30,7 @@ class PvEOpponentCard extends Card {
 
     getFlags() {
         const flags = super.getFlags();
-        if (this.game.isSurvival && this.hasModifiedThreat()) {
+        if (this.hasModifiedThreat()) {
             flags.threat = this.threat;
         }
         return flags;
