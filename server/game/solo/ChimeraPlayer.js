@@ -16,6 +16,7 @@ class ChimeraPlayer extends DummyPlayer {
         this.chimeraPhase = 1; // values 1-3
         this.level = game.soloLevel || 'S';
         this.stage = game.soloStage || 1;
+        this.addedThreat = parseInt(game.addedThreat) || 0;
 
         game.on('onCardMoved', (event) => this.cardMovedListener(event));
         game.on('onDieChange', (event) => this.dieChangeListener(event));
@@ -36,6 +37,7 @@ class ChimeraPlayer extends DummyPlayer {
         // chimera card should be set up after super init / prepare decks
         this.chimera.level = this.level;
         this.chimera.stage = this.stage;
+        this.chimera.tokens.threat = this.addedThreat;
     }
 
     //CAUTION: NEED BOTH OF THESE BECAUSE OF DIFFERENT USE CASES. NAMING IS UNFORTUNATE

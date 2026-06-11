@@ -60,9 +60,10 @@ class Game extends EventEmitter {
         this.isChimera = details.newGameType === 'chimera';
         this.isDragonborn = details.newGameType === 'dragonborn';
         this.isBot = details.newGameType === 'bot';
-        if (this.solo && this.isChimera || this.isDragonborn) {
+        if ((this.solo && this.isChimera) || this.isDragonborn) {
             this.soloLevel = details.soloLevel;
             this.soloStage = details.soloStage;
+            this.addedThreat = details.addedThreat;
             this.isSurvival = details.gameFormat === 'survival';
             if (this.isSurvival) {
                 this.soloLevel = 'S';
@@ -1846,6 +1847,7 @@ class Game extends EventEmitter {
                 p.level = this.soloLevel;
                 p.stage = this.soloStage;
                 p.preconId = player.deckData.precon_id;
+                p.addedThreat = this.addedThreat;
             }
             if (player.disconnectedAt) {
                 p.disconnectedAt = player.disconnectedAt;
