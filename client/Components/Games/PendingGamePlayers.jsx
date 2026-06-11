@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendSocketMessage } from '../../redux/actions';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Form, Row } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import './PendingGamePlayer.scss';
@@ -69,6 +69,10 @@ const PendingGamePlayers = ({ currentGame, user }) => {
 
     const onSoloStageChange = (newStage) => {
         dispatch(sendSocketMessage('setsolostage', currentGame.id, newStage));
+    };
+
+    const onAddedThreatChange = (newLevel) => {
+        dispatch(sendSocketMessage('setaddedThreat', currentGame.id, newLevel));
     };
 
     const patreonLoginClick = (event) => {
@@ -146,6 +150,25 @@ const PendingGamePlayers = ({ currentGame, user }) => {
                                             <option>3</option>
                                         </Form.Select>
                                     )}
+                                </>
+                            );
+                        }
+                    } else if (player.deck.isDragonborn) {
+                        if (userIsSpectator) {
+                            soloControls = <span></span>;
+                        } else {
+                            soloControls = (
+                                <>
+                                    <span>Threat: </span>&nbsp;
+                                    <Form.Select className='inline'
+                                        onChange={(e) => onAddedThreatChange(e.target.value)}
+                                    >
+                                        <option value='0'>+0</option>
+                                        <option value='1'>+1</option>
+                                        <option value='2'>+2</option>
+                                        <option value='3'>+3</option>
+                                        <option value='4'>+4</option>
+                                    </Form.Select>
                                 </>
                             );
                         }

@@ -351,6 +351,7 @@ class Lobby {
         socket.registerEvent('selectdeck', this.onSelectDeck.bind(this));
         socket.registerEvent('setsololevel', this.onSetSoloLevel.bind(this));
         socket.registerEvent('setsolostage', this.onSetSoloStage.bind(this));
+        socket.registerEvent('setaddedThreat', this.onSetAddedThreat.bind(this));
         socket.registerEvent('startgame', this.onStartGame.bind(this));
         socket.registerEvent('togglenode', this.onToggleNode.bind(this));
         socket.registerEvent('watchgame', this.onWatchGame.bind(this));
@@ -815,6 +816,16 @@ class Lobby {
         }
 
         game.soloStage = stage;
+        this.sendGameState(game);
+    }
+
+    onSetAddedThreat(socket, gameId, threat) {
+        let game = this.games[gameId];
+        if (!game) {
+            return;
+        }
+
+        game.addedThreat = threat;
         this.sendGameState(game);
     }
 

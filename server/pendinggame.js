@@ -10,10 +10,15 @@ const { GameTypes } = require('./constants.js');
 class PendingGame {
     constructor(owner, details) {
         this.newGameType = details.newGameType; // pvp, chimera, league
-        this.solo = [GameTypes.chimera, GameTypes.dragonborn, GameTypes.bot].includes(details.newGameType);
+        this.solo = [GameTypes.chimera, GameTypes.dragonborn, GameTypes.bot].includes(
+            details.newGameType
+        );
         if (this.newGameType === 'chimera') {
             this.soloLevel = 'S';
             this.soloStage = '1';
+        }
+        if (this.newGameType === 'dragonborn') {
+            this.addedThreat = '0';
         }
         this.gameFormat = details.gameFormat;
         this.allowSpectators = details.allowSpectators;
@@ -471,6 +476,7 @@ class PendingGame {
             solo: this.solo,
             soloLevel: this.soloLevel,
             soloStage: this.soloStage,
+            addedThreat: this.addedThreat,
             pairing: this.pairing,
             league: this.league
         };

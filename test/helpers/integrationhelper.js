@@ -293,6 +293,9 @@ beforeEach(function () {
         if ((this.player2.isChimera || this.player2.isDragonborn) && !options.allowSetup) {
             spyOn(this.player2.player, 'setupAspects');
         }
+        if (this.player2.isDragonborn && options.addedThreat) {
+            this.player2.player.addedThreat = options.addedThreat;
+        }
         this.startGame();
         //Player stats
         this.player1.actions = { main: true, side: true };
