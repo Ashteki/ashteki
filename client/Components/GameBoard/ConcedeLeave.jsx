@@ -47,7 +47,6 @@ const ConcedeLeave = ({ showText }) => {
         if (confirm('Are you sure you want to concede this game?')) {
             dispatch(sendGameMessage('concede'));
         }
-        S
     };
 
     const onLeaveClick = () => {
