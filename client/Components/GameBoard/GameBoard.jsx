@@ -230,6 +230,7 @@ const GameBoard = () => {
                         onDieClick={onDieClick}
                         onMouseOver={onMouseOver}
                         onMouseOut={onMouseOut}
+                        onMenuItemClick={currentGame.isDragonborn && onMenuItemClick}
                         player={otherPlayer}
                         showDice={compactLayout}
                         showDeckPile={!compactLayout}
