@@ -44,7 +44,6 @@ const GameLobby = ({ gameId }) => {
     }));
     const user = useSelector((state) => state.account.user);
     const showBot = user?.permissions?.playtester;
-    const showDragonborn = user?.permissions?.canVerifyDecks;
     const [currentFilter, setCurrentFilter] = useState(filterDefaults);
     const [showPairings, setShowPairings] = useState(false);
     const [replayLoad, setReplayLoad] = useState(false);
@@ -135,14 +134,11 @@ const GameLobby = ({ gameId }) => {
                                         imageClass='pvp'
                                         onClick={() => handleNewGameClick(gameTypes.pvp)}
                                     />
-                                    {showDragonborn && (
-                                        <PictureButton
-                                            text='Dragonborn'
-                                            header='Alpha Test'
-                                            imageClass='dragonborn'
-                                            onClick={() => handleNewGameClick(gameTypes.dragonborn)}
-                                        />
-                                    )}
+                                    <PictureButton
+                                        text='Dragonborn'
+                                        imageClass='dragonborn'
+                                        onClick={() => handleNewGameClick(gameTypes.dragonborn)}
+                                    />
                                     <PictureButton
                                         text='Chimera'
                                         imageClass='chimera'
