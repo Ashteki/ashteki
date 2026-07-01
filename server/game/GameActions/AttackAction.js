@@ -18,24 +18,27 @@ class AttackAction extends CardGameAction {
         const params = {
             card: card,
             context: context,
-            attacker: this.attacker
+            attackers: Array.isArray(this.attacker) ? this.attacker : [this.attacker]
         };
         return super.createEvent('unnamedevent', params, (event) => {
-            if (params.attacker && !params.attacker.canAttack()) {
+            if (params.attackers && !params.attackers.some((attacker) => attacker.canAttack())) {
                 return;
             }
 
             if (PhoenixbornTypes.includes(event.card.getType())) {
-                event.context.game.initiatePBAttack(event.card, event.attacker);
+                event.context.game.initiatePBAttack(event.card, event.attackers);
             } else {
-                event.context.game.initiateUnitAttack(event.card, event.attacker);
+                event.context.game.initiateUnitAttack(event.card, event.attackers);
             }
         });
     }
 
     checkEventCondition(event) {
         // check the attacker is still in play
-        return event.attacker.location === 'play area';
+        if (Array.isArray(event.attackers)) {
+            return event.attackers.some(attacker => attacker.location === 'play area');
+        }
+        return event.attackers.location === 'play area';
     }
 }
 
