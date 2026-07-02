@@ -45,7 +45,7 @@ class PvEReadySpell extends Card {
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 cardCondition: (card, context) =>
                     card.type === CardType.Phoenixborn || card.owner.isRightmostUnit(card),
-                gameAction: AbilityDsl.actions.addDamageToken({ amount: 1, showMessage: true }),
+                gameAction: AbilityDsl.actions.dealDamage({ amount: 1 }),
             }
         });
 
