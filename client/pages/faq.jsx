@@ -52,6 +52,7 @@ const FAQ = () => {
                             first five, or played in the first round of the game. The current chained list
                             is:
                             <ul style={{ columns: 2 }}>
+                                <li>Era&apos;s End</li>
                                 <li>Explosive Growth</li>
                                 <li>Golden Veil</li>
                                 <li>Hypnotize</li>

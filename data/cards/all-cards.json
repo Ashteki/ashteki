@@ -2688,6 +2688,7 @@
             "magicCost": {
                 "time:class": 1
             },
+            "chained": true,
             "text": "Resolve all effects that trigger at the end of the round on unexhausted cards currently in play, in the order of your choice."
         },
         {

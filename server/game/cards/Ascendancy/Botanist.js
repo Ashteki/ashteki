@@ -1,4 +1,4 @@
-const { BattlefieldTypes } = require('../../../constants.js');
+const { CardType } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Botanist extends Card {
@@ -7,7 +7,7 @@ class Botanist extends Card {
             title: 'Nurture',
             cost: [ability.costs.sideAction()],
             target: {
-                cardType: BattlefieldTypes,
+                cardType: CardType.Conjuration,
                 controller: 'self',
                 gameAction: ability.actions.attachConjuredAlteration({
                     conjuredAlteration: 'nurtured'
