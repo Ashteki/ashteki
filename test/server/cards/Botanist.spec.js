@@ -21,6 +21,8 @@ describe('Botanist', function () {
 
         it('attach nurtured alteration to unit', function () {
             this.player1.useAbility(this.botanist);
+            expect(this.player1).toBeAbleToSelect(this.snapseed);
+            expect(this.player1).not.toBeAbleToSelect(this.stormchaser);
             this.player1.clickCard(this.snapseed);
             expect(this.snapseed.upgrades.length).toBe(1);
             expect(this.snapseed.life).toBe(2);

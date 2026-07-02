@@ -83,6 +83,7 @@ class AshesCardService {
 
     getChainedList() {
         return [
+            'eras-end',
             'explosive-growth',
             'golden-veil',
             'hypnotize',
