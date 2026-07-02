@@ -9,7 +9,7 @@ class AspectCard extends Card {
             inexhaustible: true,
             target: {
                 autoTarget: () => this.owner.phoenixborn,
-                gameAction: ability.actions.dealDamage((context) => ({
+                gameAction: ability.actions.addDamageToken((context) => ({
                     amount: context.source.blood
                 }))
             },

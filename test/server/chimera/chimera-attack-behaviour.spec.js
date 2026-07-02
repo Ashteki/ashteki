@@ -39,7 +39,46 @@ describe('When Attacked', function () {
             expect(this.rampage.exhausted).toBe(false);
         });
 
-        it('when destroyed an aspect damages the chimera', function () {
+        it('when destroyed an aspect damages the chimera equal to blood value', function () {
+            this.player1.clickAttack(this.rampage);
+            this.player1.clickCard(this.hammerKnight);
+            this.player1.clickPrompt('Ok'); // guard roll alert
+
+            this.player1.clickDone(); // aftershock
+
+            expect(this.rampage.location).toBe('discard');
+            expect(this.corpseOfViros.damage).toBe(1);
+        });
+    });
+
+    describe('bug: aspect blood damage vs law of grace', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'chimera',
+                player1: {
+                    phoenixborn: 'coal-roarkwin',
+                    inPlay: ['anchornaut', 'flute-mage', 'hammer-knight'],
+                    spellboard: ['law-of-grace'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm', 'sympathy', 'sympathy'],
+                    hand: ['shatter-pulse', 'summon-iron-rhino']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['rampage'],
+                    threatZone: ['hunting-instincts'],
+                    spellboard: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            // don't guard
+            spyOn(Dice, 'd12Roll').and.returnValue(8);
+        });
+
+        it('when destroyed an aspect damages the chimera equal to blood value', function () {
             this.player1.clickAttack(this.rampage);
             this.player1.clickCard(this.hammerKnight);
             this.player1.clickPrompt('Ok'); // guard roll alert
