@@ -63,12 +63,16 @@ class DummyPlayer extends Player {
         const attacker = this.getAttacker();
         const attackers = [attacker];
         const target = this.getAttackTarget(attacker);
+        this.addCoAttackers(attacker, attackers);
+        this.game.initiateAttack(target, attackers);
+    }
+
+    addCoAttackers(attacker, attackers) {
         if (attacker.target === 'center') {
             // add all other center attackers
             const attackBuddies = this.getCenterAttackAspects([attacker]);
             attackBuddies.forEach(b => attackers.push(b));
         }
-        this.game.initiateAttack(target, attackers);
     }
 
     getCenterAttackAspects(excludeList) {

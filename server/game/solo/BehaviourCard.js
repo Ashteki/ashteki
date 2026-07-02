@@ -64,9 +64,12 @@ class BehaviourCard extends PvEReadySpell {
             title: 'Attack',
             gameAction: AbilityDsl.actions.attack((context) => {
                 const attacker = attackWith || context.player.getAttacker(from);
+                const attackTarget = context.player.getAttackTarget(attacker);
+                const attackers = [attacker];
+                context.player.addCoAttackers(attacker, attackers);
                 return {
-                    attacker: attacker,
-                    target: context.player.getAttackTarget(attacker)
+                    attacker: attackers,
+                    target: attackTarget
                 }
             })
         });
