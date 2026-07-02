@@ -21,7 +21,8 @@ class RadiantFlash extends AspectCard {
                 alwaysTriggers: true,
                 condition: (context) => !context.preThenEvent?.context.diceChangeCount,
                 gameAction: ability.actions.addStatusToken((context) => ({
-                    target: context.player.phoenixborn
+                    target: context.player.phoenixborn,
+                    showMessage: true
                 }))
             }
         });

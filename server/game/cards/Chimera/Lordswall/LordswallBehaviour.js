@@ -108,7 +108,7 @@ class LordswallBehaviour extends BehaviourCard {
                             behaviourRoll,
                             {
                                 main: 'Reveal',
-                                side: "Deal 1 damage to the opposing player's target phoenixborn"
+                                side: "Place 1 wound token on the opposing player's phoenixborn or rightmost unit"
                             },
                             () => {
                                 // Side: Target opposing player must place 1 wound on their pb or rightmost unit.
@@ -222,7 +222,7 @@ class LordswallBehaviour extends BehaviourCard {
             target: {
                 cardCondition: (card) =>
                     card.type === CardType.Phoenixborn || card.controller.isRightmostUnit(card),
-                activePromptTitle: 'Choose a target to be dealt 1 damage',
+                activePromptTitle: 'Choose a target to receive 1 wound token',
                 cardType: [...BattlefieldTypes, CardType.Phoenixborn],
                 player: 'opponent',
                 controller: 'opponent',
@@ -232,7 +232,6 @@ class LordswallBehaviour extends BehaviourCard {
 
         const context = ability.createContext(this.owner);
         this.game.resolveAbility(context);
-
     }
 }
 
