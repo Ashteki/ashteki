@@ -193,7 +193,7 @@ class ChooseDefendersPrompt extends UiPrompt {
 
                 const battle = this.attack.battles.find((b) => b.attacker === card);
                 // can't assign a new blocker to a battle with a forceBlock guard
-                if (battle.guard && battle.guard.anyEffect('forceBlock', card)) {
+                if (battle.guard && battle.guard.anyEffect('forceBlock', this.context)) {
                     return false;
                 }
 

@@ -49,8 +49,10 @@ class GameObject {
     // any active effects
     anyEffect(type, context = null) {
         return (
-            this.effects.filter((effect) => effect.type === type && effect.checkContext(context))
-                .length > 0
+            this.effects.filter(
+                (effect) =>
+                    effect.type === type && effect.checkContext(context)
+            ).length > 0
         );
     }
 

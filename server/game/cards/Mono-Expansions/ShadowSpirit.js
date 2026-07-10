@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class ShadowSpirit extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Trickery 1',
             when: {
                 onAttackersDeclared: (event, context) => {

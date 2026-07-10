@@ -20,7 +20,7 @@ class SpearMaster extends Card {
             })
         });
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Spear Volley',
             when: {
                 onAttackersDeclared: (event, context) => {

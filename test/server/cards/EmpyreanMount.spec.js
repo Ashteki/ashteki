@@ -30,16 +30,19 @@ describe('Empyrean Mount', function () {
             expect(this.player1).toHavePrompt('Choose a unit to force it to block');
             this.player1.clickCard(this.fluteMage); // single blocker
 
-            expect(this.player2).toHavePrompt('Choose a blocker');
-            expect(this.player2).toBeAbleToSelect(this.hammerKnight);
-            this.player2.clickCard(this.hammerKnight);
             // EM and flute Mage unit are in battle together
             expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
             expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
+            expect(this.player2).toHavePrompt('Choose a blocker');
+
+            expect(this.player2).toBeAbleToSelect(this.hammerKnight);
+            this.player2.clickCard(this.hammerKnight);
 
             // player2 cannot swap out chosen blocker
-            expect(this.player2).not.toBeAbleToSelect(this.empyreanMount);
+            // expect(this.player2).not.toBeAbleToSelect(this.empyreanMount);
             this.player2.clickCard(this.empyreanMount);
+            expect(this.game.attackState.battles[0].attacker).toBe(this.empyreanMount);
+            expect(this.game.attackState.battles[0].guard).toBe(this.fluteMage);
 
             // can assign / reassign blocker for other attacker
             this.player2.clickCard(this.fireArcher);

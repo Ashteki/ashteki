@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class CeruleanDiver extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Dive 1',
             when: {
                 onAttackersDeclared: (event, context) => {

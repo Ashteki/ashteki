@@ -5,7 +5,7 @@ class AdeptDuelist extends Card {
     setupCardAbilities(ability) {
         this.stalk();
 
-        this.reaction({
+        this.interrupt({
             title: 'Disarm',
             when: {
                 onAttackersDeclared: (event, context) => {

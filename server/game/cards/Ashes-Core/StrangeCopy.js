@@ -8,7 +8,7 @@ class StrangeCopy extends Card {
     // recover values with those of the target unit.
     // If a printed value is X, use the current value of X.
     setupCardAbilities(ability) {
-        this.reaction({
+        this.interrupt({
             when: {
                 // opponent declares attackers
                 onAttackersDeclared: (event, context) =>

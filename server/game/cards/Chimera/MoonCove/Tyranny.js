@@ -9,13 +9,13 @@ class Tyranny extends AspectCard {
             effect: [ability.effects.setPrintedAttack(() => this.owner.chimeraPhase)]
         });
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Tyranny',
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
                         event.attackingPlayer === context.source.controller &&
-                        context.source.isAttacker
+                        event.attackers.includes(context.source)
                     );
                 }
             },

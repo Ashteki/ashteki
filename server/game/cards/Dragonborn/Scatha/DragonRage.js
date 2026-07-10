@@ -4,7 +4,7 @@ class DragonRage extends AspectCard {
     setupCardAbilities(ability) {
         super.setupCardAbilities(ability);
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) => {
                     return event.attackers.includes(context.source);

@@ -5,7 +5,7 @@ class ImperialNinja extends Card {
         // Interrogate: When this unit is declared as an attacker, look at 1 random card in
         //  a target opponent's hand. That target player may discard 2 cards off the top of
         // their draw pile. If they discard fewer than 2 cards, they must discard the looked at card.
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker

@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class Infuriate extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) =>
                     event.attackers.includes(context.source.parent)

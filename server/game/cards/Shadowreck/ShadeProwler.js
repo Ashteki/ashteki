@@ -6,7 +6,7 @@ class ShadeProwler extends Card {
         this.fade();
 
         //TODO: Predator 3
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Predator 3',
             when: {
                 onAttackersDeclared: (event, context) => {

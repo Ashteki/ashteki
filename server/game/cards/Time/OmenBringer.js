@@ -11,12 +11,12 @@ class OmenBringer extends Card {
         });
 
         // Hasten
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
                         event.attackingPlayer === context.source.controller &&
-                        context.source.isAttacker &&
+                        event.attackers.includes(context.source) &&
                         context.source.status > 0
                     );
                 }
