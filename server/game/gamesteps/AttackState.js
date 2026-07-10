@@ -40,6 +40,17 @@ class AttackState {
         }
     }
 
+    onUnitDestroyed(card, damageEvent) {
+        if (this.target === card) {
+            // if before battles are created - interrupt onAttackersDeclared
+
+        }
+
+        if (card.isAttacker || card.isDefender) {
+            this.removeFromBattle(card, false, damageEvent && damageEvent.context.source);
+        }
+    }
+
     removeFromBattle(card, includeResolved = false, damageSource = null) {
         this.battles
             .filter((b) => includeResolved || !b.resolved)
@@ -134,7 +145,10 @@ class AttackState {
 
     clearBattleBlocker(battle) {
         //Can't remove Forced block
-        if (battle.guard?.anyEffect('forceBlock')) return;
+        if (battle.guard?.anyEffect('forceBlock')) {
+
+            return false;
+        };
         if (battle.guard) {
             battle.guard.isDefender = false;
             battle.guard.wasDefender = false;
@@ -165,12 +179,6 @@ class AttackState {
         };
 
         return state;
-    }
-
-    checkForceBlock() {
-        return !this.battles.some(
-            (b) => b.guard.anyEffect('forceBlock', b.attacker) && !b.attacker
-        );
     }
 
     checkUnseen() {

@@ -6,7 +6,7 @@ class UmbralAcrobat extends Card {
         this.unitGuard();
 
         //TODO: Invert
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Invert',
             when: {
                 onAttackersDeclared: (event, context) => {

@@ -13,7 +13,7 @@ class FoxSpirit extends Card {
                 gameAction: ability.actions.raiseDie()
             }
         });
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Pounce 2',
             when: {
                 onAttackersDeclared: (event, context) => {

@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class BlackcloudNinja extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.interrupt({
             title: 'Seal Strike 1',
             when: {
                 onAttackersDeclared: (event, context) => {

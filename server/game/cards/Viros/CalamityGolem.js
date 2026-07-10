@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class CalamityGolem extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Rancor',
             when: {
                 onAttackersDeclared: (event, context) => {

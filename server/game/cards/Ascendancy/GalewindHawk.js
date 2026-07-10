@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class GalewindHawk extends Card {
     setupCardAbilities(ability) {
-        this.reaction({
+        this.interrupt({
             title: 'Galewinds',
             when: {
                 onAttackersDeclared: (event, context) => {

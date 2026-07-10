@@ -5,7 +5,7 @@ class SetBlockerAction extends CardGameAction {
     constructor(propertyFactory) {
         super(propertyFactory);
         this.attacker = null;
-        this.effectMsg = '{0} is removed from the battle';
+        this.effectMsg = '{0} blocker is set';
         this.forceRemoval = false;
     }
 

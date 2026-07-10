@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class SpectralAssassin extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Sneaky Strike',
             when: {
                 onAttackersDeclared: (event, context) => {

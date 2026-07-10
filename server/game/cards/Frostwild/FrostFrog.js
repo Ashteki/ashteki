@@ -3,13 +3,13 @@ const Card = require('../../Card.js');
 
 class FrostFrog extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Cold Snap 1',
             when: {
                 onAttackersDeclared: (event, context) => {
                     return (
                         event.attackingPlayer === context.source.controller &&
-                        context.source.isAttacker
+                        event.attackers.includes(context.source)
                     );
                 }
             },

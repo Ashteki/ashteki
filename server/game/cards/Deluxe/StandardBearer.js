@@ -21,7 +21,7 @@ class StandardBearer extends Card {
             gameAction: ability.actions.addStatusToken()
         });
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Inspire 1',
             when: {
                 onAttackersDeclared: (event, context) => {
@@ -35,7 +35,7 @@ class StandardBearer extends Card {
                 optional: true,
                 cardType: BattlefieldTypes,
                 controller: 'self',
-                cardCondition: (card, context) => card !== context.source && card.isAttacker,
+                cardCondition: (card, context) => card !== context.source && context.event.attackers.includes(card),
                 gameAction: ability.actions.cardLastingEffect({
                     duration: 'untilEndOfTurn',
                     effect: ability.effects.modifyAttack(() => this.getAbilityNumeric(1))

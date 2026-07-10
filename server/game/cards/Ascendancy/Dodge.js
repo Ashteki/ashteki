@@ -1,4 +1,4 @@
-const { Magic, BattlefieldTypes } = require('../../../constants.js');
+const { Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Dodge extends Card {

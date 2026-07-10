@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class BoneCrow extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Feast 1',
             when: {
                 onAttackersDeclared: (event, context) => {
@@ -12,7 +12,7 @@ class BoneCrow extends Card {
             },
             gameAction: ability.actions.conditional({
                 condition: (context) => {
-                    const target = context.game.attackState.getTargetFor(context.source);
+                    const target = context.game.attackState.target;
                     return target.damage;
                 },
                 trueGameAction: ability.actions.cardLastingEffect((context) => ({

@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class Stormchaser extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Galewinds',
             when: {
                 onAttackersDeclared: (event, context) => {

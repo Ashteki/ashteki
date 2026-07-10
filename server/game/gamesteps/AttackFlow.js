@@ -105,7 +105,96 @@ class AttackFlow extends BaseStepWithPipeline {
             this.game.openEventWindow(costEvent);
         }
 
-        this.game.doAttackersDeclared(this.attackingPlayer, cards);
+        this.doAttackersDeclared(this.attackingPlayer, cards);
+    }
+
+    doAttackersDeclared(attackingPlayer, attackers) {
+        const params = {
+            attackingPlayer: attackingPlayer,
+            attackers: attackers,
+            target: this.game.attackState.target
+        };
+        this.game.addAlert(
+            'danger',
+            '{0} attacks {1} with {2} units: {3}',
+            this.game.attackState.attackingPlayer,
+            this.game.attackState.target,
+            attackers.length,
+            attackers
+        );
+
+        if (!this.attackingPlayer.opponent.optionSettings.noAttackAlerts) {
+            this.game.queueUserAlert(this.game.getFrameworkContext(this.attackingPlayer), {
+                timed: true,
+                style: 'danger',
+                promptTitle: (this.game.attackState.isPBAttack ? 'PB ' : 'UNIT ') + 'ATTACK!',
+                menuTitle: this.game.attackState.target.name + ' is being attacked',
+                controls: [
+                    {
+                        type: 'targeting',
+                        source: this.game.attackState.target.getShortSummary()
+                        // ,
+                        // targets: [attackState.target.getShortSummary()]
+                    }
+                ]
+            });
+        }
+
+        this.game.raiseEvent('onAttackersDeclared', params, (event) => {
+            // check for horde attack - this has to be here to support charging horde rainwalker summon as interrupt
+            if (attackers.some((unit) => unit.anyEffect('hordeAttack'))) {
+                const hordeAttackers = event.attackingPlayer.getHordeAttackers(event.attackers);
+                if (hordeAttackers.length > 0) {
+                    event.attackers.push(...hordeAttackers);
+                }
+            }
+
+            this.game.gameLog.push({
+                id: 'cl' + this.game.getCardLogIndex(),
+                act: 'attack',
+                obj: this.game.attackState.target,
+                player: attackingPlayer
+            });
+
+            let key = 1;
+            for (let c of event.attackingPlayer.unitsInPlay) {
+                if (attackers.includes(c)) {
+                    if (this.game.attackState.target.location !== 'play area') {
+                        c.exhaust();
+                    } else {
+                        const newBattle = {
+                            key: key,
+                            attacker: c,
+                            attackerClone: c.createSnapshot(),
+                            target: this.game.attackState.target,
+                            guard: null,
+                            counter: false,
+                            resolved: false
+                        };
+                        const forcedBlocker = event.attackingPlayer.opponent.unitsInPlay.find(
+                            (unit) => {
+                                const blockEffects = unit.getEffects(
+                                    'forceBlock',
+                                    (effect) => effect.value.value === c
+                                );
+                                if (blockEffects.length > 0) {
+                                    return true;
+                                }
+                            }
+                        );
+                        if (forcedBlocker) {
+                            newBattle.guard = forcedBlocker;
+                        }
+                        this.game.attackState.battles.push(newBattle);
+                        c.isAttacker = true;
+                        c.wasAttacker = true;
+                        key++;
+                    }
+                }
+            }
+
+            this.game.saveReplayState('attackers-declared');
+        });
     }
 
     getDefendersStep() {

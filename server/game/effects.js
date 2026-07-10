@@ -39,10 +39,8 @@ const Effects = {
     exhausted: () => EffectBuilder.card.static('exhausted'),
     feeble: () => EffectBuilder.card.static('feeble'),
     forceBlock: (card) =>
-        EffectBuilder.card.static(
-            'forceBlock',
-            card,
-            (context, effectContext) => effectContext.source.isAttacker
+        EffectBuilder.card.static('forceBlock', card, (context, effectContext) =>
+            !!effectContext?.game.attackState?.attackers.includes(effectContext.source)
         ),
     gainAbility: (type, properties) =>
         EffectBuilder.card.static('gainAbility', new GainAbility(type, properties)),
