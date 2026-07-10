@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class RealmWalker extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Isolate 1',
             when: {
                 onAttackersDeclared: (event, context) => {

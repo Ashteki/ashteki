@@ -6,7 +6,7 @@ class EmpyreanMount extends Card {
         this.dismount();
 
         //Battlemaster
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) => {
                     // I'm the attacker and the target is a Phoenixborn
@@ -27,10 +27,11 @@ class EmpyreanMount extends Card {
                     ability.actions.cardLastingEffect((context) => ({
                         effect: ability.effects.forceBlock(context.source), //TODO: Use this effect to lock the attacker and blocker together
                         duration: 'untilEndOfTurn'
-                    })),
-                    ability.actions.setBlocker((context) => ({
-                        attacker: context.source
                     }))
+                    // ,
+                    // ability.actions.setBlocker((context) => ({
+                    //     attacker: context.source
+                    // }))
                 ]
             }
         });

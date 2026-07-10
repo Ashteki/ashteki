@@ -9,11 +9,11 @@ class DefenceRules {
         );
     }
 
-    blockTest(card, attacker) {
+    blockTest(subject, attacker) {
         return (
-            !attacker.anyEffect('preventBlock', { card: card }) &&
-            card.canBlock(attacker) &&
-            !card.anyEffect('forceBlock') // try to not reassign forced blockers
+            !attacker.anyEffect('preventBlock', { card: subject }) &&
+            subject.canBlock(attacker) &&
+            !subject.anyEffect('forceBlock') // try to not reassign forced blockers
         );
     }
 }

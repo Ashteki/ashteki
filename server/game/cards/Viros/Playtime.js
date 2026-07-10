@@ -11,12 +11,12 @@ class Playtime extends Card {
             ]
         });
 
-        this.forcedReaction({
+        this.forcedInterrupt({
             autoResolve: true,
             when: {
                 onAttackersDeclared: (event, context) =>
-                    event.attackingPlayer === context.source.owner.opponent
-                    && context.source.parent.isAttacker,
+                    event.attackingPlayer === context.source.owner.opponent &&
+                    event.attackers.includes(context.source.parent),
                 onDefendersDeclared: (event, context) => {
                     return event.attack.battles.some((b) => b.guard === context.source.parent);
                 }

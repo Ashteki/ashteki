@@ -2,7 +2,7 @@ const Card = require('../../Card.js');
 
 class SoulDelver extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             when: {
                 onAttackersDeclared: (event, context) => {
                     return event.attackers.includes(context.source);

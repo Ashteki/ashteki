@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class FloralTyrant extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Ravaging Vines',
             when: {
                 onAttackersDeclared: (event, context) =>

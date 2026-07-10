@@ -23,7 +23,7 @@ class OceansGift extends Card {
         this.whileAttached({
             inexhaustible: true,
             effect: [
-                ability.effects.gainAbility('forcedReaction', {
+                ability.effects.gainAbility('forcedInterrupt', {
                     when: {
                         onAttackersDeclared: (event, context) =>
                             event.attackingPlayer === context.source.controller &&

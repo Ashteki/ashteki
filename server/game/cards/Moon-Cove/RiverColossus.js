@@ -6,7 +6,7 @@ class RiverColossus extends Card {
             effect: [ability.effects.addKeyword({ gigantic: 1 })]
         });
 
-        this.reaction({
+        this.interrupt({
             title: 'Rouse 2',
             when: {
                 onAttackersDeclared: (event, context) => {

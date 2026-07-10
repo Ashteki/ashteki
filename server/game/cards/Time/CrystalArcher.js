@@ -3,7 +3,7 @@ const Card = require('../../Card.js');
 
 class CrystalArcher extends Card {
     setupCardAbilities(ability) {
-        this.forcedReaction({
+        this.forcedInterrupt({
             title: 'Preemptive Shot 1',
             when: {
                 onAttackersDeclared: (event, context) => {
