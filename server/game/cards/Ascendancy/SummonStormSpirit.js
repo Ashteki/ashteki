@@ -20,6 +20,7 @@ class SummonStormSpirit extends Card {
                     costs: [
                         ability.costs.focus(1),
                         ability.costs.sideAction(),
+                        ability.costs.anyHostedAstralDie(),
                         ability.costs.exhaust(),
                         ability.costs.dice([new DiceCount(1, Level.Basic)])
                     ]

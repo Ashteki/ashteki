@@ -3,7 +3,7 @@ describe('Summon Storm Spirit', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
-                    phoenixborn: 'aradel-summergaard',
+                    phoenixborn: 'arren-frostpeak',
                     inPlay: ['blue-jaguar', 'mist-spirit', 'iron-worker'],
                     spellboard: ['summon-butterfly-monk', 'abundance', 'summon-storm-spirit'],
                     hand: ['summon-masked-wolf', 'summon-gilder', 'resonance'],
@@ -35,7 +35,7 @@ describe('Summon Storm Spirit', function () {
         beforeEach(function () {
             this.setupTest({
                 player1: {
-                    phoenixborn: 'aradel-summergaard',
+                    phoenixborn: 'arren-frostpeak',
                     inPlay: ['blue-jaguar', 'mist-spirit', 'iron-worker'],
                     spellboard: ['summon-storm-spirit', 'summon-storm-spirit'],
                     hand: ['summon-masked-wolf', 'summon-gilder', 'resonance'],
@@ -52,7 +52,33 @@ describe('Summon Storm Spirit', function () {
             });
         });
 
-        it('choose side cost (and basic die) to summon', function () {
+        it('without hosted astral die, normal cost to summon', function () {
+            this.player1.clickCard(this.summonStormSpirit);
+            this.player1.clickPrompt('Summon Storm Spirit');
+            this.player1.clickDie(0);
+            expect(this.stormSpirit.location).toBe('play area');
+            expect(this.player1.actions.main).toBe(false);
+            expect(this.summonStormSpirit.exhausted).toBe(true);
+            this.player1.clickOpponentDie(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('with astral die on Pb, choose side cost (and basic die) to summon', function () {
+            this.player1.attachDie(0, this.arrenFrostpeak);
+            this.player1.clickCard(this.summonStormSpirit);
+            this.player1.clickPrompt('Summon Storm Spirit');
+            this.player1.clickPrompt('Side');
+            this.player1.clickDie(2);
+            expect(this.stormSpirit.location).toBe('play area');
+            expect(this.player1.actions.main).toBe(true);
+            expect(this.player1.actions.side).toBe(0);
+            expect(this.summonStormSpirit.exhausted).toBe(true);
+            this.player1.clickOpponentDie(0);
+            expect(this.player1).toHaveDefaultPrompt();
+        });
+
+        it('with astral die on Ready spell, choose side cost (and basic die) to summon', function () {
+            this.player1.attachDie(0, this.summonStormSpirit);
             this.player1.clickCard(this.summonStormSpirit);
             this.player1.clickPrompt('Summon Storm Spirit');
             this.player1.clickPrompt('Side');
