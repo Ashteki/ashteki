@@ -37,6 +37,10 @@ const Costs = {
         canPay: (context) => context.source.focus >= level,
         pay: () => true
     }),
+    anyHostedAstralDie: () => ({
+        canPay: (context) => context.player.hasHostedAstralDie(),
+        pay: () => true
+    }),
     use: () => ({
         // exhausted game objects can't be used
         canPay: (context) => !context.source.exhausted,

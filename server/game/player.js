@@ -264,6 +264,10 @@ class Player extends GameObject {
         );
     }
 
+    hasHostedAstralDie() {
+        return [...this.cardsInPlay, ...this.spellboard].some((card) => card.isAirborne);
+    }
+
     getHordeAttackers(excludeList) {
         return this.unitsInPlay.filter(
             (u) => u.anyEffect('hordeAttack') && !excludeList.includes(u) && u.canAttack()
