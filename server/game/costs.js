@@ -13,6 +13,7 @@ const Costs = {
     mainAction: () => new ActionCost({ type: 'main' }),
     sideAction: () => new ActionCost({ type: 'side' }),
     chosenAction: () => new ChosenActionCost(),
+    reaction: () => new ActionCost({ type: 'reaction' }),
     exhaust: () => ({
         canPay: () => true, // cards can be overexhausted (>1 tokens)
         payEvent: (context) => context.game.actions.exhaust().getEvent(context.source, context)

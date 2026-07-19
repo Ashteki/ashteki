@@ -6,6 +6,8 @@ import Avatar from '../Site/Avatar';
 import AlertPanel from '../Site/AlertPanel';
 
 import './Messages.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBolt, faBoltLightning } from '@fortawesome/free-solid-svg-icons';
 
 const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
     const owner = useSelector(
@@ -55,6 +57,11 @@ const Messages = ({ messages, onCardMouseOver, onCardMouseOut }) => {
         if (fragment.side) {
             result.push(
                 <span className='phg-side-action chat-action' title='side action'></span>
+            );
+        }
+        if (fragment.reaction) {
+            result.push(
+                <FontAwesomeIcon icon={faBoltLightning} className="chat-action" title="reaction" />
             );
         }
 

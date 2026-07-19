@@ -151,11 +151,12 @@ class GameChat {
                             argType: 'behaviour',
                             data: arg.getShortSummary()
                         });
-                    } else if (arg.main || arg.side) {
+                    } else if (arg.main || arg.side || arg.reaction) {
                         returnedFraments.push({
                             argType: 'actions',
                             main: arg.main,
-                            side: arg.side
+                            side: arg.side,
+                            reaction: arg.reaction
                         });
                     } else {
                         returnedFraments.push(arg);

@@ -27,8 +27,6 @@ class Rejuvenate extends Card {
                 ability.costs.loseAllStatus()
             ],
             location: 'spellboard',
-            // gameAction: ability.actions.removeStatus({ all: true }),
-            // then: (thenContext) => ({
             target: {
                 activePromptTitle: 'Choose a conjuration to rejuvenate',
                 cardType: CardType.Conjuration,
