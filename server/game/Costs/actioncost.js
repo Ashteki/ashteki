@@ -4,6 +4,11 @@ class ActionCost {
     }
 
     canPay(context) {
+        // using this to track costs for display - could use for checking restrictions later
+        if (this.actionType === 'reaction') {
+            return true;
+        }
+
         if (this.actionType === 'side' && !context.player.checkRestrictions('spendSide')) {
             return false;
         }
@@ -24,20 +29,27 @@ class ActionCost {
     }
 
     payEvent(context) {
+        if (!context.costs.actions) {
+            context.costs.actions = {};
+        }
+
+        if (this.actionType === 'reaction') {
+            context.costs.actions.reaction = true;
+            return context.game.getEvent('unnamedEvent', {}, () => {
+                return true;
+            });
+        }
+
+        if (this.actionType === 'main') {
+            context.costs.actions.main = true;
+        } else {
+            context.costs.actions.side = true;
+        }
+
         const action =
             this.actionType === 'main'
                 ? context.game.actions.spendMainAction()
                 : context.game.actions.spendSideAction();
-
-        if (!context.costs.actions) {
-            context.costs.actions = {};
-        }
-        if (this.actionType === 'main') {
-            context.costs.actions.main = true;
-
-        } else {
-            context.costs.actions.side = true;
-        }
 
         return action.getEvent(context.player, context);
     }
