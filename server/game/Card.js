@@ -638,6 +638,12 @@ class Card extends PlayableObject {
                 onCardPlayed: (event, context) => event.card === context.source
             };
         }
+        const reactionCost = [AbilityDsl.costs.reaction()];
+        if (properties.cost) {
+            properties.cost = reactionCost.concat(properties.cost);
+        } else {
+            properties.cost = reactionCost;
+        }
 
         return this.triggeredAbility(AbilityType.Reaction, properties);
     }
