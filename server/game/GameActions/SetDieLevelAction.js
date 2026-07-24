@@ -17,6 +17,10 @@ class SetDieLevelAction extends DiceGameAction {
             return false;
         }
 
+        // don't allow changes to dice that are hosted on a card
+        if (die.parent) {
+            return false;
+        }
         return super.canAffect(die, context);
     }
 
