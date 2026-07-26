@@ -85,6 +85,9 @@
                 "[[side]]",
                 "1 [[artifice:class]]"
             ],
+            "magicCost": {
+                "artifice:class": 1
+            },
             "imageStub": "https://cdn.ashteki.com/ashes/maeve/photovoltaics.jpg"
         },
         {
@@ -101,6 +104,7 @@
                 "natural"
             ],
             "magicCost": {
+                "basic": 1,
                 "natural:class": 1
             },
             "conjurations": [
