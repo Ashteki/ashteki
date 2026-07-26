@@ -3,7 +3,7 @@
     "results": [
         {
             "name": "Indiri Aldair",
-            "stub": "indiri-aldir",
+            "stub": "indiri-aldair",
             "type": "Dragonborn",
             "threat": 4,
             "life": 30,
@@ -93,7 +93,7 @@
         },
         {
             "name": "Oppress",
-            "stub": "oppres",
+            "stub": "oppress",
             "type": "Aspect",
             "placement": "battlefield",
             "target": "left",
