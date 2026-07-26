@@ -51,7 +51,8 @@
                 "astral"
             ],
             "magicCost": {
-                "astral:class": 1
+                "astral:class": 1,
+                "basic": 1
             },
             "conjurations": [
                 {
