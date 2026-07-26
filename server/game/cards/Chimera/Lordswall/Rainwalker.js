@@ -7,17 +7,7 @@ class Rainwalker extends AspectCard {
         this.hordeAttack();
         this.feeble();
 
-        // Ephemeral
-        this.forcedReaction({
-            title: 'Ephemeral',
-            inexhaustible: true,
-            when: {
-                onCardExhausted: (event, context) => event.card === context.source
-            },
-            gameAction: ability.actions.destroy({ showMessage: false }),
-            message: 'Ephemeral: {0} is destroyed',
-            messageArgs: (context) => context.source
-        });
+        this.ephemeral();
     }
 }
 
