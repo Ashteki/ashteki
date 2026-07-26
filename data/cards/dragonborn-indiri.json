@@ -1,0 +1,129 @@
+{
+    "deckType": "dragonborn",
+    "results": [
+        {
+            "name": "Indiri Aldair",
+            "stub": "indiri-aldir",
+            "type": "Dragonborn",
+            "threat": 4,
+            "life": 30,
+            "ultimateCard": "indiri-ultimate",
+            "behaviorCard": "scatha-behaviour",
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/indiri-aldair.jpg"
+        },
+        {
+            "name": "Indiri Ready Spell",
+            "stub": "indiri-ultimate",
+            "type": "Ready Spell",
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/indiri-ultimate-%s.jpg"
+        },
+        {
+            "name": "Indiri Behaviour",
+            "stub": "scatha-behaviour",
+            "type": "Behaviour",
+            "imageStub": "https://cdn.ashteki.com/ashes/dragonborn-behavior.jpg"
+        },
+        {
+            "name": "Burning Arrow",
+            "stub": "burning-arrow",
+            "type": "Conjured Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 1,
+            "life": 1,
+            "blood": 0,
+            "copies": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/burning-arrow.jpg"
+        },
+        {
+            "name": "Whistling Arrow",
+            "stub": "whistling-arrow",
+            "type": "Conjured Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 1,
+            "life": 1,
+            "blood": 0,
+            "copies": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/whistling-arrow.jpg"
+        },
+        {
+            "name": "Entangling Arrow",
+            "stub": "entangling-arrow",
+            "type": "Conjured Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 1,
+            "life": 1,
+            "blood": 0,
+            "copies": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/entangling-arrow.jpg"
+        },
+        {
+            "name": "Godshield",
+            "stub": "godshield",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "right",
+            "attack": 2,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/godshield.jpg"
+        },
+        {
+            "name": "Fletch",
+            "stub": "fletch",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "attack": 1,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/fletch.jpg"
+        },
+        {
+            "name": "Quick Shot",
+            "stub": "quick-shot",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 2,
+            "life": 1,
+            "blood": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/quick-shot.jpg"
+        },
+        {
+            "name": "Oppress",
+            "stub": "oppres",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "left",
+            "attack": 4,
+            "life": 3,
+            "blood": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/oppress.jpg"
+        },
+        {
+            "name": "Volley of Arrows",
+            "stub": "volley-of-arrows",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 2,
+            "life": 2,
+            "blood": 2,
+            "statusCount": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/volley-of-arrows.jpg"
+        },
+        {
+            "name": "Lie In Wait",
+            "stub": "lie-in-wait",
+            "type": "Aspect",
+            "placement": "battlefield",
+            "target": "center",
+            "attack": 3,
+            "life": 2,
+            "blood": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/indiri/lie-in-wait.jpg"
+        }
+    ]
+}
