@@ -43,6 +43,18 @@ class AspectCard extends Card {
             effect: AbilityDsl.effects.feeble()
         });
     }
+    ephemeral() {
+        this.forcedReaction({
+            title: 'Ephemeral',
+            inexhaustible: true,
+            when: {
+                onCardExhausted: (event, context) => event.card === context.source
+            },
+            gameAction: AbilityDsl.actions.destroy({ showMessage: false }),
+            message: 'Ephemeral: {0} is destroyed',
+            messageArgs: (context) => context.source
+        });
+    }
     retreat() {
         this.forcedInterrupt({
             autoResolve: true,

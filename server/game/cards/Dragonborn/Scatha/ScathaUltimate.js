@@ -1,3 +1,4 @@
+const AbilityDsl = require('../../../abilitydsl');
 const UltimateCard = require('../../../solo/UltimateCard');
 
 class ScathaUltimate extends UltimateCard {
@@ -22,9 +23,14 @@ class ScathaUltimate extends UltimateCard {
             case 2:
                 return this.damageLeftmost(3);
             case 3:
-                return this.damageLeftmost(3, true);
+                return this.damageLeftmost(3, this.addAspectDefinition);
         }
     }
+
+    addAspectDefinition = {
+        alwaysTriggers: true,
+        gameAction: AbilityDsl.actions.addToThreatZone()
+    };
 }
 
 ScathaUltimate.id = 'scatha-ultimate';
