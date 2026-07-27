@@ -40,7 +40,7 @@ const SelectDeckModal = ({ gameFormat, newGameType, onClose, onDeckSelected, onC
         dualDuelDecks: state.cards.dualDuelDecks,
         oneCollectionDecks: state.cards.oneCollectionDecks,
         ascendancyDecks: state.cards.ascendancyDecks?.filter((d) => showRestricted || !d.restricted),
-        dragonbornDecks: state.cards.dragonbornDecks
+        dragonbornDecks: state.cards.dragonbornDecks?.filter((d) => showRestricted || !d.restricted)
     }));
     const [pbFilter, setPbFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
