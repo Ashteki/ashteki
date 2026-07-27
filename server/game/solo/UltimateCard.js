@@ -1,5 +1,5 @@
+const { Magic } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
-const ThenAbility = require('../ThenAbility');
 const PvEReadySpell = require('./PvEReadySpell');
 
 class UltimateCard extends PvEReadySpell {
@@ -30,9 +30,13 @@ class UltimateCard extends PvEReadySpell {
         });
     }
 
-    // internal utility method for building a behaviour ability
-    ultimate(properties) {
-        return new ThenAbility(this.game, this.owner.phoenixborn, properties);
+    raiseBasicDragonDice(numDice) {
+        return this.ultimate({
+            gameAction: AbilityDsl.actions.raiseDie((context) => ({
+                target: context.source.owner.getBasicDice(Magic.Dragon, numDice),
+                showMessage: true
+            }))
+        });
     }
 }
 

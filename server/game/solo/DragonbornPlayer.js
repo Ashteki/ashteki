@@ -25,6 +25,19 @@ class DragonbornPlayer extends ChimeraPlayer {
         const ultAbility = this.ultimate.getProgressAbility(this.chimeraPhase);
         this.game.cardUsed(this.ultimate.createSnapshot(), this);
         const context = ultAbility.createContext(this);
+
+        this.game.queueUserAlert(context, {
+            style: 'danger',
+            promptTitle: 'Dragon Phase',
+            menuTitle: 'Dragonborn resolves the Progress Ability of their Ready Spell',
+            controls: [
+                {
+                    type: 'targeting',
+                    source: this.ultimate.getShortSummary()
+                }
+            ]
+        });
+
         this.game.resolveAbility(context);
     }
 
@@ -37,6 +50,12 @@ class DragonbornPlayer extends ChimeraPlayer {
         const unexhaustAbility = this.ultimate.getUnexhaustAbility();
         const context = unexhaustAbility.createContext(this);
         this.game.resolveAbility(context);
+    }
+
+    getRandomArrow() {
+        const arrows = this.archives.filter((c) => c.id.includes('arrow'));
+        const randomIndex = Math.floor(Math.random() * arrows.length);
+        return arrows[randomIndex].id;
     }
 }
 

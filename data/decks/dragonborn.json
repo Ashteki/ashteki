@@ -54,5 +54,76 @@
       }
     ],
     "conjurations": []
+  },
+  {
+    "precon_id": 502,
+    "premium": true,
+    "restricted": true,
+    "mode": "dragonborn",
+    "name": "Indiri Aldair",
+    "phoenixborn": [
+      {
+        "id": "indiri-aldair",
+        "count": 1
+      }
+    ],
+    "ultimate": [
+      {
+        "id": "indiri-ultimate",
+        "count": 1
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "scatha-behaviour",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "dragon",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "fletch",
+        "count": 3
+      },
+      {
+        "id": "godshield",
+        "count": 3
+      },
+      {
+        "id": "quick-shot",
+        "count": 3
+      },
+      {
+        "id": "oppress",
+        "count": 3
+      },
+      {
+        "id": "volley-of-arrows",
+        "count": 3
+      },
+      {
+        "id": "lie-in-wait",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "burning-arrow",
+        "count": 2
+      },
+      {
+        "id": "whistling-arrow",
+        "count": 2
+      },
+      {
+        "id": "entangling-arrow",
+        "count": 2
+      }
+    ]
   }
 ]

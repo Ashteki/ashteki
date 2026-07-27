@@ -59,7 +59,7 @@ class DragonbornTurn extends DummyTurn {
                         }
                     ]
                 });
-                // behaviourCard.handleBehaviourRoll(d12Roll);
+
                 behaviour.execute();
             })
         );

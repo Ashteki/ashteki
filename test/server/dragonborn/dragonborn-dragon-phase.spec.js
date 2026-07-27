@@ -91,6 +91,8 @@ describe('Dragonborn dragon phase', function () {
             this.player1.clickDone();
             expect(this.scathaKalani.status).toBe(1); // dragon phase addition for aspects
             expect(this.rampage.status).toBe(2);
+            // player alert
+            this.player1.clickOk();
             // trigger progress ready spell
             this.player1.clickCard(this.anchornaut);
             this.player1.clickCard(this.hammerKnight);
@@ -121,6 +123,9 @@ describe('Dragonborn dragon phase', function () {
             this.player1.endTurn();
             this.player1.clickDone();
 
+            // player alert
+            this.player1.clickOk();
+
             // progress spell ability
             expect(this.hammerKnight.damage).toBe(3);
             expect(this.player2.threatZone.length).toBe(3);
@@ -146,6 +151,9 @@ describe('Dragonborn dragon phase', function () {
             this.player1.player.actions.main = true;
             this.player1.endTurn();
             this.player1.clickDone();
+
+            // player alert
+            this.player1.clickOk();
 
             // progress spell ability
             expect(this.hammerKnight.damage).toBe(3);

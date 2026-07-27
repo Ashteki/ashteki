@@ -1,4 +1,4 @@
-const { Level, BattlefieldTypes, CardType } = require('../../constants');
+const { BattlefieldTypes, CardType } = require('../../constants');
 const AbilityDsl = require('../abilitydsl');
 const Card = require('../Card');
 const ThenAbility = require('../ThenAbility');
@@ -10,6 +10,11 @@ class PvEReadySpell extends Card {
 
     // internal utility method for building a behaviour ability
     behaviour(properties) {
+        return new ThenAbility(this.game, this.owner.phoenixborn, properties);
+    }
+
+    // internal utility method for building an ultimate ability
+    ultimate(properties) {
         return new ThenAbility(this.game, this.owner.phoenixborn, properties);
     }
 
@@ -92,7 +97,7 @@ class PvEReadySpell extends Card {
         return ability;
     }
 
-    damageLeftmost(amount, addAspect) {
+    damageLeftmost(amount, thenDefinition) {
         const spec = {
             target: {
                 mode: 'auto',
@@ -100,11 +105,8 @@ class PvEReadySpell extends Card {
                 gameAction: AbilityDsl.actions.dealDamage({ amount: amount })
             }
         };
-        if (addAspect) {
-            spec.then = ({
-                alwaysTriggers: true,
-                gameAction: AbilityDsl.actions.addToThreatZone()
-            })
+        if (thenDefinition) {
+            spec.then = thenDefinition;
         }
         const ability = this.ultimate(spec);
 
