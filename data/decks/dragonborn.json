@@ -58,6 +58,7 @@
   {
     "precon_id": 502,
     "premium": true,
+    "restricted": true,
     "mode": "dragonborn",
     "name": "Indiri Aldair",
     "phoenixborn": [
