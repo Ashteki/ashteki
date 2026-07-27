@@ -14,7 +14,8 @@ class CalamityGolem extends Card {
             target: {
                 optional: true,
                 title: 'Rancor',
-                activePromptTitle: 'Choose a unit to deal damage to',
+                activePromptTitle: (context) =>
+                    'Choose a card to deal' + context.source.damage + 'damage to',
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
                 gameAction: ability.actions.dealDamage((context) => ({

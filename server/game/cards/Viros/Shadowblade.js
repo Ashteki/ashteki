@@ -10,14 +10,14 @@ class Shadowblade extends Card {
             gameAction: ability.actions.draw({ amount: 2 }),
             then: {
                 target: {
-                    activePromptTitle: 'Choose a unit to receive damage',
+                    activePromptTitle: 'Choose a unit to receive 1 damage',
                     cardType: BattlefieldTypes,
                     controller: 'opponent',
                     gameAction: ability.actions.dealDamage((context) => ({ amount: 1 }))
                 },
                 then: (preThenContext) => ({
                     target: {
-                        activePromptTitle: 'Choose another to receive damage',
+                        activePromptTitle: 'Choose another to receive 1 damage',
                         cardCondition: (card, context) => card !== preThenContext.target,
                         cardType: BattlefieldTypes,
                         controller: 'opponent',
