@@ -60,7 +60,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         name: `${username}'s game`,
         password: '',
         label: '',
-        allowSpectators: newGameType !== 'dragonborn',
+        allowSpectators: true,
         gameType: defaultGameType || 'casual',
         newGameType: newGameType,
         gameFormat: isSolo ? 'standard' : 'constructed',
