@@ -42,6 +42,16 @@ const CardsPage = () => {
                         >
                             Chimera Cards
                         </ToggleButton>
+                        <ToggleButton
+                            key={'rad-2'}
+                            id={`radio-2`}
+                            type='radio'
+                            value='dragonborn'
+                            onChange={() => setDeckType('dragonborn')}
+                            className='mini def'
+                        >
+                            Dragonborn Cards
+                        </ToggleButton>
                     </ToggleButtonGroup>
 
                     <Form.Control
