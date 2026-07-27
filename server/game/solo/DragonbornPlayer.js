@@ -38,6 +38,12 @@ class DragonbornPlayer extends ChimeraPlayer {
         const context = unexhaustAbility.createContext(this);
         this.game.resolveAbility(context);
     }
+
+    getRandomArrow() {
+        const arrows = this.archives.filter((c) => c.id.includes('arrow'));
+        const randomIndex = Math.floor(Math.random() * arrows.length);
+        return arrows[randomIndex].id;
+    }
 }
 
 module.exports = DragonbornPlayer;

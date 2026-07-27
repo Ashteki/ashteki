@@ -1,29 +1,44 @@
+const AbilityDsl = require('../../../abilitydsl');
 const UltimateCard = require('../../../solo/UltimateCard');
 
 class IndiriUltimate extends UltimateCard {
+    // dragonborn ultimate is Db activated/status ability each turn
     getUltimateAbility(phase) {
         switch (phase) {
             case 1:
-                // lower 1 die
-                return this.lowerOpponentsDice(1);
+                return this.raiseBasicDragonDice(1);
             case 2:
-                // deal 1 damage to rightmost unit or pb
-                return this.pbOrRightmostDamage();
+                return this.raiseBasicDragonDice(1);
             case 3:
-                // mill or damage
-                return this.millOrDamage();
+                return this.raiseBasicDragonDice(2);
         }
     }
 
     getProgressAbility(phase) {
         switch (phase) {
             case 1:
-                return this.aoEDamage(1, 'Dragonborn Ready Spell');
+                return this.damageLeftmost(2, this.getSummonArrowDefinition(1));
             case 2:
-                return this.damageLeftmost(3);
+                return this.damageLeftmost(3, this.getSummonArrowDefinition(2));
             case 3:
-                return this.damageLeftmost(3, true);
+                return this.ultimate(this.getSummonArrowDefinition(3));
         }
+    }
+
+    getSummonArrowDefinition(numArrows) {
+        const count = Math.min(
+            numArrows,
+            this.owner.archives.filter((c) => c.id.includes('arrow')).length
+        );
+        return {
+            alwaysTriggers: true,
+            gameAction: AbilityDsl.actions.sequentialForEach({
+                num: count,
+                action: AbilityDsl.actions.summon((context) => ({
+                    conjuration: context.player.getRandomArrow()
+                }))
+            })
+        };
     }
 }
 
