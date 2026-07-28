@@ -47,13 +47,12 @@ describe('Rejuvenate', function () {
                     dicepool: ['natural', 'natural', 'charm']
                 }
             });
-
-            this.mistSpirit.tokens.exhaustion = 1;
-            this.ironWorker.tokens.exhaustion = 1;
-            this.rejuvenate.tokens.status = 3;
         });
 
         it('removes one exhaustion from a conjuration ', function () {
+            this.mistSpirit.tokens.exhaustion = 1;
+            this.ironWorker.tokens.exhaustion = 1;
+            this.rejuvenate.tokens.status = 3;
             expect(this.rejuvenate.status).toBe(3);
 
             this.player1.clickCard(this.rejuvenate);
@@ -66,6 +65,18 @@ describe('Rejuvenate', function () {
             this.player1.clickCard(this.mistSpirit);
             expect(this.mistSpirit.exhausted).toBe(false);
             expect(this.rejuvenate.status).toBe(0);
+        });
+
+        it('with no exhausted conjuration ', function () {
+            this.rejuvenate.tokens.status = 3;
+            expect(this.rejuvenate.status).toBe(3);
+
+            this.player1.clickCard(this.rejuvenate);
+            this.player1.clickPrompt('Rejuvenate');
+            this.player1.clickNo();
+
+            expect(this.rejuvenate.status).toBe(3);
+            expect(this.player1).toHaveDefaultPrompt();
         });
     });
 });
