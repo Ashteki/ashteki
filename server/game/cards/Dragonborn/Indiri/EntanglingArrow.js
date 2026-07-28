@@ -15,7 +15,8 @@ class EntanglingArrow extends AspectCard {
             },
             condition: (context) => context.source.controller.opponent.activeNonBasicDiceCount > 0,
             target: {
-                activePromptTitle: 'Choose dice to lower',
+                activePromptTitle: (context) =>
+                    `Choose ${this.getLowerCount(context)} dice to lower`,
                 player: 'opponent',
                 targetsPlayer: true,
                 toSelect: 'die',
