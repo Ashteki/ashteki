@@ -26,6 +26,15 @@ class Rejuvenate extends Card {
                 ability.costs.dice([new DiceCount(1, Level.Basic)]),
                 ability.costs.loseAllStatus()
             ],
+            getWarnings: (context) => {
+                if (
+                    context.player.unitsInPlay.filter(
+                        (c) => c.type === CardType.Conjuration && c.exhausted
+                    ).length < 1
+                ) {
+                    return "You don't have an exhausted conjuration in play";
+                }
+            },
             location: 'spellboard',
             target: {
                 activePromptTitle: 'Choose a conjuration to rejuvenate',
