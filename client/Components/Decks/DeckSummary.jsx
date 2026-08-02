@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faList } from '@fortawesome/free-solid-svg-icons';
 import { faCopy, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
-// import DeckDice from './DeckDice';
-
 import DeckStatus from './DeckStatus';
 import { ashesDbShareUrl, ashesLiveShareUrl } from '../../util';
 import { useDispatch } from 'react-redux';

@@ -8,7 +8,7 @@ const Zoomable = ({ children, card }) => {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     return (
-        <div>
+        <>
             <span
                 onMouseMove={(event) => {
                     let y = event.clientY;
@@ -36,7 +36,7 @@ const Zoomable = ({ children, card }) => {
                     <img className='img-fluid' src={pbImage} />
                 </div>
             )}
-        </div>
+        </>
     );
 };
 
