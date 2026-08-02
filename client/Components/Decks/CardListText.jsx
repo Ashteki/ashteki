@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHand, faLink } from '@fortawesome/free-solid-svg-icons';
-import CardImage from '../GameBoard/CardImage';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
+import Zoomable from './Zoomable';
 
 const CardListText = ({ deckCards, highlight, onFFClick }) => {
-    let [zoomCard, setZoomCard] = useState(null);
-    let [mousePos, setMousePosition] = useState({ x: 0, y: 0 });
-
     const usesHighlightMagic = (card) => {
         return card.card.dice?.includes(highlight) || card.card.altDice?.includes(highlight);
     };
@@ -67,23 +64,9 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
                 cards.push(
                     <div className='card-list-text' key={'text-' + card.card.id}>
                         <span className={countClass}>{card.count + 'x '}</span>
-                        <span
-                            className={linkClasses}
-                            onMouseOver={() => setZoomCard(card)}
-                            onMouseMove={(event) => {
-                                let y = event.clientY;
-                                let yPlusHeight = y + 420;
-
-                                if (yPlusHeight >= window.innerHeight) {
-                                    y -= yPlusHeight - window.innerHeight;
-                                }
-
-                                setMousePosition({ x: event.clientX, y: y });
-                            }}
-                            onMouseOut={() => setZoomCard(null)}
-                        >
-                            {card.card.name}
-                        </span>
+                        <Zoomable card={card.card}>
+                            <span className={linkClasses}>{card.card.name}</span>
+                        </Zoomable>
                         &nbsp;
                         {chainedIcon}
                     </div>
@@ -105,19 +88,7 @@ const CardListText = ({ deckCards, highlight, onFFClick }) => {
     };
 
     return (
-        <>
-            {zoomCard && (
-                <div
-                    className='archon-zoom'
-                    style={{ left: mousePos.x + 5 + 'px', top: mousePos.y + 'px' }}
-                >
-                    <CardImage
-                        card={Object.assign({}, zoomCard, zoomCard.card)}
-                    />
-                </div>
-            )}
-            <div className='cards'>{getCardsToRender(deckCards)}</div>
-        </>
+        <div className='cards'>{getCardsToRender(deckCards)}</div>
     );
 };
 
