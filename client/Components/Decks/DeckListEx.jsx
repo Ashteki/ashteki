@@ -10,6 +10,7 @@ import DeckDice from './DeckDice';
 import './DeckListEx.scss';
 import CardListText from './CardListText';
 import { Button } from 'react-bootstrap';
+import Zoomable from './Zoomable';
 
 const DeckListEx = ({ decks, onDeckSelected, showWinRate, allowInvalidSelection }) => {
     const dispatch = useDispatch();
@@ -64,16 +65,23 @@ const DeckListEx = ({ decks, onDeckSelected, showWinRate, allowInvalidSelection 
                             className='decklistex-header card-header'
                             onClick={(event) => doClick(event, d)}
                         >
-                            <div
-                                className={`decklist-entry-image ${idClass}`}
-                                title={d.phoenixborn[0].card.name}
-                            >
-                                <span className='sr-only'>{d.phoenixborn[0].card.name}</span>
-                            </div>
+                            <Zoomable card={d?.phoenixborn[0]?.card}>
+                                <div
+                                    className={`decklist-entry-image ${idClass}`}
+                                >
+                                    <span className='sr-only'>{d.phoenixborn[0].card.name}</span>
+                                </div>
+                            </Zoomable>
                             <div className='decklistex-header-content'>
-                                {/* <div className={`decklist-entry-image ${row.phoenixborn[0].id}`}></div> */}
                                 <div>
-                                    <button className='decklist-title' tabIndex={0}>{d.name}</button>&nbsp;
+                                    <button className='decklist-title deck-title' tabIndex={0}>{d.name}</button>&nbsp;
+
+                                    <span className='deck-pb-name'>
+                                        <Zoomable card={d?.phoenixborn[0]?.card}>
+                                            {d?.phoenixborn[0]?.card?.name}
+                                        </Zoomable>
+                                    </span>
+                                    &nbsp;
                                     {icon}
                                     <br />
                                     {d.mode !== 'chimera' && (
