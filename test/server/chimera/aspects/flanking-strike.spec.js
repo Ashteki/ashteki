@@ -34,6 +34,8 @@ describe('Flanking Strike In Play', function () {
 
         this.player1.clickDone(); // guard
         this.player1.clickNo(); // counter
+        this.player1.clickOk();
+
         expect(this.anchornaut.location).toBe('discard'); // killed by attack
         expect(this.ironWorker.location).toBe('discard'); // destroyed
         expect(this.hammerKnight.location).toBe('play area');

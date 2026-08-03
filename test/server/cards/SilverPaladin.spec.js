@@ -30,6 +30,7 @@ describe('Silver Paladin', function () {
             expect(this.player1).toBeAbleToSelect(this.mistSpirit);
             expect(this.player1).not.toBeAbleToSelect(this.ironWorker);
             this.player1.clickCard(this.mistSpirit);
+            this.player2.clickOk();
 
             // exhalt
             this.player1.clickDie(0); // divine?
@@ -165,6 +166,7 @@ describe('Silver Paladin', function () {
 
             this.player1.clickDie(0);
             this.player1.clickCard(this.anchornaut);
+            this.player1.clickOk();
 
             expect(this.ashSpirit.location).toBe('archives');
             expect(this.player1).toHaveDefaultPrompt();

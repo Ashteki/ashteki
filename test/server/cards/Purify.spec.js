@@ -22,6 +22,7 @@ describe('Purify Action Spell', function () {
             this.player1.clickDie(0);
             this.player1.clickCard(this.anchornaut);
             this.player1.clickCard(this.mistSpirit);
+            this.player2.clickOk();
             expect(this.anchornaut.location).toBe('hand');
             expect(this.mistSpirit.location).toBe('archives');
             expect(this.purify.location).toBe('discard');

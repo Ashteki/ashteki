@@ -35,6 +35,7 @@ describe('Erratic Strike Aspect', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(1); // set attack roll for erratic strike to odd
 
             this.player1.endTurn();
+            this.player1.clickOk();
 
             expect(this.erraticStrike.isAttacker).toBe(true);
             expect(this.game.attackState.isPBAttack).toBe(true);
@@ -47,6 +48,7 @@ describe('Erratic Strike Aspect', function () {
             spyOn(Dice, 'd12Roll').and.returnValue(4); // set attack roll for erratic strike to odd
 
             this.player1.endTurn();
+            this.player1.clickOk();
 
             expect(this.erraticStrike.isAttacker).toBe(true);
             expect(this.game.attackState.isPBAttack).toBe(true);

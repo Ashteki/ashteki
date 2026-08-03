@@ -38,6 +38,7 @@ describe('AfterImage reaction', function () {
         this.player1.clickDie(2);
         this.player1.clickDone();
         this.player1.clickCard(this.wolfpackLeader);
+        this.player2.clickOk();
 
         this.player2.clickCard(this.afterimage);
         this.player2.clickCard(this.seasideRaven);

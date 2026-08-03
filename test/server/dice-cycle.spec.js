@@ -57,6 +57,7 @@ describe('Dice cycle', function () {
             this.player2.clickPrompt('Done');
 
             this.player2.clickCard(this.mistSpirit); // destroy
+            this.player1.clickOk();
 
             const target = this.player1.dicepool[2];
 

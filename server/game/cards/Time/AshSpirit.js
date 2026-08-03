@@ -9,7 +9,7 @@ class AshSpirit extends Card {
             target: {
                 cardType: BattlefieldTypes,
                 autoTarget: (context) => context.event.triggeringEvent.damageEvent.damageSource,
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy({ showAlert: true })
             }
         });
 

@@ -10,7 +10,7 @@ class EternityFlame extends Card {
                 activePromptTitle: 'Choose a unit with a charm die to destroy',
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy({ showAlert: true })
             },
             then: {
                 target: {

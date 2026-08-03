@@ -46,6 +46,8 @@ describe('Sword of Virtue action spell', function () {
         expect(this.player1).not.toBeAbleToSelect(this.coalRoarkwin);
         this.player1.clickCard(this.anchornaut);
         this.player1.clickPrompt('Destroy');
+        this.player2.clickOk();
+
         expect(this.anchornaut.location).toBe('discard');
     });
 });

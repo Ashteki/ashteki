@@ -11,7 +11,7 @@ class SilverPaladin extends Card {
                 cardType: BattlefieldTypes,
                 controller: 'opponent',
                 cardCondition: (card) => card.attack <= 1,
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy({ showAlert: true })
             }
         });
 

@@ -10,7 +10,10 @@ class DeathKnell extends AspectCard {
                 mode: 'auto',
                 gameAction: ability.actions.conditional({
                     condition: (context) => context.source.status === 0,
-                    trueGameAction: ability.actions.destroy()
+                    trueGameAction: ability.actions.destroy({
+                        showAlert: true
+
+                    })
                 })
             }
         });

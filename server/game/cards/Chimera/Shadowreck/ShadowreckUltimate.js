@@ -12,7 +12,9 @@ class ShadowreckUltimate extends UltimateCard {
                         mode: 'auto',
                         // aim: 'left',
                         ignoreTargetCheck: true,
-                        gameAction: AbilityDsl.actions.destroy()
+                        gameAction: AbilityDsl.actions.destroy({
+                            showAlert: true
+                        })
                     },
                     then: {
                         alwaysTriggers: true,
