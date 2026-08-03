@@ -20,7 +20,10 @@ class ErraticStrike extends AspectCard {
                     cardCondition: (card) =>
                         thenContext.dieResult % 2 == 0 ? card.exhausted : card.damage > 0,
                     aim: 'left',
-                    gameAction: ability.actions.destroy({ showMessage: true })
+                    gameAction: ability.actions.destroy({
+                        showMessage: true,
+                        showAlert: true
+                    })
                 }
             })
         });

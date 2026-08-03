@@ -40,6 +40,8 @@ describe('Whiplash Aspect', function () {
             expect(this.anchornaut.location).toBe('play area');
             expect(this.fluteMage.damage).toBe(0);
             expect(this.whiplash.facedown).toBe(false);
+
+            expect(this.player1).toHaveDefaultPrompt();
         });
 
         it('damage leftmost un-wounded enemy unit if no wounds found', function () {

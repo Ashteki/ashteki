@@ -10,7 +10,7 @@ class Captivate extends Card {
                 activePromptTitle: 'Destroy a target exhausted unit with a charm die on it',
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.hasCharmDie && card.exhausted,
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy({ showAlert: true })
             }
         });
 
