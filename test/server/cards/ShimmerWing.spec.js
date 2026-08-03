@@ -38,6 +38,8 @@ describe('Summon Shimmer Wing', function () {
             expect(this.player1).not.toBeAbleToSelect(this.fluteMage);
             expect(this.player1).not.toBeAbleToSelect(this.anchornaut);
             this.player1.clickCard(this.hammerKnight);
+            this.player2.clickOk();
+
             expect(this.hammerKnight.location).toBe('discard');
             expect(this.coalRoarkwin.damage).toBe(2);
         });
