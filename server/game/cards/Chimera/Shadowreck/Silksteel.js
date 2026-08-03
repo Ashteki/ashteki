@@ -21,7 +21,8 @@ class Silksteel extends AspectCard {
                 condition: (context) => context.targets.webbed,
                 trueGameAction: ability.actions.destroy((context) => ({
                     target: context.targets.webbed,
-                    showMessage: true
+                    showMessage: true,
+                    showAlert: true
                 })),
                 falseGameAction: ability.actions.attachConjuredAlteration((context) => ({
                     conjuredAlteration: 'webbed',

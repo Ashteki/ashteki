@@ -34,12 +34,15 @@ describe('Whiplash Aspect', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             expect(this.player2).toHavePrompt('Alerting opponent');
-            this.player1.clickPrompt('Ok');
+            this.player1.clickOk();
+            this.player1.clickOk();
 
             expect(this.ironWorker.location).toBe('discard');
             expect(this.anchornaut.location).toBe('play area');
             expect(this.fluteMage.damage).toBe(0);
             expect(this.whiplash.facedown).toBe(false);
+
+            expect(this.player1).toHaveDefaultPrompt();
         });
 
         it('damage leftmost un-wounded enemy unit if no wounds found', function () {

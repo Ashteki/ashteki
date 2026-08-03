@@ -11,7 +11,9 @@ class SeasideRaven extends Card {
                 cardType: BattlefieldTypes,
                 controller: 'any',
                 cardCondition: (card) => card.life <= 2,
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy((context) => ({
+                    showAlert: !!context.target
+                }))
             }
         });
 

@@ -12,7 +12,7 @@ class ShatterPulse extends Card {
             target: {
                 activePromptTitle: 'Choose a unit to destroy',
                 cardType: BattlefieldTypes,
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy({ showAlert: true })
             },
             then: {
                 target: {

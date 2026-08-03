@@ -52,6 +52,7 @@ describe('AshSpirit', function () {
 
             expect(this.player1).toHavePrompt('Aftershock 1');
             this.player1.clickCard(this.livingDoll);
+            this.player1.clickOk();
 
             expect(this.hammerKnight.location).toBe('discard');
             expect(this.ashSpirit.location).toBe('archives');
@@ -67,6 +68,7 @@ describe('AshSpirit', function () {
             this.player2.clickPrompt('No'); // no counter
 
             this.player2.clickNone(); // no redirect from overkill damage
+            this.player1.clickOk();
 
             expect(this.ironRhino.location).toBe('archives');
             expect(this.ashSpirit.location).toBe('archives');
@@ -85,7 +87,7 @@ describe('AshSpirit', function () {
 
             expect(this.player1).toHavePrompt('Aftershock 1');
             this.player1.clickCard(this.livingDoll);
-
+            this.player1.clickOk();
             expect(this.hammerKnight.location).toBe('discard');
             expect(this.ashSpirit.location).toBe('archives');
             expect(this.livingDoll.damage).toBe(1);
@@ -131,6 +133,7 @@ describe('AshSpirit', function () {
 
             this.player2.clickPrompt('Done'); // no blocker
             this.player2.clickPrompt('No'); // no counter
+            this.player1.clickOk();
 
             expect(this.cerasaurusMount.location).toBe('archives');
             expect(this.ashSpirit.location).toBe('archives');

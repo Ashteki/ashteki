@@ -33,6 +33,7 @@ describe('Captivate', function () {
             expect(this.player1).not.toBeAbleToSelect(this.hammerKnight);
 
             this.player1.clickCard(this.ironWorker);
+            this.player2.clickOk();
 
             expect(this.ironWorker.location).toBe('discard');
         });

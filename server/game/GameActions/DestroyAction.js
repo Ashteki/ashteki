@@ -6,13 +6,14 @@ class DestroyAction extends CardGameAction {
         super(propertyFactory);
         this.name = isSacrifice ? 'sacrifice' : 'destroy';
         this.effectMsg = isSacrifice ? 'sacrifice {0}' : 'destroy {0}';
-        this.showMessage = true;
     }
 
     setDefaultProperties() {
         this.damageEvent = null;
         this.tokenEvent = null;
         this.purge = false;
+        this.showMessage = true;
+        this.showAlert = false;
     }
 
     setup() {
@@ -52,6 +53,21 @@ class DestroyAction extends CardGameAction {
             }
             if (this.showMessage) {
                 event.context.game.addMessage(message, card);
+            }
+            if (this.showAlert) {
+                context.game.queueUserAlert(context, {
+                    style: 'danger',
+                    // timed: true,
+                    promptTitle: 'Unit Destroyed',
+                    controls: [
+                        {
+                            type: 'targeting',
+                            source: context.source.getShortSummary(),
+                            targets: [event.card.getShortSummary()]
+                        }
+                    ],
+                    menuTitle: event.card.name + ' has been destroyed by ' + context.source.name + '!'
+                });
             }
             event.context.game.onUnitDestroyed(card);
             event.card.moribund = true;

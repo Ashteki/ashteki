@@ -7,7 +7,9 @@ class FlankingStrike extends AspectCard {
         this.afterDestroysFighting({
             target: {
                 mode: 'auto',
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy({
+                    showAlert: true
+                })
             }
         });
     }

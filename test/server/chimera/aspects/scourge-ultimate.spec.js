@@ -35,6 +35,7 @@ describe('Scourge ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
+            this.player1.clickOk();
 
             // triggers effect for ult 1
             expect(this.blueJaguar.location).toBe('archives');
@@ -66,6 +67,7 @@ describe('Scourge ultimate', function () {
             this.player1.endTurn();
             // informs real player of behaviour roll
             this.player1.clickPrompt('Ok');
+            this.player1.clickOk();
 
             // triggers effect for ult 1
             expect(this.blueJaguar.location).toBe('archives');

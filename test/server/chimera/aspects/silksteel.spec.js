@@ -81,7 +81,8 @@ describe('Silksteel Aspect', function () {
             expect(this.anchornaut.location).toBe('play area');
 
             // informs real player of behaviour roll
-            this.player1.clickPrompt('Ok');
+            this.player1.clickOk();
+            this.player1.clickOk();
             expect(this.falseDemon.upgrades.length).toBe(0);
             expect(this.anchornaut.location).toBe('discard');
             expect(this.webbed.location).toBe('archives');

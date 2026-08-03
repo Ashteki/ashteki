@@ -20,7 +20,7 @@ class Purify extends Card {
                     activePromptTitle: 'Choose a conjuration to destroy',
                     controller: 'opponent',
                     cardType: [CardType.Conjuration, ...AspectTypes],
-                    gameAction: ability.actions.destroy()
+                    gameAction: ability.actions.destroy({ showAlert: true })
                 }
             }
         });

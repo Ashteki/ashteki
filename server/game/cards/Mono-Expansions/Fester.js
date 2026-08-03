@@ -8,7 +8,7 @@ class Fester extends Card {
             target: {
                 cardType: BattlefieldTypes,
                 cardCondition: (card) => card.damage > 0,
-                gameAction: ability.actions.destroy()
+                gameAction: ability.actions.destroy({ showAlert: true })
             }
         });
     }
