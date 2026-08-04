@@ -22,7 +22,9 @@ export const Decks = Object.freeze({
     ResyncDeck: 'RESYNC_DECK',
     DeckResynced: 'DECK_RESYNCED',
     FaveDeck: 'FAVE_DECK',
-    DeckFaved: 'DECK_FAVED'
+    DeckFaved: 'DECK_FAVED',
+    LinkDeck: 'LINK_DECK',
+    DeckLinked: 'DECK_LINKED'
 });
 
 export const UserAction = Object.freeze({

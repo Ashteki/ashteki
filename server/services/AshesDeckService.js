@@ -147,6 +147,18 @@ class AshesDeckService {
         return this.getById(response._id);
     }
 
+    async link(user, data) {
+        // is this an update
+        let response;
+        // update the deck data
+        response = await this.getById(data.id);
+        response.ashesLiveUuid = data.uuid;
+        // save the deck
+        this.update(response);
+
+        return this.getById(response._id);
+    }
+
     async getAshesLiveDeck(deck, resync) {
         try {
             // get by uuid (private share, or snapshot)
@@ -249,6 +261,7 @@ class AshesDeckService {
             cards: deck.cards,
             conjurations: deck.conjurations,
             notes: deck.notes,
+            ashesLiveUuid: deck.ashesLiveUuid,
             ashesLiveModified: deck.ashesLiveModified,
             favourite: deck.favourite,
             lastUpdated: new Date()
