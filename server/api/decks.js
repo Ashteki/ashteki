@@ -490,10 +490,18 @@ module.exports.init = function (server) {
 
             // deck.favourite = !deck.favourite;
             deck.favourite = req.body.favourite;
-
+            if (req.body.uuid) {
+                deck.ashesLiveUuid = req.body.uuid;
+            }
             deckService.update(deck);
 
-            res.send({ success: true, message: 'Faved', deckId: deck._id, isFave: deck.favourite });
+            res.send({
+                success: true,
+                message: 'Patched',
+                deckId: deck._id,
+                isFave: deck.favourite,
+                ashesLiveUuid: deck.ashesLiveUuid
+            });
         })
     );
 

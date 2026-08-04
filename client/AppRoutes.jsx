@@ -30,6 +30,7 @@ import TaggedGames from './pages/admin/TaggedGames';
 import UserAltAdmin from './pages/UserAltAdmin';
 import CardStatsAdmin from './pages/CardStatsAdmin';
 import ChimeraPage from './pages/ChimeraPage';
+import LinkDeck from './Components/Decks/LinkDeck';
 
 const AppRoutes = ({ currentGame, user }) => {
     const [searchParams] = useSearchParams();
@@ -78,6 +79,7 @@ const AppRoutes = ({ currentGame, user }) => {
             <Route path='/decks/add' element={<AddDeck isChimera={getParam('chimera')} />} />
             <Route path='/decks/edit' element={<EditDeck deckId={getParam('deckId')} />} />
             <Route path='/decks/import' element={<ImportDeck />} />
+            <Route path='/decks/link' element={<LinkDeck />} />
             <Route
                 path='/decks/chimera'
                 element={requirePermission('isSupporter', <ChimeraPage />)}

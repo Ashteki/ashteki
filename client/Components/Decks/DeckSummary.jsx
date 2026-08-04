@@ -12,14 +12,15 @@ import { ashesDbShareUrl, ashesLiveShareUrl } from '../../util';
 import { useDispatch } from 'react-redux';
 import { resyncDeck } from '../../redux/actions';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magicHover }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [showCardPictures, setShowCardPictures] = useState(false);
 
     if (!deck) return null;
-    const isChimera = deck.mode === 'chimera';
 
     const handleEditClick = () => {
         if (onEdit) {
@@ -38,6 +39,9 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
     };
     const handleUpdateClick = () => {
         dispatch(resyncDeck(deck));
+    };
+    const handleLinkClick = () => {
+        navigate('/decks/link');
     };
 
     const ashesLiveLink =
@@ -114,6 +118,11 @@ const DeckSummary = ({ deck, editMode, allowEdit, onEdit, onCopy, onDelete, magi
                                 {!deck.precon_id && (
                                     <Dropdown.Item href='#' onClick={handleDeleteClick}>
                                         <FontAwesomeIcon icon={faTrashCan} /> Delete
+                                    </Dropdown.Item>
+                                )}
+                                {!deck.ashesLiveUuid && (
+                                    <Dropdown.Item href='#' onClick={handleLinkClick}>
+                                        <span className='phg-basic-magic'></span>&nbsp;Link
                                     </Dropdown.Item>
                                 )}
                             </Dropdown.Menu>

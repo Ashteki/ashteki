@@ -153,6 +153,24 @@ export function saveDeck(deck) {
     };
 }
 
+export function linkDeck(deckID, uuid, ashesDb) {
+    let data = JSON.stringify({
+        uuid: uuid,
+        ashesDb: ashesDb,
+        deckId: deckID
+    });
+
+    return {
+        types: [Decks.LinkDeck, Decks.DeckLinked],
+        shouldCallAPI: () => true,
+        APIParams: {
+            url: `/api/decks/${deckID}`,
+            type: 'PATCH',
+            data: data
+        }
+    };
+}
+
 export function importDeck(deck) {
     let str = JSON.stringify({
         uuid: deck.uuid,
