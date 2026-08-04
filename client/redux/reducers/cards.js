@@ -505,6 +505,12 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
             });
 
             return newState;
+        case Decks.LinkDeck:
+            newState = Object.assign({}, state, {
+                deckSaved: false
+            });
+
+            return newState;
         case Decks.DeckImported:
             decks = state.decks;
             decks.unshift(action.response.deck);
@@ -518,6 +524,18 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
 
             return newState;
 
+        case Decks.DeckLinked:
+            newState = Object.assign({}, state, {
+                deckSaved: false
+            });
+
+            var patched = newState.decks.find((deck) => {
+                return deck._id === action.response.deckId;
+            });
+
+            patched.ashesLiveUuid = action.response.ashesLiveUuid;
+
+            return newState;
         case Decks.DeckResynced:
             newState = Object.assign({}, state, {
                 deckReload: !state.deckReload
@@ -553,11 +571,11 @@ export default function (state = { decks: [], myChimeraDecks: [], cards: {} }, a
         case 'DECK_FAVED':
             newState = Object.assign({}, state, {});
 
-            var faved = newState.decks.find((deck) => {
+            var patched = newState.decks.find((deck) => {
                 return deck._id === action.response.deckId;
             });
 
-            faved.favourite = action.response.isFave;
+            patched.favourite = action.response.isFave;
 
             return newState;
 
