@@ -24,18 +24,44 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <div className='advice'>
                         Note: Changes made here will only affect the current game.
                     </div>
+                    <h3>Speed</h3>
                     <Form.Group>
                         <Form.Check
-                            id='orderForcedAbilities'
-                            name='optionSettings.orderForcedAbilities'
-                            label='Prompt to order simultaneous abilities'
+                            id='allowAutoCancel'
+                            name='gameOptions.allowAutoCancel'
+                            label="Allow card switching without pressing 'Cancel' button"
                             type='switch'
-                            checked={optionSettings.orderForcedAbilities}
+                            checked={optionSettings.allowAutoCancel}
                             onChange={(event) =>
-                                onOptionSettingToggle('orderForcedAbilities', event.target.checked)
+                                onOptionSettingToggle('allowAutoCancel', event.target.checked)
                             }
                         />
                     </Form.Group>
+                    <Form.Group>
+                        <Form.Check
+                            id='confirmOneClick'
+                            name='gameOptions.confirmOneClick'
+                            label='Show a prompt to confirm player actions'
+                            type='switch'
+                            checked={optionSettings.confirmOneClick}
+                            onChange={(event) =>
+                                onOptionSettingToggle('confirmOneClick', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Check
+                            id='noAttackAlerts'
+                            name='gameOptions.noAttackAlerts'
+                            label="Don't alert on attacks (useful for blitz games)"
+                            type='switch'
+                            checked={optionSettings.noAttackAlerts}
+                            onChange={(event) =>
+                                onOptionSettingToggle('noAttackAlerts', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <h3>Convenience</h3>
                     <Form.Group>
                         <Form.Check
                             id='alwaysGroupTactics'
@@ -62,39 +88,17 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Check
-                            id='noAttackAlerts'
-                            name='gameOptions.noAttackAlerts'
-                            label="Don't alert on attacks (useful for blitz games)"
+                            id='orderForcedAbilities'
+                            name='optionSettings.orderForcedAbilities'
+                            label='Prompt to order simultaneous abilities'
                             type='switch'
-                            checked={optionSettings.noAttackAlerts}
+                            checked={optionSettings.orderForcedAbilities}
                             onChange={(event) =>
-                                onOptionSettingToggle('noAttackAlerts', event.target.checked)
+                                onOptionSettingToggle('orderForcedAbilities', event.target.checked)
                             }
                         />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Check
-                            id='noCardZoom'
-                            name='gameOptions.noCardZoom'
-                            label="Don't zoom cards on hover (long press to zoom)"
-                            type='switch'
-                            checked={noCardZoom}
-                            onChange={(event) =>
-                                dispatch(changeViewSetting('noCardZoom', event.target.checked))
-                            }
-                        />
-                    </Form.Group>                    <Form.Group>
-                        <Form.Check
-                            id='manualAlts'
-                            name='gameOptions.manualAlts'
-                            label="Don't use alt arts by default"
-                            type='switch'
-                            checked={optionSettings.manualAlts}
-                            onChange={(event) =>
-                                onOptionSettingToggle('manualAlts', event.target.checked)
-                            }
-                        />
-                    </Form.Group>
+                    <h3>Layout</h3>
                     <Form.Group>
                         <Form.Check
                             id='leftMode'
@@ -117,6 +121,30 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             onChange={(event) => {
                                 dispatch(changeViewSetting('compactLayout', event.target.checked));
                             }}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Check
+                            id='noCardZoom'
+                            name='gameOptions.noCardZoom'
+                            label="Don't zoom cards on hover (long press to zoom)"
+                            type='switch'
+                            checked={noCardZoom}
+                            onChange={(event) =>
+                                dispatch(changeViewSetting('noCardZoom', event.target.checked))
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Check
+                            id='manualAlts'
+                            name='gameOptions.manualAlts'
+                            label="Don't use alt arts by default"
+                            type='switch'
+                            checked={optionSettings.manualAlts}
+                            onChange={(event) =>
+                                onOptionSettingToggle('manualAlts', event.target.checked)
+                            }
                         />
                     </Form.Group>
                     <div className='bluffTimer'>
