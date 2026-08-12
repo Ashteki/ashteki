@@ -27,18 +27,6 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                     <h3>Speed</h3>
                     <Form.Group>
                         <Form.Check
-                            id='allowAutoCancel'
-                            name='gameOptions.allowAutoCancel'
-                            label="Allow card switching without pressing 'Cancel' button"
-                            type='switch'
-                            checked={optionSettings.allowAutoCancel}
-                            onChange={(event) =>
-                                onOptionSettingToggle('allowAutoCancel', event.target.checked)
-                            }
-                        />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Check
                             id='confirmOneClick'
                             name='gameOptions.confirmOneClick'
                             label='Show a prompt to confirm player actions'
@@ -46,6 +34,18 @@ const GameConfiguration = ({ optionSettings, onOptionSettingToggle }) => {
                             checked={optionSettings.confirmOneClick}
                             onChange={(event) =>
                                 onOptionSettingToggle('confirmOneClick', event.target.checked)
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Check
+                            id='allowAutoCancel'
+                            name='gameOptions.allowAutoCancel'
+                            label="Allow card switching without pressing 'Cancel' button"
+                            type='switch'
+                            checked={optionSettings.allowAutoCancel}
+                            onChange={(event) =>
+                                onOptionSettingToggle('allowAutoCancel', event.target.checked)
                             }
                         />
                     </Form.Group>

@@ -7,20 +7,20 @@ const InGameSettings = ({ formProps }) => {
         <Panel title='Game Settings'>
             <h3>Speed</h3>
             <Form.Check
-                id='allowAutoCancel'
-                name='gameOptions.allowAutoCancel'
-                label="Allow card switching without pressing 'Cancel' button"
-                type='switch'
-                checked={formProps.values.gameOptions.allowAutoCancel}
-                onChange={formProps.handleChange}
-                onBlur={formProps.handleBlur}
-            />
-            <Form.Check
                 id='confirmOneClick'
                 name='gameOptions.confirmOneClick'
                 label='Show a prompt to confirm player actions'
                 type='switch'
                 checked={formProps.values.gameOptions.confirmOneClick}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <Form.Check
+                id='allowAutoCancel'
+                name='gameOptions.allowAutoCancel'
+                label="Allow card switching without pressing 'Cancel' button"
+                type='switch'
+                checked={formProps.values.gameOptions.allowAutoCancel}
                 onChange={formProps.handleChange}
                 onBlur={formProps.handleBlur}
             />
