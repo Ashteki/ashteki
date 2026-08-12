@@ -5,24 +5,7 @@ import { Form } from 'react-bootstrap';
 const InGameSettings = ({ formProps }) => {
     return (
         <Panel title='Game Settings'>
-            <Form.Check
-                id='orderForcedAbilities'
-                name='gameOptions.orderForcedAbilities'
-                label='Prompt to order simultaneous abilities'
-                type='switch'
-                checked={formProps.values.gameOptions.orderForcedAbilities}
-                onChange={formProps.handleChange}
-                onBlur={formProps.handleBlur}
-            />
-            <Form.Check
-                id='confirmOneClick'
-                name='gameOptions.confirmOneClick'
-                label='Show a prompt when initiating 1-click abilities'
-                type='switch'
-                checked={formProps.values.gameOptions.confirmOneClick}
-                onChange={formProps.handleChange}
-                onBlur={formProps.handleBlur}
-            />
+            <h3>Speed</h3>
             <Form.Check
                 id='allowAutoCancel'
                 name='gameOptions.allowAutoCancel'
@@ -32,6 +15,25 @@ const InGameSettings = ({ formProps }) => {
                 onChange={formProps.handleChange}
                 onBlur={formProps.handleBlur}
             />
+            <Form.Check
+                id='confirmOneClick'
+                name='gameOptions.confirmOneClick'
+                label='Show a prompt to confirm player actions'
+                type='switch'
+                checked={formProps.values.gameOptions.confirmOneClick}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <Form.Check
+                id='noAttackAlerts'
+                name='gameOptions.noAttackAlerts'
+                label="Don't alert on attacks (useful for blitz games)"
+                type='switch'
+                checked={formProps.values.gameOptions.noAttackAlerts}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <h3>Convenience</h3>
             <Form.Check
                 id='alwaysGroupTactics'
                 name='gameOptions.alwaysGroupTactics'
@@ -51,11 +53,30 @@ const InGameSettings = ({ formProps }) => {
                 onBlur={formProps.handleBlur}
             />
             <Form.Check
-                id='noAttackAlerts'
-                name='gameOptions.noAttackAlerts'
-                label="Don't alert on attacks (useful for blitz games)"
+                id='orderForcedAbilities'
+                name='gameOptions.orderForcedAbilities'
+                label='Prompt to order simultaneous abilities'
                 type='switch'
-                checked={formProps.values.gameOptions.noAttackAlerts}
+                checked={formProps.values.gameOptions.orderForcedAbilities}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <h3>Layout</h3>
+            <Form.Check
+                id='leftMode'
+                name='gameOptions.leftMode'
+                label='Show the prompt area on left'
+                type='switch'
+                checked={formProps.values.gameOptions.leftMode}
+                onChange={formProps.handleChange}
+                onBlur={formProps.handleBlur}
+            />
+            <Form.Check
+                id='compactLayout'
+                name='gameOptions.compactLayout'
+                label='Use compact layout'
+                type='switch'
+                checked={formProps.values.gameOptions.compactLayout}
                 onChange={formProps.handleChange}
                 onBlur={formProps.handleBlur}
             />
@@ -77,24 +98,7 @@ const InGameSettings = ({ formProps }) => {
                 onChange={formProps.handleChange}
                 onBlur={formProps.handleBlur}
             />
-            <Form.Check
-                id='leftMode'
-                name='gameOptions.leftMode'
-                label='Show the prompt area on left'
-                type='switch'
-                checked={formProps.values.gameOptions.leftMode}
-                onChange={formProps.handleChange}
-                onBlur={formProps.handleBlur}
-            />
-            <Form.Check
-                id='compactLayout'
-                name='gameOptions.compactLayout'
-                label='Use compact layout'
-                type='switch'
-                checked={formProps.values.gameOptions.compactLayout}
-                onChange={formProps.handleChange}
-                onBlur={formProps.handleBlur}
-            />
+
         </Panel>
     );
 };
