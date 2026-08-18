@@ -5,7 +5,7 @@ class DragonbornPlayer extends ChimeraPlayer {
     constructor(id, user, owner, game, clockdetails) {
         super(id, user, owner, game, clockdetails);
         this.defenderStrategy = new ChimeraDefenceStrategy(this, game);
-        this.stamina = 3;
+        this.stamina = 2; // Dragonborn start with 2 stamina for 1 player game;
     }
     get isDragonborn() {
         return true;
