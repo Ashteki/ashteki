@@ -26,7 +26,7 @@ class TriggerUltimateAction extends CardGameAction {
                 menuTitle: 'Chimera uses its Ultimate ability!'
             });
             context.game.addAlert('danger', 'Chimera uses its Ultimate ability!');
-            event.card.tokens.redRains = 0;
+            event.card.tokens.redRains -= context.player.ultimateThreshold;
             context.game.addMessage(
                 '{0} red rains tokens removed from chimera',
                 context.player.ultimateThreshold
