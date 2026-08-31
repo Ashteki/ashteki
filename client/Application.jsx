@@ -110,10 +110,10 @@ function Application() {
     }, [windowBlurred, blinkTab]);
 
     useEffect(() => {
-        if (user?.patreon?.needs_relink) {
+        if (user?.patreonNeedsRelink || user?.patreon?.needs_relink) {
             setShowPatreonRelinker(true);
         }
-    }, [user?.patreon?.needs_relink]);
+    }, [user?.patreonNeedsRelink, user?.patreon?.needs_relink]);
 
     const path = location?.pathname || '/';
 
