@@ -83,7 +83,6 @@
         "passport-jwt": "^4.0.0",
         "passport-local": "^1.0.0",
         "path-to-regexp": "^6.2.1",
-        "patreon": "^0.4.1",
         "pmx": "^1.5.4",
         "prop-types": "^15.6.0",
         "query-string-es5": "^6.1.4",
