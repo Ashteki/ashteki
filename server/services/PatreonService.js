@@ -1,5 +1,3 @@
-const patreon = require('patreon');
-const patreonOAuth = patreon.oauth;
 const request = require('request');
 
 const logger = require('../log.js');
@@ -8,8 +6,44 @@ class PatreonService {
     constructor(clientId, secret, userService, callbackUrl) {
         this.userService = userService;
         this.callbackUrl = callbackUrl;
+        this.clientId = clientId;
+        this.clientSecret = secret;
+        this.patreonTokenUrl = 'https://www.patreon.com/api/oauth2/token';
+    }
 
-        this.patreonOAuthClient = patreonOAuth(clientId, secret);
+    exchangeOAuthToken(payload) {
+        return new Promise((resolve, reject) => {
+            request.post(
+                {
+                    url: this.patreonTokenUrl,
+                    form: payload,
+                    json: true
+                },
+                (err, response, body) => {
+                    if (err) {
+                        reject(err);
+                        return;
+                    }
+
+                    if (response && response.statusCode >= 400) {
+                        reject(
+                            new Error(
+                                (body && (body.error_description || body.error)) ||
+                                `Patreon OAuth request failed: ${response.statusCode}`
+                            )
+                        );
+                        return;
+                    }
+
+                    if (!body || !body.access_token) {
+                        reject(new Error('Patreon OAuth response was missing an access token'));
+                        return;
+                    }
+
+                    resolve(body);
+                }
+            );
+        });
     }
 
     getPatreonStatusFromMemberships(payload) {
@@ -102,7 +136,12 @@ class PatreonService {
     async refreshTokenForUser(user) {
         let response;
         try {
-            response = await this.patreonOAuthClient.refreshToken(user.patreon.refresh_token);
+            response = await this.exchangeOAuthToken({
+                grant_type: 'refresh_token',
+                refresh_token: user.patreon.refresh_token,
+                client_id: this.clientId,
+                client_secret: this.clientSecret
+            });
         } catch (err) {
             logger.error(
                 'Error refreshing patreon account %s',
@@ -164,7 +203,13 @@ class PatreonService {
     async linkAccount(username, code) {
         let response;
         try {
-            response = await this.patreonOAuthClient.getTokens(code, this.callbackUrl);
+            response = await this.exchangeOAuthToken({
+                grant_type: 'authorization_code',
+                code,
+                client_id: this.clientId,
+                client_secret: this.clientSecret,
+                redirect_uri: this.callbackUrl
+            });
         } catch (err) {
             logger.error('Error linking patreon account %s', await this.errorStreamToString(err));
             return false;
