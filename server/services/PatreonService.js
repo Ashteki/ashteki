@@ -38,7 +38,23 @@ class PatreonService {
                             response.statusCode,
                             responseBody
                         );
+                        reject(
+                            new Error(
+                                (body && (body.error_description || body.error)) ||
+                                `Patreon OAuth request failed: ${response.statusCode}`
+                            )
+                        );
+                        return;
                     }
+
+                    const parsed = typeof body === 'string' ? JSON.parse(body) : body;
+                    if (!parsed || !parsed.access_token) {
+                        reject(new Error('Patreon OAuth response was missing an access token'));
+                        return;
+                    }
+
+                    resolve(parsed);
+                }
             );
         });
     }
