@@ -12,12 +12,18 @@ class PatreonService {
     }
 
     exchangeOAuthToken(payload) {
+        if (!this.clientId || !this.clientSecret) {
+            return Promise.reject(new Error('Patreon OAuth client credentials are not configured'));
+        }
+
         return new Promise((resolve, reject) => {
             request.post(
                 {
                     url: this.patreonTokenUrl,
                     form: payload,
-                    json: true
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
                 },
                 (err, response, body) => {
                     if (err) {
@@ -35,12 +41,13 @@ class PatreonService {
                         return;
                     }
 
-                    if (!body || !body.access_token) {
+                    const parsed = typeof body === 'string' ? JSON.parse(body) : body;
+                    if (!parsed || !parsed.access_token) {
                         reject(new Error('Patreon OAuth response was missing an access token'));
                         return;
                     }
 
-                    resolve(body);
+                    resolve(parsed);
                 }
             );
         });
@@ -134,6 +141,15 @@ class PatreonService {
     }
 
     async refreshTokenForUser(user) {
+        if (!user || !user.patreon || !user.patreon.refresh_token) {
+            return undefined;
+        }
+
+        if (!this.clientId || !this.clientSecret) {
+            logger.error('Patreon OAuth client credentials are not configured for refresh');
+            return undefined;
+        }
+
         let response;
         try {
             response = await this.exchangeOAuthToken({
@@ -201,6 +217,11 @@ class PatreonService {
     }
 
     async linkAccount(username, code) {
+        if (!code || !this.clientId || !this.clientSecret) {
+            logger.error('Patreon OAuth link request is missing required configuration');
+            return false;
+        }
+
         let response;
         try {
             response = await this.exchangeOAuthToken({

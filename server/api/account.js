@@ -237,10 +237,10 @@ module.exports.init = function (server, options) {
     userService = options.userService || new UserService(options.configService);
     banlistService = new BanlistService(configService);
     patreonService = new PatreonService(
-        configService.getValueForSection('lobby', 'patreonClientId'),
+        process.env.PATREON_CLIENT_ID || configService.getValueForSection('lobby', 'patreonClientId'),
         process.env.PATREON_SECRET || configService.getValueForSection('lobby', 'patreonSecret'),
         userService,
-        configService.getValueForSection('lobby', 'patreonCallbackUrl')
+        process.env.PATREON_CALLBACK_URL || configService.getValueForSection('lobby', 'patreonCallbackUrl')
     );
 
     let emailKey =
