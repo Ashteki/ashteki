@@ -544,6 +544,10 @@ module.exports.init = function (server, options) {
             // if patreon is linked, then update details
             if (user.patreon && user.patreon.refresh_token) {
                 userDetails.patreon = await patreonService.getPatreonStatusForUser(user);
+                // Preserve the needs_relink flag if it was set during status check
+                if (user.patreon && user.patreon.needs_relink) {
+                    userDetails.patreonNeedsRelink = true;
+                }
 
                 if (userDetails.patreon === 'none') {
                     delete userDetails.patreon;
@@ -551,6 +555,10 @@ module.exports.init = function (server, options) {
                     let ret = await patreonService.refreshTokenForUser(user);
                     if (ret) {
                         userDetails.patreon = await patreonService.getPatreonStatusForUser(user);
+                        // Check again after refresh attempt
+                        if (user.patreon && user.patreon.needs_relink) {
+                            userDetails.patreonNeedsRelink = true;
+                        }
                     }
                 }
             }
