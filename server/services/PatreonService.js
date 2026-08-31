@@ -199,12 +199,25 @@ class PatreonService {
                 'Error refreshing patreon account %s',
                 await this.errorStreamToString(err)
             );
+            // Mark user for re-link on refresh failure
+            if (this.userService) {
+                try {
+                    const userDetails = user.getDetails();
+                    userDetails.patreon = userDetails.patreon || {};
+                    userDetails.patreon.needs_relink = true;
+                    await this.userService.update(userDetails);
+                } catch (updateErr) {
+                    logger.error('Error marking patreon for re-link: %s', updateErr.message);
+                }
+            }
             return undefined;
         }
 
         let userDetails = user.getDetails();
         // eslint-disable-next-line require-atomic-updates
         user.patreon = userDetails.patreon = response;
+        // Clear re-link flag on successful refresh
+        userDetails.patreon.needs_relink = false;
 
         try {
             await this.userService.update(userDetails);

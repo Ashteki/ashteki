@@ -9,6 +9,7 @@ import AlertPanel from './Components/Site/AlertPanel';
 import * as actions from './redux/actions';
 import AppRoutes from './AppRoutes';
 import { useNavigate } from 'react-router-dom';
+import PatreonRelinkerModal from './Components/Site/PatreonRelinkerModal';
 
 const Background = new URL('./assets/img/bgs/lobby_screen_ascendancy.jpg', import.meta.url).href;
 import BlankBg from './assets/img/bgs/blank.png';
@@ -24,6 +25,7 @@ function Application() {
 
     const [incompatibleBrowser, setIncompatibleBrowser] = useState(false);
     const [cannotLoad, setCannotLoad] = useState(false);
+    const [showPatreonRelinker, setShowPatreonRelinker] = useState(false);
     const bgRef = useRef(null);
 
     const backgrounds = { blank: BlankBg, ashesreborn: Background };
@@ -107,6 +109,12 @@ function Application() {
         blinkTab();
     }, [windowBlurred, blinkTab]);
 
+    useEffect(() => {
+        if (user?.patreon?.needs_relink) {
+            setShowPatreonRelinker(true);
+        }
+    }, [user?.patreon?.needs_relink]);
+
     const path = location?.pathname || '/';
 
     let gameBoardVisible = currentGame && currentGame.started;
@@ -150,6 +158,10 @@ function Application() {
 
     return (
         <div className='bg' ref={bgRef}>
+            <PatreonRelinkerModal
+                show={showPatreonRelinker}
+                onHide={() => setShowPatreonRelinker(false)}
+            />
             {!gameBoardVisible && <Navigation appName='Ashes Online' user={user} />}
             <Container className='content'>
                 <ErrorBoundary errorPath={path} message={"We're sorry - something's gone wrong."}>
