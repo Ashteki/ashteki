@@ -127,6 +127,72 @@ describe('Chimera recovery phase', function () {
         });
     });
 
+    describe('Red Rains tokens with multiple ultimate triggers', function () {
+        beforeEach(function () {
+            this.setupTest({
+                mode: 'chimera',
+                player1: {
+                    phoenixborn: 'aradel-summergaard',
+                    inPlay: ['blue-jaguar', 'mist-spirit'],
+                    dicepool: ['natural', 'natural', 'charm', 'charm'],
+                    spellboard: ['summon-butterfly-monk']
+                },
+                player2: {
+                    dummy: true,
+                    phoenixborn: 'corpse-of-viros',
+                    behaviour: 'viros-behaviour',
+                    ultimate: 'viros-ultimate',
+                    inPlay: ['iron-scales', 'rampage', 'firebelly', 'constrict', 'whiplash', 'lurk', 'glare'],
+                    deck: [],
+                    spellboard: [],
+                    threatZone: [],
+                    dicepool: ['rage', 'rage', 'rage', 'rage', 'rage']
+                }
+            });
+
+            this.ironScales.tokens.exhaustion = 1; // should end turn
+            this.rampage.tokens.exhaustion = 1;
+            this.firebelly.tokens.exhaustion = 1;
+            this.constrict.tokens.exhaustion = 1;
+            this.whiplash.tokens.exhaustion = 1;
+            this.lurk.tokens.exhaustion = 1;
+            this.glare.tokens.exhaustion = 1;
+            this.corpseOfViros.tokens.redRains = 2;
+            this.corpseOfViros.tokens.exhaustion = 1;
+            this.player1.endTurn();
+            // no threat to reveal, no unexhausted units to attack should PASS chimera turn
+        });
+
+        it('place RR tokens to trigger ultimate twice', function () {
+            expect(this.game.round).toBe(1);
+            // player 1 pin dice
+            this.player1.clickDie(0);
+            this.player1.clickDone();
+
+            // recovery
+            // initially 2, remove 1 from exhaustion token = 1
+            // add 7 SEQUENTIALLY. chimera is no longer exhausted though, so triggers at 3
+            // remove 3 twice from ults = 2
+            expect(this.corpseOfViros.redRains).toBe(0);
+            expect(this.corpseOfViros.exhausted).toBe(false);
+            // ult 1
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickCard(this.blueJaguar);
+            this.player1.clickCard(this.mistSpirit);
+
+            expect(this.player2.player.chimeraPhase).toBe(2);
+            // ult 2
+            this.player1.clickCard(this.aradelSummergaard);
+            this.player1.clickCard(this.blueJaguar);
+
+            expect(this.corpseOfViros.redRains).toBe(2);
+            // next turn
+            expect(this.game.round).toBe(2);
+            expect(this.player2.player.chimeraPhase).toBe(3);
+            expect(this.corpseOfViros.exhaustion).toBe(0);
+        });
+    });
+
     describe('Replenish aspects when battlefield full', function () {
         beforeEach(function () {
             this.setupTest({
