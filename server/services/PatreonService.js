@@ -134,7 +134,7 @@ class PatreonService {
             return 'none';
         }
 
-        const identityUrl = 'https://www.patreon.com/api/oauth2/v2/identity?include=memberships&fields[member]=patron_status,currently_entitled_tiers';
+        const identityUrl = 'https://www.patreon.com/api/oauth2/v2/identity?include=memberships&fields[member]=patron_status';
 
         const fetchStatus = async () => {
             logger.info('getting patreon status for %s', user.username);
