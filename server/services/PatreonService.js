@@ -32,23 +32,13 @@ class PatreonService {
                     }
 
                     if (response && response.statusCode >= 400) {
-                        reject(
-                            new Error(
-                                (body && (body.error_description || body.error)) ||
-                                `Patreon OAuth request failed: ${response.statusCode}`
-                            )
+                        const responseBody = typeof body === 'string' ? body : JSON.stringify(body || {});
+                        logger.error(
+                            'Patreon OAuth token exchange failed: status=%s body=%s',
+                            response.statusCode,
+                            responseBody
                         );
-                        return;
                     }
-
-                    const parsed = typeof body === 'string' ? JSON.parse(body) : body;
-                    if (!parsed || !parsed.access_token) {
-                        reject(new Error('Patreon OAuth response was missing an access token'));
-                        return;
-                    }
-
-                    resolve(parsed);
-                }
             );
         });
     }
@@ -106,6 +96,13 @@ class PatreonService {
                     }
 
                     if (response && response.statusCode >= 400) {
+                        const responseBody = typeof body === 'string' ? body : JSON.stringify(body || {});
+                        logger.error(
+                            'Patreon status request failed: status=%s url=%s body=%s',
+                            response.statusCode,
+                            url,
+                            responseBody
+                        );
                         reject(new Error(body && body.error ? body.error : `Patreon API request failed: ${response.statusCode}`));
                         return;
                     }
@@ -123,13 +120,34 @@ class PatreonService {
 
         const identityUrl = 'https://www.patreon.com/api/oauth2/v2/identity?include=memberships&fields[user]=email,first_name,last_name,full_name,vanity,is_email_verified,thumb_url,url,image_url&fields[member]=campaign_id,patron_status,current_amount_cents,currently_entitled_tiers,is_follower,pledge_cadence,pledge_amount_cents,will_pay_amount_cents';
 
-        try {
+        const fetchStatus = async () => {
             logger.info('getting patreon status for %s', user.username);
             const response = await this.requestPatreonJson(identityUrl, user.patreon.access_token);
             logger.info('patreon response for %s: %s', user.username, JSON.stringify(response));
 
             return this.getPatreonStatusFromMemberships(response);
+        };
+
+        try {
+            return await fetchStatus();
         } catch (err) {
+            const statusCode = err && (err.statusCode || (err.response && err.response.statusCode));
+            if (statusCode === 401 && user.patreon.refresh_token && this.refreshTokenForUser) {
+                try {
+                    const refreshed = await this.refreshTokenForUser(user);
+                    if (refreshed && refreshed.access_token) {
+                        user.patreon = { ...user.patreon, ...refreshed };
+                        return await fetchStatus();
+                    }
+                } catch (refreshErr) {
+                    logger.error(
+                        'Error refreshing expired patreon token for %s: %s',
+                        user.username,
+                        await this.errorStreamToString(refreshErr)
+                    );
+                }
+            }
+
             logger.error(
                 'Error getting patreon status for %s: %s',
                 user.username,
