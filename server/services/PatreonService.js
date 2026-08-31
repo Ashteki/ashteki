@@ -119,7 +119,9 @@ class PatreonService {
                             url,
                             responseBody
                         );
-                        reject(new Error(body && body.error ? body.error : `Patreon API request failed: ${response.statusCode}`));
+                        const err = new Error(body && body.error ? body.error : `Patreon API request failed: ${response.statusCode}`);
+                        err.statusCode = response.statusCode;
+                        reject(err);
                         return;
                     }
 
