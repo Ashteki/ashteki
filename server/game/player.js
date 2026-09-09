@@ -115,6 +115,8 @@ class Player extends GameObject {
 
     startClock() {
         if (!this.clock) return;
+        if (this.game.manualMode) return;
+
         this.clock.start();
         if (this.opponent) {
             this.opponent.clock.opponentStart();
