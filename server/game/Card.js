@@ -767,6 +767,8 @@ class Card extends PlayableObject {
         var menu = [];
         if (this.facedown) {
             return [{ command: 'flip', text: 'Flip', menu: 'main' }];
+        } else if (this.type === CardType.Aspect) {
+            menu.push({ command: 'flip', text: 'Flip', menu: 'main' });
         }
         if (this.dieUpgrades.length) {
             menu.push({ command: 'detachDie', text: 'Remove die', menu: 'main' });
