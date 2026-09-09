@@ -1085,6 +1085,7 @@ class Game extends EventEmitter {
         } else {
             if (this.solo || player.opponent.isAwol) {
                 this.manualMode = true;
+                this.stopClocks();
                 this.addAlert('danger', '{0} switches manual mode on', player);
                 return;
             }
