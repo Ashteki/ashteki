@@ -9,6 +9,60 @@
             "life": 18,
             "spellboard": 4,
             "imageStub": "https://cdn.ashteki.com/ashes/ethias/ethias-hollowbrook.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Silence",
+            "stub": "silence",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "phoenixborn": "Ethias Hollowbrook",
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/silence.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Summon Black Coil",
+            "stub": "summon-black-coil",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Black Coil",
+                    "stub": "black-coil"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/summon-black-coil.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Black Coil",
+            "stub": "black-coil",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 2,
+            "recover": 0,
+            "copies": 3,
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/black-coil.jpg"
         }
     ]
 }

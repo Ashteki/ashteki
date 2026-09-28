@@ -9,6 +9,17 @@
             "life": 18,
             "spellboard": 4,
             "imageStub": "https://cdn.ashteki.com/ashes/tash/tash-cantasita.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Lethal Blade",
+            "stub": "lethal-blade",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]"
+            ],
+            "phoenixborn": "Tash Cantasita"
         }
     ]
 }

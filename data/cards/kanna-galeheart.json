@@ -6,8 +6,7 @@
             "type": "Phoenixborn",
             "battlefield": 7,
             "life": 17,
-            "spellboard": 3,
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/kanna-galeheart.jpg"
+            "spellboard": 3
         },
         {
             "name": "Hurricane",
@@ -24,8 +23,7 @@
             "magicCost": {
                 "basic": 3
             },
-            "phoenixborn": "Kanna Galeheart",
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/hurricane.jpg"
+            "phoenixborn": "Kanna Galeheart"
         },
         {
             "name": "Tailwind",
@@ -34,8 +32,7 @@
             "placement": "Spellboard",
             "cost": [
                 "[[side]]"
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/tailwind.jpg"
+            ]
         },
         {
             "name": "Eagle Trainer",
@@ -62,8 +59,7 @@
             ],
             "attack": 1,
             "life": 2,
-            "recover": 1,
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/eagle-trainer.jpg"
+            "recover": 1
         },
         {
             "name": "Eagle Fledgling",
@@ -73,8 +69,7 @@
             "attack": 1,
             "life": 1,
             "recover": 0,
-            "copies": 3,
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/eagle-fledgling.jpg"
+            "copies": 3
         },
         {
             "name": "Summon Galewind Hawk",
@@ -97,8 +92,7 @@
                     "name": "Galewind Hawk",
                     "stub": "galewind-hawk"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/summon-galewind-hawk.jpg"
+            ]
         },
         {
             "name": "Galewind Hawk",
@@ -108,8 +102,7 @@
             "attack": 2,
             "life": 2,
             "recover": 0,
-            "copies": 2,
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/galewind-hawk.jpg"
+            "copies": 2
         },
         {
             "name": "Summon Storm Spirit",
@@ -130,8 +123,7 @@
                     "name": "Storm Spirit",
                     "stub": "storm-spirit"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/summon-storm-spirit.jpg"
+            ]
         },
         {
             "name": "Storm Spirit",
@@ -141,8 +133,7 @@
             "attack": 1,
             "life": 1,
             "recover": 0,
-            "copies": 3,
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/storm-spirit.jpg"
+            "copies": 3
         },
         {
             "name": "Stormchaser",
@@ -163,8 +154,7 @@
             },
             "attack": 1,
             "life": 3,
-            "recover": 1,
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/stormchaser.jpg"
+            "recover": 1
         },
         {
             "name": "Puncturing Wind",
@@ -180,8 +170,7 @@
             ],
             "magicCost": {
                 "astral:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/puncturing-wind.jpg"
+            }
         },
         {
             "name": "Freezing Rain",
@@ -197,8 +186,7 @@
             ],
             "magicCost": {
                 "natural:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/freezing-rain.jpg"
+            }
         },
         {
             "name": "Searing Bolt",
@@ -214,8 +202,7 @@
             ],
             "magicCost": {
                 "natural:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/searing-bolt.jpg"
+            }
         },
         {
             "name": "Gathering Clouds",
@@ -240,8 +227,7 @@
                     "name": "Cloud Spirit",
                     "stub": "cloud-spirit"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/gathering-clouds.jpg"
+            ]
         },
         {
             "name": "Cloud Spirit",
@@ -251,8 +237,7 @@
             "attack": 1,
             "life": 1,
             "recover": 0,
-            "copies": 4,
-            "imageStub": "https://cdn.ashteki.com/ashes/kanna/cloud-spirit.jpg"
+            "copies": 4
         }
     ]
 }
