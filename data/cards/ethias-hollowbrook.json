@@ -9,6 +9,168 @@
             "life": 18,
             "spellboard": 4,
             "imageStub": "https://cdn.ashteki.com/ashes/ethias/ethias-hollowbrook.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Silence",
+            "stub": "silence",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "2 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "magicCost": {
+                "basic": 2
+            },
+            "phoenixborn": "Ethias Hollowbrook",
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/silence.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Summon Black Coil",
+            "stub": "summon-black-coil",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "effectMagicCost": {
+                "astral:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Black Coil",
+                    "stub": "black-coil"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/summon-black-coil.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Black Coil",
+            "stub": "black-coil",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 2,
+            "recover": 0,
+            "copies": 3,
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/black-coil.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Ethersight",
+            "stub": "ethersight",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/ethersight.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Star Prison",
+            "stub": "star-prison",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "magicCost": {
+                "astral:class": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/star-prison.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Summon Void Phantom",
+            "stub": "summon-void-phantom",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "effectMagicCost": {
+                "illusion:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Void Phantom",
+                    "stub": "void-phantom"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/summon-void-phantom.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Void Phantom",
+            "stub": "void-phantom",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 3,
+            "life": 1,
+            "recover": 0,
+            "copies": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/void-phantom.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Empty Vessel",
+            "stub": "empty-vessel",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "illusion",
+                "basic"
+            ],
+            "magicCost": {
+                "illusion:class": 1,
+                "basic": 1
+            },
+            "attack": 2,
+            "life": 2,
+            "recover": 0,
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/empty-vessel.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Align",
+            "stub": "align",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:class]]"
+            ],
+            "dice": [
+                "astral"
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/align.jpg"
         }
     ]
 }

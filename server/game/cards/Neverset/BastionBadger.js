@@ -4,7 +4,6 @@ class BastionBadger extends Card {
     setupCardAbilities(ability) {
         this.unitGuard();
 
-
         this.persistentEffect({
             condition: (context) =>
                 context.game.attackState &&

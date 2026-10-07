@@ -112,6 +112,10 @@ class Player extends GameObject {
         return this.hand;
     }
 
+    get handSize() {
+        return this.hand.length;
+    }
+
     startClock() {
         if (!this.clock) return;
         if (this.game.manualMode) return;

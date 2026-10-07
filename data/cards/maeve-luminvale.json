@@ -6,8 +6,7 @@
             "type": "Phoenixborn",
             "battlefield": 6,
             "life": 17,
-            "spellboard": 4,
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/maeve-luminvale.jpg"
+            "spellboard": 4
         },
         {
             "name": "Summon Snapseed",
@@ -28,8 +27,7 @@
                     "name": "Snapseed",
                     "stub": "snapseed"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/summon-snapseed.jpg"
+            ]
         },
         {
             "name": "Snapseed",
@@ -45,8 +43,7 @@
                     "name": "Snaptrap",
                     "stub": "snaptrap"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/snapseed.jpg"
+            ]
         },
         {
             "name": "Snaptrap",
@@ -62,8 +59,7 @@
                     "name": "Floral Tyrant",
                     "stub": "floral-tyrant"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/snaptrap.jpg"
+            ]
         },
         {
             "name": "Floral Tyrant",
@@ -73,8 +69,7 @@
             "attack": 3,
             "life": 3,
             "recover": 0,
-            "copies": 2,
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/floral-tyrant.jpg"
+            "copies": 2
         },
         {
             "name": "Photovoltaics",
@@ -87,8 +82,7 @@
             ],
             "magicCost": {
                 "artifice:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/photovoltaics.jpg"
+            }
         },
         {
             "name": "Botanist",
@@ -115,16 +109,14 @@
             ],
             "attack": 1,
             "life": 3,
-            "recover": 1,
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/botanist.jpg"
+            "recover": 1
         },
         {
             "name": "Nurtured",
             "stub": "nurtured",
             "type": "Conjured Alteration Spell",
             "placement": "Unit",
-            "copies": 2,
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/nurtured.jpg"
+            "copies": 2
         },
         {
             "name": "Overcharged Growth",
@@ -141,8 +133,7 @@
             "magicCost": {
                 "basic": 2
             },
-            "phoenixborn": "Maeve Luminvale",
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/overcharged-growth.jpg"
+            "phoenixborn": "Maeve Luminvale"
         },
         {
             "name": "Summon Capacitor Beetle",
@@ -163,8 +154,7 @@
                     "name": "Capacitor Beetle",
                     "stub": "capacitor-beetle"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/summon-capacitor-beetle.jpg"
+            ]
         },
         {
             "name": "Capacitor Beetle",
@@ -174,8 +164,7 @@
             "attack": 1,
             "life": 2,
             "recover": 0,
-            "copies": 3,
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/capacitor-beetle.jpg"
+            "copies": 3
         },
         {
             "name": "Catalyst",
@@ -191,8 +180,7 @@
             ],
             "magicCost": {
                 "artifice:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/catalyst.jpg"
+            }
         },
         {
             "name": "Propagate",
@@ -213,8 +201,7 @@
                     "name": "Snapseed",
                     "stub": "snapseed"
                 }
-            ],
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/propagate.jpg"
+            ]
         },
         {
             "name": "Encircle",
@@ -230,8 +217,7 @@
             ],
             "magicCost": {
                 "natural:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/encircle.jpg"
+            }
         },
         {
             "name": "Aspiring Growth",
@@ -247,8 +233,7 @@
             ],
             "magicCost": {
                 "natural:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/aspiring-growth.jpg"
+            }
         },
         {
             "name": "Shock Gauntlet",
@@ -264,8 +249,7 @@
             ],
             "magicCost": {
                 "artifice:class": 1
-            },
-            "imageStub": "https://cdn.ashteki.com/ashes/maeve/shock-gauntlet.jpg"
+            }
         }
     ]
 }
