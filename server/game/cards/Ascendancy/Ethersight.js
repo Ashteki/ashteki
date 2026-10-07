@@ -28,10 +28,9 @@ class Ethersight extends Card {
                 toSelect: 'die',
                 mode: 'upTo',
                 numDice: 1,
-                owner: 'opponent',
                 gameAction: ability.actions.lowerDie()
             },
-            message: '{0} uses {1} to lower 1 opponent die'
+            message: '{0} uses {1} to lower 1 player die'
         });
     }
 }
