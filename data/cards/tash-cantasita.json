@@ -19,7 +19,173 @@
             "cost": [
                 "[[side]]"
             ],
-            "phoenixborn": "Tash Cantasita"
+            "phoenixborn": "Tash Cantasita",
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/lethal-blade.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Hostage",
+            "stub": "hostage",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/hostage.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Summon Shadow Dart",
+            "stub": "summon-shadow-dart",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "effectMagicCost": {
+                "illusion:class": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Shadow Dart",
+                    "stub": "shadow-dart"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/summon-shadow-dart.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Shadow Dart",
+            "stub": "shadow-dart",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 1,
+            "life": 1,
+            "recover": 0,
+            "copies": 3,
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/shadow-dart.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Hideout Watch",
+            "stub": "hideout-watch",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "basic": 1,
+                "illusion:class": 1
+            },
+            "attack": 1,
+            "life": 1,
+            "recover": 1,
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/hideout-watch.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Precise Shot",
+            "stub": "precise-shot",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[side]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "basic"
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/precise-shot.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Summon Scrap Hound",
+            "stub": "summon-scrap-hound",
+            "type": "Ready Spell",
+            "placement": "Spellboard",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "effectMagicCost": {
+                "artifice:class": 1,
+                "basic": 1
+            },
+            "conjurations": [
+                {
+                    "name": "Scrap Hound",
+                    "stub": "scrap-hound"
+                }
+            ],
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/summon-scrap-hound.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Scrap Hound",
+            "stub": "scrap-hound",
+            "type": "Conjuration",
+            "placement": "Battlefield",
+            "attack": 2,
+            "life": 3,
+            "recover": 0,
+            "copies": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/scrap-hound.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Tripwire",
+            "stub": "tripwire",
+            "type": "Reaction Spell",
+            "placement": "Discard",
+            "cost": [
+                "1 [[artifice:class]]"
+            ],
+            "dice": [
+                "artifice"
+            ],
+            "magicCost": {
+                "artifice:class": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/tripwire.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Smoke Bomb",
+            "stub": "smoke-bomb",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "illusion",
+                "basic"
+            ],
+            "magicCost": {
+                "illusion:class": 1,
+                "basic": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/tash/smoke-bomb.jpg"
         }
     ]
 }
