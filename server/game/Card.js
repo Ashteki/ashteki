@@ -1328,6 +1328,24 @@ class Card extends PlayableObject {
         });
     }
 
+    hidden() {
+        return this.reaction({
+            isLimited: true,
+            when: {
+                onAttackersDeclared: (event, context) =>
+                    event.attackingPlayer === context.source.owner.opponent
+            },
+            location: 'hand',
+            gameAction: AbilityDsl.actions.playCard(() => ({
+                target: this,
+                ignoreActionCost: true,
+                isLimited: true,
+                playedAsReaction: true
+            })),
+            preferActionPromptMessage: true
+        });
+    }
+
     dismount() {
         return this.destroyed({
             inexhaustible: true,
