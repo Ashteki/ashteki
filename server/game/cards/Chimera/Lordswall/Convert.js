@@ -1,6 +1,6 @@
-const Card = require('../../../Card.js');
+const AspectCard = require('../../../solo/AspectCard');
 
-class Convert extends Card {
+class Convert extends AspectCard {
     setupCardAbilities(ability) {
         this.persistentEffect({
             effect: ability.effects.unpreventable()
