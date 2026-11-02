@@ -160,6 +160,11 @@
             "name": "Sunshield Sentry Gobi",
             "stub": "sunshield-sentry",
             "alt": "https://cdn.ashteki.com/ashes/alts/sunshield-sentry-gobi.jpg"
+        },
+        {
+            "name": "Dark Reaping - Jessa",
+            "stub": "dark-reaping",
+            "alt": "https://cdn.ashteki.com/ashes/alts/dark-reaping-jessa.jpg"
         }
     ]
 }
