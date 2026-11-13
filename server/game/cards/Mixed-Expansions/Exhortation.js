@@ -15,6 +15,7 @@ class Exhortation extends Card {
                     activePromptTitle: 'Choose another unit',
                     cardType: BattlefieldTypes,
                     controller: 'self',
+                    cardCondition: (card, context) => card !== context.targets.myUnit,
                     gameAction: [
                         ability.actions.cardLastingEffect((context) => ({
                             target: context.targets.myOther,
