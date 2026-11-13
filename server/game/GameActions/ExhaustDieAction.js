@@ -11,6 +11,10 @@ class ExhaustDieAction extends DiceGameAction {
         this.targetType = ['die'];
     }
 
+    canAffect(target, context) {
+        return super.canAffect(target, context) && !target.exhausted && !target.parent;
+    }
+
     checkEventCondition(event) {
         return !event.die.exhausted && super.checkEventCondition(event);
     }

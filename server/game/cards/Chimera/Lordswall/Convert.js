@@ -2,6 +2,8 @@ const AspectCard = require('../../../solo/AspectCard');
 
 class Convert extends AspectCard {
     setupCardAbilities(ability) {
+        super.setupCardAbilities(ability);
+
         this.persistentEffect({
             effect: ability.effects.unpreventable()
         });
