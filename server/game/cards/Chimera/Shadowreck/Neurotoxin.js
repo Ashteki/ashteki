@@ -1,4 +1,4 @@
-const AspectCard = require("../../../solo/AspectCard");
+const AspectCard = require('../../../solo/AspectCard');
 
 class Neurotoxin extends AspectCard {
     setupCardAbilities(ability) {
