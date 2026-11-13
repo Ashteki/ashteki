@@ -9,7 +9,10 @@
         "allowJs": true,
         "checkJs": true,
         "lib": ["es2017"],
-        "types": ["node"]
+        "types": [      
+            "node",
+            "jasmine"
+        ]
     },
     "exclude": ["node_modules"]
 }

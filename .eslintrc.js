@@ -17,7 +17,6 @@ module.exports = {
         'plugin:react-hooks/recommended',
         'plugin:react/recommended',
         'plugin:prettier/recommended',
-        'plugin:jest/recommended',
         'plugin:jasmine/recommended'
     ],
     rules: {
@@ -34,8 +33,7 @@ module.exports = {
             files: ['*.test.js'],
             env: {
                 jasmine: true
-            },
-            plugins: ['jest']
+            }
         }
     ]
 };
