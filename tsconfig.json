@@ -1,18 +1,24 @@
 {
-    "include": ["server/**/*"],
+    "include": [
+        "server/**/*"
+    ],
     "compilerOptions": {
-        "module": "es6",
-        "moduleResolution": "node",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "target": "es6",
         "sourceMap": true,
         "outDir": "build",
         "allowJs": true,
         "checkJs": true,
-        "lib": ["es2017"],
-        "types": [      
+        "lib": [
+            "es2017"
+        ],
+        "types": [
             "node",
             "jasmine"
         ]
     },
-    "exclude": ["node_modules"]
+    "exclude": [
+        "node_modules"
+    ]
 }

@@ -15,26 +15,26 @@ class BloodTransfer extends Card {
                 ])
             ],
             location: 'spellboard',
-            targets: {
-                first: {
-                    activePromptTitle: 'Choose a unit to wound',
-                    controller: 'self',
-                    cardType: BattlefieldTypes,
-                    gameAction: ability.actions.dealDamage({ amount: 2 })
-                },
-                second: {
+            target: {
+                activePromptTitle: 'Choose a unit to wound',
+                showCancel: true,
+                controller: 'self',
+                cardType: BattlefieldTypes,
+                gameAction: ability.actions.dealDamage({ amount: 2 })
+            },
+            then: {
+                target: {
                     activePromptTitle: 'Choose a card to remove wound(s) from',
                     optional: true,
-                    dependsOn: 'first',
                     controller: 'self',
                     cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
                     gameAction: ability.actions.removeDamage((context) => ({
-                        amount: PhoenixbornTypes.includes(context.targets.second.type) ? 1 : 2,
+                        amount: PhoenixbornTypes.includes(context.target.type) ? 1 : 2,
                         showMessage: true
                     }))
                 }
             }
-        });
+        })
     }
 }
 
