@@ -7,8 +7,7 @@ class OverchargedGrowth extends Card {
                 ability.effects.modifyAttack(1),
                 ability.effects.modifyLife(1),
                 ability.effects.modifyRecover(1),
-                ability.effects.addKeyword({ terrifying: 1 }),
-                ability.effects.addKeyword({ gigantic: 1 })
+                ability.effects.addKeyword({ unstoppable: 1 })
             ]
         });
     }

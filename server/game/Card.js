@@ -1463,8 +1463,8 @@ class Card extends PlayableObject {
                 BattlefieldTypes.includes(this.type) &&
                 !this.exhausted &&
                 (this.anyEffect('canGuard') || this.anyEffect('defender')) &&
-                this.checkGigantic(attacker) &&
-                this.checkTerrifying(attacker) &&
+                this.checkLifeLimits(attacker) &&
+                this.checkAttackLimits(attacker) &&
                 !attacker.anyEffect('preventGuard', { card: this })
             );
         }
@@ -1476,22 +1476,32 @@ class Card extends PlayableObject {
         return (
             BattlefieldTypes.includes(this.type) &&
             !this.exhausted &&
-            this.checkGigantic(attacker) &&
-            this.checkTerrifying(attacker) &&
+            this.checkLifeLimits(attacker) &&
+            this.checkAttackLimits(attacker) &&
             !attacker.anyEffect('preventBlock', { card: this })
         );
     }
 
-    checkGigantic(attacker) {
-        // ok to block if attacker doesn't have gigantic, or gigantic value is less than this card's life value
-        return !attacker.hasKeyword('gigantic') || attacker.getKeywordValue('gigantic') < this.life;
+    checkLifeLimits(attacker) {
+        // ok to block if attacker doesn't have keyword, or keyword value is less than this card's life value
+        return (
+            // gigantic
+            (!attacker.hasKeyword('gigantic') ||
+                attacker.getKeywordValue('gigantic') < this.life) &&
+            // unstoppable
+            (!attacker.hasKeyword('unstoppable') ||
+                attacker.getKeywordValue('unstoppable') < this.life)
+        );
     }
 
-    checkTerrifying(attacker) {
+    checkAttackLimits(attacker) {
         // ok to block if attacker doesn't have terrifying, or terrifying value is less than this card's attack value
         return (
-            !attacker.hasKeyword('terrifying') ||
-            attacker.getKeywordValue('terrifying') < this.attack
+            (!attacker.hasKeyword('terrifying') ||
+                attacker.getKeywordValue('terrifying') < this.attack) &&
+            // unstoppable
+            (!attacker.hasKeyword('unstoppable') ||
+                attacker.getKeywordValue('unstoppable') < this.attack)
         );
     }
 
