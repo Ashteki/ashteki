@@ -37,8 +37,8 @@ describe('Blood Brawl', function () {
 
         this.player1.play(this.bloodBrawl);
         this.player1.clickCard(this.mistSpirit);
+        this.player1.clickPrompt('Cancel');
         expect(this.mistSpirit.location).toBe('archives');
-        this.player1.clickPrompt('Done');
         expect(this.player1).toHaveDefaultPrompt();
     });
 });
