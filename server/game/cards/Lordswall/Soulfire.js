@@ -2,25 +2,6 @@ const { BattlefieldTypes, PhoenixbornTypes, CardType } = require('../../../const
 const Card = require('../../Card.js');
 
 class Soulfire extends Card {
-    getTargetData = (ability, remainingPings) => {
-        if (remainingPings === 0) {
-            return undefined;
-        }
-        let returnValue = {
-            alwaysTriggers: true,
-            target: {
-                showCancel: true,
-                cardCondition: (card, context) => card.type !== CardType.Phoenixborn || card.controller.unitsInPlay.length === 0,
-                activePromptTitle: 'Choose a target to deal 1 damage',
-                cardType: [...BattlefieldTypes, ...PhoenixbornTypes],
-                gameAction: ability.actions.dealDamage()
-            }
-        };
-        returnValue.then = this.getTargetData(ability, remainingPings - 1);
-
-        return returnValue;
-    };
-
     setupCardAbilities(ability) {
         this.play({
             title: 'Soulfire',
@@ -34,7 +15,12 @@ class Soulfire extends Card {
                 gameAction: ability.actions.purge({ showMessage: true })
             },
             then: (context) => ({
-                ...this.getTargetData(ability, context.target.length)
+                ...this.getTargettedAbilityChain(ability, context.target.length, {
+                    cardCondition: (card, context) =>
+                        card.type !== CardType.Phoenixborn ||
+                        card.controller.unitsInPlay.length === 0,
+                    cardType: [...BattlefieldTypes, ...PhoenixbornTypes]
+                })
             })
         });
     }

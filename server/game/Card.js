@@ -1430,6 +1430,27 @@ class Card extends PlayableObject {
         });
     }
 
+    getTargettedAbilityChain(ability, remainingPings, targetProperties = {}) {
+        if (!remainingPings || remainingPings === 0) {
+            return undefined;
+        }
+        let returnValue = {
+            alwaysTriggers: true,
+            target: {
+                showCancel: true,
+                activePromptTitle: 'Choose a target to deal 1 damage to',
+                cardType: BattlefieldTypes,
+                controller: 'opponent',
+                gameAction: ability.actions.dealDamage()
+            }
+        };
+
+        returnValue.target = Object.assign(returnValue.target, targetProperties);
+        returnValue.then = this.getTargettedAbilityChain(ability, remainingPings - 1, targetProperties);
+
+        return returnValue;
+    }
+
     canGuard(attacker) {
         // phoenixborn and not guarded this round
         // OR has Unit Guard keyword / ability.

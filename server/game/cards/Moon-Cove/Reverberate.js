@@ -2,7 +2,7 @@ const { BattlefieldTypes } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class Reverberate extends Card {
-    getTargetData = (ability, context, remainingPings) => {
+    getTargettedAbilityChain = (ability, context, remainingPings) => {
         const remainder = remainingPings !== undefined ? remainingPings : this.getDamageAmount(context);
         if (remainder === 0) {
             return {
@@ -21,10 +21,10 @@ class Reverberate extends Card {
         };
         if (remainder === undefined) {
             returnValue.then = (context) =>
-                this.getTargetData(ability, context, this.getDamageAmount(context) - 1);
+                this.getTargettedAbilityChain(ability, context, this.getDamageAmount(context) - 1);
         } else {
             returnValue.then = (context) =>
-                this.getTargetData(ability, context, remainder - 1);
+                this.getTargettedAbilityChain(ability, context, remainder - 1);
         }
         return returnValue;
     };
