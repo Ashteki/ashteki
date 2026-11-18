@@ -38,38 +38,16 @@ class SpearMaster extends Card {
             then: (context) => ({
                 alwaysTriggers: true,
                 condition: (context) => context.priorContext.tokenCount > 0,
-                // gameAction: ability.actions.sequentialDamage((context) => ({
-                //     numSteps: context.priorContext.tokenCount
-                // }))
-                ...this.getTargetData(ability, context.tokenCount)
+                ...this.getTargettedAbilityChain(ability, context.tokenCount, {
+                    cardCondition: (c) => !this.targetCards?.includes(c),
+                    onSelectCallback: (player, card) => {
+                        this.targetCards.push(card);
+                        return true;
+                    }
+                })
             })
         });
     }
-
-    getTargetData = (ability, remainingPings) => {
-        if (!remainingPings || remainingPings === 0) {
-            return undefined;
-        }
-        let returnValue = {
-            alwaysTriggers: true,
-            target: {
-                showCancel: true,
-                activePromptTitle: 'Choose a target to deal 1 damage to',
-                cardType: BattlefieldTypes,
-                controller: 'opponent',
-                cardCondition: (c, context) => !this.targetCards?.includes(c),
-                gameAction: ability.actions.dealDamage(),
-                onSelectCallback: (player, card) => {
-                    this.targetCards.push(card);
-                    return true;
-                }
-            }
-        };
-
-        returnValue.then = this.getTargetData(ability, remainingPings - 1);
-
-        return returnValue;
-    };
 }
 
 SpearMaster.id = 'spear-master';
