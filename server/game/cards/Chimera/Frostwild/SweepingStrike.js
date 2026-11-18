@@ -4,7 +4,7 @@ const AspectCard = require('../../../solo/AspectCard');
 class SweepingStrike extends AspectCard {
     getDamageAmount = (context) => context.source.attack;
 
-    getTargetData = (ability, remainingPings) => {
+    getTargettedAbilityChain = (ability, remainingPings) => {
         if (remainingPings === 0) {
             return undefined;
         }
@@ -22,9 +22,9 @@ class SweepingStrike extends AspectCard {
         };
         if (remainingPings === undefined) {
             returnValue.then = (context) =>
-                this.getTargetData(ability, this.getDamageAmount(context) - 1);
+                this.getTargettedAbilityChain(ability, this.getDamageAmount(context) - 1);
         } else {
-            returnValue.then = this.getTargetData(ability, remainingPings - 1);
+            returnValue.then = this.getTargettedAbilityChain(ability, remainingPings - 1);
         }
         return returnValue;
     };
@@ -36,7 +36,7 @@ class SweepingStrike extends AspectCard {
             effect: 'deal 1 damage to a unit {1} times',
             effectArgs: (context) => this.getDamageAmount(context),
             condition: (context) => this.getDamageAmount(context) > 0,
-            ...this.getTargetData(ability)
+            ...this.getTargettedAbilityChain(ability)
         });
     }
 }

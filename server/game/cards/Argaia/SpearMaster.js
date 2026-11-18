@@ -38,7 +38,7 @@ class SpearMaster extends Card {
             then: (context) => ({
                 alwaysTriggers: true,
                 condition: (context) => context.priorContext.tokenCount > 0,
-                ...this.getTargetData(ability, context.tokenCount, {
+                ...this.getTargettedAbilityChain(ability, context.tokenCount, {
                     cardCondition: (c) => !this.targetCards?.includes(c),
                     onSelectCallback: (player, card) => {
                         this.targetCards.push(card);

@@ -13,7 +13,7 @@ class BloodBrawl extends Card {
             effectArgs: (context) => this.getDamageAmount(context),
             condition: (context) => this.getDamageAmount(context) > 0,
             then: (context) => ({
-                ...this.getTargetData(ability, this.getDamageAmount(context))
+                ...this.getTargettedAbilityChain(ability, this.getDamageAmount(context))
             })
         });
     }

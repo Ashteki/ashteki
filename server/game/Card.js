@@ -1430,7 +1430,7 @@ class Card extends PlayableObject {
         });
     }
 
-    getTargetData(ability, remainingPings, targetProperties = {}) {
+    getTargettedAbilityChain(ability, remainingPings, targetProperties = {}) {
         if (!remainingPings || remainingPings === 0) {
             return undefined;
         }
@@ -1446,7 +1446,7 @@ class Card extends PlayableObject {
         };
 
         returnValue.target = Object.assign(returnValue.target, targetProperties);
-        returnValue.then = this.getTargetData(ability, remainingPings - 1, targetProperties);
+        returnValue.then = this.getTargettedAbilityChain(ability, remainingPings - 1, targetProperties);
 
         return returnValue;
     }

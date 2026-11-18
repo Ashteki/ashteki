@@ -9,7 +9,7 @@ class BrilliantDisplay extends Card {
             effectArgs: (context) => this.getDamageCount(context),
             condition: (context) => this.getDamageCount(context) > 0,
             then: (context) => ({
-                ...this.getTargetData(ability, this.getDamageCount(context))
+                ...this.getTargettedAbilityChain(ability, this.getDamageCount(context))
             })
         });
     }

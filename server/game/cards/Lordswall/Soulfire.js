@@ -15,7 +15,7 @@ class Soulfire extends Card {
                 gameAction: ability.actions.purge({ showMessage: true })
             },
             then: (context) => ({
-                ...this.getTargetData(ability, context.target.length, {
+                ...this.getTargettedAbilityChain(ability, context.target.length, {
                     cardCondition: (card, context) =>
                         card.type !== CardType.Phoenixborn ||
                         card.controller.unitsInPlay.length === 0,
