@@ -6,10 +6,10 @@ class SummonVoidPhantom extends Card {
     setupCardAbilities(ability) {
         this.summon('void-phantom', {
             title: 'Summon Void Phantom',
-                cost: ability.costs.chosenOptionCost([
+            cost: ability.costs.chosenOptionCost([
                 {
                     text: 'Main',
-                    cost: [
+                    costs: [
                         ability.costs.mainAction(),
                         ability.costs.exhaust(),
                         ability.costs.dice([new DiceCount(1, Level.Class, Magic.Illusion), new DiceCount(1, Level.Basic)])
@@ -17,7 +17,7 @@ class SummonVoidPhantom extends Card {
                 },
                 {
                     text: 'Side',
-                    cost: [
+                    costs: [
                         ability.costs.sideAction(),
                         ability.costs.exhaust(),
                         ability.costs.oppHasNoActiveNonBasic(),

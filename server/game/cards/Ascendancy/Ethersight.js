@@ -22,8 +22,10 @@ class Ethersight extends Card {
                 onBeginTurn: (event, context) => event.player === context.player
             },
             location: 'spellboard',
-            condition: (context) => !context.player.phoenixborn.isAirborne,
+            condition: (context) => context.player.phoenixborn.isAirborne,
             target: {
+                activePromptTitle: 'Choose a die to lower one level',
+                optional: true,
                 targetsPlayer: true,
                 toSelect: 'die',
                 mode: 'upTo',

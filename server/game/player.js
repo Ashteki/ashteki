@@ -341,7 +341,7 @@ class Player extends GameObject {
         return this.battlefield.some((c) => c.exhausted);
     }
 
-    exhaustedUnits() {
+    get exhaustedUnits() {
         return this.battlefield.filter((c) => c.exhausted);
     }
 
