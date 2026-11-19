@@ -187,7 +187,53 @@
             ],
             "magicCost": {
                 "illusion:class": 1
-            }
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/futility.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Shattered Sentinel",
+            "stub": "shattered-sentinel",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[astral:power]]",
+                "1 [[illusion:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "astral",
+                "illusion",
+                "basic"
+            ],
+            "magicCost": {
+                "astral:power": 1,
+                "illusion:class": 1,
+                "basic": 1
+            },
+            "attack": 2,
+            "life": 4,
+            "recover": 2,
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/shattered-sentinel.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Nullify",
+            "stub": "nullify",
+            "type": "Action Spell",
+            "placement": "Discard",
+            "cost": [
+                "[[main]]",
+                "1 [[illusion:power]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:power": 1
+            },
+            "imageStub": "https://cdn.ashteki.com/ashes/ethias/nullify.jpg"
         }
     ]
 }

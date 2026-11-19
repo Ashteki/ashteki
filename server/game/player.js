@@ -238,6 +238,10 @@ class Player extends GameObject {
         return this.archives.some((c) => c.id === stub);
     }
 
+    hasCardTypeInHand(cardType) {
+        return this.hand.some((c) => c.type === cardType);
+    }
+
     // CAUTION! sort of overridden in DummyPlayer
     get unitsInPlay() {
         return this.cardsInPlay.filter(

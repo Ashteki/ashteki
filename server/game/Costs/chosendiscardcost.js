@@ -2,10 +2,15 @@ class ChosenDiscardCost {
     constructor(properties) {
         this.amount = properties.amount;
         this.allowCancel = !!properties.allowCancel;
+        this.cardType = properties.cardType;
     }
 
     canPay(context) {
-        return context.player.hand.filter((c) => c !== context.source).length >= this.amount;
+        let cards = context.player.hand.filter((c) => c !== context.source);
+        if (this.cardType) {
+            cards = cards.filter((c) => c.type === this.cardType);
+        }
+        return cards.length >= this.amount;
     }
 
     resolve(context, result) {
@@ -30,7 +35,8 @@ class ChosenDiscardCost {
                 result.cancelled = true;
                 return true;
             },
-            showCancel: this.allowCancel
+            showCancel: this.allowCancel,
+            cardType: this.cardType
         });
     }
 

@@ -186,6 +186,29 @@
                 "basic": 1
             },
             "imageStub": "https://cdn.ashteki.com/ashes/tash/smoke-bomb.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Blacksand Mechanic",
+            "stub": "blacksand-mechanic",
+            "type": "Ally",
+            "placement": "Battlefield",
+            "cost": [
+                "[[main]]",
+                "1 [[artifice:class]]",
+                "1 [[basic]]"
+            ],
+            "dice": [
+                "artifice",
+                "basic"
+            ],
+            "magicCost": {
+                "artifice:class": 1,
+                "basic": 1
+            },
+            "attack": 1,
+            "life": 3,
+            "recover": 1
         }
     ]
 }
