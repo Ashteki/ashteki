@@ -171,6 +171,23 @@
                 "astral"
             ],
             "imageStub": "https://cdn.ashteki.com/ashes/ethias/align.jpg"
+        },
+        {
+            "restricted": true,
+            "name": "Futility",
+            "stub": "futility",
+            "type": "Alteration Spell",
+            "placement": "Unit",
+            "cost": [
+                "[[side]]",
+                "1 [[illusion:class]]"
+            ],
+            "dice": [
+                "illusion"
+            ],
+            "magicCost": {
+                "illusion:class": 1
+            }
         }
     ]
 }

@@ -1,5 +1,4 @@
-import { CardType, Magic } from '../../../constants.js';
-
+const { CardType, Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class ScrapHound extends Card {
