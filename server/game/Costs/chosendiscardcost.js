@@ -14,7 +14,7 @@ class ChosenDiscardCost {
     }
 
     resolve(context, result) {
-        context.game.promptForSelect(context.player, {
+        const promptProps = {
             activePromptTitle: this.amount === 1
                 ? 'Choose a card to discard'
                 : {
@@ -35,9 +35,12 @@ class ChosenDiscardCost {
                 result.cancelled = true;
                 return true;
             },
-            showCancel: this.allowCancel,
-            cardType: this.cardType
-        });
+            showCancel: this.allowCancel
+        };
+        if (this.cardType) {
+            promptProps.cardType = this.cardType;
+        }
+        context.game.promptForSelect(context.player, promptProps);
     }
 
     payEvent(context) {
