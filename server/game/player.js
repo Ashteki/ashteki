@@ -337,6 +337,10 @@ class Player extends GameObject {
         return this.battlefield.some((c) => c.exhausted);
     }
 
+    exhaustedUnits() {
+        return this.battlefield.filter((c) => c.exhausted);
+    }
+
     getUsableDice(context) {
         // this assumes all usable hosted dice are on ready spells
         const usableUpgrades = [...this.spellboard, ...this.unitsInPlay, this.phoenixborn]
