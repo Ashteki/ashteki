@@ -4,7 +4,7 @@ const Card = require('../../Card.js');
 class PreciseShot extends Card {
     setupCardAbilities(ability) {
         this.action({
-            title: 'Align',
+            title: 'Precise Shot',
             condition: (context) => context.source.isCharged,
             cost: [ability.costs.sideAction(), ability.costs.exhaust()],
             location: 'spellboard',
