@@ -323,7 +323,7 @@
   {
     "restricted": true,
     "precon_id": 1105,
-    "name": "Ethias deck",
+    "name": "Phoenixborn of Ismite",
     "phoenixborn": [
       {
         "id": "ethias-hollowbrook",
@@ -342,12 +342,12 @@
     ],
     "cards": [
       {
-        "id": "silence",
+        "id": "summon-black-coil",
         "count": 3,
         "ff": true
       },
       {
-        "id": "summon-black-coil",
+        "id": "shattered-sentinel",
         "count": 3,
         "ff": true
       },
@@ -371,11 +371,11 @@
         "count": 3
       },
       {
-        "id": "align",
+        "id": "silence",
         "count": 3
       },
       {
-        "id": "shattered-sentinel",
+        "id": "align",
         "count": 3
       },
       {
@@ -401,7 +401,7 @@
   {
     "restricted": true,
     "precon_id": 1106,
-    "name": "Tash deck",
+    "name": "Phoenixborn of Blacksand Wastes",
     "phoenixborn": [
       {
         "id": "tash-cantasita",
@@ -425,12 +425,12 @@
         "ff": true
       },
       {
-        "id": "hostage",
+        "id": "summon-shadow-dart",
         "count": 3,
         "ff": true
       },
       {
-        "id": "summon-shadow-dart",
+        "id": "summon-scrap-hound",
         "count": 3,
         "ff": true
       },
@@ -440,13 +440,13 @@
         "ff": true
       },
       {
+        "id": "hostage",
+        "count": 3
+      },
+      {
         "id": "precise-shot",
         "count": 3,
         "ff": true
-      },
-      {
-        "id": "summon-scrap-hound",
-        "count": 3
       },
       {
         "id": "tripwire",
