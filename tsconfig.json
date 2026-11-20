@@ -10,13 +10,9 @@
         "outDir": "build",
         "allowJs": true,
         "checkJs": true,
-        "lib": [
-            "es2017"
-        ],
-        "types": [
-            "node",
-            "jasmine"
-        ]
+        "lib": ["es2017"],
+        "types": ["node"],
+        "noImplicitAny":false
     },
     "exclude": [
         "node_modules"

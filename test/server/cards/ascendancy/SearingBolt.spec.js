@@ -1,4 +1,4 @@
-const Dice = require('../../../server/game/dice');
+const Dice = require('../../../../server/game/dice');
 
 describe('Searing Bolt', function () {
     describe('with one target', function () {
