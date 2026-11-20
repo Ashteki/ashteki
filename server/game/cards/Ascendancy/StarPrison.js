@@ -15,7 +15,7 @@ class StarPrison extends Card {
             },
             target: {
                 toSelect: 'die',
-                mode: 'upTo',
+                mode: 'exactly',
                 numDice: 1,
                 owner: 'self',
                 dieCondition: (die) => die.level === Level.Class,
