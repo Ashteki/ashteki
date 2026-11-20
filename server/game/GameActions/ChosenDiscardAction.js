@@ -7,6 +7,7 @@ class ChosenDiscardAction extends PlayerAction {
         this.allowTopOfDeck = false;
         this.location = ['hand'];
         this.allowCancel = false;
+        this.cardType = null;
     }
 
     setup() {
@@ -66,6 +67,9 @@ class ChosenDiscardAction extends PlayerAction {
                             context.game.actions.discardTopOfDeck().resolve(player, context);
                             return true;
                         };
+                    }
+                    if (this.cardType) {
+                        promptProps.cardType = this.cardType;
                     }
                     context.game.promptForSelect(player, promptProps);
                 }
