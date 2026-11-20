@@ -937,7 +937,14 @@ class Game extends EventEmitter {
     }
 
     promptForDieSelect(player, properties) {
-        this.queueStep(new SelectDiePrompt(this, player, properties));
+        let choosingPlayer = player;
+        if (choosingPlayer.isDummy) {
+            choosingPlayer = choosingPlayer.opponent;
+            properties.promptTitle = 'CHIMERA CHOICE';
+            properties.style = 'danger';
+        }
+
+        this.queueStep(new SelectDiePrompt(this, choosingPlayer, properties));
     }
 
     promptForMeditation() {

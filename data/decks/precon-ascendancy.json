@@ -323,7 +323,7 @@
   {
     "restricted": true,
     "precon_id": 1105,
-    "name": "Ethias deck",
+    "name": "Phoenixborn of Ismite",
     "phoenixborn": [
       {
         "id": "ethias-hollowbrook",
@@ -342,22 +342,12 @@
     ],
     "cards": [
       {
-        "id": "silence",
-        "count": 3,
-        "ff": true
-      },
-      {
         "id": "summon-black-coil",
         "count": 3,
         "ff": true
       },
       {
-        "id": "ethersight",
-        "count": 3,
-        "ff": true
-      },
-      {
-        "id": "star-prison",
+        "id": "shattered-sentinel",
         "count": 3,
         "ff": true
       },
@@ -367,15 +357,25 @@
         "ff": true
       },
       {
-        "id": "empty-vessel",
-        "count": 3
+        "id": "silence",
+        "count": 3,
+        "ff": true
       },
       {
         "id": "align",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "ethersight",
         "count": 3
       },
       {
-        "id": "shattered-sentinel",
+        "id": "star-prison",
+        "count": 3
+      },
+      {
+        "id": "empty-vessel",
         "count": 3
       },
       {
@@ -401,7 +401,7 @@
   {
     "restricted": true,
     "precon_id": 1106,
-    "name": "Tash deck",
+    "name": "Phoenixborn of Blacksand Wastes",
     "phoenixborn": [
       {
         "id": "tash-cantasita",
@@ -420,22 +420,12 @@
     ],
     "cards": [
       {
-        "id": "lethal-blade",
-        "count": 3,
-        "ff": true
-      },
-      {
-        "id": "hostage",
-        "count": 3,
-        "ff": true
-      },
-      {
         "id": "summon-shadow-dart",
         "count": 3,
         "ff": true
       },
       {
-        "id": "hideout-watch",
+        "id": "summon-scrap-hound",
         "count": 3,
         "ff": true
       },
@@ -445,7 +435,21 @@
         "ff": true
       },
       {
-        "id": "summon-scrap-hound",
+        "id": "hostage",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "blacksand-mechanic",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "lethal-blade",
+        "count": 3
+      },
+      {
+        "id": "hideout-watch",
         "count": 3
       },
       {
@@ -454,10 +458,6 @@
       },
       {
         "id": "smoke-bomb",
-        "count": 3
-      },
-      {
-        "id": "blacksand-mechanic",
         "count": 3
       },
       {
