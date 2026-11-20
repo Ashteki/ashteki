@@ -1,4 +1,3 @@
-const { Level } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class StormSpirit extends Card {

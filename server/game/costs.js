@@ -42,6 +42,10 @@ const Costs = {
         canPay: (context) => context.player.hasHostedAstralDie(),
         pay: () => true
     }),
+    oppHasNoActiveNonBasic: () => ({
+        canPay: (context) => context.player.opponent.activeNonBasicDiceCount === 0,
+        pay: () => true
+    }),
     use: () => ({
         // exhausted game objects can't be used
         canPay: (context) => !context.source.exhausted,
@@ -76,8 +80,8 @@ const Costs = {
         }
     }),
     // player chooses their own card to discard from hand
-    chosenDiscard: (amount = 1, allowCancel = false) =>
-        new ChosenDiscardCost({ amount, allowCancel }),
+    chosenDiscard: (amount = 1, allowCancel = false, cardType = null) =>
+        new ChosenDiscardCost({ amount, allowCancel, cardType }),
     dice: (cost, title) => new DiceCost({ diceReq: cost, title: title }),
     xDice: (cost, title) => new XDiceCost({ diceReq: cost, title: title }),
     dynamicDice: (costFunc) => new DynamicDiceCost(costFunc),
