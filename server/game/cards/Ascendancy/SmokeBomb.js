@@ -1,4 +1,4 @@
-const { BattlefieldTypes, Magic } = require('../../../constants.js');
+const { Magic } = require('../../../constants.js');
 const Card = require('../../Card.js');
 
 class SmokeBomb extends Card {
@@ -20,7 +20,7 @@ class SmokeBomb extends Card {
                     toSelect: 'die',
                     owner: 'self',
                     dieCondition: (die) => die.magic === Magic.Artifice && die.parent,
-                    gameAction: ability.actions.exhaustDie()
+                    gameAction: ability.actions.detachDie()
                 },
                 then: {
                     target: {
