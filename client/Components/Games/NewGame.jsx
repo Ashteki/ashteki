@@ -70,7 +70,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         gamePrivate: defaultPrivate,
         ranked: false,
         solo: isSolo,
-        saveReplay: false
+        saveReplay: !!allowPremium
     };
     // solo: ['chimera', 'bot'].includes(newGameType),
 
@@ -109,7 +109,7 @@ const NewGame = ({ defaultGameType, defaultPrivate, defaultTimeLimit, onClosed }
         switch (value) {
             case 'FFL':
                 setFieldValue('ranked', false);
-                setFieldValue('saveReplay', false);
+                setFieldValue('saveReplay', true);
                 setFieldValue('useGameTimeLimit', false);
 
                 break;
