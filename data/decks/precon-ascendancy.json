@@ -352,30 +352,30 @@
         "ff": true
       },
       {
-        "id": "ethersight",
-        "count": 3,
-        "ff": true
-      },
-      {
-        "id": "star-prison",
-        "count": 3,
-        "ff": true
-      },
-      {
         "id": "summon-void-phantom",
         "count": 3,
         "ff": true
       },
       {
-        "id": "empty-vessel",
-        "count": 3
-      },
-      {
         "id": "silence",
-        "count": 3
+        "count": 3,
+        "ff": true
       },
       {
         "id": "align",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "ethersight",
+        "count": 3
+      },
+      {
+        "id": "star-prison",
+        "count": 3
+      },
+      {
+        "id": "empty-vessel",
         "count": 3
       },
       {
@@ -420,11 +420,6 @@
     ],
     "cards": [
       {
-        "id": "lethal-blade",
-        "count": 3,
-        "ff": true
-      },
-      {
         "id": "summon-shadow-dart",
         "count": 3,
         "ff": true
@@ -435,18 +430,27 @@
         "ff": true
       },
       {
-        "id": "hideout-watch",
+        "id": "precise-shot",
         "count": 3,
         "ff": true
       },
       {
         "id": "hostage",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "blacksand-mechanic",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "lethal-blade",
         "count": 3
       },
       {
-        "id": "precise-shot",
-        "count": 3,
-        "ff": true
+        "id": "hideout-watch",
+        "count": 3
       },
       {
         "id": "tripwire",
@@ -454,10 +458,6 @@
       },
       {
         "id": "smoke-bomb",
-        "count": 3
-      },
-      {
-        "id": "blacksand-mechanic",
         "count": 3
       },
       {
