@@ -552,7 +552,7 @@ class PlayerInteractionWrapper {
         return die;
     }
 
-    clickDieUpgrade(card, index) {
+    clickDieUpgrade(card, index = 0) {
         let die = card.dieUpgrades[index];
         this.game.dieClicked(this.player.name, die.uuid);
         this.game.continue();

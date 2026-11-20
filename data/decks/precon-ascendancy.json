@@ -319,5 +319,161 @@
         "count": 3
       }
     ]
+  },
+  {
+    "restricted": true,
+    "precon_id": 1105,
+    "name": "Ethias deck",
+    "phoenixborn": [
+      {
+        "id": "ethias-hollowbrook",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "astral",
+        "count": 5
+      },
+      {
+        "magic": "illusion",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "silence",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-black-coil",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "ethersight",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "star-prison",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-void-phantom",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "empty-vessel",
+        "count": 3
+      },
+      {
+        "id": "align",
+        "count": 3
+      },
+      {
+        "id": "shattered-sentinel",
+        "count": 3
+      },
+      {
+        "id": "nullify",
+        "count": 3
+      },
+      {
+        "id": "futility",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "black-coil",
+        "count": 3
+      },
+      {
+        "id": "void-phantom",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "restricted": true,
+    "precon_id": 1106,
+    "name": "Tash deck",
+    "phoenixborn": [
+      {
+        "id": "tash-cantasita",
+        "count": 1
+      }
+    ],
+    "dicepool": [
+      {
+        "magic": "artifice",
+        "count": 5
+      },
+      {
+        "magic": "illusion",
+        "count": 5
+      }
+    ],
+    "cards": [
+      {
+        "id": "lethal-blade",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "hostage",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-shadow-dart",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "hideout-watch",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "precise-shot",
+        "count": 3,
+        "ff": true
+      },
+      {
+        "id": "summon-scrap-hound",
+        "count": 3
+      },
+      {
+        "id": "tripwire",
+        "count": 3
+      },
+      {
+        "id": "smoke-bomb",
+        "count": 3
+      },
+      {
+        "id": "blacksand-mechanic",
+        "count": 3
+      },
+      {
+        "id": "mach-bike",
+        "count": 3
+      }
+    ],
+    "conjurations": [
+      {
+        "id": "shadow-dart",
+        "count": 3
+      },
+      {
+        "id": "scrap-hound",
+        "count": 2
+      }
+    ]
   }
 ]

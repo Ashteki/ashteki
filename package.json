@@ -50,10 +50,10 @@
         "@typescript-eslint/eslint-plugin": "^5.55.0",
         "@vitejs/plugin-react": "^6.0.1",
         "ahooks": "^3.9.7",
-        "bcrypt": "^5.0.1",
+        "bcryptjs": "^3.0.3",
         "bootstrap": "^5.3.2",
         "canvas": "^3.2.3",
-        "config": "^3.3.9",
+        "config": "^3.3.12",
         "core-js": "^3.27.2",
         "cross-env": "^7.0.3",
         "emoji-js": "^3.5.0",
@@ -144,5 +144,16 @@
         "prettier": "^2.8.4",
         "ts-node": "^8.10.2",
         "typescript": "^5.2.2"
+    },
+    "allowScripts": {
+        "canvas@3.2.3": true,
+        "core-js@3.27.2": true,
+        "@parcel/watcher@2.5.6": true,
+        "@fortawesome/fontawesome-common-types@0.2.36": true,
+        "@fortawesome/fontawesome-common-types@6.4.2": true,
+        "@fortawesome/fontawesome-svg-core@1.2.36": true,
+        "@fortawesome/free-regular-svg-icons@6.4.2": true,
+        "@fortawesome/free-solid-svg-icons@6.4.2": true,
+        "bcrypt@5.0.1": true
     }
 }
